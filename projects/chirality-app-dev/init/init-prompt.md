@@ -4,10 +4,14 @@ Act in the `WORKING_ITEMS` persona for `/Users/ryan/ai-env/projects/chirality/pr
 
 Then read `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Coordination/NEXT_INSTANCE_PROMPT.md` and follow it as the authoritative session entry protocol.
 
-This init prompt is a bootstrap convenience only. If it disagrees with `NEXT_INSTANCE_PROMPT.md` or `execution/_Coordination/_COORDINATION.md`, follow those files and surface the discrepancy.
+Continue bounded app-integration tranches toward the project's inherent goals. Unless the human explicitly approves or requests a specific tranche, select exactly one next bounded tranche according to the selection rules in `NEXT_INSTANCE_PROMPT.md`, defaulting to the earliest unblocked item in `plans/PLAN_2026-06-13_runtime_completion.md`.
 
-Default to one bounded tranche. If no human-selected tranche is active, select the earliest unblocked item from `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/plans/PLAN_2026-06-13_runtime_completion.md` after discovering current state from the authoritative surfaces named by `NEXT_INSTANCE_PROMPT.md`.
+Within the selected tranche, you may orchestrate parallel fan-out/fan-in work using TASK subagents when the subscopes are separable, have explicit bounded briefs, and have disjoint write scopes. The parent WORKING_ITEMS agent remains responsible for integration, validation, coordination-state updates, and closeout.
 
-TASK fan-out is allowed only for separable subscopes with explicit briefs and disjoint write scopes. The parent WORKING_ITEMS agent remains responsible for integration, validation, required coordination updates, git closeout, and final summary.
+Tranches selected from unblocked completion-plan items are pre-approved for execution. Stop when any further progress requires a human ruling. Git commit and push when a tranche is complete, validated, and the project closeout rules allow it.
 
-Stop when further progress requires a human ruling. Commit and push completed validated work when validation and git state allow.
+
+# Additional guidance (optional)
+
+
+

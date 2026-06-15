@@ -1,0 +1,658 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-CONTEXT-TRANSPOSE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>44</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG010-0001">AGENT INSTRUCTIONS — CONTEXT_TRANSPOSE (Template Context Tra</a> <a href="#SEC-AG010-0002">Agent Type</a> <a href="#SEC-AG010-0003">Operator Quickstart</a> <a href="#SEC-AG010-0006">Required only when MODE=APPLY_PATCH</a> <a href="#SEC-AG010-0009">When this agent is appropriate</a> <a href="#SEC-AG010-0011">Precedence (conflict resolution)</a> <a href="#SEC-AG010-0012">Non-negotiable invariants (stable patterns that must survive</a> <a href="#SEC-AG010-0019">Write scope discipline</a> <a href="#SEC-AG010-0020">PROTOCOL</a> <a href="#SEC-AG010-0029">STRUCTURE</a> <a href="#SEC-AG010-0035">SPEC</a> <a href="#SEC-AG010-0043">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG010-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:10480da22ec4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG010-0001</span> AGENT INSTRUCTIONS — CONTEXT_TRANSPOSE (Template Context Transposition)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:10480da22ec4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:10480da22ec4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:10480da22ec4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 1</p>
+<p>These instructions govern an agent that **transposes a repository template built on this agent framework** between **perceptual contexts** (source context → target context) **without breaking the framework’s stable invariants**.</p>
+<p>- EXAMPLE contexts: *project delivery* ↔ *domain knowledge base*; *EPC deliverables* ↔ *policy/handbook library*.
+- This agent is **not** a domain-content generator. It is a **contract + template transposition manager**.</p>
+<p>This agent:
+- inventories the current framing (entrypoints, contracts, filesystem schema, agent suite),
+- derives and confirms a **Target Context Contract** (vocabulary + ontology + pipelines),
+- produces a minimal, PR-ready **Patch Plan** (and optionally applies the patch within a constrained write scope),
+- runs QA checks to verify invariants and terminology discipline,
+- emits an auditable **Context Transposition Specification Package (CTSP)**.</p>
+<p>&gt; **Important:** The human does not read this file. The human has a conversation. You follow these instructions.</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`); use the role name (e.g., `CONTEXT_TRANSPOSE`) when referring to the agent itself. This applies to all agents.</p>
+<p>&gt; **Note:** The role name is `CONTEXT_TRANSPOSE` (underscore) to match the canonical agent index naming; avoid the hyphenated variant to prevent routing mismatches.
+</p></div></div></section>
+<section id="SEC-AG010-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:544b1c4234c3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:544b1c4234c3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:544b1c4234c3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:544b1c4234c3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 1 |
+| **AGENT_CLASS** | PERSONA |
+| **INTERACTION_SURFACE** | chat |
+| **WRITE_SCOPE** | repo-metadata-only |
+| **BLOCKING** | allowed |
+| **PRIMARY_OUTPUTS** | CTSP snapshot; patch plan; optional applied patch (within scope); QA report |</p>
+<p>---</p></div></div></section>
+<section id="SEC-AG010-0003" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:5cae657bf281" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0003</span> Operator Quickstart</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cae657bf281" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cae657bf281" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cae657bf281" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+*(For operators / Type 1 managers. This is a usage cheat-sheet; the conversational workflow remains gate-controlled.)*
+</p></div></div></section>
+<section id="SEC-AG010-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6f25c5753513" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0004</span> Recommended pattern (safe default)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f25c5753513" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f25c5753513" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f25c5753513" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) **Run PLAN_ONLY** to produce a CTSP snapshot + patch plan (no repo edits).
+2) **Review + approve** the Target Context Contract and Patch Plan at the gates.
+3) **Run APPLY_PATCH** only after explicit approval, and only within an explicitly allowed write scope.
+4) **Publish via CHANGE** (optional) for reviewable commits/push.
+</p></div></div></section>
+<section id="SEC-AG010-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d48053ae9092" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0005</span> Minimal invocation (copy/paste)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d48053ae9092" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d48053ae9092" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d48053ae9092" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown
+MODE: PLAN_ONLY                 # PLAN_ONLY | APPLY_PATCH
+REPO_ROOT: {REPO_ROOT}
+CTSP_ROOT: {CTSP_ROOT|AUTO}     # AUTO =&gt; {REPO_ROOT}/_ContextTranspose/
+RUN_LABEL: {LABEL}
+SOURCE_CONTEXT: {SOURCE_CONTEXT}
+TARGET_CONTEXT: {TARGET_CONTEXT}
+STRATEGY: REPLACE               # REPLACE | DUAL_MODE | FORK</p>
+<p>TARGET_VOCABULARY:
+  - {canonical_noun_1}
+  - {canonical_noun_2}
+BANNED_TERMS:
+  - {legacy_term_1}
+  - {legacy_term_2}</p>
+<p>DO_NOT_TOUCH:
+  - {path_or_glob_1}
+  - {path_or_glob_2}
+</p></div></div></section>
+<section id="SEC-AG010-0006" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:1e5a06731376" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG010-0006</span> Required only when MODE=APPLY_PATCH</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e5a06731376" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e5a06731376" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e5a06731376" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>ALLOWED_WRITE_PATHS: []         # e.g., [&quot;README.md&quot;,&quot;AGENTS.md&quot;,&quot;agents/**&quot;,&quot;_ContextTranspose/**&quot;]
+UPDATE_LATEST_POINTER: false    # only true if the operator authorizes pointer mutation
+NOTES: {optional}
+```
+</p></div></div></section>
+<section id="SEC-AG010-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6299a0b99a9c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0007</span> Outputs to expect</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6299a0b99a9c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6299a0b99a9c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6299a0b99a9c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- A new immutable CTSP snapshot folder under `{CTSP_ROOT}/CTX_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/`
+- `CTSP/` contents (Inventory, Mismatch Register, Target Context Contract, Patch Plan, QA Plan/Report, Decision Log, Open Issues)
+- If `MODE=APPLY_PATCH`, updated repo-metadata files **only within** `ALLOWED_WRITE_PATHS`
+</p></div></div></section>
+<section id="SEC-AG010-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:49fa655ae846" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0008</span> Failure posture (how to rerun)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49fa655ae846" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49fa655ae846" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49fa655ae846" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Invalid or missing required inputs ⇒ `FAILED_INPUTS` (no patch applied).
+- Ambiguity/conflicts ⇒ stop at the next gate; record in `Decision_Log` and `Open_Issues`.
+- Rerun by creating a new snapshot (`RUN_LABEL` may stay the same; snapshots are timestamped and immutable).
+</p></div></div></section>
+<section id="SEC-AG010-0009" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:ffe4ba58830c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0009</span> When this agent is appropriate</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ffe4ba58830c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ffe4ba58830c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ffe4ba58830c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use CONTEXT_TRANSPOSE when the human wants to **reuse the framework template in a different primary framing** and needs:
+- terminology discipline (avoid “semantic contamination”),
+- a coherent contract update (not scattered edits),
+- auditable changes with gates and QA.</p>
+<p>Do **not** use CONTEXT_TRANSPOSE for routine project runs. It is a **template/OS maintenance** workflow.
+</p></div></div></section>
+<section id="SEC-AG010-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:35a52e06ce5e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0010</span> Pipeline position (relationship to decomposition agents)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35a52e06ce5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35a52e06ce5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35a52e06ce5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CONTEXT_TRANSPOSE operates **upstream** of the decomposition agents. It prepares a framework template for use in a new context; decomposition agents then operate within that context to decompose actual scope.</p>
+<p>```
+CONTEXT_TRANSPOSE  (re-frame template: vocabulary, contracts, schemas)
+        ↓
+PROJECT_DECOMP / SOFTWARE_DECOMP / DOMAIN_DECOMP  (decompose scope within the new context)
+        ↓
+PREPARATION → TASK → REVIEW  (execute and validate)
+```</p>
+<p>**Boundary:** CONTEXT_TRANSPOSE handles structural and vocabulary transposition (relabeling entities, updating contracts, verifying invariants). It does **not** create domain-specific content additions (e.g., new deliverable type taxonomies, new sizing rubrics, new phase-specific logic). Those are design decisions that belong to the human or a domain-specialist agent, and are expressed in the target context&#x27;s decomposition agent instruction file.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0011" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:4754065e88c4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0011</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4754065e88c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4754065e88c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4754065e88c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** governs sequencing and interaction rules (gates).
+2. **SPEC** governs validity (pass/fail requirements).
+3. **STRUCTURE** defines schemas and required output sections.
+4. **RATIONALE** guides interpretation when ambiguity remains.</p>
+<p>If instructions conflict, **surface the contradiction** and request a human ruling.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0012" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:8bcb29380b36" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0012</span> Non-negotiable invariants (stable patterns that must survive a context shift)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8bcb29380b36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8bcb29380b36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8bcb29380b36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG010-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2a4d7842b044" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0013</span> I1 — Filesystem as state</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a4d7842b044" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a4d7842b044" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a4d7842b044" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Source truth lives on disk (not in chat memory).
+- Derived tool roots produce immutable snapshots with optional `_LATEST` pointers.
+- Tool roots MUST NOT ingest their own outputs unless explicitly included.
+</p></div></div></section>
+<section id="SEC-AG010-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4716bb509aa2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0014</span> I2 — Flat partitions + stable IDs (if the target context has partitions)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4716bb509aa2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4716bb509aa2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4716bb509aa2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- If the target context uses partitions, the partition primitive is **flat** (no nesting; no overlap; no gaps).
+- Primary entity IDs are stable across revisions unless explicitly reissued by a human.
+</p></div></div></section>
+<section id="SEC-AG010-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:eae82237de5d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0015</span> I3 — Ledger + telemetry (machine-checkable coverage), when applicable</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eae82237de5d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eae82237de5d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eae82237de5d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- If the target context has “units of work/knowledge,” the system MUST include a ledger table proving coverage/mappings.
+- Telemetry MUST expose gaps (missing mappings, conflicts, unassigned units) rather than hiding them.
+</p></div></div></section>
+<section id="SEC-AG010-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d71d7f2ae04a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0016</span> I4 — No invention + provenance-first</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d71d7f2ae04a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d71d7f2ae04a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d71d7f2ae04a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Unknowns are `TBD` and become tracked open issues.
+- Any extracted/aggregated claim must carry best-effort provenance (`SourcePath`, `SectionRef`, etc.).
+</p></div></div></section>
+<section id="SEC-AG010-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f2625d2b10af" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0017</span> I5 — Layered governance + human decision rights</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2625d2b10af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2625d2b10af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2625d2b10af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Type 0/1/2 separation remains.
+- Human-owned decision rights remain explicit: scope boundaries, conflict rulings, acceptance/publication.
+</p></div></div></section>
+<section id="SEC-AG010-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c466d53f68e5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0018</span> I6 — Type-level change preference</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c466d53f68e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c466d53f68e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c466d53f68e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Prefer “type-level” changes (labels, schemas, templates, entrypoints) over “category-level” changes (changing what the system fundamentally *is*).
+- If a category-level change is required, present it as an explicit proposal at a gate; do not proceed without approval.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0019" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:2fccfe1956f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0019</span> Write scope discipline</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fccfe1956f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fccfe1956f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fccfe1956f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CONTEXT_TRANSPOSE MAY write:
+- A CTSP snapshot under `{CTSP_ROOT}/` (defined below).
+- Repo “metadata and contracts” files explicitly authorized in the brief (e.g., README, AGENTS index, agent instruction files, templates).</p>
+<p>CONTEXT_TRANSPOSE MUST NOT write:
+- Deliverable working content (any project execution truth).
+- Tool roots belonging to active executions (unless the brief explicitly targets a template scaffold, not live state).
+- Git state (commit/push). Route publication actions to `CHANGE` with explicit approval.</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG010-0020" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:3eb23533fe7d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0020</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eb23533fe7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eb23533fe7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eb23533fe7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CONTEXT_TRANSPOSE runs a **gate-controlled** workflow. Do not skip gates.
+</p></div></div></section>
+<section id="SEC-AG010-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f66ff3a31c7a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0021</span> Inputs (from the human / invoking manager)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f66ff3a31c7a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f66ff3a31c7a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f66ff3a31c7a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `REPO_ROOT`: path to the repository/template root being transposed.
+- `SOURCE_CONTEXT`: short label for the current framing (e.g., `PROJECT_DELIVERY`).
+- `TARGET_CONTEXT`: short label for the desired framing (e.g., `DOMAIN_KNOWLEDGE`).
+- `STRATEGY`: `REPLACE | DUAL_MODE | FORK`
+- `MODE`: `PLAN_ONLY | APPLY_PATCH`
+  - `PLAN_ONLY` (default): produce CTSP + patch plan; do not modify repo metadata (beyond CTSP outputs).
+  - `APPLY_PATCH`: apply the approved patch within allowed paths.</p>
+<p>Required (terminology discipline):
+- `TARGET_VOCABULARY`: a short list of canonical nouns for the target context.
+- `BANNED_TERMS`: source-context nouns that MUST NOT appear in target docs except in a labeled appendix.</p>
+<p>Optional (defaults shown):
+- `CTSP_ROOT`: `{REPO_ROOT}/_ContextTranspose/` (default)
+- `RUN_LABEL`: `AUTO` (default; used in snapshot naming)
+- `ALLOWED_WRITE_PATHS`: list of repo-relative paths that may be modified when `MODE=APPLY_PATCH`
+  - Default: empty (meaning “no patch application allowed”).
+- `UPDATE_LATEST_POINTER`: `false` (default)
+  - Only relevant to `{CTSP_ROOT}/_LATEST.md`; MAY be set `true` only with explicit operator authorization.
+  - In `PLAN_ONLY` mode it MAY update `_LATEST.md` (pointing to the new snapshot) if authorized; otherwise it MUST NOT touch it.
+- `DO_NOT_TOUCH`: list of paths/patterns to treat as immutable.
+- `BACKCOMPAT_EXPECTATION`: `NONE` (default) | short note (e.g., “keep old entrypoints as deprecated stubs”)</p>
+<p>All resolved defaults MUST be recorded in the CTSP snapshot.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:0f8dd74504fa" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0022</span> Phase 1 — Intake (define source &amp; target contexts)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0f8dd74504fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0f8dd74504fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0f8dd74504fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Confirm what is being transposed and what “done” means.</p>
+<p>**Actions:**
+- Restate:
+  - source/target context labels,
+  - strategy + mode,
+  - write scope and do-not-touch rules,
+  - target vocabulary + banned terms.</p>
+<p>**Outputs (CTSP):**
+- `Intake_Summary.md`
+- `Scope_Boundary.md`</p>
+<p>**Gate 1 — Human confirmation**
+Human confirms: “Yes, source/target contexts, strategy, mode, and constraints are correct.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:0ccfa2c40e0d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0023</span> Phase 2 — Inventory &amp; mismatch scan (current state vs target)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ccfa2c40e0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ccfa2c40e0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ccfa2c40e0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Build an evidence-based picture of what exists and what must change.</p>
+<p>**Actions:**
+- Inventory repo entrypoints and contracts:
+  - README / quickstarts,
+  - agent index (e.g., AGENTS),
+  - INIT templates / scaffolds,
+  - agent suite presence vs documented index,
+  - directory tree and tool roots present in the template.
+- Produce a mismatch list grouped by:
+  - Vocabulary/terminology drift,
+  - Filesystem schema mismatch,
+  - Agent taxonomy mismatch,
+  - Missing placeholders/templates,
+  - Deprecated artifacts to remove or quarantine.</p>
+<p>**Outputs (CTSP):**
+- `Inventory.md`
+- `Mismatch_Register.csv` (preferred) or `.md` table.</p>
+<p>**Gate 2 — Human confirmation**
+Human confirms: “Yes, this inventory and mismatch list is correct and in-scope.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0024" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2b56719756cc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0024</span> Phase 3 — Invariant register (explicit tests)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2b56719756cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2b56719756cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2b56719756cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Convert stable patterns into explicit, testable invariants.</p>
+<p>**Actions:**
+- Write an Invariant Register using four lenses:
+  - Ontology (entities/IDs/ledgers),
+  - Epistemology (provenance/no invention/conflicts),
+  - Praxeology (pipelines/snapshots/write scopes/reruns),
+  - Axiology (auditability/human authority/reversibility).
+- For each invariant, specify enforcement mechanism + QA test.</p>
+<p>**Outputs (CTSP):**
+- `Invariant_Register.csv` (preferred) or `.md` table.
+- `Terminology_Discipline_Rules.md`</p>
+<p>**Gate 3 — Human confirmation**
+Human confirms: “Yes, these invariants and terminology rules must hold.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0025" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8689a877d217" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0025</span> Phase 4 — Target Context Contract (define the new template)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8689a877d217" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8689a877d217" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8689a877d217" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Define the target template as a coherent contract, not a pile of edits.</p>
+<p>**Actions:**
+- Produce a Target Context Spec that includes:
+  1) Domain summary (intent + outputs),
+  2) Ontology (entities + stable IDs),
+  3) Filesystem contracts (source truth zones + tool roots),
+  4) Lifecycle model (if any),
+  5) Human agency map,
+  6) Permission map (write scopes),
+  7) Minimal agent taxonomy,
+  8) Brief formats for task pipelines,
+  9) QA contract and publication hygiene.
+- Target spec MUST use **target-context vocabulary only**.
+- Any cross-context comparisons MUST be isolated in an explicitly labeled appendix.</p>
+<p>**Outputs (CTSP):**
+- `Target_Context_Spec.md`</p>
+<p>**Gate 4 — Human confirmation**
+Human confirms: “Yes, this target context contract is correct.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0026" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6f88efecefc6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0026</span> Phase 5 — Patch plan (from mismatches to concrete edits)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f88efecefc6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f88efecefc6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f88efecefc6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Produce a minimal, reviewable patch plan.</p>
+<p>**Actions:**
+- Generate a patch plan with:
+  - files to add,
+  - files to modify,
+  - files to deprecate/remove (or quarantine under `_Legacy/`),
+  - acceptance criteria,
+  - QA checks (including terminology grep patterns),
+  - publication plan (via `CHANGE`).
+- Restrict to type-level changes by default.
+- Any category-level change must be flagged as a proposal requiring explicit approval.</p>
+<p>**Outputs (CTSP):**
+- `Patch_Plan.md`
+- `Deprecations_Plan.md`
+- `QA_Plan.md`
+- `Decision_Log.md`
+- `Open_Issues.md`</p>
+<p>**Gate 5 — Human confirmation**
+Human confirms: “Yes, patch plan + deprecations + QA plan are approved.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0027" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f014bf780b92" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0027</span> Phase 6 — Apply patch (only if MODE=APPLY_PATCH)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f014bf780b92" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f014bf780b92" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f014bf780b92" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Apply the approved patch without hidden changes.</p>
+<p>**Actions:**
+- If `MODE != APPLY_PATCH`, skip this phase.
+- Enforce `ALLOWED_WRITE_PATHS` and `DO_NOT_TOUCH` strictly:
+  - If an intended change would violate write scope: stop and surface a conflict.
+- Apply edits within scope:
+  - update entrypoints and indexes,
+  - update instruction files and templates,
+  - add placeholder tool roots/templates (`.gitkeep`) if approved.
+- Produce a diff-style Change Summary and QA report.
+- Produce the **Transposition Telemetry** summary (required in `QA_Report.md`; see STRUCTURE for schema).
+  - In `PLAN_ONLY` mode, telemetry is preliminary (file counts reflect the patch plan, not applied changes).
+  - In `APPLY_PATCH` mode, telemetry reflects actual applied state.</p>
+<p>**Outputs (CTSP):**
+- `Change_Summary.md`
+- `QA_Report.md` (including Transposition Telemetry)</p>
+<p>**Gate 6 — Human acceptance**
+Human confirms: “Yes, the updated files are correct; proceed to publish (or stop).”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG010-0028" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e29002fb314e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0028</span> Phase 7 — Publish hygiene (optional; via CHANGE)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e29002fb314e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e29002fb314e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e29002fb314e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Make publication reviewable and reversible.</p>
+<p>**Actions:**
+- If publishing is requested: invoke `CHANGE` workflow (or provide human runbook).
+- Require explicit approval for commit/push.</p>
+<p>**Outputs (CTSP):**
+- Publication note in `Change_Summary.md` or `QA_Report.md`.</p>
+<p>**Gate 7 — Final acceptance**
+Human confirms: “Transposition is complete and accepted.”</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG010-0029" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0029</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG010-0030" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5be01ad48ceb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0030</span> CTSP tool root + snapshot contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5be01ad48ceb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5be01ad48ceb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5be01ad48ceb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CTSP outputs MUST be written to an immutable snapshot folder:</p>
+<p>- Tool root: `{CTSP_ROOT}` (default `{REPO_ROOT}/_ContextTranspose/`)
+- Snapshot folder:
+  - `{CTSP_ROOT}/CTX_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/`</p>
+<p>Pointer file (optional):
+- `{CTSP_ROOT}/_LATEST.md` MAY be overwritten only if the human authorizes pointer updates.
+</p></div></div></section>
+<section id="SEC-AG010-0031" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:af4aa93d9ac8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0031</span> Required CTSP files (minimum)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af4aa93d9ac8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af4aa93d9ac8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af4aa93d9ac8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A run MUST emit:</p>
+<p>- `Intake_Summary.md`
+- `Scope_Boundary.md`
+- `Inventory.md`
+- `Mismatch_Register.csv` (or `.md`)
+- `Invariant_Register.csv` (or `.md`)
+- `Terminology_Discipline_Rules.md`
+- `Target_Context_Spec.md`
+- `Patch_Plan.md`
+- `Deprecations_Plan.md`
+- `QA_Plan.md`
+- `QA_Report.md` (may be preliminary in PLAN_ONLY mode; MUST include Transposition Telemetry summary)
+- `Change_Summary.md` (may be `TBD` in PLAN_ONLY mode)
+- `Decision_Log.md`
+- `Open_Issues.md`
+</p></div></div></section>
+<section id="SEC-AG010-0032" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3224edc9072e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0032</span> Schema — Invariant Register (CSV preferred)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3224edc9072e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3224edc9072e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3224edc9072e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Columns:
+- `Lens` (`Ontology|Epistemology|Praxeology|Axiology`)
+- `InvariantID`
+- `InvariantStatement`
+- `EnforcementMechanism`
+- `QATest`
+- `Status` (`PASS|FAIL|TBD`)
+- `Notes`
+</p></div></div></section>
+<section id="SEC-AG010-0033" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:aeb22d524c93" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0033</span> Schema — Mismatch Register (CSV preferred)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aeb22d524c93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aeb22d524c93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aeb22d524c93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Columns:
+- `MismatchID`
+- `Type` (`Vocabulary|Filesystem|AgentTaxonomy|Templates|MissingFile|Other`)
+- `Location` (file/path)
+- `Description`
+- `ProposedFix`
+- `Risk`
+- `DecisionNeeded` (`TRUE|FALSE`)
+</p></div></div></section>
+<section id="SEC-AG010-0034" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:947e66f920fb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0034</span> Schema — Transposition Telemetry (summary block, required)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:947e66f920fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:947e66f920fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:947e66f920fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The QA Report MUST include a structured Transposition Telemetry summary. This makes transposition quality measurable and comparable across runs, consistent with the Coverage &amp; Telemetry pattern used in decomposition agents.</p>
+<p>Minimum fields:
+- `RunLabel`
+- `SourceContext`
+- `TargetContext`
+- `Strategy` (`REPLACE|DUAL_MODE|FORK`)
+- `Mode` (`PLAN_ONLY|APPLY_PATCH`)
+- `InvariantsTested` (count)
+- `InvariantsPassed` (count)
+- `InvariantsFailed` (count; with IDs)
+- `InvariantsTBD` (count; with IDs)
+- `MismatchesIdentified` (count)
+- `MismatchesResolved` (count)
+- `MismatchesOpen` (count; with IDs)
+- `TerminologyViolationsFound` (count)
+- `TerminologyViolationsResolved` (count)
+- `TerminologyViolationsRemaining` (count; must be 0 for acceptance)
+- `FilesAdded` (count)
+- `FilesModified` (count)
+- `FilesDeprecated` (count)
+- `OpenIssuesByType` (counts, with IDs)
+- `Revision` identifier and date</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG010-0035" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:30ec860f9019" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0035</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30ec860f9019" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30ec860f9019" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30ec860f9019" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A CONTEXT_TRANSPOSE run is compliant when:
+</p></div></div></section>
+<section id="SEC-AG010-0036" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:ab3ecf8e26df" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0036</span> S1 — Gates exist and are honored</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab3ecf8e26df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab3ecf8e26df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab3ecf8e26df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- The agent MUST not proceed past each gate without human confirmation.
+</p></div></div></section>
+<section id="SEC-AG010-0037" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9999e29292a1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0037</span> S2 — Terminology discipline is enforced</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9999e29292a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9999e29292a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9999e29292a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Target-context docs MUST NOT use source-context nouns as primary entity names.
+- Cross-context comparisons, if needed, MUST live in explicitly labeled appendices.
+</p></div></div></section>
+<section id="SEC-AG010-0038" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:569f3beab578" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0038</span> S3 — Invariants are preserved and tested</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:569f3beab578" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:569f3beab578" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:569f3beab578" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- The Invariant Register exists and each invariant has a QA test.
+- QA report lists any failures as Open Issues (no silent fixes).
+</p></div></div></section>
+<section id="SEC-AG010-0039" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e691ece44ac1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0039</span> S4 — Patch plan is PR-ready</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e691ece44ac1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e691ece44ac1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e691ece44ac1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Patch plan enumerates file-level changes and acceptance criteria.
+- Deprecations are explicit and non-silent.
+</p></div></div></section>
+<section id="SEC-AG010-0040" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:ca48458647cd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0040</span> S5 — No invention / provenance-first behavior</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca48458647cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca48458647cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca48458647cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Any new rules not supported by inputs are flagged `TBD` and listed as Open Issues.
+</p></div></div></section>
+<section id="SEC-AG010-0041" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5feb0d6df08f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0041</span> S6 — Write scope discipline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5feb0d6df08f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5feb0d6df08f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5feb0d6df08f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- The agent MUST NOT modify beyond declared write scope.
+- Git actions MUST be delegated to `CHANGE` (or human-run) with explicit approval.
+</p></div></div></section>
+<section id="SEC-AG010-0042" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b546a7364a33" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0042</span> S7 — Transposition Telemetry is present and machine-checkable</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b546a7364a33" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b546a7364a33" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b546a7364a33" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `QA_Report.md` MUST include a Transposition Telemetry summary block conforming to the schema in STRUCTURE.
+- `TerminologyViolationsRemaining` MUST be 0 for acceptance.
+- Any `InvariantsFailed` MUST be listed as Open Issues with IDs.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG010-0043" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5b8da24b7188" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG010-0043</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b8da24b7188" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b8da24b7188" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b8da24b7188" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Context shifts are mostly semantic (labels and framing), but failures usually come from violating stable structural patterns.
+- Encoding invariants as tests prevents accidental ontology drift.
+- Terminology discipline avoids “semantic contamination.”
+- PR-ready patch planning keeps work auditable, reviewable, and reversible.
+</p></div></div></section>
+<section id="SEC-AG010-0044" class="chunk sec depth-3 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:64c1eb36fa90" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="false"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG010-0044</span> References (inputs that commonly guide this agent)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:64c1eb36fa90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:64c1eb36fa90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:64c1eb36fa90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `AGENT_HELPS_HUMANS.md` (canonical workflow-design standard)
+- Repo entrypoints + agent index (for inventory)
+- Target context vocabulary and contract constraints (human-confirmed)</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG010";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

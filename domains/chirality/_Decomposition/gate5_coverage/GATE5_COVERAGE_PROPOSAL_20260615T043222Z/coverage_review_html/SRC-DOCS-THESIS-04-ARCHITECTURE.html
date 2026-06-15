@@ -1,0 +1,636 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-04-ARCHITECTURE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>39</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG016-0001">Chapter 4 — Architecture</a> <a href="#SEC-DG016-0002">4.1 Overview</a> <a href="#SEC-DG016-0003">4.2 The Foundational Decision: Filesystem as State</a> <a href="#SEC-DG016-0007">4.3 Entity Model and Domain Ontology</a> <a href="#SEC-DG016-0012">4.4 Lifecycle State Machine</a> <a href="#SEC-DG016-0018">4.5 Agent Type Hierarchy</a> <a href="#SEC-DG016-0022">4.6 Write Scope Architecture</a> <a href="#SEC-DG016-0027">4.7 Invariant System</a> <a href="#SEC-DG016-0030">4.8 Orchestration and Control Loop</a> <a href="#SEC-DG016-0035">4.9 Brief and Output Contracts</a> <a href="#SEC-DG016-0039">4.10 Summary</a></nav>
+<main>
+<section id="SEC-DG016-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:7ef9624bbd9f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG016-0001</span> Chapter 4 — Architecture</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ef9624bbd9f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ef9624bbd9f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ef9624bbd9f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+</p></div></div></section>
+<section id="SEC-DG016-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:6cf80423157a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0002</span> 4.1 Overview</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6cf80423157a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6cf80423157a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6cf80423157a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This chapter presents the technical architecture of the Chirality project execution system. Architecture, in this context, refers not only to the structural layout of components but to the set of load-bearing decisions that determine what the system is capable of enforcing, and what it cannot. The organization of this chapter mirrors the layered nature of the design itself: the foundational decision (<a class="xref" href="#SEC-DG016-0003">§4.2</a>) establishes the substrate upon which every other mechanism rests; the entity model (<a class="xref" href="#SEC-DG016-0007">§4.3</a>) defines what exists in the system; the lifecycle state machine (<a class="xref" href="#SEC-DG016-0012">§4.4</a>) governs how entities evolve; the agent type hierarchy (<a class="xref" href="#SEC-DG016-0018">§4.5</a>) partitions authority and responsibility; the write scope architecture (<a class="xref" href="#SEC-DG016-0022">§4.6</a>) creates formal fault containment zones; the invariant system (<a class="xref" href="#SEC-DG016-0027">§4.7</a>) makes the constraints binding across all layers; the orchestration model (<a class="xref" href="#SEC-DG016-0030">§4.8</a>) coordinates agent execution across sessions; and the brief and output contracts (<a class="xref" href="#SEC-DG016-0035">§4.9</a>) standardize the input and output boundaries of individual agent runs.</p>
+<p>Each section demonstrates how the architecture operationalizes one or more of the four philosophical pillars established in Chapter 3: the ontological commitment to filesystem-native domain representation, the epistemological commitment to evidence-grounded and auditable claims, the praxiological commitment to bounded, gate-controlled execution, and the axiological commitment to human authority and professional responsibility. The architecture is not a technical substrate to which these principles are subsequently applied — they are the structural logic from which the architecture is built.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0003" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:3b433dbaad9a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0003</span> 4.2 The Foundational Decision: Filesystem as State</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b433dbaad9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b433dbaad9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b433dbaad9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8e86b6984157" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0004</span> 4.2.1 The Graph Model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e86b6984157" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e86b6984157" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e86b6984157" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality system represents project state as an implicit graph encoded entirely in git-tracked files. This is the load-bearing architectural decision, identified as such in both DIRECTIVE.md §2.1 and DBM §1.1. Every other architectural capability depends upon it; none could be preserved if state migrated to an external system.</p>
+<p>The graph model is formally stated as follows:</p>
+<p>- **Nodes** are deliverable folders and package folders. Each folder on the filesystem corresponds to an entity in the project domain.
+- **Edges** are rows in `Dependencies.csv` registers. Each row encodes a directed relationship between a host deliverable and a target entity, classified as either a tree edge (ANCHOR class) or a directed acyclic graph edge (EXECUTION class). The two edge classes together form a knowledge graph: the tree preserves stable definitional intent; the DAG captures execution-time couplings.
+- **Properties** are plain markdown files within each node folder. The files `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and the four-document kit (Datasheet, Specification, Guidance, Procedure) carry the identity, lifecycle state, traceability, and technical content of each deliverable.</p>
+<p>This formulation means the project graph has no representation other than the filesystem itself. There is no translation layer, no secondary index, and no remote service. An agent, a human, and a static analysis tool all observe the same structure and parse the same files.
+</p></div></div></section>
+<section id="SEC-DG016-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e19334cdb314" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0005</span> 4.2.2 Why This Decision Is Load-Bearing</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e19334cdb314" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e19334cdb314" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e19334cdb314" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DIRECTIVE.md §2.1 provides the canonical statement: &quot;Every capability the system provides — V-model traceability, immutable snapshots, change propagation tracking, content-addressed approval, and the complete audit trail — depends on state being in git-tracked files. If state moved to a database, every one of these capabilities would need to be rebuilt.&quot;</p>
+<p>This claim merits unpacking. Each named capability derives from the filesystem commitment:</p>
+<p>- **V-model traceability** is achievable because ANCHOR-class dependency rows in each deliverable&#x27;s `Dependencies.csv` link back up the decomposition tree to scope items (`SOW-NNN`) and objectives (`OBJ-NNN`). These links are stable, human-readable, and directly inspectable. In a database-backed system, this traceability chain would require a separate schema and synchronization discipline.
+- **Immutable snapshots** are achievable because the filesystem natively supports append-only history through timestamped directories. A snapshot folder, once created, is never modified. The git history provides an independent record of when it was created and what it contained.
+- **Change propagation tracking** is achievable because the staleness invariants (K-STALE-1, K-STALE-2) can be computed by traversing the EXECUTION-class dependency graph encoded in `Dependencies.csv` files. Every dependency that might be affected by an upstream change is identifiable without querying a service.
+- **Content-addressed approval** is achievable because git commit SHAs provide a stable, unforgeable identifier for any version of any file. Approvals recorded in versioned files bind to the SHA of the approved content; if the content changes, the SHA changes, and the approval is voided. This is enforced by invariant K-AUTH-2.
+- **The audit trail** is git history. No additional logging infrastructure is required. Every agent write, human edit, and approval record is a versioned commit observable through standard tools.</p>
+<p>[COMPARE: External-database agent frameworks (LangChain, AutoGen, CrewAI) typically maintain agent state in memory or external stores; compare their auditability and reproducibility properties against the filesystem-native approach]</p>
+<p>[RATIONALE: The choice to forgo an external database is not primarily a simplicity argument — it is an auditability argument. The forensic property of git history is identical to what a regulated environment requires for design record keeping.]
+</p></div></div></section>
+<section id="SEC-DG016-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a6c88dd085b2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0006</span> 4.2.3 What the Filesystem Commitment Enables and Precludes</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a6c88dd085b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a6c88dd085b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a6c88dd085b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The filesystem commitment enables:
+- Offline operation without infrastructure dependencies
+- Agent execution by any compliant LLM runtime capable of reading and writing files
+- Human inspection of all state without specialized tooling
+- Direct integration with existing engineering document management workflows</p>
+<p>The filesystem commitment precludes:
+- External databases as sources of execution truth
+- Server-side session state that diverges from on-disk content
+- Hidden agent memory that persists across sessions outside versioned files
+- Centralised dependency graphs that must be kept synchronized with deliverable-local registers</p>
+<p>These exclusions are not limitations — they are the mechanism by which the system&#x27;s auditability guarantees are maintained. DIRECTIVE.md §2.5 states the principle directly: &quot;If it is not in a versioned file, it does not exist for purposes of reliance.&quot; Any capability that would require violating this principle is, by architectural definition, outside the system&#x27;s scope.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0007" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:b5e09af4af94" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0007</span> 4.3 Entity Model and Domain Ontology</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b5e09af4af94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b5e09af4af94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b5e09af4af94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:cc05ae512914" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0008</span> 4.3.1 Project Hierarchy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc05ae512914" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc05ae512914" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc05ae512914" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The project hierarchy, defined in TYPES.md §1 and instantiated physically in SPEC.md §1, is deliberately flat: packages contain deliverables, and there are no intermediate levels. There are no phases, sub-packages, or task sub-levels within deliverables. This constraint is encoded as invariant K-HIER-1 and is enforced at the decomposition gate, during workspace scaffolding, and by human review of folder structures.</p>
+<p>The hierarchy is:</p>
+<p>```
+{EXECUTION_ROOT}/
+└── PKG-XX_{PkgLabel}/           # Package: a flat partition of project scope
+    └── 1_Working/
+        └── DEL-XX-YY_{DelLabel}/  # Deliverable: a unit of production
+```</p>
+<p>Each package represents a non-overlapping, gap-free partition of project scope. Every scope item (SOW item) belongs to exactly one package. Each deliverable belongs to exactly one package, has a responsible party, a type classification, and produces one or more anticipated artifacts. An artifact is any tangible output produced within a deliverable folder — including but not limited to the standard four-document kit.</p>
+<p>[RATIONALE: The flat hierarchy is an explicit design choice that prioritizes automation reliability and coverage verifiability. Nested hierarchies introduce ambiguity in scope assignment and make machine-checkable completeness proofs significantly harder to construct. The flatness constraint enables the decomposition ledger (§8.3 of the DBM) to serve as a machine-checkable completeness artifact.]
+</p></div></div></section>
+<section id="SEC-DG016-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fadcae068a8c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0009</span> 4.3.2 Stable Identifiers</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fadcae068a8c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fadcae068a8c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fadcae068a8c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TYPES.md §2 establishes the identity system. Identifiers are assigned once and persist across renames, path changes, and structural reorganization. Path is explicitly characterized as a physical projection of the decomposition, not identity itself (K-ID-1). The canonical identifier formats are:</p>
+<p>| Entity | Format | Example |
+|--------|--------|---------|
+| Package | `PKG-XX` | `PKG-01` |
+| Deliverable | `DEL-XX-YY` | `DEL-01-01` |
+| Dependency | `DEP-XX-YY-NNN` | `DEP-01-01-001` |
+| Scope Item | `SOW-NNN` | `SOW-003` |
+| Objective | `OBJ-NNN` | `OBJ-001` |</p>
+<p>The ID coupling convention for deliverables — that the leading digits of a deliverable ID match the package digits — is deterministic and mechanically derivable from the decomposition, not from path traversal. This means that an agent can determine package membership from a deliverable ID alone, without filesystem access.</p>
+<p>Folder names combine the stable identifier with a human-readable, filesystem-safe label (e.g., `PKG-01_Civil_Engineering/`). The canonical unsanitized name is preserved in the `_CONTEXT.md` file within each deliverable folder.
+</p></div></div></section>
+<section id="SEC-DG016-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1f32bfe6930d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0010</span> 4.3.3 Deliverable Folder Layout and Minimum Viable Fileset</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f32bfe6930d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f32bfe6930d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f32bfe6930d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+SPEC.md §2 defines the complete file inventory for a deliverable folder. The minimum viable fileset, created by the PREPARATION agent, consists of:</p>
+<p>- `_STATUS.md` — Lifecycle state and history (canonical lifecycle indicator, per K-STATUS-1)
+- `_CONTEXT.md` — Identity, decomposition pointer, scope traceability
+- `_DEPENDENCIES.md` — Dependency summary with human-declared and agent-extracted zones
+- `_REFERENCES.md` — Source document pointers
+- `_SEMANTIC.md` (placeholder) — Semantic lens scaffold</p>
+<p>The full initialized state adds the four-document kit produced by the TASK+four-documents agent: `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. Optional files — `Dependencies.csv`, `_MEMORY.md`, `_SEMANTIC_LENSING.md` — are added by subsequent agents as work proceeds.
+</p></div></div></section>
+<section id="SEC-DG016-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:dec6c376ee36" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0011</span> 4.3.4 The Dual-Graph Model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dec6c376ee36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dec6c376ee36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dec6c376ee36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TYPES.md §3 establishes the two classes of dependency relationships that together constitute the project knowledge graph.</p>
+<p>**ANCHOR-class edges** are vertical tree edges connecting each deliverable upward to its definitional context. Every deliverable carries exactly one `IMPLEMENTS_NODE` row linking it to its parent package or WBS node, and zero or more `TRACES_TO_REQUIREMENT` rows linking it to scope items and objectives. The ANCHOR tree is the traceability backbone — it makes every unit of production traceable back to the requirements it is intended to satisfy.</p>
+<p>**EXECUTION-class edges** are horizontal DAG edges capturing information flow and production dependencies between deliverables. These encode prerequisite relationships (what a deliverable needs before work can proceed), interface relationships (explicit data exchanges), handover relationships (outputs consumed as inputs), constraint relationships (conditions imposed by one deliverable on another), and enablement relationships (where one deliverable opens the path for downstream work).</p>
+<p>The two graph structures serve fundamentally different purposes. The ANCHOR tree encodes static project topology — it is established at decomposition time and rarely changes. The EXECUTION DAG encodes dynamic production couplings — it evolves as agents extract more dependencies from deliverable content. Together they allow the system to answer both vertical questions (what requirement does this deliverable trace to?) and horizontal questions (what does this deliverable need before work can start?).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0012" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:f2028de895dd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0012</span> 4.4 Lifecycle State Machine</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2028de895dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2028de895dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2028de895dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:adc90e865fc5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0013</span> 4.4.1 The Six States</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:adc90e865fc5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:adc90e865fc5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:adc90e865fc5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+SPEC.md §3 and TYPES.md §5 define the deliverable lifecycle as a linear state machine with six states:</p>
+<p>```
+OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
+```</p>
+<p>| State | Entry Condition |
+|-------|----------------|
+| `OPEN` | PREPARATION has created the folder and minimum viable fileset; no substantive content |
+| `INITIALIZED` | TASK+four-documents agent has generated the four-document kit (Datasheet, Specification, Guidance, Procedure) |
+| `SEMANTIC_READY` | TASK+semantic-matrix-build agent has generated `_SEMANTIC.md` |
+| `IN_PROGRESS` | Human or WORKING_ITEMS agent has commenced active substantive work |
+| `CHECKING` | Human has moved the deliverable to the review staging area |
+| `ISSUED` | Human has approved the deliverable and released it for use |
+</p></div></div></section>
+<section id="SEC-DG016-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:48b8cf891b5e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0014</span> 4.4.2 Transition Rules and Authorized Actors</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:48b8cf891b5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:48b8cf891b5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:48b8cf891b5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+SPEC.md §3.3 defines transition authorization as follows:</p>
+<p>| Transition | Authorized Actor |
+|------------|-----------------|
+| `→ OPEN` | PREPARATION only |
+| `OPEN → INITIALIZED` | TASK+four-documents only |
+| `INITIALIZED → SEMANTIC_READY` | TASK+semantic-matrix-build only |
+| `INITIALIZED → IN_PROGRESS` | Human or WORKING_ITEMS (when semantic step is skipped) |
+| `SEMANTIC_READY → IN_PROGRESS` | Human or WORKING_ITEMS |
+| `IN_PROGRESS → CHECKING` | Human only |
+| `CHECKING → ISSUED` | Human only |</p>
+<p>The pattern is significant. Forward transitions through the early automated states (`OPEN`, `INITIALIZED`, `SEMANTIC_READY`) are agent-authorized — they confirm that specific mechanical preparation has completed. Forward transitions through the consequential states (`CHECKING`, `ISSUED`) are human-only. The final two transitions — moving to external review and releasing work for reliance — cannot be performed by any agent regardless of type. This is an architectural instantiation of the axiological commitment described in Chapter 3: agent execution is bounded; human authorization gates the boundary.</p>
+<p>The `INITIALIZED → SEMANTIC_READY` transition is optional. If the semantic lensing step is omitted, deliverables may transition directly from `INITIALIZED → IN_PROGRESS`. This reflects the &quot;least structure that works&quot; principle (DBM §1.8): semantic enrichment is available when it adds value, but its absence does not block production.
+</p></div></div></section>
+<section id="SEC-DG016-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:307b7e6d4e52" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0015</span> 4.4.3 Stage Gates vs. Lifecycle States</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:307b7e6d4e52" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:307b7e6d4e52" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:307b7e6d4e52" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TYPES.md §5.2 draws an explicit distinction that is architecturally important. **Lifecycle states** track the production status of individual deliverables and are recorded in `_STATUS.md`. **Stage gates** (30%, 60%, 90%, IFC, and similar project-level milestones) are human-managed checkpoints that represent aggregate progress targets across a set of deliverables. Stage gates are not lifecycle states and are tracked separately in coordination records.</p>
+<p>The distinction prevents a category error that is common in project management tooling: conflating the micro-level question (is this deliverable ready for review?) with the macro-level question (has the project reached a stage gate?). In the Chirality architecture, the answer to the first question is always obtained from `_STATUS.md`; the answer to the second requires aggregation across the project, which is the domain of the SCHEDULING and RECONCILIATION agents.
+</p></div></div></section>
+<section id="SEC-DG016-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:cbdaa6e25fcf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0016</span> 4.4.4 `_STATUS.md` as Canonical State Indicator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cbdaa6e25fcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cbdaa6e25fcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cbdaa6e25fcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Invariant K-STATUS-1 states: &quot;`_STATUS.md` is the canonical, human-readable lifecycle state file for each deliverable. No other file determines deliverable state.&quot; This invariant has practical implications for agent behavior: before any agent performs a lifecycle-relevant write, it must read `_STATUS.md` to determine whether the operation is valid for the current state. An attempt to initialize a deliverable that is already `IN_PROGRESS`, for example, must be flagged as a precondition failure.</p>
+<p>The enforcement of K-STATUS-1 is distributed: it appears in the SPEC of every agent whose behavior varies by lifecycle state, and it is a first-order check in ORCHESTRATOR&#x27;s context-sealing gate (K-SEAL-1).
+</p></div></div></section>
+<section id="SEC-DG016-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ce0e71b33aad" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0017</span> 4.4.5 The Interleaved Warrant Lifecycle</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce0e71b33aad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce0e71b33aad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce0e71b33aad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The deliverable lifecycle tracks production state. A second lifecycle — the **warrant lifecycle** — tracks the epistemic state of the claims within the deliverable. Chapter 3 (§3.2.2) defines six epistemic primitives (claim, warrant, status, gap, conflict, ruling) and a four-state warrant lifecycle:</p>
+<p>```
+UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
+```</p>
+<p>The two lifecycles are interleaved: a deliverable in `IN_PROGRESS` contains claims in varying warrant states. The transition to `CHECKING` requires that critical claims have been warranted. The transition to `ISSUED` requires that the professional has authenticated the work — declaring the aggregate warrant state sufficient for reliance. The warrant lifecycle is formalized in `TYPES.md` §10 and developed in full in Chapter 5 (§5.5).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0018" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7951492dd3ec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0018</span> 4.5 Agent Type Hierarchy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7951492dd3ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7951492dd3ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7951492dd3ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a35ee23cf84c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0019</span> 4.5.1 Structural Overview</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a35ee23cf84c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a35ee23cf84c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a35ee23cf84c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The agent system is organized into three types with strictly partitioned responsibilities. The hierarchy is defined in DBM §2 and summarized in TYPES.md §4. It is not merely a labeling convention — it is the mechanism by which the system&#x27;s authority model is enforced.</p>
+<p>**Type 0 — Canonical Standards (Architect).** Type 0 agents define the invariant protocols and design standards that all downstream agents must conform to. They do not write project state. They are, in the DBM&#x27;s terminology, the &quot;constitutional layer&quot; of the system. The Type 0 layer is composed of HELPS_HUMANS, which defines the workflow design standard (R1–R9, the four-section agent structure, brief formats, and QA contracts), and DECOMP_BASE, which defines the decomposition protocol standard (the seven-gate protocol, I1–I10 invariants, and the extension contract for decomposition variants). Where any agent instruction disagrees with a Type 0 standard, the agent instruction must be edited to conform — not the standard.</p>
+<p>**Type 1 — Interactive Personas (Manager).** Type 1 agents are human-facing orchestrators. They run conversational, gate-controlled workflows where humans make consequential decisions and agents handle routing, structural output, and brief preparation. Type 1 agents may spawn Type 2 agents. They own orchestration decisions but do not own engineering content. See `AGENTS.md` for the current agent index.</p>
+<p>**Type 2 — Bounded Task Agents (Specialist).** Type 2 agents are brief-driven specialists operating in straight-through execution mode. They receive structured inputs (INIT-TASK briefs), produce auditable outputs, and return to their invoking agent without mid-run human interaction. Type 2 agents never spawn other agents. See `AGENTS.md` for the current agent index.</p>
+<p>[COMPARE: Multi-agent frameworks such as AutoGen and CrewAI support role differentiation among agents but do not enforce a strict constitutional hierarchy with write-scope enforcement and non-bypassable human gates; compare authority isolation properties]
+</p></div></div></section>
+<section id="SEC-DG016-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4666f18b8f34" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0020</span> 4.5.2 Formal Authority Properties</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4666f18b8f34" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4666f18b8f34" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4666f18b8f34" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §2 identifies three authority invariants that the entire system depends upon:</p>
+<p>1. **Type 2 cannot escalate to Type 1 authority.** Specialists execute bounded briefs and return outputs. They cannot initiate gate reviews, spawn other agents, or make scope decisions. A Type 2 agent that encounters a scope question must record it as `TBD` and surface it in the run report — it cannot route the question to a human directly.</p>
+<p>2. **Type 1 cannot override Type 0 constraints.** Managers orchestrate within the rules established by canonical standards. They cannot relax the R1–R9 workflow requirements, the I1–I10 decomposition invariants, or any K-* invariant. An orchestration decision that would require violating a Type 0 constraint is not a valid orchestration decision.</p>
+<p>3. **Human gates cannot be bypassed by any agent type.** No agent — regardless of type — can approve deliverables for external reliance, resolve conflicts authoritatively, commit to the baseline, or advance the lifecycle to `CHECKING` or `ISSUED`. These transitions are structurally unavailable to agents. The architecture does not merely recommend that agents defer to humans at these junctions; it removes the capability.
+</p></div></div></section>
+<section id="SEC-DG016-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:de4b692d9e05" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0021</span> 4.5.3 Classification Properties</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de4b692d9e05" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de4b692d9e05" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de4b692d9e05" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Each agent instruction file declares six properties in a standardized header block (DBM §3.2):</p>
+<p>| Property | Valid Values | Semantics |
+|----------|-------------|-----------|
+| `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Position in the hierarchy |
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Conversational interface vs. straight-through execution |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
+| `WRITE_SCOPE` | See <a class="xref" href="#SEC-DG016-0022">§4.6</a> | What filesystem area the agent may write to |
+| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
+| `PRIMARY_OUTPUTS` | Free text | What the agent produces |</p>
+<p>These properties are not metadata — they are enforceable constraints. The `BLOCKING: never` property on all Type 2 agents means that no mid-run human decision is required or possible; a Type 2 agent that encounters an ambiguity must handle it conservatively (record as `TBD`) rather than pause the run. The `WRITE_SCOPE` property determines exactly which filesystem zones the agent may touch, as detailed in <a class="xref" href="#SEC-DG016-0022">§4.6</a>.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0022" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:b1488978a053" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0022</span> 4.6 Write Scope Architecture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1488978a053" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1488978a053" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1488978a053" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3b177a08d8b6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0023</span> 4.6.1 The Five Scope Categories</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b177a08d8b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b177a08d8b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b177a08d8b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The write scope model, defined in DBM §7, enforces a formal separation between source truth and derived outputs. Every agent is assigned to exactly one of five scope categories. The category determines which portions of the filesystem the agent may modify; writes outside the declared scope are architectural violations of K-WRITE-1.</p>
+<p>The five categories, from most to least restrictive, are:</p>
+<p>- **NONE** — Read-only. The agent may draft content but may not write to any location. The human applies any output. Applies to: HELPS_HUMANS, DECOMP_BASE, HELP_HUMAN.
+- **REPO-METADATA-ONLY** — May write to instruction files, README, and templates — not to execution truth. Applies to: DOMAIN_DECOMP, CONTEXT_TRANSPOSE.
+- **PROJECT-LEVEL** — May write to decomposition documents, project metadata files, and folder scaffolding. Applies to: PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP.
+- **DELIVERABLE-LOCAL** — May write only within a single assigned production unit folder. Applies to: WORKING_ITEMS, TASK+four-documents, TASK+domain-documents, TASK+semantic-matrix-build, TASK+lens-register, TASK+dependency-extract, TASK, DELIVERABLE_TASK, REVIEW.
+- **TOOL-ROOT-ONLY** — May write only to a specific designated tool root under `{EXECUTION_ROOT}/`. Applies to: ORCHESTRATOR (`_Coordination/`), RECONCILIATION (`_Reconciliation/`), CHANGE (`_Change/` plus repo files with approval gate), SCHEDULING (`_Schedule/`), ESTIMATING (`_Estimates/`), AGGREGATION (`_Aggregation/`), and the four audit agents.
+</p></div></div></section>
+<section id="SEC-DG016-0024" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e50105ef2ecd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0024</span> 4.6.2 The Write Scope Tree</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e50105ef2ecd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e50105ef2ecd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e50105ef2ecd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §7.1 presents the full assignment structure in a tree format:</p>
+<p>```
+NONE
+├── HELPS_HUMANS
+├── DECOMP_BASE
+└── HELP_HUMAN</p>
+<p>REPO-METADATA-ONLY
+├── DOMAIN_DECOMP
+└── CONTEXT_TRANSPOSE</p>
+<p>PROJECT-LEVEL
+├── PROJECT_DECOMP
+├── SOFTWARE_DECOMP
+├── SCOPE_CHANGE
+├── PREPARATION
+└── ESTIMATE_PREP</p>
+<p>DELIVERABLE-LOCAL
+├── WORKING_ITEMS (+NEXT_INSTANCE_STATE.md standing exception)
+├── TASK+four-documents
+├── TASK+domain-documents
+├── TASK+semantic-matrix-build
+├── TASK+lens-register
+├── TASK+dependency-extract (dependency artifacts only)
+├── TASK
+└── REVIEW (+tool-root for snapshots)</p>
+<p>REPO-WIDE
+├── TOOLMAKER
+└── SKILLMAKER</p>
+<p>TOOL-ROOT-ONLY
+├── ORCHESTRATOR         → _Coordination/
+├── RECONCILIATION       → _Reconciliation/
+├── CHANGE               → _Change/ (+repo files with approval gate)
+├── SCHEDULING           → _Schedule/
+├── ESTIMATING           → _Estimates/
+├── AGGREGATION          → _Aggregation/
+├── AUDIT_AGENTS         → _Reconciliation/AgentAudit/
+├── AUDIT_DECOMP         → _Reconciliation/DecompCoverage/
+├── AUDIT_DEP_CLOSURE    → _Reconciliation/DepClosure/
+├── AUDIT_HYPERGRAPH_CLOSURE → _Reconciliation/HypergraphClosure/
+├── AUDIT_GOVERNANCE     → _Reconciliation/GovernanceAudit/
+├── AUDIT_EPISTEMIC      → _Reconciliation/EpistemicAudit/
+├── AUDIT_SCOPE_CLOSURE  → _Reconciliation/ScopeClosureAudit/
+├── DOMAIN_HYPERGRAPH    → _Aggregation/Hypergraph/
+├── EVALUATION           → _Evaluation/
+├── CONTENT_DIGEST       → _Evaluation/content-digests/
+├── EVALUATION_REPORT    → _Evaluation/reports/
+├── EVALUATION_STRUCTURE_AUDIT → _Evaluation/reports/
+└── EVALUATION_DEPENDENCY_AUDIT → _Evaluation/reports/
+```
+</p></div></div></section>
+<section id="SEC-DG016-0025" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:33edffb9078e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0025</span> 4.6.3 The Six Write Scope Rules</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:33edffb9078e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:33edffb9078e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:33edffb9078e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §7.2 states six rules that govern write scope enforcement across the agent suite:</p>
+<p>1. Every agent declares its write scope in the Agent Header Block.
+2. Deliverable-local agents cannot write outside their assigned production unit folder.
+3. Tool-root agents write only to their designated tool root under `{EXECUTION_ROOT}/`.
+4. Source truth (deliverable production documents) is never modified by tool-root agents.
+5. `_STATUS.md` updates are restricted to designated agents (PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW) and only for forward lifecycle transitions.
+6. Cross-deliverable scanning or editing is prohibited inside WORKING_ITEMS sessions unless the human explicitly requests a cross-check.
+</p></div></div></section>
+<section id="SEC-DG016-0026" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:315ebf69905f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0026</span> 4.6.4 Write Scope as Fault Containment</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:315ebf69905f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:315ebf69905f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:315ebf69905f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The practical significance of write scope is containment. A failure in a Type 2 task agent — whether through model error, malformed input, or unexpected behavior — can corrupt only the zone to which that agent has write access. Because tool-root agents cannot write to source truth, and deliverable-local agents cannot write to other deliverables, the blast radius of any single agent failure is bounded by architectural construction.</p>
+<p>This is the property DBM §1.5 refers to as &quot;write quarantine&quot;: formal fault containment zones established not by runtime monitoring but by the structural impossibility of cross-zone writes. The distinction matters: a monitoring approach would detect the violation after it occurred; the write scope model prevents the violation from being representable. A Type 2 agent running under WORKING_ITEMS that attempts to modify a file in another deliverable&#x27;s folder is not committing a policy violation — the action is outside its declared scope and should not occur in a conforming agent.</p>
+<p>[COMPARE: LangChain agents and ReAct-style frameworks typically have broad tool access without formal zone partitioning; compare fault isolation properties under agent misbehavior]</p>
+<p>[RATIONALE: The decision to declare write scope at the agent level rather than enforce it at the filesystem level (e.g., through OS permissions) is deliberate. Agent-level declaration makes the scope contract visible in the instruction file itself, auditable by any reader, and expressible with the semantics of the project domain — &quot;deliverable-local&quot; means something specific in terms of folder structure, which a generic OS permission model cannot express.]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0027" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:9f466bcf57d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0027</span> 4.7 Invariant System</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f466bcf57d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f466bcf57d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f466bcf57d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0028" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:22ee15b56fc0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0028</span> 4.7.1 Three Layers of Contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:22ee15b56fc0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:22ee15b56fc0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:22ee15b56fc0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality system maintains agent behavior through three distinct layers of contracts, defined in DBM §4. Each layer addresses a different scope of concern, and they are complementary rather than overlapping.</p>
+<p>**R1–R9: Workflow Design Requirements** (from HELPS_HUMANS). These nine requirements apply to all agents and to the design of any new agent workflow. They establish universal baseline obligations: that human decision rights are explicit (R1), that task agents run straight-through without mid-run gates (R2), that write quarantine is enforced (R3), that snapshots are immutable (R4), that provenance is mandatory (R5), that no-invention behavior is defined (R6), that conflicts and duplicates are surfaced (R7), that brief-driven execution exists (R8), and that publication is hygienic and non-destructive by default (R9).</p>
+<p>**I1–I10: Decomposition Invariants** (from DECOMP_BASE). These ten invariants apply specifically to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) and are verified by AUDIT_DECOMP. They govern: human-validated decomposition gates (I1), no-invention in scope assignment (I2), flat partition structure (I3), no overlaps and no gaps (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10).</p>
+<p>**K-* Invariants: System-Wide Enforcement** (from CONTRACT.md). The K-* catalog defines system-wide binding constraints. The full catalog is reproduced in Appendix A; the groupings and their primary enforcing agents are summarized below.</p>
+<p>| K-* Group | Invariants | Primary Enforcement |
+|-----------|-----------|---------------------|
+| Hierarchy &amp; Identity | K-HIER-1, K-ID-1 | PROJECT_DECOMP, PREPARATION |
+| Authority &amp; Approval | K-AUTH-1, K-AUTH-2, K-BIND-1 | REVIEW, CHANGE (approval gates) |
+| Sealing &amp; Context | K-SEAL-1, K-GHOST-1 | ORCHESTRATOR, Type 2 agents |
+| Dependencies | K-DEP-1, K-DEP-2 | TASK+dependency-extract, AUDIT_DEP_CLOSURE |
+| Status | K-STATUS-1 | PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW |
+| Staleness &amp; Validation | K-STALE-1, K-STALE-2, K-VAL-1 | AUDIT_DEP_CLOSURE, RECONCILIATION; future tooling |
+| Gates | K-GATE-1 | ORCHESTRATOR, SCHEDULING |
+| Merge | K-MERGE-1 | CHANGE |
+| Provenance | K-PROV-1 | TASK+dependency-extract (every row must cite evidence) |
+| Invention | K-INVENT-1 | Universal (all agents) |
+| Conflicts | K-CONFLICT-1 | Universal (all agents) |
+| Write Scope | K-WRITE-1 | Universal (declared per agent) |
+| Snapshots | K-SNAP-1 | All snapshot-producing agents |
+</p></div></div></section>
+<section id="SEC-DG016-0029" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7ab41f3b1ab3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0029</span> 4.7.2 Four Enforcement Layers</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ab41f3b1ab3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ab41f3b1ab3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ab41f3b1ab3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CONTRACT.md §2 defines the enforcement map. The K-* invariants are not enforced by a single centralized mechanism; they are distributed across four enforcement layers at different points in the system&#x27;s operation:</p>
+<p>**Design-time (agent instructions).** The invariants K-GHOST-1, K-WRITE-1, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-DEP-1, and K-DEP-2 are enforced by the content of the agent instruction files themselves. When an agent instruction is written to conform with these invariants, the agent&#x27;s behavior is constrained at the point of instruction — before any runtime invocation. This is &quot;design-time&quot; in the sense that the constraint is baked into the specification the agent operates from.</p>
+<p>**Runtime (ORCHESTRATOR).** The invariants K-SEAL-1, K-GATE-1, and K-HIER-1 are enforced by ORCHESTRATOR during active session management. ORCHESTRATOR checks that context is sealed and gate-approved before dispatching any Type 2 agent, and that gate structure conforms to the project&#x27;s configured gate map.</p>
+<p>**Human gate.** The invariants K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, and K-STATUS-1 are enforced through human review at defined gates. These invariants govern decisions that cannot be delegated to automated systems: binding approvals, staleness triage, merge authorization, and lifecycle state management for consequential transitions.</p>
+<p>**Future tooling (automated).** K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, and K-DEP-2 are identified as candidates for automated tooling — specifically for SHA comparison, staleness computation, and dependency resolution validation. The current architecture makes these checks tractable by ensuring all relevant state is in git-tracked files; the tooling has not yet been implemented.</p>
+<p>This distribution of enforcement is architecturally significant. It means that no single failure mode — a misbehaving agent, a human error, a tool gap — can violate all constraints simultaneously. The layers are complementary and partially redundant.</p>
+<p>[RATIONALE: The decision to enforce many invariants at the agent-instruction level rather than at runtime provides a stronger guarantee than runtime-only enforcement: an instruction-level constraint means the agent cannot describe a conforming execution path that violates the invariant, rather than merely detecting the violation after the fact. The tradeoff is that instruction-level enforcement depends on the quality of the agent instructions themselves, which requires the Type 0 canonical standards and the AUDIT_AGENTS agent to maintain.]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0030" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:bf776bbb8b58" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0030</span> 4.8 Orchestration and Control Loop</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf776bbb8b58" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf776bbb8b58" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf776bbb8b58" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0031" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:36422ad89ef5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0031</span> 4.8.1 The Spawning Graph</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:36422ad89ef5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:36422ad89ef5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:36422ad89ef5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §6.1 defines the spawning graph — the complete map of which agents may initiate which other agents:</p>
+<p>```
+HELP_HUMAN (Type 1) — classifies intent and routes; does not spawn</p>
+<p>ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION
+                                ├── TASK+four-documents
+                                ├── TASK+domain-documents
+                                ├── TASK+semantic-matrix-build
+                                ├── TASK+lens-register
+                                ├── DOMAIN_HYPERGRAPH (DOMAIN variant; Phase 2.6)
+                                ├── ESTIMATING
+                                └── AGGREGATION</p>
+<p>WORKING_ITEMS (Type 1) ──spawns──── TASK</p>
+<p>RECONCILIATION (Type 1) ──spawns──┬── AUDIT_DEP_CLOSURE
+                                  ├── AUDIT_AGENTS
+                                  ├── AUDIT_DECOMP
+                                  ├── AUDIT_EPISTEMIC
+                                  ├── AUDIT_GOVERNANCE
+                                  ├── AUDIT_SCOPE_CLOSURE
+                                  └── AUDIT_HYPERGRAPH_CLOSURE (DOMAIN variant)</p>
+<p>EVALUATION (Type 1) ──spawns──┬── CONTENT_DIGEST
+                              ├── EVALUATION_REPORT
+                              ├── EVALUATION_STRUCTURE_AUDIT
+                              └── EVALUATION_DEPENDENCY_AUDIT</p>
+<p>CHANGE (Type 1) — leaf agent; implements approved edits; spawns nothing
+TOOLMAKER (Type 1) — standalone; designs and implements deterministic tools
+SKILLMAKER (Type 1) — standalone; designs and governs repo-native skills</p>
+<p>REVIEW (Type 1) — triggers AUDIT_DECOMP as a precondition check
+SCOPE_CHANGE (Type 1) — hands off to ORCHESTRATOR + CHANGE
+CONTEXT_TRANSPOSE (Type 1) — hands off to CHANGE for publication
+SCHEDULING (Type 1) — standalone; reads dependency graph; produces schedule artifacts
+```</p>
+<p>The spawning graph is acyclic by construction: no Type 2 agent spawns any other agent, and the Type 1 agents that do spawn Type 2 agents do not spawn each other. This property means that execution trees are bounded in depth and that no runaway spawning cascade is architecturally possible.
+</p></div></div></section>
+<section id="SEC-DG016-0032" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5a2bb78e98d8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0032</span> 4.8.2 Session Handoff Mechanism</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a2bb78e98d8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a2bb78e98d8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a2bb78e98d8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The system maintains continuity across agent sessions through two durable artifacts maintained by ORCHESTRATOR (DBM §6.2):</p>
+<p>| Artifact | Mutability | Content |
+|----------|-----------|---------|
+| `NEXT_INSTANCE_PROMPT.md` | Stable — updated only on protocol changes | Session startup instructions |
+| `NEXT_INSTANCE_STATE.md` | Mutable — updated at each session handoff | Current pointers, program state, active rulings, immediate next actions |</p>
+<p>The session handoff flow is: ORCHESTRATOR creates both files during workspace initialization → WORKING_ITEMS reads both at the start of each session (Phase 0a) → WORKING_ITEMS updates `NEXT_INSTANCE_STATE.md` at session end → CHANGE verifies state before committing.</p>
+<p>This mechanism solves a fundamental limitation of LLM-based agent systems: the absence of persistent memory across session boundaries. Rather than relying on the LLM&#x27;s context window to retain program state, the system externalizes that state to versioned files. Any future session that reads these files acquires the same program state as if it had been running continuously. The guarantee is not a property of the language model — it is a property of the filesystem.
+</p></div></div></section>
+<section id="SEC-DG016-0033" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c494c2b152f2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0033</span> 4.8.3 The Control Loop</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c494c2b152f2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c494c2b152f2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c494c2b152f2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The operational control loop in a running project follows the sequence:</p>
+<p>1. **ORCHESTRATOR** initializes the workspace and session handoff artifacts; manages gate sequence.
+2. **WORKING_ITEMS** reads session state and executes deliverable-level work; dispatches TASK agents pre-authorizedly.
+3. **TASK+dependency-extract** reruns are triggered after content changes to keep dependency registers current.
+4. **RECONCILIATION** aggregates and audits across the project; dispatches audit agents to produce closure reports and coverage analyses.
+5. **CHANGE** receives approved commit instructions and applies them to the repository, requiring explicit approval tokens before any state-changing action.
+6. The loop returns to WORKING_ITEMS for the next session, with updated state in `NEXT_INSTANCE_STATE.md`.</p>
+<p>This loop is not continuous — it is human-triggered at each session. The architecture does not run agents autonomously between human interactions. Each session starts when a human opens the workbench and ends when they commit and close.
+</p></div></div></section>
+<section id="SEC-DG016-0034" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c7fda56da535" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0034</span> 4.8.4 Spawning Mechanisms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7fda56da535" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7fda56da535" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7fda56da535" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §6.3 defines four distinct spawning mechanisms, each with different authorization requirements:</p>
+<p>| Mechanism | Used By | Authorization Required |
+|-----------|---------|----------------------|
+| **Human-gated phases** | ORCHESTRATOR | Explicit human confirmation at each sequential phase |
+| **Pre-authorized dispatch** | WORKING_ITEMS | Human confirms session objective once; TASK agents dispatched autonomously within session |
+| **Human-directed toolbelt** | RECONCILIATION | Human provides TOOLBELT list of authorized agents; one task per cycle by default |
+| **Approval-gated execution** | CHANGE | Explicit approval tokens required per action (`APPROVE:` or `APPROVE_DESTRUCTIVE:`) |</p>
+<p>The progressive reduction in per-action authorization overhead is deliberate: ORCHESTRATOR phases are high-stakes and infrequent; WORKING_ITEMS task dispatch is routine and repetitive. Requiring explicit human confirmation at every TASK dispatch in a working session would impose ceremony with no corresponding safety benefit. Conversely, CHANGE applies the most stringent authorization requirement because its operations modify repository state — an action that, if incorrect, may require recovery operations.</p>
+<p>[COMPARE: Most agentic orchestration frameworks (e.g., AutoGen group chat, LangChain agents with tools) do not distinguish multiple authorization levels within a single agent type; compare their capacity to calibrate human oversight to the consequence level of individual operations]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0035" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:d849d8b7efbe" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0035</span> 4.9 Brief and Output Contracts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d849d8b7efbe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d849d8b7efbe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d849d8b7efbe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG016-0036" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5ae7fa5db5dc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0036</span> 4.9.1 The INIT-TASK Brief Format</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ae7fa5db5dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ae7fa5db5dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ae7fa5db5dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §9.1 defines the standard input contract for all Type 2 agents. The INIT-TASK brief is a structured parameter table, not natural language. It may be supplied inline or through a file-based `INIT-TASK.md` surface, with inline fields taking precedence when both exist. It contains:</p>
+<p>```
+PURPOSE:           &lt;what the run is for&gt;
+SCOPE:             &lt;deliverable IDs / package IDs / paths&gt;
+WHERE_TO_LOOK:     &lt;roots / patterns&gt;
+OUTPUT_LABEL:      &lt;optional&gt;
+CONFIG:            &lt;optional; validated enums driving behavior&gt;
+CONSTRAINTS:       &lt;schema, naming, maturity&gt;
+EXCLUSIONS:        &lt;paths / patterns&gt;
+NOTES:             &lt;anything else&gt;
+```</p>
+<p>Individual agents extend this base template with domain-specific parameters. The TASK+dependency-extract agent, for example, adds `MODE` (UPDATE vs. RESET_EXTRACTED), `STRICTNESS` (CONSERVATIVE vs. AGGRESSIVE), and `SOURCE_DOCS`. The TASK+four-documents agent adds `RUN_PASSES` (FULL, P1_P2, or P3_ONLY), `ALLOW_OVERWRITE_STATES`, and `DECOMP_VARIANT`.</p>
+<p>The brief format serves three functions. First, it makes agent inputs deterministic and repeatable: two invocations with identical briefs on identical filesystem state should produce equivalent outputs. Second, it enables pre-flight validation: an agent that receives an incomplete or structurally invalid brief halts with a `FAILED_INPUTS` status rather than proceeding with partial information. Third, it creates an auditable record: the brief is written verbatim into the snapshot&#x27;s `Brief.md` file, so the exact inputs to any run are preserved alongside its outputs.
+</p></div></div></section>
+<section id="SEC-DG016-0037" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3560dceb2b1a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0037</span> 4.9.2 Snapshot Output Convention</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3560dceb2b1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3560dceb2b1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3560dceb2b1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DBM §9.4 defines the output convention for all agents that produce analysis outputs to tool roots. The convention is:</p>
+<p>```
+{TOOL_ROOT}/{AGENT_PREFIX}_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/
+├── Brief.md              # Verbatim brief inputs
+├── RUN_SUMMARY.md        # What happened, PASS/FAIL status
+├── QA_Report.md          # Schema validity, coverage, provenance, warnings
+├── Decision_Log.md       # Non-trivial decisions made during the run
+├── &lt;agent-specific outputs&gt;
+└── Evidence/             # (where applicable) supporting CSV/data files</p>
+<p>{TOOL_ROOT}/_LATEST.md    # Mutable pointer to most recent snapshot
+```</p>
+<p>The design separates mutable from immutable state explicitly: the `_LATEST.md` pointer file is expected to be overwritten on each run; the snapshot folder is not. A reader who needs the current state of a tool root reads `_LATEST.md` for the pointer, then reads the referenced snapshot. A reader who needs the history of all runs reads the snapshot folders in chronological order.
+</p></div></div></section>
+<section id="SEC-DG016-0038" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fa685a7d4402" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG016-0038</span> 4.9.3 The Immutability Rule</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fa685a7d4402" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fa685a7d4402" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fa685a7d4402" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+K-SNAP-1 states: &quot;Task agent outputs to tool roots are immutable snapshots. Pointer files (`_LATEST.md`) may be overwritten; snapshot folders must not.&quot;</p>
+<p>The rationale for this rule connects directly to the epistemological commitments described in Chapter 3. If a snapshot could be modified after creation, the relationship between a git commit containing the snapshot and the run that produced it would be ambiguous — the snapshot&#x27;s content at commit time might not match its content at some later time. The immutability rule ensures that the git history is a faithful record: every version of every snapshot that was ever committed remains available and unchanged. This property is what makes the snapshot trail equivalent to an audit trail in a regulated-environment sense.</p>
+<p>The rule also creates a safe re-run model. Because reruns produce new snapshots without modifying existing ones, it is always safe to re-run a task agent after input changes. The previous result is preserved; the new result is additional evidence, not a replacement. Human review of the diff between snapshots is sufficient to determine whether the rerun resolved the issue or introduced new findings.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG016-0039" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:b07f53682eee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG016-0039</span> 4.10 Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b07f53682eee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b07f53682eee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b07f53682eee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality architecture is, at its core, a structure-as-governance system. Its capabilities do not arise from the sophistication of the individual agents but from the structural properties of the constraints under which those agents operate. The filesystem-as-state decision (<a class="xref" href="#SEC-DG016-0003">§4.2</a>) operationalizes the ontological pillar by making the project&#x27;s domain model directly inspectable and version-controllable. The evidence-first design — mandatory provenance, explicit epistemic labels, immutable audit trails — operationalizes the epistemological pillar by making the reliability of every claim structurally visible rather than inferred. The agent type hierarchy and write scope architecture (<a class="xref" href="#SEC-DG016-0018">§4.5</a>, <a class="xref" href="#SEC-DG016-0022">§4.6</a>) operationalize the praxiological pillar by ensuring that bounded agents cannot exceed their authority, that failures are contained within declared zones, and that human gates are structural rather than advisory. The invariant system and the non-bypassable human gates on lifecycle transitions to CHECKING and ISSUED (<a class="xref" href="#SEC-DG016-0012">§4.4</a>, <a class="xref" href="#SEC-DG016-0027">§4.7</a>) operationalize the axiological pillar by encoding the values of professional responsibility — human authority, evidence over plausibility, and public welfare primacy — as architectural constraints that cannot be relaxed by any agent at any type level. The result is a system whose safety properties are not dependent on agent reliability, but on structural impossibility: the agents cannot approve deliverables, cannot escape their write zones, and cannot hide the epistemic status of their outputs, because the architecture does not permit these things. The governance is in the structure.</p>
+<p>---</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG016";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

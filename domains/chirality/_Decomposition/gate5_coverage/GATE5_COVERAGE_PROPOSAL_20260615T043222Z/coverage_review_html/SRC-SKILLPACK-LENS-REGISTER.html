@@ -1,0 +1,828 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLPACK-LENS-REGISTER - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>78</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SKP025-0001">Source Pack: Skill pack: lens-register</a> <a href="#SEC-SKP025-0002">Component: skills/lens-register/BRIEF_SCHEMA.md</a> <a href="#SEC-SKP025-0012">Component: skills/lens-register/QA_CHECKS.md</a> <a href="#SEC-SKP025-0025">Component: skills/lens-register/SKILL.md</a> <a href="#SEC-SKP025-0070">Component: skills/lens-register/TOOL_POLICY.md</a></nav>
+<main>
+<section id="SEC-SKP025-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:4485aff327eb" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SKP025-0001</span> Source Pack: Skill pack: lens-register</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4485aff327eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4485aff327eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4485aff327eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`</p>
+<p>Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+</p></div></div></section>
+<section id="SEC-SKP025-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:a74fbaa5c2c6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP025-0002</span> Component: skills/lens-register/BRIEF_SCHEMA.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a74fbaa5c2c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a74fbaa5c2c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a74fbaa5c2c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:209b4361075b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP025-0003</span> lens-register — Brief Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:209b4361075b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:209b4361075b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:209b4361075b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4112a69c0d25" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0004</span> Dispatch role</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`lens-register` is the normal ORCHESTRATOR Phase 2.4 setup-pipeline skill for PROJECT / SOFTWARE semantic lensing. It is dispatched through TASK as a bounded method pack. It reads one deliverable folder, parses `_SEMANTIC.md`, scans production documents, and writes `_SEMANTIC_LENSING.md`.</p>
+<p>Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its own method contract and write-boundary requirements, and the brief must authorize `_SEMANTIC_LENSING.md` writes.
+</p></div></div></section>
+<section id="SEC-SKP025-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:138c0cdb0dbc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0005</span> Required</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` — absolute path to one production unit folder; this is the TASK-normalized scope root.
+- `TaskSkill` — `lens-register`.
+- `RuntimeOverrides.deliverable_folder` — same absolute path as `ScopePath`; this is the skill&#x27;s explicit scope anchor.
+- `_SEMANTIC.md` must exist in the deliverable folder. If absent, the skill writes a blocking `_SEMANTIC_LENSING.md` header and stops.
+</p></div></div></section>
+<section id="SEC-SKP025-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8ede6879f395" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0006</span> Recommended</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `RuntimeOverrides.DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`).
+- `RuntimeOverrides.STATUS_POLICY` — `NO_STATUS_TOUCH` for normal Phase 2.4.
+- `AllowedWriteTargets` — include only:
+  - `{deliverable_folder}/_SEMANTIC_LENSING.md`
+  - `{deliverable_folder}/_run_records/` (TASK shell output)
+</p></div></div></section>
+<section id="SEC-SKP025-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ec2a5d5dbf3b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0007</span> Optional / compatibility aliases</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `deliverable_folder` may be provided as a top-level legacy field, but `RuntimeOverrides.deliverable_folder` is preferred.
+- `DeliverablePath` is accepted only as a compatibility alias when an existing caller provides it. It does not affect TASK write authorization.
+- `DECOMP_VARIANT` may be provided top-level or in `RuntimeOverrides`; runtime override wins.
+</p></div></div></section>
+<section id="SEC-SKP025-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8f394bc9c9c0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0008</span> Unsupported</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `DECOMP_VARIANT=DOMAIN` is not supported. DOMAIN pipelines skip semantic lensing. The skill refuses gracefully and does not write `_SEMANTIC_LENSING.md`.
+- Multi-deliverable scope is not accepted.
+- Cross-deliverable scanning is not accepted.
+- Following external references from `_REFERENCES.md` is not accepted unless a separate explicitly authorized task provides those sources as in-scope inputs.
+</p></div></div></section>
+<section id="SEC-SKP025-0009" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:46404916fcdc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0009</span> Canonical ORCHESTRATOR Phase 2.4 brief</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown
+PURPOSE: Generate the deliverable-local semantic lensing register for one production unit.
+RequestedBy: ORCHESTRATOR</p>
+<p>ScopePath: {DELIVERABLE_PATH}
+TaskSkill: lens-register</p>
+<p>Tasks:
+  - Load `skills/lens-register/SKILL.md` and companion files.
+  - Read `_SEMANTIC.md` and the production documents for this deliverable.
+  - Parse only primary Result tables for matrices A, B, C, F, D, X, E.
+  - Generate or overwrite `{DELIVERABLE_PATH}/_SEMANTIC_LENSING.md`.
+  - Run lens-register QA and validator when available.</p>
+<p>ApplyEdits: true
+AllowedWriteTargets:
+  - {DELIVERABLE_PATH}/_SEMANTIC_LENSING.md
+  - {DELIVERABLE_PATH}/_run_records/</p>
+<p>RuntimeOverrides:
+  DECOMP_VARIANT: {PROJECT|SOFTWARE}
+  deliverable_folder: {DELIVERABLE_PATH}
+  STATUS_POLICY: NO_STATUS_TOUCH</p>
+<p>CustomInstructions:
+  - Treat `_SEMANTIC.md` as a lens source, not an authority.
+  - Ignore Matrix Summary, Matrix Z, derivation tables, and structural matrices K, G, T.
+  - Keep production documents, `_SEMANTIC.md`, and `_STATUS.md` read-only.
+  - Record only warranted items with SourcePath and SectionRef.
+  - Use lens-specific `NO_ITEMS` notes; do not repeat boilerplate.
+  - Do not follow external references outside the deliverable folder.
+  - Do not claim `validate_lens_register.py` PASS unless the validator actually ran.</p>
+<p>ExpectedOutputs:
+  - `{DELIVERABLE_PATH}/_SEMANTIC_LENSING.md`
+  - `{DELIVERABLE_PATH}/_run_records/TASK_RUN_*.md`
+```
+</p></div></div></section>
+<section id="SEC-SKP025-0010" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:15c9ea70e475" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0010</span> Files the skill expects to find in scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `_SEMANTIC.md` — source of lens matrices A, B, C, F, D, X, E.</p>
+<p>Recommended / contextual:
+- `_CONTEXT.md` — deliverable identity.
+- `_STATUS.md` — read-only lifecycle state.
+- `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` — standard production document set. Missing docs produce `[WARNING] MISSING_DOC`, not failure.
+- `_REFERENCES.md` — deliverable-local metadata only; list pointers but do not expand them.
+</p></div></div></section>
+<section id="SEC-SKP025-0011" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e4d457e598d3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0011</span> Output location</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `{deliverable_folder}/_SEMANTIC_LENSING.md` — overwritten each run.
+- `{deliverable_folder}/_run_records/TASK_RUN_*.md` — TASK shell run record, not a skill-authored output.
+</p></div></div></section>
+<section id="SEC-SKP025-0012" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:462863be5f3e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP025-0012</span> Component: skills/lens-register/QA_CHECKS.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:462863be5f3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:462863be5f3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:462863be5f3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0013" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:666ded3ebfae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP025-0013</span> lens-register — QA Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:666ded3ebfae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:666ded3ebfae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:666ded3ebfae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4a19b40c881b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0014</span> Minimum checks for a valid run</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a19b40c881b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a19b40c881b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a19b40c881b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. `ScopePath` exists and is a readable directory.
+2. `deliverable_folder` resolves to the same directory as `ScopePath`.
+3. `_SEMANTIC.md` is present in the deliverable folder, or the output is a blocking header file and the run stops.
+4. `DECOMP_VARIANT` is `PROJECT`, `SOFTWARE`, or absent (default `PROJECT`). `DOMAIN` is refused.
+5. `_SEMANTIC_LENSING.md` is written to `{deliverable_folder}/_SEMANTIC_LENSING.md` unless the run is refused before output or fails input validation.
+6. No production documents were modified.
+7. `_SEMANTIC.md` was not modified.
+8. `_STATUS.md` was not modified (`STATUS_POLICY=NO_STATUS_TOUCH`).
+9. No files outside `{deliverable_folder}/` were read or written, except TASK&#x27;s own run-record handling inside `{deliverable_folder}/_run_records/`.
+10. If `python3 tools/validation/validate_lens_register.py {deliverable_folder}` is available and permitted, it passes before the run reports validator PASS.
+11. If the validator is unavailable or not permitted, the run reports `Validator: NOT_RUN` and does not claim validator PASS.
+</p></div></div></section>
+<section id="SEC-SKP025-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b08e007daf57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0015</span> Structural invariants</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b08e007daf57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b08e007daf57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b08e007daf57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| # | Check | Validation |
+|---|---|---|
+| 1 | **Matrix coverage complete** | Every cell of each lensed matrix A, B, C, F, D, X, E has a Lens Coverage entry. |
+| 2 | **Structural matrices excluded** | K, G, and T are not lensed; they are transposes/truncations and would duplicate D/B coverage. |
+| 3 | **Primary result tables only** | Lenses are parsed from primary Result tables, not derivation tables, Matrix Summary, Matrix Z, or compact summary duplicates. |
+| 4 | **No invention** | Warranted items are grounded in production-document evidence or explicit absence. |
+| 5 | **Provenance present** | Every warranted item has `SourcePath` + `SectionRef` or accepted absence wording. |
+| 6 | **Conflicts surfaced** | Conflict items have two or more contenders and `HumanRuling=TBD`. |
+| 7 | **Summary consistent** | Summary counts match the actual warranted items in the file. |
+| 8 | **Schema followed** | Output uses the exact STRUCTURE schema and required column order. |
+| 9 | **One deliverable per run** | The run processes exactly one deliverable folder; no cross-deliverable scanning. |
+| 10 | **Read-only protected files** | Production docs, `_SEMANTIC.md`, and `_STATUS.md` are not modified. |
+| 11 | **Lens-specific no-item notes** | `NO_ITEMS` rows explain the specific lens/document-role outcome; repeated boilerplate is invalid. |</p>
+<p>A run failing any required invariant is invalid, except where failure behavior explicitly defines a blocking/refusal output.
+</p></div></div></section>
+<section id="SEC-SKP025-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:82c48902d8a7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0016</span> Matrix parsing rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82c48902d8a7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82c48902d8a7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82c48902d8a7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill must parse `_SEMANTIC.md` as follows:</p>
+<p>- Process only these matrices: A, B, C, F, D, X, E.
+- Ignore structural matrices K, G, T.
+- Ignore `Matrix Z — Summary Boundary` if present.
+- Ignore `Matrix Summary` and all compact summary tables/lists.
+- Ignore derivation-work tables and intermediate collections.
+- Use the first complete `### Result` table inside each required matrix section as the authoritative lens table.
+- If a matrix Result table is missing, malformed, or has empty cells, create `MATRIX_ERROR` coverage rows and `Type=MatrixError` items referencing `_SEMANTIC.md`.
+</p></div></div></section>
+<section id="SEC-SKP025-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3041a7b6f8c1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0017</span> Schema compliance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3041a7b6f8c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3041a7b6f8c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3041a7b6f8c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **File header:** present with `Generated`, `Deliverable Folder`, `DECOMP_VARIANT`, `StatusPolicy`, `Validator`, `Inputs Read`, `Purpose`, and `Warnings` when applicable.
+- **Summary block:** present before any matrix section. Counts are integers (0 permitted).
+- **Matrix sections:** one per matrix in fixed order A, B, C, F, D, X, E. Each contains:
+  - a **Lens Coverage** table with one row per matrix cell, row-major;
+  - a **Warranted Items** table only when at least one item exists for that matrix.
+- **Lens Coverage columns:** `LensKey`, `RowLabel`, `ColLabel`, `LensValue`, `ItemCount`, `CoverageStatus`, `Notes`.
+- **Warranted Items columns:** `ItemID`, `LensKey`, `Type`, `AppliesToDoc`, `SuggestedEditDoc`, `CandidateInfo`, `WhyWarranted`, `SourcePath`, `SectionRef`, `Contenders`, `ProposedAuthority (PROPOSAL)`, `HumanRuling`.
+- **CoverageStatus enum:** `NO_ITEMS` | `HAS_ITEMS` | `MATRIX_ERROR`.
+- **Type enum:** `MissingSlot` | `WeakStatement` | `Conflict` | `VerificationGap` | `RationaleGap` | `Normalization` | `TBD_Question` | `MatrixError`.
+</p></div></div></section>
+<section id="SEC-SKP025-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0614b5e8617f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0018</span> NO_ITEMS note discipline</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0614b5e8617f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0614b5e8617f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0614b5e8617f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every `NO_ITEMS` row must contain a lens-specific note. Invalid boilerplate includes:</p>
+<p>- `No warranted items found.`
+- `No issues.`
+- `N/A.`</p>
+<p>Valid examples:</p>
+<p>- `Requirement and verification roles already align under this lens.`
+- `Datasheet attributes already cover the descriptive role; no gap detected.`
+- `Guidance rationale is present and consistent with procedure checks.`
+- `No production document presented a conflict or missing slot for this lens.`
+</p></div></div></section>
+<section id="SEC-SKP025-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2da3c3ee1949" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0019</span> No-invention rule</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2da3c3ee1949" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2da3c3ee1949" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2da3c3ee1949" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Every warranted item must cite evidence from production documents or explicitly record absence.
+- Speculative or unsupported content must become `Type=TBD_Question`.
+- The skill must not introduce new numeric values, new normative requirements, or acceptance claims.
+- The skill must not claim compliance with a standard whose text is not present.
+- `_SEMANTIC.md` and `_SEMANTIC_LENSING.md` are not evidence sources for engineering facts.
+</p></div></div></section>
+<section id="SEC-SKP025-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:aea5a56c65fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0020</span> Human decision rights</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aea5a56c65fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aea5a56c65fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aea5a56c65fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Conflicts are surfaced, not resolved.
+- `HumanRuling` is always `TBD` unless a pre-existing human ruling is citable.
+- `ProposedAuthority` is always `PROPOSAL`; never authoritative.
+</p></div></div></section>
+<section id="SEC-SKP025-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d0a26e76b0ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0021</span> Unsupported variants</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d0a26e76b0ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d0a26e76b0ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d0a26e76b0ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`DECOMP_VARIANT=DOMAIN` is not supported. If passed:</p>
+<p>- Do not write `_SEMANTIC_LENSING.md`.
+- Do not modify any file.
+- Return `RUN_STATUS=REFUSED` with the message: `DECOMP_VARIANT=DOMAIN is not supported by lens-register; DOMAIN pipelines skip the semantic lensing step.`
+</p></div></div></section>
+<section id="SEC-SKP025-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:f989f09576dd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0022</span> Failure reporting</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f989f09576dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f989f09576dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f989f09576dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- If `_SEMANTIC.md` is missing: write `_SEMANTIC_LENSING.md` with a blocking header: `Missing _SEMANTIC.md; run semantic-matrix-build first (ORCHESTRATOR Phase 2.3)` and stop. Report `RUN_STATUS=BLOCKED`.
+- If `{deliverable_folder}` does not exist or is not readable: report `RUN_STATUS=FAILED_INPUTS`; do not write.
+- If a production document is missing: record `[WARNING] MISSING_DOC: &lt;filename&gt;` in the output header and continue.
+- If a matrix cell is empty or malformed: set `CoverageStatus=MATRIX_ERROR`, add a `Type=MatrixError` item, and continue.
+- If validator is unavailable: report `Validator: NOT_RUN`; do not call the run validator-passed.
+- If validator fails: report `RUN_STATUS=FAILED` with validator errors.
+</p></div></div></section>
+<section id="SEC-SKP025-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3f31213ec89d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0023</span> Success case</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f31213ec89d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f31213ec89d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f31213ec89d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A clean run reports:</p>
+<p>- `RUN_STATUS=OK`
+- Deliverable ID/name
+- `_SEMANTIC.md` was present and parsed from primary Result tables
+- Count of warranted items total + by document + by matrix + by type
+- Matrix parsing errors, missing docs, and conflicts, if any
+- Path to `_SEMANTIC_LENSING.md`
+- `Validator: PASS` or `Validator: NOT_RUN — &lt;reason&gt;`
+- `_STATUS.md` unchanged
+- No production documents modified
+</p></div></div></section>
+<section id="SEC-SKP025-0024" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:009e4c82fa36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0024</span> Evidence required for each item</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:009e4c82fa36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:009e4c82fa36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:009e4c82fa36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Type | Minimum evidence |
+|---|---|
+| `Conflict` | Two+ `path#section` entries in `Contenders`; `HumanRuling=TBD`. |
+| `VerificationGap` | Citation of the normative requirement whose acceptance is missing/ambiguous. |
+| `MissingSlot` | Doc(s) searched in `SourcePath`; section or `entire document scanned` in `SectionRef`. |
+| `WeakStatement` | Doc+section citation for ambiguous language. |
+| `RationaleGap` | Doc+section citation for decision/requirement lacking rationale. |
+| `Normalization` | Two+ locations where terminology diverges. |
+| `TBD_Question` | Rationale and who/what to consult in `CandidateInfo`. |
+| `MatrixError` | Reference to the affected cell in `_SEMANTIC.md`. |
+</p></div></div></section>
+<section id="SEC-SKP025-0025" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:4798dc42a278" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP025-0025</span> Component: skills/lens-register/SKILL.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4798dc42a278" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4798dc42a278" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4798dc42a278" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+name: lens-register
+description: Generate a matrix-organized, coverage-complete semantic lensing register (_SEMANTIC_LENSING.md) from _SEMANTIC.md + production documents. Setup-pipeline companion to the interactive semantic-lensing skill.
+compatibility: Chirality TASK; dispatched by ORCHESTRATOR setup pipeline (Phase 2.4).
+metadata:
+  chirality-skill-version: &quot;2&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SKP025-0026" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:f7462089d55a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP025-0026</span> SKILL — lens-register</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7462089d55a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7462089d55a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7462089d55a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d214bbcb1a98" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0027</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d214bbcb1a98" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d214bbcb1a98" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d214bbcb1a98" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce a **matrix-organized lensing register** (`_SEMANTIC_LENSING.md`) that:</p>
+<p>1. Uses each primary Result-table cell of matrices **A, B, C, F, D, X, E** from `_SEMANTIC.md` as a lens,
+2. Applies each lens to the deliverable-local production documents, and
+3. Records only warranted enrichment inputs with provenance, without rewriting the documents.</p>
+<p>This is the **setup-pipeline, coverage-complete** contract in the semantic-lensing family. It is the normal ORCHESTRATOR Phase 2.4 skill. Its interactive counterpart is `semantic-lensing`, which produces human-facing proposals or reviews existing register entries. `lens-register` creates the register; `four-documents` Pass 3 consumes the register.
+</p></div></div></section>
+<section id="SEC-SKP025-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:640a43c46d03" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0028</span> Suitable agent shells</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:640a43c46d03" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:640a43c46d03" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:640a43c46d03" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` generic shell, no profile.</p>
+<p>Typical dispatcher: ORCHESTRATOR Phase 2.4 dispatches TASK with `TaskSkill: lens-register`, `ScopePath={DELIVERABLE_PATH}`, `RuntimeOverrides.deliverable_folder={DELIVERABLE_PATH}`, and write authorization for `_SEMANTIC_LENSING.md`.
+</p></div></div></section>
+<section id="SEC-SKP025-0029" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0029</span> Inputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0030" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:c3a866c2e477" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0030</span> Required</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3a866c2e477" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3a866c2e477" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3a866c2e477" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` — absolute path to one production unit folder.
+- `deliverable_folder` — absolute path to the same folder, normally supplied in `RuntimeOverrides`.
+- `_SEMANTIC.md` in the deliverable folder.
+</p></div></div></section>
+<section id="SEC-SKP025-0031" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:00ac3797e45f" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0031</span> Optional</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00ac3797e45f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00ac3797e45f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00ac3797e45f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`). `DOMAIN` is not supported.
+- `STATUS_POLICY` — default `NO_STATUS_TOUCH`.
+- `DeliverablePath` — compatibility alias only; does not affect TASK write authorization.
+</p></div></div></section>
+<section id="SEC-SKP025-0032" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:e220e3005992" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0032</span> Files read</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e220e3005992" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e220e3005992" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e220e3005992" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `{deliverable_folder}/_SEMANTIC.md` — source for lenses.</p>
+<p>Contextual, read when present:
+- `{deliverable_folder}/_CONTEXT.md`
+- `{deliverable_folder}/_STATUS.md`
+- `{deliverable_folder}/Datasheet.md`
+- `{deliverable_folder}/Specification.md`
+- `{deliverable_folder}/Guidance.md`
+- `{deliverable_folder}/Procedure.md`
+- `{deliverable_folder}/_REFERENCES.md` — metadata only; do not follow external paths.</p>
+<p>Missing production documents produce warnings, not failure.
+</p></div></div></section>
+<section id="SEC-SKP025-0033" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e45568759001" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0033</span> Runtime overrides</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e45568759001" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e45568759001" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e45568759001" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `deliverable_folder` | Skill-local scope anchor | required | absolute path equal to `ScopePath` |
+| `DECOMP_VARIANT` | Decomposition pipeline variant | `PROJECT` | `PROJECT`, `SOFTWARE` |
+| `STATUS_POLICY` | Lifecycle handling | `NO_STATUS_TOUCH` | `NO_STATUS_TOUCH` |</p>
+<p>`DECOMP_VARIANT=DOMAIN` is refused because DOMAIN pipelines skip semantic lensing.
+</p></div></div></section>
+<section id="SEC-SKP025-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:13ecab9233fc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0034</span> Tool usage</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:13ecab9233fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:13ecab9233fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:13ecab9233fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning-first generation. Deterministic validation is optional but expected when the validator exists and the brief permits it.</p>
+<p>- No deterministic tool is required to generate `_SEMANTIC_LENSING.md`.
+- Optional validators may be used after generation:
+  - `python3 tools/validation/validate_lens_register.py {deliverable_folder}`
+  - `python3 tools/validation/validate_semantic_pipeline_scope.py {deliverable_folder} --step lens`
+- Do not claim validator PASS unless the validator actually ran and passed.</p>
+<p>The `allowed-tools` frontmatter field is intentionally omitted; TASK may still enforce a brief-provided allowlist.
+</p></div></div></section>
+<section id="SEC-SKP025-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:bf680c31fcd2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0035</span> Outputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf680c31fcd2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf680c31fcd2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf680c31fcd2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Skill-authored output:</p>
+<p>- `{deliverable_folder}/_SEMANTIC_LENSING.md` — overwritten each run.</p>
+<p>TASK shell output:</p>
+<p>- `{deliverable_folder}/_run_records/TASK_RUN_*.md` — TASK run record.
+</p></div></div></section>
+<section id="SEC-SKP025-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:222a1fd9edce" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0036</span> Non-negotiable invariants</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:222a1fd9edce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:222a1fd9edce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:222a1fd9edce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **One deliverable per run.** Operate on exactly one folder.
+- **Read-only production documents.** Do not edit `Datasheet.md`, `Specification.md`, `Guidance.md`, or `Procedure.md`.
+- **Read-only `_SEMANTIC.md`.** It is a lens source, not an output target or engineering authority.
+- **Read-only `_STATUS.md`.** Normal Phase 2.4 policy is `NO_STATUS_TOUCH`.
+- **No external expansion.** Do not follow `_REFERENCES.md` paths or read outside the deliverable folder.
+- **Use lenses, not authority.** Matrix cells shape what to look for; they do not justify inventing content.
+- **No invention.** Unknowns become `TBD_Question`; gaps become `MissingSlot`; conflicts become `Conflict`.
+- **Provenance required.** Every warranted item has `SourcePath` and `SectionRef` or explicit absence provenance.
+- **Conflicts surfaced, not resolved.** `HumanRuling=TBD` unless a prior human ruling is cited.
+- **Matrix coverage complete.** Every cell in A, B, C, F, D, X, E appears in Lens Coverage.
+- **Structural matrices excluded.** K and T are transposes; G is a truncation. They are not lensed because doing so duplicates D/B coverage.
+- **Parser hygiene.** Ignore derivation tables, Matrix Summary, and Matrix Z. Parse only primary Result tables.
+- **No boilerplate NO_ITEMS.** Notes must be lens-specific.
+</p></div></div></section>
+<section id="SEC-SKP025-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:cec03fd79d92" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0037</span> Precedence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cec03fd79d92" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cec03fd79d92" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cec03fd79d92" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** governs sequencing and run behavior.
+2. **SPEC** governs validity.
+3. **STRUCTURE** defines output schema.
+4. **RATIONALE** governs interpretation when ambiguity remains.</p>
+<p>If instructions conflict, flag the conflict and return it to the invoker.
+</p></div></div></section>
+<section id="SEC-SKP025-0038" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a1186a9c0974" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0038</span> Glossary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1186a9c0974" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1186a9c0974" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1186a9c0974" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| Lens | A matrix Result-table cell used as a question-shaping perspective. |
+| LensKey | Canonical identifier: `M:[RowLabel]:[ColLabel]`. |
+| Warranted item | A grounded gap, conflict, weak statement, normalization risk, rationale gap, verification gap, or TBD question. |
+| Production documents | `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`. |
+| Structural matrices | K, G, T; excluded from lensing because they duplicate predecessor content. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-SKP025-0039" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:d2805d2dd44b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0039</span> PROTOCOL — Straight-through lens-register procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2805d2dd44b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2805d2dd44b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2805d2dd44b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0040" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:8f8bc715376a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0040</span> Step 0 — Safety checks</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f8bc715376a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f8bc715376a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f8bc715376a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Resolve `ScopePath` and `deliverable_folder`; they must identify the same readable directory.
+2. If `DECOMP_VARIANT=DOMAIN`, refuse gracefully and do not write files.
+3. Confirm `_SEMANTIC.md` exists.
+   - If missing, write `_SEMANTIC_LENSING.md` with a blocking header and stop.
+4. Confirm production documents exist.
+   - Missing production documents produce `[WARNING] MISSING_DOC: &lt;filename&gt;` and the run proceeds with available documents.
+5. Confirm no write target outside `_SEMANTIC_LENSING.md` and TASK `_run_records/` is required.
+</p></div></div></section>
+<section id="SEC-SKP025-0041" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:1d0abdc8fd41" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0041</span> Step 1 — Read context and inputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d0abdc8fd41" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d0abdc8fd41" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d0abdc8fd41" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Read, in order:</p>
+<p>1. `_CONTEXT.md` if present.
+2. `_STATUS.md` if present; record state but do not change it.
+3. `_SEMANTIC.md`.
+4. Existing production documents.
+5. `_REFERENCES.md` if present; list as metadata only and do not follow external paths.
+</p></div></div></section>
+<section id="SEC-SKP025-0042" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:e71761f21100" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0042</span> Step 2 — Parse matrices into a lens inventory</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e71761f21100" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e71761f21100" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e71761f21100" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each matrix `M ∈ {A, B, C, F, D, X, E}`:</p>
+<p>1. Locate the matrix section.
+2. Locate the first primary `### Result` table in that section.
+3. Extract row labels, column labels, and cell values.
+4. Create one Lens Coverage row per cell, row-major:
+   - `LensKey = M:[RowLabel]:[ColLabel]`
+   - `LensValue = cell value`
+   - `ItemCount=0`
+   - `CoverageStatus=NO_ITEMS`
+   - `Notes=&lt;lens-specific initial note&gt;`</p>
+<p>Ignore:</p>
+<p>- derivation/intermediate work tables;
+- Matrix Summary;
+- Matrix Z;
+- structural matrices K, G, T.</p>
+<p>If a required matrix or cell is malformed, record `MATRIX_ERROR` and continue.
+</p></div></div></section>
+<section id="SEC-SKP025-0043" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:8847510d3f24" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0043</span> Step 3 — Apply lenses and record warranted items</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8847510d3f24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8847510d3f24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8847510d3f24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each `LensKey`:</p>
+<p>1. Scan the production documents.
+2. Ask: what gap, conflict, ambiguity, missing verification, missing rationale, or terminology risk becomes salient under this lens?
+3. Record an item only when it meets the warranted threshold.
+4. Update `ItemCount`, `CoverageStatus`, and `Notes`.</p>
+<p>Warranted item types:</p>
+<p>- `Conflict`
+- `VerificationGap`
+- `MissingSlot`
+- `WeakStatement`
+- `RationaleGap`
+- `Normalization`
+- `TBD_Question`
+- `MatrixError`</p>
+<p>Tight filter:</p>
+<p>- Do not record restatements.
+- Do not pad the register for coverage.
+- Do not create items simply because a lens exists.
+- If documents are already clear and aligned under a lens, record `NO_ITEMS` with a specific note.
+</p></div></div></section>
+<section id="SEC-SKP025-0044" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:6b2fa6700548" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0044</span> Step 4 — Write `_SEMANTIC_LENSING.md`</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6b2fa6700548" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6b2fa6700548" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6b2fa6700548" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write or overwrite `{deliverable_folder}/_SEMANTIC_LENSING.md` using the STRUCTURE schema.
+</p></div></div></section>
+<section id="SEC-SKP025-0045" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:67d1ccd30d8d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0045</span> Step 5 — QA and optional validation</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:67d1ccd30d8d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:67d1ccd30d8d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:67d1ccd30d8d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm protected files were not modified.
+2. Confirm coverage completeness and schema compliance.
+3. Run `validate_lens_register.py` if available and permitted.
+4. Report validator status as `PASS`, `FAILED`, or `NOT_RUN`.
+5. Return run report to TASK/ORCHESTRATOR.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-SKP025-0046" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:03128e6b0016" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0046</span> SPEC — Validity requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03128e6b0016" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03128e6b0016" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03128e6b0016" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0047" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:eb6b5d0137c8" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0047</span> S1 — Coverage completeness</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb6b5d0137c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb6b5d0137c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb6b5d0137c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every cell of A, B, C, F, D, X, and E must appear in Lens Coverage. Zero-item cells are valid when their notes are lens-specific.
+</p></div></div></section>
+<section id="SEC-SKP025-0048" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:029cf18f4817" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0048</span> S2 — No invention</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:029cf18f4817" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:029cf18f4817" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:029cf18f4817" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A warranted item must be grounded in production-document evidence or explicit absence. Use `TBD_Question` when required information is absent or external.
+</p></div></div></section>
+<section id="SEC-SKP025-0049" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:7c07e3e76a8d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0049</span> S3 — Provenance</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c07e3e76a8d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c07e3e76a8d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c07e3e76a8d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every warranted item includes:</p>
+<p>- `SourcePath`;
+- `SectionRef`;
+- `Contenders` when conflict exists.
+</p></div></div></section>
+<section id="SEC-SKP025-0050" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:1f922e86305b" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0050</span> S4 — Human decision rights</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f922e86305b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f922e86305b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f922e86305b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill must not choose a winner, introduce requirements, or assert compliance. Human rulings remain `TBD` unless already citable.
+</p></div></div></section>
+<section id="SEC-SKP025-0051" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:bca03c4d6251" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0051</span> S5 — Output stability</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bca03c4d6251" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bca03c4d6251" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bca03c4d6251" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Output must use stable ordering and exact table schemas.
+</p></div></div></section>
+<section id="SEC-SKP025-0052" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:65419ef37258" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0052</span> S6 — Scope discipline</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:65419ef37258" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:65419ef37258" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:65419ef37258" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The run must not read sibling deliverables or external references; `_REFERENCES.md` is metadata only.
+</p></div></div></section>
+<section id="SEC-SKP025-0053" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:0f2a789fed53" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0053</span> S7 — Status discipline</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0f2a789fed53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0f2a789fed53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0f2a789fed53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`_STATUS.md` is not changed by `lens-register`.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-SKP025-0054" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:9024680479b3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0054</span> STRUCTURE — Output file schema</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9024680479b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9024680479b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9024680479b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0055" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:106841dff575" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0055</span> File header</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:106841dff575" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:106841dff575" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:106841dff575" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-SKP025-0056" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:1a3ad3c61759" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP025-0056</span> Semantic Lensing Register: [Production Unit ID] [Name]</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a3ad3c61759" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a3ad3c61759" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a3ad3c61759" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** [YYYY-MM-DD]
+**DECOMP_VARIANT:** [PROJECT|SOFTWARE]
+**Deliverable Folder:** [path]
+**StatusPolicy:** NO_STATUS_TOUCH
+**Validator:** PASS | FAILED | NOT_RUN — [reason]
+**Warnings:** [optional warning list]</p>
+<p>**Inputs Read:**
+- _CONTEXT.md — [SourceRef or not present]
+- _STATUS.md — [SourceRef or not present]
+- _SEMANTIC.md — [SourceRef]
+- Datasheet.md — [SourceRef or missing]
+- Specification.md — [SourceRef or missing]
+- Guidance.md — [SourceRef or missing]
+- Procedure.md — [SourceRef or missing]
+- _REFERENCES.md — [SourceRef or not present / not read]</p>
+<p>**Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
+```
+</p></div></div></section>
+<section id="SEC-SKP025-0057" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:860cbbe55d1a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0057</span> Summary block</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:860cbbe55d1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:860cbbe55d1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:860cbbe55d1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-SKP025-0058" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:4fdb85e14f61" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0058</span> Summary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4fdb85e14f61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4fdb85e14f61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4fdb85e14f61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Total warranted items: N
+- By document:
+  - Datasheet: n
+  - Specification: n
+  - Guidance: n
+  - Procedure: n
+  - Multi: n
+  - NA: n
+- By matrix:
+  - A: n
+  - B: n
+  - C: n
+  - F: n
+  - D: n
+  - X: n
+  - E: n
+- By type:
+  - Conflict: n
+  - VerificationGap: n
+  - MissingSlot: n
+  - WeakStatement: n
+  - RationaleGap: n
+  - Normalization: n
+  - TBD_Question: n
+  - MatrixError: n
+- Notable conflicts: n
+- Matrix parse errors: n
+```
+</p></div></div></section>
+<section id="SEC-SKP025-0059" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:e0f4ff50fcbc" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0059</span> Matrix sections</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0f4ff50fcbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0f4ff50fcbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0f4ff50fcbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each matrix in order: A, B, C, F, D, X, E.</p>
+<p>```markdown</p></div></div></section>
+<section id="SEC-SKP025-0060" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:237b4485345d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0060</span> Matrix M — [Matrix Name]</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:237b4485345d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:237b4485345d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:237b4485345d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0061" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:5bdf7b8fcc29" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0061</span> Lens Coverage</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5bdf7b8fcc29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5bdf7b8fcc29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5bdf7b8fcc29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| LensKey | RowLabel | ColLabel | LensValue | ItemCount | CoverageStatus | Notes |
+|---|---|---|---|---:|---|---|
+| M:[r]:[c] | r | c | ... | 0 | NO_ITEMS | lens-specific note |
+</p></div></div></section>
+<section id="SEC-SKP025-0062" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:f9d94e8b0a8c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0062</span> Warranted Items</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9d94e8b0a8c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9d94e8b0a8c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9d94e8b0a8c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| A-001 | A:[r]:[c] | VerificationGap | Specification | Specification | Add acceptance criteria for ... | ... | ... | ... | ... | PROPOSAL | TBD |
+```</p>
+<p>Omit `### Warranted Items` for a matrix only when no warranted items exist for that matrix.
+</p></div></div></section>
+<section id="SEC-SKP025-0063" class="chunk sec depth-6 cov-high" data-kind="section" data-key="section:3686d7f83145" data-status="unreviewed" data-depth="6" data-page="" data-in-scope="true"><header class="sec-head"><h7 class="sec-title"><span class="sid">SEC-SKP025-0063</span> Lens Coverage columns</h7><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3686d7f83145" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3686d7f83145" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3686d7f83145" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `LensKey`: `M:[RowLabel]:[ColLabel]`
+- `RowLabel`: row label from matrix Result table
+- `ColLabel`: column label from matrix Result table
+- `LensValue`: cell value
+- `ItemCount`: integer count of warranted items for the lens
+- `CoverageStatus`: `NO_ITEMS` | `HAS_ITEMS` | `MATRIX_ERROR`
+- `Notes`: lens-specific note; no boilerplate
+</p></div></div></section>
+<section id="SEC-SKP025-0064" class="chunk sec depth-6 cov-high" data-kind="section" data-key="section:a74552d21660" data-status="unreviewed" data-depth="6" data-page="" data-in-scope="true"><header class="sec-head"><h7 class="sec-title"><span class="sid">SEC-SKP025-0064</span> Warranted Items columns</h7><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a74552d21660" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a74552d21660" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a74552d21660" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ItemID`: unique within file, recommended `{Matrix}-{000}`.
+- `LensKey`: matching Lens Coverage key.
+- `Type`: one allowed item type.
+- `AppliesToDoc`: `Datasheet` | `Specification` | `Guidance` | `Procedure` | `Multi` | `NA`.
+- `SuggestedEditDoc`: best-fit later enrichment target, or `TBD` / `NA`.
+- `CandidateInfo`: short enrichment-ready phrasing; not full prose.
+- `WhyWarranted`: 1–2 sentence rationale.
+- `SourcePath`: file path(s) searched or cited.
+- `SectionRef`: heading anchor, `location TBD`, or `entire document scanned`.
+- `Contenders`: two or more `path#section` entries for conflicts; blank otherwise.
+- `ProposedAuthority (PROPOSAL)`: always `PROPOSAL` for proposed authority placement.
+- `HumanRuling`: `TBD` unless a prior human ruling is cited.
+</p></div></div></section>
+<section id="SEC-SKP025-0065" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:b1e434eec7b3" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0065</span> SuggestedEditDoc heuristic</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1e434eec7b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1e434eec7b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1e434eec7b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `VerificationGap` → `Specification` and/or `Procedure`.
+- `RationaleGap` → `Guidance`.
+- `Normalization` → `Guidance` plus affected documents as needed.
+- `WeakStatement` → same document where the ambiguity appears unless role placement suggests otherwise.
+- `MissingSlot` → best-fit document role or `TBD`.
+- `Conflict`, `TBD_Question`, `MatrixError` → `NA` or `TBD`.
+</p></div></div></section>
+<section id="SEC-SKP025-0066" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:2a44d8d415e4" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0066</span> SourceRef convention</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a44d8d415e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a44d8d415e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a44d8d415e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use file path + best-effort heading anchors, or `location TBD`. SourceRefs record traceability; they do not make matrices authoritative.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-SKP025-0067" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:94a9384add57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0067</span> RATIONALE</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94a9384add57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94a9384add57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94a9384add57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`_SEMANTIC.md` partitions the deliverable&#x27;s semantic space. `lens-register` turns those partitions into a bounded, evidence-linked worklist for later enrichment without editing the production documents.</p>
+<p>Value hierarchy:</p>
+<p>1. Provenance and no invention
+2. Scope discipline
+3. Coverage completeness
+4. Register usability
+5. Semantic density
+</p></div></div></section>
+<section id="SEC-SKP025-0068" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:1b09c174debf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0068</span> QA expectations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b09c174debf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b09c174debf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b09c174debf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+See `QA_CHECKS.md`.
+</p></div></div></section>
+<section id="SEC-SKP025-0069" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:de33e51d2003" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0069</span> See also</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de33e51d2003" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de33e51d2003" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de33e51d2003" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `skills/semantic-matrix-build/SKILL.md` — produces `_SEMANTIC.md`
+- `skills/semantic-lensing/SKILL.md` — interactive proposal workflow consuming this register
+- `skills/four-documents/SKILL.md` — Pass 3 consumer of `_SEMANTIC_LENSING.md`
+- `agents/AGENT_ORCHESTRATOR.md` — dispatches this skill via TASK in Phase 2.4
+</p></div></div></section>
+<section id="SEC-SKP025-0070" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:e1501dd19ad1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP025-0070</span> Component: skills/lens-register/TOOL_POLICY.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e1501dd19ad1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e1501dd19ad1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e1501dd19ad1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0071" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:f46bf9c5fcc2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP025-0071</span> lens-register — Tool Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f46bf9c5fcc2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f46bf9c5fcc2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f46bf9c5fcc2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0072" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6cb9ba43e230" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0072</span> Preferred tool order</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6cb9ba43e230" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6cb9ba43e230" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6cb9ba43e230" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning-first generation, validator-last when available.</p>
+<p>1. Read deliverable-local inputs inside `ScopePath` / `deliverable_folder`.
+2. Generate `_SEMANTIC_LENSING.md` by reasoning over `_SEMANTIC.md` lenses and production documents.
+3. Run optional validation tools when present and permitted by the TASK brief.
+4. Report validator status honestly.
+</p></div></div></section>
+<section id="SEC-SKP025-0073" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3eec771fd332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0073</span> Allowed deterministic tools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP025-0074" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:df81571dfc3f" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0074</span> TASK-enforced</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df81571dfc3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df81571dfc3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df81571dfc3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No `allowed-tools` frontmatter is declared. TASK may still enforce an allowlist supplied by the brief.
+</p></div></div></section>
+<section id="SEC-SKP025-0075" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:1dbaad175180" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP025-0075</span> Operationally invoked</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1dbaad175180" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1dbaad175180" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1dbaad175180" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No deterministic tools are required for generation.</p>
+<p>Optional validators / read-only checkers may be used when they exist in the repository and are permitted by the brief, especially:</p>
+<p>- `python3 tools/validation/validate_lens_register.py {deliverable_folder}`
+- `python3 tools/validation/validate_semantic_pipeline_scope.py {deliverable_folder} --step lens`</p>
+<p>Do not claim validator PASS unless the validator actually ran and returned PASS. If the validator is unavailable or not allowed, report `Validator: NOT_RUN — &lt;reason&gt;`.
+</p></div></div></section>
+<section id="SEC-SKP025-0076" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:241b174d81c5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0076</span> Expected use of reasoning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:241b174d81c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:241b174d81c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:241b174d81c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This is an LLM-driven lensing-register skill. The agent reasons over:</p>
+<p>- `_SEMANTIC.md` primary Result tables for matrices A, B, C, F, D, X, E;
+- deliverable-local production documents;
+- `_CONTEXT.md`, `_STATUS.md`, and `_REFERENCES.md` as local metadata only.</p>
+<p>The skill treats matrix cells as lenses, not authorities. It records warranted gaps, conflicts, weak statements, normalization risks, and questions; it does not rewrite production documents.
+</p></div></div></section>
+<section id="SEC-SKP025-0077" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:905922873334" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0077</span> Disallowed use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:905922873334" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:905922873334" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:905922873334" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Do not modify production documents (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`).
+- Do not modify `_SEMANTIC.md`.
+- Do not modify `_STATUS.md`; normal policy is `STATUS_POLICY=NO_STATUS_TOUCH`.
+- Do not read, compare, or scan sibling deliverables.
+- Do not follow external source paths from `_REFERENCES.md` during normal runs.
+- Do not treat `_SEMANTIC.md` as engineering authority.
+- Do not invent facts, numeric values, requirements, or acceptance claims.
+- Do not claim validator PASS unless the validator actually ran.
+</p></div></div></section>
+<section id="SEC-SKP025-0078" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0baffe19c6ba" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP025-0078</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0baffe19c6ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0baffe19c6ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0baffe19c6ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Skill-authored output:</p>
+<p>- `{deliverable_folder}/_SEMANTIC_LENSING.md` only.</p>
+<p>TASK shell output:</p>
+<p>- `{deliverable_folder}/_run_records/TASK_RUN_*.md` may be created or updated by TASK. This is not a skill-authored output and is allowed when TASK executes the skill.</p>
+<p>Read-only:</p>
+<p>- `_SEMANTIC.md`
+- `_STATUS.md`
+- `_CONTEXT.md`
+- `_REFERENCES.md`
+- `_DEPENDENCIES.md` / `Dependencies.csv` if present
+- all production documents</p>
+<p>No other writes are allowed unless a future human-approved skill revision explicitly changes the contract.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SKP025";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

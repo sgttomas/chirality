@@ -1,0 +1,346 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-REFERENCES - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>10</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG031-0001">References</a> <a href="#SEC-DG031-0002">Legislation and Regulatory Standards</a> <a href="#SEC-DG031-0003">AI Agent Architectures and Multi-Agent Systems</a> <a href="#SEC-DG031-0004">LLM Reliability and Hallucination</a> <a href="#SEC-DG031-0005">Systems Engineering</a> <a href="#SEC-DG031-0006">Formal Methods and Safety-Critical Systems</a> <a href="#SEC-DG031-0007">Professional Engineering Regulation</a> <a href="#SEC-DG031-0008">Epistemic Frameworks and Knowledge Engineering</a> <a href="#SEC-DG031-0009">Philosophy of Knowledge (Chirality of Knowledge Precedents)</a> <a href="#SEC-DG031-0010">Chirality Project Documents (Internal)</a></nav>
+<main>
+<section id="SEC-DG031-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:276279cf0b94" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG031-0001</span> References</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:276279cf0b94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:276279cf0b94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:276279cf0b94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+References are organized by category. Citations marked [PLACEHOLDER] require verification via web search. Citations marked [SEARCH:query] indicate topics where relevant publications need to be identified.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:6f5383832fee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0002</span> Legislation and Regulatory Standards</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f5383832fee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f5383832fee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f5383832fee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[EGP_Act] Province of Alberta, *Engineering and Geoscience Professions Act*, RSA 2000, c. E-11. [Online]. Available: https://www.qp.alberta.ca/</p>
+<p>[EGP_Reg] Province of Alberta, *General Regulation under the Engineering and Geoscience Professions Act*, Alberta Regulation 259/1999 (as amended). [Online]. Available: https://www.qp.alberta.ca/</p>
+<p>[APEGA_RWO2021] Association of Professional Engineers and Geoscientists of Alberta (APEGA), &quot;Relying on the Work of Others and Outsourcing,&quot; Professional Practice Standard, v4.0, May 2021. [Online]. Available: https://www.apega.ca/</p>
+<p>[APEGA_Auth] Association of Professional Engineers and Geoscientists of Alberta (APEGA), &quot;Authenticating Professional Work Products,&quot; Professional Practice Standard. [PLACEHOLDER: confirm version number and publication date]</p>
+<p>[APEGA_PPMP] Association of Professional Engineers and Geoscientists of Alberta (APEGA), &quot;Guideline for Professional Practice Management Plans.&quot; [PLACEHOLDER: confirm version number and publication date]</p>
+<p>[NIST_AI_RMF2023] National Institute of Standards and Technology (NIST), &quot;Artificial Intelligence Risk Management Framework (AI RMF 1.0),&quot; NIST AI 100-1, Gaithersburg, MD, USA, Jan. 2023. [Online]. Available: https://doi.org/10.6028/NIST.AI.100-1</p>
+<p>[EU_AIAct2024] European Parliament and the Council of the European Union, &quot;Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act),&quot; Official Journal of the European Union, L Series, 2024. [Online]. Available: https://eur-lex.europa.eu/</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:67c431ce3eb0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0003</span> AI Agent Architectures and Multi-Agent Systems</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:67c431ce3eb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:67c431ce3eb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:67c431ce3eb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[Yao2023] S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y. Cao, &quot;ReAct: Synergizing Reasoning and Acting in Language Models,&quot; in *Proc. 11th Int. Conf. Learning Representations (ICLR)*, Kigali, Rwanda, 2023. [Online]. Available: https://arxiv.org/abs/2210.03629</p>
+<p>[Park2023] J. S. Park, J. C. O&#x27;Brien, C. J. Cai, M. R. Morris, P. Liang, and M. S. Bernstein, &quot;Generative Agents: Interactive Simulacra of Human Behavior,&quot; in *Proc. 36th ACM Symp. User Interface Software and Technology (UIST)*, San Francisco, CA, USA, 2023, pp. 1–22. doi: 10.1145/3586183.3606763</p>
+<p>[Schick2023] T. Schick, J. Dwivedi-Yu, R. Dessì, R. Raileanu, M. Lomeli, L. Zettlemoyer, N. Cancedda, and T. Scialom, &quot;Toolformer: Language Models Can Teach Themselves to Use Tools,&quot; in *Advances in Neural Information Processing Systems (NeurIPS)*, vol. 36, New Orleans, LA, USA, 2023. [Online]. Available: https://arxiv.org/abs/2302.04761</p>
+<p>[Wu2023] Q. Wu, G. Bansal, J. Zhang, Y. Wu, B. Li, E. Zhu, L. Jiang, X. Zhang, S. Zhang, J. Liu, A. H. Awadallah, R. W. White, D. Burger, and C. Wang, &quot;AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation,&quot; 2023. [PLACEHOLDER: confirm venue — arXiv preprint arXiv:2308.08155 or published proceedings]</p>
+<p>[Bai2022] Y. Bai, S. Jones, K. Ndousse, A. Askell, A. Chen, N. DasSarma, D. Drain, S. Fort, D. Ganguli, T. Henighan, et al., &quot;Constitutional AI: Harmlessness from AI Feedback,&quot; 2022. [PLACEHOLDER: confirm venue — arXiv preprint arXiv:2212.08073; check if published in proceedings]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:a9baadc84155" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0004</span> LLM Reliability and Hallucination</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9baadc84155" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9baadc84155" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9baadc84155" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[Ji2023] Z. Ji, N. Lee, R. Frieske, T. Yu, D. Su, Y. Xu, E. Ishii, Y. J. Bang, A. Madotto, and P. Fung, &quot;Survey of Hallucination in Natural Language Generation,&quot; *ACM Computing Surveys*, vol. 55, no. 12, pp. 1–38, Mar. 2023. doi: 10.1145/3571730</p>
+<p>[Huang2023] L. Huang, W. Yu, W. Ma, W. Zhong, Z. Feng, H. Wang, Q. Chen, W. Peng, X. Feng, B. Qin, and T. Liu, &quot;A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions,&quot; 2023. [PLACEHOLDER: confirm venue and publication status — arXiv preprint arXiv:2311.05232; check for journal or conference proceedings]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:dcfcc70fbf75" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0005</span> Systems Engineering</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dcfcc70fbf75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dcfcc70fbf75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dcfcc70fbf75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[INCOSE2023] International Council on Systems Engineering (INCOSE), *Systems Engineering Handbook: A Guide for System Life Cycle Processes and Activities*, 5th ed., Wiley, Hoboken, NJ, USA, 2023. ISBN: 978-1-119-85269-5.</p>
+<p>[Blanchard_Fabrycky] B. S. Blanchard and W. J. Fabrycky, *Systems Engineering and Analysis*, Pearson, Upper Saddle River, NJ, USA. [PLACEHOLDER: confirm edition — 5th ed. (2011) or 4th ed. (2005); confirm ISBN]</p>
+<p>[Kossiakoff] A. Kossiakoff, W. N. Sweet, S. J. Seymour, and S. M. Biemer, *Systems Engineering: Principles and Practice*, Wiley, Hoboken, NJ, USA. [PLACEHOLDER: confirm edition — 2nd ed. (2011) or 3rd ed. (2020); confirm ISBN]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0006" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:73c46dcc0b6b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0006</span> Formal Methods and Safety-Critical Systems</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73c46dcc0b6b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73c46dcc0b6b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73c46dcc0b6b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[Leveson2011] N. G. Leveson, *Engineering a Safer World: Systems Thinking Applied to Safety*, MIT Press, Cambridge, MA, USA, 2011. ISBN: 978-0-262-01662-9.</p>
+<p>[DO178C2011] RTCA, Inc., &quot;DO-178C: Software Considerations in Airborne Systems and Equipment Certification,&quot; RTCA DO-178C, Washington, DC, USA, Dec. 2011.</p>
+<p>[IEC61508] International Electrotechnical Commission (IEC), &quot;IEC 61508: Functional Safety of Electrical/Electronic/Programmable Electronic Safety-Related Systems,&quot; Parts 1–7. [PLACEHOLDER: confirm edition year — 2nd ed. (2010) is current; confirm part numbers cited]</p>
+<p>[Rushby] J. Rushby, &quot;Partitioning in Avionics Architectures: Requirements, Mechanisms, and Assurance,&quot; SRI International, Menlo Park, CA, USA, Technical Report SRI-CSL-99-03. [PLACEHOLDER: confirm year — likely 1999; verify report number]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:41da48e85ab1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0007</span> Professional Engineering Regulation</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:41da48e85ab1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:41da48e85ab1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:41da48e85ab1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[SEARCH: &quot;Engineers Canada guidance artificial intelligence professional engineering practice&quot;] — Canada-specific national guidance on AI use in professional engineering</p>
+<p>[SEARCH: &quot;NSPE artificial intelligence ethics professional engineer position statement&quot;] — U.S. National Society of Professional Engineers position on AI</p>
+<p>[SEARCH: &quot;professional engineering AI regulation accountability Canada 2023 2024&quot;] — recent regulatory developments in Canadian professional engineering re: AI</p>
+<p>[SEARCH: &quot;APEGA professional practice AI autonomous systems engineering judgment&quot;] — APEGA-specific guidance beyond PPMP and RWO standards</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0008" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:c42b4db5c6b0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0008</span> Epistemic Frameworks and Knowledge Engineering</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c42b4db5c6b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c42b4db5c6b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c42b4db5c6b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[W3C_PROV2013] W3C, &quot;PROV-DM: The PROV Data Model,&quot; W3C Recommendation, Apr. 2013. [Online]. Available: https://www.w3.org/TR/prov-dm/</p>
+<p>[Sowa2000] J. F. Sowa, *Knowledge Representation: Logical, Philosophical, and Computational Foundations*, Brooks/Cole, Pacific Grove, CA, USA, 2000. ISBN: 978-0-534-94965-5.</p>
+<p>[Wand_Weber_ontology] Y. Wand and R. Weber, &quot;An Ontological Model of an Information System,&quot; *IEEE Trans. Software Eng.*, vol. 16, no. 11, pp. 1282–1292, Nov. 1990. doi: 10.1109/32.60316</p>
+<p>[Toulmin1958] S. E. Toulmin, *The Uses of Argument*, Cambridge, UK: Cambridge University Press, 1958. (Updated ed. 2003, ISBN: 978-0-521-53483-3.)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0009" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:631dacc60507" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0009</span> Philosophy of Knowledge (Chirality of Knowledge Precedents)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:631dacc60507" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:631dacc60507" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:631dacc60507" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[Bohr1958] N. Bohr, *Atomic Physics and Human Knowledge*, New York, NY, USA: Wiley, 1958. (Collected essays from 1934–1958 extending complementarity to epistemology, psychology, and biology. The Como Lecture of 1927 appears in the earlier volume *Atomic Theory and the Description of Nature*, Cambridge: Cambridge University Press, 1934.)</p>
+<p>[Plotnitsky1994] A. Plotnitsky, *Complementarity: Anti-Epistemology after Bohr and Derrida*, Durham, NC, USA: Duke University Press, 1994. ISBN: 978-0-8223-1437-0.</p>
+<p>[Polanyi1958] M. Polanyi, *Personal Knowledge: Towards a Post-Critical Philosophy*, Chicago, IL, USA: University of Chicago Press, 1958. (Repr. 2015, ISBN: 978-0-226-23262-1.)</p>
+<p>[Polanyi1966] M. Polanyi, *The Tacit Dimension*, Garden City, NY, USA: Doubleday, 1966. (Repr. Chicago: University of Chicago Press, 2009, ISBN: 978-0-226-67298-4.)</p>
+<p>[Polanyi1975] M. Polanyi and H. Prosch, *Meaning*, Chicago, IL, USA: University of Chicago Press, 1975. ISBN: 978-0-226-67294-6.</p>
+<p>[Sellars1956] W. Sellars, &quot;Empiricism and the Philosophy of Mind,&quot; in *Minnesota Studies in the Philosophy of Science*, vol. 1, H. Feigl and M. Scriven, Eds., Minneapolis, MN, USA: University of Minnesota Press, 1956, pp. 253–329.</p>
+<p>[Brandom1994] R. B. Brandom, *Making It Explicit: Reasoning, Representing, and Discursive Commitment*, Cambridge, MA, USA: Harvard University Press, 1994. ISBN: 978-0-674-54319-5.</p>
+<p>[Nonaka1995] I. Nonaka and H. Takeuchi, *The Knowledge-Creating Company: How Japanese Companies Create the Dynamics of Innovation*, New York, NY, USA: Oxford University Press, 1995. ISBN: 978-0-195-09269-1.</p>
+<p>[McDowell1994] J. McDowell, *Mind and World*, Cambridge, MA, USA: Harvard University Press, 1994. (2nd ed. with new introduction, 1996. ISBN: 978-0-674-57610-5.)</p>
+<p>[Nishida1945] K. Nishida, &quot;The Logic of the Place of Nothingness and the Religious Worldview&quot; (1945), in *Last Writings: Nothingness and the Religious Worldview*, D. A. Dilworth, Trans., Honolulu, HI, USA: University of Hawaii Press, 1987. (Nishida&#x27;s concept of &quot;absolutely contradictory self-identity&quot; was formulated in a 1939 essay of that name and developed through his final 1945 essay.)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG031-0010" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:957ab0039bef" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG031-0010</span> Chirality Project Documents (Internal)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:957ab0039bef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:957ab0039bef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:957ab0039bef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following are internal project documents filed under the Chirality project repository. They are cited as design authority documents and primary sources for system specifications described in this thesis.</p>
+<p>[Chirality_DIRECTIVE] Chirality Project, &quot;DIRECTIVE.md — Founding Intent, Design Philosophy, and Four-Pillar Framework,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_SPEC] Chirality Project, &quot;SPEC.md — Physical Structures, Schemas, and Folder Layouts,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_TYPES] Chirality Project, &quot;TYPES.md — Domain Vocabulary, Stable Identifiers, and Enumerations,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_CONTRACT] Chirality Project, &quot;CONTRACT.md — K-* Invariant Catalog,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_DBM] Chirality Project, &quot;DBM_Agent_Instruction_Architecture.md — Design Basis Memorandum: Agent Instruction Architecture,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_SE] Chirality Project, &quot;SE_Design_Analysis.md — Systems Engineering Design Analysis,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_PE] Chirality Project, &quot;PROFESSIONAL_ENGINEERING.md — Professional Practice Standard,&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_R1R9] Chirality Project, &quot;AGENT_HELPS_HUMANS.md — Type 0 Canonical Standard (R1–R9),&quot; Internal Document, Chirality Repository, 2024–2025.</p>
+<p>[Chirality_I1I10] Chirality Project, &quot;AGENT_DECOMP_BASE.md — Decomposition Protocol Standard (I1–I10),&quot; Internal Document, Chirality Repository, 2024–2025.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG031";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,582 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLPACK-DOMAIN-PROSE-VALIDATE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>47</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SKP012-0001">Source Pack: Skill pack: domain-prose-validate</a> <a href="#SEC-SKP012-0002">Component: skills/domain-prose-validate/BRIEF_SCHEMA.md</a> <a href="#SEC-SKP012-0013">Component: skills/domain-prose-validate/QA_CHECKS.md</a> <a href="#SEC-SKP012-0019">Component: skills/domain-prose-validate/SKILL.md</a> <a href="#SEC-SKP012-0039">Component: skills/domain-prose-validate/TOOL_POLICY.md</a></nav>
+<main>
+<section id="SEC-SKP012-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:1836789e7245" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SKP012-0001</span> Source Pack: Skill pack: domain-prose-validate</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1836789e7245" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1836789e7245" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1836789e7245" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`</p>
+<p>Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+</p></div></div></section>
+<section id="SEC-SKP012-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:96125a3766ad" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP012-0002</span> Component: skills/domain-prose-validate/BRIEF_SCHEMA.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:96125a3766ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:96125a3766ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:96125a3766ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0003" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9f3d0cda42c6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP012-0003</span> domain-prose-validate - Brief Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f3d0cda42c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f3d0cda42c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f3d0cda42c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this skill with `TASK` like this. It is normally spawned by the Gate 1.5-P Stage 1 orchestration helper (one TASK per page, fanned out in parallel):</p>
+<p>```md
+PURPOSE: Independently re-extract one PDF page&#x27;s prose, equations, and asset placeholders for Gate 1.5-P comparison
+RequestedBy: DOMAIN_DECOMP (Gate 1.5-P Stage 1)</p>
+<p>ScopePath: /abs/path/to/_Sources/BookX
+TaskSkill: domain-prose-validate</p>
+<p>Tasks:
+  - Read one page raster and the asset bbox hints for that page
+  - Produce an independent Markdown re-extract: prose,  display equations, and [FIGURE:]/[TABLE:]/[IMAGE:] placeholders in reading order
+  - Do not read any pre-existing per-page Markdown or the assembled book Markdown</p>
+<p>ApplyEdits: true</p>
+<p>AllowedWriteTargets:
+  - &quot;/abs/path/to/_Sources/BookX/audit/prose_validation_extracts/page_0047.reextract.md&quot;</p>
+<p>RuntimeOverrides:
+  IMAGE_PATH: /abs/path/to/_Sources/BookX_pdf2md_work/page_0047.png
+  ASSET_BBOX_HINTS_PATH: /abs/path/to/_Sources/BookX/audit/prose_validation_extracts/page_0047.hints.json
+  OUTPUT_PATH: /abs/path/to/_Sources/BookX/audit/prose_validation_extracts/page_0047.reextract.md
+  PAGE_NUM: 47</p>
+<p>ExpectedOutputs:
+  - /abs/path/to/_Sources/BookX/audit/prose_validation_extracts/page_0047.reextract.md
+```
+</p></div></div></section>
+<section id="SEC-SKP012-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:dae106f9b6d6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0004</span> Required fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dae106f9b6d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dae106f9b6d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dae106f9b6d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Notes |
+|---|---|---|
+| `TaskSkill` | `domain-prose-validate` | Must match skill folder name |
+| `RuntimeOverrides.IMAGE_PATH` | Absolute path to the page PNG | Must exist, must have `.png` extension |
+| `RuntimeOverrides.ASSET_BBOX_HINTS_PATH` | Absolute path to the per-page bbox-hints JSON | Must exist, must have `.json` extension |
+| `RuntimeOverrides.OUTPUT_PATH` | Absolute path to the `.reextract.md` file | Parent directory must exist |
+| `RuntimeOverrides.PAGE_NUM` | 1-indexed page number | Positive integer |
+</p></div></div></section>
+<section id="SEC-SKP012-0005" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:bb8b521c9454" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0005</span> Optional fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb8b521c9454" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb8b521c9454" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb8b521c9454" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+None. Stage 1 has no policy knobs; all knobs (canonicalization version, noise floor, equation-content threshold) live in Stage 2&#x27;s deterministic comparator.
+</p></div></div></section>
+<section id="SEC-SKP012-0006" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:d6b95a5c49c8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0006</span> TaskProfile</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`NONE` - this skill runs in generic TASK shell mode without a profile.
+</p></div></div></section>
+<section id="SEC-SKP012-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3f2cfd8110bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0007</span> Read boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f2cfd8110bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f2cfd8110bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f2cfd8110bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill reads only:</p>
+<p>- `{IMAGE_PATH}`
+- `{ASSET_BBOX_HINTS_PATH}`</p>
+<p>It must **not** read any pre-existing `page_*.md`, the assembled `&lt;book&gt;.md`, neighbouring page images, sibling manifests, or audit sidecars. Reading the original extract would defeat the confirmation-bias break that is the entire point of Gate 1.5-P Stage 1.
+</p></div></div></section>
+<section id="SEC-SKP012-0008" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:6c560c06bdd5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0008</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c560c06bdd5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c560c06bdd5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c560c06bdd5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill writes only:</p>
+<p>- `{OUTPUT_PATH}`
+</p></div></div></section>
+<section id="SEC-SKP012-0009" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:adffd959ec36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0009</span> Output format</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:adffd959ec36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:adffd959ec36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:adffd959ec36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`OUTPUT_PATH` is a Markdown file containing the page body only (no frontmatter, no `# Page N` heading, no metadata):</p>
+<p>- Prose paragraphs in reading order, preserving printed line breaks within paragraphs.
+- Display equations as `` blocks on their own line(s) at the reading-order position.
+- Inline equations as `$...$` within prose.
+- Asset placeholders on their own line in the canonical form:
+  - `[FIGURE: &lt;caption text as printed&gt;]`
+  - `[TABLE: &lt;caption text as printed&gt;]`
+  - `[IMAGE: &lt;one-line visual description&gt;]`
+- File ends with a single trailing newline.
+</p></div></div></section>
+<section id="SEC-SKP012-0010" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:df9c18c7886e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0010</span> `ASSET_BBOX_HINTS_PATH` shape</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df9c18c7886e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df9c18c7886e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df9c18c7886e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;page&quot;: 47,
+  &quot;assets&quot;: [
+    {&quot;kind&quot;: &quot;fig&quot;, &quot;asset_id&quot;: &quot;BookX_p0047_fig01&quot;, &quot;bbox_norm&quot;: [0.1, 0.2, 0.9, 0.5]},
+    {&quot;kind&quot;: &quot;tbl&quot;, &quot;asset_id&quot;: &quot;BookX_p0047_tbl01&quot;, &quot;bbox_norm&quot;: [0.1, 0.55, 0.9, 0.85]}
+  ]
+}
+```</p>
+<p>Hints are consumed for **guidance only** — to set expectations about which placeholder kinds appear and where. `asset_id` MUST NOT appear in the output Markdown. Caption text comes from the raster, not the hints file.
+</p></div></div></section>
+<section id="SEC-SKP012-0011" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:78fec86fbc35" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0011</span> AllowedTools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:78fec86fbc35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:78fec86fbc35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:78fec86fbc35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Omit `AllowedTools`. This is a VLM-reasoning-only skill with no deterministic tool dependencies.
+</p></div></div></section>
+<section id="SEC-SKP012-0012" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:f6c75bda8100" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0012</span> CustomInstructions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6c75bda8100" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6c75bda8100" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6c75bda8100" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Usually unnecessary. If used, keep them run-specific and do not restate the whole skill contract. Good examples:</p>
+<p>- &quot;Two-column page: emit left column fully before right column.&quot;
+- &quot;Page has a marginal footnote rule — emit footnote text as a final paragraph after the body prose.&quot;
+- &quot;If a table caption is in a non-Latin script, transliterate inside the `[TABLE: ...]` placeholder and add `(transliterated)`.&quot;
+</p></div></div></section>
+<section id="SEC-SKP012-0013" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:0779eac1842a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP012-0013</span> Component: skills/domain-prose-validate/QA_CHECKS.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0779eac1842a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0779eac1842a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0779eac1842a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:95cbe707e5d4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP012-0014</span> domain-prose-validate - QA Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:95cbe707e5d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:95cbe707e5d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:95cbe707e5d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum checks for a valid run:</p>
+<p>1. `IMAGE_PATH` exists and has a `.png` extension, or the skill aborts without writing.
+2. `ASSET_BBOX_HINTS_PATH` exists and has a `.json` extension, or the skill aborts without writing.
+3. `OUTPUT_PATH` parent directory exists before write.
+4. `OUTPUT_PATH` exists after the run and is non-empty.
+5. `OUTPUT_PATH` ends with a single trailing newline (`\n`).
+6. No files other than `IMAGE_PATH` and `ASSET_BBOX_HINTS_PATH` were read. **In particular, no `page_*.md`, no assembled `&lt;book&gt;.md`, and no audit sidecar was opened.** This is the load-bearing anti-confirmation-bias invariant of Gate 1.5-P Stage 1.
+7. No files other than `OUTPUT_PATH` were written.
+</p></div></div></section>
+<section id="SEC-SKP012-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:80f729411a8c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0015</span> Output body checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:80f729411a8c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:80f729411a8c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:80f729411a8c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The output Markdown body must satisfy:</p>
+<p>| Check | Requirement |
+|---|---|
+| No frontmatter | The file must not begin with a YAML frontmatter block (`---`). The body is page content only. |
+| No metadata heading | The file must not include a `# Page N`, `## Page N`, or other page-identifying heading. |
+| Display equations | Standalone equations appear as `` blocks on their own line(s), surrounded by blank lines. |
+| Inline equations | Equations embedded in prose appear as `$...$` (single-dollar). |
+| Asset placeholder syntax | Each asset placeholder is on its own line, surrounded by blank lines, and uses exactly one of: `[FIGURE: &lt;text&gt;]`, `[TABLE: &lt;text&gt;]`, `[IMAGE: &lt;text&gt;]`. The prefix is uppercase, followed by a colon and a single space. |
+| No image / link syntax for assets | The output must not contain `<img class="inline-img" loading="lazy" alt="alt" src="path">` image syntax or `<a href="path" target="_blank" rel="noopener">XLSX</a>` link syntax. Asset references use the bracketed placeholder form only. |
+| No asset IDs | The output must not contain `asset_id` values copied from `ASSET_BBOX_HINTS_PATH` (e.g. `BookX_p0047_fig01`). |
+</p></div></div></section>
+<section id="SEC-SKP012-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c7957c87726c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0016</span> Placeholder-count consistency</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7957c87726c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7957c87726c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7957c87726c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Compare the placeholder counts in `OUTPUT_PATH` against `ASSET_BBOX_HINTS_PATH`:</p>
+<p>| Hints entry kind | Placeholder form | Expected relationship |
+|---|---|---|
+| `kind == &quot;fig&quot;` | `[FIGURE: ...]` | Count should match within reasonable tolerance |
+| `kind == &quot;tbl&quot;` | `[TABLE: ...]` | Count should match within reasonable tolerance |
+| `kind == &quot;img&quot;` | `[IMAGE: ...]` | Count should match within reasonable tolerance |</p>
+<p>Note: a count mismatch is **not** a skill-level failure — it is exactly the signal Gate 1.5-P Stage 2 needs to surface as a structural fail for the page. The QA check exists so the orchestrator can flag implausibly large drift (e.g. zero placeholders emitted when the hints file lists four assets) for orchestrator-side review before invoking the comparator.
+</p></div></div></section>
+<section id="SEC-SKP012-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:602d4a2d5ead" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0017</span> Failure posture</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:602d4a2d5ead" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:602d4a2d5ead" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:602d4a2d5ead" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Failure mode | Required behavior |
+|---|---|
+| Missing input file (`IMAGE_PATH` or `ASSET_BBOX_HINTS_PATH`) | Abort without writing. The orchestrator will treat the absent re-extract as a Stage 2 structural fail for the page. |
+| Unreadable page raster | Abort without writing, or write only the legible portion with no fabricated content. Do not paraphrase or summarize unreadable regions. |
+| Confirmation-bias breach (asked to read a `page_*.md` or `&lt;book&gt;.md`) | Refuse the read. The skill MUST NOT consult any prior extract under any circumstance. |
+| Hints file is empty or has zero assets | Emit prose + equations only. Do not synthesize asset placeholders to match an imagined manifest. |
+| Hints file references kinds not in `{fig, tbl, img}` | Ignore the unknown kind. Stage 2 will surface the mismatch. |
+</p></div></div></section>
+<section id="SEC-SKP012-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1f0d50a0309a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0018</span> Orchestrator-side checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f0d50a0309a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f0d50a0309a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f0d50a0309a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These checks belong to the Gate 1.5-P orchestration, not this skill:</p>
+<p>- Building the per-page `ASSET_BBOX_HINTS_PATH` from the asset manifest before dispatch.
+- Verifying `OUTPUT_PATH` was created and is non-empty after each TASK completes.
+- Confirming no `page_*.md` was opened during the TASK (audit-log inspection where available).
+- Running `tools/source_audit/compare_extracts.py` against each `(page_NNNN.md, page_NNNN.reextract.md)` pair to produce `prose_validation.json` (Stage 2).
+- Dispatching `pdf2md-page-assets` re-extraction for pages flagged with structural fails (Stage 3).
+- Dispatching `equation-flag-interpret` for equation-content proposals before writing to `equations_backcheck.json` with `source: &quot;1.5-P-machine&quot;` (Stage 3).
+</p></div></div></section>
+<section id="SEC-SKP012-0019" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:be3c91003990" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP012-0019</span> Component: skills/domain-prose-validate/SKILL.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be3c91003990" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be3c91003990" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be3c91003990" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+name: domain-prose-validate
+description: Independently re-extract one rasterized PDF page&#x27;s prose, equations, and asset placeholders for downstream extraction-reproducibility comparison (Gate 1.5-P Stage 1).
+compatibility: Chirality TASK; invoked by DOMAIN_DECOMP Gate 1.5-P orchestration as the first stage of the three-stage prefilter.
+metadata:
+  chirality-skill-version: &quot;1&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SKP012-0020" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:7928d5b1d875" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP012-0020</span> SKILL - domain-prose-validate</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7928d5b1d875" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7928d5b1d875" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7928d5b1d875" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2619b2d8d6ed" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0021</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2619b2d8d6ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2619b2d8d6ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2619b2d8d6ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce an **independent** Markdown re-extract of one rasterized PDF page so that a downstream deterministic comparator (Gate 1.5-P Stage 2) can detect divergences against the original `pdf2md` extract. This skill is the perception stage of the Gate 1.5-P extraction-reproducibility prefilter described in `agents/AGENT_DOMAIN_DECOMP.md`.</p>
+<p>The skill reads one page image plus a bbox-hints JSON describing where assets are expected, and writes one Markdown file containing:</p>
+<p>- Prose paragraphs in reading order.
+- Display equations as `` blocks at their reading-order position.
+- Asset placeholders inline at their reading-order position, in the canonical bracketed form (`[FIGURE: ...]`, `[TABLE: ...]`, `[IMAGE: ...]`).</p>
+<p>It does **not** crop assets, transcribe table cells, assign asset IDs, write JSON, or emit a manifest. Those responsibilities belong to other skills and to the Stage 2 comparator.
+</p></div></div></section>
+<section id="SEC-SKP012-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9c6a447514b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0022</span> Suitable agent shells</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9c6a447514b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9c6a447514b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9c6a447514b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` in generic shell mode, spawned by the Gate 1.5-P Stage 1 orchestration helper</p>
+<p>Not the right fit for:</p>
+<p>- whole-PDF re-extraction
+- cross-page reasoning
+- comparator/diff logic (Stage 2 is deterministic, not VLM)
+- adjudicating equation differences (Stage 3 dispatches `equation-flag-interpret`)
+- asset materialization, manifest aggregation, or filename assignment
+</p></div></div></section>
+<section id="SEC-SKP012-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1e4751998139" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0023</span> Inputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e4751998139" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e4751998139" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e4751998139" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required runtime overrides:</p>
+<p>- `IMAGE_PATH` - absolute path to the page PNG
+- `ASSET_BBOX_HINTS_PATH` - absolute path to a JSON file listing expected asset bboxes + kinds for this page
+- `OUTPUT_PATH` - absolute path for the re-extract `.md` file
+- `PAGE_NUM` - 1-indexed page number</p>
+<p>Optional runtime overrides:</p>
+<p>- none
+</p></div></div></section>
+<section id="SEC-SKP012-0024" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:9a04572c1a86" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0024</span> `ASSET_BBOX_HINTS_PATH` shape</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a04572c1a86" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a04572c1a86" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a04572c1a86" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The hints file is consumed for **guidance only** — it tells the skill *where* placeholders are expected so the agent can be deliberate about emitting them. It is not authoritative; the page raster remains the source of truth for caption text and reading order.</p>
+<p>```json
+{
+  &quot;page&quot;: 47,
+  &quot;assets&quot;: [
+    {&quot;kind&quot;: &quot;fig&quot;, &quot;asset_id&quot;: &quot;BookX_p0047_fig01&quot;, &quot;bbox_norm&quot;: [0.1, 0.2, 0.9, 0.5]},
+    {&quot;kind&quot;: &quot;tbl&quot;, &quot;asset_id&quot;: &quot;BookX_p0047_tbl01&quot;, &quot;bbox_norm&quot;: [0.1, 0.55, 0.9, 0.85]}
+  ]
+}
+```</p>
+<p>Each entry&#x27;s `kind` is one of `fig`, `tbl`, or `img`. The `asset_id` is informational only and MUST NOT appear in the output Markdown.
+</p></div></div></section>
+<section id="SEC-SKP012-0025" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7f876f2e4b85" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0025</span> Read boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f876f2e4b85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f876f2e4b85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f876f2e4b85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reads are limited to exactly two files:</p>
+<p>- `{IMAGE_PATH}`
+- `{ASSET_BBOX_HINTS_PATH}`</p>
+<p>**Anti-confirmation-bias clause (cornerstone of Gate 1.5-P):**</p>
+<p>The skill MUST NOT read, peek at, infer, or reference any pre-existing per-page Markdown extract (e.g. `page_NNNN.md` under `_Sources/&lt;book&gt;_pdf2md_work/`), the assembled `&lt;book&gt;.md`, sibling pages, the audit sidecars, or any other materialized extraction artifact. The entire point of Stage 1 is to produce a re-extract that is causally independent of the original pdf2md output — reading the original would defeat the comparator and silently collapse Gate 1.5-P. If any path matching `page_*.md` or the book-level assembled Markdown is encountered, the skill MUST refuse to read it.</p>
+<p>Do not read neighbouring pages, manifests, sibling Markdown files, asset XLSX files, or previously materialized assets. This preserves page-level parallelism and prevents cross-page priming.
+</p></div></div></section>
+<section id="SEC-SKP012-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0a6fb77e0726" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0026</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly one file:</p>
+<p>- `{OUTPUT_PATH}`</p>
+<p>The output filename is supplied by the orchestrator and must not be derived or changed by the skill.
+</p></div></div></section>
+<section id="SEC-SKP012-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2b43ccb76b09" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0027</span> Tool usage</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2b43ccb76b09" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2b43ccb76b09" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2b43ccb76b09" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No deterministic tools.
+- The `allowed-tools` frontmatter field is intentionally omitted.
+- The agent uses native multimodal reading for `IMAGE_PATH`, native text reading for `ASSET_BBOX_HINTS_PATH`, and native writing for `OUTPUT_PATH`.</p>
+<p>Disallowed behavior:</p>
+<p>- Do not read any pre-existing per-page Markdown or the assembled book Markdown (see anti-confirmation-bias clause).
+- Do not crop images.
+- Do not write PNG, CSV, JSON, or XLSX files.
+- Do not transcribe table cells — emit a `[TABLE: ...]` placeholder.
+- Do not assign asset filenames or asset IDs.
+- Do not emit Markdown frontmatter, page numbers, or any metadata header in the output.
+- Do not widen read or write scope beyond the declared two inputs and one output.
+</p></div></div></section>
+<section id="SEC-SKP012-0028" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0028</span> Method</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0029" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:1eee0e77df2c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0029</span> Step 1 - Validate inputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1eee0e77df2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1eee0e77df2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1eee0e77df2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm `IMAGE_PATH` exists and has a `.png` extension.
+2. Confirm `ASSET_BBOX_HINTS_PATH` exists and has a `.json` extension.
+3. Confirm `OUTPUT_PATH` parent exists.
+4. If any required input is missing or unreadable, abort without writing a partial file. (Stage 2 will treat the missing re-extract as a structural fail for the page.)
+</p></div></div></section>
+<section id="SEC-SKP012-0030" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:908cc57b610d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0030</span> Step 2 - Read the hints file</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:908cc57b610d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:908cc57b610d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:908cc57b610d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Parse `ASSET_BBOX_HINTS_PATH` as JSON.
+2. Note, for each entry, the `kind` (`fig` / `tbl` / `img`) and the approximate `bbox_norm` region of the page where that asset sits. This is to set expectations only — do not copy `asset_id`, captions, or any other text from the hints into the output. Caption text comes from reading the raster.
+</p></div></div></section>
+<section id="SEC-SKP012-0031" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:7eb0c8e6ab56" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0031</span> Step 3 - Re-extract the page from the raster</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7eb0c8e6ab56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7eb0c8e6ab56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7eb0c8e6ab56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This step is performed **without** consulting any prior extract. The page image is the sole authority for textual content.</p>
+<p>1. Read `IMAGE_PATH` as multimodal input.
+2. Transcribe prose paragraphs in document reading order.
+3. When a display equation appears in reading order, emit it as a `` block on its own line(s) at that position.
+4. Inline equations remain inline as `$...$` (single-dollar). Only standalone display equations use ``.
+5. When an asset region appears in reading order (cross-referenced against `ASSET_BBOX_HINTS_PATH` for expected placement), emit a placeholder on its own line using the exact syntax in the &quot;Output format&quot; section below. The caption / description text inside the placeholder is what the VLM reads from the raster — not what the hints file says.
+6. Preserve printed line breaks within paragraphs as they appear on the page. The Stage 2 comparator handles whitespace normalization (NFKC, whitespace collapse, line-break-hyphen repair) before strict-compare.
+7. Do not invent content. If a region is unreadable, transcribe what is legible and stop; do not paraphrase or summarize.
+</p></div></div></section>
+<section id="SEC-SKP012-0032" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:598a90523067" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0032</span> Step 4 - Write the output</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:598a90523067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:598a90523067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:598a90523067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write `OUTPUT_PATH` containing the page body only. No frontmatter, no `# Page N` heading, no metadata footer. End the file with a single trailing newline.
+</p></div></div></section>
+<section id="SEC-SKP012-0033" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:969f65f653ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0033</span> Output format</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:969f65f653ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:969f65f653ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:969f65f653ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The re-extract is plain Markdown with three kinds of structural elements:
+</p></div></div></section>
+<section id="SEC-SKP012-0034" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:065f5b969b93" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0034</span> Prose</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:065f5b969b93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:065f5b969b93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:065f5b969b93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Plain Markdown paragraphs. Preserve printed line breaks within a paragraph. Separate paragraphs with a blank line.
+</p></div></div></section>
+<section id="SEC-SKP012-0035" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:f2d2c6848f1f" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0035</span> Equations</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2d2c6848f1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2d2c6848f1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2d2c6848f1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Display equations** appear on their own line(s) as `` blocks at the reading-order position where they print.
+- **Inline equations** remain inline within prose as `$...$`.</p>
+<p>Example:</p>
+<p>```
+The Reynolds number is defined as</p>
+<p>where $\mu$ is the dynamic viscosity.
+```
+</p></div></div></section>
+<section id="SEC-SKP012-0036" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:fa5bd8386a26" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0036</span> Asset placeholders</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fa5bd8386a26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fa5bd8386a26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fa5bd8386a26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When an asset region appears in reading order, emit exactly one of the following placeholder forms on its own line:</p>
+<p>- `[FIGURE: &lt;caption text as printed on the page&gt;]` — for `kind: &quot;fig&quot;`
+- `[TABLE: &lt;caption text as printed on the page&gt;]` — for `kind: &quot;tbl&quot;`
+- `[IMAGE: &lt;one-line visual description&gt;]` — for `kind: &quot;img&quot;` (uncaptioned images, logos, photographs)</p>
+<p>Rules:</p>
+<p>- The prefix is uppercase and must be exactly `FIGURE:` / `TABLE:` / `IMAGE:` followed by a single space.
+- The placeholder is on its own line, surrounded by blank lines (so it is a structural block, not part of a prose paragraph).
+- The caption text comes from reading the raster. Do **not** copy text from `ASSET_BBOX_HINTS_PATH` (which only carries `kind`, `asset_id`, and `bbox_norm`).
+- Do not include the `asset_id` from the hints file. Do not emit Markdown image syntax (`<img class="inline-img" loading="lazy" alt="alt" src="path">`) or link syntax (`<a href="..." target="_blank" rel="noopener">XLSX</a>`) — those are Stage 2&#x27;s responsibility to align against.
+- If a figure or table has no visible caption, emit a concise visual description in the placeholder body (e.g. `[FIGURE: schematic of two-stage compressor with intercooler]`).
+</p></div></div></section>
+<section id="SEC-SKP012-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:cf905fa6be36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0037</span> Non-negotiable constraints</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cf905fa6be36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cf905fa6be36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cf905fa6be36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- One page raster + one hints JSON in; one Markdown re-extract out.
+- No reading of prior extracts. Confirmation bias defeats Gate 1.5-P.
+- No cross-page context.
+- No invented prose, equations, or asset placeholders.
+- Asset placeholders are emitted in the canonical bracketed form only. No Markdown image / link syntax.
+- The output file body contains no frontmatter and no page-number metadata.
+- The file ends with a single trailing newline.
+</p></div></div></section>
+<section id="SEC-SKP012-0038" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:94faa0ff34ca" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0038</span> QA expectations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94faa0ff34ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94faa0ff34ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94faa0ff34ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `OUTPUT_PATH` exists and is non-empty.
+- File ends with a newline.
+- Count of `[FIGURE:` / `[TABLE:` / `[IMAGE:` placeholders is consistent with the number of `kind==&quot;fig&quot;` / `kind==&quot;tbl&quot;` / `kind==&quot;img&quot;` entries in `ASSET_BBOX_HINTS_PATH`, within reasonable tolerance. Mismatch is not a hard skill failure (it is exactly the signal Stage 2 needs to surface), but a large drift should be noted as an issue by the orchestrator.
+- No file other than `IMAGE_PATH` and `ASSET_BBOX_HINTS_PATH` was read. In particular, no `page_*.md` or assembled book Markdown was opened.
+- No file other than `OUTPUT_PATH` was written.
+</p></div></div></section>
+<section id="SEC-SKP012-0039" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:54a862975196" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP012-0039</span> Component: skills/domain-prose-validate/TOOL_POLICY.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54a862975196" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54a862975196" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54a862975196" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0040" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:7eacb58c48b0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP012-0040</span> domain-prose-validate - Tool Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7eacb58c48b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7eacb58c48b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7eacb58c48b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0041" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ad1d6e1ae702" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0041</span> Preferred tool order</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ad1d6e1ae702" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ad1d6e1ae702" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ad1d6e1ae702" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning-first: this skill is VLM-driven. The agent reads the asset bbox hints (text JSON) to set expectations, then reads the page PNG as multimodal input, then writes one Markdown file.</p>
+<p>Deterministic tools run **outside** this skill, under the Gate 1.5-P orchestration in `DOMAIN_DECOMP`:</p>
+<p>1. The Stage 1 orchestrator builds the per-page hints JSON from the asset manifest and dispatches one TASK per page.
+2. `tools/source_audit/compare_extracts.py` (Stage 2) deterministically aligns the original `page_NNNN.md` against this skill&#x27;s `page_NNNN.reextract.md` and emits `prose_validation.json`.
+3. Stage 3 (persona) consolidates findings, dispatches `pdf2md-page-assets` re-dispatch for structural fails, and dispatches `equation-flag-interpret` for equation-content proposals.
+</p></div></div></section>
+<section id="SEC-SKP012-0042" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3eec771fd332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0042</span> Allowed deterministic tools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP012-0043" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:97b3a93df43e" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0043</span> TASK-enforced</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:97b3a93df43e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:97b3a93df43e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:97b3a93df43e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>_Tools from the `allowed-tools` frontmatter; enforced by TASK shell at skill load time._</p>
+<p>- None - no TASK-enforced deterministic allowlist. The `allowed-tools` frontmatter field is intentionally omitted.
+</p></div></div></section>
+<section id="SEC-SKP012-0044" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:43124a1de380" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP012-0044</span> Operationally invoked</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43124a1de380" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43124a1de380" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43124a1de380" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>_Tools named in `## Tool usage` body; agent-guided, not TASK-enforced._</p>
+<p>- None inside this skill. Operational deterministic tools are invoked by the Gate 1.5-P orchestration, not by the page-level re-extraction worker.
+</p></div></div></section>
+<section id="SEC-SKP012-0045" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:028f35ea27a1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0045</span> Expected use of reasoning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:028f35ea27a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:028f35ea27a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:028f35ea27a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning is limited to: prose transcription from the page raster, reading-order interpretation, display- vs. inline-equation classification, LaTeX transcription of display equations, and choosing the correct `[FIGURE:]` / `[TABLE:]` / `[IMAGE:]` placeholder form at each asset position. The bbox hints provide expected placement only; the page image remains the sole authority for textual content and caption text.
+</p></div></div></section>
+<section id="SEC-SKP012-0046" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5f9b8ba89e70" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0046</span> Disallowed use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f9b8ba89e70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f9b8ba89e70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f9b8ba89e70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- MUST NOT read any pre-existing per-page Markdown (`page_*.md`), the assembled `&lt;book&gt;.md`, audit sidecars, or any other materialized extraction artifact. This is the cornerstone of Gate 1.5-P — reading the original extract collapses the comparator.
+- MUST NOT read neighbouring page rasters, manifests, sibling Markdown, or asset XLSX files.
+- MUST NOT crop images.
+- MUST NOT write PNG, CSV, JSON, or XLSX files.
+- MUST NOT transcribe table cells (emit a `[TABLE: ...]` placeholder instead).
+- MUST NOT emit Markdown image syntax (`<img class="inline-img" loading="lazy" alt="alt" src="path">`) or link syntax (`<a href="..." target="_blank" rel="noopener">XLSX</a>`) — those are Stage 2&#x27;s responsibility to align against.
+- MUST NOT emit asset IDs, asset filenames, or any text copied from `ASSET_BBOX_HINTS_PATH` other than the implicit choice of placeholder kind.
+- MUST NOT emit Markdown frontmatter, `# Page N` headings, or any metadata wrapping in the output.
+- MUST NOT read files outside `IMAGE_PATH` and `ASSET_BBOX_HINTS_PATH`.
+- MUST NOT write files outside `OUTPUT_PATH`.
+</p></div></div></section>
+<section id="SEC-SKP012-0047" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2ac3b0501ca4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP012-0047</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2ac3b0501ca4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2ac3b0501ca4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2ac3b0501ca4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly one file:</p>
+<p>- `OUTPUT_PATH` - the per-page Markdown re-extract</p>
+<p>The output filename is deterministic from the orchestrator brief. The skill must not derive or modify it.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SKP012";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

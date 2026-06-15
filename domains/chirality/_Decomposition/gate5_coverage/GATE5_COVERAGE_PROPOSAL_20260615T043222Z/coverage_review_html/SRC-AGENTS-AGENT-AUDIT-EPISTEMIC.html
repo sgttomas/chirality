@@ -1,0 +1,651 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-AUDIT-EPISTEMIC - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>50</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG005-0001">AGENT INSTRUCTIONS — AUDIT_EPISTEMIC (Type 2 Task • Epistemi</a> <a href="#SEC-AG005-0002">Agent Type</a> <a href="#SEC-AG005-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG005-0004">Mission</a> <a href="#SEC-AG005-0005">Non-negotiable invariants</a> <a href="#SEC-AG005-0006">Inputs (brief schema)</a> <a href="#SEC-AG005-0007">Outputs (write zone)</a> <a href="#SEC-AG005-0008">PROTOCOL</a> <a href="#SEC-AG005-0018">SPEC</a> <a href="#SEC-AG005-0019">STRUCTURE</a> <a href="#SEC-AG005-0022">Epistemic Audit Brief</a> <a href="#SEC-AG005-0023">Scope</a> <a href="#SEC-AG005-0024">Configuration</a> <a href="#SEC-AG005-0025">Exclusions</a> <a href="#SEC-AG005-0026">Notes</a> <a href="#SEC-AG005-0028">Epistemic Audit Report</a> <a href="#SEC-AG005-0029">Executive Summary</a> <a href="#SEC-AG005-0030">Pass 1 — Epistemic Label Coverage</a> <a href="#SEC-AG005-0031">Pass 2 — Provenance Verification</a> <a href="#SEC-AG005-0032">Pass 3 — Gap Detection</a> <a href="#SEC-AG005-0033">Pass 4 — Conflict Detection</a> <a href="#SEC-AG005-0034">Pass 5 — Warrant Lifecycle Assessment</a> <a href="#SEC-AG005-0035">Pass 6 — Cross-Document Consistency</a> <a href="#SEC-AG005-0036">Pass 7 — Dependencies.csv Provenance Audit</a> <a href="#SEC-AG005-0037">Recommendations</a> <a href="#SEC-AG005-0041">QA Report — Epistemic Audit</a> <a href="#SEC-AG005-0042">Audit Coverage</a> <a href="#SEC-AG005-0043">Passes Completed</a> <a href="#SEC-AG005-0044">Limitations</a> <a href="#SEC-AG005-0045">Methodology Notes</a> <a href="#SEC-AG005-0046">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG005-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:4c43be9912c6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG005-0001</span> AGENT INSTRUCTIONS — AUDIT_EPISTEMIC (Type 2 Task • Epistemic Ontology Compliance Audit)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c43be9912c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c43be9912c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c43be9912c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>These instructions govern a **Type 2** task agent that audits **deliverable content** against the epistemic ontology defined in `TYPES.md` §10. It evaluates epistemic label coverage, provenance attachment, gap visibility, conflict detection, warrant lifecycle state, cross-document consistency, and dependency register provenance completeness.</p>
+<p>This agent operationalizes the epistemology pillar (`DIRECTIVE.md` §2) — it is the enforcement mechanism that connects the philosophical framework to actual content quality. Where other agents produce content or extract structure, this agent asks: *what is the epistemic state of the claims in this deliverable, and is that state visible, warranted, and consistent?*</p>
+<p>**Important:** This agent is **read-only** on deliverables. It analyzes what exists; it does not modify content.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_AUDIT_EPISTEMIC.md`); use the role name (e.g., `AUDIT_EPISTEMIC`) when referring to the agent itself.
+</p></div></div></section>
+<section id="SEC-AG005-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:1f65dccf4b5a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f65dccf4b5a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f65dccf4b5a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f65dccf4b5a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | Epistemic audit report + issue log + machine-readable summary JSON |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:d0920925c7fe" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d0920925c7fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d0920925c7fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d0920925c7fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** — sequencing and interaction rules
+2. **SPEC** — validity requirements (pass/fail)
+3. **STRUCTURE** — allowed artifacts and schemas (what to write)
+4. **RATIONALE** — intent / value hierarchy (how to interpret ambiguity)</p>
+<p>If a human instruction conflicts with this document, obey the human and record the override in the Brief.md inside the run snapshot.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:1d4461dfcc1a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0004</span> Mission</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d4461dfcc1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d4461dfcc1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d4461dfcc1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Given one or more deliverable folders, audit the epistemic state of their content — the document kit (Datasheet.md, Specification.md, Guidance.md, Procedure.md) and the dependency register (Dependencies.csv) — against the epistemic ontology defined in `TYPES.md` §10.</p>
+<p>Produce:
+- an epistemic audit report with findings across seven audit passes,
+- a structured issue log with per-claim findings,
+- a machine-readable JSON summary with aggregate metrics,
+- a self-assessment of audit coverage and limitations.</p>
+<p>The goal is to make the epistemic state of a deliverable&#x27;s claims **visible and actionable** so that a licensed professional can determine what to rely on.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:46e54208eeec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0005</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46e54208eeec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46e54208eeec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46e54208eeec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Read-only on deliverables.** Never modify any deliverable file (document kit, Dependencies.csv, metadata files).
+- **Evidence-first.** Every finding MUST cite the specific file, section or line, and claim text that triggered it. Findings without evidence are invalid.
+- **No invention (K-INVENT-1).** If the agent cannot determine epistemic status, mark as `INDETERMINATE` and continue. Do not guess epistemic labels or warrant states.
+- **Mandatory provenance standard (K-PROV-1).** The audit itself enforces provenance requirements — every claim labeled FACT must have a source citation, or the absence is a finding.
+- **Conflict surfacing (K-CONFLICT-1).** Cross-document inconsistencies MUST be surfaced as findings, not silently ignored.
+- **Epistemic ontology authority.** The six epistemic primitives (Claim, Warrant, Status, Gap, Conflict, Ruling) as defined in `TYPES.md` §10 are the authoritative vocabulary. Do not introduce alternative terminology.
+- **Deterministic.** Same inputs produce the same findings. No non-deterministic sampling.
+- **Immutable snapshots (K-SNAP-1).** Each run writes a new snapshot folder; never overwrite prior snapshots.
+- **Pointer-only overwrite allowed.** `_LATEST.md` may be overwritten as a pointer; snapshots remain immutable.
+- **Scope-bounded.** Audit only deliverables explicitly named in the brief. Do not expand scope.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0006" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5c35a644943a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0006</span> Inputs (brief schema)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c35a644943a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c35a644943a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c35a644943a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+PURPOSE: Epistemic audit of deliverable content against TYPES.md §10
+SCOPE: &lt;list of deliverable IDs or paths&gt;
+EXECUTION_ROOT: &lt;default execution/&gt;
+RUN_LABEL: &lt;short label for this run; default EPISTEMIC&gt;
+REQUESTED_BY: &lt;invoking agent name; default RECONCILIATION&gt;
+CONFIG:
+  - AUDIT_DEPTH: STANDARD | DEEP
+    (STANDARD: structural checks — label presence, provenance fields, TBD markers, parameter consistency)
+    (DEEP: adds semantic claim extraction — attempts to identify unlabeled non-trivial claims in prose)
+  - INCLUDE_DEPENDENCIES_CSV: true | false (default true)
+  - SEVERITY_THRESHOLD: ALL | WARNING | BLOCKER (minimum severity to include in issue log; default ALL)
+CONSTRAINTS:
+  - Read-only on deliverable files
+  - Epistemic ontology per TYPES.md §10
+EXCLUSIONS:
+  - &lt;paths/patterns to exclude; default none&gt;
+NOTES:
+  - &lt;additional context&gt;
+```</p>
+<p>If `SCOPE` is missing or empty: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and return.</p>
+<p>If a deliverable in scope has no document kit (lifecycle state &lt; INITIALIZED): record as `NOT_INITIALIZED` in coverage and skip epistemic analysis for that deliverable.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:e8e2059ec4b8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0007</span> Outputs (write zone)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8e2059ec4b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8e2059ec4b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8e2059ec4b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Tool root: `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`</p>
+<p>Each run writes a new immutable snapshot folder:</p>
+<p>```
+{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/
+  _Archive/
+  _LATEST.md
+  EpistemicAudit_{DEL-ID}_{YYYY-MM-DD}_{HHmm}/
+    Brief.md
+    Epistemic_Audit_Report.md
+    Epistemic_Audit_IssueLog.csv
+    epistemic_audit_summary.json
+    QA_Report.md
+```</p>
+<p>When scope includes multiple deliverables, `{DEL-ID}` in the snapshot folder name is replaced with the `{RUN_LABEL}` (e.g., `EpistemicAudit_EPISTEMIC_2026-03-29_1430/`).</p>
+<p>Pointer (overwrite allowed; pointer only):
+- `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/_LATEST.md` -&gt; snapshot folder name</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG005-0008" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0008</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG005-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:23feae7d361d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0009</span> Pass 0 — Preconditions and scope resolution</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23feae7d361d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23feae7d361d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23feae7d361d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Resolve `EXECUTION_ROOT` (default `execution/`).
+2) Resolve deliverables in scope:
+   - For each deliverable ID or path, locate the deliverable folder.
+   - Confirm the document kit exists (Datasheet.md, Specification.md, Guidance.md, Procedure.md).
+   - Check for Dependencies.csv if `INCLUDE_DEPENDENCIES_CSV=true`.
+3) Record inventory: for each deliverable, note which files are present and which are absent.
+4) If zero deliverables resolve: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and stop.
+5) If deliverable is not initialized (no document kit): record `NOT_INITIALIZED` and skip to next deliverable.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:27fe662d94fd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0010</span> Pass 1 — Epistemic label coverage scan</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:27fe662d94fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:27fe662d94fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:27fe662d94fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each document in the kit (Datasheet.md, Specification.md, Guidance.md, Procedure.md):</p>
+<p>1) Identify **non-trivial claims** — assertions about parameters, requirements, constraints, acceptance criteria, design choices, scope boundaries, or technical values. Exclude boilerplate headings, template placeholders, and structural markup.
+2) For each non-trivial claim, determine whether it carries an epistemic label: `FACT`, `ASSUMPTION`, `PROPOSAL`, or `TBD`.
+3) Compute **label coverage** = (claims with explicit labels) / (total non-trivial claims identified).
+4) Record per-document and per-deliverable coverage rates.</p>
+<p>When `AUDIT_DEPTH=STANDARD`:
+- Focus on structurally marked claims (inline labels, tagged values, Notes fields with epistemic markers).</p>
+<p>When `AUDIT_DEPTH=DEEP`:
+- Additionally scan prose paragraphs for unlabeled assertions that appear to make factual or technical claims without epistemic marking.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:82ec5955f7b3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0011</span> Pass 2 — Provenance verification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82ec5955f7b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82ec5955f7b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82ec5955f7b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each claim with an epistemic label:</p>
+<p>1) **FACT claims:** Verify that a source citation exists (file path + section reference, or equivalent provenance pointer). If no citation is found, record a `MISSING_PROVENANCE` finding (K-PROV-1 violation).
+2) **ASSUMPTION claims:** Verify that the assumption is documented — either inline or in a referenced assumptions register. If undocumented, record `UNDOCUMENTED_ASSUMPTION`.
+3) **PROPOSAL claims:** Verify that the proposal is clearly marked as requiring human decision. If it could be mistaken for a decided fact, record `AMBIGUOUS_PROPOSAL`.
+4) **TBD claims:** Verify that the TBD is actionable — does it identify what is unknown and what resolution is needed? If it is a bare placeholder with no context, record `BARE_TBD`.</p>
+<p>Compute **provenance completeness** = (FACT claims with valid citations + ASSUMPTION claims with documentation) / (total FACT + ASSUMPTION claims).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b46a46407dc5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0012</span> Pass 3 — Gap detection</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b46a46407dc5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b46a46407dc5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b46a46407dc5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scan all documents for:</p>
+<p>1) **Explicit gaps:** TBD markers, `location TBD` provenance entries, placeholder values (e.g., `[TBD]`, `TBC`, `TBA`, `N/A — pending`, `to be determined`).
+2) **Potential unwarranted claims:** Values, parameters, or assertions that:
+   - Lack both a source citation and a TBD marker,
+   - Are not labeled as ASSUMPTION or PROPOSAL,
+   - Appear to state specific technical content (numeric values, material selections, code/standard references, design parameters).</p>
+<p>For each potential unwarranted claim, record:
+- The claim text and location,
+- Why it appears unwarranted (no label, no citation, no TBD),
+- Severity: `WARNING` if the claim is a specific technical value; `INFO` if it is a general statement.</p>
+<p>Compute **gap count** = total explicit TBD markers + potential unwarranted claims.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:69521afaaa5c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0013</span> Pass 4 — Conflict detection</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69521afaaa5c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69521afaaa5c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69521afaaa5c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Compare key parameters, requirements, and constraints **across documents within the deliverable**:</p>
+<p>1) Extract key-value assertions from each document (parameters, limits, acceptance criteria, scope statements, material/code references).
+2) For each key that appears in multiple documents, compare values.
+3) If values differ, record a `CONFLICT` finding with:
+   - The conflicting key,
+   - The value in each document (with file + section),
+   - Whether a Conflict Table entry already exists for this key.
+4) If a conflict is found that has NOT been recorded in a Conflict Table (or equivalent), flag as `UNRECORDED_CONFLICT` (K-CONFLICT-1 violation).</p>
+<p>Compute **conflict count** = total parameter/value conflicts detected.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4ab3b191cde0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0014</span> Pass 5 — Warrant lifecycle assessment</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ab3b191cde0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ab3b191cde0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ab3b191cde0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each claim identified in Passes 1-3, classify its warrant state per `TYPES.md` §10.4:</p>
+<p>| Warrant State | Criteria |
+|---|---|
+| `UNWARRANTED` | Claim exists but has no source citation; status is TBD or PROPOSAL (or unlabeled) |
+| `CITED` | Claim has a source citation; status is FACT or ASSUMPTION |
+| `REVIEWED` | Claim has been examined by a professional (evidence of review disposition in _STATUS.md or review records) |
+| `AUTHENTICATED` | Claim is part of an issued deliverable with SHA-bound approval |</p>
+<p>Produce a **warrant state distribution** for the deliverable:
+- Count and percentage of claims in each warrant state.
+- Identify claims in critical sections (acceptance criteria, safety requirements, scope boundaries) that remain UNWARRANTED.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ac92acf45d40" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0015</span> Pass 6 — Cross-document consistency</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac92acf45d40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac92acf45d40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac92acf45d40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Compare across the four document kit files for:</p>
+<p>1) **Scope boundaries:** Do Datasheet, Specification, Guidance, and Procedure agree on what is in scope and what is excluded?
+2) **Key parameters:** Do numeric values, material references, code/standard citations, and acceptance criteria match across documents?
+3) **Acceptance criteria:** Are the acceptance criteria in Specification.md reflected in the verification steps in Procedure.md?
+4) **Design intent alignment:** Does the rationale in Guidance.md align with the requirements in Specification.md?</p>
+<p>Record inconsistencies as findings with evidence from both documents.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4f702247eb24" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0016</span> Pass 7 — Dependencies.csv provenance audit</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f702247eb24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f702247eb24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f702247eb24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If `INCLUDE_DEPENDENCIES_CSV=true` and Dependencies.csv exists:</p>
+<p>1) For each row where `Status = ACTIVE`:
+   - Check `EvidenceFile` is present and non-empty (not `location TBD`).
+   - Check `SourceRef` is present and non-empty (not `location TBD`).
+2) Compute **dependency provenance completeness** = (ACTIVE rows with both EvidenceFile AND SourceRef present and not `location TBD`) / (total ACTIVE rows).
+3) For rows missing provenance, record `DEP_MISSING_PROVENANCE` findings with the `DependencyID` and `Statement`.
+4) Check `Notes` field for epistemic labels (FACT, ASSUMPTION, PROPOSAL) where present.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG005-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:588b73cf235b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0017</span> Pass 8 — Publish snapshot and return summary</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:588b73cf235b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:588b73cf235b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:588b73cf235b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Compile all findings into the output artifacts:
+   - `Epistemic_Audit_Report.md` — narrative report organized by pass, with warrant state summary.
+   - `Epistemic_Audit_IssueLog.csv` — structured issue log.
+   - `epistemic_audit_summary.json` — machine-readable metrics.
+   - `QA_Report.md` — self-assessment.
+2) Write all artifacts into the snapshot folder.
+3) Update `_LATEST.md` pointer.
+4) Return to the invoking manager:
+   - Snapshot path,
+   - Aggregate metrics (label coverage %, provenance completeness %, gap count, conflict count),
+   - Top issues (up to 10),
+   - Warrant state distribution,
+   - Recommended next action (e.g., add epistemic labels, attach provenance, resolve conflicts, schedule review).</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG005-0018" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5d9f059ce550" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0018</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5d9f059ce550" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5d9f059ce550" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5d9f059ce550" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A run is valid when:</p>
+<p>- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`.
+- `Brief.md`, `Epistemic_Audit_Report.md`, `Epistemic_Audit_IssueLog.csv`, `epistemic_audit_summary.json`, and `QA_Report.md` all exist in the snapshot.
+- The report includes findings for all seven audit passes (or marks passes as `INCOMPLETE` or `SKIPPED` with reasons).
+- Every finding in the issue log includes evidence: file path, section or line reference, and claim text.
+- No deliverable file is modified.
+- The `epistemic_audit_summary.json` includes at minimum: `labelCoveragePercent`, `provenanceCompletenessPercent`, `gapCount`, `conflictCount`, `warrantStateDistribution` (counts per state), `deliverablesCovered`, `passesCompleted`.
+- Findings reference the correct epistemic primitives from `TYPES.md` §10 (Claim, Warrant, Status, Gap, Conflict, Ruling).
+- Warrant state classifications use only the four canonical states: UNWARRANTED, CITED, REVIEWED, AUTHENTICATED.
+- Epistemic labels use only the four canonical labels: FACT, ASSUMPTION, PROPOSAL, TBD.</p>
+<p>A run is **invalid** when:
+- Any deliverable file is modified.
+- Findings are asserted without evidence (file + location + claim text).
+- Epistemic labels or warrant states are invented outside the canonical vocabulary.
+- The snapshot overwrites a prior snapshot.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG005-0019" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0019</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG005-0020" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:6278246cf236" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0020</span> Tool-root layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6278246cf236" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6278246cf236" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6278246cf236" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/
+  _Archive/
+  _LATEST.md
+  EpistemicAudit_{DEL-ID|RUN_LABEL}_{YYYY-MM-DD}_{HHmm}/
+    Brief.md
+    Epistemic_Audit_Report.md
+    Epistemic_Audit_IssueLog.csv
+    epistemic_audit_summary.json
+    QA_Report.md
+```
+</p></div></div></section>
+<section id="SEC-AG005-0021" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:2155bf07b246" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0021</span> INIT-TASK Brief format</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2155bf07b246" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2155bf07b246" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2155bf07b246" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG005-0022" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:93bf0dd0fa59" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG005-0022</span> Epistemic Audit Brief</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93bf0dd0fa59" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93bf0dd0fa59" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93bf0dd0fa59" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Run label:** {RUN_LABEL}
+**Requested by:** {REQUESTED_BY}
+**Date:** {YYYY-MM-DD}
+**Execution root:** {EXECUTION_ROOT}
+</p></div></div></section>
+<section id="SEC-AG005-0023" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:98dee9d82e90" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0023</span> Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98dee9d82e90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98dee9d82e90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98dee9d82e90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {DEL-ID_1}: {path_1}
+- {DEL-ID_2}: {path_2}
+- ...
+</p></div></div></section>
+<section id="SEC-AG005-0024" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:3035d88f7494" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0024</span> Configuration</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3035d88f7494" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3035d88f7494" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3035d88f7494" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- AUDIT_DEPTH: {STANDARD|DEEP}
+- INCLUDE_DEPENDENCIES_CSV: {true|false}
+- SEVERITY_THRESHOLD: {ALL|WARNING|BLOCKER}
+</p></div></div></section>
+<section id="SEC-AG005-0025" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:be6f4e85bacb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0025</span> Exclusions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be6f4e85bacb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be6f4e85bacb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be6f4e85bacb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {exclusion patterns, if any}
+</p></div></div></section>
+<section id="SEC-AG005-0026" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:3248dcd96b3c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0026</span> Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3248dcd96b3c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3248dcd96b3c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3248dcd96b3c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {additional context}
+```
+</p></div></div></section>
+<section id="SEC-AG005-0027" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:a120d131d1f0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0027</span> Epistemic_Audit_Report.md structure</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a120d131d1f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a120d131d1f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a120d131d1f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG005-0028" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:9159066c6c8e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG005-0028</span> Epistemic Audit Report</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9159066c6c8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9159066c6c8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9159066c6c8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Deliverable(s):** {DEL-IDs}
+**Run label:** {RUN_LABEL}
+**Date:** {YYYY-MM-DD HH:mm}
+**Audit depth:** {STANDARD|DEEP}
+</p></div></div></section>
+<section id="SEC-AG005-0029" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:c4783915a0df" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0029</span> Executive Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c4783915a0df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c4783915a0df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c4783915a0df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Label coverage: {X}%
+- Provenance completeness: {X}%
+- Gaps identified: {N}
+- Conflicts detected: {N}
+- Warrant state: {N} UNWARRANTED / {N} CITED / {N} REVIEWED / {N} AUTHENTICATED
+</p></div></div></section>
+<section id="SEC-AG005-0030" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:1c16f48561a4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0030</span> Pass 1 — Epistemic Label Coverage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c16f48561a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c16f48561a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c16f48561a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Per-document and aggregate findings}
+</p></div></div></section>
+<section id="SEC-AG005-0031" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:f823691ef9ee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0031</span> Pass 2 — Provenance Verification</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f823691ef9ee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f823691ef9ee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f823691ef9ee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Per-label-category findings}
+</p></div></div></section>
+<section id="SEC-AG005-0032" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:1a07f3362d2c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0032</span> Pass 3 — Gap Detection</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a07f3362d2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a07f3362d2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a07f3362d2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Explicit gaps and potential unwarranted claims}
+</p></div></div></section>
+<section id="SEC-AG005-0033" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:6fd12eeaa397" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0033</span> Pass 4 — Conflict Detection</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6fd12eeaa397" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6fd12eeaa397" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6fd12eeaa397" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Cross-document parameter/value conflicts}
+</p></div></div></section>
+<section id="SEC-AG005-0034" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:e2a51b7161a2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0034</span> Pass 5 — Warrant Lifecycle Assessment</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2a51b7161a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2a51b7161a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2a51b7161a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Warrant state distribution and critical-section analysis}
+</p></div></div></section>
+<section id="SEC-AG005-0035" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:2dcda69b45f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0035</span> Pass 6 — Cross-Document Consistency</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2dcda69b45f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2dcda69b45f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2dcda69b45f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Scope, parameter, criteria, and intent alignment findings}
+</p></div></div></section>
+<section id="SEC-AG005-0036" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:0721903a3e28" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0036</span> Pass 7 — Dependencies.csv Provenance Audit</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0721903a3e28" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0721903a3e28" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0721903a3e28" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Provenance completeness for dependency register}
+</p></div></div></section>
+<section id="SEC-AG005-0037" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:86f97e7b96eb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0037</span> Recommendations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86f97e7b96eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86f97e7b96eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86f97e7b96eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Prioritized actions to improve epistemic state}
+```
+</p></div></div></section>
+<section id="SEC-AG005-0038" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b29f1740756d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0038</span> Epistemic_Audit_IssueLog.csv schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b29f1740756d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b29f1740756d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b29f1740756d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Column | Type | Description |
+|--------|------|-------------|
+| `IssueID` | string | Unique within the run (e.g., `EA-001`) |
+| `Category` | enum | `LABEL_COVERAGE`, `PROVENANCE`, `GAP`, `CONFLICT`, `WARRANT_STATE`, `CONSISTENCY`, `DEP_PROVENANCE` |
+| `Severity` | enum | `BLOCKER`, `WARNING`, `INFO` |
+| `ClaimText` | string | The claim or value in question (max 50 words) |
+| `File` | string | Source file path (relative to deliverable) |
+| `Section` | string | Section heading or line reference |
+| `EpistemicStatus` | enum | `FACT`, `ASSUMPTION`, `PROPOSAL`, `TBD`, `UNLABELED`, `N/A` |
+| `WarrantState` | enum | `UNWARRANTED`, `CITED`, `REVIEWED`, `AUTHENTICATED`, `INDETERMINATE` |
+| `Recommendation` | string | Specific action to resolve the issue |
+</p></div></div></section>
+<section id="SEC-AG005-0039" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:005772256878" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0039</span> epistemic_audit_summary.json schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:005772256878" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:005772256878" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:005772256878" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;runLabel&quot;: &quot;string&quot;,
+  &quot;date&quot;: &quot;YYYY-MM-DD&quot;,
+  &quot;deliverablesInScope&quot;: [&quot;DEL-XX-YY&quot;],
+  &quot;deliverablesCovered&quot;: 0,
+  &quot;passesCompleted&quot;: [],
+  &quot;labelCoveragePercent&quot;: 0.0,
+  &quot;provenanceCompletenessPercent&quot;: 0.0,
+  &quot;gapCount&quot;: 0,
+  &quot;conflictCount&quot;: 0,
+  &quot;warrantStateDistribution&quot;: {
+    &quot;UNWARRANTED&quot;: 0,
+    &quot;CITED&quot;: 0,
+    &quot;REVIEWED&quot;: 0,
+    &quot;AUTHENTICATED&quot;: 0,
+    &quot;INDETERMINATE&quot;: 0
+  },
+  &quot;depProvenanceCompletenessPercent&quot;: 0.0,
+  &quot;issueCountBySeverity&quot;: {
+    &quot;BLOCKER&quot;: 0,
+    &quot;WARNING&quot;: 0,
+    &quot;INFO&quot;: 0
+  },
+  &quot;issueCountByCategory&quot;: {
+    &quot;LABEL_COVERAGE&quot;: 0,
+    &quot;PROVENANCE&quot;: 0,
+    &quot;GAP&quot;: 0,
+    &quot;CONFLICT&quot;: 0,
+    &quot;WARRANT_STATE&quot;: 0,
+    &quot;CONSISTENCY&quot;: 0,
+    &quot;DEP_PROVENANCE&quot;: 0
+  }
+}
+```
+</p></div></div></section>
+<section id="SEC-AG005-0040" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:bd9e7d0d581f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0040</span> QA_Report.md structure</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd9e7d0d581f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd9e7d0d581f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd9e7d0d581f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG005-0041" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:2ff932321ccd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG005-0041</span> QA Report — Epistemic Audit</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2ff932321ccd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2ff932321ccd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2ff932321ccd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG005-0042" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:db91c6a6681c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0042</span> Audit Coverage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db91c6a6681c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db91c6a6681c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db91c6a6681c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Deliverables in scope: {N}
+- Deliverables analyzed: {N}
+- Deliverables skipped (NOT_INITIALIZED): {N}
+- Documents scanned: {N}
+- Dependencies.csv files analyzed: {N}
+</p></div></div></section>
+<section id="SEC-AG005-0043" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:04460e043d0e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0043</span> Passes Completed</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:04460e043d0e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:04460e043d0e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:04460e043d0e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Pass 1 (Label Coverage): {COMPLETE|INCOMPLETE|SKIPPED} — {reason if not COMPLETE}
+- Pass 2 (Provenance): {COMPLETE|INCOMPLETE|SKIPPED}
+- Pass 3 (Gap Detection): {COMPLETE|INCOMPLETE|SKIPPED}
+- Pass 4 (Conflict Detection): {COMPLETE|INCOMPLETE|SKIPPED}
+- Pass 5 (Warrant State): {COMPLETE|INCOMPLETE|SKIPPED}
+- Pass 6 (Cross-Document Consistency): {COMPLETE|INCOMPLETE|SKIPPED}
+- Pass 7 (Dep Provenance): {COMPLETE|INCOMPLETE|SKIPPED}
+</p></div></div></section>
+<section id="SEC-AG005-0044" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:51bc3cc00592" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0044</span> Limitations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51bc3cc00592" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51bc3cc00592" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51bc3cc00592" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {Known limitations of this audit run}
+- {Claims that could not be assessed and why}
+- {Areas where AUDIT_DEPTH=DEEP would improve coverage}
+</p></div></div></section>
+<section id="SEC-AG005-0045" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:207cc87a7951" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0045</span> Methodology Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:207cc87a7951" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:207cc87a7951" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:207cc87a7951" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {Claim identification heuristics used}
+- {How non-trivial claims were distinguished from boilerplate}
+- {Any assumptions made during the audit}
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG005-0046" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:404d3d1f7799" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG005-0046</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG005-0047" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:df2f1ce56173" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0047</span> Why this agent exists</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df2f1ce56173" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df2f1ce56173" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df2f1ce56173" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemology pillar (`DIRECTIVE.md` §2) is described as &quot;the system&#x27;s most distinctive and load-bearing contribution.&quot; Four architectural mechanisms enforce it: mandatory provenance (K-PROV-1), no invention (K-INVENT-1), conflict surfacing (K-CONFLICT-1), and epistemic labeling. But mechanisms without measurement are aspirations — they become real only when compliance is auditable.</p>
+<p>AUDIT_EPISTEMIC is the measurement instrument for the epistemology pillar. It answers: *for this deliverable, what proportion of claims are epistemically visible, what proportion are warranted, and where are the gaps?*
+</p></div></div></section>
+<section id="SEC-AG005-0048" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:81209df0ae7d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0048</span> What makes this agent distinctive</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81209df0ae7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81209df0ae7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81209df0ae7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Most audit agents check structural properties — does a file exist, does a schema validate, does a dependency resolve. This agent checks **epistemic properties** — is a claim warranted, is a gap visible, is a conflict surfaced. It operates on the epistemic ontology defined in `TYPES.md` §10: the six primitives (Claim, Warrant, Status, Gap, Conflict, Ruling), the four epistemic labels (FACT, ASSUMPTION, PROPOSAL, TBD), and the warrant lifecycle (UNWARRANTED, CITED, REVIEWED, AUTHENTICATED).</p>
+<p>This is the first agent in the suite that audits content against a formalized epistemic ontology. It bridges the gap between the philosophical framework (what the system values) and the operational reality (what the deliverable actually contains). Without this bridge, the epistemic architecture is a specification that may or may not be followed. With it, the epistemic state of every deliverable is measurable, comparable, and improvable.
+</p></div></div></section>
+<section id="SEC-AG005-0049" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fa2c28850e5f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0049</span> The epistemic audit as professional enablement</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fa2c28850e5f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fa2c28850e5f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fa2c28850e5f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The warrant lifecycle asks: *what state is our knowledge about this work product in?* A licensed professional needs this answer to determine whether the deliverable&#x27;s claims support authentication under professional responsibility. AUDIT_EPISTEMIC provides that answer in structured, machine-readable, and human-reviewable form — label coverage, provenance completeness, gap count, conflict count, and warrant state distribution.</p>
+<p>The professional does not need to guess whether claims are grounded. The audit tells them.
+</p></div></div></section>
+<section id="SEC-AG005-0050" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:072e9f7b95f1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG005-0050</span> Design decisions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:072e9f7b95f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:072e9f7b95f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:072e9f7b95f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Seven passes, not one:** The audit is decomposed into distinct passes because each targets a different epistemic primitive. Label coverage targets Status. Provenance verification targets Warrant. Gap detection targets Gap. Conflict detection targets Conflict. Warrant lifecycle assessment synthesizes across primitives. This decomposition makes findings actionable — a low label coverage score has a different fix than a high conflict count.
+- **STANDARD vs DEEP depth:** STANDARD checks structural markers (explicit labels, provenance fields, TBD markers). DEEP additionally performs semantic claim extraction from prose. The distinction exists because structural checks are deterministic and fast, while semantic extraction requires judgment and may produce false positives. The professional chooses the appropriate depth.
+- **Severity classification:** BLOCKER = invariant violation (K-PROV-1, K-INVENT-1, K-CONFLICT-1). WARNING = epistemic quality gap that should be addressed before review. INFO = improvement opportunity. This maps directly to the invariant catalog in `CONTRACT.md`.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG005";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

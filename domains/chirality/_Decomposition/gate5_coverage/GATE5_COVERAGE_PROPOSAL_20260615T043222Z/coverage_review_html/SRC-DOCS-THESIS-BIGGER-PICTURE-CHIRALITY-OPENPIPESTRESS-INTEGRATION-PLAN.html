@@ -1,0 +1,1095 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-BIGGER-PICTURE-CHIRALITY-OPENPIPESTRESS-INTEGRATION-PLAN - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>67</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG029-0001">Integration Plan: Chirality App and OpenPipeStress</a> <a href="#SEC-DG029-0002">1. Integration Thesis</a> <a href="#SEC-DG029-0003">2. Integration Levels</a> <a href="#SEC-DG029-0009">3. Target Architecture</a> <a href="#SEC-DG029-0010">4. Required Artifacts</a> <a href="#SEC-DG029-0014">5. Recommended Project Layout</a> <a href="#SEC-DG029-0015">6. OpenPipeStress Tool Adapter Contract</a> <a href="#SEC-DG029-0027">7. Operation Proposal Schema</a> <a href="#SEC-DG029-0028">8. Chirality Agent Workflows</a> <a href="#SEC-DG029-0034">9. Boundaries and Guardrails</a> <a href="#SEC-DG029-0039">10. Chirality Backlog Epics</a> <a href="#SEC-DG029-0046">11. OpenPipeStress Backlog Epics</a> <a href="#SEC-DG029-0053">12. Testing Plan</a> <a href="#SEC-DG029-0057">13. Implementation Sequence</a> <a href="#SEC-DG029-0065">14. Immediate Next Actions</a> <a href="#SEC-DG029-0066">15. What Success Looks Like</a> <a href="#SEC-DG029-0067">16. Guiding Statement</a></nav>
+<main>
+<section id="SEC-DG029-0001" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:15fbbca25730" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG029-0001</span> Integration Plan: Chirality App and OpenPipeStress</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15fbbca25730" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15fbbca25730" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15fbbca25730" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Document ID:** CHIRALITY-OPS-INTEGRATION-PLAN-001  
+**Status:** Draft implementation plan  
+**Related amendment:** `CHIRALITY-PRD-AMENDMENT-DOMAIN-ENGINES-001`  
+**Purpose:** Plan the concrete changes needed to integrate OpenPipeStress with the Chirality App agent framework.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:bcf1377ee5b3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0002</span> 1. Integration Thesis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcf1377ee5b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcf1377ee5b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcf1377ee5b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The best integration is a **filesystem-native, deterministic domain-tool integration**.</p>
+<p>Chirality should not embed the OpenPipeStress GUI, solver, or model engine. OpenPipeStress should not become a general-purpose agent operating system. Instead:</p>
+<p>```text
+Chirality App
+  orchestrates agents, deliverables, review notes, change records, dependency registers, summaries, and human gates.</p>
+<p>OpenPipeStress
+  owns the physical piping model, analytical model, solver, model states, analysis runs, comparisons, handoff packages, and GUI editing.</p>
+<p>OpenPipeStress Tool Adapter
+  exposes deterministic commands Chirality can call safely.</p>
+<p>Human Operator
+  accepts or rejects changes and decides what can be relied upon.
+```</p>
+<p>This gives Chirality useful visibility into OpenPipeStress work without letting agents directly mutate engineering model truth.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0003" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:6782767d45b1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0003</span> 2. Integration Levels</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6782767d45b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6782767d45b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6782767d45b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Integration should proceed through levels. Do not jump directly to deep automation.
+</p></div></div></section>
+<section id="SEC-DG029-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7011ea7a5e61" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0004</span> Level 0: Manual File-Based Coordination</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7011ea7a5e61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7011ea7a5e61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7011ea7a5e61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No code integration required.</p>
+<p>- User runs OpenPipeStress manually.
+- User exports summaries, reports, manifests, and comparison files.
+- Chirality agents read those files and help with review notes, assumptions, TBDs, handoff checklists, and deliverable scaffolding.
+</p></div></div></section>
+<section id="SEC-DG029-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:866a7a8e0bda" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0005</span> Level 1: Read-Only Deterministic Adapter</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:866a7a8e0bda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:866a7a8e0bda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:866a7a8e0bda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality can call OpenPipeStress tools that do not mutate canonical model truth.</p>
+<p>Examples:</p>
+<p>```text
+ops.validate_model
+ops.summarize_model
+ops.list_states
+ops.list_runs
+ops.list_comparisons
+ops.check_private_data_boundary
+ops.check_professional_boundary_language
+```
+</p></div></div></section>
+<section id="SEC-DG029-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:45083a3db0be" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0006</span> Level 2: Domain-Controlled Output Generation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45083a3db0be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45083a3db0be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45083a3db0be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality can request OpenPipeStress to produce analysis runs, comparisons, and handoff packages through the OpenPipeStress adapter. These are domain-controlled writes, not raw agent writes.</p>
+<p>Examples:</p>
+<p>```text
+ops.run_analysis
+ops.compare_states
+ops.compare_runs
+ops.generate_handoff
+ops.generate_report_fragment
+```</p>
+<p>Some of these should require explicit user confirmation.
+</p></div></div></section>
+<section id="SEC-DG029-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e5746eba4f32" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0007</span> Level 3: Operation Proposal Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e5746eba4f32" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e5746eba4f32" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e5746eba4f32" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Agents can create structured operation proposals. OpenPipeStress validates and previews them. The user accepts or rejects them in the OpenPipeStress GUI or through a future deterministic approval path.</p>
+<p>Example:</p>
+<p>```text
+agent writes proposal → OpenPipeStress validates → user reviews diff → OpenPipeStress applies → new model state
+```
+</p></div></div></section>
+<section id="SEC-DG029-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7ce4606fb1e9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0008</span> Level 4: External Result State Support</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ce4606fb1e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ce4606fb1e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ce4606fb1e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future only.</p>
+<p>Users may import or manually enter selected external professional-tool results as structured result states. OpenPipeStress compares them using its generic comparison engine. Chirality summarizes the result but does not declare validation or professional acceptance.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0009" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:d91755ec0948" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0009</span> 3. Target Architecture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d91755ec0948" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d91755ec0948" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d91755ec0948" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+┌──────────────────────────────────────────────┐
+│ Chirality Desktop Harness                     │
+│ - agents                                      │
+│ - workbench / pipeline                        │
+│ - deliverables                                │
+│ - dependency registers                        │
+│ - lifecycle records                           │
+│ - git-tracked project truth                   │
+└─────────────────────┬────────────────────────┘
+                      │ deterministic tool calls
+                      │ manifests / proposals / summaries
+                      ▼
+┌──────────────────────────────────────────────┐
+│ OpenPipeStress Tool Adapter / CLI             │
+│ - validate schema                             │
+│ - summarize model                             │
+│ - list states and runs                        │
+│ - run analysis                                │
+│ - compare states/runs                         │
+│ - generate handoff package                    │
+│ - generate report fragments                   │
+│ - validate operation proposals                │
+└─────────────────────┬────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│ OpenPipeStress Domain Application             │
+│ - 3D GUI                                      │
+│ - schema-backed physical model                │
+│ - analytical model                            │
+│ - solver                                      │
+│ - model states                                │
+│ - analysis runs                               │
+│ - comparison records                          │
+│ - handoff packages                            │
+└──────────────────────────────────────────────┘
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0010" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:e8ab4466c962" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0010</span> 4. Required Artifacts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8ab4466c962" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8ab4466c962" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8ab4466c962" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0011" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:d708ab75f9ce" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0011</span> 4.1 Chirality-Side Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d708ab75f9ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d708ab75f9ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d708ab75f9ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create or amend:</p>
+<p>```text
+CHIRALITY-PRD-AMENDMENT-DOMAIN-ENGINES-001.md
+DOMAIN_ENGINE_PROFILE_SPEC.md
+DOMAIN_TOOL_ADAPTER_SPEC.md
+DOMAIN_WRITE_BOUNDARY_POLICY.md
+DOMAIN_OPERATION_PROPOSAL_SPEC.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0012" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:f27530aa2584" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0012</span> 4.2 OpenPipeStress-Side Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f27530aa2584" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f27530aa2584" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f27530aa2584" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create or amend:</p>
+<p>```text
+OPENPIPESTRESS_CHIRALITY_PROFILE.yaml
+OPENPIPESTRESS_CHIRALITY_ARTIFACT_LAYOUT.md
+OPENPIPESTRESS_CLI_ADAPTER_SPEC.md
+OPENPIPESTRESS_OPERATION_PROPOSAL_SCHEMA.yaml
+OPENPIPESTRESS_REPORT_FRAGMENT_SPEC.md
+OPENPIPESTRESS_HANDOFF_MANIFEST_SPEC.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0013" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:2faaa141c0b4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0013</span> 4.3 Project-Root Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2faaa141c0b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2faaa141c0b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2faaa141c0b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For a real project:</p>
+<p>```text
+Model_Manifest.md
+Model_Manifest.yaml
+Model_Warnings.md
+Model_Assumptions.md
+RUN-*_summary.md
+CMP-*_summary.md
+CMP-*_delta_table.csv
+Handoff_Manifest.md
+Export_Warnings.md
+TBD_Register.md
+Review_Notes.md
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0014" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:91a380d9d420" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0014</span> 5. Recommended Project Layout</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91a380d9d420" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91a380d9d420" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91a380d9d420" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+projectRoot/
+  INIT.md</p>
+<p>  PKG-01_PipingDesign/
+    DEL-01-01_DesignBasis/
+      _STATUS.md
+      Datasheet.md
+      Specification.md
+      Guidance.md
+      Procedure.md
+      TBD_Register.md</p>
+<p>    DEL-01-02_OpenPipeStressModel/
+      _STATUS.md
+      Model_Manifest.md
+      Model_Manifest.yaml
+      Model_Warnings.md
+      Model_Assumptions.md
+      OpenPipeStress/
+        project.ops.yaml
+        states/
+        runs/
+        comparisons/
+        handoff/
+        proposals/</p>
+<p>    DEL-01-03_InternalStressAnalysis/
+      _STATUS.md
+      RUN-0041_summary.md
+      RUN-0052_summary.md
+      Solver_Diagnostics.md</p>
+<p>    DEL-01-04_StateComparison/
+      _STATUS.md
+      CMP-0007_summary.md
+      CMP-0007_delta_table.csv
+      Review_Notes.md</p>
+<p>    DEL-01-05_ExternalProverHandoff/
+      _STATUS.md
+      Handoff_Manifest.md
+      Export_Warnings.md
+      External_Review_TBDs.md</p>
+<p>  _Sources/
+    line_list/
+    pid_extracts/
+    equipment_interfaces/
+    owner_requirements/</p>
+<p>  _Reconciliation/
+    piping_model_reconciliation/</p>
+<p>  _Change/
+    model_change_records/</p>
+<p>  _Archive/
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0015" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:f7a1e248e4c0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0015</span> 6. OpenPipeStress Tool Adapter Contract</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7a1e248e4c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7a1e248e4c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7a1e248e4c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The OpenPipeStress adapter should expose commands with strict input/output schemas.
+</p></div></div></section>
+<section id="SEC-DG029-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:532aae37cb0b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0016</span> 6.1 `ops.validate_model`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:532aae37cb0b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:532aae37cb0b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:532aae37cb0b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Validate schema, units, topology, missing inputs, private-data references, and solve blockers.</p>
+<p>Inputs:</p>
+<p>```yaml
+model_path: &quot;PKG-01_PipingDesign/DEL-01-02_OpenPipeStressModel/OpenPipeStress/project.ops.yaml&quot;
+state_id: &quot;STATE-0018&quot; # optional
+```</p>
+<p>Outputs:</p>
+<p>```text
+validation_summary.json
+validation_summary.md
+warnings.md
+blockers.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b250ba526fde" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0017</span> 6.2 `ops.summarize_model`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b250ba526fde" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b250ba526fde" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b250ba526fde" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Generate Chirality-readable model summary.</p>
+<p>Outputs:</p>
+<p>```text
+Model_Manifest.yaml
+Model_Manifest.md
+Model_Warnings.md
+Model_Assumptions.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4dc8a6fb9108" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0018</span> 6.3 `ops.list_states`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4dc8a6fb9108" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4dc8a6fb9108" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4dc8a6fb9108" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>List available model states.</p>
+<p>Outputs:</p>
+<p>```text
+states_index.yaml
+states_index.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:28edd922944e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0019</span> 6.4 `ops.list_runs`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:28edd922944e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:28edd922944e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:28edd922944e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>List available analysis runs.</p>
+<p>Outputs:</p>
+<p>```text
+runs_index.yaml
+runs_index.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c6c0d119db68" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0020</span> 6.5 `ops.run_analysis`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c6c0d119db68" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c6c0d119db68" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c6c0d119db68" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Run internal OpenPipeStress analysis on a selected model state.</p>
+<p>Inputs:</p>
+<p>```yaml
+model_state_id: &quot;STATE-0018&quot;
+analysis_settings_id: &quot;default&quot;
+load_cases:
+  - W
+  - T1
+  - D1
+approval_ref: &quot;optional-human-confirmation-reference&quot;
+```</p>
+<p>Outputs:</p>
+<p>```text
+RUN-0052/
+  analysis_run.yaml
+  results_summary.md
+  solver_diagnostics.md
+  warnings.md
+```</p>
+<p>Notes:</p>
+<p>- This is a domain-controlled write.
+- It should not mutate the model state.
+- It may require explicit user confirmation in Chirality depending on profile settings.
+</p></div></div></section>
+<section id="SEC-DG029-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3f1df158b16c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0021</span> 6.6 `ops.compare_states`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f1df158b16c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f1df158b16c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f1df158b16c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Compare two model states.</p>
+<p>Inputs:</p>
+<p>```yaml
+model_state_a: &quot;STATE-0012&quot;
+model_state_b: &quot;STATE-0018&quot;
+mapping_table: &quot;MAP-0009&quot; # optional
+tolerance_profile: &quot;TOL-DEFAULT-001&quot;
+```</p>
+<p>Outputs:</p>
+<p>```text
+CMP-0007/
+  comparison.yaml
+  comparison_summary.md
+  changed_entities.csv
+  unmatched_entities.csv
+```
+</p></div></div></section>
+<section id="SEC-DG029-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5f7af380cfbf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0022</span> 6.7 `ops.compare_runs`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f7af380cfbf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f7af380cfbf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f7af380cfbf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Compare two analysis runs.</p>
+<p>Inputs:</p>
+<p>```yaml
+analysis_run_a: &quot;RUN-0041&quot;
+analysis_run_b: &quot;RUN-0052&quot;
+mapping_table: &quot;MAP-0009&quot;
+tolerance_profile: &quot;TOL-DEFAULT-001&quot;
+```</p>
+<p>Outputs:</p>
+<p>```text
+CMP-0008/
+  comparison.yaml
+  result_delta_table.csv
+  comparison_summary.md
+  out_of_tolerance.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a86ca9bcde53" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0023</span> 6.8 `ops.generate_handoff`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a86ca9bcde53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a86ca9bcde53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a86ca9bcde53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Generate a handoff package for downstream modeling or external professional stress-analysis validation.</p>
+<p>Outputs:</p>
+<p>```text
+handoff/
+  handoff_manifest.yaml
+  Handoff_Manifest.md
+  exported_model_file
+  units_manifest.yaml
+  entity_id_manifest.yaml
+  warnings.md
+  unresolved_assumptions.md
+```</p>
+<p>Notes:</p>
+<p>- This is a domain-controlled write.
+- It should require explicit user confirmation before generation or final packaging.
+</p></div></div></section>
+<section id="SEC-DG029-0024" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:758c32c9daf2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0024</span> 6.9 `ops.generate_report_fragment`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:758c32c9daf2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:758c32c9daf2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:758c32c9daf2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Produce report sections that Chirality may include in a larger deliverable package.</p>
+<p>Outputs:</p>
+<p>```text
+report_fragments/
+  analysis_summary.md
+  warnings_and_assumptions.md
+  comparison_summary.md
+  professional_boundary_notice.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0025" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a443ae9b4c16" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0025</span> 6.10 `ops.validate_operation_proposal`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a443ae9b4c16" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a443ae9b4c16" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a443ae9b4c16" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Purpose:</p>
+<p>Validate a proposed model operation without applying it.</p>
+<p>Inputs:</p>
+<p>```yaml
+proposal_path: &quot;OpenPipeStress/proposals/PROP-0003_add_guide.yaml&quot;
+base_model_state: &quot;STATE-0018&quot;
+```</p>
+<p>Outputs:</p>
+<p>```text
+proposal_validation.yaml
+proposal_validation.md
+proposal_diff_preview.md
+blockers.md
+warnings.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0026" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9fc181a31605" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0026</span> 6.11 `ops.apply_operation_proposal`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9fc181a31605" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9fc181a31605" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9fc181a31605" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future only.</p>
+<p>Purpose:</p>
+<p>Apply a validated proposal through OpenPipeStress with explicit human approval.</p>
+<p>Inputs:</p>
+<p>```yaml
+proposal_path: &quot;OpenPipeStress/proposals/PROP-0003_add_guide.yaml&quot;
+base_model_state: &quot;STATE-0018&quot;
+approval_ref: &quot;human-approval-sha-or-record&quot;
+```</p>
+<p>Outputs:</p>
+<p>```text
+new_model_state_id: &quot;STATE-0019&quot;
+operation_application_record.yaml
+operation_application_record.md
+```</p>
+<p>Notes:</p>
+<p>- This must never be implemented as raw file mutation by an agent.
+- It must go through OpenPipeStress validation and state creation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0027" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:98a83ceb0f0f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0027</span> 7. Operation Proposal Schema</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98a83ceb0f0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98a83ceb0f0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98a83ceb0f0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A minimal OpenPipeStress operation proposal should look like:</p>
+<p>```yaml
+operation_proposal:
+  schema_version: &quot;1.0&quot;
+  id: &quot;PROP-0003&quot;
+  title: &quot;Add guide support near rack bent 4&quot;
+  created_by: &quot;chirality_agent&quot;
+  created_at: &quot;2026-05-04T10:00:00-06:00&quot;
+  base_model_state: &quot;STATE-0018&quot;</p>
+<p>  operation:
+    type: &quot;add_support&quot;
+    target_line: &quot;P-1001&quot;
+    proposed_location:
+      station: &quot;42 ft&quot;
+    support_type: &quot;guide&quot;</p>
+<p>  rationale:
+    summary: &quot;Reduce lateral displacement in thermal operating case.&quot;
+    evidence:
+      - type: &quot;analysis_run&quot;
+        id: &quot;RUN-0052&quot;
+      - type: &quot;comparison&quot;
+        id: &quot;CMP-0007&quot;</p>
+<p>  constraints_considered:
+    - &quot;rack_support_zone_A&quot;
+    - &quot;clearance_zone_CZ-07&quot;</p>
+<p>  unresolved_assumptions:
+    - &quot;Final structural attachment details pending.&quot;
+    - &quot;Guide stiffness requires user confirmation.&quot;</p>
+<p>  professional_boundary:
+    status: &quot;proposal_only&quot;
+    notice: &quot;This proposal is not an accepted engineering change until reviewed and applied by the user through OpenPipeStress.&quot;
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0028" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:ff3c3c6fdad4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0028</span> 8. Chirality Agent Workflows</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff3c3c6fdad4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff3c3c6fdad4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff3c3c6fdad4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0029" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e8c761326fa2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0029</span> 8.1 Model Review Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8c761326fa2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8c761326fa2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8c761326fa2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+1. Agent calls ops.summarize_model.
+2. Agent reads Model_Manifest.md, warnings, and assumptions.
+3. Agent updates TBD_Register.md.
+4. Agent drafts Review_Notes.md.
+5. User reviews notes and decides actions.
+```
+</p></div></div></section>
+<section id="SEC-DG029-0030" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:397acc44433f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0030</span> 8.2 Analysis Review Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:397acc44433f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:397acc44433f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:397acc44433f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+1. User or agent requests ops.run_analysis.
+2. OpenPipeStress creates an analysis run.
+3. Agent summarizes solver diagnostics and warnings.
+4. Agent drafts analysis review notes.
+5. Human user evaluates engineering significance.
+```
+</p></div></div></section>
+<section id="SEC-DG029-0031" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:072e66925327" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0031</span> 8.3 Comparison Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:072e66925327" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:072e66925327" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:072e66925327" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+1. User selects State/Run A and State/Run B.
+2. Chirality calls ops.compare_states or ops.compare_runs.
+3. OpenPipeStress produces comparison records and delta tables.
+4. Agent summarizes major deltas, unresolved issues, and suggested review questions.
+5. User decides whether to modify the model.
+```
+</p></div></div></section>
+<section id="SEC-DG029-0032" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:10cab14379a4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0032</span> 8.4 External Prover Feedback Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:10cab14379a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:10cab14379a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:10cab14379a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+1. User validates or reviews model in external professional stress software.
+2. User records external review comments manually in Chirality or OpenPipeStress.
+3. Agent turns comments into TBDs or operation proposals.
+4. User applies changes through OpenPipeStress.
+5. User saves new model state and reruns internal analysis.
+6. User compares old and new states/runs.
+```
+</p></div></div></section>
+<section id="SEC-DG029-0033" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c6c245f42f64" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0033</span> 8.5 Handoff Package Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c6c245f42f64" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c6c245f42f64" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c6c245f42f64" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+1. User requests handoff package.
+2. Chirality calls ops.generate_handoff.
+3. OpenPipeStress generates handoff manifest and export files.
+4. Agent drafts handoff checklist and export warnings summary.
+5. User transfers package to downstream modeling/prover workflow.
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0034" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:43a01f3bb50d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0034</span> 9. Boundaries and Guardrails</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43a01f3bb50d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43a01f3bb50d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43a01f3bb50d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0035" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9b9a54205573" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0035</span> 9.1 Agents May Write</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b9a54205573" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b9a54205573" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b9a54205573" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Only in permitted paths:</p>
+<p>```text
+operation proposals
+review notes
+TBD registers
+draft report sections
+handoff checklists
+dependency entries
+change records
+reconciliation notes
+```
+</p></div></div></section>
+<section id="SEC-DG029-0036" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:ab60b38c16fe" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0036</span> 9.2 Agents Must Not Directly Write</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab60b38c16fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab60b38c16fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab60b38c16fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+OpenPipeStress project.ops.yaml
+accepted model states
+analysis run result files
+comparison result files
+handoff package internals
+solver outputs
+professional acceptance records
+private rule packs
+private component libraries
+private material libraries
+```
+</p></div></div></section>
+<section id="SEC-DG029-0037" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:273f783d767c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0037</span> 9.3 Domain Tools May Write</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:273f783d767c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:273f783d767c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:273f783d767c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Only through declared domain-controlled operations:</p>
+<p>```text
+analysis runs
+comparison records
+handoff packages
+report fragments
+validation summaries
+manifest outputs
+```
+</p></div></div></section>
+<section id="SEC-DG029-0038" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:d38ceb0bdb34" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0038</span> 9.4 Human Must Decide</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d38ceb0bdb34" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d38ceb0bdb34" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d38ceb0bdb34" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Human review is required for:</p>
+<p>```text
+accepted model changes
+external prover interpretation
+professional reliance
+final report issuance
+code-compliance conclusions
+construction/fabrication/operation decisions
+private data release
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0039" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:0c54f5e8690d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0039</span> 10. Chirality Backlog Epics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0c54f5e8690d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0c54f5e8690d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0c54f5e8690d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0040" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a325198b4e23" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0040</span> EP-C-DOM-001: Domain Engine Profile Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a325198b4e23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a325198b4e23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a325198b4e23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement a schema for domain profiles.</p>
+<p>Deliverables:</p>
+<p>```text
+DOMAIN_ENGINE_PROFILE_SPEC.md
+profile validation tool
+OpenPipeStress example profile
+tests for invalid profiles
+```
+</p></div></div></section>
+<section id="SEC-DG029-0041" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:49b185763b3e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0041</span> EP-C-DOM-002: Domain Tool Registry</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49b185763b3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49b185763b3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49b185763b3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Extend or wrap the deterministic tool registry for domain-engine tools.</p>
+<p>Deliverables:</p>
+<p>```text
+domain tool registration
+tool argument schemas
+tool output schemas
+tool invocation API
+tool execution logging
+```
+</p></div></div></section>
+<section id="SEC-DG029-0042" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:05b65e4d5520" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0042</span> EP-C-DOM-003: Protected Path Guard</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05b65e4d5520" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05b65e4d5520" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05b65e4d5520" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add guardrails for protected domain paths.</p>
+<p>Deliverables:</p>
+<p>```text
+protected path matcher
+agent-writable path matcher
+write-attempt validation
+error messages
+test fixtures
+```
+</p></div></div></section>
+<section id="SEC-DG029-0043" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7240fa0d17cd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0043</span> EP-C-DOM-004: Domain Artifact Scanner</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7240fa0d17cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7240fa0d17cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7240fa0d17cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scan working roots for domain artifacts.</p>
+<p>Deliverables:</p>
+<p>```text
+domain artifact index
+profile status summary
+model/run/comparison/handoff discovery
+UI read-only display
+```
+</p></div></div></section>
+<section id="SEC-DG029-0044" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c447d02a8008" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0044</span> EP-C-DOM-005: Operation Proposal Support</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c447d02a8008" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c447d02a8008" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c447d02a8008" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Allow agents to create and validate operation proposals.</p>
+<p>Deliverables:</p>
+<p>```text
+proposal templates
+proposal schema validation
+proposal browser
+validation tool invocation
+review-note linkage
+```
+</p></div></div></section>
+<section id="SEC-DG029-0045" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:67f442a8d2a3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0045</span> EP-C-DOM-006: Domain Report and Boundary Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:67f442a8d2a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:67f442a8d2a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:67f442a8d2a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Support domain-specific report fragments and professional/IP boundary checks.</p>
+<p>Deliverables:</p>
+<p>```text
+report fragment ingestion
+professional boundary checker
+private data leakage checker
+protected-content warning workflow
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0046" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:9365ab93f2eb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0046</span> 11. OpenPipeStress Backlog Epics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9365ab93f2eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9365ab93f2eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9365ab93f2eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0047" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:90ebc5c3feb4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0047</span> EP-OPS-CHIR-001: CLI Adapter</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90ebc5c3feb4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90ebc5c3feb4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90ebc5c3feb4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create an OpenPipeStress CLI adapter with stable commands.</p>
+<p>Deliverables:</p>
+<p>```text
+ops validate-model
+ops summarize-model
+ops list-states
+ops list-runs
+ops run-analysis
+ops compare-states
+ops compare-runs
+ops generate-handoff
+ops generate-report-fragment
+ops validate-operation-proposal
+```
+</p></div></div></section>
+<section id="SEC-DG029-0048" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6dec3ab861d9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0048</span> EP-OPS-CHIR-002: Chirality Artifact Layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6dec3ab861d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6dec3ab861d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6dec3ab861d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define where generated summaries, manifests, reports, warnings, and proposals live.</p>
+<p>Deliverables:</p>
+<p>```text
+OPENPIPESTRESS_CHIRALITY_ARTIFACT_LAYOUT.md
+sample project root
+sample model manifest
+sample run summary
+sample comparison summary
+```
+</p></div></div></section>
+<section id="SEC-DG029-0049" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:56d0640315d4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0049</span> EP-OPS-CHIR-003: Manifest and Summary Generators</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56d0640315d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56d0640315d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56d0640315d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Generate bounded outputs for agents.</p>
+<p>Deliverables:</p>
+<p>```text
+Model_Manifest.yaml
+Model_Manifest.md
+RUN-*_summary.md
+CMP-*_summary.md
+Handoff_Manifest.md
+warnings.md
+assumptions.md
+```
+</p></div></div></section>
+<section id="SEC-DG029-0050" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b25eaa7a653c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0050</span> EP-OPS-CHIR-004: Operation Proposal Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b25eaa7a653c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b25eaa7a653c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b25eaa7a653c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define structured model operation proposal formats.</p>
+<p>Deliverables:</p>
+<p>```text
+OPENPIPESTRESS_OPERATION_PROPOSAL_SCHEMA.yaml
+proposal examples
+validation command
+diff preview command
+```
+</p></div></div></section>
+<section id="SEC-DG029-0051" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:21b52ba71625" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0051</span> EP-OPS-CHIR-005: Human-Gated Proposal Application</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21b52ba71625" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21b52ba71625" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21b52ba71625" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future.</p>
+<p>Deliverables:</p>
+<p>```text
+proposal review UI
+apply operation command
+approval reference capture
+new model state creation
+operation application record
+```
+</p></div></div></section>
+<section id="SEC-DG029-0052" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:27696804ec29" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0052</span> EP-OPS-CHIR-006: Professional and IP Boundary Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:27696804ec29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:27696804ec29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:27696804ec29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create deterministic checks for generated outputs.</p>
+<p>Deliverables:</p>
+<p>```text
+professional-boundary language checker
+private-data leakage checker
+protected-content risk checker
+report notice generator
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0053" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:72777889be70" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0053</span> 12. Testing Plan</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72777889be70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72777889be70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72777889be70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0054" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:a4e630c27e79" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0054</span> 12.1 Chirality Tests</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4e630c27e79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4e630c27e79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4e630c27e79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add tests for:</p>
+<p>```text
+domain profile validation
+protected path matching
+agent-writable path matching
+domain artifact scanning
+tool invocation argument validation
+tool output capture
+failed tool behavior
+proposal file validation
+no direct writes to protected paths
+```
+</p></div></div></section>
+<section id="SEC-DG029-0055" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:69b903b6f38d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0055</span> 12.2 OpenPipeStress Tests</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69b903b6f38d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69b903b6f38d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69b903b6f38d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add tests for:</p>
+<p>```text
+CLI command success and failure paths
+schema validation outputs
+model summary determinism
+state/run listing determinism
+analysis run reproducibility
+comparison determinism
+handoff manifest completeness
+proposal validation without model mutation
+private-data redaction
+professional-boundary notices
+```
+</p></div></div></section>
+<section id="SEC-DG029-0056" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2231837149c5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0056</span> 12.3 End-to-End Tests</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2231837149c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2231837149c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2231837149c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create fixture project:</p>
+<p>```text
+fixture_projects/open_pipe_stress_chirality_demo/
+```</p>
+<p>Test flow:</p>
+<p>```text
+1. Chirality scans working root.
+2. Domain profile validates.
+3. ops.summarize_model produces manifest.
+4. Agent reads manifest and drafts review notes.
+5. ops.run_analysis creates run summary.
+6. ops.compare_runs creates delta table.
+7. Agent drafts comparison summary.
+8. ops.generate_handoff creates handoff manifest.
+9. Chirality verifies protected paths were not directly modified by agents.
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0057" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7597e42df760" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0057</span> 13. Implementation Sequence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7597e42df760" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7597e42df760" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7597e42df760" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG029-0058" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fe8c590d43e0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0058</span> Phase 0: Confirm Scope and Create Specs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe8c590d43e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe8c590d43e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe8c590d43e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: product/architecture</p>
+<p>Deliverables:</p>
+<p>```text
+CHIRALITY-PRD-AMENDMENT-DOMAIN-ENGINES-001.md
+DOMAIN_ENGINE_PROFILE_SPEC.md
+OPENPIPESTRESS_CHIRALITY_PROFILE.yaml
+OPENPIPESTRESS_CLI_ADAPTER_SPEC.md
+```</p>
+<p>Exit criteria:</p>
+<p>- Domain engine integration is formally scoped.
+- OpenPipeStress profile is drafted.
+- Protected paths and agent-writable paths are defined.
+</p></div></div></section>
+<section id="SEC-DG029-0059" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:656ac4a6af0a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0059</span> Phase 1: Build OpenPipeStress Read-Only Adapter</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:656ac4a6af0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:656ac4a6af0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:656ac4a6af0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: OpenPipeStress development</p>
+<p>Deliverables:</p>
+<p>```text
+ops.validate_model
+ops.summarize_model
+ops.list_states
+ops.list_runs
+```</p>
+<p>Exit criteria:</p>
+<p>- Chirality can read model summaries without mutating model truth.
+</p></div></div></section>
+<section id="SEC-DG029-0060" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:74ec389b5909" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0060</span> Phase 2: Add Chirality Domain Profile Support</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74ec389b5909" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74ec389b5909" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74ec389b5909" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: Chirality development</p>
+<p>Deliverables:</p>
+<p>```text
+profile loader
+profile validator
+artifact scanner
+tool registry entries
+protected path guard
+```</p>
+<p>Exit criteria:</p>
+<p>- Chirality can discover an OpenPipeStress project and list safe artifacts/tools.
+</p></div></div></section>
+<section id="SEC-DG029-0061" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:35715f1c9ae1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0061</span> Phase 3: Add Analysis, Comparison, and Handoff Tool Calls</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35715f1c9ae1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35715f1c9ae1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35715f1c9ae1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: shared</p>
+<p>Deliverables:</p>
+<p>```text
+ops.run_analysis
+ops.compare_states
+ops.compare_runs
+ops.generate_handoff
+domain tool invocation UI/API
+tool output capture
+```</p>
+<p>Exit criteria:</p>
+<p>- User can trigger deterministic OpenPipeStress outputs from Chirality without direct agent writes to canonical model truth.
+</p></div></div></section>
+<section id="SEC-DG029-0062" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:227c5ea99a5a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0062</span> Phase 4: Add Agent Proposal Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:227c5ea99a5a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:227c5ea99a5a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:227c5ea99a5a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: shared</p>
+<p>Deliverables:</p>
+<p>```text
+operation proposal templates
+proposal validation
+proposal browser
+review notes linkage
+```</p>
+<p>Exit criteria:</p>
+<p>- Agents can propose model changes as files.
+- OpenPipeStress can validate proposals.
+- User remains the application/acceptance gate.
+</p></div></div></section>
+<section id="SEC-DG029-0063" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:815314c2ca92" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0063</span> Phase 5: Add Optional Deep-Link / Launch Support</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:815314c2ca92" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:815314c2ca92" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:815314c2ca92" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: shared</p>
+<p>Deliverables:</p>
+<p>```text
+open model in OpenPipeStress
+open state/run/comparison in OpenPipeStress
+open proposal in OpenPipeStress
+```</p>
+<p>Exit criteria:</p>
+<p>- User can move from Chirality review context into OpenPipeStress GUI quickly.
+</p></div></div></section>
+<section id="SEC-DG029-0064" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:13a2be99b5c5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG029-0064</span> Phase 6: Future External Result State Support</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:13a2be99b5c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:13a2be99b5c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:13a2be99b5c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Owner: OpenPipeStress first, Chirality second</p>
+<p>Deliverables:</p>
+<p>```text
+external result state schema
+manual external result entry/import
+comparison support
+Chirality summary generation
+```</p>
+<p>Exit criteria:</p>
+<p>- User can compare internal OpenPipeStress results against structured external result states without Chirality declaring professional validation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0065" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:70964816c204" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0065</span> 14. Immediate Next Actions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70964816c204" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70964816c204" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70964816c204" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Add the Chirality PRD amendment to the Chirality project documentation.
+2. Draft `DOMAIN_ENGINE_PROFILE_SPEC.md`.
+3. Draft `OPENPIPESTRESS_CHIRALITY_PROFILE.yaml`.
+4. Draft `OPENPIPESTRESS_CLI_ADAPTER_SPEC.md`.
+5. Implement read-only OpenPipeStress adapter commands first.
+6. Implement Chirality profile validation and artifact scanning second.
+7. Only then add analysis/comparison/handoff tool invocation.
+8. Defer raw external prover parsing, formal prover status, and automatic approval workflows.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0066" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:bba24dcd969f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0066</span> 15. What Success Looks Like</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bba24dcd969f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bba24dcd969f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bba24dcd969f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A successful first integration lets a user do this:</p>
+<p>```text
+1. Select a Chirality working root.
+2. Chirality detects an OpenPipeStress project.
+3. User asks an agent to review the piping model state.
+4. Agent calls deterministic OpenPipeStress summary tools.
+5. Agent drafts review notes and TBDs from actual model warnings.
+6. User runs or selects an analysis run.
+7. Agent summarizes solver diagnostics and changed results.
+8. User requests a handoff package.
+9. OpenPipeStress generates the handoff package.
+10. Chirality creates the handoff checklist and deliverable record.
+11. Human user decides what to do next.
+```</p>
+<p>No agent fabricates engineering results. No agent directly edits canonical model truth. No software claims professional approval. The project record remains local, versioned, inspectable, and governed.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG029-0067" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:62727b3cfc58" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG029-0067</span> 16. Guiding Statement</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:62727b3cfc58" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:62727b3cfc58" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:62727b3cfc58" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+&gt; Use Chirality to govern the work around OpenPipeStress. Use OpenPipeStress to perform and preserve the engineering model and analysis. Use the external professional tool for relied-upon validation. Use human judgment for acceptance.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG029";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -56,6 +56,7 @@ Other live task-family agents (DELIVERABLE_TASK, AGGREGATION, DOMAIN_HYPERGRAPH)
 | Agent | Instruction File | Role |
 | --- | --- | --- |
 | HELP_HUMAN | `AGENT_HELP_HUMAN.md` | Operator assistance; classifies intent, drafts briefs |
+| RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
 | ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, tier sequencing, control loops |
 | WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Deliverable-scoped content production |
 | RECONCILIATION | `AGENT_RECONCILIATION.md` | Cross-deliverable coherence analysis |

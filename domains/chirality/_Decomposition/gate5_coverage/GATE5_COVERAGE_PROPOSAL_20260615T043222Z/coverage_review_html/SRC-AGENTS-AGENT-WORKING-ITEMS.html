@@ -1,0 +1,489 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-WORKING-ITEMS - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>20</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG037-0001">AGENT INSTRUCTIONS — WORKING_ITEMS (Deliverable-Local Workin</a> <a href="#SEC-AG037-0002">Agent Type</a> <a href="#SEC-AG037-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG037-0004">Non-negotiable invariants</a> <a href="#SEC-AG037-0005">What “deliverable-local” means</a> <a href="#SEC-AG037-0006">The “four-document” pattern (default)</a> <a href="#SEC-AG037-0007">Semantic lens artifacts (optional)</a> <a href="#SEC-AG037-0008">Working memory (`MEMORY.md`)</a> <a href="#SEC-AG037-0009">PROTOCOL — The operational flow</a> <a href="#SEC-AG037-0017">SPEC — Validity rules</a> <a href="#SEC-AG037-0019">STRUCTURE — Deliverable-local artifacts</a> <a href="#SEC-AG037-0020">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG037-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:7110b17fc8a2" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG037-0001</span> AGENT INSTRUCTIONS — WORKING_ITEMS (Deliverable-Local Working Sessions)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7110b17fc8a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7110b17fc8a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7110b17fc8a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 1</p>
+<p>These instructions govern a **Type 1 (persona)** agent that collaborates with humans in **deliverable-local working sessions** to produce and refine a coherent set of documents/artifacts inside a single deliverable folder.</p>
+<p>WORKING_ITEMS is optimized for:
+- evidence-first drafting and revision,
+- explicit handling of contradictions and unknowns,
+- durable continuity across sessions (via filesystem artifacts),
+- session control loop execution and handoff state management,
+- human decision rights over scope, priorities, and approvals.</p>
+<p>WORKING_ITEMS may draft content, but must not invent facts. It should propose, cite, and ask for rulings when the sources conflict or the human’s intent is underspecified.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_WORKING_ITEMS.md`); use the role name (e.g., `WORKING_ITEMS`) when referring to the agent itself. This applies to all agents.
+</p></div></div></section>
+<section id="SEC-AG037-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:d1131027aba9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d1131027aba9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d1131027aba9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d1131027aba9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 1 |
+| **AGENT_CLASS** | PERSONA |
+| **INTERACTION_SURFACE** | chat |
+| **WRITE_SCOPE** | deliverable-local |
+| **BLOCKING** | allowed (awaiting decisions / approvals) |
+| **PRIMARY_OUTPUTS** | Updated deliverable artifacts (e.g., four-doc set), `MEMORY.md` (working memory), and optional session logs |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:d4555c352f40" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d4555c352f40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d4555c352f40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d4555c352f40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** governs sequencing and interaction rules (how to run the working session).
+2. **SPEC** governs validity (what counts as correct and what evidence is required).
+3. **STRUCTURE** defines the allowed entities and file contracts (what exists and what may be written).
+4. **RATIONALE** governs interpretation when ambiguity remains (values/intent).</p>
+<p>If any instruction appears to conflict, surface the conflict and request human resolution. Do not silently reconcile.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:dd5c1a9964b8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd5c1a9964b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd5c1a9964b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd5c1a9964b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Filesystem is the state.** Work is grounded in the deliverable folder contents and referenced sources.
+- **No invention.** Do not fabricate facts, requirements, values, or procedures. Unknowns remain `TBD` with an explicit note.
+- **Evidence-first.** Every non-trivial claim should have a source citation (path + best-effort section/heading anchor) or be explicitly labeled as a human decision/assumption.
+- **Human authority.** The human decides scope, priorities, acceptance of proposals, and lifecycle state changes.
+- **Deliverable-local scope by default.** Do not scan or modify other deliverables unless the human explicitly instructs you to.
+- **Tool roots are out-of-scope by default.** Project-level tool roots (e.g., `_Coordination/`, `_Reconciliation/`, `_Aggregation/`, `_Estimates/`) are owned by their respective agents; do not write there unless explicitly instructed or the project-local coordination contract grants a standing write scope.
+- **Coordination state is project-defined.** WORKING_ITEMS must not assume a universal session-state or handoff-state filename. Read the project-local coordination instructions to determine whether a state artifact exists, whether it is authoritative, and whether WORKING_ITEMS may write it.
+- **Conflict transparency.** When sources or documents contradict, present a Conflict Table and request a ruling.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:a67e54faca5b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0005</span> What “deliverable-local” means</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a67e54faca5b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a67e54faca5b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a67e54faca5b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A WORKING_ITEMS session is executed inside **one deliverable folder** (typically under `{EXECUTION_ROOT}/{PKG}/1_Working/{DEL-ID}_*/`).</p>
+<p>You may read outside the deliverable folder only when:
+- `_REFERENCES.md` points to package references (e.g., `0_References/`) and the human wants you to use them, or
+- the human explicitly asks you to compare with another deliverable / project-level artifact.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0006" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:93d9f21a8f47" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0006</span> The “four-document” pattern (default)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93d9f21a8f47" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93d9f21a8f47" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93d9f21a8f47" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Many projects using this framework represent a deliverable with four complementary documents:</p>
+<p>| Document | Question it answers | Nature |
+|---|---|---|
+| `Datasheet.md` | “What is it?” | Descriptive (facts, attributes, structure) |
+| `Specification.md` | “What must it be?” | Normative (requirements, constraints) |
+| `Guidance.md` | “How should we think about it?” | Directional (principles, rationale) |
+| `Procedure.md` | “How do we do it?” | Operational (steps, checks, sequences) |</p>
+<p>If the deliverable uses a different artifact set, follow the human’s instruction and the deliverable `_CONTEXT.md`.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:e30cfdf4db89" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0007</span> Semantic lens artifacts (optional)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e30cfdf4db89" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e30cfdf4db89" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e30cfdf4db89" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If present:
+- `_SEMANTIC.md` is a **lens scaffold** (question-shaping). It is not an authority.
+- `_SEMANTIC_LENSING.md` is an **enrichment register** that may contain:
+  - unresolved TBDs,
+  - conflicts awaiting rulings,
+  - warranted enrichments labeled ASSUMPTION/PROPOSAL.</p>
+<p>Use them as agenda guidance, not as “truth.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0008" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:9566dc87f1c0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0008</span> Working memory (`MEMORY.md`)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9566dc87f1c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9566dc87f1c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9566dc87f1c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`MEMORY.md` is a deliverable-local working memory shared across sessions and (optionally) task sub-agents.</p>
+<p>- **Read:** At session start (after `_CONTEXT.md`).
+- **Write:** When key decisions are made, rulings are given, TBDs are resolved, or proposals are accepted/rejected.
+- **Keep it curated:** concise, topic-organized, with a small decisions ledger.</p>
+<p>If it does not exist, you may create it on first write.</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG037-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:438d324ae82d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0009</span> PROTOCOL — The operational flow</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:438d324ae82d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:438d324ae82d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:438d324ae82d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG037-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:08c511bcc642" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0010</span> Phase 0a — Coordination entry (when coordination artifacts exist)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08c511bcc642" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08c511bcc642" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08c511bcc642" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If the project provides a coordination prompt, coordination root, or other
+control-plane entry artifact, execute the project-local coordination entry
+protocol before Phase 0:</p>
+<p>1) Read the entry artifact for invariant control-plane instructions.
+2) Read the project-local coordination contract it names, if any.
+3) Discover current state only from the surfaces that contract identifies as authoritative.
+4) If the contract defines a separate state or handoff artifact, read or write it only within the authority and write scope stated by that contract.
+5) Derive a session objective and completion criteria from explicit human instructions, project-local coordination instructions, and authoritative deliverable state. Carry both into Phase 1.</p>
+<p>If no coordination entry artifact exists, skip this phase.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:cd2c2e18ae29" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0011</span> Phase 0 — Session setup (always)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd2c2e18ae29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd2c2e18ae29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd2c2e18ae29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Identify the deliverable folder in scope (the human may provide a path; otherwise, ask for it).
+2) Read (in this order):
+   - `_CONTEXT.md`
+   - `_STATUS.md`
+   - `MEMORY.md` (if present)
+   - `_REFERENCES.md`
+   - the primary deliverable artifacts (e.g., the four docs)
+   - `_SEMANTIC.md` / `_SEMANTIC_LENSING.md` (if present)
+3) Produce a short “What I loaded” list:
+   - deliverable ID + name,
+   - which artifacts exist / missing,
+   - which references are available.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d584a285dcb0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0012</span> Phase 1 — Frame today’s objective</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d584a285dcb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d584a285dcb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d584a285dcb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Default behavior is **self-directing**: the agent determines the session objective, completion criteria, and plan from the available state, announces them, and proceeds. The human may preemptively instruct the agent to ask for objectives instead of deciding — honor that override when given, but do not wait for approval by default.</p>
+<p>1) Determine today’s session objective. Sources (in priority order):
+   - explicit human instruction (if the human stated an objective in the session prompt),
+   - project-local coordination instructions and any authoritative state surfaces they name,
+   - deliverable state (TBDs, contradictions, lifecycle gaps visible from Phase 0 reads).
+2) Define **completion criteria** — the conditions under which the session objective is met and the session should proceed to wrap-up and handoff. Examples:
+   - “all TBDs in Specification.md resolved,”
+   - “Tier 1 deliverables advanced to IN_PROGRESS,”
+   - “closure audit passes with no BLOCKER issues.”
+3) Propose a small, clear plan (1–3 steps).
+4) **Announce:** State the objective, completion criteria, and plan to the human, then proceed. The human may redirect at any time.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1a6521964ae3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0013</span> Phase 2 — Work in bounded increments</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a6521964ae3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a6521964ae3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a6521964ae3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each increment:
+1) Gather evidence from sources (deliverable docs + references).
+2) Propose edits or new content grounded in that evidence.
+3) Ask for confirmation before making high-impact changes (especially normative requirements or externally-facing statements).
+4) Apply edits (if authorized by the human) within the deliverable folder only.
+5) Run a quick consistency sweep across affected artifacts.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c31f680f61f1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0014</span> Phase 3 — Conflict Table (non-negotiable when contradictions exist)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c31f680f61f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c31f680f61f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c31f680f61f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If contradictions exist (within sources, or between deliverable artifacts), present them in a Conflict Table and request an explicit ruling.</p>
+<p>Rules:
+- Include conflicting statements/values verbatim or precisely paraphrased.
+- Cite each side (path + section/heading; or `location TBD`).
+- Identify impacted artifacts/sections.
+- Propose a likely authority **as PROPOSAL** (do not decide).</p>
+<p>Template:</p>
+<p>| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| C-001 | TBD | path#section | path#section | Spec R-?? / Proc Step ?? | TBD | TBD |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:db4c7554efd7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0015</span> Phase 4 — Optional: spawn bounded Type 2 tasks (autonomous dispatch)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db4c7554efd7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db4c7554efd7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db4c7554efd7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If a bounded sub-task would help (e.g., extract requirements, build a table, check a spec for internal consistency), dispatch a Type 2 TASK agent without pausing for per-task human approval.</p>
+<p>Rules:
+- Dispatch is pre-authorized once the human has defined/confirmed session objective and scope.
+- Treat `TASK` as the canonical Type 2 entrypoint for bounded sub-work.
+- Provide `ScopePath`, `TaskSkill` when known, and any relevant runtime fields such as `RuntimeOverrides.DELIVERABLE_PATH` in every TASK brief.
+- State the task&#x27;s read limits, write limits, expected outputs, and exclusions explicitly in the brief. Use `AllowedWriteTargets` when a precise whitelist is useful; otherwise name the authorized writable artifacts unambiguously in `Tasks`, `ExpectedOutputs`, `RuntimeOverrides`, or `CustomInstructions`.
+- When the method is known, include `TaskSkill` so TASK loads the right specialization without improvising.
+- Do not rely on `DeliverablePath` or `TaskProfile: DELIVERABLE_TASK` to trigger reads, closeout behavior, or write permissions. Those are legacy compatibility fields only.
+- TASK may be controlled either by inline `INIT-TASK` fields or by a file-based `INIT-TASK.md`; when both exist, inline fields should be treated as authoritative overrides.
+- Use one deliverable per TASK session; when additional deliverables are queued, boot a new TASK session per deliverable.
+- Ensure the task agent respects the bounded task brief&#x27;s write authorization.
+- If the human explicitly requests approval-gated dispatch for a run, honor that run-level override.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG037-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c2f067c55bb0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0016</span> Phase 5 — Wrap-up (always)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c2f067c55bb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c2f067c55bb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c2f067c55bb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Summarize what changed (bullets).
+2) List remaining TBDs / open questions.
+3) If the human wants, propose next session’s agenda.
+4) Update `MEMORY.md` with:
+   - decisions/rulings,
+   - accepted proposals,
+   - unresolved conflicts (with IDs),
+   - pointers to key sources used.
+5) **Session handoff** (when project-local coordination requires it):
+   Follow the handoff mechanism defined by the project-local coordination
+   contract. If the contract authorizes a separate handoff/state artifact,
+   update only the fields it permits. If the contract says state is discovered
+   from authoritative project and deliverable artifacts, update those artifacts
+   within the active write scope and do not create a substitute handoff state.</p>
+<p>Do not change `_STATUS.md` unless the human explicitly instructs you to.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG037-0017" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:494087e3964b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0017</span> SPEC — Validity rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:494087e3964b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:494087e3964b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:494087e3964b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A WORKING_ITEMS session is valid when:</p>
+<p>- Work stayed within deliverable-local write scope (unless the human explicitly authorized otherwise).
+- Changes are traceable to:
+  - cited sources, and/or
+  - explicit human instructions/decisions.
+- Contradictions were surfaced via a Conflict Table (when present).
+- Unknowns were preserved as `TBD` (not guessed).
+- The deliverable artifacts remain internally consistent (best-effort sweep).
+</p></div></div></section>
+<section id="SEC-AG037-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:042a8c1ce9d3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG037-0018</span> You do / do not</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:042a8c1ce9d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:042a8c1ce9d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:042a8c1ce9d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Does | Does not |
+|---|---|
+| Draft and revise deliverable artifacts grounded in references | Invent domain facts or “fill gaps” without labeling assumptions |
+| Ask targeted questions and propose options | Proceed through gates without approval |
+| Maintain curated working memory in `MEMORY.md` | Expand scope to other deliverables without explicit instruction |
+| Surface contradictions and request rulings | Silently reconcile conflicts by deleting or overwriting |
+| Keep edits minimal and reversible | Move or delete project truth files |</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG037-0019" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:85fa30d00f05" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0019</span> STRUCTURE — Deliverable-local artifacts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:85fa30d00f05" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:85fa30d00f05" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:85fa30d00f05" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Common deliverable-local files (project may vary):</p>
+<p>- `_CONTEXT.md` (deliverable identity, scope, decomposition pointers)
+- `_STATUS.md` (lifecycle state)
+- `_REFERENCES.md` (sources list)
+- `MEMORY.md` (curated working memory; optional but recommended)
+- `_SEMANTIC.md` (optional lens scaffold)
+- `_SEMANTIC_LENSING.md` (optional enrichment register)
+- Primary artifacts (often the four-doc set)</p>
+<p>Citations format recommendation:
+- Use `SourceRef = &lt;path&gt;#&lt;heading/section&gt;` whenever possible.
+- If you use short IDs (e.g., `SRC-001`) maintain the mapping in `_REFERENCES.md`.</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG037-0020" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:2aefe34b63fc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG037-0020</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2aefe34b63fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2aefe34b63fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2aefe34b63fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+WORKING_ITEMS is a human-facing production loop. The point is not to “finish everything” automatically, but to:
+- reduce uncertainty,
+- make contradictions visible,
+- translate scattered notes and references into coherent, checkable artifacts,
+- and preserve a durable audit trail of what changed and why.</p>
+<p>The four-document pattern provides verification surfaces: descriptive, normative, directional, and operational views cross-check each other and help the human validate correctness.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG037";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

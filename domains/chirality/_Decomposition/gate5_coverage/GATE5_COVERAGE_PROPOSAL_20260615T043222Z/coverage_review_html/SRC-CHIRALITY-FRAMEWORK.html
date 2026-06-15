@@ -1,0 +1,470 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-CHIRALITY-FRAMEWORK - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>27</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-RT002-0001">The Chirality Framework</a> <a href="#SEC-RT002-0002">1. Purpose</a> <a href="#SEC-RT002-0003">2. The Nature of Knowledge in Professional Practice</a> <a href="#SEC-RT002-0012">3. What the Architecture Must Provide</a> <a href="#SEC-RT002-0021">4. What the Architecture Cannot Do</a> <a href="#SEC-RT002-0024">5. The Central Distinction</a> <a href="#SEC-RT002-0025">6. The Axiom</a> <a href="#SEC-RT002-0026">7. The Closing Principle</a> <a href="#SEC-RT002-0027">Document History</a></nav>
+<main>
+<section id="SEC-RT002-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:aef93f20f35c" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT002-0001</span> The Chirality Framework</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aef93f20f35c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aef93f20f35c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aef93f20f35c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality AI Ltd.
+Date: 2026-04-04, Revision 2, Issued for Use</p>
+<p>**A theory of professional accountability with AI agent systems.**</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:6e8224824fd9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0002</span> 1. Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e8224824fd9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e8224824fd9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e8224824fd9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines the Chirality Framework — the theoretical foundation for the Chirality agent operating system and the professional practice it serves. It explains what knowledge means in the context of AI-assisted professional work, what architecture that meaning requires, and what remains irreducibly human.</p>
+<p>The framework is not a total theory of agency, politics, or knowledge in every setting. It is a theory of professional accountability within knowledge work: the part of the problem concerned with what may be relied on, by whom, on what grounds, and under what commitment. It is therefore broader than the technical definition of an agent, but narrower than a complete metaphysics of human action.</p>
+<p>The framework is referenced by the firm&#x27;s governance documents, agent instruction architecture, and professional practice standard (`PROFESSIONAL_ENGINEERING.md`). It is the &quot;why beneath the why&quot; — the foundation on which the four-pillar design philosophy, the epistemic architecture, and the regulatory integration rest.</p>
+<p>The framework is also practice-grounded: it was developed to explain, organize, and discipline an architecture shaped by recurrent failure modes in real deliverable work, not to claim that the architecture was derived from theory alone.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0003" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:2605cd79290e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0003</span> 2. The Nature of Knowledge in Professional Practice</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2605cd79290e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2605cd79290e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2605cd79290e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT002-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a1508b581667" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0004</span> 2.1 Knowledge as Warranted Accountability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1508b581667" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1508b581667" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1508b581667" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Knowledge, in the context of professional practice, is not a property of information. It is a relationship between three elements:</p>
+<p>- **A claim** — an assertion that something is the case
+- **A warrant** — the justification for believing the claim, grounded in evidence
+- **An accountable person** — a qualified professional who commits to the claim on the basis of the warrant, under duty of care</p>
+<p>A claim without a warrant is assertion. A warrant without an accountable person is evidence. An accountable person without inspectable grounds is unsupported faith. All three must be present, and the relationship between them must be inspectable, for knowledge to exist in the sense that professional practice requires: something a competent person warrants under duty of care, backed by an auditable record.
+</p></div></div></section>
+<section id="SEC-RT002-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:02bfe98a8c11" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0005</span> 2.2 The Transition from Information to Knowledge</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:02bfe98a8c11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:02bfe98a8c11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:02bfe98a8c11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Information becomes knowledge when an accountable professional warrants it. The transition is not computational — no amount of processing, retrieval, or verification transforms information into knowledge automatically. The transition is an act of commitment: a professional examines the claim, assesses the warrant, and accepts responsibility for the result.</p>
+<p>This act cannot be performed by an AI system. AI agents can produce claims. They can attach warrants — source citations, provenance records, evidence chains. They can classify the epistemic status of claims. But they cannot supply the accountable person. The gap between information and knowledge is not a limitation to be engineered away. It is the space in which professional responsibility lives.
+</p></div></div></section>
+<section id="SEC-RT002-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b9327b612913" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0006</span> 2.3 The Double Commitment</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9327b612913" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9327b612913" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9327b612913" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Professional authentication is not a single act of acceptance. It is a double commitment:</p>
+<p>- **The inner commitment:** the professional affirms that the claims in the work product are warranted — that the evidence supports them and the epistemic status of each claim is understood.
+- **The outer commitment:** the professional affirms themselves as bound to that stance — they stake their professional standing, their seal, and their personal accountability on the work.</p>
+<p>The inner commitment is about the work. The outer commitment is about the professional&#x27;s relationship to the work. Both are required. A professional who reviews claims without committing to the result has not authenticated. A professional who commits without reviewing has not warranted.</p>
+<p>The architecture exists to make both commitments possible with integrity: the inner commitment requires that every claim&#x27;s warrant state be inspectable; the outer commitment requires that the professional&#x27;s act of acceptance bind to specific, identified content.
+</p></div></div></section>
+<section id="SEC-RT002-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:45586de30a18" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0007</span> 2.4 The Chirality of Knowledge</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45586de30a18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45586de30a18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45586de30a18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The framework is named for a structural property of knowledge itself.</p>
+<p>In chemistry, chirality is the property of a molecule whose mirror image cannot be superimposed on the original. The left hand and the right hand have the same components, the same connections, the same structure — but they are irreducibly distinct.</p>
+<p>Knowledge, in professional practice, has this property. It is composed of complementary, non-superimposable components whose pairing is constitutive:</p>
+<p>- **Claim and warrant** are chiral. A claim asserts; a warrant justifies. They appear in the same documents, carry the same content format, and are both text — but they are structurally distinct. A claim without a warrant is assertion. A warrant without a claim is evidence. Neither is knowledge. Both are required. Neither can be derived from the other.</p>
+<p>- **Meaning and commitment** are chiral. Meaning is given — the professional encounters it in the work. Commitment is enacted — the professional supplies it through the act of authentication. No amount of meaning produces commitment. No amount of commitment compensates for absent meaning. Both are required. Neither can be superimposed on the other.</p>
+<p>- **Content and accountability** are chiral. The informational structure of a work product (its claims, warrants, and epistemic state) is one hand. The professional who takes responsibility for that structure is the other. They cannot be collapsed into a single thing. The content exists without the professional (as information). The professional exists without the content (as capability). Knowledge exists only when both are present and bound together.</p>
+<p>This chirality is not a limitation to be resolved. It is the structure that makes professional knowledge possible. If claim and warrant could be collapsed, there would be no distinction between grounded and ungrounded assertions. If meaning and commitment could be derived from each other, there would be no need for a professional to decide. If content and accountability could be superimposed, there would be no space for the act of warranting.</p>
+<p>The architecture makes both hands visible. The professional holds them together. The seal is the act that binds the chiral pair — declaring that the content has been inspected, the warrant has been assessed, and the professional takes responsibility for both.</p>
+<p>The semantic algebra that generates the system&#x27;s deliverable-level semantic structures formalizes this chirality: Matrix A (how the system is organized) and Matrix B (what adequate knowledge means) are the two non-superimposable inputs. Neither alone generates the semantic space. The algebra brings both hands together.
+</p></div></div></section>
+<section id="SEC-RT002-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1ab94b30b4af" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0008</span> 2.5 Agency, Delegation, and Accountability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1ab94b30b4af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1ab94b30b4af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1ab94b30b4af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The framework uses the word *agent* in a bounded, technical sense and situates that technical sense inside a larger accountability structure.</p>
+<p>In Chirality&#x27;s runtime definition, an agent is a controlled system architecture: model, instructions, access to files, and use of tools. That definition answers an ontological question about what kind of thing is acting in the system. In regulated practice, the same agent is also one of the &quot;others&quot; whose work a licensed professional relies on. That answers a different question: how the outputs of that system are treated within professional responsibility.</p>
+<p>These are not competing definitions. They operate at different levels.</p>
+<p>- The technical definition explains what an artificial agent is and how it acts.
+- The professional definition explains how its work is governed, reviewed, and relied upon.</p>
+<p>The resulting distinction is fundamental: artificial agents have bounded operative agency, but not accountable agency. They can produce claims, attach warrants, surface gaps and conflicts, and act within constrained write scopes. They cannot accept duty of care, authenticate a work product, or assume the professional consequences of error. Humans and AI agents therefore participate in the same workflow, but not in the same mode. The difference is not merely one of capability. It is one of responsibility.
+</p></div></div></section>
+<section id="SEC-RT002-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fc870398ccc8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0009</span> 2.6 Teams, Project Management, and Governance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fc870398ccc8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fc870398ccc8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fc870398ccc8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Once many agents are arranged into bounded roles, gates, dependencies, and handoffs, the system is no longer just a collection of tools. It becomes a form of project management.</p>
+<p>This is not metaphorical. The folder structure, stable identifiers, decomposition, lifecycle states, dependency records, gate reviews, and change controls are the same kinds of structures that human teams use to coordinate professional work. In Chirality, those structures are not represented in a separate management layer; they are the filesystem itself. The project structure and the epistemic structure are therefore coupled on purpose. What exists, what is being worked on, what is known, what is unresolved, and what may proceed are all made inspectable in the same project state.</p>
+<p>The same is true of governance. Chirality repeatedly distinguishes normative, operative, and evaluative functions. Normative functions define rules and standards. Operative functions execute within those rules. Evaluative functions assess, audit, reconcile, and judge. This pattern is structurally analogous to the differentiation seen in political governance among rule-setting, administration, and adjudication; at civic scale, these often appear as legislative, executive, and judicial branches. The analogy is useful because the underlying problem is the same: authority, execution, and review must be related, but not collapsed into one undifferentiated power.</p>
+<p>The claim is not that project governance and political governance are identical institutions. It is that they share a recurrent governance grammar wherever responsible action must be organized under inspectable authority.
+</p></div></div></section>
+<section id="SEC-RT002-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b3d2e5994c9b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0010</span> 2.7 What the Framework Does and Does Not Cover</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b3d2e5994c9b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b3d2e5994c9b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b3d2e5994c9b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality Framework is woven throughout the agent architecture because professional knowledge work cannot be separated from agency, organization, and governance. A person cannot determine what to rely on without also knowing who acted, under what constraints, through what process, and under whose authority.</p>
+<p>But the framework does not claim to encompass the whole of human life or all possible forms of knowledge. It addresses a specific region of reality: the transition from information to warranted reliance in work that carries professional consequences.</p>
+<p>That is why the framework contains an account of agents, an account of teams, and an account of governance, yet is reducible to none of them. It is concerned with each only insofar as each bears on the possibility of accountable knowledge.
+</p></div></div></section>
+<section id="SEC-RT002-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6a462e1672f8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0011</span> 2.8 Normalization Table</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a462e1672f8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a462e1672f8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a462e1672f8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The distinctions above can be kept compactly in view:</p>
+<p>| Entity | Category | May produce claims | May attach or record warrants | May classify epistemic status | May issue rulings | May authenticate for reliance | Bears professional responsibility |
+|---|---|---|---|---|---|---|---|
+| **AI agent** | Artificial operative actor | Yes | Yes | Yes | No | No | No |
+| **Licensed professional** | Accountable person under duty of care | Yes | Yes | Yes | Yes | Yes | Yes |
+| **Claim** | Epistemic primitive | n/a | n/a | Receives classification | No | No | No |
+| **Warrant** | Epistemic primitive | No | n/a | No | No | No | No |
+| **Ruling** | Binding human decision | No | May cite grounds | n/a | Yes | No | Yes, through the responsible human who issues it |
+| **Work product / deliverable** | Informational artifact | Contains claims | Contains warrants | Carries aggregate epistemic state | No | No, until authenticated by a human | No |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0012" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:31136f38f259" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0012</span> 3. What the Architecture Must Provide</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31136f38f259" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31136f38f259" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31136f38f259" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT002-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:47ec57d74c68" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0013</span> 3.1 The Generative Principle</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47ec57d74c68" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47ec57d74c68" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47ec57d74c68" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Warranting requires inspectability, and inspectability must be architectural, not aspirational.</p>
+<p>A system that recommends transparency is a guideline. A system that makes opacity structurally impossible is a governance framework. The Chirality architecture is the latter. Every design decision in the system derives from this principle: if the professional cannot inspect it, they cannot warrant it; if they cannot warrant it, knowledge does not exist; therefore the architecture must make every element of the warranting act inspectable.
+</p></div></div></section>
+<section id="SEC-RT002-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4e84eec05db1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0014</span> 3.2 The Four Pillars</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4e84eec05db1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4e84eec05db1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4e84eec05db1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Professional accountability requires that four questions be answered at every level where a person takes responsibility for work:</p>
+<p>| Pillar | Question | What Must Be Inspectable |
+|---|---|---|
+| **Ontology** | What exists? | The entities, identifiers, state, and relationships in the work |
+| **Epistemology** | What is warranted? | The claims, their evidence, their certainty status, and their gaps |
+| **Praxiology** | How was the work done? | The processes, boundaries, authorities, and execution history |
+| **Axiology** | What values governed? | The principles, constraints, and professional obligations that shaped decisions |</p>
+<p>These pillars are not merely a classification scheme selected for this project. In Chirality, they form a compact and coherent structure for professional accountability, and they provide a useful evaluative lens for other systems that aim to support informed professional responsibility. Missing any one creates a specific accountability failure:</p>
+<p>- Without ontology: the professional does not know what they are responsible for
+- Without epistemology: the professional does not know what to believe
+- Without praxiology: the professional does not know how the work was performed
+- Without axiology: the professional does not know why the decisions were made the way they were</p>
+<p>The four pillars form two chiral pairs. Ontology and epistemology are the structural pair — what exists and what is warranted about what exists. Praxiology and axiology are the action pair — how work is done and what values govern it. Each pair is internally chiral: ontology without epistemology is structure without knowledge of what the structure means; epistemology without ontology has nothing to attach warrants to. Praxiology without axiology is execution without purpose; axiology without praxiology is values without enactment. The complete framework requires both pairs, and neither pair can be superimposed on the other.
+</p></div></div></section>
+<section id="SEC-RT002-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:940dbaf3213f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0015</span> 3.3 The Epistemic Architecture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:940dbaf3213f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:940dbaf3213f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:940dbaf3213f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemology is the load-bearing pillar. The other three pillars are necessary — the architecture cannot function without them — but they exist in service of the epistemology. The ontology gives the epistemic architecture something to operate on. The praxiology enforces it through bounded execution and human gates. The axiology anchors it in professional responsibility.</p>
+<p>The epistemology is load-bearing because it governs the warrant — the element that determines whether the professional&#x27;s commitment is grounded or empty.
+</p></div></div></section>
+<section id="SEC-RT002-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ccdbec1e8318" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-RT002-0016</span> 3.3.1 The Epistemic Ontology</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ccdbec1e8318" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ccdbec1e8318" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ccdbec1e8318" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemology has its own formal domain model — six primitives that constitute the entities of the epistemic layer:</p>
+<p>| Primitive | Definition |
+|---|---|
+| **Claim** | An assertion that something is the case. The atomic unit. Every non-trivial assertion produced by an agent in a governed workflow is a claim. |
+| **Warrant** | The justification for believing a claim. Always extrinsic — a source citation (file, section, quote) — never intrinsic (model confidence or plausibility). |
+| **Status** | The epistemic classification of a claim&#x27;s certainty: FACT, ASSUMPTION, PROPOSAL, or TBD. |
+| **Gap** | The explicit, positive assertion that a warrant has not been found. A gap is not the absence of information — it is an entity representing that absence, making it visible and actionable. |
+| **Conflict** | Two or more claims with incompatible warrants about the same key. The existence of a conflict is itself an entity that must be resolved through a ruling. |
+| **Ruling** | A human decision that resolves a gap or conflict, transforming epistemic status. Rulings are binding and recorded in versioned files. |</p>
+<p>The relationships between primitives: a claim HAS a status; a claim MAY HAVE a warrant; a claim WITHOUT a warrant is a gap; in practice an unwarranted claim is marked `TBD` or remains an uncited `PROPOSAL`; two claims may be IN CONFLICT; a conflict REQUIRES a ruling; a ruling TRANSFORMS status.</p>
+<p>The four statuses are interpreted as follows:</p>
+<p>| Status | Meaning |
+|---|---|
+| **FACT** | A directly observed claim with citation. |
+| **ASSUMPTION** | An inferential claim grounded in cited material. It is not directly stated in the source and still requires validation, but it is not an unwarranted guess. |
+| **PROPOSAL** | A suggested interpretation, action, or design move that requires human decision before it becomes binding. A proposal may be cited or uncited. |
+| **TBD** | An explicit placeholder for missing information or missing warrant. A TBD is a visible gap, not a silent omission. |
+</p></div></div></section>
+<section id="SEC-RT002-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d7cf00aed057" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-RT002-0017</span> 3.3.2 The Four Enforcement Mechanisms</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d7cf00aed057" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d7cf00aed057" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d7cf00aed057" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemic ontology is enforced through four architectural mechanisms, each making a category of epistemic failure structurally detectable:</p>
+<p>| Mechanism | What It Makes Inspectable |
+|---|---|
+| **Mandatory provenance** | Whether a claim has a warrant — every claim must cite its source or carry explicit `location TBD` |
+| **No invention** | Whether a gap exists — missing data becomes TBD, not a plausible fabrication |
+| **Conflict surfacing** | Whether claims disagree — contradictions are exposed with competing sources, not silently resolved |
+| **Epistemic labeling** | How certain a claim is — every claim carries FACT, ASSUMPTION, PROPOSAL, or TBD |</p>
+<p>The common thread is visibility. The system does not prevent epistemic failures. It makes them impossible to hide.
+</p></div></div></section>
+<section id="SEC-RT002-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7f72e44d3b32" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-RT002-0018</span> 3.3.3 The Warrant Lifecycle</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f72e44d3b32" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f72e44d3b32" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f72e44d3b32" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Claims within a work product progress through a lifecycle that tracks their epistemic state:</p>
+<p>```
+UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
+```</p>
+<p>| State | Meaning |
+|---|---|
+| **UNWARRANTED** | A claim exists but has no source citation. Status is TBD or uncited PROPOSAL. The professional cannot yet assess its grounding. |
+| **CITED** | A claim has a source citation. Status is FACT, ASSUMPTION, or cited PROPOSAL. The evidence exists but no professional has committed to it. |
+| **REVIEWED** | A professional has examined the claim, assessed its warrant, and dispositioned any findings. The inner commitment is being enacted. |
+| **AUTHENTICATED** | The professional has bound themselves to the work. The double commitment is complete. The claim is part of a professionally warranted work product. |</p>
+<p>The warrant lifecycle is interleaved with the production lifecycle of the work product. A deliverable in progress contains claims in varying warrant states. The deliverable is ready for issuance when the professional determines that the aggregate warrant state is sufficient for reliance.</p>
+<p>Thorough review, in operational terms, is the process of auditing warrant sufficiency. The professional examines claims, checks warrants, resolves gaps and conflicts through rulings, and determines whether the aggregate state supports authentication.
+</p></div></div></section>
+<section id="SEC-RT002-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7f4c980056ff" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0019</span> 3.4 The Fractal Property</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f4c980056ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f4c980056ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f4c980056ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The four pillars appear at every level of the system:</p>
+<p>| Level | Ontology | Epistemology | Axiology | Praxiology |
+|---|---|---|---|---|
+| **Governance documents** | TYPES, SPEC | CONTRACT, SE Analysis | DIRECTIVE, PROFESSIONAL_ENGINEERING | DBM, agent protocols |
+| **Agent instructions** | Header block, write scope | Invariants, provenance rules | Non-negotiable constraints | Protocol sections |
+| **Production documents** | Datasheet | Specification | Guidance | Procedure |</p>
+<p>This self-similarity arises because Chirality must answer the same four accountability questions at every level of abstraction. In this architecture, the fractal property is not arbitrary repetition; it is evidence that the same accountability logic is being carried through governance documents, agent instructions, and production documents.</p>
+<p>More precisely, the fractal property is the chirality of knowledge (<a class="xref" href="#SEC-RT002-0007">§2.4</a>) recurring at every level. Wherever knowledge exists in the system — in a deliverable, in an agent instruction, in a governance document — it is composed of complementary, non-superimposable components whose pairing is constitutive. The same chiral structure — claim and warrant, structure and value, content and accountability — appears at every level because knowledge at every level has the same structural property.
+</p></div></div></section>
+<section id="SEC-RT002-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1585f61ca20e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0020</span> 3.5 The Generative Relationship to Systems Engineering</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1585f61ca20e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1585f61ca20e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1585f61ca20e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Given the four-pillar commitments, classical systems engineering disciplines emerge as the principal architectural mechanisms by which those commitments are made operational in Chirality:</p>
+<p>| Pillar Commitment | SE Disciplines That Follow |
+|---|---|
+| Ontology (stable, inspectable state) | Architecture and structural design; configuration management |
+| Epistemology (evidence-first, auditable knowledge) | Verification and validation; formal methods; requirements traceability |
+| Praxiology (bounded, gate-controlled execution) | Safety and reliability engineering; control theory |
+| Axiology (non-delegable professional responsibility) | Human factors; decision authority allocation |</p>
+<p>In Chirality, systems engineering is not incidental decoration or a post hoc compliance layer. It is the principal means by which the four-pillar commitments are made architecturally real. The SE disciplines identified here are not claimed to be the only possible implementation, but they are a coherent and defensible implementation of those commitments in this architecture.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0021" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:9a7238c91030" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0021</span> 4. What the Architecture Cannot Do</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a7238c91030" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a7238c91030" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a7238c91030" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT002-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:814f82262897" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0022</span> 4.1 The Boundary</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:814f82262897" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:814f82262897" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:814f82262897" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The architecture creates the conditions for knowledge. It cannot create knowledge.</p>
+<p>No architectural completeness — no invariant system, no epistemic labeling, no provenance trail — can produce the professional&#x27;s commitment. Facts cannot enact warranting. The double commitment — the professional standing by their own stance — is an act of a person, not a consequence of a system.</p>
+<p>The architecture makes the act tractable: every claim&#x27;s warrant state is visible, every gap is surfaced, every conflict reaches the decision-maker, every approval binds to specific content. But tractable is not automatic. The professional must still look, judge, and commit. The system ensures they can. It cannot ensure they do.
+</p></div></div></section>
+<section id="SEC-RT002-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f628d923640c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT002-0023</span> 4.2 The Irreducible Human Element</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f628d923640c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f628d923640c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f628d923640c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+AI agents can produce claims with warrants. They can classify epistemic status. They can surface gaps and conflicts. They can generate semantic structures that organize the categories of knowledge a deliverable should contain. They can audit the warrant state of every claim in a work product.</p>
+<p>They cannot authenticate. They cannot take responsibility. They cannot enact the commitment that transforms information into knowledge.</p>
+<p>This is not a current limitation of AI that future models will resolve. It is a consequence of what knowledge means in professional practice. Knowledge requires an accountable self. The self is not a capability. It is a person — identifiable, liable, and willing to be held to their warrant.</p>
+<p>The gap between AI output and professional knowledge is structural, not technological. It cannot be closed from the AI side — not because AI is insufficiently capable, but because the gap is not on the AI side. It is the space where a person commits. Scaling does not produce accountability. Alignment does not produce accountability. Self-assessed confidence does not produce accountability. A model that never hallucinates still does not produce knowledge, because knowledge is not accurate information — it is warranted information, and warranting is an act of a person under duty of care.</p>
+<p>The invariant K-AUTH-1 — &quot;only humans author binding approval records&quot; — is not a design constraint. It is an ontological claim about the nature of professional knowledge.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0024" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:c0f2bd02a51d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0024</span> 5. The Central Distinction</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0f2bd02a51d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0f2bd02a51d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0f2bd02a51d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Productivity tools optimize for output quality — making the agent&#x27;s output better.</p>
+<p>Professional accountability tools optimize for knowing what you can rely on — making the epistemic status of every claim transparent, so that a competent professional can determine what to warrant.</p>
+<p>Both approaches are valid. Both are complementary. But only the second supports the act that constitutes knowledge: a qualified person committing to a claim on inspectable grounds under duty of care.</p>
+<p>The Chirality Framework provides one rigorous structural implementation of the conditions that make this act possible when the claims are produced by AI agents, organized through project-management structures, and governed under explicit authority.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0025" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:3a39805de5cf" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0025</span> 6. The Axiom</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3a39805de5cf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3a39805de5cf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3a39805de5cf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+To know what you know, why you know it, and why you know why.</p>
+<p>The first clause is ontological: identify the claims. The second is epistemic: verify the warrants. The third is reflexive: ensure the accountability structure itself is inspectable — that the grounds for your warranting are themselves subject to examination.</p>
+<p>The third clause is what makes knowledge professional rather than personal. A professional does not merely know. They know in a way that can withstand scrutiny, because the entire chain — from claim to warrant to their act of commitment — is architecturally visible.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0026" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:f43def4d9322" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0026</span> 7. The Closing Principle</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f43def4d9322" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f43def4d9322" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f43def4d9322" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+AI can accelerate professional work. It cannot inherit professional responsibility.</p>
+<p>The gap between acceleration and responsibility is not a problem to be solved. It is not negative space — an absence waiting to be filled by better AI. It is the positive space in which professional responsibility lives. It is the space where a person looks at what has been produced, assesses its grounds, and commits. Without this gap, there is no space for commitment. Without commitment, there is no knowledge. The gap is what makes professional practice professional.</p>
+<p>The Chirality Framework holds that gap open and makes it workable — providing the architecture within which a professional can direct AI agents, review their outputs, and authenticate the result under duty of care, backed by an auditable record.</p>
+<p>If we cannot make it auditable, we cannot rely on it. If we cannot warrant it, it is not knowledge. The architecture makes it auditable. The professional makes it knowledge.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT002-0027" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:6a25ffe6d3eb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT002-0027</span> Document History</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a25ffe6d3eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a25ffe6d3eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a25ffe6d3eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Date | Revision | Description |
+|------|----------|-------------|
+| 2026-03-29 | 0 | Initial issue |
+| 2026-04-04 | 1 | Clarified the framework&#x27;s scope and its relation to agency, project management, governance, and professional knowledge work |
+| 2026-04-04 | 2 | Normalized epistemic status semantics, added a compact normalization table, and aligned the warrant lifecycle with the formal ontology |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "RT002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

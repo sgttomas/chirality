@@ -1,0 +1,787 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-BIGGER-PICTURE-CHIRALITY-PRD-AMENDMENT-DOMAIN-ENGINE-INTEGRATION - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>49</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG027-0001">PRD Amendment: Domain Engine Integration for Chirality App</a> <a href="#SEC-DG027-0002">1. Amendment Summary</a> <a href="#SEC-DG027-0003">2. Source Basis</a> <a href="#SEC-DG027-0004">3. Product Decision</a> <a href="#SEC-DG027-0005">4. Definitions</a> <a href="#SEC-DG027-0014">5. Amendment to Chirality Product Goals</a> <a href="#SEC-DG027-0015">6. Amendment to Non-Goals</a> <a href="#SEC-DG027-0016">7. Amendment to Product Principles</a> <a href="#SEC-DG027-0022">8. Scope Additions</a> <a href="#SEC-DG027-0025">9. Functional Requirements Added by This Amendment</a> <a href="#SEC-DG027-0026">10. API Additions</a> <a href="#SEC-DG027-0027">11. Domain Engine Profile Shape</a> <a href="#SEC-DG027-0028">12. OpenPipeStress as the First Domain Engine Profile</a> <a href="#SEC-DG027-0033">13. Suggested Working-Root Layout for OpenPipeStress Project</a> <a href="#SEC-DG027-0034">14. Agent Behavior Rules for Domain Engines</a> <a href="#SEC-DG027-0035">15. Validation Requirements for This Amendment</a> <a href="#SEC-DG027-0036">16. Risks and Mitigations</a> <a href="#SEC-DG027-0037">17. Release Strategy</a> <a href="#SEC-DG027-0043">18. Chirality PRD Text Insertions</a> <a href="#SEC-DG027-0048">19. Acceptance Criteria for Amendment Adoption</a> <a href="#SEC-DG027-0049">20. Guiding Statement</a></nav>
+<main>
+<section id="SEC-DG027-0001" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:45d8a39009b6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG027-0001</span> PRD Amendment: Domain Engine Integration for Chirality App</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45d8a39009b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45d8a39009b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45d8a39009b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Document ID:** CHIRALITY-PRD-AMENDMENT-DOMAIN-ENGINES-001  
+**Applies to:** `PRD_CHIRALITY_APP.md`  
+**Primary example profile:** OpenPipeStress  
+**Status:** Draft amendment  
+**Prepared for:** Chirality App and OpenPipeStress integration planning  
+**Purpose:** Extend Chirality App so it can safely orchestrate deterministic domain engines without becoming those engines.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:d5bb8f3501e9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0002</span> 1. Amendment Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d5bb8f3501e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d5bb8f3501e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d5bb8f3501e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This amendment adds a **Domain Engine Integration** capability to Chirality App.</p>
+<p>Chirality remains a local-first desktop harness for governed agents, deliverables, filesystem-native project state, lifecycle records, dependency registers, deterministic tools, and human review. It does **not** become a domain-specific engineering application, solver, CAD tool, stress-analysis engine, or professional prover.</p>
+<p>The amendment introduces a reusable integration pattern:</p>
+<p>```text
+Chirality App
+  = governed agent/workflow/deliverable harness</p>
+<p>Domain Engine
+  = deterministic specialist software that owns its domain model and computation</p>
+<p>Human Operator
+  = accountable reviewer and decision authority
+```</p>
+<p>For OpenPipeStress specifically:</p>
+<p>```text
+Chirality orchestrates, documents, summarizes, reconciles, and governs.
+OpenPipeStress owns the piping model, GUI, solver, model states, analysis runs, comparisons, and handoff packages.
+The external professional stress tool validates for reliance.
+The responsible engineer accepts.
+```</p>
+<p>This amendment is intended to support OpenPipeStress as the first concrete domain-engine integration while preserving Chirality’s generality for future domain tools.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5a1c1d21bf33" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0003</span> 2. Source Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a1c1d21bf33" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a1c1d21bf33" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a1c1d21bf33" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This amendment is based on the following agreed product direction:</p>
+<p>1. Chirality App’s existing PRD defines a local desktop harness for governed AI agents operating against a selected filesystem working root, with project truth stored in git-tracked files and human authority retained at gates.
+2. OpenPipeStress v0.2 defines an analysis-grade piping design engine with a full analytical stress-analysis core, schema-backed physical model, model states, analysis runs, comparison records, and handoff packages.
+3. The agreed integration model is federated rather than monolithic:
+   - Chirality does not embed or replace OpenPipeStress.
+   - OpenPipeStress does not become a general-purpose agent operating system.
+   - Agents do not directly mutate canonical engineering model states.
+   - Integration occurs through deterministic tools, manifests, operation proposals, summaries, reports, and human-gated workflows.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:3e9747448d81" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0004</span> 3. Product Decision</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3e9747448d81" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3e9747448d81" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3e9747448d81" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add support for **Domain Engine Profiles** and **Domain Tool Adapters**.</p>
+<p>A Domain Engine Profile tells Chirality:</p>
+<p>- what domain engine is present;
+- which files are authoritative domain artifacts;
+- which files are generated summaries or manifests;
+- which paths are protected from direct agent writes;
+- which paths agents may write to;
+- which deterministic tools are available;
+- which tool outputs are safe for agents to read;
+- which human gates are required before changes become accepted project state.</p>
+<p>A Domain Tool Adapter exposes deterministic commands from a domain engine to Chirality. The adapter may validate models, summarize model state, run analysis, compare states, produce report fragments, or generate handoff manifests. It must not allow agents to bypass domain-engine validation or human authority.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0005" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:e3d56590d41b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0005</span> 4. Definitions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e3d56590d41b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e3d56590d41b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e3d56590d41b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG027-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:05b6efe82f53" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0006</span> 4.1 Domain Engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05b6efe82f53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05b6efe82f53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05b6efe82f53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A domain engine is specialist software that owns domain-specific models, calculations, validation, and graphical or technical workflows.</p>
+<p>Examples:</p>
+<p>- OpenPipeStress for piping design and stress-analysis model authoring;
+- a future electrical load-flow engine;
+- a future structural frame-analysis engine;
+- a future process simulation engine;
+- a future schedule/cost engine.
+</p></div></div></section>
+<section id="SEC-DG027-0007" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:559b2ee05541" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0007</span> 4.2 Domain Engine Profile</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:559b2ee05541" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:559b2ee05541" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:559b2ee05541" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A structured configuration that describes how Chirality may discover, read, invoke, summarize, and govern a domain engine inside a working root.
+</p></div></div></section>
+<section id="SEC-DG027-0008" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:01bfd1cd037a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0008</span> 4.3 Domain Tool Adapter</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01bfd1cd037a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01bfd1cd037a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01bfd1cd037a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A deterministic command-line or API surface provided by the domain engine and callable by Chirality.
+</p></div></div></section>
+<section id="SEC-DG027-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d0b974014db4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0009</span> 4.4 Authoritative Domain Artifact</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d0b974014db4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d0b974014db4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d0b974014db4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A file or folder that represents domain truth owned by the domain engine. Agents must not directly edit these artifacts unless the domain profile explicitly permits a narrow safe action.</p>
+<p>For OpenPipeStress, examples include:</p>
+<p>```text
+project.ops.yaml
+states/
+runs/
+comparisons/
+handoff/
+canonical model files
+analysis result files
+```
+</p></div></div></section>
+<section id="SEC-DG027-0010" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:2cd769eeff49" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0010</span> 4.5 Chirality-Readable Artifact</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2cd769eeff49" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2cd769eeff49" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2cd769eeff49" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A summary, manifest, report fragment, warning list, assumption register, delta table, or checklist that Chirality agents may read, summarize, reconcile, or cite.
+</p></div></div></section>
+<section id="SEC-DG027-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1aa2304df61d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0011</span> 4.6 Agent-Writable Artifact</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1aa2304df61d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1aa2304df61d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1aa2304df61d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A file that agents may create or modify under explicit write scope. Examples include:</p>
+<p>```text
+operation proposals
+review notes
+TBD registers
+draft report sections
+handoff checklists
+dependency registers
+reconciliation notes
+```
+</p></div></div></section>
+<section id="SEC-DG027-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5939e29124e6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0012</span> 4.7 Protected Write Path</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5939e29124e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5939e29124e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5939e29124e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A path that agents may not directly modify. Changes to protected domain artifacts must occur only through the domain engine, a deterministic adapter command, or an explicitly human-approved operation.
+</p></div></div></section>
+<section id="SEC-DG027-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:dfcb327ba787" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0013</span> 4.8 Operation Proposal</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dfcb327ba787" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dfcb327ba787" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dfcb327ba787" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A structured proposed domain-model change. An operation proposal is not accepted model truth. It is a draft artifact for human review and domain-engine validation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0014" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:98551714566e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0014</span> 5. Amendment to Chirality Product Goals</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98551714566e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98551714566e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98551714566e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add the following product goal:</p>
+<p>&gt; Support local deterministic domain-engine integrations through file-based profiles, tool adapters, manifests, protected write paths, and human-gated operation proposals, while preserving Chirality’s role as a governed agent harness rather than a domain computation engine.</p>
+<p>This goal extends Chirality’s current deterministic tool registry and filesystem-native project truth model.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0015" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:539ea96327fc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0015</span> 6. Amendment to Non-Goals</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:539ea96327fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:539ea96327fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:539ea96327fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add the following non-goals:</p>
+<p>Chirality must not:</p>
+<p>1. Become a domain-specific engineering solver, CAD system, piping stress analysis program, or professional validation/prover tool.
+2. Directly edit canonical domain-engine model states unless the domain engine profile explicitly exposes a safe deterministic operation and the required human gate is satisfied.
+3. Treat agent-generated domain advice as accepted engineering work.
+4. Declare domain-specific professional acceptance, code compliance, certification, sealing, or approval.
+5. Parse or normalize proprietary third-party engineering software outputs unless a specific adapter is separately scoped, implemented, and validated.
+6. Store authoritative domain truth in hidden chat state, transient session memory, vendor systems, or untracked UI state.
+7. Bypass the domain engine’s schema validation, solver validation, or professional-boundary notices.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0016" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:c3860fbe1f35" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0016</span> 7. Amendment to Product Principles</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3860fbe1f35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3860fbe1f35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3860fbe1f35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add the following product principles.
+</p></div></div></section>
+<section id="SEC-DG027-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ef5e9a24a8b0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0017</span> 7.1 Domain Engines Own Domain Truth</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ef5e9a24a8b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ef5e9a24a8b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ef5e9a24a8b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When a domain engine is integrated, Chirality may orchestrate, summarize, and govern work around it, but the domain engine remains the owner of its canonical model and calculation records.
+</p></div></div></section>
+<section id="SEC-DG027-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:037a235e114f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0018</span> 7.2 Agents Propose; Domain Tools Validate; Humans Accept</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:037a235e114f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:037a235e114f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:037a235e114f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Agents may draft operation proposals, review notes, and summaries. Domain-engine tools validate and compute. Humans accept or reject changes and decide what can be relied upon.
+</p></div></div></section>
+<section id="SEC-DG027-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:50e07d7fa501" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0019</span> 7.3 Deterministic Tools Over Agent Interpretation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:50e07d7fa501" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:50e07d7fa501" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:50e07d7fa501" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Agents must not improvise domain results. They must rely on deterministic tool outputs, manifests, logs, reports, and explicitly cited project files.
+</p></div></div></section>
+<section id="SEC-DG027-0020" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:ae2234c98d01" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0020</span> 7.4 Protected Domain Paths Are Write-Quarantined</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae2234c98d01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae2234c98d01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae2234c98d01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Canonical domain model files, model states, analysis runs, result files, comparison records, and handoff packages are protected unless the domain profile permits a specific deterministic write path.
+</p></div></div></section>
+<section id="SEC-DG027-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3f6d3a74d504" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0021</span> 7.5 Manifests Make Domain State Legible</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f6d3a74d504" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f6d3a74d504" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f6d3a74d504" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every domain-engine integration should generate bounded, human-readable and machine-readable artifacts so Chirality can reason about domain work without needing to own domain internals.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0022" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7e00093755f3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0022</span> 8. Scope Additions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e00093755f3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e00093755f3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e00093755f3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG027-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7fba9ad7ed12" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0023</span> 8.1 In Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7fba9ad7ed12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7fba9ad7ed12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7fba9ad7ed12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following are added to Chirality scope when this amendment is adopted:</p>
+<p>- Domain Engine Profile registry.
+- Domain Tool Adapter discovery.
+- Domain artifact scanning inside the working root.
+- Profile-defined protected write paths.
+- Profile-defined agent-writable paths.
+- Deterministic invocation of approved domain tools.
+- Domain tool result capture as bounded summaries, manifests, CSVs, Markdown files, and JSON/YAML records.
+- Agent creation of operation proposals and review notes.
+- Human-gated application of domain operations.
+- Domain-specific professional-boundary notices.
+- Domain-specific IP/data-boundary review checklists where applicable.
+</p></div></div></section>
+<section id="SEC-DG027-0024" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4211bafc1539" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0024</span> 8.2 Out of Scope Unless Separately Approved</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4211bafc1539" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4211bafc1539" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4211bafc1539" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following remain out of scope unless separately amended:</p>
+<p>- Embedding the OpenPipeStress 3D GUI inside Chirality.
+- Implementing the OpenPipeStress solver inside Chirality.
+- Directly editing OpenPipeStress canonical model-state files from agents.
+- Parsing CAESAR II, AutoPIPE, or other commercial stress-analysis result files.
+- Declaring external prover validation complete.
+- Issuing professional approval, code compliance, or ready-for-construction status.
+- Network-based vendor integrations outside Chirality’s approved network policy.
+- Cloud storage of domain model truth.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0025" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:9b22a09b2b83" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0025</span> 9. Functional Requirements Added by This Amendment</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b22a09b2b83" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b22a09b2b83" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b22a09b2b83" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Priority definitions follow the Chirality PRD:</p>
+<p>- `P0`: required for safe/useful current capability if domain integration is included.
+- `P1`: important for quality, governance, or adoption.
+- `P2`: desirable or future hardening.</p>
+<p>| ID | Priority | Requirement | Acceptance Criteria |
+|---|---:|---|---|
+| FR-DOM-001 | P0 | Chirality shall support a Domain Engine Profile schema. | A profile can declare engine name, version, root paths, authoritative artifacts, readable artifacts, protected write paths, agent-writable paths, deterministic tools, and required human gates. |
+| FR-DOM-002 | P0 | Chirality shall validate domain profiles before use. | Invalid profiles fail with typed errors; profile validation does not silently downgrade protected paths. |
+| FR-DOM-003 | P0 | Chirality shall distinguish authoritative domain artifacts from Chirality-readable artifacts. | UI and agent context identify which files are domain truth and which are summaries, drafts, or manifests. |
+| FR-DOM-004 | P0 | Chirality shall enforce protected domain write paths at tool-invocation and agent-write boundaries where implemented. | Agents cannot directly write protected model-state, analysis-run, comparison, or handoff paths through Chirality-managed writes. |
+| FR-DOM-005 | P0 | Chirality shall allow agents to write only profile-permitted proposal/review paths. | Operation proposals, review notes, TBD registers, and report drafts are allowed only in configured agent-writable paths. |
+| FR-DOM-006 | P0 | Domain tool calls shall be deterministic and bounded. | Tool output is structured, size-limited, logged, and does not rely on hidden app state for authoritative project truth. |
+| FR-DOM-007 | P0 | Domain tool results shall be captured as project files when they affect project reasoning. | Summaries, manifests, warnings, deltas, or report fragments are written under the working root, not hidden in chat only. |
+| FR-DOM-008 | P1 | Chirality shall expose domain artifacts in working-root scans. | Domain projects, states, runs, comparisons, handoff packages, and generated summaries are discoverable in the UI. |
+| FR-DOM-009 | P1 | Chirality shall expose approved domain tools through the existing deterministic tool registry or an equivalent domain-tool registry. | Agents can invoke only declared tools with declared input/output contracts. |
+| FR-DOM-010 | P1 | Chirality shall support operation proposal files. | Agents can create structured proposals that a domain engine may later validate, preview, and apply with human approval. |
+| FR-DOM-011 | P1 | Chirality shall support human approval metadata for domain operation application where tool-supported. | Applied operations can bind to approval reference, user identity where available, timestamp, source proposal, and resulting domain artifact hash. |
+| FR-DOM-012 | P1 | Chirality shall support domain professional-boundary notices. | Domain summaries and reports can include required language prohibiting automated certification, sealing, approval, or professional reliance. |
+| FR-DOM-013 | P1 | Chirality shall support domain IP/data-boundary checks where a profile defines them. | Agents and tools can flag protected-content risk, private-data leakage risk, and missing provenance. |
+| FR-DOM-014 | P2 | Chirality shall support domain profile UI panels. | Users can inspect profile status, protected paths, available tools, latest summaries, warnings, and proposals. |
+| FR-DOM-015 | P2 | Chirality shall support launch/deep-link actions into domain applications where supported. | Users can open a domain model in its native GUI without Chirality becoming the GUI. |
+| FR-DOM-016 | P2 | Chirality shall support future external result states as domain-readable artifacts. | External results can be represented as structured artifacts and compared by the domain engine without Chirality declaring professional validation. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0026" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:17d2fc711ed4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0026</span> 10. API Additions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:17d2fc711ed4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:17d2fc711ed4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:17d2fc711ed4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following API additions are proposed. Endpoint names are provisional.</p>
+<p>| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/domain/profiles/list` | GET | List domain profiles available in the working root and bundled instruction root. |
+| `/api/domain/profile/validate` | POST | Validate a domain engine profile. |
+| `/api/domain/artifacts/scan` | GET | Scan the selected working root for domain-engine artifacts declared by active profiles. |
+| `/api/domain/tool/invoke` | POST | Invoke a declared deterministic domain tool with validated arguments. |
+| `/api/domain/proposals/list` | GET | List operation proposals for a selected domain engine. |
+| `/api/domain/proposal/validate` | POST | Validate an operation proposal against profile schema and, where available, domain-engine validation. |</p>
+<p>Any endpoint that writes or mutates authoritative domain artifacts must be separately reviewed and must respect human-gate requirements.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0027" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:14b4f48236d9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0027</span> 11. Domain Engine Profile Shape</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:14b4f48236d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:14b4f48236d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:14b4f48236d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A minimal profile should resemble:</p>
+<p>```yaml
+domain_profile:
+  schema_version: &quot;1.0&quot;
+  id: &quot;open_pipe_stress&quot;
+  name: &quot;OpenPipeStress&quot;
+  engine_type: &quot;piping_design_and_stress_model_authoring&quot;
+  profile_version: &quot;0.1&quot;</p>
+<p>  domain_root_patterns:
+    - &quot;OpenPipeStress/&quot;
+    - &quot;**/OpenPipeStress/&quot;</p>
+<p>  authoritative_artifacts:
+    - &quot;OpenPipeStress/project.ops.yaml&quot;
+    - &quot;OpenPipeStress/states/**&quot;
+    - &quot;OpenPipeStress/runs/**&quot;
+    - &quot;OpenPipeStress/comparisons/**&quot;
+    - &quot;OpenPipeStress/handoff/**&quot;</p>
+<p>  chirality_readable_artifacts:
+    - &quot;Model_Manifest.md&quot;
+    - &quot;Model_Manifest.yaml&quot;
+    - &quot;RUN-*_summary.md&quot;
+    - &quot;CMP-*_summary.md&quot;
+    - &quot;CMP-*_delta_table.csv&quot;
+    - &quot;Handoff_Manifest.md&quot;
+    - &quot;Export_Warnings.md&quot;
+    - &quot;TBD_Register.md&quot;</p>
+<p>  protected_write_paths:
+    - &quot;OpenPipeStress/project.ops.yaml&quot;
+    - &quot;OpenPipeStress/states/**&quot;
+    - &quot;OpenPipeStress/runs/**&quot;
+    - &quot;OpenPipeStress/comparisons/**&quot;
+    - &quot;OpenPipeStress/handoff/**&quot;</p>
+<p>  agent_writable_paths:
+    - &quot;OpenPipeStress/proposals/**&quot;
+    - &quot;Review_Notes.md&quot;
+    - &quot;TBD_Register.md&quot;
+    - &quot;Draft_Report_Sections/**&quot;</p>
+<p>  deterministic_tools:
+    - id: &quot;ops.validate_model&quot;
+      mode: &quot;read_only&quot;
+    - id: &quot;ops.summarize_model&quot;
+      mode: &quot;read_only&quot;
+    - id: &quot;ops.list_states&quot;
+      mode: &quot;read_only&quot;
+    - id: &quot;ops.list_runs&quot;
+      mode: &quot;read_only&quot;
+    - id: &quot;ops.run_analysis&quot;
+      mode: &quot;domain_controlled_write&quot;
+      requires_human_confirmation: true
+    - id: &quot;ops.compare_states&quot;
+      mode: &quot;domain_controlled_write&quot;
+      requires_human_confirmation: false
+    - id: &quot;ops.compare_runs&quot;
+      mode: &quot;domain_controlled_write&quot;
+      requires_human_confirmation: false
+    - id: &quot;ops.generate_handoff&quot;
+      mode: &quot;domain_controlled_write&quot;
+      requires_human_confirmation: true
+    - id: &quot;ops.generate_report_fragment&quot;
+      mode: &quot;read_only_or_summary_write&quot;
+    - id: &quot;ops.check_boundary_language&quot;
+      mode: &quot;read_only&quot;
+    - id: &quot;ops.check_private_data_boundary&quot;
+      mode: &quot;read_only&quot;</p>
+<p>  professional_boundary:
+    agent_must_not_claim:
+      - &quot;code compliant for reliance&quot;
+      - &quot;professionally approved&quot;
+      - &quot;certified&quot;
+      - &quot;sealed&quot;
+      - &quot;ready for construction&quot;
+      - &quot;external prover validated unless supplied as external human record&quot;
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0028" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:aedc56da5e2e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0028</span> 12. OpenPipeStress as the First Domain Engine Profile</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aedc56da5e2e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aedc56da5e2e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aedc56da5e2e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG027-0029" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2d6baf0a0206" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0029</span> 12.1 Integration Intent</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2d6baf0a0206" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2d6baf0a0206" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2d6baf0a0206" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress should be integrated as a domain engine that provides:</p>
+<p>- model validation;
+- model summarization;
+- state/run enumeration;
+- internal analysis runs;
+- deterministic comparisons;
+- operation proposals;
+- handoff package generation;
+- report fragments;
+- IP/data-boundary checks;
+- professional-boundary language checks.
+</p></div></div></section>
+<section id="SEC-DG027-0030" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:6f24cd6b1367" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0030</span> 12.2 Chirality Should Read</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f24cd6b1367" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f24cd6b1367" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f24cd6b1367" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality may read:</p>
+<p>```text
+model manifests
+state summaries
+analysis-run summaries
+warning lists
+assumption registers
+comparison summaries
+delta tables
+handoff manifests
+draft report fragments
+operation proposals
+review notes
+TBD registers
+```
+</p></div></div></section>
+<section id="SEC-DG027-0031" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:579e1d6800aa" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0031</span> 12.3 Chirality Should Not Directly Write</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:579e1d6800aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:579e1d6800aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:579e1d6800aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality agents must not directly write:</p>
+<p>```text
+canonical OpenPipeStress project files
+accepted model states
+analysis run result records
+comparison result records
+handoff package internals
+solver outputs
+professional acceptance records
+```
+</p></div></div></section>
+<section id="SEC-DG027-0032" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:73a3d5a3980f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0032</span> 12.4 Chirality May Write</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73a3d5a3980f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73a3d5a3980f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73a3d5a3980f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality agents may write, if inside declared agent-writable paths:</p>
+<p>```text
+operation proposals
+review notes
+TBD registers
+scope notes
+handoff checklists
+draft report sections
+dependency register entries
+change records
+reconciliation notes
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0033" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:3d14065dab9a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0033</span> 13. Suggested Working-Root Layout for OpenPipeStress Projects</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d14065dab9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d14065dab9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d14065dab9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+projectRoot/
+  INIT.md</p>
+<p>  PKG-01_PipingDesign/
+    DEL-01-01_DesignBasis/
+      _STATUS.md
+      Datasheet.md
+      Specification.md
+      Guidance.md
+      Procedure.md
+      TBD_Register.md</p>
+<p>    DEL-01-02_OpenPipeStressModel/
+      _STATUS.md
+      Model_Manifest.md
+      Model_Manifest.yaml
+      Model_Warnings.md
+      Model_Assumptions.md
+      OpenPipeStress/
+        project.ops.yaml
+        states/
+        runs/
+        comparisons/
+        handoff/
+        proposals/</p>
+<p>    DEL-01-03_InternalStressAnalysis/
+      _STATUS.md
+      RUN-0041_summary.md
+      RUN-0052_summary.md
+      Solver_Diagnostics.md</p>
+<p>    DEL-01-04_StateComparison/
+      _STATUS.md
+      CMP-0007_summary.md
+      CMP-0007_delta_table.csv
+      Review_Notes.md</p>
+<p>    DEL-01-05_ExternalProverHandoff/
+      _STATUS.md
+      Handoff_Manifest.md
+      Export_Warnings.md
+      External_Review_TBDs.md</p>
+<p>  _Sources/
+    line_list/
+    pid_extracts/
+    equipment_interfaces/
+    owner_requirements/</p>
+<p>  _Reconciliation/
+    piping_model_reconciliation/</p>
+<p>  _Change/
+    model_change_records/</p>
+<p>  _Archive/
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0034" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:613389f919c9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0034</span> 14. Agent Behavior Rules for Domain Engines</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:613389f919c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:613389f919c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:613389f919c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Agents operating under a domain profile must follow these rules:</p>
+<p>1. Do not fabricate domain results.
+2. Do not directly mutate protected domain artifacts.
+3. Do not invent missing engineering data.
+4. Treat unknowns as `TBD`.
+5. Use deterministic tool outputs as evidence.
+6. Cite model state IDs, run IDs, comparison IDs, manifest hashes, and file paths where available.
+7. Write proposals, not accepted changes.
+8. Preserve professional-boundary language.
+9. Preserve IP/data-boundary language.
+10. Request or record human review when a proposed action would affect relied-upon project state.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0035" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:df45ae86212c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0035</span> 15. Validation Requirements for This Amendment</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df45ae86212c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df45ae86212c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df45ae86212c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When implemented, the Domain Engine Integration feature should be tested for:</p>
+<p>- profile schema validation;
+- protected path recognition;
+- safe tool invocation;
+- invalid tool argument rejection;
+- write-scope enforcement;
+- proposal file creation;
+- rejection of direct writes to protected domain artifacts;
+- handling of missing domain engine executable;
+- handling of invalid domain model;
+- handling of large domain outputs;
+- redaction of private data in generated summaries;
+- professional-boundary language checks;
+- deterministic output for repeated tool calls.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0036" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:40e8aac10551" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0036</span> 16. Risks and Mitigations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40e8aac10551" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40e8aac10551" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40e8aac10551" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Risk | Impact | Mitigation |
+|---|---:|---|
+| Agents directly modify engineering model truth | High | Protected write paths, deterministic tools, operation proposals, human gates. |
+| Chirality is mistaken for a domain solver | High | Product language says Chirality orchestrates and governs; domain engine computes. |
+| Agent summaries misrepresent technical results | High | Require deterministic tool outputs, bounded summaries, citations to manifests/runs/comparisons. |
+| Domain tools expose private data to chat unnecessarily | High | Redaction, summary controls, private-data boundary checks. |
+| Operation proposals are mistaken for accepted model changes | Medium/High | Label proposals clearly; accepted changes must be applied by domain engine with human approval. |
+| Professional status labels imply approval | High | Prohibit automatic code-compliant, certified, approved, ready-for-construction labels. |
+| Domain profile overfits to OpenPipeStress | Medium | Define generic Domain Engine Profile with OpenPipeStress as first example. |
+| Integration expands current release scope too much | Medium | Treat as amendment/future scope unless explicitly added to a release decomposition. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0037" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:578aeed8183f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0037</span> 17. Release Strategy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:578aeed8183f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:578aeed8183f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:578aeed8183f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This amendment should be implemented in stages.
+</p></div></div></section>
+<section id="SEC-DG027-0038" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:d441bdd14355" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0038</span> Stage A: Specification Only</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d441bdd14355" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d441bdd14355" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d441bdd14355" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- this amendment;
+- `DOMAIN_ENGINE_PROFILE_SPEC.md`;
+- OpenPipeStress example profile;
+- path/write-boundary policy;
+- operation proposal schema.
+</p></div></div></section>
+<section id="SEC-DG027-0039" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:b709f88c1ef5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0039</span> Stage B: Read-Only Domain Awareness</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b709f88c1ef5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b709f88c1ef5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b709f88c1ef5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- profile validation;
+- artifact scanning;
+- manifest ingestion;
+- read-only tool invocation;
+- agent access to generated summaries.
+</p></div></div></section>
+<section id="SEC-DG027-0040" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:0d98719eaecf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0040</span> Stage C: Domain-Controlled Tool Invocation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0d98719eaecf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0d98719eaecf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0d98719eaecf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- approved tool invocation registry;
+- deterministic result capture;
+- analysis-run and comparison generation through the domain adapter;
+- write outputs only through domain-controlled tools.
+</p></div></div></section>
+<section id="SEC-DG027-0041" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:850af7f0a164" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0041</span> Stage D: Operation Proposal Workflow</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:850af7f0a164" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:850af7f0a164" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:850af7f0a164" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- proposal authoring;
+- proposal validation;
+- diff preview where domain tool supports it;
+- human approval metadata;
+- optional apply operation through domain engine, not through raw agent writes.
+</p></div></div></section>
+<section id="SEC-DG027-0042" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:fd13b5f39002" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0042</span> Stage E: Deeper UI Convenience</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd13b5f39002" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd13b5f39002" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd13b5f39002" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- profile status panel;
+- launch/open-in-domain-app actions;
+- proposal browser;
+- domain artifact summary dashboard.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0043" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:59e53d5ea4d9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0043</span> 18. Chirality PRD Text Insertions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59e53d5ea4d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59e53d5ea4d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59e53d5ea4d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG027-0044" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:accdc0465056" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0044</span> 18.1 Add to Product Summary</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:accdc0465056" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:accdc0465056" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:accdc0465056" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add:</p>
+<p>&gt; Chirality may integrate with deterministic domain engines through explicit domain profiles and tool adapters. In such integrations, Chirality governs agent work, deliverables, manifests, review notes, and human gates, while the domain engine owns domain-specific model truth and computation.
+</p></div></div></section>
+<section id="SEC-DG027-0045" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9369fc45f0a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0045</span> 18.2 Add to In Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9369fc45f0a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9369fc45f0a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9369fc45f0a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add:</p>
+<p>&gt; Domain Engine Profile support for local deterministic specialist tools, including profile validation, protected write paths, agent-writable proposal paths, domain tool invocation, and generated manifests/summaries.
+</p></div></div></section>
+<section id="SEC-DG027-0046" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1854377a7575" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0046</span> 18.3 Add to Out of Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1854377a7575" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1854377a7575" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1854377a7575" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add:</p>
+<p>&gt; Chirality does not become the domain engine. It does not directly solve, certify, approve, or professionally validate domain-specific engineering work, and it does not allow agents to directly modify protected domain model artifacts.
+</p></div></div></section>
+<section id="SEC-DG027-0047" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7b0252d30a24" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG027-0047</span> 18.4 Add to Known Gaps and Risks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7b0252d30a24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7b0252d30a24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7b0252d30a24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add:</p>
+<p>| ID | Area | Risk / Gap | Product Decision |
+|---|---|---|---|
+| KG-DOM-001 | Domain engines | Chirality does not yet have a formal profile schema for domain-engine integrations. | Add Domain Engine Profile support before integrating OpenPipeStress beyond manual file-based workflows. |
+| KG-DOM-002 | Protected domain writes | Current write quarantine may not be sufficient for canonical engineering model files. | Domain integrations must define protected write paths and agent-writable proposal paths. |
+| KG-DOM-003 | Domain tool outputs | Agent summaries can misrepresent technical results if not grounded in deterministic tool outputs. | Domain agents must rely on manifests, summaries, hashes, run IDs, and deterministic tool outputs. |
+| KG-DOM-004 | Professional reliance | Domain integrations can create false impression of engineering approval. | Domain profiles must carry professional-boundary language and prohibit automatic approval/code-compliance labels. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0048" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:0bd388f83908" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0048</span> 19. Acceptance Criteria for Amendment Adoption</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bd388f83908" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bd388f83908" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bd388f83908" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This amendment is adopted when:</p>
+<p>1. The Chirality PRD includes domain-engine integration as an explicit future or active scope item.
+2. A Domain Engine Profile schema exists.
+3. OpenPipeStress has a draft profile using that schema.
+4. Protected write paths and agent-writable paths are clearly defined.
+5. The PRD states that Chirality does not become the domain solver or professional prover.
+6. The PRD states that domain operations require deterministic tools and human gates.
+7. Future implementation work can be decomposed into profile validation, artifact scanning, tool invocation, and proposal workflows.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG027-0049" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:ce234e8ff4ba" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG027-0049</span> 20. Guiding Statement</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce234e8ff4ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce234e8ff4ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce234e8ff4ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The guiding statement for this amendment is:</p>
+<p>&gt; Chirality is the governed professional-work harness. Domain engines are the deterministic specialist tools. Agents create proposals and organize evidence. Humans decide what can be relied upon.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG027";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

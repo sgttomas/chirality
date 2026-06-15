@@ -1,0 +1,583 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLPACK-DBM-POSTAUTHOR-CONCORDANCE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>48</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SKP005-0001">Source Pack: Skill pack: dbm-postauthor-concordance</a> <a href="#SEC-SKP005-0002">Component: skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md</a> <a href="#SEC-SKP005-0010">Component: skills/dbm-postauthor-concordance/QA_CHECKS.md</a> <a href="#SEC-SKP005-0018">Component: skills/dbm-postauthor-concordance/SKILL.md</a> <a href="#SEC-SKP005-0040">Component: skills/dbm-postauthor-concordance/TOOL_POLICY.md</a></nav>
+<main>
+<section id="SEC-SKP005-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:72613c43644f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SKP005-0001</span> Source Pack: Skill pack: dbm-postauthor-concordance</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72613c43644f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72613c43644f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72613c43644f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`</p>
+<p>Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+</p></div></div></section>
+<section id="SEC-SKP005-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1fdeb9201574" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP005-0002</span> Component: skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fdeb9201574" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fdeb9201574" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fdeb9201574" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0003" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:f6a79f00b460" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP005-0003</span> BRIEF SCHEMA - dbm-postauthor-concordance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6a79f00b460" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6a79f00b460" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6a79f00b460" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This file defines the INIT-TASK dispatch contract for `TASK + dbm-postauthor-concordance`.
+</p></div></div></section>
+<section id="SEC-SKP005-0004" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:b69e542d86ef" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0004</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b69e542d86ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b69e542d86ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b69e542d86ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this skill after DBM section synthesis and package assembly to build a post-authoring evidence bundle and prepare candidate findings for human readiness judgment.
+</p></div></div></section>
+<section id="SEC-SKP005-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:92702cc12f76" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0005</span> Scope model</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:92702cc12f76" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:92702cc12f76" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:92702cc12f76" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` should be the review output directory within the package snapshot.
+- `AllowedWriteTargets` must name exactly the 7 output files under REVIEW_OUTPUT_DIR.
+- The brief must not grant write access to section output folders, planning artifacts, KTY folders, or source authority files.
+</p></div></div></section>
+<section id="SEC-SKP005-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:37f53cf6d272" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0006</span> Required brief fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:37f53cf6d272" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:37f53cf6d272" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:37f53cf6d272" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Type | Meaning | Example |
+|---|---|---|---|
+| `PURPOSE` | string | Why review is being run | `Post-authoring concordance review for package RUN-20260422-175550.` |
+| `ScopePath` | path | Review output directory | `/repo/.../_Publication/DBM/package/RUN-20260422-175550/review/` |
+| `TaskSkill` | string | Must equal `dbm-postauthor-concordance` | `dbm-postauthor-concordance` |
+| `AllowedWriteTargets` | list[path] | Exactly the 7 output files | `[/.../Evidence_Bundle_Summary.md, /.../Section_Coverage.csv, /.../Draft_Claims.csv, /.../Body_Thinness.csv, /.../TBD_Inventory.csv, /.../Candidate_Findings.csv, /.../Publication_Review_Disposition.csv]` |
+| `RuntimeOverrides.ASSEMBLED_DBM_PATH` | path | Assembled Rewritten_DBM.md | `/.../package/RUN-.../Rewritten_DBM.md` |
+| `RuntimeOverrides.REVIEW_OUTPUT_DIR` | path | Output directory | `/.../package/RUN-.../review/` |
+| `RuntimeOverrides.DOMAIN_ROOT` | path | DOMAIN root | `/repo/.../West_Doe_Deepcut_DBM/` |
+| `RuntimeOverrides.PUBLICATION_SCHEMA_PATH` | path | Approved schema | `/.../_Planning/Publication_Schema.md` |
+| `RuntimeOverrides.SECTION_MAP_PATH` | path | Approved section map | `/.../_Planning/Section_Map.csv` |
+| `RuntimeOverrides.PUBLICATION_RULES_PATH` | path | Approved rules | `/.../_Planning/Publication_Rules.md` |
+| `ExpectedOutputs` | list[path] | All 7 outputs | (same as AllowedWriteTargets) |
+</p></div></div></section>
+<section id="SEC-SKP005-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4444f2df6bf7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0007</span> Optional brief fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4444f2df6bf7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4444f2df6bf7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4444f2df6bf7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Type | Meaning | Example |
+|---|---|---|---|
+| `RuntimeOverrides.SUPERSESSION_MAP_PATH` | path | Active supersession map | `/.../SCA-006/.../Supersession_Map.csv` |
+| `RuntimeOverrides.SECTION_CONTEXT_ROOT` | path | Section context packets | `/.../_Planning/section-context/` |
+| `RuntimeOverrides.SECTIONS_ROOT` | path | Individual section output folders | `/.../_Publication/DBM/sections/` |
+| `CustomInstructions` | string | Run-specific emphasis | `Pay special attention to shared utility cross-facility values.` |
+</p></div></div></section>
+<section id="SEC-SKP005-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:105b0089e39b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0008</span> Runtime-override guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:105b0089e39b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:105b0089e39b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:105b0089e39b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- All required inputs are expected to be available in valid pipeline runs. If any are missing, the skill sets `EvidenceBundleStatus = PARTIAL`.
+- `SECTIONS_ROOT` provides access to individual section QA artifacts from `dbm-section-publish`. When available, the agent can cross-reference section-level adequacy findings.
+- `--section-map` is always passed to substrate tools in pipeline mode (Section_Map.csv is the run-specific authority).
+</p></div></div></section>
+<section id="SEC-SKP005-0009" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:cf27cd7abcfd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0009</span> Example INIT-TASK brief</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cf27cd7abcfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cf27cd7abcfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cf27cd7abcfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```md
+PURPOSE: Post-authoring concordance review for package RUN-20260422-175550.
+ScopePath: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/
+TaskSkill: dbm-postauthor-concordance
+AllowedWriteTargets:
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Evidence_Bundle_Summary.md
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Section_Coverage.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Draft_Claims.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Body_Thinness.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/TBD_Inventory.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Candidate_Findings.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Publication_Review_Disposition.csv
+RuntimeOverrides:
+  ASSEMBLED_DBM_PATH: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/Rewritten_DBM.md
+  REVIEW_OUTPUT_DIR: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/
+  DOMAIN_ROOT: /repo/domains/West_Doe_Comp_and_Liquids_DBM/
+  PUBLICATION_SCHEMA_PATH: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/_Planning/Publication_Schema.md
+  SECTION_MAP_PATH: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/_Planning/Section_Map.csv
+  PUBLICATION_RULES_PATH: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/_Planning/Publication_Rules.md
+  SECTIONS_ROOT: /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/sections/
+ExpectedOutputs:
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Evidence_Bundle_Summary.md
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Section_Coverage.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Draft_Claims.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Body_Thinness.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/TBD_Inventory.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Candidate_Findings.csv
+  - /repo/domains/West_Doe_Comp_and_Liquids_DBM/_Publication/DBM/package/RUN-20260422-175550/review/Publication_Review_Disposition.csv
+```
+</p></div></div></section>
+<section id="SEC-SKP005-0010" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:349d2f3ee3b7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP005-0010</span> Component: skills/dbm-postauthor-concordance/QA_CHECKS.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:349d2f3ee3b7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:349d2f3ee3b7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:349d2f3ee3b7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0011" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:44e32e9aff7d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP005-0011</span> QA CHECKS - dbm-postauthor-concordance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44e32e9aff7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44e32e9aff7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44e32e9aff7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ae2854f7c751" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0012</span> Minimum output validity checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae2854f7c751" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae2854f7c751" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae2854f7c751" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The run is valid only when all of the following are true:</p>
+<p>1. All 7 required outputs exist under REVIEW_OUTPUT_DIR:
+   - `Evidence_Bundle_Summary.md`
+   - `Section_Coverage.csv`
+   - `Draft_Claims.csv`
+   - `Body_Thinness.csv`
+   - `TBD_Inventory.csv`
+   - `Candidate_Findings.csv`
+   - `Publication_Review_Disposition.csv`
+2. All writes stayed inside REVIEW_OUTPUT_DIR.
+3. No section outputs, planning artifacts, KTY files, or governed-pointer files were modified.
+4. `Evidence_Bundle_Summary.md` contains all required H2 headings and both `EvidenceBundleStatus` and `ReviewStatus`.
+5. `Candidate_Findings.csv` uses only controlled enum values for `FindingType` and `Severity`.
+6. Every row in `Candidate_Findings.csv` has `Origin = AGENT_CHECK`.
+7. Every row in `Candidate_Findings.csv` has a non-empty `Explanation` and `EvidenceSource`.
+8. `Publication_Review_Disposition.csv` has exactly one row per `FindingID` in `Candidate_Findings.csv`.
+9. Every row in `Publication_Review_Disposition.csv` has `HumanDisposition = TBD`.
+10. `Section_Coverage.csv` has `AuthoritySource = SECTION_MAP` (pipeline review always uses section map).
+</p></div></div></section>
+<section id="SEC-SKP005-0013" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:37d7ad4291ef" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0013</span> Required Candidate_Findings.csv schema</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:37d7ad4291ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:37d7ad4291ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:37d7ad4291ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Same as `dbm-draft-review`:</p>
+<p>`FindingID, FindingType, Severity, Origin, DraftLocation, DraftLineNumber, DraftText, GovernedTruthRef, GovernedTruthValue, SectionID, KTYRef, KARef, SupersessionRef, Explanation, EvidenceSource`
+</p></div></div></section>
+<section id="SEC-SKP005-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1a30d9cb3961" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0014</span> Required Publication_Review_Disposition.csv schema</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a30d9cb3961" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a30d9cb3961" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a30d9cb3961" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`FindingID, FindingType, Severity, SectionID, Explanation, EvidenceSource, ProposedDisposition, HumanDisposition, HumanNotes, DispositionDate`</p>
+<p>- `FindingID`: must match a FindingID in Candidate_Findings.csv
+- `ProposedDisposition`: agent-recommended disposition (free text)
+- `HumanDisposition`: must be `TBD` at emission. Allowed values after human review: `ACCEPT_AS_IS`, `REVISE`, `WAIVE_WITH_RATIONALE`, `DEFER`, `NOT_APPLICABLE`
+- `HumanNotes`: empty at emission
+- `DispositionDate`: empty at emission
+</p></div></div></section>
+<section id="SEC-SKP005-0015" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:6aa403b9964f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0015</span> Required substrate CSV schemas</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6aa403b9964f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6aa403b9964f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6aa403b9964f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Same as `dbm-draft-review` QA_CHECKS.md — see that file for Section_Coverage.csv, Draft_Claims.csv, Body_Thinness.csv, and TBD_Inventory.csv column definitions.
+</p></div></div></section>
+<section id="SEC-SKP005-0016" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:e51760966753" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0016</span> Required Evidence_Bundle_Summary.md structure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e51760966753" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e51760966753" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e51760966753" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Same as `dbm-draft-review` — 10 required H2 headings.
+</p></div></div></section>
+<section id="SEC-SKP005-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1efdd0ccf8df" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0017</span> Failure reporting expectations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1efdd0ccf8df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1efdd0ccf8df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1efdd0ccf8df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use `FAILED_INPUTS` when:
+- required runtime overrides are missing (ASSEMBLED_DBM_PATH, REVIEW_OUTPUT_DIR, DOMAIN_ROOT, PUBLICATION_SCHEMA_PATH, SECTION_MAP_PATH, PUBLICATION_RULES_PATH)
+- output paths fall outside the package snapshot directory</p>
+<p>Use `FAILED` when:
+- required outputs cannot be written despite valid inputs
+- a tool exits with code 1 (fatal error)
+</p></div></div></section>
+<section id="SEC-SKP005-0018" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:d51bac8cea5e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP005-0018</span> Component: skills/dbm-postauthor-concordance/SKILL.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d51bac8cea5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d51bac8cea5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d51bac8cea5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+name: dbm-postauthor-concordance
+description: Post-authoring evidence bundle and review for pipeline-produced DBM sections — build review substrate, prepare candidate findings for human readiness judgment.
+compatibility: Chirality TASK; dispatched by DBM_PUBLISHER Gate 6
+allowed-tools: python3 tools/review/scan_section_coverage.py:*, python3 tools/review/extract_claims.py:*, python3 tools/review/scan_tbd_markers.py:*, python3 tools/review/check_body_thinness.py:*
+metadata:
+  chirality-skill-version: &quot;1&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SKP005-0019" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:7384e3ee0615" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP005-0019</span> SKILL - dbm-postauthor-concordance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7384e3ee0615" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7384e3ee0615" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7384e3ee0615" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:51ecce98db9e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51ecce98db9e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51ecce98db9e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51ecce98db9e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Post-authoring review for pipeline-produced DBM sections. Build a structured evidence bundle using deterministic substrate tools, then use agent judgment to read governed truth alongside the authored DBM and prepare candidate findings for human readiness judgment.</p>
+<p>This skill replaces the pre-authoring concordance model (Gates 3-4 concordance freeze). Concordance is now extracted and validated *after* authoring rather than constraining authoring. The evidence bundle is not a quality gate — findings are candidates for human disposition, not automatic blockers.</p>
+<p>This skill is a reviewer only. It does not modify section outputs, the knowledge base, publication planning artifacts, or governed pointers.
+</p></div></div></section>
+<section id="SEC-SKP005-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:685516c3135e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0021</span> Suitable agent shells</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:685516c3135e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:685516c3135e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:685516c3135e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` (generic shell mode, no profile)</p>
+<p>Typical dispatcher: `DBM_PUBLISHER` during Gate 6 after section synthesis and package assembly.
+</p></div></div></section>
+<section id="SEC-SKP005-0022" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0022</span> Inputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0023" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:ab31cd781d35" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0023</span> Required</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab31cd781d35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab31cd781d35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab31cd781d35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ASSEMBLED_DBM_PATH` — path to the assembled Rewritten_DBM.md (or sections root)
+- `REVIEW_OUTPUT_DIR` — output directory for the evidence bundle
+- `DOMAIN_ROOT` — absolute path to the DOMAIN root
+- `PUBLICATION_SCHEMA_PATH` — approved Publication_Schema.md
+- `SECTION_MAP_PATH` — approved Section_Map.csv
+- `PUBLICATION_RULES_PATH` — approved Publication_Rules.md
+</p></div></div></section>
+<section id="SEC-SKP005-0024" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:7e1f5a1e3551" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0024</span> Optional</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e1f5a1e3551" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e1f5a1e3551" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e1f5a1e3551" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `SUPERSESSION_MAP_PATH` — Supersession_Map.csv from active SCA
+- `SECTION_CONTEXT_ROOT` — directory containing SEC-##_Context.md packets
+- `SECTIONS_ROOT` — individual section output folders (for section-level QA artifact access)
+</p></div></div></section>
+<section id="SEC-SKP005-0025" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:db7a0bf4b2c3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0025</span> Runtime overrides</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db7a0bf4b2c3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db7a0bf4b2c3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db7a0bf4b2c3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `ASSEMBLED_DBM_PATH` | Assembled DBM to review | **Required** | Absolute path to Rewritten_DBM.md |
+| `REVIEW_OUTPUT_DIR` | Evidence bundle output root | **Required** | Path under `_Publication/DBM/package/&lt;run-id&gt;/review/` |
+| `DOMAIN_ROOT` | DOMAIN decomposition root | **Required** | Absolute path to domain directory |
+| `PUBLICATION_SCHEMA_PATH` | Publication schema | **Required** | Markdown path under `_Planning/` |
+| `SECTION_MAP_PATH` | Section map | **Required** | CSV path under `_Planning/` |
+| `PUBLICATION_RULES_PATH` | Publication rules | **Required** | Markdown path under `_Planning/` |
+| `SUPERSESSION_MAP_PATH` | Supersession map | unset | CSV path under active SCA |
+| `SECTION_CONTEXT_ROOT` | Section context packets | unset | Directory path |
+| `SECTIONS_ROOT` | Section output folders | unset | Path under `_Publication/DBM/sections/` |
+</p></div></div></section>
+<section id="SEC-SKP005-0026" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:098ed55fc49d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0026</span> Two-level status model</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:098ed55fc49d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:098ed55fc49d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:098ed55fc49d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0027" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:32119a1fad4d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0027</span> EvidenceBundleStatus (process validity)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32119a1fad4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32119a1fad4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32119a1fad4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Status | Meaning |
+|---|---|
+| `COMPLETE` | All tools ran, all governed inputs available, all substrate artifacts written |
+| `PARTIAL` | One or more governed inputs unavailable; substrate is incomplete |
+| `TOOL_ERROR` | A tool failed; substrate is unreliable |</p>
+<p>Expected to be `COMPLETE` in valid pipeline runs, but the skill must still handle `PARTIAL` and `TOOL_ERROR` — files can be missing, malformed, stale, or unreadable.
+</p></div></div></section>
+<section id="SEC-SKP005-0028" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:c6c3aab6178a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0028</span> ReviewStatus (agent candidate-finding result)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c6c3aab6178a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c6c3aab6178a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c6c3aab6178a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Status | Meaning |
+|---|---|
+| `NO_FINDINGS` | Agent review produced no candidate findings |
+| `FINDINGS_FOR_DISPOSITION` | Agent prepared candidate findings for human disposition |
+| `REVIEW_INCOMPLETE` | Agent could not complete review |
+</p></div></div></section>
+<section id="SEC-SKP005-0029" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c8e88e702efe" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0029</span> Finding taxonomy (controlled enum)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8e88e702efe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8e88e702efe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8e88e702efe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Type | Meaning |
+|---|---|
+| `INCORRECT` | Authored content contradicts governed KTY/SCA/supersession truth |
+| `UNSUPPORTED` | Authored content makes a claim not warranted by the knowledge base |
+| `MISSING` | Governed material exists but is absent from the authored content |
+| `FLATTENED` | Authored content converts TBD/conflict/assumption into a firm fact |
+| `OUTDATED` | Authored content uses superseded source DBM content |
+| `INCOMPLETE` | Authored content has the right topic but lacks required engineering detail |
+</p></div></div></section>
+<section id="SEC-SKP005-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8162be79a7be" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0030</span> Finding severity (controlled enum)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8162be79a7be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8162be79a7be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8162be79a7be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Severity | Meaning |
+|---|---|
+| `HIGH` | Significant technical or governance concern |
+| `MEDIUM` | Notable gap or inconsistency |
+| `LOW` | Minor quality observation |
+| `ADVISORY` | Noted for record; no action expected |
+</p></div></div></section>
+<section id="SEC-SKP005-0031" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0031</span> Method</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0032" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:fb32eca7a8b7" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0032</span> Tool-first: build review substrate</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb32eca7a8b7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb32eca7a8b7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb32eca7a8b7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Validate inputs and write boundary.** Confirm all required paths exist. Create output directory if absent. If any required input is missing or unreadable, set `EvidenceBundleStatus = PARTIAL` and record the gap.</p>
+<p>2. **Run `scan_section_coverage.py`.** Pass `--section-map` (required for pipeline review — Section_Map.csv is the run-specific authority after Gate 4). Write output to `{REVIEW_OUTPUT_DIR}/Section_Coverage.csv`.</p>
+<p>3. **Run `extract_claims.py`.** Extract engineering values, parameters, configuration statements from assembled DBM. Write output to `{REVIEW_OUTPUT_DIR}/Draft_Claims.csv`.</p>
+<p>4. **Run `scan_tbd_markers.py`.** Scan assembled DBM for TBD/TBC/ASSUMPTION markers with KB cross-reference. Write output to `{REVIEW_OUTPUT_DIR}/TBD_Inventory.csv`.</p>
+<p>5. **Run `check_body_thinness.py`.** Pass `--section-map` and `--schema`. Write output to `{REVIEW_OUTPUT_DIR}/Body_Thinness.csv`.
+</p></div></div></section>
+<section id="SEC-SKP005-0033" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:e423e6dc8d83" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0033</span> Agent judgment: review governed truth against authored content</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e423e6dc8d83" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e423e6dc8d83" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e423e6dc8d83" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+6. **Read authored sections against mapped KA artifacts.** Use Section_Map.csv to identify PRIMARY-role KA artifacts per section. For each section, judge materiality, accuracy, and completeness. This is the core engineering judgment step.</p>
+<p>7. **Check supersession compliance.** When SUPERSESSION_MAP_PATH is provided, verify authored content uses current values.</p>
+<p>8. **Classify candidate findings.** Every finding must set `Origin = AGENT_CHECK`, cite governed-truth evidence, and trace to substrate where applicable.</p>
+<p>9. **Emit evidence bundle and disposition artifact.** Write all outputs to REVIEW_OUTPUT_DIR. Write `Publication_Review_Disposition.csv` with `HumanDisposition = TBD` for all rows.
+</p></div></div></section>
+<section id="SEC-SKP005-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:680cdd5e5ce6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0034</span> Outputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:680cdd5e5ce6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:680cdd5e5ce6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:680cdd5e5ce6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All outputs are written to REVIEW_OUTPUT_DIR. 7 files total:</p>
+<p>| File | Purpose |
+|---|---|
+| `Evidence_Bundle_Summary.md` | `EvidenceBundleStatus`, `ReviewStatus`, tool run results, input provenance |
+| `Section_Coverage.csv` | Structural coverage |
+| `Draft_Claims.csv` | Values, parameters, terms located in authored text |
+| `Body_Thinness.csv` | Section body underdevelopment signals |
+| `TBD_Inventory.csv` | TBD/TBC/ASSUMPTION markers with KB cross-reference |
+| `Candidate_Findings.csv` | Agent-prepared findings for human disposition |
+| `Publication_Review_Disposition.csv` | Disposition artifact for human decision recording |
+</p></div></div></section>
+<section id="SEC-SKP005-0035" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:e9fb3aa3f8b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0035</span> Candidate_Findings.csv schema</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9fb3aa3f8b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9fb3aa3f8b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9fb3aa3f8b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Same as `dbm-draft-review`:</p>
+<p>`FindingID, FindingType, Severity, Origin, DraftLocation, DraftLineNumber, DraftText, GovernedTruthRef, GovernedTruthValue, SectionID, KTYRef, KARef, SupersessionRef, Explanation, EvidenceSource`
+</p></div></div></section>
+<section id="SEC-SKP005-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:593c06e9d368" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0036</span> Publication_Review_Disposition.csv schema</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:593c06e9d368" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:593c06e9d368" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:593c06e9d368" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`FindingID, FindingType, Severity, SectionID, Explanation, EvidenceSource, ProposedDisposition, HumanDisposition, HumanNotes, DispositionDate`</p>
+<p>- `FindingID`: matches `Candidate_Findings.csv` FindingID
+- `ProposedDisposition`: agent-recommended disposition
+- `HumanDisposition`: `TBD` until human rules. Allowed values: `ACCEPT_AS_IS`, `REVISE`, `WAIVE_WITH_RATIONALE`, `DEFER`, `NOT_APPLICABLE`
+- `HumanNotes`: empty until human fills in
+- `DispositionDate`: empty until human fills in</p>
+<p>DBM_PUBLISHER does not update acceptance pointers until all `HumanDisposition` values are recorded (no `TBD` remaining).
+</p></div></div></section>
+<section id="SEC-SKP005-0037" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:7b36927359b0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0037</span> Evidence_Bundle_Summary.md structure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7b36927359b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7b36927359b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7b36927359b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Same required H2 headings as `dbm-draft-review`.
+</p></div></div></section>
+<section id="SEC-SKP005-0038" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ceac7be29708" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0038</span> Non-negotiable constraints</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ceac7be29708" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ceac7be29708" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ceac7be29708" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The skill does NOT modify section outputs, knowledge base, publication artifacts, or governed pointers.
+- Write boundary is exactly the 7 output files under REVIEW_OUTPUT_DIR.
+- No finding is treated as accepted truth. Findings are candidates for human disposition.
+- `Origin = AGENT_CHECK` on every finding row.
+- No automatic readiness verdicts, PASS/FAIL judgments, or blocking decisions.
+- `Publication_Review_Disposition.csv` is emitted with `HumanDisposition = TBD` — the skill does not pre-fill human decisions.
+</p></div></div></section>
+<section id="SEC-SKP005-0039" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6395e6af7895" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0039</span> QA expectations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6395e6af7895" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6395e6af7895" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6395e6af7895" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- All 7 required outputs exist under REVIEW_OUTPUT_DIR.
+- All writes stayed inside REVIEW_OUTPUT_DIR.
+- `Candidate_Findings.csv` uses only controlled enum values for FindingType and Severity.
+- Every finding has `Origin = AGENT_CHECK`, non-empty Explanation and EvidenceSource.
+- `Publication_Review_Disposition.csv` has one row per finding, with `HumanDisposition = TBD`.
+- `Evidence_Bundle_Summary.md` contains both `EvidenceBundleStatus` and `ReviewStatus`.
+</p></div></div></section>
+<section id="SEC-SKP005-0040" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:183505b0d207" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP005-0040</span> Component: skills/dbm-postauthor-concordance/TOOL_POLICY.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:183505b0d207" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:183505b0d207" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:183505b0d207" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0041" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:cbaa02123e0c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP005-0041</span> TOOL POLICY - dbm-postauthor-concordance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cbaa02123e0c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cbaa02123e0c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cbaa02123e0c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0042" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:af6389910930" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0042</span> Preferred tool order</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af6389910930" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af6389910930" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af6389910930" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Run `tools/review/scan_section_coverage.py` with `--section-map` (required in pipeline mode).
+2. Run `tools/review/extract_claims.py` — value/parameter/term extraction.
+3. Run `tools/review/scan_tbd_markers.py` — TBD/TBC/ASSUMPTION marker scan with KB cross-ref.
+4. Run `tools/review/check_body_thinness.py` with `--section-map` and `--schema`.
+5. Read substrate outputs and authored sections alongside mapped KA artifacts for agent judgment.
+6. Emit the 7 output files (6 evidence bundle + disposition artifact).
+</p></div></div></section>
+<section id="SEC-SKP005-0043" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3eec771fd332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0043</span> Allowed deterministic tools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP005-0044" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:ddee1cd68ac5" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0044</span> TASK-enforced</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ddee1cd68ac5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ddee1cd68ac5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ddee1cd68ac5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `python3 tools/review/scan_section_coverage.py:*`
+- `python3 tools/review/extract_claims.py:*`
+- `python3 tools/review/scan_tbd_markers.py:*`
+- `python3 tools/review/check_body_thinness.py:*`
+</p></div></div></section>
+<section id="SEC-SKP005-0045" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:4253dc972bf0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP005-0045</span> Operationally invoked</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4253dc972bf0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4253dc972bf0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4253dc972bf0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `tools/review/scan_section_coverage.py` — compare authored section headings against Publication_Schema.md, enriched by Section_Map.csv (run-specific authority).
+- `tools/review/extract_claims.py` — locate engineering values, parameters, configuration statements, and controlled terms in authored text.
+- `tools/review/scan_tbd_markers.py` — locate TBD/TBC/ASSUMPTION markers with KB cross-reference via Section_Map.csv Scoping.md discovery.
+- `tools/review/check_body_thinness.py` — compute section body underdevelopment signals with mapped-artifact density ratios.
+</p></div></div></section>
+<section id="SEC-SKP005-0046" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5d787950f256" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0046</span> Expected use of reasoning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5d787950f256" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5d787950f256" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5d787950f256" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Governed-truth comparison:** Read mapped KA artifacts (PRIMARY role) alongside authored sections. Judge whether governed design-basis content is materially represented.
+- **Supersession compliance:** Verify authored content uses current values when Supersession_Map.csv is provided.
+- **Materiality judgment:** Distinguish material engineering concerns from formatting variations.
+- **Finding classification:** Assign 6-type taxonomy and severity. Cite governed evidence and trace to substrate.
+- **Completeness assessment:** Judge section adequacy at the level expected for a senior-engineer Design Basis Memorandum.
+- **Disposition preparation:** Write `Publication_Review_Disposition.csv` with agent-proposed dispositions and `HumanDisposition = TBD`.
+- **Section QA cross-reference:** When SECTIONS_ROOT is available, cross-reference section-level QA artifacts from `dbm-section-publish` for additional context.
+</p></div></div></section>
+<section id="SEC-SKP005-0047" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:87ef12968ad6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0047</span> Disallowed use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87ef12968ad6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87ef12968ad6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87ef12968ad6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No modification of section outputs, knowledge base, publication artifacts, or governed pointers.
+- No dispatching other agents or skills.
+- No inline reimplementation of deterministic checks that belong in the tool layer.
+- No reading of raw source DBM files except through structured supersession map comparisons.
+- No invention of engineering facts not present in the governed knowledge base.
+- No automatic readiness verdicts, PASS/FAIL judgments, or blocking decisions.
+- No pre-filling of `HumanDisposition` values — all rows emit as `TBD`.
+</p></div></div></section>
+<section id="SEC-SKP005-0048" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:15e3b18afd23" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP005-0048</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15e3b18afd23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15e3b18afd23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15e3b18afd23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to the 7 output files, all under the REVIEW_OUTPUT_DIR specified in the brief:</p>
+<p>- `Evidence_Bundle_Summary.md`
+- `Section_Coverage.csv`
+- `Draft_Claims.csv`
+- `Body_Thinness.csv`
+- `TBD_Inventory.csv`
+- `Candidate_Findings.csv`
+- `Publication_Review_Disposition.csv`</p>
+<p>No other file may be created, modified, or deleted.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SKP005";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

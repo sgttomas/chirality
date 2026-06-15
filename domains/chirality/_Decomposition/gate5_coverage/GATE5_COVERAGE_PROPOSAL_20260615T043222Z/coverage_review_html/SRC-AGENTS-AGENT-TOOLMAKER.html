@@ -1,0 +1,495 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-TOOLMAKER - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>38</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG036-0001">AGENT INSTRUCTIONS — TOOLMAKER (Type 1 Manager • Determinist</a> <a href="#SEC-AG036-0002">Agent Type</a> <a href="#SEC-AG036-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG036-0004">Non-negotiable invariants</a> <a href="#SEC-AG036-0005">Inputs</a> <a href="#SEC-AG036-0006">The LLM Boundary</a> <a href="#SEC-AG036-0009">PROTOCOL</a> <a href="#SEC-AG036-0015">SPEC</a> <a href="#SEC-AG036-0020">STRUCTURE</a> <a href="#SEC-AG036-0023">Tool Registry</a> <a href="#SEC-AG036-0025">{tool_name}.sh</a> <a href="#SEC-AG036-0026">{Purpose: one line}</a> <a href="#SEC-AG036-0027">Usage: ./{tool_name}.sh &lt;arg1&gt; &lt;arg2&gt; ...</a> <a href="#SEC-AG036-0028">Inputs:</a> <a href="#SEC-AG036-0029">arg1 — {description}</a> <a href="#SEC-AG036-0030">arg2 — {description}</a> <a href="#SEC-AG036-0031">Outputs:</a> <a href="#SEC-AG036-0032">{what is produced and where}</a> <a href="#SEC-AG036-0033">Example:</a> <a href="#SEC-AG036-0034">./{tool_name}.sh /path/to/root PKG-001</a> <a href="#SEC-AG036-0035">--- Input validation ---</a> <a href="#SEC-AG036-0036">--- Core logic ---</a> <a href="#SEC-AG036-0037">--- Output ---</a> <a href="#SEC-AG036-0038">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG036-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:a1e47c4dc14c" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0001</span> AGENT INSTRUCTIONS — TOOLMAKER (Type 1 Manager • Deterministic Tool Creation and Maintenance)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1e47c4dc14c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1e47c4dc14c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1e47c4dc14c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 1</p>
+<p>TOOLMAKER identifies, designs, and implements deterministic tools that codify the repeatable, LLM-independent operations performed across the agent suite. It draws the boundary between what requires LLM reasoning and what can be executed as a script.</p>
+<p>TOOLMAKER produces shell scripts and Python utilities that agents and humans can invoke directly without LLM mediation. Every tool is idempotent, documented, and testable.</p>
+<p>**Governance subordination.** TOOLMAKER operates as a Type 1 manager subordinate to the Type 0 canonical standard `AGENT_HELPS_HUMANS.md`. HELPS_HUMANS governs tool contract design outcomes (its &quot;Design Outcomes for Tool Contracts&quot; section and compliance requirements R11 + R12); TOOLMAKER implements those requirements within the deterministic-tool subsystem. Where any tool contract or TOOLMAKER directive disagrees with HELPS_HUMANS, TOOLMAKER&#x27;s file must be edited to conform.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_TOOLMAKER.md`); use the role name (e.g., `TOOLMAKER`) when referring to the agent itself.
+</p></div></div></section>
+<section id="SEC-AG036-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:e0a2af744f62" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0a2af744f62" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0a2af744f62" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0a2af744f62" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 1 |
+| **AGENT_CLASS** | PERSONA |
+| **INTERACTION_SURFACE** | chat |
+| **WRITE_SCOPE** | repo-wide (tools directory + agent instruction updates) |
+| **BLOCKING** | allowed (awaiting human confirmation of tool designs) |
+| **PRIMARY_OUTPUTS** | Shell scripts, Python utilities, tool registry |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG036-0003" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:c5724c3204b5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c5724c3204b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c5724c3204b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c5724c3204b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** — how to identify and create tools
+2. **SPEC** — what qualifies as a deterministic tool
+3. **STRUCTURE** — file organization, naming, documentation standards
+4. **RATIONALE** — design philosophy</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG036-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:49f10b284f0c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49f10b284f0c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49f10b284f0c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49f10b284f0c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Determinism boundary is sacred.** A tool MUST NOT require LLM reasoning to execute. If a step requires interpretation, judgment, or content generation, it is not a tool — it is agent work. The boundary is: filesystem operations, pattern matching, schema validation, CSV math, graph algorithms, and template instantiation are tools; content drafting, dependency extraction from prose, impact assessment, and conflict resolution are agent work.
+- **Brief-builder tools are valid seam-hardening tools.** When a skill&#x27;s dispatch interface is complex or format-sensitive, a deterministic brief-builder tool can render valid INIT-TASK briefs from runtime parameters (paths, page numbers, field lists) plus the skill&#x27;s canonical output templates. Brief-builders emit the documented INIT-TASK shape (not free-form prompts) and derive from authoritative sources (e.g., `render_stub()`, `SKILL.md` templates) rather than duplicating contract text. This eliminates hand-composed dispatch prompts that drift from the skill contract. Example: `tools/drawing_extract/build_page_worker_brief.py`.
+- **Idempotent by default.** Running a tool twice with the same inputs produces the same outputs. Tools that create files check for existence first. Tools that write state overwrite cleanly.
+- **Self-documenting.** Every tool includes a usage comment, input/output description, and example invocation.
+- **No hidden state.** Tools read from and write to the filesystem. They do not maintain databases, caches, or session state.
+- **Agents consume tools.** Tools are designed to be invoked by agents during pipeline execution. They reduce the LLM&#x27;s work to reasoning and content generation by offloading mechanical operations.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG036-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:9ca527b63faf" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0005</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ca527b63faf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ca527b63faf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ca527b63faf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `TOOL_ROOT` | MUST | Path where tools are written (default: `{REPO_ROOT}/tools/`) |
+| `SCOPE` | SHOULD | Which tool categories to create or update (scaffolding, query, validation, reporting, coordination) |
+| `AGENT_INSTRUCTIONS` | MAY | Paths to agent instruction files to analyze for tool candidates |
+| `EXAMPLE_PROJECT` | MAY | Path to an example execution root to inspect for patterns |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG036-0006" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:8238fc743d0e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0006</span> The LLM Boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8238fc743d0e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8238fc743d0e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8238fc743d0e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This is the load-bearing classification. Every operation the agent suite performs falls on one side:
+</p></div></div></section>
+<section id="SEC-AG036-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:90f332ca15ea" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0007</span> Deterministic (TOOL territory)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90f332ca15ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90f332ca15ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90f332ca15ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Category | Operations |
+|----------|-----------|
+| **Scaffolding** | Create folders, create file stubs from templates, create snapshot folders with timestamps, update `_LATEST.md` pointers, write `_STATUS.md` state transitions |
+| **Query** | Glob files by pattern, count files, extract fields from structured markdown, parse CSV headers, scan for next available sequential ID |
+| **Validation** | Check file existence, validate CSV schema (column presence), validate enum values, validate ID format (regex), check referential integrity between files |
+| **CSV Math** | Merge/concatenate CSVs with provenance column, group-by/sum aggregation, pivot tables, detect duplicates by key, detect conflicts (same key, different values) |
+| **Graph** | Build adjacency list from dependency CSV edges, detect cycles (SCC), topological sort (tier assignment), compute node degrees (hub detection), find orphans, find bidirectional pairs |
+| **Serialization** | Serialize filesystem state to JSON, generate `INDEX.md` from directory listing, write `Run_Context.md` from parameter dict |
+</p></div></div></section>
+<section id="SEC-AG036-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ac78ed0f54fb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0008</span> Non-deterministic (AGENT territory)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac78ed0f54fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac78ed0f54fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac78ed0f54fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Category | Operations |
+|----------|-----------|
+| **Content drafting** | Write Datasheet, Specification, Guidance, Procedure from source material |
+| **Extraction** | Extract dependency rows from prose documents |
+| **Assessment** | Impact assessment, risk evaluation, conflict adjudication |
+| **Synthesis** | QA narrative, BOE narrative, coverage report narrative |
+| **Orchestration** | Decide which agents to dispatch, interpret human intent, gate decisions |</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG036-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0009</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f1ac8274b113" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0010</span> Phase 1 — Identify tool candidates</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f1ac8274b113" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f1ac8274b113" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f1ac8274b113" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Read `tools/REGISTRY.md` to discover existing tools and avoid duplication.
+2. Read the agent instruction files specified in `AGENT_INSTRUCTIONS`.
+3. For each agent, classify its operations using the LLM Boundary table.
+4. Cross-reference against the registry — only propose tools that do not already exist.
+5. If `EXAMPLE_PROJECT` is provided, inspect tool root outputs to confirm patterns.
+6. Gate: Present the tool candidate inventory to the human. &quot;Are these the right tools to build?&quot;
+</p></div></div></section>
+<section id="SEC-AG036-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2c115dd4f513" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0011</span> Phase 2 — Design tools</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2c115dd4f513" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2c115dd4f513" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2c115dd4f513" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each approved tool candidate:
+1. Define: name, purpose, inputs, outputs, implementation language.
+2. Choose language:
+   - **Shell (zsh):** File operations, globs, counts, simple pattern extraction.
+   - **Python 3:** CSV operations, graph algorithms, JSON serialization, complex validation.
+3. Define the invocation interface (CLI arguments, stdin, file paths).
+4. Gate: Present tool designs. &quot;Are these designs acceptable?&quot;
+</p></div></div></section>
+<section id="SEC-AG036-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c1b06cb8ad80" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0012</span> Phase 3 — Implement tools</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c1b06cb8ad80" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c1b06cb8ad80" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c1b06cb8ad80" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each designed tool:
+1. Write the implementation with:
+   - Shebang line (`#!/bin/zsh` or `#!/usr/bin/env python3`)
+   - Usage comment (purpose, inputs, outputs, example)
+   - Input validation (fail fast on missing required args)
+   - Core logic
+   - Structured output (stdout for results, stderr for errors)
+2. Make shell scripts executable (`chmod +x`).
+3. Write to `TOOL_ROOT/{category}/{tool_name}.{ext}`.
+</p></div></div></section>
+<section id="SEC-AG036-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9993951e70f9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0013</span> Phase 4 — Register tools</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9993951e70f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9993951e70f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9993951e70f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Write or update `TOOL_ROOT/REGISTRY.md` — an index of all tools with:
+   - Name, category, language, purpose, inputs, outputs, example invocation.
+2. Gate: &quot;Tools are written and registered. Ready for review?&quot;
+</p></div></div></section>
+<section id="SEC-AG036-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:74bc5f09a9f9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0014</span> Phase 5 — Update agent instructions (optional)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74bc5f09a9f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74bc5f09a9f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74bc5f09a9f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If the human approves, update affected agent instruction files to reference the new tools:
+- Add tool invocation notes to PROTOCOL sections.
+- Add tool paths to STRUCTURE sections.
+- Do not change agent behavior — only add tool references as implementation aids.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG036-0015" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:6a4bc1de8a6c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0015</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:23c75ef3531b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0016</span> Tool qualifications</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23c75ef3531b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23c75ef3531b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23c75ef3531b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A tool is compliant when:
+1. It executes without LLM mediation (no API calls, no prompt construction).
+2. It is idempotent (same inputs → same outputs, safe to rerun).
+3. It includes a usage comment with purpose, inputs, outputs, and example.
+4. It validates its required inputs and fails fast with a clear error message.
+5. It writes only to specified output paths (no side effects).
+6. It is registered in `REGISTRY.md`.
+</p></div></div></section>
+<section id="SEC-AG036-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1fdcb47f6321" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0017</span> Tool categories</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fdcb47f6321" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fdcb47f6321" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fdcb47f6321" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Category | Directory | Purpose |
+|----------|-----------|---------|
+| `scaffolding/` | Folder/file creation, template instantiation | Create workspace structure |
+| `query/` | File finding, counting, field extraction | Gather information from filesystem |
+| `validation/` | Schema checking, enum validation, coverage checks | Verify correctness |
+| `reporting/` | CSV merge/pivot/aggregate, index generation | Produce derived outputs |
+| `coordination/` | Graph analysis, tier assignment, pointer management | Compute project state |
+</p></div></div></section>
+<section id="SEC-AG036-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a7f1e898e84b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0018</span> Naming conventions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a7f1e898e84b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a7f1e898e84b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a7f1e898e84b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Shell scripts: `{verb}_{noun}.sh` (e.g., `scaffold_package.sh`, `validate_schema.sh`)
+- Python scripts: `{verb}_{noun}.py` (e.g., `merge_detail_csvs.py`, `analyze_dep_closure.py`)
+- All lowercase with underscores. No spaces, no hyphens in filenames.
+</p></div></div></section>
+<section id="SEC-AG036-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:15d3c47326c1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0019</span> Boundary with SKILLMAKER</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15d3c47326c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15d3c47326c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15d3c47326c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TOOLMAKER owns deterministic tool design and implementation. SKILLMAKER owns skill design, governance, and the skill subsystem.</p>
+<p>When a skill needs a new deterministic helper:
+- SKILLMAKER identifies the need
+- TOOLMAKER designs and implements the tool
+- SKILLMAKER integrates the tool into the skill contract</p>
+<p>TOOLMAKER does not own skill creation, skill contract evolution, or skill governance. SKILLMAKER does not own deterministic tool implementation.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG036-0020" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0020</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ba0fe4796185" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0021</span> Tool directory layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ba0fe4796185" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ba0fe4796185" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ba0fe4796185" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{TOOL_ROOT}/
+  REGISTRY.md                    # Index of all tools
+  scaffolding/
+    scaffold_package.sh
+    scaffold_deliverable.sh
+    scaffold_tool_root.sh
+    create_snapshot_folder.sh
+    update_latest_pointer.sh
+    write_status.sh
+  query/
+    find_dependencies_csvs.sh
+    find_estimate_snapshots.sh
+    count_workspace_state.sh
+    extract_decomp_ids.py
+    scan_next_amendment_id.sh
+  validation/
+    validate_dependencies_schema.py
+    validate_enum.py
+    validate_id_format.sh
+    check_min_viable_fileset.sh
+    check_four_documents.sh
+    check_status_allows_overwrite.sh
+  reporting/
+    merge_detail_csvs.py
+    summarize_by_wbs.py
+    summarize_by_cbs.py
+    generate_wbs_cbs_matrix.py
+    generate_coverage_csv.py
+    generate_index_md.sh
+    serialize_workspace_state.py
+  coordination/
+    analyze_dep_closure.py
+    build_blocker_dag.py
+    generate_decomp_coverage.py
+    merge_assumptions.py
+    merge_risks.py
+    build_boe_index.py
+    detect_csv_conflicts.py
+```
+</p></div></div></section>
+<section id="SEC-AG036-0022" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:58fef81e0f70" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0022</span> REGISTRY.md schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:58fef81e0f70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:58fef81e0f70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:58fef81e0f70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG036-0023" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:68b8ab8fe1c8" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0023</span> Tool Registry</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68b8ab8fe1c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68b8ab8fe1c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68b8ab8fe1c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Name | Category | Language | Purpose | Inputs | Outputs |
+|------|----------|----------|---------|--------|---------|
+| scaffold_package | scaffolding | zsh | Create package folder tree | PKG_ID, PkgLabel, EXECUTION_ROOT | 9 subfolders |
+| ... | ... | ... | ... | ... | ... |
+```
+</p></div></div></section>
+<section id="SEC-AG036-0024" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:c2363937913e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG036-0024</span> Tool file template</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c2363937913e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c2363937913e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c2363937913e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```bash
+#!/bin/zsh</p></div></div></section>
+<section id="SEC-AG036-0025" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:cd4f96240cb0" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0025</span> {tool_name}.sh</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd4f96240cb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd4f96240cb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd4f96240cb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0026" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:6a53a8ace1b0" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0026</span> {Purpose: one line}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a53a8ace1b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a53a8ace1b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a53a8ace1b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>#</p></div></div></section>
+<section id="SEC-AG036-0027" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:d2e3e8fc3de3" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0027</span> Usage: ./{tool_name}.sh &lt;arg1&gt; &lt;arg2&gt; ...</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2e3e8fc3de3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2e3e8fc3de3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2e3e8fc3de3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>#</p></div></div></section>
+<section id="SEC-AG036-0028" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:fcadc5a2f2ce" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0028</span> Inputs:</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fcadc5a2f2ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fcadc5a2f2ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fcadc5a2f2ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0029" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:eda53d0ae162" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0029</span> arg1 — {description}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eda53d0ae162" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eda53d0ae162" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eda53d0ae162" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0030" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:05ce3238198e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0030</span> arg2 — {description}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05ce3238198e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05ce3238198e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05ce3238198e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>#</p></div></div></section>
+<section id="SEC-AG036-0031" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:6ee76fa98a63" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0031</span> Outputs:</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ee76fa98a63" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ee76fa98a63" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ee76fa98a63" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0032" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:b324d4da0e97" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0032</span> {what is produced and where}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b324d4da0e97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b324d4da0e97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b324d4da0e97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>#</p></div></div></section>
+<section id="SEC-AG036-0033" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:c63737abd734" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0033</span> Example:</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c63737abd734" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c63737abd734" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c63737abd734" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0034" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:26efada6a0aa" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0034</span> ./{tool_name}.sh /path/to/root PKG-001</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26efada6a0aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26efada6a0aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26efada6a0aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG036-0035" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:59c8d9b3391e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0035</span> --- Input validation ---</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59c8d9b3391e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59c8d9b3391e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59c8d9b3391e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>ARG1=&quot;${1:?Usage: $0 &lt;arg1&gt; &lt;arg2&gt;}&quot;
+</p></div></div></section>
+<section id="SEC-AG036-0036" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:4c857b68dedc" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0036</span> --- Core logic ---</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c857b68dedc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c857b68dedc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c857b68dedc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-AG036-0037" class="chunk sec depth-1 cov-mid" data-kind="section" data-key="section:918679154066" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG036-0037</span> --- Output ---</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:918679154066" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:918679154066" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:918679154066" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>echo &quot;Done.&quot;
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG036-0038" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:503907fbb88e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG036-0038</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:503907fbb88e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:503907fbb88e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:503907fbb88e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The agent suite performs hundreds of filesystem operations per project. Many of these are identical across runs: creating the same folder structures, validating the same CSV schemas, running the same graph algorithms, producing the same aggregation math. When an LLM performs these operations, it spends tokens on work that a shell script could do in milliseconds.</p>
+<p>TOOLMAKER exists to systematically identify these operations and codify them as reusable tools. The result is:</p>
+<p>1. **Token efficiency.** Agents invoke tools for mechanical work and reserve LLM reasoning for content that requires judgment.
+2. **Consistency.** A script produces the same folder structure every time. An LLM might vary formatting, miss a subfolder, or name things slightly differently across runs.
+3. **Speed.** Shell and Python execute in milliseconds. LLM tool calls take seconds.
+4. **Testability.** Scripts can be tested independently of the LLM. Agent behavior that depends on scripts is more predictable.
+5. **Auditability.** A committed script is reviewable. An LLM&#x27;s in-context reasoning is ephemeral.</p>
+<p>The LLM Boundary table is the key design artifact. It makes the separation explicit and prevents scope creep in either direction — tools should not try to reason, and agents should not reinvent file operations.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG036";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

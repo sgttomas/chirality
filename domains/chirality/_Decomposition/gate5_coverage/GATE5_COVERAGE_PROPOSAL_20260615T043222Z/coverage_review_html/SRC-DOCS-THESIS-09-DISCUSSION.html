@@ -1,0 +1,355 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-09-DISCUSSION - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>22</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG021-0001">Chapter 9 — Discussion</a> <a href="#SEC-DG021-0002">9.1 Introduction</a> <a href="#SEC-DG021-0003">9.2 Limitations</a> <a href="#SEC-DG021-0009">9.3 Generalizability</a> <a href="#SEC-DG021-0014">9.4 Future Work</a> <a href="#SEC-DG021-0022">9.5 Summary</a></nav>
+<main>
+<section id="SEC-DG021-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:d5fa57a31536" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG021-0001</span> Chapter 9 — Discussion</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d5fa57a31536" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d5fa57a31536" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d5fa57a31536" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+</p></div></div></section>
+<section id="SEC-DG021-0002" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:1446c7bced8f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG021-0002</span> 9.1 Introduction</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1446c7bced8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1446c7bced8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1446c7bced8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The preceding chapters presented a philosophical framework, a technical architecture, an epistemic transparency system, a regulatory mapping, a systems engineering analysis, and a working implementation. This chapter assesses the contributions honestly: what was demonstrated, what was not, what the limitations are, how the work generalizes, and what remains for future investigation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG021-0003" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:8d02ef518d17" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG021-0003</span> 9.2 Limitations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d02ef518d17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d02ef518d17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d02ef518d17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG021-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:133bf6ef5b1e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0004</span> 9.2.1 No Controlled Empirical Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:133bf6ef5b1e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:133bf6ef5b1e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:133bf6ef5b1e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The most significant limitation of this work is that the Chirality architecture has not been validated through a controlled empirical study with practicing engineers. The thesis demonstrates that the architecture satisfies the structural requirements of APEGA&#x27;s professional practice standards, and that it has been implemented as working software with an indexed agent suite and a registered deterministic toolset. However, it does not present empirical evidence that:</p>
+<p>- Licensed professionals find the epistemic labeling and provenance mechanisms effective for thorough review in practice
+- The review time for AI-assisted work products is measurably reduced compared to unstructured AI outputs
+- The invariant system prevents the categories of failure it is designed to prevent (hallucination propagation, silent conflict resolution, scope creep beyond declared write zones) at rates that are statistically significant
+- The gate-controlled workflow model is accepted by practitioners as a workable balance between control and productivity</p>
+<p>An empirical validation would require a controlled study in which licensed engineers review AI-assisted deliverables — some produced under the Chirality governance framework, some without it — and the accuracy, completeness, and efficiency of their review is measured. Such a study is a natural next step but is beyond the scope of this thesis.
+</p></div></div></section>
+<section id="SEC-DG021-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:bf4a55567123" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0005</span> 9.2.2 Regulatory Interpretation, Not Endorsement</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf4a55567123" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf4a55567123" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf4a55567123" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The mapping of the Chirality architecture to APEGA §3.1.1 (direct supervision and control) and §3.1.2 (thorough review) presented in Chapter 6 is a regulatory interpretation by the firm, not a ruling by APEGA. As of the date of this thesis, APEGA has not issued specific guidance on the use of AI agents in professional engineering practice. The interpretation — that AI agents are &quot;others&quot; whose work the professional relies on, and that the professional&#x27;s obligations are defined by what the professional must do rather than by the nature of the worker — is legally defensible and conservative, but it has not been tested in a disciplinary proceeding or judicial review.</p>
+<p>Other interpretations are possible. A regulator might argue that AI agent outputs are not &quot;work prepared by others&quot; but rather &quot;outputs of a tool,&quot; which would shift the regulatory framing from §3.0 (Relying on the Work of Others) to the more general obligation to verify tool accuracy under §3.1.2.1. The Chirality architecture would satisfy the tool-verification obligation as well, but the conceptual framing would differ. The firm has chosen the &quot;others&quot; interpretation because it is more conservative — it imposes the full suite of supervision and review obligations, not just tool verification — and because the nature of LLM-based agents (judgment-like behavior, natural language interaction, content generation) is structurally more analogous to work prepared by a person than to output from a deterministic calculation tool.
+</p></div></div></section>
+<section id="SEC-DG021-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9c305a4c1019" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0006</span> 9.2.3 Jurisdiction-Specific Regulatory Framework</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9c305a4c1019" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9c305a4c1019" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9c305a4c1019" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The regulatory mapping in Chapter 6 is specific to Alberta (APEGA) and the *Engineering and Geoscience Professions Act*. While the structural argument — that professional obligations are defined in terms of what the professional must do, not what the worker is — should generalize to any jurisdiction that defines professional responsibility through supervision and review, the specific practice standards cited (`Relying on the Work of Others and Outsourcing`, `Authenticating Professional Work Products`) are APEGA instruments. Other jurisdictions have their own regulatory frameworks (Chapter 2, §2.4), and the mapping would need to be re-established for each.
+</p></div></div></section>
+<section id="SEC-DG021-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:626dd707acab" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0007</span> 9.2.4 Instruction-Level Enforcement</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:626dd707acab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:626dd707acab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:626dd707acab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The invariant system (R1–R9, I1–I10, K-*) is enforced primarily through agent instruction text and deterministic tools, not through a verified runtime enforcement engine. The enforcement map in `CONTRACT.md` §2 categorizes enforcement into four layers: agent instructions (compile-time), ORCHESTRATOR (runtime), human review (gate), and future tooling (automated). The &quot;agent instructions&quot; layer depends on the LLM following its instruction text — a soft constraint, not a hard one.</p>
+<p>This is an honest limitation. An LLM may deviate from its instructions. The architectural response is defense in depth: agent instructions are the first layer, but write scope quarantine limits the blast radius of any deviation, human gates catch deviations before they reach authenticated status, and audit agents (AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE) detect non-conformance after the fact. The system does not claim that instruction-level enforcement is sufficient alone. It claims that the multi-layer enforcement model contains failures to manageable scope.</p>
+<p>The &quot;future tooling&quot; enforcement layer — automated checks for staleness calculation (K-STALE-1), content validation (K-VAL-1), merge policy (K-MERGE-1), and approval integrity (K-AUTH-2) — is specified but not yet fully implemented. This means that some invariants currently depend on human review discipline rather than automated enforcement.
+</p></div></div></section>
+<section id="SEC-DG021-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3b3ea7569d20" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0008</span> 9.2.5 LLM Capability Evolution</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b3ea7569d20" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b3ea7569d20" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b3ea7569d20" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The architecture is designed for the current generation of large language models and their known limitations (hallucination, lack of intrinsic epistemic warrant, inconsistent instruction following). As model capabilities evolve, some architectural constraints may become more or less relevant:</p>
+<p>- If future models achieve reliable provenance tracking natively, the mandatory provenance invariant (K-PROV-1) would become redundant as an architectural enforcement but would remain valuable as a verification check.
+- If future models achieve near-zero hallucination rates, the no-invention rule (K-INVENT-1) and epistemic labeling would become less operationally important but would not become incorrect — the architecture would simply flag fewer items.
+- If future models reliably follow instructions, the instruction-level enforcement layer would become more trustworthy, but the defense-in-depth model (human gates, audit agents, write quarantine) would remain necessary for professional practice because the stakes of failure are not reduced by lower probability alone.</p>
+<p>The architecture&#x27;s longevity depends on the invariant structure remaining valid regardless of model capability. The thesis claims that the invariants express professional obligations — not model limitations — and therefore remain relevant even as models improve. Better models produce fewer TBDs and fewer ASSUMPTION labels; the architecture ensures that every remaining uncertainty is visible.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG021-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:4ce64a6bb960" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG021-0009</span> 9.3 Generalizability</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ce64a6bb960" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ce64a6bb960" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ce64a6bb960" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG021-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9608597fb9cc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0010</span> 9.3.1 Across Engineering Domains</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9608597fb9cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9608597fb9cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9608597fb9cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The architectural patterns — write quarantine, epistemic labeling, gate-controlled workflows, invariant contracts — are domain-independent. The thesis demonstrates them in the context of EPC and design-build engineering, but the same patterns could govern AI agents producing:</p>
+<p>- Regulatory compliance documentation
+- Medical device design history files
+- Environmental impact assessments
+- Financial audit working papers
+- Legal contract review deliverables</p>
+<p>Any domain where a qualified professional must take responsibility for work and where the evidence trail must support that responsibility is a potential application domain. The four-pillar framework (ontology, epistemology, praxiology, axiology) provides a checklist for assessing whether a given domain&#x27;s governance needs are fully addressed.
+</p></div></div></section>
+<section id="SEC-DG021-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8ac8dfe53abb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0011</span> 9.3.2 Across Regulatory Jurisdictions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8ac8dfe53abb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8ac8dfe53abb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8ac8dfe53abb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The APEGA regulatory mapping generalizes in structure if not in specific citations. The argument — that existing &quot;relying on the work of others&quot; frameworks can govern AI agent use without new AI-specific regulation — should apply wherever professional regulation defines supervision and review obligations in terms of what the professional does. Chapter 2, §2.4 surveyed regulatory approaches in British Columbia (EGBC), Ontario (PEO), the United States (NSPE, ASCE), Australia, and the United Kingdom, finding that none had yet mapped AI agent governance to existing &quot;relying on others&quot; frameworks. The Chirality mapping may serve as a reference for other jurisdictions.
+</p></div></div></section>
+<section id="SEC-DG021-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9f32a9c9baca" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0012</span> 9.3.3 The Four-Pillar Framework as an Evaluation Lens</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f32a9c9baca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f32a9c9baca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f32a9c9baca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The ontology/epistemology/praxiology/axiology framework could serve as an evaluation instrument for other AI agent governance architectures. For any system, one could ask: Does it define a complete ontology? Does it enforce epistemic transparency? Does it bound agent praxis through formal constraints? Does it articulate and enforce values? A system missing any pillar has a specific, identifiable governance gap. This evaluation use extends beyond the Chirality architecture itself.</p>
+<p>The deeper insight — that the four pillars provide a compact and useful ontology for professional accountability (Chapter 3, §3.5) — suggests that this evaluation framework is not arbitrary. It is plausibly portable wherever a professional takes responsibility for work, because the four questions (what exists? what is warranted? how was it done? what values governed?) recur across accountable practice even if different domains instantiate them differently.
+</p></div></div></section>
+<section id="SEC-DG021-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1a322c9f5d88" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0013</span> 9.3.4 The Epistemic Ontology and Warrant Lifecycle as Portable Concepts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a322c9f5d88" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a322c9f5d88" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a322c9f5d88" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The six epistemic primitives (claim, warrant, status, gap, conflict, ruling) and the warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) are not Chirality-specific constructs. They formalize concepts that are implicit in any professional review process. An engineer reviewing a colleague&#x27;s calculation already thinks in terms of claims (what is asserted), warrants (what evidence supports it), gaps (what is missing), and conflicts (where sources disagree). The Chirality contribution is to make these implicit concepts architecturally explicit and enforceable.</p>
+<p>Any AI agent framework that aims to support professional practice could adopt the epistemic ontology without adopting the full Chirality architecture. The primitives and the warrant lifecycle are modular — they require only that the system can attach provenance to claims, label epistemic status, surface gaps, and detect conflicts. The AUDIT_EPISTEMIC agent (`AGENT_AUDIT_EPISTEMIC.md`) demonstrates that these properties can be audited systematically.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG021-0014" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:ecfb5ab07261" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG021-0014</span> 9.4 Future Work</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecfb5ab07261" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecfb5ab07261" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecfb5ab07261" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG021-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6f74b53b519b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0015</span> 9.4.1 Empirical Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f74b53b519b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f74b53b519b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f74b53b519b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The highest-priority future work is a controlled study with licensed engineers evaluating AI-assisted deliverables produced under the Chirality framework. The study design should measure:</p>
+<p>- Review accuracy (do reviewers catch more errors with epistemic labels than without?)
+- Review efficiency (is review time reduced?)
+- Review confidence (do reviewers report higher confidence in their assessment?)
+- Practitioner acceptance (is the gate-controlled workflow considered workable?)
+</p></div></div></section>
+<section id="SEC-DG021-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d2f0b2a0ac26" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0016</span> 9.4.2 Runtime Enforcement Engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2f0b2a0ac26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2f0b2a0ac26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2f0b2a0ac26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The &quot;future tooling&quot; enforcement layer should be implemented as automated checks: staleness calculation from the dependency graph and baseline SHAs, content validation against approved SHAs, merge policy enforcement, and approval integrity verification. This would close the gap between the specified invariant system and the implemented enforcement.
+</p></div></div></section>
+<section id="SEC-DG021-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9da332816ca9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0017</span> 9.4.3 Empirical Validation of the Warrant Lifecycle</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9da332816ca9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9da332816ca9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9da332816ca9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The warrant lifecycle model (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) and the AUDIT_EPISTEMIC agent that operationalizes it should be empirically validated. Specific questions include: does the warrant state distribution correlate with deliverable quality? do deliverables with higher CITED/REVIEWED ratios produce fewer review findings? does the AUDIT_EPISTEMIC agent&#x27;s conflict detection catch errors that manual review misses? These questions require data from real project executions.
+</p></div></div></section>
+<section id="SEC-DG021-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9e91e584fb35" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0018</span> 9.4.4 Formal Verification of Invariant Preservation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e91e584fb35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e91e584fb35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e91e584fb35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The invariant system could be subjected to formal verification: given the write scope declarations, the gate structure, and the lifecycle state machine, can it be proven that no sequence of agent actions violates the K-* invariants? This is a formal methods contribution that would strengthen the safety argument.
+</p></div></div></section>
+<section id="SEC-DG021-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b4c19fa38e98" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0019</span> 9.4.5 Multi-Jurisdiction Regulatory Mapping</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4c19fa38e98" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4c19fa38e98" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4c19fa38e98" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The APEGA mapping should be replicated for other jurisdictions (EGBC, PEO, NSPE, Engineers Australia, UK Engineering Council) to validate the generalizability claim and to identify jurisdiction-specific requirements that the architecture may need to accommodate.
+</p></div></div></section>
+<section id="SEC-DG021-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9a70a714bc24" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0020</span> 9.4.6 Multi-User Concurrent Execution</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a70a714bc24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a70a714bc24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a70a714bc24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current architecture assumes sequential agent execution within a single user session. Multi-user concurrent execution — multiple licensed professionals directing agents against the same project simultaneously — would require a lock mechanism (identified as a future hardening candidate in `PLAN.md` §3.5) and conflict resolution protocols for concurrent write operations.
+</p></div></div></section>
+<section id="SEC-DG021-0021" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:6e37c069e35b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG021-0021</span> 9.4.7 Extension to Other Agent Platforms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e37c069e35b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e37c069e35b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e37c069e35b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The governance architecture is currently coupled to the Chirality desktop application and its specific agent runtime. Demonstrating that the same invariant system, write scope model, and epistemic architecture can govern agents on other platforms (e.g., LangChain, AutoGen, Claude Code) would validate the claim that the contribution is architectural, not implementation-specific.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG021-0022" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:2f255abb6197" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG021-0022</span> 9.5 Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f255abb6197" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f255abb6197" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f255abb6197" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality architecture is a complete, working implementation of an SE-governed AI agent system for professional engineering practice. Its limitations are honest: no controlled empirical validation, a regulatory interpretation not yet tested by a regulator, jurisdiction-specific framing, instruction-level enforcement that depends on multi-layer defense in depth, and evolution uncertainty as models improve. Some of its patterns appear structurally portable — especially the epistemic architecture, write quarantine, and governance-first framing — but that portability should be treated as a hypothesis to be tested rather than as a settled conclusion. The most important future work is empirical validation — demonstrating that the epistemic architecture measurably improves the quality and efficiency of professional review.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG021";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

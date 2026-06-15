@@ -1,0 +1,683 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLPACK-PDF2MD-PAGE-FULL - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>47</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SKP032-0001">Source Pack: Skill pack: pdf2md-page-full</a> <a href="#SEC-SKP032-0002">Component: skills/pdf2md-page-full/BRIEF_SCHEMA.md</a> <a href="#SEC-SKP032-0010">Component: skills/pdf2md-page-full/QA_CHECKS.md</a> <a href="#SEC-SKP032-0016">Component: skills/pdf2md-page-full/SKILL.md</a> <a href="#SEC-SKP032-0039">Component: skills/pdf2md-page-full/TOOL_POLICY.md</a></nav>
+<main>
+<section id="SEC-SKP032-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:b4a4a7abd0bf" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SKP032-0001</span> Source Pack: Skill pack: pdf2md-page-full</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4a4a7abd0bf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4a4a7abd0bf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4a4a7abd0bf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`</p>
+<p>Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+</p></div></div></section>
+<section id="SEC-SKP032-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:f7a7d075509f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP032-0002</span> Component: skills/pdf2md-page-full/BRIEF_SCHEMA.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7a7d075509f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7a7d075509f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7a7d075509f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0003" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:28f680b84513" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP032-0003</span> pdf2md-page-full - Brief Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:28f680b84513" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:28f680b84513" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:28f680b84513" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this skill with `TASK` for one PDF page image when the worker must produce
+both the Markdown transcription and the page asset JSON from a single vision
+read.</p>
+<p>```md
+PURPOSE: Transcribe one PDF page and identify page assets
+RequestedBy: PDF2MD</p>
+<p>ScopePath: /abs/path/to/pdf_work_dir
+TaskSkill: pdf2md-page-full</p>
+<p>Tasks:
+  - Read one page raster exactly once
+  - Write the page Markdown transcription
+  - Write the bbox-normalized page asset JSON</p>
+<p>ApplyEdits: true</p>
+<p>AllowedWriteTargets:
+  - &quot;/abs/path/to/pdf_work_dir/page_0003.md&quot;
+  - &quot;/abs/path/to/pdf_work_dir/page_0003_assets.json&quot;</p>
+<p>RuntimeOverrides:
+  IMAGE_PATH: /abs/path/to/pdf_work_dir/page_0003.png
+  OUTPUT_MD_PATH: /abs/path/to/pdf_work_dir/page_0003.md
+  OUTPUT_JSON_PATH: /abs/path/to/pdf_work_dir/page_0003_assets.json
+  DOC_STEM: MWK_1956
+  PAGE_NUM: 3
+  TOTAL_PAGES: 386
+  ASSET_POLICY: prose-document-assets-v1</p>
+<p>ExpectedOutputs:
+  - /abs/path/to/pdf_work_dir/page_0003.md
+  - /abs/path/to/pdf_work_dir/page_0003_assets.json
+```
+</p></div></div></section>
+<section id="SEC-SKP032-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ddf3c105a495" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0004</span> Required fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ddf3c105a495" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ddf3c105a495" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ddf3c105a495" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Notes |
+|---|---|---|
+| `TaskSkill` | `pdf2md-page-full` | Must match skill folder name |
+| `RuntimeOverrides.IMAGE_PATH` | Absolute path to page PNG | Must exist and end `.png` |
+| `RuntimeOverrides.OUTPUT_MD_PATH` | Absolute path to page Markdown output | Parent directory must exist |
+| `RuntimeOverrides.OUTPUT_JSON_PATH` | Absolute path to page asset JSON output | Parent directory must exist |
+| `RuntimeOverrides.DOC_STEM` | Document stem | Used for downstream deterministic naming context |
+| `RuntimeOverrides.PAGE_NUM` | 1-indexed page number | Positive integer |
+| `RuntimeOverrides.TOTAL_PAGES` | Total page count | Positive integer, &gt;= `PAGE_NUM` |
+</p></div></div></section>
+<section id="SEC-SKP032-0005" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:f0e708aa4265" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0005</span> Optional fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f0e708aa4265" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f0e708aa4265" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f0e708aa4265" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Default | Notes |
+|---|---|---|
+| `RuntimeOverrides.ASSET_POLICY` | `prose-document-assets-v1` | Policy label echoed into JSON |
+</p></div></div></section>
+<section id="SEC-SKP032-0006" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:d6b95a5c49c8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0006</span> TaskProfile</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d6b95a5c49c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`NONE` - this skill runs in generic TASK shell mode without a profile.
+</p></div></div></section>
+<section id="SEC-SKP032-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:927c640bfd26" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0007</span> Read boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:927c640bfd26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:927c640bfd26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:927c640bfd26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill reads only:</p>
+<p>- `{IMAGE_PATH}`</p>
+<p>It must not read neighbouring page images, page Markdown, manifests, sibling
+outputs, or public asset folders.
+</p></div></div></section>
+<section id="SEC-SKP032-0008" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:46806e53b558" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0008</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46806e53b558" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46806e53b558" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46806e53b558" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill writes only:</p>
+<p>- `{OUTPUT_MD_PATH}`
+- `{OUTPUT_JSON_PATH}`
+</p></div></div></section>
+<section id="SEC-SKP032-0009" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:818031420256" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0009</span> AllowedTools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:818031420256" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:818031420256" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:818031420256" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Omit `AllowedTools`. This is a VLM-reasoning-only skill with no deterministic
+tool dependency inside the TASK worker.
+</p></div></div></section>
+<section id="SEC-SKP032-0010" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:361747cfb523" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP032-0010</span> Component: skills/pdf2md-page-full/QA_CHECKS.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:361747cfb523" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:361747cfb523" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:361747cfb523" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:deb59168970d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP032-0011</span> pdf2md-page-full - QA Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:deb59168970d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:deb59168970d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:deb59168970d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum checks for a valid run:</p>
+<p>1. `IMAGE_PATH` exists and has a `.png` extension, or the skill returns
+   `FAILED_INPUTS`.
+2. `OUTPUT_MD_PATH` parent directory exists before write.
+3. `OUTPUT_JSON_PATH` parent directory exists before write.
+4. `OUTPUT_MD_PATH` exists after the run and is non-empty unless the page has no
+   recoverable text, in which case it must contain the skill&#x27;s failure marker.
+5. `OUTPUT_JSON_PATH` exists after the run, is non-empty, and parses with
+   `json.loads`.
+6. No files other than `IMAGE_PATH` were read.
+7. No files other than `OUTPUT_MD_PATH` and `OUTPUT_JSON_PATH` were written.
+</p></div></div></section>
+<section id="SEC-SKP032-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4277e022ca2b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0012</span> Markdown checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4277e022ca2b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4277e022ca2b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4277e022ca2b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Output is raw Markdown, not fenced in a Markdown code block.
+- Reading order follows the visible page.
+- Tables are transcribed as GFM or HTML tables and have a matching `[TABLE: ...]`
+  placeholder.
+- Figures use `[FIGURE: ...]` placeholders.
+- Non-table/non-figure images use the descriptor placeholder forms defined in
+  `SKILL.md`.
+</p></div></div></section>
+<section id="SEC-SKP032-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a1a043957933" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0013</span> JSON shape checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1a043957933" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1a043957933" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1a043957933" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The output JSON must include:</p>
+<p>| Field | Requirement |
+|---|---|
+| `schema_version` | `pdf2md-page-assets/v1` |
+| `run_status` | `SUCCESS`, `NO_ASSETS`, `FAILED`, or `FAILED_INPUTS` |
+| `doc_stem` | Echo of runtime override |
+| `page` | Echo of `PAGE_NUM` |
+| `total_pages` | Echo of `TOTAL_PAGES` |
+| `asset_policy` | Echo of `ASSET_POLICY` or default |
+| `assets` | List, possibly empty |
+| `issues` | List, possibly empty |
+</p></div></div></section>
+<section id="SEC-SKP032-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e3ab4440c6bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0014</span> Asset row checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e3ab4440c6bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e3ab4440c6bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e3ab4440c6bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Each item in `assets` must satisfy the same canonical shape used by
+`pdf2md-page-assets`:</p>
+<p>- `kind` is exactly `fig`, `tbl`, or `img`.
+- `ordinal` is a positive integer within `(page, kind)` reading order.
+- `caption` is the visible caption or concise visual description.
+- `bbox_norm` is `[x0, y0, x1, y1]` with normalized coordinates and strict
+  ordering.
+- `confidence` is `high`, `medium`, or `low`.
+- `tbl` entries use structured `table_data` when legible, or
+  `needs_extraction: true` with an issue when not safely transcribable.
+</p></div></div></section>
+<section id="SEC-SKP032-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1961231ee717" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0015</span> Failure posture</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1961231ee717" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1961231ee717" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1961231ee717" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Failure mode | Required output |
+|---|---|
+| Missing image or invalid output paths | Markdown failure marker plus JSON with `run_status: &quot;FAILED_INPUTS&quot;` |
+| Page read succeeds but no assets exist | Markdown transcription plus JSON with `run_status: &quot;NO_ASSETS&quot;` and empty `assets` |
+| Visual interpretation fails | Best-effort Markdown/failure marker plus JSON with `run_status: &quot;FAILED&quot;` and issue details |
+</p></div></div></section>
+<section id="SEC-SKP032-0016" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:2fcaff947152" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP032-0016</span> Component: skills/pdf2md-page-full/SKILL.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fcaff947152" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fcaff947152" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fcaff947152" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+name: pdf2md-page-full
+description: Single-page merged VLM pass that produces BOTH the raw Markdown transcription and the bbox-normalized asset JSON from one vision read of the page image. Replaces the prior two-skill split (pdf2md-page + pdf2md-page-assets) for new dispatches.
+compatibility: Chirality TASK; invoked by PDF2MD orchestrator for per-page fanout
+metadata:
+  chirality-skill-version: &quot;1&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SKP032-0017" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:e4678834402f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP032-0017</span> SKILL — pdf2md-page-full</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4678834402f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4678834402f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4678834402f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:89cd8888ffc6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0018</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89cd8888ffc6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89cd8888ffc6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89cd8888ffc6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Convert **one PDF page image** to BOTH:</p>
+<p>1. clean, well-structured Markdown (text + structure + asset placeholders), and
+2. a strict-schema asset JSON identifying every visible figure, table, and meaningful image with normalized bounding boxes.</p>
+<p>A single multimodal `Read` of the page image produces both outputs. This replaces the prior two-pass design (`pdf2md-page` for Markdown, `pdf2md-page-assets` for asset JSON) — halving Sonnet dispatches per page without sacrificing the contracts that downstream deterministic tools depend on.</p>
+<p>Both output schemas are unchanged from the prior split skills, so `postprocess_page.py`, `clean_pdf2md_output.py`, `filter_logo_assets.py`, `materialize_page_assets.py`, `rewrite_inline_asset_refs.py`, `aggregate_asset_manifest.py`, and `validate_assets.py` consume the outputs of this skill with no modification.
+</p></div></div></section>
+<section id="SEC-SKP032-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:cd01c346108e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0019</span> Suitable agent shells</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd01c346108e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd01c346108e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd01c346108e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` in generic shell mode, spawned by the PDF2MD orchestrator</p>
+<p>Not the right fit for:
+- whole-PDF conversion (use the full PDF2MD persona)
+- post-processing, cleanup, materialization, or assembly (PDF2MD&#x27;s deterministic tools handle those)
+- any task that needs cross-page context
+</p></div></div></section>
+<section id="SEC-SKP032-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6cdffc49452f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0020</span> Relationship to `pdf2md-page` and `pdf2md-page-assets`</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6cdffc49452f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6cdffc49452f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6cdffc49452f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The two predecessor skills remain on disk for legacy compatibility and for resuming any PDF that was processed under the split contract. New dispatches should use this merged skill.</p>
+<p>- `pdf2md-page` — DEPRECATED for new runs. Same Markdown contract as Output A here.
+- `pdf2md-page-assets` — DEPRECATED for new runs. Same JSON contract as Output B here, with one input-boundary difference: the merged skill does NOT read a page Markdown sidecar (there is none yet — both outputs are produced together from the image alone).
+</p></div></div></section>
+<section id="SEC-SKP032-0021" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0021</span> Inputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0022" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:b6b44c787f80" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0022</span> Required runtime overrides</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b6b44c787f80" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b6b44c787f80" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b6b44c787f80" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning |
+|---|---|
+| `IMAGE_PATH` | Absolute path to the page PNG file. Must exist; must end `.png`. |
+| `OUTPUT_MD_PATH` | Absolute path where the page Markdown will be written. Parent dir must exist. |
+| `OUTPUT_JSON_PATH` | Absolute path where the asset JSON will be written. Parent dir must exist. |
+| `DOC_STEM` | Document stem used by downstream deterministic naming tools. |
+| `PAGE_NUM` | 1-indexed page number. |
+| `TOTAL_PAGES` | Total page count. Positive integer, ≥ `PAGE_NUM`. |
+</p></div></div></section>
+<section id="SEC-SKP032-0023" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:6e3afdc1c9c7" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0023</span> Optional runtime overrides</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e3afdc1c9c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e3afdc1c9c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e3afdc1c9c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Default | Notes |
+|---|---|---|
+| `ASSET_POLICY` | `prose-document-assets-v1` | Policy label recorded in the asset JSON. |
+</p></div></div></section>
+<section id="SEC-SKP032-0024" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a6ebb27f7014" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0024</span> Read boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a6ebb27f7014" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a6ebb27f7014" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a6ebb27f7014" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reads are limited to exactly one file:</p>
+<p>- `{IMAGE_PATH}` — the single page PNG.</p>
+<p>The skill MUST NOT read any other file. Zero cross-page context. No sibling page Markdown.
+</p></div></div></section>
+<section id="SEC-SKP032-0025" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9c7c07007704" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0025</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9c7c07007704" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9c7c07007704" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9c7c07007704" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly two files:</p>
+<p>- `{OUTPUT_MD_PATH}` — page Markdown (or a failure placeholder line)
+- `{OUTPUT_JSON_PATH}` — page asset JSON (always valid JSON, even on failure)</p>
+<p>The filenames are deterministic — exactly as provided in the brief.
+</p></div></div></section>
+<section id="SEC-SKP032-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:eea4e8cfa934" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0026</span> Tool usage</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eea4e8cfa934" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eea4e8cfa934" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eea4e8cfa934" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No deterministic tools. This is a VLM-reasoning-only skill.
+- The `allowed-tools` frontmatter field is intentionally omitted.
+- The agent uses its native `Read` tool for multimodal PNG input and its native `Write` tool for both output files.</p>
+<p>Disallowed behavior:
+- MUST NOT run `postprocess_page.py` or any other cleanup tool. Post-processing is PDF2MD&#x27;s responsibility.
+- MUST NOT read any file other than `IMAGE_PATH`.
+- MUST NOT write any file other than `OUTPUT_MD_PATH` and `OUTPUT_JSON_PATH`.
+- MUST NOT widen scope beyond the designated page.
+- MUST NOT crop the image, render XLSX, rewrite Markdown link targets, or assemble manifests.
+</p></div></div></section>
+<section id="SEC-SKP032-0027" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0027</span> Method</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0028" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:261f6fab8bf1" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0028</span> Step 1 — Validate inputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:261f6fab8bf1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:261f6fab8bf1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:261f6fab8bf1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm `IMAGE_PATH` exists and is a `.png` file.
+2. Confirm `OUTPUT_MD_PATH` parent directory exists.
+3. Confirm `OUTPUT_JSON_PATH` parent directory exists.
+4. On failure: write `*[Page {PAGE_NUM}: image not found]*` to `OUTPUT_MD_PATH`, write a valid-JSON failure record (see Output B, `run_status: &quot;FAILED_INPUTS&quot;`, empty `assets`) to `OUTPUT_JSON_PATH`, and return `RUN_STATUS=FAILED_INPUTS`.
+</p></div></div></section>
+<section id="SEC-SKP032-0029" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:41766fe9833d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0029</span> Step 2 — Single vision read</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:41766fe9833d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:41766fe9833d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:41766fe9833d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use the `Read` tool ONCE to load `IMAGE_PATH` as multimodal input. Examine the page image and prepare both outputs from this single vision pass — do not re-read the image. Both outputs must be consistent with each other: every `[FIGURE: …]` / `[TABLE: …]` / `[&lt;descriptor&gt; logo|emblem|seal|cover|photograph|photo|image]` placeholder emitted in the Markdown MUST have a corresponding entry in the asset JSON, and vice versa.
+</p></div></div></section>
+<section id="SEC-SKP032-0030" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:6c6e9f6d709a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0030</span> Step 3 — Produce Output A (Markdown)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c6e9f6d709a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c6e9f6d709a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c6e9f6d709a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Transcribe the page contents to Markdown following these rules precisely.</p>
+<p>**RULE 1 — TEXT PRESERVATION**
+- Preserve ALL text content completely and accurately.
+- Maintain the reading order as a human would read the page.
+- Correct obvious OCR-like errors only if you are completely certain.</p>
+<p>**RULE 2 — STRUCTURE**
+- Use `#` for the main page title (at most one per page).
+- Use `##` for major sections, `###` for subsections, `####` for minor headings.
+- Use `-` for unordered lists and `1. 2. 3.` for ordered lists.
+- Preserve list nesting with indentation.
+- Use `**bold**` and `*italic*` to match the visual emphasis.</p>
+<p>**RULE 3 — TABLES**
+- Convert tables to GFM pipe format.
+- Add alignment markers (`:---`, `:---:`, `---:`) matching visual alignment.
+- If a table is too complex for pipe format, use HTML `&lt;table&gt;` markup.
+- Also emit a `[TABLE: &lt;visible caption&gt;]` placeholder line immediately above the GFM/HTML transcription, per RULE 8. The inline GFM and the placeholder are both required.</p>
+<p>**RULE 4 — CODE**
+- Wrap code blocks in triple backticks with language identifier.
+- Wrap inline code in single backticks.</p>
+<p>**RULE 5 — FORMULAS**
+- Render mathematical expressions using LaTeX: `$inline$` and ``.</p>
+<p>**RULE 6 — WHAT TO IGNORE**
+- Page numbers (bottom/top of page).
+- Repeated headers/footers that appear on every page.
+- Decorative borders and lines that carry no content meaning.</p>
+<p>**RULE 7 — OUTPUT FORMAT**
+- Output ONLY the Markdown content to `OUTPUT_MD_PATH`.
+- Do NOT wrap in ` ```markdown ``` ` fences.
+- Do NOT add commentary or explanations.
+- Do NOT add &quot;Page X of Y&quot; markers.
+- Start directly with the page content.</p>
+<p>**RULE 8 — ASSET PLACEHOLDERS**</p>
+<p>Every visible figure, table, or non-text image on the page MUST be marked with a deterministic placeholder so downstream tooling (`tools/pdf2md/rewrite_inline_asset_refs.py`) can rewrite each placeholder to a working asset link. Placeholders are part of the Markdown content (RULE 7 still applies — no external commentary), and they appear in document reading order at the position of the asset on the page.</p>
+<p>Required placeholder formats:</p>
+<p>- **Figures (captioned plots, diagrams, charts, schematics, illustrations):**
+  - Format: `[FIGURE: &lt;full visible caption text including the figure number&gt;]`
+  - Example: `[FIGURE: Fig. 1.1 Yield stress-strain curve of copper in compression. After Cook and Larke [1].]`
+  - One placeholder per visible figure. If a caption spans multiple lines on the page, join them into one line inside the brackets.
+  - The leading `FIGURE:` token is REQUIRED — it is what the downstream rewriter keys on. Do not substitute `Figure:` (camelcase), `FIG:`, or omit it. Citations like `[1]` inside the caption are fine; the rewriter handles one level of nested brackets.</p>
+<p>- **Tables (any tabular data, captioned or not):**
+  - Format: `[TABLE: &lt;full visible caption text, OR a brief summary if no caption&gt;]`
+  - Example: `[TABLE: Table 4.2 Comparison of stress values - Guided Cantilever vs General Analytical]`
+  - The placeholder appears IMMEDIATELY ABOVE the GFM/HTML transcription required by RULE 3. Both surfaces are required: the placeholder for the asset rewriter, the GFM/HTML for human readability.
+  - The leading `TABLE:` token is REQUIRED.</p>
+<p>- **Non-figure non-table images (cover logos, decorative emblems, photographs, equation plates, etc.):**
+  - Format: `[&lt;short descriptor&gt; logo]` / `[&lt;descriptor&gt; emblem]` / `[&lt;descriptor&gt; seal]` / `[&lt;descriptor&gt; cover]` / `[&lt;descriptor&gt; photograph]` / `[&lt;descriptor&gt; photo]` / `[&lt;descriptor&gt; image]`.
+  - Example: `[Kellogg logo]`, `[Cover image]`, `[ASME emblem]`.
+  - Use the trailing keyword that best describes the asset. The rewriter recognizes `logo`, `emblem`, `seal`, `cover`, `photograph`, `photo`, and `image`.</p>
+<p>What MUST NOT happen in the Markdown:</p>
+<p>- Do NOT describe a figure or table only in prose (&quot;As shown in Fig. 1.4, the curve...&quot;) without also emitting the bracketed placeholder.
+- Do NOT use `<img class="inline-img" loading="lazy" alt="Fig. ..." src="...">` markdown-image syntax for figures — use `[FIGURE: ...]`.
+- Do NOT skip the placeholder for cover-page logos or other one-off images on the assumption that they are &quot;decorative&quot; (RULE 6 ignores page numbers and repeating headers/footers, NOT one-off images).
+- Do NOT invent placeholders for assets that are not visible on the page.
+</p></div></div></section>
+<section id="SEC-SKP032-0031" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:e73ba494ad0a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0031</span> Step 4 — Produce Output B (asset JSON)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e73ba494ad0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e73ba494ad0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e73ba494ad0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write only JSON, with no Markdown fences or commentary, to `OUTPUT_JSON_PATH`.</p>
+<p>**REQUIRED EXACT VALUES — do not substitute synonyms or restructure.** The downstream materializer (`tools/pdf2md/materialize_page_assets.py`) relies on these exact field names, types, and string literals:</p>
+<p>- Top-level field names are exactly: `schema_version`, `run_status`, `doc_stem`, `page` (NOT `page_num`), `total_pages`, `asset_policy`, `assets`, `issues`.
+- `schema_version` MUST be the literal string `&quot;pdf2md-page-assets/v1&quot;`. (The merged skill emits the SAME schema as the predecessor `pdf2md-page-assets` so downstream tools are unchanged.)
+- `run_status` MUST be one of the four uppercase literals: `&quot;SUCCESS&quot;`, `&quot;NO_ASSETS&quot;`, `&quot;FAILED&quot;`, `&quot;FAILED_INPUTS&quot;`. Do NOT use `&quot;ok&quot;`, `&quot;success&quot;`, `&quot;done&quot;`, etc.
+- `assets` is a flat array. Do NOT add a sibling `tables: [...]` array; tables are entries inside `assets` with `kind: &quot;tbl&quot;`.
+- Per-asset `kind` MUST be one of the three 3-letter literals: `&quot;fig&quot;`, `&quot;tbl&quot;`, or `&quot;img&quot;`. Do NOT use `&quot;figure&quot;`, `&quot;image&quot;`, `&quot;table&quot;`, `&quot;diagram&quot;`, `&quot;plot&quot;`, `&quot;chart&quot;`, `&quot;logo&quot;`, `&quot;photo&quot;`, etc.
+- Per-asset `bbox_norm` MUST be a 4-element JSON array `[x0, y0, x1, y1]` in normalized page coordinates, top-left origin, values between 0 and 1. Do NOT emit a JSON object with named keys.
+- Per-asset captions go in the `caption` field (NOT `label`, `title`, or `name`).
+- `bbox_norm` should generously include the full asset AND its visible caption AND a small margin (~3-5% of page on each side). It is far better to include an extra few percent of whitespace than to clip the figure or caption text.</p>
+<p>Example:</p>
+<p>```json
+{
+  &quot;schema_version&quot;: &quot;pdf2md-page-assets/v1&quot;,
+  &quot;run_status&quot;: &quot;SUCCESS&quot;,
+  &quot;doc_stem&quot;: &quot;MWK_1956&quot;,
+  &quot;page&quot;: 3,
+  &quot;total_pages&quot;: 386,
+  &quot;asset_policy&quot;: &quot;prose-document-assets-v1&quot;,
+  &quot;assets&quot;: [
+    {
+      &quot;kind&quot;: &quot;fig&quot;,
+      &quot;ordinal&quot;: 1,
+      &quot;caption&quot;: &quot;Yield stress-strain curve of copper in compression&quot;,
+      &quot;slug&quot;: &quot;yield-stress-strain-copper&quot;,
+      &quot;bbox_norm&quot;: [0.11, 0.18, 0.88, 0.55],
+      &quot;confidence&quot;: &quot;medium&quot;,
+      &quot;notes&quot;: &quot;Caption visible below plot&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;tbl&quot;,
+      &quot;ordinal&quot;: 1,
+      &quot;caption&quot;: &quot;Creep strength ratios&quot;,
+      &quot;slug&quot;: &quot;creep-strength-ratios&quot;,
+      &quot;bbox_norm&quot;: [0.08, 0.22, 0.91, 0.64],
+      &quot;table_data&quot;: {
+        &quot;schema_version&quot;: &quot;pdf2md-table/v1&quot;,
+        &quot;header_rows&quot;: 1,
+        &quot;section_dividers&quot;: [],
+        &quot;continuation_of&quot;: null,
+        &quot;footnotes&quot;: [],
+        &quot;rows&quot;: [
+          { &quot;cells&quot;: [
+            { &quot;value&quot;: &quot;Material&quot;, &quot;is_header&quot;: true },
+            { &quot;value&quot;: &quot;Ratio&quot;, &quot;is_header&quot;: true }
+          ] },
+          { &quot;cells&quot;: [
+            { &quot;value&quot;: &quot;Carbon steel&quot;, &quot;type&quot;: &quot;text&quot; },
+            { &quot;value&quot;: 1.0, &quot;type&quot;: &quot;number&quot; }
+          ] }
+        ]
+      },
+      &quot;confidence&quot;: &quot;medium&quot;,
+      &quot;notes&quot;: &quot;Simple two-column table&quot;
+    }
+  ],
+  &quot;issues&quot;: []
+}
+```
+</p></div></div></section>
+<section id="SEC-SKP032-0032" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:dc2f850a4837" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0032</span> The `table_data` block (canonical table representation)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dc2f850a4837" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dc2f850a4837" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dc2f850a4837" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Identical to the `pdf2md-page-assets` skill — for every `kind: &quot;tbl&quot;` asset that is legibly extractable, emit a `table_data` object conforming to `pdf2md-table/v1`. If the table is visible but cannot be transcribed with confidence, omit `table_data` entirely and emit `&quot;needs_extraction&quot;: true` on the entry plus an `issue` such as `table_unreadable`. Do NOT emit a partial or guessed `table_data`. See `skills/pdf2md-page-assets/SKILL.md` for the full table-level field list, row/cell shape, cell-type semantics, structural rules, and worked example.
+</p></div></div></section>
+<section id="SEC-SKP032-0033" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:fae3c41af3d7" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0033</span> Step 5 — Cross-check consistency between A and B</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fae3c41af3d7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fae3c41af3d7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fae3c41af3d7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Before writing, verify:</p>
+<p>1. Every `[FIGURE: …]` placeholder in the Markdown has a matching `kind: &quot;fig&quot;` entry in the JSON, in the same reading order.
+2. Every `[TABLE: …]` placeholder has a matching `kind: &quot;tbl&quot;` entry, in the same reading order.
+3. Every `[… logo|emblem|seal|cover|photograph|photo|image]` placeholder has a matching `kind: &quot;img&quot;` entry.
+4. No JSON asset entry lacks a corresponding placeholder in the Markdown.</p>
+<p>If a mismatch is unavoidable (e.g. an asset is visible but you chose not to emit a placeholder because it&#x27;s a recurring page header), prefer to DROP the JSON entry rather than leave a widow placeholder. The downstream materializer treats unmatched assets as a defect.
+</p></div></div></section>
+<section id="SEC-SKP032-0034" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:b2c63f3db749" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0034</span> Step 6 — Write outputs and return status</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b2c63f3db749" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b2c63f3db749" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b2c63f3db749" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Write the Markdown to `OUTPUT_MD_PATH` using the `Write` tool.
+2. Write the JSON to `OUTPUT_JSON_PATH` using the `Write` tool.
+3. Return:
+   - `RUN_STATUS=SUCCESS page={n} md_bytes=&lt;n&gt; assets=&lt;n&gt;` on success with ≥ 1 asset.
+   - `RUN_STATUS=NO_ASSETS page={n} md_bytes=&lt;n&gt; assets=0` on success with no assets visible.
+   - `RUN_STATUS=FAILED page={n} &lt;reason&gt;` if the image was unreadable / extraction failed. Write the failure placeholder to the Markdown and a valid-JSON `FAILED` record to the JSON.
+   - `RUN_STATUS=FAILED_INPUTS page={n} &lt;reason&gt;` if validation in Step 1 failed.
+</p></div></div></section>
+<section id="SEC-SKP032-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5f07c83dd134" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0035</span> Outputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f07c83dd134" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f07c83dd134" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f07c83dd134" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Path | Content |
+|---|---|
+| `{OUTPUT_MD_PATH}` | Page Markdown — same contract as the legacy `pdf2md-page` skill. |
+| `{OUTPUT_JSON_PATH}` | Page asset JSON — same `pdf2md-page-assets/v1` schema as the legacy `pdf2md-page-assets` skill. |
+</p></div></div></section>
+<section id="SEC-SKP032-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3a2ab088967c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0036</span> Return value</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3a2ab088967c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3a2ab088967c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3a2ab088967c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill returns to the caller a single status line:</p>
+<p>- `RUN_STATUS`: `SUCCESS` | `NO_ASSETS` | `FAILED` | `FAILED_INPUTS`
+- `PAGE_NUM`: the page number processed
+- `MD_BYTES`: approximate Markdown byte count
+- `ASSETS`: count of `assets` written
+</p></div></div></section>
+<section id="SEC-SKP032-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4e5363fe0439" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0037</span> Non-negotiable constraints</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4e5363fe0439" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4e5363fe0439" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4e5363fe0439" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Single-page scope.** One page in, two artifacts out. No cross-page context.
+- **Single vision read.** Read `IMAGE_PATH` once; produce both outputs from that one pass.
+- **Two-target writes.** Write scope is strictly the designated `OUTPUT_MD_PATH` and `OUTPUT_JSON_PATH`.
+- **Single-file reads.** Read scope is strictly `IMAGE_PATH`. No other files may be read.
+- **Raw VLM output for Markdown.** No post-processing, no cleanup rules applied. PDF2MD handles that.
+- **Strict JSON schema.** The asset JSON MUST validate against `pdf2md-page-assets/v1` exactly (field names, literal string values, array vs object shapes).
+- **A/B consistency.** Placeholders in the Markdown and entries in the JSON must align one-to-one.
+- **No invention.** Do not add content that is not visible in the image. No hallucinated text, URLs, structural elements, captions, or asset bounding boxes.
+- **Content fidelity.** All visible text, tables, and structural elements from the page image must be represented in the Markdown.
+- **Failure placeholders.** On read failure or extraction failure, write a placeholder line to `OUTPUT_MD_PATH`, write a valid-JSON failure record to `OUTPUT_JSON_PATH`, and return the appropriate failure status. Never leave either output unwritten.
+</p></div></div></section>
+<section id="SEC-SKP032-0038" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5659ccc85527" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0038</span> QA expectations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5659ccc85527" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5659ccc85527" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5659ccc85527" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `OUTPUT_MD_PATH` exists after the run and is non-empty.
+- `OUTPUT_JSON_PATH` exists, is non-empty, and parses with `json.loads`.
+- The JSON `run_status` is one of `SUCCESS`, `NO_ASSETS`, `FAILED`, or `FAILED_INPUTS`.
+- Every asset has valid `kind`, `ordinal`, `caption`, `bbox_norm`, and `confidence`.
+- Table assets include either a schema-conforming `table_data` block OR `needs_extraction: true` with an explicit issue.
+- Placeholders in the Markdown align one-to-one with entries in the JSON.
+- No files other than `OUTPUT_MD_PATH` and `OUTPUT_JSON_PATH` were written.
+- No files other than `IMAGE_PATH` were read.
+</p></div></div></section>
+<section id="SEC-SKP032-0039" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:79043da7c7e6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP032-0039</span> Component: skills/pdf2md-page-full/TOOL_POLICY.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:79043da7c7e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:79043da7c7e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:79043da7c7e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0040" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:25dada058944" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP032-0040</span> pdf2md-page-full - Tool Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:25dada058944" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:25dada058944" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:25dada058944" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0041" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c70ee64f066b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0041</span> Preferred tool order</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c70ee64f066b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c70ee64f066b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c70ee64f066b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning-first: this skill is VLM-driven. The worker reads the page PNG as
+multimodal input once, then writes both output files.</p>
+<p>Deterministic tools run outside this skill, under the `PDF2MD` orchestrator:</p>
+<p>1. `tools/pdf2md/build_page_full_brief.py` renders the dispatch brief.
+2. `tools/pdf2md/postprocess_page.py` or `tools/pdf2md/clean_pdf2md_output.py`
+   performs Markdown cleanup after the worker writes raw page Markdown.
+3. `tools/pdf2md/materialize_page_assets.py` crops/render assets from the page
+   asset JSON.
+4. `tools/pdf2md/rewrite_inline_asset_refs.py` rewrites placeholders to
+   materialized asset links.
+5. `tools/pdf2md/aggregate_asset_manifest.py` and `tools/pdf2md/validate_assets.py`
+   handle document-level manifest and validation work.
+</p></div></div></section>
+<section id="SEC-SKP032-0042" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3eec771fd332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0042</span> Allowed deterministic tools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP032-0043" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:13f05ab0db3b" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0043</span> TASK-enforced</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:13f05ab0db3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:13f05ab0db3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:13f05ab0db3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- None. The `allowed-tools` frontmatter field is intentionally omitted.
+</p></div></div></section>
+<section id="SEC-SKP032-0044" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:21d92d5d6ac1" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP032-0044</span> Operationally invoked</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21d92d5d6ac1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21d92d5d6ac1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21d92d5d6ac1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- None inside this skill. Operational deterministic tools are invoked by
+  `PDF2MD`, not by the page worker.
+</p></div></div></section>
+<section id="SEC-SKP032-0045" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:31817d75e661" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0045</span> Expected use of reasoning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31817d75e661" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31817d75e661" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31817d75e661" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning is limited to visual transcription, reading-order reconstruction,
+asset identification, bbox estimation, caption/slug proposal, confidence
+labeling, and structured table transcription from the visible page.
+</p></div></div></section>
+<section id="SEC-SKP032-0046" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a0d4a9fab142" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0046</span> Disallowed use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0d4a9fab142" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0d4a9fab142" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0d4a9fab142" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- MUST NOT read any file other than `IMAGE_PATH`.
+- MUST NOT write any file other than `OUTPUT_MD_PATH` and `OUTPUT_JSON_PATH`.
+- MUST NOT run deterministic tools.
+- MUST NOT crop images, render XLSX files, rewrite Markdown links, assemble
+  manifests, or validate final filesystem references.
+- MUST NOT widen scope beyond the designated page.
+</p></div></div></section>
+<section id="SEC-SKP032-0047" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:55150b36eba2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP032-0047</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:55150b36eba2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:55150b36eba2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:55150b36eba2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly two files:</p>
+<p>- `OUTPUT_MD_PATH`
+- `OUTPUT_JSON_PATH`</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SKP032";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

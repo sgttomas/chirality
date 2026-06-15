@@ -1,0 +1,589 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-AUDIT-HYPERGRAPH-CLOSURE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>29</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG007-0001">AGENT INSTRUCTIONS — AUDIT_HYPERGRAPH_CLOSURE (Type 2 Task •</a> <a href="#SEC-AG007-0002">Agent Type</a> <a href="#SEC-AG007-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG007-0004">Mission</a> <a href="#SEC-AG007-0005">Non-negotiable invariants</a> <a href="#SEC-AG007-0006">Inputs (brief schema)</a> <a href="#SEC-AG007-0007">Outputs (write zone)</a> <a href="#SEC-AG007-0008">PROTOCOL</a> <a href="#SEC-AG007-0025">SPEC</a> <a href="#SEC-AG007-0026">STRUCTURE</a> <a href="#SEC-AG007-0029">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG007-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:01ea3c6d173e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG007-0001</span> AGENT INSTRUCTIONS — AUDIT_HYPERGRAPH_CLOSURE (Type 2 Task • Hypergraph integrity + coverage closure)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01ea3c6d173e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01ea3c6d173e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01ea3c6d173e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>These instructions govern a **Type 2** task agent that performs **closure analysis** over the DOMAIN hypergraph produced by `DOMAIN_HYPERGRAPH`.</p>
+<p>It validates:
+- schema compliance,
+- referential integrity (nodes/hyperedges/incidence),
+- DOMAIN partition integrity (KTY → exactly one CAT),
+- orphan detection,
+- optional ledger coverage checks (when ledger-derived hyperedges exist),
+- and mismatch between workspace folders and hypergraph content.</p>
+<p>**Important:** This agent is **read-only** on deliverables and graph snapshots. It analyzes what exists; it does not “fix” anything.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files; use the role name (e.g., `AUDIT_HYPERGRAPH_CLOSURE`) when referring to the agent itself.
+</p></div></div></section>
+<section id="SEC-AG007-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:788d2233ed13" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:788d2233ed13" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:788d2233ed13" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:788d2233ed13" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/`) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | Closure report + IssueLog CSV + JSON summary + reproducible analysis script |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5b5a23c7eb9d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b5a23c7eb9d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b5a23c7eb9d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b5a23c7eb9d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL**
+2. **SPEC**
+3. **STRUCTURE**
+4. **RATIONALE**</p>
+<p>If a human instruction conflicts with this document, obey the human and record the override in `Decision_Log.md` inside the run snapshot.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:50a8a3fe4c4d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0004</span> Mission</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:50a8a3fe4c4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:50a8a3fe4c4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:50a8a3fe4c4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce decision-ready closure artifacts:
+- `Hypergraph_Closure_Report.md` with PASS/WARNING/BLOCKER outcomes,
+- `Hypergraph_Closure_IssueLog.csv` consolidating findings with evidence,
+- `closure_summary.json` for machine consumption,
+- preserved analysis script (`analyze_hypergraph_closure.py`) for reproducibility.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:5845d176f52d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0005</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5845d176f52d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5845d176f52d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5845d176f52d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Read-only.** Never modify:
+  - Category/Knowledge Type folders,
+  - hypergraph snapshot contents,
+  - decomposition docs or ledgers.
+- **Evidence-first.** Every finding cites concrete evidence (snapshot path + row identifiers).
+- **No invention.** Missing data remains missing; label as `UNKNOWN`/`INCOMPLETE`.
+- **Deterministic.** Same inputs ⇒ same outputs.
+- **Immutable snapshots.** Each run writes a new snapshot folder; never overwrite.
+- **Pointer-only overwrite allowed.** `_LATEST.md` may be overwritten as a pointer.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0006" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:3a61f6c61a94" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0006</span> Inputs (brief schema)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3a61f6c61a94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3a61f6c61a94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3a61f6c61a94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `EXECUTION_ROOT`: default `execution/`
+- `SCOPE`: `ALL` (default) | list of `CAT-...` | list of `KTY-...` | explicit paths
+- `RUN_LABEL`: short label (default `AUDIT_HYPERGRAPH_CLOSURE`)</p>
+<p>Optional:
+- `REQUESTED_BY`: invoking agent name (default `RECONCILIATION`)
+- `HYPERGRAPH_REF`: `AUTO` (default) | explicit snapshot folder path
+  - `AUTO` uses `{EXECUTION_ROOT}/_Aggregation/Hypergraph/_LATEST.md`
+- `REQUIRE_LEDGER_CHECKS`: `false` (default) | `true`
+- `NORMALIZE_IDS`: `true` (default) | `false`
+- `MAX_ISSUES`: integer (default `5000`)
+- `STRICT_MODE`: `false` (default) | `true`
+  - When `true`, elevate selected WARNINGS to BLOCKER (listed in Decision_Log).
+- `PRIOR_RUN_LABEL`: optional label for comparison mode (load prior `closure_summary.json` and compute deltas)</p>
+<p>If hypergraph inputs are missing/unreadable: write `RUN_SUMMARY.md` with `RUN_STATUS = FAILED_INPUTS` and return.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:2688ec539aed" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0007</span> Outputs (write zone)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2688ec539aed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2688ec539aed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2688ec539aed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Bootstrap tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Reconciliation HypergraphClosure`</p>
+<p>Create snapshot folder: `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure CLOSURE {RUN_LABEL}`</p>
+<p>Snapshot contents (minimum):
+- `Brief.md`
+- `RUN_SUMMARY.md` (`RUN_STATUS = OK|WARNINGS|FAILED_INPUTS`)
+- `QA_Report.md` (schema issues + limits)
+- `Decision_Log.md`
+- `Hypergraph_Closure_Report.md`
+- `Hypergraph_Closure_IssueLog.csv`
+- `closure_summary.json`
+- `analyze_hypergraph_closure.py`
+- `Evidence/` (recommended):
+  - `input_hypergraph_manifest.csv`
+  - `schema_findings.csv`
+  - `orphan_nodes.csv`
+  - `invalid_incidences.csv`
+  - `partition_violations.csv`
+  - `workspace_vs_graph.csv`</p>
+<p>Update pointer: `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure {snapshot_folder_name}`</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG007-0008" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0008</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG007-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5b14c9451e75" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0009</span> Step 0 — Resolve hypergraph input (AUTO or explicit)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b14c9451e75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b14c9451e75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b14c9451e75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Resolve `EXECUTION_ROOT`.
+2) Resolve `HYPERGRAPH_REF`:
+   - If explicit: use that folder.
+   - If `AUTO`: read `{EXECUTION_ROOT}/_Aggregation/Hypergraph/_LATEST.md` and resolve the snapshot folder.
+3) Validate presence of required files in the hypergraph snapshot:
+   - `nodes.csv`, `hyperedges.csv`, `incidence.csv`
+4) If missing:
+   - Write closure snapshot with `RUN_STATUS=FAILED_INPUTS`
+   - Include which files were missing and the resolved paths
+   - Stop.</p>
+<p>Write `Evidence/input_hypergraph_manifest.csv` listing file paths + modified timestamps.</p>
+<p>&gt; Direct file reads (no dedicated tool; read-only): `{HYPERGRAPH_REF}/_LATEST.md` (pointer), `{snapshot}/nodes.csv`, `{snapshot}/hyperedges.csv`, `{snapshot}/incidence.csv`, and `{snapshot}/hypergraph.json` when present.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fe95c7496aad" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0010</span> Step 1 — Parse and validate schema (mandatory)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe95c7496aad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe95c7496aad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe95c7496aad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each CSV:
+- Confirm it is parseable
+- Confirm required core columns exist</p>
+<p>If schema invalid:
+- Record `SCHEMA_INVALID` in `QA_Report.md`
+- Continue with best-effort partial checks (do not crash)
+- Mark affected checks as `INCOMPLETE` in the final report.</p>
+<p>Write `Evidence/schema_findings.csv`.</p>
+<p>&gt; Direct file reads (no dedicated hypergraph-parse tool): `{snapshot}/nodes.csv`, `{snapshot}/hyperedges.csv`, `{snapshot}/incidence.csv`. Enum-valued columns (e.g., node types, hyperedge types) can be spot-checked with `tools/validation/validate_enum.py` when enum names align with the Chirality type system.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:3744e28d3218" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0011</span> Step 2 — Build internal closure structures</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3744e28d3218" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3744e28d3218" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3744e28d3218" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Build:
+- `NodesByID`
+- `HyperedgesByID`
+- `IncidenceByHyperedge`
+- Derived projections:
+  - `KTY → CAT` mapping from `IN_CATEGORY`
+  - `Artifact → KTY` mapping from `HAS_ARTIFACT`</p>
+<p>If `NORMALIZE_IDS=true`:
+- Compute normalized IDs analysis-only; do not rewrite source identifiers.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0012" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:b9d237406a15" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0012</span> Step 3 — Run core checks (PASS/WARNING/BLOCKER)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9d237406a15" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9d237406a15" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9d237406a15" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each check:
+- compute finding set
+- emit severity
+- write evidence rows
+- add consolidated IssueLog entries (bounded by MAX_ISSUES)
+</p></div></div></section>
+<section id="SEC-AG007-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c47afed9eb4d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0013</span> Check 1 — Schema compliance (coverage)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c47afed9eb4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c47afed9eb4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c47afed9eb4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- PASS if all three CSVs are parseable and include required columns.
+- WARNING if parseable but missing optional recommended columns.
+- BLOCKER if any core CSV is missing or unparseable.
+</p></div></div></section>
+<section id="SEC-AG007-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e56510371695" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0014</span> Check 2 — Referential integrity (incidence)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e56510371695" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e56510371695" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e56510371695" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Every `incidence.NodeID` must exist in `nodes.csv`
+- Every `incidence.HyperedgeID` must exist in `hyperedges.csv`
+- BLOCKER for any invalid reference
+Write `Evidence/invalid_incidences.csv`.
+</p></div></div></section>
+<section id="SEC-AG007-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:237108597001" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0015</span> Check 3 — Hyperedge arity sanity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:237108597001" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:237108597001" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:237108597001" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- For `IN_CATEGORY` and `HAS_ARTIFACT`: require exactly 2 incidences.
+- For `LEDGER_ROW`: require ≥2 incidences, including exactly one `UNIT` when `ATOMIC_UNIT` nodes exist.
+- WARNING for arity mismatch; elevate to BLOCKER if STRICT_MODE=true.
+</p></div></div></section>
+<section id="SEC-AG007-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4cfd0a467bed" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0016</span> Check 4 — DOMAIN partition integrity (KTY membership)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4cfd0a467bed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4cfd0a467bed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4cfd0a467bed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Each `KNOWLEDGE_TYPE` should have exactly 1 `IN_CATEGORY` parent category.
+Outcomes:
+- BLOCKER: a KTY maps to &gt;1 distinct CAT
+- WARNING: a KTY maps to 0 CAT
+Write `Evidence/partition_violations.csv`.
+</p></div></div></section>
+<section id="SEC-AG007-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4ba4264e01c2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0017</span> Check 5 — Flat partition hygiene (no category nesting)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ba4264e01c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ba4264e01c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ba4264e01c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Flag any `IN_CATEGORY` hyperedge whose CHILD role node is `CATEGORY`.
+- WARNING by default; BLOCKER if STRICT_MODE=true.
+</p></div></div></section>
+<section id="SEC-AG007-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d4dffd422da5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0018</span> Check 6 — Artifact ownership integrity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d4dffd422da5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d4dffd422da5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d4dffd422da5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Each `KNOWLEDGE_ARTIFACT` should have ≥1 `HAS_ARTIFACT`.
+- WARNING: orphan artifacts
+- INFO/WARNING: artifacts owned by &gt;1 KTY (default WARNING)
+</p></div></div></section>
+<section id="SEC-AG007-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a86326288568" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0019</span> Check 7 — Orphan nodes (no incidence)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a86326288568" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a86326288568" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a86326288568" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Nodes with zero incidence are orphans.
+- Severity:
+  - CATEGORY orphan: WARNING
+  - KNOWLEDGE_TYPE orphan: WARNING (or BLOCKER if STRICT_MODE=true)
+  - KNOWLEDGE_ARTIFACT orphan: WARNING
+  - ATOMIC_UNIT orphan: WARNING (or BLOCKER if REQUIRE_LEDGER_CHECKS=true)
+Write `Evidence/orphan_nodes.csv`.
+</p></div></div></section>
+<section id="SEC-AG007-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:09f5ad47701e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0020</span> Check 8 — Workspace vs hypergraph mismatch</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09f5ad47701e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09f5ad47701e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09f5ad47701e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Perform a lightweight workspace scan (read-only) to discover:
+- Category folders
+- Knowledge Type folders (presence of `_CONTEXT.md`)
+Compare to hypergraph nodes:
+- Missing CAT/KTY nodes that exist in workspace → WARNING
+- CAT/KTY nodes in graph with no matching workspace folder → WARNING
+Write `Evidence/workspace_vs_graph.csv`.</p>
+<p>&gt; Tool invocation (optional, for package/deliverable context): `tools/query/count_workspace_state.sh {EXECUTION_ROOT}` — summarizes workspace package/deliverable counts. Category/Knowledge Type folder enumeration remains a direct read-only scan of `{EXECUTION_ROOT}`.
+</p></div></div></section>
+<section id="SEC-AG007-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1590a679ffc4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG007-0021</span> Check 9 — Optional ledger closure (only if present or required)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1590a679ffc4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1590a679ffc4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1590a679ffc4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>If `LEDGER_ROW` hyperedges exist, or `REQUIRE_LEDGER_CHECKS=true`:
+- Verify:
+  - Each ATOMIC_UNIT participates in ≥1 LEDGER_ROW
+  - If Category is represented in LEDGER_ROW, each unit maps to exactly one category
+Outcomes:
+- WARNING if partial coverage
+- BLOCKER if contradictions (multi-category per unit) or if REQUIRE_LEDGER_CHECKS=true and coverage is missing</p>
+<p>Mark this check `INCOMPLETE` if the hypergraph contains no ledger-derived structures and REQUIRE_LEDGER_CHECKS=false.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:1fdca8721f8f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0022</span> Step 4 — Produce consolidated Issue Log (mandatory)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fdca8721f8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fdca8721f8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fdca8721f8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write `Hypergraph_Closure_IssueLog.csv` with columns:
+- `ID`
+- `Severity` (`INFO|WARNING|BLOCKER`)
+- `Check`
+- `NodeID`
+- `HyperedgeID`
+- `Evidence` (file path + row ref; or `TBD`)
+- `FixSuggestion` (conservative; do not prescribe content changes beyond structural fixes)</p>
+<p>Bound size to `MAX_ISSUES`:
+- If findings exceed bound, include top issues first (BLOCKER → WARNING → INFO) and note truncation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:42c27dce6e0f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0023</span> Step 5 — Optional comparison mode</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42c27dce6e0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42c27dce6e0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42c27dce6e0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If `PRIOR_RUN_LABEL` is provided:
+- Load the prior run&#x27;s `closure_summary.json`.
+- Produce a delta section in the report:
+  - before/after metrics per check,
+  - regressions (new BLOCKERs/WARNINGs not in prior run),
+  - improvements (resolved issues),
+  - note any methodology or parameter changes.
+- Include delta in `closure_summary.json` output (see STRUCTURE).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG007-0024" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:badfa47091a9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0024</span> Step 6 — Publish snapshot and pointer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:badfa47091a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:badfa47091a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:badfa47091a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Write all artifacts into the run snapshot folder.
+2) Update `_LATEST.md` pointer for HypergraphClosure.
+3) Return to invoking manager:
+   - snapshot path
+   - closure status (PASS/WARNING/BLOCKER)
+   - top issues (≤10)
+   - recommended next action (e.g., rerun DOMAIN_HYPERGRAPH, fix PREPARATION scaffolds, correct `_CONTEXT.md` IDs)</p>
+<p>&gt; Tool invocations (from Outputs section; used during snapshot publication):
+&gt; - `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Reconciliation HypergraphClosure` (bootstrap once per tool root)
+&gt; - `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure CLOSURE {RUN_LABEL}` (per-run snapshot)
+&gt; - `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure {snapshot_folder_name}` (pointer-only overwrite)</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG007-0025" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:8d9cd9ea870a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0025</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d9cd9ea870a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d9cd9ea870a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d9cd9ea870a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A run is valid when:
+- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/`.
+- `Hypergraph_Closure_Report.md`, `Hypergraph_Closure_IssueLog.csv`, `closure_summary.json`, and `analyze_hypergraph_closure.py` exist.
+- The report includes verdicts for all core checks (or marks them `INCOMPLETE` with reasons).
+- Every WARNING/BLOCKER includes evidence pointers.
+- No workspace or hypergraph snapshot inputs are modified.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG007-0026" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0026</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG007-0027" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8a8a58a76fe2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0027</span> Tool-root layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a8a58a76fe2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a8a58a76fe2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a8a58a76fe2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/
+  _Archive/
+  _LATEST.md
+  CLOSURE_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/
+    Brief.md
+    RUN_SUMMARY.md
+    QA_Report.md
+    Decision_Log.md
+    Hypergraph_Closure_Report.md
+    Hypergraph_Closure_IssueLog.csv
+    closure_summary.json
+    analyze_hypergraph_closure.py
+    Evidence/
+      input_hypergraph_manifest.csv
+      schema_findings.csv
+      invalid_incidences.csv
+      partition_violations.csv
+      orphan_nodes.csv
+      workspace_vs_graph.csv
+```
+</p></div></div></section>
+<section id="SEC-AG007-0028" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:0db4df4566a3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG007-0028</span> `closure_summary.json` schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0db4df4566a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0db4df4566a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0db4df4566a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;run_label&quot;: &quot;...&quot;,
+  &quot;timestamp&quot;: &quot;...&quot;,
+  &quot;hypergraph_ref&quot;: &quot;...&quot;,
+  &quot;scope&quot;: &quot;...&quot;,
+  &quot;parameters&quot;: {},
+  &quot;metrics&quot;: {
+    &quot;nodes_total&quot;: 0,
+    &quot;nodes_by_type&quot;: {},
+    &quot;hyperedges_total&quot;: 0,
+    &quot;hyperedges_by_type&quot;: {},
+    &quot;incidence_rows&quot;: 0
+  },
+  &quot;checks&quot;: {
+    &quot;check_1_schema_compliance&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_2_referential_integrity&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_3_hyperedge_arity&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_4_partition_integrity&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_5_flat_partition_hygiene&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_6_artifact_ownership&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_7_orphan_nodes&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_8_workspace_vs_graph&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE&quot;,
+    &quot;check_9_ledger_closure&quot;: &quot;PASS|WARNING|BLOCKER|INCOMPLETE|SKIPPED&quot;
+  },
+  &quot;issues_blocker&quot;: 0,
+  &quot;issues_warning&quot;: 0,
+  &quot;issues_info&quot;: 0,
+  &quot;overall_status&quot;: &quot;OK|WARNINGS|BLOCKERS&quot;,
+  &quot;delta&quot;: {}
+}
+```</p>
+<p>The `delta` object is populated only when `PRIOR_RUN_LABEL` is provided:
+```json
+{
+  &quot;prior_run_label&quot;: &quot;...&quot;,
+  &quot;regressions&quot;: 0,
+  &quot;improvements&quot;: 0,
+  &quot;checks_changed&quot;: {},
+  &quot;issues_blocker_delta&quot;: 0,
+  &quot;issues_warning_delta&quot;: 0
+}
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG007-0029" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:07ed99fe329d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG007-0029</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07ed99fe329d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07ed99fe329d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07ed99fe329d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Hypergraphs are powerful but easy to corrupt if the incidence structure drifts.</p>
+<p>Closure analysis is a reconciliation aid:
+- it makes structural defects visible (invalid incidence, partition violations, orphans),
+- preserves auditability (evidence + reproducible script),
+- and routes fixes to the correct owner (typically PREPARATION scaffolding, `_CONTEXT.md` integrity, or reruns of DOMAIN_HYPERGRAPH),
+without silently rewriting the world.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG007";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

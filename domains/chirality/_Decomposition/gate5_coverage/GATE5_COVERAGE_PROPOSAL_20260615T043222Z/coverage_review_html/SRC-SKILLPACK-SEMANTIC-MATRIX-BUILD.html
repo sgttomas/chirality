@@ -1,0 +1,938 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLPACK-SEMANTIC-MATRIX-BUILD - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>89</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SKP037-0001">Source Pack: Skill pack: semantic-matrix-build</a> <a href="#SEC-SKP037-0002">Component: skills/semantic-matrix-build/BRIEF_SCHEMA.md</a> <a href="#SEC-SKP037-0011">Component: skills/semantic-matrix-build/QA_CHECKS.md</a> <a href="#SEC-SKP037-0024">Component: skills/semantic-matrix-build/SKILL.md</a> <a href="#SEC-SKP037-0079">Component: skills/semantic-matrix-build/TOOL_POLICY.md</a></nav>
+<main>
+<section id="SEC-SKP037-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:6faba88739be" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SKP037-0001</span> Source Pack: Skill pack: semantic-matrix-build</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6faba88739be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6faba88739be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6faba88739be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`</p>
+<p>Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+</p></div></div></section>
+<section id="SEC-SKP037-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:3edcc39b6331" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP037-0002</span> Component: skills/semantic-matrix-build/BRIEF_SCHEMA.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3edcc39b6331" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3edcc39b6331" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3edcc39b6331" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0003" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:d2f7e017550c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP037-0003</span> semantic-matrix-build — Brief Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2f7e017550c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2f7e017550c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2f7e017550c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This skill is consumed by `TASK`. The brief must make the TASK scope, semantic scope, status policy, and expected outputs explicit.
+</p></div></div></section>
+<section id="SEC-SKP037-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3bb9c58f4f30" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0004</span> Required TASK fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3bb9c58f4f30" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3bb9c58f4f30" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3bb9c58f4f30" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Requirement |
+|---|---|
+| `TaskSkill` | Must be `semantic-matrix-build`. |
+| `ScopePath` | Absolute path to exactly one deliverable / production unit folder. This is the TASK local scope. |
+| `Tasks` | Must request generation of `_SEMANTIC.md` for this one scope. |
+| `ExpectedOutputs` | Must include `_SEMANTIC.md` and the TASK run record. |
+</p></div></div></section>
+<section id="SEC-SKP037-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c0d137126efd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0005</span> Required semantic fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0d137126efd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0d137126efd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0d137126efd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Place these in `RuntimeOverrides` unless the local TASK convention passes them top-level.</p>
+<p>| Field | Requirement |
+|---|---|
+| `deliverable_folder` | Absolute path to the same folder as `ScopePath`. |
+| `decomposition_path` | Absolute path to the decomposition document, used for traceability only. |
+| `DECOMP_VARIANT` | `PROJECT`, `SOFTWARE`, or `DOMAIN`. |
+| `STATUS_POLICY` | `PRESERVE_CURRENT`, `ADVANCE_ON_PASS`, or `NO_STATUS_TOUCH`. Default for ORCHESTRATOR Phase 2.3 is `PRESERVE_CURRENT`. |
+</p></div></div></section>
+<section id="SEC-SKP037-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7b26b1269389" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0006</span> Normal ORCHESTRATOR Phase 2.3 brief</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7b26b1269389" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7b26b1269389" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7b26b1269389" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use `ScopePath` as the TASK run/context anchor and provide `RuntimeOverrides.deliverable_folder` as the skill-local deliverable anchor. This skill must create or overwrite `_SEMANTIC.md`, so the brief must set `ApplyEdits: true` and authorize `_SEMANTIC.md` as a writable target.</p>
+<p>```yaml
+PURPOSE: Generate deliverable-local semantic lens
+RequestedBy: ORCHESTRATOR
+ScopePath: /absolute/path/to/PKG-XX/.../DEL-XX-YY_Name
+TaskSkill: semantic-matrix-build
+Tasks:
+  - Generate _SEMANTIC.md for the single deliverable folder.
+  - Read the deliverable-local truth set and production documents.
+  - Adopt canonical matrices A and B.
+  - Derive C, F, D, K, G, X, T, E in order with full interpretation work.
+  - Run semantic audit and repo validator when available.
+ApplyEdits: true
+AllowedWriteTargets:
+  - /absolute/path/to/PKG-XX/.../DEL-XX-YY_Name/_SEMANTIC.md
+RuntimeOverrides:
+  deliverable_folder: /absolute/path/to/PKG-XX/.../DEL-XX-YY_Name
+  decomposition_path: /absolute/path/to/execution/_Decomposition/DECOMP.md
+  DECOMP_VARIANT: SOFTWARE
+  STATUS_POLICY: PRESERVE_CURRENT
+CustomInstructions:
+  - Run as sealed ORCHESTRATOR Phase 2.3 semantic matrix generation.
+  - Do not author or repair production documents.
+  - Do not change _STATUS.md state; preserve the current lifecycle state by runtime policy.
+  - Use compact derivation tables for C, F, D, X, and E.
+  - Step 1 axis anchors and Step 2 projections must resolve to semantic phrases.
+  - Insert Matrix Z before Matrix Summary.
+ExpectedOutputs:
+  - _SEMANTIC.md
+  - _run_records/TASK_RUN_*.md
+```
+</p></div></div></section>
+<section id="SEC-SKP037-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a0d7dce8e355" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0007</span> Brief for status advancement on PASS</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0d7dce8e355" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0d7dce8e355" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0d7dce8e355" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use only when project policy says this skill owns `SEMANTIC_READY` advancement.</p>
+<p>```yaml
+ScopePath: /absolute/path/to/deliverable
+TaskSkill: semantic-matrix-build
+ApplyEdits: true
+AllowedWriteTargets:
+  - /absolute/path/to/deliverable/_SEMANTIC.md
+  - /absolute/path/to/deliverable/_STATUS.md
+RuntimeOverrides:
+  deliverable_folder: /absolute/path/to/deliverable
+  decomposition_path: /absolute/path/to/decomposition.md
+  DECOMP_VARIANT: PROJECT
+  STATUS_POLICY: ADVANCE_ON_PASS
+CustomInstructions:
+  - On audit PASS, set or verify Current State as SEMANTIC_READY and append History.
+  - On audit FAIL, leave _STATUS.md state unchanged.
+```
+</p></div></div></section>
+<section id="SEC-SKP037-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:39b0e42590d9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0008</span> Variant behavior</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:39b0e42590d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:39b0e42590d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:39b0e42590d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Variant | Production documents read | Notes |
+|---|---|---|
+| `PROJECT` | `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` | Standard four-document set. |
+| `SOFTWARE` | `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` | Same document set and terminology as PROJECT. |
+| `DOMAIN` | All non-metadata `.md` files not prefixed with `_`, typically `Scoping.md` and `KA-*.md` | Invoke only when explicitly requested; standard ORCHESTRATOR DOMAIN setup may skip semantic lensing. |
+</p></div></div></section>
+<section id="SEC-SKP037-0009" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a802e371d0f6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0009</span> Recommended CustomInstructions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a802e371d0f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a802e371d0f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a802e371d0f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use these for format-sensitive runs:</p>
+<p>- Generate exactly one `_SEMANTIC.md` for exactly one deliverable folder.
+- Keep the lens deliverable-conditioned but not deliverable-literal.
+- Final matrix cells must be category-level 2–5 word phrases.
+- Step 2 projections must resolve semantic phrases, not just restate formulas.
+- Matrix Summary must use compact markdown tables, not bullet lists.
+- Include `Matrix Z — Summary Boundary` before Matrix Summary.
+- Do not claim validator PASS unless the repo validator actually ran.
+</p></div></div></section>
+<section id="SEC-SKP037-0010" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1b82506c176f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0010</span> Not accepted</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b82506c176f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b82506c176f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b82506c176f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Multi-deliverable scope.
+- Cross-deliverable scanning or comparison.
+- ORCHESTRATOR authoring `_SEMANTIC.md` inline instead of dispatching TASK.
+- Missing `decomposition_path`.
+- Missing `STATUS_POLICY` in an ORCHESTRATOR Phase 2.3 brief.
+- A brief that asks the skill to edit production documents.
+- A brief that asks for both `STATUS_POLICY=ADVANCE_ON_PASS` and omits `_STATUS.md` write authorization.
+</p></div></div></section>
+<section id="SEC-SKP037-0011" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:03214993ebb6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP037-0011</span> Component: skills/semantic-matrix-build/QA_CHECKS.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03214993ebb6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03214993ebb6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03214993ebb6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0012" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:226e2c442eae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP037-0012</span> semantic-matrix-build — QA Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:226e2c442eae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:226e2c442eae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:226e2c442eae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6c018012e29c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0013</span> Minimum checks for a valid run</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c018012e29c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c018012e29c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c018012e29c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. `ScopePath` exists and is a directory.
+2. `deliverable_folder` exists, is a directory, and resolves to `ScopePath`.
+3. `_CONTEXT.md` exists in `deliverable_folder`.
+4. `decomposition_path` is provided. If the file cannot be read, record that fact; do not invent decomposition content.
+5. `_SEMANTIC.md` is written to `{deliverable_folder}/_SEMANTIC.md`.
+6. Production documents are read-only.
+7. No sibling deliverable folder is scanned.
+8. No files outside the effective bounded task brief&#x27;s write authorization are written.
+9. All eight derived matrices appear in sequence: C, F, D, K, G, X, T, E.
+10. Canonical matrices A and B are reproduced exactly and not re-derived.
+11. Interpreted matrices C, F, D, X, and E include intermediate collections and all three interpretation steps for every cell.
+12. Matrix Summary appears after `Matrix Z — Summary Boundary` and contains compact markdown tables for C, F, D, K, G, X, T, and E.
+13. `STATUS_POLICY` is honored exactly.
+14. Repo validator is run when available and permitted; if unavailable, the report says so.
+</p></div></div></section>
+<section id="SEC-SKP037-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:feca8e0445a2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0014</span> Structural invariants</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:feca8e0445a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:feca8e0445a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:feca8e0445a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Requirement |
+|---|---|
+| Header | Includes generated date, variant, perspective, framework, audit status, phase/status ruling, and Inputs Read. |
+| Inputs Read | Lists `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `MEMORY.md`, and production documents as read, not present, or absent. |
+| SourceRefs | Use path + best-effort heading anchor when possible. |
+| Matrix A | Exact canonical 3×4 Orientation values. |
+| Matrix B | Exact canonical 4×4 Conceptualization values. |
+| Matrix order | A, B, C, F, D, K, G, X, T, E, Matrix Z, Matrix Summary. |
+| Result tables | Every matrix section has a Result table. |
+| Summary tables | Summary uses markdown tables, not bullets. |
+| Matrix Z | Present between Matrix E and Matrix Summary; not counted as a semantic matrix. |
+| Correct dimensions | C 3×4, F 3×4, D 3×4, K 4×3, G 3×4, X 4×4, T 4×4, E 4×4. |
+</p></div></div></section>
+<section id="SEC-SKP037-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c43c2b1d3b25" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0015</span> Construction formulas</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c43c2b1d3b25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c43c2b1d3b25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c43c2b1d3b25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The section heading or construction note must show these formulas:</p>
+<p>| Matrix | Required formula |
+|---|---|
+| C | `L_C(i,j) = Σ_k (A(i,k) * B(k,j)); C(i,j) = I(row_i, col_j, L_C(i,j))` |
+| F | `L_F(i,j) = Σ_k (C(i,k) * B(k,j)); F(i,j) = I(row_i, col_j, L_F(i,j))` |
+| D | `L_D(i,j) = A(i,j) + (resolution * F(i,j)); D(i,j) = I(row_i, col_j, L_D(i,j))` |
+| K | `K(i,j) = D(j,i)` |
+| G | remove `wisdom` row from B |
+| X | `L_X(i,j) = Σ_k (K(i,k) * G(k,j)); X(i,j) = I(row_i, col_j, L_X(i,j))` |
+| T | `T(i,j) = B(j,i)` |
+| E | `L_E(i,j) = Σ_k (X(i,k) * T(k,j)); E(i,j) = I(row_i, col_j, L_E(i,j))` |
+</p></div></div></section>
+<section id="SEC-SKP037-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e00815855e18" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0016</span> Interpretation validity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e00815855e18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e00815855e18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e00815855e18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For every interpreted cell in C, F, D, X, and E:</p>
+<p>| Check | Requirement |
+|---|---|
+| Intermediate collection | Contains every contributor product required by the formula. |
+| Step 1 explicit | Shows `r * c = &lt;resolved anchor phrase&gt;`. |
+| Step 1 resolved | Anchor phrase is semantic; it is not merely `&lt;row&gt;-&lt;column&gt; coordinate frame`. |
+| Step 2 explicit | Shows every `p_n = a * t_n`. |
+| Step 2 resolved | Every projection ends with a resolved semantic phrase. Formula-only projections are invalid. |
+| Step 2 complete | Every contributor in `L` has exactly one projection. |
+| Step 3 explicit | Says `centroid selects &lt;final phrase&gt;` or equivalent. |
+| Step 3 single | Selects one final phrase only. |
+| No shortcut | The working does not jump from Step 1 to Step 3. |
+| Explicit products | Uses `*` for semantic products. Do not use `x` or prose-only joins. |
+</p></div></div></section>
+<section id="SEC-SKP037-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:41e2400d7b04" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0017</span> Semantic product validity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:41e2400d7b04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:41e2400d7b04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:41e2400d7b04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Final cells in Result tables and Matrix Summary must satisfy all checks.</p>
+<p>| Check | Requirement |
+|---|---|
+| Populated | No empty final cells. |
+| Single unit | Exactly one semantic unit, not a list. |
+| Length | 2–5 words, except canonical inherited B/G/T values. |
+| Dense | Prefer 2–3 words when complete. |
+| No algebra leak | No `∩` or `Σ`. |
+| No operator leak | No unresolved `+` flanked by semantic terms. |
+| No long expansion | No final cell exceeds about 80 characters. |
+| No axis tokens | Row/column labels for that cell do not appear literally in its final value. |
+| No particulars | No exact code clauses, event-name lists, file paths, implementation paths, numeric requirements, equipment tags, or other instances. |
+| No authority claims | No engineering correctness, recommendations, fitness judgments, or acceptance rulings. |
+</p></div></div></section>
+<section id="SEC-SKP037-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c091f4ded759" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0018</span> Deliverable-conditioning validity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c091f4ded759" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c091f4ded759" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c091f4ded759" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The lens must be relevant to the deliverable without becoming a requirements summary.</p>
+<p>| Failure pattern | Invalid example | Better pattern |
+|---|---|---|
+| Too generic | `adequate evidence` for many unrelated cells | `runtime proof`, `summary integrity`, `source assurance` |
+| Too literal | exact API method, route, event name, or file path in a cell | category phrase such as `contract boundary`, `compatibility proof` |
+| Requirement restatement | a SHALL-style or test-case phrase | semantic type/category phrase |
+| Source warning ignored | perspective omits known source-state caveat category | perspective mentions unresolved source-state caveats without particulars |
+</p></div></div></section>
+<section id="SEC-SKP037-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9118d986beb0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0019</span> Audit procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9118d986beb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9118d986beb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9118d986beb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Audit after generating all Result tables and Matrix Summary.</p>
+<p>Scan final cell values in:</p>
+<p>- C Result and Summary C;
+- F Result and Summary F;
+- D Result and Summary D;
+- K Result and Summary K;
+- G Result and Summary G;
+- X Result and Summary X;
+- T Result and Summary T;
+- E Result and Summary E.</p>
+<p>Fail immediately if any final cell violates semantic product validity.</p>
+<p>On audit FAIL:</p>
+<p>1. Mark the run `FAIL`.
+2. Do not repair, regenerate, or re-audit within the same run.
+3. Do not advance status.
+4. If `_SEMANTIC.md` is written, its header must show `Audit: FAIL`.
+5. The run report must list matrix, cell, value, and reason.</p>
+<p>On audit PASS:</p>
+<p>1. Mark `_SEMANTIC.md` `Audit: PASS`.
+2. Apply `STATUS_POLICY` exactly.
+3. Run repo validator when available and permitted.
+4. Report validator result or `validator not available`.
+</p></div></div></section>
+<section id="SEC-SKP037-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:acb8bff11819" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0020</span> Status policy checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:acb8bff11819" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:acb8bff11819" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:acb8bff11819" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Policy | Required behavior |
+|---|---|
+| `PRESERVE_CURRENT` | Do not change lifecycle state. Header/run report says state preserved by runtime policy. |
+| `ADVANCE_ON_PASS` | On audit PASS, set/verify `SEMANTIC_READY` only if `_STATUS.md` edit is authorized. On FAIL, unchanged. |
+| `NO_STATUS_TOUCH` | Do not edit `_STATUS.md` at all. |</p>
+<p>No status regression is ever allowed.
+</p></div></div></section>
+<section id="SEC-SKP037-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:386aee8983f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0021</span> File-scope checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:386aee8983f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:386aee8983f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:386aee8983f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Requirement |
+|---|---|
+| Production docs | Not modified. |
+| `_CONTEXT.md` | Not modified. |
+| `_REFERENCES.md` | Not modified. |
+| `_DEPENDENCIES.md` | Not modified. |
+| `MEMORY.md` | Not modified by this skill. |
+| Sibling folders | Not read or written. |
+| `_STATUS.md` | Modified only when status policy and TASK authorization allow it. |
+| `_SEMANTIC.md` | Created/overwritten only inside `deliverable_folder`. |
+</p></div></div></section>
+<section id="SEC-SKP037-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ddff924d83b2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0022</span> Failure reporting</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ddff924d83b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ddff924d83b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ddff924d83b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Situation | Report |
+|---|---|
+| `deliverable_folder` missing/not directory | `FAILED_INPUTS` |
+| `_CONTEXT.md` missing | `FAILED_INPUTS` |
+| `decomposition_path` omitted | `FAILED_INPUTS` |
+| `ScopePath` and `deliverable_folder` disagree | `FAILED_INPUTS` |
+| Required write target unauthorized | `FAILED_INPUTS` or TASK authorization violation, according to TASK rules |
+| Production doc missing | Record absent; continue |
+| `_REFERENCES.md` missing | Record not present; continue |
+| `MEMORY.md` missing | Record not present; continue |
+| Audit fail | `FAIL`, with matrix/cell/reason |
+| Validator unavailable | Report unavailable; do not claim validator PASS |
+</p></div></div></section>
+<section id="SEC-SKP037-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:57551c1476b8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0023</span> Success report</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:57551c1476b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:57551c1476b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:57551c1476b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A clean run reports:</p>
+<p>- `RUN_STATUS=SUCCESS` or the local TASK success token;
+- deliverable ID/name;
+- `DECOMP_VARIANT`;
+- `_SEMANTIC.md` path;
+- Audit PASS;
+- validator PASS or validator unavailable;
+- status policy and actual status action;
+- no production document modifications;
+- no out-of-scope writes;
+- no failing cells.
+</p></div></div></section>
+<section id="SEC-SKP037-0024" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:9a040f27c7a4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP037-0024</span> Component: skills/semantic-matrix-build/SKILL.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a040f27c7a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a040f27c7a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a040f27c7a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+name: semantic-matrix-build
+description: Generate one deliverable-local semantic lens (_SEMANTIC.md) by adopting canonical matrices A and B and deriving C, F, D, K, G, X, T, and E with explicit semantic-algebra working.
+compatibility: Chirality TASK generic shell; normally dispatched by ORCHESTRATOR setup pipeline Phase 2.3 with ScopePath set to one deliverable folder.
+metadata:
+  chirality-skill-version: &quot;2&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SKP037-0025" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:c0df889fc761" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP037-0025</span> SKILL — semantic-matrix-build</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0df889fc761" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0df889fc761" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0df889fc761" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:18e93763611c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0026</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18e93763611c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18e93763611c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18e93763611c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Generate `_SEMANTIC.md`, a deliverable-local semantic lens for one production unit.</p>
+<p>The lens is **deliverable-conditioned**: `_CONTEXT.md` and production documents shape the vocabulary and perspective. The lens is **not deliverable-literal**: matrix cells are semantic categories, types, behaviors, and values, not restated requirements, implementation details, code clauses, file paths, event-name lists, numbers, or engineering judgments.</p>
+<p>Each run starts from canonical Matrix A and Matrix B, then derives exactly these matrices in order:</p>
+<p>`C, F, D, K, G, X, T, E`</p>
+<p>The output is one file:</p>
+<p>`{deliverable_folder}/_SEMANTIC.md`
+</p></div></div></section>
+<section id="SEC-SKP037-0027" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:ff58374ea30f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0027</span> Runtime shell</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff58374ea30f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff58374ea30f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff58374ea30f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use `TASK` in generic shell mode with `ScopePath` set to the deliverable folder. This skill is fully controlled by its brief and method contract.</p>
+<p>Normal dispatch shape:</p>
+<p>```yaml
+TaskSkill: semantic-matrix-build
+ScopePath: /absolute/path/to/one/deliverable-folder
+RuntimeOverrides:
+  deliverable_folder: /absolute/path/to/one/deliverable-folder
+  decomposition_path: /absolute/path/to/decomposition.md
+  DECOMP_VARIANT: SOFTWARE
+  STATUS_POLICY: PRESERVE_CURRENT
+```
+</p></div></div></section>
+<section id="SEC-SKP037-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:11549c4496dc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0028</span> Method boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11549c4496dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11549c4496dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11549c4496dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This skill is a method pack loaded by TASK. It is not a persona agent.</p>
+<p>The skill may narrow runtime behavior but must not widen the effective bounded task brief&#x27;s write authorization. If TASK and this skill disagree about write authorization or tool use, the narrower instruction wins and the run report must surface the contradiction.
+</p></div></div></section>
+<section id="SEC-SKP037-0029" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:0d6119f616de" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0029</span> Precedence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0d6119f616de" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0d6119f616de" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0d6119f616de" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. TASK hard authorization boundary and active brief
+2. This SKILL.md method contract
+3. QA_CHECKS.md validity contract
+4. TOOL_POLICY.md tool contract
+5. BRIEF_SCHEMA.md dispatch examples</p>
+<p>If instructions conflict, do not silently reconcile. Report the contradiction.
+</p></div></div></section>
+<section id="SEC-SKP037-0030" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0030</span> Inputs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0031" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:961176832e95" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0031</span> Required</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:961176832e95" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:961176832e95" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:961176832e95" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` — TASK local scope root; must resolve to the same folder as `deliverable_folder`.
+- `deliverable_folder` — absolute path to exactly one deliverable / production unit folder.
+- `decomposition_path` — absolute path to the decomposition document used for traceability only.
+</p></div></div></section>
+<section id="SEC-SKP037-0032" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:5a3caa17d562" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0032</span> Required runtime override</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a3caa17d562" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a3caa17d562" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a3caa17d562" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `DECOMP_VARIANT` — `PROJECT`, `SOFTWARE`, or `DOMAIN`.</p>
+<p>If absent, default to `PROJECT`, but report the default in the run report.
+</p></div></div></section>
+<section id="SEC-SKP037-0033" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:a1d7ad332483" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0033</span> Status policy runtime override</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1d7ad332483" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1d7ad332483" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1d7ad332483" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`STATUS_POLICY` controls `_STATUS.md` behavior.</p>
+<p>| Value | Meaning |
+|---|---|
+| `PRESERVE_CURRENT` | Default for ORCHESTRATOR Phase 2.3. Do not change lifecycle state. Record the ruling in `_SEMANTIC.md` and the run report. |
+| `ADVANCE_ON_PASS` | On audit PASS, set or verify `Current State: SEMANTIC_READY`, but only if TASK write authorization allows `_STATUS.md` edits. |
+| `NO_STATUS_TOUCH` | Do not edit `_STATUS.md` at all. Record status untouched in `_SEMANTIC.md` and the run report. |</p>
+<p>If `STATUS_POLICY=ADVANCE_ON_PASS` but `_STATUS.md` editing is not authorized by TASK/brief, do not edit status. Report `NEEDS_HUMAN_RULING` or `FAILED_INPUTS` according to TASK&#x27;s run-report convention.
+</p></div></div></section>
+<section id="SEC-SKP037-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:aa498fef57e4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0034</span> Files to read</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aa498fef57e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aa498fef57e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aa498fef57e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Read only inside `deliverable_folder`, except the decomposition document used for traceability.</p>
+<p>Read in this order when present:</p>
+<p>1. `_CONTEXT.md` — required. If missing, fail with `FAILED_INPUTS`.
+2. `_STATUS.md` — lifecycle state and phase history.
+3. `_REFERENCES.md` — source corpus and source-state warnings.
+4. `_DEPENDENCIES.md` — dependency notes; do not infer blockers from it.
+5. `MEMORY.md` — if absent, record `not present` in Inputs Read.
+6. Production documents:
+   - `PROJECT` / `SOFTWARE`: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`
+   - `DOMAIN`: all non-metadata `.md` files not prefixed with `_`, typically `Scoping.md` and `KA-*.md`</p>
+<p>Missing production documents are recorded as absent; they do not fail the run. Do not read sibling deliverable folders. Do not compare across deliverables.
+</p></div></div></section>
+<section id="SEC-SKP037-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6eacaf100437" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0035</span> Write scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6eacaf100437" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6eacaf100437" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6eacaf100437" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+May write only inside `deliverable_folder`:</p>
+<p>- `_SEMANTIC.md` — primary output; overwrite allowed.
+- `_STATUS.md` — only if `STATUS_POLICY` requires it and TASK/brief authorizes it.</p>
+<p>Never modify production documents, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `MEMORY.md`, or files outside the scope.
+</p></div></div></section>
+<section id="SEC-SKP037-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e58eb4d44a8a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0036</span> Deliverable perspective</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e58eb4d44a8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e58eb4d44a8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e58eb4d44a8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write a 1–3 sentence Perspective near the top of `_SEMANTIC.md`.</p>
+<p>The Perspective must:</p>
+<p>- name what the deliverable is for at a semantic level;
+- identify the kinds of knowledge the lens must carry;
+- include relevant source-state caveats at a category level when present;
+- avoid engineering correctness claims;
+- avoid exact code clauses, exact event-name lists, exact file paths, line numbers, implementation paths, and other particulars.</p>
+<p>Good pattern:</p>
+<p>&gt; This deliverable frames the runtime boundary as a product-owned contract that keeps adapter behavior replaceable while preserving product-owned turn semantics. Its knowledge must carry API shape, adapter quarantine, event compatibility, conformance expectations, and unresolved source-state caveats without treating provider-specific details as public authority.</p>
+<p>Bad patterns:</p>
+<p>- Too generic: “This deliverable creates a semantic lens for knowledge work.”
+- Too literal: “This deliverable validates `session:init`, `chat:delta`, and `/api/...` by implementing file X.”
+</p></div></div></section>
+<section id="SEC-SKP037-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1e0bd3a62019" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0037</span> Semantic product style</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e0bd3a62019" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e0bd3a62019" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e0bd3a62019" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Final matrix cells must be:</p>
+<p>- deliverable-conditioned;
+- category-level, not requirement-level;
+- one phrase only;
+- 2–5 words;
+- preferably 2–3 words when meaning remains complete;
+- free of row/column axis labels;
+- free of `∩`, `Σ`, unresolved `+`, or raw formula text.</p>
+<p>Target style examples:</p>
+<p>| Too generic | Too literal | Better |
+|---|---|---|
+| adequate evidence | SDK-backed adapter test output | runtime proof |
+| complete record | route/SSE event preservation checklist | compatibility record |
+| quality review | acceptance of exact PRD hash warning | source-state assurance |
+| process audit | Section 8 harness CI premerge summary | summary integrity check |
+</p></div></div></section>
+<section id="SEC-SKP037-0038" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:e184895e0daa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0038</span> Semantic algebra</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e184895e0daa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e184895e0daa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e184895e0daa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0039" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:6573f57c543b" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0039</span> Multiplication `*`</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6573f57c543b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6573f57c543b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6573f57c543b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Semantic multiplication combines two semantic units into their intersection.</p>
+<p>Examples:</p>
+<p>- `sufficient * reason = justification`
+- `necessary * condition = prerequisite`
+- `practical * knowledge = skill`
+</p></div></div></section>
+<section id="SEC-SKP037-0040" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:633f96628512" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0040</span> Addition `+`</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:633f96628512" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:633f96628512" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:633f96628512" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Semantic addition groups terms into a collection. It must not leak into final cell values.
+</p></div></div></section>
+<section id="SEC-SKP037-0041" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:ee5b662d9253" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0041</span> Interpretation `I(r, c, L)`</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ee5b662d9253" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ee5b662d9253" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ee5b662d9253" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every list-valued cell must be interpreted into one atomic semantic unit.</p>
+<p>For every interpreted cell, show exactly these three steps.
+</p></div></div></section>
+<section id="SEC-SKP037-0042" class="chunk sec depth-6 cov-mid" data-kind="section" data-key="section:7a70fe74373c" data-status="unreviewed" data-depth="6" data-page="" data-in-scope="true"><header class="sec-head"><h7 class="sec-title"><span class="sid">SEC-SKP037-0042</span> Step 1 — Axis anchor</h7><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a70fe74373c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a70fe74373c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a70fe74373c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Compute and resolve the axis product:</p>
+<p>`a = r * c = &lt;resolved anchor phrase&gt;`</p>
+<p>The anchor phrase should be semantic, not merely `&lt;row&gt;-&lt;column&gt; coordinate frame`.</p>
+<p>Example:</p>
+<p>`normative * necessity = binding need`
+</p></div></div></section>
+<section id="SEC-SKP037-0043" class="chunk sec depth-6 cov-mid" data-kind="section" data-key="section:0e0e5f784177" data-status="unreviewed" data-depth="6" data-page="" data-in-scope="true"><header class="sec-head"><h7 class="sec-title"><span class="sid">SEC-SKP037-0043</span> Step 2 — Projected contributors</h7><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e0e5f784177" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e0e5f784177" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e0e5f784177" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For every contributor `t_n` in `L`, compute and resolve:</p>
+<p>`p_n = a * t_n = &lt;anchor phrase&gt; * &lt;contributor phrase&gt; = &lt;resolved projection phrase&gt;`</p>
+<p>A projection that only restates the formula is incomplete. Each projection must have a resolved phrase before Step 3.</p>
+<p>Good:</p>
+<p>`p1 = binding need * policy fact = rule entry`</p>
+<p>Bad:</p>
+<p>`p1 = (normative * necessity) * (policy threshold * essential fact)`
+</p></div></div></section>
+<section id="SEC-SKP037-0044" class="chunk sec depth-6 cov-high" data-kind="section" data-key="section:2ab541010d59" data-status="unreviewed" data-depth="6" data-page="" data-in-scope="true"><header class="sec-head"><h7 class="sec-title"><span class="sid">SEC-SKP037-0044</span> Step 3 — Centroid attractor</h7><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2ab541010d59" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2ab541010d59" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2ab541010d59" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Select one final cell phrase:</p>
+<p>`centroid selects &lt;final phrase&gt;`</p>
+<p>The phrase must capture the shared semantic core of all resolved projections. It must not enumerate contributors.
+</p></div></div></section>
+<section id="SEC-SKP037-0045" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:15b18075f16e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0045</span> Matrix construction rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15b18075f16e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15b18075f16e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15b18075f16e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0046" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:b50a7ca968a6" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0046</span> Matrix A — Orientation (canonical, 3×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b50a7ca968a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b50a7ca968a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b50a7ca968a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use these exact values. Do not derive or edit them.</p>
+<p>| | **guiding** | **applying** | **judging** | **reviewing** |
+|---|---|---|---|---|
+| **normative** | prescriptive direction | mandatory practice | compliance determination | regulatory audit |
+| **operative** | procedural direction | practical execution | performance assessment | process audit |
+| **evaluative** | value orientation | merit application | worth determination | quality appraisal |
+</p></div></div></section>
+<section id="SEC-SKP037-0047" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:0df73443237a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0047</span> Matrix B — Conceptualization (canonical, 4×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0df73443237a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0df73443237a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0df73443237a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use these exact values. Do not derive or edit them.</p>
+<p>| | **necessity** | **sufficiency** | **completeness** | **consistency** |
+|---|---|---|---|---|
+| **data** | essential fact | adequate evidence | comprehensive record | reliable measurement |
+| **information** | essential signal | adequate context | comprehensive account | coherent message |
+| **knowledge** | fundamental understanding | competent expertise | thorough mastery | coherent understanding |
+| **wisdom** | essential discernment | adequate judgment | holistic insight | principled reasoning |
+</p></div></div></section>
+<section id="SEC-SKP037-0048" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:9294b4ceb8ac" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0048</span> Matrix C — Formulation (3×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9294b4ceb8ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9294b4ceb8ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9294b4ceb8ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Columns: `necessity`, `sufficiency`, `completeness`, `consistency`  
+Rows: `normative`, `operative`, `evaluative`</p>
+<p>Formula:</p>
+<p>`L_C(i,j) = Σ_k (A(i,k) * B(k,j))`  
+`C(i,j) = I(row_i, col_j, L_C(i,j))`
+</p></div></div></section>
+<section id="SEC-SKP037-0049" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:70b74db197bd" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0049</span> Matrix F — Requirements (3×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70b74db197bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70b74db197bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70b74db197bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Columns: `necessity`, `sufficiency`, `completeness`, `consistency`  
+Rows: `normative`, `operative`, `evaluative`</p>
+<p>Formula:</p>
+<p>`L_F(i,j) = Σ_k (C(i,k) * B(k,j))`  
+`F(i,j) = I(row_i, col_j, L_F(i,j))`
+</p></div></div></section>
+<section id="SEC-SKP037-0050" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:c13a6b6924ca" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0050</span> Matrix D — Objectives (3×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c13a6b6924ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c13a6b6924ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c13a6b6924ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Columns: `guiding`, `applying`, `judging`, `reviewing`  
+Rows: `normative`, `operative`, `evaluative`</p>
+<p>Formula:</p>
+<p>`L_D(i,j) = A(i,j) + (resolution * F(i,j))`  
+`D(i,j) = I(row_i, col_j, L_D(i,j))`</p>
+<p>For D, use exactly two contributors in `L_D`: the A cell and the resolution-transformed F cell.
+</p></div></div></section>
+<section id="SEC-SKP037-0051" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:8896906e8897" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0051</span> Matrix K — Transpose of D (4×3)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8896906e8897" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8896906e8897" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8896906e8897" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Formula:</p>
+<p>`K(i,j) = D(j,i)`</p>
+<p>Rows: `guiding`, `applying`, `judging`, `reviewing`  
+Columns: `normative`, `operative`, `evaluative`
+</p></div></div></section>
+<section id="SEC-SKP037-0052" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:b9ff3f7f2fe0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0052</span> Matrix G — Truncation of B (3×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9ff3f7f2fe0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9ff3f7f2fe0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9ff3f7f2fe0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Formula:</p>
+<p>Remove the `wisdom` row from B.</p>
+<p>Rows: `data`, `information`, `knowledge`  
+Columns: `necessity`, `sufficiency`, `completeness`, `consistency`
+</p></div></div></section>
+<section id="SEC-SKP037-0053" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:1bca8259b914" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0053</span> Matrix X — Verification (4×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1bca8259b914" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1bca8259b914" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1bca8259b914" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Rows: `guiding`, `applying`, `judging`, `reviewing`  
+Columns: `necessity`, `sufficiency`, `completeness`, `consistency`</p>
+<p>Formula:</p>
+<p>`L_X(i,j) = Σ_k (K(i,k) * G(k,j))`  
+`X(i,j) = I(row_i, col_j, L_X(i,j))`
+</p></div></div></section>
+<section id="SEC-SKP037-0054" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:e7cd93cb50ff" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0054</span> Matrix T — Transpose of B (4×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e7cd93cb50ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e7cd93cb50ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e7cd93cb50ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Formula:</p>
+<p>`T(i,j) = B(j,i)`</p>
+<p>Rows: `necessity`, `sufficiency`, `completeness`, `consistency`  
+Columns: `data`, `information`, `knowledge`, `wisdom`
+</p></div></div></section>
+<section id="SEC-SKP037-0055" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:410bcfa4feec" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0055</span> Matrix E — Evaluation (4×4)</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:410bcfa4feec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:410bcfa4feec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:410bcfa4feec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Rows: `guiding`, `applying`, `judging`, `reviewing`  
+Columns: `data`, `information`, `knowledge`, `wisdom`</p>
+<p>Formula:</p>
+<p>`L_E(i,j) = Σ_k (X(i,k) * T(k,j))`  
+`E(i,j) = I(row_i, col_j, L_E(i,j))`
+</p></div></div></section>
+<section id="SEC-SKP037-0056" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:c462cd6e7c9f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0056</span> Output format</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c462cd6e7c9f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c462cd6e7c9f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c462cd6e7c9f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write `_SEMANTIC.md` in this order.</p>
+<p>```markdown</p></div></div></section>
+<section id="SEC-SKP037-0057" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:84b5f64a2325" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP037-0057</span> Semantic Lens: [ID] [Name]</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84b5f64a2325" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84b5f64a2325" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84b5f64a2325" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** [YYYY-MM-DD]
+**DECOMP_VARIANT:** [PROJECT|SOFTWARE|DOMAIN]
+**Perspective:** [1–3 sentences]
+**Framework:** Chirality Semantic Algebra
+**Audit:** [PASS|FAIL]
+**Phase 2.3 Ruling:** [status policy statement]
+**Inputs Read:**
+- _CONTEXT.md — [SourceRef]
+- _STATUS.md — [SourceRef or not present]
+- _REFERENCES.md — [SourceRef or not present]
+- _DEPENDENCIES.md — [SourceRef or not present]
+- MEMORY.md — [SourceRef or not present]
+- Datasheet.md — [SourceRef or absent]
+- Specification.md — [SourceRef or absent]
+- Guidance.md — [SourceRef or absent]
+- Procedure.md — [SourceRef or absent]
+- [DOMAIN files if applicable] — [SourceRef]
+</p></div></div></section>
+<section id="SEC-SKP037-0058" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:2cf4227e02be" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0058</span> Matrix A — Orientation (3x4) — Canonical</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2cf4227e02be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2cf4227e02be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2cf4227e02be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>[canonical table]
+</p></div></div></section>
+<section id="SEC-SKP037-0059" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:73a1b0f268ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0059</span> Matrix B — Conceptualization (4x4) — Canonical</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73a1b0f268ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73a1b0f268ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73a1b0f268ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>[canonical table]
+</p></div></div></section>
+<section id="SEC-SKP037-0060" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:f6fc3d9966b0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0060</span> Matrix C — Formulation (3x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6fc3d9966b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6fc3d9966b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6fc3d9966b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0061" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:b8977452a935" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0061</span> Construction: Dot product A · B</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8977452a935" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8977452a935" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8977452a935" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Intermediate collection and interpretation work for `L_C(i,j) = Σ_k (A(i,k) * B(k,j))`.
+[work table]</p></div></div></section>
+<section id="SEC-SKP037-0062" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:ae9621ffa0e9" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0062</span> Result</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae9621ffa0e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae9621ffa0e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae9621ffa0e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>[result table]
+</p></div></div></section>
+<section id="SEC-SKP037-0063" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:c46ec9f64cd9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0063</span> Matrix F — Requirements (3x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c46ec9f64cd9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c46ec9f64cd9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c46ec9f64cd9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0064" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:58d9e4a3df38" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0064</span> Matrix D — Objectives (3x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:58d9e4a3df38" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:58d9e4a3df38" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:58d9e4a3df38" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0065" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:17055f146ffd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0065</span> Matrix K — Transpose of D (4x3)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:17055f146ffd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:17055f146ffd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:17055f146ffd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0066" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:04bebe12e431" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0066</span> Matrix G — Truncation of B (3x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:04bebe12e431" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:04bebe12e431" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:04bebe12e431" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0067" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:1d447cf875d3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0067</span> Matrix X — Verification (4x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d447cf875d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d447cf875d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d447cf875d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0068" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:424d0a2fe05e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0068</span> Matrix T — Transpose of B (4x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:424d0a2fe05e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:424d0a2fe05e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:424d0a2fe05e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...
+</p></div></div></section>
+<section id="SEC-SKP037-0069" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:ec14152498ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0069</span> Matrix E — Evaluation (4x4)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec14152498ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec14152498ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec14152498ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>...</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-SKP037-0070" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1ea32908f205" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0070</span> Matrix Z — Summary Boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1ea32908f205" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1ea32908f205" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1ea32908f205" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This delimiter prevents summary tables from being parsed as part of Matrix E result work. It is not a semantic matrix.
+</p></div></div></section>
+<section id="SEC-SKP037-0071" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:a62956a14213" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0071</span> Matrix Summary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a62956a14213" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a62956a14213" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a62956a14213" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+[All eight matrices C, F, D, K, G, X, T, E as compact markdown tables. No bullets. No derivation.]
+```
+</p></div></div></section>
+<section id="SEC-SKP037-0072" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:acb7023ecdd8" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0072</span> Work table format</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:acb7023ecdd8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:acb7023ecdd8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:acb7023ecdd8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this table shape for C, F, D, X, and E:</p>
+<p>| Cell | Intermediate collection | Step 1 - Axis anchor | Step 2 - Projected contributors | Step 3 - Centroid attractor |
+|---|---|---|---|---|
+| C[normative,necessity] | ... | `normative * necessity = binding need` | `p1 = binding need * directive fact = source mandate`; ... | centroid selects `policy threshold` |</p>
+<p>Requirements:</p>
+<p>- The Cell label may contain row and column names.
+- The final Result cell value must not contain row or column names.
+- Step 2 must resolve every projected contributor into a phrase.
+- Step 3 must name exactly one final phrase.
+</p></div></div></section>
+<section id="SEC-SKP037-0073" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d764e699dcfc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0073</span> SourceRef convention</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d764e699dcfc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d764e699dcfc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d764e699dcfc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Each `Inputs Read` line must use one of:</p>
+<p>- absolute path + best-effort heading anchor;
+- relative path + heading anchor when absolute path is unavailable;
+- `not present`;
+- `absent`;
+- `location TBD` only when the file was read but no anchor can be determined.</p>
+<p>Do not claim an input was read unless it was actually read.
+</p></div></div></section>
+<section id="SEC-SKP037-0074" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d14950d03a48" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0074</span> Audit before acceptance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d14950d03a48" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d14950d03a48" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d14950d03a48" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Before reporting success, audit all final cell values in:</p>
+<p>- every Result table for C, F, D, K, G, X, T, and E;
+- every Matrix Summary table.</p>
+<p>Fail the run if any final cell:</p>
+<p>1. is empty;
+2. is not one phrase;
+3. is under 2 words or over 5 words, except canonical B/G/T cells inherited from B;
+4. exceeds about 80 characters;
+5. contains `∩` or `Σ`;
+6. contains unresolved `+` between semantic terms;
+7. contains a literal row or column axis token for that cell;
+8. contains implementation particulars, exact event names, file paths, code clauses, numeric requirements, equipment tags, or engineering correctness claims.</p>
+<p>If audit fails:</p>
+<p>- mark `_SEMANTIC.md` Audit as `FAIL` if the file is written;
+- do not advance status;
+- do not repair and re-audit in the same run;
+- report failing matrix/cell/reason in the TASK run report.
+</p></div></div></section>
+<section id="SEC-SKP037-0075" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a35fd1467127" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0075</span> Status handling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a35fd1467127" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a35fd1467127" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a35fd1467127" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+After audit:</p>
+<p>- `STATUS_POLICY=PRESERVE_CURRENT`: do not change current lifecycle state. If `_STATUS.md` history edits are authorized, append a history note that semantic matrix was generated/validated and state was preserved by runtime policy. Otherwise only record this in `_SEMANTIC.md` and the run report.
+- `STATUS_POLICY=ADVANCE_ON_PASS`: on audit PASS, set/verify `SEMANTIC_READY` only when `_STATUS.md` editing is authorized. On audit FAIL, leave state unchanged.
+- `STATUS_POLICY=NO_STATUS_TOUCH`: do not edit `_STATUS.md`.</p>
+<p>Never regress status.
+</p></div></div></section>
+<section id="SEC-SKP037-0076" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:c6c6cee608ae" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0076</span> Run report</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c6c6cee608ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c6c6cee608ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c6c6cee608ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TASK&#x27;s normal run report must include:</p>
+<p>- `RUN_STATUS`
+- deliverable ID/name
+- resolved `deliverable_folder`
+- `DECOMP_VARIANT`
+- `_SEMANTIC.md` path
+- audit PASS/FAIL
+- status policy and actual status action
+- validator result if the repo validator was available and run
+- missing inputs
+- failing cells, if any
+- confirmation that production documents were not modified
+</p></div></div></section>
+<section id="SEC-SKP037-0077" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3d76c4732c53" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0077</span> Validator</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d76c4732c53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d76c4732c53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d76c4732c53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When running inside a repo that contains the validator and tool use is permitted, run:</p>
+<p>```sh
+python3 tools/validation/validate_semantic_matrix.py &quot;{deliverable_folder}&quot;
+```</p>
+<p>If the validator is unavailable, do not claim validator PASS. Report `validator not available`.
+</p></div></div></section>
+<section id="SEC-SKP037-0078" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:1f70dbc291ce" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0078</span> DOMAIN variant note</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f70dbc291ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f70dbc291ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f70dbc291ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill can run on `DOMAIN` folders only when explicitly dispatched. Standard ORCHESTRATOR DOMAIN setup may skip semantic lensing entirely. If invoked for DOMAIN, read the Knowledge Type&#x27;s non-metadata markdown documents and use DOMAIN terminology in the header and perspective. The matrix algebra remains unchanged.
+</p></div></div></section>
+<section id="SEC-SKP037-0079" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:8105741f8406" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SKP037-0079</span> Component: skills/semantic-matrix-build/TOOL_POLICY.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8105741f8406" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8105741f8406" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8105741f8406" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0080" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:54a040e330a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SKP037-0080</span> semantic-matrix-build — Tool Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54a040e330a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54a040e330a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54a040e330a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0081" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d2ac2fcba613" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0081</span> Tool posture</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2ac2fcba613" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2ac2fcba613" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2ac2fcba613" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning-first. The semantic derivation is LLM-driven. Deterministic tools are used only for validation and filesystem safety when available.</p>
+<p>The `allowed-tools` frontmatter field is intentionally omitted in `SKILL.md`. TASK and the run brief decide whether tool execution is restricted.
+</p></div></div></section>
+<section id="SEC-SKP037-0082" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1c64839a5be2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0082</span> Preferred tool sequence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c64839a5be2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c64839a5be2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c64839a5be2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Read files inside `ScopePath` needed by the skill.
+2. Generate `_SEMANTIC.md` by reasoning from the skill contract.
+3. Run the semantic audit specified in `QA_CHECKS.md`.
+4. If available and permitted, run:</p>
+<p>```sh
+python3 tools/validation/validate_semantic_matrix.py &quot;{deliverable_folder}&quot;
+```</p>
+<p>5. If available and permitted, run the semantic pipeline scope validator used by the project for Phase 2.3.
+6. Write/update the TASK run record according to `AGENT_TASK.md`.
+</p></div></div></section>
+<section id="SEC-SKP037-0083" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3eec771fd332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0083</span> Allowed deterministic tools</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3eec771fd332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SKP037-0084" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:832c8f469cd1" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0084</span> TASK-enforced</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:832c8f469cd1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:832c8f469cd1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:832c8f469cd1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+None declared by this skill frontmatter. If the brief supplies `AllowedTools`, TASK enforces that list.
+</p></div></div></section>
+<section id="SEC-SKP037-0085" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:8a825b5c029b" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-SKP037-0085</span> Operational helpers</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a825b5c029b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a825b5c029b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a825b5c029b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Tool | Use | Required? |
+|---|---|---|
+| `python3 tools/validation/validate_semantic_matrix.py` | Validate `_SEMANTIC.md` structure and matrix invariants. | Required in normal repo runs when available and permitted. |
+| `python3 tools/validation/validate_semantic_pipeline_scope.py` | Confirm Phase 2.3 touched only allowed semantic-scope files. | Required when project ORCHESTRATOR policy calls for it and the tool is available. |</p>
+<p>If a validator is unavailable, do not claim validator PASS. Report `validator not available`.
+</p></div></div></section>
+<section id="SEC-SKP037-0086" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:54416820929e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0086</span> Expected use of reasoning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54416820929e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54416820929e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54416820929e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reasoning is required for:</p>
+<p>- deriving the deliverable perspective;
+- choosing deliverable-conditioned but non-literal semantic phrases;
+- resolving each axis anchor;
+- resolving every projected contributor in Step 2;
+- selecting centroid attractors;
+- auditing final cells for semantic product validity.
+</p></div></div></section>
+<section id="SEC-SKP037-0087" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2c7ff42df56b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0087</span> Disallowed use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2c7ff42df56b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2c7ff42df56b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2c7ff42df56b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not use tools or scripts to bypass the semantic reasoning work. A generated table of formulas without resolved semantic phrases is invalid.</p>
+<p>Do not:</p>
+<p>- edit production documents;
+- edit `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, or `MEMORY.md`;
+- write outside the effective bounded task brief&#x27;s authorization;
+- scan sibling deliverables;
+- claim cross-deliverable conclusions;
+- claim engineering correctness;
+- claim validator PASS unless the validator actually ran;
+- hide conflicts between TASK write authorization, brief instructions, and skill requirements.
+</p></div></div></section>
+<section id="SEC-SKP037-0088" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6ada103765dc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0088</span> Write boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ada103765dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ada103765dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ada103765dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Allowed write target:</p>
+<p>- `{deliverable_folder}/_SEMANTIC.md`</p>
+<p>Conditional write target:</p>
+<p>- `{deliverable_folder}/_STATUS.md` only when both conditions are true:
+  1. the brief/runtime override requires a status action; and
+  2. TASK/brief write authorization allows `_STATUS.md` edits.</p>
+<p>Normal ORCHESTRATOR Phase 2.3 uses `STATUS_POLICY=PRESERVE_CURRENT`; it may write only `_SEMANTIC.md` unless the brief explicitly authorizes a history note.
+</p></div></div></section>
+<section id="SEC-SKP037-0089" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8772898b9c3e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-SKP037-0089</span> Fallback rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8772898b9c3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8772898b9c3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8772898b9c3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Situation | Required fallback |
+|---|---|
+| Validator unavailable | Complete semantic audit manually; report validator unavailable. |
+| `_CONTEXT.md` missing | Fail with `FAILED_INPUTS`. |
+| Production document missing | Record as absent in Inputs Read; continue. |
+| Status edit requested but unauthorized | Do not edit `_STATUS.md`; report the contradiction. |
+| Tool output contradicts the file content | Report discrepancy; do not hide it. |
+| Brief asks for out-of-scope writes | Refuse those writes and report scope violation. |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SKP037";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,421 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-05-EPISTEMIC-ARCHITECTURE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>18</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG017-0001">Chapter 5 — Epistemic Architecture</a> <a href="#SEC-DG017-0002">5.1 Introduction</a> <a href="#SEC-DG017-0003">5.2 The Problem: Absence of Intrinsic Epistemic Warrant</a> <a href="#SEC-DG017-0004">5.3 The Four Mechanisms</a> <a href="#SEC-DG017-0009">5.4 The Epistemic Architecture as a Coherent Theory</a> <a href="#SEC-DG017-0010">5.5 The Warrant Lifecycle as Operational Model</a> <a href="#SEC-DG017-0011">5.6 Comparison to Alternative Approaches</a> <a href="#SEC-DG017-0017">5.7 Enabling Professional Reliance</a> <a href="#SEC-DG017-0018">5.8 Summary</a></nav>
+<main>
+<section id="SEC-DG017-0001" class="chunk sec depth-1 cov-empty" data-kind="section" data-key="section:1017e2e52f33" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG017-0001</span> Chapter 5 — Epistemic Architecture</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1017e2e52f33" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1017e2e52f33" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1017e2e52f33" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+</p></div></div></section>
+<section id="SEC-DG017-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:98e46135fb44" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0002</span> 5.1 Introduction</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98e46135fb44" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98e46135fb44" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98e46135fb44" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chapter 3 established that the Chirality architecture rests on four philosophical pillars, argued that the epistemology is the load-bearing pillar, and identified the epistemology&#x27;s own ontology: six primitives (claim, warrant, status, gap, conflict, ruling) whose relationships constitute the formal substrate of the epistemic layer, and a warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) that tracks the epistemic state of claims interleaved with the deliverable production lifecycle.</p>
+<p>This chapter develops the argument in full. It defines the epistemic architecture precisely, grounds each mechanism in the epistemic primitives, presents worked examples, compares the approach to alternative strategies for addressing LLM reliability, and demonstrates that the epistemic architecture is what makes professional reliance on AI-assisted work tractable under existing regulatory frameworks.</p>
+<p>The claim is specific: the Chirality epistemic architecture does not improve LLM output quality. It makes the epistemic status of every claim transparent and auditable, so that a qualified professional can determine what to rely on. This is a fundamentally different response to the LLM reliability problem than model-level improvements, and it is complementary to them.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:f90c1def86e1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0003</span> 5.2 The Problem: Absence of Intrinsic Epistemic Warrant</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f90c1def86e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f90c1def86e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f90c1def86e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Large language models generate text by predicting the most likely continuation of a prompt, conditioned on patterns learned during training. The resulting output is optimized for plausibility — for reading as though it were produced by a competent author. This optimization has a consequence that is well-documented in the literature [CITE:Ji2023_hallucination_survey] [CITE:Huang2023_hallucination_survey]: the model may produce outputs that are fluent, specific, and confidently stated, yet factually incorrect, unsupported by evidence, or fabricated entirely.</p>
+<p>The term &quot;hallucination&quot; is widely used for this phenomenon, but it understates the architectural significance of the problem. The deeper issue is not that the model sometimes gets things wrong — all tools have error rates — but that the model&#x27;s output carries no intrinsic epistemic warrant. A correct claim and an incorrect claim are generated by the same mechanism. They have the same surface properties. There is no signal in the output itself that distinguishes grounded claims from fabricated ones.</p>
+<p>For casual use, this is a usability annoyance. For professional engineering practice, it is a fundamental obstacle. A licensed professional who authenticates a professional work product (PWP) is accepting personal responsibility for the accuracy, completeness, and fitness for purpose of that work. The authentication act, as defined by APEGA&#x27;s *Authenticating Professional Work Products* standard, requires that the professional has either directly supervised and controlled the work or conducted a thorough review of it. Both mechanisms presuppose that the professional can assess the epistemic grounding of the claims in the work — that they can distinguish what is known from what is assumed, what is extracted from what is inferred, and what is supported by evidence from what is not.</p>
+<p>An LLM output, absent architectural controls, does not support this assessment. The professional faces a body of text that reads as authoritative but carries no provenance, no epistemic labels, and no indication of where the model&#x27;s knowledge ends and its interpolation begins. The thorough review required by APEGA §3.1.2 becomes, in effect, a complete independent verification — the professional must verify every claim from scratch, which eliminates the productivity benefit of using AI in the first place.</p>
+<p>The epistemic architecture of Chirality is designed to resolve this problem. It does not make the model&#x27;s output more reliable. It makes the epistemic status of every claim in the output transparent, so that the professional&#x27;s review can be targeted rather than exhaustive.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0004" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:0981f9cfe30d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0004</span> 5.3 The Four Mechanisms</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0981f9cfe30d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0981f9cfe30d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0981f9cfe30d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG017-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5eedd064bd2f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0005</span> 5.3.1 Mandatory Provenance (K-PROV-1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5eedd064bd2f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5eedd064bd2f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5eedd064bd2f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**The invariant.** Every extracted dependency row must cite evidence: `EvidenceFile` + `SourceRef` (or explicit `location TBD`). More broadly, every non-trivial claim produced by an agent in a governed workflow must include a source path and best-effort section reference, or an explicit marker indicating that the source has not been identified.</p>
+<p>**The implementation.** The Dependencies.csv v3.1 schema (`SPEC.md` §6) defines three provenance columns as required:</p>
+<p>- `EvidenceFile` (column 17): the source document filename, or `location TBD`
+- `SourceRef` (column 18): path + heading/section within the evidence file, or `location TBD`
+- `EvidenceQuote` (column 19): short quote from source (recommended, max 30 words)</p>
+<p>These columns are not optional metadata. They are required by the schema definition and checked by agent-internal quality controls (TASK+dependency-extract, Function 5). A row without provenance is flagged as a quality finding.</p>
+<p>Beyond the dependency register, the provenance requirement extends to all agent outputs through the R5 workflow design requirement: &quot;Aggregated/extracted data includes `SourcePath` and best-effort `SectionRef`.&quot; This is defined in `AGENT_HELPS_HUMANS.md` and binding on all agents.</p>
+<p>**Worked example.** Consider an agent extracting dependencies from a scope of work document. The agent reads the document and identifies that Deliverable DEL-01-03 requires structural analysis results from DEL-01-01 before proceeding. The agent creates a dependency row:</p>
+<p>```
+DependencyID: DEP-01-03-007
+DependencyClass: EXECUTION
+Direction: UPSTREAM
+DependencyType: PREREQUISITE
+TargetDeliverableID: DEL-01-01
+Statement: &quot;Structural analysis results from DEL-01-01 required before detailed design can proceed&quot;
+EvidenceFile: SOW_Acme_Project.pdf
+SourceRef: Section 4.2.3 — &quot;Structural Design Basis&quot;
+EvidenceQuote: &quot;Detailed design shall not proceed until structural analysis is complete and approved&quot;
+Confidence: HIGH
+Explicitness: EXPLICIT
+```</p>
+<p>Now consider the same scenario where the agent infers a dependency that is not explicitly stated in the source text — perhaps that DEL-01-03 will also need geotechnical data from DEL-01-02, because structural design typically depends on soil conditions:</p>
+<p>```
+DependencyID: DEP-01-03-008
+DependencyClass: EXECUTION
+Direction: UPSTREAM
+DependencyType: PREREQUISITE
+TargetDeliverableID: DEL-01-02
+Statement: &quot;Geotechnical investigation results likely required for foundation design&quot;
+EvidenceFile: SOW_Acme_Project.pdf
+SourceRef: location TBD
+EvidenceQuote: (none — inferred from engineering practice)
+Confidence: MEDIUM
+Explicitness: IMPLICIT
+Notes: ASSUMPTION — inferred from standard practice; not explicitly stated in SOW
+```</p>
+<p>The reviewer sees both rows. The first has full provenance: a specific section, a direct quote, HIGH confidence, EXPLICIT. The second has partial provenance: the source file is identified but no specific section supports the claim; confidence is MEDIUM; explicitness is IMPLICIT; the notes carry an ASSUMPTION label. The epistemic difference between the two claims is visible in the data, not hidden in the model&#x27;s reasoning.
+</p></div></div></section>
+<section id="SEC-DG017-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:0cdeabe52f93" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0006</span> 5.3.2 No Invention (K-INVENT-1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0cdeabe52f93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0cdeabe52f93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0cdeabe52f93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**The invariant.** Unknown values become `TBD`, not guessed. Agents must not invent scope items, dependency targets, parameter values, or engineering content.</p>
+<p>**The implementation.** The no-invention rule is enforced through agent instruction invariants. Every agent instruction file includes a non-negotiable invariant list that includes a variant of: &quot;Do not invent. If information is not available, mark it TBD and surface as an open issue.&quot; Type 2 agents implement a specific error posture: if required inputs are invalid, the agent halts with `FAILED_INPUTS`; if optional data is missing, the agent continues with `TBD` marking and warnings.</p>
+<p>**Why this matters.** The most dangerous failure mode in LLM-assisted professional work is not the production of obviously wrong output — that is easily caught. It is the production of plausible-looking output for quantities that are actually unknown. A model asked to extract a design pressure from a document that does not contain one will, by default, generate a plausible value — perhaps one consistent with industry norms for the application. This value will appear in the output indistinguishable from values that were actually extracted from the source. The no-invention rule eliminates this failure mode by requiring that the absence of data be represented as the absence of data, not as a confident-looking fabrication.</p>
+<p>**Worked example.** An agent is tasked with extracting equipment specifications from a vendor data sheet. The data sheet provides operating temperature range (-20°C to +60°C) and flow rate (500 m³/h) but does not specify design pressure. Without K-INVENT-1, a model might generate: &quot;Design Pressure: 10 barg (typical for this service).&quot; With K-INVENT-1 enforced, the agent produces: &quot;Design Pressure: TBD — not found in vendor data sheet; requires clarification from vendor or project engineer.&quot; The reviewer sees the gap immediately.
+</p></div></div></section>
+<section id="SEC-DG017-0007" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:30761dbd8e79" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0007</span> 5.3.3 Conflict Surfacing (K-CONFLICT-1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30761dbd8e79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30761dbd8e79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30761dbd8e79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**The invariant.** Conflicts between sources must be surfaced, not silently resolved. Agents expose disagreements with pointers to the conflicting sources.</p>
+<p>**The implementation.** When an agent encounters conflicting information across source documents, it produces a Conflict Table with the following structure:</p>
+<p>| ConflictID | Key | Contenders | ProposedAuthority | HumanRuling |
+|---|---|---|---|---|
+| CONF-001 | Design Temperature | Source A (SOW §3.1): -30°C; Source B (Vendor Datasheet p.4): -20°C | Source A (contractual requirement) — PROPOSAL | TBD |</p>
+<p>The `ProposedAuthority` column allows the agent to suggest which source should govern, but the suggestion is labeled PROPOSAL and the `HumanRuling` column remains TBD until the licensed professional adjudicates. The agent never silently picks a winner.</p>
+<p>**Why this matters.** LLMs, when presented with conflicting information, will typically resolve the conflict by choosing one value, averaging, or producing a synthesis that obscures the disagreement. This is exactly what an engineering reviewer cannot accept. In regulated practice, conflicts between sources must reach the decision-maker so that the resolution can be a professional judgment — documented, traceable, and defensible. The architectural enforcement of conflict visibility ensures this.
+</p></div></div></section>
+<section id="SEC-DG017-0008" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b1984db72d95" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0008</span> 5.3.4 Epistemic Labeling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1984db72d95" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1984db72d95" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1984db72d95" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**The mechanism.** Every non-trivial claim produced by an agent is classified with one of four labels:</p>
+<p>| Label | Meaning | Reviewer Action |
+|---|---|---|
+| FACT | Directly observed in source text with citation | Verify citation; accept if source is authoritative |
+| ASSUMPTION | Reasonable inference not directly stated; requires validation | Validate or reject; document decision |
+| PROPOSAL | Agent suggestion; requires human decision to become binding | Decide; record rationale |
+| TBD | Unknown; placeholder requiring resolution | Resolve before reliance |</p>
+<p>These labels are defined in `TYPES.md` §10 and required by agent instruction invariants throughout the suite.</p>
+<p>**Why this matters.** The labels transform the reviewer&#x27;s task. Without epistemic labeling, the reviewer must assess every claim independently to determine its grounding — an exhaustive process that scales poorly. With epistemic labeling, the reviewer can triage: FACTs can be verified by spot-checking citations; ASSUMPTIONs require targeted validation; PROPOSALs require decisions; TBDs require resolution. The review process becomes proportional to the actual uncertainty in the output, not to its volume.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0009" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:7deaab449e62" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0009</span> 5.4 The Epistemic Architecture as a Coherent Theory</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7deaab449e62" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7deaab449e62" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7deaab449e62" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The four mechanisms are not independent quality rules. They form a coherent epistemic theory with a specific logical structure:</p>
+<p>1. **Provenance** answers the question: *where does this claim come from?*
+2. **No invention** answers the question: *what happens when the answer is unknown?*
+3. **Conflict surfacing** answers the question: *what happens when sources disagree?*
+4. **Epistemic labeling** answers the question: *how certain is this claim?*</p>
+<p>Together, they address the four failure modes of LLM-assisted professional work:</p>
+<p>| Failure Mode | Architectural Response | Enforcing Invariant |
+|---|---|---|
+| Ungrounded claim (hallucination) | Provenance requirement makes absence of source visible | K-PROV-1 |
+| Fabricated value for unknown quantity | TBD marking makes absence of data visible | K-INVENT-1 |
+| Silent conflict resolution | Conflict Table makes disagreement visible | K-CONFLICT-1 |
+| Ambiguous certainty status | Epistemic labels make confidence level visible | R5, R6, R7 |</p>
+<p>The common thread is **visibility**. Each mechanism makes a category of epistemic failure visible to the reviewer rather than hiding it in the model&#x27;s output. The system does not prevent epistemic failures — it makes them structurally detectable. This is a design choice: prevention is impossible to guarantee for LLM outputs, but detection can be architecturally enforced.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0010" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:e721d815c1d3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0010</span> 5.5 The Warrant Lifecycle as Operational Model</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e721d815c1d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e721d815c1d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e721d815c1d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chapter 3 (§3.2.2) introduced the warrant lifecycle as the epistemic counterpart to the deliverable production lifecycle. This section develops its operational significance.</p>
+<p>The deliverable lifecycle (OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED) is well-understood: it tracks what stage of production the work product is in. But it does not capture the epistemic state of the claims within the deliverable. A deliverable in IN_PROGRESS may contain hundreds of claims in varying states of epistemic warrant — some grounded in cited sources, some flagged as assumptions, some marked TBD, some potentially in conflict.</p>
+<p>The warrant lifecycle makes this epistemic state explicit:</p>
+<p>```
+UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
+```</p>
+<p>Each claim in the deliverable occupies a position in this lifecycle independently of the deliverable&#x27;s production state. The aggregate warrant state of a deliverable — the distribution of its claims across warrant lifecycle states — is what determines whether the deliverable is ready for the next production transition.</p>
+<p>**UNWARRANTED → CITED.** When an agent produces a claim, it is initially unwarranted — it exists in the deliverable but has no extrinsic justification. The agent&#x27;s task, under K-PROV-1, is to attach a warrant: a source file, a section reference, and ideally a supporting quote. If the agent cannot find a warrant, K-INVENT-1 requires that the claim be marked TBD — an explicit gap. The transition from UNWARRANTED to CITED is the agent&#x27;s primary epistemic contribution.</p>
+<p>**CITED → REVIEWED.** A cited claim has provenance, but provenance alone is not sufficient for professional reliance. The licensed professional must review the claim: is the source authoritative? is the citation accurate? is the interpretation reasonable? The REVIEW agent&#x27;s 5-gate protocol structures this assessment. A claim transitions from CITED to REVIEWED when the professional has examined it and dispositioned any findings.</p>
+<p>**REVIEWED → AUTHENTICATED.** Authentication is the professional&#x27;s declaration that the aggregate warrant state of the deliverable — the totality of its reviewed claims — is sufficient for reliance under professional responsibility. This transitions not individual claims but the deliverable as a whole. Authentication binds to a specific git SHA (K-AUTH-2), making the warrant-to-content relationship mechanically verifiable.</p>
+<p>The warrant lifecycle reveals what thorough review (APEGA §3.1.2) actually is in operational terms: it is the process of auditing warrant sufficiency. The professional examines claims, checks their warrants, resolves gaps and conflicts through rulings, and ultimately decides whether the aggregate warrant state supports authentication. The epistemic architecture makes this tractable by ensuring that every claim&#x27;s warrant state is visible — not hidden in the model&#x27;s reasoning.</p>
+<p>The new AUDIT_EPISTEMIC agent (`AGENT_AUDIT_EPISTEMIC.md`) operationalizes this assessment. It reads a deliverable&#x27;s document kit, classifies every non-trivial claim by warrant state, reports epistemic label coverage and provenance completeness rates, detects potential conflicts across documents, and produces a warrant state summary. This makes the warrant lifecycle not just a theoretical model but an auditable, measurable property of every deliverable.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0011" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:1df0cf4c7ac4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0011</span> 5.6 Comparison to Alternative Approaches</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1df0cf4c7ac4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1df0cf4c7ac4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1df0cf4c7ac4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemic architecture is complementary to, not competitive with, model-level improvements. This section positions the approach against the principal alternatives.
+</p></div></div></section>
+<section id="SEC-DG017-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:276dea46193e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0012</span> 5.6.1 Reinforcement Learning from Human Feedback (RLHF)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:276dea46193e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:276dea46193e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:276dea46193e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+RLHF [CITE:RLHF_reference] improves the model&#x27;s average output quality by training it to produce outputs that human raters prefer. This reduces the base rate of errors but does not provide per-claim epistemic status. A model trained with RLHF may hallucinate less frequently, but when it does, the hallucination is indistinguishable from a correct claim. RLHF is a population-level improvement; the epistemic architecture is a per-claim annotation. They serve different functions and are fully compatible.
+</p></div></div></section>
+<section id="SEC-DG017-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c92802d3ca5f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0013</span> 5.6.2 Retrieval-Augmented Generation (RAG)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c92802d3ca5f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c92802d3ca5f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c92802d3ca5f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+RAG systems retrieve relevant documents and present them to the model alongside the prompt, grounding the model&#x27;s output in specific sources [CITE:RAG_reference]. This is valuable but insufficient: the model may still interpolate beyond the retrieved content, and the boundary between retrieved-and-restated versus model-generated is not marked in the output. The epistemic architecture complements RAG by requiring that the boundary be marked — every claim must carry provenance to a specific source, and claims that go beyond the source must carry ASSUMPTION or PROPOSAL labels.
+</p></div></div></section>
+<section id="SEC-DG017-0014" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5e1443f2a07b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0014</span> 5.6.3 Post-Hoc Factuality Checking</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e1443f2a07b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e1443f2a07b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e1443f2a07b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Post-hoc systems verify model outputs against a reference corpus after generation [CITE:factuality_checking_reference]. These are useful as an additional quality layer but introduce their own reliability questions (the checker may also err) and do not produce the per-claim epistemic labels that enable efficient human review. The epistemic architecture produces these labels as part of the generation process, not as a post-hoc audit.
+</p></div></div></section>
+<section id="SEC-DG017-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5e324166303f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0015</span> 5.6.4 Constitutional AI</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e324166303f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e324166303f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e324166303f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Constitutional AI [CITE:Bai2022_constitutional_AI] trains models to self-critique against a set of principles. This improves alignment but does not provide extrinsic provenance — the model&#x27;s self-assessment is still a model output, subject to the same absence of intrinsic warrant. The epistemic architecture requires extrinsic evidence (specific file paths and section references), not the model&#x27;s own assessment of its reliability.
+</p></div></div></section>
+<section id="SEC-DG017-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8fbf10a794f8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG017-0016</span> 5.6.5 Summary of Positioning</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fbf10a794f8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fbf10a794f8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fbf10a794f8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Approach | What It Improves | What It Does Not Provide |
+|---|---|---|
+| RLHF | Average output quality | Per-claim epistemic status |
+| RAG | Grounding in specific sources | Clear boundary between retrieved and generated content |
+| Post-hoc checking | Error detection after generation | Efficient per-claim labels for human review |
+| Constitutional AI | Alignment with principles | Extrinsic provenance; independence from model self-assessment |
+| **Chirality epistemic architecture** | **Per-claim epistemic transparency** | **Improved model accuracy (complementary, not competitive)** |</p>
+<p>The positioning is clear: Chirality&#x27;s contribution is not a better model. It is a governance architecture that makes the model&#x27;s epistemic limitations visible and manageable. The two approaches — model improvement and architectural transparency — are complementary. Better models produce fewer TBDs and fewer ASSUMPTION labels. Better architecture makes every remaining uncertainty visible regardless of model quality.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0017" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:7840fd494107" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0017</span> 5.7 Enabling Professional Reliance</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7840fd494107" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7840fd494107" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7840fd494107" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The epistemic architecture is what makes the regulatory mapping described in Chapter 6 possible. Specifically:</p>
+<p>**Thorough review (APEGA §3.1.2.1)** requires the licensed professional to confirm the reliability, accuracy, and validity of the work. Without epistemic labeling and mandatory provenance, this confirmation would require independent verification of every claim — effectively redoing the work. With the epistemic architecture, the reviewer can target their effort: verify the provenance of FACTs by spot-checking citations, validate ASSUMPTIONs against professional judgment, decide PROPOSALs, and resolve TBDs. The review is proportional to the actual uncertainty, not to the volume of output.</p>
+<p>**Direct supervision and control (APEGA §3.1.1.1)** requires periodic reviews to ensure that resulting PWPs are accurate and reliable. The epistemic labels and provenance fields provide the data that makes these reviews efficient and targeted. Without them, &quot;periodic review&quot; would mean &quot;read everything and verify it independently.&quot; With them, it means &quot;check the evidence trail, review the flagged uncertainties, and adjudicate the conflicts.&quot;</p>
+<p>**Authentication (APEGA §3.1)** requires that the professional has either directly supervised the work or conducted a thorough review, and then accepts professional responsibility. The epistemic architecture provides the evidentiary basis for both: the provenance trail documents what was supervised, the labels document what was reviewed, and the conflict resolutions document what was adjudicated. The authentication act is supported by a traceable record, not by trust in the tool.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG017-0018" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:84c61b1d751f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG017-0018</span> 5.8 Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84c61b1d751f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84c61b1d751f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84c61b1d751f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality epistemic architecture responds to the fundamental limitation of LLM-based systems — the absence of intrinsic epistemic warrant in model outputs — with four mechanisms that make epistemic status transparent and auditable: mandatory provenance, no invention, conflict surfacing, and epistemic labeling. These mechanisms do not improve the model. They make the model&#x27;s limitations visible and manageable, transforming the professional&#x27;s review task from exhaustive verification to targeted assessment.</p>
+<p>The architecture is complementary to model-level improvements and grows more efficient as models improve: better models produce fewer uncertainties to flag, while the architecture ensures that every remaining uncertainty is visible. The approach addresses a gap in the existing literature: most work on LLM reliability focuses on reducing error rates, while Chirality focuses on making the epistemic status of individual claims transparent — a requirement that is necessary for professional practice regardless of model quality.</p>
+<p>The epistemic architecture is the pillar that makes the regulatory mapping in Chapter 6 tractable: without it, the professional obligations of thorough review and direct supervision cannot be efficiently satisfied for AI-assisted work. With it, these obligations can be met using the same mechanisms that govern human-produced work — with the added benefit that the evidence trail is more structured, more complete, and more auditable than manual practice typically achieves.</p>
+<p>The deeper philosophical foundation for the epistemic architecture — including the claim that knowledge in professional practice is constituted by the act of warranted accountability, not by information processing — is developed in `CHIRALITY_FRAMEWORK.md`.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG017";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

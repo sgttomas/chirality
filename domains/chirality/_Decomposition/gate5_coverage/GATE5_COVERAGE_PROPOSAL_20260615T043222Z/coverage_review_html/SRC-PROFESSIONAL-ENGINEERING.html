@@ -1,0 +1,599 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-PROFESSIONAL-ENGINEERING - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>43</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-RT006-0001">Professional Engineering with Agentic AI in Regulated Practi</a> <a href="#SEC-RT006-0002">Preamble</a> <a href="#SEC-RT006-0003">1. Regulatory Basis</a> <a href="#SEC-RT006-0007">2. Definitions</a> <a href="#SEC-RT006-0008">3. Professional Obligations</a> <a href="#SEC-RT006-0014">4. Direct Supervision and Control of AI Agents</a> <a href="#SEC-RT006-0018">5. Thorough Review and Authentication</a> <a href="#SEC-RT006-0024">6. Quality Control and Assurance</a> <a href="#SEC-RT006-0030">7. Record Keeping</a> <a href="#SEC-RT006-0033">8. Competence and Training</a> <a href="#SEC-RT006-0037">9. The Human-AI Contract</a> <a href="#SEC-RT006-0041">10. Closing Principle</a> <a href="#SEC-RT006-0042">11. Responsible Member</a> <a href="#SEC-RT006-0043">Document History</a></nav>
+<main>
+<section id="SEC-RT006-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:621215a50144" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT006-0001</span> Professional Engineering with Agentic AI in Regulated Practice</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:621215a50144" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:621215a50144" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:621215a50144" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality AI Ltd.
+Date: 2026-03-29, Revision 1, Issued for Use</p>
+<p>**Standard for the Governance of AI Agent Systems in Professional Engineering Practice**</p>
+<p>Referenced by the Chirality AI Ltd. Professional Practice Management Plan (PPMP).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:73fdd042f2de" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0002</span> Preamble</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73fdd042f2de" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73fdd042f2de" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73fdd042f2de" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines the professional practice standard for Chirality AI Ltd. governing the use of AI agent systems in regulated engineering practice. It establishes how the firm satisfies its professional obligations under the *Engineering and Geoscience Professions Act* (EGP Act), the *General Regulation*, and applicable APEGA practice standards when licensed professionals rely on work produced by AI agents. The theoretical foundation for this standard — including the nature of knowledge in professional practice and the structural relationship between AI output and professional accountability — is defined in `CHIRALITY_FRAMEWORK.md`.</p>
+<p>&gt; AI can accelerate engineering work. It cannot inherit professional responsibility.</p>
+<p>Professional engineering is a duty-of-care practice: commitments to reality under uncertainty, made by accountable professionals, supported by evidence that can withstand review. AI changes the cost of drafting, searching, reconciling, and summarizing. It does not change what regulators, clients, insurers, courts, and the public require: competence, independent judgment, verification, assumption of responsibility, and a durable project record.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0003" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:b35a31bb9ae9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0003</span> 1. Regulatory Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b35a31bb9ae9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b35a31bb9ae9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b35a31bb9ae9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT006-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9c73f9f15939" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0004</span> 1.1 Governing Legislation and Standards</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9c73f9f15939" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9c73f9f15939" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9c73f9f15939" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This standard is grounded in:</p>
+<p>- The *Engineering and Geoscience Professions Act* (EGP Act), Sections 1(q), 1(r), 2(1), 3(2), 3(3), 5(1), 6(2), 6(3)
+- The *General Regulation*, Part 7 (Professional Practice Management Plans), Part 8 (Practice Standards), Sections 49 and 54 (Authentication)
+- APEGA Practice Standard: *Relying on the Work of Others and Outsourcing* (May 2021, v4.0)
+- APEGA Practice Standard: *Authenticating Professional Work Products*
+- APEGA Guideline: *Professional Practice Management Plans*
+</p></div></div></section>
+<section id="SEC-RT006-0005" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:132fddaf43fb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0005</span> 1.2 Applicability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:132fddaf43fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:132fddaf43fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:132fddaf43fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This standard applies whenever Chirality AI Ltd. licensed professionals use AI agent systems — including the Chirality agent operating system and any LLM-based agents operating under the firm&#x27;s agent instruction architecture — to produce, assist in producing, or contribute to professional work products (PWPs) intended for use in Alberta or under APEGA jurisdiction.
+</p></div></div></section>
+<section id="SEC-RT006-0006" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ba7683ef4e91" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0006</span> 1.3 Regulatory Framework for AI-Assisted Work</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ba7683ef4e91" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ba7683ef4e91" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ba7683ef4e91" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+AI agents that produce work under the direction of a licensed professional are &quot;others&quot; whose work the professional relies on, within the meaning of APEGA §3.0 (*Relying on the Work of Others*). The professional&#x27;s obligations are defined by what the licensed professional must do — not by the nature of the entity producing the work. Whether the worker is a junior engineer, an engineering intern, a contractor, or an AI agent, the professional&#x27;s obligations are the same.</p>
+<p>The firm interprets this framework as applying directly in substance because AI agents assume no professional responsibility. On that interpretation, the entire chain of responsibility flows to the licensed professional who authenticates the resulting professional work product. This is closely analogous to the case of an unlicensed individual working under direct supervision and control: the supervising professional bears full responsibility for the work.</p>
+<p>On that interpretation, the APEGA practice standard does not require an AI-specific amendment to govern this use. Its obligations are defined in terms of what the professional must do — supervise, review, authenticate — not in terms of what the worker must be. The governance architecture described in this document is the firm&#x27;s mechanism for making those existing obligations satisfiable when the work is produced by AI agents whose outputs present a novel epistemic challenge: plausible by construction, with no intrinsic signal distinguishing grounded claims from fabricated ones.</p>
+<p>The firm&#x27;s obligations therefore engage two mechanisms from the APEGA practice standard *Relying on the Work of Others and Outsourcing*:</p>
+<p>**Direct supervision and control (§3.1.1).** When a licensed professional directs AI agents through a governed instruction architecture — defining scope, constraints, write boundaries, and review gates — the professional is providing direct supervision and control over the work. The agent instruction architecture is the documented framework for that supervision.</p>
+<p>**Thorough review (§3.1.2).** When a licensed professional reviews AI agent outputs before authentication, the professional is conducting thorough review. APEGA §3.1.2.1 explicitly requires review of &quot;the relevancy and accuracy of applicable tools used in the PWPs preparation (including software, hardware, firmware, applications, and other technologies).&quot; AI model-based agent systems are such technologies.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:ca3e7bba7736" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0007</span> 2. Definitions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca3e7bba7736" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca3e7bba7736" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca3e7bba7736" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Terms defined in the APEGA practice standard *Relying on the Work of Others and Outsourcing* (<a class="xref" href="#SEC-RT006-0006">§1.3</a>) apply throughout this document. The following definitions map APEGA statutory terms to the firm&#x27;s AI agent system.</p>
+<p>| APEGA Term | Definition | Chirality System Equivalent |
+|---|---|---|
+| **Licensed Professional** | An individual entitled by the EGP Act to practise engineering in Alberta | The P.Eng. operating the agent system and authenticating PWPs |
+| **Permit Holder** | A partnership, association, or corporation holding a Permit to Practice under the EGP Act | Chirality AI Ltd. (APEGA P17007) |
+| **Responsible Member** | An APEGA licensed professional responsible for oversight of the practice of engineering by the permit holder | The firm&#x27;s Responsible Member as registered with APEGA |
+| **Professional Work Product (PWP)** | An output of professional services with technical information relied upon by others to make a decision or take action | Authenticated deliverables issued for reliance (lifecycle state: ISSUED) |
+| **Authentication** | A licensed professional has completed, performed a thorough review of, or directly supervised and controlled the work and accepts professional responsibility | Human approval, seal, and signature at issuance gate |
+| **Validation** | A Responsible Member has reviewed the PWP to ensure it meets QC/QA measures in the PPMP | Responsible Member review per the firm&#x27;s PPMP |
+| **Direct Supervision and Control** | Directing, monitoring, and controlling engineering work, including making all decisions related to the practice | Gate-controlled agent orchestration under the Type 0/1/2 hierarchy with human authority at every gate |
+| **Thorough Review** | An evaluation of the outputs of professional services prepared by others to verify their reliability, validity, and technical accuracy | REVIEW agent 5-gate protocol + human authentication decision |
+| **Due Diligence** | The level of judgement, care, forethought, and determination a person reasonably uses to avoid harming oneself, other people, property, or the environment | The licensed professional&#x27;s exercise of judgment at every gate, supported by the system&#x27;s evidence trail |
+| **AI Agent** | A controlled system architecture (model + instructions + tools + file access + governance) that performs bounded work under the direction of a licensed professional | An AGENT_*.md instruction file instantiated at runtime within the Chirality agent operating system |
+| **Agent Instruction Architecture** | The firm&#x27;s documented framework of agent instruction files, governance documents, invariant contracts, and deterministic tools that constitutes the direct supervision and control structure for AI agents | The `agents/`, `docs/`, and `tools/` directories as governed by the firm&#x27;s release engineering process |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0008" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:0e31a3b72728" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0008</span> 3. Professional Obligations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e31a3b72728" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e31a3b72728" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e31a3b72728" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These obligations are binding constraints on any workflow that produces work product for regulated engineering practice. They derive from the EGP Act, the General Regulation, and APEGA practice standards.
+</p></div></div></section>
+<section id="SEC-RT006-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4a29f8783121" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0009</span> 3.1 Public Welfare Is the First Constraint</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a29f8783121" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a29f8783121" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a29f8783121" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The protection of the public, property, and the environment is the overriding obligation. When tradeoffs exist between public safety and commercial pressure, schedule, or convenience, safety prevails. This obligation is non-delegable to AI systems.
+</p></div></div></section>
+<section id="SEC-RT006-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:14e40c077235" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0010</span> 3.2 Responsible Charge Remains Human</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:14e40c077235" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:14e40c077235" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:14e40c077235" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Professional liability is personal and non-transferable. A licensed professional retains decision rights for:</p>
+<p>- Scope and boundary decisions
+- Selection of governing codes, standards, and design basis
+- Hazard and risk acceptance, including residual risk statements
+- Conflict adjudication where engineering judgment is required
+- Approval, issuance, signature, seal, and transmittal for reliance</p>
+<p>No AI system may claim to certify, approve, sign, seal, or issue engineering work for reliance. AI agent outputs are drafts and structured assistance. Human acceptance is what makes them engineering work product.</p>
+<p>This is enforced by invariant K-AUTH-1: &quot;Only humans author binding approval records. No agent may claim to certify, approve, sign, seal, or issue work for reliance.&quot; See `docs/CONTRACT.md`.
+</p></div></div></section>
+<section id="SEC-RT006-0011" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a054a2468ada" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0011</span> 3.3 Competence Includes Tool Competence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a054a2468ada" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a054a2468ada" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a054a2468ada" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A licensed professional must not use an AI agent to perform work they are not competent to verify manually. Using AI to produce work you cannot adequately review is a competence failure under the EGP Act. &quot;An AI said so&quot; is never a defensible basis of design.</p>
+<p>APEGA §3.1.2.1 requires thorough review of &quot;the relevancy and accuracy of applicable tools used in the PWPs preparation.&quot; For AI agent systems, this means the licensed professional must understand:</p>
+<p>- What the agent is instructed to do (its protocol, write scope, and constraints)
+- What the agent&#x27;s outputs represent (drafts requiring verification, not authoritative conclusions)
+- How to verify the agent&#x27;s outputs against source materials and engineering judgment
+- The failure modes of LLM-based systems (hallucination, omission, plausible-sounding error)
+</p></div></div></section>
+<section id="SEC-RT006-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:8473ef6c84c5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0012</span> 3.4 Evidence Over Plausibility</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8473ef6c84c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8473ef6c84c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8473ef6c84c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Engineering does not accept &quot;sounds right.&quot; The firm&#x27;s practice requires:</p>
+<p>- Inputs and sources (provenance is mandatory)
+- Assumptions explicitly labeled, not hidden in prose
+- Methodology documented and reproducible
+- Verification evidence traceable to specific checks
+- Uncertainty and limitations stated</p>
+<p>This is enforced by invariants K-PROV-1 (mandatory provenance for governed claims), K-INVENT-1 (no invention — unknown values become TBD), and K-CONFLICT-1 (conflicts surfaced, not silently resolved). See `docs/CONTRACT.md`.
+</p></div></div></section>
+<section id="SEC-RT006-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:552bfa74b84f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0013</span> 3.5 Hierarchy of Authority</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:552bfa74b84f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:552bfa74b84f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:552bfa74b84f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+In technical matters, the firm&#x27;s licensed professionals and all AI agents follow:</p>
+<p>1. Laws and regulations
+2. Codes and standards
+3. Project specifications / design basis (approved for use)
+4. Verified engineering analysis + published literature
+5. Professional judgment</p>
+<p>AI agent outputs carry no professional authority. They are decision support unless explicitly accepted and issued by an accountable professional. See `docs/DIRECTIVE.md` <a class="xref" href="#SEC-RT006-0012">§3.4</a> (Hierarchy of Authority).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0014" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:3213e7306711" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0014</span> 4. Direct Supervision and Control of AI Agents</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3213e7306711" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3213e7306711" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3213e7306711" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section establishes how the firm satisfies APEGA §3.1.1 (*Direct Supervision and Control*) requirements when licensed professionals direct AI agents to produce work that will be incorporated into PWPs.
+</p></div></div></section>
+<section id="SEC-RT006-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:261f28a78f03" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0015</span> 4.1 Active Involvement (APEGA §3.1.1.1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:261f28a78f03" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:261f28a78f03" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:261f28a78f03" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+APEGA requires that the licensed professional demonstrate active involvement through ongoing interaction and input. The firm satisfies this through:</p>
+<p>**Directing, monitoring, and controlling work throughout its lifespan.**</p>
+<p>- Type 1 (Manager) agents operate through gate-controlled workflows where the licensed professional makes consequential decisions at every phase.
+- Type 2 (Specialist) agents execute only within bounded briefs defined by the licensed professional or an authorized Type 1 agent.
+- Human authority is the halting condition — no agent may autonomously advance workflow stages, approve deliverables, or resolve conflicts. Enforced by K-GATE-1 (dynamic gates with minimum seal + pipeline approval) and K-SEAL-1 (no Type 2 execution before context is sealed and gate-approved). See `docs/CONTRACT.md` §1.7, <a class="xref" href="#SEC-RT006-0006">§1.3</a>.
+- Implementation: `docs/DBM_Agent_Instruction_Architecture.md` §6 (Orchestration Architecture).</p>
+<p>**Establishing and documenting scope, duties, responsibilities, authorities, and limitations.**</p>
+<p>- Every agent instruction file (AGENT_*.md) declares: agent type, class, interaction surface, write scope, blocking behavior, primary outputs, and non-negotiable invariants.
+- Write scope is enforced by invariant K-WRITE-1: &quot;Every agent has an explicit write scope declared in its header block. No agent writes outside its declared zone.&quot;
+- The three-type hierarchy (Type 0 Architect / Type 1 Manager / Type 2 Specialist) establishes clear authority boundaries. Authority flows downward; escalation flows upward. A Type 2 agent cannot modify rules set by Type 0. A Type 1 agent cannot approve deliverables for external reliance.
+- Implementation: `docs/TYPES.md` §4 (Agent Roles), <a class="xref" href="#SEC-RT006-0017">§4.3</a> (Authority Model); `docs/DBM_Agent_Instruction_Architecture.md` §2 (Type Hierarchy), §7 (Write Scope Architecture); `docs/CONTRACT.md` §1.10 (K-WRITE-1).</p>
+<p>**Maintaining regular and ongoing communication.**</p>
+<p>- Type 1 agents maintain interactive sessions with the licensed professional, presenting structured outputs and awaiting human decisions at gates.
+- Type 2 agents receive structured briefs (INIT-TASK) and return structured run reports with PASS/FAIL status and evidence. Brief format defined in `docs/DBM_Agent_Instruction_Architecture.md` §9 (Brief &amp; Output Contracts).
+- Session handoff artifacts (NEXT_INSTANCE_STATE.md, NEXT_INSTANCE_PROMPT.md) maintain continuity across sessions without hidden state. Working memory per deliverable is defined in `docs/SPEC.md` §8 (`_MEMORY.md`).
+- Implementation: `docs/DBM_Agent_Instruction_Architecture.md` <a class="xref" href="#SEC-RT006-0026">§6.2</a> (Control Loop).</p>
+<p>**Identifying and rectifying gaps in competencies.**</p>
+<p>- Agent audit system (AUDIT_AGENTS) verifies conformance of agent instructions against the canonical standard (`agents/AGENT_HELPS_HUMANS.md`). Structural requirements for instruction files defined in `docs/SPEC.md` §9.
+- Three layers of contracts govern agent behavior: R1–R9 workflow design requirements (defined in `agents/AGENT_HELPS_HUMANS.md`), I1–I10 decomposition invariants (defined in `agents/AGENT_DECOMP_BASE.md`), and 21 K-* system-wide invariants (defined in `docs/CONTRACT.md`).
+- Evaluation framework provides systematic assessment of agent output quality.
+- Agent instruction governance follows release engineering discipline: versioned, reviewed, no silent behavior changes (see <a class="xref" href="#SEC-RT006-0026">§6.2</a> of this standard).
+- Implementation: `docs/DBM_Agent_Instruction_Architecture.md` §4 (Contract Framework).</p>
+<p>**Completing periodic reviews to ensure PWPs are accurate and reliable.**</p>
+<p>- REVIEW agent implements a formal 5-gate review process for lifecycle transitions (see §5 of this standard).
+- RECONCILIATION agent performs cross-deliverable coherence analysis.
+- All agent outputs are git-committed, enabling diff-based review at any point.
+- Implementation: `docs/CONTRACT.md` (invariant system); `agents/AGENT_REVIEW.md` (review protocol).
+</p></div></div></section>
+<section id="SEC-RT006-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:daf3db496c17" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0016</span> 4.2 Responsibility in Decision Making (APEGA §3.1.1.2)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:daf3db496c17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:daf3db496c17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:daf3db496c17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+APEGA requires that the licensed professional be responsible for all technical engineering decisions. The firm satisfies this through:</p>
+<p>- Licensed professionals consider and document relevant issues through structured deliverable context files: identity and traceability (`_CONTEXT.md`, defined in `docs/SPEC.md` §4), dependency summary (`_DEPENDENCIES.md`, defined in `docs/SPEC.md` §5), and source document pointers (`_REFERENCES.md`, defined in `docs/SPEC.md` §7).
+- Technical direction is provided through agent briefs, gate decisions, and conflict adjudication at human gates.
+- Licensed professionals are available to review and approve decisions through interactive Type 1 agent sessions and gate-controlled workflows.
+- All decisions are recorded in versioned files (Decision Logs, `_MEMORY.md` per `docs/SPEC.md` §8, `_STATUS.md` history per `docs/SPEC.md` §3). If a decision is not in a versioned file, it does not exist for purposes of reliance (`docs/DIRECTIVE.md` §2.2).
+</p></div></div></section>
+<section id="SEC-RT006-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:75705b75efae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0017</span> 4.3 Documentation of Due Diligence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:75705b75efae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:75705b75efae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:75705b75efae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+APEGA §3.1.1 requires that the process for direct supervision and control and record keeping be described in the PPMP. The firm&#x27;s documentation includes:</p>
+<p>- Agent instruction files (`agents/AGENT_*.md`) — documented scope, duties, authorities, and constraints for each agent
+- Governance documents (`docs/`) — design philosophy, physical specifications, domain vocabulary, invariant contracts, and design basis
+- Git history — the complete development record of all project state, including agent outputs, human decisions, and lifecycle transitions
+- Immutable snapshots — timestamped, append-only audit trail for all analysis outputs. Enforced by K-SNAP-1 (`docs/CONTRACT.md` §1.10); snapshot format defined in `docs/SPEC.md` §11.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0018" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:c17671a7d1a6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0018</span> 5. Thorough Review and Authentication</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c17671a7d1a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c17671a7d1a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c17671a7d1a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section establishes how the firm satisfies APEGA §3.1.2 (*Thorough Review*) requirements when licensed professionals review AI agent outputs before authentication.
+</p></div></div></section>
+<section id="SEC-RT006-0019" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:668b0e7de784" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0019</span> 5.1 Applicability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:668b0e7de784" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:668b0e7de784" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:668b0e7de784" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Thorough review applies to all AI agent outputs that will be incorporated into PWPs. Even when the licensed professional has provided direct supervision and control throughout the work, thorough review is conducted before authentication.
+</p></div></div></section>
+<section id="SEC-RT006-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2157da6e0b54" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0020</span> 5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2157da6e0b54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2157da6e0b54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2157da6e0b54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The licensed professional confirms reliability, accuracy, and validity by reviewing:</p>
+<p>- Scope of the work, including work done by any agent
+- Relevant design and operational conditions, including risk assessments and mitigation strategies
+- Assumptions, limitations, and expressed caveats — aided by the system&#x27;s epistemic labeling (FACT, ASSUMPTION, PROPOSAL, TBD) as defined in `docs/TYPES.md` §10
+- Suitability of the work for its intended purpose and compliance with local conditions
+- Health, safety, and environmental implications
+- Integrity and validity of all work products, including cross-deliverable consistency
+- Applicable tasks related to the work (calculations, analyses, evaluations, interpretations)
+- Applicable materials and methods of construction, inspection, maintenance, or operation
+- Relevancy and accuracy of the AI agent tools used in the work&#x27;s preparation
+- Interdisciplinary reviews where the work crosses discipline boundaries</p>
+<p>The firm&#x27;s REVIEW agent (`AGENT_REVIEW.md`) implements a structured 5-gate review process:</p>
+<p>| Gate | Function | Authority |
+|------|----------|-----------|
+| Gate 1 | Precondition check (lifecycle state, context validity) | Agent validates; human confirms scope |
+| Gate 2 | Checklist generation from specifications, decomposition, and dependencies | Agent derives; human confirms completeness |
+| Gate 3 | Findings capture (iterative) | Human provides findings; agent records with evidence |
+| Gate 4 | Disposition review | Human rules on all findings |
+| Gate 5 | Lifecycle transition decision | Agent recommends; human approves |</p>
+<p>Transition readiness criteria are severity-based (lifecycle state machine defined in `docs/SPEC.md` §3, `docs/TYPES.md` §5):</p>
+<p>- **IN_PROGRESS to CHECKING:** All CRITICAL findings must have non-TBD human disposition.
+- **CHECKING to ISSUED:** All CRITICAL findings RESOLVED; all MAJOR findings RESOLVED or DEFERRED with documented rationale.
+</p></div></div></section>
+<section id="SEC-RT006-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:124227cf1702" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0021</span> 5.3 Adherence to Regulatory Requirements (APEGA §3.1.2.2)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:124227cf1702" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:124227cf1702" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:124227cf1702" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Thorough review must verify compliance with:</p>
+<p>- The EGP Act and the General Regulation
+- APEGA practice standards, bulletins, and guidelines
+- Contractual requirements to meet project-specific regulatory approvals or permit requirements</p>
+<p>The firm&#x27;s hierarchy of authority (<a class="xref" href="#SEC-RT006-0013">§3.5</a>) is enforced through agent instruction invariants. Agents cannot override codes, standards, or project specifications.
+</p></div></div></section>
+<section id="SEC-RT006-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:416d70f2eec7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0022</span> 5.4 Adherence to Quality Control and Assurance (APEGA §3.1.2.3)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:416d70f2eec7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:416d70f2eec7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:416d70f2eec7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Thorough review must verify:</p>
+<p>- That PWPs are produced following the quality control and assurance processes defined in this standard and the firm&#x27;s PPMP
+- That deliverables are clear, readable, consistent, and complete</p>
+<p>The firm&#x27;s quality controls are described in §7 of this standard.
+</p></div></div></section>
+<section id="SEC-RT006-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:bdcf99f0cb28" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0023</span> 5.5 Authentication</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdcf99f0cb28" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdcf99f0cb28" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdcf99f0cb28" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Authentication of PWPs follows the APEGA practice standard *Authenticating Professional Work Products*. A licensed professional may authenticate a PWP only when they have:</p>
+<p>- Provided direct supervision and control over the AI-assisted work per §4 of this standard, OR
+- Conducted a thorough review per <a class="xref" href="#SEC-RT006-0019">§5.1</a>–5.4 of this standard</p>
+<p>AND in either case:</p>
+<p>- The licensed professional is competent to verify the work per <a class="xref" href="#SEC-RT006-0011">§3.3</a> of this standard
+- The PWP has been validated by a Responsible Member per the firm&#x27;s PPMP</p>
+<p>Authentication binds to a specific git SHA. Content change after authentication voids the authentication (K-AUTH-2, `docs/CONTRACT.md` <a class="xref" href="#SEC-RT006-0005">§1.2</a>). A deliverable is considered dirty if any governed input has changed since its last approved SHA (K-VAL-1, `docs/CONTRACT.md` §1.6). Merge to main is allowed only when branch HEAD equals the approved SHA (K-MERGE-1, `docs/CONTRACT.md` §1.8). The licensed professional&#x27;s signature and seal apply to the specific version of the work identified by that SHA.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0024" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:c84fb0f10d1b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0024</span> 6. Quality Control and Assurance</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c84fb0f10d1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c84fb0f10d1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c84fb0f10d1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT006-0025" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e2d34242c781" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0025</span> 6.1 Architectural Controls</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2d34242c781" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2d34242c781" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2d34242c781" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm&#x27;s quality control and assurance for AI-assisted work is implemented through the agent instruction architecture. The following governance documents define the controls:</p>
+<p>| Document | QC/QA Function |
+|----------|----------------|
+| `docs/DIRECTIVE.md` | Founding constraints: filesystem-as-state, human authority, evidence-first, no hidden memory |
+| `docs/CONTRACT.md` | 21 binding invariants (K-*) with enforcement map |
+| `docs/SPEC.md` | Physical structures, file formats, schema validation checklists |
+| `docs/TYPES.md` | Controlled vocabulary, enumerated types, lifecycle state machine |
+| `agents/AGENT_HELPS_HUMANS.md` | Workflow design requirements (R1–R9) binding on all agents |
+| `agents/AGENT_DECOMP_BASE.md` | Decomposition invariants (I1–I10) binding on all decomposition agents |
+</p></div></div></section>
+<section id="SEC-RT006-0026" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d07997c6a5bd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0026</span> 6.2 Instruction Governance as Release Engineering</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d07997c6a5bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d07997c6a5bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d07997c6a5bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Agent instruction files are part of the firm&#x27;s controlled quality system. They are treated as controlled documents:</p>
+<p>- Versioned in git and auditable
+- Reviewed before release
+- No silent behavior changes permitted
+- Material changes to write scope, tool access, or outputs require review and a recorded release note
+- Conformance verified by AUDIT_AGENTS against the canonical standard (`agents/AGENT_HELPS_HUMANS.md`); structural requirements per `docs/SPEC.md` §9 (Agent Instruction File Structure)
+</p></div></div></section>
+<section id="SEC-RT006-0027" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:42344f35df17" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0027</span> 6.3 Deterministic and Probabilistic Boundary</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42344f35df17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42344f35df17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42344f35df17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm enforces a clear boundary between deterministic operations (handled by validated tools) and probabilistic operations (handled by LLM-based agents):</p>
+<p>- If a task can be validated by a schema or algorithm, it is implemented as a deterministic tool — not left to LLM reasoning
+- LLM-based agents are reserved for work that genuinely requires inference under uncertainty: interpreting ambiguous text, proposing decompositions, reconciling tradeoffs, drafting content
+- The tool registry (`tools/REGISTRY.md`) indexes all deterministic tools
+</p></div></div></section>
+<section id="SEC-RT006-0028" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f12657db6af1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0028</span> 6.4 Technology Provider Due Diligence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f12657db6af1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f12657db6af1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f12657db6af1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm uses large language models (LLMs) provided by technology vendors (currently Anthropic) as the cognitive engine within the agent system. The LLM is a technology component — the provider is not providing professional services and does not assume professional responsibility. The firm&#x27;s licensed professionals bear full responsibility for all work produced using the technology.</p>
+<p>The firm exercises due diligence on the LLM technology consistent with APEGA §3.1.2.1 requirements to verify the relevancy and accuracy of tools used in PWP preparation:</p>
+<p>- Evaluation of model capabilities and limitations for the professional services the firm provides
+- Assessment of model safety practices, alignment research, and responsible deployment policies
+- Testing of agent behavior within the firm&#x27;s instruction architecture before adopting model updates
+- Documented assessment of material model changes and their impact on agent behavior
+- The agent instruction architecture constrains and governs LLM behavior independent of the provider&#x27;s controls: R1–R9 workflow requirements (`agents/AGENT_HELPS_HUMANS.md`), 21 K-* system invariants (`docs/CONTRACT.md`), write scope quarantine (`docs/DBM_Agent_Instruction_Architecture.md` §7), and deterministic tool validation (`tools/REGISTRY.md`). The firm does not rely solely on the model provider&#x27;s safety measures
+</p></div></div></section>
+<section id="SEC-RT006-0029" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e716894ca98d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0029</span> 6.5 Evidence and Auditability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e716894ca98d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e716894ca98d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e716894ca98d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm&#x27;s evidence trail is maintained through:</p>
+<p>- **Filesystem as state.** All project truth lives in git-tracked plain files. There is no external database or hidden state. If a decision is not in a versioned file, it does not exist for purposes of reliance. See `docs/DIRECTIVE.md` §2.1 (Filesystem Is the Database), §2.5 (No Hidden Memory).
+- **Git as development record.** Version control provides meaningful diffs for review, reproducibility, rollback, and audits that do not depend on vendor systems or transient context. See `docs/DIRECTIVE.md` §2.2 (Git Is the Event Store).
+- **Immutable snapshots.** Task agent analysis outputs are written to timestamped folders that are never modified after creation. The snapshot trail is the audit trail. Enforced by K-SNAP-1 (`docs/CONTRACT.md` §1.10); format defined in `docs/SPEC.md` §11 (Snapshot and Pointer Conventions).
+- **Provenance tracking.** Every non-trivial governed claim cites its source file and section reference, or carries an explicit `location TBD` marker. Dependency rows are a schema-specific instance of this rule. Enforced by K-PROV-1 (`docs/CONTRACT.md` §1.9); dependency provenance schema defined in `docs/SPEC.md` <a class="xref" href="#SEC-RT006-0029">§6.5</a>.
+- **Epistemic labeling.** All claims are labeled: FACT (observed in source), ASSUMPTION (inferred from cited material), PROPOSAL (agent suggestion requiring decision), or TBD (unknown or unwarranted placeholder). The licensed professional does not need to guess whether a value is grounded or inferred. Labels defined in `docs/TYPES.md` §10 (Epistemic Labels).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0030" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7aff289b8cf6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0030</span> 7. Record Keeping</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7aff289b8cf6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7aff289b8cf6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7aff289b8cf6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT006-0031" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:65be30657f8a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0031</span> 7.1 Project Records</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:65be30657f8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:65be30657f8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:65be30657f8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm maintains the following records for AI-assisted work, as required for PPMP compliance:</p>
+<p>| Record | Location | Governing Specification | Content |
+|--------|----------|------------------------|---------|
+| Deliverable lifecycle history | `_STATUS.md` per deliverable | `docs/SPEC.md` §3 | State transitions, dates, actors |
+| Design decisions | `_MEMORY.md`, Decision Logs | `docs/SPEC.md` §8 | What was decided, when, why, alternatives considered |
+| Dependency register | `Dependencies.csv` per deliverable | `docs/SPEC.md` §6 (v3.1 schema) | Structured dependency tracking with provenance |
+| Scope traceability | `_CONTEXT.md` per deliverable | `docs/SPEC.md` §4 | Scope items, objectives, decomposition reference |
+| Source references | `_REFERENCES.md` per deliverable | `docs/SPEC.md` §7 | Source document pointers with relevance statements |
+| Analysis snapshots | Tool root snapshot folders | `docs/SPEC.md` §11 | Timestamped, immutable records of every analysis run |
+| Agent run reports | Snapshot Brief.md, RUN_SUMMARY.md, QA_Report.md | `docs/DBM_Agent_Instruction_Architecture.md` §9.4 | Inputs, outputs, quality checks, warnings |
+| Review records | REVIEW gate artifacts | `agents/AGENT_REVIEW.md` | Checklists, finding registers, disposition records, transition decisions |
+| Change records | `_Change/` tool root | `agents/AGENT_CHANGE.md` | Change assessments, impact analysis, approval records |
+| Version history | Git repository | `docs/DIRECTIVE.md` §2.2 | Complete diff-based record of all project state changes |
+</p></div></div></section>
+<section id="SEC-RT006-0032" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b29aac1d363f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0032</span> 7.2 Retention</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b29aac1d363f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b29aac1d363f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b29aac1d363f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Project records are retained per the firm&#x27;s PPMP and applicable regulatory requirements. Git history provides indefinite retention of all versioned project state.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0033" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:09dffd10e66b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0033</span> 8. Competence and Training</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09dffd10e66b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09dffd10e66b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09dffd10e66b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT006-0034" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b4e9d79dd2e1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0034</span> 8.1 Licensed Professional Competence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4e9d79dd2e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4e9d79dd2e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4e9d79dd2e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Licensed professionals using AI agent systems must be competent to:</p>
+<p>- Perform or verify the engineering work manually, without AI assistance
+- Review AI agent outputs for technical accuracy, completeness, and fitness for purpose
+- Detect LLM failure modes: hallucination, omission, plausible-sounding error, silent conflict resolution
+- Understand the agent instruction architecture sufficiently to know what an agent is constrained to do and what it is not
+- Exercise independent engineering judgment when AI outputs conflict with professional experience
+</p></div></div></section>
+<section id="SEC-RT006-0035" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e1a4132bfa4a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0035</span> 8.2 Training</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e1a4132bfa4a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e1a4132bfa4a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e1a4132bfa4a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The firm provides training to licensed professionals on:</p>
+<p>- The agent instruction architecture and governance framework
+- How to operate within the gate-controlled workflow model
+- How to review AI agent outputs and what failure modes to watch for
+- How to maintain independent judgment when AI-produced work appears plausible
+- Professional obligations under this standard and the firm&#x27;s PPMP
+</p></div></div></section>
+<section id="SEC-RT006-0036" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:9d8aa50fb12a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0036</span> 8.3 Maintaining Competence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d8aa50fb12a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d8aa50fb12a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d8aa50fb12a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Licensed professionals must maintain currency with:</p>
+<p>- Changes to the agent instruction architecture (release notes, material behavior changes)
+- Developments in AI model capabilities and limitations
+- Evolving APEGA practice standards and guidance related to AI use in professional practice</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0037" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1d79b9d3014c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0037</span> 9. The Human-AI Contract</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d79b9d3014c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d79b9d3014c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d79b9d3014c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-RT006-0038" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:f116d760d81b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0038</span> 9.1 Human Responsibilities</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f116d760d81b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f116d760d81b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f116d760d81b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Licensed professionals are responsible for:</p>
+<p>- Defining intent, scope, and acceptance criteria
+- Choosing codes, standards, and key assumptions
+- Deciding what &quot;done&quot; means and what is safe to rely on
+- Approving changes that affect deliverables
+- Performing or commissioning independent review where required
+- Accepting residual risk
+- Authenticating PWPs for reliance
+</p></div></div></section>
+<section id="SEC-RT006-0039" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:acac14f41225" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0039</span> 9.2 AI Agent Permitted Actions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:acac14f41225" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:acac14f41225" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:acac14f41225" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+AI agents may, within the constraints of their instruction files:</p>
+<p>- Draft and format deliverables under explicit templates
+- Extract, normalize, cross-reference, and summarize evidence
+- Generate candidate alternatives and tradeoff tables
+- Surface gaps, inconsistencies, and interface conflicts
+- Run bounded, checkable transformations with deterministic validators
+- Maintain structured records (dependency registers, status files, working memory)
+</p></div></div></section>
+<section id="SEC-RT006-0040" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:c34126eabc51" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-RT006-0040</span> 9.3 AI Agent Prohibitions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c34126eabc51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c34126eabc51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c34126eabc51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+AI agents must not:</p>
+<p>- Claim to certify, approve, sign, seal, or issue work for reliance — K-AUTH-1 (`docs/CONTRACT.md` <a class="xref" href="#SEC-RT006-0005">§1.2</a>)
+- Silently resolve conflicts between sources — K-CONFLICT-1 (`docs/CONTRACT.md` §1.9)
+- Invent scope items, parameters, or engineering content; unknowns become TBD — K-INVENT-1 (`docs/CONTRACT.md` §1.9)
+- Write outside their declared write scope — K-WRITE-1 (`docs/CONTRACT.md` §1.10)
+- Maintain hidden state that diverges from the filesystem — `docs/DIRECTIVE.md` §2.5 (No Hidden Memory)
+- Bypass human gates or autonomously advance workflow stages — K-GATE-1 (`docs/CONTRACT.md` §1.7), K-SEAL-1 (`docs/CONTRACT.md` <a class="xref" href="#SEC-RT006-0006">§1.3</a>)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0041" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:1fbe9b40a6d9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0041</span> 10. Closing Principle</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fbe9b40a6d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fbe9b40a6d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fbe9b40a6d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Engineer a harness that allows judgment to scale.</p>
+<p>AI becomes compatible with regulated professional engineering when it is engineered into a controlled system: bounded actions, evidence and auditability, monitoring and recovery, and humans retaining decision rights and professional responsibility.</p>
+<p>If we cannot make it auditable, we cannot rely on it.</p>
+<p>Use AI to widen and organize the field of consideration; use professional judgment to narrow, accept, and issue. That preserves what professional work outputs mean: a competent person warrants this under duty of care, backed by an auditable record.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0042" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:cd4cc6e8f423" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0042</span> 11. Responsible Member</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd4cc6e8f423" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd4cc6e8f423" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd4cc6e8f423" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+I take responsibility for adopting this standard internally and ensuring it is used appropriately at Chirality AI Ltd., as part of the Professional Practice Management Plan (PPMP).</p>
+<p>Ryan Tufts, P.Eng.
+APEGA 78780
+Chirality AI Ltd. (APEGA P17007)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-RT006-0043" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:0ee7c3c59b19" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT006-0043</span> Document History</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ee7c3c59b19" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ee7c3c59b19" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ee7c3c59b19" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Date | Revision | Description |
+|------|----------|-------------|
+| 2026-02-09 | 0 | Initial issue |
+| 2026-03-29 | 1 | Revised to ground in APEGA regulatory framework; maps direct supervision and control (§3.1.1) and thorough review (§3.1.2) to the agent instruction architecture; restructured for PPMP reference |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "RT006";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>
