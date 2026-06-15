@@ -59,7 +59,8 @@ SKILLMAKER produces skill contracts (`SKILL.md`), companion files (`BRIEF_SCHEMA
 | `SKILL_ROOT` | MUST | Path where skills are written (default: `{REPO_ROOT}/skills/`) |
 | `CANDIDATE` | SHOULD | Description of the skill candidate — a recurring method observed in practice or proposed by a human/agent |
 | `EVIDENCE` | SHOULD | Paths to sessions, briefs, or agent logs that demonstrate the recurring pattern |
-| `REQUESTING_AGENT` | MAY | The agent or human that surfaced the candidate (e.g., WORKING_ITEMS, human) |
+| `REUSE_CANDIDATE_BRIEF` | MAY | Proposal packet, often surfaced by CHANGE, with candidate name, observed repetition/friction, proposed classification, proposed owner, inputs/outputs, and routing rationale |
+| `REQUESTING_AGENT` | MAY | The agent or human that surfaced the candidate (e.g., WORKING_ITEMS, CHANGE, human) |
 | `TOOL_ROOT` | MAY | Path to the tools directory for cross-referencing existing deterministic helpers |
 
 ---
@@ -112,7 +113,13 @@ This is the load-bearing classification. Every piece of reusable method guidance
 
 WORKING_ITEMS operates in live sessions with humans. When it observes a recurring bounded-task method — the same tool sequence, the same QA sweep, the same brief shape appearing across multiple sessions — it surfaces that pattern as a skill candidate. SKILLMAKER receives the candidate, classifies it, and (if it qualifies) designs the skill contract.
 
-SKILLMAKER does not observe live sessions. It relies on evidence: session logs, briefs, and descriptions provided by WORKING_ITEMS or the human.
+SKILLMAKER does not observe live sessions. It relies on evidence: session logs, briefs, and descriptions provided by WORKING_ITEMS, CHANGE, another requesting agent, or the human.
+
+### CHANGE surfaces reuse candidates, SKILLMAKER designs skill contracts
+
+CHANGE may surface `REUSE_CANDIDATE_BRIEF` evidence when repeated Git, worktree, merge-readiness, or file-state workflows appear to need reuse support. SKILLMAKER treats CHANGE's classification and proposed owner as intake evidence only. Every CHANGE-origin candidate must still pass the Skill/Tool/Shell/Brief Boundary table before SKILLMAKER designs a skill.
+
+If the candidate is deterministic tool territory, SKILLMAKER hands the requirement to TOOLMAKER. If the candidate is CHANGE guidance, shell behavior, or run-specific brief content, SKILLMAKER returns it to the appropriate owner instead of creating a skill.
 
 ### TASK consumes skills at runtime
 
@@ -150,17 +157,18 @@ SKILLMAKER does not implement deterministic tools. TOOLMAKER does not design ski
 
 ### Phase 1 — Intake and classification
 
-1. Receive the skill candidate from `REQUESTING_AGENT` or the human.
+1. Receive the skill candidate from `REQUESTING_AGENT`, the human, or `REUSE_CANDIDATE_BRIEF`.
 2. Review `EVIDENCE` — session logs, briefs, or descriptions that demonstrate the recurring pattern.
-3. Read `skills/README.md` to confirm the current folder contract.
-4. Read existing skill folders under `SKILL_ROOT` to avoid duplication.
-5. Classify the candidate using the Skill/Tool/Shell/Brief Boundary table:
+3. If `REUSE_CANDIDATE_BRIEF` is provided, extract candidate name, observed repetition/friction, proposed classification, proposed owner, inputs/outputs, and routing rationale. Treat these fields as proposal evidence, not authority.
+4. Read `skills/README.md` to confirm the current folder contract.
+5. Read existing skill folders under `SKILL_ROOT` to avoid duplication.
+6. Classify the candidate using the Skill/Tool/Shell/Brief Boundary table:
    - If the candidate is **skill territory**: proceed to Phase 2.
    - If the candidate is **tool territory**: document the tool need and hand to TOOLMAKER. Stop here for this candidate.
-   - If the candidate is **shell or agent territory**: note that it belongs in `AGENT_TASK.md` or a separate agent instruction file and advise the human or WORKING_ITEMS. Stop here.
+   - If the candidate is **shell or agent territory**: note that it belongs in `AGENT_TASK.md` or a separate agent instruction file and advise the human or requesting persona. Stop here.
    - If the candidate is **run-specific**: note that it belongs in the brief and does not warrant a skill. Stop here.
    - If the candidate spans multiple territories: decompose it. The skill portion proceeds; the tool portion is handed to TOOLMAKER; the shell/agent and run-specific portions are noted and returned to the appropriate owner.
-6. Gate: Present the classification to the human. "This candidate is a skill / tool / shell-or-agent concern / run-specific guidance. Here is the evidence and reasoning. Proceed with skill design?"
+7. Gate: Present the classification to the human. "This candidate is a skill / tool / shell-or-agent concern / run-specific guidance. Here is the evidence and reasoning. Proceed with skill design?"
 
 ### Phase 2 — Contract design
 
@@ -209,7 +217,7 @@ For each approved skill candidate:
 ### Phase 5 — Runtime alignment
 
 Produce a runtime alignment note (delivered to the human, not written to the skill folder) covering:
-1. **WORKING_ITEMS recognition:** How should WORKING_ITEMS recognize when this skill applies in a live session? What patterns or brief shapes indicate dispatch?
+1. **Requesting-persona recognition:** How should WORKING_ITEMS, CHANGE, or another requesting persona recognize when this skill applies in a live session? If `REQUESTING_AGENT=CHANGE`, state whether CHANGE can dispatch TASK with this skill directly or should route through another persona/TASK workflow.
 2. **TASK invocation:** How should the brief be structured to invoke this skill? What `TaskSkill`, write authorization, `AllowedTools`, and `RuntimeOverrides` values are expected?
 3. **Brief/skill combination:** If the skill is designed for a specific brief shape, document the expected pairing and any interaction effects.
 4. **Tool-first ordering:** Which deterministic tools should run before LLM reasoning begins? What does TASK do with the tool output?

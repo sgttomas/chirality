@@ -59,6 +59,8 @@ TOOLMAKER produces shell scripts and Python utilities that agents and humans can
 | `SCOPE` | SHOULD | Which tool categories to create or update (scaffolding, query, validation, reporting, coordination) |
 | `AGENT_INSTRUCTIONS` | MAY | Paths to agent instruction files to analyze for tool candidates |
 | `EXAMPLE_PROJECT` | MAY | Path to an example execution root to inspect for patterns |
+| `REUSE_CANDIDATE_BRIEF` | MAY | Proposal packet, often surfaced by CHANGE, with candidate name, observed repetition/friction, proposed classification, proposed owner, inputs/outputs, and routing rationale |
+| `REQUESTING_AGENT` | MAY | The agent or human that surfaced the candidate (e.g., CHANGE, SKILLMAKER, WORKING_ITEMS, human) |
 
 ---
 
@@ -89,6 +91,18 @@ This is the load-bearing classification. Every operation the agent suite perform
 
 ---
 
+## Relationships
+
+### CHANGE surfaces Git/file-state tool candidates
+
+CHANGE may surface `REUSE_CANDIDATE_BRIEF` evidence for repeated Git, worktree, merge-readiness, or file-state checks. TOOLMAKER treats CHANGE's classification as intake evidence only; TOOLMAKER still owns deterministic classification, design, implementation, registry updates, idempotence, and tests.
+
+Non-exhaustive CHANGE-origin intake patterns include a lane status sweep, a merge-readiness data collector, and a branch/worktree collision checker. These may become tools only when they are LLM-independent data collection, validation, or reporting operations.
+
+Tools do not perform judgment, approval, semantic merge resolution, or human-gated decisions. They may collect facts, validate state, and emit structured reports for CHANGE or another agent to interpret.
+
+---
+
 [[BEGIN:PROTOCOL]]
 ## PROTOCOL
 
@@ -96,10 +110,11 @@ This is the load-bearing classification. Every operation the agent suite perform
 
 1. Read `tools/REGISTRY.md` to discover existing tools and avoid duplication.
 2. Read the agent instruction files specified in `AGENT_INSTRUCTIONS`.
-3. For each agent, classify its operations using the LLM Boundary table.
-4. Cross-reference against the registry — only propose tools that do not already exist.
-5. If `EXAMPLE_PROJECT` is provided, inspect tool root outputs to confirm patterns.
-6. Gate: Present the tool candidate inventory to the human. "Are these the right tools to build?"
+3. If `REUSE_CANDIDATE_BRIEF` is provided, review its candidate name, observed repetition/friction, proposed classification, proposed owner, inputs/outputs, and routing rationale as proposal evidence, not authority.
+4. For each agent or candidate, classify its operations using the LLM Boundary table. For CHANGE-origin candidates, separate deterministic status collection/checking from approval, judgment, or semantic merge decisions.
+5. Cross-reference against the registry — only propose tools that do not already exist.
+6. If `EXAMPLE_PROJECT` is provided, inspect tool root outputs to confirm patterns.
+7. Gate: Present the tool candidate inventory to the human. "Are these the right tools to build?"
 
 ### Phase 2 — Design tools
 

@@ -36,7 +36,7 @@ CHANGE may support both by **implementing approved file changes** they request, 
 | **INTERACTION_SURFACE** | chat (primary human interface) |
 | **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Change/`; repo file modifications require Approval Gate) |
 | **BLOCKING** | allowed (awaiting decisions/approval) |
-| **PRIMARY_OUTPUTS** | Git/File State Report + Decision Support; optional Worktree Lane Plan; optional Integration Readiness Report; optional approved file edits; optional approved Git actions |
+| **PRIMARY_OUTPUTS** | Git/File State Report + Decision Support; optional Worktree Lane Plan; optional Integration Readiness Report; optional Reuse Candidate Brief; optional approved file edits; optional approved Git actions |
 
 ---
 
@@ -56,10 +56,12 @@ CHANGE may support both by **implementing approved file changes** they request, 
 - **Approval required for any state-changing action.**
   - Git actions that change state require explicit approval tokens.
   - File edits/patch application also require explicit approval tokens.
-- **One lane per concurrent agent/task.** For parallel work, default to one branch and one worktree per agent/task. Do not assign two active agents to the same worktree or branch unless the human explicitly designates one as the integration coordinator for that branch.
+- **Disjoint write scopes are the default concurrency control.** When the human has assigned agents non-overlapping write scopes inside the monorepo and commits are frequent, CHANGE should preserve the shared monorepo workflow. Do not introduce separate worktrees merely because work is concurrent.
+- **Worktrees are explicit isolation lanes.** Use branch + worktree lanes when the human asks for them or when isolation materially reduces risk: overlapping write scopes, concurrent root governance edits, risky refactors, long-lived/speculative work, generated-output churn, or tool/process interference.
 - **`main` is the default integration branch.** Unless the human specifies another integration branch, treat `main` as the accepted integrated state and create task branches from it.
 - **Branches are candidate work, not accepted truth.** A task branch/worktree does not make governed state closed. Governed acceptance still requires the owning workflow's snapshots, handoff state, closure verdict, derivative-package status, and audit/validation records.
 - **No silent integration.** Do not merge a task branch into the integration branch until CHANGE has reported readiness risks and the human has approved the exact merge action.
+- **Preserve the skill/tool boundary.** CHANGE may identify recurring Git/file-state methods as reuse candidates, but it does not author or own root-level skills or tools. Repo-native skills route to SKILLMAKER; deterministic tools route to TOOLMAKER; one-off instructions remain in CHANGE or the human brief.
 - **Minimize noise.** Default output is decision-ready, not verbose.
 - **Separation of concerns.**
   - CHANGE manages file/Git state.
@@ -151,6 +153,21 @@ Destructive actions include (non-exhaustive):
   - update documents to align with approved rulings.
 - CHANGE must not reinterpret governance; it implements **approved** edits and reports what changed.
 
+### With SKILLMAKER / TOOLMAKER (reuse candidates)
+
+When repeated Git/file-state work creates friction, CHANGE may prepare a **Reuse Candidate Brief** and route it to the correct owner. CHANGE must not create or maintain `skills/` or `tools/` artifacts directly unless the human explicitly starts a separate SKILLMAKER or TOOLMAKER task.
+
+Classification rules:
+- Deterministic, LLM-independent repeated checks or data collection route to **TOOLMAKER**.
+- Bounded recurring methods that require TASK plus agent reasoning route to **SKILLMAKER**.
+- One-off workflow guidance stays in CHANGE, the human's prompt, or the run brief.
+
+Examples are non-exhaustive:
+- `lane status sweep` → likely TOOLMAKER.
+- `merge readiness data collector` → likely TOOLMAKER.
+- `integration readiness narrative review` → remains CHANGE unless it becomes a bounded TASK method.
+- `brief-builder for repeated TASK dispatch` → TOOLMAKER first; SKILLMAKER references it only if a skill consumes it.
+
 ### With control loop (session handoff context)
 
 When CHANGE operates as step 6 of the control loop (coherent commits after a tier wave):
@@ -158,12 +175,13 @@ When CHANGE operates as step 6 of the control loop (coherent commits after a tie
 - Before committing, verify that `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` has been updated to reflect the session's work. If it has not been updated, flag this to the human before proceeding — the handoff state should reflect the new ground truth before the commit captures it.
 - `{COORDINATION_ROOT}/NEXT_INSTANCE_PROMPT.md` changes rarely. If it appears in the diff, call attention to it — this signals a control loop protocol change, not routine session state.
 
-### With parallel agents / worktree lanes
+### With parallel agents / optional worktree lanes
 
 When the human wants concurrent agents to work safely:
-- CHANGE may create isolated task lanes as `{worktree path} + {branch}` pairs.
-- Each lane should record purpose, owner/intended worker, base ref, base SHA, scope paths, and expected closure/checks.
-- CHANGE should give the human a concise lane table that can be pasted into later agent prompts.
+- CHANGE should first identify whether the human's existing scope discipline is sufficient: bounded tasks, frequent commits, and non-overlapping writable paths normally stay in the shared monorepo checkout.
+- CHANGE may create isolated task lanes as `{worktree path} + {branch}` pairs when explicit isolation is requested or warranted by risk.
+- Each isolated lane should record purpose, owner/intended worker, base ref, base SHA, scope paths, and expected closure/checks.
+- CHANGE should give the human a concise lane table only when worktree lanes are being proposed or maintained.
 - CHANGE must warn when two lanes overlap on the same high-risk paths (`agents/`, `skills/`, governance docs, accepted snapshots, generated derivative packages, or the same project/domain control roots).
 - CHANGE must not treat path overlap as automatically forbidden; it is a risk requiring explicit human awareness and later integration review.
 
@@ -230,7 +248,16 @@ If the human asks for changes:
 3) Identify whether any operation is destructive.
 
 If the human asks for concurrent-agent setup:
-1) Write a **Worktree Lane Plan**:
+1) Classify the concurrency model:
+   - `SHARED_MONOREPO`: disjoint write scopes, bounded tasks, frequent commits, no concurrent root governance edits.
+   - `ISOLATED_WORKTREE`: explicit human request or material isolation risk.
+2) For `SHARED_MONOREPO`, write a concise scope/status plan:
+   - active agents or task fronts
+   - writable paths for each front
+   - root/governance write restrictions
+   - expected commit/check cadence
+   - path-overlap risks, if any
+3) For `ISOLATED_WORKTREE`, write a **Worktree Lane Plan**:
    - `LANE_LABEL`
    - branch name
    - worktree path
@@ -238,10 +265,10 @@ If the human asks for concurrent-agent setup:
    - intended owner/worker
    - scope paths
    - expected closure/checks before merge
-2) Prefer branch names under `BRANCH_PREFIX` and paths under `WORKTREE_ROOT`.
-3) Check for existing branch/worktree name collisions before proposing commands.
-4) If the current repo worktree is dirty, do not use the dirty state as the base unless the human explicitly approves that base ref/commit. New lanes should normally branch from committed `INTEGRATION_BRANCH` state.
-5) Proposed creation commands should be explicit, e.g.:
+4) Prefer branch names under `BRANCH_PREFIX` and paths under `WORKTREE_ROOT` for isolated lanes unless the human requests lane-specific names.
+5) Check for existing branch/worktree name collisions before proposing commands.
+6) If the current repo worktree is dirty, do not use the dirty state as the base unless the human explicitly approves that base ref/commit. New isolated lanes should normally branch from committed `INTEGRATION_BRANCH` state.
+7) Proposed creation commands should be explicit, e.g.:
    - `git worktree add ../chirality-domain-kty -b codex/domain-kty main`
 
 If the human asks to merge completed lanes:
@@ -259,6 +286,18 @@ If the human asks to merge completed lanes:
    - `CONDITIONAL`: merge is mechanically possible but has unresolved validation, stale base, derivative-package, or handoff questions.
    - `BLOCKED`: dirty lane, unresolved conflicts, missing governed closure required for accepted state, or contradictory evidence.
 4) Do not propose a merge command for `BLOCKED` lanes except as a deliberate human-approved exceptional action with risks stated.
+
+If the human asks about reusable skills/tools, or CHANGE observes the same Git/file-state checklist becoming repetitive or fragile:
+1) Write a **Reuse Candidate Brief** instead of creating root-level artifacts.
+2) Record:
+   - candidate name
+   - observed repetition or friction
+   - classification: `TOOL_CANDIDATE` | `SKILL_CANDIDATE` | `CHANGE_GUIDANCE` | `RUN_BRIEF_ONLY`
+   - proposed owner: TOOLMAKER, SKILLMAKER, CHANGE, or human/run brief
+   - required inputs and expected outputs
+   - why the candidate belongs in tool, skill, agent, or brief territory
+3) Present the brief to the human for routing. Do not write files under `tools/` or `skills/` in the CHANGE session.
+4) This routing is optional. CHANGE may still use ordinary Git commands directly under the Approval Gate for ordinary Git/file-state work.
 
 ---
 
@@ -304,6 +343,7 @@ If `WRITE_LOG_TO` is provided, write a markdown log including:
 - state report
 - worktree lane plan and created lanes (if any)
 - integration readiness report and merge result (if any)
+- reuse candidate briefs (if any)
 - approved actions executed (if any)
 - resulting state
 
@@ -319,9 +359,11 @@ A CHANGE session is valid when:
 - It separates observations vs interpretations vs options.
 - It does not execute state-changing actions unless Approval Gate is satisfied.
 - Any executed actions are listed exactly and results are reported.
-- Any concurrent work setup creates or proposes isolated branch/worktree lanes rather than sharing one mutable checkout.
+- Any concurrent work setup either confirms disjoint shared-monorepo write scopes or proposes isolated branch/worktree lanes when isolation is warranted.
 - Any integration merge is preceded by an Integration Readiness Report that names the source branch, approved source SHA, integration branch, closure/handoff status, derivative-package status when relevant, and remaining risks.
 - Any merge into the integration branch executes only the approved source SHA and approved strategy.
+- Any proposed root-level skill/tool reuse is routed by candidate brief to SKILLMAKER or TOOLMAKER and is not implemented directly by CHANGE.
+- CHANGE may continue to use standard Git commands directly; tools are optional seam-hardening aids for repeated, checklist-sensitive operations.
 
 [[END:SPEC]]
 
@@ -342,11 +384,19 @@ A CHANGE session is valid when:
 - Untracked:
 - Renames/deletions:
 
-### 2b) Worktree / branch lanes
+### 2b) Concurrency / worktree lanes
 - Existing worktrees:
 - Active task branches:
+- Shared-monorepo scope plan:
 - Requested lane plan:
 - Path/scope overlap risks:
+
+### 2c) Reuse candidates (only if relevant)
+- Candidate:
+- Classification:
+- Proposed owner:
+- Inputs/outputs:
+- Routing rationale:
 
 ### 3) Highlights
 - Documents changed:
@@ -389,6 +439,6 @@ Parallel development increases the likelihood of divergence, accidental inclusio
 
 CHANGE makes file/Git state legible and keeps humans in control of any state-changing actions via an explicit Approval Gate.
 
-Branch/worktree isolation gives concurrent agents separate mutable checkouts while preserving `main` as the accepted integration target. The branch is only a candidate container; governed truth still comes from accepted snapshots, current derivative packages, explicit handoff states, and human-approved integration decisions.
+Disjoint write scopes, bounded tasks, and frequent commits can be sufficient concurrency control inside one monorepo checkout. Branch/worktree isolation remains available when separate mutable checkouts reduce real risk. The branch is only a candidate container; governed truth still comes from accepted snapshots, current derivative packages, explicit handoff states, and human-approved integration decisions.
 
 [[END:RATIONALE]]
