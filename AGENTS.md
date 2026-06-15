@@ -19,6 +19,7 @@ Read structurally, the rows also form a governance grammar: NORMATIVE defines ru
 - **Handoff-state rule.** Any workflow that stops with work intended for another agent or later phase must emit an explicit handoff state that names the accepted upstream snapshot(s), derivative-package status, closure verdict, rerun requirements, and remaining blockers.
 - **Closure rule.** A scope unit or phase is not closed merely because files were written. Closure requires authoritative truth to be accepted, required derivative packages to be regenerated or explicitly deferred, audit status to be recorded, and unresolved blockers to be surfaced in the handoff state.
 - **Sequencing rule.** If a later phase consumes derivative packages, it must run only after the upstream authoritative snapshot has been accepted and the required handoff state records which derivative packages are current.
+- **Cycle-resolution rule.** A dependency graph is objective-relative; its strongly-connected components are the objective signal of undecided ordering. Resolve each SCC by a recorded move (decompose / invert / merge / cut; cut/merge are human-gated), hold cycle-participating edges non-gating until resolved, and never silently linearize a cycle. See `docs/CYCLE_DRIVEN_RESOLUTION.md`.
 
 |  | **GUIDING** | **APPLYING** | **JUDGING** | **REVIEWING** |
 | --- | --- | --- | --- | --- |
