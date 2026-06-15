@@ -23,7 +23,7 @@ This repo is upstream of the public `chirality-app` export. It is maintained as 
 | Instruction and governance | `AGENTS.md`, `agents/`, `docs/`, root framework docs | Change through live registries and governance docs, not historical inventories |
 | Skills and tools | `skills/`, `tools/` | Keep method logic in skills and deterministic operations in tools |
 | Public export | `exports/chirality-app/`, export-allowed root files/directories | Treat the export profile as the public boundary contract |
-| App development | `projects/chirality-app-dev/`, root `frontend/` | Develop next app work in the private project workspace; keep root `frontend/` as the exported harness snapshot |
+| App development | `projects/chirality-app-dev/` | Develop app/frontend work in the private project workspace; the former root `frontend/` harness snapshot is archived under `.archive/frontend/` |
 | Domain/project workspaces | `projects/`, `domains/` | Treat as private applied/development workspaces unless a separate export path is created |
 | Archives and planning workspace | `.archive/`, `plans/` | Treat `.archive/` as historical context; treat `plans/` as non-governing planning material unless a file explicitly declares active draft status |
 
@@ -33,15 +33,14 @@ This repo is upstream of the public `chirality-app` export. It is maintained as 
 
 For the shared operating-system surface, start here:
 
-1. `INIT.md`
-2. `AGENTS.md`
-3. `docs/DIRECTIVE.md`
-4. `docs/SPEC.md`
-5. `docs/TYPES.md`
-6. `docs/CONTRACT.md`
-7. `docs/PLAN.md`
-8. `skills/README.md`
-9. `tools/REGISTRY.md`
+1. `AGENTS.md`
+2. `docs/DIRECTIVE.md`
+3. `docs/SPEC.md`
+4. `docs/TYPES.md`
+5. `docs/CONTRACT.md`
+6. `docs/PLAN.md`
+7. `skills/README.md`
+8. `tools/REGISTRY.md`
 
 For the deeper rationale, read `CHIRALITY_FRAMEWORK.md`, `PROFESSIONAL_ENGINEERING.md`, and `docs/thesis/`.
 
@@ -60,8 +59,6 @@ The root operating-system surface is the canonical shared surface:
 | `skills/` | Repo-native method packs loaded by `TASK` |
 | `tools/` | Deterministic helpers, validators, build/reporting utilities, and curated tool registry |
 | `docs/` | Chirality-wide governance, specifications, roadmap, design basis, and thesis context |
-| `examples/` | Sanitized example workspaces and artifacts included in public export |
-| `frontend/` | Public-exported runtime harness snapshot, not the private app-development source |
 | `init/` | Bootstrap and next-session notes |
 
 Private maintainer and development roots are separate:
@@ -76,7 +73,6 @@ Private maintainer and development roots are separate:
 
 Root-level framing documents provide the theoretical and professional-practice basis for the system:
 
-- `INIT.md`
 - `CHIRALITY_FRAMEWORK.md`
 - `PROFESSIONAL_ENGINEERING.md`
 - `LICENSE.md`
@@ -160,9 +156,9 @@ When live folders, indexes, and narrative documents disagree, treat the live reg
 
 ## Frontend Development Path
 
-The root `frontend/` directory is the public-exported runtime harness snapshot. It exists so the public `chirality-app` package can operate the instruction architecture against a selected project root.
+Chirality App product and frontend development is oriented around `projects/chirality-app-dev/`, the private development workspace for the app pathway. The earlier root `frontend/` runtime-harness snapshot has been archived under `.archive/frontend/` and is no longer an active root surface.
 
-Future Chirality App product and frontend development should be oriented around `projects/chirality-app-dev/`, which is the private development workspace for the app pathway. Avoid treating root `frontend/` implementation details as the long-term architecture contract; the durable source of truth is the instruction, governance, skill, tool, export, and project-development surface described here.
+The durable source of truth is the instruction, governance, skill, tool, export, and project-development surface described here — not any single harness snapshot.
 
 ---
 
@@ -220,7 +216,7 @@ python3 exports/chirality-app/export_public.py --apply-target /path/to/chirality
 
 `.archive/` is local archived material. The moved migration records under `.archive/migration/` are useful for understanding how this canonical repo was assembled, but they are not live inventory, not current topology, and not part of the public export.
 
-`plans/` is a planning workspace. Most material there is archival or draft context, but the directory may also hold active planning seeds, such as the Chirality App future-development plan, before they are promoted into governed roadmap authority. The governed roadmap surface remains `docs/PLAN.md`.
+`plans/` is a planning workspace. Most material there is archival or draft context, but the directory may also hold active planning seeds before they are promoted into governed roadmap authority. The governed roadmap surface remains `docs/PLAN.md`.
 
 ---
 
