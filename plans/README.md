@@ -17,7 +17,11 @@ approved transition or supersession path.
 
 Current contents:
 
-- `chirality-app-future-development-plan.md` - active roadmap seed for future
-  Chirality App harness runtime development during the migration phase.
+- `monorepo_structure_assessment_2026-06-13.md` - point-in-time structural
+  assessment of the monorepo (descriptive and advisory; not governed authority).
 - `historical-imports/chirality-app-test` - planning records imported from the
   former private workspace for reference and provenance.
+
+The `chirality_domain_decomp_readiness_2026-06-13.md` handoff plan was consumed
+by the completed Chirality domain decomposition (DOMAIN_DECOMP Gates 1-6 closed,
+`GATE6_PUBLISH_20260615T044434Z`) and moved to `.archive/`.
