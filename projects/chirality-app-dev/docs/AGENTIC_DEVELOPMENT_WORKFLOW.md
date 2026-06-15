@@ -68,7 +68,8 @@ The current phase is runtime integration. The first governance-support alignment
 7. Keep writes scoped to the tranche.
 8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
 9. Update affected completion-plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
-10. Commit and push validated work when git state allows closeout.
+10. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
+11. `CHANGE` commits and pushes validated work as the ordinary terminal action when validation and git state allow closeout.
 
 ## 6. TASK Subagent Discipline
 
@@ -80,7 +81,7 @@ The current phase is runtime integration. The first governance-support alignment
 - whether production code may be changed or the output is assessment/docs only;
 - excluded scope and human-ruling stops.
 
-The parent `WORKING_ITEMS` agent remains responsible for integration, validation, coordination updates, git closeout, and final summary. `TASK` outputs are draft evidence until integrated and validated.
+The parent `WORKING_ITEMS` agent remains responsible for integration, validation, coordination updates, invoking the `CHANGE` closeout handoff, and final summary. `TASK` outputs are draft evidence until integrated and validated.
 
 ## 7. Closeout Shape
 
@@ -91,7 +92,7 @@ A valid closeout identifies:
 - files changed;
 - decision packets or human rulings pending;
 - next unblocked active-plan item;
-- commit and push result when completed.
+- `CHANGE` closeout result, including commit and push result when completed.
 
 For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.
 

@@ -225,6 +225,14 @@ Rules:
    update only the fields it permits. If the contract says state is discovered
    from authoritative project and deliverable artifacts, update those artifacts
    within the active write scope and do not create a substitute handoff state.
+6) **Validated tranche closeout** (when project-local coordination requires Git closeout):
+   After validation and coordination updates are complete, autonomously hand off to a
+   `CHANGE` agent/subagent for final Git/file-state review. The `CHANGE` closeout is
+   responsible for staging only tranche-scoped files, committing, and pushing as the
+   ordinary terminal action when git state allows it. Do not replace this with a
+   prose-only handoff unless no callable handoff/subagent mechanism is available; in
+   that case, state the tooling limitation explicitly and provide the exact
+   tranche-scoped file set for CHANGE.
 
 Do not change `_STATUS.md` unless the human explicitly instructs you to.
 

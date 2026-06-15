@@ -108,7 +108,7 @@ If dependency evidence is needed, use the latest DepClosure snapshot and selecte
 
 ## Subagent Use
 
-Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes. Use fan-out/fan-in when the work naturally separates by subsystem, for example:
+Spawn `TASK` agents only for separable implementation subscopes with explicit briefs and disjoint write scopes. Use fan-out/fan-in when the work naturally separates by subsystem, for example:
 
 - runtime contract and event schema;
 - SDK options and message mapping;
@@ -124,6 +124,8 @@ Every subagent brief must state:
 - whether it may modify production code or only produce assessment/docs.
 
 Keep parallel write scopes disjoint.
+
+This TASK restriction does not apply to final Git closeout. After a validated tranche, WORKING_ITEMS must autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review, scoped commit, and push.
 
 ## Git And Validation Closeout
 
@@ -143,7 +145,8 @@ At the end of a validated tranche:
 8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.
 9. Do not update or recreate `NEXT_INSTANCE_STATE.md`.
 10. Record any skipped checks and why.
-11. Commit and push completed validated work when validation and git state allow closeout.
+11. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
+12. `CHANGE` commits and pushes completed validated work as the ordinary terminal action when validation and git state allow closeout. Per-run `APPROVE:` tokens are not required for scoped closeout commit/push; destructive actions, merges, ambiguous staging, or unresolved dirty-state conflicts still require explicit human approval or ruling.
 
 Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
 

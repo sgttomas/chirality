@@ -44,6 +44,7 @@ Default priority:
 - Tranches selected from unblocked completion-plan items are pre-approved for execution.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
+- At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review, commit, and push. This closeout handoff is required and is not a substitute implementation tranche.
 - Keep writes scoped to the selected tranche.
 - Use `/Users/ryan/ai-env/projects/pi` and `plans/pi-agent-harness-assessment.md` only as pattern-corpus references where they refine the active plan item.
 - Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, or Pi migrations unless the active plan item and human rulings explicitly allow them.
@@ -60,7 +61,8 @@ At completion of a validated tranche:
 4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
 5. Update `execution/_Coordination/_LATEST.md` only when discovery pointers change.
 6. Report skipped checks explicitly.
-7. Git commit and push when validation and git state allow closeout.
+7. Hand off to a `CHANGE` agent/subagent for final Git/file-state review.
+8. `CHANGE` commits and pushes the validated tranche as the ordinary terminal action when validation and git state allow closeout. Per-run `APPROVE:` tokens are not required for scoped closeout commit/push; destructive actions, merges, ambiguous staging, or unresolved dirty-state conflicts still require explicit human approval or ruling.
 
 End the session summary with:
 
