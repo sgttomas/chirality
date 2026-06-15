@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-14T21:37:18Z",
+  "generated_utc": "2026-06-15T02:01:07Z",
   "source_count": 225,
   "source_manifest": "domains/chirality/_Sources/Source_Manifest.csv",
   "source_manifest_sha256": "6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e",
@@ -222,14 +222,16 @@
     "closed_issue": "OI-018"
   },
   "gate3_category_proposal": {
-    "status": "OPEN_PENDING_DENSE_RATIFICATION",
+    "status": "OPEN_SCOPE_REFINEMENT_NEEDED",
     "proposal_pointer": "domains/chirality/_Decomposition/gate3_categories/_LATEST_GATE3_PROPOSAL.md",
     "proposal_snapshot": "domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z",
     "category_count": 11,
     "draft_ledger_rows": 19473,
     "assigned_in_atoms": 19403,
     "ambiguous_assignment_findings": 881,
-    "ratification_verdict": "PENDING_DENSE_RATIFICATION",
-    "dense_attempt": "Stopped after 1,000/29,843 vectors at roughly nine minutes; BM25-only index restored."
-  }
+    "ratification_verdict": "SCOPE_REFINEMENT_NEEDED",
+    "dense_attempt": "Completed successfully; source_v2 status READY with embeddings_norm.npy.",
+    "scope_refinement_blockers": 11
+  },
+  "retrieval_index_status": "READY"
 }

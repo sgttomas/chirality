@@ -2165,3 +2165,5 @@ gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Domain_Ledger_Gate3_Ca
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Scope_Ratification.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 BM25-only ratification draft.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Assignment_Findings.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 ambiguous assignment findings.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Assignment_Summary.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 assignment summary.
+Category_Assignment_Findings_Summary.csv,authoritative companion register,Gate 3 summary of ambiguous assignment findings by Category and source.
+Category_Assignment_Review_Packet.md,review aid,Compact Gate 3 review packet for ambiguous assignment candidates.

@@ -18,6 +18,8 @@
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_PHASE2_GATE2.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Gate2_Source_Unit_Register.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Assignment_Findings.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Assignment_Review_Packet.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Assignment_Findings_Summary.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Scope_Ratification.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Domain_Ledger_Gate3_Category_Draft.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Register.csv`
@@ -88,9 +90,9 @@ Gate 3 category proposal is generated but not accepted.
 - Draft category-assigned ledger: `domains/chirality/_Decomposition/Domain_Ledger_Gate3_Category_Draft.csv`
 - Assigned IN atoms: `19403` / `19403`
 - Ambiguous assignment findings: `881` in `Category_Assignment_Findings.csv`
-- Ratification status: `PENDING_DENSE_RATIFICATION` for all Categories in `Category_Scope_Ratification.csv`
+- Ratification status: `SCOPE_REFINEMENT_NEEDED` for all Categories in `Category_Scope_Ratification.csv`
 
-Dense embeddings were attempted for Gate 3 and stopped after 1,000 of 29,843 vectors at roughly nine minutes; the index was restored to `BM25_ONLY`. Gate 3 cannot close until dense ratification is completed or the human explicitly accepts BM25-only ratification for this pass.
+Dense embeddings completed for Gate 3. The source_v2 index is READY, but dense ratification returned `SCOPE_REFINEMENT_NEEDED` for all 11 proposed Categories under the default 0.75 cosine threshold. Gate 3 cannot close until scopes/assignments are refined and reratified, or the human explicitly approves a calibrated ratification threshold/basis.
 
 ## Rebuild Commands
 
@@ -133,6 +135,6 @@ Expected rank 1 result is `SRC-AGENTS` / `@repo/AGENTS.md`.
 
 ## Next Recommended Action
 
-Continue Gate 3 review: inspect the proposed 11-category register, resolve `Category_Assignment_Findings.csv`, and complete dense category-scope ratification or obtain an explicit human ruling accepting BM25-only ratification for this pass. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth; `Domain_Ledger_Gate3_Category_Draft.csv` is draft until Gate 3 is accepted.
+Continue Gate 3 review: inspect the proposed 11-category register, resolve `Category_Assignment_Findings.csv`, and refine the Category scopes/assignments and rerun dense category-scope ratification or obtain an explicit human ruling on a calibrated ratification threshold/basis. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth; `Domain_Ledger_Gate3_Category_Draft.csv` is draft until Gate 3 is accepted.
 
 Do not start hypergraph publication, DBM publication, dense embeddings, public export, or separate project-domain decomposition from this handoff unless the human explicitly authorizes that work.

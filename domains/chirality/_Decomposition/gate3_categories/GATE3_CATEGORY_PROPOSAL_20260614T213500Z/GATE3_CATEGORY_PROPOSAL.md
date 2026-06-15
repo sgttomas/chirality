@@ -14,30 +14,30 @@ Accepted upstream truth:
 - `Vocabulary_Map.csv` and `cross_source_toc_matrix.*`: accepted Gate 2 priors.
 - Source index snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T204703Z`.
 
-## Dense Ratification Caveat
+## Dense Ratification Result
 
-The current index is restored to `BM25_ONLY`. A dense embedding rebuild was attempted with `tools/retrieval/build_source_index.py --snapshot domains/chirality/_LocalIndexes/_LATEST.md --force`, but local throughput reached only 1,000 of 29,843 vectors after roughly nine minutes. Gate 3 therefore has BM25-only draft ratification evidence and remains blocked from closure until dense ratification is completed or the human explicitly accepts BM25-only ratification for this pass.
+Dense embeddings completed successfully for the current source_v2 index. Category scope ratification remains blocking: every proposed Category currently carries `SCOPE_REFINEMENT_NEEDED` under the default 0.75 cosine threshold.
 
 ## Proposed Categories
 
-- `CAT-001` Epistemic and Professional-Practice Foundations — 2180 IN atoms; ambiguous findings=136; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-002` Governance and Agent Instruction Architecture — 1109 IN atoms; ambiguous findings=25; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-003` Decomposition Lifecycle and Domain Structuring — 2252 IN atoms; ambiguous findings=207; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-004` Task, Skill, and Tool Execution Contracts — 2619 IN atoms; ambiguous findings=107; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-005` Source Fidelity, Retrieval, and Validation Infrastructure — 227 IN atoms; ambiguous findings=22; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-006` Audit, Review, Reconciliation, and Evaluation — 2563 IN atoms; ambiguous findings=174; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-007` Publication, Aggregation, Hypergraph, and Synthesis — 2118 IN atoms; ambiguous findings=88; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-008` Document, Asset, Drawing, and Engineering-Data Extraction — 3305 IN atoms; ambiguous findings=77; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-009` Coordination, Change, Scheduling, and Deliverable Workflows — 1691 IN atoms; ambiguous findings=30; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-010` Work-Surface, Project, Product, and Integration Boundaries — 1297 IN atoms; ambiguous findings=15; verdict=PENDING_DENSE_RATIFICATION.
-- `CAT-011` Legal, License, and Public-Release Boundaries — 42 IN atoms; ambiguous findings=0; verdict=PENDING_DENSE_RATIFICATION.
+- `CAT-001` Epistemic and Professional-Practice Foundations — 2180 IN atoms; ambiguous findings=136; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-002` Governance and Agent Instruction Architecture — 1109 IN atoms; ambiguous findings=25; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-003` Decomposition Lifecycle and Domain Structuring — 2252 IN atoms; ambiguous findings=207; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-004` Task, Skill, and Tool Execution Contracts — 2619 IN atoms; ambiguous findings=107; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-005` Source Fidelity, Retrieval, and Validation Infrastructure — 227 IN atoms; ambiguous findings=22; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-006` Audit, Review, Reconciliation, and Evaluation — 2563 IN atoms; ambiguous findings=174; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-007` Publication, Aggregation, Hypergraph, and Synthesis — 2118 IN atoms; ambiguous findings=88; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-008` Document, Asset, Drawing, and Engineering-Data Extraction — 3305 IN atoms; ambiguous findings=77; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-009` Coordination, Change, Scheduling, and Deliverable Workflows — 1691 IN atoms; ambiguous findings=30; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-010` Work-Surface, Project, Product, and Integration Boundaries — 1297 IN atoms; ambiguous findings=15; verdict=SCOPE_REFINEMENT_NEEDED.
+- `CAT-011` Legal, License, and Public-Release Boundaries — 42 IN atoms; ambiguous findings=0; verdict=SCOPE_REFINEMENT_NEEDED.
 
 ## Registers
 
 - `Category_Register.csv` — flat category list and source-alignment citations.
 - `Domain_Ledger_Gate3_Category_Draft.csv` — accepted Gate 2 atom rows plus proposed CategoryID assignments; `Atomic_Domain_Ledger.csv` is not overwritten.
-- `Category_Scope_Ratification.csv` — BM25-only draft scope ratification with dense step pending.
-- `Category_Assignment_Findings.csv` — ambiguous assignment candidates requiring Gate 3 review. BM25 miss counts are retained in `Category_Scope_Ratification.csv` rather than promoted to formal misassignment candidates until dense ratification is available.
+- `Category_Scope_Ratification.csv` — BM25 and dense scope ratification with blocking refinement verdicts.
+- `Category_Assignment_Findings.csv` — ambiguous assignment candidates requiring Gate 3 review. Dense and BM25 misses are retained in `Category_Scope_Ratification.csv`; formal assignment review candidates remain in `Category_Assignment_Findings.csv`.
 - `Category_Assignment_Summary.csv` — per-category counts.
 
 ## Gate 3 Closure Condition
