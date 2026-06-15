@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Post-write runtime capability decision packet prepared (`D-APP-04`)
+
+Prepared `D-APP-04` for the first blocked dependency-spine item after `WRITE-HOOKS-001`.
+The packet asks the human authority to rule which post-write runtime capability lane, if
+any, may proceed next: R4 Bash prerequisites and controlled Bash implementation, R5
+governed SDK subagent runtime, concrete provider-expansion preparation, or holding all
+capability expansion pending additional evidence.
+
+The recommendation is Option A only as a bounded R4 tranche, with Bash denied by default
+and model-visible exposure allowed only after descriptor, permission, hook, timeout,
+interrupt, result-budget, result-storage, audit-event, redaction, harness, and relevant
+network checks pass. Governed subagents and concrete non-Anthropic providers remain
+deferred unless the human ruling explicitly selects them. D-APP-01 and D-APP-02 continue
+to rule out Pi adapter, fork, import, sidecar, runtime-floor migration, and spike work.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, or release-readiness posture changed.
+`execution/_Coordination/_DECISIONS/_REGISTER.md` now records `D-APP-04` as
+`AWAITING_RULING`; implementation remains blocked until a ruling record lands.
+
+Validation: docs/control-plane static checks only. Frontend runtime tests were skipped
+because this tranche changed only the decision packet, decision register, active plan, and
+completion log.
+
 ## 2026-06-15 - Write/edit hooks and path containment landed (`WRITE-HOOKS-001`)
 
 Added bounded SDK `Write` / `Edit` exposure for `workspaceWrite` mode behind Chirality-owned descriptor resolution, permission overlay decisions, and programmatic SDK hooks.
