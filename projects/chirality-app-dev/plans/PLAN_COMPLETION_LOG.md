@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - R5 governed SDK subagent runtime decision packet prepared (`D-APP-05`)
+
+Prepared the post-Bash R5 decision packet for governed SDK subagent runtime. The packet
+asks whether to approve a bounded R5 implementation, approve prerequisite-only registry
+and hook work, require residual dependency/SCC reconciliation before implementation, or
+hold subagent capability expansion.
+
+The tranche did not change runtime source, package manifests, dependencies, lockfiles,
+desktop wrapper behavior, provider scope, network policy, tool exposure, package resources,
+release readiness, lifecycle issuance, professional approval, certification, sealing,
+authentication, or code-compliance acceptance. `_DECISIONS/_REGISTER.md` now records
+`D-APP-05` as `AWAITING_RULING`; SDK `Agent` exposure, executable SDK `agents`
+definitions, and governed subagent runtime execution remain blocked until a ruling lands.
+
+Residual: concrete non-Anthropic providers, provider/network broadening, remote MCP/plugins,
+Pi implementation paths, `MultiEdit`, mutating Chirality MCP tools, package/runtime
+migration, release-candidate DMG proof, release-readiness claims, and professional-boundary
+changes remain future/human-gated. The latest dependency closure snapshot still reports a
+residual six-node strict SCC; this packet does not claim project-wide dependency closure or
+replace the recommended RECONCILIATION longer-cycle ruling package.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-05" execution/_Coordination/_DECISIONS plans`; referenced-path
+existence checks for the packet's governing docs, D-APP-04 ruling, and dependency closure
+report; decision-register ID uniqueness check. Frontend runtime tests were skipped because
+this tranche changed only the decision packet, decision register, active plan, and
+completion log.
+
 ## 2026-06-15 - Instruction-root split-root package integrity repair landed (`INSTRUCTION-ROOT-SPLIT-001`)
 
 Repaired the normal package `instruction-root:integrity` path for the app-dev split source
