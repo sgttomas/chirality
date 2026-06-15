@@ -98,6 +98,9 @@ python3 tools/retrieval/build_source_index.py \
 
 ## Query
 
+Default hybrid search uses BM25 plus dense cosine retrieval when embeddings are
+available, then fuses ranks:
+
 ```sh
 python3 tools/retrieval/query_source_index.py \
   --snapshot domains/piping-design/_LocalIndexes/_LATEST.md \
@@ -105,9 +108,42 @@ python3 tools/retrieval/query_source_index.py \
   --k 10
 ```
 
+Pure dense semantic search ranks by embedding cosine only:
+
+```sh
+python3 tools/retrieval/query_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --query "epistemic warrant and professional accountability" \
+  --mode dense \
+  --k 10
+```
+
+Pure BM25 lexical search ranks by keyword match only:
+
+```sh
+python3 tools/retrieval/query_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --query "derivative-package rule" \
+  --mode bm25 \
+  --k 10
+```
+
+Atom-only dense search is useful for semantic discovery over accepted atomic
+knowledge units:
+
+```sh
+python3 tools/retrieval/query_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --query "human authority over epistemic warrant" \
+  --mode dense \
+  --chunk-type LEDGER_ATOM \
+  --k 20
+```
+
 Useful filters:
 
 ```sh
+--mode hybrid
 --source-doc SRC-PIPING-MANUAL
 --artifact-role SOURCE_MARKDOWN
 --chunk-type SECTION_NODE
@@ -119,7 +155,8 @@ Useful filters:
 --json
 ```
 
-The public result contract returns stable IDs and provenance:
+The public result contract returns retrieval mode on each query payload plus
+stable IDs and provenance on each result row:
 
 - `chunk_id`
 - `artifact_id`
