@@ -1,12 +1,12 @@
 import type { CanUseTool, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'node:crypto';
-import path from 'node:path';
 import { createHarnessEvent } from './event-schema';
 import { appendHarnessEvent } from './session-events';
 import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
+import { evaluateToolPathPolicy } from './tool-path-policy';
 import type { HarnessToolDescriptor } from './tool-descriptor';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v1.overlay-skeleton';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v2.write-hooks';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -48,61 +48,6 @@ export type ResolveHarnessPermissionDecisionInput = {
   explicitDenyReason?: string;
   safeMetadata?: Record<string, unknown>;
 };
-
-function isWithinRoot(root: string, candidate: string): boolean {
-  const relative = path.relative(path.resolve(root), path.resolve(candidate));
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function readPathFromToolInput(toolInput: Record<string, unknown>): string | undefined {
-  const pathValue = toolInput.file_path ?? toolInput.path;
-  return typeof pathValue === 'string' && pathValue.trim().length > 0
-    ? pathValue.trim()
-    : undefined;
-}
-
-function resolveReadPathDeny(input: {
-  descriptor?: HarnessToolDescriptor;
-  projectRoot?: string;
-  toolInput: Record<string, unknown>;
-  blockedPath?: string;
-}): { reason: string; metadata: Record<string, unknown> } | undefined {
-  if (input.blockedPath) {
-    return {
-      reason: `Read path '${input.blockedPath}' is blocked by SDK path policy.`,
-      metadata: {
-        denyClass: 'path-containment',
-        blockedPath: input.blockedPath
-      }
-    };
-  }
-
-  if (!input.projectRoot || input.descriptor?.pathScope !== 'project-root-read') {
-    return undefined;
-  }
-
-  const rawPath = readPathFromToolInput(input.toolInput);
-  if (!rawPath) {
-    return undefined;
-  }
-
-  const resolvedPath = path.isAbsolute(rawPath)
-    ? path.resolve(rawPath)
-    : path.resolve(input.projectRoot, rawPath);
-  if (isWithinRoot(input.projectRoot, resolvedPath)) {
-    return undefined;
-  }
-
-  return {
-    reason: `Read path '${rawPath}' resolves outside the active project root.`,
-    metadata: {
-      denyClass: 'path-containment',
-      projectRoot: path.resolve(input.projectRoot),
-      requestedPath: rawPath,
-      resolvedPath
-    }
-  };
-}
 
 export function normalizeHarnessPermissionMode(mode: string | undefined): NormalizedHarnessPermissionMode {
   if (mode === 'readOnly') {
@@ -232,7 +177,19 @@ export function resolveHarnessPermissionDecision(
   }
 
   if (hasDescriptorPermission(descriptor, 'workspace-write')) {
-    if (mode === 'ask' || mode === 'workspaceWrite') {
+    if (mode === 'workspaceWrite') {
+      return createDecision(
+        input,
+        'allow',
+        `${descriptor.name} is allowed by workspaceWrite mode after Chirality write hooks pass.`,
+        {
+          allowClass: 'workspace-write',
+          requiresHookApproval: true
+        }
+      );
+    }
+
+    if (mode === 'ask') {
       return createDecision(
         input,
         'ask',
@@ -319,7 +276,7 @@ export function createHarnessCanUseTool(input: {
 }): CanUseTool {
   return async (toolName, toolInput, options) => {
     const descriptor = input.resolveDescriptor(toolName);
-    const pathDeny = resolveReadPathDeny({
+    const pathPolicy = await evaluateToolPathPolicy({
       descriptor,
       projectRoot: input.projectRoot,
       toolInput,
@@ -331,14 +288,15 @@ export function createHarnessCanUseTool(input: {
       toolName,
       descriptor,
       source: 'sdk-callback',
-      explicitDeny: Boolean(pathDeny),
-      explicitDenyReason: pathDeny?.reason,
+      explicitDeny: !pathPolicy.allowed,
+      explicitDenyReason: pathPolicy.allowed ? undefined : pathPolicy.reason,
       safeMetadata: {
         inputMetadata: summarizeToolInput(toolInput),
         decisionReason: options.decisionReason,
         displayName: options.displayName,
         sdkToolUseId: options.toolUseID,
-        ...pathDeny?.metadata
+        pathMetadata: pathPolicy.allowed ? pathPolicy.metadata : undefined,
+        ...(pathPolicy.allowed ? {} : pathPolicy.metadata)
       }
     });
 

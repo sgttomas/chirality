@@ -1,4 +1,5 @@
 import type { Options, PermissionMode, SettingSource } from '@anthropic-ai/claude-agent-sdk';
+import { createChiralityToolHooks } from './chirality-hooks';
 import { ContentBlock, ResolvedOpts, SessionRecord } from './types';
 import {
   createHarnessCanUseTool,
@@ -35,6 +36,9 @@ function mapPermissionMode(mode: string): PermissionMode {
   const normalizedMode = normalizeHarnessPermissionMode(mode);
   if (normalizedMode === 'readOnly' || normalizedMode === 'dontAsk') {
     return 'dontAsk';
+  }
+  if (normalizedMode === 'workspaceWrite') {
+    return 'acceptEdits';
   }
   if (
     normalizedMode === 'bypass' &&
@@ -93,6 +97,11 @@ export function buildSdkOptions(input: {
     canUseTool: createHarnessCanUseTool({
       sessionId: input.session.sessionId,
       mode: input.opts.mode,
+      projectRoot: input.session.projectRoot,
+      resolveDescriptor: getHarnessToolDescriptor
+    }),
+    hooks: createChiralityToolHooks({
+      sessionId: input.session.sessionId,
       projectRoot: input.session.projectRoot,
       resolveDescriptor: getHarnessToolDescriptor
     }),

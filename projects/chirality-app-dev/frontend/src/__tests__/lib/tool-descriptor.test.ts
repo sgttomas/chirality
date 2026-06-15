@@ -8,7 +8,7 @@ import {
 } from '../../lib/harness/tool-descriptor';
 
 describe('tool descriptor registry', () => {
-  it('exposes only read-class SDK and Chirality MCP tools for the current tranche', () => {
+  it('exposes read-class tools plus bounded Write/Edit descriptors for the current tranche', () => {
     const descriptors = listHarnessToolDescriptors();
 
     expect(descriptors.map((descriptor) => descriptor.name)).toEqual([
@@ -50,7 +50,16 @@ describe('tool descriptor registry', () => {
     ).toBe(true);
     expect(
       descriptors
-        .filter((descriptor) => !descriptor.permissions.includes('read'))
+        .filter((descriptor) => ['write_file', 'edit_file'].includes(descriptor.name))
+        .every((descriptor) => descriptor.runtime.exposedToModel === true)
+    ).toBe(true);
+    expect(
+      descriptors
+        .filter(
+          (descriptor) =>
+            !descriptor.permissions.includes('read') &&
+            !['write_file', 'edit_file'].includes(descriptor.name)
+        )
         .every((descriptor) => descriptor.runtime.exposedToModel === false)
     ).toBe(true);
 
@@ -67,6 +76,48 @@ describe('tool descriptor registry', () => {
     const bash = getHarnessToolDescriptor('bash');
     expect(bash?.permissions).toEqual(['shell', 'danger']);
     expect(bash?.humanGate.required).toBe(true);
+  });
+
+  it('resolves Write/Edit only in workspaceWrite mode', () => {
+    const resolution = resolveHarnessToolPool({
+      requestedTools: ['read', 'write', 'Edit', 'multi_edit', 'bash'],
+      mode: 'workspaceWrite'
+    });
+
+    expect(resolution.allowedToolNames).toEqual(['Read', 'Write', 'Edit']);
+    expect(resolution.disallowedToolNames).toEqual([
+      'Glob',
+      'Grep',
+      'LS',
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read',
+      'mcp__chirality__scope_scan',
+      'mcp__chirality__scaffold_preview',
+      'MultiEdit',
+      'NotebookEdit',
+      'Bash',
+      'WebFetch',
+      'WebSearch',
+      'Agent'
+    ]);
+    expect(resolution.deniedTools).toEqual([
+      expect.objectContaining({
+        toolName: 'multi_edit',
+        descriptorName: 'multi_edit_file'
+      }),
+      expect.objectContaining({
+        toolName: 'bash',
+        descriptorName: 'shell'
+      })
+    ]);
+
+    const askResolution = resolveHarnessToolPool({
+      requestedTools: ['write', 'Edit'],
+      mode: 'ask'
+    });
+    expect(askResolution.allowedToolNames).toEqual([]);
+    expect(askResolution.disallowedToolNames).toContain('Write');
+    expect(askResolution.disallowedToolNames).toContain('Edit');
   });
 
   it('resolves read-only Chirality MCP descriptors without opening write or shell tools', () => {

@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Write/edit hooks and path containment landed (`WRITE-HOOKS-001`)
+
+Added bounded SDK `Write` / `Edit` exposure for `workspaceWrite` mode behind Chirality-owned descriptor resolution, permission overlay decisions, and programmatic SDK hooks.
+
+The tranche introduced a shared tool path policy helper that enforces project-root containment, instruction-root write blocking, symlink write rejection, and fail-closed behavior when the active project root cannot be checked. The SDK options builder now maps `workspaceWrite` to first-adapter `acceptEdits`, attaches Chirality `PreToolUse`, `PostToolUse`, and `PostToolUseFailure` callbacks, and exposes requested `Write` / `Edit` only in `workspaceWrite`. `ask` still does not auto-execute writes; `readOnly` / `dontAsk` deny writes; bash, network, subagent, notebook, `MultiEdit`, Pi, concrete non-Anthropic providers, package/runtime migration, and mutating Chirality MCP tools remain out of scope.
+
+Write hooks append provider-neutral hook evidence with safe path metadata, pre/post file state metadata, result-budget metadata, and diff-provenance flags. Raw file contents, raw tool outputs, full diffs, artifact spill files, and result artifact storage contracts remain future scope. SDK write tool results now produce the same inferred `tool.started` and `tool.completed` / `tool.failed` evidence pattern as read built-ins.
+
+Validation: `npm run test -- permission-overlay chirality-hooks tool-descriptor sdk-options-builder sdk-message-mapper`; `npm run test`; `npm run typecheck`; `CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.VBn3xf npm run harness:validate:premerge` against a local `next dev` server using a temporary merged instruction root, producing pass status with 8 checks at `frontend/artifacts/harness/section8/latest/summary.json`. `npm run instruction-root:integrity` was attempted and failed because the nested app-dev source root lacks `agents/`. `node ./scripts/verify-instruction-root-integrity.mjs --source-root /Users/ryan/ai-env/projects/chirality` was attempted and failed because the root source lacks current required app-dev governance docs such as `docs/DIRECTIVE.md`.
+
 ## 2026-06-15 - Tool result and event evidence expansion landed (`TOOL-EVIDENCE-001`)
 
 Added provider-neutral read-tool lifecycle evidence for the approved read surfaces: Claude Agent SDK read built-ins and read-only Chirality MCP tools.

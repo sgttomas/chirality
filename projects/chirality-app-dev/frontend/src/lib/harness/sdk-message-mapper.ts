@@ -104,10 +104,11 @@ function descriptorForToolName(toolName: string | undefined): HarnessToolDescrip
   return toolName ? getHarnessToolDescriptor(toolName) : undefined;
 }
 
-function isSdkBuiltinReadDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+function isSdkBuiltinEvidenceDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
   return (
     descriptor?.surface === 'claude-agent-sdk-builtin' &&
-    descriptor.permissions.includes('read')
+    (descriptor.permissions.includes('read') ||
+      descriptor.permissions.includes('workspace-write'))
   );
 }
 
@@ -290,7 +291,7 @@ function mapSdkUserToolResultEvents(
     readString(record.parent_tool_use_id) ?? readString(resultRecord.tool_use_id);
   const toolName = toolUseId ? state?.toolNamesByUseId.get(toolUseId) : undefined;
   const descriptor = descriptorForToolName(toolName);
-  if (!toolUseId || isChiralityMcpTool(toolName) || !isSdkBuiltinReadDescriptor(descriptor)) {
+  if (!toolUseId || isChiralityMcpTool(toolName) || !isSdkBuiltinEvidenceDescriptor(descriptor)) {
     return [];
   }
 
@@ -693,7 +694,7 @@ export function mapSdkMessageToHarness(
 
   if (message.type === 'tool_progress') {
     const descriptor = descriptorForToolName(message.tool_name);
-    const startedEvents = isSdkBuiltinReadDescriptor(descriptor)
+    const startedEvents = isSdkBuiltinEvidenceDescriptor(descriptor)
       ? createInferredToolStartedEvent({
           sessionId,
           message,

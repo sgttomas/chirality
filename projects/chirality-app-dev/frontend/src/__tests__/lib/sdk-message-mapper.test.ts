@@ -253,6 +253,71 @@ describe('mapSdkMessageToHarness', () => {
     expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('raw file contents');
   });
 
+  it('emits SDK write built-in lifecycle evidence from queued tool use results', () => {
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            {
+              type: 'tool_use',
+              id: 'toolu_write',
+              name: 'Write',
+              input: { file_path: 'notes.md', content: 'raw changed content' }
+            }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000019',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const userResult = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_write',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_write',
+          content: 'updated notes.md'
+        },
+        uuid: '00000000-0000-0000-0000-000000000020',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(userResult.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.completed',
+      'message.completed'
+    ]);
+    expect(userResult.harnessEvents[1].data).toMatchObject({
+      source: 'adapter',
+      toolUseId: 'toolu_write',
+      toolName: 'Write',
+      descriptorName: 'write_file',
+      resultMetadata: {
+        resultByteLength: expect.any(Number),
+        inlineByteLimit: 16384,
+        artifactByteLimit: 524288,
+        overflowPolicy: 'artifact',
+        rawOutputPersisted: false
+      }
+    });
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('updated notes.md');
+  });
+
   it('maps SDK read tool error results to failed evidence and skips duplicate MCP completions', () => {
     const state = createSdkToolEvidenceState();
     mapSdkMessageToHarness(

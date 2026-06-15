@@ -1,4 +1,4 @@
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -21,6 +21,7 @@ async function useTempSessionRoot(): Promise<void> {
 
 afterEach(async () => {
   delete process.env.CHIRALITY_SESSION_ROOT;
+  delete process.env.CHIRALITY_INSTRUCTION_ROOT;
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
@@ -75,6 +76,26 @@ describe('permission overlay', () => {
       behavior: 'deny',
       message: expect.stringContaining('requires application approval'),
       toolUseID: 'tool_1'
+    });
+  });
+
+  it('allows governed write surfaces in workspaceWrite mode after hook policy', () => {
+    const decision = decisionFor('Write', 'workspaceWrite');
+
+    expect(decision).toMatchObject({
+      decision: 'allow',
+      reason: expect.stringContaining('workspaceWrite mode')
+    });
+    expect(decision.safeMetadata).toMatchObject({
+      mode: 'workspaceWrite',
+      descriptorName: 'write_file',
+      allowClass: 'workspace-write',
+      requiresHookApproval: true
+    });
+
+    expect(permissionDecisionToSdkResult(decision, 'tool_write')).toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_write'
     });
   });
 
@@ -202,6 +223,105 @@ describe('permission overlay', () => {
         descriptorName: 'list_files',
         adapterToolName: 'LS'
       }
+    });
+  });
+
+  it('hard-denies unsafe write callback paths before SDK execution', async () => {
+    await useTempSessionRoot();
+    const projectRoot = path.join(tmpDir, 'project');
+    const instructionRoot = path.join(projectRoot, 'instruction-root');
+    const externalRoot = path.join(tmpDir, 'external');
+    await mkdir(projectRoot, { recursive: true });
+    await mkdir(instructionRoot, { recursive: true });
+    await mkdir(externalRoot, { recursive: true });
+    await writeFile(path.join(externalRoot, 'target.md'), 'outside', 'utf8');
+    await symlink(externalRoot, path.join(projectRoot, 'linked'));
+    process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+
+    const canUseTool = createHarnessCanUseTool({
+      sessionId,
+      mode: 'workspaceWrite',
+      projectRoot,
+      resolveDescriptor: getHarnessToolDescriptor
+    });
+
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'notes.md', content: 'inside' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_inside_write'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_inside_write'
+    });
+
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: '../outside.md', content: 'outside' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_outside_write'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('outside the active project root')
+    });
+
+    await expect(
+      canUseTool(
+        'Edit',
+        { file_path: path.join(instructionRoot, 'AGENT.md'), old_string: 'a', new_string: 'b' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_instruction_write'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('instruction root')
+    });
+
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'linked/target.md', content: 'through symlink' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_symlink_write'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('symbolic link')
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.permission',
+      'tool.permission',
+      'tool.permission',
+      'tool.permission'
+    ]);
+    expect(replay.events.map((event) => event.data.behavior)).toEqual([
+      'allow',
+      'deny',
+      'deny',
+      'deny'
+    ]);
+    expect(replay.events[1].data.safeMetadata).toMatchObject({
+      denyClass: 'path-containment'
+    });
+    expect(replay.events[2].data.safeMetadata).toMatchObject({
+      denyClass: 'instruction-root'
+    });
+    expect(replay.events[3].data.safeMetadata).toMatchObject({
+      denyClass: 'symlink-write'
     });
   });
 });

@@ -9,7 +9,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v3.read-mcp';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v4.write-hooks';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -147,6 +147,12 @@ const CHIRALITY_READ_MCP_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
     'Read-only Chirality MCP tools are exposed behind descriptor resolution and permission overlay policy.'
+};
+
+const SDK_WRITE_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Write/Edit SDK built-ins are exposed only in workspaceWrite mode after descriptor resolution, permission overlay, and Chirality write hooks.'
 };
 
 const DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
@@ -436,7 +442,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
         }
       }
     },
-    runtime: DESCRIPTOR_ONLY_RUNTIME
+    runtime: SDK_WRITE_RUNTIME
   },
   {
     name: 'edit_file',
@@ -480,7 +486,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
         }
       }
     },
-    runtime: DESCRIPTOR_ONLY_RUNTIME
+    runtime: SDK_WRITE_RUNTIME
   },
   {
     name: 'multi_edit_file',

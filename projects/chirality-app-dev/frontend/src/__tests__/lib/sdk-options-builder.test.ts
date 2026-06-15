@@ -1,3 +1,6 @@
+import { mkdir, mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { buildSdkOptions } from '../../lib/harness/sdk-options-builder';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
@@ -20,9 +23,16 @@ const opts: ResolvedOpts = {
   mode: 'direct'
 };
 
-afterEach(() => {
+let tmpDir = '';
+
+afterEach(async () => {
   delete process.env.CHIRALITY_SDK_SETTING_SOURCES;
   delete process.env.CHIRALITY_ALLOW_SDK_BYPASS;
+  delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  if (tmpDir) {
+    await rm(tmpDir, { recursive: true, force: true });
+    tmpDir = '';
+  }
 });
 
 describe('buildSdkOptions', () => {
@@ -44,6 +54,8 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('Edit');
     expect(options.disallowedTools).toContain('mcp__chirality__status_read');
     expect(options.mcpServers).toEqual({});
+    expect(options.hooks?.PreToolUse?.[0]?.hooks[0]).toBeTypeOf('function');
+    expect(options.hooks?.PostToolUse?.[0]?.hooks[0]).toBeTypeOf('function');
     expect(options.resume).toBe('sdk_resume');
     expect(options.model).toBe('claude-test');
     expect(options.maxTurns).toBe(3);
@@ -142,7 +154,7 @@ describe('buildSdkOptions', () => {
       abortController: new AbortController(),
       systemPrompt: 'persona prompt'
     });
-    expect(workspaceWrite.permissionMode).toBe('default');
+    expect(workspaceWrite.permissionMode).toBe('acceptEdits');
 
     const bypassWithoutGate = buildSdkOptions({
       session,
@@ -162,9 +174,47 @@ describe('buildSdkOptions', () => {
     expect(bypassWithGate.permissionMode).toBe('bypassPermissions');
   });
 
-  it('attaches a canUseTool callback backed by Chirality permission decisions', async () => {
-    const askOptions = buildSdkOptions({
+  it('exposes requested Write/Edit only in workspaceWrite mode while keeping bash denied', () => {
+    const workspaceWrite = buildSdkOptions({
       session,
+      opts: { ...opts, mode: 'workspaceWrite', tools: ['read', 'write', 'Edit', 'bash'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(workspaceWrite.tools).toEqual(['Read', 'Write', 'Edit']);
+    expect(workspaceWrite.allowedTools).toEqual(['Read', 'Write', 'Edit']);
+    expect(workspaceWrite.disallowedTools).not.toContain('Write');
+    expect(workspaceWrite.disallowedTools).not.toContain('Edit');
+    expect(workspaceWrite.disallowedTools).toContain('MultiEdit');
+    expect(workspaceWrite.disallowedTools).toContain('Bash');
+    expect(workspaceWrite.permissionMode).toBe('acceptEdits');
+
+    const askMode = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'ask', tools: ['write', 'Edit'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(askMode.tools).toEqual([]);
+    expect(askMode.allowedTools).toEqual([]);
+    expect(askMode.disallowedTools).toContain('Write');
+    expect(askMode.disallowedTools).toContain('Edit');
+    expect(askMode.permissionMode).toBe('default');
+  });
+
+  it('attaches a canUseTool callback backed by Chirality permission decisions', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-options-'));
+    const writableProjectRoot = path.join(tmpDir, 'project');
+    const instructionRoot = path.join(tmpDir, 'instruction-root');
+    await mkdir(writableProjectRoot, { recursive: true });
+    await mkdir(instructionRoot, { recursive: true });
+    process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+    const callbackSession = { ...session, projectRoot: writableProjectRoot };
+
+    const askOptions = buildSdkOptions({
+      session: callbackSession,
       opts: { ...opts, mode: 'ask' },
       abortController: new AbortController(),
       systemPrompt: 'persona prompt'
@@ -197,6 +247,27 @@ describe('buildSdkOptions', () => {
       behavior: 'deny',
       message: expect.stringContaining('requires application approval'),
       toolUseID: 'tool_write'
+    });
+
+    const workspaceWriteOptions = buildSdkOptions({
+      session: callbackSession,
+      opts: { ...opts, mode: 'workspaceWrite' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    await expect(
+      workspaceWriteOptions.canUseTool?.(
+        'Write',
+        { file_path: 'README.md', content: 'changed' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_write_allowed'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_write_allowed'
     });
 
     await expect(
