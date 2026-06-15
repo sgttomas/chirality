@@ -6,6 +6,35 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Post-contract R5 executable subagent runtime decision packet prepared (`D-APP-06`)
+
+Prepared the post-prerequisite R5 decision packet for executable governed subagent runtime.
+The packet asks whether to approve a bounded executable implementation after
+`AGENT-SUBAGENT-CONTRACT-001`, approve another non-executable bridge, require residual
+dependency/SCC reconciliation first, or hold R5 capability expansion.
+
+The tranche did not change runtime source, package manifests, dependencies, lockfiles,
+desktop wrapper behavior, provider scope, network policy, tool exposure, package resources,
+release readiness, lifecycle issuance, professional approval, certification, sealing,
+authentication, or code-compliance acceptance. `_DECISIONS/_REGISTER.md` now records
+`D-APP-06` as `AWAITING_RULING`; model-visible SDK `Agent` execution, executable SDK
+`agents` definitions, child turn execution, executable child output artifacts, child
+capability inheritance, Pi implementation paths, concrete providers, and provider/network
+broadening remain blocked until a ruling lands.
+
+Residual: the latest dependency closure snapshot still reports a residual six-node strict
+SCC. This packet does not claim project-wide dependency closure or replace the recommended
+RECONCILIATION longer-cycle ruling package.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n 'D-APP-06|Post-contract R5 executable' execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the packet's governing docs and dependency closure
+report; decision-register ID uniqueness check; trailing-whitespace check over the four
+changed files. Frontend runtime tests, typecheck, harness premerge, instruction-root
+integrity, build, packaging, network proof, and DMG checks were skipped because this tranche
+only prepared a decision packet and updated the decision register, active plan, and
+completion log.
+
 ## 2026-06-15 - Provider-adapter-neutral agent/subagent contract prerequisite landed (`AGENT-SUBAGENT-CONTRACT-001`)
 
 Landed the bounded D-APP-05 prerequisite contract for governed agent/subagent runtime work.
