@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - D-APP-04 ruled Option A
+
+Human project authority approved `D-APP-04` Option A. A bounded R4 Bash tranche may now
+proceed after `WRITE-HOOKS-001`.
+
+The approved next implementation lane is Bash prerequisites and controlled Bash
+implementation: descriptor exposure, permission/mode mapping, timeout behavior,
+stdout/stderr capture, interrupt handling, result budgeting/storage, hook enforcement,
+safe audit events, redaction checks, and required documentation/tests. Model-visible Bash
+exposure is allowed only after tranche validation passes and closeout records the
+evidence.
+
+This ruling does not approve governed SDK subagent execution, concrete non-Anthropic
+provider implementation or routing, provider/network broadening, remote MCP/plugins, Pi
+adapter/fork/import/sidecar/runtime-floor/spike work, release-readiness claims, lifecycle
+issuance, professional approval, certification, sealing, authentication, or code-compliance
+acceptance.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, or release-readiness posture changed in the
+ruling-record tranche.
+
+Validation: docs/control-plane static checks only. Frontend runtime tests were skipped
+because this tranche only recorded the human ruling and updated the decision register,
+active plan, and completion log.
+
 ## 2026-06-15 - Post-write runtime capability decision packet prepared (`D-APP-04`)
 
 Prepared `D-APP-04` for the first blocked dependency-spine item after `WRITE-HOOKS-001`.
