@@ -6,6 +6,41 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Provider-adapter-neutral agent/subagent contract prerequisite landed (`AGENT-SUBAGENT-CONTRACT-001`)
+
+Landed the bounded D-APP-05 prerequisite contract for governed agent/subagent runtime work.
+The tranche added a Chirality-owned `agent-runtime-contract` module with contract-only
+child-run records, explicit blocked executable-delegation posture, provider-neutral
+child-run event categories, adapter metadata isolation, child capability non-inheritance,
+and validation helpers for child-run records.
+
+Runtime contract docs now define the current prerequisite posture: executable delegation is
+blocked, generated child definitions are contract-only future scope, Pi remains a pattern
+corpus/reference only, concrete non-Anthropic provider routing remains blocked, and child
+runs do not inherit parent capabilities. `docs/TYPES.md` now describes child-run records in
+provider-neutral terms, with adapter-specific task/session/tool IDs confined to adapter
+metadata.
+
+This tranche did not expose the SDK `Agent` tool, generate executable SDK `agents`
+definitions, add Pi package imports or runtime paths, add a concrete non-Anthropic provider,
+broaden network policy, change package/runtime requirements, alter the desktop wrapper, or
+make release-readiness, lifecycle issuance, professional approval, certification, sealing,
+authentication, or code-compliance claims.
+
+Residual: executable subagent runtime remains future/human-gated. Any later implementation
+must define the bounded child tool set, generate adapter-specific child definitions from
+the Chirality contract, enforce `evaluateSubagentGovernance` at the executable boundary,
+persist parent-child output artifact references, and validate that provider/SDK details
+remain adapter metadata only.
+
+Validation: `npm run test -- agent-runtime-contract`; `npm run typecheck`; `npm run test`
+(44 files, 336 tests). Static diff/stale-reference checks were run over the changed
+runtime-contract, docs, plan, and completion-log surfaces. Harness premerge was skipped
+because this tranche did not change browser-facing session, SSE, or turn-route behavior and
+did not require a running local harness API. Instruction-root integrity, build, packaging,
+network proof, and DMG checks were skipped because no instruction-root packaging, build,
+provider/network, or release/distribution behavior changed.
+
 ## 2026-06-15 - D-APP-05 ruled Custom Option B/A-prerequisite
 
 Human project authority approved a custom prerequisite ruling for `D-APP-05`. Before

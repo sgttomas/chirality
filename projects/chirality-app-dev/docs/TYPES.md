@@ -445,19 +445,40 @@ SDK terms belong at the adapter boundary. Public Chirality APIs and canonical ev
 ## 10. Subagent Runtime Vocabulary
 
 ```ts
-type HarnessSubagentRun = {
-  runId: string;
+type ChildRunRecord = {
+  contractVersion: 1;
+  childRunId: string;
   parentSessionId: string;
   parentTurnId?: string;
-  persona: string;
+  parentPersona: string;
   agentName: string;
-  sdkAgentId?: string;
-  model?: string;
   projectRoot: string;
-  status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled' | 'denied';
-  startedAt?: string;
-  completedAt?: string;
+  mode: string;
+  status: 'queued' | 'denied' | 'running' | 'completed' | 'failed' | 'cancelled';
+  capabilityPolicy: {
+    inheritParentCapabilities: false;
+    requestedToolNames: string[];
+    allowedToolNames: string[];
+    deniedCapabilities: string[];
+  };
+  governance: {
+    state: 'allowed' | 'denied' | 'adapter-observed';
+    gate?: string;
+    reason?: string;
+    approvalRef?: string;
+    approvedBy?: string;
+    allowlistedSubagents: string[];
+    delegatedSubagents: string[];
+  };
   outputArtifactPath?: string;
+  adapter?: {
+    adapterName: string;
+    adapterSessionId?: string;
+    adapterAgentId?: string;
+    adapterTaskId?: string;
+    adapterToolUseId?: string;
+    adapterTranscriptKey?: string;
+  };
 };
 ```
 

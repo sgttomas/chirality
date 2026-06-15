@@ -140,6 +140,48 @@ blocking, symlink redirection rejection, and static no-network command checks. B
 redacted overflow results to session-local tool artifacts when descriptor budgets require
 it. Raw stdout, stderr, commands, and API keys are not stored in `HarnessEvent.data`.
 
+## Agent/Subagent Runtime Contract
+
+`frontend/src/lib/harness/agent-runtime-contract.ts` defines the current Chirality-owned
+agent/subagent prerequisite contract. This is a contract layer, not executable child-run
+exposure.
+
+Current posture:
+
+- executable delegation is blocked;
+- generated executable child definitions are contract-only future scope;
+- Pi remains a pattern corpus / reference only, with no runtime dependency, adapter, fork,
+  sidecar, package import, or spike;
+- concrete non-Anthropic provider routing remains blocked;
+- child runs do not inherit parent capabilities.
+
+Provider-neutral child-run records use Chirality fields such as `childRunId`,
+`parentSessionId`, `parentTurnId`, `parentPersona`, `agentName`, `status`,
+`capabilityPolicy`, `governance`, and `outputArtifactPath`. Adapter-specific values such as
+external session IDs, task IDs, tool-use IDs, transcript keys, or concrete adapter names may
+be retained only under the `adapter` metadata object.
+
+The prerequisite contract preserves these semantics before executable subagents are enabled:
+
+- governance preflight can create `queued` or `denied` child-run records, but `queued` does
+  not expose the SDK `Agent` tool or any executable child definition in this tranche;
+- denied delegation records keep the fail-closed gate, reason, allowlist, delegated list,
+  and approval metadata where present;
+- child capability policy starts with `inheritParentCapabilities: false`,
+  `allowedToolNames: []`, and explicit denied capabilities for read, write, shell, MCP,
+  network, and subagent surfaces until a later bounded implementation grants a narrower
+  child tool set;
+- `subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
+  remain the provider-neutral runtime event categories for child-run lifecycle evidence;
+- completed executable child runs must carry an output artifact reference once execution is
+  enabled.
+
+Claude Agent SDK `Agent` and SDK `agents` may remain the first adapter-specific substrate
+for a later implementation tranche, but neither SDK names nor Pi concepts define the
+public/core Chirality contract. Any executable subagent exposure still requires the later
+bounded implementation and validation path described by the active plan and decision
+records.
+
 ## Harness Tool Descriptor Contract
 
 `frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned
