@@ -9,7 +9,15 @@ import type {
   SDKSystemMessage
 } from '@anthropic-ai/claude-agent-sdk';
 import { createHarnessEvent, HarnessEvent } from './event-schema';
+import { isChiralityMcpAllowedToolName } from './mcp/tool-names';
 import { redactJsonLike } from './run-logger';
+import {
+  isToolResultFailure,
+  summarizeToolDescriptor,
+  summarizeToolInput,
+  summarizeToolResult
+} from './tool-evidence';
+import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
 import { UIEvent } from './types';
 
 export type SdkMessageMapping = {
@@ -18,6 +26,18 @@ export type SdkMessageMapping = {
   sdkSessionId?: string;
   sdkClaudeCodeVersion?: string;
 };
+
+export type SdkToolEvidenceState = {
+  toolNamesByUseId: Map<string, string>;
+  startedToolUseIds: Set<string>;
+};
+
+export function createSdkToolEvidenceState(): SdkToolEvidenceState {
+  return {
+    toolNamesByUseId: new Map(),
+    startedToolUseIds: new Set()
+  };
+}
 
 function readTextFromContentBlock(block: unknown): string | undefined {
   if (!block || typeof block !== 'object') {
@@ -79,6 +99,86 @@ type ToolUseEvidence = {
   toolName?: string;
   input?: unknown;
 };
+
+function descriptorForToolName(toolName: string | undefined): HarnessToolDescriptor | undefined {
+  return toolName ? getHarnessToolDescriptor(toolName) : undefined;
+}
+
+function isSdkBuiltinReadDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return (
+    descriptor?.surface === 'claude-agent-sdk-builtin' &&
+    descriptor.permissions.includes('read')
+  );
+}
+
+function isChiralityMcpTool(toolName: string | undefined): boolean {
+  const descriptor = descriptorForToolName(toolName);
+  return Boolean(
+    descriptor?.surface === 'chirality-mcp' ||
+      (toolName && isChiralityMcpAllowedToolName(toolName))
+  );
+}
+
+function registerQueuedToolUse(
+  state: SdkToolEvidenceState | undefined,
+  toolUse: ToolUseEvidence
+): void {
+  if (state && toolUse.toolUseId && toolUse.toolName) {
+    state.toolNamesByUseId.set(toolUse.toolUseId, toolUse.toolName);
+  }
+}
+
+function createToolEvidenceData(input: {
+  source: string;
+  toolUseId?: string;
+  toolName?: string;
+  descriptor?: HarnessToolDescriptor;
+  extra?: Record<string, unknown>;
+}): Record<string, unknown> {
+  return {
+    source: input.source,
+    ...summarizeToolDescriptor(input.descriptor),
+    adapterToolUseId: input.toolUseId,
+    adapterToolName: input.toolName,
+    toolUseId: input.toolUseId,
+    toolName: input.toolName,
+    ...input.extra
+  };
+}
+
+function createInferredToolStartedEvent(input: {
+  sessionId: string;
+  message: SDKMessage;
+  state?: SdkToolEvidenceState;
+  toolUseId?: string;
+  toolName?: string;
+  parentToolUseId?: unknown;
+  inferredFrom: string;
+}): HarnessEvent[] {
+  if (!input.state || !input.toolUseId || input.state.startedToolUseIds.has(input.toolUseId)) {
+    return [];
+  }
+
+  input.state.startedToolUseIds.add(input.toolUseId);
+  const descriptor = descriptorForToolName(input.toolName);
+  return [
+    createSdkEvent(
+      input.sessionId,
+      input.message,
+      'tool.started',
+      createToolEvidenceData({
+        source: 'adapter',
+        toolUseId: input.toolUseId,
+        toolName: input.toolName,
+        descriptor,
+        extra: {
+          parentToolUseId: input.parentToolUseId,
+          startInferredFrom: input.inferredFrom
+        }
+      })
+    )
+  ];
+}
 
 function readToolUsesFromContent(content: unknown): ToolUseEvidence[] {
   if (!Array.isArray(content)) {
@@ -148,21 +248,89 @@ function createSdkEvent(
   });
 }
 
-function mapAssistantToolUses(sessionId: string, message: SDKAssistantMessage): HarnessEvent[] {
+function mapAssistantToolUses(
+  sessionId: string,
+  message: SDKAssistantMessage,
+  state?: SdkToolEvidenceState
+): HarnessEvent[] {
   const content = message.message.content;
-  return readToolUsesFromContent(content).map((toolUse) =>
-    createSdkEvent(sessionId, message, 'tool.queued', {
-      source: 'model',
-      adapterToolUseId: toolUse.toolUseId,
-      adapterToolName: toolUse.toolName,
-      toolUseId: toolUse.toolUseId,
-      toolName: toolUse.toolName,
-      input: toolUse.input
-    })
-  );
+  return readToolUsesFromContent(content).map((toolUse) => {
+    registerQueuedToolUse(state, toolUse);
+    const descriptor = descriptorForToolName(toolUse.toolName);
+    return createSdkEvent(
+      sessionId,
+      message,
+      'tool.queued',
+      createToolEvidenceData({
+        source: 'model',
+        toolUseId: toolUse.toolUseId,
+        toolName: toolUse.toolName,
+        descriptor,
+        extra: {
+          inputMetadata: summarizeToolInput(toolUse.input)
+        }
+      })
+    );
+  });
 }
 
-function mapSdkUserMessage(sessionId: string, message: SDKMessage): SdkMessageMapping {
+function mapSdkUserToolResultEvents(
+  sessionId: string,
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
+): HarnessEvent[] {
+  const record = message as Record<string, unknown>;
+  if (record.tool_use_result === undefined) {
+    return [];
+  }
+
+  const result = record.tool_use_result;
+  const resultRecord = isRecord(result) ? result : {};
+  const toolUseId =
+    readString(record.parent_tool_use_id) ?? readString(resultRecord.tool_use_id);
+  const toolName = toolUseId ? state?.toolNamesByUseId.get(toolUseId) : undefined;
+  const descriptor = descriptorForToolName(toolName);
+  if (!toolUseId || isChiralityMcpTool(toolName) || !isSdkBuiltinReadDescriptor(descriptor)) {
+    return [];
+  }
+
+  const resultMetadata = summarizeToolResult(result, descriptor);
+  const lifecycleEvents = createInferredToolStartedEvent({
+    sessionId,
+    message,
+    state,
+    toolUseId,
+    toolName,
+    parentToolUseId: record.parent_tool_use_id,
+    inferredFrom: 'tool_use_result'
+  });
+  const eventType = isToolResultFailure(result) ? 'tool.failed' : 'tool.completed';
+  lifecycleEvents.push(
+    createSdkEvent(
+      sessionId,
+      message,
+      eventType,
+      createToolEvidenceData({
+        source: 'adapter',
+        toolUseId,
+        toolName,
+        descriptor,
+        extra: {
+          parentToolUseId: record.parent_tool_use_id,
+          failureSource: eventType === 'tool.failed' ? 'tool_use_result' : undefined,
+          resultMetadata
+        }
+      })
+    )
+  );
+  return lifecycleEvents;
+}
+
+function mapSdkUserMessage(
+  sessionId: string,
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
+): SdkMessageMapping {
   const record = message as Record<string, unknown>;
   const shouldQueue = record.shouldQuery === false || record.priority === 'next' || record.priority === 'later';
   const messageEvent = createSdkEvent(sessionId, message, 'message.completed', {
@@ -178,12 +346,14 @@ function mapSdkUserMessage(sessionId: string, message: SDKMessage): SdkMessageMa
     toolUseResultPresent: record.tool_use_result !== undefined,
     timestamp: record.timestamp
   });
+  const toolResultEvents = mapSdkUserToolResultEvents(sessionId, message, state);
 
   return {
     sdkSessionId: readSessionId(message),
     uiEvents: [],
     harnessEvents: shouldQueue
       ? [
+          ...toolResultEvents,
           messageEvent,
           createSdkEvent(sessionId, message, 'queue.enqueued', {
             queueKind: record.priority ?? 'deferred',
@@ -191,7 +361,7 @@ function mapSdkUserMessage(sessionId: string, message: SDKMessage): SdkMessageMa
             origin: record.origin
           })
         ]
-      : [messageEvent]
+      : [...toolResultEvents, messageEvent]
   };
 }
 
@@ -238,10 +408,11 @@ function isMirrorError(message: SDKMessage): message is SDKMirrorErrorMessage {
 
 export function mapSdkMessageToHarness(
   sessionId: string,
-  message: SDKMessage
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
 ): SdkMessageMapping {
   if (message.type === 'user') {
-    return mapSdkUserMessage(sessionId, message);
+    return mapSdkUserMessage(sessionId, message, state);
   }
 
   if (isSystemInit(message)) {
@@ -277,6 +448,9 @@ export function mapSdkMessageToHarness(
   if (message.type === 'stream_event') {
     const text = readPartialText(message);
     const toolUse = readToolUseFromStreamEvent(message);
+    if (toolUse) {
+      registerQueuedToolUse(state, toolUse);
+    }
     return {
       sdkSessionId: message.session_id,
       uiEvents: text
@@ -306,11 +480,12 @@ export function mapSdkMessageToHarness(
           ? [
               createSdkEvent(sessionId, message, 'tool.queued', {
                 source: 'model',
+                ...summarizeToolDescriptor(descriptorForToolName(toolUse.toolName)),
                 adapterToolUseId: toolUse.toolUseId,
                 adapterToolName: toolUse.toolName,
                 toolUseId: toolUse.toolUseId,
                 toolName: toolUse.toolName,
-                input: toolUse.input,
+                inputMetadata: summarizeToolInput(toolUse.input),
                 parentToolUseId: message.parent_tool_use_id
               })
             ]
@@ -322,7 +497,7 @@ export function mapSdkMessageToHarness(
   if (message.type === 'assistant') {
     const text = readAssistantText(message);
     const content = message.message.content;
-    const toolUseEvents = mapAssistantToolUses(sessionId, message);
+    const toolUseEvents = mapAssistantToolUses(sessionId, message, state);
     return {
       sdkSessionId: message.session_id,
       uiEvents: text
@@ -360,6 +535,13 @@ export function mapSdkMessageToHarness(
   if (message.type === 'result') {
     const result = message as SDKResultMessage;
     if (result.subtype === 'success') {
+      if (result.deferred_tool_use) {
+        registerQueuedToolUse(state, {
+          toolUseId: result.deferred_tool_use.id,
+          toolName: result.deferred_tool_use.name,
+          input: result.deferred_tool_use.input
+        });
+      }
       return {
         sdkSessionId: result.session_id,
         uiEvents: [
@@ -386,11 +568,14 @@ export function mapSdkMessageToHarness(
                 createSdkEvent(sessionId, result, 'tool.queued', {
                   source: 'adapter',
                   queueReason: 'deferred_tool_use',
+                  ...summarizeToolDescriptor(
+                    descriptorForToolName(result.deferred_tool_use.name)
+                  ),
                   adapterToolUseId: result.deferred_tool_use.id,
                   adapterToolName: result.deferred_tool_use.name,
                   toolUseId: result.deferred_tool_use.id,
                   toolName: result.deferred_tool_use.name,
-                  input: result.deferred_tool_use.input
+                  inputMetadata: summarizeToolInput(result.deferred_tool_use.input)
                 })
               ]
             : []),
@@ -453,6 +638,7 @@ export function mapSdkMessageToHarness(
         createSdkEvent(sessionId, message, 'tool.permission', {
           behavior: 'deny',
           source: 'adapter',
+          ...summarizeToolDescriptor(descriptorForToolName(message.tool_name)),
           adapterToolUseId: message.tool_use_id,
           adapterToolName: message.tool_name,
           toolUseId: message.tool_use_id,
@@ -465,6 +651,7 @@ export function mapSdkMessageToHarness(
         createSdkEvent(sessionId, message, 'tool.failed', {
           source: 'adapter',
           failureSource: 'permission',
+          ...summarizeToolDescriptor(descriptorForToolName(message.tool_name)),
           adapterToolUseId: message.tool_use_id,
           adapterToolName: message.tool_name,
           toolUseId: message.tool_use_id,
@@ -505,11 +692,25 @@ export function mapSdkMessageToHarness(
   }
 
   if (message.type === 'tool_progress') {
+    const descriptor = descriptorForToolName(message.tool_name);
+    const startedEvents = isSdkBuiltinReadDescriptor(descriptor)
+      ? createInferredToolStartedEvent({
+          sessionId,
+          message,
+          state,
+          toolUseId: message.tool_use_id,
+          toolName: message.tool_name,
+          parentToolUseId: message.parent_tool_use_id,
+          inferredFrom: 'tool_progress'
+        })
+      : [];
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
       harnessEvents: [
+        ...startedEvents,
         createSdkEvent(sessionId, message, 'tool.progress', {
+          ...summarizeToolDescriptor(descriptor),
           adapterToolUseId: message.tool_use_id,
           adapterToolName: message.tool_name,
           toolUseId: message.tool_use_id,
@@ -523,16 +724,24 @@ export function mapSdkMessageToHarness(
   }
 
   if (message.type === 'tool_use_summary') {
+    const onlyChiralityMcpTools =
+      state &&
+      message.preceding_tool_use_ids.length > 0 &&
+      message.preceding_tool_use_ids.every((toolUseId) =>
+        isChiralityMcpTool(state.toolNamesByUseId.get(toolUseId))
+      );
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
-      harnessEvents: [
-        createSdkEvent(sessionId, message, 'tool.completed', {
-          source: 'adapter',
-          summary: message.summary,
-          precedingToolUseIds: message.preceding_tool_use_ids
-        })
-      ]
+      harnessEvents: onlyChiralityMcpTools
+        ? []
+        : [
+            createSdkEvent(sessionId, message, 'tool.completed', {
+              source: 'adapter',
+              summary: message.summary,
+              precedingToolUseIds: message.preceding_tool_use_ids
+            })
+          ]
     };
   }
 

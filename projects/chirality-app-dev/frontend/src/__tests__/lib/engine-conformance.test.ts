@@ -120,6 +120,46 @@ function sdkFailure(sessionId = 'sdk_1'): SDKMessage {
   } as never;
 }
 
+function sdkAssistantToolUse(
+  sessionId = 'sdk_1',
+  toolUseId = 'toolu_read',
+  toolName = 'Read',
+  input: Record<string, unknown> = { file_path: 'README.md' }
+): SDKMessage {
+  return {
+    type: 'assistant',
+    message: {
+      role: 'assistant',
+      content: [{ type: 'tool_use', id: toolUseId, name: toolName, input }]
+    },
+    parent_tool_use_id: null,
+    uuid: '00000000-0000-0000-0000-000000000005',
+    session_id: sessionId
+  } as never;
+}
+
+function sdkUserToolUseResult(
+  sessionId = 'sdk_1',
+  toolUseId = 'toolu_read',
+  result: Record<string, unknown> = {
+    type: 'tool_result',
+    tool_use_id: 'toolu_read',
+    content: 'file body'
+  }
+): SDKMessage {
+  return {
+    type: 'user',
+    message: {
+      role: 'user',
+      content: []
+    },
+    parent_tool_use_id: toolUseId,
+    tool_use_result: result,
+    uuid: '00000000-0000-0000-0000-000000000006',
+    session_id: sessionId
+  } as never;
+}
+
 async function* createSdkStream(events: SDKMessage[]): AsyncGenerator<SDKMessage, void> {
   for (const event of events) {
     yield event;
@@ -220,6 +260,94 @@ describe('engine conformance fixtures', () => {
       'model.completed',
       'turn.completed'
     ]);
+  });
+
+  it('replays read-tool lifecycle evidence from a scripted SDK tool result turn', async () => {
+    await useTempSessionRoot();
+    const query = createQuery([
+      sdkInit(),
+      sdkAssistantToolUse(),
+      sdkUserToolUseResult(),
+      sdkSuccess('sdk_1', 'done')
+    ]);
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'persona prompt');
+
+    const report = await runEngineConformance(manager, createRunInput(), {
+      requireEngineSessionId: true
+    });
+
+    expect(report.passed).toBe(true);
+    expect(report.eventTypes).toEqual([
+      'session:init',
+      'chat:complete',
+      'session:complete',
+      'process:exit'
+    ]);
+
+    const replay = await replayHarnessEvents(session.sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'adapter.initialized',
+      'tool.queued',
+      'tool.started',
+      'tool.completed',
+      'message.completed',
+      'model.completed',
+      'turn.completed'
+    ]);
+    expect(replay.events[5].data).toMatchObject({
+      toolName: 'Read',
+      descriptorName: 'read_file',
+      resultMetadata: {
+        rawOutputPersisted: false,
+        budgetClass: 'within-inline-budget'
+      }
+    });
+  });
+
+  it('replays failed read-tool evidence from a scripted SDK error tool result', async () => {
+    await useTempSessionRoot();
+    const query = createQuery([
+      sdkInit(),
+      sdkAssistantToolUse('sdk_1', 'toolu_grep', 'Grep', { pattern: 'needle' }),
+      sdkUserToolUseResult('sdk_1', 'toolu_grep', {
+        type: 'tool_result',
+        tool_use_id: 'toolu_grep',
+        is_error: true,
+        content: 'grep failed'
+      }),
+      sdkSuccess('sdk_1', 'done')
+    ]);
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'persona prompt');
+
+    const report = await runEngineConformance(manager, createRunInput(), {
+      requireEngineSessionId: true
+    });
+
+    expect(report.passed).toBe(true);
+
+    const replay = await replayHarnessEvents(session.sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'adapter.initialized',
+      'tool.queued',
+      'tool.started',
+      'tool.failed',
+      'message.completed',
+      'model.completed',
+      'turn.completed'
+    ]);
+    expect(replay.events[5].data).toMatchObject({
+      toolName: 'Grep',
+      descriptorName: 'search_files',
+      failureSource: 'tool_use_result',
+      resultMetadata: {
+        rawOutputPersisted: false
+      }
+    });
+    expect(JSON.stringify(replay.events[5].data)).not.toContain('grep failed');
   });
 
   it('treats scripted provider failure as terminal public evidence instead of a provider-shaped UI event', async () => {

@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { mapSdkMessageToHarness } from '../../lib/harness/sdk-message-mapper';
+import {
+  createSdkToolEvidenceState,
+  mapSdkMessageToHarness
+} from '../../lib/harness/sdk-message-mapper';
 
 describe('mapSdkMessageToHarness', () => {
   it('maps SDK init metadata to stable session:init UI event and HarnessEvent evidence', () => {
@@ -159,8 +162,16 @@ describe('mapSdkMessageToHarness', () => {
     expect(assistant.harnessEvents[2].data).toMatchObject({
       source: 'model',
       toolUseId: 'toolu_1',
-      toolName: 'Read'
+      toolName: 'Read',
+      descriptorName: 'read_file',
+      inputMetadata: {
+        inputKeys: ['file_path'],
+        pathFields: {
+          file_path: 'README.md'
+        }
+      }
     });
+    expect(assistant.harnessEvents[2].data).not.toHaveProperty('input');
 
     const queuedUser = mapSdkMessageToHarness('sess_1', {
       type: 'user',
@@ -179,6 +190,147 @@ describe('mapSdkMessageToHarness', () => {
       'message.completed',
       'queue.enqueued'
     ]);
+  });
+
+  it('emits SDK read built-in lifecycle evidence from queued tool use results', () => {
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            { type: 'tool_use', id: 'toolu_read', name: 'Read', input: { file_path: 'README.md' } }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000014',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const userResult = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_read',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_read',
+          content: 'raw file contents'
+        },
+        uuid: '00000000-0000-0000-0000-000000000015',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(userResult.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.completed',
+      'message.completed'
+    ]);
+    expect(userResult.harnessEvents[1].data).toMatchObject({
+      source: 'adapter',
+      toolUseId: 'toolu_read',
+      toolName: 'Read',
+      descriptorName: 'read_file',
+      resultMetadata: {
+        resultByteLength: expect.any(Number),
+        inlineByteLimit: 65536,
+        artifactByteLimit: 2097152,
+        overflowPolicy: 'artifact',
+        budgetClass: 'within-inline-budget',
+        rawOutputPersisted: false
+      }
+    });
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('raw file contents');
+  });
+
+  it('maps SDK read tool error results to failed evidence and skips duplicate MCP completions', () => {
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            { type: 'tool_use', id: 'toolu_grep', name: 'Grep', input: { pattern: 'needle' } },
+            {
+              type: 'tool_use',
+              id: 'toolu_mcp',
+              name: 'mcp__chirality__status_read',
+              input: { deliverablePath: 'PKG/DEL' }
+            }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000016',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const failedRead = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_grep',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_grep',
+          is_error: true,
+          content: 'grep failed'
+        },
+        uuid: '00000000-0000-0000-0000-000000000017',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+    const mcpResult = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_mcp',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_mcp',
+          content: 'mcp result body'
+        },
+        uuid: '00000000-0000-0000-0000-000000000018',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(failedRead.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.failed',
+      'message.completed'
+    ]);
+    expect(failedRead.harnessEvents[1].data).toMatchObject({
+      failureSource: 'tool_use_result',
+      resultMetadata: {
+        rawOutputPersisted: false
+      }
+    });
+    expect(JSON.stringify(failedRead.harnessEvents[1].data)).not.toContain('grep failed');
+    expect(mcpResult.harnessEvents.map((event) => event.type)).toEqual(['message.completed']);
   });
 
   it('maps SDK tool, hook, status, and subagent messages into expanded HarnessEvent categories', () => {

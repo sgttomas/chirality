@@ -98,7 +98,8 @@ export function buildSdkOptions(input: {
     }),
     mcpServers: createChiralityReadMcpServers({
       context: {
-        projectRoot: input.session.projectRoot
+        projectRoot: input.session.projectRoot,
+        sessionId: input.session.sessionId
       },
       allowedToolNames: allowedChiralityMcpToolNames
     }),

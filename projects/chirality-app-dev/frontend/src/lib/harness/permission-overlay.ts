@@ -1,6 +1,9 @@
 import type { CanUseTool, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
+import { createHarnessEvent } from './event-schema';
+import { appendHarnessEvent } from './session-events';
+import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
 import type { HarnessToolDescriptor } from './tool-descriptor';
 
 export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v1.overlay-skeleton';
@@ -282,6 +285,32 @@ export function permissionDecisionToSdkResult(
   };
 }
 
+async function appendPermissionDecisionEvent(input: {
+  decision: HarnessPermissionDecision;
+  descriptor?: HarnessToolDescriptor;
+  sdkToolUseId?: string;
+}): Promise<void> {
+  await appendHarnessEvent(
+    createHarnessEvent({
+      sessionId: input.decision.sessionId,
+      type: 'tool.permission',
+      turnId: input.decision.turnId,
+      data: {
+        behavior: input.decision.decision,
+        decisionId: input.decision.decisionId,
+        reason: input.decision.reason,
+        source: input.decision.source,
+        toolName: input.decision.toolName,
+        adapterToolUseId: input.sdkToolUseId,
+        toolUseId: input.sdkToolUseId,
+        mode: input.decision.safeMetadata?.mode,
+        ...summarizeToolDescriptor(input.descriptor),
+        safeMetadata: input.decision.safeMetadata
+      }
+    })
+  );
+}
+
 export function createHarnessCanUseTool(input: {
   sessionId: string;
   mode: string;
@@ -305,13 +334,28 @@ export function createHarnessCanUseTool(input: {
       explicitDeny: Boolean(pathDeny),
       explicitDenyReason: pathDeny?.reason,
       safeMetadata: {
-        inputKeys: Object.keys(toolInput).sort(),
+        inputMetadata: summarizeToolInput(toolInput),
         decisionReason: options.decisionReason,
         displayName: options.displayName,
         sdkToolUseId: options.toolUseID,
         ...pathDeny?.metadata
       }
     });
+
+    try {
+      await appendPermissionDecisionEvent({
+        decision,
+        descriptor,
+        sdkToolUseId: options.toolUseID
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'unknown audit append failure';
+      return {
+        behavior: 'deny',
+        message: `Chirality audit event append failed; denying tool execution. ${message}`,
+        toolUseID: options.toolUseID
+      };
+    }
 
     return permissionDecisionToSdkResult(decision, options.toolUseID);
   };

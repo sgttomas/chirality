@@ -6,6 +6,18 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Tool result and event evidence expansion landed (`TOOL-EVIDENCE-001`)
+
+Added provider-neutral read-tool lifecycle evidence for the approved read surfaces: Claude Agent SDK read built-ins and read-only Chirality MCP tools.
+
+The tranche introduced a small tool-evidence helper for safe input summaries, descriptor identity, result byte counts, MCP content item counts, descriptor inline/artifact budget limits, overflow policy, and budget classification. Raw tool output is not stored in `HarnessEvent.data`; this tranche does not add artifact spill files or result artifact storage contracts.
+
+Permission callbacks now append `tool.permission` events with allow/deny/ask behavior, decision id, reason, descriptor identity, adapter tool name, mode, surface, and safe metadata. If permission audit persistence fails, the SDK permission callback fails closed by denying execution. Chirality MCP read handlers now append `tool.started`, then `tool.completed` with budget metadata or `tool.failed` with redacted error metadata, while returning the same MCP `CallToolResult` shape on success. SDK message mapping now keeps per-turn tool-use state so SDK read built-in `tool_use_result` messages produce inferred `tool.started` and then `tool.completed` or `tool.failed`; Chirality MCP completion/failure remains owned by the local MCP wrapper to avoid duplicate completion evidence.
+
+Write, edit, bash, network, subagent, Pi, concrete non-Anthropic providers, package/runtime migration, artifact spill storage, and desktop-wrapper changes remain out of scope. Write/edit hooks and path containment is the next runtime-spine item. Normal instruction-root integrity remains blocked by the pre-existing split source-root/package-resource posture.
+
+Validation: `npm run test -- permission-overlay chirality-read-mcp sdk-message-mapper engine-conformance session-events claude-agent-sdk-manager`; `npm run test`; `npm run typecheck`; `CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.Pt2xf2 npm run harness:validate:premerge` against a local `next dev` server using a temporary merged instruction root, producing pass status with 8 checks at `frontend/artifacts/harness/section8/latest/summary.json`. `npm run instruction-root:integrity` was attempted and failed because the nested app-dev source root lacks `agents/`. `node ./scripts/verify-instruction-root-integrity.mjs --source-root /Users/ryan/ai-env/projects/chirality` was attempted and failed because the root source lacks current required app-dev governance docs such as `docs/DIRECTIVE.md`. Global `git diff --check` is blocked by a pre-existing unrelated whitespace change in `projects/chirality-app-dev/init/init-prompt.md`; tranche-scoped `git diff --check` was run over touched files.
+
 ## 2026-06-14 - Read MCP / descriptor integration landed (`READ-MCP-DESCRIPTORS-001`)
 
 Added Chirality-owned read-only MCP descriptors and in-process MCP handlers for status read, dependency read, scope scan, and scaffold preview.

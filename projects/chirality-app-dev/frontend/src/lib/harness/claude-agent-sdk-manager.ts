@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { AgentEnginePort, AgentEngineRunInput } from './agent-engine-port';
 import { HarnessError } from './errors';
 import { buildSdkOptions, buildSdkPrompt } from './sdk-options-builder';
-import { mapSdkMessageToHarness } from './sdk-message-mapper';
+import { createSdkToolEvidenceState, mapSdkMessageToHarness } from './sdk-message-mapper';
 import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 import { createHarnessEvent } from './event-schema';
@@ -143,6 +143,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       );
 
       let sawTerminal = false;
+      const mapperState = createSdkToolEvidenceState();
       for await (const sdkMessage of sdkStream) {
         if (activeTurn.interrupted) {
           await appendHarnessEvent(
@@ -173,7 +174,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           return;
         }
 
-        const mapped = mapSdkMessageToHarness(input.session.sessionId, sdkMessage);
+        const mapped = mapSdkMessageToHarness(input.session.sessionId, sdkMessage, mapperState);
         for (const event of mapped.harnessEvents) {
           await appendHarnessEvent(event);
         }

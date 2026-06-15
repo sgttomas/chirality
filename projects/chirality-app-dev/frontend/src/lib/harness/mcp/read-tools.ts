@@ -10,20 +10,32 @@ import path from 'node:path';
 import { z } from 'zod/v4';
 import { previewScaffoldExecutionRoot } from '../scaffold';
 import type { CoordinationMode } from '../scaffold';
+import { createHarnessEvent } from '../event-schema';
 import {
   readDeliverableDependencies,
   readDeliverableStatus
 } from '../../workspace/deliverable-contracts';
 import { normalizeProjectRoot, scanProjectScopes } from '../../workspace/filesystem';
 import { HarnessError } from '../errors';
+import { appendHarnessEvent } from '../session-events';
+import {
+  summarizeToolDescriptor,
+  summarizeToolError,
+  summarizeToolInput,
+  summarizeToolResult
+} from '../tool-evidence';
+import { getHarnessToolDescriptor } from '../tool-descriptor';
 import {
   CHIRALITY_MCP_SERVER_NAME,
   isChiralityMcpAllowedToolName,
-  type ChiralityMcpAllowedToolName
+  toChiralityMcpAllowedToolName,
+  type ChiralityMcpAllowedToolName,
+  type ChiralityMcpReadToolName
 } from './tool-names';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
+  sessionId: string;
 };
 
 export type StatusReadArgs = {
@@ -52,6 +64,69 @@ function jsonToolResult(value: unknown): CallToolResult {
       }
     ]
   };
+}
+
+async function runReadMcpToolWithEvidence(input: {
+  context: ChiralityReadMcpContext;
+  toolName: ChiralityMcpReadToolName;
+  args: unknown;
+  execute: () => Promise<CallToolResult>;
+}): Promise<CallToolResult> {
+  const descriptor = getHarnessToolDescriptor(input.toolName);
+  const adapterToolName =
+    descriptor?.adapter.claudeAgentSdk?.toolName ?? toChiralityMcpAllowedToolName(input.toolName);
+  const eventBase = {
+    source: 'chirality-mcp',
+    adapterToolName,
+    toolName: descriptor?.name ?? input.toolName,
+    ...summarizeToolDescriptor(descriptor)
+  };
+  const startedAt = Date.now();
+
+  await appendHarnessEvent(
+    createHarnessEvent({
+      sessionId: input.context.sessionId,
+      type: 'tool.started',
+      data: {
+        ...eventBase,
+        inputMetadata: summarizeToolInput(input.args)
+      }
+    })
+  );
+
+  try {
+    const result = await input.execute();
+    await appendHarnessEvent(
+      createHarnessEvent({
+        sessionId: input.context.sessionId,
+        type: 'tool.completed',
+        data: {
+          ...eventBase,
+          durationMs: Date.now() - startedAt,
+          resultMetadata: summarizeToolResult(result, descriptor)
+        }
+      })
+    );
+    return result;
+  } catch (error) {
+    try {
+      await appendHarnessEvent(
+        createHarnessEvent({
+          sessionId: input.context.sessionId,
+          type: 'tool.failed',
+          data: {
+            ...eventBase,
+            failureSource: 'handler',
+            durationMs: Date.now() - startedAt,
+            error: summarizeToolError(error)
+          }
+        })
+      );
+    } catch {
+      // Preserve the original tool failure if failure-evidence persistence also fails.
+    }
+    throw error;
+  }
 }
 
 function assertLexicallyWithinProjectRoot(input: {
@@ -102,25 +177,44 @@ export async function statusReadTool(
   context: ChiralityReadMcpContext,
   args: StatusReadArgs
 ): Promise<CallToolResult> {
-  return jsonToolResult(await readDeliverableStatus(context.projectRoot, args.deliverablePath));
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'status_read',
+    args,
+    execute: async () =>
+      jsonToolResult(await readDeliverableStatus(context.projectRoot, args.deliverablePath))
+  });
 }
 
 export async function dependenciesReadTool(
   context: ChiralityReadMcpContext,
   args: DependenciesReadArgs
 ): Promise<CallToolResult> {
-  return jsonToolResult(await readDeliverableDependencies(context.projectRoot, args.deliverablePath));
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'deps_read',
+    args,
+    execute: async () =>
+      jsonToolResult(await readDeliverableDependencies(context.projectRoot, args.deliverablePath))
+  });
 }
 
 export async function scopeScanTool(
   context: ChiralityReadMcpContext,
   _args: ScopeScanArgs = {}
 ): Promise<CallToolResult> {
-  const projectRoot = await normalizeProjectRoot(context.projectRoot);
-  return jsonToolResult({
-    projectRoot,
-    scannedAt: new Date().toISOString(),
-    ...(await scanProjectScopes(projectRoot))
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'scope_scan',
+    args: _args,
+    execute: async () => {
+      const projectRoot = await normalizeProjectRoot(context.projectRoot);
+      return jsonToolResult({
+        projectRoot,
+        scannedAt: new Date().toISOString(),
+        ...(await scanProjectScopes(projectRoot))
+      });
+    }
   });
 }
 
@@ -128,25 +222,32 @@ export async function scaffoldPreviewTool(
   context: ChiralityReadMcpContext,
   args: ScaffoldPreviewArgs
 ): Promise<CallToolResult> {
-  const executionRoot = assertLexicallyWithinProjectRoot({
-    projectRoot: context.projectRoot,
-    candidatePath: args.executionRoot,
-    field: 'executionRoot'
-  });
-  const decompositionPath = await assertExistingPathWithinProjectRoot({
-    projectRoot: context.projectRoot,
-    candidatePath: args.decompositionPath,
-    field: 'decompositionPath'
-  });
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'scaffold_preview',
+    args,
+    execute: async () => {
+      const executionRoot = assertLexicallyWithinProjectRoot({
+        projectRoot: context.projectRoot,
+        candidatePath: args.executionRoot,
+        field: 'executionRoot'
+      });
+      const decompositionPath = await assertExistingPathWithinProjectRoot({
+        projectRoot: context.projectRoot,
+        candidatePath: args.decompositionPath,
+        field: 'decompositionPath'
+      });
 
-  return jsonToolResult(
-    await previewScaffoldExecutionRoot({
-      executionRoot,
-      decompositionPath,
-      projectName: args.projectName,
-      coordinationMode: args.coordinationMode as CoordinationMode | undefined
-    })
-  );
+      return jsonToolResult(
+        await previewScaffoldExecutionRoot({
+          executionRoot,
+          decompositionPath,
+          projectName: args.projectName,
+          coordinationMode: args.coordinationMode as CoordinationMode | undefined
+        })
+      );
+    }
+  });
 }
 
 export function createChiralityReadMcpServer(

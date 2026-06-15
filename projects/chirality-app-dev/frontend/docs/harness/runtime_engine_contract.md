@@ -100,6 +100,25 @@ Current persisted event categories include:
 
 Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.
 
+Read-tool lifecycle evidence is persisted for the currently approved read surfaces:
+SDK read built-ins and read-only Chirality MCP tools. Permission callbacks append
+`tool.permission` records with allow/deny/ask behavior, decision id, reason,
+descriptor identity, adapter tool name, mode, surface, and safe metadata. If permission
+audit persistence fails, the SDK callback fails closed by denying execution.
+
+Read MCP handlers append `tool.started` before local execution and then append either
+`tool.completed` with result-budget metadata or `tool.failed` with redacted error
+metadata. SDK built-in read results append inferred `tool.started` when needed and then
+`tool.completed` or `tool.failed` from the SDK `tool_use_result` message. Chirality MCP
+completion/failure evidence is owned by the local MCP wrapper to avoid duplicate SDK
+completion records.
+
+Tool input evidence stores input key names and recognized safe path fields only. Tool
+result evidence stores byte counts, MCP content item counts, descriptor inline/artifact
+limits, overflow policy, and budget class. Raw tool outputs are not stored in
+`HarnessEvent.data`; this tranche does not add artifact spill files or result artifact
+storage.
+
 ## Harness Tool Descriptor Contract
 
 `frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned

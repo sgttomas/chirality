@@ -1,13 +1,31 @@
-import { describe, expect, it } from 'vitest';
+import { mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, describe, expect, it } from 'vitest';
 import {
   createHarnessCanUseTool,
   HARNESS_PERMISSION_POLICY_VERSION,
   permissionDecisionToSdkResult,
   resolveHarnessPermissionDecision
 } from '../../lib/harness/permission-overlay';
+import { replayHarnessEvents } from '../../lib/harness/session-events';
 import { getHarnessToolDescriptor } from '../../lib/harness/tool-descriptor';
 
 const sessionId = 'sess_permission_overlay';
+let tmpDir = '';
+
+async function useTempSessionRoot(): Promise<void> {
+  tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-permission-overlay-'));
+  process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+}
+
+afterEach(async () => {
+  delete process.env.CHIRALITY_SESSION_ROOT;
+  if (tmpDir) {
+    await rm(tmpDir, { recursive: true, force: true });
+    tmpDir = '';
+  }
+});
 
 function decisionFor(toolName: string, mode: string, explicitDeny = false) {
   return resolveHarnessPermissionDecision({
@@ -114,6 +132,7 @@ describe('permission overlay', () => {
   });
 
   it('hard-denies path-bearing read callbacks outside the active project root', async () => {
+    await useTempSessionRoot();
     const canUseTool = createHarnessCanUseTool({
       sessionId,
       mode: 'readOnly',
@@ -148,6 +167,41 @@ describe('permission overlay', () => {
     ).resolves.toMatchObject({
       behavior: 'allow',
       toolUseID: 'tool_inside'
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.permission',
+      'tool.permission'
+    ]);
+    expect(replay.events[0]).toMatchObject({
+      sessionId,
+      type: 'tool.permission',
+      data: {
+        behavior: 'deny',
+        decisionId: expect.stringMatching(/^perm_/),
+        descriptorName: 'read_file',
+        adapterToolName: 'Read',
+        mode: 'readOnly',
+        surface: 'claude-agent-sdk-builtin'
+      }
+    });
+    expect(replay.events[0].data.safeMetadata).toMatchObject({
+      inputMetadata: {
+        inputKeys: ['file_path'],
+        pathFields: {
+          file_path: '../outside.md'
+        }
+      },
+      denyClass: 'path-containment'
+    });
+    expect(replay.events[1]).toMatchObject({
+      type: 'tool.permission',
+      data: {
+        behavior: 'allow',
+        descriptorName: 'list_files',
+        adapterToolName: 'LS'
+      }
     });
   });
 });

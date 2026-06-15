@@ -11,6 +11,7 @@ import {
   scopeScanTool,
   statusReadTool
 } from '../../lib/harness/mcp/read-tools';
+import { replayHarnessEvents } from '../../lib/harness/session-events';
 
 const STATUS_DOCUMENT = `# Status: DEL-05-03 Lifecycle State Handling
 
@@ -47,6 +48,7 @@ type FixtureContext = {
 };
 
 let fixture: FixtureContext;
+const sessionId = 'sess_chirality_read_mcp';
 
 function makeDependencyRow(): DependencyRegisterRow {
   return {
@@ -118,15 +120,17 @@ beforeEach(async () => {
     deliverablePath,
     decompositionPath
   };
+  process.env.CHIRALITY_SESSION_ROOT = path.join(tmpRoot, 'sessions');
 });
 
 afterEach(async () => {
+  delete process.env.CHIRALITY_SESSION_ROOT;
   await rm(fixture.tmpRoot, { recursive: true, force: true });
 });
 
 describe('Chirality read MCP tools', () => {
   it('reads parsed lifecycle status and dependency register output', async () => {
-    const context = { projectRoot: fixture.projectRoot };
+    const context = { projectRoot: fixture.projectRoot, sessionId };
     const statusResult = parseJsonToolResult<{
       status: { currentState: string };
       statusFilePath: string;
@@ -154,6 +158,36 @@ describe('Chirality read MCP tools', () => {
       SatisfactionStatus: 'PENDING'
     });
     expect(dependencyResult.warnings).toEqual([]);
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.completed',
+      'tool.started',
+      'tool.completed'
+    ]);
+    expect(replay.events[0].data).toMatchObject({
+      source: 'chirality-mcp',
+      toolName: 'status_read',
+      adapterToolName: 'mcp__chirality__status_read',
+      inputMetadata: {
+        inputKeys: ['deliverablePath'],
+        pathFields: {
+          deliverablePath: fixture.deliverablePath
+        }
+      }
+    });
+    expect(replay.events[1].data.resultMetadata).toMatchObject({
+      contentItemCount: 1,
+      contentTextByteLength: expect.any(Number),
+      inlineByteLimit: 65536,
+      artifactByteLimit: 2097152,
+      overflowPolicy: 'artifact',
+      budgetClass: 'within-inline-budget',
+      rawOutputPersisted: false
+    });
+    expect(JSON.stringify(replay.events[1].data)).not.toContain('INITIALIZED');
+    expect(JSON.stringify(replay.events[3].data)).not.toContain('DEP-05-03-001');
   });
 
   it('scans project scopes without reading document bodies', async () => {
@@ -161,7 +195,7 @@ describe('Chirality read MCP tools', () => {
       projectRoot: string;
       deliverables: Array<{ id: string; path: string }>;
       knowledgeTypes: unknown[];
-    }>(await scopeScanTool({ projectRoot: fixture.projectRoot }));
+    }>(await scopeScanTool({ projectRoot: fixture.projectRoot, sessionId }));
 
     expect(result.projectRoot).toBe(fixture.projectRoot);
     expect(result.deliverables).toEqual([
@@ -180,7 +214,7 @@ describe('Chirality read MCP tools', () => {
       planned: { files: string[] };
     }>(
       await scaffoldPreviewTool(
-        { projectRoot: fixture.projectRoot },
+        { projectRoot: fixture.projectRoot, sessionId },
         {
           executionRoot,
           decompositionPath: fixture.decompositionPath
@@ -197,7 +231,7 @@ describe('Chirality read MCP tools', () => {
   it('rejects scaffold preview paths outside the active project root', async () => {
     await expect(
       scaffoldPreviewTool(
-        { projectRoot: fixture.projectRoot },
+        { projectRoot: fixture.projectRoot, sessionId },
         {
           executionRoot: path.join(fixture.tmpRoot, 'outside-project'),
           decompositionPath: fixture.decompositionPath
@@ -207,19 +241,32 @@ describe('Chirality read MCP tools', () => {
       type: 'INVALID_REQUEST',
       message: expect.stringContaining('executionRoot must resolve inside projectRoot')
     });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual(['tool.started', 'tool.failed']);
+    expect(replay.events[1].data).toMatchObject({
+      source: 'chirality-mcp',
+      toolName: 'scaffold_preview',
+      adapterToolName: 'mcp__chirality__scaffold_preview',
+      failureSource: 'handler',
+      error: {
+        errorName: 'HarnessError',
+        message: expect.stringContaining('executionRoot must resolve inside projectRoot')
+      }
+    });
   });
 
   it('attaches the SDK MCP server only when a read MCP tool is explicitly allowed', () => {
     expect(
       createChiralityReadMcpServers({
-        context: { projectRoot: fixture.projectRoot },
+        context: { projectRoot: fixture.projectRoot, sessionId },
         allowedToolNames: []
       })
     ).toEqual({});
 
     expect(
       createChiralityReadMcpServers({
-        context: { projectRoot: fixture.projectRoot },
+        context: { projectRoot: fixture.projectRoot, sessionId },
         allowedToolNames: ['mcp__chirality__status_read']
       })
     ).toMatchObject({
