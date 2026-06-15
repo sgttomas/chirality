@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -24,6 +24,7 @@ beforeEach(async () => {
 afterEach(async () => {
   delete process.env.CHIRALITY_SESSION_ROOT;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
@@ -220,6 +221,196 @@ describe('Chirality write hooks', () => {
     ]);
     expect(replay.events[1].data.safeMetadata).toMatchObject({
       denyClass: 'path-containment'
+    });
+    expect(replay.events[3].data.safeMetadata).toMatchObject({
+      denyClass: 'instruction-root'
+    });
+    expect(replay.events[5].data.safeMetadata).toMatchObject({
+      denyClass: 'symlink-write'
+    });
+  });
+
+  it('allows governed Bash, injects timeout, and records redacted overflow artifact metadata', async () => {
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'sk-test-secret';
+    const hooks = getHooks();
+    const preToolUse = hooks.PreToolUse?.[0]?.hooks[0];
+    const postToolUse = hooks.PostToolUse?.[0]?.hooks[0];
+    expect(preToolUse).toBeTypeOf('function');
+    expect(postToolUse).toBeTypeOf('function');
+
+    const preResult = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Bash',
+        tool_input: {
+          command: 'npm test'
+        },
+        tool_use_id: 'tool_bash'
+      } as never,
+      'tool_bash',
+      { signal: new AbortController().signal }
+    );
+
+    expect(preResult).toMatchObject({
+      continue: true,
+      hookSpecificOutput: {
+        hookEventName: 'PreToolUse',
+        permissionDecision: 'allow',
+        updatedInput: {
+          command: 'npm test',
+          timeout: 120000
+        }
+      }
+    });
+
+    const stdout = `${'x'.repeat(17 * 1024)} sk-test-secret`;
+    const postResult = await postToolUse?.(
+      {
+        hook_event_name: 'PostToolUse',
+        tool_name: 'Bash',
+        tool_input: {
+          command: 'npm test'
+        },
+        tool_response: {
+          stdout,
+          stderr: 'warning',
+          interrupted: false
+        },
+        tool_use_id: 'tool_bash',
+        duration_ms: 12
+      } as never,
+      'tool_bash',
+      { signal: new AbortController().signal }
+    );
+
+    expect(postResult).toMatchObject({
+      continue: true,
+      hookSpecificOutput: {
+        hookEventName: 'PostToolUse'
+      }
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'hook.started',
+      'hook.completed',
+      'hook.started',
+      'hook.completed'
+    ]);
+    expect(replay.events[1].data).toMatchObject({
+      hookName: 'chirality.shell.pre_tool_use',
+      decision: 'approve',
+      descriptorName: 'shell',
+      shellMetadata: {
+        shellPolicyVersion: expect.any(String),
+        effectiveTimeoutMs: 120000,
+        timeoutSource: 'defaulted'
+      }
+    });
+    expect(replay.events[3].data).toMatchObject({
+      hookName: 'chirality.shell.post_tool_use',
+      descriptorName: 'shell',
+      resultMetadata: {
+        outputPersisted: true,
+        budgetClass: 'requires-artifact-overflow',
+        rawOutputPersisted: false
+      },
+      shellResultMetadata: {
+        stdoutPresent: true,
+        stderrPresent: true,
+        stdoutByteLength: expect.any(Number),
+        stderrByteLength: 7,
+        interrupted: false
+      },
+      artifactMetadata: {
+        artifactPath: expect.any(String),
+        redacted: true,
+        truncated: false
+      }
+    });
+
+    const artifactMetadata = replay.events[3].data.artifactMetadata as
+      | { artifactPath?: unknown }
+      | undefined;
+    const artifactPath = artifactMetadata?.artifactPath;
+    expect(typeof artifactPath).toBe('string');
+    const artifact = await readFile(artifactPath as string, 'utf8');
+    expect(artifact).not.toContain('sk-test-secret');
+    expect(artifact).toContain('[REDACTED_API_KEY]');
+  });
+
+  it('blocks Bash network, instruction-root, and symlink redirection attempts', async () => {
+    const externalRoot = path.join(tmpDir, 'external');
+    await mkdir(externalRoot, { recursive: true });
+    await writeFile(path.join(externalRoot, 'target.md'), 'outside', 'utf8');
+    await symlink(externalRoot, path.join(projectRoot, 'linked'));
+
+    const preToolUse = getHooks().PreToolUse?.[0]?.hooks[0];
+
+    const network = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Bash',
+        tool_input: {
+          command: 'curl https://example.com'
+        },
+        tool_use_id: 'tool_bash_network'
+      } as never,
+      'tool_bash_network',
+      { signal: new AbortController().signal }
+    );
+    const instruction = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Bash',
+        tool_input: {
+          command: `cat ${path.join(instructionRoot, 'AGENT.md')}`
+        },
+        tool_use_id: 'tool_bash_instruction'
+      } as never,
+      'tool_bash_instruction',
+      { signal: new AbortController().signal }
+    );
+    const symlinked = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Bash',
+        tool_input: {
+          command: 'echo hi > linked/target.md'
+        },
+        tool_use_id: 'tool_bash_symlink'
+      } as never,
+      'tool_bash_symlink',
+      { signal: new AbortController().signal }
+    );
+
+    expect(network).toMatchObject({
+      continue: false,
+      decision: 'block'
+    });
+    expect(JSON.stringify(network)).toContain('Network-capable Bash command');
+    expect(instruction).toMatchObject({
+      continue: false,
+      decision: 'block'
+    });
+    expect(JSON.stringify(instruction)).toContain('instruction root');
+    expect(symlinked).toMatchObject({
+      continue: false,
+      decision: 'block'
+    });
+    expect(JSON.stringify(symlinked)).toContain('symbolic link');
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'hook.started',
+      'hook.completed',
+      'hook.started',
+      'hook.completed',
+      'hook.started',
+      'hook.completed'
+    ]);
+    expect(replay.events[1].data.safeMetadata).toMatchObject({
+      denyClass: 'network-command'
     });
     expect(replay.events[3].data.safeMetadata).toMatchObject({
       denyClass: 'instruction-root'

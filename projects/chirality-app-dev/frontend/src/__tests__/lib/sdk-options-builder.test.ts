@@ -174,7 +174,7 @@ describe('buildSdkOptions', () => {
     expect(bypassWithGate.permissionMode).toBe('bypassPermissions');
   });
 
-  it('exposes requested Write/Edit only in workspaceWrite mode while keeping bash denied', () => {
+  it('exposes requested Write/Edit/Bash only in workspaceWrite mode', () => {
     const workspaceWrite = buildSdkOptions({
       session,
       opts: { ...opts, mode: 'workspaceWrite', tools: ['read', 'write', 'Edit', 'bash'] },
@@ -182,12 +182,12 @@ describe('buildSdkOptions', () => {
       systemPrompt: 'persona prompt'
     });
 
-    expect(workspaceWrite.tools).toEqual(['Read', 'Write', 'Edit']);
-    expect(workspaceWrite.allowedTools).toEqual(['Read', 'Write', 'Edit']);
+    expect(workspaceWrite.tools).toEqual(['Read', 'Write', 'Edit', 'Bash']);
+    expect(workspaceWrite.allowedTools).toEqual(['Read', 'Write', 'Edit', 'Bash']);
     expect(workspaceWrite.disallowedTools).not.toContain('Write');
     expect(workspaceWrite.disallowedTools).not.toContain('Edit');
+    expect(workspaceWrite.disallowedTools).not.toContain('Bash');
     expect(workspaceWrite.disallowedTools).toContain('MultiEdit');
-    expect(workspaceWrite.disallowedTools).toContain('Bash');
     expect(workspaceWrite.permissionMode).toBe('acceptEdits');
 
     const askMode = buildSdkOptions({
@@ -201,6 +201,7 @@ describe('buildSdkOptions', () => {
     expect(askMode.allowedTools).toEqual([]);
     expect(askMode.disallowedTools).toContain('Write');
     expect(askMode.disallowedTools).toContain('Edit');
+    expect(askMode.disallowedTools).toContain('Bash');
     expect(askMode.permissionMode).toBe('default');
   });
 
@@ -268,6 +269,34 @@ describe('buildSdkOptions', () => {
     ).resolves.toMatchObject({
       behavior: 'allow',
       toolUseID: 'tool_write_allowed'
+    });
+
+    await expect(
+      workspaceWriteOptions.canUseTool?.(
+        'Bash',
+        { command: 'npm test' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_allowed'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_bash_allowed'
+    });
+
+    await expect(
+      askOptions.canUseTool?.(
+        'Bash',
+        { command: 'npm test' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_ask'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('requires application approval')
     });
 
     await expect(

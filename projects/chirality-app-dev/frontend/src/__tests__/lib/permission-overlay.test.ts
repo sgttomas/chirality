@@ -99,6 +99,41 @@ describe('permission overlay', () => {
     });
   });
 
+  it('allows governed Bash only in workspaceWrite mode after shell hook policy', () => {
+    const workspaceShell = decisionFor('Bash', 'workspaceWrite');
+    const askShell = decisionFor('Bash', 'ask');
+    const readOnlyShell = decisionFor('Bash', 'readOnly');
+
+    expect(workspaceShell).toMatchObject({
+      decision: 'allow',
+      reason: expect.stringContaining('workspaceWrite mode')
+    });
+    expect(workspaceShell.safeMetadata).toMatchObject({
+      mode: 'workspaceWrite',
+      descriptorName: 'shell',
+      allowClass: 'shell',
+      requiresHookApproval: true
+    });
+    expect(permissionDecisionToSdkResult(workspaceShell, 'tool_bash')).toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_bash'
+    });
+
+    expect(askShell).toMatchObject({
+      decision: 'ask',
+      reason: expect.stringContaining('requires interactive approval')
+    });
+    expect(permissionDecisionToSdkResult(askShell, 'tool_bash_ask')).toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('requires application approval')
+    });
+
+    expect(readOnlyShell).toMatchObject({
+      decision: 'deny',
+      reason: expect.stringContaining('readOnly mode')
+    });
+  });
+
   it('lets explicit hard denies override abstract allow and ask decisions', () => {
     const readDecision = decisionFor('Read', 'readOnly', true);
     const writeDecision = decisionFor('Write', 'ask', true);
@@ -129,7 +164,7 @@ describe('permission overlay', () => {
     ]);
     expect(decisions.map((decision) => decision.safeMetadata?.denyClass)).toEqual([
       'workspace-write',
-      'danger',
+      'shell',
       'reserved-tool',
       'subagent',
       'unknown-tool'
@@ -144,11 +179,113 @@ describe('permission overlay', () => {
     expect(safeRead.decision).toBe('allow');
     expect(shell).toMatchObject({
       decision: 'deny',
-      reason: expect.stringContaining('danger-class capability')
+      reason: expect.stringContaining('bypass mode')
     });
     expect(explicit).toMatchObject({
       decision: 'deny',
       reason: 'Test hard deny.'
+    });
+  });
+
+  it('hard-denies unsafe Bash callbacks before SDK execution', async () => {
+    await useTempSessionRoot();
+    const projectRoot = path.join(tmpDir, 'project');
+    const instructionRoot = path.join(projectRoot, 'instruction-root');
+    await mkdir(projectRoot, { recursive: true });
+    await mkdir(instructionRoot, { recursive: true });
+    process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+
+    const canUseTool = createHarnessCanUseTool({
+      sessionId,
+      mode: 'workspaceWrite',
+      projectRoot,
+      resolveDescriptor: getHarnessToolDescriptor
+    });
+
+    await expect(
+      canUseTool(
+        'Bash',
+        { command: 'npm test' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_allowed'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_bash_allowed'
+    });
+
+    await expect(
+      canUseTool(
+        'Bash',
+        { command: 'curl https://example.com' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_network'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('Network-capable Bash command')
+    });
+
+    await expect(
+      canUseTool(
+        'Bash',
+        { command: 'node scripts/check.js', dangerouslyDisableSandbox: true },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_sandbox'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('sandbox override')
+    });
+
+    await expect(
+      canUseTool(
+        'Bash',
+        { command: 'echo outside > ../outside.txt' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_bash_outside'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('parent-directory traversal')
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.permission',
+      'tool.permission',
+      'tool.permission',
+      'tool.permission'
+    ]);
+    expect(replay.events.map((event) => event.data.behavior)).toEqual([
+      'allow',
+      'deny',
+      'deny',
+      'deny'
+    ]);
+    expect(replay.events[0].data.safeMetadata).toMatchObject({
+      shellMetadata: {
+        shellPolicyVersion: expect.any(String),
+        effectiveTimeoutMs: 120000,
+        timeoutSource: 'defaulted'
+      }
+    });
+    expect(replay.events[1].data.safeMetadata).toMatchObject({
+      denyClass: 'network-command'
+    });
+    expect(replay.events[2].data.safeMetadata).toMatchObject({
+      denyClass: 'sandbox-override'
+    });
+    expect(replay.events[3].data.safeMetadata).toMatchObject({
+      denyClass: 'path-traversal'
     });
   });
 

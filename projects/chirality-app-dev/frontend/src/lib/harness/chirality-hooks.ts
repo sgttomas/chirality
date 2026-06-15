@@ -16,16 +16,24 @@ import {
   summarizeToolDescriptor,
   summarizeToolError,
   summarizeToolInput,
+  summarizeShellResultStreams,
   summarizeToolResult
 } from './tool-evidence';
+import { persistToolResultArtifact } from './tool-result-artifacts';
 import { evaluateToolPathPolicy, type HarnessToolPathPolicyAllow } from './tool-path-policy';
+import {
+  DEFAULT_BASH_TIMEOUT_MS,
+  evaluateShellCommandPolicy
+} from './tool-shell-policy';
 import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
 
 const WRITE_HOOK_TIMEOUT_SECONDS = 5;
+const SHELL_HOOK_TIMEOUT_SECONDS = 5;
 const HASH_INLINE_LIMIT_BYTES = 1024 * 1024;
 
-type WriteAttemptRecord = {
-  pathMetadata: HarnessToolPathPolicyAllow;
+type ToolAttemptRecord = {
+  policyMetadata?: Record<string, unknown>;
+  pathMetadata?: HarnessToolPathPolicyAllow;
   beforeState?: FileStateSummary;
 };
 
@@ -51,6 +59,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isWorkspaceWriteDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
   return Boolean(descriptor?.permissions.includes('workspace-write'));
+}
+
+function isShellDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return Boolean(descriptor?.permissions.includes('shell'));
+}
+
+function isGovernedHookDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return isWorkspaceWriteDescriptor(descriptor) || isShellDescriptor(descriptor);
+}
+
+function getHookFamily(descriptor: HarnessToolDescriptor | undefined): 'shell' | 'write' {
+  return isShellDescriptor(descriptor) ? 'shell' : 'write';
 }
 
 function readToolInput(input: HookInput): Record<string, unknown> {
@@ -147,12 +167,13 @@ async function appendHookEvent(input: {
   );
 }
 
-function allowPreToolUse(): HookJSONOutput {
+function allowPreToolUse(updatedInput?: Record<string, unknown>): HookJSONOutput {
   return {
     continue: true,
     hookSpecificOutput: {
       hookEventName: 'PreToolUse',
-      permissionDecision: 'allow'
+      permissionDecision: 'allow',
+      updatedInput
     }
   };
 }
@@ -173,7 +194,7 @@ function blockPreToolUse(reason: string): HookJSONOutput {
 export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial<
   Record<HookEvent, HookCallbackMatcher[]>
 > {
-  const attempts = new Map<string, WriteAttemptRecord>();
+  const attempts = new Map<string, ToolAttemptRecord>();
   const resolveDescriptor = input.resolveDescriptor ?? getHarnessToolDescriptor;
 
   const preToolUse: HookCallback = async (hookInput) => {
@@ -183,11 +204,12 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
 
     const preInput = hookInput as PreToolUseHookInput;
     const descriptor = resolveDescriptor(preInput.tool_name);
-    if (!isWorkspaceWriteDescriptor(descriptor)) {
+    if (!isGovernedHookDescriptor(descriptor)) {
       return { continue: true };
     }
 
-    const hookName = 'chirality.write.pre_tool_use';
+    const hookFamily = getHookFamily(descriptor);
+    const hookName = `chirality.${hookFamily}.pre_tool_use`;
     const eventBase = {
       sessionId: input.sessionId,
       hookName,
@@ -205,6 +227,44 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
           inputMetadata: summarizeToolInput(preInput.tool_input)
         }
       });
+
+      if (isShellDescriptor(descriptor)) {
+        const shellPolicy = await evaluateShellCommandPolicy({
+          descriptor,
+          projectRoot: input.projectRoot,
+          instructionRoot: input.instructionRoot,
+          toolInput: readToolInput(preInput)
+        });
+
+        if (!shellPolicy.allowed) {
+          await appendHookEvent({
+            ...eventBase,
+            type: 'hook.completed',
+            data: {
+              decision: 'block',
+              reason: shellPolicy.reason,
+              safeMetadata: shellPolicy.metadata
+            }
+          });
+          return blockPreToolUse(shellPolicy.reason);
+        }
+
+        attempts.set(preInput.tool_use_id, {
+          policyMetadata: shellPolicy.metadata
+        });
+
+        await appendHookEvent({
+          ...eventBase,
+          type: 'hook.completed',
+          data: {
+            decision: 'approve',
+            shellMetadata: shellPolicy.metadata,
+            defaultTimeoutMs: DEFAULT_BASH_TIMEOUT_MS,
+            resultBudget: descriptor?.resultBudget
+          }
+        });
+        return allowPreToolUse(shellPolicy.updatedInput);
+      }
 
       const pathPolicy = await evaluateToolPathPolicy({
         descriptor,
@@ -268,11 +328,12 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
 
     const postInput = hookInput as PostToolUseHookInput;
     const descriptor = resolveDescriptor(postInput.tool_name);
-    if (!isWorkspaceWriteDescriptor(descriptor)) {
+    if (!isGovernedHookDescriptor(descriptor)) {
       return { continue: true };
     }
 
-    const hookName = 'chirality.write.post_tool_use';
+    const hookFamily = getHookFamily(descriptor);
+    const hookName = `chirality.${hookFamily}.post_tool_use`;
     const attempt = attempts.get(postInput.tool_use_id);
     await appendHookEvent({
       sessionId: input.sessionId,
@@ -284,7 +345,19 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       descriptor
     });
 
-    const afterState = await summarizeFileState(attempt?.pathMetadata.resolvedPath);
+    const afterState = isShellDescriptor(descriptor)
+      ? undefined
+      : await summarizeFileState(attempt?.pathMetadata?.resolvedPath);
+    const resultMetadata = summarizeToolResult(postInput.tool_response, descriptor);
+    const artifactMetadata = isShellDescriptor(descriptor)
+      ? await persistToolResultArtifact({
+          sessionId: input.sessionId,
+          toolUseId: postInput.tool_use_id,
+          toolName: postInput.tool_name,
+          descriptor,
+          result: postInput.tool_response
+        })
+      : undefined;
     await appendHookEvent({
       sessionId: input.sessionId,
       type: 'hook.completed',
@@ -294,11 +367,19 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       toolUseId: postInput.tool_use_id,
       descriptor,
       data: {
+        shellMetadata: attempt?.policyMetadata,
         pathMetadata: attempt?.pathMetadata,
         beforeState: attempt?.beforeState,
         afterState,
         durationMs: postInput.duration_ms,
-        resultMetadata: summarizeToolResult(postInput.tool_response, descriptor),
+        resultMetadata: {
+          ...resultMetadata,
+          outputPersisted: Boolean(artifactMetadata)
+        },
+        shellResultMetadata: isShellDescriptor(descriptor)
+          ? summarizeShellResultStreams(postInput.tool_response)
+          : undefined,
+        artifactMetadata,
         recordsDiff: descriptor?.provenance.recordsDiff
       }
     });
@@ -318,20 +399,22 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
 
     const failureInput = hookInput as PostToolUseFailureHookInput;
     const descriptor = resolveDescriptor(failureInput.tool_name);
-    if (!isWorkspaceWriteDescriptor(descriptor)) {
+    if (!isGovernedHookDescriptor(descriptor)) {
       return { continue: true };
     }
 
     const attempt = attempts.get(failureInput.tool_use_id);
+    const hookFamily = getHookFamily(descriptor);
     await appendHookEvent({
       sessionId: input.sessionId,
       type: 'hook.failed',
-      hookName: 'chirality.write.post_tool_use_failure',
+      hookName: `chirality.${hookFamily}.post_tool_use_failure`,
       hookEvent: 'PostToolUseFailure',
       toolName: failureInput.tool_name,
       toolUseId: failureInput.tool_use_id,
       descriptor,
       data: {
+        shellMetadata: attempt?.policyMetadata,
         pathMetadata: attempt?.pathMetadata,
         beforeState: attempt?.beforeState,
         durationMs: failureInput.duration_ms,
@@ -351,19 +434,19 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
   return {
     PreToolUse: [
       {
-        timeout: WRITE_HOOK_TIMEOUT_SECONDS,
+        timeout: Math.max(WRITE_HOOK_TIMEOUT_SECONDS, SHELL_HOOK_TIMEOUT_SECONDS),
         hooks: [preToolUse]
       }
     ],
     PostToolUse: [
       {
-        timeout: WRITE_HOOK_TIMEOUT_SECONDS,
+        timeout: Math.max(WRITE_HOOK_TIMEOUT_SECONDS, SHELL_HOOK_TIMEOUT_SECONDS),
         hooks: [postToolUse]
       }
     ],
     PostToolUseFailure: [
       {
-        timeout: WRITE_HOOK_TIMEOUT_SECONDS,
+        timeout: Math.max(WRITE_HOOK_TIMEOUT_SECONDS, SHELL_HOOK_TIMEOUT_SECONDS),
         hooks: [postToolUseFailure]
       }
     ]

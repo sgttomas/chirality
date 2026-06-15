@@ -116,8 +116,9 @@ completion records.
 Tool input evidence stores input key names and recognized safe path fields only. Tool
 result evidence stores byte counts, MCP content item counts, descriptor inline/artifact
 limits, overflow policy, and budget class. Raw tool outputs are not stored in
-`HarnessEvent.data`; this tranche does not add artifact spill files or result artifact
-storage.
+`HarnessEvent.data`. Bash overflow output may be spilled to redacted session-local
+artifacts after descriptor budgets require it; other raw tool artifact storage remains
+future scope.
 
 Write/edit lifecycle evidence is persisted for the currently approved SDK built-in write
 surfaces: `Write` and `Edit` in `workspaceWrite` mode. Permission callbacks append
@@ -129,6 +130,16 @@ metadata, result-budget metadata, and diff-provenance flags. Raw file contents, 
 outputs, and full diffs are not stored in `HarnessEvent.data`; artifact spill files and
 full diff storage remain future scope.
 
+Bash lifecycle evidence is persisted for the approved SDK `Bash` built-in only in
+`workspaceWrite` mode. Bash remains denied in `readOnly`, `dontAsk`, and ordinary `ask`
+exposure. Permission callbacks and Chirality `PreToolUse` hooks enforce default timeout
+injection, maximum timeout policy, no background execution, no sandbox override,
+project-root containment for obvious path and redirection targets, instruction-root
+blocking, symlink redirection rejection, and static no-network command checks. Bash
+`PostToolUse` hooks record stdout/stderr byte-count metadata separately and spill
+redacted overflow results to session-local tool artifacts when descriptor budgets require
+it. Raw stdout, stderr, commands, and API keys are not stored in `HarnessEvent.data`.
+
 ## Harness Tool Descriptor Contract
 
 `frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned
@@ -138,11 +149,12 @@ concurrency, interrupt behavior, result-budget policy, provenance events, human-
 metadata, and adapter tool names.
 
 The current runtime exposes requested read-class first-adapter SDK built-ins (`Read`,
-`Glob`, `Grep`, and `LS`), requested read-only Chirality MCP tools, and requested
-SDK `Write` / `Edit` built-ins only in `workspaceWrite` mode after descriptor,
-permission-overlay, and Chirality write-hook resolution. The current Chirality MCP read
-tools are `mcp__chirality__status_read`, `mcp__chirality__deps_read`,
-`mcp__chirality__scope_scan`, and `mcp__chirality__scaffold_preview`.
+`Glob`, `Grep`, and `LS`), requested read-only Chirality MCP tools, requested
+SDK `Write` / `Edit` built-ins, and requested SDK `Bash` only in `workspaceWrite` mode
+after descriptor, permission-overlay, and Chirality hook resolution. The current
+Chirality MCP read tools are `mcp__chirality__status_read`,
+`mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
+`mcp__chirality__scaffold_preview`.
 
 The SDK options builder passes requested and allowed names through both `tools` and
 `allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
@@ -150,9 +162,9 @@ the in-process `chirality` MCP server only when a Chirality MCP read descriptor 
 allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unknown
 `opts.tools` fail structurally before adapter streaming begins.
 
-`MultiEdit`, notebook edits, shell, network, subagent, and mutating Chirality MCP tools
-remain unavailable to the model. Their descriptors remain metadata only until their
-bounded implementation, hook, result-storage, and validation tranches land.
+`MultiEdit`, notebook edits, network, subagent, and mutating Chirality MCP tools remain
+unavailable to the model. Their descriptors remain metadata only until their bounded
+implementation, hook, result-storage, and validation tranches land.
 
 ## First Adapter Probe Posture
 
@@ -166,10 +178,11 @@ Probe posture:
 - SDK filesystem settings default to `settingSources: []`.
 - `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
-- Requested read built-ins, requested read-only Chirality MCP tools, and requested
-  `Write` / `Edit` built-ins in `workspaceWrite` mode are exposed for the opt-in
-  `agentSdk` path after descriptor, permission, and hook-policy resolution. Denied or
-  unrequested built-ins and MCP tools remain in descriptor-derived `disallowedTools`.
+- Requested read built-ins, requested read-only Chirality MCP tools, requested
+  `Write` / `Edit` built-ins, and requested `Bash` in `workspaceWrite` mode are exposed
+  for the opt-in `agentSdk` path after descriptor, permission, and hook-policy
+  resolution. Denied or unrequested built-ins and MCP tools remain in descriptor-derived
+  `disallowedTools`.
 
 Pi is a pattern corpus/reference only. This contract does not authorize a Pi adapter, fork,
 package import, Node 22 sidecar, runtime-floor migration, or spike.

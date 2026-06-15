@@ -6,6 +6,52 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - R4 Bash prerequisites and controlled Bash implementation landed (`BASH-R4-001`)
+
+Landed bounded SDK `Bash` exposure for the opt-in first-adapter path. Bash is model-visible
+only when requested in `workspaceWrite` mode after descriptor resolution, permission overlay
+resolution, `canUseTool`, and Chirality `PreToolUse` hook checks pass. `readOnly`,
+`dontAsk`, ordinary `ask`, and `bypass` continue to keep Bash out of the allowed model tool
+set or deny execution through the SDK callback path.
+
+The tranche added a conservative shell policy layer for Bash: default timeout injection
+(`120000` ms), maximum timeout enforcement, no background execution, no sandbox override,
+static no-network command/URL denial, obvious project-root path containment, instruction-root
+blocking, and symlink rejection for redirection targets. Bash hook evidence records safe
+metadata only. `PostToolUse` records stdout/stderr byte counts separately and spills
+redacted overflow results to session-local tool artifacts when descriptor budgets require it.
+Raw commands, stdout, stderr, API keys, and full output bodies are not stored in
+`HarnessEvent.data`.
+
+SDK message mapping now treats Bash built-in results as governed tool lifecycle evidence, so
+scripted Bash results produce inferred `tool.started` and `tool.completed` / `tool.failed`
+records with result-budget and stdout/stderr metadata. Runtime contract docs now describe the
+approved Bash boundary.
+
+Residual: governed SDK subagents, concrete provider expansion, provider/network broadening,
+remote MCP/plugins, Pi implementation paths, `MultiEdit`, mutating Chirality MCP tools, full
+read/write artifact storage, package/runtime migration, desktop-wrapper changes, packaged
+SDK subprocess proof, release-readiness claims, lifecycle issuance, professional approval,
+certification, sealing, authentication, and code-compliance acceptance remain out of scope or
+future/human-gated. Normal instruction-root integrity remains blocked by the pre-existing
+split source-root/package-resource posture.
+
+Validation: `npm run test -- permission-overlay chirality-hooks tool-descriptor
+sdk-options-builder sdk-message-mapper`; `npm run test` (43 files, 329 tests);
+`npm run typecheck`; `CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.LMAekD
+npm run harness:validate:premerge` against a local `next dev` server using a temporary
+merged instruction root, producing pass status with 8 checks at
+`frontend/artifacts/harness/section8/latest/summary.json`;
+`CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.LMAekD npm run
+proof:network-policy -- --runs 1 --idle-seconds 1 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-bash-20260615023318`, producing `PASS` after temporarily
+creating and then removing the script's missing `examples/example-project` fixture;
+tranche-scoped `git diff --check` passed. `npm run instruction-root:integrity` was attempted
+and failed because the nested app-dev source root lacks `agents/`. `node
+./scripts/verify-instruction-root-integrity.mjs --source-root
+/Users/ryan/ai-env/projects/chirality` was attempted and failed because the root source lacks
+current app-dev governance docs such as `docs/DIRECTIVE.md`.
+
 ## 2026-06-15 - D-APP-04 ruled Option A
 
 Human project authority approved `D-APP-04` Option A. A bounded R4 Bash tranche may now

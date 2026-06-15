@@ -4,9 +4,10 @@ import { createHarnessEvent } from './event-schema';
 import { appendHarnessEvent } from './session-events';
 import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
 import { evaluateToolPathPolicy } from './tool-path-policy';
+import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from './tool-descriptor';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v2.write-hooks';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v3.bash';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -133,6 +134,36 @@ export function resolveHarnessPermissionDecision(
     });
   }
 
+  if (hasDescriptorPermission(descriptor, 'shell')) {
+    if (mode === 'workspaceWrite') {
+      return createDecision(
+        input,
+        'allow',
+        `${descriptor.name} is allowed by workspaceWrite mode after Chirality shell hooks pass.`,
+        {
+          allowClass: 'shell',
+          requiresHookApproval: true
+        }
+      );
+    }
+
+    if (mode === 'ask') {
+      return createDecision(
+        input,
+        'ask',
+        `${descriptor.name} requires interactive approval and shell hooks before execution.`,
+        {
+          requiresHumanApproval: true,
+          denyClass: 'shell'
+        }
+      );
+    }
+
+    return createDecision(input, 'deny', `${descriptor.name} is denied in ${mode} mode.`, {
+      denyClass: 'shell'
+    });
+  }
+
   if (hasDescriptorPermission(descriptor, 'danger')) {
     return createDecision(
       input,
@@ -143,13 +174,6 @@ export function resolveHarnessPermissionDecision(
         denyClass: 'danger'
       }
     );
-  }
-
-  if (hasDescriptorPermission(descriptor, 'shell')) {
-    return createDecision(input, 'deny', 'Shell execution is denied until bash controls land.', {
-      hardDeny: true,
-      denyClass: 'shell'
-    });
   }
 
   if (hasDescriptorPermission(descriptor, 'network')) {
@@ -282,21 +306,38 @@ export function createHarnessCanUseTool(input: {
       toolInput,
       blockedPath: options.blockedPath
     });
+    const shellPolicy =
+      pathPolicy.allowed && descriptor?.permissions.includes('shell')
+        ? await evaluateShellCommandPolicy({
+            descriptor,
+            projectRoot: input.projectRoot,
+            toolInput
+          })
+        : undefined;
+    const explicitDeny = !pathPolicy.allowed || shellPolicy?.allowed === false;
     const decision = resolveHarnessPermissionDecision({
       sessionId: input.sessionId,
       mode: input.mode,
       toolName,
       descriptor,
       source: 'sdk-callback',
-      explicitDeny: !pathPolicy.allowed,
-      explicitDenyReason: pathPolicy.allowed ? undefined : pathPolicy.reason,
+      explicitDeny,
+      explicitDenyReason: !pathPolicy.allowed
+        ? pathPolicy.reason
+        : shellPolicy?.allowed === false
+          ? shellPolicy.reason
+          : undefined,
       safeMetadata: {
         inputMetadata: summarizeToolInput(toolInput),
         decisionReason: options.decisionReason,
+        title: options.title,
         displayName: options.displayName,
+        description: options.description,
         sdkToolUseId: options.toolUseID,
         pathMetadata: pathPolicy.allowed ? pathPolicy.metadata : undefined,
-        ...(pathPolicy.allowed ? {} : pathPolicy.metadata)
+        shellMetadata: shellPolicy?.metadata,
+        ...(pathPolicy.allowed ? {} : pathPolicy.metadata),
+        ...(shellPolicy?.allowed === false ? shellPolicy.metadata : {})
       }
     });
 

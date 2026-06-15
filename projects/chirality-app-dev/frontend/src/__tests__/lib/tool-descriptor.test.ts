@@ -58,7 +58,7 @@ describe('tool descriptor registry', () => {
         .filter(
           (descriptor) =>
             !descriptor.permissions.includes('read') &&
-            !['write_file', 'edit_file'].includes(descriptor.name)
+            !['write_file', 'edit_file', 'shell'].includes(descriptor.name)
         )
         .every((descriptor) => descriptor.runtime.exposedToModel === false)
     ).toBe(true);
@@ -74,17 +74,19 @@ describe('tool descriptor registry', () => {
     expect(writeFile?.humanGate.required).toBe(true);
 
     const bash = getHarnessToolDescriptor('bash');
-    expect(bash?.permissions).toEqual(['shell', 'danger']);
+    expect(bash?.permissions).toEqual(['shell', 'workspace-write', 'danger']);
+    expect(bash?.pathScope).toBe('project-root-write');
     expect(bash?.humanGate.required).toBe(true);
+    expect(bash?.runtime.exposedToModel).toBe(true);
   });
 
-  it('resolves Write/Edit only in workspaceWrite mode', () => {
+  it('resolves Write/Edit/Bash only in workspaceWrite mode', () => {
     const resolution = resolveHarnessToolPool({
       requestedTools: ['read', 'write', 'Edit', 'multi_edit', 'bash'],
       mode: 'workspaceWrite'
     });
 
-    expect(resolution.allowedToolNames).toEqual(['Read', 'Write', 'Edit']);
+    expect(resolution.allowedToolNames).toEqual(['Read', 'Write', 'Edit', 'Bash']);
     expect(resolution.disallowedToolNames).toEqual([
       'Glob',
       'Grep',
@@ -95,7 +97,6 @@ describe('tool descriptor registry', () => {
       'mcp__chirality__scaffold_preview',
       'MultiEdit',
       'NotebookEdit',
-      'Bash',
       'WebFetch',
       'WebSearch',
       'Agent'
@@ -104,10 +105,6 @@ describe('tool descriptor registry', () => {
       expect.objectContaining({
         toolName: 'multi_edit',
         descriptorName: 'multi_edit_file'
-      }),
-      expect.objectContaining({
-        toolName: 'bash',
-        descriptorName: 'shell'
       })
     ]);
 

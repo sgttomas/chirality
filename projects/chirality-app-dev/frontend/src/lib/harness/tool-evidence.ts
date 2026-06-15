@@ -38,6 +38,20 @@ export type ToolResultEvidence = {
   rawOutputPersisted: false;
 };
 
+export type ShellResultStreamEvidence = {
+  stdoutPresent: boolean;
+  stderrPresent: boolean;
+  stdoutByteLength: number;
+  stderrByteLength: number;
+  interrupted?: boolean;
+  isImage?: boolean;
+  backgroundTask: boolean;
+  backgroundedByUser?: boolean;
+  assistantAutoBackgrounded?: boolean;
+  rawOutputPathPresent: boolean;
+  dangerouslyDisableSandbox?: boolean;
+};
+
 function isRecord(value: unknown): value is JsonRecord {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 }
@@ -145,6 +159,32 @@ export function summarizeToolResult(
     budgetClass: classifyResultBudget(resultByteLength, descriptor),
     outputPersisted: false,
     rawOutputPersisted: false
+  };
+}
+
+export function summarizeShellResultStreams(result: unknown): ShellResultStreamEvidence {
+  const record = isRecord(result) ? result : {};
+  const stdout = readString(record.stdout);
+  const stderr = readString(record.stderr);
+  return {
+    stdoutPresent: stdout !== undefined,
+    stderrPresent: stderr !== undefined,
+    stdoutByteLength: stdout ? byteLength(stdout) : 0,
+    stderrByteLength: stderr ? byteLength(stderr) : 0,
+    interrupted: typeof record.interrupted === 'boolean' ? record.interrupted : undefined,
+    isImage: typeof record.isImage === 'boolean' ? record.isImage : undefined,
+    backgroundTask: readString(record.backgroundTaskId) !== undefined,
+    backgroundedByUser:
+      typeof record.backgroundedByUser === 'boolean' ? record.backgroundedByUser : undefined,
+    assistantAutoBackgrounded:
+      typeof record.assistantAutoBackgrounded === 'boolean'
+        ? record.assistantAutoBackgrounded
+        : undefined,
+    rawOutputPathPresent: readString(record.rawOutputPath) !== undefined,
+    dangerouslyDisableSandbox:
+      typeof record.dangerouslyDisableSandbox === 'boolean'
+        ? record.dangerouslyDisableSandbox
+        : undefined
   };
 }
 

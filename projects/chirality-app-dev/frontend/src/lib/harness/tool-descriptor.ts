@@ -9,7 +9,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v4.write-hooks';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v5.bash';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -133,6 +133,7 @@ export type HarnessToolPoolResolution = {
 const TOOL_EVENTS = [
   'tool.permission',
   'tool.started',
+  'tool.progress',
   'tool.completed',
   'tool.failed'
 ] as const satisfies readonly HarnessEventType[];
@@ -153,6 +154,12 @@ const SDK_WRITE_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
     'Write/Edit SDK built-ins are exposed only in workspaceWrite mode after descriptor resolution, permission overlay, and Chirality write hooks.'
+};
+
+const SDK_SHELL_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Bash is exposed only in workspaceWrite mode after descriptor resolution, permission overlay, timeout policy, and Chirality shell hooks.'
 };
 
 const DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
@@ -564,10 +571,10 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   {
     name: 'shell',
     aliases: ['bash', 'Bash', 'shell', 'sdk.bash'],
-    description: 'Run a shell command after explicit shell policy, timeout, and audit controls exist.',
+    description: 'Run a project-root-contained shell command after shell policy and audit controls pass.',
     surface: 'claude-agent-sdk-builtin',
-    permissions: ['shell', 'danger'],
-    pathScope: 'none',
+    permissions: ['shell', 'workspace-write', 'danger'],
+    pathScope: 'project-root-write',
     idempotence: 'input-dependent',
     concurrency: 'exclusive',
     interruptBehavior: 'cancel',
@@ -581,7 +588,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     humanGate: {
       required: true,
       gate: 'interactive-confirmation',
-      reason: 'Shell execution is denied until timeout, audit, packaging, and permission controls exist.'
+      reason: 'Shell execution requires governed workspace mode, timeout, hook, and audit policy.'
     },
     adapter: {
       claudeAgentSdk: {
@@ -594,10 +601,22 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       properties: {
         command: {
           type: 'string'
+        },
+        timeout: {
+          type: 'number'
+        },
+        description: {
+          type: 'string'
+        },
+        run_in_background: {
+          type: 'boolean'
+        },
+        dangerouslyDisableSandbox: {
+          type: 'boolean'
         }
       }
     },
-    runtime: DESCRIPTOR_ONLY_RUNTIME
+    runtime: SDK_SHELL_RUNTIME
   },
   {
     name: 'web_fetch',

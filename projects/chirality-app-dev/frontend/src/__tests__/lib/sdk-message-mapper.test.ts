@@ -318,6 +318,79 @@ describe('mapSdkMessageToHarness', () => {
     expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('updated notes.md');
   });
 
+  it('emits SDK Bash lifecycle evidence with stdout and stderr metadata only', () => {
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            {
+              type: 'tool_use',
+              id: 'toolu_bash',
+              name: 'Bash',
+              input: { command: 'npm test', timeout: 120000 }
+            }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000021',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const userResult = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_bash',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_bash',
+          stdout: 'test output',
+          stderr: 'warn',
+          interrupted: false
+        },
+        uuid: '00000000-0000-0000-0000-000000000022',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(userResult.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.completed',
+      'message.completed'
+    ]);
+    expect(userResult.harnessEvents[1].data).toMatchObject({
+      source: 'adapter',
+      toolUseId: 'toolu_bash',
+      toolName: 'Bash',
+      descriptorName: 'shell',
+      resultMetadata: {
+        inlineByteLimit: 16384,
+        artifactByteLimit: 2097152,
+        overflowPolicy: 'artifact',
+        rawOutputPersisted: false
+      },
+      shellResultMetadata: {
+        stdoutPresent: true,
+        stderrPresent: true,
+        stdoutByteLength: 11,
+        stderrByteLength: 4,
+        interrupted: false
+      }
+    });
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('test output');
+  });
+
   it('maps SDK read tool error results to failed evidence and skips duplicate MCP completions', () => {
     const state = createSdkToolEvidenceState();
     mapSdkMessageToHarness(

@@ -15,6 +15,7 @@ import {
   isToolResultFailure,
   summarizeToolDescriptor,
   summarizeToolInput,
+  summarizeShellResultStreams,
   summarizeToolResult
 } from './tool-evidence';
 import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
@@ -108,8 +109,13 @@ function isSdkBuiltinEvidenceDescriptor(descriptor: HarnessToolDescriptor | unde
   return (
     descriptor?.surface === 'claude-agent-sdk-builtin' &&
     (descriptor.permissions.includes('read') ||
-      descriptor.permissions.includes('workspace-write'))
+      descriptor.permissions.includes('workspace-write') ||
+      descriptor.permissions.includes('shell'))
   );
+}
+
+function isShellDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return Boolean(descriptor?.permissions.includes('shell'));
 }
 
 function isChiralityMcpTool(toolName: string | undefined): boolean {
@@ -319,7 +325,10 @@ function mapSdkUserToolResultEvents(
         extra: {
           parentToolUseId: record.parent_tool_use_id,
           failureSource: eventType === 'tool.failed' ? 'tool_use_result' : undefined,
-          resultMetadata
+          resultMetadata,
+          shellResultMetadata: isShellDescriptor(descriptor)
+            ? summarizeShellResultStreams(result)
+            : undefined
         }
       })
     )
