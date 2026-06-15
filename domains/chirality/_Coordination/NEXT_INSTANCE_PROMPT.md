@@ -82,17 +82,19 @@ Batch 1 is only partially carried forward for active V1: 11 retired Batch 1 rows
 
 ## Gate 3 Open State
 
-Gate 3 category proposal is generated but not accepted.
+Gate 3 category refinement is generated but not accepted.
 
 - Proposal pointer: `domains/chirality/_Decomposition/gate3_categories/_LATEST_GATE3_PROPOSAL.md`
-- Proposal snapshot: `domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z`
-- Proposed Categories: `11`
+- Latest refinement snapshot: `domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z`
+- Categories: `11`
 - Draft category-assigned ledger: `domains/chirality/_Decomposition/Domain_Ledger_Gate3_Category_Draft.csv`
 - Assigned IN atoms: `19403` / `19403`
-- Ambiguous assignment findings: `881` in `Category_Assignment_Findings.csv`
+- Ambiguous assignment findings: `881` resolved forced decisions, `0` open in `Category_Assignment_Findings.csv`
+- Boundary decisions: `domains/chirality/_Decomposition/Category_Boundary_Decisions.csv`
+- Dense calibration note: `domains/chirality/_Decomposition/Gate3_Ratification_Calibration.md`
 - Ratification status: `SCOPE_REFINEMENT_NEEDED` for all Categories in `Category_Scope_Ratification.csv`
 
-Dense embeddings completed for Gate 3. The source_v2 index is READY, but dense ratification returned `SCOPE_REFINEMENT_NEEDED` for all 11 proposed Categories under the default 0.75 cosine threshold. Gate 3 cannot close until scopes/assignments are refined and reratified, or the human explicitly approves a calibrated ratification threshold/basis.
+Dense embeddings completed for Gate 3. The source_v2 index is READY, category scopes and primary-function boundary rules were refined, and all 881 advisory ambiguous-assignment findings were closed without atom splits. Dense ratification still returns `SCOPE_REFINEMENT_NEEDED` for all 11 Categories under the default 0.75 cosine threshold. Gate 3 cannot close until the human explicitly approves a calibrated ratification threshold/basis or directs further category refinement.
 
 ## Rebuild Commands
 
@@ -135,6 +137,6 @@ Expected rank 1 result is `SRC-AGENTS` / `@repo/AGENTS.md`.
 
 ## Next Recommended Action
 
-Continue Gate 3 review: inspect the proposed 11-category register, resolve `Category_Assignment_Findings.csv`, and refine the Category scopes/assignments and rerun dense category-scope ratification or obtain an explicit human ruling on a calibrated ratification threshold/basis. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth; `Domain_Ledger_Gate3_Category_Draft.csv` is draft until Gate 3 is accepted.
+Continue Gate 3 review from `GATE3_CATEGORY_REFINEMENT_20260615T021906Z`: inspect the refined 11-category register, the 87 draft assignment changes, and `Gate3_Ratification_Calibration.md`; then obtain an explicit human ruling on the calibrated dense-ratification threshold/basis or perform another refinement pass. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth; `Domain_Ledger_Gate3_Category_Draft.csv` is draft until Gate 3 is accepted.
 
 Do not start hypergraph publication, DBM publication, dense embeddings, public export, or separate project-domain decomposition from this handoff unless the human explicitly authorizes that work.

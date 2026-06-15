@@ -2,9 +2,9 @@
 
 Package role: working surface
 
-Status: Gate 2 normalization is accepted for the current Chirality Phase 2 source-unit set, and Gate 3 is open. The grouped skill-pack source-unit caveat is closed by `GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z`. The active file-level manifest remains 225 rows, while the accepted Gate 2 normalization surface is 110 source units. Canonical `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `Gate2_Source_Unit_Register.csv`, and `cross_source_toc_matrix.{md,csv}` remain the accepted upstream truth. Gate 3 category proposal `GATE3_CATEGORY_PROPOSAL_20260614T213500Z` proposes 11 flat Categories and assigns all 19403 IN atoms in `Domain_Ledger_Gate3_Category_Draft.csv`; dense retrieval is now built, but all 11 Category ratification rows carry `SCOPE_REFINEMENT_NEEDED` and 881 ambiguous-assignment candidates remain open, so Gate 3 is not closed.
+Status: Gate 2 normalization is accepted for the current Chirality Phase 2 source-unit set, and Gate 3 is open. The grouped skill-pack source-unit caveat is closed by `GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z`. The active file-level manifest remains 225 rows, while the accepted Gate 2 normalization surface is 110 source units. Canonical `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `Gate2_Source_Unit_Register.csv`, and `cross_source_toc_matrix.{md,csv}` remain the accepted upstream truth. Gate 3 category refinement `GATE3_CATEGORY_REFINEMENT_20260615T021906Z` keeps the 11 flat Categories, assigns all 19403 IN atoms in `Domain_Ledger_Gate3_Category_Draft.csv`, closes the 881 ambiguous-assignment candidates by forced boundary decisions, and records 87 draft assignment changes. Gate 3 is not closed because all 11 Category ratification rows still carry `SCOPE_REFINEMENT_NEEDED` under the default 0.75 dense cosine threshold pending explicit human approval of a calibrated ratification basis or further refinement.
 
-Generated UTC: 2026-06-15T02:01:07Z
+Generated UTC: 2026-06-15T02:19:06Z
 
 ## Source Model
 
@@ -24,7 +24,7 @@ Catalog validation result: `PASS` after Gate 2 closure refresh
 
 Source files copied: `false`
 
-Retrieval index status: `BM25_ONLY`
+Retrieval index status: `READY`
 
 Retrieval smoke query: `PASS` (`derivative-package rule` rank 1 -> `SRC-AGENTS` / `@repo/AGENTS.md`)
 
@@ -432,7 +432,7 @@ Phase 2.5 is rerun after Gate 2 closure. The current source catalog pointer is `
 |---|---:|
 | Source catalog pointer | `domains/chirality/_LocalIndexes/_LATEST.md` |
 | Catalog validation | `PASS` |
-| Retrieval status | `BM25_ONLY` |
+| Retrieval status | `READY` |
 | Dense embeddings | `READY` |
 | BM25 smoke query | PASS - rank 1 `SRC-AGENTS` / `@repo/AGENTS.md` for `derivative-package rule` |
 | TOC-prior matrix scope | 110 accepted Gate 2 source units |
@@ -442,35 +442,37 @@ TOC-prior matrix Markdown: `domains/chirality/_Decomposition/cross_source_toc_ma
 
 TOC-prior matrix CSV: `domains/chirality/_Decomposition/cross_source_toc_matrix.csv`
 
-## Phase 3 Category Proposal (Open)
+## Phase 3 Category Refinement (Open)
 
-Gate 3 is open from the accepted Gate 2 source-unit authority basis. The current proposal reconciles `cross_source_toc_matrix.*`, `Vocabulary_Map.csv`, and the accepted atom ledger into 11 flat Categories. `Atomic_Domain_Ledger.csv` remains the accepted Gate 2 ledger; the category-assigned draft is `Domain_Ledger_Gate3_Category_Draft.csv` until Gate 3 acceptance.
+Gate 3 is open from the accepted Gate 2 source-unit authority basis. The current refinement reconciles `cross_source_toc_matrix.*`, `Vocabulary_Map.csv`, and the accepted atom ledger into 11 flat Categories, then applies explicit primary-function boundary rules. `Atomic_Domain_Ledger.csv` remains the accepted Gate 2 ledger; the category-assigned draft is `Domain_Ledger_Gate3_Category_Draft.csv` until Gate 3 acceptance.
 
-| CategoryID | Name | IN Atoms | Ambiguous Findings | Ratification Verdict |
-|---|---|---:|---:|---|
-| `CAT-001` | Epistemic and Professional-Practice Foundations | 2,180 | 136 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-002` | Governance and Agent Instruction Architecture | 1,109 | 25 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-003` | Decomposition Lifecycle and Domain Structuring | 2,252 | 207 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-004` | Task, Skill, and Tool Execution Contracts | 2,619 | 107 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-005` | Source Fidelity, Retrieval, and Validation Infrastructure | 227 | 22 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-006` | Audit, Review, Reconciliation, and Evaluation | 2,563 | 174 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-007` | Publication, Aggregation, Hypergraph, and Synthesis | 2,118 | 88 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-008` | Document, Asset, Drawing, and Engineering-Data Extraction | 3,305 | 77 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-009` | Coordination, Change, Scheduling, and Deliverable Workflows | 1,691 | 30 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-010` | Work-Surface, Project, Product, and Integration Boundaries | 1,297 | 15 | `SCOPE_REFINEMENT_NEEDED` |
-| `CAT-011` | Legal, License, and Public-Release Boundaries | 42 | 0 | `SCOPE_REFINEMENT_NEEDED` |
+| CategoryID | Name | IN Atoms | Open Findings | Resolved Findings | Ratification Verdict |
+|---|---|---:|---:|---:|---|
+| `CAT-001` | Epistemic and Professional-Practice Foundations | 2,182 | 0 | 135 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-002` | Governance and Agent Instruction Architecture | 1,110 | 0 | 25 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-003` | Decomposition Lifecycle and Domain Structuring | 2,281 | 0 | 206 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-004` | Task, Skill, and Tool Execution Contracts | 2,635 | 0 | 107 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-005` | Source Fidelity, Retrieval, and Validation Infrastructure | 149 | 0 | 22 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-006` | Audit, Review, Reconciliation, and Evaluation | 2,567 | 0 | 174 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-007` | Publication, Aggregation, Hypergraph, and Synthesis | 2,118 | 0 | 88 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-008` | Document, Asset, Drawing, and Engineering-Data Extraction | 3,319 | 0 | 77 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-009` | Coordination, Change, Scheduling, and Deliverable Workflows | 1,691 | 0 | 30 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-010` | Work-Surface, Project, Product, and Integration Boundaries | 1,316 | 0 | 17 | `SCOPE_REFINEMENT_NEEDED` |
+| `CAT-011` | Legal, License, and Public-Release Boundaries | 35 | 0 | 0 | `SCOPE_REFINEMENT_NEEDED` |
 
 Gate 3 draft registers:
 
-- `Category_Register.csv` — proposed flat Categories with source-alignment citations.
-- `Domain_Ledger_Gate3_Category_Draft.csv` — all accepted Gate 2 atom rows plus proposed `CategoryID`; every `IN` atom has exactly one proposed Category.
-- `Category_Scope_Ratification.csv` — dense and BM25 scope evidence; all rows are `SCOPE_REFINEMENT_NEEDED`.
-- `Category_Assignment_Findings.csv` — 881 ambiguous category-assignment candidates requiring review.
-- `Category_Assignment_Findings_Summary.csv` and `Category_Assignment_Review_Packet.md` — compact review aids for those ambiguous assignments.
-- `Category_Assignment_Summary.csv` — per-category counts.
-- `gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/GATE3_CATEGORY_PROPOSAL.md` and `gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/HANDOFF_STATE.md` — Gate 3 proposal snapshot and handoff state.
+- `Category_Register.csv` - refined flat Categories with source-alignment citations and sharper inclusion/exclusion criteria.
+- `Domain_Ledger_Gate3_Category_Draft.csv` - all accepted Gate 2 atom rows plus draft `CategoryID`; every `IN` atom has exactly one draft Category.
+- `Category_Boundary_Decisions.csv` - Gate 3 boundary/tie-break rules used for forced assignment decisions.
+- `Category_Scope_Ratification.csv` - dense and BM25 scope evidence; all rows remain `SCOPE_REFINEMENT_NEEDED` under the default 0.75 cosine threshold.
+- `Category_Assignment_Findings.csv` - 881 advisory ambiguous-assignment findings, all `RESOLVED_FORCED_DECISION`.
+- `Category_Assignment_Findings_Summary.csv` and `Category_Assignment_Review_Packet.md` - compact review aids for resolved assignments and changed-assignment spot checks.
+- `Category_Assignment_Summary.csv` - per-category counts.
+- `Gate3_Ratification_Calibration.md` - dense threshold calibration note; not an acceptance record.
+- `gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/GATE3_CATEGORY_REFINEMENT.md` and `gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/HANDOFF_STATE.md` - latest Gate 3 refinement snapshot and handoff state.
 
-Dense ratification completed against `BAAI/bge-base-en-v1.5`, but it did not produce `CLUSTER_COHERENT` verdicts. The proposed categories are structurally useful as a first partition, but their current names/scope queries are too broad or insufficiently crisp for the default 0.75 cosine threshold. Gate 3 cannot close until the Category scopes/assignments are refined and reratified, or the human explicitly approves a calibrated ratification threshold/basis.
+Dense ratification completed against `BAAI/bge-base-en-v1.5`, but it did not produce `CLUSTER_COHERENT` verdicts under the default 0.75 cosine threshold. The refined categories are structurally useful as the current flat partition, and assignment review no longer has open findings. Gate 3 cannot close until the human explicitly approves a calibrated dense-ratification threshold/basis or directs further category refinement.
 
 Gate 3 closure wording remains:
 

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-15T02:01:07Z",
+  "generated_utc": "2026-06-15T02:19:06Z",
   "source_count": 225,
   "source_manifest": "domains/chirality/_Sources/Source_Manifest.csv",
   "source_manifest_sha256": "6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e",
@@ -39,7 +39,7 @@
   "catalog_validation_status": "PASS",
   "catalog_validation_evidence": "validate_source_database PASS on domains/chirality/_LocalIndexes/_LATEST.md -> SRCIDX_20260614T204703Z (0 blockers, 0 warnings)",
   "retrieval_smoke_status": "PASS",
-  "retrieval_smoke_evidence": "BM25 rank 1 for derivative-package rule is @repo/AGENTS.md MARKDOWN_SECTION",
+  "retrieval_smoke_evidence": "BM25/dense source_v2 query path available; smoke query for derivative-package rule ranks @repo/AGENTS.md first.",
   "skeleton_count": 225,
   "review_html_count": 225,
   "section_nodes_count": 225,
@@ -222,16 +222,20 @@
     "closed_issue": "OI-018"
   },
   "gate3_category_proposal": {
-    "status": "OPEN_SCOPE_REFINEMENT_NEEDED",
+    "status": "OPEN_PENDING_CALIBRATED_RATIFICATION_APPROVAL",
     "proposal_pointer": "domains/chirality/_Decomposition/gate3_categories/_LATEST_GATE3_PROPOSAL.md",
-    "proposal_snapshot": "domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z",
+    "proposal_snapshot": "domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z",
     "category_count": 11,
     "draft_ledger_rows": 19473,
     "assigned_in_atoms": 19403,
+    "assignment_changes": 87,
     "ambiguous_assignment_findings": 881,
+    "open_assignment_findings": 0,
+    "resolved_assignment_findings": 881,
     "ratification_verdict": "SCOPE_REFINEMENT_NEEDED",
     "dense_attempt": "Completed successfully; source_v2 status READY with embeddings_norm.npy.",
-    "scope_refinement_blockers": 11
+    "scope_refinement_blockers": 11,
+    "remaining_gate3_blocker": "Human approval of calibrated dense-ratification threshold/basis or further category refinement."
   },
   "retrieval_index_status": "READY"
 }

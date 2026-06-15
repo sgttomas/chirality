@@ -2152,12 +2152,12 @@ gate_snapshots/GATE2_PHASE2_20260614T204403Z/HANDOFF_STATE.md,snapshot / handoff
 phase2_batches/_LATEST_PHASE2_GATE2.md,snapshot / handoff artifact,Pointer to latest accepted Phase 2 Gate 2 package with source-unit authority caveat closed.
 gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z/GATE2_SOURCE_UNIT_AUTHORITY.md,snapshot / handoff artifact,Immutable Gate 2 addendum closing grouped skill-pack source-unit caveat before Gate 3.
 gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z/HANDOFF_STATE.md,snapshot / handoff artifact,Gate 2 handoff addendum recording Phase 3 readiness after source-unit authority caveat closure.
-Category_Register.csv,authoritative companion register,Gate 3 proposed flat Category register with source-alignment citations; Gate 3 open.
-Domain_Ledger_Gate3_Category_Draft.csv,authoritative companion register,Gate 3 draft category-assigned atom ledger; every IN atom has one proposed CategoryID; not promoted over Atomic_Domain_Ledger.csv until Gate 3 closes.
-Category_Scope_Ratification.csv,authoritative companion register,Gate 3 BM25-only draft scope ratification; all categories pending dense ratification.
-Category_Assignment_Findings.csv,authoritative companion register,Gate 3 ambiguous-assignment finding register; 881 open candidates.
-Category_Assignment_Summary.csv,authoritative companion register,Gate 3 per-category atom and finding counts.
-gate3_categories/_LATEST_GATE3_PROPOSAL.md,snapshot / handoff artifact,Pointer to latest Gate 3 category proposal package.
+Category_Register.csv,authoritative companion register,Gate 3 refined flat Category register with source-alignment citations and boundary-refined inclusion/exclusion criteria; Gate 3 open.
+Domain_Ledger_Gate3_Category_Draft.csv,authoritative companion register,Gate 3 refined category-assigned atom ledger; every IN atom has one draft CategoryID; 87 boundary-rule assignment changes; not promoted over Atomic_Domain_Ledger.csv until Gate 3 closes.
+Category_Scope_Ratification.csv,authoritative companion register,Gate 3 BM25+dense scope ratification after boundary refinement; all categories remain SCOPE_REFINEMENT_NEEDED under default 0.75 threshold pending calibrated-basis approval.
+Category_Assignment_Findings.csv,authoritative companion register,Gate 3 assignment finding register; 881 advisory ambiguous findings resolved as forced decisions by boundary rules.
+Category_Assignment_Summary.csv,authoritative companion register,"Gate 3 per-category atom, resolved-finding, and scope-verdict counts after boundary refinement."
+gate3_categories/_LATEST_GATE3_PROPOSAL.md,snapshot / handoff artifact,Pointer to latest Gate 3 category refinement package.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/GATE3_CATEGORY_PROPOSAL.md,snapshot / handoff artifact,Gate 3 category proposal snapshot; open pending dense ratification.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/HANDOFF_STATE.md,snapshot / handoff artifact,Gate 3 handoff state with dense-ratification blocker and remaining findings.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Register.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 category register.
@@ -2165,5 +2165,18 @@ gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Domain_Ledger_Gate3_Ca
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Scope_Ratification.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 BM25-only ratification draft.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Assignment_Findings.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 ambiguous assignment findings.
 gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/Category_Assignment_Summary.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 assignment summary.
-Category_Assignment_Findings_Summary.csv,authoritative companion register,Gate 3 summary of ambiguous assignment findings by Category and source.
-Category_Assignment_Review_Packet.md,review aid,Compact Gate 3 review packet for ambiguous assignment candidates.
+Category_Assignment_Findings_Summary.csv,authoritative companion register,Gate 3 summary of resolved assignment findings and changed-assignment counts by refined Category.
+Category_Assignment_Review_Packet.md,review aid,"Compact Gate 3 review packet for boundary-rule assignment refinement, resolved findings, and changed-assignment spot checks."
+Category_Boundary_Decisions.csv,authoritative companion register,Gate 3 primary-function category boundary and tie-break decision register used to resolve ambiguous assignment findings.
+Gate3_Ratification_Calibration.md,review aid,Gate 3 dense-ratification calibration note; records why default 0.75 cosine threshold remains blocking and requires explicit human approval before closure.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/GATE3_CATEGORY_REFINEMENT.md,snapshot / handoff artifact,"Gate 3 category refinement snapshot; assignment findings resolved, dense calibration still open."
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/HANDOFF_STATE.md,snapshot / handoff artifact,Gate 3 refinement handoff state with calibrated-ratification blocker.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Register.csv,snapshot / handoff artifact,Snapshot copy of refined Gate 3 Category register.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Domain_Ledger_Gate3_Category_Draft.csv,snapshot / handoff artifact,Snapshot copy of refined Gate 3 category-assigned draft ledger.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Scope_Ratification.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 post-refinement scope ratification.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Assignment_Findings.csv,snapshot / handoff artifact,Snapshot copy of resolved Gate 3 assignment findings.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Assignment_Summary.csv,snapshot / handoff artifact,Snapshot copy of post-refinement assignment summary.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Assignment_Findings_Summary.csv,snapshot / handoff artifact,Snapshot copy of post-refinement findings summary.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Boundary_Decisions.csv,snapshot / handoff artifact,Snapshot copy of Gate 3 boundary decision register.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Gate3_Ratification_Calibration.md,snapshot / handoff artifact,Snapshot copy of dense-ratification calibration note.
+gate3_categories/GATE3_CATEGORY_REFINEMENT_20260615T021906Z/Category_Assignment_Review_Packet.md,snapshot / handoff artifact,Snapshot copy of post-refinement assignment review packet.
