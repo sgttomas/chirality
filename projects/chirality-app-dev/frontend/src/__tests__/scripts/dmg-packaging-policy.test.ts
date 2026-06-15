@@ -77,7 +77,7 @@ describe('dmg packaging policy', () => {
           to: 'agents'
         }),
         expect.objectContaining({
-          from: '../../../docs',
+          from: '../docs',
           to: 'docs'
         })
       ])

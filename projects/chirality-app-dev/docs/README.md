@@ -18,6 +18,7 @@ This docs package defines why the app exists, what must remain true, how the run
 | `TYPES.md` | Vocabulary and identities | Canonical terms, identifiers, states, runtime records, and type targets. |
 | `PRD.md` | Product requirements | Current product scope, functional requirements, milestones, known gaps, and accepted implementation direction. |
 | `PLAN.md` | Strategic roadmap | Strategic runtime roadmap and sequencing rationale; not the active queue. |
+| `WHAT-IS-AN-AGENT.md` | Agent model explainer | Operational definition of agents, bounded agent layers, and human accountability posture. |
 | `VALIDATION_STRATEGY.md` | Validation strategy | Evidence classes, command routing, evidence artifacts, and open validation decisions. |
 | `RELEASE_QUALITY_GATES.md` | Release-quality gates | Gate routing for governance, runtime, permissions, harness workflow, network, UI/claims, packaging, and future domain adapters. |
 | `BUILD_AND_RELEASE.md` | Build and release guide | Local command map, artifact locations, evidence profiles, packaging review, and future CI/release decisions. |

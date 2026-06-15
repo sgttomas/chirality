@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
@@ -43,10 +43,18 @@ async function writeFixture(root: string, overrides?: Record<string, string>): P
   }
 }
 
-async function runIntegrityScript(args: string[]): Promise<ScriptResult> {
+async function writeFixtureFiles(root: string, files: Record<string, string>): Promise<void> {
+  for (const [relativePath, content] of Object.entries(files)) {
+    const absolutePath = path.join(root, relativePath);
+    await mkdir(path.dirname(absolutePath), { recursive: true });
+    await writeFile(absolutePath, content, 'utf8');
+  }
+}
+
+async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
   try {
     const result = await execFileAsync('node', [SCRIPT_PATH, ...args], {
-      cwd: process.cwd()
+      cwd
     });
     return {
       code: 0,
@@ -151,5 +159,130 @@ describe('verify-instruction-root-integrity script', () => {
         })
       ])
     );
+  });
+
+  it('supports split source roots for monorepo instruction packages', async () => {
+    const rootFilesRoot = path.join(tmpRoot, 'monorepo-root');
+    const agentsRoot = path.join(rootFilesRoot, 'agents');
+    const docsRoot = path.join(tmpRoot, 'app-dev', 'docs');
+    const bundleRoot = path.join(tmpRoot, 'bundle-root');
+    const outputRoot = path.join(tmpRoot, 'output');
+
+    await writeFixtureFiles(rootFilesRoot, {
+      'AGENTS.md': BASE_FIXTURE_FILES['AGENTS.md'],
+      'README.md': BASE_FIXTURE_FILES['README.md'],
+      'PROFESSIONAL_ENGINEERING.md': BASE_FIXTURE_FILES['PROFESSIONAL_ENGINEERING.md']
+    });
+    await writeFixtureFiles(agentsRoot, {
+      'AGENT_WORKING_ITEMS.md': BASE_FIXTURE_FILES['agents/AGENT_WORKING_ITEMS.md'],
+      'AGENT_TASK.md': BASE_FIXTURE_FILES['agents/AGENT_TASK.md']
+    });
+    await writeFixtureFiles(docsRoot, {
+      'WHAT-IS-AN-AGENT.md': BASE_FIXTURE_FILES['docs/WHAT-IS-AN-AGENT.md'],
+      'DIRECTIVE.md': BASE_FIXTURE_FILES['docs/DIRECTIVE.md'],
+      'CONTRACT.md': BASE_FIXTURE_FILES['docs/CONTRACT.md'],
+      'SPEC.md': BASE_FIXTURE_FILES['docs/SPEC.md'],
+      'TYPES.md': BASE_FIXTURE_FILES['docs/TYPES.md'],
+      'PLAN.md': BASE_FIXTURE_FILES['docs/PLAN.md']
+    });
+    await writeFixture(bundleRoot);
+
+    const result = await runIntegrityScript([
+      '--root-files-root',
+      rootFilesRoot,
+      '--agents-root',
+      agentsRoot,
+      '--docs-root',
+      docsRoot,
+      '--bundle-root',
+      bundleRoot,
+      '--output-root',
+      outputRoot
+    ]);
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toContain('instruction-root integrity status: pass');
+
+    const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
+    const summary = JSON.parse(summaryRaw) as {
+      sourceLayout: string;
+      sourceRoot: string | null;
+      sourceRoots: {
+        rootFilesRoot: string;
+        agentsRoot: string;
+        docsRoot: string;
+      };
+      status: string;
+      checkedFileCount: number;
+    };
+
+    expect(summary.status).toBe('pass');
+    expect(summary.sourceLayout).toBe('split');
+    expect(summary.sourceRoot).toBeNull();
+    expect(summary.sourceRoots).toEqual({
+      rootFilesRoot: path.resolve(rootFilesRoot),
+      agentsRoot: path.resolve(agentsRoot),
+      docsRoot: path.resolve(docsRoot)
+    });
+    expect(summary.checkedFileCount).toBe(11);
+  });
+
+  it('auto-detects split source roots from the app-dev frontend workspace', async () => {
+    const monorepoRoot = path.join(tmpRoot, 'monorepo-root');
+    const agentsRoot = path.join(monorepoRoot, 'agents');
+    const appDevRoot = path.join(monorepoRoot, 'projects', 'chirality-app-dev');
+    const frontendCwd = path.join(appDevRoot, 'frontend');
+    const docsRoot = path.join(appDevRoot, 'docs');
+    const bundleRoot = path.join(tmpRoot, 'bundle-root');
+    const outputRoot = path.join(tmpRoot, 'output');
+
+    await mkdir(frontendCwd, { recursive: true });
+    await writeFixtureFiles(monorepoRoot, {
+      'AGENTS.md': BASE_FIXTURE_FILES['AGENTS.md'],
+      'README.md': BASE_FIXTURE_FILES['README.md'],
+      'PROFESSIONAL_ENGINEERING.md': BASE_FIXTURE_FILES['PROFESSIONAL_ENGINEERING.md']
+    });
+    await writeFixtureFiles(agentsRoot, {
+      'AGENT_WORKING_ITEMS.md': BASE_FIXTURE_FILES['agents/AGENT_WORKING_ITEMS.md'],
+      'AGENT_TASK.md': BASE_FIXTURE_FILES['agents/AGENT_TASK.md']
+    });
+    await writeFixtureFiles(docsRoot, {
+      'WHAT-IS-AN-AGENT.md': BASE_FIXTURE_FILES['docs/WHAT-IS-AN-AGENT.md'],
+      'DIRECTIVE.md': BASE_FIXTURE_FILES['docs/DIRECTIVE.md'],
+      'CONTRACT.md': BASE_FIXTURE_FILES['docs/CONTRACT.md'],
+      'SPEC.md': BASE_FIXTURE_FILES['docs/SPEC.md'],
+      'TYPES.md': BASE_FIXTURE_FILES['docs/TYPES.md'],
+      'PLAN.md': BASE_FIXTURE_FILES['docs/PLAN.md']
+    });
+    await writeFixture(bundleRoot);
+
+    const result = await runIntegrityScript(
+      ['--bundle-root', bundleRoot, '--output-root', outputRoot],
+      frontendCwd
+    );
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toContain('instruction-root integrity status: pass');
+
+    const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
+    const summary = JSON.parse(summaryRaw) as {
+      sourceLayout: string;
+      sourceRoot: string | null;
+      sourceRoots: {
+        rootFilesRoot: string;
+        agentsRoot: string;
+        docsRoot: string;
+      };
+      status: string;
+    };
+
+    expect(summary.status).toBe('pass');
+    expect(summary.sourceLayout).toBe('split');
+    expect(summary.sourceRoot).toBeNull();
+    expect(summary.sourceRoots).toEqual({
+      rootFilesRoot: await realpath(monorepoRoot),
+      agentsRoot: await realpath(agentsRoot),
+      docsRoot: await realpath(docsRoot)
+    });
   });
 });

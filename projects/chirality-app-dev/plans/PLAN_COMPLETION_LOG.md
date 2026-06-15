@@ -6,6 +6,37 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Instruction-root split-root package integrity repair landed (`INSTRUCTION-ROOT-SPLIT-001`)
+
+Repaired the normal package `instruction-root:integrity` path for the app-dev split source
+layout. The verifier now supports explicit split source roots and auto-detects the app-dev
+frontend workspace shape: root files (`AGENTS.md`, `README.md`, and
+`PROFESSIONAL_ENGINEERING.md`) plus `agents/` come from the Chirality monorepo root, while
+current governance docs come from `projects/chirality-app-dev/docs`. The generated manifest
+records `sourceLayout: split`, per-source root paths, and the packaged resource comparisons.
+
+Updated Electron `extraResources` to package app-dev governance docs from `../docs`, added
+the required app-dev `docs/WHAT-IS-AN-AGENT.md`, indexed that file in the docs package, and
+aligned the workflow guide's current-posture summary with the active plan now landed through
+R4 Bash. The old temporary merged-root workaround is no longer required for package integrity.
+
+Residual: dev-server harness default instruction-root resolution remains a separate runtime
+resolver concern if selected later. This tranche did not change provider scope, runtime tool
+exposure, network policy, package dependencies, runtime language, SDK subprocess behavior,
+DMG distribution posture, release readiness, lifecycle issuance, professional approval,
+certification, sealing, authentication, or code-compliance acceptance.
+
+Validation: `npm run test -- verify-instruction-root-integrity dmg-packaging-policy`;
+`npm run test` (43 files, 331 tests); `npm run typecheck`; `npm run desktop:pack`, which ran
+`npm run build`, unsigned/unnotarized macOS arm64 app-directory packaging with publishing
+disabled, and `npm run instruction-root:integrity`. The fresh integrity summary passed with
+`sourceLayout: split`, 46 checked files, zero missing files, zero hash mismatches, and zero
+unexpected bundled agent files at
+`frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. `desktop:dist`
+was skipped because this was an app-directory package-layout repair, not a DMG or release
+candidate review. Harness premerge was skipped because no running harness API, SSE contract,
+session lifecycle, or runtime source behavior changed in this tranche.
+
 ## 2026-06-15 - R4 Bash prerequisites and controlled Bash implementation landed (`BASH-R4-001`)
 
 Landed bounded SDK `Bash` exposure for the opt-in first-adapter path. Bash is model-visible

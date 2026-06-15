@@ -33,7 +33,12 @@ function printUsage() {
   console.log(`Usage: node ./scripts/verify-instruction-root-integrity.mjs [options]
 
 Options:
-  --source-root <path>   Source instruction-root root (default: ../)
+  --source-root <path>   Monolithic source instruction-root root
+  --root-files-root <path>
+                         Source root for AGENTS.md, README.md, and PROFESSIONAL_ENGINEERING.md
+                         (default: auto-detected monorepo root)
+  --agents-root <path>   Source agents directory root (default: <root-files-root>/agents)
+  --docs-root <path>     Source docs directory root (default: auto-detected app-dev docs)
   --bundle-root <path>   Packaged Resources root (default: dist/mac-arm64/Chirality.app/Contents/Resources)
   --output-root <path>   Output directory for manifest + summary (default: artifacts/harness/instruction-root-integrity/latest)
   --help                 Show this message
@@ -61,6 +66,24 @@ function parseArgs(argv) {
 
     if (token === '--source-root') {
       options.sourceRoot = readArgValue(argv, index + 1, token);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--root-files-root') {
+      options.rootFilesRoot = readArgValue(argv, index + 1, token);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--agents-root') {
+      options.agentsRoot = readArgValue(argv, index + 1, token);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--docs-root') {
+      options.docsRoot = readArgValue(argv, index + 1, token);
       index += 1;
       continue;
     }
@@ -108,7 +131,7 @@ function readGitSha(sourceRoot) {
   }
 }
 
-function hasInstructionRootShape(candidateRoot) {
+function hasMonolithicInstructionRootShape(candidateRoot) {
   return (
     existsSync(path.join(candidateRoot, 'agents')) &&
     existsSync(path.join(candidateRoot, 'AGENTS.md')) &&
@@ -116,29 +139,98 @@ function hasInstructionRootShape(candidateRoot) {
   );
 }
 
-function resolveDefaultSourceRoot() {
+function hasSplitInstructionRootShape({ rootFilesRoot, agentsRoot, docsRoot }) {
+  return (
+    REQUIRED_ROOT_FILES.every((fileName) => existsSync(path.join(rootFilesRoot, fileName))) &&
+    existsSync(agentsRoot) &&
+    REQUIRED_DOC_FILES.every((fileName) => existsSync(path.join(docsRoot, fileName)))
+  );
+}
+
+function resolveDefaultSourceRoots() {
+  const envRoot = process.env.CHIRALITY_INSTRUCTION_ROOT
+    ? path.resolve(process.env.CHIRALITY_INSTRUCTION_ROOT)
+    : undefined;
+
+  if (envRoot && hasMonolithicInstructionRootShape(envRoot)) {
+    return {
+      rootFilesRoot: envRoot,
+      agentsRoot: path.join(envRoot, 'agents'),
+      docsRoot: path.join(envRoot, 'docs'),
+      sourceLayout: 'monolithic',
+      sourceRoot: envRoot
+    };
+  }
+
+  const monorepoRoot = path.resolve(process.cwd(), '..', '..', '..');
+  const appDevRoot = path.resolve(process.cwd(), '..');
+  const splitCandidate = {
+    rootFilesRoot: monorepoRoot,
+    agentsRoot: path.join(monorepoRoot, 'agents'),
+    docsRoot: path.join(appDevRoot, 'docs'),
+    sourceLayout: 'split'
+  };
+
+  if (hasSplitInstructionRootShape(splitCandidate)) {
+    return splitCandidate;
+  }
+
   const candidates = [
-    process.env.CHIRALITY_INSTRUCTION_ROOT
-      ? path.resolve(process.env.CHIRALITY_INSTRUCTION_ROOT)
-      : undefined,
+    envRoot,
     path.resolve(process.cwd(), '..'),
     path.resolve(process.cwd(), '..', '..', '..')
   ].filter(Boolean);
 
-  return candidates.find(hasInstructionRootShape) ?? candidates[0];
+  const sourceRoot = candidates.find(hasMonolithicInstructionRootShape) ?? candidates[0];
+  return {
+    rootFilesRoot: sourceRoot,
+    agentsRoot: path.join(sourceRoot, 'agents'),
+    docsRoot: path.join(sourceRoot, 'docs'),
+    sourceLayout: 'monolithic',
+    sourceRoot
+  };
 }
 
-async function listSourceAgentFiles(sourceRoot) {
-  const agentsDirectory = path.join(sourceRoot, 'agents');
-  const entries = await readdir(agentsDirectory, { withFileTypes: true });
+function resolveSourceRoots(args) {
+  if (args.sourceRoot) {
+    const sourceRoot = path.resolve(args.sourceRoot);
+    return {
+      rootFilesRoot: sourceRoot,
+      agentsRoot: path.join(sourceRoot, 'agents'),
+      docsRoot: path.join(sourceRoot, 'docs'),
+      sourceLayout: 'monolithic',
+      sourceRoot
+    };
+  }
+
+  const defaults = resolveDefaultSourceRoots();
+  const rootFilesRoot = path.resolve(args.rootFilesRoot ?? defaults.rootFilesRoot);
+  const agentsRoot = path.resolve(args.agentsRoot ?? defaults.agentsRoot);
+  const docsRoot = path.resolve(args.docsRoot ?? defaults.docsRoot);
+  const sourceLayout =
+    rootFilesRoot === docsRoot && agentsRoot === path.join(rootFilesRoot, 'agents')
+      ? 'monolithic'
+      : 'split';
+
+  return {
+    rootFilesRoot,
+    agentsRoot,
+    docsRoot,
+    sourceLayout,
+    sourceRoot: sourceLayout === 'monolithic' ? rootFilesRoot : undefined
+  };
+}
+
+async function listSourceAgentFiles(agentsRoot) {
+  const entries = await readdir(agentsRoot, { withFileTypes: true });
 
   const agentFiles = entries
     .filter((entry) => entry.isFile() && /^AGENT_.*\.md$/.test(entry.name))
-    .map((entry) => toPosix(path.join('agents', entry.name)))
+    .map((entry) => entry.name)
     .sort();
 
   if (agentFiles.length === 0) {
-    throw new Error(`No AGENT_*.md files were found in ${agentsDirectory}`);
+    throw new Error(`No AGENT_*.md files were found in ${agentsRoot}`);
   }
 
   return agentFiles;
@@ -159,20 +251,29 @@ async function listBundleAgentFiles(bundleRoot) {
     .sort();
 }
 
-async function buildSourceManifest(sourceRoot) {
-  const sourceAgentFiles = await listSourceAgentFiles(sourceRoot);
-  const relativePaths = [
-    ...REQUIRED_ROOT_FILES,
-    ...REQUIRED_DOC_FILES.map((fileName) => toPosix(path.join('docs', fileName))),
-    ...sourceAgentFiles
+async function buildSourceManifest({ rootFilesRoot, agentsRoot, docsRoot }) {
+  const sourceAgentFiles = await listSourceAgentFiles(agentsRoot);
+  const sourceEntries = [
+    ...REQUIRED_ROOT_FILES.map((fileName) => ({
+      bundlePath: fileName,
+      sourcePath: path.join(rootFilesRoot, fileName)
+    })),
+    ...REQUIRED_DOC_FILES.map((fileName) => ({
+      bundlePath: toPosix(path.join('docs', fileName)),
+      sourcePath: path.join(docsRoot, fileName)
+    })),
+    ...sourceAgentFiles.map((fileName) => ({
+      bundlePath: toPosix(path.join('agents', fileName)),
+      sourcePath: path.join(agentsRoot, fileName)
+    }))
   ];
 
   const entries = [];
-  for (const relativePath of relativePaths) {
-    const absolutePath = path.join(sourceRoot, relativePath);
-    const digest = await sha256ForFile(absolutePath);
+  for (const entry of sourceEntries) {
+    const digest = await sha256ForFile(entry.sourcePath);
     entries.push({
-      path: relativePath,
+      path: entry.bundlePath,
+      sourcePath: entry.sourcePath,
       sha256: digest.sha256,
       sizeBytes: digest.sizeBytes
     });
@@ -238,7 +339,7 @@ async function main() {
     return;
   }
 
-  const sourceRoot = path.resolve(args.sourceRoot ?? resolveDefaultSourceRoot());
+  const sourceRoots = resolveSourceRoots(args);
   const bundleRoot = path.resolve(
     args.bundleRoot ?? path.join(process.cwd(), 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
   );
@@ -249,7 +350,7 @@ async function main() {
 
   await mkdir(outputRoot, { recursive: true });
 
-  const manifestEntries = await buildSourceManifest(sourceRoot);
+  const manifestEntries = await buildSourceManifest(sourceRoots);
   const verification = await verifyManifestAgainstBundle({
     manifestEntries,
     bundleRoot
@@ -262,18 +363,30 @@ async function main() {
       ? 'pass'
       : 'fail';
 
-  const gitSha = readGitSha(sourceRoot);
+  const gitSha = readGitSha(sourceRoots.rootFilesRoot);
   const manifest = {
     generatedAt: nowIso(),
     gitSha,
-    sourceRoot,
+    sourceLayout: sourceRoots.sourceLayout,
+    sourceRoot: sourceRoots.sourceRoot ?? null,
+    sourceRoots: {
+      rootFilesRoot: sourceRoots.rootFilesRoot,
+      agentsRoot: sourceRoots.agentsRoot,
+      docsRoot: sourceRoots.docsRoot
+    },
     files: manifestEntries
   };
 
   const summary = {
     generatedAt: nowIso(),
     gitSha,
-    sourceRoot,
+    sourceLayout: sourceRoots.sourceLayout,
+    sourceRoot: sourceRoots.sourceRoot ?? null,
+    sourceRoots: {
+      rootFilesRoot: sourceRoots.rootFilesRoot,
+      agentsRoot: sourceRoots.agentsRoot,
+      docsRoot: sourceRoots.docsRoot
+    },
     bundleRoot,
     checkedFileCount: manifestEntries.length,
     status,

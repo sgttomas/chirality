@@ -29,6 +29,10 @@
       "role": "strategic roadmap"
     },
     {
+      "path": "WHAT-IS-AN-AGENT.md",
+      "role": "agent model explainer"
+    },
+    {
       "path": "VALIDATION_STRATEGY.md",
       "role": "validation evidence routing"
     },

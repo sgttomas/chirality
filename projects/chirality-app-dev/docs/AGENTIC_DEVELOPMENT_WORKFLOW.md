@@ -40,8 +40,8 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 
 The current default work mode is bounded app-integration tranches for the Chirality harness runtime. The active completion plan has:
 
-- the runtime dependency spine, where the next unblocked implementation item is **Permission overlay skeleton**; and
-- a governance support lane that records the landed planning, validation, release, and workflow documentation alignment tranches.
+- a runtime dependency spine currently landed through **R4 Bash prerequisites and controlled Bash implementation**, with remaining capability expansion and provider broadening behind future tranches and human gates; and
+- a governance support lane that records the landed planning, validation, release, workflow documentation, state-file retirement, and scope-change closure-support tranches.
 
 Select exactly one tranche unless the human explicitly approves batching. Tranches selected from unblocked plan rows are pre-approved for execution within their stated write scope. Stop when further progress requires a human ruling.
 

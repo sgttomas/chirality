@@ -64,7 +64,7 @@
         "to": "agents"
       },
       {
-        "from": "../../../docs",
+        "from": "../docs",
         "to": "docs"
       },
       {
