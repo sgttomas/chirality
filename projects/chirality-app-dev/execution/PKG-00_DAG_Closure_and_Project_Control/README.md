@@ -30,6 +30,8 @@ This does not modify dependency edge state and does not make the strict product 
 
 PKG-00 now stages SCC remediation as SCC Resolution Cases. WORKING_ITEMS dispatches bounded TASK agents into case folders under the relevant `DEL-00-*` control deliverable. Cases are living receptacles for repeated deliverable-local findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs.
 
+Each SCC is resolved per the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`), whose four named moves are *decompose* (split a too-coarse node), *invert* (reverse a dependency behind a contract), *merge* (accept the cluster as one indivisible unit), and *cut* (reclassify an edge as out-of-objective). PKG-00's existing retire/preserve rulings are the cut/keep subset; a residual longer cycle with no edge that can be honestly cut may need *decompose*, *invert*, or *merge*. Cut and merge are human-gated.
+
 The earlier Scope Change Consumable Packets remain preserved as seed evidence inside the cases. They are not sufficient by themselves to select a remedy, initiate SCOPE_CHANGE, update dependency rows, amend decomposition truth, or close the dependency graph.
 
 Active cases:

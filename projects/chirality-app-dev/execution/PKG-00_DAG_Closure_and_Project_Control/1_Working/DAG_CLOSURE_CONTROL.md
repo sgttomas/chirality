@@ -24,6 +24,8 @@ Project-level reconciliation is an agentic workflow:
 6. Run a new DepClosure scan.
 7. Repeat until strict SCC count is 0.
 
+Step-4 rulings draw on the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): resolve each SCC by one of four recorded moves — decompose / invert / merge / cut. The retire/preserve rulings recorded below are the cut/keep subset; the residual six-node longer cycle (no remaining bidirectional pairs) may require *decompose* (split a too-coarse node such as `DEL-03-04`), *invert* (reverse a dependency behind a contract), or *merge* if no edge in it can be honestly reclassified as non-blocking. Cut and merge are human-gated.
+
 ## Control Deliverable Readiness
 
 The two `DEL-00-*` control deliverables were regenerated through bounded `TASK` workers after the earlier direct ORCHESTRATOR-authored `SEMANTIC_READY` entries were invalidated as provisional.
