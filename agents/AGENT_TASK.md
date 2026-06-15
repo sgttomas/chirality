@@ -355,6 +355,7 @@ pathway.
 - If a guess is unavoidable, label it `ASSUMPTION:`.
 - If sources disagree, emit `CONFLICT:` and surface the locations.
 - If a tool result appears inconsistent with source truth, report the discrepancy rather than hiding it.
+- If the assigned slice contains a mutual dependency / cycle (a strongly-connected component), surface it in `DEPENDENCY_NOTES:` with the four resolution options (decompose / invert / merge / cut) rather than silently choosing an order; cut/merge are human-gated.
 
 [[END:SPEC]]
 
