@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - D-APP-05 ruled Custom Option B/A-prerequisite
+
+Human project authority approved a custom prerequisite ruling for `D-APP-05`. Before
+executable SDK subagents are exposed, Chirality must implement or specify a Chirality-owned
+provider-adapter-neutral agent/subagent runtime contract informed by both Claude Agent SDK
+and Pi agent SDK patterns.
+
+The ruling allows Claude Agent SDK `Agent` to remain the first adapter-specific substrate
+and allows Pi to be used as an architectural pattern corpus. Neither Claude nor Pi may
+define Chirality's public/core runtime contract.
+
+This ruling does not approve Pi package import, Pi adapter/fork/sidecar/spike, Node 22
+sidecar or runtime-floor migration for Pi, concrete non-Anthropic provider implementation,
+provider routing, provider/network expansion, remote MCP/plugins, executable SDK subagent
+exposure, release readiness, lifecycle issuance, professional approval, certification,
+sealing, authentication, or code-compliance acceptance.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, or release-readiness posture changed in the
+ruling-record tranche. The next unblocked plan item is the provider-adapter-neutral
+agent/subagent runtime contract prerequisite.
+
+Validation: docs/control-plane static checks only. Frontend runtime tests were skipped
+because this tranche only recorded the human ruling and updated the decision register,
+active plan, and completion log.
+
 ## 2026-06-15 - R5 governed SDK subagent runtime decision packet prepared (`D-APP-05`)
 
 Prepared the post-Bash R5 decision packet for governed SDK subagent runtime. The packet
