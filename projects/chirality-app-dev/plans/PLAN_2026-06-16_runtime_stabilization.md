@@ -176,7 +176,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 
 | Tranche | Purpose | Primary scope | Minimum validation |
 |---|---|---|---|
-| `STAB-00` Baseline Reconciliation & ID Canonicalization | Accepted current-state map before implementation. | Publish the §5 matrix as a regenerable artifact; finalize the stale-governance disposition list; record the deliverable-status reconciliation note; **canonicalize Section 9 ID spellings** (SPEC `adapter_*` / `permission_overlay_hard_deny_precedence` over archived `sdk_*` / `_deny_first`); list required human rulings. | Governance gate: markdown diff hygiene, path/reference checks, no-runtime-change check. |
+| `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-01` Section 9 Validation Surface | Make landed runtime maturity machine-readable. | Add `validate-harness-section9.mjs` aggregating the **13** landed deterministic checks into a `summary.json`; new npm script + artifact path; additive premerge integration that does not destabilize Section 8. | `npm run typecheck`, `npm run test`, `node scripts/validate-harness-section9.mjs`, then `npm run harness:validate:premerge`. |
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | Prove the opt-in SDK path well enough for a future default decision. | (a) wire API-key injection for the active turn + redaction test; (b) one dev-build real/scripted `agentSdk` turn; (c) `agentSdk`-mode network proof; (d) packaged subprocess probe (`asarUnpack` + HOME + DMG). Prepare D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | Harden reconstruction of runtime activity. | Generalize overflow spill beyond Bash and into the mapper path; surface malformed-tail diagnostics; bounded Write/Edit diff **summary** (no full diffs); full event-class replay-coverage test; wire `createAdapterObservedChildRunRecord` (DEL-08-05); add direct tests for `tool-evidence` / `tool-result-artifacts`. | Focused replay/artifact/evidence tests; `typecheck`; `test`; premerge if UI/API behavior changes. |
@@ -188,41 +188,22 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 
 ### STAB-00 — Baseline Reconciliation & ID Canonicalization
 
-Goal: a defensible current-state map and a clean canonical-ID basis before any validation
-or feature change.
+Status: **LANDED 2026-06-16**.
 
-Required outputs:
+Outputs:
 
-- **Current-state matrix** (§5) published as a regenerable artifact, e.g.
-  `plans/artifacts/runtime_capability_matrix.md`, each LANDED/PARTIAL row citing at least
-  one source file and one test.
-- **Stale-governance disposition list** (the STAB-00/05 redline plan), each row:
-  `doc + anchor | stale claim | contradicting source | disposition`. Dispositions:
-  - **UPDATE IN PLACE** (factual wiring errors): PRD `FR-027` (`PRD.md:498`) and `FR-070`
-    (`PRD.md:581`) "`anthropic` resolves to SDK after R1 cutover"; PLAN R1 (`PLAN.md:147`)
-    "wire `=anthropic` to SDK path" — the SDK is selected by opt-in `agentSdk`, not
-    `anthropic`; SPEC §19.4 (`SPEC.md:928`) "SDK turn can start in packaged app after R1"
-    contradicts `Packaging BLOCKED_TBD`.
-  - **SUPERSEDE WITH DATED NOTE** (assessment overtaken by landed runtime): PRD §2
-    assessment (`PRD.md:46`) tool-surface/permission/transcript clauses; PRD
-    KG-004/005/006/010; DIRECTIVE 2.8 / CONTRACT K-ENGINE-3 / SPEC 12.1,10.3
-    "current shipped path"; PLAN/PRD R2–R5 forward roadmap.
-  - **KEEP AS CURRENT** (still accurate gap, do **not** mark resolved): PRD §2 persona
-    clause + KG-002 (`StubPersonaManager` still returns a one-line stub).
-  - **KEEP / DEFER** (spec, not a contradiction): SPEC §19.3 `section9.*` IDs — the
-    running artifact is unbuilt; that is STAB-01 work, not a doc edit.
-- **Deliverable-status reconciliation note** (§5) explaining why `_STATUS.md`
-  `SEMANTIC_READY` state must not be read as runtime completion; no bulk `_STATUS.md` edit.
-- **Section 9 ID canonicalization**: adopt `docs/SPEC.md` §19.3 spellings as canonical
-  (`adapter_turn_engine_event_log`, `adapter_message_mapper`,
-  `permission_overlay_hard_deny_precedence`). Treat `sdk_*` and `permission_overlay_deny_first`
-  spellings (which live under `.archive/`) as superseded aliases needing only a one-line
-  alias note — no live-file edit.
-- **Required human rulings list** (§9): D-APP-12 (default cutover), D-APP-13 (mutating MCP
-  exposure); confirm STAB-05 doc-edit posture.
+- `plans/artifacts/runtime_capability_matrix.md`
+- `plans/artifacts/stab00_reconciliation_disposition.md`
 
-STAB-00 changes no runtime source. It is the hard prerequisite for STAB-01 (which hard-codes
-the canonical IDs) and STAB-06 (which applies the disposition list).
+Residual handoff:
+
+- STAB-01 must use canonical Section 9 IDs from `docs/SPEC.md` Section 19.3 and
+  `docs/PRD.md` Section 12.4.
+- STAB-06 consumes the disposition list for factual corrections and dated supersession
+  notes only; policy changes remain gated by D-APP-12/D-APP-13.
+- STAB-00 corrected the earlier guidance assumption that legacy `sdk_*` aliases live only
+  under `.archive`; they also occur in live deliverable-local kits, so new validation work
+  must bind to the canonical `adapter_*` IDs without mass-editing lifecycle artifacts.
 
 ### STAB-01 — Section 9 Validation Surface
 

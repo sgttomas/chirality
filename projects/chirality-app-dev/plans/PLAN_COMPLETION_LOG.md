@@ -6,6 +6,44 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization baseline reconciliation landed (`STAB-00`)
+
+Landed the first Runtime Stabilization tranche after D-APP-11 accepted
+`plans/PLAN_2026-06-16_runtime_stabilization.md` as the active queue.
+
+Artifacts added:
+
+- `plans/artifacts/runtime_capability_matrix.md` publishes the runtime current-state
+  matrix with source/test evidence for landed and partial capabilities, plus the
+  deliverable-status reconciliation note.
+- `plans/artifacts/stab00_reconciliation_disposition.md` records the stale-governance
+  disposition list, Section 9 ID canonicalization, live-alias finding, and pending ruling
+  posture.
+
+The tranche records that all 53 deliverable `_STATUS.md` files currently report
+`SEMANTIC_READY`, but treats that as decomposition-process status rather than
+runtime-completion evidence. No `_STATUS.md` files were bulk-edited.
+
+The tranche also corrects a guidance assumption in the active plan: older
+`section9.sdk_turn_engine_event_log` and `section9.sdk_message_mapper` aliases are not
+confined to `.archive`; they also appear in live deliverable-local kits. New validation
+work must use the canonical `section9.adapter_turn_engine_event_log` and
+`section9.adapter_message_mapper` IDs from `docs/SPEC.md` Section 19.3 and `docs/PRD.md`
+Section 12.4.
+
+Validation passed: `git diff --check -- plans`; referenced-path existence checks for the
+new artifacts and cited authority/source files; decision-register/ruling posture review
+for D-APP-12 and D-APP-13; `git diff --name-only` no-runtime-source-change confirmation;
+static status scan confirming `SEMANTIC_READY 53`; and static Section 9 alias/canonical-ID
+scan. Frontend runtime tests, typecheck, harness premerge, instruction-root integrity,
+network proof, build, packaging, and DMG checks were skipped because STAB-00 changes only
+planning/governance artifacts and no runtime, package, wrapper, provider, network, or
+release-significant source.
+
+Residual handoff: STAB-01 is next and should build the Section 9 validation surface using
+canonical IDs. D-APP-12 remains AWAITING_RULING for default-provider cutover; D-APP-13
+remains NOT_PREPARED for mutating Chirality MCP exposure.
+
 ## 2026-06-16 - SCC closeout landed (`SCC-CLOSEOUT-001`)
 
 Closed the residual six-node strict dependency SCC loop after accepted snapshot
