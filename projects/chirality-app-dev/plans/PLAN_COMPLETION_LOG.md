@@ -6,6 +6,40 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Post-design R5 slice-selection packet prepared (`D-APP-09`)
+
+Prepared `D-APP-09` after `R5-DESIGN-001` landed. The packet asks which post-design R5
+path is approved: `R5-SLICE-001` only, non-executable bridge through slice 003,
+non-executable scaffolding through slice 005, executable slice 006 after earlier evidence,
+or continued hold.
+
+`_DECISIONS/_REGISTER.md` now records `D-APP-09` as `AWAITING_RULING`. Until the human
+rules, runtime source implementation, SDK `agents` option construction, model-visible SDK
+`Agent`, child turn execution, child output artifacts from executable child runs, child
+capability inheritance or expansion, concrete provider implementation, provider routing,
+network expansion, Pi runtime paths, dependency-register edits, project-wide strict
+dependency-closure claims, release-readiness claims, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, and
+professional-boundary claim changes remain denied.
+
+The packet preserves `D-APP-07` and cycle-driven resolution posture: the residual six-node
+SCC remains non-gating only for bounded R5 dispatch selection and remains unresolved for
+project-wide strict dependency closure. No SCC cut, merge, decompose, invert, or dependency
+amendment is approved by the packet.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in this packet tranche.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+targeted `rg` checks for `D-APP-09`, `R5-SLICE`, `AWAITING_RULING`, and denied-surface
+references; referenced-path existence checks for the D-APP-09 packet, decision register,
+active plan, completion log, R5 design package, D-APP-07/D-APP-08 rulings, SCC evidence,
+and validation routing docs; decision-register ID uniqueness check; source/package
+exclusion check. Frontend runtime tests, typecheck, harness premerge, instruction-root
+integrity, build, packaging, network proof, and DMG checks were skipped because this
+tranche only prepared a decision packet and updated control-plane planning surfaces.
+
 ## 2026-06-16 - R5 executable implementation design package landed (`R5-DESIGN-001`)
 
 Prepared `plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md` under
