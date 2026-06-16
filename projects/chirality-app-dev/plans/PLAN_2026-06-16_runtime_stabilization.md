@@ -72,7 +72,8 @@ Reconciliation issues confirmed by research (drives STAB-00 and STAB-05):
 
 - Several governance passages describe the harness as lacking runtime primitives that now
   exist in source (PRD §2 assessment, KG-004/005/006/010; PLAN/PRD R2–R5 forward
-  roadmap). A minority are genuinely stale; a few are still accurate gaps (persona stub).
+  roadmap). A minority are genuinely stale; a few were still accurate gaps at baseline
+  (the persona-stub gap was closed by STAB-05).
 - All **53** deliverable `_STATUS.md` files read `Current State: SEMANTIC_READY`
   (uniform 2026-05-20 decomposition value). The v3.2 decomposition remains the topology
   authority, but `_STATUS.md` lifecycle state does **not** reflect runtime implementation
@@ -153,7 +154,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 20 | Dependencies.csv v3.1 reader/writer/linter **engine** | `lib/dependencies/register-writer.ts`, `lib/dependencies/schema.ts`, `lib/workspace/deliverable-contracts.ts` | `lib/dependencies-register-contract.test.ts` | DEL-07-05 | LANDED (engine); MCP writer is GAP (row 28) |
 | 21 | Provider selection (default stub; `anthropic`; `agentSdk` opt-in) | `runtime.ts`, `agent-sdk-manager.ts`, `anthropic-agent-sdk-manager.ts`, `claude-agent-sdk-manager.ts` | `lib/harness-runtime.test.ts` | DEL-04-01 | LANDED (opt-in preserved) |
 | 22 | **API key supply to SDK for the active turn** | — (not wired) | — | DEL-04-05 | **GAP** (no `ANTHROPIC_API_KEY` injection before `query()`; UI-only key passes presence gate but never reaches the SDK) |
-| 23 | **PersonaComposer from instruction root** | `persona-manager.ts` (`StubPersonaManager`) | — | DEL-04-04 | **GAP** (still one-line stub; `runtime.ts:62` instantiates the stub) |
+| 23 | **PersonaComposer from instruction root** | `persona-manager.ts` (`PersonaComposer`) | `lib/persona-manager.test.ts`, `api/harness/routes.test.ts`, `lib/claude-agent-sdk-manager.test.ts` | DEL-04-04 | LANDED |
 | 24 | Section 8 running-app validation + stable premerge artifact | `scripts/validate-harness-section8.mjs`, `scripts/validate-harness-premerge.mjs` | `scripts/*` | DEL-09-01 | LANDED |
 | 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
 | 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL (DMG path exists; **no `asarUnpack` for the SDK**; subprocess proof `BLOCKED_TBD`) |
@@ -180,7 +181,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | Prove the opt-in SDK path well enough for a future default decision. | (a) wire API-key injection for the active turn + redaction test; (b) one dev-build real/scripted `agentSdk` turn; (c) `agentSdk`-mode network proof; (d) packaged subprocess probe (`asarUnpack` + HOME + DMG). Prepare D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-04` Deterministic Chirality MCP Maturity | Expose only bounded mutating Chirality MCP tools after validation hardening. | SDK-behavior probe (does `canUseTool`/hooks fire for in-process MCP tools?); then `status_transition` → `deps_write` (→ optional `scaffold_exec`) over the **already-landed** lifecycle/deps engines, with an in-handler diff-evidence wrapper. Requires D-APP-13. | Permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
-| `STAB-05` Persona Composer from Instruction Root | Replace the persona stub so a real turn is meaningful. | Implement `PersonaComposer` from instruction-root governance, active persona, working-root policy, mode, and tool-surface composition; content-hash + boot fingerprint; replace `StubPersonaManager` wiring in `runtime.ts`. | Persona composition tests, content-hash tests, `typecheck`, `test`; premerge (boot/turn behavior changes). |
+| `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-06` Governance Refresh & Active Queue | Convert accepted outcomes into governance/coordination surfaces. | Apply the STAB-00 disposition list (factual corrections + dated supersession notes only); reflect D-APP-12 ruling; refresh coordination; record program completion. | Governance gate. Runtime commands skipped unless executable behavior changed. |
 
 ## 7. Tranche Detail
@@ -331,21 +332,23 @@ denied/reserved tools.
 
 ### STAB-05 — Persona Composer from Instruction Root
 
-Goal: replace `StubPersonaManager` so a default or opt-in turn produces a governed,
-instruction-root-driven system prompt. This is a confirmed live gap (DEL-04-04, SOW-017,
-PRD KG-002) that no other tranche owned; real persona quality also makes the STAB-02
-default-cutover decision meaningful.
+Status: **LANDED 2026-06-16**.
 
-Scope: implement `PersonaComposer` composing instruction-root governance, active persona,
-working-root policy, runtime mode, and tool-surface posture into the system prompt;
-content-hash the composed persona and surface it in boot/turn evidence (boot fingerprint);
-replace the `StubPersonaManager` wiring in `runtime.ts`. Preserve the rule that the
-composed prompt carries no professional-approval or release-readiness claims.
+Outputs:
 
-Tests: persona content-hash stability, instruction-root resolution + typed missing-resource
-failure, mode/tool-surface composition, and a boot-fingerprint assertion. This is an
-implementation slice within already-approved scope; it needs no new human ruling beyond
-program acceptance, but should land before the D-APP-12 default-cutover ruling.
+- `PersonaComposer` composes bounded instruction-root governance excerpts, selected
+  `AGENT_<persona>.md` content, working-root policy, mode policy, and tool-surface posture
+  into the SDK appended system prompt.
+- Boot metadata now uses a content-derived fingerprint, and `turn.accepted` evidence
+  records a prompt hash without storing raw prompt text.
+- Runtime wiring instantiates `PersonaComposer` instead of `StubPersonaManager`.
+
+Residual handoff:
+
+- STAB-02 real/scripted `agentSdk` turns can now exercise the SDK path with governed
+  persona context before D-APP-12 default-provider cutover review.
+- Prompt text remains support context only; product-critical write/tool/release boundaries
+  remain enforced by runtime code, hooks, descriptors, human gates, and validation.
 
 ### STAB-06 — Governance Refresh & Active Queue
 
@@ -356,7 +359,7 @@ Scope:
 - Apply the STAB-00 disposition list: **factual corrections in place** (env-value wiring
   errors in PRD FR-027/FR-070, PLAN R1, SPEC §19.4) and **dated supersession notes** for
   assessment text (PRD §2, KG-004/005/006/010, "current shipped path" framing,
-  PLAN/PRD R2–R5 roadmap). Preserve the persona-stub clause until STAB-05 lands.
+  PLAN/PRD R2–R5 roadmap). Update persona-stub references now that STAB-05 has landed.
 - **Do not make policy changes in place.** Any change that declares the SDK the default
   provider, broadens network/provider scope, or alters professional-boundary posture
   requires its governing ruling (D-APP-12) first. If a redline would change policy rather
@@ -477,7 +480,8 @@ verified live and that this plan adopts:
 - The `agentSdk` API-key supply gap is real and load-bearing → STAB-02 step (a).
 - `createAdapterObservedChildRunRecord` has zero callers → the genuine subagent PARTIAL
   (DEL-08-05) → STAB-03 item E.
-- `StubPersonaManager` is still the live persona path → STAB-05.
+- `StubPersonaManager` was the live persona path at research time; STAB-05 landed the
+  replacement `PersonaComposer`.
 
 ## 14. Explicit Out of Scope
 

@@ -178,7 +178,8 @@ describe('TurnEngine', () => {
     expect(personaManager.buildSystemPrompt).toHaveBeenCalledWith(
       session.projectRoot,
       'WORKING_ITEMS',
-      'direct'
+      'direct',
+      []
     );
     expect(attachmentResolver.resolveAttachmentsToContentBlocks).toHaveBeenCalledWith(
       'hello from engine',

@@ -134,6 +134,14 @@ describe('ClaudeAgentSdkManager', () => {
       'model.completed',
       'turn.completed'
     ]);
+    expect(replay.events[0].data).toMatchObject({
+      provider: 'claude-agent-sdk',
+      sdkPackageVersion: '0.3.150',
+      persona: 'WORKING_ITEMS',
+      mode: 'direct',
+      model: 'claude-test',
+      personaPromptHash: expect.stringMatching(/^[a-f0-9]{64}$/)
+    });
   });
 
   it('passes executable Agent options only through delegated R5 governance', async () => {

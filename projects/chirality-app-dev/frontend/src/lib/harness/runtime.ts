@@ -2,7 +2,7 @@ import { AnthropicAgentSdkManager } from './anthropic-agent-sdk-manager';
 import { StubAgentSdkManager } from './agent-sdk-manager';
 import { ClaudeAgentSdkManager } from './claude-agent-sdk-manager';
 import { AttachmentResolver } from './attachment-resolver';
-import { StubPersonaManager } from './persona-manager';
+import { PersonaComposer } from './persona-manager';
 import { FileSessionManager } from './session-manager';
 import { TurnEngine } from './turn-engine';
 import { IAgentSdkManager, IAttachmentResolver, IPersonaManager, ISessionManager } from './types';
@@ -44,11 +44,12 @@ function buildAgentSdkManager(mode: HarnessProviderMode): IAgentSdkManager {
     return new AnthropicAgentSdkManager();
   }
   if (mode === 'agentSdk') {
-    return new ClaudeAgentSdkManager(undefined, async (projectRoot, persona, runtimeMode) =>
+    return new ClaudeAgentSdkManager(undefined, async (projectRoot, persona, runtimeMode, tools) =>
       harnessRuntimeGlobal.__CHIRALITY_HARNESS_RUNTIME__?.personaManager.buildSystemPrompt(
         projectRoot,
         persona,
-        runtimeMode
+        runtimeMode,
+        tools
       ) ?? ''
     );
   }
@@ -59,7 +60,7 @@ export function getHarnessRuntime(): HarnessRuntime {
   if (!harnessRuntimeGlobal.__CHIRALITY_HARNESS_RUNTIME__) {
     const providerMode = resolveHarnessProviderMode();
     const sessionManager = new FileSessionManager();
-    const personaManager = new StubPersonaManager();
+    const personaManager = new PersonaComposer();
     const attachmentResolver = new AttachmentResolver();
     const agentSdkManager = buildAgentSdkManager(providerMode);
 

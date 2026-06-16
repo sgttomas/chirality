@@ -1,5 +1,5 @@
 import { query, type Query } from '@anthropic-ai/claude-agent-sdk';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { AgentEnginePort, AgentEngineRunInput } from './agent-engine-port';
 import { HarnessError } from './errors';
 import { buildSdkOptions, buildSdkPrompt } from './sdk-options-builder';
@@ -21,6 +21,10 @@ type ActiveTurnState = {
 
 const SDK_PACKAGE_VERSION = '0.3.150';
 
+function hashPrompt(systemPrompt: string): string {
+  return createHash('sha256').update(systemPrompt).digest('hex');
+}
+
 export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort {
   readonly subject = 'claude-agent-sdk' as const;
   private readonly activeTurns = new Map<string, ActiveTurnState>();
@@ -30,7 +34,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     private readonly buildSystemPrompt: (
       projectRoot: string,
       persona: string,
-      mode: string
+      mode: string,
+      tools?: readonly string[]
     ) => Promise<string> = async () => ''
   ) {}
 
@@ -110,8 +115,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       const systemPrompt = await this.buildSystemPrompt(
         input.session.projectRoot,
         input.opts.persona,
-        input.opts.mode
+        input.opts.mode,
+        input.opts.tools
       );
+      const personaPromptHash = hashPrompt(systemPrompt);
       const sdkOptions = buildSdkOptions({
         session: input.session,
         opts: input.opts,
@@ -126,6 +133,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           data: {
             provider: 'claude-agent-sdk',
             sdkPackageVersion: SDK_PACKAGE_VERSION,
+            persona: input.opts.persona,
+            mode: input.opts.mode,
+            personaPromptHash,
+            bootFingerprint: input.session.bootFingerprint,
             model: input.opts.model
           }
         })

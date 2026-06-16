@@ -6,6 +6,51 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization persona composer landed (`STAB-05`)
+
+Landed the Persona Composer from Instruction Root tranche from the accepted Runtime
+Stabilization plan.
+
+Runtime changes:
+
+- Replaced `StubPersonaManager` with `PersonaComposer`, which composes bounded
+  instruction-root governance excerpts, selected `agents/AGENT_<persona>.md` content,
+  working-root policy, mode policy, and descriptor-derived tool-surface posture into the
+  SDK appended system prompt.
+- Boot metadata now uses a content-derived 64-character fingerprint derived from the
+  composed prompt inputs. `turn.accepted` evidence records persona, mode, model, SDK
+  package version, optional boot fingerprint, and a prompt hash without storing raw prompt
+  text in `HarnessEvent.data`.
+- `runtime.ts`, `TurnEngine`, and the boot route now pass resolved tool surfaces into the
+  composer, so default and opt-in turns share the same prompt-policy basis.
+
+Tests added or expanded:
+
+- `lib/persona-manager.test.ts`
+- expanded `api/harness/routes.test.ts`, `lib/claude-agent-sdk-manager.test.ts`,
+  `lib/harness-runtime.test.ts`, and `lib/turn-engine.test.ts`
+
+Validation passed: focused STAB-05 suite
+`npm run test -- --run src/__tests__/lib/persona-manager.test.ts
+src/__tests__/lib/harness-runtime.test.ts src/__tests__/lib/turn-engine.test.ts
+src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/api/harness/routes.test.ts`
+(5 files, 41 tests); `npm run typecheck`; full `npm run test` (48 files, 358 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks); and
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`.
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-05 does not change
+provider, API-key, network, or outbound behavior. `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche does not change package
+layout, SDK subprocess packaging, distribution artifacts, or release-candidate posture.
+
+Residual handoff: STAB-02 real/scripted SDK turns can now exercise the `agentSdk` path
+with governed persona context before D-APP-12 default-provider cutover review. D-APP-12
+remains AWAITING_RULING for default-provider cutover, and D-APP-13 remains NOT_PREPARED
+for mutating Chirality MCP exposure. The next recommended stabilization tranche is
+STAB-02 SDK Runtime Readiness & Cutover Decision.
+
 ## 2026-06-16 - Runtime stabilization replay and artifact evidence landed (`STAB-03`)
 
 Landed the Session Replay, Artifact Evidence, and Subagent Records tranche from the

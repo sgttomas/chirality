@@ -232,6 +232,7 @@ describe('Harness API baseline routes', () => {
 
   it('boots sessions and persists boot metadata', async () => {
     const routes = await importRouteModules();
+    const runtime = routes.runtimeModule.getHarnessRuntime();
     const { body } = await createSession(routes, context.projectRoot);
 
     const bootResponse = await routes.bootRoute.POST(
@@ -250,6 +251,14 @@ describe('Harness API baseline routes', () => {
 
     expect(typeof bootBody.boot.claudeSessionId).toBe('string');
     expect(typeof bootBody.boot.bootFingerprint).toBe('string');
+    expect(bootBody.boot.bootFingerprint).toMatch(/^[a-f0-9]{64}$/);
+    expect(bootBody.boot.bootFingerprint).toBe(
+      runtime.personaManager.getBootFingerprint('WORKING_ITEMS', 'direct', context.projectRoot, [
+        'read',
+        'write',
+        'bash'
+      ])
+    );
     expect(typeof bootBody.boot.bootedAt).toBe('string');
     expect(bootBody.session.bootFingerprint).toBe(bootBody.boot.bootFingerprint);
   });
