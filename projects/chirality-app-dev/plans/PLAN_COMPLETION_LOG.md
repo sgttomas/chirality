@@ -6,6 +6,36 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Residual six-node SCC RECONCILIATION package prepared
+
+Prepared the RECONCILIATION longer-cycle ruling package required by `D-APP-06` for the
+residual six-node strict SCC. The stepwise run dispatched `AUDIT_DEP_CLOSURE`, which
+created `execution/_Reconciliation/DepClosure/CLOSURE_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1820/`
+and confirmed the current graph still has one strict SCC of size six:
+`DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, and `DEL-05-02`.
+
+The RECONCILIATION package lives at
+`execution/_Reconciliation/RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825/`.
+It determines that the SCC blocks project-wide strict dependency-closure claims. It also
+records that dependency evidence alone does not prove every possible bounded executable R5
+implementation is technically blocked, but executable R5 remains held until human project
+authority chooses the package's R5 implication path.
+
+No cut, merge, dependency-register amendment, executable R5 implementation, SDK `Agent`
+exposure, executable SDK `agents`, child turn execution, child output artifacts, child
+capability inheritance, Pi runtime path, concrete provider, provider routing, network
+expansion, release-readiness claim, lifecycle issuance, professional approval,
+certification, sealing, authentication, code-compliance acceptance, or professional-boundary
+claim change was approved or implemented.
+
+Validation: docs/control-plane and CSV/JSON checks only: `git diff --check -- execution/_Reconciliation plans`;
+JSON parsing for the closure summaries; CSV parsing for the SCC edge and human-ruling
+workbooks; artifact existence checks for the RECONCILIATION package and dependency-closure
+snapshot; pointer checks for `_Reconciliation/_LATEST.md` and `DepClosure/_LATEST.md`.
+Runtime tests, typecheck, harness premerge, build, packaging, network proof, and DMG checks
+were skipped because this tranche changed only reconciliation evidence and planning
+surfaces.
+
 ## 2026-06-15 - D-APP-06 ruled Option C
 
 Human project authority approved `D-APP-06` Option C. Executable R5 governed subagent
