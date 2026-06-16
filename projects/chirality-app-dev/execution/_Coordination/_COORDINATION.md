@@ -4,6 +4,7 @@
 **Active persona:** `WORKING_ITEMS`
 **Default work mode:** bounded app-integration tranches
 **Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+**Current active queue:** resolve the residual six-node strict dependency SCC via `plans/PLAN_2026-06-16_six_node_scc_resolution.md` before selecting any new broad runtime roadmap.
 
 ## Active Surface
 
@@ -34,7 +35,8 @@ Primary authority and guidance:
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `execution/_ScopeChange/_LATEST.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
-- `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
+- `plans/PLAN_2026-06-16_six_node_scc_resolution.md` - active non-governing SCC-resolution tranche-selection plan
+- `plans/PLAN_2026-06-13_runtime_completion.md` - retired runtime completion history
 - `plans/PLAN_COMPLETION_LOG.md` - landed-tranche narrative history
 - `plans/chirality-app-future-development-plan.md` - seed runtime roadmap/reference
 - `plans/claude-agent-sdk-implementation-followups.md` - first-adapter implementation reference
@@ -44,7 +46,8 @@ Primary authority and guidance:
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
 - `execution/_Reconciliation/DepClosure/_LATEST.md`
-- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1820/Dependency_Closure_Report.md`
+- `execution/_Reconciliation/RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825/SCC_Ruling_Package.md`
 
 ## Authority And State Rules
 
@@ -64,11 +67,12 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-1. `plans/PLAN_2026-06-13_runtime_completion.md` is the active non-governing completion plan. It orders tranche selection toward the PRD and strategic roadmap.
-2. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
-3. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
-4. `execution/_Coordination/_LATEST.md` is a discovery pointer for coordination surfaces only. It is not authority and must not accumulate state history.
-5. There is no active `NEXT_INSTANCE_STATE.md`; do not recreate it or use any hand-maintained coordination file as the app state.
+1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the active non-governing SCC-resolution plan. It orders tranche selection for resolving the residual six-node strict dependency SCC before any new broad runtime roadmap is selected.
+2. `plans/PLAN_2026-06-13_runtime_completion.md` is retired as the active queue and retained only as historical completion evidence for landed runtime work.
+3. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
+4. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
+5. `execution/_Coordination/_LATEST.md` is a discovery pointer for coordination surfaces only. It is not authority and must not accumulate state history.
+6. There is no active `NEXT_INSTANCE_STATE.md`; do not recreate it or use any hand-maintained coordination file as the app state.
 
 When guidance surfaces disagree with authoritative surfaces, surface the discrepancy and correct the guidance surface. Do not silently rewrite authority.
 
@@ -81,7 +85,7 @@ At the start of a new loop:
 3. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
 4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
 5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
-6. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
+6. Read `plans/PLAN_2026-06-16_six_node_scc_resolution.md` for active tranche ordering.
 7. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
 8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
 9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
@@ -94,11 +98,11 @@ At the start of a new loop:
 
 ## Active Development Loop
 
-Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select exactly one earliest unblocked item from `plans/PLAN_2026-06-13_runtime_completion.md`.
+Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select exactly one earliest unblocked item from `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 
 A tranche is acceptable when it has:
 
-- one clear objective tied to the active completion plan;
+- one clear objective tied to the active SCC-resolution plan;
 - a narrow write scope;
 - a validation command or concrete manual verification target;
 - all required human rulings recorded in `_DECISIONS/_REGISTER.md`;
@@ -106,11 +110,12 @@ A tranche is acceptable when it has:
 
 Default ordering:
 
-1. Repair failing validation or incomplete evidence for already-landed runtime work.
-2. Select the earliest unblocked item on the active completion plan's dependency spine.
-3. Prepare a decision packet only when the next plan item is blocked by a human ruling and no packet exists.
-4. If a packet already awaits ruling, continue to the next unblocked implementation item.
-5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
+1. Repair failing validation or incomplete evidence for already-landed SCC/control-plane work.
+2. Select the earliest unblocked item on the active SCC-resolution spine.
+3. Apply only source-grounded decompose/invert moves when the active plan authorizes them.
+4. Prepare a decision packet when the next SCC move requires a human-gated cut, merge, or objective-dependent ruling and no packet exists.
+5. If a packet already awaits ruling, stop; do not substitute unrelated runtime hardening or out-of-stage scope.
+6. Stop when no current SCC-resolution item remains unblocked; do not select a new broad runtime roadmap from the retired completion plan.
 
 If dependency evidence is needed, use the latest DepClosure snapshot and selected deliverable-local dependency files to discover blockers. Do not infer project-wide blocked/unblocked state from a stale summary or from a hand-maintained coordination state file.
 
@@ -147,7 +152,7 @@ At the end of a validated tranche:
    - from `frontend/`: `npm run instruction-root:integrity`.
 3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
 4. Route build, packaging, and release-significant changes through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
-5. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
+5. Update affected rows in `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
 7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
 8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.

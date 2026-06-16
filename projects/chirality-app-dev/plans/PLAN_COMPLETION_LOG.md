@@ -1,6 +1,6 @@
 # Runtime Plan Completion Log
 
-This log preserves landed-tranche narrative for the active runtime completion plan, currently `plans/PLAN_2026-06-13_runtime_completion.md`.
+This log preserves landed-tranche narrative for retired runtime completion plan `plans/PLAN_2026-06-13_runtime_completion.md` and the active SCC-resolution plan `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 
 This file is history, not authority. Project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history. Nothing here is a lifecycle decision, release-readiness claim, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 
@@ -741,7 +741,7 @@ Accepted `SCA-APP-001 Provider-General Runtime and Pi Pattern-Corpus Reorientati
 
 The amendment records provider-adapter generality as the strategic runtime direction, keeps Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path, treats Pi as pattern corpus/reference only, and reframes permission governance as capability-forward, policy-mediated, and evidence-recorded tool use with explicit hard-deny precedence.
 
-D-APP-01, D-APP-02, and D-APP-03 are now RULED in `execution/_Coordination/_DECISIONS/_REGISTER.md`. The active completion plan no longer selects Pi adapter/spike work.
+D-APP-01, D-APP-02, and D-APP-03 are now RULED in `execution/_Coordination/_DECISIONS/_REGISTER.md`. The then-active completion plan no longer selected Pi adapter/spike work.
 
 Execution deliverable `_CONTEXT.md` files for affected PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 deliverables were aligned with SCA context. Their local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, dependency, and reference artifacts remain explicit follow-up review surfaces.
 
@@ -773,7 +773,7 @@ Validation details are not restated in the compact coordination state; use the c
 
 Added product-owned `TurnEngine` lifecycle ownership for pre-stream turn preflight, same-session locking, attachment/governance shaping, adapter stream execution, session metadata persistence, cancellation delegation, and mid-stream terminal error mapping.
 
-The tranche preserved `/api/harness/turn` SSE behavior. Residual: continue extracting policy from route-owned surfaces only where planned by the active runtime completion plan.
+The tranche preserved `/api/harness/turn` SSE behavior. Residual: continue extracting policy from route-owned surfaces only where selected by a later active plan.
 
 Validation details are not restated in the compact coordination state; use the commit and associated test history as the evidence pointer.
 
