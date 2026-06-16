@@ -102,11 +102,12 @@ Acceptance of the *program* does not pre-approve the human-gated rulings inside 
 
 - **Stabilize before expanding:** validation, replay, evidence, packaging, persona, and
   governance reconciliation precede new capability.
-- **Unit-proven is not runtime-proven.** Nearly every `agentSdk` "landed" claim today
-  rests on a mocked `query()` and scripted-stub conformance fixtures; no real or
-  scripted-real SDK turn has executed end-to-end (dev or packaged). The plan treats
-  "has a passing unit/contract test" and "completes a real turn" as distinct evidence
-  tiers and never lets the former masquerade as the latter.
+- **Unit-proven is not runtime-proven.** The opt-in `agentSdk` path now has scripted
+  dev-turn and scripted network-proof evidence through the real SDK `query()` surface,
+  while packaged subprocess evidence remains separate and open. The plan treats
+  "has a passing unit/contract test", "completes a dev/scripted turn", and "completes a
+  packaged subprocess turn" as distinct evidence tiers and never lets one masquerade as
+  another.
 - **Provider-adapter generality stays strategic**; do not implement concrete
   non-Anthropic providers without a future bounded ruling and plan.
 - **Preserve current network policy:** loopback plus the current Anthropic API path.
@@ -158,7 +159,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 24 | Section 8 running-app validation + stable premerge artifact | `scripts/validate-harness-section8.mjs`, `scripts/validate-harness-premerge.mjs` | `scripts/*` | DEL-09-01 | LANDED |
 | 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
 | 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL (DMG path exists; **no `asarUnpack` for the SDK**; subprocess proof `BLOCKED_TBD`) |
-| 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic`; `agentSdk`-mode outbound **unproven** |
+| 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic` and scripted opt-in `agentSdk` dev proof; packaged subprocess proof remains STAB-02(d) |
 | 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | descriptor metadata only (`tool-descriptor.ts`) | — | DEL-07-04 / DEL-07-05 (MCP half) | **METADATA-ONLY** (STAB-04) |
 
 **Deliverable-status reconciliation note (STAB-00 output).** Every deliverable
@@ -178,7 +179,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 |---|---|---|---|
 | `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a) and (b) landed on `codex/chirality-app-work`. | API-key injection now scopes the resolved key to the active SDK turn and restores prior env state; a route-level opt-in `agentSdk` scripted dev turn now exercises the real SDK `query()` path with an offline subprocess. Remaining: (c) `agentSdk`-mode network proof; (d) packaged subprocess probe (`asarUnpack` + HOME + DMG); D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
+| `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed on `codex/chirality-app-work`. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` now runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence. Remaining: (d) packaged subprocess probe (`asarUnpack` + HOME + DMG); D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-04` Deterministic Chirality MCP Maturity | Expose only bounded mutating Chirality MCP tools after validation hardening. | SDK-behavior probe (does `canUseTool`/hooks fire for in-process MCP tools?); then `status_transition` → `deps_write` (→ optional `scaffold_exec`) over the **already-landed** lifecycle/deps engines, with an in-handler diff-evidence wrapper. Requires D-APP-13. | Permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
 | `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
@@ -228,8 +229,8 @@ Residual handoff:
 ### STAB-02 — SDK Runtime Readiness & Default-Provider Cutover Decision
 
 Goal: prove the real SDK path is functional, governable, and safe enough for a future
-default-provider decision. **Internal ordering matters** — steps (a) and (b) have landed,
-step (c) remains unblocked, and step (d) is the `BLOCKED_TBD` packaging gate.
+default-provider decision. **Internal ordering matters** — steps (a), (b), and (c) have
+landed, and step (d) is the `BLOCKED_TBD` packaging gate.
 
 - **(a) API-key injection for the active turn (load-bearing GAP). LANDED 2026-06-16.**
   `ClaudeAgentSdkManager` now sets `process.env.ANTHROPIC_API_KEY` to the resolved active
@@ -245,9 +246,14 @@ step (c) remains unblocked, and step (d) is the `BLOCKED_TBD` packaging gate.
   active-turn API-key injection, SDK message mapping, session persistence, SSE output,
   and persisted `HarnessEvent` evidence work together without requiring live provider
   network or packaging.
-- **(c) agentSdk-mode network proof.** Extend `proof:network-policy` to run a turn with
-  `CHIRALITY_HARNESS_PROVIDER=agentSdk`, asserting only loopback + `api.anthropic.com`;
-  record the CONF-002 OCSP/CRL carve-out status.
+- **(c) agentSdk-mode network proof. LANDED 2026-06-16.** Extended
+  `proof:network-policy` with `--provider agentSdk --scripted-agent-sdk`, a dev proof
+  mode that runs the opt-in SDK adapter through the real SDK `query()` surface while
+  replacing only the SDK subprocess with an offline deterministic process. The proof
+  stages a fallback temporary workroot when `examples/example-project` is unavailable,
+  records provider/scripted status, treats any TCP endpoint outside loopback and
+  `api.anthropic.com` as non-allowlisted, and preserves the CONF-002 OCSP/CRL carve-out
+  note. This is not packaged subprocess evidence.
 - **(d) Packaged subprocess probe (resolves `BLOCKED_TBD`).** Add electron-builder
   `asarUnpack` for `node_modules/@anthropic-ai/claude-agent-sdk/**`; `build` →
   `desktop:pack` (`--dir`) probe, launch, run one read-tool `agentSdk` turn, confirm the
@@ -406,7 +412,7 @@ STAB-00  (prerequisite: canonical IDs + reconciled baseline)
   ├─► STAB-06  (consumes STAB-00 disposition list; runs last among doc edits)
   └─► (informs all)
 
-STAB-02  (a → b → c → d internal order; a–c unblocked now, d = packaging gate)
+STAB-02  (a → b → c → d internal order; a–c landed, d = packaging gate)
   └─► D-APP-12 cutover ruling AFTER (a)–(d) + Section 8 + Section 9 green + STAB-05
 
 STAB-01 ──► STAB-03 item B (malformed-tail feeds Section 9)
@@ -456,8 +462,8 @@ why runtime commands were skipped.
 
 | Risk | Mitigation |
 |---|---|
-| "Unit-proven" mistaken for "runtime-proven" for the SDK path | STAB-02 step (b) landed a route-level scripted dev-build SDK turn; D-APP-12 remains gated on the remaining (c)–(d) evidence. |
-| API key never reaches the SDK (load-bearing gap) | STAB-02 step (a) landed key-injection + redaction coverage together; step (b) now exercises that path through route-level scripted SDK evidence. |
+| "Unit-proven" mistaken for "runtime-proven" for the SDK path | STAB-02 steps (b) and (c) landed route-level scripted dev-turn and scripted network-proof evidence; D-APP-12 remains gated on packaged subprocess evidence in step (d). |
+| API key never reaches the SDK (load-bearing gap) | STAB-02 step (a) landed key-injection + redaction coverage together; steps (b) and (c) now exercise that path through route-level scripted SDK evidence. |
 | ID/string drift (adapter_/sdk_/_deny_first; `anthropic` vs `agentSdk`) | STAB-00 canonicalizes; STAB-01 and STAB-06 pull from `SPEC.md` / `runtime.ts` only. |
 | New Section 9 aggregator destabilizes the Section 8 gate | Separate TMP root + artifact path; additive premerge; report-only for one cycle then hard-fail. |
 | `canUseTool`/hooks may not fire for in-process MCP tools | STAB-04 runs an SDK-behavior probe before committing the wrapper-only diff-evidence design. |

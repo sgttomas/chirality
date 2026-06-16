@@ -37,7 +37,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run harness:validate:section9` | Section 9 deterministic runtime-ID aggregation over targeted Vitest files with stable summary artifact at `frontend/artifacts/harness/section9/latest/summary.json`. |
 | `npm run harness:validate:agentsdk-dev-turn` | Route-level opt-in `agentSdk` scripted dev-turn validation using the real SDK `query()` path and an offline scripted subprocess. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
-| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. |
+| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. Use `-- --provider agentSdk --scripted-agent-sdk` for the STAB-02(c) dev proof, which runs the opt-in SDK adapter with an offline SDK subprocess and does not replace packaged subprocess evidence. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
 | `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
 | `npm run desktop:dist` | Unsigned/unnotarized local-builder macOS arm64 DMG plus instruction-root integrity. |

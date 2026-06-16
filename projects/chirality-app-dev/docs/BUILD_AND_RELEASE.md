@@ -54,7 +54,7 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run harness:validate:premerge` | Runs the premerge harness validator and writes the stable summary artifact. |
 | `npm run harness:validate:agentsdk-dev-turn` | Runs route-level opt-in `agentSdk` scripted dev-turn validation through the real SDK `query()` path with an offline scripted subprocess. |
 | `npm run instruction-root:integrity` | Verifies required instruction-root resources and writes the integrity summary artifact. |
-| `npm run proof:network-policy` | Runs the current network-policy proof. |
+| `npm run proof:network-policy` | Runs the current network-policy proof. Add `-- --provider agentSdk --scripted-agent-sdk` for the non-packaged STAB-02(c) opt-in SDK network proof. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
 | `npm run desktop:pack` | Builds and produces an unsigned local macOS arm64 app directory with publishing disabled, then verifies instruction-root integrity. |
 | `npm run desktop:dist` | Builds and produces an unsigned/unnotarized local-builder macOS arm64 DMG with publishing disabled, then verifies instruction-root integrity. |

@@ -6,6 +6,49 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization SDK network proof landed (`STAB-02c`)
+
+Landed STAB-02 step (c), the non-packaged opt-in `agentSdk` network-proof evidence
+slice.
+
+Runtime validation changes:
+
+- Extended `proof:network-policy` with `--provider agentSdk --scripted-agent-sdk`.
+- Added an explicit development/test-only `CHIRALITY_AGENTSDK_SCRIPTED_PROOF=1` path in
+  SDK option construction. The path attaches a deterministic `spawnClaudeCodeProcess`
+  only when `NODE_ENV` is `development` or `test`, so normal and packaged SDK subprocess
+  behavior remains unchanged for STAB-02(d).
+- Made the network proof self-stage a temporary fallback workroot when
+  `examples/example-project` is unavailable.
+- Tightened proof endpoint classification so any TCP endpoint outside loopback and
+  `api.anthropic.com` is treated as non-allowlisted.
+- Recorded provider mode, scripted subprocess status, and the existing CONF-002 OCSP/CRL
+  carve-out note in proof summaries.
+
+Validation passed: focused suite
+`npm run test -- --run src/__tests__/lib/sdk-options-builder.test.ts
+src/__tests__/scripts/build-network-policy.test.ts
+src/__tests__/api/harness/agent-sdk-dev-turn.test.ts` (3 files, 15 tests);
+`npm run typecheck`; `npm run proof:network-policy -- --provider agentSdk
+--scripted-agent-sdk --runs 1 --idle-seconds 3 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02c-20260616-guard-rerun`, producing `PASS` with
+`provider=agentSdk`, `scriptedAgentSdk=true`, one blocked renderer diagnostic, one
+network probe payload, and zero non-allowlisted TCP endpoints; full `npm run test` (49
+files, 362 tests); `npm run instruction-root:integrity` (`status=pass`, `checked
+files=46`); `npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13
+checks); and `npm run harness:validate:premerge` with Section 8 pass (8 checks) and
+Section 9 report-only pass (13 checks) against `http://127.0.0.1:3000`. `git diff
+--check` passed.
+
+Skipped checks: `npm run build`, `npm run desktop:pack`, and `npm run desktop:dist` were
+skipped because STAB-02(c) is explicitly non-packaged dev/network evidence. Packaged SDK
+subprocess proof remains STAB-02(d).
+
+Residual handoff: STAB-02 remains partial. Remaining work is (d) packaged SDK subprocess
+proof with `asarUnpack`, HOME, and DMG evidence, followed by the D-APP-12
+default-provider cutover packet if all prerequisites are green. D-APP-12 remains
+AWAITING_RULING. D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure.
+
 ## 2026-06-16 - Runtime stabilization SDK scripted dev turn landed (`STAB-02b`)
 
 Landed STAB-02 step (b), the non-packaged opt-in `agentSdk` scripted dev-turn evidence

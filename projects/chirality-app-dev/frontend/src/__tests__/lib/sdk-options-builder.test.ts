@@ -1,7 +1,7 @@
 import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildSdkOptions } from '../../lib/harness/sdk-options-builder';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
 
@@ -26,9 +26,11 @@ const opts: ResolvedOpts = {
 let tmpDir = '';
 
 afterEach(async () => {
+  vi.unstubAllEnvs();
   delete process.env.CHIRALITY_SDK_SETTING_SOURCES;
   delete process.env.CHIRALITY_ALLOW_SDK_BYPASS;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  delete process.env.CHIRALITY_AGENTSDK_SCRIPTED_PROOF;
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
@@ -65,6 +67,7 @@ describe('buildSdkOptions', () => {
     expect(options.maxTurns).toBe(3);
     expect(options.permissionMode).toBe('default');
     expect(options.canUseTool).toBeTypeOf('function');
+    expect(options.spawnClaudeCodeProcess).toBeUndefined();
   });
 
   it('exposes the full requested read set and keeps unrequested or denied tools disallowed', () => {
@@ -141,6 +144,46 @@ describe('buildSdkOptions', () => {
       systemPrompt: 'persona prompt'
     });
     expect(projectOnly.settingSources).toEqual(['project']);
+  });
+
+  it('attaches the scripted SDK subprocess only for explicit development or test proof runs', () => {
+    vi.stubEnv('CHIRALITY_AGENTSDK_SCRIPTED_PROOF', '1');
+    vi.stubEnv('NODE_ENV', 'test');
+
+    const proofOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(proofOptions.spawnClaudeCodeProcess).toBeTypeOf('function');
+
+    vi.stubEnv('NODE_ENV', 'development');
+    const developmentOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(developmentOptions.spawnClaudeCodeProcess).toBeTypeOf('function');
+
+    vi.stubEnv('NODE_ENV', '');
+    const unsetOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(unsetOptions.spawnClaudeCodeProcess).toBeUndefined();
+
+    vi.stubEnv('NODE_ENV', 'production');
+    const productionOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(productionOptions.spawnClaudeCodeProcess).toBeUndefined();
   });
 
   it('maps Chirality modes to SDK permission posture without premature write auto-acceptance', () => {

@@ -10,6 +10,7 @@ import {
   createChiralityReadMcpServers,
   filterChiralityMcpAllowedToolNames
 } from './mcp/read-tools';
+import { createScriptedAgentSdkProofSpawn } from './scripted-agent-sdk-proof';
 import { createExecutableSubagentBridge } from './subagent-bridge';
 
 export type SdkProbeOptions = Options & {
@@ -98,6 +99,7 @@ export function buildSdkOptions(input: {
     ? toolPool.disallowedToolNames.filter((toolName) => toolName !== 'Agent')
     : [...toolPool.disallowedToolNames];
   const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(allowedToolNames);
+  const scriptedAgentSdkProofSpawn = createScriptedAgentSdkProofSpawn();
 
   return {
     abortController: input.abortController,
@@ -135,6 +137,9 @@ export function buildSdkOptions(input: {
       type: 'preset',
       preset: 'claude_code',
       append: input.systemPrompt
-    }
+    },
+    ...(scriptedAgentSdkProofSpawn
+      ? { spawnClaudeCodeProcess: scriptedAgentSdkProofSpawn }
+      : {})
   };
 }
