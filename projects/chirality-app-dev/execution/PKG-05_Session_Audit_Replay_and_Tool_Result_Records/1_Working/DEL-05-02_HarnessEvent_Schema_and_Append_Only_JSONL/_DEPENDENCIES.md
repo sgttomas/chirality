@@ -28,6 +28,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human read boundary applied: `_STATUS.md` was not read because it was not in the allowed evidence list for dependency extraction.
 - `[WARNING] REF-006_HASH_MISMATCH`: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived details remain source-state-warning context.
 - Parent anchor check passed: one ACTIVE `IMPLEMENTS_NODE` row is present.
+- 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-05-02-011` from a coarse deliverable edge into document-scoped UIEvent/HarnessEvent separation evidence; the row remains active and in objective.
 
 ## Extracted Dependency Register
 
@@ -54,7 +55,7 @@ Source register: `Dependencies.csv` v3.1
 | DEP-05-02-008 | EXECUTION | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
 | DEP-05-02-009 | EXECUTION | CONSTRAINT | DEL-05-03 Redacted RunLogger and Secret Hygiene | ACTIVE |
 | DEP-05-02-010 | EXECUTION | INTERFACE | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
-| DEP-05-02-011 | EXECUTION | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
+| DEP-05-02-011 | EXECUTION | INTERFACE | DOCUMENT DEL-03-03-UIEVENT_HARNESSEVENT_SEPARATION UIEvent/HarnessEvent separation contract | ACTIVE |
 | DEP-05-02-012 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
 
 ## Run History

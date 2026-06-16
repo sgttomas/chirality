@@ -37,7 +37,7 @@ Source register: `Dependencies.csv` v3.1
 | DEP-03-03-003 | ANCHOR | OTHER | SOW-040 UIEvent and HarnessEvent separation | ACTIVE |
 | DEP-03-03-004 | ANCHOR | OTHER | OBJ-001 Preserve browser-facing harness experience | ACTIVE |
 | DEP-03-03-005 | ANCHOR | OTHER | OBJ-002 Stabilize runtime contract and turn lifecycle | ACTIVE |
-| DEP-03-03-006 | EXECUTION | INTERFACE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
+| DEP-03-03-006 | EXECUTION | INTERFACE | DOCUMENT RUNTIME_ENGINE_CONTRACT_TURN_ENGINE Runtime Engine Contract TurnEngine boundary | ACTIVE |
 | DEP-03-03-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
 | DEP-03-03-008 | EXECUTION | INTERFACE | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
 | DEP-03-03-009 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
@@ -54,6 +54,7 @@ Source register: `Dependencies.csv` v3.1
 - `[WARNING] REF-006_HASH_MISMATCH`: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived details remain source-state-warning context.
 - `[WARNING] TBD_FIXTURE_CAPTURE`: current implementation fixture capture is an explicit prerequisite but its target location and baseline SHA remain `TBD`.
 - Parent anchor check passed: one ACTIVE `IMPLEMENTS_NODE` row is present.
+- 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-03-03-006` from a coarse deliverable edge into document-scoped TurnEngine boundary evidence; the row remains active and in objective.
 
 ## Run History
 

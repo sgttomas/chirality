@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Six-node SCC safe moves landed (`SCC-SAFE-MOVES-001`)
+
+Implemented the first tranche of `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
+The tranche applied source-grounded `decompose` moves to six cycle-participating rows:
+`DEP-03-01-005`, `DEP-03-03-006`, `DEP-04-03-008`, `DEP-04-03-009`,
+`DEP-04-03-010`, and `DEP-05-02-011`.
+
+No dependency row was retired, marked out-of-objective, merged, or cut. Hard prerequisite
+and mapper/event-interface rows were preserved.
+
+Validation passed: `tools/validation/validate_dependencies_schema.py` for all four
+touched `Dependencies.csv` files; `tools/coordination/analyze_dep_closure.py
+projects/chirality-app-dev/execution --output-dir
+projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Evidence`
+reported `SCCs (size > 1): 0`.
+
+Snapshot report:
+`execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md`.
+
+Residual handoff: `SCC-CLOSURE-AUDIT-001` must review and accept or reject the fresh
+snapshot before updating `execution/_Reconciliation/DepClosure/_LATEST.md` or removing
+the control-plane SCC warning. Frontend/runtime tests were skipped because no runtime
+source changed.
+
 ## 2026-06-16 - R5 executable child turn integration landed (`R5-EXEC-001`)
 
 Landed the bounded D-APP-10 Option C executable R5 path for `R5-SLICE-006`. The SDK

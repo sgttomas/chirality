@@ -30,6 +30,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - [WARNING] REF-006 `docs/PRD.md` has `HASH_MISMATCH` in `_REFERENCES.md`; PRD-derived statements remain warning-qualified in source documents.
 - [WARNING] OI-001 / DEL-04-01 probe evidence is still `TBD`; exact SDK message payload shapes were not inferred.
 - [WARNING] `tools/validation/validate_id_format.sh` expects legacy `PKG-000` / `DEL-000-00` forms and rejects authoritative v3.2 IDs such as `PKG-04` and `DEL-04-03`; decomposition-authoritative IDs were preserved.
+- 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-04-03-008`, `DEP-04-03-009`, and `DEP-04-03-010` from coarse deliverable edges into document-scoped runtime-contract, SSE/UIEvent, and mapper-handoff evidence; the rows remain active and in objective.
 
 ## Extracted Dependency Register
 
@@ -50,9 +51,9 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE |
 | DEP-04-03-006 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE |
 | DEP-04-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE |
-| DEP-04-03-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-01 | ACTIVE |
-| DEP-04-03-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 | ACTIVE |
-| DEP-04-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-05-02 | ACTIVE |
+| DEP-04-03-008 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT RUNTIME_ENGINE_CONTRACT_AGENT_ENGINE_PORT | ACTIVE |
+| DEP-04-03-009 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT DEL-03-03-SSE_UIEVENT_CONTRACT | ACTIVE |
+| DEP-04-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | DOCUMENT DEL-04-03-SPEC-HARNESSEVENT_HANDOFF | ACTIVE |
 | DEP-04-03-011 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-04-02 | ACTIVE |
 
 ## Run History
