@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - SCC closure audit accepted (`SCC-CLOSURE-AUDIT-001`)
+
+Reviewed `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
+after `SCC-SAFE-MOVES-001` and accepted it as the latest immutable
+dependency-closure snapshot for discovery.
+
+Accepted values from `Evidence/closure_summary.json`: `schema_invalid = 0`,
+`graph_edges = 97`, `scc_count = 0`, `bidirectional_pair_count = 0`, and
+`normalization_count = 0`. `Evidence/scc_summary.csv` contains only the header
+row.
+
+Validation reran `tools/coordination/analyze_dep_closure.py
+projects/chirality-app-dev/execution --output-dir /tmp/chirality_closure_audit_001`
+and again reported `SCCs (size > 1): 0`.
+
+Updated `execution/_Reconciliation/DepClosure/_LATEST.md` to
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
+
+Residual handoff: `SCC-CLOSEOUT-001` remains required before removing broader
+control-plane residual-SCC warnings. Frontend/runtime tests were skipped because
+this tranche changed only dependency-closure evidence and planning pointers.
+
 ## 2026-06-16 - Six-node SCC safe moves landed (`SCC-SAFE-MOVES-001`)
 
 Implemented the first tranche of `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
