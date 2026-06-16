@@ -1,14 +1,15 @@
 # Six-Node SCC Resolution Plan
 
 **Date:** 2026-06-16
-**Epistemic status:** ACTIVE PROPOSAL (non-governing)
+**Epistemic status:** CLOSED / COMPLETED (non-governing)
 **Product:** Chirality desktop harness and bundled agent operating system
 **Supersedes as active queue:** `plans/PLAN_2026-06-13_runtime_completion.md`
 
-This plan is the active app-dev tranche-selection surface for resolving the residual
+This plan was the app-dev tranche-selection surface for resolving the residual
 six-node strict dependency SCC before any new broad runtime roadmap is selected.
 The retired runtime completion plan remains historical evidence for already-landed
-runtime work; it is not the active development queue.
+runtime work; it is not the active development queue. This SCC plan is now closed;
+no replacement broad runtime roadmap has been selected.
 
 This plan does not change product requirements, decomposition truth, runtime API,
 source code, package/runtime requirements, provider scope, network policy,
@@ -41,12 +42,11 @@ even when the edge looks like interface, conformance, or handoff evidence.
 Primary SCC evidence:
 
 - `execution/_Reconciliation/DepClosure/_LATEST.md`
-- `execution/_Reconciliation/DepClosure/CLOSURE_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1820/Dependency_Closure_Report.md`
-- `execution/_Reconciliation/RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825/SCC_Ruling_Package.md`
-- `execution/_Reconciliation/RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825/SCC_Edge_Workbook.csv`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Closure_Acceptance_Audit.md`
 - `execution/_Coordination/_DECISIONS/D-APP-07_RULING_2026-06-16.md`
 
-Current residual SCC membership:
+Closed residual SCC membership:
 
 | Node | Deliverable surface |
 |---|---|
@@ -57,10 +57,10 @@ Current residual SCC membership:
 | `DEL-04-03` | SdkMessageMapper and Provider-Neutral Translation |
 | `DEL-05-02` | HarnessEvent Schema and Append-Only JSONL |
 
-The current DepClosure evidence reports one strict SCC of size 6 and 15 internal
-cycle-participating active deliverable execution rows. `D-APP-07` rules that this
-SCC blocks project-wide strict dependency-closure claims only; it does not unwind
-already-landed bounded R5 work and does not approve dependency-register edits.
+The accepted latest DepClosure evidence reports strict `scc_count = 0` after six
+source-grounded `decompose` moves. `D-APP-07` remains historical authority for the
+pre-resolution R5 posture; it did not approve dependency-register edits. Those edits
+were later authorized by this plan and landed in `SCC-SAFE-MOVES-001`.
 
 ## Plan Maintenance
 
@@ -87,8 +87,8 @@ a different tranche.
 |---:|---|---|---|
 | 1 | **SCC-SAFE-MOVES-001** | LANDED 2026-06-16. Applied six source-grounded `decompose` moves only; no cut, merge, out-of-objective retirement, decomposition-topology change, or closure claim. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Validation: touched `Dependencies.csv` schema checks passed; fresh immutable snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md` reports `Strict SCC count = 0`. Proceed to row 2. |
 | 2 | **SCC-CLOSURE-AUDIT-001** | LANDED 2026-06-16. Accepted `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` as the latest immutable dependency-closure snapshot for discovery and updated `execution/_Reconciliation/DepClosure/_LATEST.md`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Accepted evidence records `scc_count = 0`; proceed to row 4. No broad control-plane warning was removed in this audit tranche. |
-| 3 | **SCC-HUMAN-GATED-MOVES-001** | Prepare a decision packet for any remaining `cut`, `merge`, or objective-dependent move. The packet must name exact dependency IDs, current row text, proposed move, rationale, risk, and validation implication. | `_DECISIONS/_REGISTER.md` records the packet as `AWAITING_RULING`. No dependency-register cut/merge edits occur until a ruling record lands. |
-| 4 | **SCC-CLOSEOUT-001** | Once a fresh DepClosure snapshot proves strict `scc_count = 0`, update control-plane handoff state and planning surfaces to record closure. | Closure evidence points to immutable snapshot; control surfaces stop carrying project-wide dependency-closure warning for this SCC. Frontend runtime tests remain skipped unless runtime source changed. |
+| 3 | **SCC-HUMAN-GATED-MOVES-001** | NOT REQUIRED 2026-06-16. The accepted closure snapshot records `scc_count = 0`, so no cut, merge, or objective-dependent decision packet is needed for this SCC. | No decision-register update required. |
+| 4 | **SCC-CLOSEOUT-001** | LANDED 2026-06-16. Updated control-plane handoff state and planning surfaces to record closure of the residual six-node SCC. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Closure evidence points to immutable snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`. Frontend runtime tests skipped because no runtime source changed. |
 
 ## Safe-Move Rules For Row 1
 

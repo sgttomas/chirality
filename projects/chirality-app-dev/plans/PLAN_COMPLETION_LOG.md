@@ -1,10 +1,29 @@
 # Runtime Plan Completion Log
 
-This log preserves landed-tranche narrative for retired runtime completion plan `plans/PLAN_2026-06-13_runtime_completion.md` and the active SCC-resolution plan `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
+This log preserves landed-tranche narrative for retired runtime completion plan `plans/PLAN_2026-06-13_runtime_completion.md` and completed SCC-resolution plan `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 
 This file is history, not authority. Project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history. Nothing here is a lifecycle decision, release-readiness claim, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 
 ---
+
+## 2026-06-16 - SCC closeout landed (`SCC-CLOSEOUT-001`)
+
+Closed the residual six-node strict dependency SCC loop after accepted snapshot
+`execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
+proved strict `scc_count = 0`.
+
+Updated the active control-plane and workflow surfaces so they no longer carry the
+residual six-node SCC as a current project-wide dependency-closure warning. The plan now
+records `SCC-HUMAN-GATED-MOVES-001` as not required and `SCC-CLOSEOUT-001` as landed.
+
+No new broad runtime roadmap was selected, and the retired runtime completion plan was
+not revived. Dependency-closure evidence remains derivative evidence only; no product,
+runtime, release, lifecycle, professional, certification, sealing, authentication, or
+code-compliance approval changed.
+
+Validation: static control-plane checks, JSON manifest parse, accepted closure-summary
+assertions, and a fresh `analyze_dep_closure.py` rerun. Frontend/runtime tests were
+skipped because no runtime source changed.
 
 ## 2026-06-16 - SCC closure audit accepted (`SCC-CLOSURE-AUDIT-001`)
 

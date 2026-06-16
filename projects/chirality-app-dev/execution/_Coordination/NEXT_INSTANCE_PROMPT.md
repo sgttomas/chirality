@@ -20,7 +20,7 @@
 
 ## Active Direction
 
-Continue bounded app-integration tranches toward the Chirality App's inherent goals, with the active loop currently focused on resolving the residual six-node strict dependency SCC before any new broad runtime roadmap is selected:
+Continue bounded app-integration tranches toward the Chirality App's inherent goals. The residual six-node strict dependency SCC is closed by accepted snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`; no new broad runtime roadmap has been selected:
 
 - a local desktop harness for governed agents;
 - a Chirality-owned runtime contract and audit/event model;
@@ -37,15 +37,15 @@ Otherwise, select exactly one next bounded tranche from the earliest unblocked i
 Default priority:
 
 1. Fix failing validation or incomplete evidence for already-landed SCC/control-plane work.
-2. Select the earliest unblocked item on the active SCC-resolution plan's spine.
+2. Select the earliest unblocked item on the current selected plan's spine.
 3. Apply source-grounded decompose/invert moves only where the active plan authorizes them.
 4. If that item requires a human-gated cut, merge, or objective-dependent ruling, prepare a decision packet if none exists.
 5. If a packet already awaits ruling, stop; do not substitute unrelated runtime hardening or out-of-stage scope.
-6. Stop when no current SCC-resolution item remains unblocked; do not select from the retired runtime completion plan.
+6. Stop when no current SCC-resolution item remains unblocked; do not select from the retired runtime completion plan or invent a replacement active queue.
 
 ## Execution Rules
 
-- Tranches selected from unblocked SCC-resolution plan items are pre-approved for execution.
+- Tranches selected from unblocked SCC-resolution plan items are pre-approved for execution. If the SCC-resolution plan has no remaining unblocked items, stop and report that the SCC plan is complete and the next broad runtime roadmap is unselected.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
@@ -73,4 +73,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending from `_DECISIONS/_REGISTER.md`;
-- next SCC-resolution plan item.
+- next SCC-resolution plan item, or state that no SCC-resolution item remains.
