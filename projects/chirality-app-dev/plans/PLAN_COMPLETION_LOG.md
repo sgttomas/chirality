@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - D-APP-07 ruled Option B
+
+Human project authority approved `D-APP-07` Option B. The residual six-node strict SCC
+blocks project-wide strict dependency-closure claims only. A later bounded executable R5
+packet or tranche may be selected without claiming project-wide closure, with the SCC's
+cycle-participating rows held non-gating only for R5 dispatch.
+
+This ruling is a posture ruling. It does not itself approve executable R5 implementation,
+SDK `Agent` exposure, executable SDK `agents`, child turn execution, child output artifacts
+from executable child runs, child capability inheritance or expansion, dependency-register
+edits for the residual SCC, cut/merge/decompose/invert moves, Pi runtime paths, concrete
+provider implementation, provider routing, network expansion, release-readiness claims,
+lifecycle issuance, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or professional-boundary claim changes.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in the ruling-record tranche.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-07|Option B|project-wide strict dependency-closure claims only" execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the packet, ruling, register, plan, RECONCILIATION
+package, human-ruling workbook, and dependency closure report; decision-register ID
+uniqueness check; source/package exclusion check. Frontend runtime tests, typecheck,
+harness premerge, instruction-root integrity, build, packaging, network proof, and DMG
+checks were skipped because this tranche only recorded the human ruling and updated the
+decision register, active plan, and completion log.
+
 ## 2026-06-15 - Residual SCC executable R5 implication decision packet prepared (`D-APP-07`)
 
 Prepared `D-APP-07` from the RECONCILIATION package's required `HR-001` human ruling.
