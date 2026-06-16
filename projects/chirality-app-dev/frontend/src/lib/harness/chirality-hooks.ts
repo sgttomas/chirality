@@ -51,6 +51,7 @@ export type ChiralityToolHookInput = {
   sessionId: string;
   projectRoot: string;
   instructionRoot?: string;
+  delegatedSubagents?: readonly string[];
   resolveDescriptor?: (toolName: string) => HarnessToolDescriptor | undefined;
 };
 
@@ -240,19 +241,20 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
 
       if (isSubagentDescriptor(descriptor)) {
         const preflight = evaluateSubagentPreflight({
-          toolInput: readToolInput(preInput)
+          toolInput: readToolInput(preInput),
+          eligibleAgentNames: input.delegatedSubagents
         });
 
         await appendHookEvent({
           ...eventBase,
           type: 'hook.completed',
           data: {
-            decision: 'block',
+            decision: preflight.allowed ? 'approve' : 'block',
             reason: preflight.reason,
             safeMetadata: preflight.safeMetadata
           }
         });
-        return blockPreToolUse(preflight.reason);
+        return preflight.allowed ? allowPreToolUse() : blockPreToolUse(preflight.reason);
       }
 
       if (isShellDescriptor(descriptor)) {

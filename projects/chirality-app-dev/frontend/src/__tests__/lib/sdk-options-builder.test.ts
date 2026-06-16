@@ -209,12 +209,13 @@ describe('buildSdkOptions', () => {
     expect(askMode.permissionMode).toBe('default');
   });
 
-  it('attaches non-executable SDK agents definitions without exposing the Agent tool', () => {
+  it('attaches executable SDK agents definitions and exposes Agent only when delegated and requested', () => {
     const options = buildSdkOptions({
       session,
       opts: {
         ...opts,
         delegatedSubagents: ['TASK'],
+        mode: 'workspaceWrite',
         tools: ['read', 'Agent']
       },
       abortController: new AbortController(),
@@ -226,13 +227,26 @@ describe('buildSdkOptions', () => {
         description: expect.stringContaining('TASK'),
         tools: [],
         disallowedTools: expect.arrayContaining(['Agent', 'Bash', 'Write']),
-        maxTurns: 0,
+        maxTurns: 1,
         permissionMode: 'dontAsk'
       }
     });
-    expect(options.tools).toEqual(['Read']);
-    expect(options.allowedTools).toEqual(['Read']);
-    expect(options.disallowedTools).toContain('Agent');
+    expect(options.tools).toEqual(['Read', 'Agent']);
+    expect(options.allowedTools).toEqual(['Read', 'Agent']);
+    expect(options.disallowedTools).not.toContain('Agent');
+
+    const noDelegation = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        tools: ['read', 'Agent']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(noDelegation.tools).toEqual(['Read']);
+    expect(noDelegation.allowedTools).toEqual(['Read']);
+    expect(noDelegation.disallowedTools).toContain('Agent');
   });
 
   it('attaches a canUseTool callback backed by Chirality permission decisions', async () => {
@@ -331,20 +345,6 @@ describe('buildSdkOptions', () => {
 
     await expect(
       askOptions.canUseTool?.(
-        'Agent',
-        { agent: 'TASK', prompt: 'run this' },
-        {
-          signal: new AbortController().signal,
-          toolUseID: 'tool_agent'
-        }
-      )
-    ).resolves.toMatchObject({
-      behavior: 'deny',
-      message: expect.stringContaining('hard-denied by the D-APP-09 Option B')
-    });
-
-    await expect(
-      askOptions.canUseTool?.(
         'mystery',
         {},
         {
@@ -356,6 +356,52 @@ describe('buildSdkOptions', () => {
       behavior: 'deny',
       message: expect.stringContaining("Unknown harness tool 'mystery'"),
       toolUseID: 'tool_unknown'
+    });
+  });
+
+  it('allows Agent permission callbacks only for delegated children in workspaceWrite mode', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-agent-options-'));
+    const writableProjectRoot = path.join(tmpDir, 'project');
+    await mkdir(writableProjectRoot, { recursive: true });
+
+    const options = buildSdkOptions({
+      session: { ...session, projectRoot: writableProjectRoot },
+      opts: {
+        ...opts,
+        mode: 'workspaceWrite',
+        delegatedSubagents: ['TASK'],
+        tools: ['Agent']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    await expect(
+      options.canUseTool?.(
+        'Agent',
+        { agent: 'TASK', prompt: 'run this' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_agent'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_agent'
+    });
+
+    await expect(
+      options.canUseTool?.(
+        'Agent',
+        { agent: 'UNKNOWN', prompt: 'run this' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_agent_unknown'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('not eligible')
     });
   });
 });

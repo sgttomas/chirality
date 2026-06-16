@@ -10,7 +10,7 @@ import {
   createChiralityReadMcpServers,
   filterChiralityMcpAllowedToolNames
 } from './mcp/read-tools';
-import { createNonExecutableSubagentBridge } from './subagent-bridge';
+import { createExecutableSubagentBridge } from './subagent-bridge';
 
 export type SdkProbeOptions = Options & {
   settingSources: SettingSource[];
@@ -71,6 +71,10 @@ export function buildSdkPrompt(message: string, contentBlocks?: ContentBlock[]):
   return contentBlocksToPrompt(message, contentBlocks);
 }
 
+function requestedAgentTool(toolNames: readonly string[]): boolean {
+  return toolNames.some((toolName) => getHarnessToolDescriptor(toolName)?.name === 'agent');
+}
+
 export function buildSdkOptions(input: {
   session: SessionRecord;
   opts: ResolvedOpts;
@@ -82,13 +86,18 @@ export function buildSdkOptions(input: {
     requestedTools: input.opts.tools,
     mode: input.opts.mode
   });
-  const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(
-    toolPool.allowedToolNames
-  );
-  const subagentBridge = createNonExecutableSubagentBridge({
+  const subagentBridge = createExecutableSubagentBridge({
     session: input.session,
     opts: input.opts
   });
+  const allowExecutableAgent = Boolean(subagentBridge && requestedAgentTool(input.opts.tools));
+  const allowedToolNames = allowExecutableAgent
+    ? [...toolPool.allowedToolNames, 'Agent' as const]
+    : [...toolPool.allowedToolNames];
+  const disallowedToolNames = allowExecutableAgent
+    ? toolPool.disallowedToolNames.filter((toolName) => toolName !== 'Agent')
+    : [...toolPool.disallowedToolNames];
+  const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(allowedToolNames);
 
   return {
     abortController: input.abortController,
@@ -97,18 +106,20 @@ export function buildSdkOptions(input: {
     model: input.opts.model,
     maxTurns: input.opts.maxTurns,
     permissionMode: mapPermissionMode(input.opts.mode),
-    tools: [...toolPool.allowedToolNames],
-    allowedTools: [...toolPool.allowedToolNames],
-    disallowedTools: [...toolPool.disallowedToolNames],
+    tools: allowedToolNames,
+    allowedTools: allowedToolNames,
+    disallowedTools: disallowedToolNames,
     canUseTool: createHarnessCanUseTool({
       sessionId: input.session.sessionId,
       mode: input.opts.mode,
       projectRoot: input.session.projectRoot,
+      delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor
     }),
     hooks: createChiralityToolHooks({
       sessionId: input.session.sessionId,
       projectRoot: input.session.projectRoot,
+      delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor
     }),
     mcpServers: createChiralityReadMcpServers({

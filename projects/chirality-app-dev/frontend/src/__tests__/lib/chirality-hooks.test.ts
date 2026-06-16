@@ -31,11 +31,12 @@ afterEach(async () => {
   }
 });
 
-function getHooks() {
+function getHooks(delegatedSubagents?: readonly string[]) {
   return createChiralityToolHooks({
     sessionId,
     projectRoot,
     instructionRoot,
+    delegatedSubagents,
     resolveDescriptor: getHarnessToolDescriptor
   });
 }
@@ -420,8 +421,8 @@ describe('Chirality write hooks', () => {
     });
   });
 
-  it('blocks Agent before execution and records non-executable bridge metadata', async () => {
-    const preToolUse = getHooks().PreToolUse?.[0]?.hooks[0];
+  it('allows only eligible Agent preflight and records executable bridge metadata', async () => {
+    const preToolUse = getHooks(['TASK']).PreToolUse?.[0]?.hooks[0];
 
     const result = await preToolUse?.(
       {
@@ -438,11 +439,30 @@ describe('Chirality write hooks', () => {
     );
 
     expect(result).toMatchObject({
-      continue: false,
-      decision: 'block',
-      reason: expect.stringContaining('D-APP-09 Option B'),
+      continue: true,
       hookSpecificOutput: {
         hookEventName: 'PreToolUse',
+        permissionDecision: 'allow'
+      }
+    });
+
+    const unknown = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Agent',
+        tool_input: {
+          agent: 'UNKNOWN',
+          prompt: 'run this'
+        },
+        tool_use_id: 'tool_agent_unknown'
+      } as never,
+      'tool_agent_unknown',
+      { signal: new AbortController().signal }
+    );
+    expect(unknown).toMatchObject({
+      continue: false,
+      decision: 'block',
+      hookSpecificOutput: {
         permissionDecision: 'deny'
       }
     });
@@ -450,18 +470,24 @@ describe('Chirality write hooks', () => {
     const replay = await replayHarnessEvents(sessionId);
     expect(replay.events.map((event) => event.type)).toEqual([
       'hook.started',
+      'hook.completed',
+      'hook.started',
       'hook.completed'
     ]);
     expect(replay.events[1].data).toMatchObject({
       hookName: 'chirality.subagent.pre_tool_use',
-      decision: 'block',
+      decision: 'approve',
       descriptorName: 'agent',
       safeMetadata: {
-        denyClass: 'subagent-execution',
-        executionPosture: 'hard-denied',
-        nonExecutableBridge: true,
+        allowClass: 'subagent-execution',
+        executionPosture: 'executable',
+        executableBridge: true,
         requestedAgent: 'TASK'
       }
+    });
+    expect(replay.events[3].data.safeMetadata).toMatchObject({
+      denyClass: 'subagent-execution',
+      requestedAgent: 'UNKNOWN'
     });
   });
 });

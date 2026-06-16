@@ -6,6 +6,52 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - R5 executable child turn integration landed (`R5-EXEC-001`)
+
+Landed the bounded D-APP-10 Option C executable R5 path for `R5-SLICE-006`. The SDK
+`Agent` tool is model-visible only when the parent explicitly requests `Agent` and
+subagent governance has produced delegated Type 2 child names. SDK `agents` definitions are
+generated for delegated child names with `tools: []`, descriptor-derived `disallowedTools`
+including `Agent`, `maxTurns: 1`, and `permissionMode: dontAsk`.
+
+Permission callback and `chirality.subagent.pre_tool_use` hook enforcement both re-check
+the requested child name against the delegated list before execution. Non-workspaceWrite
+modes, missing delegation, and unknown children remain denied. Adapter task messages map to
+provider-neutral `subagent.started`, `subagent.progress`, `subagent.completed`, and
+`subagent.failed` evidence.
+
+Child capability inheritance or expansion, unrestricted child tool access, nested subagent
+execution, concrete non-Anthropic provider implementation, provider routing, network
+expansion, Pi runtime paths, dependency-register edits, project-wide strict
+dependency-closure claims, release-readiness claims, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, and
+professional-boundary claim changes remain denied.
+
+Validation passed: focused R5 executable suite
+`npm run test -- --run src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts src/__tests__/lib/subagent-bridge.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/tool-descriptor.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/sdk-message-mapper.test.ts`;
+`npm run typecheck`; full `npm run test`; `npm run harness:validate:premerge` after
+starting the local Next dev server on port 3000; and `npm run instruction-root:integrity`.
+
+## 2026-06-16 - D-APP-10 ruled Option C
+
+Human project authority corrected the D-APP-10 ruling to Option C. A bounded executable
+`R5-SLICE-006` path may proceed using landed `R5-BRIDGE-001` evidence as prerequisite.
+
+The ruling permits executable child turn integration only for governed, delegated Type 2
+subagents through the current Claude Agent SDK first-adapter path. Child capability
+inheritance or expansion, unrestricted child tool access, nested subagent execution,
+concrete non-Anthropic provider implementation, provider routing, network expansion, Pi
+runtime paths, dependency-register edits, project-wide strict dependency-closure claims,
+release-readiness claims, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, and professional-boundary claim
+changes remain denied.
+
+`_DECISIONS/_REGISTER.md` now records `D-APP-10` as `RULED`. The active plan selects
+`R5-EXEC-001` for implementation.
+
+Validation for this ruling-record step is docs/control-plane only; implementation
+validation belongs to `R5-EXEC-001`.
+
 ## 2026-06-16 - Post-bridge R5 continuation packet prepared (`D-APP-10`)
 
 Prepared `D-APP-10` after `R5-BRIDGE-001` landed. The packet asks which post-bridge R5

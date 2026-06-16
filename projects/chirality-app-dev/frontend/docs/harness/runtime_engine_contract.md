@@ -143,15 +143,15 @@ it. Raw stdout, stderr, commands, and API keys are not stored in `HarnessEvent.d
 ## Agent/Subagent Runtime Contract
 
 `frontend/src/lib/harness/agent-runtime-contract.ts` defines the current Chirality-owned
-agent/subagent prerequisite contract. This is a contract layer, not executable child-run
-exposure.
+agent/subagent contract. Bounded executable child turns are now permitted only through the
+D-APP-10 Option C path described below.
 
 Current posture:
 
-- executable delegation is blocked;
-- SDK `agents` option-shape definitions may be generated only as a non-executable bridge
-  for already-eligible delegated Type 2 candidates;
-- generated executable child definitions remain future scope;
+- unbounded executable delegation is blocked;
+- SDK `agents` definitions may be generated only for already-eligible delegated Type 2
+  candidates;
+- generated child definitions do not inherit parent tools or capabilities;
 - Pi remains a pattern corpus / reference only, with no runtime dependency, adapter, fork,
   sidecar, package import, or spike;
 - concrete non-Anthropic provider routing remains blocked;
@@ -163,10 +163,9 @@ Provider-neutral child-run records use Chirality fields such as `childRunId`,
 external session IDs, task IDs, tool-use IDs, transcript keys, or concrete adapter names may
 be retained only under the `adapter` metadata object.
 
-The prerequisite contract preserves these semantics before executable subagents are enabled:
+The contract preserves these semantics for governed subagents:
 
-- governance preflight can create `queued` or `denied` child-run records, but `queued` does
-  not expose the SDK `Agent` tool or any executable child definition in this tranche;
+- governance preflight can create `queued` or `denied` child-run records;
 - denied delegation records keep the fail-closed gate, reason, allowlist, delegated list,
   and approval metadata where present;
 - child capability policy starts with `inheritParentCapabilities: false`,
@@ -175,25 +174,24 @@ The prerequisite contract preserves these semantics before executable subagents 
   child tool set;
 - `subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
   remain the provider-neutral runtime event categories for child-run lifecycle evidence;
-- completed executable child runs must carry an output artifact reference once execution is
-  enabled.
+- completed executable child runs must carry an output artifact reference when the adapter
+  provides one.
 
 `R5-BRIDGE-001` implements the D-APP-09 Option B non-executable bridge through
-`R5-SLICE-003`: child eligibility remains governed by `evaluateSubagentGovernance`, SDK
-options can carry inert `agents` definitions for the delegated names, and the SDK `Agent`
-tool remains non-model-visible or hard-denied. Bridge definitions carry `tools: []`,
-descriptor-derived `disallowedTools` including `Agent`, `maxTurns: 0`, and
-`permissionMode: dontAsk`. The Agent `PreToolUse` hook records
-`chirality.subagent.pre_tool_use` evidence and blocks before execution. This bridge does not
-approve child turns, executable SDK `agents`, child output artifacts, capability
-inheritance, provider routing, network expansion, Pi runtime paths, dependency-register
-edits, project-wide dependency-closure claims, or release and professional-boundary claims.
+`R5-SLICE-003`; `R5-SLICE-006` then implements the D-APP-10 Option C executable path. The
+SDK `Agent` tool is model-visible only when the parent explicitly requests it and
+`evaluateSubagentGovernance` has produced delegated Type 2 child names. Agent definitions
+carry `tools: []`, descriptor-derived `disallowedTools` including `Agent`, `maxTurns: 1`,
+and `permissionMode: dontAsk`. The Agent permission callback and
+`chirality.subagent.pre_tool_use` hook both re-check the requested child name against the
+delegated list before execution. Adapter task messages are mapped into provider-neutral
+`subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
+events.
 
-Claude Agent SDK `Agent` and SDK `agents` may remain the first adapter-specific substrate
-for a later implementation tranche, but neither SDK names nor Pi concepts define the
-public/core Chirality contract. Any executable subagent exposure still requires the later
-bounded implementation and validation path described by the active plan and decision
-records.
+This executable path does not approve child capability inheritance, unrestricted child tool
+access, nested subagent execution, provider routing, network expansion, Pi runtime paths,
+dependency-register edits, project-wide dependency-closure claims, or release and
+professional-boundary claims.
 
 ## Harness Tool Descriptor Contract
 

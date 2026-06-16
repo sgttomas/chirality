@@ -2,13 +2,16 @@ import type { AgentDefinition } from '@anthropic-ai/claude-agent-sdk';
 import type { ResolvedOpts, SessionRecord } from './types';
 import { getCurrentTrancheDisallowedToolNames } from './tool-descriptor';
 
-export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v1.non-executable';
-export const SUBAGENT_BRIDGE_RULING_REF = 'D-APP-09 Option B';
+export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v2.executable-r5';
+export const SUBAGENT_BRIDGE_RULING_REF = 'D-APP-10 Option C';
 
 export const SUBAGENT_EXECUTION_DENIED_REASON =
-  'Subagent execution is hard-denied by the D-APP-09 Option B non-executable bridge.';
+  'Subagent execution is denied because the requested child is not eligible for the D-APP-10 Option C executable bridge.';
 
-export type NonExecutableSubagentBridge = {
+export const SUBAGENT_EXECUTION_ALLOWED_REASON =
+  'Subagent execution is allowed by the D-APP-10 Option C executable bridge.';
+
+export type ExecutableSubagentBridge = {
   policyVersion: typeof SUBAGENT_BRIDGE_POLICY_VERSION;
   rulingRef: typeof SUBAGENT_BRIDGE_RULING_REF;
   sessionId: string;
@@ -17,17 +20,20 @@ export type NonExecutableSubagentBridge = {
 };
 
 export type SubagentPreflightDecision = {
-  allowed: false;
+  allowed: boolean;
   reason: string;
   safeMetadata: {
     policyVersion: typeof SUBAGENT_BRIDGE_POLICY_VERSION;
     rulingRef: typeof SUBAGENT_BRIDGE_RULING_REF;
-    denyClass: 'subagent-execution';
-    executionPosture: 'hard-denied';
-    nonExecutableBridge: true;
+    denyClass?: 'subagent-execution';
+    allowClass?: 'subagent-execution';
+    executionPosture: 'hard-denied' | 'executable';
+    executableBridge: boolean;
     requestedAgent?: string;
     eligibleAgentNames: string[];
     eligibleChildDefinition: boolean;
+    childToolNames: [];
+    childCapabilityInheritance: false;
   };
 };
 
@@ -55,23 +61,23 @@ export function extractRequestedSubagentName(toolInput: Record<string, unknown>)
   return readStringField(toolInput, ['agent', 'agentName', 'subagent_type', 'subagentType']);
 }
 
-export function createNonExecutableAgentDefinition(agentName: string): AgentDefinition {
+export function createExecutableAgentDefinition(agentName: string): AgentDefinition {
   const disallowedTools = getCurrentTrancheDisallowedToolNames([]);
   return {
-    description: `Governed Type 2 subagent candidate ${agentName}; non-executable bridge only.`,
+    description: `Governed Type 2 subagent ${agentName}; executable R5 child turn with no inherited tools.`,
     prompt:
-      'This Chirality bridge definition is non-executable. D-APP-09 Option B permits child definition eligibility, SDK agents option shape, and an Agent preflight gate only; it does not approve child turns, executable output artifacts, inherited capabilities, provider routing, or network expansion.',
+      'You are a governed Chirality Type 2 subagent running under D-APP-10 Option C. Execute only the delegated child turn. Do not claim inherited parent capabilities, provider routing, network expansion, Pi runtime access, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.',
     tools: [],
     disallowedTools,
-    maxTurns: 0,
+    maxTurns: 1,
     permissionMode: 'dontAsk'
   };
 }
 
-export function createNonExecutableSubagentBridge(input: {
+export function createExecutableSubagentBridge(input: {
   session: SessionRecord;
   opts: ResolvedOpts;
-}): NonExecutableSubagentBridge | undefined {
+}): ExecutableSubagentBridge | undefined {
   const delegatedSubagents = uniqueNames(input.opts.delegatedSubagents);
   if (delegatedSubagents.length === 0) {
     return undefined;
@@ -85,7 +91,7 @@ export function createNonExecutableSubagentBridge(input: {
     agents: Object.fromEntries(
       delegatedSubagents.map((agentName) => [
         agentName,
-        createNonExecutableAgentDefinition(agentName)
+        createExecutableAgentDefinition(agentName)
       ])
     )
   };
@@ -97,19 +103,27 @@ export function evaluateSubagentPreflight(input: {
 }): SubagentPreflightDecision {
   const eligibleAgentNames = uniqueNames(input.eligibleAgentNames);
   const requestedAgent = extractRequestedSubagentName(input.toolInput);
+  const eligibleChildDefinition = Boolean(
+    requestedAgent && eligibleAgentNames.includes(requestedAgent)
+  );
 
   return {
-    allowed: false,
-    reason: SUBAGENT_EXECUTION_DENIED_REASON,
+    allowed: eligibleChildDefinition,
+    reason: eligibleChildDefinition
+      ? SUBAGENT_EXECUTION_ALLOWED_REASON
+      : SUBAGENT_EXECUTION_DENIED_REASON,
     safeMetadata: {
       policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
       rulingRef: SUBAGENT_BRIDGE_RULING_REF,
-      denyClass: 'subagent-execution',
-      executionPosture: 'hard-denied',
-      nonExecutableBridge: true,
+      denyClass: eligibleChildDefinition ? undefined : 'subagent-execution',
+      allowClass: eligibleChildDefinition ? 'subagent-execution' : undefined,
+      executionPosture: eligibleChildDefinition ? 'executable' : 'hard-denied',
+      executableBridge: true,
       requestedAgent,
       eligibleAgentNames,
-      eligibleChildDefinition: Boolean(requestedAgent && eligibleAgentNames.includes(requestedAgent))
+      eligibleChildDefinition,
+      childToolNames: [],
+      childCapabilityInheritance: false
     }
   };
 }

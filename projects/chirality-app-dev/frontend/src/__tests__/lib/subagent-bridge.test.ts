@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
-  createNonExecutableAgentDefinition,
-  createNonExecutableSubagentBridge,
+  createExecutableAgentDefinition,
+  createExecutableSubagentBridge,
   evaluateSubagentPreflight,
   SUBAGENT_BRIDGE_POLICY_VERSION,
   SUBAGENT_BRIDGE_RULING_REF,
+  SUBAGENT_EXECUTION_ALLOWED_REASON,
   SUBAGENT_EXECUTION_DENIED_REASON
 } from '../../lib/harness/subagent-bridge';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
@@ -28,23 +29,23 @@ const opts: ResolvedOpts = {
 };
 
 describe('subagent bridge', () => {
-  it('creates inert SDK agent definitions for delegated Type 2 candidates', () => {
-    const definition = createNonExecutableAgentDefinition('TASK');
+  it('creates executable SDK agent definitions without inherited tools', () => {
+    const definition = createExecutableAgentDefinition('TASK');
 
     expect(definition).toMatchObject({
       description: expect.stringContaining('TASK'),
       tools: [],
-      maxTurns: 0,
+      maxTurns: 1,
       permissionMode: 'dontAsk'
     });
-    expect(definition.prompt).toContain('non-executable');
+    expect(definition.prompt).toContain('D-APP-10 Option C');
     expect(definition.disallowedTools).toContain('Agent');
     expect(definition.disallowedTools).toContain('Bash');
     expect(definition.disallowedTools).toContain('Write');
   });
 
   it('returns an SDK agents option-shape only when delegated candidates exist', () => {
-    const bridge = createNonExecutableSubagentBridge({ session, opts });
+    const bridge = createExecutableSubagentBridge({ session, opts });
 
     expect(bridge).toMatchObject({
       policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
@@ -55,21 +56,21 @@ describe('subagent bridge', () => {
         TASK: {
           tools: [],
           disallowedTools: expect.arrayContaining(['Agent']),
-          maxTurns: 0,
+          maxTurns: 1,
           permissionMode: 'dontAsk'
         }
       }
     });
 
     expect(
-      createNonExecutableSubagentBridge({
+      createExecutableSubagentBridge({
         session,
         opts: { ...opts, delegatedSubagents: [] }
       })
     ).toBeUndefined();
   });
 
-  it('hard-denies Agent preflight while recording child eligibility metadata', () => {
+  it('allows only eligible Agent preflight requests and records child metadata', () => {
     const decision = evaluateSubagentPreflight({
       toolInput: {
         agent: 'TASK',
@@ -79,28 +80,35 @@ describe('subagent bridge', () => {
     });
 
     expect(decision).toEqual({
-      allowed: false,
-      reason: SUBAGENT_EXECUTION_DENIED_REASON,
+      allowed: true,
+      reason: SUBAGENT_EXECUTION_ALLOWED_REASON,
       safeMetadata: {
         policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
         rulingRef: SUBAGENT_BRIDGE_RULING_REF,
-        denyClass: 'subagent-execution',
-        executionPosture: 'hard-denied',
-        nonExecutableBridge: true,
+        allowClass: 'subagent-execution',
+        denyClass: undefined,
+        executionPosture: 'executable',
+        executableBridge: true,
         requestedAgent: 'TASK',
         eligibleAgentNames: ['TASK'],
-        eligibleChildDefinition: true
+        eligibleChildDefinition: true,
+        childToolNames: [],
+        childCapabilityInheritance: false
       }
     });
 
-    expect(
-      evaluateSubagentPreflight({
-        toolInput: {
-          agent: 'UNKNOWN'
-        },
-        eligibleAgentNames: ['TASK']
-      }).safeMetadata
-    ).toMatchObject({
+    const denied = evaluateSubagentPreflight({
+      toolInput: {
+        agent: 'UNKNOWN'
+      },
+      eligibleAgentNames: ['TASK']
+    });
+    expect(denied).toMatchObject({
+      allowed: false,
+      reason: SUBAGENT_EXECUTION_DENIED_REASON
+    });
+    expect(denied.safeMetadata).toMatchObject({
+      executionPosture: 'hard-denied',
       requestedAgent: 'UNKNOWN',
       eligibleChildDefinition: false
     });

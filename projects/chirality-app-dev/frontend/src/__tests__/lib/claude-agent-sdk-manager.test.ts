@@ -135,4 +135,55 @@ describe('ClaudeAgentSdkManager', () => {
       'turn.completed'
     ]);
   });
+
+  it('passes executable Agent options only through delegated R5 governance', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-manager-agent-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    const query = createQuery([
+      {
+        type: 'result',
+        subtype: 'success',
+        duration_ms: 10,
+        duration_api_ms: 9,
+        is_error: false,
+        num_turns: 1,
+        result: 'done',
+        stop_reason: 'end_turn',
+        total_cost_usd: 0,
+        usage: {} as never,
+        modelUsage: {},
+        permission_denials: [],
+        uuid: '00000000-0000-0000-0000-000000000004',
+        session_id: 'sdk_1'
+      }
+    ]);
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'persona prompt');
+
+    for await (const _event of manager.startTurn(session, 'delegate', {
+      ...opts,
+      mode: 'workspaceWrite',
+      tools: ['Agent'],
+      delegatedSubagents: ['TASK']
+    })) {
+      // Exhaust the stream.
+    }
+
+    expect(query).toHaveBeenCalledWith(
+      expect.objectContaining({
+        options: expect.objectContaining({
+          tools: ['Agent'],
+          allowedTools: ['Agent'],
+          disallowedTools: expect.not.arrayContaining(['Agent']),
+          agents: {
+            TASK: expect.objectContaining({
+              tools: [],
+              disallowedTools: expect.arrayContaining(['Agent', 'Bash', 'Write']),
+              maxTurns: 1,
+              permissionMode: 'dontAsk'
+            })
+          }
+        })
+      })
+    );
+  });
 });

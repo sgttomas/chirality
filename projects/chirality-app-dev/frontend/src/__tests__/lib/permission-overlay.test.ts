@@ -166,16 +166,56 @@ describe('permission overlay', () => {
       'workspace-write',
       'shell',
       'reserved-tool',
-      'subagent',
+      'subagent-execution',
       'unknown-tool'
     ]);
     expect(decisions[3]).toMatchObject({
-      reason: expect.stringContaining('D-APP-09 Option B')
+      reason: expect.stringContaining('not eligible')
     });
     expect(decisions[3].safeMetadata).toMatchObject({
       hardDeny: true,
-      nonExecutableBridge: true,
+      executableBridge: true,
       requiresSubagentPreflight: true
+    });
+  });
+
+  it('allows Agent only for delegated children in workspaceWrite mode', () => {
+    const workspaceDecision = resolveHarnessPermissionDecision({
+      sessionId,
+      toolName: 'Agent',
+      mode: 'workspaceWrite',
+      descriptor: getHarnessToolDescriptor('Agent'),
+      toolInput: {
+        agent: 'TASK',
+        prompt: 'run this'
+      },
+      delegatedSubagents: ['TASK']
+    });
+
+    expect(workspaceDecision).toMatchObject({
+      decision: 'allow',
+      reason: expect.stringContaining('D-APP-10 Option C')
+    });
+    expect(workspaceDecision.safeMetadata).toMatchObject({
+      allowClass: 'subagent-execution',
+      executionPosture: 'executable',
+      childToolNames: [],
+      childCapabilityInheritance: false
+    });
+
+    const askDecision = resolveHarnessPermissionDecision({
+      sessionId,
+      toolName: 'Agent',
+      mode: 'ask',
+      descriptor: getHarnessToolDescriptor('Agent'),
+      toolInput: {
+        agent: 'TASK'
+      },
+      delegatedSubagents: ['TASK']
+    });
+    expect(askDecision).toMatchObject({
+      decision: 'deny',
+      reason: expect.stringContaining('workspaceWrite mode')
     });
   });
 

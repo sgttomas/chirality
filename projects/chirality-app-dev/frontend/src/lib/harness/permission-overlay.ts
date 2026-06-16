@@ -6,8 +6,9 @@ import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
 import { evaluateToolPathPolicy } from './tool-path-policy';
 import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from './tool-descriptor';
+import { evaluateSubagentPreflight } from './subagent-bridge';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v3.bash';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v4.subagent';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -47,6 +48,8 @@ export type ResolveHarnessPermissionDecisionInput = {
   source?: HarnessPermissionDecisionSource;
   explicitDeny?: boolean;
   explicitDenyReason?: string;
+  delegatedSubagents?: readonly string[];
+  toolInput?: Record<string, unknown>;
   safeMetadata?: Record<string, unknown>;
 };
 
@@ -189,15 +192,29 @@ export function resolveHarnessPermissionDecision(
   }
 
   if (hasDescriptorPermission(descriptor, 'subagent')) {
+    const preflight = evaluateSubagentPreflight({
+      toolInput: input.toolInput ?? {},
+      eligibleAgentNames: input.delegatedSubagents
+    });
+    if (preflight.allowed && mode === 'workspaceWrite') {
+      return createDecision(input, 'allow', preflight.reason, {
+        allowClass: 'subagent',
+        requiresHookApproval: true,
+        ...preflight.safeMetadata
+      });
+    }
+
     return createDecision(
       input,
       'deny',
-      'Subagent execution is hard-denied by the D-APP-09 Option B non-executable bridge.',
+      preflight.allowed
+        ? 'Subagent execution requires workspaceWrite mode under the D-APP-10 Option C executable bridge.'
+        : preflight.reason,
       {
         hardDeny: true,
         denyClass: 'subagent',
-        nonExecutableBridge: true,
-        requiresSubagentPreflight: true
+        requiresSubagentPreflight: true,
+        ...preflight.safeMetadata
       }
     );
   }
@@ -298,6 +315,7 @@ export function createHarnessCanUseTool(input: {
   sessionId: string;
   mode: string;
   projectRoot?: string;
+  delegatedSubagents?: readonly string[];
   resolveDescriptor: (toolName: string) => HarnessToolDescriptor | undefined;
 }): CanUseTool {
   return async (toolName, toolInput, options) => {
@@ -323,6 +341,8 @@ export function createHarnessCanUseTool(input: {
       toolName,
       descriptor,
       source: 'sdk-callback',
+      delegatedSubagents: input.delegatedSubagents,
+      toolInput,
       explicitDeny,
       explicitDenyReason: !pathPolicy.allowed
         ? pathPolicy.reason

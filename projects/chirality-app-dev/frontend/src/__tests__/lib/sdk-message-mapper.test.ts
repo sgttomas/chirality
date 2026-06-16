@@ -522,19 +522,40 @@ describe('mapSdkMessageToHarness', () => {
       uuid: '00000000-0000-0000-0000-000000000013',
       session_id: 'sdk_1'
     } as never);
+    const notification = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'task_notification',
+      task_id: 'task_1',
+      tool_use_id: 'toolu_2',
+      status: 'completed',
+      output_file: '/tmp/chirality-child-output.json',
+      summary: 'child done',
+      usage: {},
+      skip_transcript: true,
+      uuid: '00000000-0000-0000-0000-000000000014',
+      session_id: 'sdk_1'
+    } as never);
 
     expect([
       toolProgress.harnessEvents[0].type,
       hookStarted.harnessEvents[0].type,
       hookFailed.harnessEvents[0].type,
       status.harnessEvents[0].type,
-      task.harnessEvents[0].type
+      task.harnessEvents[0].type,
+      notification.harnessEvents[0].type
     ]).toEqual([
       'tool.progress',
       'hook.started',
       'hook.failed',
       'context.compaction.started',
-      'subagent.started'
+      'subagent.started',
+      'subagent.completed'
     ]);
+    expect(notification.harnessEvents[0].data).toMatchObject({
+      taskId: 'task_1',
+      toolUseId: 'toolu_2',
+      outputFile: '/tmp/chirality-child-output.json',
+      summary: 'child done'
+    });
   });
 });
