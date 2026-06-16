@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-01-02-RELIANCE-BOUNDARY-REGISTER",
+  "source_doc_id": "SRC-DEL-DEL-01-02-RELIANCE-BOUNDARY-REGISTER",
+  "source_prefix": "ED004",
+  "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/",
+  "catalog_rel_path": "@repo/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-02-RELIANCE-BOUNDARY-REGISTER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-02-RELIANCE-BOUNDARY-REGISTER-DATASHEET",
+      "expected_sha256": "4bfebb3eb95ca387ffa7f59026baa23e58208e4b98930ea7f5530d7f6be34905",
+      "generated_line_start": 11,
+      "generated_line_end": 142,
+      "source_line_start": 1,
+      "source_line_end": 132,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-02-RELIANCE-BOUNDARY-REGISTER-GUIDANCE",
+      "expected_sha256": "19472947efeb16b9f8d6a9c234830ced8132eb1bdbff55e72db47d59bdc4827c",
+      "generated_line_start": 146,
+      "generated_line_end": 278,
+      "source_line_start": 1,
+      "source_line_end": 133,
+      "line_offset": -145
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-02-RELIANCE-BOUNDARY-REGISTER-PROCEDURE",
+      "expected_sha256": "edfb545f82efa8fdefe261d32523eb523280576d6d1394e8d3587156b4004330",
+      "generated_line_start": 282,
+      "generated_line_end": 449,
+      "source_line_start": 1,
+      "source_line_end": 168,
+      "line_offset": -281
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-02-RELIANCE-BOUNDARY-REGISTER-SPECIFICATION",
+      "expected_sha256": "abde1be36e6fe5c5b19d99a3e1cb045408e0fa917942c7b6224342228930ad9a",
+      "generated_line_start": 453,
+      "generated_line_end": 551,
+      "source_line_start": 1,
+      "source_line_end": 99,
+      "line_offset": -452
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

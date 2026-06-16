@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245",
+  "source_prefix": "EG012",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG012-0001",
+      "line_start": 9,
+      "line_end": 47,
+      "target_section_ids": [
+        "SEC-EG012-0002",
+        "SEC-EG012-0003",
+        "SEC-EG012-0004",
+        "SEC-EG012-0005",
+        "SEC-EG012-0006",
+        "SEC-EG012-0007",
+        "SEC-EG012-0008"
+      ],
+      "estimated_md_tokens": 286,
+      "contains_oversized_section": false
+    }
+  ]
+}

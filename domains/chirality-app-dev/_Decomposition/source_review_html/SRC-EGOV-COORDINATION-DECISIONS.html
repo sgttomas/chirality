@@ -1,0 +1,888 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-EGOV-COORDINATION-DECISIONS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>66</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-EG002-0001">Source Pack: SRC-EGOV-COORDINATION-DECISIONS</a> <a href="#SEC-EG002-0002">Component: execution/_Coordination/_DECISIONS/D-APP-01_RULIN</a> <a href="#SEC-EG002-0007">Component: execution/_Coordination/_DECISIONS/D-APP-02_RULIN</a> <a href="#SEC-EG002-0012">Component: execution/_Coordination/_DECISIONS/D-APP-03_RULIN</a> <a href="#SEC-EG002-0017">Component: execution/_Coordination/_DECISIONS/D-APP-04_PACKE</a> <a href="#SEC-EG002-0028">Component: execution/_Coordination/_DECISIONS/D-APP-04_RULIN</a> <a href="#SEC-EG002-0035">Component: execution/_Coordination/_DECISIONS/D-APP-05_PACKE</a> <a href="#SEC-EG002-0046">Component: execution/_Coordination/_DECISIONS/D-APP-05_RULIN</a> <a href="#SEC-EG002-0053">Component: execution/_Coordination/_DECISIONS/D-APP-06_PACKE</a> <a href="#SEC-EG002-0064">Component: execution/_Coordination/_DECISIONS/_REGISTER.md</a></nav>
+<main>
+<section id="SEC-EG002-0001" class="chunk sec depth-1" data-kind="section" data-key="section:6a1d27ddb1af" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-EG002-0001</span> Source Pack: SRC-EGOV-COORDINATION-DECISIONS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a1d27ddb1af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a1d27ddb1af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a1d27ddb1af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_FOLDER`  RepoGlob: `execution/_Coordination/_DECISIONS/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-EG002-0002" class="chunk sec depth-2" data-kind="section" data-key="section:1846ae7996cc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0002</span> Component: execution/_Coordination/_DECISIONS/D-APP-01_RULING_2026-06-13.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1846ae7996cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1846ae7996cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1846ae7996cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0003" class="chunk sec depth-3" data-kind="section" data-key="section:b5ecc4ba6634" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0003</span> D-APP-01 Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b5ecc4ba6634" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b5ecc4ba6634" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b5ecc4ba6634" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** RULED
+**Date:** 2026-06-13
+**Decision:** Pi posture for Chirality App Dev
+**Ruling authority:** Human project authority in chat, propagated by `SCA-APP-001`
+**Scope-change snapshot:** `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/`
+</p></div></div></section>
+<section id="SEC-EG002-0004" class="chunk sec depth-4" data-kind="section" data-key="section:840b92d38f19" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0004</span> Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:840b92d38f19" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:840b92d38f19" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:840b92d38f19" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Pi is a strong pattern corpus and reference for stable agentic work patterns.</p>
+<p>This ruling does **not** approve:</p>
+<p>- a Pi adapter;
+- a Pi fork;
+- direct Pi package imports;
+- a Node 22 sidecar for Pi;
+- a runtime-floor change for Pi;
+- an immediate Pi spike.
+</p></div></div></section>
+<section id="SEC-EG002-0005" class="chunk sec depth-4" data-kind="section" data-key="section:efbbe9ec812a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0005</span> Intent</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efbbe9ec812a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efbbe9ec812a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efbbe9ec812a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Pi demonstrates useful agent patterns, tool-use patterns, lifecycle patterns, and harness patterns. Chirality should study and adapt those patterns into Chirality-owned contracts and implementation surfaces.</p>
+<p>Governance should be interpreted as human intention alignment, evidence capture, and human judgment at gates and after work. It should not suppress effective agent tool use merely because a capability exists.
+</p></div></div></section>
+<section id="SEC-EG002-0006" class="chunk sec depth-4" data-kind="section" data-key="section:cd567da42a54" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0006</span> Implementation Boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd567da42a54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd567da42a54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd567da42a54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Any future use of Pi as more than a reference requires a new human-ruling path and bounded implementation tranche. This ruling keeps Pi out of runtime dependency, adapter, fork, and spike scope.
+</p></div></div></section>
+<section id="SEC-EG002-0007" class="chunk sec depth-2" data-kind="section" data-key="section:19770798fbd4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0007</span> Component: execution/_Coordination/_DECISIONS/D-APP-02_RULING_2026-06-13.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:19770798fbd4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:19770798fbd4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:19770798fbd4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0008" class="chunk sec depth-3" data-kind="section" data-key="section:d80c78dda0bb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0008</span> D-APP-02 Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d80c78dda0bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d80c78dda0bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d80c78dda0bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** RULED
+**Date:** 2026-06-13
+**Decision:** Pi package import and runtime strategy
+**Ruling authority:** Human project authority in chat, propagated by `SCA-APP-001`
+**Scope-change snapshot:** `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/`
+</p></div></div></section>
+<section id="SEC-EG002-0009" class="chunk sec depth-4" data-kind="section" data-key="section:53da0a365fac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0009</span> Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:53da0a365fac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:53da0a365fac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:53da0a365fac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not import Pi packages into Chirality App Dev.</p>
+<p>Because Pi package import is not approved, no Node `&gt;=22.19.0` runtime-floor migration, Node 22 sidecar, package dependency, lockfile update, packaging change, or wrapper/runtime migration is approved for Pi.
+</p></div></div></section>
+<section id="SEC-EG002-0010" class="chunk sec depth-4" data-kind="section" data-key="section:cdc8bfa10ec4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0010</span> Intent</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cdc8bfa10ec4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cdc8bfa10ec4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cdc8bfa10ec4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality may study Pi packages and adapt patterns into Chirality-owned code and governance. Pattern adaptation must preserve separate intellectual-property identity and must not create a runtime package dependency on Pi.
+</p></div></div></section>
+<section id="SEC-EG002-0011" class="chunk sec depth-4" data-kind="section" data-key="section:f557c8349ba8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0011</span> Implementation Boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f557c8349ba8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f557c8349ba8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f557c8349ba8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Any future direct Pi package dependency or Pi sidecar strategy requires a new explicit human ruling and bounded implementation tranche.
+</p></div></div></section>
+<section id="SEC-EG002-0012" class="chunk sec depth-2" data-kind="section" data-key="section:8e9be8737433" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0012</span> Component: execution/_Coordination/_DECISIONS/D-APP-03_RULING_2026-06-13.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e9be8737433" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e9be8737433" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e9be8737433" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0013" class="chunk sec depth-3" data-kind="section" data-key="section:98ee03aab560" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0013</span> D-APP-03 Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98ee03aab560" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98ee03aab560" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98ee03aab560" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** RULED
+**Date:** 2026-06-13
+**Decision:** Provider-adapter runtime strategy
+**Ruling authority:** Human project authority in chat, propagated by `SCA-APP-001`
+**Scope-change snapshot:** `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/`
+</p></div></div></section>
+<section id="SEC-EG002-0014" class="chunk sec depth-4" data-kind="section" data-key="section:87a920ca7ba0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0014</span> Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87a920ca7ba0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87a920ca7ba0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87a920ca7ba0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Strategic provider-adapter generality is approved.</p>
+<p>Chirality should build and govern a Chirality-owned harness with provider adapters that translate provider-specific API needs, sessions, tool behavior, event streams, permission modes, and agentic abilities into Chirality-owned runtime contracts.</p>
+<p>Claude Agent SDK / Anthropic remains the first concrete adapter and the current shipped path.
+</p></div></div></section>
+<section id="SEC-EG002-0015" class="chunk sec depth-4" data-kind="section" data-key="section:081881dcd59b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0015</span> Boundaries</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:081881dcd59b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:081881dcd59b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:081881dcd59b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This ruling does **not** approve implementation of any concrete non-Anthropic provider.</p>
+<p>Every concrete new provider requires a bounded future implementation tranche with provider-network policy, adapter conformance, error classification, security/redaction checks, and release validation.
+</p></div></div></section>
+<section id="SEC-EG002-0016" class="chunk sec depth-4" data-kind="section" data-key="section:ae97a890ae26" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0016</span> Governance Interpretation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae97a890ae26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae97a890ae26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae97a890ae26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The prior Anthropic-centered policy is now a current-shipped-path constraint, not the permanent strategic ceiling. Broader provider strategy is approved at the architecture level; shipped provider expansion remains gated.
+</p></div></div></section>
+<section id="SEC-EG002-0017" class="chunk sec depth-2" data-kind="section" data-key="section:5a15deb1eff7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0017</span> Component: execution/_Coordination/_DECISIONS/D-APP-04_PACKET_2026-06-15.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a15deb1eff7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a15deb1eff7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a15deb1eff7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0018" class="chunk sec depth-3" data-kind="section" data-key="section:6547bfd20e1c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0018</span> D-APP-04 Decision Packet - Post-Write Runtime Capability Sequence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6547bfd20e1c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6547bfd20e1c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6547bfd20e1c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** PROPOSAL
+**Date:** 2026-06-15
+**Prepared by:** WORKING_ITEMS
+**Active plan item:** `plans/PLAN_2026-06-13_runtime_completion.md` dependency spine row 6</p>
+<p>This packet asks for a human ruling before the next runtime capability implementation
+after `WRITE-HOOKS-001`.
+</p></div></div></section>
+<section id="SEC-EG002-0019" class="chunk sec depth-4" data-kind="section" data-key="section:37f14fa695f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0019</span> Decision Question</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:37f14fa695f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:37f14fa695f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:37f14fa695f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Which, if any, next capability lane is approved for a bounded implementation tranche?</p>
+<p>The ruling may approve exactly one lane, approve a narrower prerequisite-only lane, or
+hold all three lanes pending additional evidence.
+</p></div></div></section>
+<section id="SEC-EG002-0020" class="chunk sec depth-4" data-kind="section" data-key="section:6ffe3a35ff19" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0020</span> Blocks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ffe3a35ff19" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ffe3a35ff19" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ffe3a35ff19" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Until this packet is ruled, do not implement or expose:</p>
+<p>- model-visible `Bash` / shell execution or bash-capable modes beyond the current deny posture;
+- SDK `Agent` tool / governed subagent runtime execution beyond the existing validation gate and event-type skeleton;
+- concrete non-Anthropic provider adapters, provider routing, provider network policy expansion, or provider package/runtime changes.</p>
+<p>This packet does not reopen Pi scope. D-APP-01 and D-APP-02 continue to rule out any Pi
+adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike.
+</p></div></div></section>
+<section id="SEC-EG002-0021" class="chunk sec depth-4" data-kind="section" data-key="section:d727018c7ea0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0021</span> Authority Basis</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d727018c7ea0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d727018c7ea0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d727018c7ea0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/PRD.md#3.2 Non-Goals` says Chirality must not add `bash` as a user-enabled capability before permission, hooks, result storage, timeout, audit logging, and packaging checks exist.
+- `docs/PRD.md#6.1 In Scope` requires governed SDK subagents to have Chirality identity, parent-child linkage, restricted capabilities, and stored output artifacts.
+- `docs/CONTRACT.md#1.6 Permission, Tool Exposure, Hooks, and MCP` defines hard-deny precedence, hook fail-closed behavior, and `K-BASH-1`.
+- `docs/CONTRACT.md#1.8 Agent and Subagent Governance` defines Type 2 sealing, subagent fail-closed gates, restricted child capability, and parent-child records.
+- `docs/CONTRACT.md#1.9 Security, Network, Release, and Packaging` keeps outbound network limited to loopback plus the current Anthropic API path unless governed future scope expands it.
+- `docs/PLAN.md#R4 - Bash, Tool Result Budgeting, and Context Mirror` places Bash after read and write hooks, and requires timeout, stdout/stderr capture, output storage, interrupt behavior, and audit events.
+- `docs/PLAN.md#R5 - Governed Subagent Runtime` places executable SDK subagents after the local runtime spine and governance bridge are stable.
+- `execution/_Coordination/_DECISIONS/D-APP-03_RULING_2026-06-13.md` approves provider-adapter generality only at the architecture level and explicitly does not approve concrete non-Anthropic providers.
+- `frontend/docs/harness/runtime_engine_contract.md#Harness Tool Descriptor Contract` records that `MultiEdit`, notebook edits, shell, network, subagent, and mutating Chirality MCP tools remain unavailable until bounded implementation, hook, result-storage, and validation tranches land.
+</p></div></div></section>
+<section id="SEC-EG002-0022" class="chunk sec depth-4" data-kind="section" data-key="section:9aaa1867c8e0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0022</span> Current Baseline</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9aaa1867c8e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9aaa1867c8e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9aaa1867c8e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Landed runtime spine through `WRITE-HOOKS-001`:</p>
+<p>- SDK read built-ins and read-only Chirality MCP tools are exposed behind descriptor and permission policy.
+- SDK `Write` and `Edit` are exposed only in `workspaceWrite` after path containment, instruction-root blocking, symlink rejection, and write-hook audit evidence.
+- `Bash`, network-capable tools, SDK subagent execution, concrete non-Anthropic providers, mutating Chirality MCP tools, notebook edits, `MultiEdit`, artifact spill files, and full diff storage remain out of scope.</p>
+<p>Known evidence debt:</p>
+<p>- Normal instruction-root integrity still fails under the pre-existing split source-root/package-resource posture.
+- Prior runtime tranches used temporary merged instruction roots for harness premerge validation.
+- Artifact spill files and full tool-result storage contracts are not yet implemented.
+</p></div></div></section>
+<section id="SEC-EG002-0023" class="chunk sec depth-4" data-kind="section" data-key="section:5958ff0fdbb5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0023</span> Options</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5958ff0fdbb5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5958ff0fdbb5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5958ff0fdbb5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Option | Ruling | What it permits | What remains denied |
+|---|---|---|---|
+| A | Approve R4 Bash prerequisites and controlled Bash implementation | A bounded tranche may implement Bash descriptor exposure, timeout, stdout/stderr capture, interrupt handling, output budgeting/storage, hook enforcement, and audit events. Model-visible Bash remains allowed only after tranche validation passes. | Bash in `readOnly` / `dontAsk`, unbounded commands, instruction-root writes, project-root escapes, provider/network expansion, subagent execution, Pi work. |
+| B | Approve R5 governed subagent runtime first | A bounded tranche may wire SDK `Agent` tool behavior through `evaluateSubagentGovernance`, restricted child cwd/tools, sealed Type 2 briefs, parent-child event records, and output artifact references. | Bash, provider/network expansion, non-Type-2 agents, child capability inheritance/expansion, unsealed context, Pi work. |
+| C | Prepare a concrete provider-expansion implementation packet only | A future packet may identify one candidate non-Anthropic provider, network policy, adapter conformance, key handling, redaction, and validation requirements. No provider code is implemented under this option. | Concrete provider adapter code, provider routing, provider package/runtime changes, broader network access, Pi work. |
+| D | Hold all capability expansion | No capability implementation proceeds. The next work must repair prerequisite evidence or return to an already-approved unblocked item if one exists. | Bash, subagent execution, concrete provider expansion, Pi work. |
+</p></div></div></section>
+<section id="SEC-EG002-0024" class="chunk sec depth-4" data-kind="section" data-key="section:12cc4d71d166" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0024</span> Recommendation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:12cc4d71d166" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:12cc4d71d166" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:12cc4d71d166" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Approve Option A only as a bounded R4 tranche, with explicit constraints:</p>
+<p>- Bash remains denied by default and in `readOnly` / `dontAsk`.
+- Bash is exposed only in an explicitly governed mode after descriptor, permission, hook, timeout, interrupt, result-budget, result-storage, audit-event, and redaction tests pass.
+- The tranche must not broaden provider/network policy. Network-capable shell behavior needs explicit deny or containment policy before model-visible exposure.
+- Governed subagents remain deferred to a later R5 ruling or tranche.
+- Concrete non-Anthropic providers remain deferred to a separate provider-specific packet and ruling.</p>
+<p>Rationale: R4 is the next roadmap phase after write hooks, and Bash depends on the same path,
+hook, tool-result, interruption, and audit surfaces just stabilized by `WRITE-HOOKS-001`.
+Subagents are higher-order orchestration and should not land before the shell/tool-result
+boundary is validated. Provider expansion is strategically approved but remains intentionally
+provider-specific and network-sensitive.
+</p></div></div></section>
+<section id="SEC-EG002-0025" class="chunk sec depth-4" data-kind="section" data-key="section:4ca105df85bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0025</span> Validation Implications If Option A Is Ruled</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ca105df85bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ca105df85bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ca105df85bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum expected validation for a Bash tranche:</p>
+<p>- focused tests for descriptor exposure, permission overlay decisions, unknown tool denial, denied Bash no-spawn behavior, and mode mapping;
+- hook tests for project-root containment, instruction-root blocking, symlink rejection, timeout/failure evidence, and fail-closed audit persistence;
+- tool-result tests for stdout/stderr metadata, byte budgets, artifact spill behavior, redaction, and no raw secret/API-key event payloads;
+- runtime mapper/event tests for `tool.permission`, `tool.started`, `tool.progress`, `tool.completed`, `tool.failed`, `context.compacted`, interruption, and terminal turn outcomes;
+- `npm run test`;
+- `npm run typecheck`;
+- `npm run harness:validate:premerge` against a reachable local app, using the documented temporary merged instruction-root workaround until split-root repair lands;
+- `npm run proof:network-policy` if the implementation changes any network, provider, or command-network enforcement path;
+- `npm run instruction-root:integrity`, with the existing split-root failure recorded if still unresolved.
+</p></div></div></section>
+<section id="SEC-EG002-0026" class="chunk sec depth-4" data-kind="section" data-key="section:980175de7b3f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0026</span> Affected Future Files</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:980175de7b3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:980175de7b3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:980175de7b3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Likely Option A implementation files include, but are not limited to:</p>
+<p>- `frontend/src/lib/harness/tool-descriptor.ts`
+- `frontend/src/lib/harness/permission-overlay.ts`
+- `frontend/src/lib/harness/sdk-options-builder.ts`
+- `frontend/src/lib/harness/chirality-hooks.ts`
+- `frontend/src/lib/harness/tool-evidence.ts`
+- `frontend/src/lib/harness/event-schema.ts`
+- `frontend/src/lib/harness/sdk-message-mapper.ts`
+- focused tests under `frontend/src/__tests__/lib/`
+- runtime contract documentation and plan closeout records
+</p></div></div></section>
+<section id="SEC-EG002-0027" class="chunk sec depth-4" data-kind="section" data-key="section:9ad41e8e7774" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0027</span> Ruling Template</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ad41e8e7774" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ad41e8e7774" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ad41e8e7774" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When the human rules, add a ruling record under `execution/_Coordination/_DECISIONS/`
+and update `_REGISTER.md` to `RULED`.</p>
+<p>Recommended ruling fields:</p>
+<p>- selected option: A, B, C, D, or narrower custom ruling;
+- permitted implementation tranche id, if any;
+- explicit denied surfaces;
+- validation requirements and any waivers;
+- whether the ruling changes provider/network policy;
+- whether further human approval is required before model-visible exposure.
+</p></div></div></section>
+<section id="SEC-EG002-0028" class="chunk sec depth-2" data-kind="section" data-key="section:1c04afcc5fbc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0028</span> Component: execution/_Coordination/_DECISIONS/D-APP-04_RULING_2026-06-15.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c04afcc5fbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c04afcc5fbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c04afcc5fbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0029" class="chunk sec depth-3" data-kind="section" data-key="section:8131c62cf05b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0029</span> D-APP-04 Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8131c62cf05b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8131c62cf05b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8131c62cf05b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** RULED
+**Date:** 2026-06-15
+**Decision:** Post-write runtime capability sequence
+**Ruling authority:** Human project authority in chat
+**Packet:** `execution/_Coordination/_DECISIONS/D-APP-04_PACKET_2026-06-15.md`
+</p></div></div></section>
+<section id="SEC-EG002-0030" class="chunk sec depth-4" data-kind="section" data-key="section:4ff1a47fd743" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0030</span> Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ff1a47fd743" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ff1a47fd743" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ff1a47fd743" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Option A is approved.</p>
+<p>A bounded R4 Bash tranche may proceed after `WRITE-HOOKS-001`. The approved lane is
+Bash prerequisites and controlled Bash implementation.
+</p></div></div></section>
+<section id="SEC-EG002-0031" class="chunk sec depth-4" data-kind="section" data-key="section:26cf24ee1503" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0031</span> Permitted Implementation Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26cf24ee1503" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26cf24ee1503" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26cf24ee1503" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The bounded R4 Bash tranche may implement:</p>
+<p>- Bash descriptor exposure;
+- permission-overlay and mode mapping for Bash;
+- default denial of Bash in `readOnly` and `dontAsk`;
+- governed-mode Bash exposure after policy and hook checks pass;
+- timeout behavior;
+- stdout/stderr capture and separation;
+- interrupt handling;
+- result budgeting and result-storage or artifact-spill behavior;
+- safe audit events for permission, start, progress, completion, failure, interruption,
+  and terminal turn outcomes;
+- redaction checks for secrets and API keys;
+- tests and runtime-contract documentation updates required to validate the lane.</p>
+<p>Model-visible Bash exposure is allowed only after the tranche&#x27;s validation requirements
+pass and closeout records the evidence.
+</p></div></div></section>
+<section id="SEC-EG002-0032" class="chunk sec depth-4" data-kind="section" data-key="section:09f1963ab26b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0032</span> Explicit Denials And Deferrals</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09f1963ab26b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09f1963ab26b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09f1963ab26b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This ruling does not approve:</p>
+<p>- Bash in `readOnly` mode;
+- unapproved Bash in `dontAsk` mode;
+- unbounded shell execution;
+- instruction-root writes;
+- project-root escapes;
+- provider/network policy expansion;
+- SDK `Agent` tool or governed subagent runtime execution;
+- concrete non-Anthropic provider implementation or provider routing;
+- remote MCP, plugins, or network-capable tools beyond the current policy;
+- Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike;
+- release readiness, lifecycle issuance, professional approval, certification, sealing,
+  authentication, or code-compliance acceptance.</p>
+<p>Governed SDK subagents and concrete provider expansion remain deferred unless a future
+bounded tranche and human ruling explicitly approve them.
+</p></div></div></section>
+<section id="SEC-EG002-0033" class="chunk sec depth-4" data-kind="section" data-key="section:2f044fe3cdfd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0033</span> Validation Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f044fe3cdfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f044fe3cdfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f044fe3cdfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The R4 Bash tranche must include evidence for:</p>
+<p>- descriptor exposure and deterministic option construction;
+- permission overlay allow, deny, ask, and unknown-tool behavior;
+- denied Bash no-spawn behavior;
+- project-root containment;
+- instruction-root blocking;
+- symlink rejection where filesystem writes or redirects are implicated;
+- timeout and interrupt behavior;
+- stdout/stderr metadata and result budgeting;
+- artifact-spill or result-storage behavior for large outputs;
+- redaction of secrets/API keys from runtime events, logs, and artifacts;
+- `tool.permission`, `tool.started`, `tool.progress`, `tool.completed`,
+  `tool.failed`, context/compaction where applicable, interruption, and terminal turn
+  outcome events;
+- no provider/network broadening without a separate ruling.</p>
+<p>Minimum command routing:</p>
+<p>- focused tests for touched descriptor, permission, options, hook, event, mapper, and
+  result-storage modules;
+- `npm run test`;
+- `npm run typecheck`;
+- `npm run harness:validate:premerge` against a reachable local app, using the documented
+  temporary merged instruction-root workaround until split-root repair lands;
+- `npm run proof:network-policy` if the implementation changes any network, provider, or
+  command-network enforcement path;
+- `npm run instruction-root:integrity`, with the existing split-root failure recorded if
+  still unresolved.
+</p></div></div></section>
+<section id="SEC-EG002-0034" class="chunk sec depth-4" data-kind="section" data-key="section:7d527c735363" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0034</span> Implementation Boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d527c735363" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d527c735363" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d527c735363" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No further human ruling is required to start the bounded R4 Bash implementation described
+above. Any expansion beyond this ruling, including subagent execution, concrete provider
+implementation, provider/network expansion, Pi work, or release-publication posture,
+requires a separate human ruling.
+</p></div></div></section>
+<section id="SEC-EG002-0035" class="chunk sec depth-2" data-kind="section" data-key="section:861165ded80c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0035</span> Component: execution/_Coordination/_DECISIONS/D-APP-05_PACKET_2026-06-15.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:861165ded80c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:861165ded80c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:861165ded80c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0036" class="chunk sec depth-3" data-kind="section" data-key="section:093e2ceec00b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0036</span> D-APP-05 Decision Packet - R5 Governed SDK Subagent Runtime</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:093e2ceec00b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:093e2ceec00b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:093e2ceec00b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** PROPOSAL
+**Date:** 2026-06-15
+**Prepared by:** WORKING_ITEMS
+**Active plan item:** Post-`BASH-R4-001` runtime capability gate</p>
+<p>This packet asks for a human ruling before implementing the next roadmap capability:
+governed SDK subagent execution through the first-adapter `Agent` tool and SDK `agents`
+configuration.
+</p></div></div></section>
+<section id="SEC-EG002-0037" class="chunk sec depth-4" data-kind="section" data-key="section:dd67a41e6ae3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0037</span> Decision Question</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd67a41e6ae3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd67a41e6ae3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd67a41e6ae3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Is a bounded R5 governed SDK subagent runtime tranche approved after the landed R4 Bash
+work?</p>
+<p>The ruling may approve the full bounded R5 tranche, approve a narrower prerequisite-only
+tranche, require dependency/SCC reconciliation before implementation, or hold subagent
+execution pending additional evidence.
+</p></div></div></section>
+<section id="SEC-EG002-0038" class="chunk sec depth-4" data-kind="section" data-key="section:87dec4a899ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0038</span> Blocks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87dec4a899ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87dec4a899ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87dec4a899ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Until this packet is ruled, do not implement or expose:</p>
+<p>- model-visible SDK `Agent` tool execution;
+- SDK `agents` definitions that can execute child turns;
+- governed subagent runtime execution beyond the existing validation gate and event-type
+  skeleton;
+- child runtime records that imply executable subagent support has landed;
+- parent-to-child capability inheritance or expansion.</p>
+<p>This packet does not reopen Pi scope, provider expansion, remote MCP, plugins, or broader
+network scope. D-APP-01 and D-APP-02 continue to rule out any Pi adapter, fork, package
+import, Node 22 sidecar, runtime-floor migration, or spike. D-APP-03 approves
+provider-adapter generality only; concrete non-Anthropic providers still need a separate
+bounded future tranche.
+</p></div></div></section>
+<section id="SEC-EG002-0039" class="chunk sec depth-4" data-kind="section" data-key="section:beefa65ee6ba" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0039</span> Authority Basis</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:beefa65ee6ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:beefa65ee6ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:beefa65ee6ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/PRD.md#R5 - Governed Subagent Runtime` requires SDK subagents to be generated from
+  Type 2 agent instructions, restricted by tool/model/turn limits, gated by
+  `evaluateSubagentGovernance`, mirrored into parent Chirality events, and linked to child
+  output artifacts.
+- `docs/CONTRACT.md#1.8 Agent and Subagent Governance` defines sealed Type 2 context,
+  fail-closed delegation, restricted child capabilities, and parent-child records as
+  invariants.
+- `docs/CONTRACT.md#1.6 Permission, Tool Exposure, Hooks, and MCP` says prompt text and
+  `allowedTools` are not safety boundaries; subagent actions require runtime enforcement
+  through permission policy and hooks.
+- `docs/SPEC.md#15 Permission Modes and Hooks` requires the `Agent` tool to be gated
+  through `evaluateSubagentGovernance`, and hook failures fail closed for subagent actions.
+- `docs/PLAN.md#R5 - Governed Subagent Runtime` places executable subagents after the local
+  runtime spine, permission policy, hooks, and prior tool phases are stable.
+- `frontend/docs/harness/runtime_engine_contract.md#Harness Tool Descriptor Contract`
+  records that subagent capability remains unavailable until bounded implementation, hook,
+  result-storage, and validation tranches land.
+- `execution/_Coordination/_DECISIONS/D-APP-04_RULING_2026-06-15.md` approved only R4 Bash
+  and explicitly deferred SDK `Agent` tool / governed subagent runtime execution.
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`
+  still reports a residual six-node strict SCC. R5 implementation must not claim
+  project-wide dependency closure; if a later R5 implementation depends on SCC closure,
+  that requires the recommended RECONCILIATION ruling package.
+</p></div></div></section>
+<section id="SEC-EG002-0040" class="chunk sec depth-4" data-kind="section" data-key="section:bf197b1b226d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0040</span> Current Baseline</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf197b1b226d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf197b1b226d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf197b1b226d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Landed runtime posture:</p>
+<p>- Runtime contract, TurnEngine, session events, SDK options, message mapping, permission
+  overlay, read tools, read-only Chirality MCP tools, write/edit hooks, controlled Bash,
+  and split-root instruction-root package integrity repair have landed.
+- `frontend/src/lib/harness/subagent-governance.ts` already evaluates persona allowlists,
+  sealed context, pipeline approval metadata, approval references, and Type 2 eligibility.
+- `TurnEngine` evaluates subagent governance and passes `delegatedSubagents` metadata to
+  the adapter path, but it does not execute SDK subagents.
+- The tool descriptor registry has an `agent` descriptor, and the permission overlay
+  hard-denies subagent execution as future policy.
+- `sdk-message-mapper` and `event-schema` can represent subagent lifecycle event categories,
+  but executable SDK subagent runtime support is not landed.</p>
+<p>Existing deferrals remain in force:</p>
+<p>- no SDK `Agent` tool exposure;
+- no concrete non-Anthropic provider implementation or routing;
+- no remote MCP, plugins, provider/network broadening, Pi work, notebook edits, `MultiEdit`,
+  mutating Chirality MCP tools, release-readiness claims, lifecycle issuance, professional
+  approval, certification, sealing, authentication, or code-compliance acceptance.
+</p></div></div></section>
+<section id="SEC-EG002-0041" class="chunk sec depth-4" data-kind="section" data-key="section:dec14fb3fcc2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0041</span> Options</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dec14fb3fcc2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dec14fb3fcc2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dec14fb3fcc2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Option | Ruling | What it permits | What remains denied |
+|---|---|---|---|
+| A | Approve bounded R5 governed SDK subagent runtime implementation | A future tranche may generate SDK `agents` definitions from eligible Type 2 instructions, expose `Agent` only when governance metadata passes, restrict child cwd/tools/model/turns, fail closed through a `PreToolUse` governance hook, persist parent-child lifecycle events, and store child output artifact references. Model-visible exposure is allowed only after tranche validation passes. | Non-Type-2 agents, unsealed context, missing approval metadata, child capability inheritance/expansion, provider/network broadening, remote MCP/plugins, Pi work, release-readiness/professional claims. |
+| B | Approve prerequisite-only R5 bridge | A future tranche may add the registry, option-construction, hook, and event tests needed for R5 while keeping the SDK `Agent` descriptor hard-denied and non-model-visible. | Any executable SDK subagent run, model-visible `Agent`, child output artifacts that imply execution, provider/network broadening, Pi work. |
+| C | Require dependency/SCC ruling package before R5 implementation | No subagent code lands. The next control-plane work should be a RECONCILIATION longer-cycle ruling package for the residual six-node SCC if it is judged to block R5 closure claims. | R5 implementation, model-visible `Agent`, provider/network broadening, Pi work. |
+| D | Hold subagent capability expansion | No subagent implementation proceeds. Future work must select another unblocked plan item or prepare a different human-gated packet. | SDK subagent execution, provider expansion, remote MCP/plugins, Pi work. |
+</p></div></div></section>
+<section id="SEC-EG002-0042" class="chunk sec depth-4" data-kind="section" data-key="section:e2b28ed4a4ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0042</span> Recommendation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2b28ed4a4ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2b28ed4a4ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2b28ed4a4ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Approve Option A only as a bounded R5 tranche, with explicit constraints:</p>
+<p>- SDK `Agent` remains unavailable until the R5 implementation passes validation.
+- `evaluateSubagentGovernance` remains the required fail-closed decision source.
+- Only Type 2 task agents with sealed context, pipeline approval metadata, approval
+  reference, restricted child tools, restricted cwd, and parent-child audit records may be
+  executable.
+- Developer-only bypass must not grant ungated subagent autonomy.
+- The tranche must not broaden provider/network policy, expose remote MCP/plugins, implement
+  concrete non-Anthropic providers, reopen Pi scope, or make release/professional-boundary
+  claims.</p>
+<p>Rationale: R5 is the next roadmap capability after the read, write, and Bash tool phases.
+The required governance evaluator and subagent event categories already exist, but the
+runtime must not connect them to SDK execution without an explicit human ruling and a
+bounded validation plan.
+</p></div></div></section>
+<section id="SEC-EG002-0043" class="chunk sec depth-4" data-kind="section" data-key="section:f41370af6477" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0043</span> Validation Implications If Option A Is Ruled</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f41370af6477" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f41370af6477" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f41370af6477" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum expected validation for a full R5 tranche:</p>
+<p>- focused tests for SDK `agents` definition generation from Type 2 instruction files;
+- tests proving non-Type-2, non-allowlisted, unsealed, missing-approval, and unknown
+  subagent requests are denied before execution;
+- SDK options tests proving `Agent` is model-visible only after descriptor, mode,
+  permission, and governance checks pass;
+- hook tests proving `Agent` tool preflight fails closed on evaluator errors, missing
+  metadata, inherited capability expansion, and child cwd/tool violations;
+- event tests for `subagent.started`, `subagent.progress`, `subagent.completed`, and
+  `subagent.failed` with parent-child linkage and no raw secrets;
+- output artifact tests proving child outputs are referenced through bounded artifact
+  records rather than treated as project truth;
+- regression tests proving `readOnly`, `dontAsk`, and developer-only `bypass` do not grant
+  ungated subagent autonomy;
+- `npm run test`;
+- `npm run typecheck`;
+- `npm run harness:validate:premerge` against a reachable local app when browser-facing
+  session or turn behavior changes;
+- `npm run instruction-root:integrity`;
+- `npm run proof:network-policy` only if the implementation touches provider, network, or
+  outbound behavior, which Option A does not authorize by default.
+</p></div></div></section>
+<section id="SEC-EG002-0044" class="chunk sec depth-4" data-kind="section" data-key="section:84cb2a224f23" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0044</span> Affected Future Files</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84cb2a224f23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84cb2a224f23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84cb2a224f23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Likely Option A implementation files include, but are not limited to:</p>
+<p>- `frontend/src/lib/harness/subagent-governance.ts`
+- `frontend/src/lib/harness/sdk-options-builder.ts`
+- `frontend/src/lib/harness/chirality-hooks.ts`
+- `frontend/src/lib/harness/tool-descriptor.ts`
+- `frontend/src/lib/harness/permission-overlay.ts`
+- `frontend/src/lib/harness/turn-engine.ts`
+- `frontend/src/lib/harness/sdk-message-mapper.ts`
+- `frontend/src/lib/harness/event-schema.ts`
+- `frontend/src/lib/harness/session-events.ts`
+- focused tests under `frontend/src/__tests__/lib/` and relevant route/harness tests
+- runtime contract documentation and plan closeout records
+</p></div></div></section>
+<section id="SEC-EG002-0045" class="chunk sec depth-4" data-kind="section" data-key="section:7065d44a9d3d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0045</span> Ruling Template</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When the human rules, add a ruling record under `execution/_Coordination/_DECISIONS/`
+and update `_REGISTER.md` to `RULED`.</p>
+<p>Recommended ruling fields:</p>
+<p>- selected option: A, B, C, D, or narrower custom ruling;
+- permitted implementation tranche id, if any;
+- explicit denied surfaces;
+- required validation commands and any waivers;
+- whether dependency/SCC reconciliation is prerequisite to implementation or only to
+  project-wide closure claims;
+- whether the ruling changes provider/network policy;
+- whether further human approval is required before model-visible `Agent` exposure.
+</p></div></div></section>
+<section id="SEC-EG002-0046" class="chunk sec depth-2" data-kind="section" data-key="section:e78156c33206" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0046</span> Component: execution/_Coordination/_DECISIONS/D-APP-05_RULING_2026-06-15.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e78156c33206" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e78156c33206" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e78156c33206" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0047" class="chunk sec depth-3" data-kind="section" data-key="section:01c905ec6a4f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0047</span> D-APP-05 Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01c905ec6a4f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01c905ec6a4f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01c905ec6a4f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** RULED
+**Date:** 2026-06-15
+**Decision:** R5 governed SDK subagent runtime prerequisite
+**Ruling authority:** Human project authority in chat
+**Packet:** `execution/_Coordination/_DECISIONS/D-APP-05_PACKET_2026-06-15.md`
+</p></div></div></section>
+<section id="SEC-EG002-0048" class="chunk sec depth-4" data-kind="section" data-key="section:9487336af897" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0048</span> Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9487336af897" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9487336af897" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9487336af897" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Custom Option B/A-prerequisite is approved.</p>
+<p>Before executable SDK subagents are exposed, Chirality must implement or specify a
+Chirality-owned provider-adapter-neutral agent/subagent runtime contract informed by both
+the Claude Agent SDK and Pi agent SDK patterns.</p>
+<p>Claude Agent SDK `Agent` may remain the first adapter-specific substrate, and Pi may be
+used as an architectural pattern corpus, but neither Claude nor Pi may define Chirality&#x27;s
+public or core runtime contract.
+</p></div></div></section>
+<section id="SEC-EG002-0049" class="chunk sec depth-4" data-kind="section" data-key="section:1344901d1f5d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0049</span> Permitted Implementation Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1344901d1f5d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1344901d1f5d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1344901d1f5d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A bounded prerequisite tranche may:</p>
+<p>- define or implement Chirality-owned provider-adapter-neutral agent/subagent runtime
+  interfaces and contracts;
+- define provider-neutral child-run, delegation, parent-child linkage, capability, event,
+  artifact, and replay semantics;
+- map Claude Agent SDK `Agent` as the first adapter-specific implementation substrate
+  without exposing it as Chirality&#x27;s public/core contract;
+- use Pi agent SDK patterns as an architectural corpus for durable sessions, event trees,
+  tool lifecycle hooks, ordered tool results, restore boundaries, and host-rehydrated
+  tools/models/hooks;
+- update runtime-contract documentation, conformance expectations, descriptor metadata,
+  and tests needed to preserve provider-adapter neutrality before executable subagents
+  are exposed.
+</p></div></div></section>
+<section id="SEC-EG002-0050" class="chunk sec depth-4" data-kind="section" data-key="section:1bf822625da0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0050</span> Explicit Denials And Deferrals</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1bf822625da0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1bf822625da0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1bf822625da0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This ruling does not approve:</p>
+<p>- executable SDK subagent exposure before the prerequisite contract work lands and validates;
+- model-visible SDK `Agent` tool execution;
+- executable SDK `agents` definitions that can run child turns;
+- Pi package import;
+- Pi adapter, fork, sidecar, or spike;
+- Node 22 sidecar or runtime-floor migration for Pi;
+- concrete non-Anthropic provider implementation or provider routing;
+- provider or network policy expansion;
+- remote MCP, plugins, or network-capable tool expansion;
+- child capability inheritance or expansion beyond Chirality-owned policy;
+- release readiness, lifecycle issuance, professional approval, certification, sealing,
+  authentication, or code-compliance acceptance.
+</p></div></div></section>
+<section id="SEC-EG002-0051" class="chunk sec depth-4" data-kind="section" data-key="section:d39a011886f7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0051</span> Validation Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d39a011886f7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d39a011886f7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d39a011886f7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The prerequisite tranche must include evidence that:</p>
+<p>- Chirality-owned interfaces and event names remain provider-neutral;
+- Claude Agent SDK and Pi concepts appear only as adapter metadata, implementation
+  substrates, or pattern-corpus rationale;
+- no Pi runtime dependency, package import, sidecar, fork, adapter, or spike is introduced;
+- no concrete non-Anthropic provider implementation, routing, package/runtime change, or
+  network broadening is introduced;
+- executable subagents remain blocked until a later bounded implementation tranche
+  explicitly enables them after contract validation.</p>
+<p>Minimum command routing for docs/control-plane-only prerequisite work is the governance
+gate from `docs/RELEASE_QUALITY_GATES.md`. Runtime-contract source or test changes must
+also route through the runtime contract gate in `docs/VALIDATION_STRATEGY.md`.
+</p></div></div></section>
+<section id="SEC-EG002-0052" class="chunk sec depth-4" data-kind="section" data-key="section:5c45f145683b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0052</span> Implementation Boundary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c45f145683b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c45f145683b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c45f145683b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No further human ruling is required to start the bounded provider-adapter-neutral
+agent/subagent contract prerequisite described above.</p>
+<p>Any expansion beyond this ruling, including executable subagent exposure, Pi implementation
+paths, concrete provider implementation, provider routing, provider/network expansion,
+remote MCP/plugins, or release-publication posture, requires a separate human ruling or
+bounded future implementation tranche where already required by project policy.
+</p></div></div></section>
+<section id="SEC-EG002-0053" class="chunk sec depth-2" data-kind="section" data-key="section:b306e5dd1874" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0053</span> Component: execution/_Coordination/_DECISIONS/D-APP-06_PACKET_2026-06-15.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b306e5dd1874" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b306e5dd1874" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b306e5dd1874" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0054" class="chunk sec depth-3" data-kind="section" data-key="section:07ee2eaa22a9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0054</span> D-APP-06 Decision Packet - Post-Contract R5 Executable Subagent Runtime</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07ee2eaa22a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07ee2eaa22a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07ee2eaa22a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** PROPOSAL
+**Date:** 2026-06-15
+**Prepared by:** WORKING_ITEMS
+**Active plan item:** `plans/PLAN_2026-06-13_runtime_completion.md` dependency spine row 9</p>
+<p>This packet asks for a human ruling after the provider-adapter-neutral
+agent/subagent runtime contract prerequisite landed in `AGENT-SUBAGENT-CONTRACT-001`.
+It does not implement or expose executable subagents.
+</p></div></div></section>
+<section id="SEC-EG002-0055" class="chunk sec depth-4" data-kind="section" data-key="section:11bcc92f2611" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0055</span> Decision Question</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11bcc92f2611" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11bcc92f2611" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11bcc92f2611" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Is a bounded executable R5 governed subagent runtime tranche approved now that the
+provider-neutral prerequisite contract has landed and validated?</p>
+<p>The ruling may approve a narrowly bounded executable implementation, approve another
+non-executable bridge tranche, require dependency/SCC reconciliation first, or hold R5
+capability expansion.
+</p></div></div></section>
+<section id="SEC-EG002-0056" class="chunk sec depth-4" data-kind="section" data-key="section:70fc517d52a4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0056</span> Blocks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70fc517d52a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70fc517d52a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70fc517d52a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Until this packet is ruled, do not implement or expose:</p>
+<p>- model-visible SDK `Agent` tool execution;
+- executable SDK `agents` definitions that can run child turns;
+- generated child definitions that imply executable support has landed;
+- child capability inheritance or expansion beyond Chirality-owned policy;
+- parent-child output artifact records that imply an executable child run occurred.</p>
+<p>This packet does not reopen Pi scope, concrete non-Anthropic providers, provider routing,
+provider/network broadening, remote MCP, plugins, package/runtime migration, or release
+publication posture.
+</p></div></div></section>
+<section id="SEC-EG002-0057" class="chunk sec depth-4" data-kind="section" data-key="section:be7ba1e845ef" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0057</span> Authority Basis</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be7ba1e845ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be7ba1e845ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be7ba1e845ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `execution/_Coordination/_DECISIONS/D-APP-05_RULING_2026-06-15.md` approved only the
+  provider-adapter-neutral prerequisite before executable SDK subagents are exposed.
+- `plans/PLAN_COMPLETION_LOG.md#2026-06-15 - Provider-adapter-neutral agent/subagent contract prerequisite landed` records that the prerequisite landed, while executable subagent runtime remains future/human-gated.
+- `frontend/docs/harness/runtime_engine_contract.md#Agent/Subagent Runtime Contract` records the current contract-only posture and states that executable exposure requires a later bounded implementation.
+- `docs/PRD.md#R5 - Governed Subagent Runtime` requires SDK `agents` and `Agent` tool execution to be generated from Type 2 instructions, restricted by tool/model/turn limits, fail-closed through `evaluateSubagentGovernance`, mirrored into parent runtime events, and linked to child output artifacts.
+- `docs/PLAN.md#R5 - Governed Subagent Runtime` places executable subagents after the local runtime spine and governance bridge are stable.
+- `docs/CONTRACT.md#1.8 Agent and Subagent Governance` defines sealed Type 2 context, fail-closed delegation, restricted child capabilities, and parent-child records as governance invariants.
+- `docs/SPEC.md#15 Permission Modes and Hooks` requires subagent actions to fail closed through runtime permission and hook enforcement.
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md` still reports a residual six-node strict SCC. Any R5 work must not claim project-wide dependency closure from current evidence.
+</p></div></div></section>
+<section id="SEC-EG002-0058" class="chunk sec depth-4" data-kind="section" data-key="section:26094cd37092" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0058</span> Current Baseline</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26094cd37092" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26094cd37092" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26094cd37092" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Landed runtime posture:</p>
+<p>- read tools, read-only Chirality MCP tools, write/edit hooks, controlled Bash, package
+  instruction-root integrity repair, and the provider-neutral agent/subagent contract are
+  landed;
+- child-run records are provider-neutral and keep adapter metadata isolated;
+- executable delegation remains blocked by contract;
+- child capability inheritance is disabled by contract;
+- Pi is pattern corpus/reference only, with no runtime dependency, adapter, fork, sidecar,
+  package import, or spike;
+- concrete non-Anthropic provider routing remains blocked.</p>
+<p>Remaining implementation gap:</p>
+<p>- no model-visible SDK `Agent` tool;
+- no executable SDK `agents` definitions;
+- no child turn execution;
+- no child output artifact persistence from executable runs;
+- no validation proving executable subagents are constrained by the landed contract.
+</p></div></div></section>
+<section id="SEC-EG002-0059" class="chunk sec depth-4" data-kind="section" data-key="section:c363c6ab4bb0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0059</span> Options</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c363c6ab4bb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c363c6ab4bb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c363c6ab4bb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Option | Ruling | What it permits | What remains denied |
+|---|---|---|---|
+| A | Approve bounded executable R5 implementation | A future tranche may expose SDK `Agent` only after descriptor, permission, and governance checks pass; generate SDK `agents` from eligible Type 2 instructions; restrict child cwd/tools/model/turns; fail closed through `evaluateSubagentGovernance`; persist parent-child events and output artifact references. | Non-Type-2 agents, unsealed context, missing approval metadata, child capability inheritance/expansion, Pi implementation, provider/network broadening, remote MCP/plugins, release/professional claims. |
+| B | Approve non-executable R5 bridge only | A future tranche may add registry, option-construction, hook, artifact-schema, and event tests while keeping SDK `Agent` hard-denied and non-model-visible. | Executable child turns, model-visible `Agent`, SDK `agents` that can run, provider/network broadening, Pi work. |
+| C | Require dependency/SCC ruling package first | No R5 implementation lands until RECONCILIATION prepares the residual six-node SCC ruling package or the human rules it non-blocking for R5. | R5 implementation, model-visible `Agent`, provider/network broadening, Pi work. |
+| D | Hold R5 capability expansion | No subagent capability implementation proceeds. Future work must select another unblocked plan item or prepare a different human-gated packet. | SDK subagent execution, provider expansion, remote MCP/plugins, Pi work. |
+</p></div></div></section>
+<section id="SEC-EG002-0060" class="chunk sec depth-4" data-kind="section" data-key="section:60a03c47d985" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0060</span> Recommendation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:60a03c47d985" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:60a03c47d985" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:60a03c47d985" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Approve Option A only as a bounded future implementation tranche, with these constraints:</p>
+<p>- executable exposure remains unavailable until implementation validation passes;
+- `evaluateSubagentGovernance` is the fail-closed source of truth for child execution;
+- only Type 2 task agents with sealed context, pipeline approval metadata, approval
+  reference, restricted child tools, restricted cwd, and parent-child audit records may be
+  executable;
+- child runs do not inherit parent capabilities;
+- developer-only bypass must not grant ungated subagent autonomy;
+- the tranche must not broaden provider/network policy, expose remote MCP/plugins,
+  implement concrete non-Anthropic providers, reopen Pi scope, or make release,
+  lifecycle, professional, certification, sealing, authentication, or code-compliance
+  claims.
+</p></div></div></section>
+<section id="SEC-EG002-0061" class="chunk sec depth-4" data-kind="section" data-key="section:9d939b7ba12f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0061</span> Validation Implications If Option A Is Ruled</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d939b7ba12f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d939b7ba12f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d939b7ba12f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum expected validation for a full executable R5 tranche:</p>
+<p>- focused tests for SDK `agents` definition generation from Type 2 instruction files;
+- tests proving non-Type-2, non-allowlisted, unsealed, missing-approval, unknown, and
+  malformed subagent requests are denied before execution;
+- SDK options tests proving `Agent` is model-visible only after descriptor, mode,
+  permission, and governance checks pass;
+- hook tests proving `Agent` preflight fails closed on evaluator errors, missing metadata,
+  inherited capability expansion, child cwd violations, and child tool violations;
+- event tests for `subagent.started`, `subagent.progress`, `subagent.completed`, and
+  `subagent.failed` with parent-child linkage and adapter metadata isolation;
+- output artifact tests proving child outputs are referenced through bounded artifacts and
+  are not treated as project truth;
+- regression tests proving `readOnly`, `dontAsk`, and developer-only `bypass` do not grant
+  ungated subagent autonomy;
+- `npm run test`;
+- `npm run typecheck`;
+- `npm run harness:validate:premerge` against a reachable local app when browser-facing
+  session, SSE, or turn behavior changes;
+- `npm run instruction-root:integrity`;
+- `npm run proof:network-policy` only if the implementation touches provider, network, or
+  outbound behavior, which Option A does not authorize by default.
+</p></div></div></section>
+<section id="SEC-EG002-0062" class="chunk sec depth-4" data-kind="section" data-key="section:bfb35a69b6a9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0062</span> Affected Future Files</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bfb35a69b6a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bfb35a69b6a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bfb35a69b6a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Likely Option A implementation files include, but are not limited to:</p>
+<p>- `frontend/src/lib/harness/agent-runtime-contract.ts`
+- `frontend/src/lib/harness/subagent-governance.ts`
+- `frontend/src/lib/harness/sdk-options-builder.ts`
+- `frontend/src/lib/harness/chirality-hooks.ts`
+- `frontend/src/lib/harness/tool-descriptor.ts`
+- `frontend/src/lib/harness/permission-overlay.ts`
+- `frontend/src/lib/harness/turn-engine.ts`
+- `frontend/src/lib/harness/sdk-message-mapper.ts`
+- `frontend/src/lib/harness/event-schema.ts`
+- `frontend/src/lib/harness/session-events.ts`
+- focused tests under `frontend/src/__tests__/lib/`
+- runtime contract documentation and plan closeout records
+</p></div></div></section>
+<section id="SEC-EG002-0063" class="chunk sec depth-4" data-kind="section" data-key="section:7065d44a9d3d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0063</span> Ruling Template</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7065d44a9d3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When the human rules, add a ruling record under `execution/_Coordination/_DECISIONS/`
+and update `_REGISTER.md` to `RULED`.</p>
+<p>Recommended ruling fields:</p>
+<p>- selected option: A, B, C, D, or narrower custom ruling;
+- permitted implementation tranche id, if any;
+- explicit denied surfaces;
+- required validation commands and any waivers;
+- whether dependency/SCC reconciliation is prerequisite to implementation or only to
+  project-wide closure claims;
+- whether the ruling changes provider/network policy;
+- whether further human approval is required before model-visible `Agent` exposure.
+</p></div></div></section>
+<section id="SEC-EG002-0064" class="chunk sec depth-2" data-kind="section" data-key="section:3f4060bab423" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG002-0064</span> Component: execution/_Coordination/_DECISIONS/_REGISTER.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f4060bab423" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f4060bab423" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f4060bab423" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG002-0065" class="chunk sec depth-3" data-kind="section" data-key="section:d173953005ff" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG002-0065</span> Human Decision Register - Chirality App Dev</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d173953005ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d173953005ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d173953005ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Created:** 2026-06-13
+**Status:** Non-governing tracking surface.</p>
+<p>This register tracks human-gated decisions for the active app-integration loop. Agents may prepare decision packets labeled `PROPOSAL`; only the human project authority rules. Authority remains with `docs/PRD.md`, `docs/PLAN.md`, source code, tests, and git history.</p>
+<p>**Row states:** `NOT_PREPARED` -&gt; `AWAITING_RULING` -&gt; `RULED`.</p>
+<p>| ID | Decision | Blocks | State | Packet | Ruling record |
+|---|---|---|---|---|---|
+| D-APP-01 | Whether Pi should be treated as adapter/fork/import/spike scope or as a pattern corpus only | Any Pi adapter, fork, package import, sidecar, or spike work | RULED | - | `execution/_Coordination/_DECISIONS/D-APP-01_RULING_2026-06-13.md` |
+| D-APP-02 | If Pi packages are imported, choose runtime strategy: raise Chirality runtime floor to Node `&gt;=22.19.0` or isolate Pi behind a Node 22 sidecar | Any direct Pi package dependency or Node 22 sidecar/runtime-floor change for Pi | RULED | - | `execution/_Coordination/_DECISIONS/D-APP-02_RULING_2026-06-13.md` |
+| D-APP-03 | Whether to broaden runtime strategy beyond the current shipped Anthropic path toward provider-adapter generality | Any concrete non-Anthropic shipped backend adapter or provider routing | RULED | - | `execution/_Coordination/_DECISIONS/D-APP-03_RULING_2026-06-13.md` |
+| D-APP-04 | Which post-write runtime capability lane, if any, is approved next: Bash, governed SDK subagents, or concrete provider expansion preparation | Bash exposure, governed SDK subagent execution, and concrete non-Anthropic provider implementation/routing after `WRITE-HOOKS-001` | RULED | `execution/_Coordination/_DECISIONS/D-APP-04_PACKET_2026-06-15.md` | `execution/_Coordination/_DECISIONS/D-APP-04_RULING_2026-06-15.md` |
+| D-APP-05 | Whether to approve bounded R5 governed SDK subagent runtime after landed R4 Bash | SDK `Agent` tool exposure, executable SDK `agents` definitions, and governed subagent runtime execution | RULED | `execution/_Coordination/_DECISIONS/D-APP-05_PACKET_2026-06-15.md` | `execution/_Coordination/_DECISIONS/D-APP-05_RULING_2026-06-15.md` |
+| D-APP-06 | Whether to approve bounded executable R5 governed subagent runtime after landed provider-neutral contract prerequisite | Model-visible SDK `Agent` tool execution, executable SDK `agents` definitions, child turn execution, and executable child output artifacts | AWAITING_RULING | `execution/_Coordination/_DECISIONS/D-APP-06_PACKET_2026-06-15.md` | - |
+</p></div></div></section>
+<section id="SEC-EG002-0066" class="chunk sec depth-4" data-kind="section" data-key="section:ad2682175a4a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG002-0066</span> Decision Preparation Rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ad2682175a4a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ad2682175a4a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ad2682175a4a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Prepare a packet only when the selected tranche is blocked by the decision.
+- Keep packets under `execution/_Coordination/_DECISIONS/`.
+- Label packets `PROPOSAL`.
+- Include options, recommendation, risks, validation implications, and affected files.
+- Treat approval as recorded only when a ruling record is added.
+- `RULED` decisions remain subject to their ruling record. Do not infer broader implementation approval than the ruling text grants.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "EG002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

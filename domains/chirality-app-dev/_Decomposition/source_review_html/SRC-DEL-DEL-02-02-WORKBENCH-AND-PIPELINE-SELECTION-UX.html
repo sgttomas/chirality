@@ -1,0 +1,504 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-02-02-WORKBENCH-AND-PIPELINE-SELECTION-UX - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED008-0001">Source Pack: SRC-DEL-DEL-02-02-WORKBENCH-AND-PIPELINE-SELECT</a> <a href="#SEC-ED008-0002">Component: execution/PKG-02_Desktop_Shell_Navigation_and_Ope</a> <a href="#SEC-ED008-0009">Component: execution/PKG-02_Desktop_Shell_Navigation_and_Ope</a> <a href="#SEC-ED008-0017">Component: execution/PKG-02_Desktop_Shell_Navigation_and_Ope</a> <a href="#SEC-ED008-0024">Component: execution/PKG-02_Desktop_Shell_Navigation_and_Ope</a></nav>
+<main>
+<section id="SEC-ED008-0001" class="chunk sec depth-1" data-kind="section" data-key="section:df269c13d3dc" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED008-0001</span> Source Pack: SRC-DEL-DEL-02-02-WORKBENCH-AND-PIPELINE-SELECTION-UX</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df269c13d3dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df269c13d3dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df269c13d3dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED008-0002" class="chunk sec depth-2" data-kind="section" data-key="section:db38a268f107" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED008-0002</span> Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db38a268f107" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db38a268f107" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db38a268f107" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0003" class="chunk sec depth-3" data-kind="section" data-key="section:f6e4722e2a93" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED008-0003</span> Datasheet: DEL-02-02 Workbench and Pipeline Selection UX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6e4722e2a93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6e4722e2a93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6e4722e2a93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0004" class="chunk sec depth-4" data-kind="section" data-key="section:ce8022d3dcdd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce8022d3dcdd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce8022d3dcdd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce8022d3dcdd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-02-02 |
+| DeliverableName | Workbench and Pipeline Selection UX |
+| PackageID | PKG-02 |
+| PackageName | Desktop Shell, Navigation, and Operator State |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| Type | UX_UI_SLICE |
+| ContextEnvelope | M |
+| ResponsibleParty | TBD |
+| LifecycleState at authoring | OPEN |
+</p></div></div></section>
+<section id="SEC-ED008-0005" class="chunk sec depth-4" data-kind="section" data-key="section:ba4901626680" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ba4901626680" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ba4901626680" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ba4901626680" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary UI surfaces | WORKBENCH and PIPELINE selection controls, reached from matrix routing. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2; `docs/TYPES.md` Section 4 |
+| Workbench context display | Selected agent, row, and column are shown from query params with sensible defaults. | `docs/PRD.md` Section 8.2 FR-009 |
+| Workbench deliverable contract behavior | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. | `docs/PRD.md` Section 8.2 FR-010 |
+| Pipeline categories | `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | `docs/PRD.md` Section 8.2 FR-011 |
+| Pipeline task scope selectors | `TASK` uses split selectors for task agent and scope. Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
+| Unsupported variants | Unsupported options remain visible and disabled as coming soon. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-011; `docs/TYPES.md` Section 4.4 |
+| Stale selection behavior | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. | `docs/PRD.md` Section 8.2 FR-013; `docs/PRD.md` Section 7.5 |
+</p></div></div></section>
+<section id="SEC-ED008-0006" class="chunk sec depth-4" data-kind="section" data-key="section:be6d0181cf44" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be6d0181cf44" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be6d0181cf44" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be6d0181cf44" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Current release priority | Workbench agent context, pipeline category controls, and TASK split selectors are P0. Workbench contract APIs and stale selection reset are P1. | `docs/PRD.md` Section 8.2 |
+| Scope boundary | Includes UI and operator workflow behavior; excludes runtime engine internals. | `_CONTEXT.md` Package Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 7 |
+| Source warning | `docs/PRD.md` is accessible but has the expected PRD hash mismatch recorded in `_REFERENCES.md`; per dispatch, this is treated as a source warning, not a blocker. | `_REFERENCES.md` Authoritative Source Corpus |
+| Dispatch path warning | The dispatched path used stale package label `PKG-02_Desktop_UI_and_Local_Experience`; the unique live DEL-02-02 folder is under `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | `execution/_Coordination/WORKSPACE_MANIFEST.csv`; `_CONTEXT.md` Identity |
+</p></div></div></section>
+<section id="SEC-ED008-0007" class="chunk sec depth-4" data-kind="section" data-key="section:ecff88692fd2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecff88692fd2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecff88692fd2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecff88692fd2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component / artifact | Required content | Source |
+|---|---|---|
+| Workbench context UI | Display selected agent context from row/column/agent query parameters with defaults. | `docs/PRD.md` Section 8.2 FR-009 |
+| Workbench deliverable checks | Read-only status/dependency summaries and disabled lifecycle controls for unsupported agents. | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2 |
+| Pipeline category selector | Visible controls for operative categories. | `docs/PRD.md` Section 8.2 FR-011 |
+| Pipeline TASK selector | Separate task-agent and scope selection; scope modes for deliverables and knowledge types. | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
+| Stale-selection tests | Tests covering root change, removed deliverables, disabled knowledge markers, and stale knowledge targets. | `docs/PRD.md` Section 8.2 FR-013; `_CONTEXT.md` Anticipated Artifacts |
+</p></div></div></section>
+<section id="SEC-ED008-0008" class="chunk sec depth-4" data-kind="section" data-key="section:54edef6ffd35" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54edef6ffd35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54edef6ffd35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54edef6ffd35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for deliverable identity, scope, and anticipated artifacts.
+- `_REFERENCES.md` for source corpus and hash status.
+- `_DEPENDENCIES.md` for declared dependency state; dependency extraction is deferred.
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 7-9 for package, deliverable, and scope-ledger entries.
+- `docs/PRD.md` Sections 7.2, 7.5, 8.2, 14, and 16 for source requirements and traceability.
+- `docs/TYPES.md` Section 4 for navigation vocabulary.
+- `docs/SPEC.md` Section 17.2 for deliverable status/dependency workspace APIs.
+- `docs/CONTRACT.md` Section 1.7 for lifecycle/dependency/provenance invariants.
+</p></div></div></section>
+<section id="SEC-ED008-0009" class="chunk sec depth-2" data-kind="section" data-key="section:9a1cd216e054" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED008-0009</span> Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a1cd216e054" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a1cd216e054" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a1cd216e054" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0010" class="chunk sec depth-3" data-kind="section" data-key="section:d0c4e19a7e06" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED008-0010</span> Guidance: DEL-02-02 Workbench and Pipeline Selection UX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d0c4e19a7e06" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d0c4e19a7e06" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d0c4e19a7e06" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0011" class="chunk sec depth-4" data-kind="section" data-key="section:f7c94f59c49d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7c94f59c49d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7c94f59c49d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7c94f59c49d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable keeps the Workbench and Pipeline selection experience coherent for operators moving from the matrix into interactive personas or operative task categories. The UX should preserve active agent context, make available pipeline choices visible, prevent stale or invalid selections, and keep UI convenience state subordinate to governed project files.</p>
+<p>Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 7.2, 7.5, 8.2, and 14.
+</p></div></div></section>
+<section id="SEC-ED008-0012" class="chunk sec depth-4" data-kind="section" data-key="section:5af7a3b26e50" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5af7a3b26e50" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5af7a3b26e50" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5af7a3b26e50" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Preserve context at route boundaries: when the matrix opens WORKBENCH, the selected agent, row, and column should remain visible and recoverable from query parameters. Source: `docs/PRD.md` Section 8.2 FR-009.
+- Keep operative selection explicit: PIPELINE should expose `DECOMP`, `PREP`, `TASK`, and `AUDIT`, and `TASK` should separate agent choice from scope choice. Source: `docs/PRD.md` Section 8.2 FR-011 and FR-012.
+- Prefer disabled visibility over disappearance for unsupported options, so operators can see roadmap shape without being able to invoke unavailable behavior. Source: `docs/PRD.md` Section 7.2; `docs/TYPES.md` Section 4.4.
+- Reset stale selections rather than carrying invalid state across root or scan changes. Source: `docs/PRD.md` Section 8.2 FR-013 and Section 7.5.
+- Treat UI local state as non-authoritative convenience state. Project truth remains in working-root files and accepted git history. Source: `docs/DIRECTIVE.md` Sections 2.1, 2.2, and 2.6.
+</p></div></div></section>
+<section id="SEC-ED008-0013" class="chunk sec depth-4" data-kind="section" data-key="section:4a16767c6f3e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a16767c6f3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a16767c6f3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a16767c6f3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- SOW-007 is listed in `_CONTEXT.md` as covered by DEL-02-02, while the decomposition scope ledger assigns SOW-007 to PKG-08 / DEL-08-03 as the primary package for agent dispatch. For this deliverable, treat Pipeline selectors as a UI presentation and selection concern; dispatch semantics remain with PKG-08 unless a human rules otherwise.
+- Workbench deliverable contract summaries depend on status and dependency APIs. This deliverable should verify UI behavior but not extract dependencies or create `Dependencies.csv`.
+- `KNOWLEDGE_TYPES` mode should not become selectable unless the source scan indicates a knowledge decomposition marker. Source: `docs/PRD.md` Section 7.5.
+- The PRD is usable for this run but has a recorded hash mismatch in `_REFERENCES.md`; source-backed content from the PRD should remain reviewable against the observed file.
+- ASSUMPTION: Existing implementation already has some PORTAL, WORKBENCH, PIPELINE, matrix navigation, toolkit, and file-tree surfaces because `docs/PLAN.md` Section 1 lists them as part of the current baseline. This run did not inspect frontend code and does not claim implementation conformance.
+</p></div></div></section>
+<section id="SEC-ED008-0014" class="chunk sec depth-4" data-kind="section" data-key="section:bbd2e92c5a14" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbd2e92c5a14" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbd2e92c5a14" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbd2e92c5a14" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance | Source |
+|---|---|---|
+| Visible disabled options vs. hiding unsupported scope | Prefer visible disabled options when a variant is unsupported or coming soon. This preserves operator awareness without enabling execution. | `docs/PRD.md` Sections 7.2 and 14; `docs/TYPES.md` Section 4.4 |
+| Local UI persistence vs. authoritative project state | Persist convenience state only when it cannot override `_STATUS.md`, dependency records, deliverable files, or accepted git history. | `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
+| UX slice ownership vs. agent-dispatch ownership | Keep selector display and stale-selection behavior in this UX slice; keep dispatch governance and subagent behavior in PKG-08. | `_CONTEXT.md`; decomposition scope ledger SOW-007 |
+| Defaults vs. explicit context | Provide sensible defaults for incomplete Workbench query params, but visibly show the resolved agent/row/column so the operator knows active context. | `docs/PRD.md` Section 8.2 FR-009 |
+</p></div></div></section>
+<section id="SEC-ED008-0015" class="chunk sec depth-4" data-kind="section" data-key="section:e1a331c20700" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e1a331c20700" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e1a331c20700" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e1a331c20700" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected behavior | Source |
+|---|---|---|
+| User clicks a NORMATIVE matrix cell | App opens WORKBENCH and shows the selected agent context. | `docs/PRD.md` Sections 7.2 and 8.2 |
+| User clicks an OPERATIVE matrix cell | App opens PIPELINE with the relevant category context. | `docs/PRD.md` Section 7.2 |
+| User opens PIPELINE TASK | UI shows split controls for task agent and scope; scope modes are deliverables or knowledge types. | `docs/PRD.md` Section 8.2 FR-012 |
+| Working root changes | Invalid deliverable or knowledge-type selections reset. | `docs/PRD.md` Section 8.2 FR-013 |
+| Unsupported pipeline option exists | Option remains visible but disabled as coming soon. | `docs/PRD.md` Section 7.2; `docs/TYPES.md` Section 4.4 |
+</p></div></div></section>
+<section id="SEC-ED008-0016" class="chunk sec depth-4" data-kind="section" data-key="section:54cacf2ddce9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54cacf2ddce9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54cacf2ddce9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54cacf2ddce9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| DEL-02-02-CONFLICT-001 | Dispatch path used stale package label `PKG-02_Desktop_UI_and_Local_Experience`, but the live scaffolded deliverable is under `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | User dispatch brief | `_CONTEXT.md` Identity; `execution/_Coordination/WORKSPACE_MANIFEST.csv` row for DEL-02-02 | All run-record scope references | Use the unique live DEL-02-02 path and preserve the path mismatch as a source warning. | TBD |
+| DEL-02-02-CONFLICT-002 | PRD expected hash differs from observed hash. Dispatch says to treat this as a source warning, not a blocker. | `_REFERENCES.md` REF-006 row | User dispatch brief | All PRD-backed requirements | Continue using accessible `docs/PRD.md`, cite sections, and surface hash mismatch for review. | TBD |
+| DEL-02-02-CONFLICT-003 | `_CONTEXT.md` lists SOW-007 under DEL-02-02, while the decomposition scope ledger maps SOW-007 to PKG-08 / DEL-08-03 with PKG-08 as primary package. | `_CONTEXT.md` Traceability | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Scope Ledger SOW-007 | Specification scope, requirements, and ownership notes | Treat DEL-02-02 as UI selector owner and PKG-08 as dispatch semantics owner. | TBD |
+</p></div></div></section>
+<section id="SEC-ED008-0017" class="chunk sec depth-2" data-kind="section" data-key="section:8861ab1906b6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED008-0017</span> Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8861ab1906b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8861ab1906b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8861ab1906b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0018" class="chunk sec depth-3" data-kind="section" data-key="section:2f55c1210652" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED008-0018</span> Procedure: DEL-02-02 Workbench and Pipeline Selection UX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f55c1210652" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f55c1210652" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f55c1210652" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0019" class="chunk sec depth-4" data-kind="section" data-key="section:d625510a49c0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d625510a49c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d625510a49c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d625510a49c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the operational steps to produce and verify the Workbench and Pipeline Selection UX slice without expanding scope into runtime internals, dependency extraction, or PKG-08 dispatch governance.
+</p></div></div></section>
+<section id="SEC-ED008-0020" class="chunk sec depth-4" data-kind="section" data-key="section:8fe70c2b49e5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fe70c2b49e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fe70c2b49e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fe70c2b49e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Accepted working root with DEL-02-02 scaffolded under PKG-02.
+- Accessible source corpus from `_REFERENCES.md`, especially `docs/PRD.md`, `docs/TYPES.md`, `docs/SPEC.md`, and the active SOFTWARE_DECOMP file.
+- Current deliverable status and dependencies available through deliverable-local files or workspace APIs.
+- Declared upstream dependencies: TBD; `_DEPENDENCIES.md` says no accepted dependency edges have been extracted yet.
+- Declared downstream dependencies: TBD; `_DEPENDENCIES.md` says no accepted dependency edges have been extracted yet.
+</p></div></div></section>
+<section id="SEC-ED008-0021" class="chunk sec depth-4" data-kind="section" data-key="section:46ebe67bbef9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46ebe67bbef9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46ebe67bbef9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46ebe67bbef9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm source and scope.
+   - Read `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`, and `_DEPENDENCIES.md`.
+   - Confirm `ResponsibleParty` remains `TBD`.
+   - Confirm this slice covers Workbench context UI, Pipeline selector behavior, and stale selection tests.</p>
+<p>2. Implement or inspect Workbench context behavior.
+   - Verify that selected agent, row, and column are read from query parameters.
+   - Verify sensible defaults for incomplete or missing query parameters.
+   - Verify the resolved active context is visible to the operator.
+   - Source: `docs/PRD.md` Section 8.2 FR-009.</p>
+<p>3. Implement or inspect Workbench deliverable contract summaries.
+   - Load selected-deliverable status/dependency summaries through workspace contract APIs where the UI supports deliverable context.
+   - Keep lifecycle controls disabled for unsupported agents.
+   - Identify the source of truth for unsupported lifecycle controls, or record it as TBD if the registry/API response/policy surface is not yet named.
+   - Verify status/dependency summaries are not populated from local UI convenience state while dependency extraction remains deferred.
+   - Do not treat UI state as authoritative lifecycle or dependency truth.
+   - Sources: `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7.</p>
+<p>4. Implement or inspect Pipeline category controls.
+   - Expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls.
+   - Keep unsupported options visible and disabled as coming soon.
+   - Sources: `docs/PRD.md` Section 8.2 FR-011; `docs/TYPES.md` Section 4.4.</p>
+<p>5. Implement or inspect Pipeline TASK selectors.
+   - Separate task-agent selection from scope selection.
+   - Support scope modes `DELIVERABLES` and `KNOWLEDGE_TYPES`.
+   - Require target deliverable selection for knowledge-type mode.
+   - Source: `docs/PRD.md` Section 8.2 FR-012.</p>
+<p>6. Implement or inspect stale selection reset behavior.
+   - Reset invalid selection state when the working root changes.
+   - Reset removed deliverables.
+   - Reset disabled knowledge markers.
+   - Reset stale knowledge targets.
+   - Sources: `docs/PRD.md` Section 8.2 FR-013; `docs/PRD.md` Section 7.5.</p>
+<p>7. Preserve governance boundaries.
+   - Do not create or update `Dependencies.csv` as part of this UX deliverable.
+   - Do not infer dependency edges from UI selector behavior.
+   - Record unknowns as `TBD`, `ASSUMPTION`, or conflicts for human ruling.
+</p></div></div></section>
+<section id="SEC-ED008-0022" class="chunk sec depth-4" data-kind="section" data-key="section:171f9e1a48c7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:171f9e1a48c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:171f9e1a48c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:171f9e1a48c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result | Source |
+|---|---|---|
+| Workbench query context | Selected agent, row, and column are shown with sensible defaults. | `docs/PRD.md` Section 8.2 FR-009 |
+| Matrix routing boundary | NORMATIVE/EVALUATIVE route to WORKBENCH; OPERATIVE routes to PIPELINE. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-008 |
+| Workbench contract summaries | Status/dependency summaries load for selected deliverables; unsupported transition controls are disabled. | `docs/PRD.md` Section 8.2 FR-010 |
+| Workbench contract boundary | Status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD; UI convenience state is not used as dependency truth. | `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
+| Pipeline categories | `DECOMP`, `PREP`, `TASK`, and `AUDIT` are represented; unsupported variants are disabled. | `docs/PRD.md` Section 8.2 FR-011 |
+| TASK split selectors | Task agent and scope selectors are distinct; scope mode behavior matches `DELIVERABLES` / `KNOWLEDGE_TYPES`. | `docs/PRD.md` Section 8.2 FR-012 |
+| Stale selection reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selections. | `docs/PRD.md` Section 8.2 FR-013 |
+| Project truth boundary | No local UI state overrides `_STATUS.md`, dependency records, deliverable files, or accepted git history. | `docs/DIRECTIVE.md` Sections 2.1, 2.2, and 2.6 |
+</p></div></div></section>
+<section id="SEC-ED008-0023" class="chunk sec depth-4" data-kind="section" data-key="section:a39cad297e54" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a39cad297e54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a39cad297e54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a39cad297e54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Workbench context UI implementation or inspection notes: TBD.
+- Workbench context UI test evidence for query defaults: TBD.
+- Workbench lifecycle-control source-of-truth fixture or registry evidence: TBD.
+- Workbench contract boundary evidence for status/dependency summaries: TBD.
+- Pipeline selector behavior implementation or inspection notes: TBD.
+- Pipeline category and TASK split-selector test evidence: TBD.
+- Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: TBD.
+- Human rulings for conflict table entries in `Guidance.md`: TBD.
+- Dependency extraction remains deferred; `Dependencies.csv` is intentionally not produced by this run.
+</p></div></div></section>
+<section id="SEC-ED008-0024" class="chunk sec depth-2" data-kind="section" data-key="section:79c3cecd3c82" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED008-0024</span> Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:79c3cecd3c82" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:79c3cecd3c82" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:79c3cecd3c82" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0025" class="chunk sec depth-3" data-kind="section" data-key="section:6853110823b5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED008-0025</span> Specification: DEL-02-02 Workbench and Pipeline Selection UX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6853110823b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6853110823b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6853110823b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED008-0026" class="chunk sec depth-4" data-kind="section" data-key="section:c49f28d12289" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c49f28d12289" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c49f28d12289" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c49f28d12289" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the user-facing UX slice for Workbench active-agent context and Pipeline selection controls in PKG-02. It covers:</p>
+<p>- WORKBENCH presentation of selected agent, row, and column context.
+- WORKBENCH read-only deliverable contract summaries and disabled lifecycle controls where the selected agent cannot perform transitions.
+- PIPELINE category controls for operative categories.
+- PIPELINE `TASK` split selectors for task agent and scope.
+- Stale selection reset behavior for root, deliverable, and knowledge-type changes.</p>
+<p>Excluded:</p>
+<p>- Runtime engine internals and SDK/provider behavior.
+- Authoritative dependency extraction and `Dependencies.csv` creation.
+- Agent-suite dispatch governance beyond the UI controls needed to select a category or task scope.</p>
+<p>Sources: `_CONTEXT.md` Package Scope and Deliverable Scope; `docs/PRD.md` Section 8.2; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 7-9.
+</p></div></div></section>
+<section id="SEC-ED008-0027" class="chunk sec depth-4" data-kind="section" data-key="section:c920e0ef4001" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c920e0ef4001" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c920e0ef4001" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c920e0ef4001" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ReqID | Requirement | Priority / Status | Source |
+|---|---|---|---|
+| DEL-02-02-REQ-001 | WORKBENCH shall show the selected agent, matrix row, and matrix column from query parameters, with sensible defaults when parameters are absent or incomplete. | P0 | `docs/PRD.md` Section 8.2 FR-009 |
+| DEL-02-02-REQ-002 | Matrix routing inputs to this UX shall preserve the rule that NORMATIVE and EVALUATIVE cells open WORKBENCH, while OPERATIVE cells open PIPELINE. | P0 | `docs/PRD.md` Sections 7.2 and 8.2 FR-008; `docs/TYPES.md` Section 4 |
+| DEL-02-02-REQ-003 | WORKBENCH shall consume deliverable contract APIs for read-only status/dependency checks when a deliverable is selected. | P1 | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2 |
+| DEL-02-02-REQ-004 | WORKBENCH lifecycle transition controls shall be disabled for unsupported agents. The source of truth for unsupported controls is TBD until the UI control registry, workspace API response, or authorized actor/transition policy surface is named. | P1 | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/CONTRACT.md` Section 1.7 |
+| DEL-02-02-REQ-005 | PIPELINE shall expose category controls for `DECOMP`, `PREP`, `TASK`, and `AUDIT`. Unsupported options shall remain visible and disabled as coming soon. | P0 | `docs/PRD.md` Section 8.2 FR-011; `docs/PRD.md` Section 7.2; `docs/TYPES.md` Section 4.4 |
+| DEL-02-02-REQ-006 | PIPELINE `TASK` shall use split selectors for task agent and scope. | P0 | `docs/PRD.md` Section 8.2 FR-012 |
+| DEL-02-02-REQ-007 | `TASK` scope mode shall be `DELIVERABLES` or `KNOWLEDGE_TYPES`; a target deliverable is required for knowledge-type mode. | P0 | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
+| DEL-02-02-REQ-008 | Dynamic scope scans shall reset invalid selections caused by root changes, removed deliverables, disabled knowledge markers, or stale knowledge targets. | P1 | `docs/PRD.md` Section 8.2 FR-013; `docs/PRD.md` Section 7.5 |
+| DEL-02-02-REQ-009 | The UX shall preserve disabled or unsupported variants as visible non-selectable options rather than silently hiding roadmap scope. | P0/P1 context | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 14; `docs/TYPES.md` Section 4.4 |
+| DEL-02-02-REQ-010 | UI state used by this slice shall remain non-authoritative and must not replace project truth in deliverable files, status files, dependency records, or accepted git history. | Governance constraint | `docs/DIRECTIVE.md` Sections 2.1, 2.2, and 2.6; `docs/CONTRACT.md` Section 1.7 |
+| DEL-02-02-REQ-011 | Workbench status/dependency summaries shall not be populated from UI convenience state while dependency extraction remains deferred; empty or missing dependency records must remain visibly `TBD`, unavailable, or sourced from the deliverable contract API. | Governance constraint | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
+</p></div></div></section>
+<section id="SEC-ED008-0028" class="chunk sec depth-4" data-kind="section" data-key="section:66be5cb1bd4b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66be5cb1bd4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66be5cb1bd4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66be5cb1bd4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / contract | Application | Source |
+|---|---|---|
+| Chirality UI navigation vocabulary | Rows, columns, matrix cells, pipeline categories, scope modes, and disabled options. | `docs/TYPES.md` Section 4 |
+| Chirality PRD functional requirements | Workbench and Pipeline requirements FR-007 through FR-013. | `docs/PRD.md` Section 8.2 |
+| Chirality workspace API contract | Read deliverable status/dependency summaries through workspace APIs. | `docs/SPEC.md` Section 17.2 |
+| Chirality lifecycle and dependency invariants | `_STATUS.md` and dependency records remain authoritative project files, not UI convenience state. | `docs/CONTRACT.md` Section 1.7 |
+</p></div></div></section>
+<section id="SEC-ED008-0029" class="chunk sec depth-4" data-kind="section" data-key="section:d1b23c7b79b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d1b23c7b79b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d1b23c7b79b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d1b23c7b79b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification approach | Evidence target |
+|---|---|---|
+| DEL-02-02-REQ-001 | Route/query tests for missing, partial, and complete Workbench query params. | Workbench context UI tests |
+| DEL-02-02-REQ-002 | Matrix navigation tests asserting destination by row class. | Matrix routing tests owned with DEL-02-01/DEL-08-02 as applicable |
+| DEL-02-02-REQ-003 | UI/API integration tests or mocked API tests for status/dependency summary loading. | Workbench deliverable contract tests |
+| DEL-02-02-REQ-004 | UI tests confirming unsupported lifecycle controls are disabled and do not submit transitions; source-of-truth fixture or control registry remains TBD. | Workbench lifecycle-control tests, exact registry/fixture TBD |
+| DEL-02-02-REQ-005 | Pipeline selector tests for visible categories and disabled coming-soon variants. | Pipeline category selector tests |
+| DEL-02-02-REQ-006 | Pipeline TASK selector tests confirming task-agent and scope controls are independently represented. | Pipeline TASK selector tests |
+| DEL-02-02-REQ-007 | Scope-mode validation tests for deliverables, knowledge types, and required target deliverable. | Task-scope selector tests |
+| DEL-02-02-REQ-008 | Stale selection tests for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets. | Stale selection tests |
+| DEL-02-02-REQ-010 | Review that no UI state is treated as authoritative project truth. | Governance review checklist or tests, exact artifact TBD |
+| DEL-02-02-REQ-011 | Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when dependency extraction is deferred. | Workbench contract boundary fixture or tests, exact artifact TBD |
+</p></div></div></section>
+<section id="SEC-ED008-0030" class="chunk sec depth-4" data-kind="section" data-key="section:81aebb514ea0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED008-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81aebb514ea0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81aebb514ea0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81aebb514ea0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required or anticipated artifacts:</p>
+<p>- Workbench context UI implementation and tests.
+- Pipeline selector behavior implementation and tests.
+- Stale selection tests.
+- Workbench contract boundary evidence showing that status/dependency summaries are not derived from local UI convenience state.
+- Notes for disabled coming-soon variants if implementation uses a visible option registry.
+- Any human ruling needed for cross-package ownership of SOW-007 and matrix-routing overlap with PKG-08.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED008";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

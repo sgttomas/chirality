@@ -1,0 +1,343 @@
+# Source Pack: SRC-DEL-DEL-06-05-BASH-GOVERNANCE-AND-TIMEOUT-POLICY
+
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/`
+
+Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+
+## Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Datasheet.md
+
+### Datasheet: DEL-06-05 Bash Governance and Timeout Policy
+
+#### Identification
+
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-06-05 |
+| Deliverable name | Bash Governance and Timeout Policy |
+| Package | PKG-06 Permissioned Tools, MCP, and Hooks |
+| Type | SECURITY_CONTROL |
+| Responsible party | TBD |
+| Decomposition variant | SOFTWARE_DECOMP v3.2 |
+| Context envelope | M |
+| Scope items | SOW-062 |
+| Objective context | OBJ-005 |
+| Anticipated artifacts | Bash deny/default tests; timeout/capture policy; output metadata tests |
+
+Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` sections "PKG-06 Permissioned Tools, MCP, and Hooks" and scope ledger row SOW-062.
+
+#### Attributes
+
+| Attribute | Value | Source |
+|---|---|---|
+| Governed tool | SDK built-in `Bash` where available | `docs/SPEC.md` Section 14.1 |
+| Default posture | Bash denied by default even though the SDK ships the tool | `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+| Enablement prerequisites | Timeout, output capture, result storage, interrupt behavior, and audit events | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 |
+| Denied modes | `readOnly` and `dontAsk` deny Bash/shell unless a future governed rule says otherwise | `docs/CONTRACT.md` Section 1.6 K-PERM-4 and K-PERM-5; `docs/PLAN.md` R4 acceptance |
+| Restriction mechanism | `allowedTools` is not sufficient; restriction requires disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+| Permission decision record | `HarnessPermissionDecision` with decision, reason, source, timestamp, and optional safe metadata | `docs/TYPES.md` Section 8.2 |
+| Tool result policy | Small outputs inline; medium/large outputs previewed or stored as session artifacts with metadata | `docs/PRD.md` FR-096, HASH_MISMATCH warning; `docs/PLAN.md` R4 |
+| Audit mirror | `.chirality/sessions/<sessionId>/events.jsonl` remains the product-owned audit record | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/PRD.md` FR-121, HASH_MISMATCH warning |
+
+#### Conditions
+
+| Condition | Constraint | Source |
+|---|---|---|
+| PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state-warning evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 |
+| Bash before R4 readiness | Bash must not be exposed before governance, hooks, event logging, result storage, timeout, audit logging, and packaging checks are reliable. | `docs/DIRECTIVE.md` Section 4.2; `docs/PLAN.md` R4 |
+| Denied execution | Denied Bash must not spawn. | `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, HASH_MISMATCH warning |
+| Timeout value | Exact default timeout and override semantics are TBD; source material requires a timeout but does not provide a Bash-specific value. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 |
+| Output channels | Allowed Bash captures stdout and stderr separately. | `docs/PLAN.md` R4 implementation targets; `docs/PRD.md` FR-100, HASH_MISMATCH warning |
+| Interrupt behavior | Allowed Bash can be interrupted when possible; exact SDK/process mechanics are TBD. | `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, HASH_MISMATCH warning |
+
+#### Construction
+
+| Component | Construction note | Source |
+|---|---|---|
+| Tool-surface resolver | Expose `Bash` only when session/persona/mode/options/policy permit it; otherwise omit or hard-deny. | `docs/SPEC.md` Sections 13.2, 14.3, and 15.1 |
+| Deny policy | Explicit denies from policy, path containment, hooks, governance, SDK deny rules, or human gates block Bash execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+| Bash preflight | Enforce mode, command metadata, timeout presence, output capture plan, network posture if applicable, and audit metadata before spawning. Command metadata fields: TBD. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PRD.md` R4, HASH_MISMATCH warning |
+| Execution capture | Capture stdout and stderr separately and classify terminal outcome as success, failure, timeout, interruption, or cancellation where available. | `docs/PLAN.md` R4; `docs/SPEC.md` Section 10.1 |
+| Result storage | Apply `ToolResultStore` policy so large output is stored under session artifacts and represented by preview/metadata in chat and events. | `docs/TYPES.md` Section 8.3; `docs/PRD.md` FR-096, HASH_MISMATCH warning |
+| Audit events | Persist permission, started, completed/failed, interruption/timeout, and artifact metadata events in Chirality-owned event shape. Exact event payloads: TBD. | `docs/TYPES.md` event vocabulary; `docs/CONTRACT.md` Section 1.5 |
+| Tests | Include deny/default tests, timeout/capture tests, output metadata tests, and denied-never-spawns tests. Exact test paths: TBD. | `_CONTEXT.md`; `docs/PLAN.md` R4 acceptance |
+
+#### References
+
+| RefID | Source | Use | Source state |
+|---|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` Sections 2.8, 2.9, 4.1, 4.2, and 5 | Product-owned runtime governance, reliance boundaries, bash exposure sequencing | MATCH |
+| REF-002 | `docs/CONTRACT.md` Sections 1.5 and 1.6 | Binding event, permission, hook, path, and Bash invariants | MATCH |
+| REF-003 | `docs/SPEC.md` Sections 10, 13, 14, and 15 | Engine responsibilities, option/tool resolution, tool names, mode mapping, hooks | MATCH |
+| REF-004 | `docs/TYPES.md` Sections 7 and 8 | Event vocabulary, permission modes, decision records, tool terms, artifact path fields | MATCH |
+| REF-005 | `docs/PLAN.md` R4 | Sequencing, implementation targets, and Bash acceptance criteria | MATCH |
+| REF-006 | `docs/PRD.md` Sections 8.15 and R4 | Product requirements for Bash, result storage, context mirror, and audit behavior | HASH_MISMATCH warning |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |
+
+## Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Guidance.md
+
+### Guidance: DEL-06-05 Bash Governance and Timeout Policy
+
+#### Purpose
+
+DEL-06-05 exists to prevent the SDK `Bash` surface from becoming an accidental escape hatch. Bash is powerful enough to read, write, delete, invoke networks, spawn long-running work, and produce unbounded output, so Chirality treats it as denied by default and enables it only after product-owned governance, timeout, result storage, interruption, and audit behavior are ready.
+
+Sources: `_CONTEXT.md`; decomposition row SOW-062; `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4.
+
+#### Principles
+
+1. Denied Bash must be a non-event at the process layer. A policy denial is only effective if no shell process starts. Sources: `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, HASH_MISMATCH warning.
+2. Bash exposure follows capability-forward permission semantics with explicit hard-deny precedence. Any explicit deny from policy, hook, path check, governance, SDK deny rule, or human gate blocks execution. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
+3. `allowedTools` is not a security boundary. Bash must not become available merely because it appears in a tool list; the overlay, disallowed tools, mode policy, hooks, and approval mediation remain controlling. Sources: `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3.
+4. Timeout and result storage are part of authorization, not post-processing. A Bash request without a timeout/capture/storage plan is not ready to execute. Source: `docs/CONTRACT.md` Section 1.6 K-BASH-1.
+5. Auditability is product-owned. SDK transcripts may help debugging and resume, but Chirality event records remain canonical for runtime governance. Sources: `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/PRD.md` FR-121, HASH_MISMATCH warning.
+
+#### Considerations
+
+##### Mode Behavior
+
+| Mode | Guidance | Source |
+|---|---|---|
+| `readOnly` | Bash should be unavailable or hard-denied. Treat shell as write/network-capable even when a proposed command appears read-like. | `docs/CONTRACT.md` Section 1.6 K-PERM-4; `docs/TYPES.md` Section 8.1 |
+| `dontAsk` | Bash should deny without prompting. The accessible sources do not define an approved safe-shell subset. | `docs/CONTRACT.md` Section 1.6 K-PERM-5; `docs/PLAN.md` R4 |
+| `ask` | Bash may request approval only after the command has passed policy preflight and the approval decision can be persisted before SDK allow/deny return. | `docs/SPEC.md` Section 15.1 |
+| `workspaceWrite` | Bash still needs explicit Bash governance; write permission does not imply shell permission. | `docs/SPEC.md` Section 15.1; `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+| `bypass` | Developer-local only, never ordinary shipped behavior, and still subject to Chirality deny hooks and disallowed tools. | `docs/CONTRACT.md` Section 1.6 K-PERM-6 |
+
+##### Timeout And Capture Policy
+
+The accessible sources require a timeout but do not provide a Bash-specific numeric default or maximum. Keep numeric values as `TBD` until accepted source or human ruling supplies them. The implementation should nevertheless require a timeout field or resolved timeout policy before a command can start.
+
+Stdout and stderr should be captured separately so users and replay tooling can distinguish normal command output from warnings/errors. Large output should be stored under session artifacts and represented by safe metadata, not streamed unbounded into chat or model context.
+
+##### Hooks And Path Policy
+
+Bash-specific governance should compose with the broader hook model. If a command can write, delete, traverse outside the project, touch the instruction root, follow symlink writes, or invoke prohibited network behavior, the same capability-forward posture with explicit hard-deny precedence applies. Hook failures fail closed for shell actions.
+
+##### PRD Hash Warning
+
+`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. FR-096, FR-100, FR-121, and R4 implementation targets are useful product direction for this draft, but any implementation detail that depends only on PRD wording should be rechecked after source-state reconciliation.
+
+#### Trade-offs
+
+| Trade-off | Guidance |
+|---|---|
+| Omit Bash vs expose and deny | Prefer omission where possible to reduce accidental model attempts, but still enforce runtime denial because tool visibility is not enough. |
+| Single global timeout vs command-class timeout | A single default is simpler, but command-class overrides may be needed. Source material does not decide this; mark numeric policy as TBD. |
+| Inline output vs artifact storage | Inline small output for usability; preview/store medium or large output so chat and model context remain bounded. |
+| User approval vs policy denial | Do not ask the user to approve a command that fails policy preflight. Approval should only mediate commands that are otherwise governable. |
+| SDK transcript vs Chirality events | Use SDK transcript linkage for resume/debugging, but rely on Chirality events for accepted-turn, permission, tool, artifact, and terminal outcome audit. |
+
+#### Examples
+
+| Scenario | Expected result |
+|---|---|
+| A new session starts with no explicit Bash enablement | `Bash` is omitted or denied. |
+| `readOnly` session requests `Bash` for `ls` | Deny or omit; use read tools such as `LS`, `Glob`, or `Grep` where available instead. |
+| `dontAsk` session requests `Bash` for any command | Deny without prompting under current source policy. |
+| `ask` session requests a command without timeout metadata | Deny before approval because timeout is a prerequisite. |
+| Governed mode requests Bash with timeout, capture, and result-storage policy | Run only if policy, hooks, path checks, and approval mediation pass; capture stdout/stderr separately and persist audit events. |
+| Command output exceeds inline budget | Store raw output under session artifacts and surface preview plus safe artifact metadata. |
+| Active Bash is interrupted | Persist interrupted/cancelled terminal outcome and retain available output metadata according to result policy. |
+
+#### Conflict Table (for human ruling)
+
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| TBD | No direct source conflict identified during P1/P2. PRD has a HASH_MISMATCH source-state warning. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as warning-qualified source until hash state is reconciled. | TBD |
+| DEL-06-05-TIMEOUT-001 | Bash timeout is required, but no Bash-specific numeric default or maximum is present in accessible sources. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 | No numeric Bash timeout source found | `Datasheet.md` Conditions; `Specification.md` REQ-006; `Procedure.md` Steps and Verification | Keep numeric timeout values as `TBD` pending human ruling or accepted source update. | TBD |
+
+## Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Procedure.md
+
+### Procedure: DEL-06-05 Bash Governance and Timeout Policy
+
+#### Purpose
+
+This procedure describes how to produce and verify the DEL-06-05 Bash governance implementation and timeout/capture policy evidence. It is written for the deliverable artifact, not as an end-user shell runbook.
+
+#### Prerequisites
+
+| Prerequisite | Status |
+|---|---|
+| Accepted DEL-06-05 scope and source references | Available in `_CONTEXT.md` and `_REFERENCES.md` |
+| Binding Bash invariant | Available in `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+| Permission/mode vocabulary | Available in `docs/TYPES.md` Section 8 and `docs/SPEC.md` Section 15.1 |
+| Tool-surface rules | Available in `docs/SPEC.md` Section 14.3 |
+| R4 sequencing and acceptance criteria | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| Declared upstream dependencies | Extracted ACTIVE upstream rows exist in `_DEPENDENCIES.md`; declared upstream remains TBD until dependency satisfaction is accepted. |
+| Exact implementation file paths | TBD |
+| Exact test fixture paths | TBD |
+| Bash-specific numeric timeout default and maximum | TBD - required by policy but not specified in accessible sources |
+
+#### Steps
+
+1. Establish the default-deny posture.
+   - Ensure SDK `Bash` is not exposed by default.
+   - Add explicit denial for Bash in `readOnly` and `dontAsk`.
+   - Verify denial is enforced by runtime policy, not prompt text.
+
+2. Resolve Bash tool exposure through the permission overlay.
+   - Treat SDK `Bash` as a governed tool candidate, not as automatically available.
+   - Apply `disallowedTools`, permission mode, Chirality policy, hooks, and `canUseTool` mediation as applicable.
+   - Do not rely on `allowedTools` as a restriction mechanism.
+
+3. Implement Bash preflight.
+   - Require explicit mode or session capability that permits Bash.
+   - Require a timeout policy before execution.
+   - Require stdout/stderr capture plan.
+   - Require result storage or preview policy for medium/large outputs.
+   - Require audit metadata sufficient to record permission, start, terminal outcome, and artifact references.
+   - Treat command metadata fields and network posture checks as unresolved preflight slots until an accepted contract defines them or assigns them outside DEL-06-05. PRD R4 mentions both, but REF-006 remains HASH_MISMATCH warning-qualified.
+
+4. Enforce denied-never-spawns.
+   - Place denial checks before process creation.
+   - Instrument tests or runner seams so a denied Bash request proves no child process was started.
+
+5. Execute governed Bash only after preflight passes.
+   - Start the process with the resolved timeout.
+   - Capture stdout and stderr separately.
+   - Track exit code, timeout, interruption, cancellation, and failure classifications where available.
+   - If the SDK or process runner cannot interrupt an active Bash process, persist the actual terminal failure, cancellation, or residual-risk outcome instead of reporting successful interruption.
+   - Redact secrets from logs, tool outputs, and event records where policy requires.
+
+6. Store and summarize output.
+   - Inline only small safe outputs.
+   - Preview medium/large outputs.
+   - Store raw large outputs under session artifacts and persist safe metadata such as artifact path, byte counts, truncation status, and channel labels where the accepted schema permits.
+   - PRD artifact-policy fields include tool name, turn ID, byte count, truncation flag, and relative artifact path; Bash channel labels and terminal-outcome linkage remain TBD pending accepted schema.
+
+7. Persist audit evidence.
+   - Persist permission evidence before allowing execution.
+   - Persist tool started/completed/failed events and terminal success/failure/interruption/cancellation outcomes.
+   - Keep SDK transcript linkage secondary to Chirality-owned event records.
+
+8. Add tests and traceability.
+   - Add default deny, `readOnly` deny, `dontAsk` deny, denied-never-spawns, timeout-required, stdout/stderr separation, output artifact metadata, and interruption tests.
+   - Tag or name tests with DEL-06-05 or SOW-062 where local test conventions allow.
+   - Record the PRD HASH_MISMATCH warning in implementation or review notes.
+
+#### Verification
+
+| Check | Expected result |
+|---|---|
+| Default posture | Bash is denied or omitted with no explicit enablement. |
+| `readOnly` behavior | Bash cannot execute. |
+| `dontAsk` behavior | Bash denies without prompting. |
+| `allowedTools` misconception | Tests show `allowedTools` cannot enable or restrict Bash by itself and cannot bypass deny policy. |
+| Denied-never-spawns | Denied Bash request creates no child process. |
+| Timeout preflight | Allowed Bash cannot start without a resolved timeout policy. |
+| Capture channels | stdout and stderr are captured separately. |
+| Output budget | Large output is stored as an artifact and represented by preview/metadata. |
+| Interrupt behavior | Active Bash can be interrupted when supported, and terminal outcome is persisted. |
+| Audit records | Permission, start, completion/failure/interruption, and artifact metadata are persisted in Chirality-owned event shape. |
+| Hook fail-closed | Hook failure blocks shell execution. |
+| PRD warning | PRD-derived details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+
+#### Records
+
+- Bash governance policy or options-builder slice: TBD.
+- Bash preflight hook or equivalent enforcement point: TBD.
+- Timeout default and override policy: TBD.
+- stdout/stderr capture evidence: TBD.
+- Tool output artifact metadata fixture: TBD.
+- Denied-never-spawns test evidence: TBD.
+- Interruption/timeout terminal outcome test evidence: TBD.
+- Hook/path composition evidence with DEL-06-04 and DEL-06-06: TBD.
+- Concrete test names, fixtures, and harness paths for DEL-06-05 / SOW-062 traceability: TBD.
+- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+
+## Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Specification.md
+
+### Specification: DEL-06-05 Bash Governance and Timeout Policy
+
+#### Scope
+
+DEL-06-05 specifies the security-control policy for enabling SDK `Bash` in Chirality. It covers default denial, mode-based exposure, pre-execution governance, timeout requirement, stdout/stderr capture, output storage, interruption behavior, terminal outcome persistence, and audit evidence.
+
+In scope:
+
+- Keep Bash denied by default and denied in `readOnly` / `dontAsk`.
+- Permit Bash only in explicitly governed modes after permission, hook, timeout, result-storage, interrupt, and audit checks pass.
+- Ensure denied Bash never spawns.
+- Define timeout/capture/output metadata expectations for allowed Bash.
+- Provide tests for default denial, timeout/capture behavior, result artifact metadata, and denied non-execution.
+
+Out of scope:
+
+- General permission overlay semantics and mode mapping owned by DEL-06-01, except where they are applied to Bash.
+- Read tool resolver and MCP read tools owned by DEL-06-02 and DEL-06-03.
+- Write/edit path policy owned by DEL-06-04, except Bash must still obey path/hook denies when command execution could mutate the filesystem.
+- Hook lifecycle and compaction mirror implementation owned by DEL-06-06, except this deliverable must emit or require Bash-relevant events.
+- Remote MCP, plugin marketplace, and broad remote execution, which remain out of current scope without governed amendment.
+
+Sources: `_CONTEXT.md`; decomposition PKG-06 row DEL-06-05 and SOW-062; `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Sections 14 and 15; `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 with HASH_MISMATCH warning.
+
+#### Requirements
+
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-06-05-REQ-001 | Bash MUST be denied by default even when the SDK ships or supports a `Bash` tool. | `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+| DEL-06-05-REQ-002 | Bash MUST be denied or omitted from tool exposure in `readOnly` mode. | `docs/CONTRACT.md` Section 1.6 K-PERM-4; `docs/SPEC.md` Section 15.1 |
+| DEL-06-05-REQ-003 | Bash MUST be denied without prompting in `dontAsk` unless an accepted future policy explicitly defines a safe shell subset. Current source material defines no such subset. | `docs/CONTRACT.md` Section 1.6 K-PERM-5; `docs/PLAN.md` R4 acceptance |
+| DEL-06-05-REQ-004 | Bash MUST NOT be enabled by `allowedTools` alone; restriction and enablement MUST be mediated by disallowed tools, permission mode, Chirality policy, hooks, `canUseTool`, and/or human gate as applicable. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+| DEL-06-05-REQ-005 | A denied Bash request MUST NOT spawn a process. | `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, HASH_MISMATCH warning |
+| DEL-06-05-REQ-006 | Enabling Bash MUST require a timeout before execution. Exact default timeout and maximum override are TBD because no Bash-specific numeric limit is present in accessible sources. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 |
+| DEL-06-05-REQ-007 | Allowed Bash execution MUST capture stdout and stderr separately. | `docs/PLAN.md` R4 implementation targets; `docs/PRD.md` FR-100, HASH_MISMATCH warning |
+| DEL-06-05-REQ-008 | Medium or large Bash output MUST be previewed or stored under session artifacts rather than streamed unbounded into chat/model context. | `docs/PRD.md` FR-096, HASH_MISMATCH warning; `docs/PLAN.md` R4 |
+| DEL-06-05-REQ-009 | Bash output metadata MUST include enough safe information to find stored output artifacts and reconstruct terminal outcome. PRD artifact-policy fields include tool name, turn ID, byte count, truncation flag, and relative artifact path; Bash channel labels and terminal-outcome linkage remain TBD until an accepted schema is assigned. | `docs/TYPES.md` `outputArtifactPath`; `docs/PRD.md` Session artifact policy, HASH_MISMATCH warning; `docs/PRD.md` FR-096 and FR-100, HASH_MISMATCH warning |
+| DEL-06-05-REQ-010 | Allowed Bash execution MUST support interrupt/cancel where the SDK or process runner exposes that capability; where interruption cannot be performed, Chirality MUST persist the terminal failure, cancellation, or residual-risk outcome that actually occurred rather than claiming successful interruption. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` Section 1.5 K-EVENT-3; `docs/PLAN.md` R4 acceptance |
+| DEL-06-05-REQ-011 | Bash permission, start, completion, failure, timeout, and interruption behavior MUST be auditable in product-owned Chirality event records. | `docs/CONTRACT.md` Section 1.5 K-EVENT-2 through K-EVENT-4; `docs/TYPES.md` event vocabulary |
+| DEL-06-05-REQ-012 | Hook failures MUST fail closed for shell actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| DEL-06-05-REQ-013 | Bash commands that can affect filesystem state MUST remain subject to working-root containment, instruction-root protection, symlink write rejection, redaction, provenance, and hook policy where applicable. | `docs/CONTRACT.md` Section 1.6 K-PERM-1, K-PATH-2, K-PATH-3; `docs/SPEC.md` Section 15.2 |
+| DEL-06-05-REQ-014 | Public Chirality APIs, permission records, and audit events MUST remain product-owned; SDK Bash names and transcript fields are adapter metadata. | `docs/DIRECTIVE.md` Sections 2.8 and 2.10; `docs/SPEC.md` Sections 10.1 and 10.2 |
+| DEL-06-05-REQ-015 | Tests MUST cover default deny, `readOnly` deny, `dontAsk` deny, denied-never-spawns, timeout, stdout/stderr separation, output artifact metadata, and interruption behavior where technically available. | `_CONTEXT.md`; `docs/PLAN.md` R4 acceptance |
+| DEL-06-05-REQ-016 | Bash preflight MUST not be considered complete until accepted command metadata fields and any applicable network posture checks are defined, or explicitly ruled out of scope by a cited owner. Current source support for those fields is PRD R4 only and remains HASH_MISMATCH warning-qualified. | `docs/PRD.md` R4, HASH_MISMATCH warning; `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
+
+#### Standards
+
+| Standard or governing source | Applicability |
+|---|---|
+| `docs/CONTRACT.md` Section 1.6 | Binding permission, tool exposure, hook, path, and Bash invariants. |
+| `docs/CONTRACT.md` Section 1.5 | Runtime event and audit mirror invariants. |
+| `docs/SPEC.md` Sections 14 and 15 | SDK tool naming, tool surface rules, permission mode mapping, required hooks, and fail-closed hook behavior. |
+| `docs/TYPES.md` Section 8 | Permission mode vocabulary, permission decision shape, tool-surface terms, and `ToolResultStore`. |
+| `docs/PLAN.md` R4 | Roadmap sequencing and acceptance criteria for Bash, result budgeting, and context mirror behavior. |
+| `docs/PRD.md` Section 8.15 | Product requirements for tool output storage, Bash, context management, and audit mirror; use with HASH_MISMATCH warning from `_REFERENCES.md`. |
+
+#### Verification
+
+| Requirement | Verification approach |
+|---|---|
+| DEL-06-05-REQ-001 through REQ-004 | Unit or integration tests assert `Bash` is absent or denied by default, in `readOnly`, and in `dontAsk`; tests prove `allowedTools` cannot bypass denial. |
+| DEL-06-05-REQ-005 | Spawn-suppression test instruments the command runner and asserts denied Bash requests never create a process. |
+| DEL-06-05-REQ-006 | Timeout preflight tests assert no allowed Bash request can execute without an explicit timeout policy. Numeric timeout fixtures remain TBD. |
+| DEL-06-05-REQ-007 | Capture tests run a controlled command that writes separately to stdout and stderr and assert separate capture channels. |
+| DEL-06-05-REQ-008, REQ-009 | Tool-result budget tests assert large output is stored as an artifact and chat/event payloads contain preview plus safe artifact metadata. |
+| DEL-06-05-REQ-010 | Interrupt tests assert active Bash can be cancelled or interrupted when supported; fallback tests assert unsupported interruption persists the actual terminal failure, cancellation, or residual-risk outcome. |
+| DEL-06-05-REQ-011 | Runtime event tests assert permission/start/completed/failed or interrupted evidence is written to Chirality-owned event records. |
+| DEL-06-05-REQ-012, REQ-013 | Hook/path tests assert hook failure and path-policy denial block Bash execution or filesystem mutation. |
+| DEL-06-05-REQ-014 | Contract tests assert public event/permission schemas do not become SDK-shaped except for safe adapter metadata. |
+| DEL-06-05-REQ-015 | Traceability check verifies test names or metadata cite DEL-06-05 and SOW-062; concrete test names, fixtures, and harness paths remain TBD until implementation planning assigns them. |
+| DEL-06-05-REQ-016 | Preflight-contract review verifies command metadata fields and network posture checks are either implemented from an accepted contract or explicitly deferred with cited ownership. |
+
+#### Documentation
+
+Required implementation evidence:
+
+- Bash governance policy or options-builder slice showing default denial and explicit enablement rules.
+- Timeout/capture policy with explicit default and override constraints once human-approved or source-defined.
+- Output metadata schema or fixture for stdout/stderr preview and artifact storage, including PRD-derived artifact metadata fields only while the REF-006 HASH_MISMATCH warning remains visible.
+- Denied-never-spawns test evidence.
+- Timeout/capture and interruption test evidence.
+- Hook/path interface evidence showing composition with DEL-06-04 and DEL-06-06 once those interfaces are accepted.
+- Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+
+#### Traceability
+
+| Source item | Covered by |
+|---|---|
+| SOW-062 Bash denied by default and governed when enabled | DEL-06-05-REQ-001 through REQ-015 |
+| OBJ-005 Runtime tool execution governance | DEL-06-05-REQ-001 through REQ-014 |
+| K-BASH-1 Bash default denial and enablement prerequisites | DEL-06-05-REQ-001, REQ-006 through REQ-011, REQ-015 |
+| FR-100 Bash denied by default, capture, timeout, storage, interrupt | DEL-06-05-REQ-001, REQ-005 through REQ-010 |

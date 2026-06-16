@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR",
+  "source_doc_id": "SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR",
+  "source_prefix": "ED031",
+  "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/",
+  "catalog_rel_path": "@repo/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR-DATASHEET",
+      "expected_sha256": "c70f61ef2386e2feda920e043200d06cda76abf3ed354c2a8622ac1ca7e300be",
+      "generated_line_start": 11,
+      "generated_line_end": 83,
+      "source_line_start": 1,
+      "source_line_end": 73,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR-GUIDANCE",
+      "expected_sha256": "2cd7784b606751d06936f45e4842a1df258f61b9c8a43392ac0b24672bbe99cb",
+      "generated_line_start": 87,
+      "generated_line_end": 155,
+      "source_line_start": 1,
+      "source_line_end": 69,
+      "line_offset": -86
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR-PROCEDURE",
+      "expected_sha256": "4fc66a6608bc02eccf7d7e9f9007f09bd5ad937c03c7aff8574ce2641fe4c55e",
+      "generated_line_start": 159,
+      "generated_line_end": 261,
+      "source_line_start": 1,
+      "source_line_end": 103,
+      "line_offset": -158
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR-SPECIFICATION",
+      "expected_sha256": "5f8860ed4c047accc9f5a50312bae255e1487e4546534298f012628b05cbb194",
+      "generated_line_start": 265,
+      "generated_line_end": 365,
+      "source_line_start": 1,
+      "source_line_end": 101,
+      "line_offset": -264
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

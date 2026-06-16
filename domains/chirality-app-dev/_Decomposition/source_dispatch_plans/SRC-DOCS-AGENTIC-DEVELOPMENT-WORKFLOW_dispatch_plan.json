@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-AGENTIC-DEVELOPMENT-WORKFLOW",
+  "source_prefix": "PD001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-DOCS-AGENTIC-DEVELOPMENT-WORKFLOW_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:37+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD001-0001",
+      "line_start": 1,
+      "line_end": 112,
+      "target_section_ids": [
+        "SEC-PD001-0001",
+        "SEC-PD001-0002",
+        "SEC-PD001-0003",
+        "SEC-PD001-0004",
+        "SEC-PD001-0005",
+        "SEC-PD001-0006",
+        "SEC-PD001-0007",
+        "SEC-PD001-0008",
+        "SEC-PD001-0009"
+      ],
+      "estimated_md_tokens": 1637,
+      "contains_oversized_section": false
+    }
+  ]
+}

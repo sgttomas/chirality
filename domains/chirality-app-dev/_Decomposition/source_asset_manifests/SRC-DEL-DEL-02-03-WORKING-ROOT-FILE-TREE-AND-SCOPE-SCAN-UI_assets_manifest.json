@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI",
+  "source_doc_id": "SRC-DEL-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI",
+  "source_prefix": "ED009",
+  "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/",
+  "catalog_rel_path": "@repo/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI-DATASHEET",
+      "expected_sha256": "8bbc98d30a4f9c82366b29a219781e42d900d652ea829dd8d025a50162166a64",
+      "generated_line_start": 11,
+      "generated_line_end": 68,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI-GUIDANCE",
+      "expected_sha256": "0a2c9a8f095b150686a2272886e058ab10f77f018b9bf5e46829957392e8c5b2",
+      "generated_line_start": 72,
+      "generated_line_end": 133,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -71
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI-PROCEDURE",
+      "expected_sha256": "b46dde30deac5e13e7242999cb85298ed1a08bec5f6ab95047883ce6df5ac552",
+      "generated_line_start": 137,
+      "generated_line_end": 221,
+      "source_line_start": 1,
+      "source_line_end": 85,
+      "line_offset": -136
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-03-WORKING-ROOT-FILE-TREE-AND-SCOPE-SCAN-UI-SPECIFICATION",
+      "expected_sha256": "855789e1ffe12050bacba106bb67075dbe058dffb717309390d3058a69c41664",
+      "generated_line_start": 225,
+      "generated_line_end": 317,
+      "source_line_start": 1,
+      "source_line_end": 93,
+      "line_offset": -224
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

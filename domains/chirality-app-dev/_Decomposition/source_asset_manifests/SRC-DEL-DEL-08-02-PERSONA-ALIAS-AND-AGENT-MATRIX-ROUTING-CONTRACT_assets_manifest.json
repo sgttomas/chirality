@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT",
+  "source_doc_id": "SRC-DEL-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT",
+  "source_prefix": "ED039",
+  "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/",
+  "catalog_rel_path": "@repo/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT-DATASHEET",
+      "expected_sha256": "be795ceb47f505454315d2d0585ecaa6ad591bc91a79b845245704c6a4aef897",
+      "generated_line_start": 11,
+      "generated_line_end": 77,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT-GUIDANCE",
+      "expected_sha256": "32ea0eb55ba1718d694347ca644ac2a88a7b7db3e2530401e534ba5fb49721ea",
+      "generated_line_start": 81,
+      "generated_line_end": 160,
+      "source_line_start": 1,
+      "source_line_end": 80,
+      "line_offset": -80
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT-PROCEDURE",
+      "expected_sha256": "65697732f7980cb5f9db2d697bc137854917c085e600b67a1e6acd07e8d730fa",
+      "generated_line_start": 164,
+      "generated_line_end": 236,
+      "source_line_start": 1,
+      "source_line_end": 73,
+      "line_offset": -163
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-02-PERSONA-ALIAS-AND-AGENT-MATRIX-ROUTING-CONTRACT-SPECIFICATION",
+      "expected_sha256": "fe6d0b718650869334e6f2269458b40471ab531f22f9c3e7ad490de02b15ec4e",
+      "generated_line_start": 240,
+      "generated_line_end": 325,
+      "source_line_start": 1,
+      "source_line_end": 86,
+      "line_offset": -239
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

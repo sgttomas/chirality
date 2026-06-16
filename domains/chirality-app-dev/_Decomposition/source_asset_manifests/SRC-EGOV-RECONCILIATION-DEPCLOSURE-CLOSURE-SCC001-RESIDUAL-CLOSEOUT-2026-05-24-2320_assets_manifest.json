@@ -1,0 +1,45 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320",
+  "source_doc_id": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320",
+  "source_prefix": "EG017",
+  "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/",
+  "catalog_rel_path": "@repo/execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Brief.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320-BRIEF",
+      "expected_sha256": "058fb7bd3720e9c8686f06952e2b9855305e4225e9202f05b23c3f4fcc6da698",
+      "generated_line_start": 11,
+      "generated_line_end": 44,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320-DEPENDENCY-CLOSURE-REPORT",
+      "expected_sha256": "0312715c367b596bfe35b8ce9cb23ead45253d6a219b57be8769c7a1169b0efe",
+      "generated_line_start": 48,
+      "generated_line_end": 91,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -47
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/QA_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-RESIDUAL-CLOSEOUT-2026-05-24-2320-QA-REPORT",
+      "expected_sha256": "fe0655c105893990a944e59513a973350d4434763e2771b617d09a23a6f7683b",
+      "generated_line_start": 95,
+      "generated_line_end": 119,
+      "source_line_start": 1,
+      "source_line_end": 25,
+      "line_offset": -94
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

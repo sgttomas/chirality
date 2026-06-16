@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-04-01-SDK-PROBE-AND-VERSION-PINNED-ADOPTION-DECISION",
+  "source_prefix": "ED016",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-DEL-DEL-04-01-SDK-PROBE-AND-VERSION-PINNED-ADOPTION-DECISION_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-01-SDK-PROBE-AND-VERSION-PINNED-ADOPTION-DECISION.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:34+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED016-0001",
+      "line_start": 9,
+      "line_end": 393,
+      "target_section_ids": [
+        "SEC-ED016-0002",
+        "SEC-ED016-0003",
+        "SEC-ED016-0004",
+        "SEC-ED016-0005",
+        "SEC-ED016-0006",
+        "SEC-ED016-0007",
+        "SEC-ED016-0008",
+        "SEC-ED016-0009",
+        "SEC-ED016-0010",
+        "SEC-ED016-0011",
+        "SEC-ED016-0012",
+        "SEC-ED016-0013",
+        "SEC-ED016-0014",
+        "SEC-ED016-0015",
+        "SEC-ED016-0016",
+        "SEC-ED016-0017",
+        "SEC-ED016-0018",
+        "SEC-ED016-0019",
+        "SEC-ED016-0020",
+        "SEC-ED016-0021",
+        "SEC-ED016-0022",
+        "SEC-ED016-0023",
+        "SEC-ED016-0024",
+        "SEC-ED016-0025",
+        "SEC-ED016-0026",
+        "SEC-ED016-0027",
+        "SEC-ED016-0028",
+        "SEC-ED016-0029",
+        "SEC-ED016-0030",
+        "SEC-ED016-0031",
+        "SEC-ED016-0032"
+      ],
+      "estimated_md_tokens": 6143,
+      "contains_oversized_section": false
+    }
+  ]
+}

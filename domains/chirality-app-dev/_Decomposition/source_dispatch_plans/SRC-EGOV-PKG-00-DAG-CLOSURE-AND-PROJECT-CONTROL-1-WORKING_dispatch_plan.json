@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING",
+  "source_prefix": "EG007",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG007-0001",
+      "line_start": 9,
+      "line_end": 131,
+      "target_section_ids": [
+        "SEC-EG007-0002",
+        "SEC-EG007-0003",
+        "SEC-EG007-0004",
+        "SEC-EG007-0005",
+        "SEC-EG007-0006",
+        "SEC-EG007-0007",
+        "SEC-EG007-0008",
+        "SEC-EG007-0009",
+        "SEC-EG007-0010",
+        "SEC-EG007-0011",
+        "SEC-EG007-0012",
+        "SEC-EG007-0013",
+        "SEC-EG007-0014",
+        "SEC-EG007-0015",
+        "SEC-EG007-0016",
+        "SEC-EG007-0017",
+        "SEC-EG007-0018"
+      ],
+      "estimated_md_tokens": 1346,
+      "contains_oversized_section": false
+    }
+  ]
+}

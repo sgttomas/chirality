@@ -1,0 +1,11 @@
+CandidateTerm,Synonyms,Definition,SourceRefs,Notes
+chirality-frontend,,Name of the frontend npm package (root package).,@repo/frontend/package-lock.json:L2|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+lockfileVersion,,npm lockfile schema version; value 3 in this lockfile.,@repo/frontend/package-lock.json:L4|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+dependencies,,Block of runtime direct dependencies declared for the root package.,@repo/frontend/package-lock.json:L10|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+devDependencies,,Block of development-only direct dependencies declared for the root package.,@repo/frontend/package-lock.json:L20|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+@anthropic-ai/claude-agent-sdk,,Anthropic Claude Agent SDK; pinned runtime dependency at 0.3.150.,@repo/frontend/package-lock.json:L11|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+@anthropic-ai/sdk,,Anthropic API SDK; pinned runtime dependency at 0.93.0.,@repo/frontend/package-lock.json:L12|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+electron,,Electron desktop runtime; devDependency at ^31.0.2.,@repo/frontend/package-lock.json:L25|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+electron-builder,,Electron packaging tool; devDependency at ^25.1.8.,@repo/frontend/package-lock.json:L26|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+vitest,,Test runner; devDependency at ^2.1.8.,@repo/frontend/package-lock.json:L28|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,
+next,,Next.js framework; runtime dependency at ^14.2.0.,@repo/frontend/package-lock.json:L14|_Decomposition/source_review_html/SRC-FRONTEND-SRC.html#SEC-FS001-0008,

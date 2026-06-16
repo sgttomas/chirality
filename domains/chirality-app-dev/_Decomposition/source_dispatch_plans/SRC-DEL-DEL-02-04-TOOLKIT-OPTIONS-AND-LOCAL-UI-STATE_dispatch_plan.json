@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-02-04-TOOLKIT-OPTIONS-AND-LOCAL-UI-STATE",
+  "source_prefix": "ED010",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-DEL-DEL-02-04-TOOLKIT-OPTIONS-AND-LOCAL-UI-STATE_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-02-04-TOOLKIT-OPTIONS-AND-LOCAL-UI-STATE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:34+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED010-0001",
+      "line_start": 9,
+      "line_end": 307,
+      "target_section_ids": [
+        "SEC-ED010-0002",
+        "SEC-ED010-0003",
+        "SEC-ED010-0004",
+        "SEC-ED010-0005",
+        "SEC-ED010-0006",
+        "SEC-ED010-0007",
+        "SEC-ED010-0008",
+        "SEC-ED010-0009",
+        "SEC-ED010-0010",
+        "SEC-ED010-0011",
+        "SEC-ED010-0012",
+        "SEC-ED010-0013",
+        "SEC-ED010-0014",
+        "SEC-ED010-0015",
+        "SEC-ED010-0016",
+        "SEC-ED010-0017",
+        "SEC-ED010-0018",
+        "SEC-ED010-0019",
+        "SEC-ED010-0020",
+        "SEC-ED010-0021",
+        "SEC-ED010-0022",
+        "SEC-ED010-0023",
+        "SEC-ED010-0024",
+        "SEC-ED010-0025",
+        "SEC-ED010-0026",
+        "SEC-ED010-0027",
+        "SEC-ED010-0028",
+        "SEC-ED010-0029",
+        "SEC-ED010-0030",
+        "SEC-ED010-0031",
+        "SEC-ED010-0032"
+      ],
+      "estimated_md_tokens": 4277,
+      "contains_oversized_section": false
+    }
+  ]
+}

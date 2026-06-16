@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK",
+  "source_doc_id": "SRC-DEL-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK",
+  "source_prefix": "ED011",
+  "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/",
+  "catalog_rel_path": "@repo/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK-DATASHEET",
+      "expected_sha256": "132db203358d0d5dd18eab0155cea9ac1fdabe57c57f707c35fd3db2656ce346",
+      "generated_line_start": 11,
+      "generated_line_end": 71,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK-GUIDANCE",
+      "expected_sha256": "d90efe058ee747cab2e382c9be641de723b6732326e0e2ffff95610c6fdeb23a",
+      "generated_line_start": 75,
+      "generated_line_end": 117,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -74
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK-PROCEDURE",
+      "expected_sha256": "0f1ee0813510dee32eb3270696aa7445a3e26960be0e089bbc19fbed19980402",
+      "generated_line_start": 121,
+      "generated_line_end": 204,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -120
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DESKTOP-SHELL-NAVIGATION-AND-OPERATOR-STATE-1-WORKING-DEL-02-05-API-KEY-UI-AND-RUNTIME-FEEDBACK-SPECIFICATION",
+      "expected_sha256": "84987a6442b80332ddee50de386479d1f4c20a5c849deb1334ec098dbc8fbbb0",
+      "generated_line_start": 208,
+      "generated_line_end": 285,
+      "source_line_start": 1,
+      "source_line_end": 78,
+      "line_offset": -207
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

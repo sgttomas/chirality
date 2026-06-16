@@ -1,0 +1,292 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>3</b></span>
+  <span class="stat">Atoms: <b>20</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-FD003-0001">Harness Validation Traceability</a> <a href="#SEC-FD003-0002">Requirement Mapping (DEL-07-01)</a> <a href="#SEC-FD003-0003">Notes</a></nav>
+<main>
+<section id="SEC-FD003-0001" class="chunk sec depth-1" data-kind="section" data-key="section:abf56a09eb5b" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-FD003-0001</span> Harness Validation Traceability</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:abf56a09eb5b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:abf56a09eb5b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:abf56a09eb5b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:29af7087b8ab" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00001"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L1|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0001</span><span class="inout">IN</span><span class="stmt">The document defines harness validation traceability for the frontend harness.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:29af7087b8ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:29af7087b8ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:29af7087b8ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-FD003-0002" class="chunk sec depth-2" data-kind="section" data-key="section:90675d8646d6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD003-0002</span> Requirement Mapping (DEL-07-01)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90675d8646d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90675d8646d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90675d8646d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Coverage Artifact(s) |
+|---|---|
+| REQ-01 Validation Script Coverage | `frontend/scripts/validate-harness-section8.mjs` required check set (`setup.server_reachable`, `regression.session_crud`, `section8.boot_error_taxonomy`, `section8.smoke_stream`, `section8.session_persistence_resume`, `section8.permissions_dontask`, `section8.interrupt_sigint`, `section8.sdk_native_stream`) |
+| REQ-02 Local Execution | `npm run harness:validate:section8` from `frontend/` |
+| REQ-03 CI-Ready Posture | `npm run harness:validate:premerge` (non-interactive, exit-code based) |
+| REQ-04 Session Boot Validation | `section8.boot_error_taxonomy`, plus `frontend/src/__tests__/api/harness/routes.test.ts` boot route tests |
+| REQ-05 Turn Execution Validation | `section8.smoke_stream`, `section8.session_persistence_resume`, plus route tests for invalid empty turns |
+| REQ-06 SSE Streaming Validation | `section8.smoke_stream`, `section8.sdk_native_stream` |
+| REQ-07 Opts Mapping/Fallback | `frontend/src/__tests__/lib/harness-options.test.ts` |
+| REQ-08 Subagent Governance Fail-Closed | `section8.permissions_dontask`, `frontend/src/__tests__/lib/harness-subagent-governance.test.ts`, governance route tests |
+| REQ-09 Attachment Resolver Validation | `frontend/src/__tests__/lib/harness-attachment-resolver.test.ts`, attachment-focused route tests |
+| REQ-10 Prompt Mode Selection Validation | `frontend/src/__tests__/api/harness/routes.test.ts` prompt-mode assertions |
+| REQ-11 Validation Documentation | `frontend/docs/harness/README.md`, this file |
+| REQ-12 Repeatable Execution | Two consecutive `harness:validate:premerge` runs; deterministic summary schema |
+| REQ-13 CONTRACT K-Invariant Coverage | Governance + options + route tests (`harness-subagent-governance.test.ts`, `harness-options.test.ts`, `routes.test.ts`) |
+| REQ-14 Test Isolation | Vitest unit tests are independently executable; section8 checks are isolated by per-check setup/cleanup |
+| REQ-15 Error Path Validation | `section8.boot_error_taxonomy`, route tests for invalid request/attachment/governance paths |
+| REQ-16 Deliverable Acceptance Criteria | `harness:validate:premerge` gate + docs + traceability mapping |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:d732ee1b0e39" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00002"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L3|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">Requirement mapping for deliverable DEL-07-01 links each requirement to its coverage artifact(s).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d732ee1b0e39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d732ee1b0e39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d732ee1b0e39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:4641e361620d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00003"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L7|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-01 Validation Script Coverage is covered by the validate-harness-section8.mjs required check set: setup.server_reachable, regression.session_crud, section8.boot_error_taxonomy, section8.smoke_stream, section8.session_persistence_resume, section8.permissions_dontask, section8.interrupt_sigint, section8.sdk_native_stream.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:4641e361620d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:4641e361620d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:4641e361620d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:762e3e26a6e5" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00004"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L8|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-02 Local Execution is covered by running `npm run harness:validate:section8` from the frontend/ directory.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:762e3e26a6e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:762e3e26a6e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:762e3e26a6e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bee6b96f46b6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00005"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L9|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-03 CI-Ready Posture is covered by `npm run harness:validate:premerge`, which is non-interactive and exit-code based.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bee6b96f46b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bee6b96f46b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bee6b96f46b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1fd352204b75" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00006"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L10|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-04 Session Boot Validation is covered by the section8.boot_error_taxonomy check plus the routes.test.ts boot route tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1fd352204b75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1fd352204b75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1fd352204b75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bbd7b355c636" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00007"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L11|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-05 Turn Execution Validation is covered by section8.smoke_stream, section8.session_persistence_resume, plus route tests for invalid empty turns.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bbd7b355c636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bbd7b355c636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bbd7b355c636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:0f0662d93ed2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00008"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L12|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-06 SSE Streaming Validation is covered by the section8.smoke_stream and section8.sdk_native_stream checks.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:0f0662d93ed2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:0f0662d93ed2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:0f0662d93ed2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:baac9af7038d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00009"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L13|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-07 Opts Mapping/Fallback is covered by the harness-options.test.ts unit tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:baac9af7038d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:baac9af7038d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:baac9af7038d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:af9f4b3d744b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00010"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L14|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-08 Subagent Governance Fail-Closed is covered by section8.permissions_dontask, harness-subagent-governance.test.ts, and governance route tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:af9f4b3d744b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:af9f4b3d744b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:af9f4b3d744b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1857f9b21a14" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00011"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L15|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-09 Attachment Resolver Validation is covered by harness-attachment-resolver.test.ts and attachment-focused route tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1857f9b21a14" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1857f9b21a14" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1857f9b21a14" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e7ec288a9c1b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00012"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L16|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-10 Prompt Mode Selection Validation is covered by prompt-mode assertions in routes.test.ts.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e7ec288a9c1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e7ec288a9c1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e7ec288a9c1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:34bcc62b7352" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00013"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L17|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-11 Validation Documentation is covered by frontend/docs/harness/README.md and this traceability file.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:34bcc62b7352" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:34bcc62b7352" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:34bcc62b7352" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7ef7698c3d54" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00014"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L18|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-12 Repeatable Execution is covered by two consecutive harness:validate:premerge runs and a deterministic summary schema.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7ef7698c3d54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7ef7698c3d54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7ef7698c3d54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:0e02f740bad6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00015"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L19|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-13 CONTRACT K-Invariant Coverage is covered by governance, options, and route tests (harness-subagent-governance.test.ts, harness-options.test.ts, routes.test.ts).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:0e02f740bad6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:0e02f740bad6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:0e02f740bad6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1c09d39e7090" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00016"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L20|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-14 Test Isolation is covered because Vitest unit tests are independently executable and section8 checks are isolated by per-check setup/cleanup.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1c09d39e7090" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1c09d39e7090" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1c09d39e7090" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d9b7ac2b3740" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00017"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L21|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-15 Error Path Validation is covered by section8.boot_error_taxonomy and route tests for invalid request, attachment, and governance paths.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d9b7ac2b3740" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d9b7ac2b3740" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d9b7ac2b3740" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6b0646374b25" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00018"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L22|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0002</span><span class="inout">IN</span><span class="stmt">REQ-16 Deliverable Acceptance Criteria is covered by the harness:validate:premerge gate plus docs and the traceability mapping.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6b0646374b25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6b0646374b25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6b0646374b25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-FD003-0003" class="chunk sec depth-2" data-kind="section" data-key="section:949443e70d63" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD003-0003</span> Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:949443e70d63" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:949443e70d63" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:949443e70d63" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The premerge script enforces required check IDs and fails if legacy IDs appear.
+- The suite uses stable machine-readable summary output for CI consumption.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:cdf0d7d00add" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00019"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L26|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0003</span><span class="inout">IN</span><span class="stmt">The premerge script enforces required check IDs and fails if legacy IDs appear.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:cdf0d7d00add" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:cdf0d7d00add" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:cdf0d7d00add" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7fc675904556" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-FD003-00020"><span class="prov">@repo/frontend/docs/harness/TRACEABILITY.md:L27|domains/chirality-app-dev/_Decomposition/source_review_html/SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY.html#SEC-FD003-0003</span><span class="inout">IN</span><span class="stmt">The validation suite uses stable machine-readable summary output for CI consumption.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7fc675904556" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7fc675904556" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7fc675904556" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "FD003";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,45 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020",
+  "source_doc_id": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020",
+  "source_prefix": "EG018",
+  "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/",
+  "catalog_rel_path": "@repo/execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/Brief.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020-BRIEF",
+      "expected_sha256": "0cc83c64a9fb02ffd4c003d360bed86b2969afb3c05958f9708e972342f3eebb",
+      "generated_line_start": 11,
+      "generated_line_end": 36,
+      "source_line_start": 1,
+      "source_line_end": 26,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/Dependency_Closure_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020-DEPENDENCY-CLOSURE-REPORT",
+      "expected_sha256": "74bd5bebd70d363df19959263b195e8cc19355c64c29f51c7f050bc38582785f",
+      "generated_line_start": 40,
+      "generated_line_end": 83,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -39
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/QA_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC002-CHANGE-HANDOFF-2026-05-24-2020-QA-REPORT",
+      "expected_sha256": "d48f0345761ba725c17b7c27f09e1bcf6cbcd75a42af1a00597a72f3fc71ed6f",
+      "generated_line_start": 87,
+      "generated_line_end": 108,
+      "source_line_start": 1,
+      "source_line_end": 22,
+      "line_offset": -86
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

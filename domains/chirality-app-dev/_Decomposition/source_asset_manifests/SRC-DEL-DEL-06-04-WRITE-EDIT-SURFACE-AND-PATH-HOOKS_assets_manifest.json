@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS",
+  "source_doc_id": "SRC-DEL-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS",
+  "source_prefix": "ED029",
+  "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/",
+  "catalog_rel_path": "@repo/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS-DATASHEET",
+      "expected_sha256": "39fcecee0242613742a34e3a2b3389a00e9f95f47668c922b18674978e800232",
+      "generated_line_start": 11,
+      "generated_line_end": 77,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS-GUIDANCE",
+      "expected_sha256": "04864cd64b645a131aba8443f8911b153ec0d51e723250f7e8dc67077ac9b87d",
+      "generated_line_start": 81,
+      "generated_line_end": 148,
+      "source_line_start": 1,
+      "source_line_end": 68,
+      "line_offset": -80
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS-PROCEDURE",
+      "expected_sha256": "72af22e1c8e5c3166bc4ec38e8632f06fc7d61aff6a15e7b03efc5b671371bed",
+      "generated_line_start": 152,
+      "generated_line_end": 251,
+      "source_line_start": 1,
+      "source_line_end": 100,
+      "line_offset": -151
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-PERMISSIONED-TOOLS-MCP-AND-HOOKS-1-WORKING-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS-SPECIFICATION",
+      "expected_sha256": "bc60b8817fa7d3cfe98781aaa5e31fa1440d7d6d364c27757003fda5a926007b",
+      "generated_line_start": 255,
+      "generated_line_end": 351,
+      "source_line_start": 1,
+      "source_line_end": 97,
+      "line_offset": -254
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

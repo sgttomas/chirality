@@ -1,0 +1,47 @@
+{
+  "units_reviewed": 96,
+  "failures": 0,
+  "sections_total": 3056,
+  "sections_in_scope": 2967,
+  "sections_out": 89,
+  "reviewed_dispatch_units": 104,
+  "by_group": {
+    "EXECUTION_DELIVERABLE": {
+      "units": 53,
+      "sections_total": 1992,
+      "sections_in": 1939,
+      "dispatch_units": 53
+    },
+    "EXECUTION_GOVERNANCE": {
+      "units": 26,
+      "sections_total": 468,
+      "sections_in": 433,
+      "dispatch_units": 23
+    },
+    "FRONTEND_DOCS": {
+      "units": 3,
+      "sections_total": 19,
+      "sections_in": 19,
+      "dispatch_units": 3
+    },
+    "FRONTEND_SRC": {
+      "units": 1,
+      "sections_total": 201,
+      "sections_in": 200,
+      "dispatch_units": 11
+    },
+    "PRODUCT_DOCS": {
+      "units": 12,
+      "sections_total": 369,
+      "sections_in": 369,
+      "dispatch_units": 13
+    },
+    "ROOT_DOCS": {
+      "units": 1,
+      "sections_total": 7,
+      "sections_in": 7,
+      "dispatch_units": 1
+    }
+  },
+  "failures_detail": []
+}

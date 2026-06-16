@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL",
+  "source_doc_id": "SRC-DEL-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL",
+  "source_prefix": "ED035",
+  "repo_rel_path": "execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/",
+  "catalog_rel_path": "@repo/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-FILESYSTEM-EXECUTION-LIFECYCLE-AND-DEPENDENCIES-1-WORKING-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL-DATASHEET",
+      "expected_sha256": "16ff705f6f5ace9f50b33d86e8b84ce8b65dfadbb5e5008a7ae1f35e8d50fd08",
+      "generated_line_start": 11,
+      "generated_line_end": 81,
+      "source_line_start": 1,
+      "source_line_end": 71,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-FILESYSTEM-EXECUTION-LIFECYCLE-AND-DEPENDENCIES-1-WORKING-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL-GUIDANCE",
+      "expected_sha256": "b246fa9a9978e584a999f7f61aec5ffa4f316a7587056b3a3bb0d9bc0b36d7dc",
+      "generated_line_start": 85,
+      "generated_line_end": 163,
+      "source_line_start": 1,
+      "source_line_end": 79,
+      "line_offset": -84
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-FILESYSTEM-EXECUTION-LIFECYCLE-AND-DEPENDENCIES-1-WORKING-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL-PROCEDURE",
+      "expected_sha256": "a9ce4d77020c2257806b5c7e7d51b15d50b26e79f71e11c124396d17eef54747",
+      "generated_line_start": 167,
+      "generated_line_end": 279,
+      "source_line_start": 1,
+      "source_line_end": 113,
+      "line_offset": -166
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-FILESYSTEM-EXECUTION-LIFECYCLE-AND-DEPENDENCIES-1-WORKING-DEL-07-04-STATUS-TRANSITION-API-AND-MCP-TOOL-SPECIFICATION",
+      "expected_sha256": "c748cde8f7ef03cc7e73911b5ad22cd3b7a0c3a8e85e4784e71081b06acaf97f",
+      "generated_line_start": 283,
+      "generated_line_end": 386,
+      "source_line_start": 1,
+      "source_line_end": 104,
+      "line_offset": -282
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

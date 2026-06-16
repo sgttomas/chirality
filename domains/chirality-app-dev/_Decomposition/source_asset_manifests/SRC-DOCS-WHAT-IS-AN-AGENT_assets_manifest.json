@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-appdev-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-WHAT-IS-AN-AGENT",
+  "source_doc_id": "SRC-DOCS-WHAT-IS-AN-AGENT",
+  "source_name": "WHAT-IS-AN-AGENT.md",
+  "source_prefix": "PD012",
+  "repo_rel_path": "docs/WHAT-IS-AN-AGENT.md",
+  "catalog_rel_path": "@repo/docs/WHAT-IS-AN-AGENT.md",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "assets": [],
+  "pages": []
+}

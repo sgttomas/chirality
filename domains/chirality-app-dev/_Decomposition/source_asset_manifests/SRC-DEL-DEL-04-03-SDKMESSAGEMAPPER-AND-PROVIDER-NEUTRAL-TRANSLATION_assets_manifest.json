@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION",
+  "source_doc_id": "SRC-DEL-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION",
+  "source_prefix": "ED018",
+  "repo_rel_path": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/",
+  "catalog_rel_path": "@repo/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SDK-ADAPTER-PROMPT-PROVIDER-AND-SETTINGS-1-WORKING-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION-DATASHEET",
+      "expected_sha256": "1b3787bad03ed59b65aea5a70b4f04ac633b44e5629f7b894a49ae59417f5f3f",
+      "generated_line_start": 11,
+      "generated_line_end": 74,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SDK-ADAPTER-PROMPT-PROVIDER-AND-SETTINGS-1-WORKING-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION-GUIDANCE",
+      "expected_sha256": "84f967d4d26da128b736bcd1de434ef0873aaa9ec82f9d6748b8c71efdda31b1",
+      "generated_line_start": 78,
+      "generated_line_end": 150,
+      "source_line_start": 1,
+      "source_line_end": 73,
+      "line_offset": -77
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SDK-ADAPTER-PROMPT-PROVIDER-AND-SETTINGS-1-WORKING-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION-PROCEDURE",
+      "expected_sha256": "fd98cb3378be0eba83c657279f267895eab73c6f4286f782e37b51953c42800b",
+      "generated_line_start": 154,
+      "generated_line_end": 250,
+      "source_line_start": 1,
+      "source_line_end": 97,
+      "line_offset": -153
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SDK-ADAPTER-PROMPT-PROVIDER-AND-SETTINGS-1-WORKING-DEL-04-03-SDKMESSAGEMAPPER-AND-PROVIDER-NEUTRAL-TRANSLATION-SPECIFICATION",
+      "expected_sha256": "0de0117d5e57e27c27c0f6f334146f197197678041594882fa49bcdf608c49a2",
+      "generated_line_start": 254,
+      "generated_line_end": 329,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -253
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

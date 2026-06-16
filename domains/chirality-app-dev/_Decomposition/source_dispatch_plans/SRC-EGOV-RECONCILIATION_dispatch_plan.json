@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-RECONCILIATION",
+  "source_prefix": "EG010",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-RECONCILIATION_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 0,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": []
+}

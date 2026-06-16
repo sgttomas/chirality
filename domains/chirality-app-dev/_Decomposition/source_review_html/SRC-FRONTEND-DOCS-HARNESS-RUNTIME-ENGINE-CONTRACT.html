@@ -1,0 +1,479 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-FRONTEND-DOCS-HARNESS-RUNTIME-ENGINE-CONTRACT - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>9</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-FD002-0001">Runtime Engine Contract</a> <a href="#SEC-FD002-0002">Scope</a> <a href="#SEC-FD002-0003">AgentEnginePort</a> <a href="#SEC-FD002-0004">TurnEngine</a> <a href="#SEC-FD002-0005">HarnessEvent Evidence</a> <a href="#SEC-FD002-0006">Agent/Subagent Runtime Contract</a> <a href="#SEC-FD002-0007">Harness Tool Descriptor Contract</a> <a href="#SEC-FD002-0008">First Adapter Probe Posture</a> <a href="#SEC-FD002-0009">Conformance Gates</a></nav>
+<main>
+<section id="SEC-FD002-0001" class="chunk sec depth-1" data-kind="section" data-key="section:5f822ad01ac0" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-FD002-0001</span> Runtime Engine Contract</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f822ad01ac0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f822ad01ac0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f822ad01ac0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-FD002-0002" class="chunk sec depth-2" data-kind="section" data-key="section:6a489bfcfe39" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0002</span> Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a489bfcfe39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a489bfcfe39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a489bfcfe39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This contract defines Chirality&#x27;s product-owned turn boundary for harness runtime adapters.
+It applies to the deterministic stub adapter, the existing direct Anthropic Messages adapter,
+and the Claude Agent SDK / Anthropic first-adapter path.</p>
+<p>SCA-APP-001 establishes a provider-adapter-general runtime strategy. The current Claude
+Agent SDK / Anthropic path remains the first concrete adapter and current shipped path;
+concrete non-Anthropic providers require bounded future implementation scope.</p>
+<p>The browser-facing event stream remains the stable public contract. Provider and SDK message
+names, transcript paths, session IDs, tool names, and permission modes are adapter metadata
+unless explicitly mapped into Chirality-owned records.
+</p></div></div></section>
+<section id="SEC-FD002-0003" class="chunk sec depth-2" data-kind="section" data-key="section:5dbf8bdf46ab" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0003</span> AgentEnginePort</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5dbf8bdf46ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5dbf8bdf46ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5dbf8bdf46ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The product boundary is represented by `frontend/src/lib/harness/agent-engine-port.ts`.</p>
+<p>Required behavior:</p>
+<p>- `startTurn(input)` yields only the existing `UIEvent` stream names:
+  `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`,
+  `turn:error`, and `process:exit`.
+- `interrupt(sessionId)` attempts to interrupt the active turn and emits terminal process
+  evidence through the adapter.
+- SDK/provider identifiers may be stored as metadata fields such as `sdkSessionId` or
+  `sdkClaudeCodeVersion`; they do not rename public UI events.
+</p></div></div></section>
+<section id="SEC-FD002-0004" class="chunk sec depth-2" data-kind="section" data-key="section:d572796089e8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0004</span> TurnEngine</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d572796089e8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d572796089e8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d572796089e8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`frontend/src/lib/harness/turn-engine.ts` owns the product turn lifecycle above the
+adapter port. API routes are transport adapters: they parse HTTP, await engine
+preflight, format `UIEvent`s as SSE, and delegate cancellation.</p>
+<p>Current lifecycle ownership includes:</p>
+<p>- same-session active-turn locking;
+- session resume and provider API-key preflight;
+- runtime option resolution;
+- attachment warning and executable attachment shaping;
+- persona prompt existence validation;
+- subagent governance evaluation and delegated-subagent shaping;
+- adapter stream execution through `IAgentSdkManager`;
+- engine session metadata persistence on `session:init`;
+- mid-stream adapter error mapping to stable `turn:error` and `process:exit` events.</p>
+<p>Pre-stream failures remain JSON API errors. Adapter failures after SSE streaming begins
+remain browser-visible SSE terminal evidence.
+</p></div></div></section>
+<section id="SEC-FD002-0005" class="chunk sec depth-2" data-kind="section" data-key="section:9321a1423332" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0005</span> HarnessEvent Evidence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9321a1423332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9321a1423332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9321a1423332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`frontend/src/lib/harness/event-schema.ts` defines versioned persisted runtime evidence.
+`frontend/src/lib/harness/session-events.ts` appends JSONL records under the configured
+Chirality session root.</p>
+<p>Current persisted event categories include:</p>
+<p>- `turn.accepted`
+- `turn.started`
+- `adapter.initialized`
+- `message.accepted`
+- `message.queued`
+- `message.started`
+- `message.delta`
+- `message.completed`
+- `model.request.started`
+- `model.delta`
+- `model.completed`
+- `turn.completed`
+- `turn.failed`
+- `turn.cancelled`
+- `tool.queued`
+- `tool.permission`
+- `tool.started`
+- `tool.progress`
+- `tool.completed`
+- `tool.failed`
+- `hook.started`
+- `hook.progress`
+- `hook.completed`
+- `hook.failed`
+- `queue.enqueued`
+- `queue.consumed`
+- `queue.cleared`
+- `branch.created`
+- `branch.selected`
+- `branch.summarized`
+- `interruption.requested`
+- `interruption.completed`
+- `context.compaction.started`
+- `context.compacted`
+- `context.compaction.failed`
+- `subagent.started`
+- `subagent.progress`
+- `subagent.completed`
+- `subagent.failed`
+- `runtime.mirror.error`</p>
+<p>Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.</p>
+<p>Read-tool lifecycle evidence is persisted for the currently approved read surfaces:
+SDK read built-ins and read-only Chirality MCP tools. Permission callbacks append
+`tool.permission` records with allow/deny/ask behavior, decision id, reason,
+descriptor identity, adapter tool name, mode, surface, and safe metadata. If permission
+audit persistence fails, the SDK callback fails closed by denying execution.</p>
+<p>Read MCP handlers append `tool.started` before local execution and then append either
+`tool.completed` with result-budget metadata or `tool.failed` with redacted error
+metadata. SDK built-in read results append inferred `tool.started` when needed and then
+`tool.completed` or `tool.failed` from the SDK `tool_use_result` message. Chirality MCP
+completion/failure evidence is owned by the local MCP wrapper to avoid duplicate SDK
+completion records.</p>
+<p>Tool input evidence stores input key names and recognized safe path fields only. Tool
+result evidence stores byte counts, MCP content item counts, descriptor inline/artifact
+limits, overflow policy, and budget class. Raw tool outputs are not stored in
+`HarnessEvent.data`. Bash overflow output may be spilled to redacted session-local
+artifacts after descriptor budgets require it; other raw tool artifact storage remains
+future scope.</p>
+<p>Write/edit lifecycle evidence is persisted for the currently approved SDK built-in write
+surfaces: `Write` and `Edit` in `workspaceWrite` mode. Permission callbacks append
+`tool.permission` records before execution, and Chirality `PreToolUse` hooks enforce
+project-root containment, instruction-root write blocking, symlink write rejection, and
+fail-closed audit behavior. The write hooks append provider-neutral `hook.started`,
+`hook.completed`, and `hook.failed` events with safe path metadata, pre/post file state
+metadata, result-budget metadata, and diff-provenance flags. Raw file contents, raw tool
+outputs, and full diffs are not stored in `HarnessEvent.data`; artifact spill files and
+full diff storage remain future scope.</p>
+<p>Bash lifecycle evidence is persisted for the approved SDK `Bash` built-in only in
+`workspaceWrite` mode. Bash remains denied in `readOnly`, `dontAsk`, and ordinary `ask`
+exposure. Permission callbacks and Chirality `PreToolUse` hooks enforce default timeout
+injection, maximum timeout policy, no background execution, no sandbox override,
+project-root containment for obvious path and redirection targets, instruction-root
+blocking, symlink redirection rejection, and static no-network command checks. Bash
+`PostToolUse` hooks record stdout/stderr byte-count metadata separately and spill
+redacted overflow results to session-local tool artifacts when descriptor budgets require
+it. Raw stdout, stderr, commands, and API keys are not stored in `HarnessEvent.data`.
+</p></div></div></section>
+<section id="SEC-FD002-0006" class="chunk sec depth-2" data-kind="section" data-key="section:5e8ada0af95d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0006</span> Agent/Subagent Runtime Contract</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e8ada0af95d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e8ada0af95d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e8ada0af95d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`frontend/src/lib/harness/agent-runtime-contract.ts` defines the current Chirality-owned
+agent/subagent prerequisite contract. This is a contract layer, not executable child-run
+exposure.</p>
+<p>Current posture:</p>
+<p>- executable delegation is blocked;
+- generated executable child definitions are contract-only future scope;
+- Pi remains a pattern corpus / reference only, with no runtime dependency, adapter, fork,
+  sidecar, package import, or spike;
+- concrete non-Anthropic provider routing remains blocked;
+- child runs do not inherit parent capabilities.</p>
+<p>Provider-neutral child-run records use Chirality fields such as `childRunId`,
+`parentSessionId`, `parentTurnId`, `parentPersona`, `agentName`, `status`,
+`capabilityPolicy`, `governance`, and `outputArtifactPath`. Adapter-specific values such as
+external session IDs, task IDs, tool-use IDs, transcript keys, or concrete adapter names may
+be retained only under the `adapter` metadata object.</p>
+<p>The prerequisite contract preserves these semantics before executable subagents are enabled:</p>
+<p>- governance preflight can create `queued` or `denied` child-run records, but `queued` does
+  not expose the SDK `Agent` tool or any executable child definition in this tranche;
+- denied delegation records keep the fail-closed gate, reason, allowlist, delegated list,
+  and approval metadata where present;
+- child capability policy starts with `inheritParentCapabilities: false`,
+  `allowedToolNames: []`, and explicit denied capabilities for read, write, shell, MCP,
+  network, and subagent surfaces until a later bounded implementation grants a narrower
+  child tool set;
+- `subagent.started`, `subagent.progress`, `subagent.completed`, and `subagent.failed`
+  remain the provider-neutral runtime event categories for child-run lifecycle evidence;
+- completed executable child runs must carry an output artifact reference once execution is
+  enabled.</p>
+<p>Claude Agent SDK `Agent` and SDK `agents` may remain the first adapter-specific substrate
+for a later implementation tranche, but neither SDK names nor Pi concepts define the
+public/core Chirality contract. Any executable subagent exposure still requires the later
+bounded implementation and validation path described by the active plan and decision
+records.
+</p></div></div></section>
+<section id="SEC-FD002-0007" class="chunk sec depth-2" data-kind="section" data-key="section:488943f12bc1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0007</span> Harness Tool Descriptor Contract</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:488943f12bc1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:488943f12bc1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:488943f12bc1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned
+`HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces.
+Descriptors record provider-neutral names, aliases, permissions, path scope, idempotence,
+concurrency, interrupt behavior, result-budget policy, provenance events, human-gate
+metadata, and adapter tool names.</p>
+<p>The current runtime exposes requested read-class first-adapter SDK built-ins (`Read`,
+`Glob`, `Grep`, and `LS`), requested read-only Chirality MCP tools, requested
+SDK `Write` / `Edit` built-ins, and requested SDK `Bash` only in `workspaceWrite` mode
+after descriptor, permission-overlay, and Chirality hook resolution. The current
+Chirality MCP read tools are `mcp__chirality__status_read`,
+`mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
+`mcp__chirality__scaffold_preview`.</p>
+<p>The SDK options builder passes requested and allowed names through both `tools` and
+`allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
+the in-process `chirality` MCP server only when a Chirality MCP read descriptor is
+allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unknown
+`opts.tools` fail structurally before adapter streaming begins.</p>
+<p>`MultiEdit`, notebook edits, network, subagent, and mutating Chirality MCP tools remain
+unavailable to the model. Their descriptors remain metadata only until their bounded
+implementation, hook, result-storage, and validation tranches land.
+</p></div></div></section>
+<section id="SEC-FD002-0008" class="chunk sec depth-2" data-kind="section" data-key="section:44576645846c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0008</span> First Adapter Probe Posture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44576645846c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44576645846c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44576645846c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the opt-in Claude Agent SDK probe adapter.
+The default provider remains unchanged unless a later bounded runtime tranche changes it.</p>
+<p>Probe posture:</p>
+<p>- `@anthropic-ai/claude-agent-sdk` is pinned to `0.3.150`.
+- `@anthropic-ai/sdk` is pinned to `0.93.0` to satisfy the SDK peer dependency.
+- SDK filesystem settings default to `settingSources: []`.
+- `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
+- `user` and `local` settings are never passed by the CODEV-001 options builder.
+- Requested read built-ins, requested read-only Chirality MCP tools, requested
+  `Write` / `Edit` built-ins, and requested `Bash` in `workspaceWrite` mode are exposed
+  for the opt-in `agentSdk` path after descriptor, permission, and hook-policy
+  resolution. Denied or unrequested built-ins and MCP tools remain in descriptor-derived
+  `disallowedTools`.</p>
+<p>Pi is a pattern corpus/reference only. This contract does not authorize a Pi adapter, fork,
+package import, Node 22 sidecar, runtime-floor migration, or spike.
+</p></div></div></section>
+<section id="SEC-FD002-0009" class="chunk sec depth-2" data-kind="section" data-key="section:c811745a93d4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-FD002-0009</span> Conformance Gates</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c811745a93d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c811745a93d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c811745a93d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+An adapter cannot become the default production runtime until it passes:</p>
+<p>- stable UI event name checks,
+- provider-neutral public type checks,
+- SDK options isolation checks,
+- SDK message mapping checks,
+- session metadata linkage checks,
+- interrupt/cancel terminal evidence checks,
+- API key redaction checks,
+- route/SSE regression checks.</p>
+<p>`frontend/src/lib/harness/engine-conformance.ts` provides the executable adapter
+conformance evaluator. Companion fixtures use deterministic scripted provider streams so
+success, failure, and interruption behavior can be checked without live provider calls or
+new backend adapter dependencies.</p>
+<p>Packaging remains `BLOCKED_TBD` until a packaged Electron SDK subprocess run is performed.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "FD002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

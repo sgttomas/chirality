@@ -25,7 +25,7 @@ Read structurally, the rows also form a governance grammar: NORMATIVE defines ru
 | --- | --- | --- | --- | --- |
 | **NORMATIVE** | HELP_HUMAN | ORCHESTRATOR | WORKING_ITEMS | AGGREGATION |
 | **OPERATIVE** | DECOMP\* | PREPARATION | TASK | AUDIT\* |
-| **EVALUATIVE** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RECONCILIATION |
+| **EVALUATIVE** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RESEARCH |
 
 ### Operative Row — Pipeline Categories
 

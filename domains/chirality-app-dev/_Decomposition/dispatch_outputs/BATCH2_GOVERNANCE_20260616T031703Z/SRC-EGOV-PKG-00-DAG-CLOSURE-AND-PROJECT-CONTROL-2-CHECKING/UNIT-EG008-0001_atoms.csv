@@ -1,0 +1,3 @@
+LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes
+1,PKG-00 Checking,@repo/execution/PKG-00_DAG_Closure_and_Project_Control/2_Checking/README.md:L1|_Decomposition/source_review_html/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-2-CHECKING.html#SEC-EG008-0003,006cf43ae7d8,OUT,SEC-EG008-0003,UNIT-EG008-0001,,Section heading only; structural boilerplate.
+2,The PKG-00 Checking directory is reserved for review artifacts produced by DAG closure or project-level reconciliation.,@repo/execution/PKG-00_DAG_Closure_and_Project_Control/2_Checking/README.md:L3|_Decomposition/source_review_html/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-2-CHECKING.html#SEC-EG008-0003,7017f2447b17,IN,SEC-EG008-0003,UNIT-EG008-0001,,

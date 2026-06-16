@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-appdev-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-TYPES",
+  "source_doc_id": "SRC-DOCS-TYPES",
+  "source_name": "TYPES.md",
+  "source_prefix": "PD010",
+  "repo_rel_path": "docs/TYPES.md",
+  "catalog_rel_path": "@repo/docs/TYPES.md",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "assets": [],
+  "pages": []
+}

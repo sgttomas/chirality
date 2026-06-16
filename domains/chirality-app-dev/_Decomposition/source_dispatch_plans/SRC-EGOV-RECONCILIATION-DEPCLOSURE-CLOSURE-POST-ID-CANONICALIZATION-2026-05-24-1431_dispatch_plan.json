@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-POST-ID-CANONICALIZATION-2026-05-24-1431",
+  "source_prefix": "EG015",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-POST-ID-CANONICALIZATION-2026-05-24-1431_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-POST-ID-CANONICALIZATION-2026-05-24-1431.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG015-0001",
+      "line_start": 9,
+      "line_end": 104,
+      "target_section_ids": [
+        "SEC-EG015-0002",
+        "SEC-EG015-0003",
+        "SEC-EG015-0004",
+        "SEC-EG015-0005",
+        "SEC-EG015-0006",
+        "SEC-EG015-0007",
+        "SEC-EG015-0008",
+        "SEC-EG015-0009",
+        "SEC-EG015-0010",
+        "SEC-EG015-0011",
+        "SEC-EG015-0012",
+        "SEC-EG015-0013",
+        "SEC-EG015-0014",
+        "SEC-EG015-0015",
+        "SEC-EG015-0016",
+        "SEC-EG015-0017"
+      ],
+      "estimated_md_tokens": 569,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-0-REFERENCES",
+  "source_prefix": "EG006",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-0-REFERENCES_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-0-REFERENCES.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG006-0001",
+      "line_start": 9,
+      "line_end": 17,
+      "target_section_ids": [
+        "SEC-EG006-0002",
+        "SEC-EG006-0003"
+      ],
+      "estimated_md_tokens": 34,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-DAG-CLOSURE-2026-05-24-1123",
+  "source_prefix": "EG013",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-DAG-CLOSURE-2026-05-24-1123_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-DAG-CLOSURE-2026-05-24-1123.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG013-0001",
+      "line_start": 9,
+      "line_end": 102,
+      "target_section_ids": [
+        "SEC-EG013-0002",
+        "SEC-EG013-0003",
+        "SEC-EG013-0004",
+        "SEC-EG013-0005",
+        "SEC-EG013-0006",
+        "SEC-EG013-0007",
+        "SEC-EG013-0008",
+        "SEC-EG013-0009",
+        "SEC-EG013-0010",
+        "SEC-EG013-0011",
+        "SEC-EG013-0012",
+        "SEC-EG013-0013",
+        "SEC-EG013-0014",
+        "SEC-EG013-0015",
+        "SEC-EG013-0016",
+        "SEC-EG013-0017",
+        "SEC-EG013-0018"
+      ],
+      "estimated_md_tokens": 571,
+      "contains_oversized_section": false
+    }
+  ]
+}

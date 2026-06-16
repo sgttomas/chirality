@@ -1,0 +1,45 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301",
+  "source_doc_id": "SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301",
+  "source_prefix": "EG016",
+  "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/",
+  "catalog_rel_path": "@repo/execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/Brief.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301-BRIEF",
+      "expected_sha256": "6ee1bb54c569494b31bc98c922029ac2b267716401050b3477aa524e08838398",
+      "generated_line_start": 11,
+      "generated_line_end": 43,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/Dependency_Closure_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301-DEPENDENCY-CLOSURE-REPORT",
+      "expected_sha256": "b966cd0caacdfece408ce00abeb4ec9f579f551ede30f628729c81374b9c7e87",
+      "generated_line_start": 47,
+      "generated_line_end": 80,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -46
+    },
+    {
+      "repo_rel_path": "execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/QA_Report.md",
+      "source_doc_id": "SRC-EXECUTION-RECONCILIATION-DEPCLOSURE-CLOSURE-SCC001-READY-TRANCHE-001-2026-05-24-2301-QA-REPORT",
+      "expected_sha256": "2585533c9bd41ab9d49941fffe2f1f3c2e22fb5bd9bec02621fdb3a0a18e49ef",
+      "generated_line_start": 84,
+      "generated_line_end": 108,
+      "source_line_start": 1,
+      "source_line_end": 25,
+      "line_offset": -83
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

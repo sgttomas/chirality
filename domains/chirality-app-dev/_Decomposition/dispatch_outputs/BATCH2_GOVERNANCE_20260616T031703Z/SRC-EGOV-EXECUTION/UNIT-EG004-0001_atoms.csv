@@ -1,0 +1,18 @@
+LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes
+1,The execution unit is named 'Chirality App vNext Execution Init'.,@repo/execution/INIT.md:L1|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,2d34d2164531,IN,SEC-EG004-0003,UNIT-EG004-0001,,
+2,The Execution Init was created on 2026-05-20.,@repo/execution/INIT.md:L4|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,a2e562bb5871,OUT,SEC-EG004-0003,UNIT-EG004-0001,,Provenance metadata
+3,The Execution Init was created by the ORCHESTRATOR.,@repo/execution/INIT.md:L5|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,1fda9ffff033,OUT,SEC-EG004-0003,UNIT-EG004-0001,,Provenance metadata
+4,The decomposition source is execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md.,@repo/execution/INIT.md:L6|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,2f31dd1b0390,IN,SEC-EG004-0003,UNIT-EG004-0001,,
+5,The decomposition variant is SOFTWARE_DECOMP.,@repo/execution/INIT.md:L7|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,7c9df03012b7,IN,SEC-EG004-0003,UNIT-EG004-0001,,
+6,The decomposition comprises 10 packages.,@repo/execution/INIT.md:L8|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,663c383ddf42,IN,SEC-EG004-0003,UNIT-EG004-0001,,
+7,The decomposition comprises 51 deliverables.,@repo/execution/INIT.md:L9|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,5b82cd2a0041,IN,SEC-EG004-0003,UNIT-EG004-0001,,
+8,Coordination representation is FULL_GRAPH.,@repo/execution/INIT.md:L12|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0004,4f3cf06552f6,IN,SEC-EG004-0004,UNIT-EG004-0001,,
+9,The dependency satisfaction threshold is SEMANTIC_READY.,@repo/execution/INIT.md:L13|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0004,06e96e15cb2a,IN,SEC-EG004-0004,UNIT-EG004-0001,,
+10,"Dependency extraction occurs after four-doc authoring, semantic lensing, and enrichment.",@repo/execution/INIT.md:L14|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0004,ef89c7c3f448,IN,SEC-EG004-0004,UNIT-EG004-0001,,
+11,The source corpus includes docs/DIRECTIVE.md.,@repo/execution/INIT.md:L18|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,db0ecbbd2645,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+12,The source corpus includes docs/CONTRACT.md.,@repo/execution/INIT.md:L19|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,b47f5a545212,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+13,The source corpus includes docs/SPEC.md.,@repo/execution/INIT.md:L20|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,f4e7ca108347,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+14,The source corpus includes docs/TYPES.md.,@repo/execution/INIT.md:L21|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,a899bb83e48e,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+15,The source corpus includes docs/PLAN.md.,@repo/execution/INIT.md:L22|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,092336cba645,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+16,The source corpus includes docs/PRD.md.,@repo/execution/INIT.md:L23|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,57617c195e19,IN,SEC-EG004-0005,UNIT-EG004-0001,,
+17,Expected-vs-actual source hashes are recorded in execution/_Sources/SOURCE_HASH_AUDIT.md.,@repo/execution/INIT.md:L25|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,26aff7a81794,IN,SEC-EG004-0005,UNIT-EG004-0001,,

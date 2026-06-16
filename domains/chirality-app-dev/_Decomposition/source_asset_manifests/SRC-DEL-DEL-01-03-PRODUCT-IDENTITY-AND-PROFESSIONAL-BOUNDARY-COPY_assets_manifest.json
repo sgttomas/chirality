@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY",
+  "source_doc_id": "SRC-DEL-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY",
+  "source_prefix": "ED005",
+  "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/",
+  "catalog_rel_path": "@repo/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY-DATASHEET",
+      "expected_sha256": "21fa87b5ab056ef9ea6a13b5641e457d9b273c0e891d8540658ad51cf22caea7",
+      "generated_line_start": 11,
+      "generated_line_end": 77,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY-GUIDANCE",
+      "expected_sha256": "ee04f62c8faf4a0148781971a47a3ee43d96a4bc6d090df46c92d18c08f57b4b",
+      "generated_line_start": 81,
+      "generated_line_end": 164,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -80
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY-PROCEDURE",
+      "expected_sha256": "9fc57195e864f6e27de74913e1e96dc74eb06ddf6125dfeba0cf0b5ff21dbdeb",
+      "generated_line_start": 168,
+      "generated_line_end": 283,
+      "source_line_start": 1,
+      "source_line_end": 116,
+      "line_offset": -167
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-03-PRODUCT-IDENTITY-AND-PROFESSIONAL-BOUNDARY-COPY-SPECIFICATION",
+      "expected_sha256": "4f056bf33fc62bc24ee5718194ddd8701effd6ab10bb873e8da400f7a2bc88ff",
+      "generated_line_start": 287,
+      "generated_line_end": 367,
+      "source_line_start": 1,
+      "source_line_end": 81,
+      "line_offset": -286
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

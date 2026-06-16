@@ -1,0 +1,265 @@
+# Source Pack: SRC-DEL-DEL-02-01-DESKTOP-SHELL-AND-MATRIX-NAVIGATION
+
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/`
+
+Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+
+## Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Datasheet.md
+
+### Datasheet: DEL-02-01 Desktop Shell and Matrix Navigation
+
+#### Identification
+
+| Field | Value |
+|---|---|
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| PackageID | PKG-02 |
+| PackageName | Desktop Shell, Navigation, and Operator State |
+| DeliverableID | DEL-02-01 |
+| DeliverableName | Desktop Shell and Matrix Navigation |
+| ResponsibleParty | TBD |
+| Type | UX_UI_SLICE |
+| ContextEnvelope | M |
+| Current State at P1/P2 authoring | OPEN |
+
+#### Attributes
+
+| Attribute | Value | Source |
+|---|---|---|
+| Primary surface | Desktop shell navigation for PORTAL, PIPELINE, and WORKBENCH | REF-006 `docs/PRD.md` Section 8.1 FR-001; decomposition DEL-02-01 |
+| Matrix shape | 3 rows by 4 columns | REF-006 Section 8.2 FR-007; REF-004 `docs/TYPES.md` Section 4.3 |
+| Matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 |
+| Matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 |
+| NORMATIVE destination | WORKBENCH | REF-004 Section 4.1; REF-006 Section 7.2 |
+| OPERATIVE destination | PIPELINE | REF-004 Section 4.1; REF-006 Section 7.2 |
+| EVALUATIVE destination | WORKBENCH | REF-004 Section 4.1; REF-006 Section 7.2 |
+| Shell routes | `/`, `/pipeline`, `/workbench` | REF-006 Section 8.1 FR-001 |
+| Active route indication | Required | REF-006 Section 8.1 FR-001 |
+| Anticipated artifacts | Navigation components; matrix UI tests; route query handling | `_CONTEXT.md`; decomposition DEL-02-01 |
+
+#### Conditions
+
+| Condition | Value | Source |
+|---|---|---|
+| Scope items covered | SOW-001, SOW-005 | `_CONTEXT.md`; decomposition SSOW and traceability |
+| Objective supported | OBJ-001 | `_CONTEXT.md`; decomposition objective mapping |
+| Inclusions | UI and operator workflow behavior | `_CONTEXT.md`; decomposition PKG-02 package row |
+| Exclusions | Runtime engine internals | `_CONTEXT.md`; decomposition PKG-02 package row |
+| PRD source status | `HASH_MISMATCH` observed and treated as source warning per dispatch | `_REFERENCES.md`; dispatch instruction |
+| Dependency extraction | Deferred; `Dependencies.csv` not produced in this run | Dispatch instruction; `_DEPENDENCIES.md` initial population rule |
+
+#### Construction
+
+| Item | Required Construction Detail | Source |
+|---|---|---|
+| Header navigation | Must route to PORTAL, PIPELINE, and WORKBENCH via `/`, `/pipeline`, and `/workbench` | REF-006 Section 8.1 FR-001 |
+| PORTAL matrix | Must render canonical rows and columns | REF-006 Section 8.2 FR-007; REF-004 Section 4 |
+| Matrix cell routing | Must route NORMATIVE and EVALUATIVE cells to WORKBENCH and OPERATIVE cells to PIPELINE | REF-006 Section 8.2 FR-008; REF-004 Section 4.1 |
+| Route state | Query handling is anticipated; exact query parameter names are TBD for this deliverable because source text does not define them here | `_CONTEXT.md`; unsupported detail marked TBD |
+| Tests | Matrix UI tests are anticipated; exact test framework and fixture names are TBD | `_CONTEXT.md`; unsupported detail marked TBD |
+
+#### References
+
+| RefID | Source Used | Relevant Slice |
+|---|---|---|
+| REF-004 | `docs/TYPES.md` | Section 4 UI Navigation Vocabulary |
+| REF-006 | `docs/PRD.md` | Sections 7.2, 8.1, 8.2, and package mapping |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOW-001, SOW-005, OBJ-001, PKG-02, DEL-02-01 |
+| LOCAL | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md` | Deliverable identity, source status, and dependency deferral |
+
+## Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Guidance.md
+
+### Guidance: DEL-02-01 Desktop Shell and Matrix Navigation
+
+#### Purpose
+
+This deliverable preserves the operator's primary movement through Chirality's desktop shell: PORTAL for the matrix entry point, WORKBENCH for interactive persona agents, and PIPELINE for operative task categories. It supports OBJ-001 by keeping the local desktop harness clear, governed, and navigable.
+
+#### Principles
+
+- Keep shell navigation explicit: PORTAL, PIPELINE, and WORKBENCH are first-class surfaces, not incidental views.
+- Treat the agent matrix as canonical product vocabulary. Use `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE` for rows, and `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING` for columns.
+- Route by row semantics: `NORMATIVE` and `EVALUATIVE` go to WORKBENCH; `OPERATIVE` goes to PIPELINE.
+- Preserve stable IDs and route meaning across label or path changes. ASSUMPTION: this applies to matrix cell identifiers and query state, although exact route parameter names are TBD in the available source slices.
+- Keep unsupported variants visible as coming soon when this slice exposes them, instead of hiding roadmap-aware choices.
+- Do not make runtime engine behavior part of this deliverable; this slice owns navigation and routing presentation.
+
+#### Considerations
+
+- `docs/PRD.md` is the main product requirement source for this slice, but its observed hash differs from the expected hash in `_REFERENCES.md`. The dispatch instruction says to treat that mismatch as a source warning, not a blocker.
+- The PRD says matrix routing follows the `docs/SPEC` contract, while the accessible route semantics for rows and cells are in `docs/TYPES.md` Section 4 and PRD Section 7.2/8.2. Until a human reconciles that wording, use TYPES plus PRD as the concrete source for matrix routing behavior.
+- DEL-08-02 also covers matrix routing contract concerns. DEL-02-01 should focus on the visible shell and matrix navigation behavior, while leaving persona alias and deeper routing-contract ownership to DEL-08-02 unless a human ruling expands this slice.
+- DEL-02-02 and DEL-08-03 own adjacent workbench/pipeline selector details. This deliverable should test that row routing lands on the correct surface without over-specifying downstream controls.
+- Query-state naming for selected agent, row, column, or category is source-supported only as anticipated "route query handling"; exact key names are TBD.
+
+#### Trade-offs
+
+| Topic | Direction | Rationale |
+|---|---|---|
+| Canonical matrix vocabulary vs. UI copy flexibility | Prefer canonical row/column values in tests and route state | TYPES Section 4 gives stable terms that reduce routing ambiguity. |
+| Shell scope vs. runtime scope | Keep runtime internals out of this deliverable | PKG-02 excludes runtime engine internals. |
+| Visible disabled options vs. minimal UI | Keep unsupported variants visible when this slice exposes them | PRD Section 7.2 acceptance requires unsupported variants to remain visible as coming soon. |
+| Query parameter specificity | Mark exact parameter names TBD | Source slices require active context/query handling elsewhere but do not define this deliverable's parameter schema. |
+
+#### Examples
+
+| Example | Expected Result | Source |
+|---|---|---|
+| Operator selects a NORMATIVE matrix cell from PORTAL | WORKBENCH opens with row/cell context as supported by route state | REF-006 Section 7.2; REF-004 Section 4.1 |
+| Operator selects an OPERATIVE matrix cell from PORTAL | PIPELINE opens with category context as supported by route state | REF-006 Section 7.2; REF-004 Section 4.1 |
+| Operator uses header navigation to open PIPELINE | `/pipeline` route is reached and active route is visually indicated | REF-006 Section 8.1 FR-001 |
+
+#### Conflict Table (for human ruling)
+
+| Conflict ID | Source A | Source B | Issue | Current Handling | Human Ruling Needed |
+|---|---|---|---|---|---|
+| CONFLICT-001 | Dispatch deliverable path uses `PKG-02_Desktop_UI_and_Local_Experience` | Existing in-repo deliverable folder uses `PKG-02_Desktop_Shell_Navigation_and_Operator_State` and `_CONTEXT.md` package name matches decomposition | Package path segment differs from dispatch, while deliverable ID and name match | Wrote only inside the existing DEL-02-01 folder and recorded this as a scope/path warning. P3 disposition: E-001 already covered as conflict. | Confirm whether the package path rename is accepted and whether future dispatches should use the existing path |
+| CONFLICT-002 | REF-006 expected SHA in `_REFERENCES.md` | REF-006 actual SHA in `_REFERENCES.md` | PRD hash mismatch | Treated as source warning, not blocker, per dispatch. P3 disposition: B-001 already covered as conflict. | Confirm whether observed PRD hash should replace expected hash in a later governed reference update |
+| CONFLICT-003 | PRD FR-008 says matrix routing shall follow the `docs/SPEC` contract | Accessible concrete matrix vocabulary and row destination semantics are in `docs/TYPES.md` Section 4, not in located `docs/SPEC.md` slices | Source pointer appears imprecise or stale | Used PRD Section 7.2/8.2 plus TYPES Section 4 for concrete routing requirements. P3 disposition: F-001 already covered as conflict. | Confirm whether SPEC should be amended or whether TYPES is the intended route-semantics authority |
+
+## Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Procedure.md
+
+### Procedure: DEL-02-01 Desktop Shell and Matrix Navigation
+
+#### Purpose
+
+Produce and verify the desktop shell and matrix navigation slice for DEL-02-01, preserving PORTAL, WORKBENCH, and PIPELINE navigation and canonical matrix routing.
+
+#### Prerequisites
+
+- Accessible source references listed in `_REFERENCES.md`.
+- Current deliverable context in `_CONTEXT.md`.
+- Existing implementation workspace for navigation components and tests. Exact implementation paths are TBD because they are not listed in this deliverable's authoritative source slices.
+- Implementation evidence slots are required for later closure: navigation component path, matrix UI test path, and route query handling test path. Exact paths remain TBD until selected by implementation. P3 disposition: D-001 converted to TBD.
+- Human acceptance that `ResponsibleParty` remains `TBD` until assigned.
+- Dependency extraction remains deferred; do not create `Dependencies.csv` as part of this procedure.
+
+Declared upstream dependencies:
+
+- TBD - no accepted dependency edges have been extracted yet.
+
+Declared downstream dependencies:
+
+- TBD - no accepted dependency edges have been extracted yet.
+
+#### Steps
+
+1. Confirm the deliverable identity from `_CONTEXT.md`: `DEL-02-01 Desktop Shell and Matrix Navigation`, `ResponsibleParty: TBD`, `Type: UX_UI_SLICE`, `ContextEnvelope: M`.
+2. Confirm authoritative source availability from `_REFERENCES.md`; treat the PRD hash mismatch as a source warning unless a human ruling changes that instruction.
+3. Preserve the shell's three primary surfaces: PORTAL at `/`, PIPELINE at `/pipeline`, and WORKBENCH at `/workbench`.
+4. Ensure header navigation exposes all three surfaces and visually indicates the active route.
+5. Render the PORTAL matrix with rows `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE`.
+6. Render the PORTAL matrix with columns `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING`.
+7. Route `NORMATIVE` cells to WORKBENCH.
+8. Route `EVALUATIVE` cells to WORKBENCH.
+9. Route `OPERATIVE` cells to PIPELINE.
+10. Preserve unsupported or disabled variants as visible coming-soon options where this deliverable exposes them.
+11. Add or update matrix UI tests for row/column rendering and row-semantics routing.
+12. Add or update route query handling tests only to the extent implementation chooses route-state keys; exact query key names are TBD from source.
+13. Keep runtime engine internals out of this slice; hand off engine or selector-specific behavior to adjacent deliverables.
+14. Record selected implementation paths for navigation components, matrix UI tests, and route query handling tests when they exist; until selected, keep those fields as TBD. P3 disposition: D-001 converted to TBD.
+
+#### Verification
+
+| Check | Expected Result |
+|---|---|
+| Header navigation routes | `/`, `/pipeline`, and `/workbench` are reachable. |
+| Active route state | Current surface is visually indicated. |
+| Matrix shape | PORTAL shows 3 rows and 4 columns. |
+| Row labels | `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE` are present. |
+| Column labels | `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING` are present. |
+| WORKBENCH routing | NORMATIVE and EVALUATIVE cells route to WORKBENCH. |
+| PIPELINE routing | OPERATIVE cells route to PIPELINE. |
+| Unsupported variants | Unsupported variants visible in this slice are disabled or coming soon, not silently removed. |
+| Scope discipline | No runtime engine internals are changed under this deliverable's authority. |
+
+#### Implementation Evidence Slots
+
+| Evidence Slot | Current Value | Source |
+|---|---|---|
+| Navigation component path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+| Matrix UI test path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+| Route query handling test path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+
+P3 disposition: D-001 converted to TBD by adding explicit implementation evidence slots without inventing paths.
+
+#### Records
+
+- Navigation component change notes or diff references.
+- Matrix UI test results.
+- Route query handling test results, with selected query key names documented.
+- Any human rulings resolving the package path mismatch, PRD hash mismatch, or PRD/SPEC/TYPES source-pointer issue.
+- This four-document kit and the TASK run record.
+
+## Component: execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Specification.md
+
+### Specification: DEL-02-01 Desktop Shell and Matrix Navigation
+
+#### Scope
+
+This deliverable covers the user-facing desktop shell navigation and canonical matrix routing for `DEL-02-01 Desktop Shell and Matrix Navigation`.
+
+In scope:
+
+- PORTAL, WORKBENCH, and PIPELINE shell navigation.
+- Header navigation between `/`, `/pipeline`, and `/workbench`.
+- PORTAL rendering of the canonical 3x4 agent matrix.
+- Matrix row-semantics routing into WORKBENCH or PIPELINE.
+- Navigation components, matrix UI tests, and route query handling to the extent supported by source evidence.
+
+Out of scope:
+
+- Runtime engine internals.
+- Workbench agent-context detail owned by adjacent deliverables except where routing handoff requires it.
+- Pipeline selector behavior beyond receiving OPERATIVE matrix routes.
+- Dependency extraction and `Dependencies.csv` creation for this run.
+
+#### Requirements
+
+| ID | Requirement | Priority | Source | Verification |
+|---|---|---:|---|---|
+| DEL-02-01-REQ-001 | The app shall provide a desktop shell with PORTAL, PIPELINE, and WORKBENCH navigation. | P0 | REF-006 Section 8.1 FR-001; SOW-001 | Navigation UI test or route-level integration test confirms all three surfaces are reachable. |
+| DEL-02-01-REQ-002 | Header navigation shall route to `/`, `/pipeline`, and `/workbench`. | P0 | REF-006 Section 8.1 FR-001 | Route assertion confirms the header target paths. |
+| DEL-02-01-REQ-003 | Header navigation shall visually indicate the active route. | P0 | REF-006 Section 8.1 FR-001 | UI assertion confirms active state on each route. |
+| DEL-02-01-REQ-004 | PORTAL shall render the canonical 3x4 agent matrix. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.3 | Matrix UI test confirms 3 rows and 4 columns. |
+| DEL-02-01-REQ-005 | Matrix rows shall be `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE`. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 | Matrix UI test checks row labels and row order if order is encoded in implementation. |
+| DEL-02-01-REQ-006 | Matrix columns shall be `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING`. | P0 | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 | Matrix UI test checks column labels and column order if order is encoded in implementation. |
+| DEL-02-01-REQ-007 | NORMATIVE matrix cells shall route to WORKBENCH. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1 | Matrix routing test confirms destination surface. |
+| DEL-02-01-REQ-008 | EVALUATIVE matrix cells shall route to WORKBENCH. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1 | Matrix routing test confirms destination surface. |
+| DEL-02-01-REQ-009 | OPERATIVE matrix cells shall route to PIPELINE. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1 | Matrix routing test confirms destination surface. |
+| DEL-02-01-REQ-010 | Disabled or unsupported variants shall remain visible as coming soon rather than disappearing when encountered in matrix-adjacent navigation flows. | P0 | REF-006 Section 7.2 acceptance | UI test confirms unsupported variants are visible and non-selectable where this deliverable exposes them. |
+| DEL-02-01-REQ-011 | Stable identifiers shall remain distinct from path or label changes. | TBD | REF-002 `docs/CONTRACT.md` K-ID-1 and K-PATH-1; REF-006 Section 8.2 FR-009 | ASSUMPTION: applies to route state and matrix identity; exact implementation assertion TBD until route-state key names are selected. P3 disposition: C-001 converted to TBD for key names; X-001 converted to TBD for acceptance assertion names. |
+
+#### Standards
+
+| Standard or Source | Applicability | Status |
+|---|---|---|
+| `docs/PRD.md` | Product requirements for shell navigation and matrix routing | Accessible; hash mismatch recorded as warning per dispatch |
+| `docs/TYPES.md` Section 4 | Canonical UI navigation vocabulary and matrix semantics | Accessible |
+| `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-INVENT-1, K-CONFLICT-1 | Stable identity and epistemic controls relevant to routing and document production | Accessible |
+| `docs/DIRECTIVE.md` Section 4.1 | In-scope statement for local desktop operation and matrix navigation | Accessible |
+| SOFTWARE_DECOMP v3.2 | Deliverable scope, SOW mapping, objective context, and execution note to preserve ResponsibleParty | Accessible |
+
+#### Verification
+
+| Requirement IDs | Verification Approach | Evidence Record |
+|---|---|---|
+| REQ-001 through REQ-003 | Route/navigation component tests | Navigation component test output; route assertions |
+| REQ-004 through REQ-006 | Matrix rendering tests | Matrix UI test output |
+| REQ-007 through REQ-009 | Matrix click/routing tests | Route query handling test output |
+| REQ-010 | Disabled-state visibility test if unsupported variants are surfaced in this slice | UI test output or human ruling if owned by another deliverable |
+| REQ-011 | Identity/route-state review | TBD; once route-state keys are selected, evidence should assert that selected agent, row, column, or category identity remains stable across label/path changes. Exact query key names and assertion names remain TBD from source slices. P3 disposition: C-001 and X-001 converted to TBD. |
+
+#### Documentation
+
+Required or anticipated artifacts:
+
+- Navigation components.
+- Matrix UI tests.
+- Route query handling.
+- Evidence notes identifying any route-state parameters chosen by implementation.
+- Human ruling if the dispatch path/package rename is material to scope identity.
+- P3 disposition: C-001 and X-001 require implementation-time evidence notes once route-state keys and acceptance assertions are selected.

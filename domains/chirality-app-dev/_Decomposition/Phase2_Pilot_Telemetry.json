@@ -1,0 +1,126 @@
+{
+  "batch": "BATCHP_PILOT_DOCS_20260616T022706Z",
+  "sources": 16,
+  "dispatch_units": 17,
+  "atoms_total": 2098,
+  "IN": 2078,
+  "OUT": 14,
+  "TBD": 6,
+  "vocab_terms": 174,
+  "id_prefixes": [
+    "FD001",
+    "FD002",
+    "FD003",
+    "PD001",
+    "PD002",
+    "PD003",
+    "PD004",
+    "PD005",
+    "PD006",
+    "PD007",
+    "PD008",
+    "PD009",
+    "PD010",
+    "PD011",
+    "PD012",
+    "RT001"
+  ],
+  "per_source": {
+    "SRC-AGENTS": {
+      "atoms": 36,
+      "IN": 36,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-AGENTIC-DEVELOPMENT-WORKFLOW": {
+      "atoms": 59,
+      "IN": 56,
+      "OUT": 3,
+      "TBD": 0
+    },
+    "SRC-DOCS-BUILD-AND-RELEASE": {
+      "atoms": 78,
+      "IN": 78,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-CONTRACT": {
+      "atoms": 103,
+      "IN": 100,
+      "OUT": 3,
+      "TBD": 0
+    },
+    "SRC-DOCS-DIRECTIVE": {
+      "atoms": 147,
+      "IN": 147,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-PLAN": {
+      "atoms": 227,
+      "IN": 227,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-PRD": {
+      "atoms": 723,
+      "IN": 722,
+      "OUT": 1,
+      "TBD": 0
+    },
+    "SRC-DOCS-README": {
+      "atoms": 28,
+      "IN": 28,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-RELEASE-QUALITY-GATES": {
+      "atoms": 80,
+      "IN": 78,
+      "OUT": 1,
+      "TBD": 1
+    },
+    "SRC-DOCS-SPEC": {
+      "atoms": 190,
+      "IN": 190,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-DOCS-TYPES": {
+      "atoms": 203,
+      "IN": 202,
+      "OUT": 1,
+      "TBD": 0
+    },
+    "SRC-DOCS-VALIDATION-STRATEGY": {
+      "atoms": 47,
+      "IN": 39,
+      "OUT": 3,
+      "TBD": 5
+    },
+    "SRC-DOCS-WHAT-IS-AN-AGENT": {
+      "atoms": 36,
+      "IN": 35,
+      "OUT": 1,
+      "TBD": 0
+    },
+    "SRC-FRONTEND-DOCS-HARNESS-README": {
+      "atoms": 25,
+      "IN": 24,
+      "OUT": 1,
+      "TBD": 0
+    },
+    "SRC-FRONTEND-DOCS-HARNESS-RUNTIME-ENGINE-CONTRACT": {
+      "atoms": 96,
+      "IN": 96,
+      "OUT": 0,
+      "TBD": 0
+    },
+    "SRC-FRONTEND-DOCS-HARNESS-TRACEABILITY": {
+      "atoms": 20,
+      "IN": 20,
+      "OUT": 0,
+      "TBD": 0
+    }
+  }
+}

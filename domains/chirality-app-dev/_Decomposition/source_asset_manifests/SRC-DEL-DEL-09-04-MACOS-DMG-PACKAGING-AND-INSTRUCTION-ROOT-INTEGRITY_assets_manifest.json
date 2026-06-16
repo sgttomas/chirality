@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY",
+  "source_doc_id": "SRC-DEL-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY",
+  "source_prefix": "ED046",
+  "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/",
+  "catalog_rel_path": "@repo/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY-DATASHEET",
+      "expected_sha256": "c399f1179c3c7c47d9eec042bd6f427850c0be5a9037ad4fa496a4c0c48b4efc",
+      "generated_line_start": 11,
+      "generated_line_end": 67,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY-GUIDANCE",
+      "expected_sha256": "7503cc0d2cc3c451e2caa53ee51b816be6132d805e375f29810d594d206dfd38",
+      "generated_line_start": 71,
+      "generated_line_end": 114,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -70
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY-PROCEDURE",
+      "expected_sha256": "5655f1e7c76a30048ed50d16d4d859abe0d0f9af15ecd10bd5153ed6fd0af16c",
+      "generated_line_start": 118,
+      "generated_line_end": 192,
+      "source_line_start": 1,
+      "source_line_end": 75,
+      "line_offset": -117
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-04-MACOS-DMG-PACKAGING-AND-INSTRUCTION-ROOT-INTEGRITY-SPECIFICATION",
+      "expected_sha256": "7aca1fc38056a7e87f7f1d2d8c9d64d29e5225f50c18cff9fb2776d8a1e83708",
+      "generated_line_start": 196,
+      "generated_line_end": 266,
+      "source_line_start": 1,
+      "source_line_end": 71,
+      "line_offset": -195
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,538 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-05-05-TOOLRESULTSTORE-AND-SESSION-ARTIFACTS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>36</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED025-0001">Source Pack: SRC-DEL-DEL-05-05-TOOLRESULTSTORE-AND-SESSION-A</a> <a href="#SEC-ED025-0002">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED025-0010">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED025-0023">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED025-0030">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a></nav>
+<main>
+<section id="SEC-ED025-0001" class="chunk sec depth-1" data-kind="section" data-key="section:a9c9edb16b83" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED025-0001</span> Source Pack: SRC-DEL-DEL-05-05-TOOLRESULTSTORE-AND-SESSION-ARTIFACTS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9c9edb16b83" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9c9edb16b83" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9c9edb16b83" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED025-0002" class="chunk sec depth-2" data-kind="section" data-key="section:68f385db44f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED025-0002</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68f385db44f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68f385db44f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68f385db44f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0003" class="chunk sec depth-3" data-kind="section" data-key="section:5e06942dec80" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED025-0003</span> Datasheet: DEL-05-05 ToolResultStore and Session Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e06942dec80" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e06942dec80" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e06942dec80" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0004" class="chunk sec depth-4" data-kind="section" data-key="section:7f71a11fb5d0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f71a11fb5d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f71a11fb5d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f71a11fb5d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-05-05 |
+| DeliverableName | ToolResultStore and Session Artifacts |
+| PackageID | PKG-05 |
+| PackageName | Session Audit, Replay, and Tool Result Records |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| Type | BACKEND_FEATURE_SLICE |
+| ContextEnvelope | M |
+| ResponsibleParty | TBD |
+</p></div></div></section>
+<section id="SEC-ED025-0005" class="chunk sec depth-4" data-kind="section" data-key="section:9b1fd2434ba2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b1fd2434ba2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b1fd2434ba2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b1fd2434ba2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary purpose | Store and preview medium/large tool outputs under session artifacts without flooding chat or model context. | `_CONTEXT.md` Deliverable Scope; decomposition `DEL-05-05` row |
+| Session artifact location | `.chirality/sessions/&lt;sessionId&gt;/artifacts/` for raw large tool results. | `docs/SPEC.md` Sections 8.2, 9.2; `docs/PRD.md` Sections 10.3, 10.5 (HASH_MISMATCH warning) |
+| Canonical audit mirror | `.chirality/sessions/&lt;sessionId&gt;/events.jsonl`; SDK transcripts remain secondary unless imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/DIRECTIVE.md` Section 2.3 |
+| Event linkage | Tool result artifacts must be referenced by path from persisted runtime event metadata. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` Section 10.4 (HASH_MISMATCH warning) |
+| Artifact metadata fields | Tool name, turn ID, byte count, truncation flag, and relative artifact path. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+| Redaction boundary | Runtime events, run logs, tool artifacts, and provider errors must redact secrets and avoid API keys. | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PRD.md` NFR-002 (HASH_MISMATCH warning) |
+| Output budget classes | Small results inline, medium results preview plus metadata, large results raw artifact plus metadata. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+| Output budget thresholds | TBD. Source corpus defines classes but not byte thresholds. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+</p></div></div></section>
+<section id="SEC-ED025-0006" class="chunk sec depth-4" data-kind="section" data-key="section:d8e800e0f159" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d8e800e0f159" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d8e800e0f159" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d8e800e0f159" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Working-root locality | Project execution state, sessions, and tool artifacts live under the selected working root or configured Chirality-controlled session path. | `docs/DIRECTIVE.md` Sections 2.3, 2.8; `docs/SPEC.md` Section 10.2 |
+| Replay requirement | JSONL replay must tolerate malformed trailing lines while preserving valid prior events. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
+| Ordering requirement | JSONL writes must append newline-delimited events in write sequence. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` Section 10.4 (HASH_MISMATCH warning) |
+| Concurrent tool activity | Deterministic replay must survive SDK tool concurrency. | Decomposition SOW-053; `docs/SPEC.md` Section 9.2 |
+| Model/chat budget | Large outputs must not flood chat or model context. | `docs/PRD.md` NFR-017 and R4 acceptance (HASH_MISMATCH warning) |
+| Sensitive payload storage | Sensitive values must not be stored unless a redaction pass has approved the payload. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning); `docs/CONTRACT.md` K-EVENT-6 |
+</p></div></div></section>
+<section id="SEC-ED025-0007" class="chunk sec depth-4" data-kind="section" data-key="section:231dd1f106e4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:231dd1f106e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:231dd1f106e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:231dd1f106e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component | Expected construction | Status |
+|---|---|---|
+| `ToolResultStore` | Product-owned artifact and preview policy for tool outputs. | Required; interface/module location TBD |
+| Session artifact writer | Writes large raw results beneath `.chirality/sessions/&lt;sessionId&gt;/artifacts/` and returns relative artifact references. | Required; implementation path TBD |
+| Preview builder | Produces inline small results and medium previews without unbounded chat/model expansion. | Required; thresholds and preview format TBD |
+| Metadata fixture set | Covers tool name, turn ID, byte count, truncation flag, relative artifact path, and redaction status where applicable. | Required |
+| Output budget tests | Verify inline/preview/artifact behavior and no chat/context flooding. | Required |
+| Replay fixtures | Verify artifact links remain reconstructible through `events.jsonl` replay, including malformed-tail tolerance. | Required |
+</p></div></div></section>
+<section id="SEC-ED025-0008" class="chunk sec depth-4" data-kind="section" data-key="section:ad7f678df9e8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0008</span> Current Discovery State</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ad7f678df9e8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ad7f678df9e8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ad7f678df9e8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Current state | Disposition |
+|---|---|---|
+| B-001 source-state warning | `_REFERENCES.md` marks REF-006 `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived artifact-budget and metadata claims remain warning-qualified until human source reconciliation accepts the snapshot. | Surfaced as a source-state caveat; not treated as a substitute for human ruling. |
+| C-001 implementation and fixture paths | Repository discovery did not find an accepted `ToolResultStore` module, output-budget test files, metadata fixture files, replay fixture files, or redaction fixture files. | Keep paths `TBD` until implementation work lands and is accepted. |
+| F-001 unresolved policy fields | Byte thresholds, preview length, artifact naming, checksum policy, and retention/deletion behavior are not specified by the matched source corpus. | Keep as governed design deferrals; do not encode hidden policy. |
+</p></div></div></section>
+<section id="SEC-ED025-0009" class="chunk sec depth-4" data-kind="section" data-key="section:186b719cabb8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:186b719cabb8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:186b719cabb8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:186b719cabb8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Source | Notes |
+|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` | MATCH. Runtime events explain work and the Chirality audit mirror is canonical. |
+| REF-002 | `docs/CONTRACT.md` | MATCH. K-EVENT and K-KEY invariants bind redaction, artifacts, and replay. |
+| REF-003 | `docs/SPEC.md` | MATCH. Defines session layout, `HarnessEvent`, append/replay rules, and artifact path references. |
+| REF-004 | `docs/TYPES.md` | MATCH. Defines `ToolResultStore`, session terms, `events.jsonl`, and `artifacts/`. |
+| REF-005 | `docs/PLAN.md` | MATCH. Places tool-result budgeting in R4 and preserves Chirality ownership of artifact/preview policy. |
+| REF-006 | `docs/PRD.md` | HASH_MISMATCH. Used as accessible vNext direction per task instruction; unsupported details remain `TBD`. |
+| REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH. Used for decomposition method context only. |
+</p></div></div></section>
+<section id="SEC-ED025-0010" class="chunk sec depth-2" data-kind="section" data-key="section:8f2ede603766" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED025-0010</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f2ede603766" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f2ede603766" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f2ede603766" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0011" class="chunk sec depth-3" data-kind="section" data-key="section:ae360cabf240" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED025-0011</span> Guidance: DEL-05-05 ToolResultStore and Session Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae360cabf240" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae360cabf240" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae360cabf240" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0012" class="chunk sec depth-4" data-kind="section" data-key="section:bf0544aadab3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf0544aadab3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf0544aadab3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf0544aadab3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable exists to keep tool-heavy runtime work auditable and readable. Tool results must be available for replay and diagnosis, but large payloads must not be pushed unbounded into chat, browser events, or model context. Chirality owns the artifact/preview policy even when the SDK supplies the tool loop.</p>
+<p>Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/DIRECTIVE.md` Sections 2.3 and 2.8; `docs/PLAN.md` R4; `docs/PRD.md` Sections 9.4 and 10.5 (HASH_MISMATCH warning).
+</p></div></div></section>
+<section id="SEC-ED025-0013" class="chunk sec depth-4" data-kind="section" data-key="section:02be3eb60937" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:02be3eb60937" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:02be3eb60937" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:02be3eb60937" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Keep `events.jsonl` canonical. Runtime artifact metadata should point from Chirality events to stored outputs; artifact storage must not make SDK transcripts or chat history the authority. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-EVENT-4.
+- Budget output by representation. Small text can be inline, medium output needs preview plus metadata, and large output needs artifact storage plus a compact reference. Source: `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning).
+- Preserve replay before convenience. A user reviewing a session later should be able to reconstruct tool summaries, terminal outcomes, and artifact links from Chirality JSONL plus session metadata. Source: `docs/PRD.md` FR-076 and NFR-017 (HASH_MISMATCH warning); `docs/SPEC.md` Section 9.2.
+- Redact before storing sensitive content. Secrets must not land in runtime events, run logs, provider errors, or tool artifacts. Source: `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1.
+- Keep provider details out of product contracts. `ToolResultStore` should operate on Chirality event/session concepts, not SDK-native transcript shapes. Source: `docs/PRD.md` Section 9.4 (HASH_MISMATCH warning); `docs/CONTRACT.md` K-ENGINE-4.
+- Make missing policy explicit. Thresholds, preview lengths, naming, checksum, and retention are currently source gaps and should remain `TBD` until accepted design work fills them.
+</p></div></div></section>
+<section id="SEC-ED025-0014" class="chunk sec depth-4" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0015" class="chunk sec depth-5" data-kind="section" data-key="section:b176820a5323" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED025-0015</span> Source-state warning</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b176820a5323" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b176820a5323" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b176820a5323" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`docs/PRD.md` is listed with `HASH_MISMATCH` in `_REFERENCES.md`. The task instruction says to treat this as a source-state warning. This draft uses PRD content as accessible vNext direction but does not invent unsupported values from it.
+</p></div></div></section>
+<section id="SEC-ED025-0016" class="chunk sec depth-5" data-kind="section" data-key="section:be9a78e12e65" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED025-0016</span> Budget thresholds</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be9a78e12e65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be9a78e12e65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be9a78e12e65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The corpus defines small, medium, and large output classes but does not define byte thresholds. Use `TBD` in implementation tickets and tests until thresholds are selected and accepted. A test can still assert class behavior once thresholds are parameterized.</p>
+<p>F-001 and X-001 should remain linked: threshold and preview-limit acceptance is the policy decision, and threshold-boundary verification is the proof that the accepted policy behaves as intended. Until that decision exists, boundary tests should be recorded as pending rather than filled with arbitrary values.
+</p></div></div></section>
+<section id="SEC-ED025-0017" class="chunk sec depth-5" data-kind="section" data-key="section:70128ccfcac0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED025-0017</span> Event and artifact separation</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70128ccfcac0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70128ccfcac0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70128ccfcac0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Avoid embedding raw large payloads in `HarnessEvent.data`. Store the payload under session artifacts and persist metadata sufficient for replay. This keeps UI events compact and prevents model-context flooding while preserving audit evidence.
+</p></div></div></section>
+<section id="SEC-ED025-0018" class="chunk sec depth-5" data-kind="section" data-key="section:b9b5cefa6bd1" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED025-0018</span> Redaction posture</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9b5cefa6bd1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9b5cefa6bd1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9b5cefa6bd1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The safest implementation shape is a redaction decision before artifact persistence. If source uncertainty remains about whether a payload contains secrets, prefer redacted preview and blocked raw storage over saving unreviewed sensitive output.
+</p></div></div></section>
+<section id="SEC-ED025-0019" class="chunk sec depth-5" data-kind="section" data-key="section:7479451c1c45" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED025-0019</span> Concurrent tool activity</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7479451c1c45" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7479451c1c45" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7479451c1c45" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The decomposition explicitly includes deterministic replay under tool concurrency. Store enough sequence or parent-event linkage to preserve replay order under interleaved completions. The source corpus does not specify exact fields beyond the `HarnessEvent` shape, so sequence metadata details are TBD.</p>
+<p>D-001 is best handled as an assertion-design requirement: replay tests should prove ordering from JSONL write sequence or accepted event-ordering metadata, not from incidental SDK completion order.
+</p></div></div></section>
+<section id="SEC-ED025-0020" class="chunk sec depth-4" data-kind="section" data-key="section:455ac3587879" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0020</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:455ac3587879" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:455ac3587879" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:455ac3587879" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Inline content vs artifact link | Inline improves immediate readability for small text. Artifact links preserve performance and context for large output. Use the budget class, not ad hoc UI convenience, to decide. |
+| Preview richness vs leakage risk | Rich previews help review, but sensitive data must be redacted. Prefer safe summaries when redaction status is uncertain. |
+| SDK transcript detail vs Chirality canonicality | SDK transcripts may contain useful details, but Chirality event metadata and artifact references are the replay authority unless transcript content is imported into `HarnessEvent` form. |
+| Early hardcoded thresholds vs configurable policy | Hardcoded thresholds would unblock tests but risk becoming undocumented product policy. Keep threshold values TBD until design acceptance. |
+| Retention/checksum certainty vs premature policy | E-001 remains a rationale gap until retention/deletion and checksum policy are selected. The interim balance is to preserve auditable artifact references and redaction posture while labeling retention, deletion, checksum, naming, and redaction-status metadata as explicit TBDs. |
+</p></div></div></section>
+<section id="SEC-ED025-0021" class="chunk sec depth-4" data-kind="section" data-key="section:0fd31238fd1b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0021</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0fd31238fd1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0fd31238fd1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0fd31238fd1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected behavior |
+|---|---|
+| Small text result | Store result inline in the tool completion event data when it is within the accepted small-output threshold and contains no unredacted secrets. Threshold TBD. |
+| Medium text result | Store a preview and required metadata; avoid placing the full raw result in chat/model context. Preview length TBD. |
+| Large result | Store raw payload under `.chirality/sessions/&lt;sessionId&gt;/artifacts/`; persist relative artifact path, tool name, turn ID, byte count, and truncation flag in event metadata. |
+| Sensitive tool output | Apply redaction before event/artifact persistence; if redaction cannot approve the payload, do not store raw sensitive values. |
+| Malformed trailing JSONL line | Replay should ignore the malformed tail and preserve valid prior events and artifact links. |
+</p></div></div></section>
+<section id="SEC-ED025-0022" class="chunk sec depth-4" data-kind="section" data-key="section:6d9910b85cc8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0022</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d9910b85cc8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d9910b85cc8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d9910b85cc8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| TBD | No direct source-content conflict identified. `docs/PRD.md` has a hash mismatch warning, but the task instructed use as a source-state warning. | `_REFERENCES.md` REF-006 | User task instruction | All sections citing PRD | Treat PRD as accessible direction while preserving unsupported details as `TBD`. | TBD |
+| B-001 | PRD-derived tool-result budgeting and metadata claims are useful direction, but REF-006 remains `HASH_MISMATCH` in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 10.4-10.5 and NFR-017 | Datasheet Attributes; Specification Requirements; Procedure Steps | Keep PRD-derived claims warning-qualified until source reconciliation is accepted. | TBD |
+</p></div></div></section>
+<section id="SEC-ED025-0023" class="chunk sec depth-2" data-kind="section" data-key="section:439d064c1cf3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED025-0023</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:439d064c1cf3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:439d064c1cf3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:439d064c1cf3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0024" class="chunk sec depth-3" data-kind="section" data-key="section:ecaf763a7691" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED025-0024</span> Procedure: DEL-05-05 ToolResultStore and Session Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecaf763a7691" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecaf763a7691" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecaf763a7691" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0025" class="chunk sec depth-4" data-kind="section" data-key="section:8af923acbe4b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0025</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8af923acbe4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8af923acbe4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8af923acbe4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the production and verification procedure for implementing `ToolResultStore` and session artifact behavior for DEL-05-05. The procedure focuses on producing the deliverable artifacts named in `_CONTEXT.md`: artifact store, output budget tests, and metadata fixtures.
+</p></div></div></section>
+<section id="SEC-ED025-0026" class="chunk sec depth-4" data-kind="section" data-key="section:1a16f6d88867" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0026</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a16f6d88867" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a16f6d88867" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a16f6d88867" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm the active source corpus listed in `_REFERENCES.md` is available.
+- Review `docs/SPEC.md` Sections 8-9 for session layout and `HarnessEvent` append/replay rules.
+- Review `docs/CONTRACT.md` K-EVENT-4 through K-EVENT-7 and K-KEY-1 for canonical audit, replay, redaction, and artifact constraints.
+- Review `docs/PRD.md` Sections 10.4-10.5 and NFR-017 as source-state-warning input because `_REFERENCES.md` marks PRD as `HASH_MISMATCH`.
+- Confirm upstream dependencies once dependency extraction exists. Current `_DEPENDENCIES.md` lists upstream and downstream as TBD.
+- Confirm implementation location for `ToolResultStore`. Current source corpus names the concept but does not specify a module path.
+- Treat B-001 as unresolved until REF-006 source reconciliation is accepted; PRD-derived artifact-budget details remain warning-qualified.
+</p></div></div></section>
+<section id="SEC-ED025-0027" class="chunk sec depth-4" data-kind="section" data-key="section:32422453e8bb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0027</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32422453e8bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32422453e8bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32422453e8bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Identify the session artifact root.
+   - Use canonical `.chirality/sessions/&lt;sessionId&gt;/artifacts/` from `docs/SPEC.md` Section 8.2 unless the runtime is explicitly configured with a Chirality-controlled session root.
+   - Keep artifact paths relative in event metadata where required by `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning).</p>
+<p>2. Define the tool-result budget policy.
+   - Represent small, medium, and large result classes.
+   - Keep concrete byte thresholds and preview length as `TBD` until accepted design work supplies values.
+   - Ensure the policy can produce inline small data, medium preview plus metadata, and large artifact references.</p>
+<p>3. Define the artifact metadata shape.
+   - Include tool name, turn ID, byte count, truncation flag, and relative artifact path.
+   - ASSUMPTION: Include redaction status or redaction decision reference if the implementation needs audit evidence for sensitive payload handling. Source support exists for redaction before storage, but the exact metadata field is TBD.</p>
+<p>4. Implement artifact persistence.
+   - Store raw large results under the session artifact folder.
+   - Persist compact metadata in Chirality runtime events rather than embedding raw large payloads in `HarnessEvent.data`.
+   - Preserve ordered append/write sequence semantics for replay.</p>
+<p>5. Implement preview handling.
+   - Inline small text results only when within the accepted threshold and after redaction policy permits storage.
+   - Generate medium previews that are sufficient for UI scan/replay without full raw output in chat/model context.
+   - For large results, show artifact metadata/link plus a bounded preview if permitted by redaction policy.</p>
+<p>6. Apply redaction before persistence.
+   - Redact API keys and configured secret variants from event data, logs, provider errors, and tool artifacts.
+   - Do not store sensitive values unless a redaction pass has approved the payload.</p>
+<p>7. Add output budget tests.
+   - Cover small inline, medium preview plus metadata, and large raw artifact storage.
+   - Include threshold-boundary fixtures once threshold values are accepted.
+   - Verify large outputs do not flood chat or model context.
+   - For X-001, record exact threshold-boundary tests as pending until byte thresholds and preview limits are accepted.</p>
+<p>8. Add metadata and replay fixtures.
+   - Assert required metadata fields.
+   - Verify relative artifact paths resolve under the session artifact root.
+   - Verify valid artifact links remain available when replay ignores a malformed trailing JSONL line.
+   - Include interleaved tool-result fixtures for deterministic replay under concurrency.
+   - For D-001, assert replay order from JSONL write sequence or accepted event-ordering metadata; do not rely on incidental SDK completion order.</p>
+<p>9. Run relevant validation.
+   - Run unit and integration tests for the artifact store, event append/replay, redaction, and session metadata.
+   - Add or update Section 9 validation coverage when the runtime validation IDs land.</p>
+<p>10. Record residual TBDs.
+    - If thresholds, naming, checksum, retention, or redaction metadata remain unspecified, leave explicit `TBD` notes in implementation documentation and test TODOs rather than encoding hidden policy.
+    - For E-001, explain any accepted retention/deletion, checksum, and redaction-status metadata policy as a balance between audit reconstructability and leakage minimization.
+</p></div></div></section>
+<section id="SEC-ED025-0028" class="chunk sec depth-4" data-kind="section" data-key="section:53222f340bf2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0028</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:53222f340bf2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:53222f340bf2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:53222f340bf2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Session path check | Large artifact payloads are written beneath `.chirality/sessions/&lt;sessionId&gt;/artifacts/` or an approved Chirality-controlled session artifact root. |
+| Metadata check | Tool name, turn ID, byte count, truncation flag, and relative artifact path are persisted with the result reference. |
+| Budget check | Small, medium, and large outputs take distinct inline/preview/artifact paths. Threshold values remain TBD until accepted. |
+| Redaction check | API keys and configured secrets do not appear in event data, logs, provider errors, or stored artifacts. |
+| Replay check | Valid prior artifact links survive malformed trailing JSONL during replay. |
+| Concurrency check | Interleaved tool completions replay deterministically by write sequence or accepted event ordering metadata. |
+| Provider-neutral check | Public contracts and canonical events are Chirality-owned and do not expose SDK-shaped internals except as adapter metadata. |
+</p></div></div></section>
+<section id="SEC-ED025-0029" class="chunk sec depth-4" data-kind="section" data-key="section:0bfcdff03f85" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0029</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bfcdff03f85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bfcdff03f85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bfcdff03f85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Artifact store implementation path: TBD.
+- Output budget test files: TBD.
+- Metadata fixture files: TBD.
+- Replay fixture files: TBD.
+- Redaction fixture files: TBD.
+- Residual design decisions: thresholds, preview length, artifact naming, checksum policy, retention/deletion behavior, and optional redaction-status metadata.
+- C-001 path disposition: current code discovery found no accepted implementation or fixture paths for this deliverable; all listed paths remain `TBD`.
+- F-001 policy disposition: output thresholds, preview length, artifact naming, checksum policy, and retention/deletion behavior remain governed deferrals.
+- D-001 verification disposition: concurrent replay checks must bind to write sequence or accepted event-ordering metadata.
+- X-001 verification disposition: threshold-boundary checks remain pending until threshold and preview-limit values are accepted.
+- E-001 rationale disposition: retention/deletion, checksum, and redaction-status rationale remains pending until the corresponding policies are chosen.
+</p></div></div></section>
+<section id="SEC-ED025-0030" class="chunk sec depth-2" data-kind="section" data-key="section:51635176b528" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED025-0030</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51635176b528" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51635176b528" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51635176b528" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0031" class="chunk sec depth-3" data-kind="section" data-key="section:06612dd00040" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED025-0031</span> Specification: DEL-05-05 ToolResultStore and Session Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06612dd00040" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06612dd00040" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06612dd00040" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED025-0032" class="chunk sec depth-4" data-kind="section" data-key="section:74878ccd0eee" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0032</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74878ccd0eee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74878ccd0eee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74878ccd0eee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-05-05 covers the backend feature slice that stores, previews, and references medium/large tool outputs as session artifacts so chat and model context are not flooded. The slice belongs to PKG-05, whose package scope is canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, and tool result artifacts.</p>
+<p>In scope:</p>
+<p>- Product-owned `ToolResultStore` policy and implementation surface for tool output budgeting.
+- Session-local artifact storage under `.chirality/sessions/&lt;sessionId&gt;/artifacts/`.
+- Metadata records linking stored artifacts to tool name, turn ID, byte count, truncation flag, and relative artifact path.
+- Preview behavior for medium results and inline behavior for small results.
+- Output budget tests, replay/metadata fixtures, and redaction-sensitive artifact behavior.</p>
+<p>Out of scope:</p>
+<p>- Tool permission semantics and deny-first policy, except where stored tool output must respect redaction and audit constraints.
+- SDK transcript canonicality decisions outside artifact linkage.
+- Bash enablement policy, except that allowed bash output must eventually use the same result budgeting behavior.</p>
+<p>Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/SPEC.md` Sections 8-9; `docs/PRD.md` Sections 10.4-10.5 (HASH_MISMATCH warning).
+</p></div></div></section>
+<section id="SEC-ED025-0033" class="chunk sec depth-4" data-kind="section" data-key="section:adb382ba2a0a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0033</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:adb382ba2a0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:adb382ba2a0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:adb382ba2a0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-05-05-REQ-001 | The implementation MUST preserve `.chirality/sessions/&lt;sessionId&gt;/events.jsonl` as the product-owned Chirality audit mirror; artifact storage MUST NOT make SDK transcripts canonical. | `docs/SPEC.md` Section 8.4; `docs/DIRECTIVE.md` Section 2.3; `docs/CONTRACT.md` K-EVENT-4 |
+| DEL-05-05-REQ-002 | Large tool result payloads MUST be stored as artifacts and referenced by path from runtime event metadata. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` Section 10.4 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-003 | Raw large tool results MUST be stored beneath `.chirality/sessions/&lt;sessionId&gt;/artifacts/` or an explicitly configured Chirality-controlled session artifact path. | `docs/SPEC.md` Section 8.2; `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-004 | Small text tool results MAY be carried inline in `tool.completed` data; medium results MUST include preview and metadata; large results MUST include artifact metadata rather than unbounded inline content. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-005 | Artifact metadata MUST include tool name, turn ID, byte count, truncation flag, and relative artifact path. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-006 | Runtime events, run logs, tool artifacts, and provider errors MUST redact secrets and avoid storing API keys. | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PRD.md` NFR-002 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-007 | Sensitive values MUST NOT be stored in tool artifacts unless a redaction pass has approved the payload. | `docs/PRD.md` Section 10.5 (HASH_MISMATCH warning); `docs/CONTRACT.md` K-EVENT-6 |
+| DEL-05-05-REQ-008 | Artifact links and summaries MUST remain replayable from Chirality JSONL plus session metadata even when a malformed trailing JSONL line exists. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
+| DEL-05-05-REQ-009 | Tool result storage MUST preserve deterministic replay under concurrent SDK tool activity by relying on ordered append/write sequence metadata rather than arrival ambiguity. | Decomposition SOW-053; `docs/SPEC.md` Section 9.2 |
+| DEL-05-05-REQ-010 | Output budget tests MUST verify that large outputs do not flood chat or model context and that medium/large outputs surface usable previews or artifact links. | `docs/PRD.md` NFR-017 and R4 acceptance (HASH_MISMATCH warning); decomposition anticipated artifacts |
+| DEL-05-05-REQ-011 | ASSUMPTION: The implementation should expose `ToolResultStore` through a product-owned interface/module that is not SDK-shaped, because TYPES and PRD identify it as Chirality-owned policy. | `docs/TYPES.md` Section 7/8 glossary; `docs/PRD.md` Section 9.4 (HASH_MISMATCH warning) |
+| DEL-05-05-REQ-012 | Output class byte thresholds, preview length, artifact naming scheme, checksum policy, and retention/deletion behavior are TBD until specified by implementation design or a governed source update. | Source gap in `docs/SPEC.md` Sections 8-9 and `docs/PRD.md` Section 10.5 |
+| DEL-05-05-REQ-013 | The deterministic replay test for concurrent or interleaved tool-result completions MUST assert the accepted ordering signal: JSONL append/write sequence, `parentEventId` linkage where applicable, or another explicitly accepted event-ordering metadata field. | D-001; `docs/SPEC.md` Section 9.1-9.2; decomposition SOW-053 |
+| DEL-05-05-REQ-014 | Threshold-boundary verification MUST be added when byte thresholds and preview limits are accepted; until then, tests may verify class behavior only through parameterized or fixture-specific policy inputs. | X-001; `docs/PRD.md` NFR-017 and R4 acceptance (HASH_MISMATCH warning); F-001 deferral |
+</p></div></div></section>
+<section id="SEC-ED025-0034" class="chunk sec depth-4" data-kind="section" data-key="section:905a0ec883b1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0034</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:905a0ec883b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:905a0ec883b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:905a0ec883b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability | Source |
+|---|---|---|
+| Chirality `HarnessEvent` schema | Persisted runtime event metadata must use stable product-owned event shape. | `docs/SPEC.md` Section 9.1; `docs/PRD.md` Section 10.4 (HASH_MISMATCH warning) |
+| Append-only JSONL event store | Artifact references must be compatible with ordered append/replay semantics. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
+| Session layout contract | Artifact storage must fit canonical session folder layout. | `docs/SPEC.md` Section 8.2 |
+| K-EVENT invariants | Binding audit, replay, redaction, and artifact-budget constraints. | `docs/CONTRACT.md` Section 1.5 |
+| Working-root/project-truth boundary | Tool artifacts are runtime audit state, not accepted project truth or human approval records. | `docs/DIRECTIVE.md` Sections 2.3, 2.8 |
+</p></div></div></section>
+<section id="SEC-ED025-0035" class="chunk sec depth-4" data-kind="section" data-key="section:655bef558b91" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0035</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:655bef558b91" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:655bef558b91" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:655bef558b91" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification approach |
+|---|---|
+| REQ-001, REQ-002, REQ-003 | Unit tests for session path resolution, relative artifact references, and event metadata persistence under `.chirality/sessions/&lt;sessionId&gt;/`. |
+| REQ-004, REQ-010 | Output budget tests covering small inline, medium preview plus metadata, and large artifact-only raw storage. Threshold values are TBD. |
+| REQ-005 | Metadata fixture tests asserting tool name, turn ID, byte count, truncation flag, and relative artifact path. |
+| REQ-006, REQ-007 | Redaction tests using provider errors, run logs, event data, and tool-result payload fixtures with secret-like values. |
+| REQ-008 | Replay tests using valid JSONL followed by a malformed trailing line; valid prior artifact links must remain available. |
+| REQ-009, REQ-013 | Deterministic ordering tests using concurrent or interleaved tool-result completion fixtures; assertions must bind replay order to write sequence or accepted event-ordering metadata rather than completion-arrival ambiguity. |
+| REQ-011 | Conformance/type tests ensuring public event/API contracts remain provider-neutral and not SDK-shaped. |
+| REQ-012 | Human/design review before finalizing thresholds, preview limits, naming, checksums, and retention policy. |
+| REQ-014 | Threshold-boundary tests added after threshold and preview-limit acceptance; current validation remains `TBD` for exact boundary values. |
+</p></div></div></section>
+<section id="SEC-ED025-0036" class="chunk sec depth-4" data-kind="section" data-key="section:646ba4f9fe22" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED025-0036</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:646ba4f9fe22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:646ba4f9fe22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:646ba4f9fe22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required implementation artifacts for this deliverable:</p>
+<p>- Artifact store implementation or module path: TBD.
+- Output budget tests for inline/preview/artifact behavior.
+- Metadata fixtures covering required artifact metadata fields.
+- Replay fixtures with artifact references and malformed-tail JSONL tolerance.
+- Redaction fixtures for sensitive tool output handling.
+- Developer notes identifying threshold values and any residual risks once chosen.
+- P3 disposition record for B-001, C-001, F-001, D-001, X-001, and E-001 showing which items were incorporated, deferred as `TBD`, or surfaced for human ruling.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED025";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

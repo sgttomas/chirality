@@ -1,0 +1,7 @@
+CandidateTerm,Synonyms,Definition,SourceRefs,Notes
+references_hash_tool.py,,Tool (DEL-08-01) that computes and verifies ContentHash fields for out-of-folder references in _REFERENCES.md.,@repo/execution/_Scripts/README.md:L7|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0004,
+validate_dependencies.py,,Tool (DEL-08-02) that lints Dependencies.csv files against the v3.1 schema from docs/SPEC.md Section 6.,@repo/execution/_Scripts/README.md:L40|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0008,
+ContentHash,,"Hash field for out-of-folder references in _REFERENCES.md, computed and verified by references_hash_tool.py.",@repo/execution/_Scripts/README.md:L7|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0004,
+_REFERENCES.md,,File holding out-of-folder references whose ContentHash fields are managed by references_hash_tool.py.,@repo/execution/_Scripts/README.md:L7|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0004,
+Dependencies.csv,,File linted by validate_dependencies.py against the v3.1 schema.,@repo/execution/_Scripts/README.md:L40|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0008,
+HASH_VERIFICATION_BYPASS.jsonl,,Deliverable-local file that bypass records append to by default.,@repo/execution/_Scripts/README.md:L36|_Decomposition/source_review_html/SRC-EGOV-SCRIPTS.html#SEC-EG025-0007,

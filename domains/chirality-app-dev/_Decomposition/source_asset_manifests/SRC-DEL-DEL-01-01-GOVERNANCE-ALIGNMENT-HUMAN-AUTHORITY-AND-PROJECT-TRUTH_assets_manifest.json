@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH",
+  "source_doc_id": "SRC-DEL-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH",
+  "source_prefix": "ED003",
+  "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/",
+  "catalog_rel_path": "@repo/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH-DATASHEET",
+      "expected_sha256": "5a94624f39da34b7712e212a9317b69413099a1207744d59463aa16e3852e7ee",
+      "generated_line_start": 11,
+      "generated_line_end": 74,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH-GUIDANCE",
+      "expected_sha256": "e89a10794ee98e8a93c1312e47d62aaddd48ccb367bb41c7406b9b3287b7c0f6",
+      "generated_line_start": 78,
+      "generated_line_end": 139,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -77
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH-PROCEDURE",
+      "expected_sha256": "22b8e2bdeac3e3d74fd2fbc91ed5c126b15fdd116851bc54caba21c4b58c5391",
+      "generated_line_start": 143,
+      "generated_line_end": 231,
+      "source_line_start": 1,
+      "source_line_end": 89,
+      "line_offset": -142
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-PRODUCT-GOVERNANCE-AND-RELIANCE-BOUNDARIES-1-WORKING-DEL-01-01-GOVERNANCE-ALIGNMENT-HUMAN-AUTHORITY-AND-PROJECT-TRUTH-SPECIFICATION",
+      "expected_sha256": "12d94f9e1a50feddf2a3a8359f0b8d8c4331346079f9a75bb8aeddd95553c803",
+      "generated_line_start": 235,
+      "generated_line_end": 298,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -234
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,556 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-08-05-SUBAGENT-CHILD-RUN-RECORDS-AND-ARTIFACTS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>37</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED042-0001">Source Pack: SRC-DEL-DEL-08-05-SUBAGENT-CHILD-RUN-RECORDS-AN</a> <a href="#SEC-ED042-0002">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED042-0011">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED042-0021">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED042-0029">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a></nav>
+<main>
+<section id="SEC-ED042-0001" class="chunk sec depth-1" data-kind="section" data-key="section:c9d8087c1e6a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED042-0001</span> Source Pack: SRC-DEL-DEL-08-05-SUBAGENT-CHILD-RUN-RECORDS-AND-ARTIFACTS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c9d8087c1e6a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c9d8087c1e6a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c9d8087c1e6a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED042-0002" class="chunk sec depth-2" data-kind="section" data-key="section:375da4e215bc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED042-0002</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:375da4e215bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:375da4e215bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:375da4e215bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0003" class="chunk sec depth-3" data-kind="section" data-key="section:58319c535115" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED042-0003</span> Datasheet: DEL-08-05 Subagent Child Run Records and Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:58319c535115" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:58319c535115" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:58319c535115" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0004" class="chunk sec depth-4" data-kind="section" data-key="section:e6033e6a516d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e6033e6a516d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e6033e6a516d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e6033e6a516d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-08-05 |
+| DeliverableName | Subagent Child Run Records and Artifacts |
+| PackageID | PKG-08 |
+| PackageName | Agent Suite, Pipeline Dispatch, and Subagent Governance |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| Type | DATA_MODEL_CHANGE |
+| ContextEnvelope | M |
+| ResponsibleParty | TBD |
+| CoversScopeItems | SOW-063 |
+| SupportsObjectives | OBJ-003, OBJ-007 |
+</p></div></div></section>
+<section id="SEC-ED042-0005" class="chunk sec depth-4" data-kind="section" data-key="section:8004bda66791" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8004bda66791" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8004bda66791" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8004bda66791" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Scope | Persist parent-child runtime records, status, timestamps, SDK agent metadata, and output artifact paths. | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-08-05 |
+| Primary record target | `HarnessSubagentRun` | `docs/TYPES.md` Section 10 |
+| Parent audit event target | `HarnessEvent` | `docs/TYPES.md` Section 7.3; `docs/SPEC.md` Section 9 |
+| Canonical event store | `.chirality/sessions/&lt;id&gt;/events.jsonl` | `docs/CONTRACT.md` K-EVENT-4; `docs/TYPES.md` Section 7.2 |
+| Artifact folder | `.chirality/sessions/&lt;sessionId&gt;/artifacts/` | `docs/TYPES.md` Section 7.2; `docs/PRD.md` Section 10.5 |
+| Relevant event categories | `subagent.started`, `subagent.completed` | `docs/PRD.md` Section 8.12; `docs/SPEC.md` Section 9.4 |
+| Output artifact policy | Large payloads are stored as artifacts and referenced by metadata; child-run outputs use output artifact references. | `docs/SPEC.md` Sections 9.2 and 10.5; `docs/PLAN.md` R5 |
+| Execution gate relationship | Child records are created for governed subagent execution; governance admission itself belongs to DEL-08-04. | `_CONTEXT.md`; `docs/PRD.md` FR-101 and FR-102 |
+</p></div></div></section>
+<section id="SEC-ED042-0006" class="chunk sec depth-4" data-kind="section" data-key="section:8cfb7729cbaa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8cfb7729cbaa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8cfb7729cbaa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8cfb7729cbaa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Subagent delegation must fail closed unless governance conditions pass. | Required. | `docs/CONTRACT.md` K-SUBAGENT-1 |
+| SDK subagents may not expand parent capabilities. | Required. | `docs/CONTRACT.md` K-SUBAGENT-2 |
+| Subagent runs must produce parent-child runtime records and output artifact references when execution is enabled. | Required. | `docs/CONTRACT.md` K-SUBAGENT-3 |
+| Runtime events must redact secrets. | Required. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-075 |
+| JSONL replay must tolerate malformed trailing records. | Required for the event store. | `docs/CONTRACT.md` K-EVENT-5; `docs/SPEC.md` Section 9.2 |
+| SDK transcripts are secondary unless imported into `HarnessEvent` form. | Required. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 8 |
+| Unified pipeline run records remain retired scope. | Required boundary. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
+| PRD source hash | Source warning: expected hash differs from observed hash; content used only as accessible source with mismatch noted. | `_REFERENCES.md`; runtime assignment |
+</p></div></div></section>
+<section id="SEC-ED042-0007" class="chunk sec depth-4" data-kind="section" data-key="section:da33e1b7e0c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:da33e1b7e0c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:da33e1b7e0c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:da33e1b7e0c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0008" class="chunk sec depth-5" data-kind="section" data-key="section:bc89f850da47" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED042-0008</span> Target `HarnessSubagentRun` Fields</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc89f850da47" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc89f850da47" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc89f850da47" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Type / Allowed Value | Requirement Status | Source |
+|---|---|---|---|
+| `runId` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `parentSessionId` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `parentTurnId` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
+| `persona` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `agentName` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `sdkAgentId` | string | Optional by type target; available when SDK exposes it. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
+| `model` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
+| `projectRoot` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `status` | `queued`, `running`, `completed`, `failed`, `cancelled`, `denied` | Required by type target. | `docs/TYPES.md` Section 10 |
+| `startedAt` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
+| `completedAt` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
+| `outputArtifactPath` | string | Optional by type target; required when child output is stored externally. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
+</p></div></div></section>
+<section id="SEC-ED042-0009" class="chunk sec depth-5" data-kind="section" data-key="section:8b60d390bb2b" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED042-0009</span> Related `HarnessEvent` Fields</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8b60d390bb2b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8b60d390bb2b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8b60d390bb2b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Type / Allowed Value | Requirement Status | Source |
+|---|---|---|---|
+| `schemaVersion` | `1` | Required by type target. | `docs/TYPES.md` Section 7.3; `docs/SPEC.md` Section 9.1 |
+| `eventId` | string | Required; unique per event. | `docs/SPEC.md` Section 9.2 |
+| `sessionId` | string | Required. | `docs/SPEC.md` Section 9.1 |
+| `turnId` | string | Optional. | `docs/SPEC.md` Section 9.1 |
+| `parentEventId` | string | Optional. | `docs/SPEC.md` Section 9.1 |
+| `timestamp` | string | Required. | `docs/SPEC.md` Section 9.1 |
+| `type` | string; includes later categories `subagent.started` and `subagent.completed` | Required. | `docs/SPEC.md` Sections 9.1 and 9.4 |
+| `data` | `Record&lt;string, unknown&gt;` | Required; must avoid secrets. | `docs/SPEC.md` Sections 9.1 and 9.2 |
+</p></div></div></section>
+<section id="SEC-ED042-0010" class="chunk sec depth-4" data-kind="section" data-key="section:167028d5cefb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0010</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:167028d5cefb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:167028d5cefb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:167028d5cefb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/DIRECTIVE.md` - runtime audit mirror and subagent governance direction.
+- `docs/CONTRACT.md` - event, hook, and subagent invariants.
+- `docs/SPEC.md` - event schema, artifact policy, and runtime engine contract.
+- `docs/TYPES.md` - `HarnessEvent`, session artifact, and `HarnessSubagentRun` type targets.
+- `docs/PLAN.md` - R5 governed subagent runtime sequencing and retired-scope boundary.
+- `docs/PRD.md` - runtime event, artifact, and subagent requirements. Source warning: hash mismatch recorded in `_REFERENCES.md`.
+- `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` - decomposition method reference.
+</p></div></div></section>
+<section id="SEC-ED042-0011" class="chunk sec depth-2" data-kind="section" data-key="section:0bf799c65d65" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED042-0011</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bf799c65d65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bf799c65d65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bf799c65d65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0012" class="chunk sec depth-3" data-kind="section" data-key="section:6a0f3b293973" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED042-0012</span> Guidance: DEL-08-05 Subagent Child Run Records and Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a0f3b293973" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a0f3b293973" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a0f3b293973" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0013" class="chunk sec depth-4" data-kind="section" data-key="section:d006dfd5d657" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0013</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d006dfd5d657" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d006dfd5d657" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d006dfd5d657" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable makes governed subagent execution replayable and auditable without expanding subagent authority. Its product value is the durable record of what child agent was requested, how it was linked to the parent session or turn, what status it reached, and where any child output artifact was stored.
+</p></div></div></section>
+<section id="SEC-ED042-0014" class="chunk sec depth-4" data-kind="section" data-key="section:97722935b172" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0014</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:97722935b172" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:97722935b172" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:97722935b172" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Keep Chirality events canonical. | Treat `.chirality/sessions/&lt;id&gt;/events.jsonl` and `HarnessEvent` replay as the product-owned audit mirror. SDK transcript paths may be linked but should not become canonical unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` K-EVENT-4 and K-SDK-3 |
+| Separate governance gate from child record persistence. | DEL-08-04 owns the subagent governance bridge. DEL-08-05 should persist the resulting child lifecycle and artifact references without weakening or duplicating admission rules. | `_CONTEXT.md`; `docs/PRD.md` FR-101 and FR-102 |
+| Fail closed is still visible. | Denied or failed subagent actions should leave reviewable runtime evidence. The exact boundary for a `HarnessSubagentRun` with `status: denied` needs a human or architecture ruling. | `docs/CONTRACT.md` K-SUBAGENT-1; `docs/TYPES.md` Section 10 |
+| Store references, not bulky payloads. | Child outputs that exceed inline budgets should be represented by artifact metadata and relative paths. | `docs/SPEC.md` Sections 9.2 and 10.5 |
+| Do not reintroduce retired scope. | Runtime event logging and child-run records are not the retired unified pipeline run record system. Avoid names, APIs, or storage layouts that imply pipeline-wide run-record reactivation. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
+| Preserve professional and security boundaries. | Event data and artifacts should avoid secrets and should not represent child output as professional approval, certification, or external validation. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-115 |
+</p></div></div></section>
+<section id="SEC-ED042-0015" class="chunk sec depth-4" data-kind="section" data-key="section:e6d2e2a88277" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0015</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e6d2e2a88277" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e6d2e2a88277" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e6d2e2a88277" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `HarnessSubagentRun` should be small and stable. Put bulky child output in artifacts, not in the record itself.
+- `runId` should be distinct from `eventId`; lifecycle events can reference the child run, while the child run remains the durable summary of the child execution.
+- `parentSessionId` is required and `parentTurnId` is optional. The implementation should handle session-level child delegation if a future flow lacks a turn ID.
+- `sdkAgentId`, `model`, and SDK transcript metadata may be unavailable for some runtime paths. These fields should remain optional rather than synthesized.
+- `status` should reflect the child run lifecycle, not the parent turn outcome. A parent turn can fail after a child completed, and a child can fail while the parent records that failure successfully.
+- Artifact paths should be relative to session-controlled storage when possible to support migration and replay.
+- Replay fixtures should cover at least completed, failed, cancelled, and denied status behavior. The exact denied-record expectation is pending ruling.
+</p></div></div></section>
+<section id="SEC-ED042-0016" class="chunk sec depth-4" data-kind="section" data-key="section:2b21280497ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0016</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2b21280497ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2b21280497ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2b21280497ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Option | Trade-off |
+|---|---|---|
+| Denied attempts | Record only `tool.permission` / hook denial events | Avoids allocating child runs before execution but may make subagent-specific denial replay less direct. |
+| Denied attempts | Also create `HarnessSubagentRun` with `status: denied` | Makes subagent denial visible in one record family but requires a clear allocation boundary before execution. |
+| SDK metadata | Store only stable Chirality fields | More portable and less coupled, but loses SDK-specific debugging detail. |
+| SDK metadata | Store optional SDK identifiers and transcript paths | Better debugging and resume correlation, but must remain secondary to Chirality events. |
+| Output storage | Inline small child summaries | Easier replay and inspection for small data. |
+| Output storage | Store child outputs as artifacts | Better for large data and context hygiene, but requires artifact lifecycle and path validation. |
+</p></div></div></section>
+<section id="SEC-ED042-0017" class="chunk sec depth-4" data-kind="section" data-key="section:eb01bf04c9a0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0017</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0018" class="chunk sec depth-5" data-kind="section" data-key="section:66c7907753e3" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED042-0018</span> Example `HarnessSubagentRun`</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66c7907753e3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66c7907753e3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66c7907753e3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;runId&quot;: &quot;subrun_123&quot;,
+  &quot;parentSessionId&quot;: &quot;session_abc&quot;,
+  &quot;parentTurnId&quot;: &quot;turn_001&quot;,
+  &quot;persona&quot;: &quot;TASK&quot;,
+  &quot;agentName&quot;: &quot;TASK&quot;,
+  &quot;sdkAgentId&quot;: &quot;sdk-agent-id-if-available&quot;,
+  &quot;model&quot;: &quot;TBD&quot;,
+  &quot;projectRoot&quot;: &quot;/absolute/project/root&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;startedAt&quot;: &quot;2026-05-20T00:00:00.000Z&quot;,
+  &quot;completedAt&quot;: &quot;2026-05-20T00:01:00.000Z&quot;,
+  &quot;outputArtifactPath&quot;: &quot;.chirality/sessions/session_abc/artifacts/subrun_123/output.json&quot;
+}
+```</p>
+<p>`model` is shown as `TBD` because the accessible sources identify the field as optional but do not require a specific model value.
+</p></div></div></section>
+<section id="SEC-ED042-0019" class="chunk sec depth-5" data-kind="section" data-key="section:9051d33c074c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED042-0019</span> Example Lifecycle Event Payload</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9051d33c074c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9051d33c074c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9051d33c074c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;schemaVersion&quot;: 1,
+  &quot;eventId&quot;: &quot;event_456&quot;,
+  &quot;sessionId&quot;: &quot;session_abc&quot;,
+  &quot;turnId&quot;: &quot;turn_001&quot;,
+  &quot;timestamp&quot;: &quot;2026-05-20T00:00:00.000Z&quot;,
+  &quot;type&quot;: &quot;subagent.started&quot;,
+  &quot;data&quot;: {
+    &quot;runId&quot;: &quot;subrun_123&quot;,
+    &quot;agentName&quot;: &quot;TASK&quot;,
+    &quot;status&quot;: &quot;running&quot;
+  }
+}
+```</p>
+<p>The exact event payload keys inside `data` are TBD beyond the sourced `HarnessEvent` envelope and the minimum child-run linkage needed for replay (`runId` plus current or terminal `status`).
+</p></div></div></section>
+<section id="SEC-ED042-0020" class="chunk sec depth-4" data-kind="section" data-key="section:b4dc7708b558" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0020</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4dc7708b558" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4dc7708b558" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4dc7708b558" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| C-001 | PRD hash mismatch: referenced PRD expected SHA does not match observed SHA. | `_REFERENCES.md` REF-006 expected hash | `_REFERENCES.md` REF-006 actual hash; runtime assignment says treat as warning | PRD-derived guidance and requirements | Use PRD content as accessible source with source warning; do not treat mismatch as closure blocker. | TBD |
+| Denied allocation ruling | Denied subagent attempts may be represented as permission events, child-run records with `status: denied`, or both. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | Denial replay, schema tests, procedure verification | Record permission denial always; create child-run `denied` record only after the run allocation boundary is defined. | TBD |
+</p></div></div></section>
+<section id="SEC-ED042-0021" class="chunk sec depth-2" data-kind="section" data-key="section:bc060b1a131c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED042-0021</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc060b1a131c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc060b1a131c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc060b1a131c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0022" class="chunk sec depth-3" data-kind="section" data-key="section:0ec3748382af" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED042-0022</span> Procedure: DEL-08-05 Subagent Child Run Records and Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ec3748382af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ec3748382af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ec3748382af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0023" class="chunk sec depth-4" data-kind="section" data-key="section:330edd092fda" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0023</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:330edd092fda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:330edd092fda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:330edd092fda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the operational steps for producing and validating the subagent child run record and artifact-reference slice for governed Type 2 subagent execution.
+</p></div></div></section>
+<section id="SEC-ED042-0024" class="chunk sec depth-4" data-kind="section" data-key="section:c1946a804f46" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0024</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c1946a804f46" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c1946a804f46" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c1946a804f46" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status / Note |
+|---|---|
+| Accepted source corpus listed in `_REFERENCES.md` | Available, with REF-006 PRD hash mismatch treated as a warning. |
+| DEL-08-04 Type 2 Subagent Governance Bridge | Upstream relationship is implied by scope, but `_DEPENDENCIES.md` has no accepted dependency edge yet. Keep as ASSUMPTION until dependency extraction runs. |
+| Runtime event schema / `HarnessEvent` | Required source target exists in `docs/SPEC.md` and `docs/TYPES.md`. |
+| Artifact storage policy | Required source target exists in `docs/SPEC.md` and `docs/PRD.md`. |
+| Human ruling for denied child-run allocation | TBD. |
+</p></div></div></section>
+<section id="SEC-ED042-0025" class="chunk sec depth-4" data-kind="section" data-key="section:2a915c56fdb0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0025</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a915c56fdb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a915c56fdb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a915c56fdb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the deliverable remains scoped to child run records and artifact references, not the governance admission bridge.
+2. Define or update the `HarnessSubagentRun` data shape with the sourced fields from `docs/TYPES.md` Section 10.
+3. Ensure `status` accepts only `queued`, `running`, `completed`, `failed`, `cancelled`, and `denied`.
+4. Link each child run to its parent session using `parentSessionId`; include `parentTurnId` when the child run is associated with a turn.
+5. Capture runtime metadata that is available without invention: `persona`, `agentName`, optional `sdkAgentId`, optional `model`, and `projectRoot`.
+6. Capture lifecycle timestamps when known: `startedAt` and `completedAt`.
+7. Emit or map parent session events for subagent lifecycle using `subagent.started` and `subagent.completed` when lifecycle support is active; do not invent additional failed, cancelled, or denied event category names without governed source text.
+8. Store large child outputs under the session artifact folder instead of embedding bulky payloads in events or child records.
+9. Record `outputArtifactPath` when a child output artifact is created.
+10. Apply redaction policy before persisting event data, run logs, or artifacts.
+11. Keep SDK transcript identifiers and paths as secondary metadata; do not replace canonical Chirality events with SDK transcripts.
+12. Add replay fixtures for parent-child linkage and child output artifact paths.
+13. Add or update tests for completed, failed, cancelled, denied-before-allocation, and denied-after-allocation behavior. Keep the denied allocation expectation marked TBD until the human ruling is recorded.
+14. Verify the implementation does not introduce retired unified pipeline run records, dependency graph generation, deliverable locks, or staleness propagation tooling.
+</p></div></div></section>
+<section id="SEC-ED042-0026" class="chunk sec depth-4" data-kind="section" data-key="section:9b8e53cb2ef1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0026</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b8e53cb2ef1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b8e53cb2ef1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b8e53cb2ef1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected Result |
+|---|---|
+| `HarnessSubagentRun` required fields | `runId`, `parentSessionId`, `persona`, `agentName`, `projectRoot`, and `status` are required. |
+| Status enum | Only `queued`, `running`, `completed`, `failed`, `cancelled`, and `denied` are accepted. |
+| Event envelope | Subagent lifecycle events use the `HarnessEvent` envelope with schema version, unique event ID, session ID, timestamp, type, and data payload. |
+| Append-only storage | Runtime events are appended as newline-delimited JSONL in write sequence. |
+| Artifact references | Child output artifacts are referenced by path and metadata rather than embedded when large. |
+| Artifact metadata fields | Where the artifact policy applies, fixture assertions cover tool name, turn ID, byte count, truncation flag, and relative artifact path. |
+| Redaction | Secrets are absent from event data and artifact metadata. |
+| Replay | Replay can reconstruct parent session, child lifecycle, terminal child status, and child output artifact path. |
+| Terminal subagent state | Failed, cancelled, and denied terminal states are asserted through `HarnessSubagentRun.status` and `subagent.completed` event data unless a governed source later adds separate event category names. |
+| Scope boundary | No retired PKG-08 pipeline run-record behavior is introduced. |
+</p></div></div></section>
+<section id="SEC-ED042-0027" class="chunk sec depth-4" data-kind="section" data-key="section:7f1a9cbda4ec" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0027</span> Pass 3 Disposition Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f1a9cbda4ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f1a9cbda4ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f1a9cbda4ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| F-001 | Converted to TBD/human-ruling prerequisite. | Prerequisites and Step 13 keep denied child-run allocation semantics unresolved. Source reread: `docs/TYPES.md` Section 10 and `docs/CONTRACT.md` K-SUBAGENT-1. |
+| F-002 | Incorporated as fixture split. | Step 13 now separates denied-before-allocation and denied-after-allocation behavior, with final expectation pending ruling. Source reread: Specification DEL-08-05-REQ-012. |
+| E-001 | Incorporated. | Verification now enumerates tool name, turn ID, byte count, truncation flag, and relative artifact path for artifact metadata fixture assertions. Source reread: `docs/PRD.md` Section 10.5. |
+| E-002 | Incorporated as a terminal-state category boundary. | Step 7 and Verification avoid invented event categories and assert terminal state through `HarnessSubagentRun.status` and `subagent.completed` event data unless governed sources change. Source reread: `docs/PRD.md` Section 8.12, `docs/SPEC.md` Section 9.4, and `docs/TYPES.md` Sections 7.3 and 10. |
+</p></div></div></section>
+<section id="SEC-ED042-0028" class="chunk sec depth-4" data-kind="section" data-key="section:61f713aa33d8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0028</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61f713aa33d8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61f713aa33d8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61f713aa33d8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `HarnessSubagentRun` schema/type and tests.
+- `HarnessEvent` subagent lifecycle event fixtures.
+- Child output artifact path fixtures.
+- Replay fixtures covering parent-child linkage.
+- Human ruling record for denied child-run allocation semantics.
+- Source warning record for PRD hash mismatch until resolved.
+</p></div></div></section>
+<section id="SEC-ED042-0029" class="chunk sec depth-2" data-kind="section" data-key="section:f8b578c17c9b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED042-0029</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f8b578c17c9b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f8b578c17c9b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f8b578c17c9b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0030" class="chunk sec depth-3" data-kind="section" data-key="section:07121ff3b57e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED042-0030</span> Specification: DEL-08-05 Subagent Child Run Records and Artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07121ff3b57e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07121ff3b57e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07121ff3b57e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED042-0031" class="chunk sec depth-4" data-kind="section" data-key="section:56f471de3b5f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0031</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56f471de3b5f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56f471de3b5f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56f471de3b5f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the data-record and artifact-reference behavior for governed Type 2 subagent child runs. It covers parent-child runtime records, child status, timestamps, SDK agent metadata when available, and output artifact paths.</p>
+<p>This deliverable excludes the admission decision and permission gate implementation for subagent execution. That bridge is assigned to DEL-08-04. It also excludes retired PKG-08 hardening scope such as unified pipeline run records, dependency graph generation, deliverable locks, and staleness propagation.
+</p></div></div></section>
+<section id="SEC-ED042-0032" class="chunk sec depth-4" data-kind="section" data-key="section:0d026c3da2db" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0032</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0d026c3da2db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0d026c3da2db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0d026c3da2db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-08-05-REQ-001 | The implementation shall represent governed child execution with a `HarnessSubagentRun` record containing `runId`, `parentSessionId`, `persona`, `agentName`, `projectRoot`, and `status`. | `docs/TYPES.md` Section 10 |
+| DEL-08-05-REQ-002 | The child run status shall use only `queued`, `running`, `completed`, `failed`, `cancelled`, or `denied`. | `docs/TYPES.md` Section 10 |
+| DEL-08-05-REQ-003 | The child run record shall support optional `parentTurnId`, `sdkAgentId`, `model`, `startedAt`, `completedAt`, and `outputArtifactPath` fields. | `docs/TYPES.md` Section 10 |
+| DEL-08-05-REQ-004 | Parent session runtime events shall record subagent lifecycle using `subagent.started` and `subagent.completed` event categories when subagent lifecycle support is active. No separate sourced event category names exist for failed, cancelled, or denied child terminals; until governed source text adds them, terminal child state should be carried through `HarnessSubagentRun.status` and the `subagent.completed` event data. | `docs/PRD.md` Section 8.12; `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Sections 7.3 and 10 |
+| DEL-08-05-REQ-005 | Persisted runtime events shall conform to the `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. For subagent lifecycle events, `data` shall preserve child-run linkage through `runId` and the current or terminal `status`; exact additional payload keys remain TBD unless a later governed source specifies them. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 10 |
+| DEL-08-05-REQ-006 | Runtime events shall append to newline-delimited JSONL in write sequence, with unique event IDs. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` FR-073 |
+| DEL-08-05-REQ-007 | Child output payloads that are too large for inline event storage shall be stored under session artifacts and referenced by metadata/path. | `docs/SPEC.md` Sections 9.2 and 10.5; `docs/PRD.md` FR-096 |
+| DEL-08-05-REQ-008 | Artifact metadata shall include tool name, turn ID, byte count, truncation flag, and relative artifact path where the artifact policy applies. | `docs/PRD.md` Section 10.5 |
+| DEL-08-05-REQ-009 | Event and artifact records shall avoid storing secrets and shall pass through redaction where policy requires. | `docs/CONTRACT.md` K-EVENT-6; `docs/PRD.md` FR-075 |
+| DEL-08-05-REQ-010 | SDK transcript paths or SDK session identifiers shall remain secondary runtime metadata unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` K-SDK-3; `docs/TYPES.md` Section 7.2 |
+| DEL-08-05-REQ-011 | The data model shall not reactivate retired unified pipeline run records or broader PKG-08 hardening scope. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
+| DEL-08-05-REQ-012 | ASSUMPTION: a denied subagent attempt should produce a child-run record with `status: denied` when the attempt reaches the child-run record layer. Human ruling is needed on whether denials before child-run allocation are represented only as permission events or also as `HarnessSubagentRun` records. | `docs/TYPES.md` Section 10; `docs/CONTRACT.md` K-SUBAGENT-1 |
+</p></div></div></section>
+<section id="SEC-ED042-0033" class="chunk sec depth-4" data-kind="section" data-key="section:7d58b1a7dbbc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0033</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d58b1a7dbbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d58b1a7dbbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d58b1a7dbbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability |
+|---|---|
+| `HarnessEvent` persisted event schema | Governs parent session event records and subagent lifecycle mirror events. |
+| `HarnessSubagentRun` type target | Governs child run record fields and status vocabulary. |
+| Runtime Audit Mirror | `.chirality/sessions/&lt;id&gt;/events.jsonl` remains the product-owned event store. |
+| Tool Result Artifact policy | Governs child output artifact storage and metadata. |
+| Subagent governance invariants | Child records must align with fail-closed governance, restricted capability inheritance, and output references. |
+</p></div></div></section>
+<section id="SEC-ED042-0034" class="chunk sec depth-4" data-kind="section" data-key="section:1cec01ff5540" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0034</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1cec01ff5540" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1cec01ff5540" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1cec01ff5540" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification Approach |
+|---|---|
+| DEL-08-05-REQ-001 through DEL-08-05-REQ-003 | Type-level tests or schema tests validate required fields, optional fields, and status enum values. |
+| DEL-08-05-REQ-004 through DEL-08-05-REQ-006 | Event writer/replay tests validate lifecycle event categories, `HarnessEvent` shape, append ordering, unique event IDs, child `runId` linkage, and status propagation through the child run record or lifecycle event data. |
+| DEL-08-05-REQ-007 through DEL-08-05-REQ-008 | Artifact-store tests validate child output storage, relative path references, byte counts, and truncation metadata. |
+| DEL-08-05-REQ-009 | Redaction tests validate that secrets do not enter event data or stored artifacts. |
+| DEL-08-05-REQ-010 | Replay/session tests validate that SDK transcript metadata does not replace canonical Chirality events. |
+| DEL-08-05-REQ-011 | Scope-boundary review verifies no retired unified pipeline run record behavior is introduced. |
+| DEL-08-05-REQ-012 | Human ruling required before final denied-allocation test expectation is fixed; interim tests should keep denied-before-allocation and denied-after-allocation fixtures separate. |
+</p></div></div></section>
+<section id="SEC-ED042-0035" class="chunk sec depth-4" data-kind="section" data-key="section:ac6fc62f0fec" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0035</span> Pass 3 Disposition Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac6fc62f0fec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac6fc62f0fec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac6fc62f0fec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| C-001 | Already covered; retained as a source-authority conflict. | Conflict Table keeps REF-006 hash mismatch warning for PRD-derived requirements and guidance. Source reread: `_REFERENCES.md` REF-006 and current Conflict Table. |
+| F-001 | Converted to explicit TBD/human-ruling language. | DEL-08-05-REQ-012 continues to require a human ruling for denied child-run allocation; verification keeps final denied expectation unfixed. Source reread: `docs/TYPES.md` Section 10 and `docs/CONTRACT.md` K-SUBAGENT-1. |
+| F-002 | Incorporated as interim verification guidance. | Verification now separates denied-before-allocation and denied-after-allocation fixtures pending the human ruling. Source reread: DEL-08-05-REQ-012 and `docs/CONTRACT.md` K-SUBAGENT-1. |
+| X-001 | Incorporated with bounded payload language. | DEL-08-05-REQ-005 now requires only sourced `HarnessEvent` envelope plus `runId` and `status` linkage; additional `data` keys remain TBD. Source reread: `docs/SPEC.md` Section 9.1 and `docs/TYPES.md` Sections 7.3 and 10. |
+| E-001 | Cross-disposed to Procedure verification. | Artifact metadata assertions are enumerated in `Procedure.md` Verification. Source reread: `docs/PRD.md` Section 10.5. |
+| E-002 | Converted to explicit category boundary. | DEL-08-05-REQ-004 states that no sourced separate failed/cancelled/denied subagent event category names exist; terminal state is carried by status until governed source text changes. Source reread: `docs/PRD.md` Section 8.12, `docs/SPEC.md` Section 9.4, and `docs/TYPES.md` Sections 7.3 and 10. |
+</p></div></div></section>
+<section id="SEC-ED042-0036" class="chunk sec depth-4" data-kind="section" data-key="section:1a509a8e881a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0036</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a509a8e881a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a509a8e881a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a509a8e881a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required or anticipated artifacts for this deliverable:</p>
+<p>- Parent-child event records.
+- Child output artifact paths.
+- Subagent replay fixtures.
+- Schema or type definitions for `HarnessSubagentRun` if not already present.
+- Tests or fixtures proving replay across `subagent.started` and `subagent.completed`.
+</p></div></div></section>
+<section id="SEC-ED042-0037" class="chunk sec depth-4" data-kind="section" data-key="section:218e5448bbb1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED042-0037</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:218e5448bbb1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:218e5448bbb1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:218e5448bbb1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| C-001 | PRD hash mismatch: referenced PRD expected SHA does not match observed SHA. | `_REFERENCES.md` REF-006 expected hash | `_REFERENCES.md` REF-006 actual hash; runtime assignment says treat as warning | All PRD-derived requirements | Use PRD content as accessible source with source warning; do not block P1/P2. | TBD |
+| Denied allocation ruling | Denied subagent attempts may be represented as permission events, child-run records with `status: denied`, or both. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | DEL-08-05-REQ-012; replay fixtures | Record permission denial always; create child-run `denied` record only after run allocation boundary is defined. | TBD |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED042";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

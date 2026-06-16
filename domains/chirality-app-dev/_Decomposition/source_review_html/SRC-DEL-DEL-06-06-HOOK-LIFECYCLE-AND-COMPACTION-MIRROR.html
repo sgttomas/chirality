@@ -1,0 +1,578 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>38</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED031-0001">Source Pack: SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION</a> <a href="#SEC-ED031-0002">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED031-0010">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED031-0022">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED031-0030">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a></nav>
+<main>
+<section id="SEC-ED031-0001" class="chunk sec depth-1" data-kind="section" data-key="section:fd5d63da6912" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED031-0001</span> Source Pack: SRC-DEL-DEL-06-06-HOOK-LIFECYCLE-AND-COMPACTION-MIRROR</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd5d63da6912" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd5d63da6912" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd5d63da6912" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED031-0002" class="chunk sec depth-2" data-kind="section" data-key="section:b8aea8be0eef" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED031-0002</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8aea8be0eef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8aea8be0eef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8aea8be0eef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0003" class="chunk sec depth-3" data-kind="section" data-key="section:bcf7af2da691" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED031-0003</span> Datasheet: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcf7af2da691" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcf7af2da691" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcf7af2da691" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0004" class="chunk sec depth-4" data-kind="section" data-key="section:c04a900037c5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c04a900037c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c04a900037c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c04a900037c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-06-06 |
+| Deliverable name | Hook Lifecycle and Compaction Mirror |
+| Package | PKG-06 Permissioned Tools, MCP, and Hooks |
+| Type | BACKEND_FEATURE_SLICE |
+| Responsible party | TBD |
+| Decomposition variant | SOFTWARE_DECOMP v3.2 |
+| Context envelope | M |
+| Scope items | SOW-057, SOW-061 |
+| Objective context | OBJ-003, OBJ-005 |
+| Anticipated artifacts | Hook lifecycle mapper; `context.compacted` tests; terminal hook fixtures |</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger rows SOW-057 and SOW-061.
+</p></div></div></section>
+<section id="SEC-ED031-0005" class="chunk sec depth-4" data-kind="section" data-key="section:2fdebc1a7c1b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fdebc1a7c1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fdebc1a7c1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fdebc1a7c1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary concern | Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events. | `_CONTEXT.md`; decomposition DEL-06-06 row |
+| Canonical runtime audit mirror | `.chirality/sessions/&lt;id&gt;/events.jsonl` is the product-owned Chirality runtime audit mirror. | `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+| Event record shape | `HarnessEvent` with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+| Event write behavior | Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique. | `docs/SPEC.md` Section 9.2 |
+| Hook event categories | `hook.started`, `hook.completed`, and `context.compacted` are listed as later event categories. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+| Hook lifecycle terms | `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`. | `docs/TYPES.md` Section 8.5 |
+| Required hook behaviors in scope | PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome. | `docs/SPEC.md` Section 15.2 |
+| Fail-closed rule | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| Compaction mirror obligation | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted. | `docs/PRD.md` Section 8.15, HASH_MISMATCH warning; `docs/PLAN.md` R4 |
+</p></div></div></section>
+<section id="SEC-ED031-0006" class="chunk sec depth-4" data-kind="section" data-key="section:8616556cf2a3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8616556cf2a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8616556cf2a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8616556cf2a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Constraint | Source |
+|---|---|---|
+| PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state-warning evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 |
+| Product-owned contract | SDK messages, external hook names, and SDK-specific IDs must be translated into Chirality-owned contracts; SDK values may appear only as explicit adapter metadata. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4 |
+| Audit authority | SDK transcripts are secondary runtime artifacts unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` Section 1.4 K-SDK-3; `docs/SPEC.md` Section 8.4 |
+| Secret handling | Runtime events and logs must not store secrets; large payloads must be stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+| Terminal outcome linkage | Every accepted turn must end with a durable success, failure, cancellation, or interruption event. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3 |
+| Hook separation | Path containment and write/edit preconditions are owned primarily by DEL-06-04; DEL-06-06 mirrors lifecycle, failure, terminal, and compaction boundaries into events. | `_CONTEXT.md`; decomposition PKG-06 rows |
+| Dependency state | `_DEPENDENCIES.md` lists no accepted upstream or downstream edges yet. | `_DEPENDENCIES.md` |
+</p></div></div></section>
+<section id="SEC-ED031-0007" class="chunk sec depth-4" data-kind="section" data-key="section:243440cf25ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:243440cf25ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:243440cf25ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:243440cf25ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component | Construction note | Source |
+|---|---|---|
+| Hook lifecycle mapper | Maps SDK or adapter hook callbacks into Chirality `HarnessEvent` records while preserving product-owned event type names. Exact module path: TBD. | `docs/SPEC.md` Sections 9 and 10.3; `docs/TYPES.md` Section 8.5 |
+| Hook started event | Records safe start evidence for hook execution. Exact payload fields: TBD, but must conform to `HarnessEvent` and avoid secrets. | `docs/SPEC.md` Section 9.1 and 9.2; `docs/TYPES.md` Section 7.3 |
+| Hook completed/failure event | Records hook completion or failure outcome; failure handling must preserve fail-closed behavior for write, shell, domain, and subagent actions. Exact failure taxonomy: TBD. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| PreCompact mirror | Emits `context.compacted` when the SDK/model compaction boundary is available. Boundary metadata, preserved recent turns, and replay implications are PRD-specified but source-state-warning qualified. | `docs/SPEC.md` Sections 9.4 and 15.2; `docs/PRD.md` Section 8.15, HASH_MISMATCH warning |
+| Stop/finalization mapper | Connects Stop/finalization callbacks to terminal outcome persistence without replacing TurnEngine terminal records. Exact parent/child event relation: TBD. | `docs/SPEC.md` Section 15.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-3 |
+| Event append integration | Uses append-only session event storage and replay-compatible JSONL behavior. Exact writer API: TBD. | `docs/SPEC.md` Sections 8.4 and 9.2 |
+| Validation | Include `context.compacted` tests and terminal hook fixtures; Section 9 validation includes `section9.context_compaction_boundary`. Exact test paths: TBD. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 |
+</p></div></div></section>
+<section id="SEC-ED031-0008" class="chunk sec depth-4" data-kind="section" data-key="section:1d16080a266a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0008</span> Pass 3 Disposition</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d16080a266a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d16080a266a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d16080a266a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| C-001 | Converted to an explicit implementation blocker: the hook lifecycle mapper is required, but the exact module path remains `TBD` until implementation ownership assigns the adapter surface. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-06-06 row; `docs/SPEC.md` Sections 9, 10.3, and 15.2; `docs/TYPES.md` Sections 7.3 and 8.5 |
+</p></div></div></section>
+<section id="SEC-ED031-0009" class="chunk sec depth-4" data-kind="section" data-key="section:cca29826566e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cca29826566e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cca29826566e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cca29826566e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Source | Use | Source state |
+|---|---|---|---|
+| REF-002 | `docs/CONTRACT.md` Sections 1.4 through 1.6 | Binding engine, event, SDK, permission, hook, and audit invariants | MATCH |
+| REF-003 | `docs/SPEC.md` Sections 8 through 10, 15, and 19 | Session layout, `HarnessEvent` schema, adapter translation rules, required hooks, validation IDs | MATCH |
+| REF-004 | `docs/TYPES.md` Sections 7.1 through 7.3 and 8.5 | Runtime vocabulary, event categories, hook terms | MATCH |
+| REF-005 | `docs/PLAN.md` R4 and risk table | Sequencing and compaction acceptance context | MATCH |
+| REF-006 | `docs/PRD.md` Sections 8.15 and runtime event requirements | Product requirements for compaction and hook event recording | HASH_MISMATCH warning |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |
+</p></div></div></section>
+<section id="SEC-ED031-0010" class="chunk sec depth-2" data-kind="section" data-key="section:732cdec97f94" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED031-0010</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:732cdec97f94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:732cdec97f94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:732cdec97f94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0011" class="chunk sec depth-3" data-kind="section" data-key="section:9ca07d7046cb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED031-0011</span> Guidance: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ca07d7046cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ca07d7046cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ca07d7046cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0012" class="chunk sec depth-4" data-kind="section" data-key="section:808f52c12a8a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:808f52c12a8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:808f52c12a8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:808f52c12a8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-06 exists to make hook execution, failure, terminal finalization, and SDK/model compaction boundaries auditable in Chirality-owned runtime events. It is an event-mirroring slice, not the owner of every hook policy: path/write hook enforcement is primarily DEL-06-04, permission mediation is DEL-06-01, and this deliverable ensures those hook and compaction boundaries become replayable evidence in `events.jsonl`.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/SPEC.md` Sections 8 through 10 and 15.2; `docs/CONTRACT.md` Sections 1.4 through 1.6.
+</p></div></div></section>
+<section id="SEC-ED031-0013" class="chunk sec depth-4" data-kind="section" data-key="section:68e7cbdb894e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68e7cbdb894e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68e7cbdb894e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68e7cbdb894e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Chirality event names are the durable contract. SDK hook names and SDK transcript details may be adapter metadata, but persisted runtime semantics should remain `HarnessEvent` records in Chirality terms. Sources: `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4.
+2. The audit mirror stays canonical. `.chirality/sessions/&lt;id&gt;/events.jsonl` remains the product-owned audit record even when SDK transcripts assist resume or debugging. Sources: `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4.
+3. Hook failure is safety-relevant. Failed hooks cannot be reduced to diagnostics when the attempted action is write, shell, domain, or subagent execution; fail-closed behavior must be preserved. Sources: `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2.
+4. Compaction must not erase replay. Context compaction can reduce model context, but the full Chirality event log must remain on disk and replayable. Sources: `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15, HASH_MISMATCH warning.
+5. Terminal outcomes remain durable. Stop/finalization evidence should support, not replace, the TurnEngine/session event obligation that every accepted turn ends in a durable terminal event. Source: `docs/CONTRACT.md` Section 1.5 K-EVENT-3.
+</p></div></div></section>
+<section id="SEC-ED031-0014" class="chunk sec depth-4" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0015" class="chunk sec depth-5" data-kind="section" data-key="section:1796328a17d0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED031-0015</span> Event Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1796328a17d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1796328a17d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1796328a17d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Guidance | Source |
+|---|---|---|
+| Event type names | Use `hook.started`, `hook.completed`, and `context.compacted` where they apply. If a distinct failure event type is proposed, treat it as PROPOSAL until the event category registry accepts it; meanwhile encode failure as outcome data under an accepted event type or a versioned extension. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+| Payload content | Keep payloads replay-useful but safe: IDs, timestamps, hook term, action/tool context, outcome, duration, adapter metadata, and artifact references are plausible; exact fields are TBD until implementation defines the event schema. | `docs/SPEC.md` Section 9.1 and 9.2 |
+| SDK metadata | Store SDK hook names, transcript keys, or compaction metadata only under explicit adapter metadata fields. | `docs/SPEC.md` Section 10.3 |
+| Parent linkage | Use `parentEventId` or turn/session IDs where useful to connect hook events to tool, turn, terminal, or subagent events. Exact linkage policy is TBD until the mapper owns the relationship between hook callbacks and event-writer records. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 8.5 |
+</p></div></div></section>
+<section id="SEC-ED031-0016" class="chunk sec depth-5" data-kind="section" data-key="section:cfc0620cb9fb" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED031-0016</span> Compaction Mirror</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cfc0620cb9fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cfc0620cb9fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cfc0620cb9fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`context.compacted` should make replay implications explicit without pretending to reconstruct model context from memory. The event should record the boundary and any SDK compact metadata that is safe and available. PRD mentions preserved recent turns where knowable, but because REF-006 has a HASH_MISMATCH warning, treat PRD-only payload specifics as warning-qualified until source state is reconciled.
+</p></div></div></section>
+<section id="SEC-ED031-0017" class="chunk sec depth-5" data-kind="section" data-key="section:acd168004828" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED031-0017</span> Terminal Hook Handling</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:acd168004828" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:acd168004828" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:acd168004828" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Stop/finalization hooks should be mapped carefully so they do not race or duplicate terminal `turn.completed`, `turn.failed`, `turn.cancelled`, or interruption records. A useful implementation pattern is to make the finalization mapper attach safe hook evidence to the same turn/session lineage while preserving the TurnEngine as terminal outcome owner. Exact implementation: TBD.
+</p></div></div></section>
+<section id="SEC-ED031-0018" class="chunk sec depth-4" data-kind="section" data-key="section:9260137a26f2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0018</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9260137a26f2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9260137a26f2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9260137a26f2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Separate failure event type vs outcome field | The current listed categories include `hook.started` and `hook.completed` but not `hook.failed`. Prefer accepted event categories unless the event registry is explicitly extended. Preserve failure in outcome/status data when needed. |
+| Rich payloads vs redaction | Prefer minimal replay-relevant metadata plus artifact references. Do not store secrets or large raw tool outputs in hook events. Source: `docs/SPEC.md` Section 9.2. |
+| SDK transcript reliance vs Chirality mirror | Use SDK transcript linkage for resume/debug metadata, but never make it the only source needed to replay Chirality runtime history. |
+| Compaction mirror vs custom compaction | Mirror SDK compaction first. Custom compaction is not required by current sources and should remain TBD unless a governed update adds it. Source: `docs/PLAN.md` alternatives table. |
+| Hook enforcement vs hook evidence | DEL-06-06 should not absorb DEL-06-04&#x27;s path enforcement scope. It records lifecycle/failure/finalization evidence and preserves fail-closed semantics at the mirror boundary. |
+</p></div></div></section>
+<section id="SEC-ED031-0019" class="chunk sec depth-4" data-kind="section" data-key="section:95d6ffe1ae99" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0019</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:95d6ffe1ae99" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:95d6ffe1ae99" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:95d6ffe1ae99" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected mirror behavior |
+|---|---|
+| `PreToolUse` starts for a governed write attempt | Emit or stage `hook.started` evidence tied to the session/turn/tool context. The path enforcement decision itself is owned by the hook policy implementation. |
+| `PreToolUse` denies or fails for a write action | Preserve fail-closed outcome and record safe diagnostics in hook completion/failure evidence; the write must not execute. |
+| `PostToolUse` completes after a read tool | Record hook completion evidence where runtime support exists; large tool output remains budgeted or artifact-referenced rather than copied into the hook event. |
+| SDK emits a compaction boundary | Persist `context.compacted` with boundary metadata that is safe and available; preserve replay implications and keep full `events.jsonl` on disk. |
+| Stop/finalization callback fires | Record finalization evidence associated with the turn/session while ensuring the durable terminal event remains success, failure, cancellation, or interruption. |
+| SDK transcript is available under a configured store | Cross-reference the transcript linkage as adapter metadata only; `events.jsonl` remains canonical. |
+</p></div></div></section>
+<section id="SEC-ED031-0020" class="chunk sec depth-4" data-kind="section" data-key="section:a7f45a22a3df" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0020</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a7f45a22a3df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a7f45a22a3df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a7f45a22a3df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| TBD | No direct source conflict identified during P1/P2. PRD has a HASH_MISMATCH source-state warning. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Section 8.15 and runtime event requirements | PRD-cited compaction payload details and acceptance wording | Treat PRD as warning-qualified source until hash state is reconciled; prefer CONTRACT/SPEC/TYPES for binding schema and invariants. | TBD |
+</p></div></div></section>
+<section id="SEC-ED031-0021" class="chunk sec depth-4" data-kind="section" data-key="section:9aee2eb5cf96" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0021</span> Pass 3 Disposition</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9aee2eb5cf96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9aee2eb5cf96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9aee2eb5cf96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| C-002 | Already covered as a registry blocker: `hook.failed` is not in the current listed event categories, so failures remain outcome data under accepted event types unless a governed event-registry extension is accepted. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3; `docs/CONTRACT.md` Section 1.6 K-HOOK-1 |
+| X-001 | Already covered as a source-state blocker: PRD-only compaction payload specifics stay warning-qualified because REF-006 is HASH_MISMATCH. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.15; `docs/SPEC.md` Sections 9.4 and 15.2 |
+| E-001 | Converted to a tracked linkage-policy blocker: parent/child linkage may use `parentEventId`, `turnId`, or `sessionId`, but the exact policy remains `TBD` until mapper implementation assigns callback-to-event lineage. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 8.5 |
+</p></div></div></section>
+<section id="SEC-ED031-0022" class="chunk sec depth-2" data-kind="section" data-key="section:a910f843624f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED031-0022</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a910f843624f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a910f843624f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a910f843624f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0023" class="chunk sec depth-3" data-kind="section" data-key="section:1f68fee40690" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED031-0023</span> Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f68fee40690" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f68fee40690" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f68fee40690" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0024" class="chunk sec depth-4" data-kind="section" data-key="section:186e038b1b36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0024</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:186e038b1b36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:186e038b1b36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:186e038b1b36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to produce and verify the DEL-06-06 hook lifecycle and compaction mirror implementation. It is written for the deliverable artifact, not as an end-user operation runbook.
+</p></div></div></section>
+<section id="SEC-ED031-0025" class="chunk sec depth-4" data-kind="section" data-key="section:0fcd9c82f975" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0025</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0fcd9c82f975" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0fcd9c82f975" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0fcd9c82f975" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status |
+|---|---|
+| Accepted DEL-06-06 scope and source references | Available in `_CONTEXT.md` and `_REFERENCES.md` |
+| Runtime event schema and event categories | Available in `docs/SPEC.md` Section 9 and `docs/TYPES.md` Section 7.3 |
+| Session audit mirror rules | Available in `docs/SPEC.md` Section 8.4 and `docs/CONTRACT.md` Section 1.5 |
+| Hook vocabulary and required hook behavior | Available in `docs/TYPES.md` Section 8.5 and `docs/SPEC.md` Section 15.2 |
+| Engine adapter translation rules | Available in `docs/SPEC.md` Section 10.3 |
+| Compaction mirror product direction | Available in `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 is warning-qualified due to HASH_MISMATCH |
+| Declared upstream dependencies | Human-declared upstream dependencies remain `TBD`; extracted ACTIVE upstream edges exist in `_DEPENDENCIES.md` and must be closure-checked before final acceptance. |
+| Exact implementation file paths | TBD |
+| Exact test fixture paths | TBD |
+</p></div></div></section>
+<section id="SEC-ED031-0026" class="chunk sec depth-4" data-kind="section" data-key="section:43a755dcb5af" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0026</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43a755dcb5af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43a755dcb5af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43a755dcb5af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the event contract boundary.
+   - Use `HarnessEvent` as the persisted runtime event shape.
+   - Keep SDK callback names, SDK transcript IDs, and SDK compaction metadata as adapter metadata rather than public Chirality contract fields.
+   - Preserve `events.jsonl` as the canonical audit mirror.</p>
+<p>2. Define or locate the hook lifecycle mapper.
+   - Map supported hook terms from `docs/TYPES.md` Section 8.5: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`.
+   - Keep detailed policy enforcement ownership aligned with adjacent deliverables; this mapper records lifecycle and boundary evidence.
+   - Exact module path: TBD.</p>
+<p>3. Implement hook start evidence.
+   - Emit or stage `hook.started` evidence when a supported hook begins.
+   - Include session and turn linkage where available.
+   - Include safe hook term and target context where available.
+   - Do not include secrets or large raw payloads.</p>
+<p>4. Implement hook completion and failure evidence.
+   - Emit `hook.completed` evidence for successful completion.
+   - For failure outcomes, record safe diagnostics and outcome status without inventing an unregistered public event type unless the event registry is updated.
+   - Ensure failed hooks preserve fail-closed behavior for write, shell, domain, and subagent actions.</p>
+<p>5. Implement `PreCompact` mirroring.
+   - When the SDK/model exposes a compaction boundary, persist `context.compacted`.
+   - Record boundary metadata and replay implications when safe and available.
+   - Mark unavailable SDK-specific fields as `TBD`; do not infer hidden transcript state.</p>
+<p>6. Implement Stop/finalization mapping.
+   - Record finalization evidence associated with the relevant session and turn.
+   - Preserve the existing terminal event contract: accepted turns end with success, failure, cancellation, or interruption evidence.
+   - Avoid duplicate or contradictory terminal outcomes.</p>
+<p>7. Integrate with append-only session event storage.
+   - Append JSONL events in write sequence with unique event IDs.
+   - Keep replay tolerant of malformed trailing lines as required by the session event contract.
+   - Store large or sensitive payloads as session artifacts or redact them according to policy.
+   - BLOCKER: the event writer and session artifact API call paths must be cited from the owning PKG-05/PKG-03 surfaces before implementation closure; exact call path is TBD.</p>
+<p>8. Add tests and fixtures.
+   - Add hook lifecycle mapper tests for start, completion, and failure outcomes.
+   - Add `context.compacted` tests for boundary persistence and replay implications.
+   - Add terminal hook fixtures for Stop/finalization behavior.
+   - Add redaction or payload-budget checks for hook/compaction payloads.
+   - Include Section 9 validation linkage for `section9.context_compaction_boundary` where the validation runner expects it.</p>
+<p>9. Record residual gaps and source warnings.
+   - Keep exact module paths, fixture names, payload fields, and event linkage policy as `TBD` until implementation assigns them.
+   - Record the `docs/PRD.md` HASH_MISMATCH warning anywhere PRD-only compaction payload details are used.
+</p></div></div></section>
+<section id="SEC-ED031-0027" class="chunk sec depth-4" data-kind="section" data-key="section:7be674898c27" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0027</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7be674898c27" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7be674898c27" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7be674898c27" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Event schema | Hook, compaction, and terminal mirror events conform to `HarnessEvent`. |
+| Event append behavior | Events append as newline-delimited JSONL in order with unique event IDs. |
+| Product-owned names | Persisted event types use Chirality names, with SDK details only in adapter metadata. |
+| Hook start | Supported hook execution emits or stages `hook.started` evidence. |
+| Hook completion/failure | Supported hook completion records outcome; failures preserve fail-closed semantics for write, shell, domain, and subagent actions. |
+| Compaction boundary | SDK/model compaction boundary emits `context.compacted` when available. |
+| Replay preservation | Full Chirality event replay remains possible after compaction without relying on SDK transcript as canonical truth. |
+| Stop/finalization | Finalization evidence aligns with exactly one durable terminal outcome for the accepted turn. |
+| Redaction and payload budget | Secrets are absent and large payloads are artifact-referenced or redacted. |
+| PRD warning | PRD-derived payload specifics remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+</p></div></div></section>
+<section id="SEC-ED031-0028" class="chunk sec depth-4" data-kind="section" data-key="section:c8419b1d71a6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0028</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8419b1d71a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8419b1d71a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8419b1d71a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Hook lifecycle mapper implementation path: TBD.
+- Event schema or mapper test path: TBD.
+- `context.compacted` test path: TBD.
+- Terminal hook fixture path: TBD.
+- Session event replay validation evidence: TBD.
+- Redaction/payload-budget validation evidence: TBD.
+- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Dependency-closure note: human-declared upstream dependency status is TBD; extracted ACTIVE edges in `_DEPENDENCIES.md` must be reconciled before closure.
+</p></div></div></section>
+<section id="SEC-ED031-0029" class="chunk sec depth-4" data-kind="section" data-key="section:695e7682a795" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0029</span> Pass 3 Disposition</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:695e7682a795" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:695e7682a795" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:695e7682a795" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| D-001 | Converted to a dependency-closure blocker: the deliverable is not asserted dependency-free; human-declared edges remain `TBD`, while extracted ACTIVE upstream edges require closure review. | `_DEPENDENCIES.md` Declared Upstream and Extracted Dependency Register |
+| D-002 | Rejected as an implementation assumption and replaced with a blocker: event writer/session artifact APIs must be cited from PKG-05/PKG-03 ownership before closure. | `docs/SPEC.md` Sections 8.4 and 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-4 through K-EVENT-7 |
+| E-002 | Incorporated as an explicit records and verification obligation for redaction or payload-budget validation evidence on hook and compaction payloads; evidence path remains `TBD`. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+</p></div></div></section>
+<section id="SEC-ED031-0030" class="chunk sec depth-2" data-kind="section" data-key="section:c86898d4affc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED031-0030</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c86898d4affc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c86898d4affc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c86898d4affc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0031" class="chunk sec depth-3" data-kind="section" data-key="section:04fee384776f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED031-0031</span> Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:04fee384776f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:04fee384776f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:04fee384776f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED031-0032" class="chunk sec depth-4" data-kind="section" data-key="section:5d6d44ee8a82" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0032</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5d6d44ee8a82" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5d6d44ee8a82" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5d6d44ee8a82" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-06 specifies the backend feature slice that mirrors SDK or adapter hook lifecycle, terminal finalization, and context-compaction boundaries into Chirality-owned runtime events. It covers hook start, completion, and failure event mapping; `PreCompact` boundary mirroring; Stop/finalization evidence; JSONL append semantics; replay-safe event payload discipline; and tests for `context.compacted` and terminal hook fixtures.</p>
+<p>In scope:</p>
+<p>- Produce or specify a hook lifecycle mapper that translates hook callbacks into Chirality `HarnessEvent` records.
+- Emit safe `hook.started` and `hook.completed` event evidence, including failure outcome handling where supported.
+- Mirror SDK/model compaction boundaries into `context.compacted` events when the boundary is available.
+- Preserve the product-owned audit mirror in `.chirality/sessions/&lt;id&gt;/events.jsonl`; SDK transcripts remain secondary unless imported into `HarnessEvent` form.
+- Connect Stop/finalization callbacks to durable terminal outcome evidence without making SDK hook names the public contract.
+- Provide `context.compacted` tests and terminal hook fixtures.</p>
+<p>Out of scope:</p>
+<p>- Permission-mode decision semantics and `canUseTool` approval mediation, owned by DEL-06-01.
+- Write/edit path containment, instruction-root protection, symlink rejection, and edit preconditions, owned primarily by DEL-06-04.
+- Bash timeout/capture policy, owned by DEL-06-05.
+- Subagent governance bridge behavior beyond preserving hook event compatibility, owned by PKG-08 deliverables.
+- Custom context-compaction implementation unless a later governed source update requires fallback behavior.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 through 10 and 15; `docs/CONTRACT.md` Sections 1.4 through 1.6; `docs/TYPES.md` Sections 7 and 8.5; `docs/PRD.md` Section 8.15 with HASH_MISMATCH warning.
+</p></div></div></section>
+<section id="SEC-ED031-0033" class="chunk sec depth-4" data-kind="section" data-key="section:c0dc21d0f97b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0033</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0dc21d0f97b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0dc21d0f97b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0dc21d0f97b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-06-06-REQ-001 | The hook lifecycle mapper MUST emit Chirality-owned `HarnessEvent` records rather than exposing SDK hook names as the persisted event contract. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4 |
+| DEL-06-06-REQ-002 | Each emitted runtime event MUST conform to the `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+| DEL-06-06-REQ-003 | Runtime event writes MUST append newline-delimited JSONL in write sequence and use unique event IDs. | `docs/SPEC.md` Section 9.2 |
+| DEL-06-06-REQ-004 | Hook lifecycle event mapping MUST include `hook.started` and `hook.completed` categories where hook execution evidence is available. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+| DEL-06-06-REQ-005 | Hook failure outcomes MUST preserve fail-closed behavior for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| DEL-06-06-REQ-006 | The mapper MUST support `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook terms without making exact SDK callback names authoritative in public APIs. | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 10.3 |
+| DEL-06-06-REQ-007 | `PreCompact` mirroring MUST persist a compaction boundary when available. | `docs/SPEC.md` Section 15.2; decomposition SOW-061 |
+| DEL-06-06-REQ-008 | `context.compacted` events MUST be persisted for compaction boundaries and record replay implications where knowable. | `docs/SPEC.md` Section 9.4; `docs/PRD.md` Section 8.15, HASH_MISMATCH warning |
+| DEL-06-06-REQ-009 | Full Chirality event log replay MUST remain possible after compaction; SDK transcript linkage may be preserved but cannot displace `events.jsonl`. | `docs/CONTRACT.md` Section 1.4 K-SDK-3 and Section 1.5 K-EVENT-4; `docs/PLAN.md` R4 |
+| DEL-06-06-REQ-010 | Stop/finalization mapping MUST preserve durable terminal outcome evidence for success, failure, cancellation, or interruption. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3; `docs/SPEC.md` Section 15.2 |
+| DEL-06-06-REQ-011 | Runtime event payloads MUST NOT store secrets, and large or sensitive payloads MUST be stored as artifacts or redacted according to policy. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+| DEL-06-06-REQ-012 | SDK-specific values MAY be retained only as explicit adapter metadata fields, not as Chirality public contract identifiers. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-CORE-1 |
+| DEL-06-06-REQ-013 | Tests MUST cover `context.compacted` event production and terminal hook fixtures. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 `section9.context_compaction_boundary` |
+| DEL-06-06-REQ-014 | Implementation MUST record the `docs/PRD.md` HASH_MISMATCH warning for any behavior that depends only on PRD Section 8.15 details. | `_REFERENCES.md` REF-006 |
+| DEL-06-06-REQ-015 | Implementation evidence MUST identify the mapper component path, schema or mapper tests, terminal fixtures, replay validation, and redaction or payload-budget checks before closure; unassigned paths remain `TBD` rather than assumed. | `_CONTEXT.md` anticipated artifacts; `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+</p></div></div></section>
+<section id="SEC-ED031-0034" class="chunk sec depth-4" data-kind="section" data-key="section:5d5a256b0466" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0034</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5d5a256b0466" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5d5a256b0466" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5d5a256b0466" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or governing source | Applicability |
+|---|---|
+| `docs/CONTRACT.md` Sections 1.4 through 1.6 | Binding invariants for engine contract ownership, runtime audit mirror, SDK transcript secondary status, event durability, redaction, and hook fail-closed behavior. |
+| `docs/SPEC.md` Sections 8 through 10 | Session storage, `events.jsonl`, `HarnessEvent` shape, event append rules, event categories, and adapter translation rules. |
+| `docs/SPEC.md` Section 15.2 | Required hooks, including PreCompact mirror and Stop/finalization behavior. |
+| `docs/TYPES.md` Sections 7 and 8.5 | Runtime vocabulary, event categories, hook terms, and adapter boundary vocabulary. |
+| `docs/PLAN.md` R4 | Sequencing and acceptance for compaction mirror and replay preservation. |
+| `docs/PRD.md` Section 8.15 | Product requirements for compaction event persistence; use with HASH_MISMATCH warning from `_REFERENCES.md`. |
+</p></div></div></section>
+<section id="SEC-ED031-0035" class="chunk sec depth-4" data-kind="section" data-key="section:5c74e5052983" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0035</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c74e5052983" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c74e5052983" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c74e5052983" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification approach |
+|---|---|
+| DEL-06-06-REQ-001, REQ-012 | Type or mapper tests assert persisted event types use Chirality-owned names and SDK details appear only under explicit adapter metadata. |
+| DEL-06-06-REQ-002 | Schema tests validate every emitted hook/compaction/terminal event against `HarnessEvent`. |
+| DEL-06-06-REQ-003 | Session event writer tests assert newline-delimited append order and unique event IDs. |
+| DEL-06-06-REQ-004 | Hook lifecycle tests invoke start and completion paths and assert `hook.started` and `hook.completed` evidence. |
+| DEL-06-06-REQ-005 | Failure fixtures assert failed hook outcomes do not silently allow write, shell, domain, or subagent execution. |
+| DEL-06-06-REQ-006 | Mapper tests cover `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook term handling where runtime support exists. |
+| DEL-06-06-REQ-007, REQ-008 | `context.compacted` tests assert a compaction boundary event is persisted when the SDK/model emits the boundary. |
+| DEL-06-06-REQ-009 | Replay tests assert event log replay remains possible after a compaction event and does not require SDK transcript data as canonical truth. |
+| DEL-06-06-REQ-010 | Terminal hook fixtures assert Stop/finalization evidence aligns with durable terminal turn outcomes. |
+| DEL-06-06-REQ-011 | Redaction and payload-budget tests assert secrets are excluded and large payloads are artifact-referenced. |
+| DEL-06-06-REQ-013 | Section 9 validation includes or points to `section9.context_compaction_boundary`; exact runner path: TBD. |
+| DEL-06-06-REQ-014 | Review evidence records the PRD hash warning when PRD-only behavior is cited. |
+| DEL-06-06-REQ-015 | Closure review verifies every required evidence path is either present and testable or retained as a blocker with owner/path `TBD`; exact runner and fixture paths are not inferred from the validation ID alone. |
+</p></div></div></section>
+<section id="SEC-ED031-0036" class="chunk sec depth-4" data-kind="section" data-key="section:719681924506" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0036</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:719681924506" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:719681924506" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:719681924506" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required implementation evidence:</p>
+<p>- Hook lifecycle mapper or equivalent adapter component path: TBD.
+- Event schema or mapper tests for `hook.started`, `hook.completed`, and `context.compacted`: TBD.
+- Terminal hook fixtures for Stop/finalization: TBD.
+- Replay test or validation evidence proving compaction does not displace the Chirality audit mirror: TBD.
+- Redaction or payload-budget evidence for hook and compaction payloads: TBD.
+- Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+</p></div></div></section>
+<section id="SEC-ED031-0037" class="chunk sec depth-4" data-kind="section" data-key="section:47152b706708" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0037</span> Pass 3 Disposition</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47152b706708" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47152b706708" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47152b706708" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| F-001 | Converted to a concrete verification obligation without inventing paths: `context.compacted` and terminal hook evidence must point to exact runner or fixture paths before closure; current path remains `TBD`. | `docs/SPEC.md` Section 19 `section9.context_compaction_boundary`; `_CONTEXT.md` anticipated artifacts |
+| F-002 | Incorporated as DEL-06-06-REQ-015 and documentation evidence blockers for mapper, schema tests, terminal fixtures, replay, and redaction or payload-budget checks. | `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+| X-002 | Already covered in validation intent but not in path evidence; retained as `TBD` runner/fixture evidence tied to `section9.context_compaction_boundary`. | `docs/SPEC.md` Section 19; `docs/PRD.md` Section 8.14/8.15 validation list, HASH_MISMATCH warning |
+</p></div></div></section>
+<section id="SEC-ED031-0038" class="chunk sec depth-4" data-kind="section" data-key="section:2766130ad96e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED031-0038</span> Traceability</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2766130ad96e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2766130ad96e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2766130ad96e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source item | Covered by |
+|---|---|
+| SOW-057 Hooks and fail-closed behavior | DEL-06-06-REQ-001 through REQ-006, REQ-010 through REQ-013 |
+| SOW-061 Compaction mirror | DEL-06-06-REQ-007 through REQ-009, REQ-013 |
+| OBJ-003 Audit and session objective | DEL-06-06-REQ-002, REQ-003, REQ-008 through REQ-010 |
+| OBJ-005 Tool governance objective | DEL-06-06-REQ-004 through REQ-006, REQ-011 |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED031";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

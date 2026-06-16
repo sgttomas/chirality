@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH",
+  "source_doc_id": "SRC-DEL-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH",
+  "source_prefix": "ED040",
+  "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/",
+  "catalog_rel_path": "@repo/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH-DATASHEET",
+      "expected_sha256": "89ee36baa1849d9cfc4f2d552093dc7919513ec59336c4a75effb848169442dc",
+      "generated_line_start": 11,
+      "generated_line_end": 106,
+      "source_line_start": 1,
+      "source_line_end": 96,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH-GUIDANCE",
+      "expected_sha256": "1d995895427327ee05c67a74e0ef05a7dbe63af28da906b035554f076ab1081c",
+      "generated_line_start": 110,
+      "generated_line_end": 185,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -109
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH-PROCEDURE",
+      "expected_sha256": "87c6e00272eb0ee81faacd26da6aa9cdfeeb7db253c551a2dd65d2330b0f3581",
+      "generated_line_start": 189,
+      "generated_line_end": 288,
+      "source_line_start": 1,
+      "source_line_end": 100,
+      "line_offset": -188
+    },
+    {
+      "repo_rel_path": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-08-AGENT-SUITE-PIPELINE-DISPATCH-AND-SUBAGENT-GOVERNANCE-1-WORKING-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH-SPECIFICATION",
+      "expected_sha256": "697a21b58f3105e7f2dcc04ebb273d1a4502ea3ba61d931f13cf0d960d2b5076",
+      "generated_line_start": 292,
+      "generated_line_end": 383,
+      "source_line_start": 1,
+      "source_line_end": 92,
+      "line_offset": -291
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

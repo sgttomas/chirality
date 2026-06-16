@@ -1,0 +1,298 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245 — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>8</b></span>
+  <span class="stat">Atoms: <b>14</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-EG012-0002">Component: execution/_Reconciliation/DepClosure/CLOSURE_ORCH</a> <a href="#SEC-EG012-0004">Component: execution/_Reconciliation/DepClosure/CLOSURE_ORCH</a></nav>
+<main>
+<section id="SEC-EG012-0001" class="chunk sec depth-1 back-matter out-of-scope" data-kind="section" data-key="section:bb097c0834b6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-EG012-0001</span> Source Pack: SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb097c0834b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb097c0834b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb097c0834b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_FOLDER`  RepoGlob: `execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-EG012-0002" class="chunk sec depth-2" data-kind="section" data-key="section:8fb7c4b65c7b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG012-0002</span> Component: execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Brief.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fb7c4b65c7b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fb7c4b65c7b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fb7c4b65c7b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG012-0003" class="chunk sec depth-3" data-kind="section" data-key="section:c875664c8cd4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG012-0003</span> Brief - Co-Development Ruling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c875664c8cd4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c875664c8cd4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c875664c8cd4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Run label: ORCHESTRATOR_CODEV_RULING</p>
+<p>Execution root: `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution`</p>
+<p>Prior evidence snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_DAG_DOSSIERS_2026-05-24_1224`</p>
+<p>Purpose: record a human governance ruling for the only blocker-subset cycle identified in the dependency graph dossier package.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:940c63c2e9da" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00001"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Brief.md:L3|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0003</span><span class="inout">IN</span><span class="stmt">The co-development ruling run is labeled ORCHESTRATOR_CODEV_RULING.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:940c63c2e9da" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:940c63c2e9da" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:940c63c2e9da" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:63fa6eb27d75" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00002"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Brief.md:L5|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0003</span><span class="inout">IN</span><span class="stmt">The execution root is /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:63fa6eb27d75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:63fa6eb27d75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:63fa6eb27d75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c67447314713" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00003"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Brief.md:L7|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0003</span><span class="inout">IN</span><span class="stmt">The prior evidence snapshot is execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_DAG_DOSSIERS_2026-05-24_1224.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c67447314713" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c67447314713" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c67447314713" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b116350190dc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00004"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Brief.md:L9|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0003</span><span class="inout">IN</span><span class="stmt">The ruling records a human governance decision for the only blocker-subset cycle identified in the dependency graph dossier package.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b116350190dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b116350190dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b116350190dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-EG012-0004" class="chunk sec depth-2" data-kind="section" data-key="section:52b39a0728df" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG012-0004</span> Component: execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52b39a0728df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52b39a0728df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52b39a0728df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG012-0005" class="chunk sec depth-3" data-kind="section" data-key="section:cf265e69c75a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG012-0005</span> Human Ruling Record</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cf265e69c75a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cf265e69c75a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cf265e69c75a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Date: 2026-05-24</p>
+<p>Ruling source: human instruction in ORCHESTRATOR session.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:532f280fd130" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00005"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L3|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0005</span><span class="inout">IN</span><span class="stmt">The human ruling record is dated 2026-05-24.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:532f280fd130" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:532f280fd130" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:532f280fd130" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:80ebca088429" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00006"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L5|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0005</span><span class="inout">IN</span><span class="stmt">The ruling source is a human instruction issued in an ORCHESTRATOR session.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:80ebca088429" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:80ebca088429" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:80ebca088429" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-EG012-0006" class="chunk sec depth-4" data-kind="section" data-key="section:6e110e11e619" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG012-0006</span> Accepted Ruling</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e110e11e619" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e110e11e619" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e110e11e619" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`DEL-03-01` and `DEL-04-01` are allowed to proceed together as a co-development cluster.</p>
+<p>ORCHESTRATOR will report that project-wide blocker computation remains unavailable until the follow-up dependency closure scan passes.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:5f1219029fde" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00007"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L9|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0006</span><span class="inout">IN</span><span class="stmt">DEL-03-01 and DEL-04-01 are allowed to proceed together as a co-development cluster.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5f1219029fde" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5f1219029fde" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5f1219029fde" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e8a1f51a3fe2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00008"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L11|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0006</span><span class="inout">IN</span><span class="stmt">ORCHESTRATOR will report that project-wide blocker computation remains unavailable until the follow-up dependency closure scan passes.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e8a1f51a3fe2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e8a1f51a3fe2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e8a1f51a3fe2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-EG012-0007" class="chunk sec depth-4" data-kind="section" data-key="section:4093b284e114" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG012-0007</span> Operational Meaning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4093b284e114" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4093b284e114" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4093b284e114" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- This ruling does not retire, rewrite, reverse, or reclassify any `Dependencies.csv` row.
+- The `DEL-03-01` / `DEL-04-01` blocker-subset cycle remains known and accepted for the first development tranche.
+- WORKING_ITEMS may work the two deliverables iteratively as a paired tranche instead of requiring one to fully precede the other.
+- The expected closure mechanism is development evidence: contracts, probes, stubs, fixtures, or decisions that allow the relevant dependency rows to be marked satisfied, waived, not applicable, retired, or otherwise changed by a later approved workflow.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:de64ddfb72fc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00009"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L15|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0007</span><span class="inout">IN</span><span class="stmt">The ruling does not retire, rewrite, reverse, or reclassify any Dependencies.csv row.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:de64ddfb72fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:de64ddfb72fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:de64ddfb72fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ee5e622d904d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00010"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L16|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0007</span><span class="inout">IN</span><span class="stmt">The DEL-03-01 / DEL-04-01 blocker-subset cycle remains known and accepted for the first development tranche.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ee5e622d904d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ee5e622d904d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ee5e622d904d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c04b3c2b1328" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00011"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L17|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0007</span><span class="inout">IN</span><span class="stmt">WORKING_ITEMS may work the two deliverables iteratively as a paired tranche instead of requiring one to fully precede the other.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c04b3c2b1328" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c04b3c2b1328" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c04b3c2b1328" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:cb5f53c4bdf8" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00012"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L18|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0007</span><span class="inout">IN</span><span class="stmt">The expected closure mechanism is development evidence (contracts, probes, stubs, fixtures, or decisions) that lets relevant dependency rows be marked satisfied, waived, not applicable, retired, or otherwise changed by a later approved workflow.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:cb5f53c4bdf8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:cb5f53c4bdf8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:cb5f53c4bdf8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-EG012-0008" class="chunk sec depth-4" data-kind="section" data-key="section:f554827d227c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG012-0008</span> Blocker Reporting Constraint</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f554827d227c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f554827d227c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f554827d227c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Until a follow-up closure scan passes, ORCHESTRATOR must not compute or report project-wide `BLOCKED/UNBLOCKED` under strict `FULL_GRAPH` semantics.</p>
+<p>ORCHESTRATOR may report lifecycle state and may report this accepted co-development cluster as a known blocker-computation exception.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:cff9749e92f1" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00013"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L22|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0008</span><span class="inout">IN</span><span class="stmt">Until a follow-up closure scan passes, ORCHESTRATOR must not compute or report project-wide BLOCKED/UNBLOCKED under strict FULL_GRAPH semantics.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:cff9749e92f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:cff9749e92f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:cff9749e92f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8c583341594f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-EG012-00014"><span class="prov">@repo/execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245/Human_Ruling_Record.md:L24|_Decomposition/source_review_html/SRC-EGOV-RECONCILIATION-DEPCLOSURE-CLOSURE-ORCHESTRATOR-CODEV-RULING-2026-05-24-1245.html#SEC-EG012-0008</span><span class="inout">IN</span><span class="stmt">ORCHESTRATOR may report lifecycle state and may report the accepted co-development cluster as a known blocker-computation exception.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8c583341594f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8c583341594f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8c583341594f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "EG012";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

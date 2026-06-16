@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-RECONCILIATION",
+  "source_prefix": "EG010",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-RECONCILIATION.md",
+  "asset_manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_asset_manifests/SRC-EGOV-RECONCILIATION_assets_manifest.json",
+  "total_md_lines": 11,
+  "section_count": 2,
+  "generated_utc": "2026-06-16T01:29:36+00:00",
+  "sections": [
+    {
+      "section_id": "SEC-EG010-0001",
+      "depth": 1,
+      "title": "Source Pack: SRC-EGOV-RECONCILIATION",
+      "section_number": null,
+      "parent_section_id": null,
+      "line_start": 1,
+      "line_end": 8,
+      "page_first": null,
+      "page_last": null,
+      "estimated_md_tokens": 43,
+      "is_front_matter": false,
+      "is_back_matter": true,
+      "in_scope_default": false,
+      "figure_refs": [],
+      "table_refs": [],
+      "equation_refs": [],
+      "asset_ids": []
+    },
+    {
+      "section_id": "SEC-EG010-0002",
+      "depth": 2,
+      "title": "Component: execution/_Reconciliation/_LATEST.md",
+      "section_number": null,
+      "parent_section_id": "SEC-EG010-0001",
+      "line_start": 9,
+      "line_end": 11,
+      "page_first": null,
+      "page_last": null,
+      "estimated_md_tokens": 7,
+      "is_front_matter": false,
+      "is_back_matter": true,
+      "in_scope_default": false,
+      "figure_refs": [],
+      "table_refs": [],
+      "equation_refs": [],
+      "asset_ids": []
+    }
+  ]
+}

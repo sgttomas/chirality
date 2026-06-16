@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-PLAN",
+  "source_prefix": "PD005",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_skeletons/SRC-DOCS-PLAN_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/docs/PLAN.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-16T01:29:37+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD005-0001",
+      "line_start": 1,
+      "line_end": 472,
+      "target_section_ids": [
+        "SEC-PD005-0001",
+        "SEC-PD005-0002",
+        "SEC-PD005-0003",
+        "SEC-PD005-0004",
+        "SEC-PD005-0005",
+        "SEC-PD005-0006",
+        "SEC-PD005-0007",
+        "SEC-PD005-0008",
+        "SEC-PD005-0009",
+        "SEC-PD005-0010",
+        "SEC-PD005-0011",
+        "SEC-PD005-0012",
+        "SEC-PD005-0013",
+        "SEC-PD005-0014",
+        "SEC-PD005-0015",
+        "SEC-PD005-0016",
+        "SEC-PD005-0017",
+        "SEC-PD005-0018",
+        "SEC-PD005-0019",
+        "SEC-PD005-0020",
+        "SEC-PD005-0021",
+        "SEC-PD005-0022",
+        "SEC-PD005-0023",
+        "SEC-PD005-0024",
+        "SEC-PD005-0025",
+        "SEC-PD005-0026",
+        "SEC-PD005-0027",
+        "SEC-PD005-0028",
+        "SEC-PD005-0029"
+      ],
+      "estimated_md_tokens": 3614,
+      "contains_oversized_section": false
+    }
+  ]
+}

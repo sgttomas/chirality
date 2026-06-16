@@ -1,0 +1,2 @@
+AtomicUnitID,LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes
+HBA-EG009-00001,1,PKG-00 Issued is reserved for issued project-control decisions made after reconciliation closure.,@repo/execution/PKG-00_DAG_Closure_and_Project_Control/3_Issued/README.md:L3|_Decomposition/source_review_html/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-3-ISSUED.html#SEC-EG009-0003,8835386baeaa,IN,SEC-EG009-0003,UNIT-EG009-0001,,

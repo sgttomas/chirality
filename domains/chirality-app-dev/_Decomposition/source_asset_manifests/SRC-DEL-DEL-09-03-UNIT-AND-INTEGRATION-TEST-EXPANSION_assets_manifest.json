@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION",
+  "source_doc_id": "SRC-DEL-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION",
+  "source_prefix": "ED045",
+  "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/",
+  "catalog_rel_path": "@repo/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION-DATASHEET",
+      "expected_sha256": "dd5e01b40b3bd2440288678f13fb36afae50deb115c4724ca7e0dac6d561ab6c",
+      "generated_line_start": 11,
+      "generated_line_end": 69,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION-GUIDANCE",
+      "expected_sha256": "d2399d6325ccb2a89dc5656adcb3d251ca9c4f4c0a524b89631f3afe60bb68c1",
+      "generated_line_start": 73,
+      "generated_line_end": 127,
+      "source_line_start": 1,
+      "source_line_end": 55,
+      "line_offset": -72
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION-PROCEDURE",
+      "expected_sha256": "b183c2db3260474c55f6dfff0cbf59f80a1aa27f9c7f9d1eb631c865372f16fd",
+      "generated_line_start": 131,
+      "generated_line_end": 220,
+      "source_line_start": 1,
+      "source_line_end": 90,
+      "line_offset": -130
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VALIDATION-PACKAGING-SECURITY-AND-RELEASE-1-WORKING-DEL-09-03-UNIT-AND-INTEGRATION-TEST-EXPANSION-SPECIFICATION",
+      "expected_sha256": "38ffe816ed6ffdbe308f9331169f554bf8823cbf407063cc03894692b5f3bd19",
+      "generated_line_start": 224,
+      "generated_line_end": 275,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -223
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

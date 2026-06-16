@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER",
+  "source_doc_id": "SRC-DEL-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER",
+  "source_prefix": "ED014",
+  "repo_rel_path": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/",
+  "catalog_rel_path": "@repo/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-RUNTIME-ENGINE-CONTRACT-AND-TURN-LIFECYCLE-1-WORKING-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER-DATASHEET",
+      "expected_sha256": "4096c156412c82bb7048e045c10cb5650fc7c9dbbf52241d6133c4a95ff0e8fd",
+      "generated_line_start": 11,
+      "generated_line_end": 73,
+      "source_line_start": 1,
+      "source_line_end": 63,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-RUNTIME-ENGINE-CONTRACT-AND-TURN-LIFECYCLE-1-WORKING-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER-GUIDANCE",
+      "expected_sha256": "ef5cf3473a291c592f00ff18aa0ae1d1cc2c66bd0215cf6e09586f11d4283e17",
+      "generated_line_start": 77,
+      "generated_line_end": 141,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -76
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-RUNTIME-ENGINE-CONTRACT-AND-TURN-LIFECYCLE-1-WORKING-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER-PROCEDURE",
+      "expected_sha256": "3e3737670dba9e2c80d67f02b6fa0539b618dbffde9d9a729c951bf186322e13",
+      "generated_line_start": 145,
+      "generated_line_end": 237,
+      "source_line_start": 1,
+      "source_line_end": 93,
+      "line_offset": -144
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-RUNTIME-ENGINE-CONTRACT-AND-TURN-LIFECYCLE-1-WORKING-DEL-03-03-HARNESS-API-AND-SSE-COMPATIBILITY-ADAPTER-SPECIFICATION",
+      "expected_sha256": "16d722bae6670a49cb135596234bb178ebe8105bba9854644098564892babe30",
+      "generated_line_start": 241,
+      "generated_line_end": 306,
+      "source_line_start": 1,
+      "source_line_end": 66,
+      "line_offset": -240
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

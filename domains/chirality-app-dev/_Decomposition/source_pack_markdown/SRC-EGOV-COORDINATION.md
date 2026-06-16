@@ -1,0 +1,307 @@
+# Source Pack: SRC-EGOV-COORDINATION
+
+Grouping: `GROUPED_FOLDER`  RepoGlob: `execution/_Coordination/`
+
+Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+
+## Component: execution/_Coordination/NEXT_INSTANCE_PROMPT.md
+
+### NEXT INSTANCE PROMPT - Chirality App Dev
+
+#### Entry Protocol
+
+1. Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+2. Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+3. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+4. Read `{WORKING_ROOT}/AGENTS.md`.
+5. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+6. Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md`.
+7. Read `{WORKING_ROOT}/execution/_Coordination/_LATEST.md` for discovery pointers only.
+8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-13_runtime_completion.md`.
+9. Read `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/_REGISTER.md`.
+10. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
+11. Read `{WORKING_ROOT}/execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
+12. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
+13. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
+14. For workflow or docs-index work, read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json`.
+15. Record `git status --short` before coordination-sensitive planning or edits.
+
+#### Active Direction
+
+Continue bounded app-integration tranches toward the Chirality App's inherent goals:
+
+- a local desktop harness for governed agents;
+- a Chirality-owned runtime contract and audit/event model;
+- provider-adapter-general runtime architecture;
+- Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path;
+- Pi retained as a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+
+#### Selection Rules
+
+If a human has already approved or requested a tranche, continue it within its write bounds.
+
+Otherwise, select exactly one next bounded tranche from the earliest unblocked item in `plans/PLAN_2026-06-13_runtime_completion.md`.
+
+Default priority:
+
+1. Fix failing validation or incomplete evidence for already-landed runtime work.
+2. Select the earliest unblocked item on the active runtime completion plan's dependency spine.
+3. If that item is blocked by a human decision, prepare a decision packet if none exists.
+4. If a packet already awaits ruling, take the next unblocked implementation item.
+5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
+
+#### Execution Rules
+
+- Tranches selected from unblocked completion-plan items are pre-approved for execution.
+- Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
+- Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
+- At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
+- Keep writes scoped to the selected tranche.
+- Use `{REPO_ROOT}/../pi` and `plans/pi-agent-harness-assessment.md` only as read-only pattern-corpus references where they refine the active plan item.
+- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, or Pi migrations unless the active plan item and human rulings explicitly allow them.
+- D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
+- Stop when any further progress requires a human ruling.
+
+#### Closeout
+
+At completion of a validated tranche:
+
+1. Run appropriate verification.
+2. Route checks through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` for build, packaging, or release-significant work.
+3. Update `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md` when a plan item lands.
+4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
+5. Update `execution/_Coordination/_LATEST.md` only when discovery pointers change.
+6. Report skipped checks explicitly.
+7. Hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
+
+End the session summary with:
+
+- completed tranche;
+- validation performed;
+- files changed;
+- human rulings pending from `_DECISIONS/_REGISTER.md`;
+- next unblocked plan item.
+
+## Component: execution/_Coordination/TASK_DISPATCH_PLAN.md
+
+### TASK Dispatch Plan
+
+Current TASK dispatch is selected per bounded app-integration tranche through:
+
+- `execution/_Coordination/_COORDINATION.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_LATEST.md` for discovery pointers only
+- `plans/PLAN_2026-06-13_runtime_completion.md`
+- dependency/SCC evidence named by the selected tranche or coordination protocol
+
+Each `TASK` brief must name its source files, write scope, validation target, and fan-in expectations.
+
+## Component: execution/_Coordination/_COORDINATION.md
+
+### Coordination Record - Chirality App Dev
+
+**Recorded:** 2026-06-13
+**Active persona:** `WORKING_ITEMS`
+**Default work mode:** bounded app-integration tranches
+**Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+
+#### Active Surface
+
+Use this coordination surface as the active entrypoint for app-integration work. Keep it lean: project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history.
+
+Path anchors for executable prompts:
+
+- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+- Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+
+Primary authority and guidance:
+
+- `{REPO_ROOT}/AGENTS.md`
+- `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`
+- `{WORKING_ROOT}/AGENTS.md` - project-local agent posture and closeout discipline
+- `docs/PRD.md` - product requirements and current runtime scope
+- `docs/PLAN.md` - strategic roadmap, not the active queue
+- `docs/DIRECTIVE.md`
+- `docs/CONTRACT.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/VALIDATION_STRATEGY.md`
+- `docs/RELEASE_QUALITY_GATES.md`
+- `docs/BUILD_AND_RELEASE.md`
+- `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`
+- `docs/README.md`
+- `docs/MANIFEST.json`
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
+- `execution/_ScopeChange/_LATEST.md`
+- `frontend/docs/harness/runtime_engine_contract.md`
+- `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
+- `plans/PLAN_COMPLETION_LOG.md` - landed-tranche narrative history
+- `plans/chirality-app-future-development-plan.md` - seed runtime roadmap/reference
+- `plans/claude-agent-sdk-implementation-followups.md` - first-adapter implementation reference
+- `plans/pi-agent-harness-assessment.md` - Pi pattern-corpus reference
+- `plans/pi-assessment/*.md` - Pi pattern-corpus reference assessments
+- `execution/_Coordination/_LATEST.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_DECISIONS/_REGISTER.md`
+- `execution/_Reconciliation/DepClosure/_LATEST.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`
+
+#### Authority And State Rules
+
+Do not maintain a separate next-instance state file. Current state must be discovered from authoritative artifacts, dependency evidence, current implementation surfaces, the active plan, decision records, validation evidence, and git history. Do not let handoff prose, completion plans, dependency snapshots, or runtime logs become substitute authority.
+
+Authoritative state:
+
+1. `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` define requirements, invariants, mechanics, and vocabulary.
+2. `docs/PLAN.md` records strategic runtime direction and roadmap rationale. It is not the ordinary active work queue.
+3. `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` route evidence, release-quality checks, and local build/package evidence. They do not create release readiness, lifecycle issuance, publication authorization, or professional acceptance.
+4. `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` are workflow/index surfaces. They help discovery and orientation, but they do not replace canonical agent instructions, coordination policy, project truth, or human rulings.
+5. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
+6. Accepted SCOPE_CHANGE snapshots under `execution/_ScopeChange/**` record governed decomposition/guidance amendments. `SCA-APP-001` approves provider-adapter generality, Pi pattern-corpus-only posture, and capability-forward permission governance with explicit hard-deny precedence.
+7. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
+8. Current dependency and SCC evidence lives in immutable reconciliation snapshots under `execution/_Reconciliation/DepClosure/**`, with `execution/_Reconciliation/DepClosure/_LATEST.md` as a discovery pointer. The current latest snapshot reports one residual six-node strict SCC; project-wide strict `BLOCKED` / `UNBLOCKED` state must not be reported from that evidence until the graph is closed or explicitly ruled. SCC resolution follows the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): each strongly-connected component is resolved by a recorded move — decompose / invert / merge / cut (cut/merge human-gated) — and cycle-participating edges stay non-gating until resolved. PKG-00's retire/preserve rulings are the cut/keep subset of those moves.
+9. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
+
+Guidance and history surfaces:
+
+1. `plans/PLAN_2026-06-13_runtime_completion.md` is the active non-governing completion plan. It orders tranche selection toward the PRD and strategic roadmap.
+2. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
+3. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
+4. `execution/_Coordination/_LATEST.md` is a discovery pointer for coordination surfaces only. It is not authority and must not accumulate state history.
+5. There is no active `NEXT_INSTANCE_STATE.md`; do not recreate it or use any hand-maintained coordination file as the app state.
+
+When guidance surfaces disagree with authoritative surfaces, surface the discrepancy and correct the guidance surface. Do not silently rewrite authority.
+
+#### Baseline Intake
+
+At the start of a new loop:
+
+1. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+2. Read `{WORKING_ROOT}/AGENTS.md`.
+3. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
+5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
+6. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
+7. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
+8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
+9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
+10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
+11. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
+12. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
+13. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+14. Read the implementation reference surfaces needed for the selected tranche.
+15. Run `git status --short` before coordination-sensitive planning or edits.
+
+#### Active Development Loop
+
+Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select exactly one earliest unblocked item from `plans/PLAN_2026-06-13_runtime_completion.md`.
+
+A tranche is acceptable when it has:
+
+- one clear objective tied to the active completion plan;
+- a narrow write scope;
+- a validation command or concrete manual verification target;
+- all required human rulings recorded in `_DECISIONS/_REGISTER.md`;
+- work contained within accepted professional-boundary, network, dependency, runtime, and release policy.
+
+Default ordering:
+
+1. Repair failing validation or incomplete evidence for already-landed runtime work.
+2. Select the earliest unblocked item on the active completion plan's dependency spine.
+3. Prepare a decision packet only when the next plan item is blocked by a human ruling and no packet exists.
+4. If a packet already awaits ruling, continue to the next unblocked implementation item.
+5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
+
+If dependency evidence is needed, use the latest DepClosure snapshot and selected deliverable-local dependency files to discover blockers. Do not infer project-wide blocked/unblocked state from a stale summary or from a hand-maintained coordination state file.
+
+#### Subagent Use
+
+Spawn `TASK` agents only for separable implementation subscopes with explicit briefs and disjoint write scopes. Use fan-out/fan-in when the work naturally separates by subsystem, for example:
+
+- runtime contract and event schema;
+- SDK options and message mapping;
+- session storage and replay;
+- permission overlay and tool descriptor design;
+- documentation / evidence update.
+
+Every subagent brief must state:
+
+- source files to read;
+- files it may write;
+- validation expected;
+- whether it may modify production code or only produce assessment/docs.
+
+Keep parallel write scopes disjoint.
+
+This TASK restriction does not apply to final Git closeout. After a validated tranche, `WORKING_ITEMS` must autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
+
+#### Git And Validation Closeout
+
+At the end of a validated tranche:
+
+1. Run the tranche-specific verification.
+2. Run broader checks when the tranche touches shared runtime behavior:
+   - from `frontend/`: `npm run test`;
+   - from `frontend/`: `npm run typecheck`;
+   - from `frontend/`: `npm run harness:validate:premerge`;
+   - from `frontend/`: `npm run instruction-root:integrity`.
+3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
+4. Route build, packaging, and release-significant changes through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
+5. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
+6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
+7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
+8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.
+9. Do not update or recreate `NEXT_INSTANCE_STATE.md`.
+10. Record any skipped checks and why.
+11. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
+
+Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
+
+#### Human-Ruling Stops
+
+Stop and surface a human-ruling request when further progress requires a change to:
+
+- product runtime policy in `docs/PRD.md` or strategic roadmap policy in `docs/PLAN.md`;
+- outbound network policy or shipped provider scope;
+- package/runtime requirements for Pi-backed execution, which remains unapproved after D-APP-01 and D-APP-02;
+- concrete non-Anthropic provider implementation, provider-network expansion, or provider routing beyond the current shipped Anthropic path;
+- write/edit/bash/tool-execution exposure beyond the current approved plan item;
+- the project-truth model for sessions, transcripts, chats, runtime logs, or completion logs;
+- professional-boundary claims or release-readiness posture.
+
+Record human-gated questions in `_DECISIONS/_REGISTER.md`.
+
+## Component: execution/_Coordination/_LATEST.md
+
+### Latest Coordination Pointer
+
+This pointer is for discovery only. It is not substitute authority.
+
+Active coordination surfaces:
+
+- `execution/_Coordination/_COORDINATION.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_DECISIONS/_REGISTER.md`
+
+Active planning and history surfaces:
+
+- `plans/PLAN_2026-06-13_runtime_completion.md`
+- `plans/PLAN_COMPLETION_LOG.md`
+
+Active scope-change surfaces:
+
+- `execution/_ScopeChange/_LATEST.md`
+
+Dependency discovery surfaces:
+
+- `execution/_Reconciliation/DepClosure/_LATEST.md`
+
+Bootstrap prompt:
+
+- `init/init-prompt.md`
+
+Retired surface:
+
+- `execution/_Coordination/NEXT_INSTANCE_STATE.md` is retired. Do not use it as app state, update it, or recreate it.

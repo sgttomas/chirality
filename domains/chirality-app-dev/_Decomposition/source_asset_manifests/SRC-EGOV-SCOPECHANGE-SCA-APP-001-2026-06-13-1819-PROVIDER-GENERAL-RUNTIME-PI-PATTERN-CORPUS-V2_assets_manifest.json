@@ -1,0 +1,85 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2",
+  "source_doc_id": "SRC-EGOV-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2",
+  "source_prefix": "EG024",
+  "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/",
+  "catalog_rel_path": "@repo/execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Amendment_Preview.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-AMENDMENT-PREVIEW",
+      "expected_sha256": "a078ea4532d577610c7291d61fb2551779670dbbdee2b5647ea10c29d2827661",
+      "generated_line_start": 11,
+      "generated_line_end": 205,
+      "source_line_start": 1,
+      "source_line_end": 195,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Brief.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-BRIEF",
+      "expected_sha256": "b280eb7ed74144f437dca48867c46487dcd8f4647e10f250a0467aad776f6e70",
+      "generated_line_start": 209,
+      "generated_line_end": 265,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -208
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Closure_Repair_001.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-CLOSURE-REPAIR-001",
+      "expected_sha256": "71b2cb380296b2fb14122884a580e908e44c4b931f0e9dd561bc9b1e346db837",
+      "generated_line_start": 269,
+      "generated_line_end": 297,
+      "source_line_start": 1,
+      "source_line_end": 29,
+      "line_offset": -268
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Closure_Repair_002.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-CLOSURE-REPAIR-002",
+      "expected_sha256": "6dc6310990523ce96bb260ae5adf093c541d01f79fc57115d3a66869d4ce8087",
+      "generated_line_start": 301,
+      "generated_line_end": 343,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -300
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Handoff_State.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-HANDOFF-STATE",
+      "expected_sha256": "71ecd22c45673867b99288acf77997587e1fadb189389116bbed608961ae1608",
+      "generated_line_start": 347,
+      "generated_line_end": 416,
+      "source_line_start": 1,
+      "source_line_end": 70,
+      "line_offset": -346
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Impact_Assessment.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-IMPACT-ASSESSMENT",
+      "expected_sha256": "7a9d4850baf3d9b89be6addd9fc30dd17901842a235861547497846a06e7facf",
+      "generated_line_start": 420,
+      "generated_line_end": 576,
+      "source_line_start": 1,
+      "source_line_end": 157,
+      "line_offset": -419
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/Propagation_Plan.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-APP-001-2026-06-13-1819-PROVIDER-GENERAL-RUNTIME-PI-PATTERN-CORPUS-V2-PROPAGATION-PLAN",
+      "expected_sha256": "86c946b942f796806fa7b9e79944382f601fd40867c2da0a7535b75d5ddc4a0a",
+      "generated_line_start": 580,
+      "generated_line_end": 688,
+      "source_line_start": 1,
+      "source_line_end": 109,
+      "line_offset": -579
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

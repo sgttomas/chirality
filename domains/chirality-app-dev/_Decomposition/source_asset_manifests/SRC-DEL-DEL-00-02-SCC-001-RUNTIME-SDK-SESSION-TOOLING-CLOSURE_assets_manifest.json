@@ -1,0 +1,245 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE",
+  "source_doc_id": "SRC-DEL-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE",
+  "source_prefix": "ED002",
+  "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/",
+  "catalog_rel_path": "@repo/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-DEL-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-DATASHEET",
+      "expected_sha256": "e01a4582d3b5ecd61934900aedcd449dcc12849e9508d89c2e905fe107909650",
+      "generated_line_start": 11,
+      "generated_line_end": 88,
+      "source_line_start": 1,
+      "source_line_end": 78,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-GUIDANCE",
+      "expected_sha256": "16b692d3c1694bcbc7aa1c03223ee339ece1db13d0968d3247423cd33d48c746",
+      "generated_line_start": 92,
+      "generated_line_end": 159,
+      "source_line_start": 1,
+      "source_line_end": 68,
+      "line_offset": -91
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-PROCEDURE",
+      "expected_sha256": "11c82d161a49f9f1d66b1e94665f44d7b1f5e5222b5db41f9f38fe91b39e5927",
+      "generated_line_start": 163,
+      "generated_line_end": 225,
+      "source_line_start": 1,
+      "source_line_end": 63,
+      "line_offset": -162
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SPECIFICATION",
+      "expected_sha256": "90e631d613b6affc15a8ea630cb3ed4e9aa0b3e774b4648473e6d298a30be7d1",
+      "generated_line_start": 229,
+      "generated_line_end": 305,
+      "source_line_start": 1,
+      "source_line_end": 77,
+      "line_offset": -228
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/Case_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-DATASHEET",
+      "expected_sha256": "987cd9789b45f80627d65a01360692f513b4ea09c89eb55e6eb55dfbcf7f733a",
+      "generated_line_start": 309,
+      "generated_line_end": 333,
+      "source_line_start": 1,
+      "source_line_end": 25,
+      "line_offset": -308
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-DATASHEET",
+      "expected_sha256": "3a103e76d1fd079b7b7b28304d04c5362e44f20f35bfe98892613b6d8eb71a06",
+      "generated_line_start": 337,
+      "generated_line_end": 380,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -336
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-PROCEDURE",
+      "expected_sha256": "02bece2cf5e3cfbafd96b5fc0deda358e00afaa6ff0c1fdc14be2462017d351f",
+      "generated_line_start": 384,
+      "generated_line_end": 416,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -383
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-SPECIFICATION",
+      "expected_sha256": "aaa8361c5ad97c8a8db933329a0864af90276fb9a89ba57a104bb7e05361e31f",
+      "generated_line_start": 420,
+      "generated_line_end": 453,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -419
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-DATASHEET",
+      "expected_sha256": "88db3d07b49bb7e9356171310ca79247011b35a94224981206cf7768b0ab5201",
+      "generated_line_start": 457,
+      "generated_line_end": 503,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -456
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-PROCEDURE",
+      "expected_sha256": "575e06d0e143107139a9536b974f1e5fe1d05017dd2a30eb61c64b8fa3d7a8f2",
+      "generated_line_start": 507,
+      "generated_line_end": 552,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -506
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-SPECIFICATION",
+      "expected_sha256": "747e113b3a359ccbae757766c63182a6a855aeaf99c2d50962faf3ebe2f4f12e",
+      "generated_line_start": 556,
+      "generated_line_end": 588,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -555
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-DATASHEET",
+      "expected_sha256": "3c9bf0231c40965babe2c3871f68b737e42e54f9fe08df6646b19af663a077c6",
+      "generated_line_start": 592,
+      "generated_line_end": 649,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -591
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-PROCEDURE",
+      "expected_sha256": "0bf1bff1226aeb52c69feb191a8edcfb556b16a9ec8874c4947cb28398badbf5",
+      "generated_line_start": 653,
+      "generated_line_end": 689,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -652
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling/case-seeds/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCC-CASES-CASE-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CASE-SEEDS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-SPECIFICATION",
+      "expected_sha256": "5ed940374a60320b5c7100e84051a462cd5b33a3fc76a350a54464ed213b3f1e",
+      "generated_line_start": 693,
+      "generated_line_end": 730,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -692
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-DATASHEET",
+      "expected_sha256": "3a103e76d1fd079b7b7b28304d04c5362e44f20f35bfe98892613b6d8eb71a06",
+      "generated_line_start": 734,
+      "generated_line_end": 777,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -733
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-PROCEDURE",
+      "expected_sha256": "02bece2cf5e3cfbafd96b5fc0deda358e00afaa6ff0c1fdc14be2462017d351f",
+      "generated_line_start": 781,
+      "generated_line_end": 813,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -780
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-002-SCC-001-RUNTIME-SDK-CORE-PACKET-SPECIFICATION",
+      "expected_sha256": "aaa8361c5ad97c8a8db933329a0864af90276fb9a89ba57a104bb7e05361e31f",
+      "generated_line_start": 817,
+      "generated_line_end": 850,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -816
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-DATASHEET",
+      "expected_sha256": "88db3d07b49bb7e9356171310ca79247011b35a94224981206cf7768b0ab5201",
+      "generated_line_start": 854,
+      "generated_line_end": 900,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -853
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-PROCEDURE",
+      "expected_sha256": "575e06d0e143107139a9536b974f1e5fe1d05017dd2a30eb61c64b8fa3d7a8f2",
+      "generated_line_start": 904,
+      "generated_line_end": 949,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -903
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-003-SCC-001-SESSION-AUDIT-RECORDS-PACKET-SPECIFICATION",
+      "expected_sha256": "747e113b3a359ccbae757766c63182a6a855aeaf99c2d50962faf3ebe2f4f12e",
+      "generated_line_start": 953,
+      "generated_line_end": 985,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -952
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-DATASHEET",
+      "expected_sha256": "3c9bf0231c40965babe2c3871f68b737e42e54f9fe08df6646b19af663a077c6",
+      "generated_line_start": 989,
+      "generated_line_end": 1046,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -988
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-PROCEDURE",
+      "expected_sha256": "0bf1bff1226aeb52c69feb191a8edcfb556b16a9ec8874c4947cb28398badbf5",
+      "generated_line_start": 1050,
+      "generated_line_end": 1086,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -1049
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/scope-change-packets/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-1-WORKING-DEL-00-02-SCC-001-RUNTIME-SDK-SESSION-TOOLING-CLOSURE-SCOPE-CHANGE-PACKETS-PKG00-SCA-PACKET-004-SCC-001-TOOLING-PERMISSIONS-MCP-PACKET-SPECIFICATION",
+      "expected_sha256": "5ed940374a60320b5c7100e84051a462cd5b33a3fc76a350a54464ed213b3f1e",
+      "generated_line_start": 1090,
+      "generated_line_end": 1127,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -1089
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

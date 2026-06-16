@@ -1,0 +1,25 @@
+{
+  "schema_version": "chirality-appdev-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL",
+  "source_doc_id": "SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL",
+  "source_prefix": "EG005",
+  "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/",
+  "catalog_rel_path": "@repo/execution/PKG-00_DAG_Closure_and_Project_Control/",
+  "source_manifest_sha256": "24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-app-dev/_Decomposition/source_pack_markdown/SRC-EGOV-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-00_DAG_Closure_and_Project_Control/README.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-DAG-CLOSURE-AND-PROJECT-CONTROL-README",
+      "expected_sha256": "72d456444a6a3f6788788ca33cf87713f2331327042c4149dfda8d34034f1508",
+      "generated_line_start": 11,
+      "generated_line_end": 56,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -10
+    }
+  ],
+  "assets": [],
+  "pages": []
+}
