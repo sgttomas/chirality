@@ -94,9 +94,9 @@ acceptance. That acceptance was given by the human project authority and is reco
   point to it as the active tranche-selection surface;
 - the six-node SCC plan and the runtime completion plan remain closed/retired history.
 
-Acceptance of the *program* does not pre-approve the human-gated rulings inside it
-(default-provider cutover, mutating Chirality MCP exposure). Those remain pending in
-`_DECISIONS/_REGISTER.md` (§9) and must be ruled before their tranches implement.
+Acceptance of the *program* did not pre-approve the human-gated rulings inside it.
+`D-APP-13` has since been ruled for bounded mutating Chirality MCP exposure; `D-APP-12`
+remains pending for default-provider cutover in `_DECISIONS/_REGISTER.md` (§9).
 
 ## 4. Program Principles
 
@@ -160,7 +160,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
 | 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL (DMG path exists; **no `asarUnpack` for the SDK**; subprocess proof `BLOCKED_TBD`) |
 | 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic` and scripted opt-in `agentSdk` dev proof; packaged subprocess proof remains STAB-02(d) |
-| 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | descriptor metadata only (`tool-descriptor.ts`) | — | DEL-07-04 / DEL-07-05 (MCP half) | **METADATA-ONLY** (STAB-04) |
+| 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/mcp/read-tools.ts`; `frontend/src/lib/harness/mcp/tool-names.ts`; `frontend/src/lib/harness/sdk-options-builder.ts` | `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts`; descriptor/options tests | DEL-07-04 / DEL-07-05 (MCP half) | **LANDED 2026-06-16** (`workspaceWrite`-gated by D-APP-13 Option A) |
 
 **Deliverable-status reconciliation note (STAB-00 output).** Every deliverable
 `_STATUS.md` reads `SEMANTIC_READY`, which is a *decomposition-process* state set on
@@ -181,7 +181,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed on `codex/chirality-app-work`. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` now runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence. Remaining: (d) packaged subprocess probe (`asarUnpack` + HOME + DMG); D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-04` Deterministic Chirality MCP Maturity | **PROBE LANDED 2026-06-16**; mutating implementation remains gated. | SDK-behavior probe shows raw in-process SDK MCP `mcp_message` calls execute the MCP handler without automatic `canUseTool` or hook callbacks; explicit `can_use_tool` and `hook_callback` control requests do invoke those callbacks. Therefore mutating MCP enforcement/evidence must live in an in-handler wrapper unless a future live-CLI proof changes that conclusion. Requires D-APP-13 before exposing `status_transition` / `deps_write`. | `harness:validate:agentsdk-mcp-probe`; future implementation also requires permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
+| `STAB-04` Deterministic Chirality MCP Maturity | **LANDED 2026-06-16** on `codex/chirality-app-work`. | D-APP-13 Option A approved stepwise `status_transition` then `deps_write`; implementation exposes only requested `workspaceWrite` mutating Chirality MCP handlers, with in-handler permission/evidence wrapping because raw SDK MCP `mcp_message` calls bypass automatic `canUseTool` / hook callbacks. Evidence records permission decisions, target-file SHA/byte metadata, bounded diff summaries, redacted failures, and result summaries only. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-06` Governance Refresh & Active Queue | Convert accepted outcomes into governance/coordination surfaces. | Apply the STAB-00 disposition list (factual corrections + dated supersession notes only); reflect D-APP-12 ruling; refresh coordination; record program completion. | Governance gate. Runtime commands skipped unless executable behavior changed. |
 
@@ -221,7 +221,7 @@ Outputs:
 Residual handoff:
 
 - STAB-03 item B may feed malformed-tail replay diagnostics into the Section 9 namespace.
-- STAB-04 may consume the Section 9 namespace after its SDK-behavior probe and D-APP-13
+- STAB-04 consumed the Section 9 namespace after its SDK-behavior probe and D-APP-13
   ruling.
 - Section 9 remains report-only in premerge for the initial stable cycle; later work should
   flip it to hard-fail once accepted.
@@ -335,9 +335,9 @@ tools never default-on):
 3. **Optional `scaffold_exec`**: only if scaffold-preview evidence + write-scope policy
    are accepted; otherwise default-denied.
 
-Requires **D-APP-13** (§9) to flip these from metadata-only to exposed, and rulings on
-whether the MCP tool may perform human-gated (`CHECKING`/`ISSUED`) transitions given an
-`approvalSha` and on actor identity.
+`D-APP-13` Option A (§9) ruled these tools may be exposed in `workspaceWrite` mode.
+MCP-driven `CHECKING` / `ISSUED` transitions are allowed only with actor `HUMAN` and
+valid `approvalSha` evidence accepted by the lifecycle engine.
 
 Denied in this tranche (asserted in tests): remote MCP servers; plugin marketplace/install;
 network-capable MCP tools; domain-engine protected-path writes; broad tool search exposing
@@ -398,7 +398,7 @@ Recorded in `execution/_Coordination/_DECISIONS/_REGISTER.md`:
 |---|---|---|---|
 | `D-APP-11` | Accept the Runtime Stabilization program as the active development queue. | Selection of this plan as the active queue; coordination re-pointing. | **RULED** 2026-06-16 (this plan's acceptance). |
 | `D-APP-12` | Default-provider cutover from the current default to the SDK-backed Anthropic path. | Any change making `agentSdk` the default; any doc stating the SDK is the active default. | **AWAITING_RULING** — packet prepared in STAB-02 once (a)–(d) + Section 8/9 are green; packaged-subprocess proof recommended as a hard prerequisite. |
-| `D-APP-13` | Exposure of bounded mutating Chirality MCP tools (`status_transition`, `deps_write`) from metadata-only to `workspaceWrite`-gated, incl. whether the tool may perform human-gated (`CHECKING`/`ISSUED`) transitions and the required actor identity. | STAB-04 implementation. | **AWAITING_RULING** — packet prepared at `execution/_Coordination/_DECISIONS/D-APP-13_PACKET_2026-06-16.md` after the SDK MCP behavior probe landed. |
+| `D-APP-13` | Exposure of bounded mutating Chirality MCP tools (`status_transition`, `deps_write`) from metadata-only to `workspaceWrite`-gated, incl. whether the tool may perform human-gated (`CHECKING`/`ISSUED`) transitions and the required actor identity. | STAB-04 implementation. | **RULED 2026-06-16** — Option A approved at `execution/_Coordination/_DECISIONS/D-APP-13_RULING_2026-06-16.md`; stepwise `status_transition` then `deps_write` implementation may proceed with handler-level permission/evidence wrapping. |
 
 Tranches **not** requiring a new ruling beyond D-APP-11: STAB-00, STAB-01, STAB-03,
 STAB-05, and the STAB-02 readiness work (a)–(d), which harden/validate already-approved
@@ -519,5 +519,5 @@ This plan is the active development queue as of its acceptance ruling (D-APP-11)
 maintained per §8. When all tranches land (or the human selects a replacement program),
 update `_COORDINATION.md`/`NEXT_INSTANCE_PROMPT.md` to the next active queue, move landed
 narrative to `plans/PLAN_COMPLETION_LOG.md`, and mark this plan closed/non-governing.
-Human acceptance remains required for every gate inside it; D-APP-12 and D-APP-13 stay
-pending until ruled.
+Human acceptance remains required for every gate inside it. D-APP-13 has been ruled;
+D-APP-12 stays pending until ruled.

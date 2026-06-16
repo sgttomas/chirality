@@ -53,7 +53,7 @@ Paths below are relative to `projects/chirality-app-dev/`.
 | 25 | Section 9 runtime validation IDs aggregator | `docs/SPEC.md` Section 19.3; `docs/PRD.md` Section 12.4 | No `frontend/scripts/validate-harness-section9.mjs` found | DEL-09-02 | GAP - STAB-01 owns the aggregator. |
 | 26 | macOS DMG packaging + SDK subprocess probe | `frontend/package.json`; `frontend/scripts/verify-instruction-root-integrity.mjs` | `frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts`; `frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL - packaging path exists; SDK subprocess package proof and `asarUnpack` remain STAB-02(d) scope. |
 | 27 | Network policy proof | `frontend/scripts/run-network-policy-proof.mjs`; Electron network policy surfaces under `frontend/` | `frontend/src/__tests__/scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic`; `agentSdk` outbound proof remains STAB-02(c). |
-| 28 | Mutating Chirality MCP tools (`status_transition`, `deps_write`) | Descriptor reservation in `frontend/src/lib/harness/tool-descriptor.ts` | No mutating MCP tests found | DEL-07-04; DEL-07-05 | METADATA-ONLY - exposure requires STAB-04 and D-APP-13. |
+| 28 | Mutating Chirality MCP tools (`status_transition`, `deps_write`) | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/mcp/read-tools.ts`; `frontend/src/lib/harness/mcp/tool-names.ts`; `frontend/src/lib/harness/sdk-options-builder.ts` | `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts`; descriptor/options tests | DEL-07-04; DEL-07-05 | LANDED 2026-06-16 - exposed only when requested in `workspaceWrite` under D-APP-13 Option A. |
 
 ## Deliverable Status Reconciliation Note
 
@@ -76,7 +76,7 @@ Current human-gated decisions from `execution/_Coordination/_DECISIONS/_REGISTER
 | ID | State | Blocks |
 |---|---|---|
 | D-APP-12 | AWAITING_RULING | Default-provider cutover to `agentSdk`; any governance text declaring SDK as active default. |
-| D-APP-13 | NOT_PREPARED | Mutating Chirality MCP exposure (`status_transition`, `deps_write`). |
+| D-APP-13 | RULED | Mutating Chirality MCP exposure (`status_transition`, `deps_write`) approved by Option A. |
 
 STAB-05 persona-composer implementation and STAB-00/STAB-01 evidence work require no new
 ruling beyond accepted program ruling D-APP-11, provided they stay within the active plan.

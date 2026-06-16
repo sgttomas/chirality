@@ -20,6 +20,8 @@ describe('tool descriptor registry', () => {
       'dependency_read',
       'scope_scan',
       'scaffold_preview',
+      'status_transition',
+      'dependency_write',
       'write_file',
       'edit_file',
       'multi_edit_file',
@@ -58,7 +60,13 @@ describe('tool descriptor registry', () => {
         .filter(
           (descriptor) =>
             !descriptor.permissions.includes('read') &&
-            !['write_file', 'edit_file', 'shell'].includes(descriptor.name)
+            ![
+              'status_transition',
+              'dependency_write',
+              'write_file',
+              'edit_file',
+              'shell'
+            ].includes(descriptor.name)
         )
         .every((descriptor) => descriptor.runtime.exposedToModel === false)
     ).toBe(true);
@@ -95,6 +103,8 @@ describe('tool descriptor registry', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'MultiEdit',
       'NotebookEdit',
       'WebFetch',
@@ -141,6 +151,8 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'Write',
       'Edit',
       'MultiEdit',
@@ -149,6 +161,44 @@ describe('tool descriptor registry', () => {
       'WebFetch',
       'WebSearch',
       'Agent'
+    ]);
+  });
+
+  it('resolves mutating Chirality MCP descriptors only in workspaceWrite mode', () => {
+    const resolution = resolveHarnessToolPool({
+      requestedTools: ['status_transition', 'deps_write'],
+      mode: 'workspaceWrite'
+    });
+
+    expect(resolution.requestedDescriptors.map((descriptor) => descriptor.name)).toEqual([
+      'status_transition',
+      'dependency_write'
+    ]);
+    expect(resolution.allowedToolNames).toEqual([
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write'
+    ]);
+    expect(resolution.deniedTools).toEqual([]);
+    expect(resolution.disallowedToolNames).not.toContain('mcp__chirality__status_transition');
+    expect(resolution.disallowedToolNames).not.toContain('mcp__chirality__deps_write');
+
+    const readOnly = resolveHarnessToolPool({
+      requestedTools: ['status_transition', 'deps_write'],
+      mode: 'readOnly'
+    });
+
+    expect(readOnly.allowedToolNames).toEqual([]);
+    expect(readOnly.disallowedToolNames).toContain('mcp__chirality__status_transition');
+    expect(readOnly.disallowedToolNames).toContain('mcp__chirality__deps_write');
+    expect(readOnly.deniedTools).toEqual([
+      expect.objectContaining({
+        toolName: 'status_transition',
+        descriptorName: 'status_transition'
+      }),
+      expect.objectContaining({
+        toolName: 'deps_write',
+        descriptorName: 'dependency_write'
+      })
     ]);
   });
 
@@ -204,6 +254,8 @@ describe('tool descriptor registry', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'Write',
       'Edit',
       'MultiEdit',
@@ -220,6 +272,8 @@ describe('tool descriptor registry', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'Write',
       'Edit',
       'MultiEdit',

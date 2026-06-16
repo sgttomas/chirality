@@ -85,6 +85,8 @@ describe('buildSdkOptions', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'Write',
       'Edit',
       'MultiEdit',
@@ -117,12 +119,60 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('mcp__chirality__scope_scan');
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
+    expect(options.disallowedTools).toContain('mcp__chirality__status_transition');
     expect(options.mcpServers).toMatchObject({
       chirality: {
         type: 'sdk',
         name: 'chirality'
       }
     });
+  });
+
+  it('attaches mutating Chirality MCP tools only when requested in workspaceWrite mode', () => {
+    const workspaceWrite = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'workspaceWrite',
+        tools: ['status_transition', 'deps_write']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(workspaceWrite.tools).toEqual([
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write'
+    ]);
+    expect(workspaceWrite.allowedTools).toEqual([
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write'
+    ]);
+    expect(workspaceWrite.disallowedTools).not.toContain('mcp__chirality__status_transition');
+    expect(workspaceWrite.disallowedTools).not.toContain('mcp__chirality__deps_write');
+    expect(workspaceWrite.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
+
+    const readOnly = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'readOnly',
+        tools: ['status_transition', 'deps_write']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(readOnly.tools).toEqual([]);
+    expect(readOnly.allowedTools).toEqual([]);
+    expect(readOnly.disallowedTools).toContain('mcp__chirality__status_transition');
+    expect(readOnly.disallowedTools).toContain('mcp__chirality__deps_write');
+    expect(readOnly.mcpServers).toEqual({});
   });
 
   it('allows only explicit project settings and never user or local sources', () => {

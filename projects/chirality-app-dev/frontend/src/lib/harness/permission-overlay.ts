@@ -285,7 +285,7 @@ export function permissionDecisionToSdkResult(
   };
 }
 
-async function appendPermissionDecisionEvent(input: {
+export async function appendHarnessPermissionDecisionEvent(input: {
   decision: HarnessPermissionDecision;
   descriptor?: HarnessToolDescriptor;
   sdkToolUseId?: string;
@@ -364,7 +364,7 @@ export function createHarnessCanUseTool(input: {
     });
 
     try {
-      await appendPermissionDecisionEvent({
+      await appendHarnessPermissionDecisionEvent({
         decision,
         descriptor,
         sdkToolUseId: options.toolUseID

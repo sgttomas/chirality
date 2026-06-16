@@ -6,6 +6,54 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization mutating Chirality MCP landed (`STAB-04`)
+
+Landed D-APP-13 Option A: bounded local mutating Chirality MCP exposure for
+`mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
+
+Runtime validation changes:
+
+- Added the D-APP-13 ruling record and moved D-APP-13 to `RULED`.
+- Added mutating MCP descriptors and allowed tool-name plumbing for `status_transition`
+  and `deps_write`.
+- Changed SDK MCP server construction so the local `chirality` server includes only
+  explicitly allowed Chirality MCP handlers; mutating handlers are unavailable unless
+  requested and allowed in `workspaceWrite`.
+- Added handler-level permission/evidence wrapping for mutating MCP calls because the SDK
+  probe showed raw in-process MCP `mcp_message` calls bypass automatic `canUseTool` and
+  hook callbacks.
+- The wrapper records `tool.started`, `tool.permission`, and terminal
+  `tool.completed`/`tool.failed` events; enforces project-root containment,
+  instruction-root write denial, and symlink target rejection; and records only safe
+  input metadata, target-file SHA/byte metadata, bounded diff summaries, redacted errors,
+  and result summaries.
+- `status_transition` delegates to `transitionDeliverableStatus` and preserves existing
+  lifecycle actor/approval-SHA gates. MCP-driven `CHECKING` / `ISSUED` requires actor
+  `HUMAN` and valid `approvalSha`.
+- `deps_write` delegates to `writeDeliverableDependencies` and preserves Dependencies.csv
+  v3.1 writer/linter semantics, including satisfaction-transition validation and warning
+  surfacing.
+- Updated runtime contract, active stabilization plan, STAB-00 artifacts, and coordination
+  prompts to reflect that D-APP-13 is ruled and STAB-04 has landed.
+
+Validation passed: `npm run harness:validate:agentsdk-mcp-probe`; focused suite
+`npm run test -- --run src/__tests__/lib/tool-descriptor.test.ts
+src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/chirality-read-mcp.test.ts
+src/__tests__/lib/chirality-mutating-mcp.test.ts` (4 files, 27 tests);
+`npm run typecheck`; full `npm run test` (51 files, 370 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:premerge` after starting the local Next server on port 3000
+(`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks, Section 9 report-only 13 checks);
+and `git diff --check`.
+
+Skipped checks: `npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche changed no provider,
+outbound network, package layout, or packaged subprocess behavior.
+
+Residual handoff: D-APP-12 remains awaiting the STAB-02(d) packaged subprocess proof
+before default-provider cutover can be decided. STAB-06 should consume the updated ruled
+posture when applying factual governance corrections.
+
 ## 2026-06-16 - Runtime stabilization SDK MCP behavior probe landed (`STAB-04-probe`)
 
 Landed the STAB-04 prerequisite SDK/MCP behavior probe and prepared the D-APP-13 mutating

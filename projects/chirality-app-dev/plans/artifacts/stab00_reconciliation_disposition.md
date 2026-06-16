@@ -63,7 +63,7 @@ IDs without bulk-editing deliverable-local lifecycle artifacts.
 | ID | State in register | Required before |
 |---|---|---|
 | D-APP-12 | AWAITING_RULING | Any default-provider cutover to `agentSdk`; any governance text declaring the SDK path the active default. |
-| D-APP-13 | NOT_PREPARED | Any mutating Chirality MCP exposure from metadata-only to `workspaceWrite`-gated. |
+| D-APP-13 | RULED | Mutating Chirality MCP exposure from metadata-only to `workspaceWrite`-gated approved by Option A. |
 
 STAB-05 persona-composer work is implementation scope accepted by D-APP-11 and the active
 Runtime Stabilization plan. It does not need a separate ruling unless it changes provider,

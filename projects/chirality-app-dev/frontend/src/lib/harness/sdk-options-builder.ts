@@ -7,7 +7,7 @@ import {
 } from './permission-overlay';
 import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
 import {
-  createChiralityReadMcpServers,
+  createChiralityMcpServers,
   filterChiralityMcpAllowedToolNames
 } from './mcp/read-tools';
 import { createScriptedAgentSdkProofSpawn } from './scripted-agent-sdk-proof';
@@ -124,12 +124,13 @@ export function buildSdkOptions(input: {
       delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor
     }),
-    mcpServers: createChiralityReadMcpServers({
+    mcpServers: createChiralityMcpServers({
       context: {
         projectRoot: input.session.projectRoot,
         sessionId: input.session.sessionId
       },
-      allowedToolNames: allowedChiralityMcpToolNames
+      allowedToolNames: allowedChiralityMcpToolNames,
+      mode: input.opts.mode
     }),
     resume: input.session.sdkSessionId,
     settingSources: parseSettingSources(process.env.CHIRALITY_SDK_SETTING_SOURCES),
