@@ -1,0 +1,596 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>40</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED040-0002">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED040-0012">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED040-0024">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a> <a href="#SEC-ED040-0032">Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_an</a></nav>
+<main>
+<section id="SEC-ED040-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:95986dcb0ba4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED040-0001</span> Source Pack: SRC-DEL-DEL-08-03-PIPELINE-CATEGORY-AND-TASK-SCOPE-DISPATCH</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:95986dcb0ba4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:95986dcb0ba4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:95986dcb0ba4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED040-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:a350bd1ea9d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0002</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a350bd1ea9d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a350bd1ea9d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a350bd1ea9d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:9bb6ad4bcf23" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0003</span> Datasheet: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9bb6ad4bcf23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9bb6ad4bcf23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9bb6ad4bcf23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7fdb22e751fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7fdb22e751fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7fdb22e751fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7fdb22e751fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| DecompositionPath | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
+| PackageID | PKG-08 |
+| PackageName | Agent Suite, Pipeline Dispatch, and Subagent Governance |
+| DeliverableID | DEL-08-03 |
+| DeliverableName | Pipeline Category and Task Scope Dispatch |
+| ResponsibleParty | TBD |
+| Type | UX_UI_SLICE |
+| ContextEnvelope | M |
+</p></div></div></section>
+<section id="SEC-ED040-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:f83b976443ad" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f83b976443ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f83b976443ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f83b976443ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Scope | Dispatch DECOMP/PREP/TASK/AUDIT lanes and dynamic task scope from deliverables and knowledge-type buckets. | `_CONTEXT.md`; decomposition entry |
+| Package scope | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records. | `_CONTEXT.md`; decomposition PKG-08 row |
+| Inclusion criteria | Agent OS behavior and delegation. | `_CONTEXT.md`; decomposition PKG-08 row |
+| Exclusions | General SDK adapter mechanics. | `_CONTEXT.md`; decomposition PKG-08 row |
+| Covered scope items | SOW-007, SOW-026 | `_CONTEXT.md`; decomposition entry |
+| Supported objectives | OBJ-001, OBJ-007 | `_CONTEXT.md`; decomposition entry |
+| Anticipated artifacts | Pipeline selector tests; knowledge-type discovery; disabled option handling | `_CONTEXT.md`; decomposition entry |
+| Pipeline categories | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` | `docs/TYPES.md` Section 4.4 |
+| TASK scope modes | `DELIVERABLES`, `KNOWLEDGE_TYPES` | `docs/TYPES.md` Section 4.4 |
+| Knowledge type options | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | `docs/TYPES.md` Section 4.4 |
+| Disabled option meaning | Visible but non-selectable coming-soon or unsupported variant. | `docs/TYPES.md` Section 4.4 |
+</p></div></div></section>
+<section id="SEC-ED040-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:aee369fc564b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aee369fc564b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aee369fc564b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aee369fc564b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| PIPELINE category controls | The PIPELINE surface exposes `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | `docs/PRD.md` FR-011 |
+| Unsupported options | Unsupported options remain visible and disabled as coming soon. | `docs/PRD.md` FR-011; success metric 7 |
+| TASK selector split | PIPELINE `TASK` uses split selectors for task agent and scope. | `docs/PRD.md` FR-012 |
+| TASK scope requirement | Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. | `docs/PRD.md` FR-012 |
+| Dynamic reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. | `docs/PRD.md` FR-013 |
+| Knowledge bucket detection | Datasheet, Specification, Guidance, and Procedure are supported as first-class knowledge buckets. | `docs/PRD.md` FR-049 |
+| Working-root scope API | `/api/working-root/scope` scans deliverables and knowledge types. | `docs/SPEC.md` Section 17.2 |
+</p></div></div></section>
+<section id="SEC-ED040-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:21a58a313d01" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21a58a313d01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21a58a313d01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21a58a313d01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component / Surface | Expected Role | Status |
+|---|---|---|
+| Pipeline category selector | Selects operative lane for `DECOMP`, `PREP`, `TASK`, or `AUDIT`. | TBD implementation location |
+| Category option list | Shows documented options for selected lane; unsupported variants are disabled. | TBD implementation location |
+| TASK agent selector | Selects the bounded task agent or skill route. | TBD implementation location |
+| TASK scope mode selector | Switches between deliverable scope and knowledge-type scope. | TBD implementation location |
+| Dynamic deliverable scan | Provides valid deliverable targets from the active working root. | Source identifies API contract; implementation location TBD |
+| Knowledge-type discovery | Detects document-kit and metadata buckets from deliverable content. | Source identifies file types; implementation location TBD |
+| Invalid-selection reset | Clears stale or disabled selections after root or scope changes. | Source requires behavior; implementation location TBD |
+| Tests | Cover pipeline selector behavior, knowledge-type discovery, and disabled option handling. | Anticipated artifacts |
+</p></div></div></section>
+<section id="SEC-ED040-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:948fc2e1ccc9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0008</span> Implementation Slots</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:948fc2e1ccc9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:948fc2e1ccc9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:948fc2e1ccc9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Slot | Required Record | Current Disposition |
+|---|---|---|
+| Category selector component path | Confirmed frontend component or module path for PIPELINE `DECOMP`, `PREP`, `TASK`, and `AUDIT` controls. | TBD - implementation worker must record before closure. |
+| Category option source | Confirmed data source or fixture for category-specific option lists. | TBD - must distinguish documented executable options from visible disabled options. |
+| TASK selector component path | Confirmed component or state module for task-agent selector and scope selector. | TBD - implementation worker must record before closure. |
+| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/working-root/scope`. | TBD - must prove active-root scanning, not hard-coded project assumptions. |
+| Knowledge discovery fixture path | Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets. | TBD - must use `KnowledgeTypeOption` labels when metadata buckets are exposed. |
+| Reset test fixture path | Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases. | TBD - implementation worker must record before closure. |
+</p></div></div></section>
+<section id="SEC-ED040-0009" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d7c509ee4a8c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0009</span> Dependency Edge Snapshot</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d7c509ee4a8c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d7c509ee4a8c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d7c509ee4a8c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Edge Type | Current Evidence | Disposition |
+|---|---|---|
+| Accepted upstream anchors | `_DEPENDENCIES.md` lists active anchors for DEL-08-03, SOW-007, SOW-026, OBJ-001, and OBJ-007. | Use as context; satisfaction remains TBD until dependency closure accepts the register. |
+| Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence with PRD hash warning preserved. |
+| Downstream handoff | `_DEPENDENCIES.md` lists a downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests, with consumer target unresolved. | Consumer deliverable remains TBD. |
+</p></div></div></section>
+<section id="SEC-ED040-0010" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8a7dd1c374fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0010</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a7dd1c374fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a7dd1c374fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a7dd1c374fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Path | Use |
+|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` | Agent and working-root governance context |
+| REF-002 | `docs/CONTRACT.md` | Agent/subagent governance invariants |
+| REF-003 | `docs/SPEC.md` | Scope API and file contract surfaces |
+| REF-004 | `docs/TYPES.md` | Pipeline category, task scope, knowledge-type, and disabled-option vocabulary |
+| REF-005 | `docs/PLAN.md` | Runtime roadmap and retired-scope boundaries |
+| REF-006 | `docs/PRD.md` | Product requirements for matrix, pipeline, scope, and knowledge buckets; hash mismatch recorded as warning |
+| REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP method and deliverable sizing context |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted deliverable entry and objective/scope mapping |
+</p></div></div></section>
+<section id="SEC-ED040-0011" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b53967e2b152" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0011</span> Pass 3 Disposition Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b53967e2b152" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b53967e2b152" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b53967e2b152" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition |
+|---|---|
+| B-001 | Converted to explicit implementation slots for selector, option-list, scope-scan, knowledge-discovery, reset-fixture, and test-path records. |
+| B-002 | Incorporated as a dependency edge snapshot that preserves accepted extracted rows as context while leaving closure status and downstream consumer target TBD. |
+</p></div></div></section>
+<section id="SEC-ED040-0012" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:641c4a78d58b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0012</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:641c4a78d58b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:641c4a78d58b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:641c4a78d58b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0013" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:a4e991ec64ba" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0013</span> Guidance: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4e991ec64ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4e991ec64ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4e991ec64ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:64e70f116399" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0014</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:64e70f116399" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:64e70f116399" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:64e70f116399" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable keeps the operative PIPELINE dispatch surface aligned with Chirality&#x27;s agent architecture. It connects the operator-facing category controls to the governed execution model without turning UI selection into runtime authority.</p>
+<p>The practical outcome is a user experience where operators can see the available operative lanes, choose a valid TASK scope, discover deliverable-local knowledge buckets, and understand unsupported variants because they remain visible but disabled.
+</p></div></div></section>
+<section id="SEC-ED040-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a276e25f0722" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0015</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a276e25f0722" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a276e25f0722" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a276e25f0722" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Use canonical vocabulary | Use the terms `PipelineCategory`, `TaskScopeMode`, `KnowledgeTypeOption`, and `DisabledOption` consistently in implementation-facing docs, tests, and state models where applicable. | `docs/TYPES.md` Section 4.4 |
+| Keep operative dispatch explicit | PIPELINE category controls should make `DECOMP`, `PREP`, `TASK`, and `AUDIT` visible as separate operative choices. | `docs/PRD.md` FR-011 |
+| Separate task selection from scope selection | TASK flow should not collapse task-agent choice and scope choice into one ambiguous selector. | `docs/PRD.md` FR-012 |
+| Treat knowledge-type mode as deliverable-bound | Knowledge-type targets depend on a selected deliverable and should clear when that deliverable is unavailable or stale. | `docs/PRD.md` FR-012, FR-013 |
+| Show unsupported variants without enabling them | Disabled options preserve roadmap awareness while preventing accidental execution. | `docs/PRD.md` FR-011; success metric 7 |
+| Do not expand authority | Selector state may request or describe a route, but Type 2 execution remains governed by agent instructions, sealed context, approval metadata, and fail-closed gates. | `docs/CONTRACT.md` Section 1.8 |
+</p></div></div></section>
+<section id="SEC-ED040-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:15b07476bed2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0016</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15b07476bed2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15b07476bed2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15b07476bed2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Prefer source-derived option lists and vocabulary over ad hoc labels. If implementation code already has local naming, reconcile it with `docs/TYPES.md` rather than silently creating a parallel taxonomy.
+- Scope scan behavior should be resilient to working-root changes. A selected deliverable or knowledge bucket that is no longer present should be cleared instead of retained as stale UI state.
+- Knowledge-type discovery should account for the four-document kit first. Metadata buckets should be exposed only when the UI can use canonical `KnowledgeTypeOption` labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.
+- The deliverable&#x27;s anticipated artifacts are tests and discovery behavior, not new authority for runtime subagent execution.
+- PRD hash mismatch is a warning. Use PRD content conservatively and preserve the mismatch in closure materials until a human reconciles the reference hash.
+</p></div></div></section>
+<section id="SEC-ED040-0017" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:45c43805b8a5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0017</span> Boundary Rationale</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45c43805b8a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45c43805b8a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45c43805b8a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+PIPELINE dispatch expresses operator intent and selects a proposed route through the operative surface. It is not an authorization boundary. Runtime authority remains with TASK and Type 2 governance checks because `docs/CONTRACT.md` requires explicit write scope, sealed context and gate metadata, no ghost inputs, and fail-closed subagent delegation. Selector state can therefore prepare or display a route, but execution must still pass the governed runtime checks before any child agent or task path is enabled.
+</p></div></div></section>
+<section id="SEC-ED040-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:61ba2c61c7b1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0018</span> Human Ruling Path</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61ba2c61c7b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61ba2c61c7b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61ba2c61c7b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Required Ruling | Current Treatment |
+|---|---|---|
+| REF-006 PRD hash mismatch | Source owner or human reviewer must reconcile the expected and observed PRD hash, or explicitly accept continued conservative PRD use for this deliverable. | Keep PRD-derived requirements warning-qualified and do not treat the mismatched PRD hash as final closure evidence. |
+| Closure language for PRD-derived controls | Human reviewer must approve wording that distinguishes PRD-derived source-warning content from accepted source truth before final issue. | State that PRD content is used under recorded `HASH_MISMATCH` warning until reconciled; do not upgrade the warning by implication. |
+</p></div></div></section>
+<section id="SEC-ED040-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:aba12685bfd2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0019</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aba12685bfd2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aba12685bfd2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aba12685bfd2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Decision Area | Preferred Direction | Trade-off |
+|---|---|---|
+| Disabled options | Keep unsupported variants visible and disabled. | Operators see future or unavailable paths, but the UI must avoid implying they are executable. |
+| Dynamic scope reset | Clear invalid selections aggressively. | Users may need to reselect after root changes, but stale execution targets are avoided. |
+| Knowledge bucket coverage | Start from canonical document-kit and metadata bucket terms. | Implementation may need mapping if existing file names or UI labels differ. |
+| Governance boundary | Let UI dispatch describe intent only; execution approval remains separate. | More state checks may be needed before invoking TASK or subagent pathways. |
+</p></div></div></section>
+<section id="SEC-ED040-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:edea4e7dac63" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0020</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:edea4e7dac63" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:edea4e7dac63" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:edea4e7dac63" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected Handling |
+|---|---|
+| Operator selects PIPELINE `TASK`, then switches scope mode to `KNOWLEDGE_TYPES` without selecting a deliverable. | The UI should require a target deliverable before knowledge-type targets become executable. |
+| Active working root changes and the previously selected deliverable is no longer in the scope scan. | The selected deliverable and dependent knowledge target should reset. |
+| A future AUDIT variant is known but not implemented. | It may be visible as a disabled option with no runtime execution path. |
+| A deliverable folder has `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. | These files should be discoverable as first-class knowledge buckets when knowledge-type scope is used. |
+</p></div></div></section>
+<section id="SEC-ED040-0021" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:4d70cf2e607a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0021</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d70cf2e607a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d70cf2e607a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d70cf2e607a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CONFLICT-001 | PRD reference hash does not match expected hash in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 expected hash | `_REFERENCES.md` REF-006 actual hash | All PRD-derived requirements | Continue using PRD as directed source warning for this P1/P2 run; reconcile hash before final closure. | TBD |
+</p></div></div></section>
+<section id="SEC-ED040-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4ed146afb11b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0022</span> Assumptions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ed146afb11b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ed146afb11b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ed146afb11b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- ASSUMPTION: OBJ-001 and OBJ-007 are relevant because the decomposition explicitly lists them for DEL-08-03.
+- ASSUMPTION: The final implementation surface is frontend/UI state and tests, but specific component and test file paths are TBD until the implementation worker selects or confirms existing modules.
+</p></div></div></section>
+<section id="SEC-ED040-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3c06d08d9337" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0023</span> Pass 3 Disposition Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3c06d08d9337" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3c06d08d9337" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3c06d08d9337" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition |
+|---|---|
+| A-001 | Surfaced as conflict; the PRD hash mismatch remains in the Conflict Table and Human Ruling Path. |
+| C-001 | Incorporated as rationale for exposing metadata buckets only with canonical `KnowledgeTypeOption` labels or explicit mapping. |
+| D-001 | Converted to a human ruling path for REF-006 reconciliation before final closure. |
+| E-001 | Incorporated as boundary rationale distinguishing UI intent from TASK and Type 2 runtime authority. |
+| E-002 | Converted to human-approved closure-language requirement for PRD-derived controls under `HASH_MISMATCH`. |
+</p></div></div></section>
+<section id="SEC-ED040-0024" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:8bec41a141d9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0024</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8bec41a141d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8bec41a141d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8bec41a141d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0025" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:3143ddd7b4fa" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0025</span> Procedure: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3143ddd7b4fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3143ddd7b4fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3143ddd7b4fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0026" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:b2a4bc16f312" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0026</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b2a4bc16f312" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b2a4bc16f312" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b2a4bc16f312" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define an operational procedure for producing and verifying the DEL-08-03 implementation artifacts: pipeline selector tests, knowledge-type discovery behavior, and disabled option handling.
+</p></div></div></section>
+<section id="SEC-ED040-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:72315113f2f4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0027</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72315113f2f4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72315113f2f4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72315113f2f4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status / Source |
+|---|---|
+| Accepted decomposition entry for DEL-08-03 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
+| Deliverable metadata files | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_SEMANTIC.md`, `_STATUS.md` present |
+| Authoritative vocabulary | `docs/TYPES.md` Section 4.4 |
+| Product requirements | `docs/PRD.md` Section 8.2; PRD hash mismatch recorded as source warning |
+| Workspace scope API contract | `docs/SPEC.md` Section 17.2 |
+| Declared upstream dependencies | Extracted active rows exist in `_DEPENDENCIES.md` for accepted anchors, vocabulary, scope API, governance invariants, and PRD requirements; satisfaction remains TBD pending dependency closure. |
+| Declared downstream dependencies | `_DEPENDENCIES.md` records downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests; consumer target remains TBD. |
+</p></div></div></section>
+<section id="SEC-ED040-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:aef0cf3274ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0028</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aef0cf3274ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aef0cf3274ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aef0cf3274ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the implementation location for the PIPELINE category and TASK scope selector UI.
+   - If no existing location is confirmed, record the path as TBD rather than inventing it.</p>
+<p>2. Map canonical vocabulary into UI/state constants.
+   - Use `PipelineCategory` values for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*` as the operative taxonomy.
+   - Use `TaskScopeMode` values `DELIVERABLES` and `KNOWLEDGE_TYPES`.
+   - Use `KnowledgeTypeOption` labels for supported bucket discovery where exposed.
+   - Use the disabled-option concept for visible unsupported variants.</p>
+<p>3. Implement or verify PIPELINE category controls.
+   - Confirm `DECOMP`, `PREP`, `TASK`, and `AUDIT` are visible category controls.
+   - Confirm each category has documented options and record the option-list source or fixture for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`.
+   - Confirm unsupported options are visible, carry disabled or coming-soon semantics, and cannot start execution.</p>
+<p>4. Implement or verify TASK split selector behavior.
+   - Confirm task agent selection and scope selection are separate.
+   - Confirm scope mode supports deliverables and knowledge types.
+   - Confirm knowledge-type mode requires a selected target deliverable.</p>
+<p>5. Implement or verify dynamic scope discovery.
+   - Use the working-root scope surface to scan deliverables and knowledge types.
+   - Record whether evidence comes from live `/api/working-root/scope` integration or a mock contract fixture.
+   - Confirm the evidence demonstrates active-root scanning rather than hard-coded project assumptions.
+   - Detect document-kit buckets: `Datasheet`, `Specification`, `Guidance`, and `Procedure`.
+   - If metadata buckets are exposed, align them with the `KnowledgeTypeOption` vocabulary.</p>
+<p>6. Implement or verify invalid-selection reset behavior.
+   - Clear selected deliverable when the active root changes and the deliverable is absent.
+   - Clear selected knowledge target when its deliverable is absent.
+   - Clear selected knowledge target when the marker is disabled or stale.
+   - Name fixtures or tests for root change, removed deliverable, disabled marker, and stale knowledge target.</p>
+<p>7. Verify governance boundary behavior.
+   - Confirm selector state does not bypass Type 2 task-agent governance.
+   - Confirm any actual Type 2 execution path still depends on the relevant sealed-context and approval checks.
+   - Record evidence that write-scope limits, no-ghost-input limits, approval reference checks, and fail-closed delegation remain enforced outside the selector.</p>
+<p>8. Write or update tests.
+   - Cover pipeline category rendering and category option lists.
+   - Cover disabled option visibility and non-interactivity.
+   - Cover TASK selector split and required target deliverable behavior.
+   - Cover knowledge-type discovery for document-kit files.
+   - Cover stale-selection reset cases.
+</p></div></div></section>
+<section id="SEC-ED040-0029" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e1fa40cfc119" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e1fa40cfc119" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e1fa40cfc119" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e1fa40cfc119" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected Result |
+|---|---|
+| Category selector test | `DECOMP`, `PREP`, `TASK`, and `AUDIT` are available as PIPELINE category controls. |
+| Category option-list test | `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*` option lists have named source or fixture evidence. |
+| Disabled option test | Unsupported variants are visible, carry disabled or coming-soon semantics, and cannot be selected for execution. |
+| TASK scope selector test | Task agent and scope controls are independently represented. |
+| Knowledge-type target test | Knowledge-type mode requires a selected deliverable. |
+| Scope API evidence check | `/api/working-root/scope` integration or mock evidence demonstrates active-root deliverable and knowledge-type scanning. |
+| Knowledge bucket discovery test | Document kit files are detected as first-class knowledge buckets; any metadata buckets use canonical `KnowledgeTypeOption` labels. |
+| Stale selection reset test | Root change, removed deliverable, disabled marker, and stale knowledge target fixtures clear invalid UI state. |
+| Governance boundary review | UI dispatch does not grant runtime authority beyond governed execution checks, including sealed context, approval metadata, no ghost inputs, explicit write scope, and fail-closed delegation. |
+</p></div></div></section>
+<section id="SEC-ED040-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6edfcdde61e7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0030</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6edfcdde61e7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6edfcdde61e7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6edfcdde61e7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Maintain or produce these records during implementation:</p>
+<p>- Pipeline selector tests.
+- Category-specific option-list source or fixture inventory.
+- Knowledge-type discovery tests or fixtures.
+- Disabled option handling tests.
+- Scope API integration or mock-contract evidence for active-root scanning.
+- Reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target.
+- Governance boundary review evidence for selector-only intent versus runtime authority.
+- Any implementation note identifying confirmed UI component and test file paths.
+- Any implementation worker note naming the final component path and test file path owner; owner remains TBD until assigned.
+- Any human ruling on the PRD hash mismatch before closure.
+</p></div></div></section>
+<section id="SEC-ED040-0031" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:fa4deec166d0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0031</span> Pass 3 Disposition Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fa4deec166d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fa4deec166d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fa4deec166d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition |
+|---|---|
+| F-002 | Incorporated by requiring live or mocked `/api/working-root/scope` evidence that demonstrates active-root scanning. |
+| F-003 | Incorporated by naming reset fixture cases for root change, removed deliverable, disabled marker, and stale knowledge target. |
+| D-002 | Converted to an implementation-worker record slot for final UI component and test file paths, with owner still TBD. |
+</p></div></div></section>
+<section id="SEC-ED040-0032" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:61c9ce23659e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0032</span> Component: execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61c9ce23659e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61c9ce23659e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61c9ce23659e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0033" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:1345a2836697" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0033</span> Specification: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1345a2836697" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1345a2836697" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1345a2836697" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5f0ebd98d50c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0034</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f0ebd98d50c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f0ebd98d50c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f0ebd98d50c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the PIPELINE category and TASK scope dispatch behavior for the Chirality App vNext operative surface.</p>
+<p>In scope:</p>
+<p>- PIPELINE category selection for `DECOMP`, `PREP`, `TASK`, and `AUDIT`.
+- Category-specific option presentation, including disabled unsupported options.
+- TASK split selectors for task agent and scope.
+- Dynamic TASK scope from deliverables and knowledge-type buckets.
+- Invalid-selection reset behavior when the active working root or scanned scope changes.
+- Tests for pipeline selector behavior, knowledge-type discovery, and disabled option handling.</p>
+<p>Out of scope:</p>
+<p>- General SDK adapter mechanics.
+- Type 2 subagent runtime governance bridge implementation, except where selector behavior must not expand authority.
+- Dependency extraction for this deliverable run; `Dependencies.csv` remains deferred.
+- Retired unified pipeline run-record or broader PKG-08 hardening scope unless a governed amendment reactivates it.
+</p></div></div></section>
+<section id="SEC-ED040-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:08102ce4743d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0035</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08102ce4743d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08102ce4743d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08102ce4743d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Priority / Status | Source |
+|---|---|---|---|
+| DEL-08-03-REQ-001 | The PIPELINE UI shall expose operative category controls for `DECOMP`, `PREP`, `TASK`, and `AUDIT`. | P0 | `docs/PRD.md` FR-011 |
+| DEL-08-03-REQ-002 | Category controls shall present documented category-specific options for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`; the implementation record shall name the option-list source or fixture used for each category. | P0 | `docs/PRD.md` FR-011; `docs/TYPES.md` Section 4.4 |
+| DEL-08-03-REQ-003 | Unsupported PIPELINE variants shall remain visible, shall carry disabled or coming-soon semantics, and shall be unable to initiate execution. | P0 | `docs/PRD.md` FR-011; `docs/TYPES.md` Section 4.4; `docs/PRD.md` success metric 7 |
+| DEL-08-03-REQ-004 | PIPELINE `TASK` shall use split selectors for task agent and scope. | P0 | `docs/PRD.md` FR-012 |
+| DEL-08-03-REQ-005 | TASK scope mode shall support `DELIVERABLES` and `KNOWLEDGE_TYPES`. | P0 | `docs/PRD.md` FR-012; `docs/TYPES.md` Section 4.4 |
+| DEL-08-03-REQ-006 | Knowledge-type mode shall require a target deliverable. | P0 | `docs/PRD.md` FR-012 |
+| DEL-08-03-REQ-007 | Dynamic scope scan shall reset invalid selection state when roots change, deliverables disappear, knowledge markers are disabled, or knowledge targets become stale. | P1 | `docs/PRD.md` FR-013 |
+| DEL-08-03-REQ-008 | Knowledge-type discovery shall support document-kit files as first-class knowledge buckets: Datasheet, Specification, Guidance, and Procedure. | P1 | `docs/PRD.md` FR-049 |
+| DEL-08-03-REQ-009 | Knowledge-type discovery shall align with the canonical `KnowledgeTypeOption` vocabulary when metadata buckets are exposed. | P1 | `docs/TYPES.md` Section 4.4 |
+| DEL-08-03-REQ-010 | Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for `/api/working-root/scope`. | P0 | `docs/SPEC.md` Section 17.2; `docs/PRD.md` FR-013 |
+| DEL-08-03-REQ-011 | Dispatch behavior shall not expand agent authority or bypass Type 2 governance constraints; pass evidence shall show selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference, or fail-closed delegation gates. | P0 | `docs/CONTRACT.md` K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1 |
+| DEL-08-03-REQ-012 | Selector tests shall cover pipeline selector behavior, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | P1 | Decomposition anticipated artifacts; `docs/PRD.md` FR-013 |
+</p></div></div></section>
+<section id="SEC-ED040-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:440e90b6ef0e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0036</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:440e90b6ef0e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:440e90b6ef0e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:440e90b6ef0e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability | Evidence |
+|---|---|---|
+| Chirality `PipelineCategory` vocabulary | Defines operative category terms for dispatch. | `docs/TYPES.md` Section 4.4 |
+| Chirality `TaskScopeMode` vocabulary | Defines valid TASK scope modes. | `docs/TYPES.md` Section 4.4 |
+| Chirality `KnowledgeTypeOption` vocabulary | Defines knowledge bucket labels available for discovery. | `docs/TYPES.md` Section 4.4 |
+| Chirality disabled-option vocabulary | Defines visible but non-selectable options. | `docs/TYPES.md` Section 4.4 |
+| PRD Matrix, Workbench, and Pipeline requirements | Defines product behavior for PIPELINE and TASK selectors. | `docs/PRD.md` Section 8.2 |
+| SPEC workspace API contract | Defines scope scan endpoint purpose. | `docs/SPEC.md` Section 17.2 |
+| Agent/subagent governance invariants | Constrain dispatch behavior from expanding authority. | `docs/CONTRACT.md` Section 1.8 |
+</p></div></div></section>
+<section id="SEC-ED040-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:608e6fa13210" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0037</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:608e6fa13210" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:608e6fa13210" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:608e6fa13210" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification Approach | Expected Evidence |
+|---|---|---|
+| DEL-08-03-REQ-001, DEL-08-03-REQ-002 | UI/unit tests for category selector rendering and option lists, with the option-list source or fixtures named for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`. | Pipeline selector tests plus category option fixture record |
+| DEL-08-03-REQ-003 | UI/unit tests verifying disabled unsupported variants remain visible, communicate disabled or coming-soon semantics, and cannot initiate execution. | Disabled option handling tests |
+| DEL-08-03-REQ-004, DEL-08-03-REQ-005, DEL-08-03-REQ-006 | UI/state tests for split TASK selectors and required target deliverable behavior. | TASK selector state tests |
+| DEL-08-03-REQ-007 | State transition tests using named fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | Stale selection reset tests plus fixture inventory |
+| DEL-08-03-REQ-008, DEL-08-03-REQ-009 | Scope scan and UI tests for document-kit buckets (`Datasheet`, `Specification`, `Guidance`, `Procedure`) and any exposed metadata buckets using canonical `KnowledgeTypeOption` labels. | Knowledge-type discovery tests |
+| DEL-08-03-REQ-010 | API integration or mocked API contract tests for `/api/working-root/scope`, including evidence that returned deliverables and knowledge buckets come from the active working root. | Scope scan integration tests |
+| DEL-08-03-REQ-011 | Governance regression tests or review checks proving dispatch does not enable unauthorized Type 2 execution or bypass sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation. | Governance guard tests or review evidence |
+| DEL-08-03-REQ-012 | Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures. | Named tests or fixtures covering anticipated artifacts |
+</p></div></div></section>
+<section id="SEC-ED040-0038" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:25080eb2535b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0038</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:25080eb2535b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:25080eb2535b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:25080eb2535b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required or expected artifacts:</p>
+<p>- Pipeline selector tests.
+- Knowledge-type discovery tests.
+- Disabled option handling tests.
+- TASK scope selector fixtures for `DELIVERABLES` and `KNOWLEDGE_TYPES`.
+- Category-specific option-list source or fixture record for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`.
+- Evidence that invalid selections reset after root and scan changes, including root-change, removed-deliverable, disabled-marker, and stale-target fixtures.
+- Scope-scan evidence showing `/api/working-root/scope` integration or a mocked equivalent for active-root scanning.
+- Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.
+- ASSUMPTION: implementation notes may be needed once actual frontend component/module paths are selected.
+</p></div></div></section>
+<section id="SEC-ED040-0039" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:d23f79419338" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0039</span> Source Warnings</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d23f79419338" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d23f79419338" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d23f79419338" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Warning ID | Statement | Impact |
+|---|---|---|
+| WARN-001 | `docs/PRD.md` has expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` but observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as a source warning per dispatch, not a blocker. Human may need to reconcile the reference hash before closure. |
+</p></div></div></section>
+<section id="SEC-ED040-0040" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:78da7d8f3307" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0040</span> Pass 3 Disposition Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:78da7d8f3307" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:78da7d8f3307" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:78da7d8f3307" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition |
+|---|---|
+| F-001 | Incorporated by adding a minimum governance proof threshold to DEL-08-03-REQ-011 and its verification evidence. |
+| X-001 | Incorporated by requiring named option-list sources or fixtures for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`. |
+| X-002 | Incorporated by naming required document-kit discovery evidence and canonical `KnowledgeTypeOption` treatment for any exposed metadata buckets. |
+| X-003 | Incorporated by requiring visible, disabled or coming-soon semantics, and inability to initiate execution as one disabled-option evidence set. |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED040";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-10-02-PROTECTED-PATH-AND-PROPOSAL-PATH-POLICY - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED050-0002">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED050-0009">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED050-0017">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED050-0024">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a></nav>
+<main>
+<section id="SEC-ED050-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:90ae71b71779" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED050-0001</span> Source Pack: SRC-DEL-DEL-10-02-PROTECTED-PATH-AND-PROPOSAL-PATH-POLICY</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90ae71b71779" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90ae71b71779" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90ae71b71779" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED050-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:a59c73cad6fb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0002</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a59c73cad6fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a59c73cad6fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a59c73cad6fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:fb844c7c6e24" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0003</span> Datasheet: DEL-10-02 Protected Path and Proposal Path Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb844c7c6e24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb844c7c6e24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb844c7c6e24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1291391a56d7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1291391a56d7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1291391a56d7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1291391a56d7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-10-02 |
+| DeliverableName | Protected Path and Proposal Path Policy |
+| PackageID | PKG-10 |
+| PackageName | Domain Engine Future Boundary |
+| ResponsibleParty | TBD |
+| Type | SECURITY_CONTROL |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| ContextEnvelope | M |
+| Scope Item | SOW-068 |
+| Objective | OBJ-010 |
+</p></div></div></section>
+<section id="SEC-ED050-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:259fb0c556d5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:259fb0c556d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:259fb0c556d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:259fb0c556d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Policy posture | Future-boundary / gated scope, not current-release domain operation execution. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-10; `docs/PRD.md` §8.17 |
+| Protected path | Authoritative domain-engine artifact path not directly writable by agents. | `docs/TYPES.md` §11.3 |
+| Proposal path | Agent-writable folder for proposed changes, summaries, or review aids. | `docs/TYPES.md` §11.3; `docs/PRD.md` §8.17 FR-111 |
+| Domain truth owner | Domain engines own authoritative domain truth when adopted by amendment; Chirality governs interaction, proposals, records, and human gates. | `docs/CONTRACT.md` §1.10 K-DOMAIN-1; `docs/PRD.md` §8.17 FR-106 |
+| Agent write rule | Agents may write proposals and summaries, not protected domain-engine model truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PLAN.md` R7 |
+| Accepted mutation route | Any accepted mutation of domain state must flow through an approved adapter or operation workflow and an explicit human gate. | `docs/PRD.md` §10.10; `docs/SPEC.md` §18 |
+| Boundary notice requirement | Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/PRD.md` §8.17 FR-115; `docs/CONTRACT.md` §1.10 K-DOMAIN-4 |
+| Current concrete path patterns | TBD - profile-specific protected/proposal path patterns are not defined in the accessible sources for DEL-10-02. | `docs/PRD.md` §8.17 FR-108 |
+| Profile-specific examples | TBD - example categories are source-supported, but concrete protected/proposal path patterns remain blocked until `DomainEngineProfile` path syntax is accepted. P3 disposition: X-002 incorporated as future slot. | `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108 |
+</p></div></div></section>
+<section id="SEC-ED050-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:295aadbda30e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:295aadbda30e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:295aadbda30e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:295aadbda30e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Activation condition | Governed future amendment after core harness stability. | `docs/PRD.md` §8.17; `docs/PLAN.md` R7 |
+| Profile prerequisite | A generic `DomainEngineProfile` contract precedes engine-specific integration. | `docs/PRD.md` §8.17 FR-107 |
+| Enforcement prerequisite | Profile validation determines what the harness may read, propose, validate, or request without guessing from prompt text. | `docs/PRD.md` §8.17 FR-108 |
+| Direct protected writes | Prohibited for agents and ordinary Chirality tools. | `docs/PRD.md` §8.17 FR-110; `docs/PRD.md` §10.10 |
+| Human acceptance | Required before application of a domain operation. | `docs/PRD.md` §8.17 FR-113; `docs/SPEC.md` §18 |
+| PRD source status | Source warning: expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Treated as source warning only by dispatch instruction. | `_REFERENCES.md` REF-006 |
+| Responsible ownership | TBD - downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership. P3 disposition: B-001 converted to closure-relevant TBD. | `_CONTEXT.md` §Source Authority |
+</p></div></div></section>
+<section id="SEC-ED050-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:76323a6e4fe6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:76323a6e4fe6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:76323a6e4fe6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:76323a6e4fe6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Element | Construction Rule | Source |
+|---|---|---|
+| Policy record | Define the separation between protected paths and proposal paths, plus enforcement implications. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-10-02 |
+| Hook implication | Protected path writes must be denied or routed away from direct agent mutation; hook implementation detail remains TBD until future amendment. | `docs/PRD.md` §8.17 FR-110; `docs/SPEC.md` §18 |
+| Proposal outputs | Agents may create proposals, summaries, and review aids under declared proposal paths. | `docs/PRD.md` §8.17 FR-111; `docs/TYPES.md` §11.3 |
+| Adapter route | Accepted protected-state changes require approved adapter or operation workflow plus explicit human gate. | `docs/PRD.md` §10.10 |
+| Examples | Only example category supported by accessible sources is OpenPipeStress as a possible fixture profile, not core runtime behavior. Concrete file examples are TBD. | `docs/PRD.md` §8.17 FR-114; `docs/TYPES.md` §11.3 |
+</p></div></div></section>
+<section id="SEC-ED050-0008" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:3ab00b370758" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3ab00b370758" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3ab00b370758" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3ab00b370758" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/PRD.md` §8.17, §10.10, source warning per `_REFERENCES.md` REF-006.
+- `docs/CONTRACT.md` §1.10.
+- `docs/SPEC.md` §18.
+- `docs/TYPES.md` §11.
+- `docs/PLAN.md` R7.
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-10 and SOW-068 rows.
+</p></div></div></section>
+<section id="SEC-ED050-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:ffde6c3187b3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0009</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ffde6c3187b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ffde6c3187b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ffde6c3187b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0010" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:2313446f6428" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0010</span> Guidance: DEL-10-02 Protected Path and Proposal Path Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2313446f6428" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2313446f6428" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2313446f6428" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0011" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:f0826fdd55cf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f0826fdd55cf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f0826fdd55cf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f0826fdd55cf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-10-02 exists to define a future security boundary for domain-engine filesystem interaction: agents may write proposals, summaries, and review aids, but they must not write protected domain-engine model truth. This supports OBJ-010 while keeping PKG-10 in future-boundary scope. Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-10-02; `docs/PRD.md` §8.17.
+</p></div></div></section>
+<section id="SEC-ED050-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:286cc7f5b0e7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:286cc7f5b0e7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:286cc7f5b0e7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:286cc7f5b0e7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Future-boundary first.** Treat this policy as compatibility design for a governed future amendment, not as permission to activate domain-engine execution now. Source: `docs/PRD.md` §8.17; `docs/SPEC.md` §18.
+2. **Protected truth stays protected.** Protected paths hold authoritative domain-engine artifacts and are not directly writable by agents. Source: `docs/TYPES.md` §11.3; `docs/CONTRACT.md` §1.10 K-DOMAIN-2.
+3. **Proposals are non-binding work products.** Proposal paths may hold proposed changes, summaries, or review aids, but they do not become accepted protected domain state without the future workflow. Source: `docs/TYPES.md` §11.3; `docs/PRD.md` §8.17 FR-111.
+4. **Accepted mutation needs a gate.** Any accepted mutation of protected domain state must flow through an approved adapter or operation workflow and explicit human gate. Source: `docs/PRD.md` §10.10; `docs/SPEC.md` §18.
+5. **Chirality does not become the solver.** Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-1; `docs/PRD.md` §8.17 FR-106.
+6. **Boundary copy matters.** Domain-engine outputs must not be presented as professional approval, code compliance, external validation, or solver truth owned by Chirality. Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/PRD.md` §8.17 FR-115.
+</p></div></div></section>
+<section id="SEC-ED050-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:445050008f56" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:445050008f56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:445050008f56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:445050008f56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Policy should be profile-driven once `DomainEngineProfile` exists; the accessible sources name `protectedPaths` and `proposalPaths` fields but do not define concrete path glob syntax. Source: `docs/TYPES.md` §11.1.
+- Hook implications are policy-level in the current source set. CONTRACT names path hooks and operation workflow as enforcement surfaces, but the exact hook API for domain paths is TBD. Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-2.
+- OpenPipeStress is only a potential first fixture profile. Avoid hardcoding OpenPipeStress assumptions into Chirality core policy. Source: `docs/PRD.md` §8.17 FR-114; `docs/TYPES.md` §11.3.
+- REF-006 `docs/PRD.md` has a hash mismatch in `_REFERENCES.md`; dispatch instruction says to treat that mismatch as a source warning only.
+- Concrete protected/proposal path examples stay category-level because `DomainEngineProfile` exposes `protectedPaths` and `proposalPaths` fields but the accessible sources do not define accepted glob syntax or per-engine path patterns. P3 disposition: C-001 already covered and made explicit; X-002 remains a future documentation slot.
+- Final publication wording should continue to say proposal artifacts are review aids only: they do not become accepted protected domain state without the future approved workflow and explicit human gate. P3 disposition: E-002 incorporated as closure wording guidance.
+</p></div></div></section>
+<section id="SEC-ED050-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:93440722f5b4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93440722f5b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93440722f5b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93440722f5b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance | Source |
+|---|---|---|
+| Proposal usability vs protected-state safety | Permit agent-authored proposals and summaries, but deny direct protected model writes. | `docs/PRD.md` §8.17 FR-110, FR-111 |
+| Generic profile policy vs engine-specific convenience | Keep policy generic until profile contract and fixture adoption are accepted. | `docs/PRD.md` §8.17 FR-107, FR-114 |
+| Prompt guidance vs runtime enforcement | Do not rely on prompt text alone for protected path denies; future implementation needs profile/path/hook enforcement. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110 |
+| Review velocity vs human authority | Require explicit human acceptance before applying domain operations. | `docs/PRD.md` §8.17 FR-113; `docs/SPEC.md` §18 |
+</p></div></div></section>
+<section id="SEC-ED050-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5684d2448fc8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5684d2448fc8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5684d2448fc8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5684d2448fc8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Supported example categories:</p>
+<p>- Agent writes a proposed domain change package, summary, or review aid to a proposal path. Source: `docs/TYPES.md` §11.3; `docs/PRD.md` §8.17 FR-111.
+- Agent direct write to a protected model path is denied or routed to a proposal workflow. Source: `docs/PRD.md` §8.17 FR-110; `docs/PRD.md` §10.10.
+- OpenPipeStress may be represented as a future fixture profile if adopted, but concrete OpenPipeStress path examples are TBD. Source: `docs/PRD.md` §8.17 FR-114.
+</p></div></div></section>
+<section id="SEC-ED050-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6278f7fdf35b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6278f7fdf35b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6278f7fdf35b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6278f7fdf35b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CT-001 | PRD source hash mismatches expected reference hash, but dispatch instruction says to treat it as source warning only. | `_REFERENCES.md` REF-006 | Dispatch brief | All PRD-grounded sections | Use local `docs/PRD.md` as accessible source with warning recorded. | TBD |
+| CT-002 | Concrete protected/proposal path examples are requested as anticipated artifacts, but accessible sources define only categories and fields, not specific path patterns. | `_CONTEXT.md` Anticipated Artifacts | `docs/TYPES.md` §11.1/§11.3; `docs/PRD.md` §8.17 | Examples, requirements, procedure | Mark concrete patterns TBD until `DomainEngineProfile` contract/future amendment supplies them. | TBD |
+| CT-003 | PRD-grounded policy content uses a local PRD file whose recorded hash does not match the expected REF-006 hash. | `_REFERENCES.md` REF-006 | `docs/PRD.md` §8.17 and §10.10 | PRD-grounded requirements, closure language | Keep A-001 and E-001 visible as a source-warning conflict until a human accepts or replaces the PRD snapshot. | TBD |
+| CT-004 | No accountable owner is named for accepting or replacing the REF-006 PRD snapshot before final policy closure. | `_REFERENCES.md` REF-006 | `_CONTEXT.md` Source Authority | Source warning closure | Treat D-001 as a human-ruling TBD; do not close the PRD source warning by agent judgment. | TBD |
+</p></div></div></section>
+<section id="SEC-ED050-0017" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:35716773c916" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0017</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35716773c916" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35716773c916" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35716773c916" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0018" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:8fcacdcfc6ac" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0018</span> Procedure: DEL-10-02 Protected Path and Proposal Path Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fcacdcfc6ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fcacdcfc6ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fcacdcfc6ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0019" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:4e5a3467321c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4e5a3467321c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4e5a3467321c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4e5a3467321c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define a repeatable procedure for producing and reviewing the protected path and proposal path policy without activating domain-engine implementation. The procedure preserves the future-boundary posture of PKG-10 and keeps protected domain-engine model truth separate from agent-writable proposal outputs.
+</p></div></div></section>
+<section id="SEC-ED050-0020" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:5e77ed99e5b3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e77ed99e5b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e77ed99e5b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e77ed99e5b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status / Source |
+|---|---|
+| Deliverable context for DEL-10-02 | Available in `_CONTEXT.md`. |
+| Decomposition entry for DEL-10-02 and SOW-068 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
+| Domain invariants | Available in `docs/CONTRACT.md` §1.10. |
+| Future domain requirements | Available in `docs/PRD.md` §8.17 and §10.10, with REF-006 hash mismatch treated as source warning only. |
+| Future profile vocabulary | Available in `docs/TYPES.md` §11. |
+| Declared upstream dependencies | Extracted dependency register exists in `_DEPENDENCIES.md`; declared upstream/downstream sections remain TBD. P3 disposition: B-002 already covered as deferred closure input. |
+| ResponsibleParty | TBD. |
+</p></div></div></section>
+<section id="SEC-ED050-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:05959244ea29" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05959244ea29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05959244ea29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05959244ea29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the work remains future-boundary scope.
+   - Check that the policy does not implement current-release domain operation execution or activate `/api/domain/*` endpoints.
+   - Source: `docs/PRD.md` §8.17; `docs/SPEC.md` §18.</p>
+<p>2. Define policy terms from authoritative vocabulary.
+   - Use `Protected path` as an authoritative domain-engine artifact path not directly writable by agents.
+   - Use `Proposal path` as an agent-writable folder for proposed changes, summaries, or review aids.
+   - Source: `docs/TYPES.md` §11.3.</p>
+<p>3. State the protected write quarantine.
+   - Require direct agent writes to protected domain paths to be denied or routed through the future approved adapter / operation workflow.
+   - Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110.</p>
+<p>4. State the proposal write allowance.
+   - Permit agents to write proposals, summaries, and review aids to declared proposal paths.
+   - Do not treat those outputs as accepted protected state.
+   - Source: `docs/PRD.md` §8.17 FR-111; `docs/TYPES.md` §11.3.</p>
+<p>5. State the accepted mutation path.
+   - Require an approved adapter or operation workflow and explicit human gate before protected domain state changes.
+   - Source: `docs/PRD.md` §10.10; `docs/SPEC.md` §18.</p>
+<p>6. Capture hook implications without over-specifying implementation.
+   - Record that future enforcement must distinguish protected paths from proposal paths and fail closed for direct protected writes.
+   - Mark exact hook API, path glob syntax, and adapter manifest behavior as TBD unless supplied by a future accepted profile contract.
+   - Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-108.</p>
+<p>7. Add boundary-notice requirements.
+   - Confirm the policy prevents domain-engine outputs from being represented as professional approval, code compliance, external validation, or solver truth owned by Chirality.
+   - Source: `docs/PRD.md` §8.17 FR-115; `docs/CONTRACT.md` §1.10 K-DOMAIN-4.</p>
+<p>8. Review examples.
+   - Include only category examples supported by sources unless profile-specific path patterns are later accepted.
+   - Mark concrete OpenPipeStress or engine-specific paths as TBD.
+   - Source: `docs/PRD.md` §8.17 FR-114; `docs/TYPES.md` §11.3.
+</p></div></div></section>
+<section id="SEC-ED050-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:80c163d03c0a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:80c163d03c0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:80c163d03c0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:80c163d03c0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Pass Criteria |
+|---|---|
+| Future-boundary check | No current-release domain engine execution is activated or implied. |
+| Terminology check | Protected/proposal path definitions match `docs/TYPES.md` §11.3. |
+| Write-quarantine check | Protected domain paths are not agent-writable in policy text. |
+| Proposal-path check | Agent-writable outputs are limited to proposals, summaries, and review aids. |
+| Human-gate check | Accepted protected-state mutation requires explicit human acceptance. |
+| Boundary-copy check | No text says Chirality approves, validates, certifies, or owns solver truth. |
+| TBD check | Concrete path patterns, hook implementation details, and engine-specific examples remain TBD where unsupported. |
+| Future fixture check | Future verification records include categories for direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate once profile syntax and workflow are accepted. P3 disposition: F-002 incorporated. |
+</p></div></div></section>
+<section id="SEC-ED050-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0920fb69696e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0920fb69696e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0920fb69696e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0920fb69696e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Protected/proposal path policy: `Specification.md`.
+- Hook implications and TBDs: `Specification.md`, `Guidance.md`.
+- Examples and conflicts: `Guidance.md`.
+- Source warning: PRD hash mismatch recorded in `Datasheet.md` and `Guidance.md`.
+- Dependency register: `_DEPENDENCIES.md` includes extracted active rows, while human-declared upstream/downstream sections remain TBD; closure must not treat those extracted rows as human-declared acceptance.
+- Future workflow owner: TBD - the owner who defines the approved adapter or operation workflow that can convert proposals into protected-state changes is not named in accessible sources. P3 disposition: D-002 converted to closure-relevant TBD.
+</p></div></div></section>
+<section id="SEC-ED050-0024" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:21fafb5e849c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0024</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21fafb5e849c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21fafb5e849c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21fafb5e849c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0025" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:e00d1bb417ff" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0025</span> Specification: DEL-10-02 Protected Path and Proposal Path Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e00d1bb417ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e00d1bb417ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e00d1bb417ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:efc0dd45c5f9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efc0dd45c5f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efc0dd45c5f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efc0dd45c5f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the future policy boundary separating domain-engine protected paths from agent-writable proposal paths for PKG-10. It covers SOW-068 and supports OBJ-010 by preserving future domain-engine compatibility without turning domain solvers into Chirality core.</p>
+<p>In scope:</p>
+<p>- Define protected path and proposal path semantics for future `DomainEngineProfile` integration.
+- State the write-quarantine rule for protected domain-engine model truth.
+- State that proposals, summaries, review aids, operation records, and human gates are separate from authoritative protected artifacts.
+- Capture hook and workflow implications at policy level.</p>
+<p>Out of scope:</p>
+<p>- Current-release domain operation execution.
+- Concrete OpenPipeStress implementation.
+- Concrete filesystem path patterns for any specific engine profile.
+- Direct implementation of `/api/domain/*` endpoints.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-10-02; `docs/PRD.md` §8.17; `docs/SPEC.md` §18.
+</p></div></div></section>
+<section id="SEC-ED050-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:632a9ad210d4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:632a9ad210d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:632a9ad210d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:632a9ad210d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-10-02-REQ-001 | The policy shall preserve PKG-10 as future-boundary scope and shall not activate current-release domain operation execution. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-10; `docs/PRD.md` §8.17 |
+| DEL-10-02-REQ-002 | The policy shall define protected paths as authoritative domain-engine artifact paths not directly writable by agents. | `docs/TYPES.md` §11.3 |
+| DEL-10-02-REQ-003 | The policy shall define proposal paths as agent-writable folders for proposed changes, summaries, or review aids. | `docs/TYPES.md` §11.3 |
+| DEL-10-02-REQ-004 | Protected domain paths shall be write-quarantined from direct agent and ordinary tool mutation. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110 |
+| DEL-10-02-REQ-005 | Agents shall write proposals, summaries, and review aids rather than protected domain-engine model truth. | `docs/PRD.md` §8.17 FR-111; `docs/PLAN.md` R7 |
+| DEL-10-02-REQ-006 | Any accepted mutation of domain state shall flow through an approved adapter or operation workflow and explicit human gate. | `docs/PRD.md` §10.10; `docs/SPEC.md` §18 |
+| DEL-10-02-REQ-007 | The policy shall preserve separation between authoritative domain truth owned by the domain engine and Chirality records/proposals/human gates. | `docs/CONTRACT.md` §1.10 K-DOMAIN-1; `docs/PRD.md` §8.17 FR-106 |
+| DEL-10-02-REQ-008 | The policy shall require boundary notices or equivalent copy so domain-engine outputs are not presented as professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/PRD.md` §8.17 FR-115 |
+| DEL-10-02-REQ-009 | ASSUMPTION: Path policy enforcement should be expressed through future profile policy, path hooks, and operation workflow checks because those enforcement surfaces are named by CONTRACT. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2 |
+| DEL-10-02-REQ-010 | Concrete path glob syntax, adapter manifest schema, and per-engine examples remain TBD until DEL-10-01 / future amendment defines the profile contract. | `docs/PRD.md` §8.17 FR-108; `docs/TYPES.md` §11.1 |
+| DEL-10-02-REQ-011 | Future acceptance evidence shall include a proof slot showing that direct protected-path writes fail closed and cannot be performed by ordinary agent tools. P3 disposition: F-001 and X-001 incorporated as future evidence criteria. | `docs/CONTRACT.md` §1.6 K-PERM-2, §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110 |
+| DEL-10-02-REQ-012 | Future acceptance evidence shall include proof slots for proposal-path write allowance and accepted mutation through an approved adapter or operation workflow plus explicit human gate. P3 disposition: F-002 and D-002 incorporated as future workflow evidence criteria. | `docs/PRD.md` §8.17 FR-111, FR-113; `docs/SPEC.md` §18 |
+</p></div></div></section>
+<section id="SEC-ED050-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8d47908423b7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d47908423b7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d47908423b7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d47908423b7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Source | Applicability |
+|---|---|
+| `docs/CONTRACT.md` §1.10 | Binding invariants K-DOMAIN-1 through K-DOMAIN-4. |
+| `docs/PRD.md` §8.17 | Future domain compatibility requirements FR-106 through FR-115; REF-006 has a hash mismatch warning in `_REFERENCES.md`. |
+| `docs/PRD.md` §10.10 | Future domain artifact categories and protected mutation route. |
+| `docs/SPEC.md` §18 | Provisional endpoint boundary and future profile requirements. |
+| `docs/TYPES.md` §11 | Vocabulary for `DomainEngineProfile`, `OperationProposal`, protected path, proposal path, deterministic adapter, boundary notice, and OpenPipeStress fixture. |
+| `docs/PLAN.md` R7 | Roadmap placement and acceptance posture for future domain profiles and operation proposals. |
+</p></div></div></section>
+<section id="SEC-ED050-0029" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:a8f31aa8d3a3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a8f31aa8d3a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a8f31aa8d3a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a8f31aa8d3a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification Approach |
+|---|---|
+| DEL-10-02-REQ-001 | Review text for future-boundary language and absence of implementation activation. |
+| DEL-10-02-REQ-002, DEL-10-02-REQ-003 | Confirm definitions match `docs/TYPES.md` §11.3. |
+| DEL-10-02-REQ-004, DEL-10-02-REQ-005 | Confirm policy distinguishes protected model truth from proposal/summarization outputs. |
+| DEL-10-02-REQ-006 | Confirm accepted mutation route includes approved adapter or operation workflow and explicit human gate. |
+| DEL-10-02-REQ-007, DEL-10-02-REQ-008 | Confirm professional-boundary and solver-truth separation language is present. |
+| DEL-10-02-REQ-009 | Human review required because hook implementation detail is not fully specified in accessible source slices. |
+| DEL-10-02-REQ-010 | Human review required when profile contract or engine-specific path patterns are drafted. |
+| DEL-10-02-REQ-011 | Future validation fixture or equivalent review evidence confirms direct protected writes are denied or routed away from mutation and fail closed. |
+| DEL-10-02-REQ-012 | Future validation fixture or equivalent review evidence confirms proposal-path writes remain allowed as non-binding artifacts and accepted mutation requires the approved route plus human gate. |
+</p></div></div></section>
+<section id="SEC-ED050-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9ca1f3a1670a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ca1f3a1670a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ca1f3a1670a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ca1f3a1670a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required artifacts for this deliverable:</p>
+<p>- Protected/proposal path policy.
+- Hook implications.
+- Examples.</p>
+<p>Current documentation gaps:</p>
+<p>- Concrete protected/proposal path pattern examples are TBD.
+- Profile-specific adapter and manifest details are TBD.
+- ResponsibleParty remains TBD by dispatch instruction and `_CONTEXT.md`.
+- Future test fixture categories remain TBD until the governed `DomainEngineProfile` syntax and operation workflow are accepted: direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate. P3 disposition: F-002 and X-002 incorporated as future slots.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED050";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

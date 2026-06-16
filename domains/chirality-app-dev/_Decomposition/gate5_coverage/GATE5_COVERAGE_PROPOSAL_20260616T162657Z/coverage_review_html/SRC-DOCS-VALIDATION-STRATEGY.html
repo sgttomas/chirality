@@ -1,0 +1,330 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-VALIDATION-STRATEGY - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>7</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD011-0001">VALIDATION STRATEGY - Harness Runtime and Governance Evidenc</a> <a href="#SEC-PD011-0002">1. Purpose</a> <a href="#SEC-PD011-0003">2. Evidence Principles</a> <a href="#SEC-PD011-0004">3. Current Local Command Surface</a> <a href="#SEC-PD011-0005">4. Evidence Routing</a> <a href="#SEC-PD011-0006">5. Evidence Artifacts</a> <a href="#SEC-PD011-0007">6. Open Decisions</a></nav>
+<main>
+<section id="SEC-PD011-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:84991b82a162" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD011-0001</span> VALIDATION STRATEGY - Harness Runtime and Governance Evidence</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84991b82a162" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84991b82a162" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84991b82a162" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** Draft governance support surface
+**Date:** 2026-06-13
+**Product:** Chirality desktop harness and bundled agent operating system
+**Applies to:** app-dev governance, harness runtime, frontend validation, packaging evidence, and governed workspace workflows
+</p></div></div></section>
+<section id="SEC-PD011-0002" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:587c092982cd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0002</span> 1. Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:587c092982cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:587c092982cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:587c092982cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines how Chirality App validation evidence is classified, collected, and interpreted. It routes evidence for app-dev work; it does not replace `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PRD.md`, `docs/PLAN.md`, source code, tests, accepted execution artifacts, decision records, or git history.</p>
+<p>Validation evidence is software and governance evidence only. It is not lifecycle issuance, release publication authorization, professional approval, certification, sealing, authentication, code-compliance acceptance, or external validation for reliance.
+</p></div></div></section>
+<section id="SEC-PD011-0003" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:29ba0202709a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0003</span> 2. Evidence Principles</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:29ba0202709a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:29ba0202709a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:29ba0202709a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality separates five evidence classes:</p>
+<p>| Evidence class | What it proves | What it does not prove |
+|---|---|---|
+| Static governance evidence | Control-plane links, stale-rule removal, plan/log consistency, decision-register routing, and clean documentation diffs. | Runtime behavior, release readiness, or human approval. |
+| Runtime contract verification | Product-owned adapter, session, event, permission, SDK isolation, and tool-surface behavior under deterministic tests. | Professional adequacy or future SDK behavior after an untested upgrade. |
+| Harness workflow validation | API and UI-facing harness workflows behave as expected against a running local app surface. | Full user acceptance, all platform packaging behavior, or release publication readiness. |
+| Packaging and instruction-root evidence | Required instruction-root resources are present and packaged build commands complete where applicable. | Signed, notarized, published, or externally distributed release status. |
+| Boundary and claims review | Network, API-key, redaction, professional-boundary, and product-identity constraints remain visible and enforced. | Legal advice, professional-practice advice, or code-compliance approval. |</p>
+<p>Evidence must bind to the command run, working tree state or commit, affected files, generated artifacts where applicable, and skipped checks with reasons. A skipped check is acceptable only when the tranche scope makes the skip explicit and defensible.
+</p></div></div></section>
+<section id="SEC-PD011-0004" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:ca5b58b9ffc1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0004</span> 3. Current Local Command Surface</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca5b58b9ffc1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca5b58b9ffc1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca5b58b9ffc1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Unless a tranche specifies narrower validation, app-dev validation commands are run from `frontend/`:</p>
+<p>| Command | Evidence role |
+|---|---|
+| `npm run test` | Vitest unit and contract checks for API routes, runtime libraries, SDK mapping, tool descriptors, session events, UI helpers, script policies, and governance helpers. |
+| `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
+| `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable. |
+| `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
+| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. |
+| `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
+| `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
+| `npm run desktop:dist` | Unsigned/unnotarized local-builder macOS arm64 DMG plus instruction-root integrity. |</p>
+<p>Documentation-only governance tranches normally use static checks instead of frontend runtime commands. Runtime, SDK, permission, network, packaging, and release-significant tranches use the applicable gate family in `docs/RELEASE_QUALITY_GATES.md`.</p>
+<p>Build, packaging, artifact, and release-evidence command details are recorded in `docs/BUILD_AND_RELEASE.md`.
+</p></div></div></section>
+<section id="SEC-PD011-0005" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:345c0e8263db" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0005</span> 4. Evidence Routing</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:345c0e8263db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:345c0e8263db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:345c0e8263db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Change surface | Minimum evidence |
+|---|---|
+| Coordination, plans, decision-register pointers, or docs-only governance | `git diff --check` over affected docs/control-plane paths; targeted `rg` checks for retired rules or stale authority; link/path existence checks for new references; explicit no-runtime-code-change check. |
+| Runtime engine contract, adapter, turn lifecycle, session events, or event schema | Focused Vitest coverage for touched runtime modules; `npm run typecheck`; broader `npm run test` when shared contracts move. |
+| SDK options, permission overlay, tool descriptors, tool exposure, MCP wrappers, or hooks | Focused tests for options, permissions, descriptors, denied tools, and unknown tools; `npm run typecheck`; broader tests when exposure semantics change. |
+| Harness API, running workflow, session boot, SSE, interrupt, attachment, or validation behavior | Relevant unit/API tests; `npm run harness:validate:premerge` against a reachable local app; summary artifact review. |
+| Network, API key, redaction, or provider policy | Relevant unit tests; `npm run proof:network-policy`; redaction or key-storage tests where touched. |
+| UI workflow, professional-boundary copy, product identity, or navigation | Relevant component/library tests; targeted manual or browser review when layout/copy behavior changes; no prohibited professional/release claims. |
+| Instruction-root, bundled resources, Electron packaging, release scripts, or distribution metadata | `npm run instruction-root:integrity`; `npm run build`; `npm run desktop:pack` or `npm run desktop:dist` when packaging behavior changes. |
+| Future domain-engine adapters or operation proposals | Runtime tests plus explicit human-gate and professional-boundary review; no direct protected-domain writes unless a governed adapter workflow authorizes them. |
+</p></div></div></section>
+<section id="SEC-PD011-0006" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:bb2a6355d97c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0006</span> 5. Evidence Artifacts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb2a6355d97c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb2a6355d97c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb2a6355d97c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Machine-readable artifacts are preferred when available:</p>
+<p>- harness premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`;
+- instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
+- test command output captured in terminal or run records when required by a tranche;
+- plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.</p>
+<p>Evidence artifacts are derivative records. They support review and regression analysis, but they do not become decomposition truth, product requirements, lifecycle approval, release authorization, or professional acceptance.
+</p></div></div></section>
+<section id="SEC-PD011-0007" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:8aff9a7aa417" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0007</span> 6. Open Decisions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8aff9a7aa417" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8aff9a7aa417" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8aff9a7aa417" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
+- Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
+- Final coverage, performance, and platform-matrix thresholds remain `TBD`.
+- Concrete provider/network implementation beyond the current shipped Anthropic path requires a bounded future implementation tranche and recorded decision evidence.
+- D-APP-01 and D-APP-02 rule Pi pattern-corpus-only: no Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike work unless a future ruling explicitly reverses those boundaries.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD011";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

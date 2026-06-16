@@ -1,0 +1,8 @@
+RuleID,Decision,AppliesTo,Rule
+G3BR-001,PKG routing,EXECUTION_DELIVERABLE,PKG-NN deliverable atoms route to CAT-0(NN+1); one category per author package.
+G3BR-002,Product-doc split,PRODUCT_DOCS,Requirements/spec/architecture docs -> CAT-012; process/build/release/validation docs -> CAT-013 (explicit unit map).
+G3BR-003,Governance split,EXECUTION_GOVERNANCE,Decomposition/reconciliation/dependency-closure/PKG-00-governance/sources -> CAT-015; coordination/decisions/scope-change/scripts/execution -> CAT-014.
+G3BR-004,Frontend grouping,"FRONTEND_SRC,FRONTEND_DOCS","Frontend implementation source (grouped SRC-FRONTEND-SRC, OI-001) and harness docs route to CAT-016."
+G3BR-005,Root posture,ROOT_DOCS,AGENTS.md repository/agent operating posture routes to CAT-014.
+G3BR-006,Lossless,ALL,No atom splits; UnitStatement and ContentHash unchanged; forced source-routing decisions only.
+G3BR-007,IN-only,ALL,Only InOutStatus==IN atoms are assigned a CategoryID; TBD/OUT left blank (TBD deferred per OI-013).

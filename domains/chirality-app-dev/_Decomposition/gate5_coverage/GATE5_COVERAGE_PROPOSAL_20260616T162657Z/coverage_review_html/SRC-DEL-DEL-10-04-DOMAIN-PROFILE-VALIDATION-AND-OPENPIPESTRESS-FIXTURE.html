@@ -1,0 +1,520 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-10-04-DOMAIN-PROFILE-VALIDATION-AND-OPENPIPESTRESS-FIXTURE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>34</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED052-0002">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED052-0009">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED052-0020">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a> <a href="#SEC-ED052-0027">Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_</a></nav>
+<main>
+<section id="SEC-ED052-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:20214ae0562a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED052-0001</span> Source Pack: SRC-DEL-DEL-10-04-DOMAIN-PROFILE-VALIDATION-AND-OPENPIPESTRESS-FIXTURE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:20214ae0562a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:20214ae0562a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:20214ae0562a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED052-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:8cb05764c2cc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED052-0002</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8cb05764c2cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8cb05764c2cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8cb05764c2cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:418132c376bc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED052-0003</span> Datasheet: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:418132c376bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:418132c376bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:418132c376bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:42af58c45927" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42af58c45927" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42af58c45927" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42af58c45927" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-10-04 |
+| DeliverableName | Domain Profile Validation and OpenPipeStress Fixture |
+| PackageID | PKG-10 |
+| PackageName | Domain Engine Future Boundary |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| ResponsibleParty | TBD |
+| Type | TEST_SUITE |
+| ContextEnvelope | M |
+| ScopeItem | SOW-070 |
+| Objective | OBJ-010 |
+| Source posture | Future-boundary/gated scope; not current-release domain operation execution |
+| Validation evidence owner | TBD - no human owner is assigned for interpreting future fixture pass/fail evidence |
+</p></div></div></section>
+<section id="SEC-ED052-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:89b1798fe231" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89b1798fe231" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89b1798fe231" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89b1798fe231" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary subject | Validation of generic domain profiles and OpenPipeStress as a future fixture profile | `_CONTEXT.md` Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-10 table |
+| Domain profile contract fields | `profileId`, `engineName`, optional `engineVersion`, `protectedPaths`, `proposalPaths`, `artifactTypes`, `operations`, `manifestRules`, `boundaryNotice` | `docs/TYPES.md` Section 11.1; `docs/PRD.md` Section 8.17 FR-108 |
+| Operation proposal fields relevant to validation fixtures | Proposal identity, profile identity, operation name, inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, status | `docs/TYPES.md` Section 11.2; `docs/PRD.md` Section 8.17 FR-112 |
+| OpenPipeStress role | Potential first domain profile fixture, not Chirality core runtime behavior | `docs/TYPES.md` Section 11.3; `docs/PRD.md` Section 8.17 FR-114 |
+| Validation requirement | Domain profile validation is deterministic; invalid or incomplete profiles fail before runtime exposure | `docs/PRD.md` Section 8.17 FR-109 |
+| Mutation boundary | Protected domain-engine paths are not directly agent-writable | `docs/PRD.md` Section 8.17 FR-110; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 |
+| Professional boundary | Domain-engine output is not professional approval, code compliance, external validation, or Chirality-owned solver truth | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
+</p></div></div></section>
+<section id="SEC-ED052-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e4c0fe5a68c3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4c0fe5a68c3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4c0fe5a68c3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4c0fe5a68c3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Runtime sequencing | Domain-engine profiles and operation proposals are future amendment work after core harness stability | `docs/PLAN.md` R7; `docs/PRD.md` R7 |
+| Current-release exclusion | Domain-engine endpoints and tools are provisional future interfaces and must not be implemented as current-release scope | `docs/SPEC.md` Section 18 |
+| Protected path enforcement | Prompt text is not a sufficient safety boundary for filesystem writes or domain operations | `docs/CONTRACT.md` Section 1.6 K-PERM-2 |
+| Fixture specificity | OpenPipeStress-specific assumptions must live in profile and adapter layers, not in core harness runtime | `docs/PRD.md` Section 8.17 FR-114 |
+| Dependency state | Declared upstream and downstream dependencies are TBD until dependency extraction and project graph validation occur | `_DEPENDENCIES.md` Declared Upstream/Downstream |
+| PRD source warning | Expected PRD hash differs from observed PRD hash; dispatch treats this as a source warning only | `_REFERENCES.md` REF-006; assignment override |
+| Future amendment gate | Accepted PKG-10 amendment or explicit human authorization is required before fixture implementation becomes active work | `_DEPENDENCIES.md` Extracted Dependency Register; `docs/PLAN.md` R7 |
+</p></div></div></section>
+<section id="SEC-ED052-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6e1dae6248e8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e1dae6248e8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e1dae6248e8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e1dae6248e8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Artifact | Expected Content | Status |
+|---|---|---|
+| Future fixture profile | A future OpenPipeStress `DomainEngineProfile` example or fixture using the generic profile contract | TBD - no accepted fixture file exists in this deliverable yet |
+| Validation tests | Deterministic checks for required profile fields, path separation, manifest rules, operation descriptors, and boundary notices | TBD - test framework and target files are not assigned in this gated scope |
+| Adapter assumptions note | Notes separating OpenPipeStress profile/adapter assumptions from Chirality core runtime behavior | TBD - future amendment required before adapter assumptions become implementation truth |
+| Stable evidence records | Future pass/fail records for validation checks, expected failures, and professional-boundary wording coverage | TBD - no record format or artifact path has been assigned |
+</p></div></div></section>
+<section id="SEC-ED052-0008" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:6229371da535" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6229371da535" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6229371da535" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6229371da535" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for deliverable identity and scope.
+- `_DEPENDENCIES.md` for declared dependency state.
+- `_REFERENCES.md` for source corpus and PRD hash warning.
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 2.2, 5, and PKG-10 entry.
+- `docs/PRD.md` Sections 8.17, 10.10, R7, and knowledge gaps KG-016 through KG-020.
+- `docs/CONTRACT.md` Sections 1.1, 1.6, and 1.10.
+- `docs/SPEC.md` Sections 14.3 and 18.
+- `docs/TYPES.md` Sections 11.1 through 11.3.
+- `docs/PLAN.md` R7 and risk table.
+</p></div></div></section>
+<section id="SEC-ED052-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:af3f328b67b2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED052-0009</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af3f328b67b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af3f328b67b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af3f328b67b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0010" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:2af5f72a7ace" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED052-0010</span> Guidance: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2af5f72a7ace" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2af5f72a7ace" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2af5f72a7ace" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0011" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:2ae1005d17b3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2ae1005d17b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2ae1005d17b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2ae1005d17b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipeStress fixture representable without turning Chirality into a domain-specific solver or moving domain operations into current-release scope. The accepted decomposition describes this as a TEST_SUITE deliverable for validating generic domain profiles and modeling OpenPipeStress as a future fixture without hardcoding solver assumptions into core.
+</p></div></div></section>
+<section id="SEC-ED052-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d7742f93b5dd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d7742f93b5dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d7742f93b5dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d7742f93b5dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Treat PKG-10 as future-boundary work. `docs/PLAN.md` R7 and `docs/SPEC.md` Section 18 place domain profiles, operations, and endpoints in future amendment scope.
+2. Keep the profile generic before fixture-specific details. `docs/PRD.md` Section 8.17 FR-107 requires a generic `DomainEngineProfile` contract before engine-specific integration.
+3. Validate deterministically. `docs/PRD.md` Section 8.17 FR-109 requires invalid or incomplete profiles to fail before runtime exposure.
+4. Separate protected truth from proposals. `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 and `docs/PRD.md` Section 8.17 FR-110/FR-111 require agents to write proposals and summaries, not protected domain-engine model truth.
+5. Preserve human gates. `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 and `docs/PRD.md` Section 8.17 FR-113 require explicit human acceptance before applying domain operations.
+6. Keep professional boundaries visible. `docs/CONTRACT.md` Section 1.1 K-AUTH-1 and Section 1.10 K-DOMAIN-4 prohibit representing agent, runtime, or domain adapter output as professional approval, code compliance, external validation, or Chirality-owned solver truth.
+</p></div></div></section>
+<section id="SEC-ED052-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ec6a36f82335" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec6a36f82335" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec6a36f82335" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec6a36f82335" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The future fixture should test the generic shape first: identity, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.
+- OpenPipeStress can be a concrete profile fixture only after the generic profile boundary is accepted by amendment. Until then, OpenPipeStress-specific values, solver assumptions, file formats, and execution semantics remain TBD.
+- A useful future validation suite should include negative cases. Examples include missing boundary notice, protected path listed as proposal path, missing deterministic adapter manifest rule, incomplete operation descriptor, or fixture wording that implies Chirality owns solver truth.
+- ASSUMPTION: Future test locations will be selected by the package implementation plan after PKG-10 amendment; no current source assigns concrete test paths for DEL-10-04.
+- ASSUMPTION: The adapter assumptions note should distinguish profile-level assumptions, adapter-manifest assumptions, operation-proposal assumptions, and explicit non-assumptions about Chirality core runtime.
+- Future adapter assumptions should separate at least four classes: profile-level fixture facts, adapter-level manifest and execution assumptions, operation-proposal-level human-gated change assumptions, and explicit core-runtime non-assumptions. This preserves `docs/PRD.md` Section 8.17 FR-114 without making OpenPipeStress behavior part of the harness core.
+- The REF-006 PRD hash mismatch is a visible source-status warning, not a new design fact. Continued PRD citation is accepted for this assignment only because the task brief explicitly directed P3 enrichment to proceed; closure reliance still needs human acceptance or refreshed source metadata.
+</p></div></div></section>
+<section id="SEC-ED052-0014" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:933809a7f1bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:933809a7f1bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:933809a7f1bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:933809a7f1bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance | Source |
+|---|---|---|
+| Concrete OpenPipeStress examples vs. core neutrality | Use OpenPipeStress only as fixture data; do not put OpenPipeStress concepts in public core runtime contracts. | `docs/PRD.md` Section 8.17 FR-114 |
+| Agent convenience vs. protected domain truth | Prefer proposal paths and review aids; reject direct protected model writes. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 |
+| Prompt instruction vs. runtime enforcement | Do not rely on prompt-only controls for writes, tool exposure, or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2 |
+| Early domain integration vs. runtime spine stability | Keep profile validation future-scoped until core harness stability. | `docs/PLAN.md` R7; `docs/PRD.md` R7 |
+| Early fixture detail vs. evidence quality | Prefer TBDs and deterministic expected-failure slots over unsupported OpenPipeStress values, solver assumptions, or file formats. | `docs/PRD.md` Section 8.17 FR-109/FR-114 |
+</p></div></div></section>
+<section id="SEC-ED052-0015" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:eb01bf04c9a0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0016" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:ab4c66b34e77" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED052-0016</span> Candidate Positive Fixture Shape</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab4c66b34e77" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab4c66b34e77" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab4c66b34e77" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TBD - no accepted fixture file exists. A future positive fixture should be a generic `DomainEngineProfile` instance for `openpipestress` with required fields present, protected/proposal path separation, operation descriptors, manifest rules, and boundary notice.
+</p></div></div></section>
+<section id="SEC-ED052-0017" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:ed3b54316dcf" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED052-0017</span> Candidate Negative Cases</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed3b54316dcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed3b54316dcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed3b54316dcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Missing `boundaryNotice`.
+- `protectedPaths` and `proposalPaths` overlap.
+- Operation descriptor lacks deterministic checks.
+- Fixture text states or implies Chirality approves engineering work.
+- OpenPipeStress behavior is asserted as core harness runtime behavior.</p>
+<p>These are candidate examples only; they require future amendment and test-path assignment before implementation.
+</p></div></div></section>
+<section id="SEC-ED052-0018" class="chunk sec depth-5 cov-empty" data-kind="section" data-key="section:183304b0f029" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED052-0018</span> Future Evidence Checklist</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:183304b0f029" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:183304b0f029" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:183304b0f029" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+TBD until amendment assigns files and owner:</p>
+<p>- Concrete positive fixture path.
+- Negative fixture paths and deterministic expected failures.
+- Adapter manifest location and rule semantics.
+- Operation proposal fixture records with required human gate.
+- Boundary notice wording fixture.
+- Stable validation result record format.
+- No-current-release-activation evidence.
+</p></div></div></section>
+<section id="SEC-ED052-0019" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:54f2c3336d2b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0019</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54f2c3336d2b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54f2c3336d2b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54f2c3336d2b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CT-001 | No source-content conflict identified during P1/P2. PRD hash mismatch is recorded as a source warning only per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | Treat PRD mismatch as warning during P3, but require human acceptance or refreshed source metadata before closure reliance | TBD |
+</p></div></div></section>
+<section id="SEC-ED052-0020" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:50a3c9d0bb76" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED052-0020</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:50a3c9d0bb76" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:50a3c9d0bb76" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:50a3c9d0bb76" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0021" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:cd8739a01d7a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED052-0021</span> Procedure: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd8739a01d7a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd8739a01d7a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd8739a01d7a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0022" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:3333ca4abfe2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0022</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3333ca4abfe2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3333ca4abfe2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3333ca4abfe2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the operational procedure for producing and later verifying the DEL-10-04 future fixture profile, validation tests, and adapter assumptions note without activating domain-engine implementation.
+</p></div></div></section>
+<section id="SEC-ED052-0023" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:f9effb4262b2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0023</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9effb4262b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9effb4262b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9effb4262b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Accepted PKG-10 amendment or explicit human authorization for future domain-engine work. Current sources keep domain profiles and operation proposals in future scope.
+- Accessible source corpus for `docs/PRD.md`, `docs/TYPES.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/PLAN.md`.
+- ResponsibleParty assignment: TBD.
+- Concrete future test path and adapter manifest location: TBD.
+- Dependency posture: `_DEPENDENCIES.md` now contains extracted ACTIVE rows, but all satisfaction remains `PENDING`; accepted declared upstream/downstream closure and project graph validation remain TBD.
+- Source warning acknowledged: REF-006 PRD hash mismatch is treated as warning only for this run and remains visible for future closure reliance.
+</p></div></div></section>
+<section id="SEC-ED052-0024" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:f1101e502819" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0024</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f1101e502819" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f1101e502819" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f1101e502819" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm scope gate.
+   - Verify PKG-10 remains future-boundary/gated scope unless a human-approved amendment says otherwise.
+   - Do not create or activate domain-engine endpoints, protected-path write behavior, or operation-apply workflows during this deliverable-local drafting run.</p>
+<p>2. Define fixture validation target.
+   - Use `docs/TYPES.md` Section 11.1 as the candidate `DomainEngineProfile` shape.
+   - Mark any field semantics not defined by the accessible source corpus as TBD.</p>
+<p>3. Draft or review a future OpenPipeStress fixture profile.
+   - Use OpenPipeStress only as fixture profile data.
+   - Keep OpenPipeStress solver assumptions in the profile or adapter-assumptions layer.
+   - Do not add OpenPipeStress assumptions to Chirality core runtime.</p>
+<p>4. Define deterministic validation checks.
+   - Check required profile fields.
+   - Check protected/proposal path separation.
+   - Check operation descriptors against `OperationProposal` concepts where operation fixtures are present.
+   - Check deterministic adapter manifest presence or mark manifest rules TBD.
+   - Check boundary notice presence.
+   - For each negative case, record the deterministic expected failure or mark the expected output TBD.</p>
+<p>5. Define negative validation cases.
+   - Missing required field.
+   - Overlapping protected and proposal paths.
+   - Missing boundary notice.
+   - Operation fixture without required human gate.
+   - Fixture or documentation that implies professional approval, code compliance, external validation, or Chirality-owned solver truth.</p>
+<p>6. Produce adapter assumptions note.
+   - Separate accepted source facts from ASSUMPTION and TBD items.
+   - Identify which assumptions are profile-level, adapter-level, operation-proposal-level, or explicitly excluded from core runtime.</p>
+<p>7. Verify no implementation activation occurred.
+   - Confirm no current-release endpoint/tool activation was introduced.
+   - Confirm this P3 four-documents task did not create, edit, or promote `Dependencies.csv`.
+   - Confirm ResponsibleParty remains TBD.
+   - Confirm no future fixture output is treated as professional approval, code compliance, external validation, or Chirality-owned solver truth.
+</p></div></div></section>
+<section id="SEC-ED052-0025" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:c545f8ab556f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0025</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c545f8ab556f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c545f8ab556f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c545f8ab556f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification Item | Expected Evidence |
+|---|---|
+| Four-document kit exists | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` are non-empty. |
+| Future-boundary posture preserved | Documents state that PKG-10 remains future-boundary/gated scope. |
+| Requirements source-grounded | Requirements cite accessible source sections or are labeled ASSUMPTION/TBD. |
+| OpenPipeStress not core | No instruction treats OpenPipeStress as Chirality core runtime behavior. |
+| Protected path policy preserved | Direct protected-domain writes are disallowed in requirements and guidance. |
+| Human gate preserved | Domain operations require explicit human acceptance before application. |
+| Professional boundary preserved | No language claims automated approval, code compliance, external validation, or solver truth ownership. |
+| Expected failures documented | Future negative tests include deterministic expected failure evidence or explicit TBDs. |
+| P3 scope preserved | `_STATUS.md`, `_SEMANTIC_LENSING.md`, metadata files, and dependency registers are not modified by the P3 four-documents pass. |
+</p></div></div></section>
+<section id="SEC-ED052-0026" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:18268abe8004" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0026</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18268abe8004" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18268abe8004" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18268abe8004" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Future fixture profile: TBD.
+- Validation tests: TBD.
+- Adapter assumptions note: TBD.
+- Stable validation evidence record format: TBD.
+- Human-approved boundary-notice wording fixture: TBD.
+- TASK run record under `_run_records/`.
+- `_STATUS.md` not changed during P3_ONLY because `_SEMANTIC_LENSING.md` declares `NO_STATUS_TOUCH`.
+</p></div></div></section>
+<section id="SEC-ED052-0027" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7a2c956044e1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED052-0027</span> Component: execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a2c956044e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a2c956044e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a2c956044e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0028" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:bd6f3bd7b7f5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED052-0028</span> Specification: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd6f3bd7b7f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd6f3bd7b7f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd6f3bd7b7f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED052-0029" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:dfe626b30466" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0029</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dfe626b30466" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dfe626b30466" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dfe626b30466" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the expected future validation posture for generic `DomainEngineProfile` records and an OpenPipeStress fixture profile. It is limited to future-boundary test-suite definition and source-grounded fixture expectations for PKG-10.</p>
+<p>The deliverable excludes current-release activation of domain-engine endpoints, domain-operation application, protected-model writes, solver integration, and any claim that Chirality approves or owns domain-engine solver truth. This exclusion is required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 2.2.</p>
+<p>ResponsibleParty remains TBD.</p>
+<p>Current fixture implementation authority remains TBD. Before this deliverable can become executable implementation work, a human-approved PKG-10 amendment or explicit authorization must identify the ResponsibleParty, concrete test path, adapter manifest location, evidence-record format, and expected-failure fixtures.
+</p></div></div></section>
+<section id="SEC-ED052-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:450060ad2d2b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0030</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:450060ad2d2b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:450060ad2d2b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:450060ad2d2b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source | Verification |
+|---|---|---|---|
+| DEL-10-04-REQ-001 | The validation posture shall treat `DomainEngineProfile` as a future platform contract, not current core runtime behavior. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` Section 18; `docs/PLAN.md` R7 | Review fixture/test scope for absence of current-release endpoint activation. |
+| DEL-10-04-REQ-002 | A profile validation fixture shall cover the generic profile fields: `profileId`, `engineName`, optional `engineVersion`, `protectedPaths`, `proposalPaths`, `artifactTypes`, `operations`, `manifestRules`, and `boundaryNotice`. | `docs/TYPES.md` Section 11.1; `docs/PRD.md` Section 8.17 FR-108 | Validate required/optional field coverage in the future test suite. |
+| DEL-10-04-REQ-003 | Validation shall be deterministic and shall fail invalid or incomplete profiles before runtime exposure. | `docs/PRD.md` Section 8.17 FR-109 | Future tests include deterministic negative cases for missing or invalid fields. |
+| DEL-10-04-REQ-004 | The OpenPipeStress fixture shall be represented as a fixture profile only, with OpenPipeStress-specific assumptions held in profile and adapter layers rather than Chirality core runtime. | `docs/PRD.md` Section 8.17 FR-114; `docs/TYPES.md` Section 11.3 | Inspect future fixture/test names and assertions for core-runtime coupling. |
+| DEL-10-04-REQ-005 | Profile validation shall preserve separation between protected paths and proposal paths. | `docs/PRD.md` Section 8.17 FR-108 through FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Negative tests reject direct agent-write treatment of protected paths. |
+| DEL-10-04-REQ-006 | Any operation-related fixture data shall align with `OperationProposal` concepts before application: inputs, intended changes, deterministic checks, expected outputs, risks, and required human gate. | `docs/PRD.md` Section 8.17 FR-112 and FR-113; `docs/TYPES.md` Section 11.2 | Review future fixture operation descriptors against proposal fields. |
+| DEL-10-04-REQ-007 | Boundary notices shall state that Chirality does not provide professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `docs/TYPES.md` Section 11.3 | Tests or review checklist require boundary notice presence and wording coverage. |
+| DEL-10-04-REQ-008 | The fixture/test suite shall not rely on prompt-only restrictions for protected paths or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2; `docs/SPEC.md` Section 14.3 | Future implementation tests verify runtime or deterministic enforcement surfaces, not prompt text alone. |
+| DEL-10-04-REQ-009 | The deliverable shall preserve the PRD hash mismatch as a source warning rather than accepted truth drift. | `_REFERENCES.md` REF-006; assignment override | Run records and documents note the warning where source status matters. |
+| DEL-10-04-REQ-010 | Future negative tests shall define deterministic expected failures, not only checklist labels. | `docs/PRD.md` Section 8.17 FR-109; `docs/TYPES.md` Sections 11.1 and 11.2 | Missing required fields, overlapping paths, incomplete operation proposals, absent boundary notices, and core-runtime-coupling cases each have expected failure evidence. |
+| DEL-10-04-REQ-011 | Future operation-descriptor fixtures shall cover inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, and status before any operation can be applied. | `docs/PRD.md` Section 8.17 FR-112/FR-113; `docs/TYPES.md` Section 11.2 | Fixture review confirms each `OperationProposal` field is represented or explicitly marked TBD. |
+| DEL-10-04-REQ-012 | Future fixture validation shall produce stable evidence records for pass/fail determinations and boundary-notice wording coverage. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `_DEPENDENCIES.md` Extracted Dependency Register | Evidence record path and format remain TBD until future amendment assigns them. |
+</p></div></div></section>
+<section id="SEC-ED052-0031" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:9b5aa5d4df09" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0031</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b5aa5d4df09" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b5aa5d4df09" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b5aa5d4df09" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability |
+|---|---|
+| `docs/PRD.md` Section 8.17 | Primary product requirements for future Domain Engine compatibility. Source warning applies because REF-006 hash mismatched the expected value. |
+| `docs/TYPES.md` Section 11 | Vocabulary and target shapes for `DomainEngineProfile`, `OperationProposal`, and domain terms. |
+| `docs/CONTRACT.md` Section 1.10 | Binding invariants for domain truth ownership, protected paths, human acceptance, and professional boundaries. |
+| `docs/SPEC.md` Section 18 | Specification boundary for future domain-engine endpoints/tools and non-implementation posture. |
+| `docs/PLAN.md` R7 | Sequencing and acceptance criteria for future amendment work. |
+</p></div></div></section>
+<section id="SEC-ED052-0032" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:cbe37d4121e9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0032</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cbe37d4121e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cbe37d4121e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cbe37d4121e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future validation should include, at minimum:</p>
+<p>| Check | Expected Result | Source |
+|---|---|---|
+| Required profile fields present | Missing required fields fail deterministically | `docs/PRD.md` Section 8.17 FR-108/FR-109 |
+| Protected/proposal path separation | Protected paths are not accepted as agent-writable proposal paths | `docs/PRD.md` Section 8.17 FR-110/FR-111 |
+| Operation descriptors | Operation fixture data is compatible with `OperationProposal` review and human gate concepts | `docs/TYPES.md` Section 11.2 |
+| Boundary notice | Fixture includes boundary notice text that prevents professional-approval or solver-truth overclaiming | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
+| Core-runtime separation | OpenPipeStress does not appear as core harness behavior | `docs/PRD.md` Section 8.17 FR-114 |
+| Future-scope gate | Tests do not activate domain-engine endpoints/tools as current-release implementation | `docs/SPEC.md` Section 18 |
+| Expected failure fixtures | Each negative case has deterministic expected output or failure evidence | `docs/PRD.md` Section 8.17 FR-109 |
+| Operation proposal fixture coverage | Inputs, intended changes, deterministic checks, expected outputs, risks, human gate, and status are present or explicitly TBD | `docs/TYPES.md` Section 11.2 |
+| Evidence records | Future test run output records pass/fail result, source-warning posture, boundary-notice wording coverage, and no-current-release-activation check | `docs/PRD.md` Section 8.17 FR-115; `docs/SPEC.md` Section 18 |
+</p></div></div></section>
+<section id="SEC-ED052-0033" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:37db6a57849e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0033</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:37db6a57849e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:37db6a57849e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:37db6a57849e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required or anticipated artifacts:</p>
+<p>- Future fixture profile.
+- Validation tests.
+- Adapter assumptions note.
+- ASSUMPTION: A future amendment will identify concrete file paths, test framework locations, and adapter manifest format before implementation.
+- TBD: Future evidence-record path and format for deterministic pass/fail decisions.
+- TBD: Human-approved boundary-notice wording fixture for professional-boundary coverage.
+</p></div></div></section>
+<section id="SEC-ED052-0034" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:464636c63ef0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED052-0034</span> Source Warnings</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:464636c63ef0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:464636c63ef0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:464636c63ef0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Warning | Impact |
+|---|---|
+| REF-006 `docs/PRD.md` has expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as source warning only per assignment override; requirements cite PRD sections conservatively, preserve the mismatch visibly, and require human acceptance or refreshed source metadata before closure reliance. |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED052";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

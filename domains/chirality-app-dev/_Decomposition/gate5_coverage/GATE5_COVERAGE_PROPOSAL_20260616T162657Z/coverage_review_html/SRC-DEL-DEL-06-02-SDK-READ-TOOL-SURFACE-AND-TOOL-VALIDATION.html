@@ -1,0 +1,583 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-06-02-SDK-READ-TOOL-SURFACE-AND-TOOL-VALIDATION - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>38</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED027-0002">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED027-0010">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED027-0023">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED027-0030">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a></nav>
+<main>
+<section id="SEC-ED027-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:ed9f412a7a96" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED027-0001</span> Source Pack: SRC-DEL-DEL-06-02-SDK-READ-TOOL-SURFACE-AND-TOOL-VALIDATION</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed9f412a7a96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed9f412a7a96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed9f412a7a96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED027-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:4b07e4595782" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED027-0002</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4b07e4595782" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4b07e4595782" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4b07e4595782" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:2498235f3391" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED027-0003</span> Datasheet: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2498235f3391" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2498235f3391" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2498235f3391" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b0e151f9f499" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0e151f9f499" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0e151f9f499" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0e151f9f499" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-06-02 |
+| Deliverable name | SDK Read Tool Surface and Tool Validation |
+| Package | PKG-06 Permissioned Tools, MCP, and Hooks |
+| Type | BACKEND_FEATURE_SLICE |
+| Responsible party | TBD |
+| Decomposition variant | SOFTWARE_DECOMP v3.2 |
+| Context envelope | M |
+| Scope items | SOW-047, SOW-049, SOW-050 |
+| Objective context | OBJ-005 |
+| Anticipated artifacts | Tool resolver; unknown-tool tests; deterministic ordering fixtures |</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger rows SOW-047 through SOW-050.
+</p></div></div></section>
+<section id="SEC-ED027-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:70d1da63349d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70d1da63349d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70d1da63349d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70d1da63349d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary feature | Resolve `opts.tools` to registered SDK built-ins or Chirality MCP names. | `_CONTEXT.md`; decomposition DEL-06-02 |
+| Unknown-tool behavior | Unknown tool names produce structured validation errors and are not silently passed through. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, HASH_MISMATCH warning |
+| SDK built-in candidates | `Read`, `LS`, `Glob`, `Grep`, `Write`, `Edit`, `Bash` where available. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.3 |
+| Initial read surface | SDK read tools plus Chirality read MCP tools are enabled before write/edit/bash capability. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; `docs/PLAN.md` R2 |
+| Chirality MCP namespace | Chirality-specific deterministic tools use `mcp__chirality__*` names. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.4 |
+| Initial Chirality MCP read candidates | `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and scaffold preview/dry-run where appropriate. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
+| Determinism condition | Tool-surface ordering, naming, MCP server IDs, and allow/deny lists are stable for a given session, persona, mode, and option set. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; decomposition SOW-049 |
+| Exposure boundary | Tool implementation availability does not imply model exposure. | decomposition SOW-049; `docs/CONTRACT.md` Section 1.6 K-TOOL-2 |
+| Restriction boundary | `allowedTools` alone is not a restriction boundary. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+</p></div></div></section>
+<section id="SEC-ED027-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6acb66b65d8e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6acb66b65d8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6acb66b65d8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6acb66b65d8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Constraint | Source |
+|---|---|---|
+| PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are warning-qualified until source-state reconciliation. | `_REFERENCES.md` REF-006 |
+| Package boundary | DEL-06-02 is bounded to tool exposure and validation; domain-engine operation semantics are excluded except protected-path hooks in adjacent scopes. | `_CONTEXT.md`; decomposition PKG-06 |
+| Permission overlay dependency | Capability-forward policy with explicit hard-deny precedence mode semantics and `canUseTool` mediation are adjacent policy inputs, primarily owned by DEL-06-01. | decomposition DEL-06-01 and DEL-06-02 |
+| MCP implementation boundary | Chirality MCP tool definitions are adjacent to this resolver, primarily owned by DEL-06-03. | decomposition DEL-06-03 |
+| Write/bash sequencing | Write/edit and bash capability remain later-phase surfaces and must not be exposed by the read-first resolver until the required hooks and governance land. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; `docs/PLAN.md` R2/R3 |
+| Shipped runtime posture | `readOnly` mode exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/PRD.md` Section 8.14, HASH_MISMATCH warning; `docs/TYPES.md` Section 8.1 |
+</p></div></div></section>
+<section id="SEC-ED027-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:09ff69dc2549" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09ff69dc2549" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09ff69dc2549" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09ff69dc2549" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component | Construction note | Source |
+|---|---|---|
+| Tool registry | Maintain an explicit registry of SDK built-ins and Chirality MCP tool names eligible for resolution. Exact registry file path: TBD. | `docs/SPEC.md` Sections 14.1 and 14.2 |
+| Resolver input | Consume resolved runtime options, including `opts.tools`, plus session/persona/mode/policy context needed for deterministic exposure. Exact interface shape: TBD. | `docs/PRD.md` FR-023 and Section 8.13, HASH_MISMATCH warning |
+| Name validation | Reject unknown `opts.tools` entries with structured validation errors before SDK request construction. | `docs/SPEC.md` Section 14.3; decomposition SOW-047 |
+| Deterministic ordering | Normalize the visible tool list into stable order for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` Section 1.6 K-TOOL-1; `docs/PRD.md` FR-080, HASH_MISMATCH warning |
+| Read-first filtering | Build the initial exposed surface from SDK read tools and Chirality read MCP tools; exclude or deny write/edit/bash until later phases. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; `docs/PLAN.md` R2 |
+| Permission handoff | Feed the resolved tool surface into the Chirality permission overlay; do not rely on `allowedTools` alone for restriction. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+| Tests | Include unknown-tool tests and deterministic ordering fixtures. Exact test paths: TBD. | `_CONTEXT.md`; decomposition DEL-06-02 |
+</p></div></div></section>
+<section id="SEC-ED027-0008" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:bcd7b02aac7c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0008</span> Pending Implementation Evidence</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcd7b02aac7c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcd7b02aac7c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcd7b02aac7c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Evidence slot | Current disposition | Source |
+|---|---|---|
+| Implementation, registry, metadata, and fixture paths | TBD until implementation ownership assigns concrete files; do not infer paths from planned artifact names. (P3: B-001) | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-INVENT-1 |
+| Terminology boundary | Use &quot;read-first&quot; for sequencing, &quot;read-only&quot; for capability class, and `readOnly` only for the runtime mode token. (P3: B-002) | `docs/TYPES.md` Section 8.1; `docs/PLAN.md` R2 |
+</p></div></div></section>
+<section id="SEC-ED027-0009" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:e7e411a301a8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e7e411a301a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e7e411a301a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e7e411a301a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Source | Use | Source state |
+|---|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` Sections 2 and 4 | Product-owned runtime governance, filesystem truth, read-before-powerful-tool posture | MATCH |
+| REF-002 | `docs/CONTRACT.md` Section 1.6 | Binding permission, tool, and MCP invariants | MATCH |
+| REF-003 | `docs/SPEC.md` Sections 14 and 15 | Tool names, MCP tools, surface rules, mode mapping | MATCH |
+| REF-004 | `docs/TYPES.md` Section 8 | Permission modes and tool-surface vocabulary | MATCH |
+| REF-005 | `docs/PLAN.md` R2/R3 | Implementation sequencing and acceptance context | MATCH |
+| REF-006 | `docs/PRD.md` Sections 8.13, 8.14, R2, KG-005, KG-023 | Product requirements and implementation direction | HASH_MISMATCH warning |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |
+</p></div></div></section>
+<section id="SEC-ED027-0010" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:98b664d4b7cd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED027-0010</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98b664d4b7cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98b664d4b7cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98b664d4b7cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0011" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:08f31ed5e0db" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED027-0011</span> Guidance: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08f31ed5e0db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08f31ed5e0db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08f31ed5e0db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7a1f4c984cdb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a1f4c984cdb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a1f4c984cdb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a1f4c984cdb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-02 exists to make `opts.tools` meaningful without letting SDK defaults or tool implementation availability define Chirality&#x27;s runtime authority. It is the read-first tool-surface slice of PKG-06: it validates requested names, normalizes deterministic exposure, and hands the resulting surface to permission policy before model execution.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Section 14; `docs/PRD.md` Section 8.13 with HASH_MISMATCH warning.
+</p></div></div></section>
+<section id="SEC-ED027-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:bce48ad19dbc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bce48ad19dbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bce48ad19dbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bce48ad19dbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Resolve before request construction. Tool names should be validated and normalized before SDK options or model context are built. Sources: decomposition SOW-047; `docs/PRD.md` FR-078, HASH_MISMATCH warning.
+2. Unknown is an error, not a fallback. Unknown tool names should produce structured validation errors rather than being silently passed through. Source: `docs/SPEC.md` Section 14.3.
+3. Determinism is part of the contract. Stable inputs should produce stable tool ordering, names, MCP server IDs, and allow/deny lists. Sources: decomposition SOW-049; `docs/CONTRACT.md` Section 1.6 K-TOOL-1.
+4. Read tools come first. Initial exposure should be SDK read tools plus Chirality read MCP tools; write/edit/bash wait for later governance phases. Sources: decomposition SOW-050; `docs/PRD.md` FR-082, HASH_MISMATCH warning.
+5. Exposure is separate from implementation. A tool being implemented or available in the SDK does not mean it belongs in model context. Source: `docs/CONTRACT.md` Section 1.6 K-TOOL-2.
+6. `allowedTools` is not a safety boundary. Treat it as SDK posture/auto-approval input only; restriction still requires deny rules, mode policy, hooks, `canUseTool`, and/or `dontAsk`. Sources: `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3.
+7. MCP is not a bypass. Chirality MCP names are transport exposure for deterministic operations, not a path around policy. Source: `docs/CONTRACT.md` Section 1.6 K-MCP-1.
+</p></div></div></section>
+<section id="SEC-ED027-0014" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0015" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:f1b6284fc227" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0015</span> Resolver Shape</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f1b6284fc227" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f1b6284fc227" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f1b6284fc227" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The resolver should be small and auditable:</p>
+<p>| Concern | Guidance |
+|---|---|
+| Registry ownership | Keep SDK built-in names and Chirality MCP names in an explicit registry or catalog. Exact path: TBD. |
+| Alias policy | Avoid implicit aliases unless a source file defines them. Current sources name SDK candidates and `mcp__chirality__*` names directly. |
+| Error shape | Return structured validation errors for unknown names. Exact error type: TBD. |
+| Ordering | Sort or otherwise normalize deterministically after validation and policy filtering. |
+| Output | Emit SDK-facing names and MCP server/tool identifiers as adapter metadata, not public product semantics. |
+</p></div></div></section>
+<section id="SEC-ED027-0016" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:d4e9f940a7e4" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0016</span> Read-First Surface</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d4e9f940a7e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d4e9f940a7e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d4e9f940a7e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Initial read candidates are `Read`, `LS`, `Glob`, and `Grep` where available, plus Chirality read MCP tools such as status read, dependency read, scope scan, and scaffold preview/dry-run. Do not use this deliverable to expose `Write`, `Edit`, or `Bash`; those require later hooks, path policy, output storage, and audit behavior.
+</p></div></div></section>
+<section id="SEC-ED027-0017" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:43d388cb9a2a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0017</span> Relationship to Adjacent Deliverables</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43d388cb9a2a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43d388cb9a2a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43d388cb9a2a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Adjacent deliverable | Interface point |
+|---|---|
+| DEL-06-01 | Provides capability policy with explicit hard-deny precedence and mode policy that this resolver must consume or preserve. |
+| DEL-06-03 | Provides Chirality MCP read tool definitions that this resolver registers or references. |
+| DEL-06-04 | Provides write/edit hooks and path policy needed before powerful write tools can be exposed. |
+| DEL-06-05 | Provides bash governance needed before `Bash` can be exposed. |
+| DEL-05-05 | Provides tool result budget/artifact policy referenced by later tool-result handling. |
+</p></div></div></section>
+<section id="SEC-ED027-0018" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:6121a741a118" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0018</span> PRD Hash Warning</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6121a741a118" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6121a741a118" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6121a741a118" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. Its R2/Section 8.13 content aligns with matching SPEC, CONTRACT, TYPES, PLAN, and decomposition slices used here, but PRD-only implementation details should be reviewed after source-state reconciliation.</p>
+<p>Pass 3 disposition: keep PRD-derived claims warning-qualified and do not treat REF-006 as closure authority until a human or accepted source-state process resolves the hash mismatch. (P3: A-001, D-002, E-002)
+</p></div></div></section>
+<section id="SEC-ED027-0019" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:fcc2aa5a4404" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0019</span> Terminology Normalization</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fcc2aa5a4404" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fcc2aa5a4404" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fcc2aa5a4404" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use the following terms distinctly:</p>
+<p>| Term | Use |
+|---|---|
+| read-first | Sequencing posture: read tools are enabled before write/edit/bash capability. |
+| read-only | Capability class: tools that do not write, shell out, or perform network-capable side effects. |
+| `readOnly` | Runtime mode token from the permission vocabulary. |</p>
+<p>This normalization preserves the difference between staged rollout, tool capability, and runtime mode policy. (P3: B-002)
+</p></div></div></section>
+<section id="SEC-ED027-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ce007ced6435" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0020</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce007ced6435" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce007ced6435" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce007ced6435" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Omit denied tools vs include and deny at call time | Prefer omission where possible to reduce context and accidental attempts, but never rely on omission alone; runtime denial must still hold. |
+| Strict registry vs permissive passthrough | Use strict registry behavior. Passthrough conflicts with SOW-047 and makes unknown tool names hard to audit. |
+| Resolver owns permission vs resolver consumes permission | Keep the resolver focused on validation and deterministic exposure. Capability-forward policy with explicit hard-deny precedence semantics belong to permission policy, but resolver output must not bypass it. |
+| SDK-specific names vs Chirality contracts | SDK names are adapter metadata. Public runtime contracts and event schemas should stay Chirality-owned. |
+| Read convenience vs staged governance | Exposing read tools first is useful, but it must not become a back door to write/bash or remote tool expansion. |
+</p></div></div></section>
+<section id="SEC-ED027-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6dc056941f8d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0021</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6dc056941f8d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6dc056941f8d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6dc056941f8d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected result |
+|---|---|
+| `opts.tools` contains `Read`, `Grep`, and `mcp__chirality__status_read` in read-first mode | Resolver accepts registered names and emits deterministic SDK/MCP surface order, subject to permission filtering. |
+| `opts.tools` contains `Read` and `UnknownSearch` | Resolver returns a structured validation error for `UnknownSearch`; unknown name is not sent to the SDK. |
+| SDK supports `Write`, but current mode is read-first/read-only | Resolver excludes or marks `Write` denied according to policy; implementation availability does not imply exposure. |
+| `allowedTools` includes a tool that Chirality policy denies | Final exposed/executable surface respects deny policy; `allowedTools` does not bypass restriction. |
+| A new `mcp__chirality__domain_*` name appears before governed domain amendment | Treat as unsupported/TBD unless accepted source updates authorize future domain tools. |
+</p></div></div></section>
+<section id="SEC-ED027-0022" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:00e5234833cc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0022</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00e5234833cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00e5234833cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00e5234833cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| TBD | No direct source conflict identified during P1/P2. PRD has a HASH_MISMATCH source-state warning. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as warning-qualified source until hash state is reconciled. | TBD |
+</p></div></div></section>
+<section id="SEC-ED027-0023" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:c49b9b9a0925" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED027-0023</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c49b9b9a0925" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c49b9b9a0925" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c49b9b9a0925" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0024" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:2fcd3b3f10e6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED027-0024</span> Procedure: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fcd3b3f10e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fcd3b3f10e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fcd3b3f10e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0025" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:4c99df879759" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0025</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c99df879759" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c99df879759" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c99df879759" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to produce and verify the DEL-06-02 SDK read tool-surface resolver and validation evidence. It is written for the deliverable artifact, not as an end-user operation runbook.
+</p></div></div></section>
+<section id="SEC-ED027-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d20598868d12" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0026</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d20598868d12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d20598868d12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d20598868d12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status |
+|---|---|
+| Accepted DEL-06-02 scope and source references | Available in `_CONTEXT.md` and `_REFERENCES.md` |
+| Tool-surface vocabulary | Available in `docs/TYPES.md` Section 8 |
+| Binding permission/tool/MCP invariants | Available in `docs/CONTRACT.md` Section 1.6 |
+| SDK and MCP tool naming specification | Available in `docs/SPEC.md` Section 14 |
+| Mode and hook context | Available in `docs/SPEC.md` Section 15 |
+| Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
+| Exact implementation file paths | TBD |
+| Exact test fixture paths | TBD |
+</p></div></div></section>
+<section id="SEC-ED027-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b38fd056c37a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0027</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b38fd056c37a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b38fd056c37a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b38fd056c37a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Establish the accepted tool-name registry.
+   - Include SDK built-in candidates from `docs/SPEC.md` Section 14.1: `Read`, `LS`, `Glob`, `Grep`, `Write`, `Edit`, and `Bash` where available.
+   - Include accepted Chirality MCP names from `docs/SPEC.md` Section 14.2 and `docs/TYPES.md` Section 8.4.
+   - Do not introduce aliases or remote/plugin tool names without an accepted source update.</p>
+<p>2. Define the resolver input and output.
+   - Input should include resolved runtime options, especially `opts.tools`, plus context needed for deterministic ordering and policy filtering.
+   - Keep the exact interface shape TBD until the runtime owner assigns the object or function boundary carrying `opts.tools`, session, persona, mode, SDK version, MCP server set, and permission policy. (P3: F-001)
+   - Output should identify SDK built-ins and Chirality MCP tools in the form required by SDK options/MCP configuration.
+   - Keep SDK-specific values as adapter metadata, not public Chirality contract terms.</p>
+<p>3. Validate requested names.
+   - For each `opts.tools` entry, resolve against the accepted registry.
+   - If a name is unknown, produce a structured validation error and stop before SDK request construction.
+   - Keep the exact structured validation error type and fixture assertion shape TBD until the implementation contract is named. (P3: C-002)
+   - Ensure unknown names are not present in emitted SDK options or model context.</p>
+<p>4. Apply read-first sequencing.
+   - Permit initial exposure of SDK read candidates (`Read`, `LS`, `Glob`, `Grep`) where available.
+   - Permit initial exposure of Chirality read MCP tools such as status read, dependency read, scope scan, and scaffold preview/dry-run where supported by registry policy.
+   - Exclude or deny `Write`, `Edit`, and `Bash` until later write/bash governance phases activate them.</p>
+<p>5. Preserve permission policy boundaries.
+   - Do not treat `allowedTools` alone as restriction.
+   - Hand the resolved surface to capability policy with explicit hard-deny precedence, disallowed tools, hooks, `canUseTool`, and/or `dontAsk` posture as applicable.
+   - Ensure implementation availability does not override policy filtering.</p>
+<p>6. Normalize deterministic ordering.
+   - Sort or otherwise canonicalize the final visible tool surface after validation and filtering.
+   - Use stable inputs: session, persona, mode, option set, SDK version, MCP server set, and permission policy.
+   - Record safe metadata or fingerprints when required by the runtime contract. Exact metadata path: TBD.</p>
+<p>7. Add unknown-tool tests.
+   - Verify unknown names produce structured validation errors.
+   - Verify unknown names are absent from SDK options and model context.
+   - Include at least one unknown SDK-like name and one unknown `mcp__chirality__*` name.</p>
+<p>8. Add deterministic ordering fixtures.
+   - Feed the same set of tools in varied input orders.
+   - Assert stable normalized output for identical context.
+   - Add fixture coverage for mixed SDK built-ins and Chirality MCP names.</p>
+<p>9. Add read-first sequencing tests.
+   - Verify read candidates resolve in the initial surface.
+   - Verify write/edit/bash do not appear or are hard-denied in read-first/read-only posture.
+   - Verify `allowedTools` cannot cause a denied or unsupported tool to execute.</p>
+<p>10. Record residual gaps.
+   - Keep exact implementation and fixture paths as `TBD` until assigned.
+   - Record the `docs/PRD.md` HASH_MISMATCH as a source-state warning in implementation or review evidence.
+</p></div></div></section>
+<section id="SEC-ED027-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e9fab035e1e9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0028</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9fab035e1e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9fab035e1e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9fab035e1e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Registry validation | Only registered SDK built-ins and accepted `mcp__chirality__*` names resolve. |
+| Unknown-tool behavior | Unknown names produce structured validation errors and are not passed to the SDK. |
+| Determinism | Same context and tool set produce stable output ordering and identifiers. |
+| Read-first sequencing | Initial surface contains read tools only; write/edit/bash are excluded or hard-denied. |
+| Permission boundary | `allowedTools` does not restrict by itself and cannot bypass deny policy. |
+| Implementation-vs-exposure | SDK/tool implementation availability does not imply model exposure. |
+| MCP parity | Chirality MCP names pass through the same surface and permission path as SDK built-ins. |
+| PRD warning | PRD-derived details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+</p></div></div></section>
+<section id="SEC-ED027-0029" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:af3a61303fdf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0029</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af3a61303fdf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af3a61303fdf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af3a61303fdf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Tool resolver implementation path: TBD.
+- SDK built-in and Chirality MCP registry path: TBD.
+- Structured validation error contract: TBD. (P3: C-002)
+- Unknown-tool test path: TBD. (P3: F-002)
+- Deterministic ordering fixture path: TBD. (P3: F-002)
+- Read-first sequencing test path: TBD. (P3: F-002)
+- Safe metadata or boot-fingerprint path for SDK names, versions, and MCP identifiers: TBD. (P3: E-001)
+- Trace package tying resolver, registry, error contract, fixtures, sequencing tests, and PRD warning note to implementation evidence: TBD. (P3: X-001)
+- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled. (P3: A-001, D-002, E-002)
+</p></div></div></section>
+<section id="SEC-ED027-0030" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1c793d7e5d2c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED027-0030</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c793d7e5d2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c793d7e5d2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c793d7e5d2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0031" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:98673f658603" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED027-0031</span> Specification: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98673f658603" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98673f658603" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98673f658603" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED027-0032" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a761a2763595" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0032</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a761a2763595" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a761a2763595" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a761a2763595" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-02 specifies the read-first SDK tool-surface resolver and validation behavior for PKG-06. It covers mapping `opts.tools` to registered SDK built-ins or Chirality MCP names, rejecting unknown names, producing deterministic tool exposure for a resolved runtime context, and enabling read tools before write/edit/bash capability.</p>
+<p>In scope:</p>
+<p>- Resolve requested tool names against explicit SDK built-in and Chirality MCP registries.
+- Reject unknown tool names with structured validation errors before SDK request construction.
+- Produce deterministic tool-surface ordering for stable session/persona/mode/policy inputs.
+- Expose SDK read tools and Chirality read MCP tools as the initial user-visible tool surface.
+- Ensure implementation availability does not itself imply model exposure.
+- Add unknown-tool tests and deterministic ordering fixtures.</p>
+<p>Out of scope:</p>
+<p>- Capability-forward policy with explicit hard-deny precedence permission decision semantics, mode mapping, and `canUseTool` approval mediation, except where this resolver consumes or forwards their policy outputs. Those are primarily DEL-06-01.
+- In-process MCP tool implementation details and wrapper metadata, which are primarily DEL-06-03.
+- Write/edit path hooks and provenance capture, which are DEL-06-04.
+- Bash enablement and timeout/capture policy, which are DEL-06-05.
+- Remote MCP, plugins, broad tool search, marketplace extension, and remote execution, which remain out of current scope without governed amendment.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 14 and 15; `docs/CONTRACT.md` Section 1.6; `docs/PRD.md` Section 8.13 with HASH_MISMATCH warning.
+</p></div></div></section>
+<section id="SEC-ED027-0033" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:412461697f91" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0033</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:412461697f91" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:412461697f91" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:412461697f91" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-06-02-REQ-001 | The resolver MUST map `opts.tools` entries only to registered SDK built-ins or registered Chirality MCP tool names. | decomposition SOW-047; `docs/PRD.md` FR-078, HASH_MISMATCH warning |
+| DEL-06-02-REQ-002 | Unknown `opts.tools` names MUST produce structured validation errors and MUST NOT be silently passed through to SDK configuration or model context. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` FR-078, HASH_MISMATCH warning |
+| DEL-06-02-REQ-003 | SDK built-in mappings MUST use SDK names where available, including read candidates `Read`, `LS`, `Glob`, and `Grep`, and later powerful candidates `Write`, `Edit`, and `Bash`. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.3 |
+| DEL-06-02-REQ-004 | Chirality-specific deterministic tools MUST use the `mcp__chirality__*` naming convention and resolve only from the accepted Chirality MCP registry. | `docs/SPEC.md` Sections 14.1 and 14.2; `docs/TYPES.md` Section 8.4 |
+| DEL-06-02-REQ-005 | Tool-surface construction MUST be deterministic for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` Section 1.6 K-TOOL-1; `docs/PRD.md` FR-080, HASH_MISMATCH warning |
+| DEL-06-02-REQ-006 | Tool implementation availability MUST NOT imply model exposure; a tool must pass resolver and permission-surface checks before exposure. | `docs/CONTRACT.md` Section 1.6 K-TOOL-2; decomposition SOW-049 |
+| DEL-06-02-REQ-007 | Initial user-visible capability MUST expose read-only SDK tools and Chirality read MCP tools before write/edit/bash capability. | decomposition SOW-050; `docs/PRD.md` FR-082, HASH_MISMATCH warning |
+| DEL-06-02-REQ-008 | Write/edit and bash tools MUST remain excluded or denied by the read-first surface until the later write/bash governance phases activate them. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; `docs/PLAN.md` R2/R3 |
+| DEL-06-02-REQ-009 | The resolver MUST NOT treat SDK `allowedTools` alone as a restriction boundary. Restriction requires disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture from the permission layer. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+| DEL-06-02-REQ-010 | Denied tools SHOULD be omitted from model context where possible, while runtime denial remains required for safety. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` FR-081, HASH_MISMATCH warning |
+| DEL-06-02-REQ-011 | In `readOnly` mode, the resolved surface MUST expose or allow read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/TYPES.md` Section 8.1; `docs/PRD.md` FR-091, HASH_MISMATCH warning |
+| DEL-06-02-REQ-012 | Resolver outputs SHOULD be represented in safe runtime metadata or boot fingerprints, including actual SDK tool names/versions and MCP server versions where available. | `docs/SPEC.md` Section 13; `docs/PRD.md` FR-029, HASH_MISMATCH warning |
+| DEL-06-02-REQ-013 | Tests MUST cover unknown tool names, deterministic ordering, and read-before-write/bash sequencing. | `_CONTEXT.md`; decomposition DEL-06-02; `docs/PLAN.md` R2 acceptance |
+</p></div></div></section>
+<section id="SEC-ED027-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2332e5136727" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0034</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2332e5136727" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2332e5136727" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2332e5136727" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or governing source | Applicability |
+|---|---|
+| `docs/CONTRACT.md` Section 1.6 | Binding permission/tool/MCP invariants, including deterministic exposure, implementation-vs-exposure separation, and `allowedTools` limitation. |
+| `docs/SPEC.md` Section 14 | SDK built-in names, Chirality MCP names, initial tool set, and surface rules. |
+| `docs/SPEC.md` Section 15 | Mode mapping and hook context consumed by tool-surface filtering. |
+| `docs/TYPES.md` Section 8 | Tool-surface vocabulary, permission modes, and initial MCP names. |
+| `docs/PLAN.md` R2/R3 | Sequencing: permission-gated read surface before controlled writes and bash. |
+| `docs/PRD.md` Section 8.13 | Product requirements for tool-surface behavior; use with HASH_MISMATCH warning from `_REFERENCES.md`. |
+</p></div></div></section>
+<section id="SEC-ED027-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:01a1a950b966" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0035</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01a1a950b966" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01a1a950b966" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01a1a950b966" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification approach |
+|---|---|
+| DEL-06-02-REQ-001, REQ-003, REQ-004 | Unit tests feed known SDK built-in and `mcp__chirality__*` names and assert canonical resolver outputs. |
+| DEL-06-02-REQ-002 | Unknown-tool tests assert structured validation error shape and assert unknown names are absent from emitted SDK options/model context. |
+| DEL-06-02-REQ-005 | Deterministic ordering fixtures vary input order and assert stable normalized output for the same session/persona/mode/policy context. |
+| DEL-06-02-REQ-006 | Tests assert registered implementation availability is insufficient unless resolver and permission-surface checks include the tool. |
+| DEL-06-02-REQ-007, REQ-008, REQ-011 | Read-first sequencing tests assert read tools can resolve in initial mode and write/edit/bash tools remain excluded or hard-denied until later policies are active. |
+| DEL-06-02-REQ-009 | Tests assert `allowedTools` is not treated as containment and cannot bypass deny inputs from the permission layer. |
+| DEL-06-02-REQ-010 | Surface-filtering tests assert denied tools are omitted where possible and still rejected if called. |
+| DEL-06-02-REQ-012 | Metadata or boot-fingerprint tests assert resolved tool names/versions and MCP server identifiers are stable and safe to record. Exact metadata path: TBD. |
+| DEL-06-02-REQ-013 | Test suite includes DEL-06-02 traceability markers or fixture names. Exact test paths: TBD. |
+</p></div></div></section>
+<section id="SEC-ED027-0036" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:c43a44ca206c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED027-0036</span> Pass 3 Verification Evidence Disposition</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c43a44ca206c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c43a44ca206c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c43a44ca206c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Disposition | Source reread evidence |
+|---|---|---|
+| C-001 | Incorporated as a verification-evidence requirement while concrete implementation paths remain TBD. Resolver, registry, deterministic-ordering, and read-first evidence must be named before closure. | `docs/CONTRACT.md` K-TOOL-1/K-TOOL-2; `docs/SPEC.md` Sections 13 and 14.3 |
+| D-001 | Incorporated as explicit tests for permission-boundary bypass cases: `allowedTools` cannot override deny inputs, and implementation availability alone cannot expose a tool. | `docs/CONTRACT.md` K-PERM-3 and K-TOOL-2; `docs/SPEC.md` Section 14.3 |
+| E-001 | Converted to a metadata-path TBD. Safe metadata or boot-fingerprint evidence is required, but the exact record path is not assigned in the current sources. | `docs/SPEC.md` Section 13; `docs/PRD.md` FR-128 with HASH_MISMATCH warning |
+</p></div></div></section>
+<section id="SEC-ED027-0037" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b6deac0c60f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0037</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b6deac0c60f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b6deac0c60f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b6deac0c60f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required implementation evidence:</p>
+<p>- Tool resolver or equivalent deterministic tool-surface builder.
+- Registry of supported SDK built-ins and Chirality MCP names.
+- Structured validation error contract for unknown tool names.
+- Deterministic ordering fixtures.
+- Read-first sequencing tests.
+- Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.</p>
+<p>Concrete evidence locations remain TBD until implementation ownership assigns files. The documentation package must not close DEL-06-02 solely on planned artifact names or decomposition prose. (P3: B-001, C-001, E-001)
+</p></div></div></section>
+<section id="SEC-ED027-0038" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:38f29cdf0132" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED027-0038</span> Traceability</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:38f29cdf0132" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:38f29cdf0132" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:38f29cdf0132" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source item | Covered by |
+|---|---|
+| SOW-047 Tool option mapping | DEL-06-02-REQ-001 through REQ-004 |
+| SOW-049 Deterministic tool surface | DEL-06-02-REQ-005, REQ-006, REQ-010, REQ-012 |
+| SOW-050 Read tools before writes/bash | DEL-06-02-REQ-007, REQ-008, REQ-011, REQ-013 |
+| OBJ-005 Tool governance objective | DEL-06-02-REQ-001 through REQ-013 |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED027";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

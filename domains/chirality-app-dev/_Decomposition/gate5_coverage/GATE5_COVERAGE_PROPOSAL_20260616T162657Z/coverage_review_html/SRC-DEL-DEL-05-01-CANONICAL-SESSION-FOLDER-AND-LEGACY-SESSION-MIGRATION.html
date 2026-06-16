@@ -1,0 +1,632 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-05-01-CANONICAL-SESSION-FOLDER-AND-LEGACY-SESSION-MIGRATION - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>34</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED021-0002">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED021-0010">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED021-0020">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a> <a href="#SEC-ED021-0028">Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Re</a></nav>
+<main>
+<section id="SEC-ED021-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:b8af9970ecda" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED021-0001</span> Source Pack: SRC-DEL-DEL-05-01-CANONICAL-SESSION-FOLDER-AND-LEGACY-SESSION-MIGRATION</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8af9970ecda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8af9970ecda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8af9970ecda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED021-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:5ed66794e728" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED021-0002</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ed66794e728" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ed66794e728" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ed66794e728" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:99cef2e9b54f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED021-0003</span> Datasheet: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:99cef2e9b54f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:99cef2e9b54f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:99cef2e9b54f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:97f1a4d39ac6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:97f1a4d39ac6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:97f1a4d39ac6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:97f1a4d39ac6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-05-01 |
+| DeliverableName | Canonical Session Folder and Legacy Session Migration |
+| PackageID | PKG-05 |
+| PackageName | Session Audit, Replay, and Tool Result Records |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| ResponsibleParty | TBD |
+| Type | DATA_MODEL_CHANGE |
+| ContextEnvelope | M |
+| Scope Items | SOW-009, SOW-043, SOW-046 |
+| Objective | OBJ-003 |</p>
+<p>Source: `_CONTEXT.md` `Identity`, `Traceability`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` `PKG-05`.
+</p></div></div></section>
+<section id="SEC-ED021-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e715845e3ebe" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e715845e3ebe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e715845e3ebe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e715845e3ebe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Canonical session root | `.chirality/sessions/&lt;sessionId&gt;/` unless `CHIRALITY_SESSION_ROOT` overrides the root | `docs/SPEC.md` Section 8.2; `docs/PRD.md` session storage section |
+| Canonical metadata file | `session.json` | `docs/SPEC.md` Section 8.2 |
+| Canonical event log | `events.jsonl` | `docs/SPEC.md` Section 8.2; `docs/CONTRACT.md` K-EVENT-4 |
+| Canonical per-turn folder | `turns/&lt;turnId&gt;.json` | `docs/SPEC.md` Section 8.2 |
+| Canonical artifact folder | `artifacts/` | `docs/SPEC.md` Section 8.2; `docs/TYPES.md` Section 7.2 |
+| Canonical SDK metadata/transcript folder | `sdk/` | `docs/SPEC.md` Section 8.2 |
+| Legacy record shape | `{sessionRoot}/{sessionId}.json` | `docs/SPEC.md` Section 8.1 |
+| Legacy readability requirement | Legacy records must remain readable during migration | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 |
+| Supported session operations in scope | create, list, resume, retrieve, save, delete | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 |
+| Legacy migration behavior in scope | Existing `.chirality/sessions/*.json` records list/resume while folder layout is introduced | `docs/PRD.md` FR-077 |
+| SDK transcript authority | SDK transcripts are secondary runtime state unless imported into `HarnessEvent` form | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 |
+</p></div></div></section>
+<section id="SEC-ED021-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d6bd65be1380" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d6bd65be1380" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d6bd65be1380" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d6bd65be1380" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value | Source |
+|---|---|---|
+| Chirality audit mirror canonicality | `.chirality/sessions/&lt;sessionId&gt;/events.jsonl` remains the product-owned runtime audit mirror | `docs/SPEC.md` Section 8.4; `docs/TYPES.md` Section 1.8 |
+| Project truth boundary | Runtime transcripts, SDK transcripts, UI state, and caches are not project truth unless imported into governed files | `docs/TYPES.md` Section 1.7; `docs/CONTRACT.md` K-FS-1 |
+| Stable identity | Session, turn, and runtime event identifiers are stable IDs assigned once | `docs/TYPES.md` Section 2 |
+| SDK linkage | `sdkSessionId`, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode are future metadata candidates | `docs/SPEC.md` Section 8.3 |
+| Transcript placement | TBD: R1 must empirically decide the least surprising SDK transcript/storage pattern | `docs/SPEC.md` Section 8.4; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-046/OI-002 |
+| Source-state warning | `docs/PRD.md` is locally accessible but has a hash mismatch in `_REFERENCES.md`; PRD-only implementation detail remains provisional unless corroborated | `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED021-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9327c2bcf963" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0007</span> Pass 3 Lensing Status</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9327c2bcf963" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9327c2bcf963" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9327c2bcf963" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Status | Datasheet impact |
+|---|---|---|
+| X-001 | unresolved TBD | Transcript placement remains an R1/OI-002 decision; this datasheet does not treat SDK transcript storage as stable review closure. |
+| E-001 | closure warning | PRD-derived behavior must be rechecked against REF-006 source state before implementation closure. |
+</p></div></div></section>
+<section id="SEC-ED021-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:dc22227da76b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0008</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dc22227da76b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dc22227da76b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dc22227da76b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Canonical vNext session folder:</p>
+<p>```text
+.chirality/sessions/&lt;sessionId&gt;/
+|-- session.json
+|-- events.jsonl
+|-- turns/
+|   `-- &lt;turnId&gt;.json
+|-- artifacts/
+`-- sdk/
+```</p>
+<p>Source: `docs/SPEC.md` Section 8.2.</p>
+<p>Legacy session record:</p>
+<p>```text
+{sessionRoot}/{sessionId}.json
+```</p>
+<p>Known legacy fields:</p>
+<p>- `sessionId`
+- `projectRoot`
+- `persona`
+- `mode`
+- `createdAt`
+- `updatedAt`
+- `claudeSessionId`
+- `bootFingerprint`
+- `bootedAt`
+- `model`</p>
+<p>Source: `docs/SPEC.md` Section 8.1.</p>
+<p>Future `session.json` fields should include:</p>
+<p>- `sessionId`
+- `projectRoot`
+- `persona`
+- `mode`
+- `createdAt`
+- `updatedAt`
+- `model`
+- `bootFingerprint`
+- `sdkSessionId`
+- `sdkProjectKey`
+- `sdkTranscriptPath` or `sdkSessionStoreKey`
+- `sdkConfigDir`
+- `sdkSettingSources`
+- `sdkPackageVersion`
+- `sdkClaudeCodeVersion`
+- `sdkResumeMode`</p>
+<p>Source: `docs/SPEC.md` Section 8.3.
+</p></div></div></section>
+<section id="SEC-ED021-0009" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:4eb9429c7b83" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4eb9429c7b83" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4eb9429c7b83" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4eb9429c7b83" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` `Identity`, `Package Scope`, `Deliverable Scope`, `Traceability`
+- `_REFERENCES.md` `Authoritative Source Corpus`
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` `PKG-05`, SOW-009, SOW-043, SOW-046, OBJ-003
+- `docs/SPEC.md` Sections 8-10 and 19.3
+- `docs/TYPES.md` Sections 1.7, 1.8, 2, and 7
+- `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-FS-1, K-SDK-3, K-EVENT-4, K-EVENT-5, K-EVENT-6
+- `docs/PLAN.md` R1/R2 implementation notes
+- `docs/PRD.md` session storage, FR-014, FR-077, FR-118, FR-121, FR-122, FR-123; source-state warning applies because REF-006 has `HASH_MISMATCH`
+</p></div></div></section>
+<section id="SEC-ED021-0010" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:8f80dba55ab0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED021-0010</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f80dba55ab0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f80dba55ab0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f80dba55ab0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0011" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:0857181ec02e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED021-0011</span> Guidance: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0857181ec02e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0857181ec02e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0857181ec02e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2e92bee4a5b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2e92bee4a5b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2e92bee4a5b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2e92bee4a5b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable gives Chirality a forward-compatible session storage shape without breaking existing harness sessions. The main design pressure is to move from legacy flat `.json` records to folder-backed sessions while keeping runtime audit authority with Chirality-owned `events.jsonl`, not SDK transcripts or hidden state.</p>
+<p>Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
+</p></div></div></section>
+<section id="SEC-ED021-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:932a094a2287" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:932a094a2287" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:932a094a2287" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:932a094a2287" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Preserve session identity.
+   `sessionId` is a stable identifier. Do not make folder names, UI labels, SDK session IDs, or transcript paths the authoritative identity. Source: `docs/TYPES.md` Section 2; `docs/CONTRACT.md` K-ID-1.</p>
+<p>2. Prefer additive migration.
+   Canonical folder sessions can be introduced while legacy flat records remain readable. Conversion should not delete or rewrite legacy records until list/resume/retrieve/delete behavior and validation scripts are explicitly migrated. Source: `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077. The non-destructive migration posture is an ASSUMPTION.</p>
+<p>3. Keep Chirality audit canonical.
+   `events.jsonl` is the product-owned audit mirror. SDK transcripts can assist resume/debugging but are secondary unless imported into `HarnessEvent` form. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.</p>
+<p>4. Separate metadata from provider state.
+   `sdkSessionId`, transcript paths, store keys, SDK config directories, settings sources, and SDK versions are adapter metadata. They should help resume and diagnosis without shaping public APIs or canonical event semantics. Source: `docs/SPEC.md` Sections 8.3 and 10.3; `docs/TYPES.md` Section 7.2.</p>
+<p>5. Treat PRD-only details cautiously for this run.
+   `_REFERENCES.md` reports a `HASH_MISMATCH` for `docs/PRD.md`. PRD requirements are still useful local context, but unsupported implementation details from PRD should remain `TBD`, `ASSUMPTION`, or `PROPOSAL` until corroborated.
+</p></div></div></section>
+<section id="SEC-ED021-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:50243376eccc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:50243376eccc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:50243376eccc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:50243376eccc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The layout should serve later PKG-05 deliverables: `events.jsonl` for DEL-05-02, replay support for DEL-05-04, and artifacts for DEL-05-05. Do not overload DEL-05-01 with those implementations.
+- Legacy records include `claudeSessionId`; vNext metadata uses `sdkSessionId` and related SDK linkage fields. Exact field mapping is TBD because the source set does not specify a migration transform.
+- `CHIRALITY_SESSION_ROOT` changes the storage root. Tests should cover both default and override roots.
+- Session CRUD is source-supported, but route-level save/update semantics are less explicit than create/list/get/delete. Treat &quot;save&quot; behavior as TBD unless current code or a later accepted spec defines it.
+- Transcript placement remains an R1/OI-002 decision. A migration implementation should be able to record transcript path/store-key metadata without assuming the final storage mechanism.
+- Redaction requirements apply to metadata and artifacts, but detailed redaction behavior belongs to DEL-05-03.
+</p></div></div></section>
+<section id="SEC-ED021-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0116cc836969" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0015</span> Pass 3 Rulings Needed</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0116cc836969" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0116cc836969" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0116cc836969" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Ruling needed | Interim guidance |
+|---|---|---|
+| A-001 | Whether session save/update is a distinct behavior or covered by create/boot/retrieve/delete surfaces. | Treat save/update semantics as `TBD`; do not infer a route or persistence rule from SOW/PRD wording alone. |
+| B-001 | Whether legacy `claudeSessionId` maps directly to `sdkSessionId`. | Keep the legacy field readable and record new SDK linkage separately unless implementation evidence accepts a transform. |
+| F-001 | Duplicate folder-versus-flat behavior for the same stable `sessionId`. | Do not implement destructive delete or overwrite behavior until duplicate precedence and deletion semantics are ruled. |
+| X-001 | Final SDK transcript placement and review closure standard. | Keep SDK transcript path/store key as non-authoritative metadata while R1/OI-002 remains open. |
+</p></div></div></section>
+<section id="SEC-ED021-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:cca5f464ebaf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0016</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cca5f464ebaf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cca5f464ebaf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cca5f464ebaf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Option | Benefit | Cost / Risk | Guidance |
+|---|---|---|---|
+| Lazy legacy read support | Minimal migration risk; existing sessions remain usable | Code must handle two storage shapes during transition | Prefer unless a human-approved migration plan requires eager conversion |
+| Eager conversion to folders | Simplifies later reader code | Risks destructive migration and field-loss without accepted mapping | Do not require in this deliverable without additional source authority |
+| Store SDK transcript under working-root-controlled folder | Better locality and governance review | SDK behavior must be empirically verified | Preferred direction when reliable; source marks it as R1 decision |
+| Cross-reference SDK transcript in user home | Preserves resume if SDK cannot be redirected | Adds reliance-boundary risk and non-project state dependency | Accept only with explicit `session.json` metadata and residual-risk record |
+| Keep `events.jsonl` as canonical audit mirror | Preserves Chirality-owned runtime evidence | Requires event writer/replay discipline | Required by SPEC and CONTRACT |</p>
+<p>E-002 disposition: when SDK transcripts remain outside project-controlled storage, the trade-off is acceptable only with `session.json` cross-reference metadata and a residual reliance-boundary record. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
+</p></div></div></section>
+<section id="SEC-ED021-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:f7a3858b11ca" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0017</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7a3858b11ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7a3858b11ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7a3858b11ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Canonical folder example:</p>
+<p>```text
+.chirality/sessions/sess_example/
+|-- session.json
+|-- events.jsonl
+|-- turns/
+|   `-- turn_example.json
+|-- artifacts/
+`-- sdk/
+```</p>
+<p>Legacy flat record example:</p>
+<p>```text
+.chirality/sessions/sess_example.json
+```</p>
+<p>`session.json` should keep SDK linkage separate from Chirality identity:</p>
+<p>```json
+{
+  &quot;sessionId&quot;: &quot;sess_example&quot;,
+  &quot;projectRoot&quot;: &quot;/path/to/working-root&quot;,
+  &quot;persona&quot;: &quot;HELP_HUMAN&quot;,
+  &quot;mode&quot;: &quot;WORKBENCH&quot;,
+  &quot;sdkSessionId&quot;: &quot;TBD&quot;,
+  &quot;sdkTranscriptPath&quot;: &quot;TBD&quot;,
+  &quot;sdkSessionStoreKey&quot;: &quot;TBD&quot;
+}
+```</p>
+<p>Example is illustrative only; exact field optionality and migration helper names are TBD. Source: `docs/SPEC.md` Section 8.3.
+</p></div></div></section>
+<section id="SEC-ED021-0018" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:c8d5f354fc8a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0018</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8d5f354fc8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8d5f354fc8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8d5f354fc8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| DEL-05-01-C001 | Session &quot;save&quot; is listed in SOW/PRD session operations, while SPEC endpoint list explicitly names create, boot, list, get/delete, turn, and interrupt but not a separate save endpoint. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 | `docs/SPEC.md` API endpoint table | `Specification.md` Verification; `Procedure.md` Steps | Treat save/update semantics as TBD and verify against implementation or later accepted spec before coding. | TBD |
+</p></div></div></section>
+<section id="SEC-ED021-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:81f2119b1a8f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0019</span> Source-State Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81f2119b1a8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81f2119b1a8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81f2119b1a8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/PRD.md` is marked `HASH_MISMATCH` in `_REFERENCES.md`; PRD-derived requirements are cited but should be revalidated before implementation lock-in.
+- `docs/PLAN.md` names likely implementation artifacts such as `session-events.ts` and `sdk-session-link.ts`, but this deliverable does not yet have accepted implementation paths. Keep exact paths as `TBD` unless code inspection in an implementation task confirms them.
+</p></div></div></section>
+<section id="SEC-ED021-0020" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:454788f73db3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED021-0020</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:454788f73db3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:454788f73db3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:454788f73db3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0021" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:4c8e41a3f05f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED021-0021</span> Procedure: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c8e41a3f05f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c8e41a3f05f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c8e41a3f05f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0022" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:64f7d8fd5393" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0022</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:64f7d8fd5393" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:64f7d8fd5393" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:64f7d8fd5393" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Provide an operational procedure for producing and verifying the DEL-05-01 implementation slice: canonical session folder layout plus legacy flat `.json` compatibility for list, resume, retrieve, and delete behavior.</p>
+<p>Source: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-05-01.
+</p></div></div></section>
+<section id="SEC-ED021-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0c86fe35f0c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0023</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0c86fe35f0c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0c86fe35f0c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0c86fe35f0c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Accepted DEL-05-01 scope and four-document kit.
+- Access to `docs/SPEC.md`, `docs/TYPES.md`, `docs/CONTRACT.md`, `docs/PLAN.md`, and `docs/PRD.md`.
+- Awareness that `docs/PRD.md` has a `HASH_MISMATCH` in `_REFERENCES.md`; PRD-only implementation details require caution.
+- Current session storage implementation and tests located by the implementation worker. Exact paths are TBD.
+- Upstream dependency edges are not yet accepted; `_DEPENDENCIES.md` declares upstream/downstream as TBD.
+- R1/OI-002 transcript placement remains unresolved; do not hard-code final SDK transcript storage policy beyond metadata support.
+</p></div></div></section>
+<section id="SEC-ED021-0024" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c70581b1e505" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0024</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c70581b1e505" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c70581b1e505" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c70581b1e505" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Locate current session storage code and fixtures.
+   - Identify where legacy `.chirality/sessions/&lt;sessionId&gt;.json` records are created, listed, read, resumed, and deleted.
+   - Preserve current API compatibility unless an accepted runtime contract says otherwise.
+   - Source basis: `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-014 and FR-077.</p>
+<p>2. Define or update the session root resolver.
+   - Resolve default `.chirality/sessions`.
+   - Preserve `CHIRALITY_SESSION_ROOT` override behavior.
+   - Normalize project-root filtering where session list behavior depends on project root.
+   - Source basis: `docs/SPEC.md` Section 8.2; `docs/PRD.md` FR-014.</p>
+<p>3. Introduce canonical folder creation for new sessions.
+   - Create `.chirality/sessions/&lt;sessionId&gt;/`.
+   - Write or prepare `session.json`.
+   - Ensure `events.jsonl`, `turns/`, `artifacts/`, and `sdk/` are represented according to implementation needs.
+   - Do not make SDK transcript files canonical.
+   - Source basis: `docs/SPEC.md` Sections 8.2 and 8.4.</p>
+<p>4. Populate `session.json` with supported metadata.
+   - Include stable Chirality metadata such as `sessionId`, `projectRoot`, `persona`, `mode`, timestamps, model, and boot fingerprint when available.
+   - Include SDK linkage metadata such as `sdkSessionId`, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode when available.
+   - Leave unavailable fields absent or `TBD` per implementation convention; do not invent values.
+   - Source basis: `docs/SPEC.md` Section 8.3.</p>
+<p>5. Add dual-shape read/list logic.
+   - Folder sessions read from `&lt;sessionId&gt;/session.json`.
+   - Legacy sessions read from `&lt;sessionId&gt;.json`.
+   - Listing should include both shapes and avoid duplicate records for the same stable `sessionId`.
+   - Duplicate-resolution policy is TBD if both a folder and flat record exist for the same `sessionId`.
+   - Source basis: `docs/SPEC.md` Section 8.1; `docs/TYPES.md` Section 2.</p>
+<p>6. Preserve resume compatibility.
+   - Legacy `claudeSessionId` remains readable.
+   - New SDK linkage should use `sdkSessionId` and explicit resume metadata when available.
+   - Mapping from `claudeSessionId` to `sdkSessionId` is TBD unless accepted by implementation evidence.
+   - Source basis: `docs/SPEC.md` Sections 8.1 and 8.3; `docs/PRD.md` FR-118.</p>
+<p>7. Preserve retrieve and delete compatibility.
+   - Retrieve should work for both folder and flat legacy records.
+   - Delete should remove or retire the selected session shape according to current session policy.
+   - If both shapes exist for the same `sessionId`, delete semantics are TBD and require human or design ruling before destructive behavior.
+   - Source basis: `docs/SPEC.md` endpoint table; `docs/PRD.md` FR-014 and FR-077.</p>
+<p>8. Keep event/audit canonicality intact.
+   - Do not replace `.chirality/sessions/&lt;sessionId&gt;/events.jsonl` with SDK transcript data.
+   - Cross-reference SDK transcript path/store key in metadata if needed.
+   - Record residual reliance-boundary risk if SDK transcript storage remains outside a project-controlled folder.
+   - Source basis: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.</p>
+<p>9. Add migration helper tests.
+   - Test canonical folder creation.
+   - Test legacy flat record listing.
+   - Test legacy resume metadata remains available.
+   - Test legacy retrieve/delete behavior.
+   - Test root override behavior.
+   - Test duplicate-shape behavior once policy is accepted. D-001 remains open until this accepted policy exists.
+   - Source basis: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 19.3.</p>
+<p>10. Re-run relevant local validation.
+    - Run focused unit/API tests for session CRUD and migration helpers.
+    - Run broader harness validation if this implementation changes runtime behavior.
+    - Exact command names are TBD until the implementation worker confirms project scripts.
+    - Source basis: `docs/SPEC.md` Section 19.3; `docs/PRD.md` FR-064 through FR-069.
+</p></div></div></section>
+<section id="SEC-ED021-0025" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:be21d5b6b199" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0025</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be21d5b6b199" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be21d5b6b199" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be21d5b6b199" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected Result |
+|---|---|
+| Canonical layout creation | New sessions have the folder shape required by `docs/SPEC.md` Section 8.2. |
+| Legacy list compatibility | Existing `.chirality/sessions/*.json` records appear in session list output. |
+| Legacy resume compatibility | Legacy records retain enough metadata to resume or report resume limitations without crashing. |
+| Legacy retrieve/delete compatibility | Existing flat records can be retrieved and deleted through supported session surfaces. |
+| SDK linkage metadata | SDK IDs/transcript references are adapter metadata and do not redefine Chirality `sessionId`. |
+| Audit mirror canonicality | `events.jsonl` remains the product-owned audit mirror. |
+| Redaction posture | Session metadata and artifacts do not store API keys or known secrets. |
+| Source-state warning | PRD-derived behavior affected by `HASH_MISMATCH` is rechecked before implementation closure. |
+</p></div></div></section>
+<section id="SEC-ED021-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:347b1d5d6bfb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0026</span> Pass 3 Evidence Checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:347b1d5d6bfb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:347b1d5d6bfb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:347b1d5d6bfb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ItemID | Check | Expected handling |
+|---|---|---|
+| C-001 | Implementation worker identifies current session storage source files and focused test commands. | Keep paths and commands `TBD` until code inspection confirms them. |
+| D-001 | Duplicate-shape test exists after duplicate policy is accepted. | Do not close this branch without an accepted duplicate folder/flat policy and evidence. |
+| E-001 | PRD-derived behavior is rechecked against REF-006 source state before closure. | Record the recheck result in implementation evidence; keep PRD-only details provisional until corroborated. |
+| F-001 | Delete behavior is verified when both folder and flat records exist for the same `sessionId`. | Require human or design ruling before destructive behavior. |
+</p></div></div></section>
+<section id="SEC-ED021-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:32c892ee8e65" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0027</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32c892ee8e65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32c892ee8e65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32c892ee8e65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Updated source files for session root resolution, canonical folder layout, and migration helpers: TBD.
+- Legacy flat-session fixtures: TBD.
+- Canonical folder-session fixtures: TBD.
+- Test results for list/resume/retrieve/delete migration behavior: TBD.
+- Residual-risk note for SDK transcript placement if not project-controlled: TBD.
+- Human ruling for duplicate folder/flat record delete semantics: TBD.
+- Source-state recheck record for REF-006 PRD-derived behavior: TBD.
+</p></div></div></section>
+<section id="SEC-ED021-0028" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:9d7ecbf9ce8f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED021-0028</span> Component: execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d7ecbf9ce8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d7ecbf9ce8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d7ecbf9ce8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0029" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:95c5b95e9d6c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED021-0029</span> Specification: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:95c5b95e9d6c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:95c5b95e9d6c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:95c5b95e9d6c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED021-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:53ca5bdd5d95" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0030</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:53ca5bdd5d95" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:53ca5bdd5d95" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:53ca5bdd5d95" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-05-01 specifies the session data-model change that introduces canonical folder-backed harness sessions while preserving legacy flat `.json` session records during migration.</p>
+<p>In scope:</p>
+<p>- Canonical `.chirality/sessions/&lt;sessionId&gt;/` folder layout.
+- `session.json` metadata expectations.
+- Legacy `.chirality/sessions/&lt;sessionId&gt;.json` read/list/resume/delete compatibility.
+- SDK session linkage metadata needed for resume without making SDK transcripts authoritative.
+- Tests for session folder layout, migration helpers, and legacy-read behavior.</p>
+<p>Out of scope:</p>
+<p>- `HarnessEvent` schema and append-only JSONL writer details owned by DEL-05-02.
+- Runtime redaction owned by DEL-05-03.
+- Replay UI/diagnostics owned by DEL-05-04.
+- Tool permission semantics, excluded by PKG-05 package scope.
+- Final SDK transcript placement decision where source authority marks it as an R1/OI-002 decision.</p>
+<p>Sources: `_CONTEXT.md` `Deliverable Scope`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` `PKG-05`; `docs/SPEC.md` Sections 8-10.
+</p></div></div></section>
+<section id="SEC-ED021-0031" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:484eef266067" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0031</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:484eef266067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:484eef266067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:484eef266067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-05-01-R001 | New canonical sessions MUST be represented as folders under `.chirality/sessions/&lt;sessionId&gt;/` or the configured `CHIRALITY_SESSION_ROOT` equivalent. | `docs/SPEC.md` Section 8.2 |
+| DEL-05-01-R002 | A canonical session folder MUST support `session.json`, `events.jsonl`, `turns/`, `artifacts/`, and `sdk/` as the physical layout. | `docs/SPEC.md` Section 8.2 |
+| DEL-05-01-R003 | Legacy flat records at `{sessionRoot}/{sessionId}.json` MUST remain readable during migration. | `docs/SPEC.md` Section 8.1 |
+| DEL-05-01-R004 | Existing `.chirality/sessions/*.json` records MUST list and resume while canonical folder layout is introduced. | `docs/PRD.md` FR-077; `docs/SPEC.md` Section 8.1 |
+| DEL-05-01-R005 | Session CRUD behavior MUST remain bound to normalized project root. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 |
+| DEL-05-01-R006 | `session.json` SHOULD include stable Chirality session metadata and SDK linkage metadata listed in SPEC Section 8.3. | `docs/SPEC.md` Section 8.3 |
+| DEL-05-01-R007 | SDK session identifiers and transcript/store references MUST remain adapter metadata and MUST NOT redefine Chirality session identity. | `docs/SPEC.md` Section 10.3; `docs/TYPES.md` Section 7.2; `docs/CONTRACT.md` K-ENGINE-4 |
+| DEL-05-01-R008 | `events.jsonl` MUST remain the canonical Chirality audit mirror; SDK transcripts are secondary unless imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4 |
+| DEL-05-01-R009 | If SDK transcript storage remains outside the working root, Chirality MUST cross-reference the transcript path or store key from `session.json` and record residual reliance-boundary risk. | `docs/SPEC.md` Section 8.4 |
+| DEL-05-01-R010 | ASSUMPTION: Migration helpers should avoid destructive conversion of legacy records until list, resume, retrieve, and delete behavior are explicitly migrated and tested. | `docs/SPEC.md` Section 8.1 and `docs/PRD.md` migration rule |
+| DEL-05-01-R011 | Session identifiers MUST remain stable across renames, path changes, and UI labels. | `docs/TYPES.md` Section 2; `docs/CONTRACT.md` K-ID-1 |
+| DEL-05-01-R012 | Runtime records and project files MUST preserve stable IDs when paths change. | `docs/CONTRACT.md` K-PATH-1 |
+| DEL-05-01-R013 | Secrets and API keys MUST NOT be stored in session metadata, runtime events, logs, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1; K-EVENT-6 |
+| DEL-05-01-R014 | `CHIRALITY_SESSION_ROOT` override behavior MUST remain supported for session storage root resolution. | `docs/SPEC.md` Section 8.2; `docs/PRD.md` session storage section |
+| DEL-05-01-R015 | Exact implementation module names, migration helper names, and storage adapter APIs are TBD unless already present in implementation code or separately accepted. | `docs/PLAN.md` R1/R2 notes; `_REFERENCES.md` source-state warning |
+</p></div></div></section>
+<section id="SEC-ED021-0032" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2feb60b5c800" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0032</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2feb60b5c800" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2feb60b5c800" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2feb60b5c800" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability | Source |
+|---|---|---|
+| SPEC Harness Session Store | Defines legacy record shape, canonical folder layout, future metadata, and canonicalization rules. | `docs/SPEC.md` Section 8 |
+| SPEC Runtime Event Schema | Constrains `events.jsonl` canonicality and replay tolerance where the session folder contains event logs. | `docs/SPEC.md` Section 9 |
+| SPEC Engine Adapter Rules | Requires SDK names, IDs, transcript paths, and external message names to remain adapter metadata. | `docs/SPEC.md` Section 10.3 |
+| TYPES Runtime and Session Vocabulary | Defines `SessionRecord`, `sessionId`, `sdkSessionId`, `events.jsonl`, `session.json`, and `artifacts/`. | `docs/TYPES.md` Section 7 |
+| CONTRACT Invariants | Governs stable identity, project truth, SDK transcript secondary status, event mirror canonicality, replay tolerance, and redaction. | `docs/CONTRACT.md` K-ID-1, K-FS-1, K-SDK-3, K-EVENT-4 through K-EVENT-6 |
+| PRD Runtime Requirements | Product requirements for session CRUD, legacy readability, SDK linkage, and audit mirror canonicality. | `docs/PRD.md` FR-014, FR-077, FR-118, FR-121; source-state warning applies |
+</p></div></div></section>
+<section id="SEC-ED021-0033" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:26e5cf323d30" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0033</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26e5cf323d30" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26e5cf323d30" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26e5cf323d30" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification Approach |
+|---|---|
+| R001, R002, R006, R014 | Unit tests for session root resolution and canonical folder creation, including `CHIRALITY_SESSION_ROOT`. |
+| R003, R004, R005, R010 | Legacy fixture tests proving flat `.json` records remain listable, retrievable, resumable, and deletable through the session surfaces. |
+| R007, R008, R009 | Metadata tests proving SDK identifiers/transcript references are stored as adapter metadata and `events.jsonl` remains canonical. |
+| R011, R012 | Tests or scanner checks proving `sessionId` is the persisted identity and not inferred from path labels alone. |
+| R013 | Redaction/security tests proving secret-like values are not written to session metadata or referenced artifacts; detailed redaction implementation belongs to DEL-05-03. |
+| R015 | Review check that implementation-specific file paths and helper names are either present in code or left as `TBD`/proposal until accepted. |
+| A-001 | Review check that save/update behavior is not implemented from the conflict table alone; coding must wait for implementation evidence or a human ruling. |
+| B-001, F-001 | Review check that legacy `claudeSessionId` mapping and duplicate folder-versus-flat behavior remain `TBD` until accepted by implementation evidence or human ruling. |
+| E-002 | Review check that any external SDK transcript path/store-key use has an explicit residual reliance-boundary note. |
+</p></div></div></section>
+<section id="SEC-ED021-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:df540f0c2465" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED021-0034</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df540f0c2465" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df540f0c2465" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df540f0c2465" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required artifacts:</p>
+<p>- Session folder layout specification or implementation note.
+- Migration helper description covering legacy flat `.json` handling.
+- Legacy-read/list/resume/delete test fixtures.
+- `session.json` metadata field documentation.
+- SDK transcript/linkage residual-risk note where placement remains unresolved.
+- Test evidence for session root override behavior.
+- Human or implementation rulings for save/update behavior, duplicate folder-versus-flat behavior, and `claudeSessionId` to `sdkSessionId` mapping.
+- Source-state recheck for PRD-derived behavior affected by REF-006 `HASH_MISMATCH`.</p>
+<p>Source: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 8; `docs/PLAN.md` R1/R2 notes.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED021";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,60 @@
+KnowledgeTypeID,ParentCategoryID,CanonicalSchema,MappedUnitCount,SubjectCount
+KTY-01-01_Datasheet-Reference,CAT-001,Reference,98,2
+KTY-01-02_Specification,CAT-001,Specification,90,2
+KTY-01-03_Guidance,CAT-001,Guidance / Playbook,38,2
+KTY-01-04_Procedure,CAT-001,Procedure,89,2
+KTY-02-01_Datasheet-Reference,CAT-002,Reference,131,4
+KTY-02-02_Specification,CAT-002,Specification,128,4
+KTY-02-03_Guidance,CAT-002,Guidance / Playbook,119,4
+KTY-02-04_Procedure,CAT-002,Procedure,113,4
+KTY-03-01_Datasheet-Reference,CAT-003,Reference,110,5
+KTY-03-02_Specification,CAT-003,Specification,171,5
+KTY-03-03_Guidance,CAT-003,Guidance / Playbook,86,5
+KTY-03-04_Procedure,CAT-003,Procedure,118,5
+KTY-04-01_Datasheet-Reference,CAT-004,Reference,100,4
+KTY-04-02_Specification,CAT-004,Specification,151,4
+KTY-04-03_Guidance,CAT-004,Guidance / Playbook,88,4
+KTY-04-04_Procedure,CAT-004,Procedure,130,4
+KTY-05-01_Datasheet-Reference,CAT-005,Reference,117,5
+KTY-05-02_Specification,CAT-005,Specification,176,5
+KTY-05-03_Guidance,CAT-005,Guidance / Playbook,113,5
+KTY-05-04_Procedure,CAT-005,Procedure,120,5
+KTY-06-01_Datasheet-Reference,CAT-006,Reference,134,5
+KTY-06-02_Specification,CAT-006,Specification,207,5
+KTY-06-03_Guidance,CAT-006,Guidance / Playbook,117,5
+KTY-06-04_Procedure,CAT-006,Procedure,126,5
+KTY-07-01_Datasheet-Reference,CAT-007,Reference,174,6
+KTY-07-02_Specification,CAT-007,Specification,281,6
+KTY-07-03_Guidance,CAT-007,Guidance / Playbook,180,6
+KTY-07-04_Procedure,CAT-007,Procedure,213,6
+KTY-08-01_Datasheet-Reference,CAT-008,Reference,172,6
+KTY-08-02_Specification,CAT-008,Specification,217,6
+KTY-08-03_Guidance,CAT-008,Guidance / Playbook,140,6
+KTY-08-04_Procedure,CAT-008,Procedure,144,6
+KTY-09-01_Datasheet-Reference,CAT-009,Reference,150,5
+KTY-09-02_Specification,CAT-009,Specification,187,5
+KTY-09-03_Guidance,CAT-009,Guidance / Playbook,118,5
+KTY-09-04_Procedure,CAT-009,Procedure,145,5
+KTY-10-01_Datasheet-Reference,CAT-010,Reference,137,6
+KTY-10-02_Specification,CAT-010,Specification,193,6
+KTY-10-03_Guidance,CAT-010,Guidance / Playbook,128,6
+KTY-10-04_Procedure,CAT-010,Procedure,207,6
+KTY-11-01_Datasheet-Reference,CAT-011,Reference,98,5
+KTY-11-02_Specification,CAT-011,Specification,106,5
+KTY-11-03_Guidance,CAT-011,Guidance / Playbook,121,5
+KTY-11-04_Procedure,CAT-011,Procedure,107,5
+KTY-12-01_Product-Requirements-and-Specification,CAT-012,Specification,1059,3
+KTY-12-02_Type-and-Interface-Reference,CAT-012,Reference,302,2
+KTY-12-03_Conceptual-and-Overview-Reference,CAT-012,Reference,63,2
+KTY-13-01_Implementation-Plan,CAT-013,Reference,227,1
+KTY-13-02_Build-and-Release-Guidance,CAT-013,Guidance / Playbook,156,2
+KTY-13-03_Development-Process-Guidance,CAT-013,Guidance / Playbook,95,2
+KTY-14-01_Coordination-and-Decision-Record,CAT-014,Reference,368,2
+KTY-14-02_Scope-Change-Corpus,CAT-014,Reference,349,2
+KTY-14-03_Execution-Posture-and-Scripts,CAT-014,Guidance / Playbook,71,3
+KTY-15-01_Decomposition-Reference,CAT-015,Reference,314,2
+KTY-15-02_Dependency-Closure-Report,CAT-015,Reference,307,8
+KTY-15-03_Scope-Closure-Audit,CAT-015,Reference,54,1
+KTY-15-04_PKG00-Closure-Governance-Record,CAT-015,Reference,91,5
+KTY-16-01_Frontend-Application-Source,CAT-016,Reference,1456,29
+KTY-16-02_Harness-Contract-and-Documentation,CAT-016,Reference,140,3
