@@ -6,6 +6,44 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization SDK MCP behavior probe landed (`STAB-04-probe`)
+
+Landed the STAB-04 prerequisite SDK/MCP behavior probe and prepared the D-APP-13 mutating
+MCP exposure packet.
+
+Runtime validation changes:
+
+- Added `harness:validate:agentsdk-mcp-probe`, a deterministic Vitest command that runs
+  the real pinned SDK `query()` host with an offline subprocess.
+- Added `agent-sdk-mcp-behavior-probe.test.ts`, which drives three distinct SDK control
+  paths against `mcp__chirality__status_read`: raw in-process `mcp_message`,
+  explicit `can_use_tool`, and explicit `hook_callback`.
+- The probe result: raw in-process SDK MCP `mcp_message` calls execute the MCP handler and
+  handler evidence, but do not automatically invoke `canUseTool` or hooks. Explicit
+  `can_use_tool` and `hook_callback` requests for the same fully qualified MCP tool name
+  do invoke the registered callbacks.
+- Updated validation docs and the active stabilization plan to record that future
+  mutating Chirality MCP tools need handler-level permission/evidence wrapping unless a
+  future live-CLI proof records different behavior.
+- Prepared `D-APP-13_PACKET_2026-06-16.md` and moved D-APP-13 to `AWAITING_RULING`.
+
+Validation passed: `npm run harness:validate:agentsdk-mcp-probe`; full `npm run test`
+(50 files, 363 tests); `npm run typecheck`; `npm run harness:validate:section9`
+(`HARNESS_SECTION9_STATUS=pass`, 13 checks); `npm run instruction-root:integrity`
+(`status=pass`, `checked files=46`); `npm run harness:validate:premerge` after starting
+the local Next server on port 3000 (`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks,
+Section 9 report-only 13 checks); and `git diff --check`.
+
+Skipped checks: `npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche changed no provider,
+outbound network, package layout, or packaged subprocess behavior. An initial premerge
+attempt before starting the local server failed with `fetch failed` for all Section 8
+checks; the rerun passed after starting `npm run dev:next`, and the server was stopped.
+
+Residual handoff: mutating Chirality MCP implementation is blocked on D-APP-13. D-APP-12
+also remains awaiting the STAB-02(d) packaged subprocess proof before default-provider
+cutover can be decided.
+
 ## 2026-06-16 - Runtime stabilization SDK network proof landed (`STAB-02c`)
 
 Landed STAB-02 step (c), the non-packaged opt-in `agentSdk` network-proof evidence

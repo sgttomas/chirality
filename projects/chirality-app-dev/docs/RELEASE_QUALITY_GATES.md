@@ -74,6 +74,7 @@ Required evidence:
 
 - tests for allow, deny, ask, and unknown-tool behavior where applicable;
 - tests proving write/edit/bash/network/subagent capabilities remain denied until the active plan and human rulings authorize them;
+- `npm run harness:validate:agentsdk-mcp-probe` when in-process SDK MCP permission/hook behavior is a design input;
 - `npm run typecheck`;
 - no new model-visible tool exposure without descriptor, permission, event, and validation coverage;
 - no path write policy relaxation without human ruling and tests.

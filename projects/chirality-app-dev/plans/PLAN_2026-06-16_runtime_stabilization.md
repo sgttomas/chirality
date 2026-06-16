@@ -181,7 +181,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed on `codex/chirality-app-work`. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` now runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence. Remaining: (d) packaged subprocess probe (`asarUnpack` + HOME + DMG); D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-04` Deterministic Chirality MCP Maturity | Expose only bounded mutating Chirality MCP tools after validation hardening. | SDK-behavior probe (does `canUseTool`/hooks fire for in-process MCP tools?); then `status_transition` → `deps_write` (→ optional `scaffold_exec`) over the **already-landed** lifecycle/deps engines, with an in-handler diff-evidence wrapper. Requires D-APP-13. | Permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
+| `STAB-04` Deterministic Chirality MCP Maturity | **PROBE LANDED 2026-06-16**; mutating implementation remains gated. | SDK-behavior probe shows raw in-process SDK MCP `mcp_message` calls execute the MCP handler without automatic `canUseTool` or hook callbacks; explicit `can_use_tool` and `hook_callback` control requests do invoke those callbacks. Therefore mutating MCP enforcement/evidence must live in an in-handler wrapper unless a future live-CLI proof changes that conclusion. Requires D-APP-13 before exposing `status_transition` / `deps_write`. | `harness:validate:agentsdk-mcp-probe`; future implementation also requires permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
 | `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-06` Governance Refresh & Active Queue | Convert accepted outcomes into governance/coordination surfaces. | Apply the STAB-00 disposition list (factual corrections + dated supersession notes only); reflect D-APP-12 ruling; refresh coordination; record program completion. | Governance gate. Runtime commands skipped unless executable behavior changed. |
 
@@ -299,14 +299,20 @@ unit-tested** (`lib/lifecycle/transition.ts`, `lib/dependencies/register-writer.
 `lib/workspace/deliverable-contracts.ts`); this tranche is bounded **MCP exposure +
 in-handler evidence**, not new write logic.
 
-Prerequisite probe (sequencing dependency, not a detail): empirically confirm whether the
-pinned SDK invokes `canUseTool` and `PreToolUse`/`PostToolUse` hooks for in-process
-`mcp__chirality__*` tools, or only for built-ins. If hooks/`canUseTool` do **not** fire
-for in-process MCP tools, hard-deny enforcement and before/after diff evidence must live
-entirely in a new in-handler wrapper (`runMutatingMcpToolWithEvidence`) that snapshots
-target-file SHA + byte length, emits `tool.started`/`permission`/`completed` with
-`recordsDiff` metadata, and stores **only** metadata (mirroring the read-MCP redaction
-tests).
+Prerequisite probe (sequencing dependency, not a detail): **LANDED 2026-06-16** via
+`npm run harness:validate:agentsdk-mcp-probe` and
+`frontend/src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts`. The pinned SDK
+host-control bridge distinguishes raw in-process MCP `mcp_message` routing from explicit
+`can_use_tool` and `hook_callback` control requests. The raw MCP message path executes the
+Chirality MCP handler and emits handler evidence, but it does not automatically invoke
+`canUseTool` or `PreToolUse`/`PostToolUse` hooks. Explicit `can_use_tool` and
+`hook_callback` control requests for the same fully qualified `mcp__chirality__*` name do
+invoke the registered callbacks. STAB-04 therefore must place hard-deny enforcement and
+before/after diff evidence entirely in a new in-handler wrapper
+(`runMutatingMcpToolWithEvidence`) that snapshots target-file SHA + byte length, emits
+`tool.started`/`permission`/`completed` with `recordsDiff` metadata, and stores **only**
+metadata (mirroring the read-MCP redaction tests), unless a future live-CLI proof records
+different behavior.
 
 Implementation sequence (each gated on STAB-01 validation namespace + the probe; mutating
 tools never default-on):
@@ -392,7 +398,7 @@ Recorded in `execution/_Coordination/_DECISIONS/_REGISTER.md`:
 |---|---|---|---|
 | `D-APP-11` | Accept the Runtime Stabilization program as the active development queue. | Selection of this plan as the active queue; coordination re-pointing. | **RULED** 2026-06-16 (this plan's acceptance). |
 | `D-APP-12` | Default-provider cutover from the current default to the SDK-backed Anthropic path. | Any change making `agentSdk` the default; any doc stating the SDK is the active default. | **AWAITING_RULING** — packet prepared in STAB-02 once (a)–(d) + Section 8/9 are green; packaged-subprocess proof recommended as a hard prerequisite. |
-| `D-APP-13` | Exposure of bounded mutating Chirality MCP tools (`status_transition`, `deps_write`) from metadata-only to `workspaceWrite`-gated, incl. whether the tool may perform human-gated (`CHECKING`/`ISSUED`) transitions and the required actor identity. | STAB-04 implementation. | **NOT_PREPARED** — packet prepared when STAB-04 is selected. |
+| `D-APP-13` | Exposure of bounded mutating Chirality MCP tools (`status_transition`, `deps_write`) from metadata-only to `workspaceWrite`-gated, incl. whether the tool may perform human-gated (`CHECKING`/`ISSUED`) transitions and the required actor identity. | STAB-04 implementation. | **AWAITING_RULING** — packet prepared at `execution/_Coordination/_DECISIONS/D-APP-13_PACKET_2026-06-16.md` after the SDK MCP behavior probe landed. |
 
 Tranches **not** requiring a new ruling beyond D-APP-11: STAB-00, STAB-01, STAB-03,
 STAB-05, and the STAB-02 readiness work (a)–(d), which harden/validate already-approved
@@ -466,7 +472,7 @@ why runtime commands were skipped.
 | API key never reaches the SDK (load-bearing gap) | STAB-02 step (a) landed key-injection + redaction coverage together; steps (b) and (c) now exercise that path through route-level scripted SDK evidence. |
 | ID/string drift (adapter_/sdk_/_deny_first; `anthropic` vs `agentSdk`) | STAB-00 canonicalizes; STAB-01 and STAB-06 pull from `SPEC.md` / `runtime.ts` only. |
 | New Section 9 aggregator destabilizes the Section 8 gate | Separate TMP root + artifact path; additive premerge; report-only for one cycle then hard-fail. |
-| `canUseTool`/hooks may not fire for in-process MCP tools | STAB-04 runs an SDK-behavior probe before committing the wrapper-only diff-evidence design. |
+| `canUseTool`/hooks may not fire for in-process MCP tools | STAB-04 probe landed: raw SDK MCP `mcp_message` calls do not automatically invoke callbacks, so mutating MCP tools require in-handler permission/evidence wrapping unless future live-CLI evidence supersedes this. |
 | Packaging blocker (asar/HOME/signing) blocks default cutover | STAB-02 step (d) treats a passed packaged-subprocess turn as a hard prerequisite or records a concrete blocker. |
 | Editing PRD/PLAN/SPEC drifts policy | STAB-06 limits to factual corrections + dated supersession notes; policy changes gated behind D-APP-12. |
 | `_STATUS.md` mass-edit triggers lifecycle gates | No bulk edits; reconciliation captured as a derived note + matrix; topology authority preserved. |
