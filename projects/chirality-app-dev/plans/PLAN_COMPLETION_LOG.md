@@ -6,6 +6,51 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization SDK scripted dev turn landed (`STAB-02b`)
+
+Landed STAB-02 step (b), the non-packaged opt-in `agentSdk` scripted dev-turn evidence
+slice.
+
+Runtime validation changes:
+
+- Added `harness:validate:agentsdk-dev-turn`, a route-level Vitest validation command
+  that sets `CHIRALITY_HARNESS_PROVIDER=agentSdk`, creates a real harness session, and
+  posts a turn through the actual `/api/harness/turn` route.
+- The validation keeps the real Claude Agent SDK `query()` machinery in the path and
+  replaces only `spawnClaudeCodeProcess` with an offline deterministic subprocess that
+  emits SDK JSONL messages. This avoids live provider network and does not touch
+  packaged/Electron subprocess behavior.
+- The test verifies SDK subprocess spawn options, UI-provided API-key propagation into
+  the SDK subprocess environment, prior env restoration, SSE event order, SDK session
+  persistence, SDK package metadata, persisted `HarnessEvent` replay, and absence of key
+  material in SSE/evidence output.
+- The validation command is documented in `docs/VALIDATION_STRATEGY.md` and
+  `docs/BUILD_AND_RELEASE.md`.
+
+Validation passed: `npm run harness:validate:agentsdk-dev-turn` (1 file, 1 test);
+`npm run typecheck`; full `npm run test` (49 files, 360 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks);
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`; and `npm run
+proof:network-policy -- --runs 1 --idle-seconds 3 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02b-20260616-rerun`, producing `PASS` after temporarily
+creating and then removing the proof script's missing `examples/example-project` fixture.
+`git diff --check` passed.
+
+Skipped checks: `npm run build`, `npm run desktop:pack`, and `npm run desktop:dist` were
+skipped because STAB-02(b) is explicitly non-packaged dev-turn evidence. Packaged SDK
+subprocess proof remains STAB-02(d). The first shortened `proof:network-policy` attempt
+with a 1-second idle window completed the runtime scenario and observed no non-allowlisted
+endpoints but failed the proof verdict because the renderer blocked-diagnostic count was
+zero after an `Object has been destroyed` probe error; the 3-second rerun passed.
+
+Residual handoff: STAB-02 remains partial. Remaining steps are (c) an `agentSdk`-mode
+network proof and (d) packaged SDK subprocess proof with `asarUnpack`, HOME, and DMG
+evidence. D-APP-12 remains AWAITING_RULING for default-provider cutover until all STAB-02
+prerequisites are green. D-APP-13 remains NOT_PREPARED for mutating Chirality MCP
+exposure.
+
 ## 2026-06-16 - Runtime stabilization SDK API-key injection landed (`STAB-02a`)
 
 Landed STAB-02 step (a), the load-bearing API-key injection slice for the opt-in

@@ -16,6 +16,7 @@
     "harness:validate:section8": "node ./scripts/validate-harness-section8.mjs",
     "harness:validate:section9": "node ./scripts/validate-harness-section9.mjs",
     "harness:validate:premerge": "node ./scripts/validate-harness-premerge.mjs",
+    "harness:validate:agentsdk-dev-turn": "vitest run src/__tests__/api/harness/agent-sdk-dev-turn.test.ts",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
     "desktop:pack": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run instruction-root:integrity",

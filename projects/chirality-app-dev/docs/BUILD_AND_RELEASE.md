@@ -52,6 +52,7 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run harness:validate:section8` | Runs harness validation against a reachable local harness API and emits machine-readable status lines. |
 | `npm run harness:validate:section9` | Runs deterministic Section 9 runtime-ID validation over targeted Vitest files and writes the stable Section 9 summary artifact. |
 | `npm run harness:validate:premerge` | Runs the premerge harness validator and writes the stable summary artifact. |
+| `npm run harness:validate:agentsdk-dev-turn` | Runs route-level opt-in `agentSdk` scripted dev-turn validation through the real SDK `query()` path with an offline scripted subprocess. |
 | `npm run instruction-root:integrity` | Verifies required instruction-root resources and writes the integrity summary artifact. |
 | `npm run proof:network-policy` | Runs the current network-policy proof. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
