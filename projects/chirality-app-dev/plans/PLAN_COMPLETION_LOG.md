@@ -6,6 +6,77 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - R5 executable implementation design package landed (`R5-DESIGN-001`)
+
+Prepared `plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md` under
+`D-APP-08` Option C. The package decomposes executable R5 into bounded future slices:
+child definition eligibility, SDK `agents` option-construction bridge, Agent preflight and
+hook gating, parent-child lifecycle event mapping, bounded child output artifact references,
+and executable child turn integration.
+
+The package applies the cycle-driven resolution doctrine from
+`/Users/ryan/ai-env/projects/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md` and
+`{REPO_ROOT}/docs/CYCLE_DRIVEN_RESOLUTION.md`: the dependency graph is objective-relative;
+the residual six-node SCC remains non-gating only for bounded R5 dispatch under
+`D-APP-07`; cycle-participating dependency rows are not closure evidence; project-wide
+strict dependency closure remains unclaimable until a later SCC-resolution package records
+named moves and a fresh dependency-closure audit accepts the result.
+
+This package does not approve or implement model-visible SDK `Agent` tool execution,
+executable SDK `agents` definitions, child turn execution, child output artifacts from
+executable child runs, child capability inheritance or expansion, concrete provider
+implementation, provider routing, network expansion, Pi runtime paths, dependency-register
+edits, project-wide strict dependency-closure claims, release-readiness claims, lifecycle
+issuance, professional approval, certification, sealing, authentication, code-compliance
+acceptance, or professional-boundary claim changes.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in this package tranche.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+targeted `rg` checks for `D-APP-08`, `R5-DESIGN-001`, `R5-SLICE`, and
+`CYCLE_DRIVEN_RESOLUTION` references; referenced-path existence checks for the D-APP-08
+packet/ruling, decision register, active plan, completion log, design package,
+RECONCILIATION SCC ruling package, and cycle-driven resolution doctrine; decision-register
+ID uniqueness check; source/package exclusion check. Frontend runtime tests, typecheck,
+harness premerge, instruction-root integrity, build, packaging, network proof, and DMG
+checks were skipped because this tranche only prepared a design/evidence package and
+updated control-plane planning surfaces.
+
+## 2026-06-16 - D-APP-08 ruled Option C
+
+Human project authority approved `D-APP-08` Option C. No executable code lands from this
+ruling. WORKING_ITEMS must prepare an implementation design and evidence package that
+decomposes executable R5 into smaller implementation slices and validation gates.
+
+The design package must consider
+`/Users/ryan/ai-env/projects/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md` when planning
+through the residual SCC. The residual SCC remains non-gating only for bounded R5 dispatch
+selection under `D-APP-07`; it remains unresolved for project-wide strict dependency
+closure.
+
+This ruling does not approve model-visible SDK `Agent` tool execution, executable SDK
+`agents` definitions, child turn execution, child output artifacts from executable child
+runs, child capability inheritance or expansion, concrete provider implementation,
+provider routing, network expansion, Pi runtime paths, dependency-register edits,
+project-wide strict dependency-closure claims, release-readiness claims, lifecycle
+issuance, professional approval, certification, sealing, authentication, code-compliance
+acceptance, or professional-boundary claim changes.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in the ruling-record tranche.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-08|Option C|R5 implementation design" execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the packet, ruling, register, plan, cycle-driven
+resolution doctrine, and RECONCILIATION package; decision-register ID uniqueness check;
+source/package exclusion check. Frontend runtime tests, typecheck, harness premerge,
+instruction-root integrity, build, packaging, network proof, and DMG checks were skipped
+because this tranche only recorded the human ruling and updated control-plane planning
+surfaces.
+
 ## 2026-06-16 - Bounded executable R5 implementation decision packet prepared (`D-APP-08`)
 
 Prepared `D-APP-08` after `D-APP-07` ruled the residual six-node SCC non-blocking for
