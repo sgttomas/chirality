@@ -158,7 +158,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 23 | **PersonaComposer from instruction root** | `persona-manager.ts` (`PersonaComposer`) | `lib/persona-manager.test.ts`, `api/harness/routes.test.ts`, `lib/claude-agent-sdk-manager.test.ts` | DEL-04-04 | LANDED |
 | 24 | Section 8 running-app validation + stable premerge artifact | `scripts/validate-harness-section8.mjs`, `scripts/validate-harness-premerge.mjs` | `scripts/*` | DEL-09-01 | LANDED |
 | 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
-| 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL (DMG path exists; **no `asarUnpack` for the SDK**; subprocess proof `BLOCKED_TBD`) |
+| 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL 2026-06-16 (SDK `asarUnpack` and packaged/mounted-DMG SDK presence proven; packaged live read-tool turn, transcript, and HOME behavior remain blocked pending explicit live-provider approval or a non-live resolver/HOME proof harness) |
 | 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic` and scripted opt-in `agentSdk` dev proof; packaged subprocess proof remains STAB-02(d) |
 | 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/mcp/read-tools.ts`; `frontend/src/lib/harness/mcp/tool-names.ts`; `frontend/src/lib/harness/sdk-options-builder.ts` | `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts`; descriptor/options tests | DEL-07-04 / DEL-07-05 (MCP half) | **LANDED 2026-06-16** (`workspaceWrite`-gated by D-APP-13 Option A) |
 
@@ -179,7 +179,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 |---|---|---|---|
 | `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed on `codex/chirality-app-work`. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` now runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence. Remaining: (d) packaged subprocess probe (`asarUnpack` + HOME + DMG); D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
+| `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed; step (d) package-layout proof partially landed after D-APP-12 Option B. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence; `desktop:pack`, `desktop:dist`, and mounted-DMG integrity now prove the SDK JS package and darwin-arm64 CLI package resolve from `app.asar.unpacked`. Remaining: packaged read-tool `agentSdk` turn plus transcript/HOME behavior, blocked pending explicit live-provider approval or a new non-live packaged resolver/HOME proof harness; updated D-APP-12 packet prepared. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-04` Deterministic Chirality MCP Maturity | **LANDED 2026-06-16** on `codex/chirality-app-work`. | D-APP-13 Option A approved stepwise `status_transition` then `deps_write`; implementation exposes only requested `workspaceWrite` mutating Chirality MCP handlers, with in-handler permission/evidence wrapping because raw SDK MCP `mcp_message` calls bypass automatic `canUseTool` / hook callbacks. Evidence records permission decisions, target-file SHA/byte metadata, bounded diff summaries, redacted failures, and result summaries only. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
@@ -254,13 +254,22 @@ landed, and step (d) is the `BLOCKED_TBD` packaging gate.
   records provider/scripted status, treats any TCP endpoint outside loopback and
   `api.anthropic.com` as non-allowlisted, and preserves the CONF-002 OCSP/CRL carve-out
   note. This is not packaged subprocess evidence.
-- **(d) Packaged subprocess probe (resolves `BLOCKED_TBD`).** Add electron-builder
-  `asarUnpack` for `node_modules/@anthropic-ai/claude-agent-sdk/**`; `build` →
-  `desktop:pack` (`--dir`) probe, launch, run one read-tool `agentSdk` turn, confirm the
-  SDK subprocess resolves from `app.asar.unpacked` and the transcript lands under a
-  resolvable HOME; extend `instruction-root:integrity` to assert SDK presence in the
-  bundle; then `desktop:dist` and repeat. If still failing, record the exact resolution
-  error as the documented blocker — do **not** claim landed.
+- **(d) Packaged subprocess probe. PARTIAL 2026-06-16 after D-APP-12 Option B.**
+  Added electron-builder `asarUnpack` for
+  `node_modules/@anthropic-ai/claude-agent-sdk/**` and
+  `node_modules/@anthropic-ai/claude-agent-sdk-*/**`; extended
+  `instruction-root:integrity` to assert bundled SDK presence under `app.asar.unpacked`;
+  proved `desktop:pack`, directory-build launch, packaged session create/boot,
+  `desktop:dist`, and mounted-DMG SDK presence. The verifier records the actual
+  resolver-visible darwin-arm64 CLI package root:
+  `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64`.
+  Remaining blocker: no packaged read-tool `agentSdk` turn was run because no
+  live-provider proof was explicitly approved and the packaged app can load a stored API
+  key from the Electron profile; the existing scripted SDK proof is intentionally
+  development/test-only and would bypass native CLI resolution. Transcript/HOME behavior
+  therefore remains unproven. Do **not** claim STAB-02(d) fully landed until a live
+  packaged turn is explicitly approved or a separate non-live packaged resolver/HOME
+  proof harness lands.
 
 Default-provider cutover decision (D-APP-12, §9): keep `agentSdk` opt-in until (a)–(d)
 plus Section 8 and Section 9 are green. **Packaged subprocess proof is a hard prerequisite

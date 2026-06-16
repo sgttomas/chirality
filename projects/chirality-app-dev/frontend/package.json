@@ -51,6 +51,10 @@
     "appId": "com.chirality.app",
     "productName": "Chirality",
     "asar": true,
+    "asarUnpack": [
+      "node_modules/@anthropic-ai/claude-agent-sdk/**",
+      "node_modules/@anthropic-ai/claude-agent-sdk-*/**"
+    ],
     "directories": {
       "output": "dist"
     },

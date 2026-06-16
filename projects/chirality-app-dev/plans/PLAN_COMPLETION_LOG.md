@@ -6,6 +6,55 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization packaged SDK layout proof partial (`STAB-02d`)
+
+Recorded the D-APP-12 Option B hold ruling and continued STAB-02(d) without changing the
+default provider.
+
+Runtime validation changes:
+
+- Added Electron `asarUnpack` coverage for the Claude Agent SDK package and SDK platform
+  packages.
+- Extended `instruction-root:integrity` so packaged bundles fail if the SDK JS package or
+  native darwin-arm64 CLI package is missing from `app.asar.unpacked`.
+- The verifier accepts the resolver-visible nested platform package location observed in
+  the packaged app:
+  `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64`.
+- Launched the directory build, confirmed packaged renderer/API reachability, created a
+  packaged harness session, and ran packaged boot without invoking a live SDK turn.
+- Built the DMG, mounted it read-only, and reran the SDK/instruction-root integrity check
+  against the mounted app Resources directory.
+- Prepared an updated D-APP-12 packet preserving the default-provider hold.
+
+Validation passed: focused package-policy/integrity suite
+`npm run test -- src/__tests__/scripts/dmg-packaging-policy.test.ts
+src/__tests__/scripts/verify-instruction-root-integrity.test.ts` (2 files, 9 tests);
+`npm run desktop:pack`; `npm run desktop:dist`; mounted-DMG integrity check with
+`npm run instruction-root:integrity -- --bundle-root '/Volumes/Chirality
+0.1.0-arm64/Chirality.app/Contents/Resources' --output-root
+artifacts/harness/instruction-root-integrity/dmg-mounted-2026-06-16`;
+`npm run harness:validate:agentsdk-dev-turn`; `npm run typecheck`; full
+`npm run test` (51 files, 372 tests); `npm run harness:validate:premerge` after starting
+the local Next server on port 3000 (`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks,
+Section 9 report-only 13 checks); and `npm run instruction-root:integrity`.
+
+Additional evidence: a shortened scripted agentSdk network proof passed with
+`npm run proof:network-policy -- --provider agentSdk --scripted-agent-sdk --runs 1
+--idle-seconds 5 --idle-sample-seconds 5 --output-dir
+artifacts/harness/network-policy-agentSdk-short-2026-06-16`.
+
+Skipped/blocked checks: the exact default-duration
+`npm run proof:network-policy -- --provider agentSdk --scripted-agent-sdk` was started
+and then stopped because its defaults are three 10-minute idle windows. A packaged
+read-tool `agentSdk` turn was not run because no live-provider proof was explicitly
+approved and the packaged app can load a stored API key from the Electron profile; the
+existing scripted SDK mode is development/test-only and would bypass native CLI
+resolution. Transcript/HOME behavior remains unproven.
+
+Residual handoff: STAB-02(d) remains partial. D-APP-12 remains blocked for default
+cutover until either a live packaged read-tool turn is explicitly approved and recorded,
+or a separate non-live packaged resolver/HOME proof harness lands and is accepted.
+
 ## 2026-06-16 - Runtime stabilization mutating Chirality MCP landed (`STAB-04`)
 
 Landed D-APP-13 Option A: bounded local mutating Chirality MCP exposure for

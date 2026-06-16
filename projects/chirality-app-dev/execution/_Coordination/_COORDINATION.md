@@ -68,7 +68,7 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover remains pending; `D-APP-13` mutating Chirality MCP exposure is ruled), and validation policy.
+0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover remains pending after the Option B hold ruling and STAB-02(d) package-layout proof; `D-APP-13` mutating Chirality MCP exposure is ruled), and validation policy.
 1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the completed non-governing SCC-resolution plan. It records closure of the residual six-node strict dependency SCC; it is closed history and is no longer the active queue.
 2. `plans/PLAN_2026-06-13_runtime_completion.md` is retired as the active queue and retained only as historical completion evidence for landed runtime work.
 3. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
@@ -115,7 +115,7 @@ Default ordering:
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work.
 2. Select the earliest unblocked tranche on the stabilization spine, honoring its sequencing DAG (STAB-00 first; STAB-00 gates STAB-01 and STAB-06).
 3. For governance tranches (STAB-00, STAB-06), produce the required reconciliation/disposition artifacts within their write bounds.
-4. Prepare a decision packet when the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover) and no packet exists.
+4. Prepare or refresh a decision packet when the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover) and the existing packet no longer reflects current evidence.
 5. If a packet already awaits ruling, stop; do not substitute unrelated runtime hardening or out-of-stage scope.
 6. Stop when no stabilization tranche remains unblocked; do not revive the retired completion plan or invent a replacement active queue.
 

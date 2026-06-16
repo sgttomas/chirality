@@ -21,6 +21,21 @@ const REQUIRED_DOC_FILES = [
   'WHAT-IS-AN-AGENT.md'
 ];
 
+const REQUIRED_UNPACKED_SDK_FILES = [
+  'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json',
+  'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs',
+  'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json'
+];
+
+const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
+  ['darwin:arm64', '@anthropic-ai/claude-agent-sdk-darwin-arm64'],
+  ['darwin:x64', '@anthropic-ai/claude-agent-sdk-darwin-x64'],
+  ['linux:arm64', '@anthropic-ai/claude-agent-sdk-linux-arm64'],
+  ['linux:x64', '@anthropic-ai/claude-agent-sdk-linux-x64'],
+  ['win32:arm64', '@anthropic-ai/claude-agent-sdk-win32-arm64'],
+  ['win32:x64', '@anthropic-ai/claude-agent-sdk-win32-x64']
+]);
+
 function toPosix(relativePath) {
   return relativePath.split(path.sep).join('/');
 }
@@ -328,6 +343,110 @@ async function verifyManifestAgainstBundle({ manifestEntries, bundleRoot }) {
   };
 }
 
+function resolveSdkPlatformPackageName() {
+  return SDK_PLATFORM_PACKAGE_BY_RUNTIME.get(`${process.platform}:${process.arch}`) ?? null;
+}
+
+function buildRequiredUnpackedSdkFiles() {
+  const platformPackageName = resolveSdkPlatformPackageName();
+  const platformPackageCandidates = platformPackageName
+    ? [
+        `app.asar.unpacked/node_modules/${platformPackageName}`,
+        `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/${platformPackageName}`
+      ]
+    : [];
+
+  return {
+    platformPackageName,
+    requiredFiles: [...REQUIRED_UNPACKED_SDK_FILES],
+    platformPackageCandidates: platformPackageCandidates.map((root) => ({
+      root,
+      files: [`${root}/package.json`, `${root}/claude`]
+    }))
+  };
+}
+
+async function verifyUnpackedSdkBundle({ bundleRoot }) {
+  const { platformPackageName, requiredFiles, platformPackageCandidates } =
+    buildRequiredUnpackedSdkFiles();
+  const missingFiles = [];
+  const comparisons = [];
+
+  for (const relativePath of requiredFiles) {
+    const absolutePath = path.join(bundleRoot, relativePath);
+    try {
+      const fileStat = await stat(absolutePath);
+      const isFile = fileStat.isFile();
+      comparisons.push({
+        path: relativePath,
+        sizeBytes: isFile ? fileStat.size : null,
+        present: isFile
+      });
+      if (!isFile) {
+        missingFiles.push(relativePath);
+      }
+    } catch {
+      comparisons.push({
+        path: relativePath,
+        sizeBytes: null,
+        present: false
+      });
+      missingFiles.push(relativePath);
+    }
+  }
+
+  const platformCandidateComparisons = [];
+  let selectedPlatformPackageRoot = null;
+
+  for (const candidate of platformPackageCandidates) {
+    const candidateFiles = [];
+    for (const relativePath of candidate.files) {
+      const absolutePath = path.join(bundleRoot, relativePath);
+      try {
+        const fileStat = await stat(absolutePath);
+        candidateFiles.push({
+          path: relativePath,
+          sizeBytes: fileStat.isFile() ? fileStat.size : null,
+          present: fileStat.isFile()
+        });
+      } catch {
+        candidateFiles.push({
+          path: relativePath,
+          sizeBytes: null,
+          present: false
+        });
+      }
+    }
+
+    const found = candidateFiles.every((entry) => entry.present);
+    platformCandidateComparisons.push({
+      root: candidate.root,
+      found,
+      files: candidateFiles
+    });
+
+    if (found && !selectedPlatformPackageRoot) {
+      selectedPlatformPackageRoot = candidate.root;
+    }
+  }
+
+  if (platformPackageName && !selectedPlatformPackageRoot) {
+    missingFiles.push(
+      `one complete ${platformPackageName} unpacked package under ${platformPackageCandidates
+        .map((candidate) => candidate.root)
+        .join(' or ')}`
+    );
+  }
+
+  return {
+    platformPackageName,
+    selectedPlatformPackageRoot,
+    missingFiles,
+    comparisons,
+    platformPackageCandidates: platformCandidateComparisons
+  };
+}
+
 async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
@@ -355,11 +474,13 @@ async function main() {
     manifestEntries,
     bundleRoot
   });
+  const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot });
 
   const status =
     verification.missingInBundle.length === 0 &&
     verification.mismatchedFiles.length === 0 &&
-    verification.unexpectedBundleAgentFiles.length === 0
+    verification.unexpectedBundleAgentFiles.length === 0 &&
+    sdkBundleVerification.missingFiles.length === 0
       ? 'pass'
       : 'fail';
 
@@ -393,7 +514,14 @@ async function main() {
     missingInBundle: verification.missingInBundle,
     mismatchedFiles: verification.mismatchedFiles,
     unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles,
-    comparisons: verification.comparisons
+    comparisons: verification.comparisons,
+    sdkBundle: {
+      platformPackageName: sdkBundleVerification.platformPackageName,
+      selectedPlatformPackageRoot: sdkBundleVerification.selectedPlatformPackageRoot,
+      requiredFiles: sdkBundleVerification.comparisons,
+      platformPackageCandidates: sdkBundleVerification.platformPackageCandidates,
+      missingFiles: sdkBundleVerification.missingFiles
+    }
   };
 
   await writeJson(path.join(outputRoot, 'manifest.json'), manifest);
@@ -425,6 +553,12 @@ async function main() {
     if (verification.unexpectedBundleAgentFiles.length > 0) {
       console.error(`Unexpected bundled agent files (${verification.unexpectedBundleAgentFiles.length}):`);
       for (const filePath of verification.unexpectedBundleAgentFiles) {
+        console.error(`  - ${filePath}`);
+      }
+    }
+    if (sdkBundleVerification.missingFiles.length > 0) {
+      console.error(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);
+      for (const filePath of sdkBundleVerification.missingFiles) {
         console.error(`  - ${filePath}`);
       }
     }

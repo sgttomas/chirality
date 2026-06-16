@@ -15,6 +15,8 @@ type ExtraResource = {
 type FrontendPackageJson = {
   scripts?: Record<string, string>;
   build?: {
+    asar?: boolean;
+    asarUnpack?: string[];
     mac?: {
       minimumSystemVersion?: string;
       target?: BuildTarget[];
@@ -80,6 +82,19 @@ describe('dmg packaging policy', () => {
           from: '../docs',
           to: 'docs'
         })
+      ])
+    );
+  });
+
+  it('unpacks the Claude Agent SDK and native CLI package outside app.asar', async () => {
+    const pkg = await readPackageJson();
+    const asarUnpack = pkg.build?.asarUnpack ?? [];
+
+    expect(pkg.build?.asar).toBe(true);
+    expect(asarUnpack).toEqual(
+      expect.arrayContaining([
+        'node_modules/@anthropic-ai/claude-agent-sdk/**',
+        'node_modules/@anthropic-ai/claude-agent-sdk-*/**'
       ])
     );
   });
