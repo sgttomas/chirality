@@ -1,0 +1,540 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-03-01-AGENTENGINEPORT-AND-ENGINE-CONFORMANCE-SUITE - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>31</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED012-0002">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED012-0009">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED012-0017">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED012-0024">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a></nav>
+<main>
+<section id="SEC-ED012-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:865aa26386a3" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED012-0001</span> Source Pack: SRC-DEL-DEL-03-01-AGENTENGINEPORT-AND-ENGINE-CONFORMANCE-SUITE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:865aa26386a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:865aa26386a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:865aa26386a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED012-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1c9ca621393d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED012-0002</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c9ca621393d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c9ca621393d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c9ca621393d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:284fb58e9a3b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED012-0003</span> Datasheet: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:284fb58e9a3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:284fb58e9a3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:284fb58e9a3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d040472ee275" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d040472ee275" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d040472ee275" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d040472ee275" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-03-01 |
+| DeliverableName | AgentEnginePort and Engine Conformance Suite |
+| PackageID | PKG-03 |
+| PackageName | Runtime Engine Contract and Turn Lifecycle |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| ResponsibleParty | TBD |
+| Type | API_CONTRACT |
+| ContextEnvelope | M |
+| CoversScopeItems | SOW-037 |
+| SupportsObjectives | OBJ-002 |
+| AnticipatedArtifacts | `agent-engine-port.ts`; runtime contract docs; conformance tests |</p>
+<p>Source: `_CONTEXT.md` and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` section &quot;PKG-03 Runtime Engine Contract and Turn Lifecycle&quot;.
+</p></div></div></section>
+<section id="SEC-ED012-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0be51e6c7094" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0be51e6c7094" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0be51e6c7094" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0be51e6c7094" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Contract identity | `AgentEnginePort` / `RuntimeEngineContract` | `docs/SPEC.md` section 10.1; `docs/TYPES.md` section 7.1 |
+| Contract ownership | Chirality owns the runtime contract; SDK APIs do not define public harness semantics. | `docs/DIRECTIVE.md` section 2.8; `docs/CONTRACT.md` K-ENGINE-1 |
+| Adapter role | `EngineAdapter` is provider/SDK-specific implementation behind `AgentEnginePort`. | `docs/TYPES.md` section 7.1; `docs/SPEC.md` section 10.3 |
+| Primary operation | `runTurn(input: TurnInput): AsyncIterable&lt;UIEvent&gt;` | `docs/SPEC.md` section 10.2 |
+| Optional operation | `interrupt?(sessionId: string): Promise&lt;void&gt;` | `docs/SPEC.md` section 10.2 |
+| Browser stream contract | `UIEvent` stream using stable SSE names. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4 |
+| Canonical runtime record | `HarnessEvent` records in product-owned event JSONL. | `docs/SPEC.md` section 9; `docs/TYPES.md` section 7.3 |
+| Required conformance subject | Stub adapter and SDK-backed adapter. | `docs/SPEC.md` section 10.3; `docs/PRD.md` section 12.5 |
+| Production-default gate | SDK-backed adapter must pass engine conformance before default production use. | `docs/CONTRACT.md` K-ENGINE-2; `docs/PRD.md` FR-123 |
+</p></div></div></section>
+<section id="SEC-ED012-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8e3587c39aa7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e3587c39aa7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e3587c39aa7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e3587c39aa7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Requirement / Constraint | Source |
+|---|---|---|
+| Provider-neutral core | Public APIs, canonical event schemas, session storage contracts, permission decision records, and governance rules must not become SDK-shaped. | `docs/DIRECTIVE.md` section 2.10; `docs/CONTRACT.md` K-ENGINE-4 |
+| Route compatibility | Existing `/api/harness/*` route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/PRD.md` section 9.1; `docs/SPEC.md` section 10.4 |
+| SSE compatibility | Browser-facing SSE event names remain compatible during SDK adoption. | `docs/SPEC.md` section 11; `docs/PRD.md` section 9.3 |
+| Terminal outcomes | Accepted turns must persist terminal success, failure, cancellation, or interruption outcomes. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-123 |
+| Accepted-turn persistence | Accepted user input must be persisted before SDK/model execution begins. | `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` section 12.6 |
+| SDK metadata boundary | SDK identifiers, message names, permission modes, tool names, transcript paths, and session IDs are adapter metadata. | `docs/DIRECTIVE.md` section 2.10; `docs/SPEC.md` section 10.3 |
+| Source-state warning | `docs/PRD.md` is accessible but `_REFERENCES.md` reports HASH_MISMATCH for REF-006. Content derived from PRD slices should be reconfirmed before acceptance. | `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED012-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c988bb7e35f1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c988bb7e35f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c988bb7e35f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c988bb7e35f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Construct | Target / Shape | Source / Status |
+|---|---|---|
+| Runtime contract module | `agent-engine-port.ts` or equivalent product-owned runtime contract. | `execution/_Decomposition/...v3_2.md` DEL-03-01; `docs/PLAN.md` R1; `docs/PRD.md` R1 |
+| TypeScript interface | `AgentEnginePort` with `runTurn` and optional `interrupt`. | `docs/SPEC.md` section 10.2 |
+| Turn input type | Must include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` section 10.2 |
+| Conformance suite | `engine-conformance.ts` or equivalent tests for stub and SDK-backed adapters. | `docs/PLAN.md` R1; `docs/PRD.md` section 12.5 |
+| Stub adapter | Deterministic adapter retained for tests. | `docs/SPEC.md` section 10.3 |
+| SDK-backed adapter | Provider implementation behind the product-owned contract. | `docs/SPEC.md` section 10.3 |
+| Exact final source path | CANDIDATE / TBD: `docs/PRD.md` R1 lists `frontend/src/lib/harness/agent-engine-port.ts` or equivalent, while `docs/PLAN.md` R1 and the decomposition name only `agent-engine-port.ts` or equivalent. Treat the frontend path as a candidate until implementation accepts final placement. | `docs/PRD.md` R1 implementation targets; `docs/PLAN.md` R1 implementation targets; `execution/_Decomposition/...v3_2.md` DEL-03-01 |
+</p></div></div></section>
+<section id="SEC-ED012-0008" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:fb0499c7726c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb0499c7726c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb0499c7726c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb0499c7726c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Source | Status / Note |
+|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` | MATCH; sections 2.8-2.11 used. |
+| REF-002 | `docs/CONTRACT.md` | MATCH; sections 1.4-1.5 and enforcement map used. |
+| REF-003 | `docs/SPEC.md` | MATCH; sections 9-13 used. |
+| REF-004 | `docs/TYPES.md` | MATCH; sections 7 and 12 used. |
+| REF-005 | `docs/PLAN.md` | MATCH; sections 2-4, 6.2, and 8 used. |
+| REF-006 | `docs/PRD.md` | HASH_MISMATCH in `_REFERENCES.md`; sections 8.16, 9, 12, and 13 used with source-state warning. |
+| REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | MATCH; not used for content requirements beyond decomposition provenance. |
+</p></div></div></section>
+<section id="SEC-ED012-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7a2303005dd5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED012-0009</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a2303005dd5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a2303005dd5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a2303005dd5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0010" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:af933c13ed3e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED012-0010</span> Guidance: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af933c13ed3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af933c13ed3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af933c13ed3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0011" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:bb1e0fe9e91b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb1e0fe9e91b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb1e0fe9e91b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb1e0fe9e91b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-03-01 exists to make the runtime engine replaceable by construction while allowing the Claude Agent SDK to serve as the preferred implementation substrate when it satisfies Chirality-owned governance, audit, permission, session, and route-compatibility requirements.</p>
+<p>The decomposition assigns this deliverable to SOW-037 and OBJ-002: define the product-owned `AgentEnginePort` / `RuntimeEngineContract` and conformance tests before SDK behavior becomes production default.</p>
+<p>Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-01; `docs/DIRECTIVE.md` sections 2.8-2.10; `docs/PLAN.md` sections 2-4.
+</p></div></div></section>
+<section id="SEC-ED012-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2348df18afac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2348df18afac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2348df18afac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2348df18afac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Chirality terms at the core | Contract names, public APIs, browser events, persisted events, permission decisions, and session records should use Chirality vocabulary. SDK details belong behind `EngineAdapter`. | `docs/CONTRACT.md` K-CORE-1 and K-ENGINE-4; `docs/TYPES.md` section 7 |
+| Conformance before default | Treat SDK adoption as conditional. The SDK-backed adapter is not default until it passes conformance tests. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3 |
+| Route stability | Keep `/api/harness/turn` as transport and compatibility surface. Runtime policy should be owned by `TurnEngine` and the engine boundary. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
+| Event separation | Keep compact browser `UIEvent`s distinct from richer persisted `HarnessEvent`s. | `docs/CONTRACT.md` K-EVENT-1; `docs/SPEC.md` sections 9 and 11 |
+| Adapter metadata quarantine | SDK session IDs, transcript paths, tool names, permission modes, message categories, and hook names may be retained only as explicit adapter metadata. | `docs/DIRECTIVE.md` section 2.10; `docs/SPEC.md` section 10.3 |
+| Reliance boundaries are test subjects | Product-critical boundaries must be testable in Chirality terms, not only described in prompts or assumed from SDK defaults. | `docs/DIRECTIVE.md` section 2.9; `docs/CONTRACT.md` K-RELIANCE-2 |
+</p></div></div></section>
+<section id="SEC-ED012-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c030a597cde2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c030a597cde2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c030a597cde2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c030a597cde2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Keep the initial `AgentEnginePort` narrow. A small boundary makes stub and SDK-backed adapters easier to compare and keeps SDK-specific behavior from leaking into the product contract.
+- Make the conformance suite adapter-agnostic. Tests should assert Chirality outcomes: accepted-turn persistence, stable UI events, canonical event records, terminal outcomes, permission denial, redaction, and absence of SDK-shaped leakage.
+- Expect some tests to be staged. SDK message categories, resume behavior, `SessionStore`, `CLAUDE_CONFIG_DIR`, and interrupt behavior depend on DEL-04-01 probe findings, so mark unsupported cases as `TBD` rather than hard-coding assumptions.
+- Preserve the stub adapter. It is the deterministic baseline for contract tests and fallback analysis.
+- Keep PRD-derived details visible but caveated. `_REFERENCES.md` reports a HASH_MISMATCH for `docs/PRD.md`; human acceptance should confirm that the accessible PRD state is the intended one.
+</p></div></div></section>
+<section id="SEC-ED012-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3f62c3f16c47" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f62c3f16c47" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f62c3f16c47" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f62c3f16c47" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Preferred Direction | Rationale |
+|---|---|---|
+| Thin contract vs broad SDK wrapper | Prefer thin product-owned contract. | Reduces SDK lock-in and supports provider-neutral conformance. |
+| Full SDK parity vs governed subset | Prefer governed subset. | PLAN states Chirality does not chase Claude Code feature parity; it adopts SDK mechanics where they accelerate the product-owned contract. |
+| Unit-only tests vs mixed conformance | Use both type/unit tests and route/SSE compatibility checks. | Contract correctness must cover adapter behavior and user-visible stream compatibility. |
+| Early implementation specificity vs `TBD` | Use `TBD` until SDK probe results exist. | Prevents inaccessible or unstable SDK behavior from becoming accepted project truth. |
+| Fallback criteria in docs vs tests only | Keep fallback criteria in runtime contract documentation and verify them through conformance where possible. | `docs/CONTRACT.md` K-ENGINE-5 and `docs/PRD.md` FR-126 make fallback a governed acceptance judgment, not just a test failure outcome; documentation must state when an unverifiable SDK boundary triggers fallback or residual-risk review. |
+</p></div></div></section>
+<section id="SEC-ED012-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:c06f1d40b5e4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c06f1d40b5e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c06f1d40b5e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c06f1d40b5e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Illustrative interface shape from `docs/SPEC.md` section 10.2:</p>
+<p>```ts
+interface AgentEnginePort {
+  runTurn(input: TurnInput): AsyncIterable&lt;UIEvent&gt;;
+  interrupt?(sessionId: string): Promise&lt;void&gt;;
+}
+```</p>
+<p>Example conformance assertions:</p>
+<p>- A stub adapter yields only stable browser `UIEvent` names and does not expose provider-specific fields in public stream payloads.
+- An SDK-backed adapter persists `turn.accepted` before invoking SDK/model execution.
+- An SDK-backed adapter maps SDK result/failure/interruption outcomes into product-owned terminal `HarnessEvent` records.
+- A leakage test fails if public APIs or canonical `HarnessEvent` fields expose SDK message names, permission modes, transcript paths, tool names, or session IDs outside explicit adapter metadata.
+</p></div></div></section>
+<section id="SEC-ED012-0016" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:129e316363eb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:129e316363eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:129e316363eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:129e316363eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CT-001 | `docs/PRD.md` is accessible and used, but `_REFERENCES.md` reports REF-006 HASH_MISMATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.16, 9, 12, 13 | Datasheet Conditions/References; Specification Requirements/Verification; Procedure Prerequisites | Treat as a source-state warning, not a semantic conflict; require human confirmation before acceptance closure. | TBD |
+</p></div></div></section>
+<section id="SEC-ED012-0017" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:38b380c245a3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED012-0017</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:38b380c245a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:38b380c245a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:38b380c245a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0018" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:90761d3ac837" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED012-0018</span> Procedure: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90761d3ac837" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90761d3ac837" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90761d3ac837" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0019" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:1c53e2778188" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1c53e2778188" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1c53e2778188" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1c53e2778188" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define and verify the product-owned engine boundary and conformance suite for stub and SDK-backed runtime adapters while preserving Chirality-owned semantics, stable route/SSE behavior, and adapter replaceability.</p>
+<p>Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 13; `docs/CONTRACT.md` sections 1.4-1.5.
+</p></div></div></section>
+<section id="SEC-ED012-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b8a59b9adc09" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8a59b9adc09" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8a59b9adc09" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8a59b9adc09" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status / Note |
+|---|---|
+| Deliverable state allows drafting | Current `_STATUS.md` state was `OPEN` before this P1/P2 run. |
+| Authoritative sources available | REF-001 through REF-007 are locally accessible. |
+| PRD source-state warning acknowledged | REF-006 has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details require human confirmation before acceptance closure. |
+| Declared upstream dependencies | `_DEPENDENCIES.md` lists declared upstream as TBD; no accepted dependency edges have been extracted yet. |
+| SDK probe details | TBD; exact SDK message categories, session store behavior, and interrupt behavior depend on DEL-04-01. |
+| Acceptance authority for staged SDK cases | TBD; human acceptance is required for any `BLOCKED_TBD` SDK-backed conformance case until DEL-04-01 supplies the missing probe detail. |
+</p></div></div></section>
+<section id="SEC-ED012-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:61d1e76810f4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61d1e76810f4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61d1e76810f4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61d1e76810f4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the scope boundary.
+   - Use DEL-03-01 only for the engine contract and conformance suite.
+   - Keep `TurnEngine` implementation, route adapter fixtures, SDK probe decision, and event store implementation in their owning deliverables unless needed as conformance references.</p>
+<p>2. Draft the runtime contract.
+   - Define `AgentEnginePort` / `RuntimeEngineContract` as product-owned.
+   - Include `runTurn(input: TurnInput): AsyncIterable&lt;UIEvent&gt;`.
+   - Include optional `interrupt?(sessionId: string): Promise&lt;void&gt;` when adapter support exists.
+   - Define `TurnInput` with active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.</p>
+<p>3. Define adapter boundary rules.
+   - Keep SDK/provider message names, tool names, permission modes, transcript paths, hook names, and session IDs outside public APIs and canonical event fields except under explicit adapter metadata.
+   - Preserve the stub adapter as deterministic conformance baseline.
+   - Mark exact SDK-backed fixture details as `TBD` until DEL-04-01 confirms SDK behavior.</p>
+<p>4. Specify the conformance suite.
+   - Test accepted-turn persistence before SDK/model execution.
+   - Test terminal success, failure, cancellation, and interruption persistence.
+   - Test browser SSE compatibility and stable UI event names.
+   - Test SDK message mapping into product-owned UI/runtime events.
+   - Test permission denial and permitted tool exposure behavior at the contract boundary.
+   - Test session resume/linkage metadata without making SDK transcripts canonical.
+   - Test redaction and absence of SDK-shaped leakage in public contracts and canonical events.</p>
+<p>5. Align with route and event contracts.
+   - Confirm `/api/harness/turn` remains a transport adapter.
+   - Confirm browser-facing event names remain `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit`.
+   - Confirm canonical runtime records use `HarnessEvent` shape and product-owned event categories.</p>
+<p>6. Record fallback and source-state caveats.
+   - Document fallback criteria if SDK behavior cannot satisfy a product-critical boundary.
+   - Record the REF-006 HASH_MISMATCH warning wherever PRD-only details affect acceptance.</p>
+<p>7. Prepare deliverable records.
+   - Produce or update runtime contract docs.
+   - Produce or update `agent-engine-port.ts` or equivalent.
+   - Produce or update engine conformance tests.
+   - Link the conformance suite to `section9.runtime_engine_contract` once Section 9 validation exists.
+</p></div></div></section>
+<section id="SEC-ED012-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:db7d067f7afa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db7d067f7afa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db7d067f7afa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db7d067f7afa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected Result |
+|---|---|
+| Contract shape check | `AgentEnginePort` exposes `runTurn` and optional `interrupt` with inputs/outputs matching `docs/SPEC.md` section 10.2. |
+| Provider-neutrality check | Public APIs and canonical `HarnessEvent` fields do not contain SDK-shaped names except explicit adapter metadata. |
+| Stub conformance | Stub adapter passes the same conformance suite used for SDK-backed adapter where applicable. |
+| SDK-backed conformance | SDK-backed adapter passes before default production enablement; cases blocked by SDK probe details remain `TBD` until DEL-04-01 closes. |
+| SSE compatibility | Browser event names and `/api/harness/turn` route shape remain stable. |
+| Event persistence | Accepted turn and terminal outcomes are persisted in Chirality-owned event form. |
+| Redaction | Provider/SDK errors and runtime records do not store API keys or secrets. |
+| Source warning | PRD hash mismatch is visible in deliverable records and acceptance review. |
+</p></div></div></section>
+<section id="SEC-ED012-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4b8c81038d20" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4b8c81038d20" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4b8c81038d20" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4b8c81038d20" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required records for closure:</p>
+<p>- Runtime contract source file: `agent-engine-port.ts` or equivalent.
+- Runtime contract documentation.
+- Engine conformance test file or suite.
+- Test output showing stub adapter pass.
+- Test output showing SDK-backed adapter pass, or a `BLOCKED_TBD` record naming the DEL-04-01 blocker, affected conformance case, fallback/risk note, and accepting party status.
+- Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or `TBD`, fallback/risk note, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status.
+- Human ruling or acceptance note for REF-006 `docs/PRD.md` HASH_MISMATCH.
+- Section 9 validation linkage when `section9.runtime_engine_contract` exists, or a `TBD` linkage record naming DEL-09-02 as the unavailable validation surface.
+</p></div></div></section>
+<section id="SEC-ED012-0024" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:2df8695226a3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED012-0024</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2df8695226a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2df8695226a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2df8695226a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0025" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:55f4082443bb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED012-0025</span> Specification: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:55f4082443bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:55f4082443bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:55f4082443bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED012-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:741c6d9e3d1b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:741c6d9e3d1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:741c6d9e3d1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:741c6d9e3d1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable defines the product-owned runtime boundary for harness turn execution and the conformance suite any engine adapter must satisfy before use as the default production path.</p>
+<p>In scope:</p>
+<p>- `AgentEnginePort` / `RuntimeEngineContract` API contract.
+- Adapter boundary rules for stub and SDK-backed implementations.
+- Conformance expectations for accepted-turn persistence, terminal outcomes, SSE compatibility, SDK message mapping, permission/tool boundary behavior, interrupt/cancel behavior, session resume/linkage, and redaction.
+- Runtime contract documentation and tests associated with the contract.</p>
+<p>Out of scope:</p>
+<p>- SDK-specific message translation implementation details, except as conformance inputs and adapter-boundary expectations.
+- Full `TurnEngine` extraction and session locking implementation, owned by DEL-03-02.
+- Browser API/SSE route adapter fixtures, owned by DEL-03-03 except where conformance verifies compatibility.
+- Interrupt/cancel cleanup implementation, owned by DEL-03-04 except where conformance verifies required adapter behavior.
+- SDK probe/version decision details, owned by DEL-04-01.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-01; `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, and 12.
+</p></div></div></section>
+<section id="SEC-ED012-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:67d4f031eefa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:67d4f031eefa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:67d4f031eefa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:67d4f031eefa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-03-01-REQ-001 | Chirality SHALL define `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs. | `docs/SPEC.md` section 10.1; `docs/PRD.md` FR-122 |
+| DEL-03-01-REQ-002 | Public harness semantics SHALL remain Chirality-owned; SDK APIs, message names, transcript shape, and tool names SHALL NOT define public semantics. | `docs/DIRECTIVE.md` sections 2.8 and 2.10; `docs/CONTRACT.md` K-ENGINE-1 and K-ENGINE-4 |
+| DEL-03-01-REQ-003 | `AgentEnginePort` SHALL expose `runTurn(input: TurnInput): AsyncIterable&lt;UIEvent&gt;`. | `docs/SPEC.md` section 10.2 |
+| DEL-03-01-REQ-004 | `AgentEnginePort` MAY expose `interrupt?(sessionId: string): Promise&lt;void&gt;` when the adapter can support interruption. | `docs/SPEC.md` section 10.2 |
+| DEL-03-01-REQ-005 | `TurnInput` SHALL include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` section 10.2 |
+| DEL-03-01-REQ-006 | The contract SHALL cover accepted turn input, browser `UIEvent` yield, canonical `HarnessEvent` persistence, permission enforcement or invocation, permitted tool exposure, SDK session metadata linkage, interrupt/cancel behavior, and terminal outcomes. | `docs/SPEC.md` section 10.1; `docs/TYPES.md` section 7.1 |
+| DEL-03-01-REQ-007 | SDK-specific names, IDs, permission modes, transcript paths, tool names, and hook names SHALL appear only as explicit adapter metadata. | `docs/SPEC.md` section 10.3; `docs/DIRECTIVE.md` section 2.10 |
+| DEL-03-01-REQ-008 | The SDK-backed adapter SHALL pass the engine conformance suite before becoming the default production path. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3; `docs/PRD.md` FR-123 |
+| DEL-03-01-REQ-009 | A deterministic stub adapter SHALL remain available for tests. | `docs/SPEC.md` section 10.3 |
+| DEL-03-01-REQ-010 | Engine conformance tests SHALL cover accepted-turn persistence before SDK/model execution, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction. | `docs/PRD.md` FR-123; `docs/PRD.md` section 12.5 |
+| DEL-03-01-REQ-011 | The contract and tests SHALL preserve the stable browser SSE names: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit`. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4 |
+| DEL-03-01-REQ-012 | `/api/harness/turn` SHALL remain a transport adapter; runtime policy belongs behind the contract and `TurnEngine`, not in the route. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
+| DEL-03-01-REQ-013 | The conformance suite SHALL reject provider-shaped leakage in public APIs and canonical `HarnessEvent` fields except as explicit adapter metadata. | `docs/PRD.md` section 12.5; `docs/CONTRACT.md` K-ENGINE-4 |
+| DEL-03-01-REQ-014 | The contract documentation SHALL record fallback criteria when SDK behavior cannot satisfy or verify a product-critical boundary. | `docs/CONTRACT.md` K-ENGINE-5; `docs/PLAN.md` R0 acceptance; `docs/PRD.md` FR-126 |
+| DEL-03-01-REQ-015 | Requirements derived from `docs/PRD.md` SHALL carry the source-state warning that REF-006 is accessible but hash-mismatched in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED012-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a0d276dd5357" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0d276dd5357" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0d276dd5357" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0d276dd5357" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Source | Applicability |
+|---|---|
+| `docs/DIRECTIVE.md` sections 2.8-2.11 | Runtime ownership, reliance boundaries, provider-neutral core, product identity. |
+| `docs/CONTRACT.md` sections 1.4-1.5 | Binding invariants for engine boundary and runtime events. |
+| `docs/SPEC.md` sections 9-13 | Event schema, runtime engine contract, SSE names, SDK settings posture, runtime options/persona composition. |
+| `docs/TYPES.md` section 7 | Canonical runtime vocabulary and type targets. |
+| `docs/PLAN.md` R0/R1 | Roadmap and sequencing constraints for engine contract and conformance. |
+| `docs/PRD.md` sections 8.16, 9, 12, and 13 | Product requirements and validation expectations; REF-006 HASH_MISMATCH warning applies. |
+</p></div></div></section>
+<section id="SEC-ED012-0029" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ab9d444e2ba8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab9d444e2ba8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab9d444e2ba8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab9d444e2ba8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification Approach |
+|---|---|
+| REQ-001, REQ-002, REQ-007, REQ-013 | Type/API review and tests proving public contract types do not expose SDK-shaped names except adapter metadata. |
+| REQ-003, REQ-004, REQ-005, REQ-006 | Unit tests around `AgentEnginePort`/`RuntimeEngineContract` type fixtures and adapter test harness inputs. |
+| REQ-008, REQ-009, REQ-010 | Engine conformance suite runs against stub and SDK-backed adapters before production-default enablement. |
+| REQ-011, REQ-012 | Integration or compatibility tests proving `/api/harness/turn` shape and browser SSE event names are unchanged. |
+| REQ-014 | Runtime contract documentation includes fallback criteria and cross-reference to reliance-boundary register. |
+| REQ-015 | Human review confirms whether the current `docs/PRD.md` hash mismatch is accepted before closing the deliverable. |
+</p></div></div></section>
+<section id="SEC-ED012-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:54620f5dabcc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54620f5dabcc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54620f5dabcc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54620f5dabcc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required deliverable artifacts:</p>
+<p>- `agent-engine-port.ts` or equivalent product-owned runtime contract.
+- Runtime contract documentation describing ownership, adapter boundary, input/output shape, and fallback criteria.
+- Engine conformance suite covering stub and SDK-backed adapters.
+- Test index or validation reference for `section9.runtime_engine_contract` once Section 9 runtime validation is implemented.</p>
+<p>Conformance evidence schema:</p>
+<p>- Adapter subject: `stub`, `SDK-backed`, or `blocked SDK-backed case`.
+- Case coverage: accepted-turn persistence, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume/linkage, redaction, and SDK-shaped leakage checks.
+- Result status: `PASS`, `FAIL`, or `BLOCKED_TBD`; blocked cases must name the missing DEL-04-01 probe detail or other upstream blocker.
+- Closure evidence: test output path or `TBD`, runtime contract documentation link, fallback/risk note when a product-critical boundary cannot be verified, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status once available.</p>
+<p>TBD:</p>
+<p>- Final implementation path if not `frontend/src/lib/harness/agent-engine-port.ts`.
+- Exact SDK-backed adapter fixture shape until DEL-04-01 confirms SDK probe details.
+- Exact session-link metadata fields accepted by the conformance suite until DEL-04-01/DEL-05 work confirms transcript/store placement.
+- Accepting party for staged SDK-dependent `BLOCKED_TBD` conformance cases.
+- `section9.runtime_engine_contract` validation linkage until DEL-09-02 implements the Section 9 runtime validation surface.
+</p></div></div></section>
+<section id="SEC-ED012-0031" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:8e0b20019c34" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED012-0031</span> Source-State Warning</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e0b20019c34" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e0b20019c34" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e0b20019c34" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`docs/PRD.md` is listed as REF-006 with `HASH_MISMATCH` in `_REFERENCES.md`. This draft uses accessible PRD sections because they are part of the authoritative corpus, but requirements relying on PRD-only details should be reconfirmed before acceptance.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED012";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

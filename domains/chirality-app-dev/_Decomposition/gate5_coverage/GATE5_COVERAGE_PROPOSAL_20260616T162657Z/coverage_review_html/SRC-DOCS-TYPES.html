@@ -1,0 +1,762 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-TYPES - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>52</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD010-0001">TYPES — Domain Vocabulary and Runtime Type Targets</a> <a href="#SEC-PD010-0002">1. Project Hierarchy</a> <a href="#SEC-PD010-0011">2. Stable Identifiers</a> <a href="#SEC-PD010-0014">3. Agent Roles and Authority</a> <a href="#SEC-PD010-0019">4. UI Navigation Vocabulary</a> <a href="#SEC-PD010-0024">5. Deliverable Lifecycle Vocabulary</a> <a href="#SEC-PD010-0025">6. Dependency Vocabulary</a> <a href="#SEC-PD010-0032">7. Runtime and Session Vocabulary</a> <a href="#SEC-PD010-0037">8. Permission and Tool Vocabulary</a> <a href="#SEC-PD010-0043">9. Provider/SDK Adapter Vocabulary</a> <a href="#SEC-PD010-0044">10. Subagent Runtime Vocabulary</a> <a href="#SEC-PD010-0045">11. Domain Engine Vocabulary — Future Scope</a> <a href="#SEC-PD010-0049">12. Release and Validation Vocabulary</a> <a href="#SEC-PD010-0051">13. Coordination Representation Vocabulary</a> <a href="#SEC-PD010-0052">14. Epistemic Labels</a></nav>
+<main>
+<section id="SEC-PD010-0001" class="chunk sec depth-1 cov-high" data-kind="section" data-key="section:b824f804f68a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD010-0001</span> TYPES — Domain Vocabulary and Runtime Type Targets</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b824f804f68a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b824f804f68a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b824f804f68a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
+**Product:** Chirality desktop harness and bundled agent operating system</p>
+<p>This document is the authoritative vocabulary reference for Chirality App. It defines canonical entities, stable identifier formats, enumerated values, agent roles, runtime vocabulary, and type targets used by governance documents, agent instructions, implementation code, validation scripts, and release runbooks.</p>
+<p>Where a term is used differently elsewhere, this document governs unless a higher-authority source has been explicitly amended.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0002" class="chunk sec depth-2 cov-mid" data-kind="section" data-key="section:734b1f510981" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0002</span> 1. Project Hierarchy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:734b1f510981" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:734b1f510981" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:734b1f510981" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The project hierarchy is flat:</p>
+<p>```text
+{EXECUTION_ROOT}/
+└── PKG-XX_{PkgLabel}/
+    └── 1_Working/
+        └── DEL-XX-YY_{DelLabel}/
+```
+</p></div></div></section>
+<section id="SEC-PD010-0003" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ac1587dc69f5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0003</span> 1.1 Package</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac1587dc69f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac1587dc69f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac1587dc69f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A **Package** is a flat partition of project scope. Packages do not nest. Each package contains references, active working deliverables, checking staging, and issued artifacts.
+</p></div></div></section>
+<section id="SEC-PD010-0004" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:040160bcb4ee" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0004</span> 1.2 Deliverable</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:040160bcb4ee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:040160bcb4ee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:040160bcb4ee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A **Deliverable** is a unit of production within a package. Each deliverable has a stable ID, lifecycle state, context file, dependency record, reference record, and optional document kit or specialized artifacts.
+</p></div></div></section>
+<section id="SEC-PD010-0005" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:b56a6f5f4cb1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0005</span> 1.3 Artifact</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b56a6f5f4cb1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b56a6f5f4cb1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b56a6f5f4cb1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+An **Artifact** is a tangible output such as a markdown document, CSV register, tool-root snapshot, domain proposal, runtime event file, or validation summary. Artifacts are authoritative only when placed in the proper project location and accepted by the relevant process.
+</p></div></div></section>
+<section id="SEC-PD010-0006" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:e8b977738e29" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0006</span> 1.4 Tool Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8b977738e29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8b977738e29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8b977738e29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A **Tool Root** is a project-level directory for derived outputs such as `_Aggregation/`, `_Change/`, `_Coordination/`, `_Decomposition/`, `_Estimates/`, `_Reconciliation/`, `_Archive/`, `_Scripts/`, and `_Sources/`.
+</p></div></div></section>
+<section id="SEC-PD010-0007" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:6ac898cb2957" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0007</span> 1.5 Instruction Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ac898cb2957" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ac898cb2957" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ac898cb2957" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The **Instruction Root** is the release-managed app resource tree containing governance documents, agent instructions, and framework materials. Ordinary project execution must not mutate it.
+</p></div></div></section>
+<section id="SEC-PD010-0008" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:be07d911f376" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0008</span> 1.6 Working Root / `projectRoot`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be07d911f376" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be07d911f376" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be07d911f376" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The **Working Root** is the user-selected local filesystem location where project execution state, sessions, artifacts, and git history live.
+</p></div></div></section>
+<section id="SEC-PD010-0009" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:bc7e5bfd444e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0009</span> 1.7 Project Truth</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc7e5bfd444e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc7e5bfd444e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc7e5bfd444e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Project Truth** is gate-relevant project state represented in versioned project files. Runtime transcripts, chat drafts, UI state, API keys, SDK transcripts, and caches are not project truth unless a governed process imports relevant content into project files.
+</p></div></div></section>
+<section id="SEC-PD010-0010" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:fe336383a325" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0010</span> 1.8 Runtime Audit Mirror</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe336383a325" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe336383a325" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe336383a325" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The **Runtime Audit Mirror** is the product-owned runtime event log, normally `.chirality/sessions/&lt;sessionId&gt;/events.jsonl`, used to reconstruct and review accepted turns, model output, permissions, tool activity, hooks, compaction boundaries, and subagent lifecycle.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0011" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:ea6f69a1d50f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0011</span> 2. Stable Identifiers</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea6f69a1d50f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea6f69a1d50f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea6f69a1d50f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Identifiers are assigned once and persist across renames and path changes.</p>
+<p>| Entity | Format | Example | Assigned by |
+|---|---|---|---|
+| Package | `PKG-XX` or `PKG-XXX` | `PKG-01` | Decomposition / human approval |
+| Deliverable | `DEL-XX-YY` or `DEL-XXX-YY` | `DEL-01-01` | Decomposition / human approval |
+| Dependency | `DEP-XX-YY-NNN` | `DEP-01-01-001` | DEPENDENCIES workflow/tool |
+| Scope Item | `SOW-NNN` | `SOW-003` | Decomposition |
+| Objective | `OBJ-NNN` | `OBJ-001` | Decomposition |
+| Session | implementation-generated stable ID | `sess_...` | Harness session manager |
+| Turn | implementation-generated stable ID | `turn_...` | `TurnEngine` |
+| Runtime Event | implementation-generated stable ID | `evt_...` | `SessionEvents` |
+| Subagent Run | implementation-generated stable ID | `subrun_...` | `SubagentGovernanceBridge` |
+| Domain Profile | `domain-profile-id` string | `openpipestress` | Future domain profile author |
+| Operation Proposal | implementation-generated stable ID | `op_...` | Future domain operation workflow |
+</p></div></div></section>
+<section id="SEC-PD010-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4736b6879f2e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0012</span> 2.1 Folder Labels</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4736b6879f2e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4736b6879f2e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4736b6879f2e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Folder names combine stable ID and sanitized label:</p>
+<p>- Package: `{PKG-ID}_{Sanitize(PackageName)}`
+- Deliverable: `{DEL-ID}_{Sanitize(DeliverableName)}`</p>
+<p>The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decomposition document.
+</p></div></div></section>
+<section id="SEC-PD010-0013" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:a5c0e4a9b7f4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0013</span> 2.2 ID Rules</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5c0e4a9b7f4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5c0e4a9b7f4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5c0e4a9b7f4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `XX`, `YY`, and `NNN` are zero-padded numeric sequences.
+- Deliverable IDs use hyphen separators, not dots.
+- Stable IDs must not change unless a human explicitly approves renumbering.
+- Runtime event IDs are unique per event and never reused.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0014" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1b81438f8d35" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0014</span> 3. Agent Roles and Authority</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b81438f8d35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b81438f8d35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b81438f8d35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0015" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fd3ae427e346" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0015</span> 3.1 Agent Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd3ae427e346" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd3ae427e346" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd3ae427e346" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Type | Name | Role | Scope |
+|---|---|---|---|
+| **Type 0** | Architect | Defines and maintains rules, standards, contracts, and role boundaries. | Project-wide or system-wide. |
+| **Type 1** | Manager | Interprets intent, decomposes work, routes specialists, reconciles outputs. | Project, package, or workflow. |
+| **Type 2** | Specialist | Executes bounded briefs with minimal context and returns outputs plus evidence. | Deliverable-local or narrow task. |
+</p></div></div></section>
+<section id="SEC-PD010-0016" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ab6abd879200" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0016</span> 3.2 Agent Classification Properties</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab6abd879200" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab6abd879200" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab6abd879200" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Values | Meaning |
+|---|---|---|
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Persona agents run interactive sessions; task agents run straight-through or delegated work. |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked. |
+| `WRITE_SCOPE` | `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `none` | Permitted write area. |
+| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input. |
+</p></div></div></section>
+<section id="SEC-PD010-0017" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:217fc0c24f9e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0017</span> 3.3 Authority Model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:217fc0c24f9e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:217fc0c24f9e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:217fc0c24f9e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Authority flows downward; escalation flows upward.</p>
+<p>- Type 0 defines what “correct” means.
+- Type 1 prepares, routes, and reconciles work.
+- Type 2 executes bounded work.
+- Humans approve, issue, sign, seal, and accept reliance.</p>
+<p>A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for reliance. No agent can approve professional work.
+</p></div></div></section>
+<section id="SEC-PD010-0018" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:47189d328e3a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0018</span> 3.4 Persona Alias Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47189d328e3a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47189d328e3a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47189d328e3a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| UI Alias | Canonical Agent |
+|---|---|
+| `HELP` | `HELP_HUMAN` |
+| `ORCHESTRATE` | `ORCHESTRATOR` |
+| `AGGREGATE` | `AGGREGATION` |
+| `RECONCILING` | `RECONCILIATION` |
+| `AGENTS` | `HELPS_HUMANS` |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0019" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:de730a231ad8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0019</span> 4. UI Navigation Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de730a231ad8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de730a231ad8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de730a231ad8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0020" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d2f93aa8095f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0020</span> 4.1 Matrix Rows</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2f93aa8095f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2f93aa8095f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2f93aa8095f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning | Destination |
+|---|---|---|
+| `NORMATIVE` | Guidance, orchestration, standards, and aggregation support. | WORKBENCH |
+| `OPERATIVE` | Pipeline execution categories. | PIPELINE |
+| `EVALUATIVE` | Review, dependencies, change, and reconciliation support. | WORKBENCH |
+</p></div></div></section>
+<section id="SEC-PD010-0021" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4ec9bb2b1c37" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0021</span> 4.2 Matrix Columns</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ec9bb2b1c37" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ec9bb2b1c37" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ec9bb2b1c37" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning |
+|---|---|
+| `GUIDING` | Helps orient or define the work. |
+| `APPLYING` | Helps execute or apply the work. |
+| `JUDGING` | Helps inspect, assess, or manage work items. |
+| `REVIEWING` | Helps aggregate, reconcile, or review work. |
+</p></div></div></section>
+<section id="SEC-PD010-0022" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:527fbf8dc93d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0022</span> 4.3 Matrix Cells</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:527fbf8dc93d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:527fbf8dc93d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:527fbf8dc93d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Row | Guiding | Applying | Judging | Reviewing |
+|---|---|---|---|---|
+| `NORMATIVE` | `HELP` | `ORCHESTRATE` | `WORKING_ITEMS` | `AGGREGATE` |
+| `OPERATIVE` | `DECOMP*` | `PREP*` | `TASK*` | `AUDIT*` |
+| `EVALUATIVE` | `AGENTS` | `DEPENDENCIES` | `CHANGE` | `RECONCILING` |
+</p></div></div></section>
+<section id="SEC-PD010-0023" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d973656f2502" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0023</span> 4.4 Pipeline Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d973656f2502" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d973656f2502" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d973656f2502" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Values | Meaning |
+|---|---|---|
+| `PipelineCategory` | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` | Top-level operative category. |
+| `TaskScopeMode` | `DELIVERABLES`, `KNOWLEDGE_TYPES` | Dynamic scope mode for `TASK*`. |
+| `KnowledgeTypeOption` | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | File-type buckets discovered from deliverable content. |
+| `DisabledOption` | any visible but non-selectable option | A coming-soon or unsupported variant intentionally shown without enabling runtime selection. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0024" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:8a59b9e59b43" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0024</span> 5. Deliverable Lifecycle Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a59b9e59b43" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a59b9e59b43" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a59b9e59b43" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Lifecycle states are tracked in `_STATUS.md`.</p>
+<p>```text
+OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
+```</p>
+<p>| State | Meaning |
+|---|---|
+| `OPEN` | Folder exists with minimum viable fileset; content is not yet initialized. |
+| `INITIALIZED` | Document kit has been drafted or initialized. |
+| `SEMANTIC_READY` | Semantic lens or semantic placeholder has been generated. |
+| `IN_PROGRESS` | Active human and/or agent work is underway. |
+| `CHECKING` | Work is under human review. |
+| `ISSUED` | Work has been released/issued by a human. |</p>
+<p>Stage gates such as 30%, 60%, 90%, or IFC are project milestones, not lifecycle states.</p>
+<p>The `INITIALIZED → SEMANTIC_READY` transition is optional. If semantic lensing is skipped, deliverables may transition directly from `INITIALIZED → IN_PROGRESS` under the authorized actor rules in `SPEC.md`.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0025" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:d4190a54092d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0025</span> 6. Dependency Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d4190a54092d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d4190a54092d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d4190a54092d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0026" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:4ca92a6c686f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0026</span> 6.1 Dependency Classes</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ca92a6c686f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ca92a6c686f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ca92a6c686f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Class | Meaning | Graph Role |
+|---|---|---|
+| `ANCHOR` | Connects a deliverable to a definition or traceability node. | Tree edge. |
+| `EXECUTION` | Captures information flow, prerequisite, handoff, interface, or constraint. | DAG edge. |
+</p></div></div></section>
+<section id="SEC-PD010-0027" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:ccc5f6d1177a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0027</span> 6.2 Anchor Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ccc5f6d1177a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ccc5f6d1177a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ccc5f6d1177a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning |
+|---|---|
+| `IMPLEMENTS_NODE` | Parent definition node; normally one per deliverable. |
+| `TRACES_TO_REQUIREMENT` | Requirement trace link; zero or more per deliverable. |
+| `NOT_APPLICABLE` | Used for execution rows. |
+</p></div></div></section>
+<section id="SEC-PD010-0028" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:dfd67dce348a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0028</span> 6.3 Direction</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dfd67dce348a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dfd67dce348a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dfd67dce348a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning |
+|---|---|
+| `UPSTREAM` | The host deliverable requires information from the target. |
+| `DOWNSTREAM` | The host deliverable produces information for the target. |</p>
+<p>Legacy `INBOUND` normalizes to `UPSTREAM`; legacy `OUTBOUND` normalizes to `DOWNSTREAM`.
+</p></div></div></section>
+<section id="SEC-PD010-0029" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:447f0e4dcb3c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0029</span> 6.4 Dependency Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:447f0e4dcb3c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:447f0e4dcb3c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:447f0e4dcb3c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning |
+|---|---|
+| `PREREQUISITE` | Required input or approval before work can proceed. |
+| `INTERFACE` | Explicit data or artifact exchange. |
+| `HANDOVER` | Output consumed as input by another work item. |
+| `CONSTRAINT` | Explicit constraint or condition. |
+| `ENABLES` | Host deliverable enables downstream work. |
+| `OTHER` | Catch-all; required for anchor rows. |</p>
+<p>Legacy `COORDINATION` and `INFORMATION` are not emitted in new extractions.
+</p></div></div></section>
+<section id="SEC-PD010-0030" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:93a9607e8b49" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0030</span> 6.5 Target Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93a9607e8b49" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93a9607e8b49" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93a9607e8b49" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Value | Meaning |
+|---|---|
+| `DELIVERABLE` | Another deliverable in the project. |
+| `PACKAGE` | A package. |
+| `WBS_NODE` | Work breakdown or scope node. |
+| `REQUIREMENT` | Requirement, SOW item, objective, or acceptance item. |
+| `DOCUMENT` | External or reference document. |
+| `EQUIPMENT` | Physical equipment or asset. |
+| `EXTERNAL` | External entity, organization, code, standard, or interface. |
+| `UNKNOWN` | Target cannot be confidently resolved. |
+</p></div></div></section>
+<section id="SEC-PD010-0031" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:d2f7a4eb36b1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0031</span> 6.6 Provenance and Status Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2f7a4eb36b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2f7a4eb36b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2f7a4eb36b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Dimension | Values | Meaning |
+|---|---|---|
+| `Explicitness` | `EXPLICIT`, `IMPLICIT` | Whether the dependency is directly stated. |
+| `Confidence` | `HIGH`, `MEDIUM`, `LOW` | Strength of evidence. |
+| `Origin` | `DECLARED`, `EXTRACTED` | Human-declared versus agent/tool-extracted. |
+| `SatisfactionStatus` | `TBD`, `PENDING`, `IN_PROGRESS`, `SATISFIED`, `WAIVED`, `NOT_APPLICABLE` | Closure lifecycle. |
+| `Status` | `ACTIVE`, `RETIRED` | Extraction lifecycle. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0032" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:1ff0d8528fc5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0032</span> 7. Runtime and Session Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1ff0d8528fc5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1ff0d8528fc5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1ff0d8528fc5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0033" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5cae5a9486e1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0033</span> 7.1 Runtime Engine Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cae5a9486e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cae5a9486e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cae5a9486e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| `AgentEnginePort` | Product-owned boundary for running a turn, yielding UI events, recording canonical events, enforcing permissions, managing session linkage, and terminal outcomes. |
+| `RuntimeEngineContract` | The formal expectations an engine adapter must satisfy before use. |
+| `EngineAdapter` | Provider/SDK-specific implementation behind `AgentEnginePort`; translates provider-specific events, sessions, permissions, and tool names into Chirality-owned contracts. |
+| `ProviderAdapter` | Concrete integration layer for an external agent provider or provider SDK. |
+| `FirstAdapter` | The current concrete Claude Agent SDK / Anthropic adapter path. It is the first shipped path, not the strategic ceiling. |
+| `EngineConformanceSuite` | Tests proving an adapter satisfies Chirality contracts. |
+| `TurnEngine` | Runtime service that owns a single turn lifecycle and invokes the engine through the product-owned boundary. |
+| `SdkOptionsBuilder` | Deterministic constructor for first-adapter SDK options from Chirality state and policy. |
+| `SdkMessageMapper` | First-adapter mapper from SDK stream messages into browser `UIEvent`s and persisted `HarnessEvent`s. |
+| `PersonaComposer` | Builder for system prompt / appended prompt from instruction root, active persona, mode, and working-root policy. |
+| `RelianceBoundaryRegister` | Record of product-critical semantics and their enforcement surfaces. |
+| `PiPatternCorpus` | Reference corpus for stable agentic patterns observed in Pi packages and behavior. It is not a runtime dependency, adapter target, fork target, package import path, or spike authorization. |
+</p></div></div></section>
+<section id="SEC-PD010-0034" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:580ebd19e0ca" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0034</span> 7.2 Session Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:580ebd19e0ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:580ebd19e0ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:580ebd19e0ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| `SessionRecord` | Metadata record for a harness session. |
+| `sessionId` | Chirality session identifier. |
+| `engineSessionId` | Provider-neutral adapter session identifier exposed by the runtime boundary when available. |
+| `sdkSessionId` | SDK session identifier used for resume; adapter metadata, not Chirality identity. |
+| `sdkProjectKey` | SDK project key or encoded cwd, if exposed. |
+| `sdkTranscriptPath` | Path to SDK transcript when applicable. Secondary to Chirality audit events. |
+| `sdkSessionStoreKey` | Key used by a configured SDK session store or mirror. |
+| `sdkConfigDir` | Explicit SDK config directory when redirected to project-controlled storage. |
+| `events.jsonl` | Append-only Chirality runtime audit mirror. |
+| `session.json` | Session metadata/index file. |
+| `artifacts/` | Session-local artifact folder for large tool outputs and child-run outputs. |
+</p></div></div></section>
+<section id="SEC-PD010-0035" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:31e0a7faed26" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0035</span> 7.3 `HarnessEvent` Type Target</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31e0a7faed26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31e0a7faed26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31e0a7faed26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```ts
+type HarnessEvent = {
+  schemaVersion: 1;
+  eventId: string;
+  sessionId: string;
+  turnId?: string;
+  parentEventId?: string;
+  timestamp: string;
+  type: string;
+  data: Record&lt;string, unknown&gt;;
+};
+```</p>
+<p>Initial event categories:</p>
+<p>- `session.created`
+- `session.resumed`
+- `turn.accepted`
+- `turn.started`
+- `adapter.initialized`
+- `model.request.started`
+- `model.delta`
+- `model.completed`
+- `turn.completed`
+- `turn.failed`
+- `turn.cancelled`</p>
+<p>Later event categories:</p>
+<p>- `tool.queued`
+- `tool.permission`
+- `tool.started`
+- `tool.progress`
+- `tool.completed`
+- `tool.failed`
+- `hook.started`
+- `hook.completed`
+- `context.compacted`
+- `subagent.started`
+- `subagent.completed`
+- `runtime.mirror.error`
+</p></div></div></section>
+<section id="SEC-PD010-0036" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:19654107f929" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0036</span> 7.4 Browser `UIEvent` Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:19654107f929" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:19654107f929" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:19654107f929" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Browser-facing turn streams use compact UI events. Provider/SDK messages are not the UI contract.</p>
+<p>SSE event names:</p>
+<p>- `session:init`
+- `chat:delta`
+- `chat:complete`
+- `tool:result`
+- `session:complete`
+- `turn:error`
+- `process:exit`</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0037" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:0816aecc2334" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0037</span> 8. Permission and Tool Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0816aecc2334" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0816aecc2334" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0816aecc2334" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0038" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:327222c6589f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0038</span> 8.1 Chirality Permission Modes</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:327222c6589f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:327222c6589f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:327222c6589f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Mode | Meaning |
+|---|---|
+| `readOnly` | Read-only tools only; write/edit/bash/network-capable tools denied. |
+| `workspaceWrite` | Governed writes inside project root may be allowed after hooks and policy pass. |
+| `dontAsk` | Deny unapproved actions rather than prompting. |
+| `ask` | Application may request interactive approval for governed actions. |
+| `bypass` | Developer-local escape hatch only; never shipped ordinary mode; still subject to explicit Chirality hard denies. |</p>
+<p>Capability policy is the Chirality-owned policy that decides which tools and capabilities
+are exposed and executable for a session, persona, mode, provider adapter, and validation
+state. Explicit hard-deny precedence overrides allows at reliance boundaries, secrets,
+protected paths, release/professional claims, destructive actions, and unvalidated
+provider/network expansion.
+</p></div></div></section>
+<section id="SEC-PD010-0039" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:311223ffac17" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0039</span> 8.2 Permission Decision</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:311223ffac17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:311223ffac17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:311223ffac17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```ts
+type HarnessPermissionDecision = {
+  decisionId: string;
+  sessionId: string;
+  turnId?: string;
+  toolName: string;
+  decision: &#x27;allow&#x27; | &#x27;deny&#x27; | &#x27;ask&#x27;;
+  reason: string;
+  source: &#x27;sdk-option&#x27; | &#x27;sdk-callback&#x27; | &#x27;chirality-policy&#x27; | &#x27;hook&#x27; | &#x27;human&#x27; | &#x27;prompt-support&#x27;;
+  decidedAt: string;
+  safeMetadata?: Record&lt;string, unknown&gt;;
+};
+```</p>
+<p>`ask` is an application-level state. SDK callbacks ultimately return an allow or deny decision.
+</p></div></div></section>
+<section id="SEC-PD010-0040" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:5f857007ff13" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0040</span> 8.3 Tool Surface Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f857007ff13" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f857007ff13" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f857007ff13" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| `SDK built-in tool` | Tool supplied by the current first-adapter SDK, such as `Read`, `Glob`, `Grep`, `LS`, `Write`, `Edit`, or `Bash` where available. |
+| `Chirality MCP tool` | In-process deterministic Chirality operation exposed through SDK MCP tooling with `mcp__chirality__*` naming. |
+| `allowedTools` | SDK option that may auto-approve tools; not by itself a restriction boundary. |
+| `disallowedTools` | SDK option or Chirality wrapper policy used to prevent tool use or remove tools from context; participates in explicit hard-deny precedence. |
+| `canUseTool` | SDK callback or equivalent hook path used by Chirality to mediate permission decisions. |
+| `ToolResultStore` | Chirality artifact and preview policy for tool outputs. |
+</p></div></div></section>
+<section id="SEC-PD010-0041" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7c9eda192992" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0041</span> 8.4 Chirality MCP Tool Names</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c9eda192992" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c9eda192992" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c9eda192992" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Initial in-process MCP tool names should use this namespace:</p>
+<p>- `mcp__chirality__status_read`
+- `mcp__chirality__status_transition`
+- `mcp__chirality__deps_read`
+- `mcp__chirality__deps_write`
+- `mcp__chirality__scope_scan`
+- `mcp__chirality__scaffold`</p>
+<p>Future domain tools use `mcp__chirality__domain_*` only after a governed domain-profile amendment.
+</p></div></div></section>
+<section id="SEC-PD010-0042" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:54c1ec4ea6cb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0042</span> 8.5 Hook Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54c1ec4ea6cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54c1ec4ea6cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54c1ec4ea6cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Hook Term | Meaning |
+|---|---|
+| `PreToolUse` | Runs before tool execution; can deny write/shell/domain/subagent actions. |
+| `PostToolUse` | Runs after successful tool execution; may record provenance, budgets, and summaries. |
+| `PostToolUseFailure` | Runs after tool failure; records triage and safe diagnostics. |
+| `PreCompact` | Records compaction boundary before SDK/model context compaction where available. |
+| `Stop` | Finalizes terminal turn event. |
+| `SubagentStart` / `SubagentStop` | Records governed child-run lifecycle where supported. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0043" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:e8b4f8c7c086" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0043</span> 9. Provider/SDK Adapter Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8b4f8c7c086" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8b4f8c7c086" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8b4f8c7c086" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| Claude Agent SDK | Current first concrete hosted runtime substrate for generic agent-loop mechanics; implementation substrate, not product identity or strategic ceiling. |
+| SDK transcript | SDK-managed session transcript, secondary to Chirality audit mirror. |
+| `settingSources` | SDK option controlling filesystem settings load. Shipped builds use `[]`. |
+| `SessionStore` | SDK session mirror/storage mechanism when used. Mirror reliability is not assumed to be canonical. |
+| `CLAUDE_CONFIG_DIR` | Environment mechanism that may redirect SDK local config/transcript behavior if empirically reliable. |
+| `permissionMode` | SDK permission posture translated from Chirality mode plus capability policy and explicit hard-deny precedence. |
+| `bypassPermissions` | SDK mode not permitted in shipped ordinary workflows. |
+| Pi pattern corpus | Reference source for agentic patterns only. D-APP-01 and D-APP-02 rule out Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work. |</p>
+<p>SDK terms belong at the adapter boundary. Public Chirality APIs and canonical events use Chirality terms.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0044" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:c59a5b5f06ca" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0044</span> 10. Subagent Runtime Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c59a5b5f06ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c59a5b5f06ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c59a5b5f06ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```ts
+type ChildRunRecord = {
+  contractVersion: 1;
+  childRunId: string;
+  parentSessionId: string;
+  parentTurnId?: string;
+  parentPersona: string;
+  agentName: string;
+  projectRoot: string;
+  mode: string;
+  status: &#x27;queued&#x27; | &#x27;denied&#x27; | &#x27;running&#x27; | &#x27;completed&#x27; | &#x27;failed&#x27; | &#x27;cancelled&#x27;;
+  capabilityPolicy: {
+    inheritParentCapabilities: false;
+    requestedToolNames: string[];
+    allowedToolNames: string[];
+    deniedCapabilities: string[];
+  };
+  governance: {
+    state: &#x27;allowed&#x27; | &#x27;denied&#x27; | &#x27;adapter-observed&#x27;;
+    gate?: string;
+    reason?: string;
+    approvalRef?: string;
+    approvedBy?: string;
+    allowlistedSubagents: string[];
+    delegatedSubagents: string[];
+  };
+  outputArtifactPath?: string;
+  adapter?: {
+    adapterName: string;
+    adapterSessionId?: string;
+    adapterAgentId?: string;
+    adapterTaskId?: string;
+    adapterToolUseId?: string;
+    adapterTranscriptKey?: string;
+  };
+};
+```</p>
+<p>| Term | Meaning |
+|---|---|
+| `evaluateSubagentGovernance` | Authoritative fail-closed gate for delegation. |
+| Type 2 candidate | Agent instruction with `AGENT_TYPE: 2`; preferred `AGENT_CLASS: TASK`. |
+| Parent session | Session requesting delegation. |
+| Child run | Governed subagent execution record. |
+| Context sealed | Required governance condition confirming bounded context. |
+| Pipeline run approved | Required governance condition for Type 2 task invocation. |
+| Approval reference | Non-empty human/gate evidence string required before delegation. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0045" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:3cc1562f3d0a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0045</span> 11. Domain Engine Vocabulary — Future Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3cc1562f3d0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3cc1562f3d0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3cc1562f3d0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD010-0046" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:7bc8d86f4aa2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0046</span> 11.1 `DomainEngineProfile`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7bc8d86f4aa2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7bc8d86f4aa2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7bc8d86f4aa2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```ts
+interface DomainEngineProfile {
+  profileId: string;
+  engineName: string;
+  engineVersion?: string;
+  protectedPaths: string[];
+  proposalPaths: string[];
+  artifactTypes: string[];
+  operations: DomainEngineOperationDescriptor[];
+  manifestRules: unknown;
+  boundaryNotice: string;
+}
+```
+</p></div></div></section>
+<section id="SEC-PD010-0047" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:e52797759113" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0047</span> 11.2 `OperationProposal`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e52797759113" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e52797759113" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e52797759113" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```ts
+interface OperationProposal {
+  proposalId: string;
+  profileId: string;
+  operationName: string;
+  createdAt: string;
+  createdBy: string;
+  inputRefs: string[];
+  intendedChanges: string[];
+  deterministicChecks: string[];
+  expectedOutputRefs: string[];
+  risks: string[];
+  requiredHumanGate: string;
+  status: &#x27;draft&#x27; | &#x27;ready_for_review&#x27; | &#x27;accepted&#x27; | &#x27;rejected&#x27; | &#x27;applied&#x27;;
+}
+```
+</p></div></div></section>
+<section id="SEC-PD010-0048" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:05c97606d30e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0048</span> 11.3 Domain Terms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05c97606d30e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05c97606d30e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05c97606d30e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| Protected path | Authoritative domain-engine artifact path not directly writable by agents. |
+| Proposal path | Agent-writable folder for proposed changes, summaries, or review aids. |
+| Deterministic adapter | Tool/bridge that validates or applies domain operations under profile rules. |
+| Boundary notice | Required copy explaining that Chirality does not approve, validate, or own solver truth. |
+| OpenPipeStress fixture | Potential first domain profile fixture, not Chirality core. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD010-0049" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:bcf534dafc26" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0049</span> 12. Release and Validation Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcf534dafc26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcf534dafc26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcf534dafc26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|---|---|
+| Section 8 validation | Existing harness validation surface for baseline behavior. |
+| Section 9 validation | New runtime validation IDs added as vNext phases land. |
+| `instruction-root:integrity` | Packaging check verifying required instruction-root resources. |
+| `desktop:dist` | Desktop build target producing macOS arm64 DMG. |
+| `harness:validate:premerge` | Premerge harness validation script producing stable summary artifact. |
+| `settingsources_isolation` | Validation that shipped SDK options do not load ambient user/local settings. |
+| `runtime_engine_contract` | Validation that engine adapter satisfies product-owned contract. |
+| `sdk_session_link_resume` | Validation that SDK session ID/linkage persists and resumes through Chirality metadata. |
+</p></div></div></section>
+<section id="SEC-PD010-0050" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:fc8658023682" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD010-0050</span> 12.1 Priorities</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fc8658023682" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fc8658023682" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fc8658023682" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Priority | Meaning |
+|---|---|
+| `P0` | Required for current release usefulness, safety, or runtime foundation. |
+| `P1` | Important for quality, governed operation, or runtime maturity. |
+| `P2` | Later hardening, future extension, or desirable capability. |</p>
+<p>---</p></div></div></section>
+<section id="SEC-PD010-0051" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:8a81ccbeb730" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0051</span> 13. Coordination Representation Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a81ccbeb730" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a81ccbeb730" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a81ccbeb730" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The framework separates **how teams coordinate** from **how the system tracks dependencies**. Deliverable-local registers remain the dependency tracking substrate; `_COORDINATION.md` records the project coordination representation.</p>
+<p>| Representation | Meaning |
+|---|---|
+| `SCHEDULE_FIRST` | Gantt or schedule logic drives sequencing; dependency tracking remains active for blocker detection and audit. |
+| `DEPENDENCY_TRACKED` | Dependency graph logic drives sequencing and handoff analysis. |
+| `HYBRID` | Schedule-first and dependency-tracked representations are both used. |
+</p></div></div></section>
+<section id="SEC-PD010-0052" class="chunk sec depth-2 cov-high" data-kind="section" data-key="section:fec65828bf39" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD010-0052</span> 14. Epistemic Labels</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fec65828bf39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fec65828bf39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fec65828bf39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Label | Meaning |
+|---|---|
+| `FACT` | Directly observed in source text or deterministic output. |
+| `ASSUMPTION` | Reasonable inference that requires validation. |
+| `PROPOSAL` | Agent or tool suggestion requiring human decision. |
+| `TBD` | Unknown value requiring resolution. |</p>
+<p>These labels help separate evidence from inference and prevent plausible invention from becoming project truth.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD010";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,566 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-03-04-INTERRUPT-CANCEL-AND-TERMINAL-OUTCOME-HANDLING - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>34</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED015-0002">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED015-0009">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED015-0021">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a> <a href="#SEC-ED015-0028">Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn</a></nav>
+<main>
+<section id="SEC-ED015-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:3b9b879190db" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED015-0001</span> Source Pack: SRC-DEL-DEL-03-04-INTERRUPT-CANCEL-AND-TERMINAL-OUTCOME-HANDLING</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b9b879190db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b9b879190db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b9b879190db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED015-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:7898acc1b3a9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED015-0002</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7898acc1b3a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7898acc1b3a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7898acc1b3a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:fdbe9bf0b285" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED015-0003</span> Datasheet: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fdbe9bf0b285" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fdbe9bf0b285" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fdbe9bf0b285" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:011f62035368" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:011f62035368" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:011f62035368" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:011f62035368" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-03-04 |
+| DeliverableName | Interrupt, Cancel, and Terminal Outcome Handling |
+| PackageID | PKG-03 |
+| PackageName | Runtime Engine Contract and Turn Lifecycle |
+| DecompositionVariant | SOFTWARE_DECOMP |
+| DecompositionRevision | v3.2 |
+| Type | BACKEND_FEATURE_SLICE |
+| ResponsibleParty | TBD |
+| ContextEnvelope | M |
+| CoversScopeItems | SOW-012, SOW-015 |
+| SupportsObjectives | OBJ-002, OBJ-003 |
+| AnticipatedArtifacts | Interrupt tests; cancel cleanup tests; terminal event mapper |
+</p></div></div></section>
+<section id="SEC-ED015-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d711e94fb027" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d711e94fb027" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d711e94fb027" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d711e94fb027" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary runtime owner | `TurnEngine` owns the harness turn lifecycle; `/api/harness/turn` remains a transport adapter. | `docs/PRD.md` Section 8.12, FR-070 and FR-071; `docs/SPEC.md` Section 10.4 |
+| Engine boundary | `AgentEnginePort` / `RuntimeEngineContract` is the product-owned boundary for turn execution, UI events, canonical `HarnessEvent`s, interrupt behavior, and terminal outcomes. | `docs/PRD.md` Section 6.1; `docs/SPEC.md` Section 10.1 |
+| Public interrupt route | `/api/harness/interrupt` interrupts the active turn. | `docs/PRD.md` Section 8.3, FR-019; `docs/SPEC.md` Section 17.1 |
+| Turn stream route | `/api/harness/turn` executes a turn and streams browser-facing UI events over SSE. | `docs/PRD.md` Section 8.3, FR-017; `docs/SPEC.md` Section 17.1 |
+| Session concurrency constraint | Only one active turn may run per session; concurrent attempts return `TURN_IN_PROGRESS`. | `docs/PRD.md` Section 8.3, FR-018 |
+| Accepted-turn durability | Accepted user input must be persisted before model/provider execution so an interrupted or killed turn is recoverable. | `docs/PRD.md` Section 8.3, FR-021; `docs/CONTRACT.md` Section 1.5, K-EVENT-2 |
+| Terminal outcome durability | Every accepted turn must end with a durable success, failure, cancellation, or interruption outcome. | `docs/CONTRACT.md` Section 1.5, K-EVENT-3; `docs/PRD.md` Section 8.3, FR-022; `docs/SPEC.md` Section 10.1 |
+| Product-owned audit mirror | `.chirality/sessions/&lt;id&gt;/events.jsonl` is the canonical Chirality runtime audit mirror; SDK transcripts are secondary unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` Section 1.5, K-EVENT-4; `docs/SPEC.md` Section 8.4 |
+| Browser event compatibility | Existing SSE event names must remain compatible during SDK adoption. | `docs/SPEC.md` Section 11 |
+| PRD source state | `docs/PRD.md` is accessible but hash-mismatched against `_REFERENCES.md`; use as source-state warning, not as rejection. | `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED015-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:fb22af1d5fdb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb22af1d5fdb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb22af1d5fdb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb22af1d5fdb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Required Handling | Source |
+|---|---|---|
+| User interrupt | `POST /api/harness/interrupt` aborts the active provider request and yields interrupted `process:exit`; terminal persistence taxonomy is TBD pending conflict resolution. | `docs/PRD.md` Section 8.3, FR-019; `docs/PRD.md` Section 7.4 |
+| Client disconnect | Stream cleanup must occur; once the event log exists, client disconnect cleanup must record cancellation. | `docs/SPEC.md` Section 11 |
+| Runtime/provider failure after input acceptance | Accepted input remains recoverable and replay shows terminal failure/cancellation status. | `docs/PRD.md` Section 7.10 |
+| Concurrent turn attempt | Must not create a second active turn for the same session; return `TURN_IN_PROGRESS`. | `docs/PRD.md` Section 8.3, FR-018 |
+| Malformed trailing event log write | Replay ignores malformed trailing lines and preserves valid prior events. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` Section 7.10 |
+| Secret-bearing error or payload | Runtime events, logs, tool artifacts, and provider errors must redact secrets and avoid storing API keys. | `docs/CONTRACT.md` Section 1.5, K-EVENT-6; `docs/SPEC.md` Section 9.2 |
+</p></div></div></section>
+<section id="SEC-ED015-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:9bde10ca7fee" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9bde10ca7fee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9bde10ca7fee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9bde10ca7fee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component / Artifact | Construction Target | Status |
+|---|---|---|
+| Interrupt tests | Cover active-turn interrupt route, provider abort propagation, SSE `process:exit`, lock release, and durable terminal outcome. | ASSUMPTION: exact test file path TBD |
+| Cancel cleanup tests | Cover client disconnect and cancellation-signal cleanup, lock release, and durable cancellation record once event log exists. | ASSUMPTION: exact test file path TBD |
+| Terminal event mapper | Map completion, failure, cancellation, and interruption handling into browser `UIEvent`s and persisted `HarnessEvent`s without SDK-shaped public semantics. | ASSUMPTION: exact module path TBD |
+| Lock cleanup verification | Confirm interrupt, disconnect, failure, and cancellation all release session active-turn state. | Supported by DEL-03-04 scope and PRD FR-018/FR-019/FR-022 |
+| Event log verification | Confirm terminal records append as newline-delimited JSONL with unique event IDs and no secrets. | `docs/SPEC.md` Section 9.2 |
+</p></div></div></section>
+<section id="SEC-ED015-0008" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:07cdffe8cd53" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07cdffe8cd53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07cdffe8cd53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07cdffe8cd53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/CONTRACT.md` Section 1.4 and 1.5, especially K-ENGINE-1 through K-ENGINE-4 and K-EVENT-2 through K-EVENT-6.
+- `docs/SPEC.md` Sections 8.4, 9, 10, 11, 17.1, 19.2, and 19.3.
+- `docs/TYPES.md` Sections 7.1 through 7.4.
+- `docs/PRD.md` Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12. Source-state warning: REF-006 is HASH_MISMATCH in `_REFERENCES.md`.
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-03 / DEL-03-04 and SOW-012 / SOW-015 rows.
+</p></div></div></section>
+<section id="SEC-ED015-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:e87fde4b4070" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED015-0009</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e87fde4b4070" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e87fde4b4070" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e87fde4b4070" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0010" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:e26bc6074ebe" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED015-0010</span> Guidance: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e26bc6074ebe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e26bc6074ebe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e26bc6074ebe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0011" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b4c572d62e59" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4c572d62e59" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4c572d62e59" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4c572d62e59" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable exists to make runtime turn termination explicit, testable, and auditable. Interrupts, client disconnects, provider failures, and cancellations must not leave a session locked forever or leave an accepted turn without a durable terminal outcome.</p>
+<p>The slice supports the PKG-03 runtime pivot: routes stay thin, `TurnEngine` owns lifecycle behavior, `AgentEnginePort` / `RuntimeEngineContract` protects product-owned semantics, and browser-facing SSE behavior remains compatible while richer runtime events are persisted.</p>
+<p>Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12; `docs/SPEC.md` Sections 9 through 11.
+</p></div></div></section>
+<section id="SEC-ED015-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:8d2647058618" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d2647058618" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d2647058618" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d2647058618" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Persist before execution.
+   Accepted input must be recorded before model/provider execution begins. This is the recovery anchor for killed, failed, or interrupted turns. Source: `docs/PRD.md` Section 8.3, FR-021; `docs/CONTRACT.md` Section 1.5, K-EVENT-2.</p>
+<p>2. Termination is a contract, not incidental cleanup.
+   Every accepted turn needs a durable terminal outcome. Cleanup code should be treated as part of the turn lifecycle, not a route-only afterthought. Source: `docs/CONTRACT.md` Section 1.5, K-EVENT-3; `docs/SPEC.md` Section 10.1.</p>
+<p>3. Release locks in all terminal paths.
+   Interrupt, client disconnect, provider failure, and cancellation are distinct triggers, but they share a session-liveness obligation: active-turn state must be released. Source: decomposition SOW-012; `docs/PRD.md` Section 8.3, FR-018 and FR-019.</p>
+<p>4. Keep public semantics Chirality-owned.
+   SDK/provider messages may inform mapping, but `UIEvent`, `HarnessEvent`, route behavior, and terminal outcome names must remain Chirality contracts. Source: `docs/CONTRACT.md` Section 1.4, K-ENGINE-4; `docs/SPEC.md` Section 10.3.</p>
+<p>5. Preserve SSE compatibility.
+   Browser event names are part of the compatibility surface. Terminal mapping can grow internally, but route streams must keep existing names compatible during SDK adoption. Source: `docs/SPEC.md` Section 11.</p>
+<p>6. Treat runtime events as audit records, not project truth.
+   Session logs explain what happened at runtime; they do not approve, issue, or certify deliverables. Source: `docs/PRD.md` Section 5; `docs/DIRECTIVE.md` Sections 3 and 8.
+</p></div></div></section>
+<section id="SEC-ED015-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:269861fb5762" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:269861fb5762" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:269861fb5762" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:269861fb5762" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The terminal mapper should be small and deterministic. It should map completion, failure, cancellation, and interruption-adjacent provider signals into stable browser and runtime event outputs.
+- The interrupt path should be tested while an active turn is streaming, because the required browser symptom is an interrupted `process:exit` event and an updated UI state.
+- Client disconnect is not necessarily user intent to interrupt, but SPEC says disconnect cleanup must record cancellation once the event log exists. The implementation should avoid overstating disconnect as an explicit user cancellation unless the data model supports a reason field.
+- Use &quot;interruption&quot; for the user-visible active-turn interrupt path and &quot;cancellation&quot; for the schema-compatible terminal category unless a human ruling amends SPEC/TYPES to add `turn.interrupted`. If interruption is encoded as `turn.cancelled`, reason metadata must preserve the distinction without changing public SSE event names.
+- Terminal records must not store API keys, provider secrets, or raw error data that violates redaction policy.
+- Replay tolerance matters for failure paths: malformed trailing JSONL should not hide valid prior events or the accepted input that preceded failure.
+- `docs/PRD.md` is hash-mismatched in `_REFERENCES.md`. Use PRD content as an accessible source-state warning and reconfirm before closure of implementation work.
+</p></div></div></section>
+<section id="SEC-ED015-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e14b78ea0ffd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e14b78ea0ffd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e14b78ea0ffd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e14b78ea0ffd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Option | Benefit | Risk / Constraint |
+|---|---|---|---|
+| Interruption taxonomy | Separate `turn.interrupted` event type | Directly matches decomposition and CONTRACT wording about interruption. | SPEC/TYPES initial event categories do not currently list `turn.interrupted`; adding it may require schema amendment. |
+| Interruption taxonomy | Represent interruption as `turn.cancelled` with a reason such as `interrupted` | Aligns with SPEC/TYPES initial categories and client-disconnect cancellation wording. | May blur user interrupt versus transport/client cancellation unless reason semantics are explicit. |
+| Cleanup ownership | Centralize terminal cleanup in `TurnEngine` | Keeps route thin and makes lifecycle behavior unit-testable. | Requires route adapter to reliably forward cancellation/disconnect signals. |
+| Route-level fallback cleanup | Keep defensive cleanup in route adapter | Protects against transport errors and stream failures. | Can duplicate policy if terminal mapping is not centralized behind the runtime contract. |
+| Event log write strictness | Fail closed on terminal event write failure | Avoids claiming terminal durability when no event exists. | Could make user-visible failures noisier; exact retry/fallback behavior is TBD. |
+| Terminal write recovery | PROPOSAL: permit retry only when the event writer can prove idempotent append behavior through unique event IDs and replay diagnostics | Preserves the durable-terminal-outcome requirement while avoiding duplicate terminal records. | Exact retry/fallback behavior remains TBD pending event-writer design and human ruling. |
+</p></div></div></section>
+<section id="SEC-ED015-0015" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:eb01bf04c9a0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb01bf04c9a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0016" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:fbfff026fa8e" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED015-0016</span> User interrupt during active stream</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fbfff026fa8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fbfff026fa8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fbfff026fa8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. A turn has already persisted `turn.accepted`.
+2. The user calls `/api/harness/interrupt`.
+3. The active provider/model request is aborted.
+4. The browser stream receives interrupted `process:exit`.
+5. The active-turn lock is released.
+6. A terminal runtime outcome is persisted. Exact event type for interruption is TBD pending conflict resolution.</p>
+<p>Sources: `docs/PRD.md` Section 7.4 and Section 8.3; `docs/CONTRACT.md` Section 1.5.
+</p></div></div></section>
+<section id="SEC-ED015-0017" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:b06e04821876" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED015-0017</span> Client disconnect</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b06e04821876" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b06e04821876" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b06e04821876" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. `/api/harness/turn` is streaming SSE.
+2. The client disconnects.
+3. Cleanup releases active-turn state.
+4. Once event logging exists, cancellation is recorded.
+5. Replay preserves prior valid events and surfaces diagnostics if a trailing write is malformed.</p>
+<p>Sources: `docs/SPEC.md` Section 11 and Section 9.2.
+</p></div></div></section>
+<section id="SEC-ED015-0018" class="chunk sec depth-5 cov-mid" data-kind="section" data-key="section:e3e0b4cd55a0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED015-0018</span> Provider failure after acceptance</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e3e0b4cd55a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e3e0b4cd55a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e3e0b4cd55a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Accepted user input is already durable.
+2. Provider/model execution fails.
+3. Terminal failure is mapped into Chirality-owned `HarnessEvent` form.
+4. Browser error/exit behavior remains SSE-compatible.
+5. Runtime replay can reconstruct accepted input and terminal failure/cancellation status.</p>
+<p>Sources: `docs/PRD.md` Section 7.10; `docs/SPEC.md` Section 9.
+</p></div></div></section>
+<section id="SEC-ED015-0019" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:555762123866" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0019</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:555762123866" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:555762123866" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:555762123866" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| DEL-03-04-CONFLICT-001 | Terminal taxonomy for interruption is not fully aligned: some sources describe interruption as a durable terminal outcome, while SPEC/TYPES initial event categories list `turn.completed`, `turn.failed`, and `turn.cancelled` but not `turn.interrupted`. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3; decomposition SOW-012/SOW-015; `docs/PRD.md` Section 7.4 and FR-019 | `docs/SPEC.md` Section 9.3; `docs/TYPES.md` Section 7.3; `docs/PRD.md` Section 8.3 FR-022 | `Datasheet.md` Conditions; `Specification.md` Requirements and Verification; `Procedure.md` Steps and Verification | Treat interruption as a terminal outcome requirement, but implement event schema as either `turn.cancelled` with explicit reason metadata or amend SPEC/TYPES to add `turn.interrupted` before final implementation closure. | TBD |
+</p></div></div></section>
+<section id="SEC-ED015-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:5271a45d6cf3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0020</span> Source-State Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5271a45d6cf3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5271a45d6cf3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5271a45d6cf3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `docs/PRD.md` is accessible but has `HASH_MISMATCH` in `_REFERENCES.md`; this draft uses it because the task explicitly directed treating that mismatch as a source-state warning.
+- Exact code/module paths for interrupt tests, cancel cleanup tests, terminal event mapper, and lock-observability helpers are TBD because the authoritative source slices specify behavior and artifacts but not final file locations.
+</p></div></div></section>
+<section id="SEC-ED015-0021" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:c85b09b05c0f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED015-0021</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c85b09b05c0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c85b09b05c0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c85b09b05c0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0022" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:bd8b33996212" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED015-0022</span> Procedure: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd8b33996212" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd8b33996212" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd8b33996212" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:762a6dad7922" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0023</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:762a6dad7922" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:762a6dad7922" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:762a6dad7922" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the working procedure for producing and verifying the DEL-03-04 backend feature slice: interrupt handling, cancellation/disconnect cleanup, lock release, and terminal outcome persistence.</p>
+<p>This procedure is for implementation and verification planning. It does not approve final runtime behavior; human review and normal change controls remain required.
+</p></div></div></section>
+<section id="SEC-ED015-0024" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:46d48696b361" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0024</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46d48696b361" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46d48696b361" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46d48696b361" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required source context:</p>
+<p>- `_CONTEXT.md` for deliverable identity, scope, and anticipated artifacts.
+- `_REFERENCES.md` for authoritative source corpus and PRD hash warning.
+- `docs/CONTRACT.md` Section 1.4 and 1.5.
+- `docs/SPEC.md` Sections 9, 10, 11, 17.1, 19.2, and 19.3.
+- `docs/TYPES.md` Sections 7.1 through 7.4.
+- `docs/PRD.md` Sections 7.4, 7.10, 8.3, and 8.12, with source-state warning from `_REFERENCES.md`.
+- Decomposition row for DEL-03-04 and SOW-012/SOW-015.</p>
+<p>Declared upstream dependencies:</p>
+<p>- TBD. `_DEPENDENCIES.md` reports no accepted upstream edges yet.</p>
+<p>Implementation prerequisites:</p>
+<p>- ASSUMPTION: DEL-03-01 should define or stabilize the `AgentEnginePort` / `RuntimeEngineContract` boundary before final mapper closure.
+- ASSUMPTION: DEL-03-02 should provide testable active-turn locking and cleanup surfaces.
+- ASSUMPTION: DEL-03-03 should preserve route shape and SSE compatibility fixtures.
+- ASSUMPTION: DEL-05-02 should provide the append-only `HarnessEvent` JSONL writer or a compatible test seam.
+</p></div></div></section>
+<section id="SEC-ED015-0025" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:972abc7f7f7f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0025</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:972abc7f7f7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:972abc7f7f7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:972abc7f7f7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm current runtime boundary.
+   - Identify the active `TurnEngine`, `AgentEnginePort`, route adapter, and event writer surfaces.
+   - Do not make SDK/provider message names part of public Chirality semantics.
+   - Evidence target: source references to `docs/SPEC.md` Section 10 and `docs/CONTRACT.md` K-ENGINE invariants.</p>
+<p>2. Define terminal trigger matrix.
+   - List triggers: successful completion, user interrupt, client disconnect, runtime/provider failure, cancellation signal.
+   - For each trigger, define required lock release, browser event behavior, and persisted runtime event behavior.
+   - Use one evidence artifact for the trigger matrix so every terminal path is tied to lock-release proof, terminal outcome persistence, and replay expectations.
+   - Mark interruption event taxonomy as TBD until DEL-03-04-CONFLICT-001 is resolved.</p>
+<p>3. Implement or update interrupt handling.
+   - Route: preserve `/api/harness/interrupt`.
+   - Behavior: abort the active provider/model request for the session when present.
+   - Stream effect: produce interrupted `process:exit` for an active browser stream where applicable.
+   - Cleanup: release active-turn state.</p>
+<p>4. Implement or update client-disconnect and cancellation cleanup.
+   - Ensure SSE disconnect/cancellation signal handling reaches runtime cleanup.
+   - Release active-turn state even when no final browser event can be delivered because the client disconnected.
+   - Record cancellation once event-log support exists, and verify cleanup through state/event evidence rather than relying on receipt of a final browser SSE event.</p>
+<p>5. Implement or update failure terminalization.
+   - When execution fails after `turn.accepted`, write a terminal failure or cancellation record.
+   - Preserve accepted input for replay.
+   - Redact secrets from error payloads, runtime logs, and event data.</p>
+<p>6. Implement terminal event mapping.
+   - Map runtime/provider terminal signals into Chirality-owned `HarnessEvent` categories and compact browser `UIEvent`s.
+   - Use the `HarnessEvent` shape from `docs/SPEC.md` Section 9.1.
+   - Ensure event IDs are unique and JSONL writes append newline-delimited records.
+   - Keep SDK-specific values only as explicit adapter metadata when needed.</p>
+<p>7. Add interrupt tests.
+   - Start or simulate an active turn.
+   - Call `/api/harness/interrupt`.
+   - Assert abort propagation, interrupted `process:exit`, active-turn lock release, and terminal outcome persistence.
+   - Assert adapter-boundary behavior through Chirality-owned runtime/event terms; SDK/provider names may appear only as explicit adapter metadata.
+   - Exact fixture/module path: TBD.</p>
+<p>8. Add cancel cleanup tests.
+   - Simulate SSE client disconnect and/or cancellation signal.
+   - Assert active-turn lock release.
+   - Assert cancellation record when the event log exists.
+   - Exact fixture/module path: TBD.</p>
+<p>9. Add terminal event mapper tests.
+   - Cover fixture cases for completion, failure, cancellation, and interruption-adjacent signals.
+   - Assert `UIEvent` names remain compatible.
+   - Assert `HarnessEvent` output uses Chirality-owned event types and redacted data.
+   - Exact fixture/module path: TBD.</p>
+<p>10. Add replay-oriented verification.
+    - Simulate malformed trailing JSONL after valid accepted-turn and terminal failure/cancellation records.
+    - Assert replay preserves valid prior events, preserves terminal outcome evidence, and surfaces diagnostics.
+</p></div></div></section>
+<section id="SEC-ED015-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1e7e1632e29d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0026</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e7e1632e29d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e7e1632e29d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e7e1632e29d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Minimum checks before this deliverable is considered implementation-ready:</p>
+<p>| Check | Expected Result | Source |
+|---|---|---|
+| Interrupt route test | `/api/harness/interrupt` aborts active turn, yields interrupted `process:exit` where stream exists, releases lock, persists terminal outcome, and proves abort behavior without making SDK-shaped names part of the public contract. | `docs/PRD.md` Section 8.3, FR-019; `docs/CONTRACT.md` K-EVENT-3; `docs/SPEC.md` Section 10.3 |
+| Terminal trigger matrix | One evidence artifact covers completion, interrupt, disconnect, runtime/provider failure, and cancellation signal; each row records lock-release proof, browser-event expectation, persisted runtime outcome expectation, and source reference. | `docs/PRD.md` Section 8.3, FR-018 and FR-019; `docs/SPEC.md` Section 10.1 |
+| Disconnect cleanup test | SSE client disconnect releases active-turn state and records cancellation once event log exists; proof does not depend on delivering a final SSE event to the disconnected browser. | `docs/SPEC.md` Section 11 |
+| Failure after acceptance test | `turn.accepted` remains replayable and a terminal failure/cancellation status is present. | `docs/PRD.md` Section 7.10 |
+| Terminal mapper test | Completion, failure, cancellation, and interruption-adjacent fixtures map to Chirality `UIEvent` and `HarnessEvent` contracts, not SDK-shaped public semantics. | `docs/SPEC.md` Section 10.3 |
+| JSONL append/replay test | Terminal records append newline-delimited events; malformed trailing writes after a valid terminal record do not break replay of accepted input or terminal outcome evidence. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
+| Redaction test | API keys and configured secret variants do not appear in terminal events, runtime logs, provider errors, or tool artifacts. | `docs/CONTRACT.md` K-EVENT-6 |
+| SSE compatibility test | Existing event names remain compatible: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`. | `docs/SPEC.md` Section 11 |
+</p></div></div></section>
+<section id="SEC-ED015-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3a9cddfebe61" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0027</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3a9cddfebe61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3a9cddfebe61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3a9cddfebe61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce or update these records as part of implementation closure:</p>
+<p>- Interrupt tests.
+- Cancel cleanup tests.
+- Terminal event mapper and mapper tests.
+- Evidence that active-turn locks release after interrupt, disconnect, failure, and cancellation.
+- Evidence that terminal outcomes persist in append-only `HarnessEvent` JSONL.
+- Note or decision resolving DEL-03-04-CONFLICT-001 before final schema closure.
+- Any Section 9 validation updates for runtime engine event log, session replay, and runtime contract validation.
+</p></div></div></section>
+<section id="SEC-ED015-0028" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:74d1c668ee5c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED015-0028</span> Component: execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74d1c668ee5c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74d1c668ee5c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74d1c668ee5c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0029" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:f70fa59d3ff6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED015-0029</span> Specification: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f70fa59d3ff6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f70fa59d3ff6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f70fa59d3ff6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED015-0030" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a5bbc00cd14f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0030</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5bbc00cd14f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5bbc00cd14f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5bbc00cd14f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies interrupt, client-disconnect, runtime-failure, cancellation, lock-release, and terminal-outcome behavior for the PKG-03 runtime lifecycle slice.</p>
+<p>In scope:</p>
+<p>- Handling user interrupt requests through `/api/harness/interrupt`.
+- Ensuring active turn cleanup releases the per-session active-turn lock.
+- Ensuring every accepted turn receives a durable terminal outcome where the event log is available.
+- Preserving browser-facing SSE compatibility while terminal outcomes are mapped into product-owned `HarnessEvent`s.
+- Producing interrupt tests, cancel cleanup tests, and a terminal event mapper.</p>
+<p>Out of scope:</p>
+<p>- SDK-specific message translation details, except where mapper behavior must preserve Chirality-owned event semantics.
+- Broad session CRUD, boot metadata, and active-turn lock design assigned to DEL-03-02.
+- Route-shape and general SSE compatibility documentation assigned to DEL-03-03.
+- Append-only event store implementation assigned primarily to DEL-05-02, except as required to verify terminal outcomes for this slice.</p>
+<p>Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` Sections 9 through 11; decomposition DEL-03-04 row.
+</p></div></div></section>
+<section id="SEC-ED015-0031" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b4e8ca7f0101" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0031</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4e8ca7f0101" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4e8ca7f0101" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4e8ca7f0101" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-03-04-REQ-001 | The implementation shall preserve the `/api/harness/interrupt` route as the public interrupt endpoint for active turns. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 8.3, FR-019 |
+| DEL-03-04-REQ-002 | Interrupt handling shall abort the active provider/model request for the target session when one exists. | `docs/PRD.md` Section 8.3, FR-019; `docs/SPEC.md` Section 10.1 |
+| DEL-03-04-REQ-003 | Interrupt handling shall yield an interrupted `process:exit` browser-facing event where an active SSE turn stream is present. | `docs/PRD.md` Section 8.3, FR-019; `docs/PRD.md` Section 7.4 |
+| DEL-03-04-REQ-004 | Client disconnect cleanup shall release runtime turn resources and record cancellation once the event log exists. | `docs/SPEC.md` Section 11 |
+| DEL-03-04-REQ-005 | Runtime failure after `turn.accepted` shall leave accepted user input recoverable and shall persist a terminal failure or cancellation status. | `docs/PRD.md` Section 7.10; `docs/CONTRACT.md` Section 1.5, K-EVENT-2 and K-EVENT-3 |
+| DEL-03-04-REQ-006 | Every accepted turn shall terminate durably with a success, failure, cancellation, or interruption outcome. | `docs/CONTRACT.md` Section 1.5, K-EVENT-3; decomposition SOW-015 |
+| DEL-03-04-REQ-007 | Terminal outcome persistence shall use Chirality-owned `HarnessEvent` semantics, not SDK message names as public or canonical contracts. | `docs/CONTRACT.md` Section 1.4, K-ENGINE-4; `docs/SPEC.md` Section 10.3 |
+| DEL-03-04-REQ-008 | Terminal event records shall follow the versioned `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
+| DEL-03-04-REQ-009 | Terminal event writes shall append newline-delimited JSONL, use unique event IDs, avoid secrets, and remain replayable when a malformed trailing line exists. | `docs/SPEC.md` Section 9.2 |
+| DEL-03-04-REQ-010 | Browser-facing SSE event names shall remain compatible during the runtime pivot. | `docs/SPEC.md` Section 11 |
+| DEL-03-04-REQ-011 | Interrupt, disconnect, failure, and cancellation paths shall release the active turn state so the session is not left in `TURN_IN_PROGRESS`. | `docs/PRD.md` Section 8.3, FR-018 and FR-019; decomposition SOW-012 |
+| DEL-03-04-REQ-012 | Terminal outcome handling shall redact secrets and avoid storing API keys in runtime events, logs, provider errors, or tool artifacts. | `docs/CONTRACT.md` Section 1.5, K-EVENT-6; `docs/SPEC.md` Section 9.2 |
+| DEL-03-04-REQ-013 | The terminal event mapper shall translate SDK/provider terminal signals into Chirality `UIEvent` and `HarnessEvent` terms at the adapter boundary. | `docs/SPEC.md` Section 10.3; `docs/TYPES.md` Section 7.4 |
+| DEL-03-04-REQ-014 | ASSUMPTION: The implementation should expose testable cleanup hooks or observable active-turn state sufficient to prove lock release after interrupt, disconnect, failure, and cancellation; exact hook or state API remains TBD. | Decomposition anticipated artifacts; `docs/PRD.md` Section 8.3, FR-018 |
+</p></div></div></section>
+<section id="SEC-ED015-0032" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:86631256597d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0032</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86631256597d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86631256597d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86631256597d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / Contract | Applicability | Source |
+|---|---|---|
+| Product-owned runtime boundary | Terminal behavior belongs behind `AgentEnginePort` / `RuntimeEngineContract`; SDK APIs do not define public semantics. | `docs/CONTRACT.md` Section 1.4, K-ENGINE-1; `docs/SPEC.md` Section 10 |
+| Runtime event and audit mirror contract | Terminal outcomes are persisted as Chirality `HarnessEvent`s in append-only JSONL. | `docs/CONTRACT.md` Section 1.5; `docs/SPEC.md` Section 9 |
+| Browser SSE compatibility contract | Existing browser event names remain compatible during SDK adoption. | `docs/SPEC.md` Section 11 |
+| Route adapter rule | `/api/harness/turn` validates, locks, forwards to `TurnEngine`, writes SSE, and handles cleanup without owning runtime policy. | `docs/SPEC.md` Section 10.4 |
+| Source-state warning | `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived requirements remain source-grounded but should be reconfirmed before final implementation closure. | `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED015-0033" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:af975416ebcc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0033</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af975416ebcc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af975416ebcc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af975416ebcc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification Approach |
+|---|---|
+| DEL-03-04-REQ-001, DEL-03-04-REQ-002, DEL-03-04-REQ-003, DEL-03-04-REQ-007 | API/integration test for `/api/harness/interrupt` during an active turn; assert provider/model abort through the product-owned runtime boundary, interrupted `process:exit` SSE behavior, and absence of SDK-shaped names in public API or event assertions. |
+| DEL-03-04-REQ-004, DEL-03-04-REQ-011, DEL-03-04-REQ-014 | Terminal trigger matrix test covering successful completion, user interrupt, client disconnect, runtime/provider failure, and cancellation signal; assert each terminal path releases active-turn state through the selected observable hook/state API. |
+| DEL-03-04-REQ-005, DEL-03-04-REQ-006, DEL-03-04-REQ-008, DEL-03-04-REQ-009 | Event-log replay test that simulates failure/cancellation after `turn.accepted`, appends or simulates a malformed trailing JSONL line after valid records, then confirms accepted input plus terminal outcome remain recoverable and diagnostics surface. |
+| DEL-03-04-REQ-007, DEL-03-04-REQ-013 | Mapper unit tests using fixture cases for completion, failure, cancellation, and interruption-adjacent provider/runtime signals; assert Chirality-owned `UIEvent` / `HarnessEvent` outputs and keep provider-specific values only as adapter metadata where needed. |
+| DEL-03-04-REQ-010 | SSE compatibility fixture asserting current event names remain stable: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`. |
+| DEL-03-04-REQ-012 | Redaction test for terminal failure/error payloads, including provider error surfaces, runtime events, run logs, and tool artifacts; assert no API keys or configured secret variants are persisted. |
+| DEL-03-04-REQ-014 | Unit or integration tests around `TurnEngine`/route cleanup observability; exact hook or state API is TBD and must be resolved before implementation closure. |
+</p></div></div></section>
+<section id="SEC-ED015-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:28b103f669a5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED015-0034</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:28b103f669a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:28b103f669a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:28b103f669a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required artifacts for this deliverable:</p>
+<p>- Interrupt tests.
+- Cancel cleanup tests.
+- Terminal event mapper.
+- ASSUMPTION: Any mapper-facing terminal outcome documentation should note the unresolved interruption taxonomy until the conflict in `Guidance.md` is resolved.</p>
+<p>Records to update or cross-link when implementation lands:</p>
+<p>- Runtime contract or mapper docs, exact path TBD.
+- Section 9 validation coverage for runtime engine event log and session replay, exact validation IDs from `docs/SPEC.md` Section 19.3.
+- Test fixtures demonstrating lock release and terminal outcome persistence.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED015";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

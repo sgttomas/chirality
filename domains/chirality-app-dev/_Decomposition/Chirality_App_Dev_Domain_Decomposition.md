@@ -2,13 +2,163 @@
 
 Package role: working surface
 
-Status: **Gate 1 RE-ACCEPTED** (token `GATE1_ACCEPT_20260616_R2`); **Gate 1.5-S
-skeleton review closed**. **Phase 2 atomization COMPLETE** — all 96 source units
-/ 115 dispatch units atomized (individual-agent fan-out, ≤20 parallel), merged to
-`Atomic_Domain_Ledger.csv` (**11,809 atoms**) + `Vocabulary_Map.csv` (844 terms);
-96 atom-review HTML surfaces rendered. **Next: Gate 2** (binding atom review).
+Status: **Gate 6 — Publish: ACCEPTED** (token `GATE6_ACCEPT_20260616`, snapshot
+`gate_snapshots/GATE6_PUBLISH_20260616T170027Z`, 2026-06-16T17:00:27Z).
+**DOMAIN_DECOMP for `chirality-app-dev` is COMPLETE** — all six gates CLOSED and
+ACCEPTED. The operator confirmed: *"This domain decomposition is the accepted basis
+for downstream work."* The final integrity validator passes clean (0 CRITICAL /
+0 MAJOR / 0 MINOR).
 
-Generated UTC: 2026-06-16T01:24:25Z
+Gate chain (all ACCEPTED): **Gate 1** (`GATE1_ACCEPT_20260616_R2`) — manifest-backed
+intake, 467 rows / 96 source units. **Gate 1.5-S** — skeleton review closed
+(3,056 → 2,967 in-scope sections). **Gate 2** (`GATE2_ACCEPT_20260616`) — Phase-2
+atomization complete: `Atomic_Domain_Ledger.csv` (**11,809 atoms**; IN 11,140 /
+OUT 107 / TBD 562) + `Vocabulary_Map.csv` (844 terms); 96 atom-review HTML surfaces.
+**Phase 2.5** — source catalog `SRCIDX_20260616T043733Z` (validate PASS; dense V2
+embeddings BAAI/bge-base-en-v1.5) + BM25 + TOC priors. **Gate 3**
+(`GATE3_ACCEPT_20260616`) — 16 flat faithful-to-author categories (PKG-00..10 1:1 +
+5 cross-cutting); 11,140 IN each assigned one Category; ratification 16/16
+`CLUSTER_COHERENT`, 0 blocking. **Gate 4** (`GATE4_ACCEPT_20260616`) — 59
+knowledge-kind Knowledge Types + 279 per-deliverable Subjects; every IN atom carries
+one KTY + Subject; ratification 59/59 `CLUSTER_COHERENT`, 0 blocking. **Gate 5**
+(`GATE5_ACCEPT_20260616`) — section coverage attested; structural invariants pass
+(UnassignedINUnits=0, UnitsWithoutKTY=0); 987 cov-empty in-scope sections attested
+scaffold-for-fill (OI-014).
+
+**Documented deferred caveats** (operator-ruled at Gate 6, published as part of the
+accepted basis, not closure blockers): **OI-011** corpus drift (22 files re-stamped
+to HEAD; re-atomization deferred to a future scope-change amendment) and **OI-013**
+562 TBD-scope atoms (recorded as a deferred open issue; IN decomposition complete).
+**Objectives layer omitted by design** per Deviation A — `annex_objectives.csv` is
+header-only (0 objectives); principles are absorbed into Guidance/Playbook KTYs.
+
+### Gate 6 — Publish (PUBLICATION ASSEMBLED)
+
+Final published artifact for downstream agents. Heavy machine-truth lives in the
+companion registers; this document is the concise control surface over them.
+
+- **Domain Ledger** (required): `Domain_Ledger_Gate4_KTY_Draft.csv` — authoritative
+  (11,809 atoms; every IN atom carries CategoryID + primary KnowledgeType + Subject).
+  Published annex `annex_domain_ledger.csv` is the canonical ledger projection for the
+  integrity validator / downstream. Phase-2 base ledger: `Atomic_Domain_Ledger.csv`.
+- **Coverage & Telemetry** (required): `Gate5_Coverage_Telemetry.{json,csv}` (status
+  `ACCEPTED_GATE5`), `Section_Coverage_Register.csv`, `Source_Coverage_Summary.csv`.
+- **Vocabulary Map** (required): `Vocabulary_Map.csv` — 844 canonical terms.
+- **Categories / Knowledge Types / Subjects**: `Category_Register.csv` (16),
+  `Knowledge_Type_Register.csv` (59), `Knowledge_Subject_Register.csv` (279).
+- **Decision / change log** (required): see *Decision Log / Change Log* below.
+- **Companion Inventory** (required): `Companion_Inventory.csv` — full file-level
+  inventory (see *Companion Inventory* below).
+- **Objectives**: omitted by design (Deviation A); `annex_objectives.csv` header-only.
+- **Integrity**: `validate_domain_decomposition_integrity.py` → **PASS** (0 CRITICAL /
+  0 MAJOR / 0 MINOR); all six annexes resolve, coverage telemetry reconciles.
+- **Review surfaces**: 96 per-source structure/atom-review HTML (`source_review_html/`,
+  `atom_review_html/`) + 92 coverage-review HTML in final state; sidecar history retained.
+- **Snapshot**: `gate_snapshots/GATE6_PUBLISH_<UTC>/` (+ `_LATEST_GATE6.md`) — written
+  on terminal acceptance.
+
+**What changed since the last revision (Gate 5 → Gate 6):** reconciled Gate-5
+coverage telemetry to `ACCEPTED_GATE5` (status/revision re-stamped, `ObjectiveCount=0`
+added, OI-id corrected); brought `Validation_Checks.csv` current with the Gate 2–6
+closure record; added the canonical published annex layer (`annex_domain_ledger.csv`,
+`annex_objectives.csv`); regenerated `Companion_Inventory.csv` (4 → 1,685 rows);
+ruled OI-011 and OI-013 as documented deferred publish caveats. No decomposition
+content changed — publish is assembly + finalization only.
+
+### Gate 5 — Coverage & Telemetry (ACCEPTED)
+
+- **Coverage** (`tools/decomp/build_gate5_coverage.py`, reusable-as-is, via pack-local
+  shim `_adapter/gate5_make_source_register.py`): per-section IN/OUT/TBD atom counts +
+  density class. 3,046 in-scope sections; density cov-empty 987 / cov-low 2 /
+  cov-mid 381 / cov-high 1,676. `Section_Coverage_Register.csv`,
+  `Source_Coverage_Summary.csv`, `Gate5_Coverage_Telemetry.{json,csv}`.
+- **Structural invariants pass**: `UnassignedINUnits=0`, `UnitsWithoutKnowledgeTypeMapping=0`,
+  `UnitsWithoutSubjectMapping=0`.
+- **Zero-coverage attestation** (`_adapter/gate5_classify_coverage.py`, operator decision
+  machine-classify + bulk-attest): the 987 cov-empty in-scope sections classified —
+  376 STRUCTURAL_COMPONENT_HEADER, 368 EMPTY_STUB_SCAFFOLD, 124 OUT_TBD_ONLY, 60
+  TEMPLATE_SUBSECTION, 59 GENUINE_GAP_CANDIDATE (leaf, >8 source lines). All attested
+  **scaffold-for-fill**; none re-dispatched (OI-014). `Gate5_ZeroCoverage_Classification.csv`,
+  `Gate5_GenuineGap_Shortlist.csv`.
+- **Snapshot**: `gate_snapshots/GATE5_COVERAGE_20260616T163302Z/` (+ `_LATEST_GATE5.md`).
+
+### Gate 4 — Knowledge Types & Subjects (ACCEPTED)
+
+- **KTY axis = knowledge-kind (author doc-types).** CAT-001..011 (PKG deliverables)
+  → 4 KTYs each: Datasheet→Reference, Specification, Guidance, Procedure (1:1 with
+  persona canonical schemas). CAT-012..016 → content-kind KTYs. **59 KTYs**,
+  `Knowledge_Type_Register.csv`. **Subjects = per-deliverable** (279), per-source/
+  per-frontend-module for cross-cutting; `Knowledge_Subject_Register.csv`
+  (`CoversUnits` populated, sum 11,140).
+- **Assignment**: deterministic source-routing (`_adapter/gate4_assign.py`) — doc-kind
+  + deliverable from each atom's `@repo` path; cross-cutting by SourceDoc. 11,140 IN
+  atoms each → one primary KTY + Subject (100%; 0 unmapped). Ledger
+  `Domain_Ledger_Gate4_KTY_Draft.csv` (`Gate4AssignmentStatus=ACCEPTED_GATE4`).
+  **Lossless** — `UnitStatement`/`ContentHash`/`CategoryID` unchanged, no splits.
+- **Binding ratification** (`_adapter/gate4_ratify.py`, dense index
+  `SRCIDX_20260616T043733Z`): nearest-centroid cohesion computed **within each parent
+  category**; **59/59 `CLUSTER_COHERENT`, 0 blocking**, own-centroid cosine median
+  0.71–0.78, within-category cohesion 0.65–0.84. `KTY_Scope_Ratification.csv`.
+- **Misassignment**: 49 candidates (0.4%, within-category prose adjacency) →
+  `RESOLVED_SOURCE_ROUTING` (`G4BR-001`), 0 open. `KTY_Assignment_Findings.csv`.
+- `IntendedUsers`/`WhenUsed` left `TBD` (persona allowance, operator-directed);
+  `CanonicalSchema` set per KTY.
+- **Snapshot**: `gate_snapshots/GATE4_KTY_20260616T161222Z/` (+ `_LATEST_GATE4.md`);
+  proposal `gate4_kty/GATE4_KTY_PROPOSAL_20260616T155613Z/`.
+
+### Gate 3 — Categories (ACCEPTED)
+
+- **Categories**: 16 flat (`CAT-001..016`), reconciled from the cross-source TOC.
+  The 11 author packages `PKG-00..10` preserved 1:1 as `CAT-001..011`; 5
+  cross-cutting categories — product requirements/architecture (`CAT-012`),
+  dev-process/build/release (`CAT-013`), coordination/scope-change governance
+  (`CAT-014`), decomposition/reconciliation/closure (`CAT-015`), frontend source +
+  harness docs (`CAT-016`). Register: `Category_Register.csv`.
+- **Assignment**: deterministic author **source-routing** (`_adapter/gate3_assign.py`,
+  rules `G3BR-001..007`); every IN atom inherits the category owning its
+  author-placed PKG/source group. 11,140 IN assigned (one each); 562 TBD + 107 OUT
+  uncategorized. **Lossless** — `UnitStatement`/`ContentHash` unchanged, no splits.
+  Ledger: `Domain_Ledger_Gate3_Category_Draft.csv` (status `ACCEPTED_GATE3`).
+- **Binding ratification** (`_adapter/gate3_ratify.py`, dense V2 index
+  `SRCIDX_20260616T043733Z`, BAAI/bge-base-en-v1.5): primary signal =
+  nearest-centroid cohesion; **16/16 `CLUSTER_COHERENT`, 0 blocking**, own-centroid
+  cosine median 0.71–0.77 (~7.5× the 1/16 random baseline). Scope-query cosine +
+  BM25 retained as diagnostics (0.75 human-gated, `G3BR-012`).
+  `Category_Scope_Ratification.csv`.
+- **Misassignment**: 330 candidates (3%; nearest centroid a different category by
+  margin) — all semantic adjacency (spec/record near the feature it references),
+  **RESOLVED_SOURCE_ROUTING** (operator-confirmed), 0 open.
+  `Category_Assignment_Findings.csv`.
+- **Snapshot**: `gate_snapshots/GATE3_CATEGORIES_20260616T153015Z/` (+ pointer
+  `_LATEST_GATE3.md`); proposal `gate3_categories/GATE3_CATEGORY_PROPOSAL_20260616T074441Z/`.
+
+### Phase 2.5 — Source catalog + retrieval (COMPLETE)
+
+- **Catalog**: `tools/source_catalog/build_source_database.py --repo-root
+  projects/chirality-app-dev --source-manifest …` → snapshot
+  `_LocalIndexes/snapshots/SRCIDX_20260616T043733Z`; **validate PASS** (0
+  blockers, 0 warnings). 319 `IncludeInIndex=YES` rows (all markdown).
+- **BM25**: `tools/retrieval/build_source_index.py --no-embeddings` (lexical
+  only; dense deferred). Smoke-tested OK.
+- **TOC priors**: `tools/decomp/build_toc_priors.py` over 96
+  `*_skeleton.reviewed.json` → `cross_source_toc_matrix.{md,csv}`.
+- **Decisions logged this phase**:
+  - **OI-010** — catalog tool v1 only BM25-chunks markdown; the 147 `frontend/src`
+    code files + `docs/MANIFEST.json` set `IncludeInIndex=NO` (catalog-metadata
+    only). Frontend code stays retrieval-covered via its grouped-unit atoms
+    (ledger is chunked as `DECOMPOSITION_LEDGER_CSV`).
+  - **OI-011** — live repo drifted to merge `bcb74dc09` after intake; 22 admitted
+    files re-stamped to current. Re-atomization of the ~6 substantive drifted docs
+    + grouped `SRC-FRONTEND-SRC` unit + admission of new files (D-APP-09/10,
+    Closure_Acceptance_Audit, Dependency_Closure_Report) **deferred to a
+    scope-change pass before Gate 6**.
+  - **OI-012** — latent catalog-rebuild collision: snapshot-embedded ledger/
+    section-node CSVs collide on `chunk_id`; worked around by excluding
+    `gate_snapshots/` during the build; tool fix recommended.
+- **Snapshot**: `gate_snapshots/PHASE2_5_20260616T044500Z/` (+ pointer
+  `_LATEST_PHASE2_5.md`); telemetry `Phase2_5_Telemetry.json`.
+
+Generated UTC: 2026-06-16T01:24:25Z · Gate 6 publication revision: 2026-06-16
 
 DOMAIN_DECOMP agent persona; 6-gate methodology (Intake → Normalize → Categories
 → Knowledge Types → Coverage → Publish). This document is the concise control
@@ -27,8 +177,8 @@ back to `@repo/<RepoRelPath>`.
 - **Pack root:** `domains/chirality-app-dev/` (chirality monorepo). Shared
   agents/skills/tools resolve against the monorepo root.
 - **Accepted manifest:** `domains/chirality-app-dev/_Sources/Source_Manifest.csv` (467 rows)
-- **Source manifest SHA-256:** `24fccecae56e01b4fbf3110fb700c80cb711ba456b73de6fd6a4d14d7e2aecd9`
-- **Source catalog snapshot:** not built (Phase 2.5; after Gate 2).
+- **Source manifest SHA-256 (live HEAD, re-stamped OI-011):** `e9000e97e04b2e913a3ea70d421765350456ffcde4e8fd20e12d1cf963d6e491`
+- **Source catalog snapshot:** `_LocalIndexes/snapshots/SRCIDX_20260616T043733Z` (Phase 2.5; validate PASS).
 
 ## Intake Summary
 
@@ -197,10 +347,16 @@ verified against original `@repo` files).
 
 ## Companion Inventory
 
-See `Companion_Inventory.csv` for the full file-level inventory of the canonical
-working package (manifest, boundary, prefix/component maps, telemetry, per-unit
-skeletons / dispatch plans / asset manifests / structure HTML / section-node
-CSVs / pack markdown, open issues, validation checks).
+See `Companion_Inventory.csv` — full file-level inventory of the package (**1,685
+rows**, regenerated at Gate 6 by `_adapter/gate6_build_companion_inventory.py`).
+Columns: `Filename`, `PackageRole`, `Description`. PackageRole breakdown:
+**615 authoritative companion register**, **772 derived publication artifact**,
+**283 snapshot / handoff artifact**, **14 pack-local adapter (tooling)**, **1 working
+surface**. Covers all register classes from Phases 1–5: ledgers + annexes, category/
+KTY/subject registers, ratifications + findings, vocabulary map, coverage telemetry +
+section register, per-source skeletons / section-nodes / asset-manifests / review HTML
+/ pack markdown, dispatch plans/briefs/outputs, per-source ledgers, TOC matrix, open
+issues, validation checks, and the gate snapshot chain with `_LATEST_*` pointers.
 
 ## Open Issues
 
@@ -217,6 +373,11 @@ See `Open_Issues_Register.csv`.
 | `OI-007` | ACCEPTED_STAGE_PHASE_2 | 96 units / 3,056 sections / 108 dispatch units — stage Phase-2 atomization. |
 | `OI-008` | ACCEPTED_GATE_1 | All admitted sections default in-scope; refine at Gate 1.5-S. |
 | `OI-009` | RESOLVED_SUFFIX_MATCH | Deliverable KT docs admitted by suffix; DEL-00-01→11, DEL-00-02→23 components. |
+| `OI-010` | RESOLVED_INDEX_METADATA | 148 non-md rows set index-metadata-only; frontend code stays covered via its atoms. |
+| `OI-011` | DEFERRED_PUBLISH_CAVEAT | Corpus drift (22 files re-stamped to HEAD); re-atomization deferred to a future scope-change amendment. |
+| `OI-012` | OPEN_TOOLING | Latent catalog-rebuild chunk_id collision vs gate_snapshots/; authorized shared-tool fix recommended. |
+| `OI-013` | DEFERRED_PUBLISH_CAVEAT | 562 TBD-scope atoms uncategorized; recorded as a deferred open issue (IN decomposition complete). |
+| `OI-014` | ACCEPTED_SCAFFOLD_FOR_FILL | 987 cov-empty in-scope sections attested scaffold-for-fill; none re-dispatched. |
 
 ## Decision Log / Change Log
 
@@ -229,17 +390,29 @@ See `Open_Issues_Register.csv`.
 | DEC-005 | 2026-06-15 | Execution grouped per deliverable (53) and per governance folder (26); docs/root/frontend-prose per file. |
 | DEC-006 | 2026-06-16 | **Gate 1 reopened.** Deliverable source admission trimmed to knowledge-type docs; meta docs + non-KT files excluded from admission — operator direction. |
 | DEC-007 | 2026-06-16 | Deliverable admission uses basename **suffix-match** (OI-009): nested `Packet_*`/`Case_*` KT docs admitted in DEL-00-01/02. Manifest 467 rows; in-scope sections 3,056. |
+| DEC-008 | 2026-06-16 | **Gate 3 accepted.** 16 flat faithful-to-author categories by deterministic source-routing; binding dense ratification 16/16 `CLUSTER_COHERENT`; 562 TBD deferred (OI-013). |
+| DEC-009 | 2026-06-16 | **Gate 4 accepted.** KTY axis = knowledge-kind (author doc-types), 59 KTYs; subjects per-deliverable, 279; ratification 59/59 `CLUSTER_COHERENT`. |
+| DEC-010 | 2026-06-16 | **Gate 5 accepted.** Machine-classify + bulk-attest coverage; 987 cov-empty in-scope sections attested scaffold-for-fill (OI-014); none re-dispatched. |
+| DEC-011 | 2026-06-16 | **Gate 6 publish.** OI-011 (corpus drift) and OI-013 (562 TBD) ruled documented deferred caveats in the accepted basis (future scope-change amendments). Objectives omitted per Deviation A. Canonical published annex layer added; companion inventory regenerated; integrity validator PASS. |
 
-## Gate 1 Confirmation Packet — RE-ACCEPTED
+## Gate 6 — Publication & Final Acceptance
 
-Gate 1 was re-accepted by the operator on 2026-06-16 (token
-`GATE1_ACCEPT_20260616_R2`): the revised manifest-backed source set (deliverables
-admit KT docs by suffix; 467 manifest rows / 466 atomizable components / 96
-source units), the per-deliverable/per-folder grouping plus the grouped
-frontend-source unit, the excluded process logs / meta docs and index-only
-`docs/MANIFEST.json`, the 96-unit skeleton inventory, and the structure-mode
-review HTMLs are accepted as the intended chirality-app-dev DOMAIN_DECOMP intake.
-All Gate-1 open decisions resolved (OI-009 = suffix-match).
+DOMAIN_DECOMP for `chirality-app-dev` is assembled and published. All upstream
+gates (1, 1.5-S, 2, 2.5, 3, 4, 5) are CLOSED and ACCEPTED; the final integrity
+validator passes clean (0 CRITICAL / 0 MAJOR / 0 MINOR). The required published
+sections are present — Domain Ledger, Coverage & Telemetry, Vocabulary Map,
+Categories / Knowledge Types / Subjects, Decision/Change Log, and Companion
+Inventory — and the per-source review surfaces are in final state.
 
-Next gate: **Gate 1.5-S** skeleton review (asset sub-gates N/A). Phase 2
-atomization is staged per OI-007.
+Two documented deferred caveats are carried as part of the accepted basis (future
+scope-change amendments, not closure blockers): **OI-011** (corpus drift;
+re-atomization deferred) and **OI-013** (562 TBD-scope atoms). The Objectives layer
+is omitted by design (Deviation A); `annex_objectives.csv` is header-only.
+
+**Accepted** by the operator on 2026-06-16: *"This domain decomposition is the
+accepted basis for downstream work."* The Gate 6 publish snapshot
+`gate_snapshots/GATE6_PUBLISH_20260616T170027Z/` (acceptance record, publication
+manifest with SHA-256s, readiness packet, handoff state, register copies, integrity
+report) and the `_LATEST_GATE6.md` pointer are written. **DOMAIN_DECOMP is complete.**
+Downstream work and any amendment to this basis (OI-011 re-atomization, OI-013 TBD
+disposition, new-file admission) require an explicit scope-change cycle.

@@ -1,0 +1,508 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-EGOV-COORDINATION - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>21</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-EG001-0002">Component: execution/_Coordination/NEXT_INSTANCE_PROMPT.md</a> <a href="#SEC-EG001-0009">Component: execution/_Coordination/TASK_DISPATCH_PLAN.md</a> <a href="#SEC-EG001-0011">Component: execution/_Coordination/_COORDINATION.md</a></nav>
+<main>
+<section id="SEC-EG001-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:c109c8f166ad" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-EG001-0001</span> Source Pack: SRC-EGOV-COORDINATION</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c109c8f166ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c109c8f166ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c109c8f166ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_FOLDER`  RepoGlob: `execution/_Coordination/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-EG001-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:5abdc895313d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG001-0002</span> Component: execution/_Coordination/NEXT_INSTANCE_PROMPT.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5abdc895313d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5abdc895313d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5abdc895313d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG001-0003" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:9a5cb3a216a8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG001-0003</span> NEXT INSTANCE PROMPT - Chirality App Dev</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a5cb3a216a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a5cb3a216a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a5cb3a216a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG001-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:09917ac43747" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0004</span> Entry Protocol</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09917ac43747" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09917ac43747" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09917ac43747" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+2. Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+3. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+4. Read `{WORKING_ROOT}/AGENTS.md`.
+5. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+6. Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md`.
+7. Read `{WORKING_ROOT}/execution/_Coordination/_LATEST.md` for discovery pointers only.
+8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-13_runtime_completion.md`.
+9. Read `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/_REGISTER.md`.
+10. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
+11. Read `{WORKING_ROOT}/execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
+12. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
+13. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
+14. For workflow or docs-index work, read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json`.
+15. Record `git status --short` before coordination-sensitive planning or edits.
+</p></div></div></section>
+<section id="SEC-EG001-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2f9ade3f49c9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0005</span> Active Direction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f9ade3f49c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f9ade3f49c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f9ade3f49c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Continue bounded app-integration tranches toward the Chirality App&#x27;s inherent goals:</p>
+<p>- a local desktop harness for governed agents;
+- a Chirality-owned runtime contract and audit/event model;
+- provider-adapter-general runtime architecture;
+- Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path;
+- Pi retained as a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+</p></div></div></section>
+<section id="SEC-EG001-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d2d92b81b7b7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0006</span> Selection Rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2d92b81b7b7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2d92b81b7b7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2d92b81b7b7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If a human has already approved or requested a tranche, continue it within its write bounds.</p>
+<p>Otherwise, select exactly one next bounded tranche from the earliest unblocked item in `plans/PLAN_2026-06-13_runtime_completion.md`.</p>
+<p>Default priority:</p>
+<p>1. Fix failing validation or incomplete evidence for already-landed runtime work.
+2. Select the earliest unblocked item on the active runtime completion plan&#x27;s dependency spine.
+3. If that item is blocked by a human decision, prepare a decision packet if none exists.
+4. If a packet already awaits ruling, take the next unblocked implementation item.
+5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
+</p></div></div></section>
+<section id="SEC-EG001-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7f3eccf1dc0f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0007</span> Execution Rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f3eccf1dc0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f3eccf1dc0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f3eccf1dc0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Tranches selected from unblocked completion-plan items are pre-approved for execution.
+- Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
+- Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
+- At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
+- Keep writes scoped to the selected tranche.
+- Use `{REPO_ROOT}/../pi` and `plans/pi-agent-harness-assessment.md` only as read-only pattern-corpus references where they refine the active plan item.
+- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, or Pi migrations unless the active plan item and human rulings explicitly allow them.
+- D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
+- Stop when any further progress requires a human ruling.
+</p></div></div></section>
+<section id="SEC-EG001-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e8faf76f3493" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0008</span> Closeout</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e8faf76f3493" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e8faf76f3493" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e8faf76f3493" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+At completion of a validated tranche:</p>
+<p>1. Run appropriate verification.
+2. Route checks through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` for build, packaging, or release-significant work.
+3. Update `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md` when a plan item lands.
+4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
+5. Update `execution/_Coordination/_LATEST.md` only when discovery pointers change.
+6. Report skipped checks explicitly.
+7. Hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.</p>
+<p>End the session summary with:</p>
+<p>- completed tranche;
+- validation performed;
+- files changed;
+- human rulings pending from `_DECISIONS/_REGISTER.md`;
+- next unblocked plan item.
+</p></div></div></section>
+<section id="SEC-EG001-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:d393894c2b1d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG001-0009</span> Component: execution/_Coordination/TASK_DISPATCH_PLAN.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d393894c2b1d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d393894c2b1d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d393894c2b1d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG001-0010" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:2e4b8ab07489" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG001-0010</span> TASK Dispatch Plan</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2e4b8ab07489" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2e4b8ab07489" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2e4b8ab07489" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Current TASK dispatch is selected per bounded app-integration tranche through:</p>
+<p>- `execution/_Coordination/_COORDINATION.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_LATEST.md` for discovery pointers only
+- `plans/PLAN_2026-06-13_runtime_completion.md`
+- dependency/SCC evidence named by the selected tranche or coordination protocol</p>
+<p>Each `TASK` brief must name its source files, write scope, validation target, and fan-in expectations.
+</p></div></div></section>
+<section id="SEC-EG001-0011" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:a80fb9a19904" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG001-0011</span> Component: execution/_Coordination/_COORDINATION.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a80fb9a19904" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a80fb9a19904" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a80fb9a19904" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG001-0012" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:7049f5a68c5f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG001-0012</span> Coordination Record - Chirality App Dev</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7049f5a68c5f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7049f5a68c5f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7049f5a68c5f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Recorded:** 2026-06-13
+**Active persona:** `WORKING_ITEMS`
+**Default work mode:** bounded app-integration tranches
+**Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+</p></div></div></section>
+<section id="SEC-EG001-0013" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:fc4c31a33d8e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0013</span> Active Surface</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fc4c31a33d8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fc4c31a33d8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fc4c31a33d8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this coordination surface as the active entrypoint for app-integration work. Keep it lean: project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history.</p>
+<p>Path anchors for executable prompts:</p>
+<p>- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+- Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.</p>
+<p>Primary authority and guidance:</p>
+<p>- `{REPO_ROOT}/AGENTS.md`
+- `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`
+- `{WORKING_ROOT}/AGENTS.md` - project-local agent posture and closeout discipline
+- `docs/PRD.md` - product requirements and current runtime scope
+- `docs/PLAN.md` - strategic roadmap, not the active queue
+- `docs/DIRECTIVE.md`
+- `docs/CONTRACT.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/VALIDATION_STRATEGY.md`
+- `docs/RELEASE_QUALITY_GATES.md`
+- `docs/BUILD_AND_RELEASE.md`
+- `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`
+- `docs/README.md`
+- `docs/MANIFEST.json`
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
+- `execution/_ScopeChange/_LATEST.md`
+- `frontend/docs/harness/runtime_engine_contract.md`
+- `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
+- `plans/PLAN_COMPLETION_LOG.md` - landed-tranche narrative history
+- `plans/chirality-app-future-development-plan.md` - seed runtime roadmap/reference
+- `plans/claude-agent-sdk-implementation-followups.md` - first-adapter implementation reference
+- `plans/pi-agent-harness-assessment.md` - Pi pattern-corpus reference
+- `plans/pi-assessment/*.md` - Pi pattern-corpus reference assessments
+- `execution/_Coordination/_LATEST.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_DECISIONS/_REGISTER.md`
+- `execution/_Reconciliation/DepClosure/_LATEST.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`
+</p></div></div></section>
+<section id="SEC-EG001-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4ee3081aeb01" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0014</span> Authority And State Rules</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ee3081aeb01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ee3081aeb01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ee3081aeb01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not maintain a separate next-instance state file. Current state must be discovered from authoritative artifacts, dependency evidence, current implementation surfaces, the active plan, decision records, validation evidence, and git history. Do not let handoff prose, completion plans, dependency snapshots, or runtime logs become substitute authority.</p>
+<p>Authoritative state:</p>
+<p>1. `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` define requirements, invariants, mechanics, and vocabulary.
+2. `docs/PLAN.md` records strategic runtime direction and roadmap rationale. It is not the ordinary active work queue.
+3. `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` route evidence, release-quality checks, and local build/package evidence. They do not create release readiness, lifecycle issuance, publication authorization, or professional acceptance.
+4. `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` are workflow/index surfaces. They help discovery and orientation, but they do not replace canonical agent instructions, coordination policy, project truth, or human rulings.
+5. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
+6. Accepted SCOPE_CHANGE snapshots under `execution/_ScopeChange/**` record governed decomposition/guidance amendments. `SCA-APP-001` approves provider-adapter generality, Pi pattern-corpus-only posture, and capability-forward permission governance with explicit hard-deny precedence.
+7. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
+8. Current dependency and SCC evidence lives in immutable reconciliation snapshots under `execution/_Reconciliation/DepClosure/**`, with `execution/_Reconciliation/DepClosure/_LATEST.md` as a discovery pointer. The current latest snapshot reports one residual six-node strict SCC; project-wide strict `BLOCKED` / `UNBLOCKED` state must not be reported from that evidence until the graph is closed or explicitly ruled. SCC resolution follows the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): each strongly-connected component is resolved by a recorded move — decompose / invert / merge / cut (cut/merge human-gated) — and cycle-participating edges stay non-gating until resolved. PKG-00&#x27;s retire/preserve rulings are the cut/keep subset of those moves.
+9. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.</p>
+<p>Guidance and history surfaces:</p>
+<p>1. `plans/PLAN_2026-06-13_runtime_completion.md` is the active non-governing completion plan. It orders tranche selection toward the PRD and strategic roadmap.
+2. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
+3. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
+4. `execution/_Coordination/_LATEST.md` is a discovery pointer for coordination surfaces only. It is not authority and must not accumulate state history.
+5. There is no active `NEXT_INSTANCE_STATE.md`; do not recreate it or use any hand-maintained coordination file as the app state.</p>
+<p>When guidance surfaces disagree with authoritative surfaces, surface the discrepancy and correct the guidance surface. Do not silently rewrite authority.
+</p></div></div></section>
+<section id="SEC-EG001-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:224a4fbab9e6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0015</span> Baseline Intake</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:224a4fbab9e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:224a4fbab9e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:224a4fbab9e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+At the start of a new loop:</p>
+<p>1. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+2. Read `{WORKING_ROOT}/AGENTS.md`.
+3. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
+5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
+6. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
+7. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
+8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
+9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
+10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche&#x27;s runtime target.
+11. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
+12. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
+13. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+14. Read the implementation reference surfaces needed for the selected tranche.
+15. Run `git status --short` before coordination-sensitive planning or edits.
+</p></div></div></section>
+<section id="SEC-EG001-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:622b2244d276" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0016</span> Active Development Loop</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:622b2244d276" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:622b2244d276" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:622b2244d276" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select exactly one earliest unblocked item from `plans/PLAN_2026-06-13_runtime_completion.md`.</p>
+<p>A tranche is acceptable when it has:</p>
+<p>- one clear objective tied to the active completion plan;
+- a narrow write scope;
+- a validation command or concrete manual verification target;
+- all required human rulings recorded in `_DECISIONS/_REGISTER.md`;
+- work contained within accepted professional-boundary, network, dependency, runtime, and release policy.</p>
+<p>Default ordering:</p>
+<p>1. Repair failing validation or incomplete evidence for already-landed runtime work.
+2. Select the earliest unblocked item on the active completion plan&#x27;s dependency spine.
+3. Prepare a decision packet only when the next plan item is blocked by a human ruling and no packet exists.
+4. If a packet already awaits ruling, continue to the next unblocked implementation item.
+5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.</p>
+<p>If dependency evidence is needed, use the latest DepClosure snapshot and selected deliverable-local dependency files to discover blockers. Do not infer project-wide blocked/unblocked state from a stale summary or from a hand-maintained coordination state file.
+</p></div></div></section>
+<section id="SEC-EG001-0017" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d8cab12ff0db" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0017</span> Subagent Use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d8cab12ff0db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d8cab12ff0db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d8cab12ff0db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Spawn `TASK` agents only for separable implementation subscopes with explicit briefs and disjoint write scopes. Use fan-out/fan-in when the work naturally separates by subsystem, for example:</p>
+<p>- runtime contract and event schema;
+- SDK options and message mapping;
+- session storage and replay;
+- permission overlay and tool descriptor design;
+- documentation / evidence update.</p>
+<p>Every subagent brief must state:</p>
+<p>- source files to read;
+- files it may write;
+- validation expected;
+- whether it may modify production code or only produce assessment/docs.</p>
+<p>Keep parallel write scopes disjoint.</p>
+<p>This TASK restriction does not apply to final Git closeout. After a validated tranche, `WORKING_ITEMS` must autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
+</p></div></div></section>
+<section id="SEC-EG001-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4d46948bca36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0018</span> Git And Validation Closeout</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d46948bca36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d46948bca36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d46948bca36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+At the end of a validated tranche:</p>
+<p>1. Run the tranche-specific verification.
+2. Run broader checks when the tranche touches shared runtime behavior:
+   - from `frontend/`: `npm run test`;
+   - from `frontend/`: `npm run typecheck`;
+   - from `frontend/`: `npm run harness:validate:premerge`;
+   - from `frontend/`: `npm run instruction-root:integrity`.
+3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
+4. Route build, packaging, and release-significant changes through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
+5. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
+6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
+7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
+8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.
+9. Do not update or recreate `NEXT_INSTANCE_STATE.md`.
+10. Record any skipped checks and why.
+11. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.</p>
+<p>Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
+</p></div></div></section>
+<section id="SEC-EG001-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:016d7974cdcf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG001-0019</span> Human-Ruling Stops</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:016d7974cdcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:016d7974cdcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:016d7974cdcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Stop and surface a human-ruling request when further progress requires a change to:</p>
+<p>- product runtime policy in `docs/PRD.md` or strategic roadmap policy in `docs/PLAN.md`;
+- outbound network policy or shipped provider scope;
+- package/runtime requirements for Pi-backed execution, which remains unapproved after D-APP-01 and D-APP-02;
+- concrete non-Anthropic provider implementation, provider-network expansion, or provider routing beyond the current shipped Anthropic path;
+- write/edit/bash/tool-execution exposure beyond the current approved plan item;
+- the project-truth model for sessions, transcripts, chats, runtime logs, or completion logs;
+- professional-boundary claims or release-readiness posture.</p>
+<p>Record human-gated questions in `_DECISIONS/_REGISTER.md`.
+</p></div></div></section>
+<section id="SEC-EG001-0020" class="chunk sec depth-2 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:933d2c480f69" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="false"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG001-0020</span> Component: execution/_Coordination/_LATEST.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:933d2c480f69" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:933d2c480f69" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:933d2c480f69" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG001-0021" class="chunk sec depth-3 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:61d1290b2648" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="false"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG001-0021</span> Latest Coordination Pointer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61d1290b2648" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61d1290b2648" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61d1290b2648" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This pointer is for discovery only. It is not substitute authority.</p>
+<p>Active coordination surfaces:</p>
+<p>- `execution/_Coordination/_COORDINATION.md`
+- `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
+- `execution/_Coordination/_DECISIONS/_REGISTER.md`</p>
+<p>Active planning and history surfaces:</p>
+<p>- `plans/PLAN_2026-06-13_runtime_completion.md`
+- `plans/PLAN_COMPLETION_LOG.md`</p>
+<p>Active scope-change surfaces:</p>
+<p>- `execution/_ScopeChange/_LATEST.md`</p>
+<p>Dependency discovery surfaces:</p>
+<p>- `execution/_Reconciliation/DepClosure/_LATEST.md`</p>
+<p>Bootstrap prompt:</p>
+<p>- `init/init-prompt.md`</p>
+<p>Retired surface:</p>
+<p>- `execution/_Coordination/NEXT_INSTANCE_STATE.md` is retired. Do not use it as app state, update it, or recreate it.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "EG001";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

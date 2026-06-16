@@ -1,0 +1,566 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>36</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED029-0002">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED029-0009">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED029-0022">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a> <a href="#SEC-ED029-0029">Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks</a></nav>
+<main>
+<section id="SEC-ED029-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:490fe8049d18" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED029-0001</span> Source Pack: SRC-DEL-DEL-06-04-WRITE-EDIT-SURFACE-AND-PATH-HOOKS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:490fe8049d18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:490fe8049d18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:490fe8049d18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED029-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:fd5d0104621a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED029-0002</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd5d0104621a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd5d0104621a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd5d0104621a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0003" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:7be916bcf1d4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED029-0003</span> Datasheet: DEL-06-04 Write/Edit Surface and Path Hooks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7be916bcf1d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7be916bcf1d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7be916bcf1d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0c4562d0704e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0c4562d0704e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0c4562d0704e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0c4562d0704e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-06-04 |
+| Deliverable name | Write/Edit Surface and Path Hooks |
+| Package | PKG-06 Permissioned Tools, MCP, and Hooks |
+| Type | SECURITY_CONTROL |
+| Responsible party | TBD |
+| Decomposition variant | SOFTWARE_DECOMP v3.2 |
+| Context envelope | L |
+| Scope items | SOW-027, SOW-057, SOW-060 |
+| Objective context | OBJ-005, OBJ-006 |
+| Anticipated artifacts | PreToolUse hooks; write/edit tests; provenance metadata; path policy fixtures |</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot;, scope ledger rows SOW-027, SOW-057, SOW-060, and objective rows OBJ-005 and OBJ-006.
+</p></div></div></section>
+<section id="SEC-ED029-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:0b775a06f4ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b775a06f4ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b775a06f4ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b775a06f4ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary control surface | Write/edit execution gate using hooks and runtime path policy | `_CONTEXT.md`; decomposition row DEL-06-04 |
+| Hook phase in scope | `PreToolUse` for pre-execution denial and `PostToolUse`/post-failure evidence where applicable | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 15.2 |
+| Path containment rule | Filesystem operations outside the active project or working root are denied | `docs/CONTRACT.md` Section 1.6 K-PATH-2; `docs/SPEC.md` Section 15.2 |
+| Instruction-root rule | Ordinary project execution must not mutate the instruction root | `docs/CONTRACT.md` Section 1.3 K-ROOT-2; `docs/SPEC.md` Section 1 |
+| Symlink rule | Symlink writes are rejected in the initial policy | `docs/CONTRACT.md` Section 1.6 K-PATH-3; `docs/SPEC.md` Section 15.2 |
+| Exact edit precondition | Controlled edits require exact edit preconditions before execution | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| Provenance obligation | Successful writes/edits emit diff, summary, provenance, or runtime event evidence | `docs/PLAN.md` R3; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| Deny precedence | Hook, path, policy, SDK deny, governance, and human-gate denials override allows | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+</p></div></div></section>
+<section id="SEC-ED029-0006" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:98f0d2e4dd79" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98f0d2e4dd79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98f0d2e4dd79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98f0d2e4dd79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Constraint | Source |
+|---|---|---|
+| PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are warning-qualified until reconciled. | `_REFERENCES.md` REF-006 |
+| Mode dependency | `workspaceWrite` can use SDK edit acceptance only after write hooks pass; `readOnly` cannot write. | `docs/SPEC.md` Section 15.1; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| Hook failure policy | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| MCP parity | Chirality MCP write tools must pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6 K-MCP-1 |
+| Current MCP write surface | The current source inventory identifies `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as write/gated tools; `mcp__chirality__scaffold` is gated and must be classified before any mutation behavior is enabled. | `docs/SPEC.md` Section 14.2 |
+| Adjacent deliverables | Permission mode mapping is owned by DEL-06-01; tool resolver/read MCP surfaces are owned by DEL-06-02 and DEL-06-03; compaction/terminal hook mirroring is owned by DEL-06-06. | decomposition PKG-06 rows |
+| Dependency state | `_DEPENDENCIES.md` lists no accepted upstream or downstream edges yet. | `_DEPENDENCIES.md` |
+</p></div></div></section>
+<section id="SEC-ED029-0007" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d318f6262749" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d318f6262749" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d318f6262749" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d318f6262749" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component | Construction note | Source |
+|---|---|---|
+| Path policy helper | Resolve and validate candidate write/edit targets against the active project or working root and instruction root. Exact implementation path: TBD. | `docs/CONTRACT.md` Section 1.6 K-PATH-2; `docs/PRD.md` Section 7.9 |
+| PreToolUse gate | Deny write/edit attempts before execution when containment, instruction-root, symlink, mode, or permission policy fails. | `docs/SPEC.md` Section 15.2; `docs/TYPES.md` Section 8.5 |
+| Exact edit validator | Require exact edit preconditions for edit-style operations before mutation. Exact diff/match algorithm: TBD. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| Safe write/edit execution | Perform atomic write/edit where practical only after permission and hook gates pass. Atomicity details: TBD. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| Provenance recorder | Capture safe provenance, diff/summary, permission/runtime events, and source metadata for each write attempt. Exact event fields beyond source docs: TBD. | `docs/PLAN.md` R3; `docs/SPEC.md` Section 15.2 |
+| Path policy fixtures | Include fixtures for outside-root targets, instruction-root targets, symlink targets, missing files, stale edit preconditions, allowed in-root writes, and the current MCP write/gated surface. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance |
+| Tests | Include write/edit tests for denied outside-root writes, denied instruction-root writes, denied symlink writes, exact edit preconditions, provenance evidence, MCP parity, and PRD warning carry-forward. Exact test paths: TBD. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance; `_REFERENCES.md` REF-006 |
+</p></div></div></section>
+<section id="SEC-ED029-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:46a47658f21e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46a47658f21e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46a47658f21e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46a47658f21e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| RefID | Source | Use | Source state |
+|---|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` Sections 2, 4, 7 | Reliance boundary and provenance principles | MATCH |
+| REF-002 | `docs/CONTRACT.md` Sections 1.3, 1.6, 1.7 | Binding root, permission, hook, path, MCP, and write-scope invariants | MATCH |
+| REF-003 | `docs/SPEC.md` Sections 14 and 15 | Tool surface rules, mode mapping, required hooks, validation IDs | MATCH |
+| REF-004 | `docs/TYPES.md` Section 8 | Permission modes, tool terms, hook terms, event names | MATCH |
+| REF-005 | `docs/PLAN.md` R2/R3 and risk table | Sequencing and acceptance context | MATCH |
+| REF-006 | `docs/PRD.md` Sections 7.9, 9.4, R2/R3, NFRs | Product requirements and implementation direction | HASH_MISMATCH warning |
+| DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |
+</p></div></div></section>
+<section id="SEC-ED029-0009" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:c1e372efa215" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED029-0009</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c1e372efa215" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c1e372efa215" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c1e372efa215" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0010" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:9d48935adf12" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED029-0010</span> Guidance: DEL-06-04 Write/Edit Surface and Path Hooks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d48935adf12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d48935adf12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d48935adf12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0011" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:dbf049ba16d9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dbf049ba16d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dbf049ba16d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dbf049ba16d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-04 exists to make controlled workspace writes possible without weakening Chirality&#x27;s filesystem, permission, and provenance boundaries. It is the write/edit security-control slice for PKG-06: permission overlay decisions, read tool exposure, MCP wrapper shape, bash governance, and hook lifecycle mirroring are adjacent deliverables, but this deliverable defines the path and mutation gates that must pass before files change.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/CONTRACT.md` Sections 1.3 and 1.6; `docs/SPEC.md` Section 15; `docs/PLAN.md` R3.
+</p></div></div></section>
+<section id="SEC-ED029-0012" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ab6d7341112b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab6d7341112b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab6d7341112b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab6d7341112b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Runtime code is the boundary. Prompt text, persona wording, or tool descriptions must not be relied on to protect filesystem writes. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-2.
+2. Capability-forward policy with explicit hard-deny precedence remains controlling. A denial from policy, path containment, hook, governance, SDK deny rule, or human gate overrides any allow. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
+3. The active project or working root bounds ordinary writes. Target paths outside that root are denied before mutation. Source: `docs/CONTRACT.md` Section 1.6 K-PATH-2.
+4. Instruction-root writes are release/change operations, not ordinary project execution. Ordinary project runs must not mutate the instruction root. Source: `docs/CONTRACT.md` Section 1.3 K-ROOT-2.
+5. Symlink write rejection is the initial policy. Any relaxation would need a governed amendment and tests. Source: `docs/CONTRACT.md` Section 1.6 K-PATH-3.
+6. Provenance is part of the write, not an afterthought. Allowed and denied attempts need enough event, diff, summary, and provenance evidence for audit. Sources: `docs/PLAN.md` R3; `docs/SPEC.md` Section 15.2.
+</p></div></div></section>
+<section id="SEC-ED029-0013" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0014" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:9d79c14c09eb" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED029-0014</span> Root Terminology</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d79c14c09eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d79c14c09eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d79c14c09eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The decomposition uses &quot;project-root containment&quot;; `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/PRD.md` primarily use &quot;working root.&quot; Treat these as the active runtime containment root for this deliverable until implementation selects the exact public name. Do not create two independent roots without a source update.
+</p></div></div></section>
+<section id="SEC-ED029-0015" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:3c6a9fc9d37d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED029-0015</span> Hook Placement</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3c6a9fc9d37d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3c6a9fc9d37d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3c6a9fc9d37d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`PreToolUse` should be the normal enforcement point for path containment, instruction-root protection, symlink rejection, exact edit preconditions, and mode/policy denial before mutation. `PostToolUse` should record successful write provenance, diff/summary, and safe metadata. This deliverable owns the evidence that a write/edit attempt was allowed, denied, or failed without mutation; DEL-06-06 owns broader hook lifecycle, compaction, stop/finalization, and terminal mirror semantics. Post-failure records should therefore capture the minimum write/edit denial or failure evidence here and hand lifecycle-wide failure mirroring to DEL-06-06. Sources: `docs/SPEC.md` Section 15.2; decomposition rows DEL-06-04 and DEL-06-06.
+</p></div></div></section>
+<section id="SEC-ED029-0016" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:47f31a73d0d5" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED029-0016</span> Exact Edit Preconditions</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47f31a73d0d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47f31a73d0d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47f31a73d0d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Exact edit preconditions should prevent stale or ambiguous edits from mutating files. The source corpus requires exact preconditions but does not specify the matching algorithm. Keep algorithmic details as `TBD` until implementation design chooses the file matcher, diff strategy, and stale-content behavior. The design record should state whether stale content is a denied permission decision, a tool validation failure, or another terminal outcome, because that choice determines the event evidence and user-facing feedback.
+</p></div></div></section>
+<section id="SEC-ED029-0017" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:e4944862853e" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED029-0017</span> MCP Write/Gated Surface</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4944862853e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4944862853e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4944862853e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current SPEC inventory names `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as write/gated Chirality MCP tools, and `mcp__chirality__scaffold` as gated. Treat `scaffold` as requiring explicit mutation classification before exposure, and require any future write-capable MCP tool to opt into the same gate sequence as SDK `Write`/`Edit`. Source: `docs/SPEC.md` Section 14.2.
+</p></div></div></section>
+<section id="SEC-ED029-0018" class="chunk sec depth-5 cov-high" data-kind="section" data-key="section:36d5ec85a636" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED029-0018</span> PRD Hash Warning</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:36d5ec85a636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:36d5ec85a636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:36d5ec85a636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. Use PRD Section 7.9 as warning-qualified product direction for controlled writes and exact edit preconditions. Implementation acceptance should include a verifier or review note that the warning remains visible until REF-006 source state is reconciled or a governed hash-bypass record is accepted.
+</p></div></div></section>
+<section id="SEC-ED029-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:a23706048954" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0019</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a23706048954" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a23706048954" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a23706048954" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Omit write tools vs expose and deny | Prefer not exposing write/edit tools until mode and permission policy allow them, but still enforce hook denial because exposure control alone is not a safety boundary. Sources: `docs/SPEC.md` Section 14.3; `docs/CONTRACT.md` K-PERM-3. |
+| SDK built-ins vs Chirality MCP write tools | Treat both as mutation surfaces requiring equivalent permission, hook, path, redaction, and event logging policy. Source: `docs/CONTRACT.md` K-MCP-1. |
+| Atomic write/edit vs implementation simplicity | Perform atomic mutation where practical, but do not use atomicity as a substitute for pre-execution path and precondition checks. The implementation rationale should identify when atomic behavior is practical, when it is not, and what evidence proves failed gates preserved prior content. Source: `docs/PRD.md` Section 7.9, HASH_MISMATCH warning. |
+| Symlink denial vs advanced workspace layouts | Reject symlink writes initially. If future workspace needs require symlink support, add a governed policy amendment and targeted tests first. Source: `docs/CONTRACT.md` K-PATH-3. |
+| Provenance detail vs data exposure | Record enough diff/summary/provenance to audit the write while applying the same redaction and result-budget posture as other tools. Source: `docs/SPEC.md` Section 15.2. |
+</p></div></div></section>
+<section id="SEC-ED029-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:432ed7bfdcbd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0020</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:432ed7bfdcbd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:432ed7bfdcbd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:432ed7bfdcbd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Scenario | Expected behavior |
+|---|---|
+| `readOnly` session attempts `Write` or `Edit` | Deny before mutation; record permission/runtime evidence where governed. |
+| `workspaceWrite` session edits an in-root regular file with exact precondition match and passing hooks | Allow mutation, preferably atomic where practical; record diff/summary and provenance. |
+| Write target resolves outside the active project or working root | Deny in `PreToolUse` or equivalent gate; no mutation occurs. |
+| Write target is under the instruction root | Deny as ordinary project execution; instruction-root mutation requires governed release/change operation. |
+| Write target or path segment is a symlink | Deny under initial policy; no mutation occurs. |
+| Edit precondition does not match current file content | Deny or fail the edit without mutation; record failure evidence. |
+| SDK `allowedTools` includes `Edit` but Chirality hook denies path containment | Final result is deny; `allowedTools` does not bypass hooks. |
+| Chirality MCP dependency writer is used | It must pass through equivalent permission, hook, path, redaction, and event logging policy as SDK built-ins. |
+</p></div></div></section>
+<section id="SEC-ED029-0021" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:2dc87a89b5ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0021</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2dc87a89b5ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2dc87a89b5ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2dc87a89b5ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| DEL-06-04-CONFLICT-001 | Root terminology differs between &quot;project root&quot; in decomposition wording and &quot;working root&quot; in governance docs. | `_CONTEXT.md` and decomposition row DEL-06-04 | `docs/CONTRACT.md` K-PATH-2; `docs/PRD.md` Section 7.9 | Datasheet Conditions; Specification Scope and REQ-002; Procedure Steps | Treat both as the active runtime containment root and settle canonical naming during implementation. | TBD |
+| DEL-06-04-CONFLICT-002 | PRD is content-accessible but warning-qualified due to HASH_MISMATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 7.9 and R3 | PRD-cited requirements and guidance | Use PRD as warning-qualified source until reference hash state is reconciled. | TBD |
+</p></div></div></section>
+<section id="SEC-ED029-0022" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:000ba78b217b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED029-0022</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:000ba78b217b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:000ba78b217b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:000ba78b217b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0023" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:ba7088204021" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED029-0023</span> Procedure: DEL-06-04 Write/Edit Surface and Path Hooks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ba7088204021" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ba7088204021" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ba7088204021" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0024" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:11b82537faaa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0024</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11b82537faaa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11b82537faaa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11b82537faaa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to produce and verify the DEL-06-04 write/edit surface and path hook implementation evidence. It is written for the deliverable artifact, not as an end-user operation runbook.
+</p></div></div></section>
+<section id="SEC-ED029-0025" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:aaafa2a19b27" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0025</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aaafa2a19b27" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aaafa2a19b27" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aaafa2a19b27" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status |
+|---|---|
+| Accepted DEL-06-04 scope and source references | Available in `_CONTEXT.md` and `_REFERENCES.md` |
+| Binding root, permission, hook, path, and MCP invariants | Available in `docs/CONTRACT.md` Sections 1.3 and 1.6 |
+| Tool surface and hook specification | Available in `docs/SPEC.md` Sections 14 and 15 |
+| Hook and tool vocabulary | Available in `docs/TYPES.md` Section 8 |
+| Roadmap sequencing for controlled writes | Available in `docs/PLAN.md` R3; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
+| Exact implementation file paths | TBD |
+| Exact test fixture paths | TBD |
+</p></div></div></section>
+<section id="SEC-ED029-0026" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:af91773f7813" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0026</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af91773f7813" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af91773f7813" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af91773f7813" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Establish the mutation surfaces.
+   - Identify SDK built-in `Write` and `Edit` surfaces, plus any Chirality MCP write tools currently exposed.
+   - Treat `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as current write/gated MCP surfaces from the SPEC inventory.
+   - Classify gated `mcp__chirality__scaffold` before enabling any mutation behavior, and record whether it remains preview-only, scaffold-write capable, or out of this deliverable&#x27;s active write surface.
+   - Confirm write/edit surfaces are not exposed in `readOnly` and are only available in governed write modes.
+   - Keep unknown or future write-capable tools out of scope until registered and governed.</p>
+<p>2. Define or locate the active root resolver.
+   - Resolve the active project or working root and the instruction root from product-owned runtime state.
+   - Treat the decomposition phrase &quot;project root&quot; and the governance phrase &quot;working root&quot; as the same containment boundary until implementation chooses canonical naming.
+   - Record any naming or resolver ambiguity as `TBD` or a review item.</p>
+<p>3. Implement the pre-execution path gate.
+   - Reject missing, malformed, or unresolvable target paths where the write/edit operation requires a target.
+   - Deny targets outside the active project or working root.
+   - Deny ordinary project writes under the instruction root.
+   - Reject symlink targets and symlink path segments under the initial policy.
+   - Fail closed if path classification cannot be completed.</p>
+<p>4. Implement exact edit precondition checks.
+   - Require edit-style operations to specify the exact content or equivalent exact precondition needed for safe replacement.
+   - Deny or fail without mutation when the current file content does not match the precondition.
+   - Select and document the exact matching algorithm, stale-content behavior, and diff strategy; keep them as `TBD` until implementation design selects them.
+   - Record whether stale content is surfaced as permission denial, tool validation failure, or another terminal outcome so runtime event evidence can be tested.</p>
+<p>5. Connect permission and hook decisions.
+   - Feed DEL-06-01 permission overlay results into the write/edit gate.
+   - Apply explicit hard-deny precedence when SDK options, mode, operator intent, or `allowedTools` conflict with Chirality policy or hook denial.
+   - Do not rely on `allowedTools` alone as a restriction boundary.</p>
+<p>6. Execute controlled mutation only after gates pass.
+   - Perform the write/edit atomically where practical.
+   - Preserve existing file content when any pre-execution gate fails.
+   - Ensure Chirality MCP write tools and SDK built-ins follow equivalent policy.</p>
+<p>7. Record provenance and runtime evidence.
+   - Record permission/runtime evidence for allowed and denied attempts.
+   - For successful writes/edits, capture safe provenance, diff or summary, and hook outcome metadata.
+   - For failed or denied write/edit attempts, capture the deliverable-local evidence needed to prove no mutation occurred; leave lifecycle-wide hook failure mirroring to DEL-06-06.
+   - Apply redaction and result-budget policy where outputs could be large or sensitive.</p>
+<p>8. Add tests and fixtures.
+   - Add fixtures for allowed in-root regular-file writes and edits.
+   - Add denial fixtures for outside-root targets, instruction-root targets, symlink targets, hook failure, mode denial, and stale edit preconditions.
+   - Add parity coverage for SDK built-ins and Chirality MCP write tools where both are in scope.
+   - Record exact test paths as `TBD` until assigned.</p>
+<p>9. Record residual gaps.
+   - Track unresolved root naming, exact edit algorithm, implementation file paths, fixture paths, and PRD HASH_MISMATCH state.
+   - Add or reference a source-state verifier that keeps PRD-derived behavior warning-qualified until REF-006 is reconciled or a governed bypass record is accepted.
+   - Surface any remaining source conflicts in the deliverable review notes.
+</p></div></div></section>
+<section id="SEC-ED029-0027" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:862eec45fdac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0027</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:862eec45fdac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:862eec45fdac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:862eec45fdac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Pre-execution hook | Write/edit mutation does not occur until the hook or equivalent gate passes. |
+| Path containment | Outside-root targets are denied without mutation. |
+| Instruction-root protection | Instruction-root targets are denied during ordinary project execution. |
+| Symlink rejection | Symlink target or path-segment attempts are denied in the initial policy. |
+| Exact edit precondition | Stale, missing, or ambiguous edit preconditions fail without mutation. |
+| Deny precedence | Hook, path, policy, SDK deny, governance, or human-gate denial overrides any allow. |
+| Mode behavior | `readOnly` cannot write; `workspaceWrite` writes only after permission and hooks pass. |
+| MCP parity | Chirality MCP write tools pass through equivalent gates as SDK built-ins. |
+| Provenance | Successful writes produce safe diff/summary/provenance evidence; denied attempts produce audit evidence. |
+| PRD warning | PRD-derived controlled-write details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| Hook-lifecycle boundary | Write/edit denial or failure evidence is captured here, while broader hook lifecycle and compaction/terminal mirroring remain assigned to DEL-06-06. |
+</p></div></div></section>
+<section id="SEC-ED029-0028" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6f6189f1f8c6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0028</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f6189f1f8c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f6189f1f8c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f6189f1f8c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Write/edit hook implementation path: TBD.
+- Root resolver and instruction-root resolver integration: TBD.
+- Path policy fixtures: TBD.
+- Exact edit validator and matcher tests: TBD.
+- Stale-content terminal outcome classification: TBD.
+- MCP write/gated surface inventory and parity tests: TBD.
+- Provenance/diff/summary evidence format: TBD.
+- Runtime event evidence for allowed and denied write attempts: TBD.
+- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+</p></div></div></section>
+<section id="SEC-ED029-0029" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:cfeb5791faee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED029-0029</span> Component: execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cfeb5791faee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cfeb5791faee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cfeb5791faee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0030" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:f70a1a68dbcf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED029-0030</span> Specification: DEL-06-04 Write/Edit Surface and Path Hooks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f70a1a68dbcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f70a1a68dbcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f70a1a68dbcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED029-0031" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:d2a1277e320b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0031</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2a1277e320b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2a1277e320b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2a1277e320b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-04 specifies the write/edit execution surface and path hooks needed to permit controlled workspace writes without relying on prompt text, SDK defaults, or `allowedTools` alone. It covers project-root or working-root containment, instruction-root write blocking, symlink write rejection, exact edit preconditions, and provenance hooks for write/edit attempts.</p>
+<p>In scope:</p>
+<p>- Gate SDK `Write`/`Edit` and Chirality MCP write tools before mutation.
+- Enforce active project or working-root containment.
+- Block instruction-root writes during ordinary project execution.
+- Reject symlink writes in the initial policy.
+- Require exact edit preconditions before edit-style mutation.
+- Record safe provenance, diff/summary, permission/runtime event evidence, and hook outcomes.
+- Provide path policy fixtures and write/edit tests for allowed and denied cases.</p>
+<p>Out of scope:</p>
+<p>- Permission overlay mode semantics and `canUseTool` approval mediation owned by DEL-06-01, except where their decisions feed this hook.
+- Read tool exposure, read MCP wrappers, unknown-tool validation, and deterministic tool ordering owned by DEL-06-02 and DEL-06-03.
+- Bash governance owned by DEL-06-05.
+- Hook lifecycle and compaction mirror details owned by DEL-06-06, except for write/edit hook evidence needed by this deliverable.
+- Domain-engine protected-path operation semantics, except where a protected path hook implication is shared with future path policy.</p>
+<p>Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/CONTRACT.md` Sections 1.3 and 1.6; `docs/SPEC.md` Sections 14 and 15; `docs/PRD.md` Section 7.9 with HASH_MISMATCH warning.
+</p></div></div></section>
+<section id="SEC-ED029-0032" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:16dad8923cf0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0032</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:16dad8923cf0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:16dad8923cf0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:16dad8923cf0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-06-04-REQ-001 | The runtime MUST run a pre-execution hook or equivalent gate before any write/edit mutation is performed. | decomposition SOW-057; `docs/SPEC.md` Section 15.2 |
+| DEL-06-04-REQ-002 | The write/edit gate MUST deny filesystem operations outside the active project or working root. | decomposition SOW-027; `docs/CONTRACT.md` Section 1.6 K-PATH-2 |
+| DEL-06-04-REQ-003 | The write/edit gate MUST deny ordinary project writes under the instruction root. | decomposition SOW-027; `docs/CONTRACT.md` Section 1.3 K-ROOT-2 |
+| DEL-06-04-REQ-004 | The write/edit gate MUST reject symlink writes in the initial policy. | decomposition SOW-060; `docs/CONTRACT.md` Section 1.6 K-PATH-3 |
+| DEL-06-04-REQ-005 | Edit-style operations MUST require exact edit preconditions before mutation. | decomposition SOW-060; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| DEL-06-04-REQ-006 | Hook failures MUST fail closed for write/edit actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+| DEL-06-04-REQ-007 | Explicit denies from policy, path containment, hook, governance, SDK deny rule, or human gate MUST override any allow. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
+| DEL-06-04-REQ-008 | `allowedTools` MUST NOT be treated as sufficient restriction or safety boundary for write/edit capability. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
+| DEL-06-04-REQ-009 | `readOnly` mode MUST deny write/edit capability, and `workspaceWrite` MUST allow governed writes only after hooks and policy pass. | `docs/SPEC.md` Section 15.1; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| DEL-06-04-REQ-010 | In-process Chirality MCP write/gated tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins before mutation behavior is enabled. Current source inventory includes `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, and gated `mcp__chirality__scaffold` classification. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.2 |
+| DEL-06-04-REQ-011 | Successful controlled writes/edits SHOULD be atomic where practical and MUST emit a diff or summary suitable for audit. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| DEL-06-04-REQ-012 | Every write attempt MUST produce permission/runtime event evidence or equivalent audit records, including denials. | `docs/PLAN.md` R3 acceptance; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
+| DEL-06-04-REQ-013 | Provenance append hooks MUST record safe provenance/run evidence where policy requires it. | `docs/SPEC.md` Section 15.2 |
+| DEL-06-04-REQ-014 | Path validation SHOULD include regular-file and symlink checks for attachment/write-relevant paths where applicable. | `docs/SPEC.md` attachment/path validation bullets; decomposition SOW-060 |
+| DEL-06-04-REQ-015 | Tests MUST cover outside-root denial, instruction-root denial, symlink denial, stale or missing exact edit preconditions, allowed in-root write/edit behavior, and provenance/event evidence. | `_CONTEXT.md`; `docs/PLAN.md` R3 acceptance |
+| DEL-06-04-REQ-016 | Acceptance evidence MUST keep PRD-derived controlled-write behavior warning-qualified until REF-006 source state is reconciled or a governed hash-bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/CONTRACT.md` Section 1.7 K-REF-1 |
+</p></div></div></section>
+<section id="SEC-ED029-0033" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:3d68b600c1f1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0033</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d68b600c1f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d68b600c1f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d68b600c1f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or governing source | Applicability |
+|---|---|
+| `docs/CONTRACT.md` Sections 1.3 and 1.6 | Binding root, permission, hook, MCP, and path invariants. |
+| `docs/SPEC.md` Sections 14 and 15 | Tool surface rules, mode mapping, and required hook behavior. |
+| `docs/TYPES.md` Section 8 | Permission mode vocabulary, tool surface terms, and hook terms. |
+| `docs/PLAN.md` R3 | Controlled write/edit sequencing and acceptance criteria. |
+| `docs/PRD.md` Section 7.9 | Controlled write/edit product flow; use with HASH_MISMATCH warning from `_REFERENCES.md`. |
+</p></div></div></section>
+<section id="SEC-ED029-0034" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6343a7a8cb58" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0034</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6343a7a8cb58" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6343a7a8cb58" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6343a7a8cb58" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification approach |
+|---|---|
+| DEL-06-04-REQ-001, REQ-006 | Unit or integration tests inject hook pass/fail outcomes and assert no mutation occurs when the hook fails or is unavailable. |
+| DEL-06-04-REQ-002 | Path containment tests attempt outside-root absolute and traversal-equivalent targets and assert denial before mutation. |
+| DEL-06-04-REQ-003 | Instruction-root fixtures assert writes under the instruction root are denied during ordinary project execution. |
+| DEL-06-04-REQ-004 | Symlink fixtures assert symlink targets and symlink path segments are rejected in the initial policy. |
+| DEL-06-04-REQ-005 | Edit tests assert stale, missing, or non-exact preconditions do not mutate files. |
+| DEL-06-04-REQ-007, REQ-008 | Precedence tests assert SDK allows, `allowedTools`, or session allows cannot override Chirality deny policy. |
+| DEL-06-04-REQ-009 | Mode tests assert `readOnly` cannot write and `workspaceWrite` writes only after permission and hook gates pass. |
+| DEL-06-04-REQ-010 | MCP parity tests assert `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, gated `mcp__chirality__scaffold` if mutation-capable, and future write MCP tools pass through equivalent gates. |
+| DEL-06-04-REQ-011, REQ-013 | Successful-write tests assert diff/summary and provenance metadata are produced without leaking unsafe data. |
+| DEL-06-04-REQ-012 | Runtime event tests assert allowed and denied write attempts produce permission/runtime evidence. |
+| DEL-06-04-REQ-014 | Path fixture tests cover regular-file, symlink, extension, and validation failure cases where those checks apply. |
+| DEL-06-04-REQ-015 | Test index or validation marker references this deliverable and includes the required negative and positive fixtures. |
+| DEL-06-04-REQ-016 | Source-state verifier asserts PRD-derived requirements remain annotated with REF-006 HASH_MISMATCH until the reference hash is reconciled or an accepted bypass record exists. |
+</p></div></div></section>
+<section id="SEC-ED029-0035" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b8875aa688c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0035</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8875aa688c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8875aa688c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8875aa688c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required implementation evidence:</p>
+<p>- Write/edit hook module or equivalent gate: TBD path to module that registers the pre-execution write/edit decision point and fail-closed behavior.
+- Path policy helper or fixture set: TBD path to helper and fixtures covering outside-root, instruction-root, symlink, malformed target, and allowed in-root cases.
+- Instruction-root and working-root resolver integration: TBD path to resolver integration proving a single active containment root is used for this deliverable.
+- Exact edit precondition validator: TBD path to validator plus selected stale-content behavior, matcher, and diff strategy.
+- MCP write/gated surface coverage: TBD test evidence for `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, gated `mcp__chirality__scaffold` classification, and any later write-capable MCP tools.
+- Provenance/diff/summary recorder: TBD path to event or artifact writer that records allowed and denied write attempts.
+- Write/edit negative and positive tests: TBD paths for denial and allowed-mutation fixtures.
+- Source-state verifier and residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled or a governed hash-bypass record is accepted.
+</p></div></div></section>
+<section id="SEC-ED029-0036" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:6057cc0ffba4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED029-0036</span> Traceability</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6057cc0ffba4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6057cc0ffba4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6057cc0ffba4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source item | Covered by |
+|---|---|
+| SOW-027 Project-root containment and instruction-root protection | DEL-06-04-REQ-002, REQ-003, REQ-007, REQ-015 |
+| SOW-057 Hooks and fail-closed behavior | DEL-06-04-REQ-001, REQ-006, REQ-012, REQ-013 |
+| SOW-060 Safe write/edit behavior | DEL-06-04-REQ-004, REQ-005, REQ-011, REQ-014, REQ-015 |
+| OBJ-005 Capability-forward policy with explicit hard-deny precedence permission policy, hooks, result budgets, and approvals | DEL-06-04-REQ-001, REQ-006 through REQ-013 |
+| OBJ-006 Filesystem project truth through containment and change discipline | DEL-06-04-REQ-002 through REQ-005, REQ-011 through REQ-016 |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED029";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

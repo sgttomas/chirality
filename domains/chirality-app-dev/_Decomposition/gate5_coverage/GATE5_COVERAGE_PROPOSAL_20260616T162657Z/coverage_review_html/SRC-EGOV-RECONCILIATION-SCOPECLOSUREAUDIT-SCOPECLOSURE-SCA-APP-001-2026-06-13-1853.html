@@ -1,0 +1,426 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-EGOV-RECONCILIATION-SCOPECLOSUREAUDIT-SCOPECLOSURE-SCA-APP-001-2026-06-13-1853 - Gate 5 coverage review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">coverage-review</span>
+  <span class="stat">Sections: <b>23</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-EG021-0002">Component: execution/_Reconciliation/ScopeClosureAudit/Scope</a> <a href="#SEC-EG021-0006">Component: execution/_Reconciliation/ScopeClosureAudit/Scope</a> <a href="#SEC-EG021-0012">Component: execution/_Reconciliation/ScopeClosureAudit/Scope</a></nav>
+<main>
+<section id="SEC-EG021-0001" class="chunk sec depth-1 back-matter out-of-scope cov-empty" data-kind="section" data-key="section:8fd201bdfea0" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="false"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-EG021-0001</span> Source Pack: SRC-EGOV-RECONCILIATION-SCOPECLOSUREAUDIT-SCOPECLOSURE-SCA-APP-001-2026-06-13-1853</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fd201bdfea0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fd201bdfea0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fd201bdfea0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_FOLDER`  RepoGlob: `execution/_Reconciliation/ScopeClosureAudit/ScopeClosure_SCA-APP-001_2026-06-13_1853/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-EG021-0002" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:73cb9bc78073" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG021-0002</span> Component: execution/_Reconciliation/ScopeClosureAudit/ScopeClosure_SCA-APP-001_2026-06-13_1853/Brief.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73cb9bc78073" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73cb9bc78073" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73cb9bc78073" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG021-0003" class="chunk sec depth-3 cov-high" data-kind="section" data-key="section:6fdcdda2acf5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG021-0003</span> Scope Closure Audit Brief</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6fdcdda2acf5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6fdcdda2acf5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6fdcdda2acf5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Package Role:** snapshot / handoff artifact
+**Agent Persona:** AUDIT_SCOPE_CLOSURE
+**Audit date:** 2026-06-13
+</p></div></div></section>
+<section id="SEC-EG021-0004" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:064b107a06fa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0004</span> INIT-TASK Brief</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:064b107a06fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:064b107a06fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:064b107a06fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+PURPOSE: Verify closure of scope change amendment
+AMENDMENT_ID: SCA-APP-001
+EXECUTION_ROOT: /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution
+SCOPE_CHANGE_ROOT: /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_ScopeChange
+DECOMPOSITION_PATH: /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md
+DECOMP_VARIANT: SOFTWARE
+CONSTRAINTS:
+  - Audit only SCA-APP-001.
+  - Do not mutate project state outside this audit snapshot.
+  - Treat the active SCA snapshot and amendment action record as audit source authority.
+NOTES:
+  - Human requested AUDIT_SCOPE_CLOSURE immediately after Gate 5 closeout.
+```
+</p></div></div></section>
+<section id="SEC-EG021-0005" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:4d4f1fb2c10d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0005</span> Inputs Located</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d4f1fb2c10d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d4f1fb2c10d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d4f1fb2c10d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Input | Status | Path |
+|---|---|---|
+| Active SCA pointer | FOUND_WITH_STALE_STATUS | `execution/_ScopeChange/_LATEST.md` |
+| Amendment snapshot | FOUND | `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/` |
+| Amendment actions | PARSED | `Amendment_Actions.csv` |
+| Propagation plan | READ | `Propagation_Plan.md` |
+| Run summary | READ | `RUN_SUMMARY.md` |
+| Handoff state | READ | `Handoff_State.md` |
+| Execution deliverable impact register | PARSED | `Execution_Deliverable_Impact.csv` |
+| Decomposition document | READ | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |</p></div></div></section>
+<section id="SEC-EG021-0006" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:ed594cb27621" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG021-0006</span> Component: execution/_Reconciliation/ScopeClosureAudit/ScopeClosure_SCA-APP-001_2026-06-13_1853/QA_Report.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed594cb27621" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed594cb27621" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed594cb27621" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG021-0007" class="chunk sec depth-3 cov-empty" data-kind="section" data-key="section:e59feb9ac91b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG021-0007</span> QA - Scope Closure Audit SCA-APP-001</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e59feb9ac91b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e59feb9ac91b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e59feb9ac91b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG021-0008" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:75313c7db63d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0008</span> Coverage</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:75313c7db63d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:75313c7db63d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:75313c7db63d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Actions checked: 6 of 6
+- Downstream reruns checked: 3 relevant advisory/required items plus 3 not-required validation categories
+- Dependencies.csv files scanned/enumerated for orphan applicability: 51
+- Deliverable `_CONTEXT.md` files checked: 26
+- KTY remediation manifest rows checked: 0
+- `.Archive/` scanner exclusion surfaces checked: 0
+</p></div></div></section>
+<section id="SEC-EG021-0009" class="chunk sec depth-4 cov-empty" data-kind="section" data-key="section:192b80602898" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0009</span> Validation Commands</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:192b80602898" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:192b80602898" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:192b80602898" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```bash
+find execution -name &#x27;Dependencies.csv&#x27; | wc -l
+rg -n &quot;SCA-APP-001|DEC-017|provider-adapter-general|Pi Pattern Corpus|Capability Policy|Explicit Deny Precedence|OI-006|D-APP-01|D-APP-02|D-APP-03|GATE_5_COMPLETE_VALIDATED|STALE_LOCAL_REVIEW_REQUIRED&quot; execution/_Decomposition docs execution/_Coordination plans frontend/docs/harness execution/_ScopeChange/_LATEST.md
+rg -n &quot;First-Adapter Probe|Provider-adapter adoption probe|Capability-forward|explicit deny|provider-adapter conformance|SOW-055|SOW-018|DEL-04-01|DEL-06-01|DEL-09-02&quot; execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md
+```
+</p></div></div></section>
+<section id="SEC-EG021-0010" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:11769fe52abf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0010</span> Limitations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11769fe52abf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11769fe52abf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11769fe52abf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- This audit did not modify the stale SCA pointer, context files, supersession delta, or package-local artifacts because `AUDIT_SCOPE_CLOSURE` is read-only on project state outside its audit snapshot.
+- No DOMAIN validators were run because `DECOMP_VARIANT = SOFTWARE`.
+- Orphaned retired-deliverable dependency checks were limited by amendment type: `SCA-APP-001` has no REMOVE, MERGE, SPLIT, or RECLASSIFY action and introduces no retired deliverable IDs.
+- The audit did not run frontend/runtime tests because the scope change and this audit are governance/control-plane only.
+</p></div></div></section>
+<section id="SEC-EG021-0011" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:a7d59563dcdc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0011</span> Self-Assessment</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a7d59563dcdc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a7d59563dcdc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a7d59563dcdc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- All passes completed: yes
+- All findings have evidence: yes
+- No silent resolutions: yes
+- Output artifacts created: yes
+- Closure status is conservative: yes, `OPEN` because major findings remain</p></div></div></section>
+<section id="SEC-EG021-0012" class="chunk sec depth-2 cov-empty" data-kind="section" data-key="section:baf88d130cbb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-EG021-0012</span> Component: execution/_Reconciliation/ScopeClosureAudit/ScopeClosure_SCA-APP-001_2026-06-13_1853/Scope_Closure_Report.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:baf88d130cbb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:baf88d130cbb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:baf88d130cbb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-EG021-0013" class="chunk sec depth-3 cov-mid" data-kind="section" data-key="section:e307d7dd2a3e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-EG021-0013</span> Scope Closure Audit - SCA-APP-001</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e307d7dd2a3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e307d7dd2a3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e307d7dd2a3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Audit Date:** 2026-06-13
+**Closure Status:** OPEN
+**Amendment Date:** 2026-06-13
+**Amendment Description:** Provider-General Runtime and Pi Pattern-Corpus Reorientation
+**Decomp Variant:** SOFTWARE
+</p></div></div></section>
+<section id="SEC-EG021-0014" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:513d244c6313" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0014</span> Amendment Summary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:513d244c6313" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:513d244c6313" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:513d244c6313" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`SCA-APP-001` applied a provider-adapter-general runtime strategy, kept Claude Agent SDK / Anthropic as the first concrete/current adapter path, ruled Pi as pattern corpus/reference only, and reframed permission governance as capability-forward with explicit hard-deny precedence.</p>
+<p>| ActionSeq | ActionType | EntityType | EntityID | Summary |
+|---|---|---|---|---|
+| A001 | MODIFY | RuntimeStrategy | DEC-005; SOW-018; SOW-044; SOW-045; PKG-04 | Generalize runtime strategy to provider-adapter architecture while retaining Claude Agent SDK / Anthropic as first adapter. |
+| A002 | MODIFY | PiPosture | D-APP-01; D-APP-02 | Record Pi as pattern corpus only and prohibit Pi adapter/fork/import/sidecar/runtime-floor/spike. |
+| A003 | MODIFY | ProviderExpansionGate | D-APP-03; K-NET-1; SOW-020 | Approve strategic provider-adapter generality while requiring future bounded tranches for concrete non-Anthropic providers. |
+| A004 | MODIFY | PermissionPosture | K-PERM-1; K-PERM-3; SOW-055; DEL-06-01 | Replace blanket deny-first framing with capability policy and explicit hard-deny precedence. |
+| A005 | MODIFY | ControlPlane | Coordination and active plan surfaces | Align active coordination and planning to provider-general strategy and Pi pattern-corpus posture. |
+| A006 | MODIFY | ExecutionDeliverableArtifacts | PKG-01; PKG-04; PKG-06; PKG-09; PKG-10 | Align impacted `_CONTEXT.md` files and record stale local artifact follow-up. |
+</p></div></div></section>
+<section id="SEC-EG021-0015" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:ea0337f9c01d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0015</span> Pass 1 - Action Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea0337f9c01d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea0337f9c01d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea0337f9c01d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ActionSeq | Expected | Actual | Status |
+|---|---|---|---|
+| A001 | Decomposition and runtime strategy docs use provider-adapter framing with Claude SDK / Anthropic as first/current adapter. | Decomposition DEC-017, SOW-018/SOW-044/SOW-045, PRD/PLAN/CONTRACT/SPEC/TYPES/runtime contract docs reflect this. | VERIFIED |
+| A002 | D-APP-01/02 ruled; Pi assessments marked pattern-corpus/reference only and no active Pi spike/import/adapter selection remains. | Ruling files exist, register rows are RULED, Pi assessment files carry SCA status and no-implementation boundary. | VERIFIED |
+| A003 | D-APP-03 ruled; provider expansion remains future bounded implementation scope. | Ruling file exists, register row is RULED, CONTRACT K-NET-1 and decomposition OI-006 preserve future implementation gate. | VERIFIED |
+| A004 | Permission posture uses capability policy plus explicit hard-deny precedence. | Decomposition SOW-055/DEL-06-01 and docs use capability policy / hard-deny language. | VERIFIED |
+| A005 | Active coordination and runtime completion plan reflect provider-general strategy and Pi pattern-corpus posture. | `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, active plan, and completion log are aligned. | VERIFIED |
+| A006 | Impacted deliverable contexts aligned and local artifact follow-up recorded. | All 26 impacted `_CONTEXT.md` files contain `SCA-APP-001 Context Alignment`, but base context fields and local artifact kits remain stale. | DISCREPANCY |</p>
+<p>Finding links: SCC-003 and SCC-004.
+</p></div></div></section>
+<section id="SEC-EG021-0016" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:52dcdc35cfb8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0016</span> Pass 2 - Downstream Rerun Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52dcdc35cfb8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52dcdc35cfb8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52dcdc35cfb8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Downstream item | Scope | Evidence | Status |
+|---|---|---|---|
+| Dependency extraction / SCC graph | Advisory only | `Propagation_Plan.md` says no immediate dependency CSV rewrite is required by this SCA. | NOT_APPLICABLE |
+| REVIEW / governance audit | Advisory | This `AUDIT_SCOPE_CLOSURE` run created this snapshot. | COMPLETED |
+| Package-local deliverable refresh | Required follow-up | `Handoff_State.md` marks affected local kits and dependency/reference artifacts `STALE_LOCAL_REVIEW_REQUIRED`; no refresh evidence was found. | NO_EVIDENCE |
+| Runtime tests | Not required | SCA made no runtime source changes. | NOT_APPLICABLE |
+| Frontend test suite | Not required | SCA made no frontend behavior changes. | NOT_APPLICABLE |
+| Build/release checks | Not required | SCA made no build/package changes. | NOT_APPLICABLE |</p>
+<p>Finding link: SCC-004.
+</p></div></div></section>
+<section id="SEC-EG021-0017" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:bf6814964302" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0017</span> Pass 3 - Orphaned References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf6814964302" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf6814964302" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf6814964302" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No retired deliverable IDs were introduced by `SCA-APP-001`; all six amendment actions are `MODIFY` actions. Fifty-one `Dependencies.csv` files were enumerated. Retired-target orphan detection is therefore not applicable for this SCA.</p>
+<p>Stale dependency names and local dependency/reference artifacts remain a derivative package issue and are covered under SCC-004.
+</p></div></div></section>
+<section id="SEC-EG021-0018" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:e844cf54e81f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0018</span> Pass 4 - Decomposition Consistency</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e844cf54e81f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e844cf54e81f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e844cf54e81f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The decomposition document is substantially aligned with the amendment:</p>
+<p>- `DEC-017` records `SCA-APP-001`.
+- SOW-018, SOW-044, SOW-045, SOW-055, PKG-04, PKG-06, DEL-04-01, DEL-06-01, and DEL-09-02 reflect provider-adapter/capability-policy wording.
+- OI-006 records that concrete non-Anthropic providers require bounded future implementation tranches.</p>
+<p>Two consistency findings remain:</p>
+<p>- SCC-001: `execution/_ScopeChange/_LATEST.md` still describes the active snapshot as a preview and says Gate 5 has not run.
+- SCC-002: the Gate 4 propagation table does not explicitly classify all governance surfaces changed at Gate 5.
+</p></div></div></section>
+<section id="SEC-EG021-0019" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:b1bdce9ea391" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0019</span> Pass 5 - Context Metadata Consistency</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1bdce9ea391" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1bdce9ea391" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1bdce9ea391" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All 26 impacted `_CONTEXT.md` files listed in `Execution_Deliverable_Impact.csv` include the appended `SCA-APP-001 Context Alignment` section.</p>
+<p>However, base context metadata remains stale in affected folders where decomposition fields changed. Examples:</p>
+<p>| Deliverable | Decomposition state | Context state | Finding |
+|---|---|---|---|
+| DEL-04-01 | `First-Adapter Probe and Version-Pinned Adoption Decision` | `SDK Probe and Version-Pinned Adoption Decision` | SCC-003 |
+| DEL-06-01 | Scope uses explicit deny precedence and capability-policy mode mapping | Scope still says `deny-overrides-allow semantics` and package scope still says `Deny-first permission overlay` | SCC-003 |
+| DEL-09-02 | Validation IDs for provider-adapter conformance and first-adapter mapper | Scope still says `engine contract, SDK mapper...` | SCC-003 |</p>
+<p>The affected local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, and `_REFERENCES.md` files are explicitly stale by SCA handoff state.
+</p></div></div></section>
+<section id="SEC-EG021-0020" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:1481a26ebe18" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0020</span> Pass 6 - Supersession Binding Completeness</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1481a26ebe18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1481a26ebe18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1481a26ebe18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`Supersession_Delta.csv` exists, but it is not accumulator-compatible:</p>
+<p>- The registered accumulator `tools/coordination/accumulate_supersession_map.py` expects canonical columns including `DecisionID`, `SupersededAuthorityPath`, `SupersededAuthorityRef`, `OverrideType`, and applicability fields.
+- The SCA delta uses a simplified header: `AmendmentID,ActionSeq,BindingType,AuthorityDocument,AuthorityReference,OriginalValue,ReplacementValue,Notes`.
+- No `Supersession_Map.csv` exists in the SCA snapshot for check-mode comparison.</p>
+<p>Finding link: SCC-005.
+</p></div></div></section>
+<section id="SEC-EG021-0021" class="chunk sec depth-4 cov-mid" data-kind="section" data-key="section:cea4886aded8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0021</span> Pass 7 - KTY Content Remediation Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cea4886aded8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cea4886aded8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cea4886aded8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Not applicable. `SCA-APP-001` is a SOFTWARE scope change, not a DOMAIN scope change, and no `KTY_Remediation_Manifest.csv` exists or is required.
+</p></div></div></section>
+<section id="SEC-EG021-0022" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:7a3ccd213165" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0022</span> Closure Determination</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a3ccd213165" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a3ccd213165" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a3ccd213165" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Severity | Count |
+|---|---:|
+| CRITICAL | 0 |
+| MAJOR | 5 |
+| MINOR | 0 |
+| OBSERVATION | 1 |</p>
+<p>Overall status: **OPEN**.</p>
+<p>Rationale: there are no critical integrity failures, no package/deliverable topology change, and no retired-deliverable orphan class from this SCA. Closure remains open because major findings show stale active pointer metadata, incomplete propagation/action classification, stale context base fields and package-local artifacts, and non-canonical supersession binding format.
+</p></div></div></section>
+<section id="SEC-EG021-0023" class="chunk sec depth-4 cov-high" data-kind="section" data-key="section:89367f3fa96f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-EG021-0023</span> Recommendations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89367f3fa96f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89367f3fa96f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89367f3fa96f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Update `execution/_ScopeChange/_LATEST.md` so it reflects the accepted Gate 5 snapshot and validated state.
+2. Amend the SCA propagation record or add a closure addendum classifying all governance surfaces changed at Gate 5.
+3. Run a bounded context/package-local refresh for the 26 affected deliverables, beginning with PKG-04, PKG-06, and PKG-09 rows that now conflict with decomposition wording.
+4. Decide whether `Supersession_Delta.csv` should be canonical accumulator input. If yes, rewrite it to the registered schema and generate `Supersession_Map.csv`; if no, explicitly mark the SCA as not supersession-map-producing.
+5. Keep `SCA-APP-001` open for full derivative-package closure until package-local artifacts and dependency/reference surfaces are refreshed or explicitly waived.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "EG021";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>
