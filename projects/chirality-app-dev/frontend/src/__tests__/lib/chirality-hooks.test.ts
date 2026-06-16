@@ -81,7 +81,8 @@ describe('Chirality write hooks', () => {
           file_path: 'notes.md'
         },
         tool_response: {
-          ok: true
+          ok: true,
+          content: [{ type: 'text', text: 'x'.repeat(17 * 1024) }]
         },
         tool_use_id: 'tool_write',
         duration_ms: 7
@@ -131,10 +132,36 @@ describe('Chirality write hooks', () => {
         sha256: expect.any(String)
       },
       resultMetadata: {
+        outputPersisted: true,
+        budgetClass: 'requires-artifact-overflow',
         rawOutputPersisted: false
+      },
+      artifactMetadata: {
+        artifactPath: expect.any(String),
+        redacted: true,
+        truncated: false
+      },
+      diffSummary: {
+        beforeExists: false,
+        afterExists: true,
+        afterByteLength: 5,
+        byteDelta: 5,
+        beforeLineCount: 0,
+        afterLineCount: 1,
+        addedLineCount: 1,
+        removedLineCount: 0,
+        diffAlgorithm: 'bounded-lcs'
       },
       recordsDiff: true
     });
+
+    const artifactMetadata = replay.events[3].data.artifactMetadata as
+      | { artifactPath?: unknown }
+      | undefined;
+    const artifactPath = artifactMetadata?.artifactPath;
+    expect(typeof artifactPath).toBe('string');
+    const artifact = await readFile(artifactPath as string, 'utf8');
+    expect(artifact).toContain('"ok": true');
   });
 
   it('blocks outside-root, instruction-root, and symlink write attempts', async () => {

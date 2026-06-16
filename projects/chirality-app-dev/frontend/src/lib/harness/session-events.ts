@@ -21,16 +21,47 @@ export async function appendHarnessEvent(event: HarnessEvent): Promise<string> {
   return filePath;
 }
 
+export type HarnessReplaySummary = {
+  eventCount: number;
+  malformedLineCount: number;
+  eventTypeCounts: Record<string, number>;
+  firstTimestamp?: string;
+  lastTimestamp?: string;
+};
+
+function summarizeReplayedEvents(
+  events: readonly HarnessEvent[],
+  malformedLineCount: number
+): HarnessReplaySummary {
+  const eventTypeCounts: Record<string, number> = {};
+  for (const event of events) {
+    eventTypeCounts[event.type] = (eventTypeCounts[event.type] ?? 0) + 1;
+  }
+
+  return {
+    eventCount: events.length,
+    malformedLineCount,
+    eventTypeCounts,
+    firstTimestamp: events[0]?.timestamp,
+    lastTimestamp: events.length > 0 ? events[events.length - 1].timestamp : undefined
+  };
+}
+
 export async function replayHarnessEvents(sessionId: string): Promise<{
   events: HarnessEvent[];
   malformedLineCount: number;
+  summary: HarnessReplaySummary;
 }> {
   const filePath = getSessionEventFilePath(sessionId);
   let raw = '';
   try {
     raw = await readFile(filePath, 'utf8');
   } catch {
-    return { events: [], malformedLineCount: 0 };
+    return {
+      events: [],
+      malformedLineCount: 0,
+      summary: summarizeReplayedEvents([], 0)
+    };
   }
 
   const events: HarnessEvent[] = [];
@@ -46,5 +77,9 @@ export async function replayHarnessEvents(sessionId: string): Promise<{
     }
   }
 
-  return { events, malformedLineCount };
+  return {
+    events,
+    malformedLineCount,
+    summary: summarizeReplayedEvents(events, malformedLineCount)
+  };
 }

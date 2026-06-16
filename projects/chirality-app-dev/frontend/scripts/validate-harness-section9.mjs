@@ -75,6 +75,8 @@ const SECTION9_CHECKS = [
   {
     id: 'section9.tool_result_budget',
     testFiles: [
+      'src/__tests__/lib/tool-evidence.test.ts',
+      'src/__tests__/lib/tool-result-artifacts.test.ts',
       'src/__tests__/lib/sdk-message-mapper.test.ts',
       'src/__tests__/lib/chirality-hooks.test.ts'
     ]

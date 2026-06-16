@@ -34,7 +34,7 @@ export type ToolResultEvidence = {
   artifactByteLimit?: number;
   overflowPolicy?: HarnessToolResultBudget['overflow'];
   budgetClass: ToolResultBudgetClass;
-  outputPersisted: false;
+  outputPersisted: boolean;
   rawOutputPersisted: false;
 };
 
@@ -159,6 +159,16 @@ export function summarizeToolResult(
     budgetClass: classifyResultBudget(resultByteLength, descriptor),
     outputPersisted: false,
     rawOutputPersisted: false
+  };
+}
+
+export function withToolResultPersistence(
+  evidence: ToolResultEvidence,
+  outputPersisted: boolean
+): ToolResultEvidence {
+  return {
+    ...evidence,
+    outputPersisted
   };
 }
 

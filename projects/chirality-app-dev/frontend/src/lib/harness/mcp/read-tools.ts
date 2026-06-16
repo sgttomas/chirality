@@ -22,8 +22,10 @@ import {
   summarizeToolDescriptor,
   summarizeToolError,
   summarizeToolInput,
-  summarizeToolResult
+  summarizeToolResult,
+  withToolResultPersistence
 } from '../tool-evidence';
+import { persistToolResultArtifact } from '../tool-result-artifacts';
 import { getHarnessToolDescriptor } from '../tool-descriptor';
 import {
   CHIRALITY_MCP_SERVER_NAME,
@@ -96,6 +98,13 @@ async function runReadMcpToolWithEvidence(input: {
 
   try {
     const result = await input.execute();
+    const artifactMetadata = await persistToolResultArtifact({
+      sessionId: input.context.sessionId,
+      toolUseId: `${input.toolName}-${startedAt}`,
+      toolName: adapterToolName,
+      descriptor,
+      result
+    });
     await appendHarnessEvent(
       createHarnessEvent({
         sessionId: input.context.sessionId,
@@ -103,7 +112,11 @@ async function runReadMcpToolWithEvidence(input: {
         data: {
           ...eventBase,
           durationMs: Date.now() - startedAt,
-          resultMetadata: summarizeToolResult(result, descriptor)
+          resultMetadata: withToolResultPersistence(
+            summarizeToolResult(result, descriptor),
+            Boolean(artifactMetadata)
+          ),
+          artifactMetadata
         }
       })
     );

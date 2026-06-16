@@ -1,8 +1,23 @@
-import { describe, expect, it } from 'vitest';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, describe, expect, it } from 'vitest';
 import {
   createSdkToolEvidenceState,
-  mapSdkMessageToHarness
+  mapSdkMessageToHarness,
+  mapSdkMessageToHarnessWithArtifacts
 } from '../../lib/harness/sdk-message-mapper';
+
+let tmpDir = '';
+
+afterEach(async () => {
+  delete process.env.CHIRALITY_SESSION_ROOT;
+  delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  if (tmpDir) {
+    await rm(tmpDir, { recursive: true, force: true });
+    tmpDir = '';
+  }
+});
 
 describe('mapSdkMessageToHarness', () => {
   it('maps SDK init metadata to stable session:init UI event and HarnessEvent evidence', () => {
@@ -391,6 +406,75 @@ describe('mapSdkMessageToHarness', () => {
     expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('test output');
   });
 
+  it('persists SDK built-in overflow results through the async mapper path', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-mapper-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'sk-test-secret';
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            { type: 'tool_use', id: 'toolu_read', name: 'Read', input: { file_path: 'README.md' } }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000023',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const userResult = await mapSdkMessageToHarnessWithArtifacts(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_read',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_read',
+          content: `${'x'.repeat(70 * 1024)} sk-test-secret`
+        },
+        uuid: '00000000-0000-0000-0000-000000000024',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(userResult.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.completed',
+      'message.completed'
+    ]);
+    expect(userResult.harnessEvents[1].data).toMatchObject({
+      resultMetadata: {
+        budgetClass: 'requires-artifact-overflow',
+        outputPersisted: true,
+        rawOutputPersisted: false
+      },
+      artifactMetadata: {
+        artifactPath: expect.any(String),
+        redacted: true,
+        truncated: false
+      }
+    });
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('sk-test-secret');
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('x'.repeat(128));
+    const artifactPath = (userResult.harnessEvents[1].data.artifactMetadata as {
+      artifactPath: string;
+    }).artifactPath;
+    const artifact = await readFile(artifactPath, 'utf8');
+    expect(artifact).not.toContain('sk-test-secret');
+    expect(artifact).toContain('[REDACTED_API_KEY]');
+  });
+
   it('maps SDK read tool error results to failed evidence and skips duplicate MCP completions', () => {
     const state = createSdkToolEvidenceState();
     mapSdkMessageToHarness(
@@ -556,6 +640,82 @@ describe('mapSdkMessageToHarness', () => {
       toolUseId: 'toolu_2',
       outputFile: '/tmp/chirality-child-output.json',
       summary: 'child done'
+    });
+  });
+
+  it('embeds adapter-observed child-run records in SDK task lifecycle events', () => {
+    const state = createSdkToolEvidenceState({
+      parentPersona: 'WORKING_ITEMS',
+      projectRoot: '/tmp/chirality-project',
+      mode: 'workspaceWrite',
+      parentTurnId: 'turn_1'
+    });
+    const started = mapSdkMessageToHarness(
+      'sess_parent',
+      {
+        type: 'system',
+        subtype: 'task_started',
+        task_id: 'task_1',
+        tool_use_id: 'toolu_agent',
+        description: 'Run bounded task',
+        subagent_type: 'TASK',
+        task_type: 'agent',
+        workflow_name: 'bounded-task',
+        skip_transcript: true,
+        uuid: '00000000-0000-0000-0000-000000000025',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+    const completed = mapSdkMessageToHarness(
+      'sess_parent',
+      {
+        type: 'system',
+        subtype: 'task_notification',
+        task_id: 'task_1',
+        tool_use_id: 'toolu_agent',
+        status: 'completed',
+        output_file: '/tmp/chirality-child-output.json',
+        summary: 'child done',
+        usage: {},
+        skip_transcript: true,
+        uuid: '00000000-0000-0000-0000-000000000026',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(started.harnessEvents[0].data).toMatchObject({
+      childRunId: expect.stringMatching(/^child_/),
+      parentSessionId: 'sess_parent',
+      parentTurnId: 'turn_1',
+      parentPersona: 'WORKING_ITEMS',
+      agentName: 'TASK',
+      projectRoot: '/tmp/chirality-project',
+      mode: 'workspaceWrite',
+      status: 'running',
+      capabilityPolicy: {
+        inheritParentCapabilities: false,
+        allowedToolNames: [],
+        deniedCapabilities: ['read', 'write', 'shell', 'mcp', 'network', 'subagent']
+      },
+      governance: {
+        state: 'adapter-observed'
+      },
+      adapter: {
+        adapterName: 'claude-agent-sdk',
+        adapterSessionId: 'sdk_1',
+        adapterTaskId: 'task_1',
+        adapterToolUseId: 'toolu_agent'
+      }
+    });
+    expect(completed.harnessEvents[0].data).toMatchObject({
+      childRunId: started.harnessEvents[0].data.childRunId,
+      status: 'completed',
+      outputArtifactPath: '/tmp/chirality-child-output.json',
+      adapter: {
+        adapterTaskId: 'task_1'
+      }
     });
   });
 });

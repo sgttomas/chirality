@@ -6,6 +6,58 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization replay and artifact evidence landed (`STAB-03`)
+
+Landed the Session Replay, Artifact Evidence, and Subagent Records tranche from the
+accepted Runtime Stabilization plan.
+
+Runtime changes:
+
+- `replayHarnessEvents` now returns an additive replay summary with event count,
+  malformed-line count, event-type histogram, and first/last timestamps.
+- Tool-result artifact overflow now follows descriptor `resultBudget.overflow ===
+  'artifact'` across governed hook completions, Chirality read MCP completions, and the
+  async SDK mapper path used by the runtime manager. `HarnessEvent.data` records metadata
+  and artifact references, not raw tool output.
+- Write/Edit hooks now record bounded diff summaries from pre/post file-state evidence:
+  byte deltas, line counts, added/removed line counts, and omission reasons when a file is
+  too large or unavailable. Full diff text is not stored in events.
+- SDK task lifecycle messages now embed adapter-observed child-run records using
+  `createAdapterObservedChildRunRecord`, preserving parent session/turn linkage and keeping
+  adapter-specific IDs under adapter metadata.
+
+Tests added or expanded:
+
+- `lib/tool-evidence.test.ts`
+- `lib/tool-result-artifacts.test.ts`
+- expanded `lib/session-events.test.ts`, `lib/sdk-message-mapper.test.ts`, and
+  `lib/chirality-hooks.test.ts`
+- Section 9 `section9.tool_result_budget` now includes the direct tool evidence and
+  artifact tests.
+
+Validation passed: focused STAB-03 suite
+`npm run test -- --run src/__tests__/lib/session-events.test.ts
+src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts
+src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/chirality-hooks.test.ts
+src/__tests__/lib/chirality-read-mcp.test.ts
+src/__tests__/lib/claude-agent-sdk-manager.test.ts` (7 files, 33 tests);
+`npm run typecheck`; `npm run harness:validate:section9`
+(`HARNESS_SECTION9_STATUS=pass`, 13 checks); full `npm run test` (47 files, 354 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`); and
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks).
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-03 does not change
+provider, API-key, network, or outbound behavior. `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche does not change package
+layout, SDK subprocess packaging, distribution artifacts, or release-candidate posture.
+
+Residual handoff: STAB-02 real/scripted SDK turns can later exercise the same replay and
+artifact surfaces against live SDK evidence. D-APP-12 remains AWAITING_RULING for
+default-provider cutover, and D-APP-13 remains NOT_PREPARED for mutating Chirality MCP
+exposure. The next recommended stabilization tranche is STAB-05 Persona Composer from
+Instruction Root.
+
 ## 2026-06-16 - Runtime stabilization Section 9 validation surface landed (`STAB-01`)
 
 Landed the Section 9 runtime validation surface from the accepted Runtime Stabilization

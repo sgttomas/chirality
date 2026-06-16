@@ -145,10 +145,10 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 12 | Write/Edit + path hooks (containment, instruction-root, symlink) | `chirality-hooks.ts`, `tool-path-policy.ts`, `instruction-root.ts` | `lib/chirality-hooks.test.ts`, `lib/harness-instruction-root.test.ts` | DEL-06-04, DEL-07-01 | LANDED |
 | 13 | Bash governance + timeout / no-network policy | `tool-shell-policy.ts` | `lib/chirality-hooks.test.ts`, `lib/permission-overlay.test.ts` | DEL-06-05 | LANDED |
 | 14 | Hook lifecycle + **compaction mirror** | `chirality-hooks.ts`, `sdk-message-mapper.ts:818-840` | `lib/chirality-hooks.test.ts`, `lib/sdk-message-mapper.test.ts`, `lib/session-events.test.ts` | DEL-06-06 | LANDED (corrected) |
-| 15 | Tool result budgets + overflow artifact spill | `tool-evidence.ts`, `tool-result-artifacts.ts` | indirect only (hooks/read-mcp) | DEL-05-05 | PARTIAL (Bash/hook-path only; non-Bash + mapper path missing; no direct tests) |
-| 16 | Runtime replay (append/replay round-trip) | `session-events.ts` (`replayHarnessEvents`) | `lib/session-events.test.ts` | DEL-05-04 | PARTIAL (single-event round-trip; no full event-class coverage; `malformedLineCount` unsurfaced) |
+| 15 | Tool result budgets + overflow artifact spill | `tool-evidence.ts`, `tool-result-artifacts.ts`, `sdk-message-mapper.ts`, `chirality-hooks.ts`, `mcp/read-tools.ts` | `lib/tool-evidence.test.ts`, `lib/tool-result-artifacts.test.ts`, `lib/sdk-message-mapper.test.ts`, `lib/chirality-hooks.test.ts` | DEL-05-05 | LANDED |
+| 16 | Runtime replay (append/replay round-trip + summary) | `session-events.ts` (`replayHarnessEvents`) | `lib/session-events.test.ts` | DEL-05-04 | LANDED |
 | 17 | Type 2 subagent governance bridge (R5 Option C) | `subagent-bridge.ts`, `subagent-governance.ts`, `agent-runtime-contract.ts` | `lib/subagent-bridge.test.ts`, `lib/harness-subagent-governance.test.ts`, `lib/agent-runtime-contract.test.ts` | DEL-08-04 | LANDED |
-| 18 | Subagent child-run **records** (adapter mapping) | `agent-runtime-contract.ts` (`createAdapterObservedChildRunRecord`) | contract test only | DEL-08-05 | PARTIAL (factory has **zero callers**; adapter task→record mapping unwired) |
+| 18 | Subagent child-run **records** (adapter mapping) | `agent-runtime-contract.ts`, `sdk-message-mapper.ts` | `lib/agent-runtime-contract.test.ts`, `lib/sdk-message-mapper.test.ts` | DEL-08-05 | LANDED |
 | 19 | Status transition **engine** (forward-only, approval-SHA) | `lib/lifecycle/transition.ts`, `lib/lifecycle/status-parser.ts` | `lib/lifecycle-status.test.ts` | DEL-07-04 | LANDED (engine + route); MCP tool is GAP (row 28) |
 | 20 | Dependencies.csv v3.1 reader/writer/linter **engine** | `lib/dependencies/register-writer.ts`, `lib/dependencies/schema.ts`, `lib/workspace/deliverable-contracts.ts` | `lib/dependencies-register-contract.test.ts` | DEL-07-05 | LANDED (engine); MCP writer is GAP (row 28) |
 | 21 | Provider selection (default stub; `anthropic`; `agentSdk` opt-in) | `runtime.ts`, `agent-sdk-manager.ts`, `anthropic-agent-sdk-manager.ts`, `claude-agent-sdk-manager.ts` | `lib/harness-runtime.test.ts` | DEL-04-01 | LANDED (opt-in preserved) |
@@ -178,7 +178,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 | `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | Prove the opt-in SDK path well enough for a future default decision. | (a) wire API-key injection for the active turn + redaction test; (b) one dev-build real/scripted `agentSdk` turn; (c) `agentSdk`-mode network proof; (d) packaged subprocess probe (`asarUnpack` + HOME + DMG). Prepare D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
-| `STAB-03` Session Replay, Artifact Evidence & Subagent Records | Harden reconstruction of runtime activity. | Generalize overflow spill beyond Bash and into the mapper path; surface malformed-tail diagnostics; bounded Write/Edit diff **summary** (no full diffs); full event-class replay-coverage test; wire `createAdapterObservedChildRunRecord` (DEL-08-05); add direct tests for `tool-evidence` / `tool-result-artifacts`. | Focused replay/artifact/evidence tests; `typecheck`; `test`; premerge if UI/API behavior changes. |
+| `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-04` Deterministic Chirality MCP Maturity | Expose only bounded mutating Chirality MCP tools after validation hardening. | SDK-behavior probe (does `canUseTool`/hooks fire for in-process MCP tools?); then `status_transition` → `deps_write` (→ optional `scaffold_exec`) over the **already-landed** lifecycle/deps engines, with an in-handler diff-evidence wrapper. Requires D-APP-13. | Permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
 | `STAB-05` Persona Composer from Instruction Root | Replace the persona stub so a real turn is meaningful. | Implement `PersonaComposer` from instruction-root governance, active persona, working-root policy, mode, and tool-surface composition; content-hash + boot fingerprint; replace `StubPersonaManager` wiring in `runtime.ts`. | Persona composition tests, content-hash tests, `typecheck`, `test`; premerge (boot/turn behavior changes). |
 | `STAB-06` Governance Refresh & Active Queue | Convert accepted outcomes into governance/coordination surfaces. | Apply the STAB-00 disposition list (factual corrections + dated supersession notes only); reflect D-APP-12 ruling; refresh coordination; record program completion. | Governance gate. Runtime commands skipped unless executable behavior changed. |
@@ -262,43 +262,26 @@ SDK runs as a CLI subprocess with asar/HOME/signing risk. Versions remain pinned
 
 ### STAB-03 — Session Replay, Artifact Evidence & Subagent Records
 
-Goal: make runtime audit evidence useful without making it project truth. Preserve all
-out-of-scope guardrails (no SDK-transcript-as-truth, no hidden project DB, no raw
-payloads/secrets/full-diffs in `HarnessEvent.data`).
+Status: **LANDED 2026-06-16**.
 
-Work items:
+Outputs:
 
-- **A — Generalize artifact overflow beyond Bash.** `persistToolResultArtifact` has a
-  single caller (`chirality-hooks.ts`, gated on `isShellDescriptor`) and the SDK
-  message-mapper runtime path never spills at all. Drive spill off descriptor
-  `resultBudget.overflow === 'artifact'` for medium/large **non-Bash** results (read MCP,
-  `Read`/`Grep`/`Glob`, `Write`/`Edit`); wire spill into `sdk-message-mapper.ts`; set
-  `outputPersisted` uniformly from the spill result.
-- **B — Malformed-tail diagnostics.** `replayHarnessEvents` computes `malformedLineCount`
-  but no surface consumes it. Add a replay summary (event count, per-type histogram,
-  `malformedLineCount`, first/last timestamp) in `session-events.ts`; feed it into the
-  Section 9 surface (cross-tranche dependency on STAB-01).
-- **C — Bounded diff/provenance summary.** Persist a bounded Write/Edit diff **summary**
-  (added/removed line counts, byte deltas) from pre/post file-state metadata; route any
-  large diff content through item A's artifact spill; keep full-diff text out of
-  `HarnessEvent.data`.
-- **D — Replay-coverage round-trip test.** Build a representative synthetic session
-  (`turn.accepted`, `message.delta`/`completed`, `tool.permission`,
-  `tool.started`/`completed`, `hook.completed` with `artifactMetadata`,
-  `subagent.started`/`completed`, `turn.completed`/`failed`), append, replay, assert every
-  class round-trips with redaction intact and referenced artifact files resolve.
-- **E — Subagent child-run records (DEL-08-05).** Wire `createAdapterObservedChildRunRecord`
-  (currently zero callers) into the adapter task-message path so child-run lifecycle
-  records persist and survive replay with parent linkage; subagent lifecycle *events*
-  already flow.
+- descriptor-driven artifact overflow in hook, Chirality read MCP, and async SDK mapper
+  paths;
+- replay summaries with event count, malformed-line count, event-type histogram, and
+  first/last timestamps;
+- bounded Write/Edit diff summaries with byte deltas and added/removed line counts, with
+  no full diff text stored in `HarnessEvent.data`;
+- adapter-observed child-run records embedded in SDK task lifecycle events;
+- direct `tool-evidence` and `tool-result-artifacts` tests included in Section 9
+  `tool_result_budget` validation.
 
-New focused tests: `lib/tool-result-artifacts.test.ts`, `lib/tool-evidence.test.ts`, and
-extensions to `lib/session-events.test.ts` (malformed-tail, full event-class round-trip,
-artifact-ref resolvability). This moves `tool-evidence`/`tool-result-artifacts` from
-indirectly-tested to directly-tested.
+Residual handoff:
 
-Out of scope: importing SDK transcripts as truth; a hidden project DB; treating replay or
-artifacts as human-acceptance evidence.
+- STAB-02 real/scripted SDK turns can later exercise these replay/artifact surfaces against
+  live SDK evidence.
+- Runtime logs, artifacts, replay summaries, and child-run records remain derivative
+  evidence only; they are not project truth or human acceptance evidence.
 
 ### STAB-04 — Deterministic Chirality MCP Maturity
 
