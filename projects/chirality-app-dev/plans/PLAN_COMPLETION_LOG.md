@@ -6,6 +6,41 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization Section 9 validation surface landed (`STAB-01`)
+
+Landed the Section 9 runtime validation surface from the accepted Runtime Stabilization
+plan. The new `frontend/scripts/validate-harness-section9.mjs` aggregates 13 canonical
+deterministic Section 9 IDs into a machine-readable summary, mirrors it to
+`frontend/artifacts/harness/section9/latest/summary.json`, and emits stable
+`HARNESS_SECTION9_*` lines. `frontend/package.json` now exposes
+`npm run harness:validate:section9`.
+
+The premerge validator now runs Section 9 after the existing Section 8 gate and emits
+`HARNESS_PREMERGE_SECTION9_*` lines with `HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true`.
+Section 8 remains the hard premerge gate for this initial integration cycle so the new
+aggregator does not destabilize the existing running-app validation surface.
+
+Docs updated the validation/build command maps and harness traceability so Section 9 has
+an explicit local command, artifact path, and requirement mapping.
+
+Validation passed: `npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`,
+13 checks); full `npm run test` (45 files, 344 tests); `npm run typecheck`;
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks); `npm run desktop:pack` generated the macOS app bundle and
+the current instruction-root integrity artifact reports `status=pass`,
+`checkedFileCount=46`, `missingInBundle=[]`. Local dependencies were installed with
+`npm ci`; npm reported audit warnings/vulnerabilities that were not in this tranche's
+scope.
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-01 does not change
+provider, API-key, network, or outbound behavior. `npm run desktop:dist` was skipped
+because this tranche is not a DMG or release-candidate scope.
+
+Residual handoff: D-APP-12 remains AWAITING_RULING for default-provider cutover, and
+D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure. The next recommended
+stabilization tranche is STAB-03, with STAB-05 also unblocked and suitable for parallel
+execution.
+
 ## 2026-06-16 - Runtime stabilization baseline reconciliation landed (`STAB-00`)
 
 Landed the first Runtime Stabilization tranche after D-APP-11 accepted

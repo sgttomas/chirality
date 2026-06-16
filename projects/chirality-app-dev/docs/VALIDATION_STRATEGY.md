@@ -34,6 +34,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run test` | Vitest unit and contract checks for API routes, runtime libraries, SDK mapping, tool descriptors, session events, UI helpers, script policies, and governance helpers. |
 | `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
 | `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable. |
+| `npm run harness:validate:section9` | Section 9 deterministic runtime-ID aggregation over targeted Vitest files with stable summary artifact at `frontend/artifacts/harness/section9/latest/summary.json`. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
 | `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
@@ -62,6 +63,7 @@ Build, packaging, artifact, and release-evidence command details are recorded in
 Machine-readable artifacts are preferred when available:
 
 - harness premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`;
+- harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - test command output captured in terminal or run records when required by a tranche;
 - plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.

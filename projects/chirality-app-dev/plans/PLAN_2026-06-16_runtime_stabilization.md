@@ -63,11 +63,10 @@ The following baseline is verified against the live tree and tests (2026-06-16):
   also contains the landed `lifecycle/` (status transition engine) and `dependencies/`
   (Dependencies.csv v3.1 reader/writer/linter) engines and `workspace/deliverable-contracts.ts`.
 - `frontend/src/__tests__/` contains focused unit/contract tests for the runtime modules.
-- `frontend/scripts/validate-harness-section8.mjs` and `validate-harness-premerge.mjs`
-  expose the running-app harness validation surface (Section 8). **Section 9 validation
-  IDs are specified in `docs/SPEC.md` §19.3 and `docs/PRD.md` §12.4 but no
-  `validate-harness-section9.mjs` exists** — there is no running Section 9 premerge
-  artifact today.
+- `frontend/scripts/validate-harness-section8.mjs`, `validate-harness-section9.mjs`, and
+  `validate-harness-premerge.mjs` expose the harness validation surface. Section 9 now
+  aggregates 13 canonical deterministic runtime IDs into a stable report-only premerge
+  artifact while Section 8 remains the hard premerge gate.
 
 Reconciliation issues confirmed by research (drives STAB-00 and STAB-05):
 
@@ -156,7 +155,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 22 | **API key supply to SDK for the active turn** | — (not wired) | — | DEL-04-05 | **GAP** (no `ANTHROPIC_API_KEY` injection before `query()`; UI-only key passes presence gate but never reaches the SDK) |
 | 23 | **PersonaComposer from instruction root** | `persona-manager.ts` (`StubPersonaManager`) | — | DEL-04-04 | **GAP** (still one-line stub; `runtime.ts:62` instantiates the stub) |
 | 24 | Section 8 running-app validation + stable premerge artifact | `scripts/validate-harness-section8.mjs`, `scripts/validate-harness-premerge.mjs` | `scripts/*` | DEL-09-01 | LANDED |
-| 25 | **Section 9 runtime validation IDs (aggregator)** | — | — | DEL-09-02 | **GAP** (STAB-01) |
+| 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
 | 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL (DMG path exists; **no `asarUnpack` for the SDK**; subprocess proof `BLOCKED_TBD`) |
 | 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic`; `agentSdk`-mode outbound **unproven** |
 | 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | descriptor metadata only (`tool-descriptor.ts`) | — | DEL-07-04 / DEL-07-05 (MCP half) | **METADATA-ONLY** (STAB-04) |
@@ -177,7 +176,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 | Tranche | Purpose | Primary scope | Minimum validation |
 |---|---|---|---|
 | `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-01` Section 9 Validation Surface | Make landed runtime maturity machine-readable. | Add `validate-harness-section9.mjs` aggregating the **13** landed deterministic checks into a `summary.json`; new npm script + artifact path; additive premerge integration that does not destabilize Section 8. | `npm run typecheck`, `npm run test`, `node scripts/validate-harness-section9.mjs`, then `npm run harness:validate:premerge`. |
+| `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-02` SDK Runtime Readiness & Cutover Decision | Prove the opt-in SDK path well enough for a future default decision. | (a) wire API-key injection for the active turn + redaction test; (b) one dev-build real/scripted `agentSdk` turn; (c) `agentSdk`-mode network proof; (d) packaged subprocess probe (`asarUnpack` + HOME + DMG). Prepare D-APP-12 default-cutover packet. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | Harden reconstruction of runtime activity. | Generalize overflow spill beyond Bash and into the mapper path; surface malformed-tail diagnostics; bounded Write/Edit diff **summary** (no full diffs); full event-class replay-coverage test; wire `createAdapterObservedChildRunRecord` (DEL-08-05); add direct tests for `tool-evidence` / `tool-result-artifacts`. | Focused replay/artifact/evidence tests; `typecheck`; `test`; premerge if UI/API behavior changes. |
 | `STAB-04` Deterministic Chirality MCP Maturity | Expose only bounded mutating Chirality MCP tools after validation hardening. | SDK-behavior probe (does `canUseTool`/hooks fire for in-process MCP tools?); then `status_transition` → `deps_write` (→ optional `scaffold_exec`) over the **already-landed** lifecycle/deps engines, with an in-handler diff-evidence wrapper. Requires D-APP-13. | Permission/tool gate + lifecycle/deps tests + denial tests; `typecheck`; `test`; one running-app round-trip check; premerge. |
@@ -207,53 +206,23 @@ Residual handoff:
 
 ### STAB-01 — Section 9 Validation Surface
 
-Goal: represent landed runtime maturity as stable, machine-readable IDs for agents,
-reviewers, and local CI-like checks — without a live provider.
+Status: **LANDED 2026-06-16**.
 
-Design (research-backed; all 13 IDs map to **existing** deterministic vitest tests):
+Outputs:
 
-| Section 9 ID (SPEC §19.3) | Source module | Proving test |
-|---|---|---|
-| `runtime_engine_contract` | `engine-conformance.ts` | `lib/engine-conformance.test.ts` |
-| `adapter_turn_engine_event_log` | `turn-engine.ts`, `run-logger.ts` | `lib/turn-engine.test.ts` |
-| `adapter_message_mapper` | `sdk-message-mapper.ts` | `lib/sdk-message-mapper.test.ts` |
-| `session_event_replay` | `session-events.ts` | `lib/session-events.test.ts` |
-| `settingsources_isolation` | `sdk-options-builder.ts` | `lib/sdk-options-builder.test.ts` |
-| `permission_overlay_hard_deny_precedence` | `permission-overlay.ts` | `lib/permission-overlay.test.ts` |
-| `tool_runtime_read_file` | `mcp/read-tools.ts` | `lib/chirality-read-mcp.test.ts` |
-| `chirality_mcp_status_dependencies` | `mcp/read-tools.ts` | `lib/chirality-read-mcp.test.ts`, `lib/dependencies-register-contract.test.ts` |
-| `path_containment_hook` | `tool-path-policy.ts`, `chirality-hooks.ts` | `lib/chirality-hooks.test.ts`, `lib/permission-overlay.test.ts` |
-| `instruction_root_protection_hook` | `instruction-root.ts` | `lib/harness-instruction-root.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` |
-| `tool_result_budget` | `tool-evidence.ts`, `tool-result-artifacts.ts` | `lib/sdk-message-mapper.test.ts`, `lib/chirality-hooks.test.ts` |
-| `context_compaction_boundary` | `sdk-message-mapper.ts:818-840` | `lib/sdk-message-mapper.test.ts`, `lib/session-events.test.ts` |
-| `subagent_governance_hook` | `subagent-governance.ts` | `lib/harness-subagent-governance.test.ts`, `lib/agent-runtime-contract.test.ts` |
+- `frontend/scripts/validate-harness-section9.mjs`
+- `frontend/artifacts/harness/section9/latest/summary.json` (ignored stable artifact)
+- `harness:validate:section9` npm script
+- additive `HARNESS_PREMERGE_SECTION9_*` report-only premerge machine lines
+- validation documentation updates in `docs/` and `frontend/docs/harness/`
 
-> `context_compaction_boundary` is included because research **corrected** the earlier
-> "compaction mirror is partial" assumption: the mirror is wired and tested. The 4 SPEC IDs
-> outside this set (`reliance_boundary_register`, `sdk_session_link_resume`,
-> `domain_profile_validation`, and any others) are **deferred** until STAB-00 confirms
-> their deterministic evidence has landed.
+Residual handoff:
 
-Script + integration:
-
-- `frontend/scripts/validate-harness-section9.mjs`: a `SECTION9_CHECKS` ordered array of
-  `{ id, testFiles[] }`; for each, run the targeted vitest file(s) and determine pass/fail
-  by **exit code per test-file group** (robust and runner-version-independent; JSON
-  reporter is optional detail). Emit `summary.json` with the Section 8 shape
-  (`generatedAt`, `status`, `testCount`, `results[{id,status,...}]`) plus machine lines
-  `HARNESS_SECTION9_SUMMARY_PATH=` / `HARNESS_SECTION9_STATUS=`. Use a **separate** TMP
-  root so Section 8's cleanup cannot wipe Section 9 output.
-- Stable artifact: `frontend/artifacts/harness/section9/latest/summary.json` (mirror the
-  Section 8 `mkdir`+`copyFile`+readback pattern).
-- npm: `"harness:validate:section9": "node ./scripts/validate-harness-section9.mjs"`.
-- Premerge: add an **additive** step after the Section 8 block with its own
-  `HARNESS_PREMERGE_SECTION9_*` machine lines; do not touch `REQUIRED_TEST_IDS`,
-  `LEGACY_REMOVED_TEST_ID`, or the Section 8 artifact path. **Start report-only for one
-  premerge cycle, then flip to hard-fail** so a brand-new aggregator does not destabilize
-  the existing gate.
-
-Scope control: do not use Section 9 to broaden runtime capability; do not rename or
-destabilize Section 8 IDs.
+- STAB-03 item B may feed malformed-tail replay diagnostics into the Section 9 namespace.
+- STAB-04 may consume the Section 9 namespace after its SDK-behavior probe and D-APP-13
+  ruling.
+- Section 9 remains report-only in premerge for the initial stable cycle; later work should
+  flip it to hard-fail once accepted.
 
 ### STAB-02 — SDK Runtime Readiness & Default-Provider Cutover Decision
 
@@ -473,7 +442,7 @@ tranche-specific checks. Default runtime/shared-behavior validation from `fronte
 npm run test
 npm run typecheck
 npm run harness:validate:premerge
-npm run harness:validate:section9   # added by STAB-01
+npm run harness:validate:section9
 npm run instruction-root:integrity
 ```
 
