@@ -201,7 +201,7 @@ Residual handoff:
 - STAB-01 must use canonical Section 9 IDs from `docs/SPEC.md` Section 19.3 and
   `docs/PRD.md` Section 12.4.
 - STAB-06 consumes the disposition list for factual corrections and dated supersession
-  notes only; policy changes remain gated by D-APP-12/D-APP-13.
+  notes only; default-provider policy changes remain gated by D-APP-12.
 - STAB-00 corrected the earlier guidance assumption that legacy `sdk_*` aliases live only
   under `.archive`; they also occur in live deliverable-local kits, so new validation work
   must bind to the canonical `adapter_*` IDs without mass-editing lifecycle artifacts.
@@ -429,8 +429,7 @@ STAB-05 (persona) ──► should precede the D-APP-12 cutover ruling
 
 Recommended execution order: **STAB-00 → STAB-01 → (STAB-03 ∥ STAB-05) → STAB-02 →
 STAB-04 → STAB-06**, with STAB-02 step (d) and D-APP-12 sequenced after Section 9 is green
-and STAB-05 has landed. STAB-04 may begin its SDK-behavior probe in parallel once STAB-01
-provides the validation namespace.
+and STAB-05 has landed. STAB-04 has consumed the validation namespace and D-APP-13 ruling.
 
 ## 11. Validation Policy
 
