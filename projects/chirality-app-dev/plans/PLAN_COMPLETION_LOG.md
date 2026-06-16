@@ -6,6 +6,38 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - D-APP-06 ruled Option C
+
+Human project authority approved `D-APP-06` Option C. Executable R5 governed subagent
+implementation is held until RECONCILIATION prepares a longer-cycle ruling package for the
+residual six-node SCC reported in the latest dependency closure snapshot.
+
+The required RECONCILIATION package must determine whether the SCC is blocking for
+executable R5 implementation, blocking only for project-wide dependency closure claims, or
+evidence that decomposition/dependency amendment is required before R5 can proceed.
+
+This ruling does not approve SDK `Agent` exposure, executable SDK `agents` definitions,
+child turn execution, child output artifacts, child capability inheritance, Pi runtime
+paths, concrete provider implementation, provider routing, network expansion,
+release-readiness claims, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or professional-boundary claim
+changes.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in the ruling-record tranche. The next
+required action is a RECONCILIATION longer-cycle ruling package; no executable R5
+implementation tranche is unblocked by this ruling alone.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-06|Option C|longer-cycle" execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the
+packet, ruling, register, plan, and dependency closure report; decision-register ID
+uniqueness check; source/package exclusion check. Frontend runtime tests, typecheck,
+harness premerge, instruction-root integrity, build, packaging, network proof, and DMG
+checks were skipped because this tranche only recorded the human ruling and updated the
+decision register, active plan, and completion log.
+
 ## 2026-06-15 - Post-contract R5 executable subagent runtime decision packet prepared (`D-APP-06`)
 
 Prepared the post-prerequisite R5 decision packet for executable governed subagent runtime.
