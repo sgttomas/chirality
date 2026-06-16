@@ -8,9 +8,13 @@ Active coordination surfaces:
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
 
+Active development queue:
+
+- `plans/PLAN_2026-06-16_runtime_stabilization.md` (Runtime Stabilization program, STAB-00..STAB-06; accepted by `execution/_Coordination/_DECISIONS/D-APP-11_RULING_2026-06-16.md`).
+
 Completed planning and history surfaces:
 
-- `plans/PLAN_2026-06-16_six_node_scc_resolution.md`
+- `plans/PLAN_2026-06-16_six_node_scc_resolution.md` (closed; no longer the active queue)
 - `plans/PLAN_COMPLETION_LOG.md`
 
 Retired planning/history surfaces:

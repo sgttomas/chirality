@@ -1,0 +1,10 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-001,2026-06-16T17:50Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,"runtime engine contract agentSdk provider",,3,3,"Smoke test; confirmed retrieval stack live"
+Q-002,2026-06-16T17:52Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,bm25,"Section 9 validation IDs",,2,2,"Atom ledger contains section9.* atoms incl. section9.sdk_message_mapper"
+Q-003,2026-06-16T18:05Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,"section9 validation IDs runtime",,12,12,"Section9-validation stream: SPEC 19.3 canonical ID list"
+Q-DIRECT,2026-06-16T18:00Z,projects/chirality-app-dev,LIVE_TREE,direct,"capability->source->test->deliverable mapping across frontend/src/lib/harness",,,,"8 research streams + critic read live source/tests directly; retrieval used for discovery over PRD/SPEC/decomposition/atom ledger"
+Q-VERIFY1,2026-06-16T18:15Z,projects/chirality-app-dev,LIVE_TREE,direct,"grep context.compaction in sdk-message-mapper.ts",,,2,"Lines 820,835 confirm compaction mirror LANDED"
+Q-VERIFY2,2026-06-16T18:15Z,projects/chirality-app-dev,LIVE_TREE,direct,"grep ANTHROPIC_API_KEY in agentSdk path",,,0,"NONE in claude-agent-sdk-manager.ts / sdk-options-builder.ts -> key-supply gap confirmed"
+Q-VERIFY3,2026-06-16T18:15Z,projects/chirality-app-dev,LIVE_TREE,direct,"grep createAdapterObservedChildRunRecord callers",,,0,"Zero non-test/non-definition callers -> DEL-08-05 PARTIAL confirmed"
+Q-VERIFY4,2026-06-16T18:15Z,projects/chirality-app-dev,LIVE_TREE,direct,"grep StubPersonaManager in runtime.ts / persona-manager.ts",,,3,"runtime.ts:62 instantiates stub -> persona gap confirmed"
+Q-VERIFY5,2026-06-16T12:10Z,projects/chirality-app-dev,LIVE_TREE,direct,"find execution -name _STATUS.md | grep 'Current State'",,,53,"All 53 read SEMANTIC_READY"
