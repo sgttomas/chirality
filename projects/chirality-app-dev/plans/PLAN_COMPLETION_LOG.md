@@ -6,6 +6,49 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization SDK API-key injection landed (`STAB-02a`)
+
+Landed STAB-02 step (a), the load-bearing API-key injection slice for the opt-in
+`agentSdk` runtime path.
+
+Runtime changes:
+
+- `ClaudeAgentSdkManager` now resolves the active key using the same UI key first, then
+  `ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY` precedence used by the runtime
+  key surfaces.
+- Before invoking SDK `query()`, the manager scopes the resolved key into
+  `process.env.ANTHROPIC_API_KEY` for the active turn and restores the prior env state in
+  `finally`.
+- SDK failure text is redacted with the shared value-based API-key redactor before it is
+  persisted to `HarnessEvent` evidence or raised as `HarnessError`.
+
+Tests added or expanded:
+
+- expanded `lib/claude-agent-sdk-manager.test.ts` with a regression that verifies
+  `query()` sees the UI-provided key via env, the prior env value is restored, and
+  persisted failure evidence contains `[REDACTED_API_KEY]` rather than key material.
+
+Validation passed: focused STAB-02(a) suite
+`npm run test -- --run src/__tests__/lib/claude-agent-sdk-manager.test.ts` (1 file, 3
+tests); `npm run typecheck`; full `npm run test` (48 files, 359 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks);
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`; `npm run
+proof:network-policy -- --runs 1 --idle-seconds 1 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02a-20260616`, producing `PASS` after temporarily
+creating and then removing the proof script's missing `examples/example-project` fixture.
+`git diff --check` passed.
+
+Residual handoff: STAB-02 remains partial. Remaining steps are (b) one dev-build
+real/scripted `agentSdk` turn, (c) an `agentSdk`-mode network proof, and (d) packaged SDK
+subprocess proof with `asarUnpack`, HOME, and DMG evidence. D-APP-12 remains
+AWAITING_RULING for default-provider cutover until all STAB-02 prerequisites are green.
+D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure. The initial full-form
+`npm run proof:network-policy` attempt is still fixture-sensitive because the script
+hardcodes `examples/example-project`; the successful validation above used the prior
+project-local temporary-fixture workaround.
+
 ## 2026-06-16 - Runtime stabilization persona composer landed (`STAB-05`)
 
 Landed the Persona Composer from Instruction Root tranche from the accepted Runtime

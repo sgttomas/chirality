@@ -41,8 +41,13 @@ const opts: ResolvedOpts = {
 };
 
 let tmpDir = '';
+const GLOBAL_API_KEY = '__CHIRALITY_UI_API_KEY__';
+const apiKeyGlobal = globalThis as typeof globalThis & Record<typeof GLOBAL_API_KEY, string | undefined>;
 
 afterEach(async () => {
+  delete apiKeyGlobal[GLOBAL_API_KEY];
+  delete process.env.ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_SESSION_ROOT;
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
@@ -193,5 +198,45 @@ describe('ClaudeAgentSdkManager', () => {
         })
       })
     );
+  });
+
+  it('injects active API key into SDK env, restores prior env, and redacts persisted failures', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-manager-api-key-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    const priorApiKey = 'prior-env-key-stab02';
+    const uiApiKey = 'ui-active-turn-key-stab02';
+    process.env.ANTHROPIC_API_KEY = priorApiKey;
+    apiKeyGlobal[GLOBAL_API_KEY] = uiApiKey;
+    const observedApiKeys: Array<string | undefined> = [];
+    const query = vi.fn(() => {
+      observedApiKeys.push(process.env.ANTHROPIC_API_KEY);
+      throw new Error(`SDK failed with ${uiApiKey}`);
+    });
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'persona prompt');
+    const events: unknown[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts)) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 500,
+      message: 'SDK failed with [REDACTED_API_KEY]'
+    });
+    expect(events).toEqual([]);
+    expect(observedApiKeys).toEqual([uiApiKey]);
+    expect(process.env.ANTHROPIC_API_KEY).toBe(priorApiKey);
+    const replay = await replayHarnessEvents('sess_sdk');
+    expect(replay.events.map((event) => event.type)).toEqual(['turn.accepted', 'turn.failed']);
+    const serializedEvents = JSON.stringify(replay.events);
+    expect(serializedEvents).toContain('[REDACTED_API_KEY]');
+    expect(serializedEvents).not.toContain(uiApiKey);
+    expect(serializedEvents).not.toContain(priorApiKey);
   });
 });
