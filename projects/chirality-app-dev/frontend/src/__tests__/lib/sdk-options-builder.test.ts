@@ -52,6 +52,10 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
     expect(options.disallowedTools).toContain('Edit');
+    expect(options.disallowedTools).toContain('Agent');
+    expect(options.tools).not.toContain('Agent');
+    expect(options.allowedTools).not.toContain('Agent');
+    expect(options.agents).toBeUndefined();
     expect(options.disallowedTools).toContain('mcp__chirality__status_read');
     expect(options.mcpServers).toEqual({});
     expect(options.hooks?.PreToolUse?.[0]?.hooks[0]).toBeTypeOf('function');
@@ -205,6 +209,32 @@ describe('buildSdkOptions', () => {
     expect(askMode.permissionMode).toBe('default');
   });
 
+  it('attaches non-executable SDK agents definitions without exposing the Agent tool', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        delegatedSubagents: ['TASK'],
+        tools: ['read', 'Agent']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.agents).toMatchObject({
+      TASK: {
+        description: expect.stringContaining('TASK'),
+        tools: [],
+        disallowedTools: expect.arrayContaining(['Agent', 'Bash', 'Write']),
+        maxTurns: 0,
+        permissionMode: 'dontAsk'
+      }
+    });
+    expect(options.tools).toEqual(['Read']);
+    expect(options.allowedTools).toEqual(['Read']);
+    expect(options.disallowedTools).toContain('Agent');
+  });
+
   it('attaches a canUseTool callback backed by Chirality permission decisions', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-options-'));
     const writableProjectRoot = path.join(tmpDir, 'project');
@@ -297,6 +327,20 @@ describe('buildSdkOptions', () => {
     ).resolves.toMatchObject({
       behavior: 'deny',
       message: expect.stringContaining('requires application approval')
+    });
+
+    await expect(
+      askOptions.canUseTool?.(
+        'Agent',
+        { agent: 'TASK', prompt: 'run this' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_agent'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('hard-denied by the D-APP-09 Option B')
     });
 
     await expect(

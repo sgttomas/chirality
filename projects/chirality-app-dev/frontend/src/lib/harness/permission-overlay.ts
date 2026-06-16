@@ -192,10 +192,12 @@ export function resolveHarnessPermissionDecision(
     return createDecision(
       input,
       'deny',
-      'Subagent execution requires governed SDK agent definitions and fail-closed hooks.',
+      'Subagent execution is hard-denied by the D-APP-09 Option B non-executable bridge.',
       {
         hardDeny: true,
-        denyClass: 'subagent'
+        denyClass: 'subagent',
+        nonExecutableBridge: true,
+        requiresSubagentPreflight: true
       }
     );
   }

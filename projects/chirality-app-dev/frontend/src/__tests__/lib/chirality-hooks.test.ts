@@ -419,4 +419,49 @@ describe('Chirality write hooks', () => {
       denyClass: 'symlink-write'
     });
   });
+
+  it('blocks Agent before execution and records non-executable bridge metadata', async () => {
+    const preToolUse = getHooks().PreToolUse?.[0]?.hooks[0];
+
+    const result = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Agent',
+        tool_input: {
+          agent: 'TASK',
+          prompt: 'run this'
+        },
+        tool_use_id: 'tool_agent'
+      } as never,
+      'tool_agent',
+      { signal: new AbortController().signal }
+    );
+
+    expect(result).toMatchObject({
+      continue: false,
+      decision: 'block',
+      reason: expect.stringContaining('D-APP-09 Option B'),
+      hookSpecificOutput: {
+        hookEventName: 'PreToolUse',
+        permissionDecision: 'deny'
+      }
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'hook.started',
+      'hook.completed'
+    ]);
+    expect(replay.events[1].data).toMatchObject({
+      hookName: 'chirality.subagent.pre_tool_use',
+      decision: 'block',
+      descriptorName: 'agent',
+      safeMetadata: {
+        denyClass: 'subagent-execution',
+        executionPosture: 'hard-denied',
+        nonExecutableBridge: true,
+        requestedAgent: 'TASK'
+      }
+    });
+  });
 });

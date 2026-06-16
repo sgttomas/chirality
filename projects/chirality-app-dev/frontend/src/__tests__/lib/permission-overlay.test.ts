@@ -169,6 +169,14 @@ describe('permission overlay', () => {
       'subagent',
       'unknown-tool'
     ]);
+    expect(decisions[3]).toMatchObject({
+      reason: expect.stringContaining('D-APP-09 Option B')
+    });
+    expect(decisions[3].safeMetadata).toMatchObject({
+      hardDeny: true,
+      nonExecutableBridge: true,
+      requiresSubagentPreflight: true
+    });
   });
 
   it('keeps bypass mode subject to Chirality hard-deny rules', () => {

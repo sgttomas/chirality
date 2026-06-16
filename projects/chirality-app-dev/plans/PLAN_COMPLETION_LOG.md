@@ -6,6 +6,74 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Post-bridge R5 continuation packet prepared (`D-APP-10`)
+
+Prepared `D-APP-10` after `R5-BRIDGE-001` landed. The packet asks which post-bridge R5
+path is approved: lifecycle events only, non-executable scaffolding through bounded child
+output artifact references, executable child turn integration, a narrower custom
+continuation, or continued hold.
+
+`_DECISIONS/_REGISTER.md` now records `D-APP-10` as `AWAITING_RULING`. Until the human
+rules, R5 continuation beyond the landed non-executable bridge remains denied, including
+parent-child lifecycle event scaffolding beyond current preflight evidence, child output
+artifact reference semantics, model-visible SDK `Agent`, executable SDK `agents`, child
+turn execution, child output artifacts from executable child runs, child capability
+inheritance or expansion, concrete provider implementation, provider routing, network
+expansion, Pi runtime paths, dependency-register edits, project-wide strict
+dependency-closure claims, release-readiness claims, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, and
+professional-boundary claim changes.
+
+No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider
+implementation, network policy, tool exposure, package resources, release-readiness
+posture, or professional-boundary posture changed in this packet step.
+
+Validation for this packet step is docs/control-plane only; implementation validation
+belongs to whichever D-APP-10 option is later ruled.
+
+## 2026-06-16 - R5 non-executable subagent bridge landed (`R5-BRIDGE-001`)
+
+Landed the approved D-APP-09 Option B bridge through `R5-SLICE-003`. The runtime now builds
+inert SDK `agents` option-shape definitions only from already-delegated Type 2 candidates
+resolved by subagent governance, while keeping the SDK `Agent` tool out of model-visible
+`tools` / `allowedTools` and in `disallowedTools`.
+
+The bridge definitions are non-executable: they carry `tools: []`, descriptor-derived
+`disallowedTools` including `Agent`, `maxTurns: 0`, and `permissionMode: dontAsk`.
+Permission overlay hard-denies `Agent`, and the Chirality `PreToolUse` hook records
+`chirality.subagent.pre_tool_use` evidence before blocking Agent execution fail-closed.
+
+Executable child turns, model-visible executable SDK `Agent`, executable SDK `agents`, child
+output artifacts from executable child runs, child capability inheritance or expansion,
+concrete provider implementation, provider routing, network expansion, Pi runtime paths,
+dependency-register edits, project-wide strict dependency-closure claims, release-readiness
+claims, lifecycle issuance, professional approval, certification, sealing, authentication,
+code-compliance acceptance, and professional-boundary claim changes remain denied.
+
+Validation passed: focused R5 bridge suite
+`npm run test -- --run src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/subagent-bridge.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/tool-descriptor.test.ts`;
+`npm run typecheck`; full `npm run test`.
+
+## 2026-06-16 - D-APP-09 ruled Option B
+
+Human project authority approved `D-APP-09` Option B. A future tranche or sequence may
+implement approved non-executable bridge slices 001-003: child definition eligibility, SDK
+`agents` option-shape bridge, and Agent preflight/hook gate.
+
+The ruling requires SDK `Agent` to remain non-model-visible or hard-denied. Executable child
+turns, model-visible executable SDK `Agent`, executable SDK `agents`, child output artifacts
+from executable child runs, child capability inheritance or expansion, concrete provider
+implementation, provider routing, network expansion, Pi runtime paths, dependency-register
+edits, project-wide strict dependency-closure claims, release-readiness claims, lifecycle
+issuance, professional approval, certification, sealing, authentication, code-compliance
+acceptance, and professional-boundary claim changes remain denied.
+
+`_DECISIONS/_REGISTER.md` now records `D-APP-09` as `RULED`. The active plan selects
+`R5-BRIDGE-001` for implementation.
+
+Validation for this ruling-record step is docs/control-plane only; implementation validation
+belongs to `R5-BRIDGE-001`.
+
 ## 2026-06-16 - Post-design R5 slice-selection packet prepared (`D-APP-09`)
 
 Prepared `D-APP-09` after `R5-DESIGN-001` landed. The packet asks which post-design R5

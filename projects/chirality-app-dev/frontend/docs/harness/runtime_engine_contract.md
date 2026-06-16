@@ -149,7 +149,9 @@ exposure.
 Current posture:
 
 - executable delegation is blocked;
-- generated executable child definitions are contract-only future scope;
+- SDK `agents` option-shape definitions may be generated only as a non-executable bridge
+  for already-eligible delegated Type 2 candidates;
+- generated executable child definitions remain future scope;
 - Pi remains a pattern corpus / reference only, with no runtime dependency, adapter, fork,
   sidecar, package import, or spike;
 - concrete non-Anthropic provider routing remains blocked;
@@ -175,6 +177,17 @@ The prerequisite contract preserves these semantics before executable subagents 
   remain the provider-neutral runtime event categories for child-run lifecycle evidence;
 - completed executable child runs must carry an output artifact reference once execution is
   enabled.
+
+`R5-BRIDGE-001` implements the D-APP-09 Option B non-executable bridge through
+`R5-SLICE-003`: child eligibility remains governed by `evaluateSubagentGovernance`, SDK
+options can carry inert `agents` definitions for the delegated names, and the SDK `Agent`
+tool remains non-model-visible or hard-denied. Bridge definitions carry `tools: []`,
+descriptor-derived `disallowedTools` including `Agent`, `maxTurns: 0`, and
+`permissionMode: dontAsk`. The Agent `PreToolUse` hook records
+`chirality.subagent.pre_tool_use` evidence and blocks before execution. This bridge does not
+approve child turns, executable SDK `agents`, child output artifacts, capability
+inheritance, provider routing, network expansion, Pi runtime paths, dependency-register
+edits, project-wide dependency-closure claims, or release and professional-boundary claims.
 
 Claude Agent SDK `Agent` and SDK `agents` may remain the first adapter-specific substrate
 for a later implementation tranche, but neither SDK names nor Pi concepts define the

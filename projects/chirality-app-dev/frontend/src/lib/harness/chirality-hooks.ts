@@ -26,6 +26,7 @@ import {
   evaluateShellCommandPolicy
 } from './tool-shell-policy';
 import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
+import { evaluateSubagentPreflight } from './subagent-bridge';
 
 const WRITE_HOOK_TIMEOUT_SECONDS = 5;
 const SHELL_HOOK_TIMEOUT_SECONDS = 5;
@@ -65,11 +66,20 @@ function isShellDescriptor(descriptor: HarnessToolDescriptor | undefined): boole
   return Boolean(descriptor?.permissions.includes('shell'));
 }
 
-function isGovernedHookDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
-  return isWorkspaceWriteDescriptor(descriptor) || isShellDescriptor(descriptor);
+function isSubagentDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return Boolean(descriptor?.permissions.includes('subagent'));
 }
 
-function getHookFamily(descriptor: HarnessToolDescriptor | undefined): 'shell' | 'write' {
+function isGovernedHookDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return (
+    isWorkspaceWriteDescriptor(descriptor) || isShellDescriptor(descriptor) || isSubagentDescriptor(descriptor)
+  );
+}
+
+function getHookFamily(descriptor: HarnessToolDescriptor | undefined): 'shell' | 'write' | 'subagent' {
+  if (isSubagentDescriptor(descriptor)) {
+    return 'subagent';
+  }
   return isShellDescriptor(descriptor) ? 'shell' : 'write';
 }
 
@@ -228,6 +238,23 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
         }
       });
 
+      if (isSubagentDescriptor(descriptor)) {
+        const preflight = evaluateSubagentPreflight({
+          toolInput: readToolInput(preInput)
+        });
+
+        await appendHookEvent({
+          ...eventBase,
+          type: 'hook.completed',
+          data: {
+            decision: 'block',
+            reason: preflight.reason,
+            safeMetadata: preflight.safeMetadata
+          }
+        });
+        return blockPreToolUse(preflight.reason);
+      }
+
       if (isShellDescriptor(descriptor)) {
         const shellPolicy = await evaluateShellCommandPolicy({
           descriptor,
@@ -304,7 +331,7 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       });
       return allowPreToolUse();
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'unknown write hook failure';
+      const message = error instanceof Error ? error.message : 'unknown governed hook failure';
       try {
         await appendHookEvent({
           ...eventBase,
@@ -317,7 +344,7 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       } catch {
         // The pre-tool hook still fails closed if audit persistence is unavailable.
       }
-      return blockPreToolUse(`Chirality write hook failed closed. ${message}`);
+      return blockPreToolUse(`Chirality ${hookFamily} hook failed closed. ${message}`);
     }
   };
 

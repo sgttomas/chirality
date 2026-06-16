@@ -10,6 +10,7 @@ import {
   createChiralityReadMcpServers,
   filterChiralityMcpAllowedToolNames
 } from './mcp/read-tools';
+import { createNonExecutableSubagentBridge } from './subagent-bridge';
 
 export type SdkProbeOptions = Options & {
   settingSources: SettingSource[];
@@ -84,9 +85,14 @@ export function buildSdkOptions(input: {
   const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(
     toolPool.allowedToolNames
   );
+  const subagentBridge = createNonExecutableSubagentBridge({
+    session: input.session,
+    opts: input.opts
+  });
 
   return {
     abortController: input.abortController,
+    agents: subagentBridge?.agents,
     cwd: input.session.projectRoot,
     model: input.opts.model,
     maxTurns: input.opts.maxTurns,
