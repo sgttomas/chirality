@@ -6,6 +6,36 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Bounded executable R5 implementation decision packet prepared (`D-APP-08`)
+
+Prepared `D-APP-08` after `D-APP-07` ruled the residual six-node SCC non-blocking for
+bounded R5 dispatch selection. The packet asks whether to approve bounded executable R5
+implementation, approve a non-executable R5 bridge, require an implementation design
+package first, or continue to hold executable subagent capability.
+
+The tranche did not change runtime source, package manifests, dependencies, lockfiles,
+desktop wrapper behavior, provider scope, network policy, tool exposure, package resources,
+release readiness, lifecycle issuance, professional approval, certification, sealing,
+authentication, or code-compliance acceptance. `_DECISIONS/_REGISTER.md` now records
+`D-APP-08` as `AWAITING_RULING`; model-visible SDK `Agent`, executable SDK `agents`, child
+turn execution, child output artifacts, child capability inheritance, provider routing,
+network expansion, Pi runtime paths, project-wide closure claims, release-readiness claims,
+and professional-boundary changes remain denied until ruled.
+
+Residual: the latest dependency closure evidence still reports one six-node strict SCC, so
+project-wide strict dependency closure remains unclaimable. `D-APP-07` permits future R5
+selection without using that SCC as an R5 dispatch blocker, but it did not approve
+executable implementation.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-08|Bounded executable R5 implementation" execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the packet, register, plan, D-APP-05/D-APP-06/D-APP-07
+rulings, RECONCILIATION package, and runtime contract docs; decision-register ID uniqueness
+check; source/package exclusion check. Frontend runtime tests, typecheck, harness premerge,
+instruction-root integrity, build, packaging, network proof, and DMG checks were skipped
+because this tranche only prepared a decision packet and updated control-plane planning
+surfaces.
+
 ## 2026-06-16 - D-APP-07 ruled Option B
 
 Human project authority approved `D-APP-07` Option B. The residual six-node strict SCC
