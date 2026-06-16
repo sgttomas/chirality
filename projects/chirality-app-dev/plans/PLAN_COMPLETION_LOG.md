@@ -6,6 +6,35 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-15 - Residual SCC executable R5 implication decision packet prepared (`D-APP-07`)
+
+Prepared `D-APP-07` from the RECONCILIATION package's required `HR-001` human ruling.
+The packet asks whether the residual six-node strict SCC blocks executable R5 until closure
+or amendment, blocks only project-wide dependency-closure claims, or requires
+dependency/decomposition amendment before executable R5 can proceed.
+
+The tranche did not change runtime source, package manifests, dependencies, lockfiles,
+desktop wrapper behavior, provider scope, network policy, tool exposure, package resources,
+release readiness, lifecycle issuance, professional approval, certification, sealing,
+authentication, or code-compliance acceptance. `_DECISIONS/_REGISTER.md` now records
+`D-APP-07` as `AWAITING_RULING`; executable R5 remains held until a ruling lands.
+
+Residual: project-wide strict dependency closure remains unclaimable while the latest
+dependency-closure evidence reports one six-node SCC. No dependency-register amendment,
+cut, merge, decompose, invert, executable R5 implementation, SDK `Agent` exposure,
+executable SDK `agents`, child turn execution, child output artifacts, child capability
+inheritance, Pi runtime path, concrete provider, provider routing, network expansion,
+release-readiness claim, or professional-boundary claim was approved.
+
+Validation: docs/control-plane static checks only: `git diff --check -- execution/_Coordination/_DECISIONS plans`;
+`rg -n "D-APP-07|Residual SCC executable R5 implication" execution/_Coordination/_DECISIONS plans`;
+referenced-path existence checks for the packet, register, plan, RECONCILIATION package,
+human-ruling workbook, and dependency closure report; decision-register ID uniqueness
+check; source/package exclusion check. Frontend runtime tests, typecheck, harness premerge,
+instruction-root integrity, build, packaging, network proof, and DMG checks were skipped
+because this tranche only prepared a decision packet and updated control-plane planning
+surfaces.
+
 ## 2026-06-15 - Residual six-node SCC RECONCILIATION package prepared
 
 Prepared the RECONCILIATION longer-cycle ruling package required by `D-APP-06` for the
