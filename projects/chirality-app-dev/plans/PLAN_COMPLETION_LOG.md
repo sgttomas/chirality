@@ -1,10 +1,75 @@
 # Runtime Plan Completion Log
 
-This log preserves landed-tranche narrative for the active runtime completion plan, currently `plans/PLAN_2026-06-13_runtime_completion.md`.
+This log preserves landed-tranche narrative for retired runtime completion plan `plans/PLAN_2026-06-13_runtime_completion.md` and completed SCC-resolution plan `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 
 This file is history, not authority. Project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history. Nothing here is a lifecycle decision, release-readiness claim, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 
 ---
+
+## 2026-06-16 - SCC closeout landed (`SCC-CLOSEOUT-001`)
+
+Closed the residual six-node strict dependency SCC loop after accepted snapshot
+`execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
+proved strict `scc_count = 0`.
+
+Updated the active control-plane and workflow surfaces so they no longer carry the
+residual six-node SCC as a current project-wide dependency-closure warning. The plan now
+records `SCC-HUMAN-GATED-MOVES-001` as not required and `SCC-CLOSEOUT-001` as landed.
+
+No new broad runtime roadmap was selected, and the retired runtime completion plan was
+not revived. Dependency-closure evidence remains derivative evidence only; no product,
+runtime, release, lifecycle, professional, certification, sealing, authentication, or
+code-compliance approval changed.
+
+Validation: static control-plane checks, JSON manifest parse, accepted closure-summary
+assertions, and a fresh `analyze_dep_closure.py` rerun. Frontend/runtime tests were
+skipped because no runtime source changed.
+
+## 2026-06-16 - SCC closure audit accepted (`SCC-CLOSURE-AUDIT-001`)
+
+Reviewed `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
+after `SCC-SAFE-MOVES-001` and accepted it as the latest immutable
+dependency-closure snapshot for discovery.
+
+Accepted values from `Evidence/closure_summary.json`: `schema_invalid = 0`,
+`graph_edges = 97`, `scc_count = 0`, `bidirectional_pair_count = 0`, and
+`normalization_count = 0`. `Evidence/scc_summary.csv` contains only the header
+row.
+
+Validation reran `tools/coordination/analyze_dep_closure.py
+projects/chirality-app-dev/execution --output-dir /tmp/chirality_closure_audit_001`
+and again reported `SCCs (size > 1): 0`.
+
+Updated `execution/_Reconciliation/DepClosure/_LATEST.md` to
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
+
+Residual handoff: `SCC-CLOSEOUT-001` remains required before removing broader
+control-plane residual-SCC warnings. Frontend/runtime tests were skipped because
+this tranche changed only dependency-closure evidence and planning pointers.
+
+## 2026-06-16 - Six-node SCC safe moves landed (`SCC-SAFE-MOVES-001`)
+
+Implemented the first tranche of `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
+The tranche applied source-grounded `decompose` moves to six cycle-participating rows:
+`DEP-03-01-005`, `DEP-03-03-006`, `DEP-04-03-008`, `DEP-04-03-009`,
+`DEP-04-03-010`, and `DEP-05-02-011`.
+
+No dependency row was retired, marked out-of-objective, merged, or cut. Hard prerequisite
+and mapper/event-interface rows were preserved.
+
+Validation passed: `tools/validation/validate_dependencies_schema.py` for all four
+touched `Dependencies.csv` files; `tools/coordination/analyze_dep_closure.py
+projects/chirality-app-dev/execution --output-dir
+projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Evidence`
+reported `SCCs (size > 1): 0`.
+
+Snapshot report:
+`execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md`.
+
+Residual handoff: `SCC-CLOSURE-AUDIT-001` must review and accept or reject the fresh
+snapshot before updating `execution/_Reconciliation/DepClosure/_LATEST.md` or removing
+the control-plane SCC warning. Frontend/runtime tests were skipped because no runtime
+source changed.
 
 ## 2026-06-16 - R5 executable child turn integration landed (`R5-EXEC-001`)
 
@@ -741,7 +806,7 @@ Accepted `SCA-APP-001 Provider-General Runtime and Pi Pattern-Corpus Reorientati
 
 The amendment records provider-adapter generality as the strategic runtime direction, keeps Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path, treats Pi as pattern corpus/reference only, and reframes permission governance as capability-forward, policy-mediated, and evidence-recorded tool use with explicit hard-deny precedence.
 
-D-APP-01, D-APP-02, and D-APP-03 are now RULED in `execution/_Coordination/_DECISIONS/_REGISTER.md`. The active completion plan no longer selects Pi adapter/spike work.
+D-APP-01, D-APP-02, and D-APP-03 are now RULED in `execution/_Coordination/_DECISIONS/_REGISTER.md`. The then-active completion plan no longer selected Pi adapter/spike work.
 
 Execution deliverable `_CONTEXT.md` files for affected PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 deliverables were aligned with SCA context. Their local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, dependency, and reference artifacts remain explicit follow-up review surfaces.
 
@@ -773,7 +838,7 @@ Validation details are not restated in the compact coordination state; use the c
 
 Added product-owned `TurnEngine` lifecycle ownership for pre-stream turn preflight, same-session locking, attachment/governance shaping, adapter stream execution, session metadata persistence, cancellation delegation, and mid-stream terminal error mapping.
 
-The tranche preserved `/api/harness/turn` SSE behavior. Residual: continue extracting policy from route-owned surfaces only where planned by the active runtime completion plan.
+The tranche preserved `/api/harness/turn` SSE behavior. Residual: continue extracting policy from route-owned surfaces only where selected by a later active plan.
 
 Validation details are not restated in the compact coordination state; use the commit and associated test history as the evidence pointer.
 

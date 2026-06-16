@@ -1,16 +1,18 @@
 # Chirality App Runtime Completion Plan
 
 **Date:** 2026-06-13
-**Epistemic status:** PROPOSAL (non-governing)
+**Epistemic status:** RETIRED / SUPERSEDED as active queue (historical, non-governing)
 **Product:** Chirality desktop harness and bundled agent operating system
+**Superseded on:** 2026-06-16
+**Replacement active plan:** `plans/PLAN_2026-06-16_six_node_scc_resolution.md`
 
-This plan is the active app-dev tranche-selection surface for governed harness-runtime work. It proposes a route from the current runtime integration state to the runtime direction defined by `docs/PRD.md`, the strategic roadmap in `docs/PLAN.md`, and accepted scope-change records.
+This plan is retained as historical completion evidence for governed harness-runtime work that landed through `R5-EXEC-001`. It is no longer the active app-dev tranche-selection surface. The active development loop now uses `plans/PLAN_2026-06-16_six_node_scc_resolution.md` to resolve the residual six-node strict dependency SCC before any new broad runtime roadmap is selected.
 
 This plan does not change product requirements, lifecycle state, release readiness, professional approval, certification, sealing, authentication, or code-compliance posture. Project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history. Humans decide all gates.
 
 ## Plan Maintenance
 
-This plan is a selection instrument, not a history. When an item lands, compress its row to one line with:
+While active, this plan was a selection instrument, not a history. Its landed rows are retained for traceability; new active planning belongs in `plans/PLAN_2026-06-16_six_node_scc_resolution.md`. When historical rows were landed, they were compressed to one line with:
 
 - `LANDED <date>`;
 - tranche id, or commit when no tranche id exists;

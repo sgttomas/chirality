@@ -32,10 +32,10 @@ Ordinary agentic work enters through:
 1. `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`;
 2. `execution/_Coordination/_COORDINATION.md`;
 3. `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`;
-4. `plans/PLAN_2026-06-13_runtime_completion.md`;
+4. `plans/PLAN_2026-06-16_six_node_scc_resolution.md`;
 5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 
-The active completion plan is the ordinary tranche-selection surface. `docs/PLAN.md` remains strategic roadmap context. Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`, including dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`; there is no active `NEXT_INSTANCE_STATE.md`.
+The SCC-resolution plan is completed and records closure of the residual six-node SCC. `docs/PLAN.md` remains strategic roadmap context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history. Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`, including dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`; there is no active `NEXT_INSTANCE_STATE.md`.
 
 ## How Agents Should Use This Package
 
@@ -48,4 +48,4 @@ The active completion plan is the ordinary tranche-selection surface. `docs/PLAN
 
 ## Status
 
-The active runtime completion plan is `plans/PLAN_2026-06-13_runtime_completion.md`. Current runtime implementation truth remains in source, tests, validation artifacts, and git history. Current coordination state is discovered rather than tracked in a separate next-instance state file.
+The completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`; no new broad runtime roadmap has been selected. Current runtime implementation truth remains in source, tests, validation artifacts, and git history. Current coordination state is discovered rather than tracked in a separate next-instance state file.

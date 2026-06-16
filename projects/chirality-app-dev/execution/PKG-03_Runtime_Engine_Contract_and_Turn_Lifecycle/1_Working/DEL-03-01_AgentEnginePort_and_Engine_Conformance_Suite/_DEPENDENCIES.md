@@ -29,6 +29,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - [WARNING] REF-006_HASH_MISMATCH: `_REFERENCES.md` reports `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived dependency evidence remains active but requires human confirmation before acceptance closure.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` anchor was recorded.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` anchor was recorded.
+- 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-03-01-005` from a coarse deliverable edge into document-scoped conformance/interface evidence; the row remains active and in objective.
 
 ## Extracted Dependency Register
 
@@ -40,7 +41,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-03-01-002 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Runtime architecture objective | ACTIVE | SATISFIED |
 | DEP-03-01-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | ACTIVE | PENDING |
 | DEP-03-01-004 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-03-01-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE | PENDING |
+| DEP-03-01-005 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT DEL-03-03-SPEC-SCOPE Harness API/SSE compatibility adapter scope | ACTIVE | PENDING |
 | DEP-03-01-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE | PENDING |
 | DEP-03-01-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-01-02 Reliance Boundary Register | ACTIVE | PENDING |
 | DEP-03-01-008 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | PENDING |

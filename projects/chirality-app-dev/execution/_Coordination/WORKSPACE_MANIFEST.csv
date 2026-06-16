@@ -12,7 +12,8 @@ build_release,docs/BUILD_AND_RELEASE.md,Build and release evidence guide
 agentic_workflow,docs/AGENTIC_DEVELOPMENT_WORKFLOW.md,Agentic workflow guide
 docs_readme,docs/README.md,Docs package index
 docs_manifest,docs/MANIFEST.json,Machine-readable docs index
-runtime_completion_plan,plans/PLAN_2026-06-13_runtime_completion.md,Active non-governing runtime tranche-selection plan
+scc_resolution_plan,plans/PLAN_2026-06-16_six_node_scc_resolution.md,Completed non-governing SCC-resolution tranche-selection plan
+runtime_completion_plan_retired,plans/PLAN_2026-06-13_runtime_completion.md,Retired runtime completion history
 runtime_completion_log,plans/PLAN_COMPLETION_LOG.md,Landed runtime-tranche narrative history
 scope_change_latest,execution/_ScopeChange/_LATEST.md,Latest scope-change pointer
 dependency_closure_latest,execution/_Reconciliation/DepClosure/_LATEST.md,Dependency/SCC closure discovery pointer

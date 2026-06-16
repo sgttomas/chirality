@@ -8,10 +8,14 @@ Active coordination surfaces:
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
 
-Active planning and history surfaces:
+Completed planning and history surfaces:
 
-- `plans/PLAN_2026-06-13_runtime_completion.md`
+- `plans/PLAN_2026-06-16_six_node_scc_resolution.md`
 - `plans/PLAN_COMPLETION_LOG.md`
+
+Retired planning/history surfaces:
+
+- `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
 
 Active scope-change surfaces:
 

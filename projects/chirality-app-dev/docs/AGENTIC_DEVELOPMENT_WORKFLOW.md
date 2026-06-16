@@ -7,7 +7,7 @@
 
 ## 1. Purpose
 
-This document maps how agentic development moves through the app-dev governance surfaces. It explains the current workflow; it does not replace `AGENTS.md`, `agents/AGENT_*.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PRD.md`, `docs/PLAN.md`, `execution/_Coordination/_COORDINATION.md`, the active completion plan, accepted execution artifacts, source, tests, decision records, or human project-authority instructions.
+This document maps how agentic development moves through the app-dev governance surfaces. It explains the current workflow; it does not replace `AGENTS.md`, `agents/AGENT_*.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PRD.md`, `docs/PLAN.md`, `execution/_Coordination/_COORDINATION.md`, accepted execution artifacts, source, tests, decision records, planning records, or human project-authority instructions.
 
 If this map conflicts with a governing document, active coordination record, selected tranche brief, human ruling, or source/test evidence, stop and surface the conflict.
 
@@ -30,7 +30,8 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
 | `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
 | `execution/_Reconciliation/DepClosure/_LATEST.md` and latest DepClosure snapshot | Dependency/SCC discovery evidence. | Snapshot evidence informs blocker analysis; it does not replace decomposition truth or plan selection. |
-| `plans/PLAN_2026-06-13_runtime_completion.md` | Active non-governing tranche-selection surface. | Orders work; does not change product requirements or release posture. |
+| `plans/PLAN_2026-06-16_six_node_scc_resolution.md` | Completed non-governing SCC-resolution tranche-selection surface. | Records SCC-resolution work; does not change product requirements, decomposition truth, or release posture. |
+| `plans/PLAN_2026-06-13_runtime_completion.md` | Retired runtime completion history. | Records landed runtime-spine work; it is not the active queue. |
 | `plans/PLAN_COMPLETION_LOG.md` | Landed-tranche narrative history. | History only; not project truth or approval. |
 | `execution/_Coordination/_DECISIONS/_REGISTER.md` | Human-gated decision-packet status and rulings. | Agents prepare packets; humans rule. |
 | `frontend/docs/harness/runtime_engine_contract.md` | Current runtime adapter, event, session, and tool-descriptor contract posture. | Does not override higher governance or active plan staging. |
@@ -38,12 +39,14 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 
 ## 3. Current Development Posture
 
-The current default work mode is bounded app-integration tranches for the Chirality harness runtime. The active completion plan has:
+The current default work mode is bounded app-integration tranches. The residual six-node strict dependency SCC is closed by accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`; no new broad runtime roadmap has been selected. The completed SCC-resolution plan has:
 
-- a runtime dependency spine currently landed through **R4 Bash prerequisites and controlled Bash implementation**, with remaining capability expansion and provider broadening behind future tranches and human gates; and
-- a governance support lane that records the landed planning, validation, release, workflow documentation, state-file retirement, and scope-change closure-support tranches.
+- a safe-move tranche for source-grounded decompose/invert dependency-row moves;
+- a required fresh dependency-closure audit after the safe-move tranche;
+- a human-gated move packet if cut, merge, or objective-dependent rulings are needed; and
+- a closeout tranche that recorded strict acyclicity and updated control-plane handoff state.
 
-Select exactly one tranche unless the human explicitly approves batching. Tranches selected from unblocked plan rows are pre-approved for execution within their stated write scope. Stop when further progress requires a human ruling.
+Select exactly one tranche unless the human explicitly approves batching. Tranches selected from unblocked plan rows are pre-approved for execution within their stated write scope. Stop when further progress requires a human ruling. Do not return to the retired runtime completion plan for new implementation work, and do not invent a replacement active queue when the SCC plan has no remaining unblocked items.
 
 ## 4. Phase-Aware Loop
 
@@ -52,22 +55,23 @@ Select exactly one tranche unless the human explicitly approves batching. Tranch
 | Governance baseline | What must remain true? | Governance doc or decomposition update. | Authority hierarchy, invariant clarity, project-truth boundaries, human gates. |
 | Runtime integration | What runtime capability should become real next? | Narrow app/runtime slice. | Product-owned contract, SDK isolation, event evidence, tests, and premerge validation. |
 | Permission/tool expansion | What can the model see or do? | Permission/tool tranche. | Deny-first posture, descriptor metadata, hooks, MCP wrappers, result evidence. |
+| SCC resolution | Which cycle-participating dependency rows can be resolved by recorded moves? | Decompose/invert row tranche, closure audit, or human-gated move packet. | Objective-scoped graph semantics, no silent linearization, immutable closure snapshots. |
 | Build and release evidence | What proves software-quality posture? | Docs, validation, packaging, or evidence tranche. | Evidence routing, package integrity, release-quality gates, no release claims. |
 | Domain-engine future scope | How will Chirality govern domain truth without owning it? | Decision packet, profile, adapter, or proposal workflow. | Protected paths, operation proposals, deterministic checks, human acceptance. |
 
-The current phase is runtime integration. The first governance-support alignment wave is complete unless the human selects another governance tranche. Formal lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain separate human-governed states.
+The current phase is post-SCC-plan handoff. Runtime integration through the retired completion plan is landed through `R5-EXEC-001`; future broad runtime roadmap work waits until the human selects a new governed plan. Formal lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain separate human-governed states.
 
 ## 5. Standard Session Flow
 
 1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
-2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, the active completion plan, and the decision register.
+2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, the current selected plan, and the decision register.
 3. Discover current state from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, source, tests, validation evidence, and git history.
 4. Read authority and implementation-reference files needed for the selected tranche.
 5. Record `git status --short` before planning or edits.
 6. Select the earliest unblocked active-plan item unless the human has explicitly selected a tranche.
 7. Keep writes scoped to the tranche.
 8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
-9. Update affected completion-plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
+9. Update affected SCC-resolution plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
 10. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
 11. `CHANGE` commits and pushes validated work as the ordinary terminal action when validation and git state allow closeout.
 
@@ -91,7 +95,7 @@ A valid closeout identifies:
 - validation performed, including skipped checks and reasons;
 - files changed;
 - decision packets or human rulings pending;
-- next unblocked active-plan item;
+- next unblocked SCC-resolution plan item, or state that no SCC-resolution item remains;
 - `CHANGE` closeout result, including commit and push result when completed.
 
 For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.

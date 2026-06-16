@@ -64,7 +64,7 @@ Machine-readable artifacts are preferred when available:
 - harness premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - test command output captured in terminal or run records when required by a tranche;
-- plan/log closeout pointers in `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md`.
+- plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.
 
 Evidence artifacts are derivative records. They support review and regression analysis, but they do not become decomposition truth, product requirements, lifecycle approval, release authorization, or professional acceptance.
 
