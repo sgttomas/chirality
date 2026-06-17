@@ -10,7 +10,7 @@ Active coordination surfaces:
 
 Active development queue:
 
-- None selected. The next active plan must be selected by the human.
+- `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (R6 Extensibility & MCP Boundary Maturity program, R6-01..R6-05; accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`).
 
 Completed planning and history surfaces:
 
