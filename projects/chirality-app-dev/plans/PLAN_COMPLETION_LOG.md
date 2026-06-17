@@ -6,6 +6,49 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - R6 generated tool catalog landed (`R6-02`)
+
+Landed the R6 generated tool catalog tranche. This tranche exposes no new runtime,
+provider, network, plugin, remote-MCP, or domain-tool capability; it makes the existing
+descriptor registry legible as a regenerable governance/runtime support artifact.
+
+Runtime validation changes:
+
+- Added `frontend/src/lib/harness/tool-catalog.ts`, a renderer derived from
+  `HARNESS_TOOL_DESCRIPTORS`.
+- Added `npm run harness:generate-tool-catalog`, backed by
+  `frontend/scripts/generate-tool-catalog.mjs`, to write or check the committed catalog.
+- Committed generated `frontend/docs/harness/tool_catalog.md` with descriptor name,
+  adapter name, description, surface, permissions, path scope, modes, idempotence,
+  concurrency, human-gate, hook requirements, and model-exposure status.
+- Documented the `mcp__chirality__*` naming convention and reserved
+  `mcp__chirality__domain_*` for the future governed domain-profile amendment.
+- Recorded the SDK `Agent` exposure exception: the descriptor remains not exposed by
+  default, and `buildSdkOptions` may add `Agent` only when the governed subagent bridge
+  allows it.
+- Added `tool-catalog.test.ts` to assert the committed catalog matches regenerated output
+  and enumerates each descriptor exactly once.
+
+Validation passed: generator freshness check
+`node scripts/generate-tool-catalog.mjs --check`; focused catalog/descriptor suite
+`npm run test -- --run src/__tests__/lib/tool-catalog.test.ts
+src/__tests__/lib/tool-descriptor.test.ts` (2 files, 12 tests); full `npm run test`
+(53 files, 381 tests); `npm run typecheck`; `git diff --check`; path existence checks for
+the generated catalog, descriptor source, and `docs/TYPES.md`; and targeted `rg` checks
+for the regeneration command, generated-doc warning, no-release/professional-approval
+boundary, and reserved domain namespace.
+
+Skipped checks: `npm run harness:validate:premerge`, `npm run instruction-root:integrity`,
+`npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`, and
+`npm run desktop:dist` were skipped because R6-02 changed only catalog generation,
+catalog documentation, tests, and package script metadata. It did not change harness
+workflow behavior, instruction-root packaging, provider scope, outbound network, package
+layout, or release posture.
+
+Residual handoff: R6-03 is the next required tranche. It should consume the collision
+invariant and generated catalog to document the contributor path for adding governed
+tools without bypassing permissions, hooks, path policy, redaction, or event logging.
+
 ## 2026-06-17 - R6 collision-prevention invariant landed (`R6-01`)
 
 Landed the first R6 Extensibility & MCP Boundary Maturity tranche accepted by D-APP-14.
