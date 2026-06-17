@@ -57,7 +57,13 @@ The approved vNext direction is:
 
 > **Provider-adapter-general, contract-owned, and Chirality-governed.**
 
-Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter and current shipped path. Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
+Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter and is shipped as the opt-in `agentSdk` probe path; D-APP-12 Option B holds the default-provider cutover. Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
+
+2026-06-17 stabilization note: R0-R5 roadmap text below is retained as strategic history.
+Runtime Stabilization landed the runtime spine, validation surface, persona composer,
+mutating Chirality MCP exposure, and no-live packaged SDK resolver/HOME evidence. Active
+implementation no longer proceeds from these roadmap rows unless a new governed plan
+selects that work.
 
 Chirality owns:
 
@@ -142,9 +148,9 @@ Implementation targets:
 - Add `session-events.ts`.
 - Add `event-schema.ts`.
 - Add `run-logger.ts`.
-- Add `persona-composer.ts` or replacement for stub persona prompt manager.
+- Add `PersonaComposer` or equivalent governed prompt composer.
 - Add `sdk-session-link.ts` for `sdkSessionId`, transcript/store linkage, and resume.
-- Wire `CHIRALITY_HARNESS_PROVIDER=anthropic` to SDK-backed path while preserving stub tests.
+- Wire `CHIRALITY_HARNESS_PROVIDER=agentSdk` to the opt-in SDK-backed path while preserving stub tests and leaving default cutover gated by D-APP-12.
 - Ensure shipped SDK options use `settingSources: []`.
 - Supply API key to SDK only for active turn and redact logs/events.
 
@@ -457,7 +463,7 @@ Create the R0/R1 implementation plan before code changes:
 This plan remains acceptable only if:
 
 - the first slice remains R0/R1 runtime contract + first-adapter probe + TurnEngine + event log + prompt composer + settings isolation;
-- Claude Agent SDK / Anthropic remains the first adapter and current shipped path while provider-adapter generality remains the strategic architecture;
+- Claude Agent SDK / Anthropic remains the first adapter and opt-in `agentSdk` probe path while provider-adapter generality remains the strategic architecture;
 - no write/bash/subagent/domain capability is exposed before permission, hooks, result storage, and event logging pass validation;
 - roadmap order stays clear: provider-adapter runtime spine before tool expansion, read before writes/bash, domain after core harness stability;
 - runtime event logging does not reactivate retired pipeline run-record scope;
@@ -469,4 +475,4 @@ This plan remains acceptable only if:
 
 | Scope Change | Date | Effect |
 |---|---|---|
-| `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter and current shipped path, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. |
+| `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |

@@ -6,9 +6,10 @@ This contract defines Chirality's product-owned turn boundary for harness runtim
 It applies to the deterministic stub adapter, the existing direct Anthropic Messages adapter,
 and the Claude Agent SDK / Anthropic first-adapter path.
 
-SCA-APP-001 establishes a provider-adapter-general runtime strategy. The current Claude
-Agent SDK / Anthropic path remains the first concrete adapter and current shipped path;
-concrete non-Anthropic providers require bounded future implementation scope.
+SCA-APP-001 establishes a provider-adapter-general runtime strategy. The Claude Agent SDK
+/ Anthropic path remains the first concrete adapter and opt-in `agentSdk` probe path;
+D-APP-12 Option B holds the default-provider cutover. Concrete non-Anthropic providers
+require bounded future implementation scope.
 
 The browser-facing event stream remains the stable public contract. Provider and SDK message
 names, transcript paths, session IDs, tool names, and permission modes are adapter metadata

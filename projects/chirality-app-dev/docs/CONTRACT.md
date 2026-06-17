@@ -51,7 +51,7 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 | **K-CORE-1** | Core runtime APIs, events, tests, and records use Chirality terms. Provider/SDK-specific terms are translated at adapter boundaries. | `EngineAdapter`; event-schema tests; API review. |
 | **K-ENGINE-1** | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`; provider and SDK APIs do not define public harness semantics. | Runtime contract docs; engine conformance tests; adapter boundary. |
 | **K-ENGINE-2** | Any provider/SDK-backed adapter must pass engine conformance tests before becoming the default production path. | `EngineConformanceSuite`; Section 9 validation; CI. |
-| **K-ENGINE-3** | External SDKs and providers are implementation substrates behind Chirality adapters, not product identity or governance authority. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. | DIRECTIVE; PRD; product copy review; adapter implementation. |
+| **K-ENGINE-3** | External SDKs and providers are implementation substrates behind Chirality adapters, not product identity or governance authority. Claude Agent SDK / Anthropic is the first concrete adapter and opt-in `agentSdk` probe path; default-provider cutover remains human-gated by D-APP-12. | DIRECTIVE; PRD; product copy review; adapter implementation. |
 | **K-ENGINE-4** | Public APIs, `UIEvent`, `HarnessEvent`, session storage, permission decisions, and governance records must not become provider/SDK-shaped except as adapter metadata. | Type tests; mapper tests; event-schema review. |
 | **K-ENGINE-5** | A governed fallback/custom-runtime path must remain available if a product-critical boundary cannot be satisfied or verified through the current adapter. | R0/R1 adapter probe; reliance-boundary register; plan updates. |
 | **K-RELIANCE-1** | Product-critical safety, audit, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundaries must be mapped in the reliance-boundary register. | R0/R1 deliverables; conformance tests; governance review. |
@@ -182,4 +182,4 @@ No invariants are retired in this vNext rewrite.
 
 | Scope Change | Date | Effect |
 |---|---|---|
-| `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter and current shipped path, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. |
+| `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |

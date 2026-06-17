@@ -123,6 +123,7 @@ Required evidence:
 - `npm run build`;
 - `npm run desktop:pack` for package-layout changes;
 - `npm run desktop:dist` for DMG/distribution changes or release-candidate review;
+- `npm run harness:validate:agentsdk-packaged-proof` when packaged SDK subprocess resolver or transcript/HOME posture is in scope;
 - generated artifact path, checksum when applicable, signing/notarization state, and known limitations.
 
 Current release target remains macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless a governed amendment changes it.

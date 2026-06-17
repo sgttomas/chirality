@@ -32,10 +32,16 @@ Ordinary agentic work enters through:
 1. `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`;
 2. `execution/_Coordination/_COORDINATION.md`;
 3. `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`;
-4. `plans/PLAN_2026-06-16_six_node_scc_resolution.md`;
+4. `execution/_Coordination/_LATEST.md`;
 5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 
-The SCC-resolution plan is completed and records closure of the residual six-node SCC. `docs/PLAN.md` remains strategic roadmap context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history. Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`, including dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`; there is no active `NEXT_INSTANCE_STATE.md`.
+The Runtime Stabilization plan and SCC-resolution plan are completed closed history.
+`docs/PLAN.md` remains strategic roadmap context, and
+`plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
+There is currently no active development queue selected; the next active plan must be
+selected by the human. Current state is discovered from the authoritative surfaces named
+by `_COORDINATION.md`, including dependency/SCC snapshots under
+`execution/_Reconciliation/DepClosure/**`; there is no active `NEXT_INSTANCE_STATE.md`.
 
 ## How Agents Should Use This Package
 
@@ -48,4 +54,8 @@ The SCC-resolution plan is completed and records closure of the residual six-nod
 
 ## Status
 
-The completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`; no new broad runtime roadmap has been selected. Current runtime implementation truth remains in source, tests, validation artifacts, and git history. Current coordination state is discovered rather than tracked in a separate next-instance state file.
+The completed stabilization surface is `plans/PLAN_2026-06-16_runtime_stabilization.md`;
+the completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
+No replacement active queue has been selected. Current runtime implementation truth
+remains in source, tests, validation artifacts, and git history. Current coordination
+state is discovered rather than tracked in a separate next-instance state file.
