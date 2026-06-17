@@ -601,7 +601,8 @@ interface AgentEnginePort {
 - `EngineAdapter` MUST translate external message names, external session IDs, external tool names, external permission modes, external transcript paths, and external hook names into Chirality-owned contracts.
 - Provider-specific values MAY be retained under explicit adapter metadata fields.
 - Any provider/SDK-backed adapter MUST pass engine conformance tests before production default use.
-- The current Claude Agent SDK / Anthropic adapter is the first concrete adapter and current shipped path.
+- The Claude Agent SDK / Anthropic adapter is the first concrete adapter and opt-in
+  `agentSdk` probe path; default-provider cutover remains gated by D-APP-12.
 - Stub adapter remains available for deterministic tests.
 
 ### 10.4 Thin Route Rule
@@ -635,7 +636,7 @@ Rules:
 
 ### 12.1 Adapter Position
 
-Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path, subject to R0/R1 empirical verification and ongoing conformance tests. Concrete non-Anthropic providers require bounded future implementation scope.
+Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and opt-in `agentSdk` probe path, subject to ongoing conformance tests and D-APP-12 default-provider rulings. Concrete non-Anthropic providers require bounded future implementation scope.
 
 ### 12.2 Shipped First-Adapter Settings Isolation
 
@@ -925,9 +926,9 @@ For macOS DMG:
 - app resources contain required instruction-root assets;
 - working-root selector is available;
 - current loopback plus Anthropic network guardrails remain in force;
-- first-adapter SDK-backed turn can start in packaged app after R1;
+- no-live first-adapter SDK resolver/HOME proof passes from package layout and mounted DMG;
 - SDK subprocess/binary is executable from package layout;
-- SDK transcript storage/mirroring follows accepted R1 decision.
+- live packaged provider turn and transcript creation remain unapproved until a later ruling.
 
 ---
 

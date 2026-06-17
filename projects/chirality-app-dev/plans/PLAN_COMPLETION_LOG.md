@@ -6,6 +6,39 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - Runtime stabilization governance refresh landed (`STAB-06`)
+
+Recorded the D-APP-12 Option B ruling after the STAB-02(d) no-live packaged proof and
+closed the Runtime Stabilization program as completed history. This does not change the
+default provider: `agentSdk` remains opt-in, and live packaged provider behavior remains
+unproven unless a future ruling authorizes that proof.
+
+Governance/control-plane changes:
+
+- Added `execution/_Coordination/_DECISIONS/D-APP-12_RULING_STAB02D_PROOF_2026-06-17.md`.
+- Updated `_DECISIONS/_REGISTER.md` to mark D-APP-12 as `RULED` with the new ruling.
+- Applied STAB-00 factual corrections and dated supersession notes to PRD, PLAN, SPEC,
+  DIRECTIVE, CONTRACT, and the runtime engine contract.
+- Updated docs workflow/index surfaces to record that Runtime Stabilization and the SCC
+  plan are completed closed history.
+- Refreshed `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, and `_LATEST.md` so future
+  instances stop when no active development queue is selected.
+- Marked `plans/PLAN_2026-06-16_runtime_stabilization.md` completed/closed and compressed
+  STAB-06 to a landed row.
+
+Validation passed: `git diff --check`; targeted stale-reference searches for active queue,
+default-provider, D-APP-12, `current shipped path`, `CHIRALITY_HARNESS_PROVIDER=anthropic`,
+and persona-stub wording; path existence checks for the new D-APP-12 ruling and referenced
+closed plans; JSON parse of `docs/MANIFEST.json`.
+
+Skipped checks: frontend runtime tests, typecheck, premerge, package, and network proofs
+were skipped because STAB-06 changed only governance/control-plane/docs files and did not
+change executable runtime behavior.
+
+Residual handoff: no active development queue is selected. A future live packaged
+`agentSdk` proof, default-provider cutover, provider expansion, or new runtime roadmap
+requires a new human-selected plan or ruling.
+
 ## 2026-06-17 - Runtime stabilization packaged SDK no-live proof landed (`STAB-02d`)
 
 Landed the non-live packaged resolver/HOME proof harness allowed by the D-APP-12 Option B

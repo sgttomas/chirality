@@ -113,7 +113,7 @@ The instruction root defines how agents should behave. The working root contains
 
 ### 2.8 Provider-Adapter-General, Contract-Owned, Chirality-Governed
 
-Chirality should use a provider-adapter runtime architecture for generic agent-loop mechanics where an external provider or SDK satisfies Chirality requirements behind product-owned contracts. The Claude Agent SDK / Anthropic path is the first concrete adapter and current shipped path. Provider/SDK adapters may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
+Chirality should use a provider-adapter runtime architecture for generic agent-loop mechanics where an external provider or SDK satisfies Chirality requirements behind product-owned contracts. The Claude Agent SDK / Anthropic path is the first concrete adapter and opt-in `agentSdk` probe path; D-APP-12 Option B holds the default-provider cutover. Provider/SDK adapters may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
 
 Provider/SDK adapters do not own Chirality’s product contract. Chirality owns:
 
