@@ -6,6 +6,442 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-16 - Runtime stabilization packaged SDK layout proof partial (`STAB-02d`)
+
+Recorded the D-APP-12 Option B hold ruling and continued STAB-02(d) without changing the
+default provider.
+
+Runtime validation changes:
+
+- Added Electron `asarUnpack` coverage for the Claude Agent SDK package and SDK platform
+  packages.
+- Extended `instruction-root:integrity` so packaged bundles fail if the SDK JS package or
+  native darwin-arm64 CLI package is missing from `app.asar.unpacked`.
+- The verifier accepts the resolver-visible nested platform package location observed in
+  the packaged app:
+  `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64`.
+- Launched the directory build, confirmed packaged renderer/API reachability, created a
+  packaged harness session, and ran packaged boot without invoking a live SDK turn.
+- Built the DMG, mounted it read-only, and reran the SDK/instruction-root integrity check
+  against the mounted app Resources directory.
+- Prepared an updated D-APP-12 packet preserving the default-provider hold.
+
+Validation passed: focused package-policy/integrity suite
+`npm run test -- src/__tests__/scripts/dmg-packaging-policy.test.ts
+src/__tests__/scripts/verify-instruction-root-integrity.test.ts` (2 files, 9 tests);
+`npm run desktop:pack`; `npm run desktop:dist`; mounted-DMG integrity check with
+`npm run instruction-root:integrity -- --bundle-root '/Volumes/Chirality
+0.1.0-arm64/Chirality.app/Contents/Resources' --output-root
+artifacts/harness/instruction-root-integrity/dmg-mounted-2026-06-16`;
+`npm run harness:validate:agentsdk-dev-turn`; `npm run typecheck`; full
+`npm run test` (51 files, 372 tests); `npm run harness:validate:premerge` after starting
+the local Next server on port 3000 (`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks,
+Section 9 report-only 13 checks); and `npm run instruction-root:integrity`.
+
+Additional evidence: a shortened scripted agentSdk network proof passed with
+`npm run proof:network-policy -- --provider agentSdk --scripted-agent-sdk --runs 1
+--idle-seconds 5 --idle-sample-seconds 5 --output-dir
+artifacts/harness/network-policy-agentSdk-short-2026-06-16`.
+
+Skipped/blocked checks: the exact default-duration
+`npm run proof:network-policy -- --provider agentSdk --scripted-agent-sdk` was started
+and then stopped because its defaults are three 10-minute idle windows. A packaged
+read-tool `agentSdk` turn was not run because no live-provider proof was explicitly
+approved and the packaged app can load a stored API key from the Electron profile; the
+existing scripted SDK mode is development/test-only and would bypass native CLI
+resolution. Transcript/HOME behavior remains unproven.
+
+Residual handoff: STAB-02(d) remains partial. D-APP-12 remains blocked for default
+cutover until either a live packaged read-tool turn is explicitly approved and recorded,
+or a separate non-live packaged resolver/HOME proof harness lands and is accepted.
+
+## 2026-06-16 - Runtime stabilization mutating Chirality MCP landed (`STAB-04`)
+
+Landed D-APP-13 Option A: bounded local mutating Chirality MCP exposure for
+`mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
+
+Runtime validation changes:
+
+- Added the D-APP-13 ruling record and moved D-APP-13 to `RULED`.
+- Added mutating MCP descriptors and allowed tool-name plumbing for `status_transition`
+  and `deps_write`.
+- Changed SDK MCP server construction so the local `chirality` server includes only
+  explicitly allowed Chirality MCP handlers; mutating handlers are unavailable unless
+  requested and allowed in `workspaceWrite`.
+- Added handler-level permission/evidence wrapping for mutating MCP calls because the SDK
+  probe showed raw in-process MCP `mcp_message` calls bypass automatic `canUseTool` and
+  hook callbacks.
+- The wrapper records `tool.started`, `tool.permission`, and terminal
+  `tool.completed`/`tool.failed` events; enforces project-root containment,
+  instruction-root write denial, and symlink target rejection; and records only safe
+  input metadata, target-file SHA/byte metadata, bounded diff summaries, redacted errors,
+  and result summaries.
+- `status_transition` delegates to `transitionDeliverableStatus` and preserves existing
+  lifecycle actor/approval-SHA gates. MCP-driven `CHECKING` / `ISSUED` requires actor
+  `HUMAN` and valid `approvalSha`.
+- `deps_write` delegates to `writeDeliverableDependencies` and preserves Dependencies.csv
+  v3.1 writer/linter semantics, including satisfaction-transition validation and warning
+  surfacing.
+- Updated runtime contract, active stabilization plan, STAB-00 artifacts, and coordination
+  prompts to reflect that D-APP-13 is ruled and STAB-04 has landed.
+
+Validation passed: `npm run harness:validate:agentsdk-mcp-probe`; focused suite
+`npm run test -- --run src/__tests__/lib/tool-descriptor.test.ts
+src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/chirality-read-mcp.test.ts
+src/__tests__/lib/chirality-mutating-mcp.test.ts` (4 files, 27 tests);
+`npm run typecheck`; full `npm run test` (51 files, 370 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:premerge` after starting the local Next server on port 3000
+(`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks, Section 9 report-only 13 checks);
+and `git diff --check`.
+
+Skipped checks: `npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche changed no provider,
+outbound network, package layout, or packaged subprocess behavior.
+
+Residual handoff: D-APP-12 remains awaiting the STAB-02(d) packaged subprocess proof
+before default-provider cutover can be decided. STAB-06 should consume the updated ruled
+posture when applying factual governance corrections.
+
+## 2026-06-16 - Runtime stabilization SDK MCP behavior probe landed (`STAB-04-probe`)
+
+Landed the STAB-04 prerequisite SDK/MCP behavior probe and prepared the D-APP-13 mutating
+MCP exposure packet.
+
+Runtime validation changes:
+
+- Added `harness:validate:agentsdk-mcp-probe`, a deterministic Vitest command that runs
+  the real pinned SDK `query()` host with an offline subprocess.
+- Added `agent-sdk-mcp-behavior-probe.test.ts`, which drives three distinct SDK control
+  paths against `mcp__chirality__status_read`: raw in-process `mcp_message`,
+  explicit `can_use_tool`, and explicit `hook_callback`.
+- The probe result: raw in-process SDK MCP `mcp_message` calls execute the MCP handler and
+  handler evidence, but do not automatically invoke `canUseTool` or hooks. Explicit
+  `can_use_tool` and `hook_callback` requests for the same fully qualified MCP tool name
+  do invoke the registered callbacks.
+- Updated validation docs and the active stabilization plan to record that future
+  mutating Chirality MCP tools need handler-level permission/evidence wrapping unless a
+  future live-CLI proof records different behavior.
+- Prepared `D-APP-13_PACKET_2026-06-16.md` and moved D-APP-13 to `AWAITING_RULING`.
+
+Validation passed: `npm run harness:validate:agentsdk-mcp-probe`; full `npm run test`
+(50 files, 363 tests); `npm run typecheck`; `npm run harness:validate:section9`
+(`HARNESS_SECTION9_STATUS=pass`, 13 checks); `npm run instruction-root:integrity`
+(`status=pass`, `checked files=46`); `npm run harness:validate:premerge` after starting
+the local Next server on port 3000 (`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks,
+Section 9 report-only 13 checks); and `git diff --check`.
+
+Skipped checks: `npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche changed no provider,
+outbound network, package layout, or packaged subprocess behavior. An initial premerge
+attempt before starting the local server failed with `fetch failed` for all Section 8
+checks; the rerun passed after starting `npm run dev:next`, and the server was stopped.
+
+Residual handoff: mutating Chirality MCP implementation is blocked on D-APP-13. D-APP-12
+also remains awaiting the STAB-02(d) packaged subprocess proof before default-provider
+cutover can be decided.
+
+## 2026-06-16 - Runtime stabilization SDK network proof landed (`STAB-02c`)
+
+Landed STAB-02 step (c), the non-packaged opt-in `agentSdk` network-proof evidence
+slice.
+
+Runtime validation changes:
+
+- Extended `proof:network-policy` with `--provider agentSdk --scripted-agent-sdk`.
+- Added an explicit development/test-only `CHIRALITY_AGENTSDK_SCRIPTED_PROOF=1` path in
+  SDK option construction. The path attaches a deterministic `spawnClaudeCodeProcess`
+  only when `NODE_ENV` is `development` or `test`, so normal and packaged SDK subprocess
+  behavior remains unchanged for STAB-02(d).
+- Made the network proof self-stage a temporary fallback workroot when
+  `examples/example-project` is unavailable.
+- Tightened proof endpoint classification so any TCP endpoint outside loopback and
+  `api.anthropic.com` is treated as non-allowlisted.
+- Recorded provider mode, scripted subprocess status, and the existing CONF-002 OCSP/CRL
+  carve-out note in proof summaries.
+
+Validation passed: focused suite
+`npm run test -- --run src/__tests__/lib/sdk-options-builder.test.ts
+src/__tests__/scripts/build-network-policy.test.ts
+src/__tests__/api/harness/agent-sdk-dev-turn.test.ts` (3 files, 15 tests);
+`npm run typecheck`; `npm run proof:network-policy -- --provider agentSdk
+--scripted-agent-sdk --runs 1 --idle-seconds 3 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02c-20260616-guard-rerun`, producing `PASS` with
+`provider=agentSdk`, `scriptedAgentSdk=true`, one blocked renderer diagnostic, one
+network probe payload, and zero non-allowlisted TCP endpoints; full `npm run test` (49
+files, 362 tests); `npm run instruction-root:integrity` (`status=pass`, `checked
+files=46`); `npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13
+checks); and `npm run harness:validate:premerge` with Section 8 pass (8 checks) and
+Section 9 report-only pass (13 checks) against `http://127.0.0.1:3000`. `git diff
+--check` passed.
+
+Skipped checks: `npm run build`, `npm run desktop:pack`, and `npm run desktop:dist` were
+skipped because STAB-02(c) is explicitly non-packaged dev/network evidence. Packaged SDK
+subprocess proof remains STAB-02(d).
+
+Residual handoff: STAB-02 remains partial. Remaining work is (d) packaged SDK subprocess
+proof with `asarUnpack`, HOME, and DMG evidence, followed by the D-APP-12
+default-provider cutover packet if all prerequisites are green. D-APP-12 remains
+AWAITING_RULING. D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure.
+
+## 2026-06-16 - Runtime stabilization SDK scripted dev turn landed (`STAB-02b`)
+
+Landed STAB-02 step (b), the non-packaged opt-in `agentSdk` scripted dev-turn evidence
+slice.
+
+Runtime validation changes:
+
+- Added `harness:validate:agentsdk-dev-turn`, a route-level Vitest validation command
+  that sets `CHIRALITY_HARNESS_PROVIDER=agentSdk`, creates a real harness session, and
+  posts a turn through the actual `/api/harness/turn` route.
+- The validation keeps the real Claude Agent SDK `query()` machinery in the path and
+  replaces only `spawnClaudeCodeProcess` with an offline deterministic subprocess that
+  emits SDK JSONL messages. This avoids live provider network and does not touch
+  packaged/Electron subprocess behavior.
+- The test verifies SDK subprocess spawn options, UI-provided API-key propagation into
+  the SDK subprocess environment, prior env restoration, SSE event order, SDK session
+  persistence, SDK package metadata, persisted `HarnessEvent` replay, and absence of key
+  material in SSE/evidence output.
+- The validation command is documented in `docs/VALIDATION_STRATEGY.md` and
+  `docs/BUILD_AND_RELEASE.md`.
+
+Validation passed: `npm run harness:validate:agentsdk-dev-turn` (1 file, 1 test);
+`npm run typecheck`; full `npm run test` (49 files, 360 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks);
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`; and `npm run
+proof:network-policy -- --runs 1 --idle-seconds 3 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02b-20260616-rerun`, producing `PASS` after temporarily
+creating and then removing the proof script's missing `examples/example-project` fixture.
+`git diff --check` passed.
+
+Skipped checks: `npm run build`, `npm run desktop:pack`, and `npm run desktop:dist` were
+skipped because STAB-02(b) is explicitly non-packaged dev-turn evidence. Packaged SDK
+subprocess proof remains STAB-02(d). The first shortened `proof:network-policy` attempt
+with a 1-second idle window completed the runtime scenario and observed no non-allowlisted
+endpoints but failed the proof verdict because the renderer blocked-diagnostic count was
+zero after an `Object has been destroyed` probe error; the 3-second rerun passed.
+
+Residual handoff: STAB-02 remains partial. Remaining steps are (c) an `agentSdk`-mode
+network proof and (d) packaged SDK subprocess proof with `asarUnpack`, HOME, and DMG
+evidence. D-APP-12 remains AWAITING_RULING for default-provider cutover until all STAB-02
+prerequisites are green. D-APP-13 remains NOT_PREPARED for mutating Chirality MCP
+exposure.
+
+## 2026-06-16 - Runtime stabilization SDK API-key injection landed (`STAB-02a`)
+
+Landed STAB-02 step (a), the load-bearing API-key injection slice for the opt-in
+`agentSdk` runtime path.
+
+Runtime changes:
+
+- `ClaudeAgentSdkManager` now resolves the active key using the same UI key first, then
+  `ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY` precedence used by the runtime
+  key surfaces.
+- Before invoking SDK `query()`, the manager scopes the resolved key into
+  `process.env.ANTHROPIC_API_KEY` for the active turn and restores the prior env state in
+  `finally`.
+- SDK failure text is redacted with the shared value-based API-key redactor before it is
+  persisted to `HarnessEvent` evidence or raised as `HarnessError`.
+
+Tests added or expanded:
+
+- expanded `lib/claude-agent-sdk-manager.test.ts` with a regression that verifies
+  `query()` sees the UI-provided key via env, the prior env value is restored, and
+  persisted failure evidence contains `[REDACTED_API_KEY]` rather than key material.
+
+Validation passed: focused STAB-02(a) suite
+`npm run test -- --run src/__tests__/lib/claude-agent-sdk-manager.test.ts` (1 file, 3
+tests); `npm run typecheck`; full `npm run test` (48 files, 359 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks);
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`; `npm run
+proof:network-policy -- --runs 1 --idle-seconds 1 --idle-sample-seconds 1 --output-dir
+/tmp/chirality-network-proof-stab02a-20260616`, producing `PASS` after temporarily
+creating and then removing the proof script's missing `examples/example-project` fixture.
+`git diff --check` passed.
+
+Residual handoff: STAB-02 remains partial. Remaining steps are (b) one dev-build
+real/scripted `agentSdk` turn, (c) an `agentSdk`-mode network proof, and (d) packaged SDK
+subprocess proof with `asarUnpack`, HOME, and DMG evidence. D-APP-12 remains
+AWAITING_RULING for default-provider cutover until all STAB-02 prerequisites are green.
+D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure. The initial full-form
+`npm run proof:network-policy` attempt is still fixture-sensitive because the script
+hardcodes `examples/example-project`; the successful validation above used the prior
+project-local temporary-fixture workaround.
+
+## 2026-06-16 - Runtime stabilization persona composer landed (`STAB-05`)
+
+Landed the Persona Composer from Instruction Root tranche from the accepted Runtime
+Stabilization plan.
+
+Runtime changes:
+
+- Replaced `StubPersonaManager` with `PersonaComposer`, which composes bounded
+  instruction-root governance excerpts, selected `agents/AGENT_<persona>.md` content,
+  working-root policy, mode policy, and descriptor-derived tool-surface posture into the
+  SDK appended system prompt.
+- Boot metadata now uses a content-derived 64-character fingerprint derived from the
+  composed prompt inputs. `turn.accepted` evidence records persona, mode, model, SDK
+  package version, optional boot fingerprint, and a prompt hash without storing raw prompt
+  text in `HarnessEvent.data`.
+- `runtime.ts`, `TurnEngine`, and the boot route now pass resolved tool surfaces into the
+  composer, so default and opt-in turns share the same prompt-policy basis.
+
+Tests added or expanded:
+
+- `lib/persona-manager.test.ts`
+- expanded `api/harness/routes.test.ts`, `lib/claude-agent-sdk-manager.test.ts`,
+  `lib/harness-runtime.test.ts`, and `lib/turn-engine.test.ts`
+
+Validation passed: focused STAB-05 suite
+`npm run test -- --run src/__tests__/lib/persona-manager.test.ts
+src/__tests__/lib/harness-runtime.test.ts src/__tests__/lib/turn-engine.test.ts
+src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/api/harness/routes.test.ts`
+(5 files, 41 tests); `npm run typecheck`; full `npm run test` (48 files, 358 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`);
+`npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`, 13 checks); and
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks) against `http://localhost:3000`.
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-05 does not change
+provider, API-key, network, or outbound behavior. `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche does not change package
+layout, SDK subprocess packaging, distribution artifacts, or release-candidate posture.
+
+Residual handoff: STAB-02 real/scripted SDK turns can now exercise the `agentSdk` path
+with governed persona context before D-APP-12 default-provider cutover review. D-APP-12
+remains AWAITING_RULING for default-provider cutover, and D-APP-13 remains NOT_PREPARED
+for mutating Chirality MCP exposure. The next recommended stabilization tranche is
+STAB-02 SDK Runtime Readiness & Cutover Decision.
+
+## 2026-06-16 - Runtime stabilization replay and artifact evidence landed (`STAB-03`)
+
+Landed the Session Replay, Artifact Evidence, and Subagent Records tranche from the
+accepted Runtime Stabilization plan.
+
+Runtime changes:
+
+- `replayHarnessEvents` now returns an additive replay summary with event count,
+  malformed-line count, event-type histogram, and first/last timestamps.
+- Tool-result artifact overflow now follows descriptor `resultBudget.overflow ===
+  'artifact'` across governed hook completions, Chirality read MCP completions, and the
+  async SDK mapper path used by the runtime manager. `HarnessEvent.data` records metadata
+  and artifact references, not raw tool output.
+- Write/Edit hooks now record bounded diff summaries from pre/post file-state evidence:
+  byte deltas, line counts, added/removed line counts, and omission reasons when a file is
+  too large or unavailable. Full diff text is not stored in events.
+- SDK task lifecycle messages now embed adapter-observed child-run records using
+  `createAdapterObservedChildRunRecord`, preserving parent session/turn linkage and keeping
+  adapter-specific IDs under adapter metadata.
+
+Tests added or expanded:
+
+- `lib/tool-evidence.test.ts`
+- `lib/tool-result-artifacts.test.ts`
+- expanded `lib/session-events.test.ts`, `lib/sdk-message-mapper.test.ts`, and
+  `lib/chirality-hooks.test.ts`
+- Section 9 `section9.tool_result_budget` now includes the direct tool evidence and
+  artifact tests.
+
+Validation passed: focused STAB-03 suite
+`npm run test -- --run src/__tests__/lib/session-events.test.ts
+src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts
+src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/chirality-hooks.test.ts
+src/__tests__/lib/chirality-read-mcp.test.ts
+src/__tests__/lib/claude-agent-sdk-manager.test.ts` (7 files, 33 tests);
+`npm run typecheck`; `npm run harness:validate:section9`
+(`HARNESS_SECTION9_STATUS=pass`, 13 checks); full `npm run test` (47 files, 354 tests);
+`npm run instruction-root:integrity` (`status=pass`, `checked files=46`); and
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks).
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-03 does not change
+provider, API-key, network, or outbound behavior. `npm run build`, `npm run desktop:pack`,
+and `npm run desktop:dist` were skipped because this tranche does not change package
+layout, SDK subprocess packaging, distribution artifacts, or release-candidate posture.
+
+Residual handoff: STAB-02 real/scripted SDK turns can later exercise the same replay and
+artifact surfaces against live SDK evidence. D-APP-12 remains AWAITING_RULING for
+default-provider cutover, and D-APP-13 remains NOT_PREPARED for mutating Chirality MCP
+exposure. The next recommended stabilization tranche is STAB-05 Persona Composer from
+Instruction Root.
+
+## 2026-06-16 - Runtime stabilization Section 9 validation surface landed (`STAB-01`)
+
+Landed the Section 9 runtime validation surface from the accepted Runtime Stabilization
+plan. The new `frontend/scripts/validate-harness-section9.mjs` aggregates 13 canonical
+deterministic Section 9 IDs into a machine-readable summary, mirrors it to
+`frontend/artifacts/harness/section9/latest/summary.json`, and emits stable
+`HARNESS_SECTION9_*` lines. `frontend/package.json` now exposes
+`npm run harness:validate:section9`.
+
+The premerge validator now runs Section 9 after the existing Section 8 gate and emits
+`HARNESS_PREMERGE_SECTION9_*` lines with `HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true`.
+Section 8 remains the hard premerge gate for this initial integration cycle so the new
+aggregator does not destabilize the existing running-app validation surface.
+
+Docs updated the validation/build command maps and harness traceability so Section 9 has
+an explicit local command, artifact path, and requirement mapping.
+
+Validation passed: `npm run harness:validate:section9` (`HARNESS_SECTION9_STATUS=pass`,
+13 checks); full `npm run test` (45 files, 344 tests); `npm run typecheck`;
+`npm run harness:validate:premerge` with Section 8 pass (8 checks) and Section 9
+report-only pass (13 checks); `npm run desktop:pack` generated the macOS app bundle and
+the current instruction-root integrity artifact reports `status=pass`,
+`checkedFileCount=46`, `missingInBundle=[]`. Local dependencies were installed with
+`npm ci`; npm reported audit warnings/vulnerabilities that were not in this tranche's
+scope.
+
+Skipped checks: `npm run proof:network-policy` was skipped because STAB-01 does not change
+provider, API-key, network, or outbound behavior. `npm run desktop:dist` was skipped
+because this tranche is not a DMG or release-candidate scope.
+
+Residual handoff: D-APP-12 remains AWAITING_RULING for default-provider cutover, and
+D-APP-13 remains NOT_PREPARED for mutating Chirality MCP exposure. The next recommended
+stabilization tranche is STAB-03, with STAB-05 also unblocked and suitable for parallel
+execution.
+
+## 2026-06-16 - Runtime stabilization baseline reconciliation landed (`STAB-00`)
+
+Landed the first Runtime Stabilization tranche after D-APP-11 accepted
+`plans/PLAN_2026-06-16_runtime_stabilization.md` as the active queue.
+
+Artifacts added:
+
+- `plans/artifacts/runtime_capability_matrix.md` publishes the runtime current-state
+  matrix with source/test evidence for landed and partial capabilities, plus the
+  deliverable-status reconciliation note.
+- `plans/artifacts/stab00_reconciliation_disposition.md` records the stale-governance
+  disposition list, Section 9 ID canonicalization, live-alias finding, and pending ruling
+  posture.
+
+The tranche records that all 53 deliverable `_STATUS.md` files currently report
+`SEMANTIC_READY`, but treats that as decomposition-process status rather than
+runtime-completion evidence. No `_STATUS.md` files were bulk-edited.
+
+The tranche also corrects a guidance assumption in the active plan: older
+`section9.sdk_turn_engine_event_log` and `section9.sdk_message_mapper` aliases are not
+confined to `.archive`; they also appear in live deliverable-local kits. New validation
+work must use the canonical `section9.adapter_turn_engine_event_log` and
+`section9.adapter_message_mapper` IDs from `docs/SPEC.md` Section 19.3 and `docs/PRD.md`
+Section 12.4.
+
+Validation passed: `git diff --check -- plans`; referenced-path existence checks for the
+new artifacts and cited authority/source files; decision-register/ruling posture review
+for D-APP-12 and D-APP-13; `git diff --name-only` no-runtime-source-change confirmation;
+static status scan confirming `SEMANTIC_READY 53`; and static Section 9 alias/canonical-ID
+scan. Frontend runtime tests, typecheck, harness premerge, instruction-root integrity,
+network proof, build, packaging, and DMG checks were skipped because STAB-00 changes only
+planning/governance artifacts and no runtime, package, wrapper, provider, network, or
+release-significant source.
+
+Residual handoff: STAB-01 is next and should build the Section 9 validation surface using
+canonical IDs. D-APP-12 remains AWAITING_RULING for default-provider cutover; D-APP-13
+remains NOT_PREPARED for mutating Chirality MCP exposure.
+
 ## 2026-06-16 - SCC closeout landed (`SCC-CLOSEOUT-001`)
 
 Closed the residual six-node strict dependency SCC loop after accepted snapshot

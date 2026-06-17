@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-05-24 - Added `@anthropic-ai/claude-agent-sdk@0.3.150` as the pinned first-adapter probe dependency.
 - 2026-05-24 - Upgraded direct `@anthropic-ai/sdk` to `0.93.0` to satisfy the Claude Agent SDK peer dependency while keeping the existing direct adapter selectable.
 - 2026-05-24 - Added opt-in SDK provider mode `CHIRALITY_HARNESS_PROVIDER=agentSdk`; default provider behavior remains unchanged.

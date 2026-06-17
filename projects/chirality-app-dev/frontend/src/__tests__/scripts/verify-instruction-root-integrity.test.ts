@@ -22,6 +22,15 @@ const BASE_FIXTURE_FILES: Record<string, string> = {
   'agents/AGENT_TASK.md': '# task persona\n'
 };
 
+const SDK_PLATFORM_PACKAGE_BY_RUNTIME: Record<string, string> = {
+  'darwin:arm64': '@anthropic-ai/claude-agent-sdk-darwin-arm64',
+  'darwin:x64': '@anthropic-ai/claude-agent-sdk-darwin-x64',
+  'linux:arm64': '@anthropic-ai/claude-agent-sdk-linux-arm64',
+  'linux:x64': '@anthropic-ai/claude-agent-sdk-linux-x64',
+  'win32:arm64': '@anthropic-ai/claude-agent-sdk-win32-arm64',
+  'win32:x64': '@anthropic-ai/claude-agent-sdk-win32-x64'
+};
+
 type ScriptResult = {
   code: number;
   stdout: string;
@@ -41,6 +50,24 @@ async function writeFixture(root: string, overrides?: Record<string, string>): P
     await mkdir(path.dirname(absolutePath), { recursive: true });
     await writeFile(absolutePath, content, 'utf8');
   }
+}
+
+async function writeSdkBundleFixture(bundleRoot: string): Promise<void> {
+  const files: Record<string, string> = {
+    'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json':
+      '{"name":"@anthropic-ai/claude-agent-sdk"}\n',
+    'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs': 'export {};\n',
+    'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json': '{}\n'
+  };
+  const platformPackageName =
+    SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`];
+  if (platformPackageName) {
+    const platformPackageRoot = `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/${platformPackageName}`;
+    files[`${platformPackageRoot}/package.json`] = `{"name":"${platformPackageName}"}\n`;
+    files[`${platformPackageRoot}/claude`] = '#!/bin/sh\n';
+  }
+
+  await writeFixtureFiles(bundleRoot, files);
 }
 
 async function writeFixtureFiles(root: string, files: Record<string, string>): Promise<void> {
@@ -94,6 +121,7 @@ describe('verify-instruction-root-integrity script', () => {
 
     await writeFixture(sourceRoot);
     await writeFixture(bundleRoot);
+    await writeSdkBundleFixture(bundleRoot);
 
     const result = await runIntegrityScript([
       '--source-root',
@@ -114,6 +142,10 @@ describe('verify-instruction-root-integrity script', () => {
       missingInBundle: string[];
       mismatchedFiles: Array<{ path: string }>;
       unexpectedBundleAgentFiles: string[];
+      sdkBundle: {
+        missingFiles: string[];
+        selectedPlatformPackageRoot: string | null;
+      };
     };
 
     expect(summary.status).toBe('pass');
@@ -121,6 +153,12 @@ describe('verify-instruction-root-integrity script', () => {
     expect(summary.missingInBundle).toHaveLength(0);
     expect(summary.mismatchedFiles).toHaveLength(0);
     expect(summary.unexpectedBundleAgentFiles).toHaveLength(0);
+    expect(summary.sdkBundle.missingFiles).toHaveLength(0);
+    if (SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`]) {
+      expect(summary.sdkBundle.selectedPlatformPackageRoot).toContain(
+        'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/'
+      );
+    }
   });
 
   it('fails when bundled content diverges from source', async () => {
@@ -132,6 +170,7 @@ describe('verify-instruction-root-integrity script', () => {
     await writeFixture(bundleRoot, {
       'agents/AGENT_TASK.md': '# task persona (modified)\n'
     });
+    await writeSdkBundleFixture(bundleRoot);
 
     const result = await runIntegrityScript([
       '--source-root',
@@ -161,6 +200,43 @@ describe('verify-instruction-root-integrity script', () => {
     );
   });
 
+  it('fails when the packaged bundle is missing unpacked Claude Agent SDK files', async () => {
+    const sourceRoot = path.join(tmpRoot, 'source-root');
+    const bundleRoot = path.join(tmpRoot, 'bundle-root');
+    const outputRoot = path.join(tmpRoot, 'output');
+
+    await writeFixture(sourceRoot);
+    await writeFixture(bundleRoot);
+
+    const result = await runIntegrityScript([
+      '--source-root',
+      sourceRoot,
+      '--bundle-root',
+      bundleRoot,
+      '--output-root',
+      outputRoot
+    ]);
+
+    expect(result.code).toBe(1);
+    expect(result.stderr).toContain('Missing unpacked Claude Agent SDK files');
+
+    const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
+    const summary = JSON.parse(summaryRaw) as {
+      status: string;
+      sdkBundle: {
+        missingFiles: string[];
+      };
+    };
+
+    expect(summary.status).toBe('fail');
+    expect(summary.sdkBundle.missingFiles).toEqual(
+      expect.arrayContaining([
+        'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json',
+        'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs'
+      ])
+    );
+  });
+
   it('supports split source roots for monorepo instruction packages', async () => {
     const rootFilesRoot = path.join(tmpRoot, 'monorepo-root');
     const agentsRoot = path.join(rootFilesRoot, 'agents');
@@ -186,6 +262,7 @@ describe('verify-instruction-root-integrity script', () => {
       'PLAN.md': BASE_FIXTURE_FILES['docs/PLAN.md']
     });
     await writeFixture(bundleRoot);
+    await writeSdkBundleFixture(bundleRoot);
 
     const result = await runIntegrityScript([
       '--root-files-root',
@@ -255,6 +332,7 @@ describe('verify-instruction-root-integrity script', () => {
       'PLAN.md': BASE_FIXTURE_FILES['docs/PLAN.md']
     });
     await writeFixture(bundleRoot);
+    await writeSdkBundleFixture(bundleRoot);
 
     const result = await runIntegrityScript(
       ['--bundle-root', bundleRoot, '--output-root', outputRoot],

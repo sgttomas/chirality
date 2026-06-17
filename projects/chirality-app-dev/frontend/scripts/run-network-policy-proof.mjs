@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
-import { createWriteStream } from 'node:fs';
+import { createWriteStream, existsSync } from 'node:fs';
 import { appendFile, cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -39,11 +39,28 @@ function parseIntegerArg(value, fallback) {
   return parsed;
 }
 
+function parseProviderMode(value) {
+  const normalized = String(value ?? '').trim();
+  const lowered = normalized.toLowerCase();
+  if (lowered === 'agentsdk' || lowered === 'agent-sdk' || lowered === 'claude-agent-sdk') {
+    return 'agentSdk';
+  }
+  if (lowered === 'anthropic') {
+    return 'anthropic';
+  }
+  if (lowered === 'stub' || lowered.length === 0) {
+    return 'stub';
+  }
+  throw new Error(`Unsupported --provider value '${value}'. Expected stub, anthropic, or agentSdk.`);
+}
+
 function parseArgs(argv) {
   const args = {
     runs: DEFAULT_RUN_COUNT,
     idleSeconds: DEFAULT_IDLE_SECONDS,
     idleSampleSeconds: DEFAULT_IDLE_SAMPLE_SECONDS,
+    provider: undefined,
+    scriptedAgentSdk: false,
     outputDir: path.resolve(
       DELIVERABLE_ROOT,
       'Evidence',
@@ -72,10 +89,27 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === '--provider' && argv[index + 1]) {
+      args.provider = parseProviderMode(argv[index + 1]);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--scripted-agent-sdk') {
+      args.scriptedAgentSdk = true;
+      continue;
+    }
+
     if (token === '--output-dir' && argv[index + 1]) {
       args.outputDir = path.resolve(argv[index + 1]);
       index += 1;
     }
+  }
+
+  args.provider = args.provider ?? parseProviderMode(process.env.CHIRALITY_HARNESS_PROVIDER);
+
+  if (args.scriptedAgentSdk && args.provider !== 'agentSdk') {
+    throw new Error('--scripted-agent-sdk requires --provider agentSdk.');
   }
 
   return args;
@@ -430,16 +464,35 @@ async function runProofCycle({ runIndex, args, outputDir }) {
   const workingRootSource = path.resolve(REPO_ROOT, 'examples/example-project');
   const workingRootPath = path.resolve('/tmp', `chirality-proof-${runId}-${timestampForPath()}`);
   const sessionRootPath = path.resolve('/tmp', `chirality-proof-sessions-${runId}-${timestampForPath()}`);
-  await cp(workingRootSource, workingRootPath, { recursive: true });
+  if (existsSync(workingRootSource)) {
+    await cp(workingRootSource, workingRootPath, { recursive: true });
+  } else {
+    await mkdir(workingRootPath, { recursive: true });
+    await writeFile(
+      path.resolve(workingRootPath, 'README.md'),
+      '# Chirality network proof workroot\n',
+      'utf8'
+    );
+  }
   await mkdir(sessionRootPath, { recursive: true });
+  const providerMode = args.provider;
+  const scriptedAgentSdkProof =
+    providerMode === 'agentSdk' &&
+    (args.scriptedAgentSdk || process.env.CHIRALITY_AGENTSDK_SCRIPTED_PROOF === '1');
 
   const baseEnv = {
     ...process.env,
     NEXT_TELEMETRY_DISABLED: '1',
     ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || 'sk-ant-proof-placeholder',
     CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS: process.env.CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS || '15000',
-    CHIRALITY_SESSION_ROOT: sessionRootPath
+    CHIRALITY_SESSION_ROOT: sessionRootPath,
+    CHIRALITY_HARNESS_PROVIDER: providerMode
   };
+  if (scriptedAgentSdkProof) {
+    baseEnv.CHIRALITY_AGENTSDK_SCRIPTED_PROOF = '1';
+  } else {
+    delete baseEnv.CHIRALITY_AGENTSDK_SCRIPTED_PROOF;
+  }
 
   const nextLogPath = path.resolve(runDir, 'next.log');
   const electronLogPath = path.resolve(runDir, 'electron.log');
@@ -546,13 +599,22 @@ async function runProofCycle({ runIndex, args, outputDir }) {
       })
     );
 
+    const turnOptions = {
+      persona: 'CHANGE',
+      mode: 'ask'
+    };
+    if (providerMode === 'agentSdk') {
+      Object.assign(turnOptions, {
+        model: 'claude-test',
+        maxTurns: 1,
+        tools: []
+      });
+    }
+
     const turnResponse = await postTurnSse('http://127.0.0.1:3000/api/harness/turn', {
       sessionId,
       message: `DEL-03-06 OI-002 proof run ${runId}`,
-      opts: {
-        persona: 'CHANGE',
-        mode: 'ask'
-      },
+      opts: turnOptions,
       attachments: []
     });
 
@@ -616,7 +678,7 @@ async function runProofCycle({ runIndex, args, outputDir }) {
     const probePayloads = extractProbePayloads(electronLog);
 
     const nonAllowlistedEndpoints = uniqueEndpoints.filter(
-      (endpoint) => endpoint.class === 'external_non_allowlisted'
+      (endpoint) => endpoint.class !== 'loopback' && endpoint.class !== 'allowlisted'
     );
 
     const anthropicAllowlistedEndpoints = uniqueEndpoints.filter(
@@ -631,6 +693,8 @@ async function runProofCycle({ runIndex, args, outputDir }) {
       timeline,
       scenario: {
         startup: true,
+        providerMode,
+        scriptedAgentSdkProof,
         workingRootPath,
         sessionRootPath,
         sessionCreate: createResponse.ok,
@@ -712,12 +776,15 @@ function aggregateRunVerdicts(runs) {
 
 function renderMarkdownSummary(args, outputDir, runSummaries, aggregate) {
   const lines = [];
+  const providerMode = args.provider;
 
   lines.push('# OI-002 Option B Proof Run Summary');
   lines.push('');
   lines.push(`- Generated: ${toIsoNow()}`);
   lines.push(`- Output directory: ${outputDir}`);
   lines.push(`- Run count: ${args.runs}`);
+  lines.push(`- Provider mode: ${providerMode}`);
+  lines.push(`- Scripted agentSdk subprocess: ${args.scriptedAgentSdk ? 'yes' : 'no'}`);
   lines.push(`- Idle window per run: ${args.idleSeconds} seconds`);
   lines.push('');
   lines.push('## Aggregate Verdict');

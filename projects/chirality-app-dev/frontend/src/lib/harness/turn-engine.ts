@@ -255,7 +255,8 @@ export class TurnEngine {
       await this.dependencies.personaManager.buildSystemPrompt(
         session.projectRoot,
         resolvedOpts.persona,
-        resolvedOpts.mode
+        resolvedOpts.mode,
+        resolvedOpts.tools
       );
 
       const governanceDecision = await this.evaluateSubagentGovernance(

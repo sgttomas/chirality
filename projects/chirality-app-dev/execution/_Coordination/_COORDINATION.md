@@ -68,7 +68,7 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover, `D-APP-13` mutating Chirality MCP exposure), and validation policy.
+0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover remains pending after the Option B hold ruling and STAB-02(d) package-layout proof; `D-APP-13` mutating Chirality MCP exposure is ruled), and validation policy.
 1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the completed non-governing SCC-resolution plan. It records closure of the residual six-node strict dependency SCC; it is closed history and is no longer the active queue.
 2. `plans/PLAN_2026-06-13_runtime_completion.md` is retired as the active queue and retained only as historical completion evidence for landed runtime work.
 3. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
@@ -88,7 +88,7 @@ At the start of a new loop:
 4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
 5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
 6. Read `plans/PLAN_2026-06-16_runtime_stabilization.md` for the active tranche spine, sequencing, and current-state matrix.
-7. Read `_DECISIONS/_REGISTER.md` for pending human rulings (`D-APP-12`, `D-APP-13` block specific stabilization tranches).
+7. Read `_DECISIONS/_REGISTER.md` for pending human rulings (`D-APP-12` blocks default-provider cutover; `D-APP-13` is ruled).
 8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
 9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
 10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
@@ -100,7 +100,7 @@ At the start of a new loop:
 
 ## Active Development Loop
 
-Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select the earliest unblocked tranche from the Runtime Stabilization spine in `plans/PLAN_2026-06-16_runtime_stabilization.md` (§6 spine, §10 sequencing); if a tranche is blocked by a pending human ruling (`D-APP-12`, `D-APP-13`), prepare its decision packet and stop. If no stabilization tranche remains unblocked, stop and report that the program is complete and the next active plan must be selected by the human.
+Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select the earliest unblocked tranche from the Runtime Stabilization spine in `plans/PLAN_2026-06-16_runtime_stabilization.md` (§6 spine, §10 sequencing); if a tranche is blocked by a pending human ruling (`D-APP-12`), prepare its decision packet and stop. If no stabilization tranche remains unblocked, stop and report that the program is complete and the next active plan must be selected by the human.
 
 A tranche is acceptable when it has:
 
@@ -115,7 +115,7 @@ Default ordering:
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work.
 2. Select the earliest unblocked tranche on the stabilization spine, honoring its sequencing DAG (STAB-00 first; STAB-00 gates STAB-01 and STAB-06).
 3. For governance tranches (STAB-00, STAB-06), produce the required reconciliation/disposition artifacts within their write bounds.
-4. Prepare a decision packet when the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover, `D-APP-13` mutating Chirality MCP exposure) and no packet exists.
+4. Prepare or refresh a decision packet when the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover) and the existing packet no longer reflects current evidence.
 5. If a packet already awaits ruling, stop; do not substitute unrelated runtime hardening or out-of-stage scope.
 6. Stop when no stabilization tranche remains unblocked; do not revive the retired completion plan or invent a replacement active queue.
 

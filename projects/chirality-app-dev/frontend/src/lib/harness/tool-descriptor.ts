@@ -6,10 +6,11 @@ import {
 import {
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
+  type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v5.bash';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v6.mutating-mcp';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -150,6 +151,12 @@ const CHIRALITY_READ_MCP_RUNTIME: HarnessToolRuntimeSupport = {
     'Read-only Chirality MCP tools are exposed behind descriptor resolution and permission overlay policy.'
 };
 
+const CHIRALITY_MUTATING_MCP_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper.'
+};
+
 const SDK_WRITE_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
@@ -263,6 +270,48 @@ function chiralityReadMcpDescriptor(input: {
     inputSchema: input.inputSchema,
     outputSchema: input.outputSchema,
     runtime: CHIRALITY_READ_MCP_RUNTIME
+  };
+}
+
+function chiralityMutatingMcpDescriptor(input: {
+  name: string;
+  aliases: readonly string[];
+  description: string;
+  mcpToolName: ChiralityMcpMutatingToolName;
+  inputSchema: Record<string, unknown>;
+  outputSchema?: Record<string, unknown>;
+  humanGate: HarnessToolHumanGate;
+}): HarnessToolDescriptor {
+  return {
+    name: input.name,
+    aliases: [
+      ...input.aliases,
+      input.mcpToolName,
+      toChiralityMcpAllowedToolName(input.mcpToolName)
+    ],
+    description: input.description,
+    surface: 'chirality-mcp',
+    permissions: ['workspace-write'],
+    pathScope: 'project-root-write',
+    idempotence: 'mutating',
+    concurrency: 'serialized-by-path',
+    interruptBehavior: 'block',
+    resultBudget: WRITE_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'metadata',
+      recordsDiff: true
+    },
+    humanGate: input.humanGate,
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+      }
+    },
+    inputSchema: input.inputSchema,
+    outputSchema: input.outputSchema,
+    runtime: CHIRALITY_MUTATING_MCP_RUNTIME
   };
 }
 
@@ -408,6 +457,83 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     outputSchema: {
       type: 'object',
       required: ['executionRoot', 'decompositionPath', 'planned', 'packages']
+    }
+  }),
+  chiralityMutatingMcpDescriptor({
+    name: 'status_transition',
+    aliases: ['mcp.status_transition', 'transition_status'],
+    description:
+      'Apply a governed lifecycle transition to a deliverable _STATUS.md file.',
+    mcpToolName: 'status_transition',
+    inputSchema: {
+      type: 'object',
+      required: ['deliverablePath', 'targetState', 'actor'],
+      properties: {
+        deliverablePath: {
+          type: 'string'
+        },
+        targetState: {
+          type: 'string'
+        },
+        actor: {
+          type: 'string'
+        },
+        date: {
+          type: 'string'
+        },
+        approvalSha: {
+          type: 'string'
+        },
+        metadata: {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['ok', 'transition', 'status', 'fileEvidence']
+    },
+    humanGate: {
+      required: true,
+      gate: 'approval-sha',
+      reason: 'CHECKING and ISSUED transitions require HUMAN actor approvalSha evidence.'
+    }
+  }),
+  chiralityMutatingMcpDescriptor({
+    name: 'dependency_write',
+    aliases: ['deps_write', 'mcp.deps_write', 'write_dependencies'],
+    description:
+      'Write a governed Dependencies.csv register using v3.1 dependency writer semantics.',
+    mcpToolName: 'deps_write',
+    inputSchema: {
+      type: 'object',
+      required: ['deliverablePath', 'rows'],
+      properties: {
+        deliverablePath: {
+          type: 'string'
+        },
+        rows: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: {
+              type: 'string'
+            }
+          }
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['ok', 'rowCount', 'warnings', 'fileEvidence']
+    },
+    humanGate: {
+      required: true,
+      gate: 'interactive-confirmation',
+      reason: 'Dependency register writes require workspaceWrite mode and governed row validation.'
     }
   }),
   {

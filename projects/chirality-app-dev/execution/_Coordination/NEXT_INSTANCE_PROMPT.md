@@ -39,13 +39,13 @@ Default priority:
 1. Fix failing validation or incomplete evidence for already-landed runtime/control-plane work.
 2. Select the earliest unblocked tranche on the stabilization spine, honoring the sequencing DAG (STAB-00 first; STAB-00 gates STAB-01 and STAB-06; STAB-04 depends on STAB-01 + an SDK-behavior probe; STAB-02 cutover ruling follows its readiness steps).
 3. For governance tranches (STAB-00, STAB-06), produce the required reconciliation/disposition artifacts within their write bounds.
-4. If the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover, `D-APP-13` mutating Chirality MCP exposure), prepare a decision packet if none exists.
+4. If the next tranche requires a pending human ruling (`D-APP-12` default-provider cutover), prepare or refresh a decision packet if the active packet does not reflect current evidence.
 5. If a packet already awaits ruling, stop; do not substitute unrelated runtime hardening or out-of-stage scope.
 6. Stop when no stabilization tranche remains unblocked; do not select from the retired runtime completion plan or invent a replacement active queue.
 
 ## Execution Rules
 
-- Tranches selected from unblocked stabilization-plan items are pre-approved for execution within their declared write scope. STAB-02 step (d) packaging and the `D-APP-12`/`D-APP-13` rulings remain human-gated. If the stabilization plan has no remaining unblocked tranche, stop and report that the program is complete and the next active plan is unselected.
+- Tranches selected from unblocked stabilization-plan items are pre-approved for execution within their declared write scope. STAB-02 step (d) packaging remains partial: package layout and mounted-DMG SDK presence are proven, but packaged read-tool `agentSdk` turn plus transcript/HOME behavior remain blocked pending explicit live-provider approval or a non-live packaged resolver/HOME proof harness. `D-APP-12` remains human-gated for default-provider cutover. `D-APP-13` is ruled. If the stabilization plan has no remaining unblocked tranche, stop and report that the program is complete and the next active plan is unselected.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
@@ -72,5 +72,5 @@ End the session summary with:
 - completed tranche;
 - validation performed;
 - files changed;
-- human rulings pending from `_DECISIONS/_REGISTER.md` (`D-APP-12`, `D-APP-13`);
+- human rulings pending from `_DECISIONS/_REGISTER.md` (`D-APP-12`);
 - next stabilization tranche, or state that no stabilization tranche remains unblocked.

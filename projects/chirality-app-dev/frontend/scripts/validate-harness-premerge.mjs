@@ -35,7 +35,7 @@ async function ensureReadableFile(filePath) {
   await access(filePath, fsConstants.R_OK);
 }
 
-async function runSection8Script(scriptPath) {
+async function runNodeScript(scriptPath) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [scriptPath], {
       cwd: process.cwd(),
@@ -69,13 +69,34 @@ async function runSection8Script(scriptPath) {
   });
 }
 
+function parseOptionalMachineLine(stdout, key, fallback = '') {
+  try {
+    return parseMachineLine(stdout, key);
+  } catch {
+    return fallback;
+  }
+}
+
 async function main() {
   const scriptPath = path.resolve(process.cwd(), 'scripts', 'validate-harness-section8.mjs');
+  const section9ScriptPath = path.resolve(
+    process.cwd(),
+    'scripts',
+    'validate-harness-section9.mjs'
+  );
   const stableArtifactPath = path.resolve(
     process.cwd(),
     'artifacts',
     'harness',
     'section8',
+    'latest',
+    'summary.json'
+  );
+  const stableSection9ArtifactPath = path.resolve(
+    process.cwd(),
+    'artifacts',
+    'harness',
+    'section9',
     'latest',
     'summary.json'
   );
@@ -92,7 +113,7 @@ async function main() {
     return;
   }
 
-  const section8Result = await runSection8Script(scriptPath);
+  const section8Result = await runNodeScript(scriptPath);
   if (section8Result.code !== 0) {
     const sourceSummaryPath = (() => {
       try {
@@ -141,10 +162,40 @@ async function main() {
   const premergeStatus = resultRows.every((result) => result.status === 'pass') ? 'pass' : 'fail';
   const testCount = resultRows.length;
 
+  let section9Status = 'fail';
+  let section9SourceSummaryPath = '';
+  let section9TestCount = '0';
+  try {
+    await ensureReadableFile(section9ScriptPath);
+    const section9Result = await runNodeScript(section9ScriptPath);
+    section9Status = parseOptionalMachineLine(
+      section9Result.stdout,
+      'HARNESS_SECTION9_STATUS',
+      section9Result.code === 0 ? 'pass' : 'fail'
+    );
+    section9SourceSummaryPath = parseOptionalMachineLine(
+      section9Result.stdout,
+      'HARNESS_SECTION9_SOURCE_SUMMARY_PATH'
+    );
+    section9TestCount = parseOptionalMachineLine(
+      section9Result.stdout,
+      'HARNESS_SECTION9_TEST_COUNT',
+      '0'
+    );
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`Harness Section 9 report-only validation failed to run: ${message}`);
+  }
+
   console.log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
   console.log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
   console.log(`HARNESS_PREMERGE_STATUS=${premergeStatus}`);
   console.log(`HARNESS_PREMERGE_TEST_COUNT=${testCount}`);
+  console.log(`HARNESS_PREMERGE_SECTION9_ARTIFACT_PATH=${stableSection9ArtifactPath}`);
+  console.log(`HARNESS_PREMERGE_SECTION9_SOURCE_SUMMARY_PATH=${section9SourceSummaryPath}`);
+  console.log(`HARNESS_PREMERGE_SECTION9_STATUS=${section9Status}`);
+  console.log(`HARNESS_PREMERGE_SECTION9_TEST_COUNT=${section9TestCount}`);
+  console.log('HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true');
 
   process.exitCode = premergeStatus === 'pass' ? 0 : 1;
 }

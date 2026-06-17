@@ -2,10 +2,12 @@ import {
   createSdkMcpServer,
   tool,
   type McpServerConfig,
-  type McpSdkServerConfigWithInstance
+  type McpSdkServerConfigWithInstance,
+  type SdkMcpToolDefinition
 } from '@anthropic-ai/claude-agent-sdk';
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
-import { realpath } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod/v4';
 import { previewScaffoldExecutionRoot } from '../scaffold';
@@ -13,29 +15,44 @@ import type { CoordinationMode } from '../scaffold';
 import { createHarnessEvent } from '../event-schema';
 import {
   readDeliverableDependencies,
-  readDeliverableStatus
+  readDeliverableStatus,
+  transitionDeliverableStatus,
+  writeDeliverableDependencies
 } from '../../workspace/deliverable-contracts';
+import type { DependencyRegisterRow } from '../../dependencies/schema';
 import { normalizeProjectRoot, scanProjectScopes } from '../../workspace/filesystem';
 import { HarnessError } from '../errors';
+import {
+  appendHarnessPermissionDecisionEvent,
+  resolveHarnessPermissionDecision
+} from '../permission-overlay';
 import { appendHarnessEvent } from '../session-events';
 import {
   summarizeToolDescriptor,
   summarizeToolError,
   summarizeToolInput,
-  summarizeToolResult
+  summarizeToolResult,
+  withToolResultPersistence
 } from '../tool-evidence';
+import { persistToolResultArtifact } from '../tool-result-artifacts';
 import { getHarnessToolDescriptor } from '../tool-descriptor';
+import { evaluateToolPathPolicy } from '../tool-path-policy';
 import {
   CHIRALITY_MCP_SERVER_NAME,
   isChiralityMcpAllowedToolName,
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
+  type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from './tool-names';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
   sessionId: string;
+};
+
+export type ChiralityMutatingMcpContext = ChiralityReadMcpContext & {
+  mode: string;
 };
 
 export type StatusReadArgs = {
@@ -54,6 +71,38 @@ export type ScaffoldPreviewArgs = {
   projectName?: string;
   coordinationMode?: string;
 };
+
+export type StatusTransitionArgs = {
+  deliverablePath: string;
+  targetState: string;
+  actor: string;
+  date?: string;
+  approvalSha?: string;
+  metadata?: Record<string, string>;
+};
+
+export type DependenciesWriteArgs = {
+  deliverablePath: string;
+  rows: DependencyRegisterRow[];
+};
+
+type FileEvidence =
+  | {
+      exists: true;
+      sha256: string;
+      byteLength: number;
+    }
+  | {
+      exists: false;
+      sha256?: undefined;
+      byteLength: 0;
+    };
+
+function asRecord(value: unknown): Record<string, unknown> | undefined {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : undefined;
+}
 
 function jsonToolResult(value: unknown): CallToolResult {
   return {
@@ -96,6 +145,13 @@ async function runReadMcpToolWithEvidence(input: {
 
   try {
     const result = await input.execute();
+    const artifactMetadata = await persistToolResultArtifact({
+      sessionId: input.context.sessionId,
+      toolUseId: `${input.toolName}-${startedAt}`,
+      toolName: adapterToolName,
+      descriptor,
+      result
+    });
     await appendHarnessEvent(
       createHarnessEvent({
         sessionId: input.context.sessionId,
@@ -103,7 +159,209 @@ async function runReadMcpToolWithEvidence(input: {
         data: {
           ...eventBase,
           durationMs: Date.now() - startedAt,
-          resultMetadata: summarizeToolResult(result, descriptor)
+          resultMetadata: withToolResultPersistence(
+            summarizeToolResult(result, descriptor),
+            Boolean(artifactMetadata)
+          ),
+          artifactMetadata
+        }
+      })
+    );
+    return result;
+  } catch (error) {
+    try {
+      await appendHarnessEvent(
+        createHarnessEvent({
+          sessionId: input.context.sessionId,
+          type: 'tool.failed',
+          data: {
+            ...eventBase,
+            failureSource: 'handler',
+            durationMs: Date.now() - startedAt,
+            error: summarizeToolError(error)
+          }
+        })
+      );
+    } catch {
+      // Preserve the original tool failure if failure-evidence persistence also fails.
+    }
+    throw error;
+  }
+}
+
+function resolveProjectPath(projectRoot: string, candidatePath: string): string {
+  return path.isAbsolute(candidatePath)
+    ? path.resolve(candidatePath)
+    : path.resolve(projectRoot, candidatePath);
+}
+
+async function readFileEvidence(filePath: string): Promise<FileEvidence> {
+  try {
+    const content = await readFile(filePath);
+    return {
+      exists: true,
+      sha256: createHash('sha256').update(content).digest('hex'),
+      byteLength: content.byteLength
+    };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return {
+        exists: false,
+        byteLength: 0
+      };
+    }
+    throw error;
+  }
+}
+
+function summarizeFileChange(before: FileEvidence, after: FileEvidence): Record<string, unknown> {
+  return {
+    before: {
+      exists: before.exists,
+      sha256: before.sha256,
+      byteLength: before.byteLength
+    },
+    after: {
+      exists: after.exists,
+      sha256: after.sha256,
+      byteLength: after.byteLength
+    },
+    diffSummary: {
+      existedBefore: before.exists,
+      existsAfter: after.exists,
+      byteDelta: after.byteLength - before.byteLength,
+      shaChanged: before.sha256 !== after.sha256
+    }
+  };
+}
+
+async function assertMutatingMcpPermission(input: {
+  context: ChiralityMutatingMcpContext;
+  toolName: ChiralityMcpMutatingToolName;
+  args: unknown;
+  targetFilePath: string;
+}): Promise<Record<string, unknown>> {
+  const descriptor = getHarnessToolDescriptor(input.toolName);
+  const deliverablePathPolicy = await evaluateToolPathPolicy({
+    descriptor,
+    projectRoot: input.context.projectRoot,
+    toolInput: input.args
+  });
+  const targetPathPolicy = await evaluateToolPathPolicy({
+    descriptor,
+    projectRoot: input.context.projectRoot,
+    toolInput: {
+      path: input.targetFilePath
+    }
+  });
+  const explicitDeny = !deliverablePathPolicy.allowed || !targetPathPolicy.allowed;
+  const explicitDenyReason = !deliverablePathPolicy.allowed
+    ? deliverablePathPolicy.reason
+    : !targetPathPolicy.allowed
+      ? targetPathPolicy.reason
+      : undefined;
+  const decision = resolveHarnessPermissionDecision({
+    sessionId: input.context.sessionId,
+    mode: input.context.mode,
+    toolName: toChiralityMcpAllowedToolName(input.toolName),
+    descriptor,
+    source: 'chirality-policy',
+    toolInput: asRecord(input.args),
+    explicitDeny,
+    explicitDenyReason,
+    safeMetadata: {
+      inputMetadata: summarizeToolInput(input.args),
+      pathMetadata: deliverablePathPolicy.metadata,
+      targetPathMetadata: targetPathPolicy.metadata
+    }
+  });
+
+  await appendHarnessPermissionDecisionEvent({
+    decision,
+    descriptor
+  });
+
+  if (decision.decision !== 'allow') {
+    throw new HarnessError('INVALID_REQUEST', 403, decision.reason, {
+      decisionId: decision.decisionId,
+      decision: decision.decision,
+      safeMetadata: decision.safeMetadata
+    });
+  }
+
+  return {
+    decisionId: decision.decisionId,
+    pathMetadata: deliverablePathPolicy.metadata,
+    targetPathMetadata: targetPathPolicy.metadata
+  };
+}
+
+async function runMutatingMcpToolWithEvidence(input: {
+  context: ChiralityMutatingMcpContext;
+  toolName: ChiralityMcpMutatingToolName;
+  args: unknown;
+  targetFilePath: string;
+  execute: () => Promise<{
+    result: CallToolResult;
+    resultSummary: Record<string, unknown>;
+  }>;
+}): Promise<CallToolResult> {
+  const descriptor = getHarnessToolDescriptor(input.toolName);
+  const adapterToolName =
+    descriptor?.adapter.claudeAgentSdk?.toolName ?? toChiralityMcpAllowedToolName(input.toolName);
+  const eventBase = {
+    source: 'chirality-mcp',
+    adapterToolName,
+    toolName: descriptor?.name ?? input.toolName,
+    ...summarizeToolDescriptor(descriptor)
+  };
+  const startedAt = Date.now();
+
+  await appendHarnessEvent(
+    createHarnessEvent({
+      sessionId: input.context.sessionId,
+      type: 'tool.started',
+      data: {
+        ...eventBase,
+        inputMetadata: summarizeToolInput(input.args)
+      }
+    })
+  );
+
+  try {
+    const permissionMetadata = await assertMutatingMcpPermission({
+      context: input.context,
+      toolName: input.toolName,
+      args: input.args,
+      targetFilePath: input.targetFilePath
+    });
+    const before = await readFileEvidence(input.targetFilePath);
+    const { result, resultSummary } = await input.execute();
+    const after = await readFileEvidence(input.targetFilePath);
+    const fileEvidence = summarizeFileChange(before, after);
+    const artifactMetadata = await persistToolResultArtifact({
+      sessionId: input.context.sessionId,
+      toolUseId: `${input.toolName}-${startedAt}`,
+      toolName: adapterToolName,
+      descriptor,
+      result
+    });
+
+    await appendHarnessEvent(
+      createHarnessEvent({
+        sessionId: input.context.sessionId,
+        type: 'tool.completed',
+        data: {
+          ...eventBase,
+          durationMs: Date.now() - startedAt,
+          permissionMetadata,
+          resultSummary,
+          fileEvidence,
+          resultMetadata: withToolResultPersistence(
+            summarizeToolResult(result, descriptor),
+            Boolean(artifactMetadata)
+          ),
+          artifactMetadata
         }
       })
     );
@@ -250,6 +508,83 @@ export async function scaffoldPreviewTool(
   });
 }
 
+export async function statusTransitionTool(
+  context: ChiralityMutatingMcpContext,
+  args: StatusTransitionArgs
+): Promise<CallToolResult> {
+  const deliverablePath = resolveProjectPath(context.projectRoot, args.deliverablePath);
+  const statusFilePath = path.join(deliverablePath, '_STATUS.md');
+
+  return runMutatingMcpToolWithEvidence({
+    context,
+    toolName: 'status_transition',
+    args,
+    targetFilePath: statusFilePath,
+    execute: async () => {
+      const transitioned = await transitionDeliverableStatus({
+        projectRoot: context.projectRoot,
+        deliverablePath,
+        targetState: args.targetState,
+        actor: args.actor,
+        date: args.date,
+        approvalSha: args.approvalSha,
+        metadata: args.metadata
+      });
+      const summary = {
+        ok: true,
+        projectRoot: transitioned.projectRoot,
+        deliverablePath: transitioned.deliverablePath,
+        statusFilePath: transitioned.statusFilePath,
+        transition: transitioned.transition,
+        status: {
+          currentState: transitioned.status.currentState,
+          lastUpdated: transitioned.status.lastUpdated,
+          historyLength: transitioned.status.history.length
+        }
+      };
+      return {
+        result: jsonToolResult(summary),
+        resultSummary: summary
+      };
+    }
+  });
+}
+
+export async function dependenciesWriteTool(
+  context: ChiralityMutatingMcpContext,
+  args: DependenciesWriteArgs
+): Promise<CallToolResult> {
+  const deliverablePath = resolveProjectPath(context.projectRoot, args.deliverablePath);
+  const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
+
+  return runMutatingMcpToolWithEvidence({
+    context,
+    toolName: 'deps_write',
+    args,
+    targetFilePath: dependenciesFilePath,
+    execute: async () => {
+      const written = await writeDeliverableDependencies({
+        projectRoot: context.projectRoot,
+        deliverablePath,
+        rows: args.rows
+      });
+      const summary = {
+        ok: true,
+        projectRoot: written.projectRoot,
+        deliverablePath: written.deliverablePath,
+        dependenciesFilePath: written.dependenciesFilePath,
+        rowCount: written.rows.length,
+        warningCount: written.warnings.length,
+        warnings: written.warnings
+      };
+      return {
+        result: jsonToolResult(summary),
+        resultSummary: summary
+      };
+    }
+  });
+}
+
 export function createChiralityReadMcpServer(
   context: ChiralityReadMcpContext
 ): McpSdkServerConfigWithInstance {
@@ -296,18 +631,142 @@ export function createChiralityReadMcpServer(
   });
 }
 
-export function createChiralityReadMcpServers(input: {
+function buildChiralityMcpTools(input: {
+  context: ChiralityReadMcpContext;
+  mode?: string;
+  allowedToolNames: readonly string[];
+}): SdkMcpToolDefinition<any>[] {
+  const allowed = new Set(input.allowedToolNames);
+  const tools: SdkMcpToolDefinition<any>[] = [];
+
+  if (allowed.has('mcp__chirality__status_read')) {
+    tools.push(
+      tool(
+        'status_read',
+        'Read parsed lifecycle state from a deliverable _STATUS.md file.',
+        {
+          deliverablePath: z.string().min(1)
+        },
+        (args) => statusReadTool(input.context, args)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__deps_read')) {
+    tools.push(
+      tool(
+        'deps_read',
+        'Read parsed dependency rows and warnings from a deliverable Dependencies.csv file.',
+        {
+          deliverablePath: z.string().min(1)
+        },
+        (args) => dependenciesReadTool(input.context, args)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__scope_scan')) {
+    tools.push(
+      tool(
+        'scope_scan',
+        'Scan project-root deliverable and knowledge-type scopes without reading document bodies.',
+        {},
+        (args) => scopeScanTool(input.context, args)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__scaffold_preview')) {
+    tools.push(
+      tool(
+        'scaffold_preview',
+        'Preview execution-root scaffold paths from a decomposition markdown file without writing files.',
+        {
+          executionRoot: z.string().min(1),
+          decompositionPath: z.string().min(1),
+          projectName: z.string().optional(),
+          coordinationMode: z.string().optional()
+        },
+        (args) => scaffoldPreviewTool(input.context, args)
+      )
+    );
+  }
+
+  const mutatingContext: ChiralityMutatingMcpContext = {
+    ...input.context,
+    mode: input.mode ?? 'readOnly'
+  };
+
+  if (allowed.has('mcp__chirality__status_transition')) {
+    tools.push(
+      tool(
+        'status_transition',
+        'Apply a governed lifecycle transition to a deliverable _STATUS.md file.',
+        {
+          deliverablePath: z.string().min(1),
+          targetState: z.string().min(1),
+          actor: z.string().min(1),
+          date: z.string().optional(),
+          approvalSha: z.string().optional(),
+          metadata: z.record(z.string(), z.string()).optional()
+        },
+        (args) => statusTransitionTool(mutatingContext, args)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__deps_write')) {
+    tools.push(
+      tool(
+        'deps_write',
+        'Write a governed Dependencies.csv register using v3.1 dependency writer semantics.',
+        {
+          deliverablePath: z.string().min(1),
+          rows: z.array(z.record(z.string(), z.string()))
+        },
+        (args) =>
+          dependenciesWriteTool(mutatingContext, {
+            deliverablePath: args.deliverablePath,
+            rows: args.rows as DependencyRegisterRow[]
+          })
+      )
+    );
+  }
+
+  return tools;
+}
+
+export function createChiralityMcpServers(input: {
   context: ChiralityReadMcpContext;
   allowedToolNames: readonly string[];
+  mode?: string;
 }): Record<string, McpServerConfig> {
-  const hasAllowedReadMcpTool = input.allowedToolNames.some(isChiralityMcpAllowedToolName);
-  if (!hasAllowedReadMcpTool) {
+  const allowedToolNames = input.allowedToolNames.filter(isChiralityMcpAllowedToolName);
+  const tools = buildChiralityMcpTools({
+    context: input.context,
+    mode: input.mode,
+    allowedToolNames
+  });
+  if (tools.length === 0) {
     return {};
   }
 
   return {
-    [CHIRALITY_MCP_SERVER_NAME]: createChiralityReadMcpServer(input.context)
+    [CHIRALITY_MCP_SERVER_NAME]: createSdkMcpServer({
+      name: CHIRALITY_MCP_SERVER_NAME,
+      version: '1.0.0',
+      instructions:
+        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands or access networks.',
+      tools
+    })
   };
+}
+
+export function createChiralityReadMcpServers(input: {
+  context: ChiralityReadMcpContext;
+  allowedToolNames: readonly string[];
+}): Record<string, McpServerConfig> {
+  return createChiralityMcpServers(input);
 }
 
 export function filterChiralityMcpAllowedToolNames(

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 const PACKAGE_JSON_PATH = path.resolve(process.cwd(), 'package.json');
 const ELECTRON_MAIN_PATH = path.resolve(process.cwd(), 'electron', 'main.ts');
+const NETWORK_POLICY_PROOF_PATH = path.resolve(process.cwd(), 'scripts', 'run-network-policy-proof.mjs');
 
 type FrontendPackageJson = {
   scripts?: Record<string, string>;
@@ -45,5 +46,16 @@ describe('build network policy hardening', () => {
     expect(mainSource).toContain("'127.0.0.1'");
     expect(mainSource).toContain("'[::1]'");
     expect(mainSource).toContain('Blocked renderer outbound request by network policy');
+  });
+
+  it('supports an explicit scripted agentSdk network proof mode without broadening egress', async () => {
+    const proofSource = await readFile(NETWORK_POLICY_PROOF_PATH, 'utf8');
+
+    expect(proofSource).toContain("'--provider'");
+    expect(proofSource).toContain("'--scripted-agent-sdk'");
+    expect(proofSource).toContain('CHIRALITY_HARNESS_PROVIDER');
+    expect(proofSource).toContain('CHIRALITY_AGENTSDK_SCRIPTED_PROOF');
+    expect(proofSource).toContain("endpoint.class !== 'loopback' && endpoint.class !== 'allowlisted'");
+    expect(proofSource).toContain("'api.anthropic.com'");
   });
 });

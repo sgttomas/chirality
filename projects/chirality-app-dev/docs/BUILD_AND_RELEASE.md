@@ -50,9 +50,11 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run test` | Runs Vitest unit and contract tests. |
 | `npm run typecheck` | Runs TypeScript checks for frontend and Electron entry surfaces. |
 | `npm run harness:validate:section8` | Runs harness validation against a reachable local harness API and emits machine-readable status lines. |
+| `npm run harness:validate:section9` | Runs deterministic Section 9 runtime-ID validation over targeted Vitest files and writes the stable Section 9 summary artifact. |
 | `npm run harness:validate:premerge` | Runs the premerge harness validator and writes the stable summary artifact. |
+| `npm run harness:validate:agentsdk-dev-turn` | Runs route-level opt-in `agentSdk` scripted dev-turn validation through the real SDK `query()` path with an offline scripted subprocess. |
 | `npm run instruction-root:integrity` | Verifies required instruction-root resources and writes the integrity summary artifact. |
-| `npm run proof:network-policy` | Runs the current network-policy proof. |
+| `npm run proof:network-policy` | Runs the current network-policy proof. Add `-- --provider agentSdk --scripted-agent-sdk` for the non-packaged STAB-02(c) opt-in SDK network proof. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
 | `npm run desktop:pack` | Builds and produces an unsigned local macOS arm64 app directory with publishing disabled, then verifies instruction-root integrity. |
 | `npm run desktop:dist` | Builds and produces an unsigned/unnotarized local-builder macOS arm64 DMG with publishing disabled, then verifies instruction-root integrity. |
@@ -85,6 +87,7 @@ Current known artifact locations include:
 - Electron main-process output: `frontend/dist-electron/`;
 - Electron-builder output: `frontend/dist/`;
 - harness validation summary: `frontend/artifacts/harness/section8/latest/summary.json`;
+- harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - live harness validation output under `${TMPDIR:-/tmp}/chirality-harness-validation/latest/`.
 
@@ -97,7 +100,7 @@ These profiles are documentation labels, not new scripts.
 | Profile | Commands | Intended use |
 |---|---|---|
 | Governance-only | Static checks over docs, plans, and coordination files; no frontend commands unless the tranche changes executable behavior. | Control-plane documentation tranches. |
-| Runtime premerge | `npm run test`; `npm run typecheck`; `npm run harness:validate:premerge`; `npm run instruction-root:integrity`. | Shared runtime, API, SDK, event, permission, or harness workflow changes. |
+| Runtime premerge | `npm run test`; `npm run typecheck`; `npm run harness:validate:section9`; `npm run harness:validate:premerge`; `npm run instruction-root:integrity`. | Shared runtime, API, SDK, event, permission, or harness workflow changes. |
 | Network/security | Runtime premerge plus `npm run proof:network-policy`. | Network, provider, API-key, redaction, or outbound-policy changes. |
 | Packaging review | `npm run build`; `npm run instruction-root:integrity`; `npm run desktop:pack` or `npm run desktop:dist` as applicable. | Instruction-root, packaging, app metadata, or distribution artifact changes. |
 | Release-candidate dry run | Runtime premerge plus packaging review, with known limitations and human-gate state recorded. | Future release-candidate evidence only after human authorization. |

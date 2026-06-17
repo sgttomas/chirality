@@ -9,6 +9,12 @@ import type {
   SDKSystemMessage
 } from '@anthropic-ai/claude-agent-sdk';
 import { createHarnessEvent, HarnessEvent } from './event-schema';
+import {
+  childRunRecordToEventData,
+  createAdapterObservedChildRunRecord,
+  type ChildRunRecord,
+  type ChildRunStatus
+} from './agent-runtime-contract';
 import { isChiralityMcpAllowedToolName } from './mcp/tool-names';
 import { redactJsonLike } from './run-logger';
 import {
@@ -16,8 +22,10 @@ import {
   summarizeToolDescriptor,
   summarizeToolInput,
   summarizeShellResultStreams,
-  summarizeToolResult
+  summarizeToolResult,
+  withToolResultPersistence
 } from './tool-evidence';
+import { persistToolResultArtifact } from './tool-result-artifacts';
 import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
 import { UIEvent } from './types';
 
@@ -31,12 +39,25 @@ export type SdkMessageMapping = {
 export type SdkToolEvidenceState = {
   toolNamesByUseId: Map<string, string>;
   startedToolUseIds: Set<string>;
+  childRunContext?: SdkChildRunEvidenceContext;
+  childRunRecordsByTaskId: Map<string, ChildRunRecord>;
 };
 
-export function createSdkToolEvidenceState(): SdkToolEvidenceState {
+export type SdkChildRunEvidenceContext = {
+  parentPersona: string;
+  projectRoot: string;
+  mode: string;
+  parentTurnId?: string;
+};
+
+export function createSdkToolEvidenceState(
+  childRunContext?: SdkChildRunEvidenceContext
+): SdkToolEvidenceState {
   return {
     toolNamesByUseId: new Map(),
-    startedToolUseIds: new Set()
+    startedToolUseIds: new Set(),
+    childRunContext,
+    childRunRecordsByTaskId: new Map()
   };
 }
 
@@ -151,6 +172,81 @@ function createToolEvidenceData(input: {
     toolName: input.toolName,
     ...input.extra
   };
+}
+
+function readTaskId(message: SDKMessage): string | undefined {
+  const record = message as unknown as Record<string, unknown>;
+  return readString(record['task_id']);
+}
+
+function readToolUseId(message: SDKMessage): string | undefined {
+  const record = message as unknown as Record<string, unknown>;
+  return readString(record['tool_use_id']);
+}
+
+function readChildAgentName(message: SDKMessage, prior?: ChildRunRecord): string {
+  const record = message as unknown as Record<string, unknown>;
+  return (
+    readString(record['subagent_type']) ??
+    readString(record['task_type']) ??
+    readString(record['workflow_name']) ??
+    prior?.agentName ??
+    'UNKNOWN_CHILD_AGENT'
+  );
+}
+
+function createChildRunRecordForTaskMessage(input: {
+  sessionId: string;
+  message: SDKMessage;
+  state?: SdkToolEvidenceState;
+  status: ChildRunStatus;
+  outputArtifactPath?: string;
+}): ChildRunRecord | undefined {
+  const context = input.state?.childRunContext;
+  if (!context) {
+    return undefined;
+  }
+
+  const taskId = readTaskId(input.message);
+  const prior = taskId ? input.state?.childRunRecordsByTaskId.get(taskId) : undefined;
+  const record = createAdapterObservedChildRunRecord({
+    parentSessionId: input.sessionId,
+    parentPersona: context.parentPersona,
+    agentName: readChildAgentName(input.message, prior),
+    projectRoot: context.projectRoot,
+    mode: context.mode,
+    status: input.status,
+    parentTurnId: context.parentTurnId,
+    outputArtifactPath: input.outputArtifactPath ?? prior?.outputArtifactPath,
+    adapter: {
+      adapterName: 'claude-agent-sdk',
+      adapterSessionId: readSessionId(input.message),
+      adapterTaskId: taskId,
+      adapterToolUseId: readToolUseId(input.message)
+    }
+  });
+
+  if (taskId) {
+    input.state?.childRunRecordsByTaskId.set(taskId, record);
+  }
+  return record;
+}
+
+function childRunEventData(record: ChildRunRecord | undefined): Record<string, unknown> {
+  return record ? childRunRecordToEventData(record) : {};
+}
+
+function summarizeTaskPatch(patch: unknown): Record<string, unknown> | undefined {
+  if (!isRecord(patch)) {
+    return undefined;
+  }
+  return redactJsonLike({
+    status: readString(patch.status),
+    keys: Object.keys(patch).sort(),
+    outputFilePresent: readString(patch.output_file) !== undefined,
+    summaryPresent: readString(patch.summary) !== undefined,
+    usagePresent: patch.usage !== undefined
+  });
 }
 
 function createInferredToolStartedEvent(input: {
@@ -336,6 +432,72 @@ function mapSdkUserToolResultEvents(
   return lifecycleEvents;
 }
 
+async function mapSdkUserToolResultEventsWithArtifacts(
+  sessionId: string,
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
+): Promise<HarnessEvent[]> {
+  const record = message as Record<string, unknown>;
+  if (record.tool_use_result === undefined) {
+    return [];
+  }
+
+  const result = record.tool_use_result;
+  const resultRecord = isRecord(result) ? result : {};
+  const toolUseId =
+    readString(record.parent_tool_use_id) ?? readString(resultRecord.tool_use_id);
+  const toolName = toolUseId ? state?.toolNamesByUseId.get(toolUseId) : undefined;
+  const descriptor = descriptorForToolName(toolName);
+  if (!toolUseId || isChiralityMcpTool(toolName) || !isSdkBuiltinEvidenceDescriptor(descriptor)) {
+    return [];
+  }
+
+  const artifactMetadata = await persistToolResultArtifact({
+    sessionId,
+    toolUseId,
+    toolName,
+    descriptor,
+    result
+  });
+  const resultMetadata = withToolResultPersistence(
+    summarizeToolResult(result, descriptor),
+    Boolean(artifactMetadata)
+  );
+  const lifecycleEvents = createInferredToolStartedEvent({
+    sessionId,
+    message,
+    state,
+    toolUseId,
+    toolName,
+    parentToolUseId: record.parent_tool_use_id,
+    inferredFrom: 'tool_use_result'
+  });
+  const eventType = isToolResultFailure(result) ? 'tool.failed' : 'tool.completed';
+  lifecycleEvents.push(
+    createSdkEvent(
+      sessionId,
+      message,
+      eventType,
+      createToolEvidenceData({
+        source: 'adapter',
+        toolUseId,
+        toolName,
+        descriptor,
+        extra: {
+          parentToolUseId: record.parent_tool_use_id,
+          failureSource: eventType === 'tool.failed' ? 'tool_use_result' : undefined,
+          resultMetadata,
+          shellResultMetadata: isShellDescriptor(descriptor)
+            ? summarizeShellResultStreams(result)
+            : undefined,
+          artifactMetadata
+        }
+      })
+    )
+  );
+  return lifecycleEvents;
+}
+
 function mapSdkUserMessage(
   sessionId: string,
   message: SDKMessage,
@@ -357,6 +519,49 @@ function mapSdkUserMessage(
     timestamp: record.timestamp
   });
   const toolResultEvents = mapSdkUserToolResultEvents(sessionId, message, state);
+
+  return {
+    sdkSessionId: readSessionId(message),
+    uiEvents: [],
+    harnessEvents: shouldQueue
+      ? [
+          ...toolResultEvents,
+          messageEvent,
+          createSdkEvent(sessionId, message, 'queue.enqueued', {
+            queueKind: record.priority ?? 'deferred',
+            shouldQuery: record.shouldQuery,
+            origin: record.origin
+          })
+        ]
+      : [...toolResultEvents, messageEvent]
+  };
+}
+
+async function mapSdkUserMessageWithArtifacts(
+  sessionId: string,
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
+): Promise<SdkMessageMapping> {
+  const record = message as Record<string, unknown>;
+  const shouldQueue = record.shouldQuery === false || record.priority === 'next' || record.priority === 'later';
+  const messageEvent = createSdkEvent(sessionId, message, 'message.completed', {
+    role: 'user',
+    source: record.isSynthetic ? 'synthetic' : 'operator',
+    text: readTextFromMessageParam(record.message),
+    blockTypes: isRecord(record.message) ? readBlockTypes(record.message.content) : [],
+    priority: record.priority,
+    shouldQuery: record.shouldQuery,
+    synthetic: record.isSynthetic === true,
+    origin: record.origin,
+    parentToolUseId: record.parent_tool_use_id,
+    toolUseResultPresent: record.tool_use_result !== undefined,
+    timestamp: record.timestamp
+  });
+  const toolResultEvents = await mapSdkUserToolResultEventsWithArtifacts(
+    sessionId,
+    message,
+    state
+  );
 
   return {
     sdkSessionId: readSessionId(message),
@@ -846,6 +1051,12 @@ export function mapSdkMessageToHarness(
   }
 
   if (message.type === 'system' && message.subtype === 'task_started') {
+    const childRunRecord = createChildRunRecordForTaskMessage({
+      sessionId,
+      message,
+      state,
+      status: 'running'
+    });
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
@@ -857,13 +1068,20 @@ export function mapSdkMessageToHarness(
           subagentType: message.subagent_type,
           taskType: message.task_type,
           workflowName: message.workflow_name,
-          skipTranscript: message.skip_transcript
+          skipTranscript: message.skip_transcript,
+          ...childRunEventData(childRunRecord)
         })
       ]
     };
   }
 
   if (message.type === 'system' && message.subtype === 'task_progress') {
+    const childRunRecord = createChildRunRecordForTaskMessage({
+      sessionId,
+      message,
+      state,
+      status: 'running'
+    });
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
@@ -875,7 +1093,8 @@ export function mapSdkMessageToHarness(
           subagentType: message.subagent_type,
           usage: message.usage,
           lastToolName: message.last_tool_name,
-          summary: message.summary
+          summary: message.summary,
+          ...childRunEventData(childRunRecord)
         })
       ]
     };
@@ -889,13 +1108,35 @@ export function mapSdkMessageToHarness(
         : status === 'failed' || status === 'killed'
           ? 'subagent.failed'
           : 'subagent.progress';
+    const patchRecord = isRecord(message.patch)
+      ? (message.patch as unknown as Record<string, unknown>)
+      : undefined;
+    const outputArtifactPath = patchRecord ? readString(patchRecord['output_file']) : undefined;
+    const childRunStatus: ChildRunStatus =
+      status === 'completed'
+        ? 'completed'
+        : status === 'failed' || status === 'killed'
+          ? 'failed'
+          : 'running';
+    const childRunRecord =
+      childRunStatus === 'completed' && !outputArtifactPath
+        ? undefined
+        : createChildRunRecordForTaskMessage({
+            sessionId,
+            message,
+            state,
+            status: childRunStatus,
+            outputArtifactPath
+          });
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
       harnessEvents: [
         createSdkEvent(sessionId, message, eventType, {
           taskId: message.task_id,
-          patch: message.patch
+          status,
+          patchMetadata: summarizeTaskPatch(message.patch),
+          ...childRunEventData(childRunRecord)
         })
       ]
     };
@@ -903,6 +1144,13 @@ export function mapSdkMessageToHarness(
 
   if (message.type === 'system' && message.subtype === 'task_notification') {
     const eventType = message.status === 'completed' ? 'subagent.completed' : 'subagent.failed';
+    const childRunRecord = createChildRunRecordForTaskMessage({
+      sessionId,
+      message,
+      state,
+      status: message.status === 'completed' ? 'completed' : 'failed',
+      outputArtifactPath: message.output_file
+    });
     return {
       sdkSessionId: message.session_id,
       uiEvents: [],
@@ -914,7 +1162,8 @@ export function mapSdkMessageToHarness(
           outputFile: message.output_file,
           summary: message.summary,
           usage: message.usage,
-          skipTranscript: message.skip_transcript
+          skipTranscript: message.skip_transcript,
+          ...childRunEventData(childRunRecord)
         })
       ]
     };
@@ -925,4 +1174,16 @@ export function mapSdkMessageToHarness(
     uiEvents: [],
     harnessEvents: []
   };
+}
+
+export async function mapSdkMessageToHarnessWithArtifacts(
+  sessionId: string,
+  message: SDKMessage,
+  state?: SdkToolEvidenceState
+): Promise<SdkMessageMapping> {
+  if (message.type === 'user') {
+    return mapSdkUserMessageWithArtifacts(sessionId, message, state);
+  }
+
+  return mapSdkMessageToHarness(sessionId, message, state);
 }

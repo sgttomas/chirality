@@ -101,7 +101,7 @@ Current persisted event categories include:
 Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.
 
 Read-tool lifecycle evidence is persisted for the currently approved read surfaces:
-SDK read built-ins and read-only Chirality MCP tools. Permission callbacks append
+SDK read built-ins and Chirality MCP read tools. Permission callbacks append
 `tool.permission` records with allow/deny/ask behavior, decision id, reason,
 descriptor identity, adapter tool name, mode, surface, and safe metadata. If permission
 audit persistence fails, the SDK callback fails closed by denying execution.
@@ -129,6 +129,19 @@ fail-closed audit behavior. The write hooks append provider-neutral `hook.starte
 metadata, result-budget metadata, and diff-provenance flags. Raw file contents, raw tool
 outputs, and full diffs are not stored in `HarnessEvent.data`; artifact spill files and
 full diff storage remain future scope.
+
+Mutating Chirality MCP lifecycle evidence is persisted for the D-APP-13 Option A tools
+`mcp__chirality__status_transition` and `mcp__chirality__deps_write`. These tools are
+available only when explicitly requested in `workspaceWrite` mode. Because the SDK MCP
+behavior probe showed raw in-process `mcp_message` calls do not automatically invoke SDK
+`canUseTool` or hook callbacks, each mutating MCP handler runs its own fail-closed
+permission/evidence wrapper. The wrapper emits `tool.started`, `tool.permission`, and
+then `tool.completed` or `tool.failed`; enforces project-root containment,
+instruction-root write blocking, and symlink target rejection; snapshots target-file
+SHA-256 and byte length before and after execution; and records only result summaries,
+bounded diff metadata, and redacted error metadata. Raw `_STATUS.md`, raw
+`Dependencies.csv`, raw full diffs, raw SDK transcripts, and secrets are not stored in
+`HarnessEvent.data`.
 
 Bash lifecycle evidence is persisted for the approved SDK `Bash` built-in only in
 `workspaceWrite` mode. Bash remains denied in `readOnly`, `dontAsk`, and ordinary `ask`
@@ -202,20 +215,23 @@ concurrency, interrupt behavior, result-budget policy, provenance events, human-
 metadata, and adapter tool names.
 
 The current runtime exposes requested read-class first-adapter SDK built-ins (`Read`,
-`Glob`, `Grep`, and `LS`), requested read-only Chirality MCP tools, requested
-SDK `Write` / `Edit` built-ins, and requested SDK `Bash` only in `workspaceWrite` mode
-after descriptor, permission-overlay, and Chirality hook resolution. The current
-Chirality MCP read tools are `mcp__chirality__status_read`,
+`Glob`, `Grep`, and `LS`), requested Chirality MCP read tools, requested
+SDK `Write` / `Edit` built-ins, requested SDK `Bash` only in `workspaceWrite` mode,
+and requested mutating Chirality MCP tools only in `workspaceWrite` mode after descriptor,
+permission-overlay, and handler-wrapper resolution. The current Chirality MCP read tools
+are `mcp__chirality__status_read`,
 `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
-`mcp__chirality__scaffold_preview`.
+`mcp__chirality__scaffold_preview`. The current mutating Chirality MCP tools are
+`mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
 
 The SDK options builder passes requested and allowed names through both `tools` and
 `allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
-the in-process `chirality` MCP server only when a Chirality MCP read descriptor is
+the in-process `chirality` MCP server only when a Chirality MCP descriptor is
 allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unknown
 `opts.tools` fail structurally before adapter streaming begins.
 
-`MultiEdit`, notebook edits, network, subagent, and mutating Chirality MCP tools remain
+`MultiEdit`, notebook edits, network, unrestricted subagent capability, and
+`mcp__chirality__scaffold_exec` remain
 unavailable to the model. Their descriptors remain metadata only until their bounded
 implementation, hook, result-storage, and validation tranches land.
 
@@ -231,9 +247,10 @@ Probe posture:
 - SDK filesystem settings default to `settingSources: []`.
 - `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
-- Requested read built-ins, requested read-only Chirality MCP tools, requested
-  `Write` / `Edit` built-ins, and requested `Bash` in `workspaceWrite` mode are exposed
-  for the opt-in `agentSdk` path after descriptor, permission, and hook-policy
+- Requested read built-ins, requested Chirality MCP read tools, requested
+  `Write` / `Edit` built-ins, requested `Bash` in `workspaceWrite` mode, and requested
+  mutating Chirality MCP tools in `workspaceWrite` mode are exposed
+  for the opt-in `agentSdk` path after descriptor, permission, handler-wrapper, and hook-policy
   resolution. Denied or unrequested built-ins and MCP tools remain in descriptor-derived
   `disallowedTools`.
 

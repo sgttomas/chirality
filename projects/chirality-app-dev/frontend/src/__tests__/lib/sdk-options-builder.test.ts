@@ -1,7 +1,7 @@
 import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildSdkOptions } from '../../lib/harness/sdk-options-builder';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
 
@@ -26,9 +26,11 @@ const opts: ResolvedOpts = {
 let tmpDir = '';
 
 afterEach(async () => {
+  vi.unstubAllEnvs();
   delete process.env.CHIRALITY_SDK_SETTING_SOURCES;
   delete process.env.CHIRALITY_ALLOW_SDK_BYPASS;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  delete process.env.CHIRALITY_AGENTSDK_SCRIPTED_PROOF;
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
@@ -65,6 +67,7 @@ describe('buildSdkOptions', () => {
     expect(options.maxTurns).toBe(3);
     expect(options.permissionMode).toBe('default');
     expect(options.canUseTool).toBeTypeOf('function');
+    expect(options.spawnClaudeCodeProcess).toBeUndefined();
   });
 
   it('exposes the full requested read set and keeps unrequested or denied tools disallowed', () => {
@@ -82,6 +85,8 @@ describe('buildSdkOptions', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write',
       'Write',
       'Edit',
       'MultiEdit',
@@ -114,12 +119,60 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('mcp__chirality__scope_scan');
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
+    expect(options.disallowedTools).toContain('mcp__chirality__status_transition');
     expect(options.mcpServers).toMatchObject({
       chirality: {
         type: 'sdk',
         name: 'chirality'
       }
     });
+  });
+
+  it('attaches mutating Chirality MCP tools only when requested in workspaceWrite mode', () => {
+    const workspaceWrite = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'workspaceWrite',
+        tools: ['status_transition', 'deps_write']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(workspaceWrite.tools).toEqual([
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write'
+    ]);
+    expect(workspaceWrite.allowedTools).toEqual([
+      'mcp__chirality__status_transition',
+      'mcp__chirality__deps_write'
+    ]);
+    expect(workspaceWrite.disallowedTools).not.toContain('mcp__chirality__status_transition');
+    expect(workspaceWrite.disallowedTools).not.toContain('mcp__chirality__deps_write');
+    expect(workspaceWrite.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
+
+    const readOnly = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'readOnly',
+        tools: ['status_transition', 'deps_write']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(readOnly.tools).toEqual([]);
+    expect(readOnly.allowedTools).toEqual([]);
+    expect(readOnly.disallowedTools).toContain('mcp__chirality__status_transition');
+    expect(readOnly.disallowedTools).toContain('mcp__chirality__deps_write');
+    expect(readOnly.mcpServers).toEqual({});
   });
 
   it('allows only explicit project settings and never user or local sources', () => {
@@ -141,6 +194,46 @@ describe('buildSdkOptions', () => {
       systemPrompt: 'persona prompt'
     });
     expect(projectOnly.settingSources).toEqual(['project']);
+  });
+
+  it('attaches the scripted SDK subprocess only for explicit development or test proof runs', () => {
+    vi.stubEnv('CHIRALITY_AGENTSDK_SCRIPTED_PROOF', '1');
+    vi.stubEnv('NODE_ENV', 'test');
+
+    const proofOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(proofOptions.spawnClaudeCodeProcess).toBeTypeOf('function');
+
+    vi.stubEnv('NODE_ENV', 'development');
+    const developmentOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(developmentOptions.spawnClaudeCodeProcess).toBeTypeOf('function');
+
+    vi.stubEnv('NODE_ENV', '');
+    const unsetOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(unsetOptions.spawnClaudeCodeProcess).toBeUndefined();
+
+    vi.stubEnv('NODE_ENV', 'production');
+    const productionOptions = buildSdkOptions({
+      session,
+      opts,
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(productionOptions.spawnClaudeCodeProcess).toBeUndefined();
   });
 
   it('maps Chirality modes to SDK permission posture without premature write auto-acceptance', () => {

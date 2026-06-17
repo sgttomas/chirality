@@ -9,8 +9,15 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
   - Emits machine-readable lines:
     - `HARNESS_VALIDATION_SUMMARY_PATH=<path>`
     - `HARNESS_VALIDATION_STATUS=pass|fail`
+- `npm run harness:validate:section9`
+  - Executes `frontend/scripts/validate-harness-section9.mjs`.
+  - Runs the current Section 9 deterministic ID groups against targeted Vitest files.
+  - Emits machine-readable lines:
+    - `HARNESS_SECTION9_SUMMARY_PATH=<path>`
+    - `HARNESS_SECTION9_STATUS=pass|fail`
 - `npm run harness:validate:premerge`
   - Executes the section8 validator and enforces required test IDs.
+  - Executes the section9 validator in report-only mode for the initial integration cycle.
   - Copies the summary to `frontend/artifacts/harness/section8/latest/summary.json`.
 
 ## Prerequisites
@@ -27,6 +34,7 @@ From `frontend/`:
 
 ```bash
 npm run harness:validate:section8
+npm run harness:validate:section9
 npm run harness:validate:premerge
 ```
 
@@ -55,7 +63,9 @@ Fail the pipeline when command exit code is non-zero.
 ## Artifacts
 
 - Live run outputs: `${TMPDIR:-/tmp}/chirality-harness-validation/latest/`
+- Section 9 live run outputs: `${TMPDIR:-/tmp}/chirality-harness-section9-validation/latest/`
 - Stable premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`
+- Stable Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`
 - Integrity summary (instruction-root): `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 
 ## Repeatability Check

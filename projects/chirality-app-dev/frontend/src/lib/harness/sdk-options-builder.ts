@@ -7,9 +7,10 @@ import {
 } from './permission-overlay';
 import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
 import {
-  createChiralityReadMcpServers,
+  createChiralityMcpServers,
   filterChiralityMcpAllowedToolNames
 } from './mcp/read-tools';
+import { createScriptedAgentSdkProofSpawn } from './scripted-agent-sdk-proof';
 import { createExecutableSubagentBridge } from './subagent-bridge';
 
 export type SdkProbeOptions = Options & {
@@ -98,6 +99,7 @@ export function buildSdkOptions(input: {
     ? toolPool.disallowedToolNames.filter((toolName) => toolName !== 'Agent')
     : [...toolPool.disallowedToolNames];
   const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(allowedToolNames);
+  const scriptedAgentSdkProofSpawn = createScriptedAgentSdkProofSpawn();
 
   return {
     abortController: input.abortController,
@@ -122,12 +124,13 @@ export function buildSdkOptions(input: {
       delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor
     }),
-    mcpServers: createChiralityReadMcpServers({
+    mcpServers: createChiralityMcpServers({
       context: {
         projectRoot: input.session.projectRoot,
         sessionId: input.session.sessionId
       },
-      allowedToolNames: allowedChiralityMcpToolNames
+      allowedToolNames: allowedChiralityMcpToolNames,
+      mode: input.opts.mode
     }),
     resume: input.session.sdkSessionId,
     settingSources: parseSettingSources(process.env.CHIRALITY_SDK_SETTING_SOURCES),
@@ -135,6 +138,9 @@ export function buildSdkOptions(input: {
       type: 'preset',
       preset: 'claude_code',
       append: input.systemPrompt
-    }
+    },
+    ...(scriptedAgentSdkProofSpawn
+      ? { spawnClaudeCodeProcess: scriptedAgentSdkProofSpawn }
+      : {})
   };
 }

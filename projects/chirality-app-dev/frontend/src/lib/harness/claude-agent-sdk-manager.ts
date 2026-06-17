@@ -1,9 +1,14 @@
 import { query, type Query } from '@anthropic-ai/claude-agent-sdk';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { AgentEnginePort, AgentEngineRunInput } from './agent-engine-port';
+import { getUiApiKey } from './api-key-store';
 import { HarnessError } from './errors';
+import { redactConfiguredApiKeys } from './run-logger';
 import { buildSdkOptions, buildSdkPrompt } from './sdk-options-builder';
-import { createSdkToolEvidenceState, mapSdkMessageToHarness } from './sdk-message-mapper';
+import {
+  createSdkToolEvidenceState,
+  mapSdkMessageToHarnessWithArtifacts
+} from './sdk-message-mapper';
 import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 import { createHarnessEvent } from './event-schema';
@@ -17,6 +22,46 @@ type ActiveTurnState = {
 };
 
 const SDK_PACKAGE_VERSION = '0.3.150';
+const ANTHROPIC_API_KEY_ENV = 'ANTHROPIC_API_KEY';
+
+function asNonEmptyString(value: string | undefined): string | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function hashPrompt(systemPrompt: string): string {
+  return createHash('sha256').update(systemPrompt).digest('hex');
+}
+
+function readSdkApiKeyForTurn(): string | undefined {
+  return (
+    getUiApiKey() ??
+    asNonEmptyString(process.env.ANTHROPIC_API_KEY) ??
+    asNonEmptyString(process.env.CHIRALITY_ANTHROPIC_API_KEY)
+  );
+}
+
+function installAnthropicApiKeyForSdkTurn(): (() => void) | undefined {
+  const apiKey = readSdkApiKeyForTurn();
+  if (!apiKey) {
+    return undefined;
+  }
+
+  const hadPriorValue = Object.prototype.hasOwnProperty.call(process.env, ANTHROPIC_API_KEY_ENV);
+  const priorValue = process.env.ANTHROPIC_API_KEY;
+  process.env.ANTHROPIC_API_KEY = apiKey;
+
+  return () => {
+    if (hadPriorValue) {
+      process.env.ANTHROPIC_API_KEY = priorValue;
+      return;
+    }
+    delete process.env.ANTHROPIC_API_KEY;
+  };
+}
 
 export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort {
   readonly subject = 'claude-agent-sdk' as const;
@@ -27,7 +72,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     private readonly buildSystemPrompt: (
       projectRoot: string,
       persona: string,
-      mode: string
+      mode: string,
+      tools?: readonly string[]
     ) => Promise<string> = async () => ''
   ) {}
 
@@ -82,6 +128,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       interrupted: false
     };
     this.activeTurns.set(input.session.sessionId, activeTurn);
+    let restoreSdkApiKey: (() => void) | undefined;
 
     const bootstrapSessionId = input.session.sdkSessionId ?? input.session.claudeSessionId ?? `sdk_${randomUUID()}`;
 
@@ -107,8 +154,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       const systemPrompt = await this.buildSystemPrompt(
         input.session.projectRoot,
         input.opts.persona,
-        input.opts.mode
+        input.opts.mode,
+        input.opts.tools
       );
+      const personaPromptHash = hashPrompt(systemPrompt);
       const sdkOptions = buildSdkOptions({
         session: input.session,
         opts: input.opts,
@@ -116,6 +165,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         systemPrompt
       });
       const sdkPrompt = buildSdkPrompt(input.message, input.contentBlocks);
+      restoreSdkApiKey = installAnthropicApiKeyForSdkTurn();
       await appendHarnessEvent(
         createHarnessEvent({
           sessionId: input.session.sessionId,
@@ -123,6 +173,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           data: {
             provider: 'claude-agent-sdk',
             sdkPackageVersion: SDK_PACKAGE_VERSION,
+            persona: input.opts.persona,
+            mode: input.opts.mode,
+            personaPromptHash,
+            bootFingerprint: input.session.bootFingerprint,
             model: input.opts.model
           }
         })
@@ -143,7 +197,11 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       );
 
       let sawTerminal = false;
-      const mapperState = createSdkToolEvidenceState();
+      const mapperState = createSdkToolEvidenceState({
+        parentPersona: input.opts.persona,
+        projectRoot: input.session.projectRoot,
+        mode: input.opts.mode
+      });
       for await (const sdkMessage of sdkStream) {
         if (activeTurn.interrupted) {
           await appendHarnessEvent(
@@ -174,7 +232,11 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           return;
         }
 
-        const mapped = mapSdkMessageToHarness(input.session.sessionId, sdkMessage, mapperState);
+        const mapped = await mapSdkMessageToHarnessWithArtifacts(
+          input.session.sessionId,
+          sdkMessage,
+          mapperState
+        );
         for (const event of mapped.harnessEvents) {
           await appendHarnessEvent(event);
         }
@@ -224,7 +286,9 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         return;
       }
 
-      const messageText = error instanceof Error ? error.message : 'Claude Agent SDK turn failed';
+      const messageText =
+        redactConfiguredApiKeys(error instanceof Error ? error.message : 'Claude Agent SDK turn failed') ??
+        'Claude Agent SDK turn failed';
       await appendHarnessEvent(
         createHarnessEvent({
           sessionId: input.session.sessionId,
@@ -241,6 +305,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         sdkPackageVersion: SDK_PACKAGE_VERSION
       });
     } finally {
+      restoreSdkApiKey?.();
       this.activeTurns.delete(input.session.sessionId);
     }
   }

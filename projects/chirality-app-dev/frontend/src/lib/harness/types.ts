@@ -251,8 +251,18 @@ export interface ISessionManager {
 }
 
 export interface IPersonaManager {
-  buildSystemPrompt(projectRoot: string, persona: string, mode: string): Promise<string>;
-  getBootFingerprint(persona: string, mode: string): string;
+  buildSystemPrompt(
+    projectRoot: string,
+    persona: string,
+    mode: string,
+    tools?: readonly string[]
+  ): Promise<string>;
+  getBootFingerprint(
+    persona: string,
+    mode: string,
+    projectRoot?: string,
+    tools?: readonly string[]
+  ): string;
 }
 
 export interface IAttachmentResolver {

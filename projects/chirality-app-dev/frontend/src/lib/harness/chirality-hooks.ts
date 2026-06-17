@@ -17,7 +17,8 @@ import {
   summarizeToolError,
   summarizeToolInput,
   summarizeShellResultStreams,
-  summarizeToolResult
+  summarizeToolResult,
+  withToolResultPersistence
 } from './tool-evidence';
 import { persistToolResultArtifact } from './tool-result-artifacts';
 import { evaluateToolPathPolicy, type HarnessToolPathPolicyAllow } from './tool-path-policy';
@@ -36,6 +37,7 @@ type ToolAttemptRecord = {
   policyMetadata?: Record<string, unknown>;
   pathMetadata?: HarnessToolPathPolicyAllow;
   beforeState?: FileStateSummary;
+  beforeTextForDiff?: string;
 };
 
 type FileStateSummary = {
@@ -45,6 +47,25 @@ type FileStateSummary = {
   sha256?: string;
   hashOmittedReason?: string;
   error?: string;
+};
+
+type FileStateCapture = {
+  summary: FileStateSummary;
+  textForDiff?: string;
+};
+
+type FileDiffSummary = {
+  beforeExists: boolean;
+  afterExists: boolean;
+  beforeByteLength?: number;
+  afterByteLength?: number;
+  byteDelta?: number;
+  beforeLineCount?: number;
+  afterLineCount?: number;
+  addedLineCount?: number;
+  removedLineCount?: number;
+  diffAlgorithm?: 'bounded-lcs';
+  diffOmittedReason?: string;
 };
 
 export type ChiralityToolHookInput = {
@@ -97,7 +118,7 @@ function readToolInput(input: HookInput): Record<string, unknown> {
   return {};
 }
 
-async function summarizeFileState(filePath: string | undefined): Promise<FileStateSummary | undefined> {
+async function captureFileState(filePath: string | undefined): Promise<FileStateCapture | undefined> {
   if (!filePath) {
     return undefined;
   }
@@ -106,21 +127,27 @@ async function summarizeFileState(filePath: string | undefined): Promise<FileSta
     const stats = await lstat(filePath);
     if (stats.isSymbolicLink()) {
       return {
-        exists: true,
-        kind: 'other',
-        hashOmittedReason: 'symbolic-link'
+        summary: {
+          exists: true,
+          kind: 'other',
+          hashOmittedReason: 'symbolic-link'
+        }
       };
     }
     if (stats.isDirectory()) {
       return {
-        exists: true,
-        kind: 'directory'
+        summary: {
+          exists: true,
+          kind: 'directory'
+        }
       };
     }
     if (!stats.isFile()) {
       return {
-        exists: true,
-        kind: 'other'
+        summary: {
+          exists: true,
+          kind: 'other'
+        }
       };
     }
     const summary: FileStateSummary = {
@@ -130,26 +157,125 @@ async function summarizeFileState(filePath: string | undefined): Promise<FileSta
     };
     if (stats.size > HASH_INLINE_LIMIT_BYTES) {
       return {
-        ...summary,
-        hashOmittedReason: 'file-too-large'
+        summary: {
+          ...summary,
+          hashOmittedReason: 'file-too-large'
+        }
       };
     }
     const content = await readFile(filePath);
     return {
-      ...summary,
-      sha256: createHash('sha256').update(content).digest('hex')
+      summary: {
+        ...summary,
+        sha256: createHash('sha256').update(content).digest('hex')
+      },
+      textForDiff: content.toString('utf8')
     };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
       return {
-        exists: false
+        summary: {
+          exists: false
+        },
+        textForDiff: ''
       };
     }
     return {
-      exists: false,
-      error: error instanceof Error ? error.message : 'unknown file-state failure'
+      summary: {
+        exists: false,
+        error: error instanceof Error ? error.message : 'unknown file-state failure'
+      }
     };
   }
+}
+
+function splitLinesForSummary(value: string): string[] {
+  if (value.length === 0) {
+    return [];
+  }
+  return value.endsWith('\n')
+    ? value.slice(0, -1).split(/\r\n|\n|\r/)
+    : value.split(/\r\n|\n|\r/);
+}
+
+function longestCommonSubsequenceLength(
+  beforeLines: readonly string[],
+  afterLines: readonly string[]
+): number | undefined {
+  const cellCount = beforeLines.length * afterLines.length;
+  if (cellCount > 250_000) {
+    return undefined;
+  }
+
+  let previous = new Array(afterLines.length + 1).fill(0) as number[];
+  for (let beforeIndex = 0; beforeIndex < beforeLines.length; beforeIndex += 1) {
+    const current = new Array(afterLines.length + 1).fill(0) as number[];
+    for (let afterIndex = 0; afterIndex < afterLines.length; afterIndex += 1) {
+      current[afterIndex + 1] =
+        beforeLines[beforeIndex] === afterLines[afterIndex]
+          ? previous[afterIndex] + 1
+          : Math.max(previous[afterIndex + 1], current[afterIndex]);
+    }
+    previous = current;
+  }
+  return previous[afterLines.length];
+}
+
+function summarizeFileDiff(input: {
+  beforeState?: FileStateSummary;
+  beforeTextForDiff?: string;
+  afterState?: FileStateSummary;
+  afterTextForDiff?: string;
+}): FileDiffSummary | undefined {
+  const beforeState = input.beforeState;
+  const afterState = input.afterState;
+  if (!beforeState && !afterState) {
+    return undefined;
+  }
+
+  const summary: FileDiffSummary = {
+    beforeExists: beforeState?.exists ?? false,
+    afterExists: afterState?.exists ?? false,
+    beforeByteLength: beforeState?.byteLength,
+    afterByteLength: afterState?.byteLength,
+    byteDelta:
+      typeof afterState?.byteLength === 'number' || typeof beforeState?.byteLength === 'number'
+        ? (afterState?.byteLength ?? 0) - (beforeState?.byteLength ?? 0)
+        : undefined
+  };
+
+  if (typeof input.beforeTextForDiff !== 'string' || typeof input.afterTextForDiff !== 'string') {
+    return {
+      ...summary,
+      diffOmittedReason:
+        beforeState?.hashOmittedReason ??
+        afterState?.hashOmittedReason ??
+        beforeState?.error ??
+        afterState?.error ??
+        'diff-text-unavailable'
+    };
+  }
+
+  const beforeLines = splitLinesForSummary(input.beforeTextForDiff);
+  const afterLines = splitLinesForSummary(input.afterTextForDiff);
+  const commonLineCount = longestCommonSubsequenceLength(beforeLines, afterLines);
+  if (commonLineCount === undefined) {
+    return {
+      ...summary,
+      beforeLineCount: beforeLines.length,
+      afterLineCount: afterLines.length,
+      diffOmittedReason: 'line-count-diff-too-large'
+    };
+  }
+
+  return {
+    ...summary,
+    beforeLineCount: beforeLines.length,
+    afterLineCount: afterLines.length,
+    addedLineCount: afterLines.length - commonLineCount,
+    removedLineCount: beforeLines.length - commonLineCount,
+    diffAlgorithm: 'bounded-lcs'
+  };
 }
 
 async function appendHookEvent(input: {
@@ -315,10 +441,11 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
         return blockPreToolUse(pathPolicy.reason);
       }
 
-      const beforeState = await summarizeFileState(pathPolicy.metadata.resolvedPath);
+      const beforeCapture = await captureFileState(pathPolicy.metadata.resolvedPath);
       attempts.set(preInput.tool_use_id, {
         pathMetadata: pathPolicy.metadata,
-        beforeState
+        beforeState: beforeCapture?.summary,
+        beforeTextForDiff: beforeCapture?.textForDiff
       });
 
       await appendHookEvent({
@@ -327,7 +454,7 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
         data: {
           decision: 'approve',
           pathMetadata: pathPolicy.metadata,
-          beforeState,
+          beforeState: beforeCapture?.summary,
           recordsDiff: descriptor?.provenance.recordsDiff
         }
       });
@@ -374,19 +501,29 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       descriptor
     });
 
-    const afterState = isShellDescriptor(descriptor)
+    const afterCapture = isShellDescriptor(descriptor)
       ? undefined
-      : await summarizeFileState(attempt?.pathMetadata?.resolvedPath);
-    const resultMetadata = summarizeToolResult(postInput.tool_response, descriptor);
-    const artifactMetadata = isShellDescriptor(descriptor)
-      ? await persistToolResultArtifact({
-          sessionId: input.sessionId,
-          toolUseId: postInput.tool_use_id,
-          toolName: postInput.tool_name,
-          descriptor,
-          result: postInput.tool_response
-        })
-      : undefined;
+      : await captureFileState(attempt?.pathMetadata?.resolvedPath);
+    const artifactMetadata = await persistToolResultArtifact({
+      sessionId: input.sessionId,
+      toolUseId: postInput.tool_use_id,
+      toolName: postInput.tool_name,
+      descriptor,
+      result: postInput.tool_response
+    });
+    const resultMetadata = withToolResultPersistence(
+      summarizeToolResult(postInput.tool_response, descriptor),
+      Boolean(artifactMetadata)
+    );
+    const diffSummary =
+      descriptor?.provenance.recordsDiff === true
+        ? summarizeFileDiff({
+            beforeState: attempt?.beforeState,
+            beforeTextForDiff: attempt?.beforeTextForDiff,
+            afterState: afterCapture?.summary,
+            afterTextForDiff: afterCapture?.textForDiff
+          })
+        : undefined;
     await appendHookEvent({
       sessionId: input.sessionId,
       type: 'hook.completed',
@@ -399,17 +536,15 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
         shellMetadata: attempt?.policyMetadata,
         pathMetadata: attempt?.pathMetadata,
         beforeState: attempt?.beforeState,
-        afterState,
+        afterState: afterCapture?.summary,
         durationMs: postInput.duration_ms,
-        resultMetadata: {
-          ...resultMetadata,
-          outputPersisted: Boolean(artifactMetadata)
-        },
+        resultMetadata,
         shellResultMetadata: isShellDescriptor(descriptor)
           ? summarizeShellResultStreams(postInput.tool_response)
           : undefined,
         artifactMetadata,
-        recordsDiff: descriptor?.provenance.recordsDiff
+        recordsDiff: descriptor?.provenance.recordsDiff,
+        diffSummary
       }
     });
     attempts.delete(postInput.tool_use_id);

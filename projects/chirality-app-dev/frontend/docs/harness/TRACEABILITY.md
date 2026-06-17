@@ -5,8 +5,8 @@
 | Requirement | Coverage Artifact(s) |
 |---|---|
 | REQ-01 Validation Script Coverage | `frontend/scripts/validate-harness-section8.mjs` required check set (`setup.server_reachable`, `regression.session_crud`, `section8.boot_error_taxonomy`, `section8.smoke_stream`, `section8.session_persistence_resume`, `section8.permissions_dontask`, `section8.interrupt_sigint`, `section8.sdk_native_stream`) |
-| REQ-02 Local Execution | `npm run harness:validate:section8` from `frontend/` |
-| REQ-03 CI-Ready Posture | `npm run harness:validate:premerge` (non-interactive, exit-code based) |
+| REQ-02 Local Execution | `npm run harness:validate:section8` and `npm run harness:validate:section9` from `frontend/` |
+| REQ-03 CI-Ready Posture | `npm run harness:validate:premerge` (non-interactive, exit-code based for Section 8; report-only Section 9 during the initial integration cycle) |
 | REQ-04 Session Boot Validation | `section8.boot_error_taxonomy`, plus `frontend/src/__tests__/api/harness/routes.test.ts` boot route tests |
 | REQ-05 Turn Execution Validation | `section8.smoke_stream`, `section8.session_persistence_resume`, plus route tests for invalid empty turns |
 | REQ-06 SSE Streaming Validation | `section8.smoke_stream`, `section8.sdk_native_stream` |
@@ -20,8 +20,10 @@
 | REQ-14 Test Isolation | Vitest unit tests are independently executable; section8 checks are isolated by per-check setup/cleanup |
 | REQ-15 Error Path Validation | `section8.boot_error_taxonomy`, route tests for invalid request/attachment/governance paths |
 | REQ-16 Deliverable Acceptance Criteria | `harness:validate:premerge` gate + docs + traceability mapping |
+| REQ-17 Section 9 Runtime IDs | `frontend/scripts/validate-harness-section9.mjs` current deterministic ID set (`section9.runtime_engine_contract`, `section9.adapter_turn_engine_event_log`, `section9.adapter_message_mapper`, `section9.session_event_replay`, `section9.settingsources_isolation`, `section9.permission_overlay_hard_deny_precedence`, `section9.tool_runtime_read_file`, `section9.chirality_mcp_status_dependencies`, `section9.path_containment_hook`, `section9.instruction_root_protection_hook`, `section9.tool_result_budget`, `section9.context_compaction_boundary`, `section9.subagent_governance_hook`) |
 
 ## Notes
 
 - The premerge script enforces required check IDs and fails if legacy IDs appear.
 - The suite uses stable machine-readable summary output for CI consumption.
+- Section 9 starts as premerge report-only while `STAB-01` proves the new aggregator.

@@ -23,12 +23,15 @@ export async function POST(request: Request): Promise<Response> {
     await runtime.personaManager.buildSystemPrompt(
       session.projectRoot,
       resolvedOpts.persona,
-      resolvedOpts.mode
+      resolvedOpts.mode,
+      resolvedOpts.tools
     );
 
     const bootFingerprint = runtime.personaManager.getBootFingerprint(
       resolvedOpts.persona,
-      resolvedOpts.mode
+      resolvedOpts.mode,
+      session.projectRoot,
+      resolvedOpts.tools
     );
 
     let engineSessionId = session.engineSessionId ?? session.claudeSessionId;

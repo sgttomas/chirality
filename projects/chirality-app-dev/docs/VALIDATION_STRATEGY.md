@@ -34,8 +34,11 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run test` | Vitest unit and contract checks for API routes, runtime libraries, SDK mapping, tool descriptors, session events, UI helpers, script policies, and governance helpers. |
 | `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
 | `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable. |
+| `npm run harness:validate:section9` | Section 9 deterministic runtime-ID aggregation over targeted Vitest files with stable summary artifact at `frontend/artifacts/harness/section9/latest/summary.json`. |
+| `npm run harness:validate:agentsdk-dev-turn` | Route-level opt-in `agentSdk` scripted dev-turn validation using the real SDK `query()` path and an offline scripted subprocess. |
+| `npm run harness:validate:agentsdk-mcp-probe` | STAB-04 SDK/MCP behavior probe proving raw in-process MCP `mcp_message` calls, explicit `canUseTool`, and explicit hook callbacks remain distinct evidence paths. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
-| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. |
+| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. Use `-- --provider agentSdk --scripted-agent-sdk` for the STAB-02(c) dev proof, which runs the opt-in SDK adapter with an offline SDK subprocess and does not replace packaged subprocess evidence. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
 | `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
 | `npm run desktop:dist` | Unsigned/unnotarized local-builder macOS arm64 DMG plus instruction-root integrity. |
@@ -50,7 +53,7 @@ Build, packaging, artifact, and release-evidence command details are recorded in
 |---|---|
 | Coordination, plans, decision-register pointers, or docs-only governance | `git diff --check` over affected docs/control-plane paths; targeted `rg` checks for retired rules or stale authority; link/path existence checks for new references; explicit no-runtime-code-change check. |
 | Runtime engine contract, adapter, turn lifecycle, session events, or event schema | Focused Vitest coverage for touched runtime modules; `npm run typecheck`; broader `npm run test` when shared contracts move. |
-| SDK options, permission overlay, tool descriptors, tool exposure, MCP wrappers, or hooks | Focused tests for options, permissions, descriptors, denied tools, and unknown tools; `npm run typecheck`; broader tests when exposure semantics change. |
+| SDK options, permission overlay, tool descriptors, tool exposure, MCP wrappers, or hooks | Focused tests for options, permissions, descriptors, denied tools, unknown tools, and `npm run harness:validate:agentsdk-mcp-probe` when in-process SDK MCP behavior is load-bearing; `npm run typecheck`; broader tests when exposure semantics change. |
 | Harness API, running workflow, session boot, SSE, interrupt, attachment, or validation behavior | Relevant unit/API tests; `npm run harness:validate:premerge` against a reachable local app; summary artifact review. |
 | Network, API key, redaction, or provider policy | Relevant unit tests; `npm run proof:network-policy`; redaction or key-storage tests where touched. |
 | UI workflow, professional-boundary copy, product identity, or navigation | Relevant component/library tests; targeted manual or browser review when layout/copy behavior changes; no prohibited professional/release claims. |
@@ -62,6 +65,7 @@ Build, packaging, artifact, and release-evidence command details are recorded in
 Machine-readable artifacts are preferred when available:
 
 - harness premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`;
+- harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - test command output captured in terminal or run records when required by a tranche;
 - plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.

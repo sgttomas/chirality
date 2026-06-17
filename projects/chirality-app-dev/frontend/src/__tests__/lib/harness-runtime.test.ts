@@ -7,6 +7,7 @@ import {
 } from '../../lib/harness/runtime';
 import { StubAgentSdkManager } from '../../lib/harness/agent-sdk-manager';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
+import { PersonaComposer } from '../../lib/harness/persona-manager';
 import { TurnEngine } from '../../lib/harness/turn-engine';
 
 afterEach(() => {
@@ -19,6 +20,7 @@ describe('harness runtime provider mode', () => {
     expect(resolveHarnessProviderMode()).toBe('stub');
     const runtime = getHarnessRuntime();
     expect(runtime.agentSdkManager).toBeInstanceOf(StubAgentSdkManager);
+    expect(runtime.personaManager).toBeInstanceOf(PersonaComposer);
     expect(runtime.turnEngine).toBeInstanceOf(TurnEngine);
   });
 
