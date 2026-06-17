@@ -193,6 +193,31 @@ const SHELL_RESULT_BUDGET: HarnessToolResultBudget = {
   overflow: 'artifact'
 };
 
+function normalizeToolName(toolName: string): string {
+  return toolName.trim().toLowerCase();
+}
+
+function uniqueDescriptorAliases(input: {
+  name: string;
+  aliases: readonly string[];
+  adapterToolName: string;
+}): string[] {
+  const reservedKeys = new Set([
+    normalizeToolName(input.name),
+    normalizeToolName(input.adapterToolName)
+  ]);
+  const aliases: string[] = [];
+  for (const alias of input.aliases) {
+    const key = normalizeToolName(alias);
+    if (reservedKeys.has(key)) {
+      continue;
+    }
+    reservedKeys.add(key);
+    aliases.push(alias);
+  }
+  return aliases;
+}
+
 function readOnlyDescriptor(input: {
   name: string;
   aliases: readonly string[];
@@ -202,7 +227,11 @@ function readOnlyDescriptor(input: {
 }): HarnessToolDescriptor {
   return {
     name: input.name,
-    aliases: input.aliases,
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: input.aliases,
+      adapterToolName: input.sdkToolName
+    }),
     description: input.description,
     surface: 'claude-agent-sdk-builtin',
     permissions: ['read'],
@@ -240,11 +269,11 @@ function chiralityReadMcpDescriptor(input: {
 }): HarnessToolDescriptor {
   return {
     name: input.name,
-    aliases: [
-      ...input.aliases,
-      input.mcpToolName,
-      toChiralityMcpAllowedToolName(input.mcpToolName)
-    ],
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: [...input.aliases, input.mcpToolName],
+      adapterToolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+    }),
     description: input.description,
     surface: 'chirality-mcp',
     permissions: ['read'],
@@ -284,11 +313,11 @@ function chiralityMutatingMcpDescriptor(input: {
 }): HarnessToolDescriptor {
   return {
     name: input.name,
-    aliases: [
-      ...input.aliases,
-      input.mcpToolName,
-      toChiralityMcpAllowedToolName(input.mcpToolName)
-    ],
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: [...input.aliases, input.mcpToolName],
+      adapterToolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+    }),
     description: input.description,
     surface: 'chirality-mcp',
     permissions: ['workspace-write'],
@@ -318,7 +347,7 @@ function chiralityMutatingMcpDescriptor(input: {
 export const HARNESS_TOOL_DESCRIPTORS = [
   readOnlyDescriptor({
     name: 'read_file',
-    aliases: ['read', 'Read', 'sdk.read'],
+    aliases: ['read', 'sdk.read'],
     description: 'Read one project-root-contained file.',
     sdkToolName: 'Read',
     inputSchema: {
@@ -333,7 +362,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   }),
   readOnlyDescriptor({
     name: 'find_files',
-    aliases: ['glob', 'Glob', 'sdk.glob'],
+    aliases: ['glob', 'sdk.glob'],
     description: 'Find project files by glob pattern.',
     sdkToolName: 'Glob',
     inputSchema: {
@@ -348,7 +377,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   }),
   readOnlyDescriptor({
     name: 'search_files',
-    aliases: ['grep', 'Grep', 'search', 'sdk.grep'],
+    aliases: ['grep', 'search', 'sdk.grep'],
     description: 'Search project files for text patterns.',
     sdkToolName: 'Grep',
     inputSchema: {
@@ -366,7 +395,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   }),
   readOnlyDescriptor({
     name: 'list_files',
-    aliases: ['list', 'ls', 'LS', 'sdk.ls'],
+    aliases: ['list', 'ls', 'sdk.ls'],
     description: 'List files and directories inside the project root.',
     sdkToolName: 'LS',
     inputSchema: {
@@ -538,7 +567,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   }),
   {
     name: 'write_file',
-    aliases: ['write', 'Write', 'sdk.write'],
+    aliases: ['sdk.write'],
     description: 'Write a project-root-contained file after policy approval.',
     surface: 'claude-agent-sdk-builtin',
     permissions: ['workspace-write'],
@@ -579,7 +608,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'edit_file',
-    aliases: ['edit', 'Edit', 'sdk.edit'],
+    aliases: ['sdk.edit'],
     description: 'Apply an exact project-root-contained file edit after policy approval.',
     surface: 'claude-agent-sdk-builtin',
     permissions: ['workspace-write'],
@@ -623,7 +652,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'multi_edit_file',
-    aliases: ['multi_edit', 'MultiEdit', 'sdk.multiedit'],
+    aliases: ['multi_edit', 'sdk.multiedit'],
     description: 'Apply multiple exact project-root-contained edits after policy approval.',
     surface: 'claude-agent-sdk-builtin',
     permissions: ['workspace-write'],
@@ -664,7 +693,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'notebook_edit',
-    aliases: ['NotebookEdit', 'notebook_edit', 'sdk.notebookedit'],
+    aliases: ['sdk.notebookedit'],
     description: 'Reserved SDK notebook mutation surface; not part of the current Chirality runtime.',
     surface: 'reserved',
     permissions: ['workspace-write', 'danger'],
@@ -696,7 +725,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'shell',
-    aliases: ['bash', 'Bash', 'shell', 'sdk.bash'],
+    aliases: ['sdk.bash'],
     description: 'Run a project-root-contained shell command after shell policy and audit controls pass.',
     surface: 'claude-agent-sdk-builtin',
     permissions: ['shell', 'workspace-write', 'danger'],
@@ -746,7 +775,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'web_fetch',
-    aliases: ['WebFetch', 'web_fetch', 'sdk.webfetch'],
+    aliases: ['sdk.webfetch'],
     description: 'Reserved network fetch surface outside the current Anthropic-only runtime policy.',
     surface: 'reserved',
     permissions: ['network'],
@@ -778,7 +807,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'web_search',
-    aliases: ['WebSearch', 'web_search', 'sdk.websearch'],
+    aliases: ['sdk.websearch'],
     description: 'Reserved network search surface outside the current Anthropic-only runtime policy.',
     surface: 'reserved',
     permissions: ['network'],
@@ -810,7 +839,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   },
   {
     name: 'agent',
-    aliases: ['Agent', 'subagent', 'sdk.agent'],
+    aliases: ['subagent', 'sdk.agent'],
     description: 'Invoke a governed subagent after Type 2 allowlist and parent-child audit policy exist.',
     surface: 'claude-agent-sdk-builtin',
     permissions: ['subagent'],
@@ -848,20 +877,74 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   }
 ] as const satisfies readonly HarnessToolDescriptor[];
 
-function normalizeToolName(toolName: string): string {
-  return toolName.trim().toLowerCase();
+type DescriptorLookupKeyKind = 'name' | 'alias' | 'adapter.claudeAgentSdk.toolName';
+
+type DescriptorLookupRegistration = {
+  descriptorName: string;
+  rawKey: string;
+  kind: DescriptorLookupKeyKind;
+};
+
+function addDescriptorLookupEntry(input: {
+  lookup: Map<string, HarnessToolDescriptor>;
+  registrations: Map<string, DescriptorLookupRegistration>;
+  descriptor: HarnessToolDescriptor;
+  rawKey: string;
+  kind: DescriptorLookupKeyKind;
+}): void {
+  const normalizedKey = normalizeToolName(input.rawKey);
+  const existing = input.registrations.get(normalizedKey);
+  if (existing) {
+    if (existing.descriptorName === input.descriptor.name) {
+      return;
+    }
+    throw new Error(
+      [
+        `Duplicate harness tool descriptor key "${input.rawKey}" (${input.kind})`,
+        `for "${input.descriptor.name}"; already registered`,
+        `"${existing.rawKey}" (${existing.kind}) for "${existing.descriptorName}".`
+      ].join(' ')
+    );
+  }
+  input.registrations.set(normalizedKey, {
+    descriptorName: input.descriptor.name,
+    rawKey: input.rawKey,
+    kind: input.kind
+  });
+  input.lookup.set(normalizedKey, input.descriptor);
 }
 
-function createDescriptorLookup(): Map<string, HarnessToolDescriptor> {
+export function createDescriptorLookup(
+  descriptors: readonly HarnessToolDescriptor[] = HARNESS_TOOL_DESCRIPTORS
+): Map<string, HarnessToolDescriptor> {
   const lookup = new Map<string, HarnessToolDescriptor>();
-  for (const descriptor of HARNESS_TOOL_DESCRIPTORS) {
-    lookup.set(normalizeToolName(descriptor.name), descriptor);
+  const registrations = new Map<string, DescriptorLookupRegistration>();
+  for (const descriptor of descriptors) {
+    addDescriptorLookupEntry({
+      lookup,
+      registrations,
+      descriptor,
+      rawKey: descriptor.name,
+      kind: 'name'
+    });
     for (const alias of descriptor.aliases) {
-      lookup.set(normalizeToolName(alias), descriptor);
+      addDescriptorLookupEntry({
+        lookup,
+        registrations,
+        descriptor,
+        rawKey: alias,
+        kind: 'alias'
+      });
     }
     const sdkToolName = descriptor.adapter.claudeAgentSdk?.toolName;
     if (sdkToolName) {
-      lookup.set(normalizeToolName(sdkToolName), descriptor);
+      addDescriptorLookupEntry({
+        lookup,
+        registrations,
+        descriptor,
+        rawKey: sdkToolName,
+        kind: 'adapter.claudeAgentSdk.toolName'
+      });
     }
   }
   return lookup;

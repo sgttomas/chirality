@@ -631,7 +631,7 @@ export function createChiralityReadMcpServer(
   });
 }
 
-function buildChiralityMcpTools(input: {
+export function buildChiralityMcpTools(input: {
   context: ChiralityReadMcpContext;
   mode?: string;
   allowedToolNames: readonly string[];

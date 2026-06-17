@@ -6,6 +6,41 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - R6 collision-prevention invariant landed (`R6-01`)
+
+Landed the first R6 Extensibility & MCP Boundary Maturity tranche accepted by D-APP-14.
+This tranche exposes no new tool or provider capability; it makes descriptor lookup
+collisions fail closed and records the local/in-process MCP descriptor-to-handler parity
+as executable evidence.
+
+Runtime validation changes:
+
+- Added a fail-closed cross-descriptor duplicate guard to `createDescriptorLookup`.
+- Kept same-descriptor canonical/adapter equivalence valid, including the SDK `Agent`
+  descriptor case, while preventing two descriptors from claiming the same normalized
+  name, alias, or adapter tool name.
+- Removed redundant aliases already covered by canonical descriptor names or
+  case-insensitive adapter tool names.
+- Exported the local Chirality MCP tool builder for registry parity testing.
+- Added tests for deliberate duplicate rejection, descriptor lookup-key ownership,
+  built-in SDK vs `mcp__chirality__*` disjointness, and live MCP registration parity with
+  `chirality-mcp` descriptors.
+
+Validation passed: focused registry suite
+`npm run test -- --run src/__tests__/lib/tool-descriptor.test.ts` (1 file, 10 tests);
+full `npm run test` (52 files, 379 tests); and `npm run typecheck`.
+
+Skipped checks: `npm run harness:validate:premerge`, `npm run instruction-root:integrity`,
+`npm run proof:network-policy`, `npm run build`, `npm run desktop:pack`, and
+`npm run desktop:dist` were skipped because R6-01 changed only descriptor lookup/test
+invariants and did not change browser workflow, instruction-root packaging, provider,
+outbound network, package layout, or release posture.
+
+Residual handoff: R6-02 is the next required tranche, producing the regenerable tool
+catalog from the now collision-checked descriptor registry. Full JSON-schema versus Zod
+schema equivalence remains deferred; R6-01 closes registration-set parity, and R6-02 is
+the better point to formalize catalog/schema drift checks.
+
 ## 2026-06-17 - Runtime stabilization governance refresh landed (`STAB-06`)
 
 Recorded the D-APP-12 Option B ruling after the STAB-02(d) no-live packaged proof and

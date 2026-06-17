@@ -1,13 +1,125 @@
 import { describe, expect, it } from 'vitest';
 import {
+  createDescriptorLookup,
   getCurrentTrancheDisallowedToolNames,
   getHarnessToolDescriptor,
   HARNESS_TOOL_REGISTRY_VERSION,
   listHarnessToolDescriptors,
-  resolveHarnessToolPool
+  resolveHarnessToolPool,
+  type ClaudeAgentSdkToolName,
+  type HarnessToolDescriptor
 } from '../../lib/harness/tool-descriptor';
+import { buildChiralityMcpTools } from '../../lib/harness/mcp/read-tools';
+import {
+  CHIRALITY_MCP_ALLOWED_TOOL_NAMES,
+  type ChiralityMcpAllowedToolName
+} from '../../lib/harness/mcp/tool-names';
+
+function normalizeLookupKey(toolName: string): string {
+  return toolName.trim().toLowerCase();
+}
+
+function descriptorLookupKeys(descriptor: HarnessToolDescriptor): Array<{
+  rawKey: string;
+  kind: string;
+}> {
+  return [
+    { rawKey: descriptor.name, kind: 'name' },
+    ...descriptor.aliases.map((alias) => ({ rawKey: alias, kind: 'alias' })),
+    ...(descriptor.adapter.claudeAgentSdk?.toolName
+      ? [
+          {
+            rawKey: descriptor.adapter.claudeAgentSdk.toolName,
+            kind: 'adapter.claudeAgentSdk.toolName'
+          }
+        ]
+      : [])
+  ];
+}
+
+function toRawChiralityMcpToolName(toolName: ChiralityMcpAllowedToolName): string {
+  return toolName.replace(/^mcp__chirality__/, '');
+}
 
 describe('tool descriptor registry', () => {
+  it('fails closed on duplicate descriptor lookup keys', () => {
+    const [readFile] = listHarnessToolDescriptors();
+    const duplicate: HarnessToolDescriptor = {
+      ...readFile,
+      name: 'duplicate_read_file',
+      aliases: ['duplicate_read'],
+      adapter: {
+        claudeAgentSdk: {
+          toolName: 'Read'
+        }
+      }
+    };
+
+    expect(() => createDescriptorLookup([readFile, duplicate])).toThrow(
+      /Duplicate harness tool descriptor key "Read"/
+    );
+  });
+
+  it('keeps descriptor names, aliases, and adapter tool names collision-free across descriptors', () => {
+    const registrations = new Map<
+      string,
+      { descriptorName: string; rawKey: string; kind: string }
+    >();
+
+    for (const descriptor of listHarnessToolDescriptors()) {
+      for (const key of descriptorLookupKeys(descriptor)) {
+        const normalized = normalizeLookupKey(key.rawKey);
+        const existing = registrations.get(normalized);
+        if (existing) {
+          expect(existing.descriptorName).toBe(descriptor.name);
+          continue;
+        }
+        registrations.set(normalized, {
+          descriptorName: descriptor.name,
+          rawKey: key.rawKey,
+          kind: key.kind
+        });
+      }
+    }
+  });
+
+  it('keeps built-in SDK tool names disjoint from Chirality MCP adapter names', () => {
+    const descriptors = listHarnessToolDescriptors();
+    const builtinToolNames = descriptors
+      .filter((descriptor) => descriptor.surface !== 'chirality-mcp')
+      .map((descriptor) => descriptor.adapter.claudeAgentSdk?.toolName)
+      .filter((toolName): toolName is ClaudeAgentSdkToolName => Boolean(toolName));
+    const chiralityMcpToolNames = descriptors
+      .filter((descriptor) => descriptor.surface === 'chirality-mcp')
+      .map((descriptor) => descriptor.adapter.claudeAgentSdk?.toolName)
+      .filter((toolName): toolName is ChiralityMcpAllowedToolName =>
+        Boolean(toolName?.startsWith('mcp__chirality__'))
+      );
+
+    expect(new Set(chiralityMcpToolNames)).toEqual(new Set(CHIRALITY_MCP_ALLOWED_TOOL_NAMES));
+    expect(builtinToolNames.filter((toolName) => toolName.startsWith('mcp__chirality__'))).toEqual(
+      []
+    );
+    expect(
+      builtinToolNames.filter((toolName) => chiralityMcpToolNames.includes(toolName as ChiralityMcpAllowedToolName))
+    ).toEqual([]);
+  });
+
+  it('keeps live Chirality MCP tool registrations in parity with descriptor metadata', () => {
+    const liveToolNames = buildChiralityMcpTools({
+      context: { projectRoot: '/tmp/chirality-project', sessionId: 'sess_descriptor_parity' },
+      mode: 'workspaceWrite',
+      allowedToolNames: CHIRALITY_MCP_ALLOWED_TOOL_NAMES
+    }).map((definition) => (definition as { name: string }).name);
+    const descriptorToolNames = listHarnessToolDescriptors()
+      .filter((descriptor) => descriptor.surface === 'chirality-mcp')
+      .map((descriptor) => descriptor.adapter.claudeAgentSdk?.toolName)
+      .filter((toolName): toolName is ChiralityMcpAllowedToolName => Boolean(toolName))
+      .map(toRawChiralityMcpToolName);
+
+    expect(liveToolNames).toEqual(descriptorToolNames);
+  });
+
   it('exposes read-class tools plus bounded Write/Edit descriptors for the current tranche', () => {
     const descriptors = listHarnessToolDescriptors();
 
