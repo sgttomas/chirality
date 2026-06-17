@@ -35,8 +35,9 @@ Ordinary agentic work enters through:
 4. `execution/_Coordination/_LATEST.md`;
 5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 
-The Runtime Stabilization plan and SCC-resolution plan are completed closed history.
-`docs/PLAN.md` remains strategic roadmap context, and
+The R6 Extensibility & MCP Boundary Maturity plan, Runtime Stabilization plan, and
+SCC-resolution plan are completed closed history. `docs/PLAN.md` remains strategic
+roadmap context, and
 `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
 There is currently no active development queue selected; the next active plan must be
 selected by the human. Current state is discovered from the authoritative surfaces named
@@ -54,7 +55,8 @@ by `_COORDINATION.md`, including dependency/SCC snapshots under
 
 ## Status
 
-The completed stabilization surface is `plans/PLAN_2026-06-16_runtime_stabilization.md`;
+The completed R6 surface is `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`;
+the completed stabilization surface is `plans/PLAN_2026-06-16_runtime_stabilization.md`;
 the completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
 No replacement active queue has been selected. Current runtime implementation truth
 remains in source, tests, validation artifacts, and git history. Current coordination

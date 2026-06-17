@@ -236,6 +236,35 @@ allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unk
 unavailable to the model. Their descriptors remain metadata only until their bounded
 implementation, hook, result-storage, and validation tranches land.
 
+## Tool Catalog, Naming, Collision Prevention, and Adding Tools
+
+The local/in-process tool boundary is documented by two R6 artifacts:
+
+- `frontend/docs/harness/tool_catalog.md` is generated from
+  `HARNESS_TOOL_DESCRIPTORS` and lists descriptor name, adapter name, surface,
+  permissions, path scope, modes, idempotence, concurrency, human-gate, hook
+  requirements, and model-exposure status.
+- `frontend/docs/harness/adding_a_tool.md` records the governed contributor path for
+  adding SDK built-ins or in-process Chirality MCP tools without bypassing permission,
+  hook, path, redaction, event, or human-gate policy.
+
+Catalog drift is gated by `tool-catalog.test.ts`; descriptor collisions and
+descriptor-to-MCP-registration drift are gated by `tool-descriptor.test.ts`.
+`createDescriptorLookup` fails closed when two descriptors claim the same normalized name,
+alias, or adapter tool name. Same-descriptor canonical/adapter equivalence is permitted
+only when it resolves to the same descriptor.
+
+Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names. The future
+`mcp__chirality__domain_*` namespace is reserved for a governed domain-profile amendment
+and is not implemented by R6. Remote MCP, plugins, broad tool search, remote execution,
+provider/network expansion, concrete non-Anthropic providers, default-provider cutover,
+and release/professional-boundary changes remain out of scope until a future human ruling
+authorizes them.
+
+The R6-04 module split was deferred at closeout because it was optional organization work
+and the acceptance criteria were satisfied by the collision invariant, generated catalog,
+contributor guide, and this contract refresh without changing MCP exposure or behavior.
+
 ## First Adapter Probe Posture
 
 `CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the opt-in Claude Agent SDK probe adapter.

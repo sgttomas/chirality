@@ -30,6 +30,7 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
 | `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
 | `execution/_Reconciliation/DepClosure/_LATEST.md` and latest DepClosure snapshot | Dependency/SCC discovery evidence. | Snapshot evidence informs blocker analysis; it does not replace decomposition truth or plan selection. |
+| `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` | Completed R6 Extensibility & MCP Boundary Maturity program. | Records local/in-process tool catalog, naming, collision prevention, and contributor-doc work; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_runtime_stabilization.md` | Completed Runtime Stabilization program. | Records STAB-00..STAB-06 runtime stabilization work, evidence, and rulings; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_six_node_scc_resolution.md` | Completed non-governing SCC-resolution tranche-selection surface. | Records SCC-resolution work; does not change product requirements, decomposition truth, or release posture. |
 | `plans/PLAN_2026-06-13_runtime_completion.md` | Retired runtime completion history. | Records landed runtime-spine work; it is not the active queue. |
@@ -41,9 +42,11 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 ## 3. Current Development Posture
 
 The current default work mode is bounded app-integration tranches, but no active
-development queue is currently selected. The Runtime Stabilization program is completed
-closed history after STAB-06. The residual six-node strict dependency SCC is closed by
-accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The completed
+development queue is currently selected. The R6 Extensibility & MCP Boundary Maturity
+program is completed closed history after R6-05; R6-04 was deferred as optional
+organization work. The Runtime Stabilization program is completed closed history after
+STAB-06. The residual six-node strict dependency SCC is closed by accepted DepClosure
+snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The completed
 SCC-resolution plan has:
 
 - a safe-move tranche for source-grounded decompose/invert dependency-row moves;
@@ -54,9 +57,10 @@ SCC-resolution plan has:
 Select exactly one tranche unless the human explicitly approves batching. Tranches
 selected from unblocked rows in a human-selected active plan are pre-approved for
 execution within their stated write scope. Stop when further progress requires a human
-ruling. Do not return to the completed Runtime Stabilization plan, the closed
-SCC-resolution plan, or the retired runtime completion plan for new implementation work,
-and do not invent a replacement active queue when none has been selected.
+ruling. Do not return to the completed R6 program, completed Runtime Stabilization plan,
+the closed SCC-resolution plan, or the retired runtime completion plan for new
+implementation work, and do not invent a replacement active queue when none has been
+selected.
 
 ## 4. Phase-Aware Loop
 
@@ -69,12 +73,12 @@ and do not invent a replacement active queue when none has been selected.
 | Build and release evidence | What proves software-quality posture? | Docs, validation, packaging, or evidence tranche. | Evidence routing, package integrity, release-quality gates, no release claims. |
 | Domain-engine future scope | How will Chirality govern domain truth without owning it? | Decision packet, profile, adapter, or proposal workflow. | Protected paths, operation proposals, deterministic checks, human acceptance. |
 
-The current phase is post-Runtime-Stabilization closeout. Runtime integration through the
-retired completion plan and Runtime Stabilization program is landed through the accepted
-scope; future broad runtime roadmap work waits until the human selects a new governed
-plan. Formal lifecycle issuance, release readiness, professional approval, certification,
-sealing, authentication, and code-compliance acceptance remain separate human-governed
-states.
+The current phase is post-R6 closeout. Runtime integration through the retired completion
+plan, Runtime Stabilization program, and R6 local/in-process extension-boundary program is
+landed through the accepted scope; future broad runtime roadmap work waits until the human
+selects a new governed plan. Formal lifecycle issuance, release readiness, professional
+approval, certification, sealing, authentication, and code-compliance acceptance remain
+separate human-governed states.
 
 ## 5. Standard Session Flow
 

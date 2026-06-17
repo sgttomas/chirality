@@ -4,7 +4,7 @@
 **Active persona:** `WORKING_ITEMS`
 **Default work mode:** bounded app-integration tranches
 **Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and opt-in `agentSdk` probe path. D-APP-12 Option B holds the default-provider cutover. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
-**Current active queue:** the R6 Extensibility & MCP Boundary Maturity program `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (tranches R6-01..R6-05), accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`. The Runtime Stabilization program `plans/PLAN_2026-06-16_runtime_stabilization.md` (STAB-00..STAB-06) and the six-node SCC plan are completed closed history.
+**Current active queue:** none selected. The R6 Extensibility & MCP Boundary Maturity program `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is completed closed history after R6-05; R6-04 was explicitly deferred as optional organization work. The Runtime Stabilization program `plans/PLAN_2026-06-16_runtime_stabilization.md` (STAB-00..STAB-06) and the six-node SCC plan are also completed closed history.
 
 ## Active Surface
 
@@ -35,7 +35,7 @@ Primary authority and guidance:
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `execution/_ScopeChange/_LATEST.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
-- `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` - ACTIVE governing development queue (R6-01..R6-05), accepted by D-APP-14
+- `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` - completed R6 Extensibility & MCP Boundary Maturity program (R6-01..R6-05; R6-04 deferred), accepted by D-APP-14 and closed by R6-05
 - `plans/PLAN_2026-06-16_runtime_stabilization.md` - completed Runtime Stabilization program (STAB-00..STAB-06), accepted by D-APP-11 and closed by STAB-06
 - `plans/PLAN_2026-06-16_six_node_scc_resolution.md` - completed non-governing SCC-resolution tranche-selection plan (closed history)
 - `plans/PLAN_2026-06-13_runtime_completion.md` - retired runtime completion history
@@ -69,7 +69,7 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-0a. `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is the **active governing development queue** (tranches R6-01..R6-05), accepted by `D-APP-14`. Select tranches from its spine (§4) and sequencing (§6). It matures the local/in-process tool extension boundary (catalog, naming, collision prevention, contributor docs) and exposes no new capability; remote MCP, plugins, broad tool search, and domain tools stay out of scope (§7).
+0a. `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is completed closed history after R6-05. It matured the local/in-process tool extension boundary (catalog, naming, collision prevention, contributor docs) and exposed no new capability; remote MCP, plugins, broad tool search, and domain tools remain out of scope (§7). R6-04 was deferred as optional organization work.
 0b. `plans/PLAN_2026-06-16_runtime_stabilization.md` is completed closed history (tranches STAB-00..STAB-06), accepted by `D-APP-11` and closed by STAB-06. It records the current runtime stabilization evidence, D-APP-12 Option B hold ruling, and D-APP-13 mutating MCP ruling, but it is no longer an active tranche-selection queue.
 1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the completed non-governing SCC-resolution plan. It records closure of the residual six-node strict dependency SCC; it is closed history and is no longer the active queue.
 2. `plans/PLAN_2026-06-13_runtime_completion.md` is retired as the active queue and retained only as historical completion evidence for landed runtime work.
@@ -89,8 +89,8 @@ At the start of a new loop:
 3. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
 4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
 5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
-6. Read `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` for the active R6 tranche spine, sequencing, and boundaries; read `plans/PLAN_2026-06-16_runtime_stabilization.md` as completed stabilization history and evidence context.
-7. Read `_DECISIONS/_REGISTER.md` for ruled and pending human decisions. `D-APP-14` accepts the R6 program; `D-APP-12` is ruled Option B and blocks default-provider cutover until later proof/ruling; `D-APP-13` is ruled.
+6. Read `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` as completed R6 history; read `plans/PLAN_2026-06-16_runtime_stabilization.md` as completed stabilization history and evidence context.
+7. Read `_DECISIONS/_REGISTER.md` for ruled and pending human decisions. `D-APP-14` accepted the now-completed R6 program; `D-APP-12` is ruled Option B and blocks default-provider cutover until later proof/ruling; `D-APP-13` is ruled.
 8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
 9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
 10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
@@ -102,11 +102,11 @@ At the start of a new loop:
 
 ## Active Development Loop
 
-Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select the earliest unblocked tranche from the active R6 program `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (§4 spine, §6 sequencing). Do not select from the completed Runtime Stabilization spine, the closed SCC-resolution plan, or the retired runtime completion plan.
+Use bounded app-integration tranches. No active development queue is currently selected. If a human has already approved or requested a new tranche, continue it within its write bounds. Otherwise stop and report that the next active plan must be selected by the human. Do not select from the completed R6 program, completed Runtime Stabilization spine, closed SCC-resolution plan, or retired runtime completion plan.
 
 A tranche is acceptable when it has:
 
-- one clear objective tied to the active R6 plan;
+- one clear objective tied to the human-selected active plan;
 - a narrow write scope;
 - a validation command or concrete manual verification target;
 - all required human rulings recorded in `_DECISIONS/_REGISTER.md`;
@@ -115,9 +115,9 @@ A tranche is acceptable when it has:
 Default ordering:
 
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work first if such a regression is found.
-2. Select the earliest unblocked R6 tranche on its spine, honoring its sequencing (R6-01 collision invariant first; R6-04 is optional; R6-05 closeout last).
-3. R6 exposes no new capability. If any work requires crossing an R6 §7 fence (remote MCP, plugins, broad tool search, domain tools), default-provider cutover, live packaged provider evidence, provider/network expansion, or release posture changes, stop and require a fresh human ruling.
-4. Stop when no R6 tranche remains unblocked; report that the R6 program is complete and the next active plan must be selected by the human. Do not revive a completed/closed/retired plan or invent a replacement queue.
+2. Stop when no active queue is selected; report that R6 is complete and the next active plan must be selected by the human.
+3. If any work requires remote MCP, plugins, broad tool search, domain tools, default-provider cutover, live packaged provider evidence, provider/network expansion, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
+4. Do not revive a completed/closed/retired plan or invent a replacement queue.
 
 If dependency evidence is needed, use the latest DepClosure snapshot and selected deliverable-local dependency files to discover blockers. Do not infer project-wide blocked/unblocked state from a stale summary or from a hand-maintained coordination state file.
 
@@ -154,7 +154,7 @@ At the end of a validated tranche:
    - from `frontend/`: `npm run instruction-root:integrity`.
 3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
 4. Route build, packaging, and release-significant changes through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
-5. Update the active R6 plan `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (compress landed tranche rows). Completed plans are edited only for closeout corrections or explicit human-directed governance work.
+5. Completed plans are edited only for closeout corrections or explicit human-directed governance work. There is no active R6 plan after R6-05 closeout.
 6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md` when closing a tranche.
 7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
 8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.

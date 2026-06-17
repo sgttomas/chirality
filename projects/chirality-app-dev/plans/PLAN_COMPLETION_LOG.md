@@ -6,6 +6,56 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - R6 contract refresh and closeout landed (`R6-05`)
+
+Closed the R6 Extensibility & MCP Boundary Maturity program. R6-01, R6-02, R6-03, and
+R6-05 landed; R6-04 was deferred as optional behavior-preserving module organization
+because the program acceptance criteria were met without MCP module churn or exposure
+changes. No new runtime, provider, network, plugin, remote-MCP, domain-tool, release, or
+professional-boundary capability was exposed.
+
+Governance/control-plane changes:
+
+- Added a "Tool Catalog, Naming, Collision Prevention, and Adding Tools" section to
+  `frontend/docs/harness/runtime_engine_contract.md`, linking the generated catalog and
+  contributor guide and recording the fail-closed collision invariant.
+- Reaffirmed that `mcp__chirality__domain_*`, remote MCP, plugins, broad tool search,
+  remote execution, provider/network expansion, concrete non-Anthropic providers,
+  default-provider cutover, and release/professional-boundary changes remain out of scope.
+- Marked `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` completed closed
+  history, marked R6-04 deferred, and compressed R6-05 to a landed row.
+- Refreshed `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, and `_LATEST.md` so future
+  instances stop when no replacement active queue is selected.
+- Updated docs workflow/index surfaces (`docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`,
+  `docs/README.md`, `docs/MANIFEST.json`) to list R6 as completed history.
+- Reviewed DEL-06-02 and DEL-06-03 `_STATUS.md` files. Both remain `IN_PROGRESS`; no
+  lifecycle advancement was made because moving beyond `IN_PROGRESS` requires separate
+  human approval evidence.
+
+Validation passed: `git diff --check`; JSON parse of `docs/MANIFEST.json`; path existence
+checks for the runtime contract, generated tool catalog, contributor guide, R6 plan,
+coordination pointers, decision register, completed stabilization plan, and DepClosure
+latest pointer; targeted stale-reference searches for active R6 queue language and R6
+completion/deferral language; targeted checks confirming the runtime contract links the
+catalog and contributor guide, states the collision invariant, preserves the reserved
+domain namespace, and reaffirms the remote-MCP/plugin/provider/network/release fences.
+
+Skipped checks: frontend runtime tests, typecheck, premerge, instruction-root integrity,
+network proof, build, desktop pack, and desktop dist were skipped because R6-05 changed
+only governance/control-plane/docs surfaces and did not change executable runtime
+behavior, TypeScript contracts, harness workflow behavior, instruction-root packaging,
+provider scope, outbound network, package layout, or release posture.
+
+Closeout limitation: R6-03 and R6-05 commits were created locally, but remote verification
+and push were blocked by GitHub credential access in this environment (`fatal: could not
+read Username for 'https://github.com': Device not configured`). The branch should be
+pushed once credentials are available and upstream state can be re-verified.
+
+Residual handoff: no active development queue is selected. A future live packaged
+`agentSdk` proof, default-provider cutover, provider expansion, remote MCP/plugin/tool
+search/domain-tool work, optional MCP module organization, or new runtime roadmap requires
+a new human-selected plan or ruling.
+
 ## 2026-06-17 - R6 governed-tool contributor guide landed (`R6-03`)
 
 Landed the R6 contributor guide for adding governed tools. This tranche is documentation

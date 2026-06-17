@@ -1,7 +1,7 @@
 # R6 — Extensibility & MCP Boundary Maturity Plan
 
 **Date:** 2026-06-17
-**Status:** ACCEPTED / ACTIVE / GOVERNING (active development queue)
+**Status:** COMPLETED / CLOSED HISTORY (formerly active governing development queue)
 **Acceptance ruling:** `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md` (human project authority in chat)
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
@@ -19,9 +19,13 @@ providers all remain out of scope and human-gated. Project truth remains in gove
 decomposition and deliverable artifacts, source, tests, evidence records, decision
 records, and git history. Humans decide all gates.
 
-This plan was accepted by the human project authority (`D-APP-14`) and is the active
-development queue; the coordination surfaces are re-pointed to it. Acceptance of the
-program does not pre-approve crossing any §7 fence — those remain human-gated.
+This plan was accepted by the human project authority (`D-APP-14`) as the active
+development queue after Runtime Stabilization closed. Acceptance of the program did not
+pre-approve crossing any §7 fence — those remain human-gated.
+
+2026-06-17 closeout note: R6-01, R6-02, R6-03, and R6-05 landed; R6-04 was deferred as
+optional organization work. This plan is now completed closed history and no replacement
+active development queue is selected.
 
 ## 1. Purpose
 
@@ -81,8 +85,8 @@ Already landed — R6 builds on, not rebuilds, these:
 | `R6-01` Collision-Prevention Invariant | **LANDED 2026-06-17.** | Added fail-closed cross-descriptor duplicate guard to `createDescriptorLookup`; normalized redundant aliases; added tests for duplicate rejection, registry lookup-key ownership, built-in/MCP disjointness, and live MCP registration parity. See `plans/PLAN_COMPLETION_LOG.md`. | Passed `npm run test` and `npm run typecheck`. |
 | `R6-02` Generated Tool Catalog | **LANDED 2026-06-17.** | Added `npm run harness:generate-tool-catalog`, a registry-derived renderer, committed `frontend/docs/harness/tool_catalog.md`, and added a drift test asserting the committed catalog matches `HARNESS_TOOL_DESCRIPTORS`. The catalog documents `mcp__chirality__*`, reserves `mcp__chirality__domain_*`, and records the `Agent` exposure exception. See `plans/PLAN_COMPLETION_LOG.md`. | Passed `npm run test`, `npm run typecheck`, generator `--check`, and static governance checks. |
 | `R6-03` Contributor Guide ("Adding a Governed Tool") | **LANDED 2026-06-17.** | Added `frontend/docs/harness/adding_a_tool.md` covering the multi-file sequence, built-in SDK enforcement path, in-process MCP fail-closed wrapper requirement, K-MCP-1 bypass rule, reserved namespace posture, `Agent` special case, and catalog/collision test gates. See `plans/PLAN_COMPLETION_LOG.md`. | Passed governance gate: diff hygiene, path checks, targeted content checks, and no-runtime-change confirmation. |
-| `R6-04` MCP Module Organization *(optional)* | Resolve the organization smell (G6). | Behavior-preserving split of `mcp/read-tools.ts` into read + mutating modules (e.g., `mcp/read-tools.ts` + `mcp/mutating-tools.ts`) and rename the misleading back-compat alias; no exposure or behavior change; tests unchanged green. | `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge` (confirm no exposure change). |
-| `R6-05` Contract & Boundary Refresh + Closeout | Fold R6 outcomes into governance and close the program. | Add a "Tool Catalog, Naming, Collision Prevention, and Adding Tools" section to `runtime_engine_contract.md` (linking the catalog + contributor doc); re-affirm the out-of-scope fences (§7); advance affected `_STATUS.md`/decomposition notes; refresh coordination and close R6. | Governance gate; runtime commands skipped unless executable behavior changed. |
+| `R6-04` MCP Module Organization *(optional)* | **DEFERRED 2026-06-17.** | Optional behavior-preserving module organization was deferred at R6 closeout because acceptance criteria were satisfied without code churn or exposure changes. Future maintainers may split `mcp/read-tools.ts` under a new active plan if readability cost becomes material. | Not run; no source changes made for this optional tranche. |
+| `R6-05` Contract & Boundary Refresh + Closeout | **LANDED 2026-06-17.** | Added the runtime-contract catalog/contributor-guide section, reaffirmed R6 fences, recorded R6-04 deferral, refreshed coordination/docs index surfaces, and closed R6 with no replacement active queue selected. See `plans/PLAN_COMPLETION_LOG.md`. | Governance gate; runtime commands skipped because executable behavior did not change. |
 
 ## 5. Tranche Detail
 
@@ -251,10 +255,9 @@ point. No source changes were made while scoping this plan.
 
 ## 12. Finalization Rule
 
-This plan is the active development queue as of its acceptance ruling (`D-APP-14`);
-`_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, and `_LATEST.md` are re-pointed to it. Per
-§8, R6-01 is tracked under DEL-06-02 and the docs as governance artifacts (no decomposition
-amendment). When all tranches land (or the human selects a replacement program), update the
-coordination surfaces to the next active queue, move landed narrative to
-`plans/PLAN_COMPLETION_LOG.md`, and mark this plan closed/non-governing. Human acceptance
-remains required for every gate inside it, and every §7 fence stays human-gated.
+This plan was the active development queue after its acceptance ruling (`D-APP-14`) and is
+now completed closed history after R6-05. Per §8, R6-01 is tracked under DEL-06-02 and the
+docs as governance artifacts (no decomposition amendment). Landed narrative moved to
+`plans/PLAN_COMPLETION_LOG.md`; `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, and
+`_LATEST.md` now record that no replacement active queue is selected. Human acceptance
+remains required for every future gate, and every §7 fence stays human-gated.

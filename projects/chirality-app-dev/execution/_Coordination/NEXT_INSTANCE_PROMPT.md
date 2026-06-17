@@ -9,7 +9,7 @@
 5. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
 6. Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md`.
 7. Read `{WORKING_ROOT}/execution/_Coordination/_LATEST.md` for discovery pointers only.
-8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (the active governing development queue); read `PLAN_2026-06-16_runtime_stabilization.md` as completed history/evidence context.
+8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` as completed R6 history; read `PLAN_2026-06-16_runtime_stabilization.md` as completed history/evidence context.
 9. Read `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/_REGISTER.md`.
 10. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
 11. Read `{WORKING_ROOT}/execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
@@ -20,7 +20,7 @@
 
 ## Active Direction
 
-The active development queue is the **R6 Extensibility & MCP Boundary Maturity program** (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, tranches R6-01..R6-05), accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`. It matures the local/in-process tool extension boundary (collision-prevention invariant, regenerable tool catalog, contributor docs) on top of the stabilized runtime and exposes no new capability. The Runtime Stabilization program (STAB-00..STAB-06) is completed closed history. Current stabilized runtime posture:
+There is **no active development queue selected**. The R6 Extensibility & MCP Boundary Maturity program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, tranches R6-01..R6-05) is completed closed history after R6-05; R6-04 was deferred as optional organization work. R6 matured the local/in-process tool extension boundary (collision-prevention invariant, regenerable tool catalog, contributor docs) on top of the stabilized runtime and exposed no new capability. The Runtime Stabilization program (STAB-00..STAB-06) is also completed closed history. Current stabilized runtime posture:
 
 - a local desktop harness for governed agents;
 - a Chirality-owned runtime contract and audit/event model;
@@ -30,20 +30,20 @@ The active development queue is the **R6 Extensibility & MCP Boundary Maturity p
 
 ## Selection Rules
 
-If a human has already approved or requested a tranche, continue it within its write bounds.
+If a human has already approved or requested a new tranche, continue it within its write bounds.
 
-Otherwise, select the earliest unblocked tranche from the active R6 program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, §4 spine, §6 sequencing). Do not select from the completed Runtime Stabilization spine, the closed SCC-resolution plan, or the retired runtime completion plan.
+Otherwise, stop and report that the R6 program is complete and the next active plan must be selected by the human. Do not select from the completed R6 program, completed Runtime Stabilization spine, closed SCC-resolution plan, or retired runtime completion plan.
 
 Default priority:
 
 1. Repair failing validation for already-landed runtime/control-plane work first if such a regression is found.
-2. Select the earliest unblocked R6 tranche (R6-01 collision invariant first; R6-04 optional; R6-05 closeout last).
-3. R6 exposes no new capability. If any work requires crossing an R6 §7 fence (remote MCP, plugins, broad tool search, domain tools), default-provider cutover, live packaged provider evidence, provider/network expansion, or release posture changes, stop and require a fresh human ruling.
-4. Stop when no R6 tranche remains unblocked; report that the R6 program is complete and the next active plan must be selected by the human.
+2. Stop when no active queue is selected; report that R6 is complete and the next active plan must be selected by the human.
+3. If any work requires remote MCP, plugins, broad tool search, domain tools, default-provider cutover, live packaged provider evidence, provider/network expansion, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
+4. Do not revive a completed/closed/retired plan or invent a replacement queue.
 
 ## Execution Rules
 
-- R6 tranches selected from the active plan are pre-approved for execution within their declared write scope. R6 is mostly documentation + one code tranche (R6-01 collision invariant); it exposes no new tools. The completed Runtime Stabilization plan no longer grants pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13` is ruled. If no R6 tranche remains unblocked, stop and report that the next active plan is unselected.
+- No R6 tranche remains active after R6-05 closeout. The completed R6 and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13` is ruled. If no new human-selected active plan exists, stop and report that the next active plan is unselected.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
@@ -59,7 +59,7 @@ At completion of a validated tranche:
 
 1. Run appropriate verification.
 2. Route checks through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` for build, packaging, or release-significant work.
-3. Update the active R6 plan `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (compress the landed tranche row) and `plans/PLAN_COMPLETION_LOG.md` when a tranche lands.
+3. Update the active plan and `plans/PLAN_COMPLETION_LOG.md` only when a new human-selected tranche lands; completed plans are edited only for closeout corrections or explicit human-directed governance work.
 4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
 5. Update `execution/_Coordination/_LATEST.md` only when discovery pointers change.
 6. Report skipped checks explicitly.
@@ -71,4 +71,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending or blocking from `_DECISIONS/_REGISTER.md`;
-- next R6 tranche, or state that the R6 program is complete and no active queue remains.
+- next selected tranche, or state that the R6 program is complete and no active queue remains.

@@ -10,10 +10,11 @@ Active coordination surfaces:
 
 Active development queue:
 
-- `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (R6 Extensibility & MCP Boundary Maturity program, R6-01..R6-05; accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`).
+- None selected. The next active plan must be selected by the human project authority.
 
 Completed planning and history surfaces:
 
+- `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (R6 Extensibility & MCP Boundary Maturity program, R6-01..R6-05; accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`, closed by R6-05; R6-04 deferred as optional organization work).
 - `plans/PLAN_2026-06-16_runtime_stabilization.md` (Runtime Stabilization program, STAB-00..STAB-06; accepted by `execution/_Coordination/_DECISIONS/D-APP-11_RULING_2026-06-16.md`, closed by STAB-06).
 - `plans/PLAN_2026-06-16_six_node_scc_resolution.md` (closed; no longer the active queue)
 - `plans/PLAN_COMPLETION_LOG.md`

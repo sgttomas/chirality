@@ -79,6 +79,10 @@
       "role": "accepted scope-change discovery pointer"
     },
     {
+      "path": "plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md",
+      "role": "completed R6 Extensibility and MCP Boundary Maturity program"
+    },
+    {
       "path": "plans/PLAN_2026-06-16_runtime_stabilization.md",
       "role": "completed Runtime Stabilization program"
     },
@@ -103,6 +107,7 @@
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
     "No replacement active development queue has been selected.",
+    "plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md is completed R6 Extensibility and MCP Boundary Maturity history; R6-04 was deferred as optional organization work.",
     "plans/PLAN_2026-06-16_runtime_stabilization.md is completed Runtime Stabilization history.",
     "plans/PLAN_2026-06-16_six_node_scc_resolution.md is completed SCC-resolution history.",
     "plans/PLAN_2026-06-13_runtime_completion.md is retired runtime completion history.",
