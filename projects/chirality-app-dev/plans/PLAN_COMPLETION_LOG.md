@@ -6,6 +6,48 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - R6 governed-tool contributor guide landed (`R6-03`)
+
+Landed the R6 contributor guide for adding governed tools. This tranche is documentation
+only and exposes no new runtime, provider, network, plugin, remote-MCP, domain-tool, or
+release capability.
+
+Governance documentation changes:
+
+- Added `frontend/docs/harness/adding_a_tool.md`.
+- Documented the required multi-file sequence: descriptor registry, MCP name inventory,
+  MCP handler registration, SDK option exposure path, focused tests, catalog regeneration,
+  and tranche validation.
+- Documented the SDK built-in path through descriptor resolution, mode policy,
+  `disallowedTools`, `canUseTool`, and `PreToolUse` / `PostToolUse` hooks.
+- Documented the in-process MCP path, including the STAB-04 finding that raw
+  `mcp_message` calls do not auto-invoke SDK `canUseTool` or hook callbacks.
+- Stated that a mutating MCP tool without the handler-level fail-closed
+  permission/evidence wrapper is a K-MCP-1 bypass and must be rejected in review.
+- Preserved the reserved `mcp__chirality__domain_*` namespace and the out-of-scope fences
+  for remote MCP, plugins, broad tool search, provider/network expansion, and domain
+  tools.
+- Documented the SDK `Agent` special case and how the R6-01 collision invariant plus
+  R6-02 catalog test gate descriptor/catalog drift.
+
+Validation passed: `git diff --check`; path existence checks for the descriptor registry,
+SDK options builder, MCP name inventory, MCP handler module, runtime contract, and
+generated tool catalog; targeted `rg` checks for the regeneration command, K-MCP-1,
+handler-level wrapper rule, reserved domain namespace, `Agent` special case, remote MCP,
+and plugin fences; and `git status --short` confirming the tranche initially changed only
+the new contributor-guide doc before plan/log closeout updates.
+
+Skipped checks: `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`,
+`npm run instruction-root:integrity`, `npm run proof:network-policy`, `npm run build`,
+`npm run desktop:pack`, and `npm run desktop:dist` were skipped because R6-03 changed only
+documentation and plan/history surfaces. It did not change executable runtime behavior,
+TypeScript contracts, harness workflow behavior, instruction-root packaging, provider
+scope, outbound network, package layout, or release posture.
+
+Residual handoff: R6-04 is optional. If selected, it should preserve behavior while
+splitting the current MCP module organization and should run runtime tests, typecheck, and
+premerge validation. If deferred, the next required tranche is R6-05 closeout.
+
 ## 2026-06-17 - R6 generated tool catalog landed (`R6-02`)
 
 Landed the R6 generated tool catalog tranche. This tranche exposes no new runtime,
