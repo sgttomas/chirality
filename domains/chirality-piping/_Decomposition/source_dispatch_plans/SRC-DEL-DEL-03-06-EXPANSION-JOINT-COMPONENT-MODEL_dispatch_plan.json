@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL",
+  "source_prefix": "ED023",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED023-0001",
+      "line_start": 9,
+      "line_end": 224,
+      "target_section_ids": [
+        "SEC-ED023-0002",
+        "SEC-ED023-0003",
+        "SEC-ED023-0004",
+        "SEC-ED023-0005",
+        "SEC-ED023-0006",
+        "SEC-ED023-0007",
+        "SEC-ED023-0008",
+        "SEC-ED023-0009",
+        "SEC-ED023-0010",
+        "SEC-ED023-0011",
+        "SEC-ED023-0012",
+        "SEC-ED023-0013",
+        "SEC-ED023-0014",
+        "SEC-ED023-0015",
+        "SEC-ED023-0016",
+        "SEC-ED023-0017",
+        "SEC-ED023-0018",
+        "SEC-ED023-0019",
+        "SEC-ED023-0020",
+        "SEC-ED023-0021",
+        "SEC-ED023-0022",
+        "SEC-ED023-0023",
+        "SEC-ED023-0024",
+        "SEC-ED023-0025",
+        "SEC-ED023-0026",
+        "SEC-ED023-0027",
+        "SEC-ED023-0028",
+        "SEC-ED023-0029",
+        "SEC-ED023-0030",
+        "SEC-ED023-0031",
+        "SEC-ED023-0032"
+      ],
+      "estimated_md_tokens": 2823,
+      "contains_oversized_section": false
+    }
+  ]
+}

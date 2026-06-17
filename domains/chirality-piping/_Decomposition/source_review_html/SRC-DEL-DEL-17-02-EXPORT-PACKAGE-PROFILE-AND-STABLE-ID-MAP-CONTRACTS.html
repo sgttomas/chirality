@@ -1,0 +1,618 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-17-02-EXPORT-PACKAGE-PROFILE-AND-STABLE-ID-MAP-CONTRACTS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>48</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED094-0001">Source Pack: SRC-DEL-DEL-17-02-EXPORT-PACKAGE-PROFILE-AND-ST</a> <a href="#SEC-ED094-0002">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED094-0016">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED094-0028">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED094-0036">Component: execution/PKG-17_Export Format Interoperability/1</a></nav>
+<main>
+<section id="SEC-ED094-0001" class="chunk sec depth-1" data-kind="section" data-key="section:4ef24f5360d0" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED094-0001</span> Source Pack: SRC-DEL-DEL-17-02-EXPORT-PACKAGE-PROFILE-AND-STABLE-ID-MAP-CONTRACTS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ef24f5360d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ef24f5360d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ef24f5360d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED094-0002" class="chunk sec depth-2" data-kind="section" data-key="section:6c9304e6e51d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED094-0002</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c9304e6e51d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c9304e6e51d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c9304e6e51d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0003" class="chunk sec depth-3" data-kind="section" data-key="section:38007a0dbe3e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED094-0003</span> Datasheet: DEL-17-02 Export package, profile, and stable ID map contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:38007a0dbe3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:38007a0dbe3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:38007a0dbe3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0004" class="chunk sec depth-4" data-kind="section" data-key="section:3867e14cc23f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0004</span> Identity</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3867e14cc23f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3867e14cc23f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3867e14cc23f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-17-02 |
+| Package | PKG-17 Export Format Interoperability |
+| Type | API_CONTRACT |
+| Lifecycle state after this tranche | SEMANTIC_READY |
+| Source basis | DEL-17-01 source-basis dossier and admitted references |
+| Downstream consumers | DEL-17-03 through DEL-17-09 |
+</p></div></div></section>
+<section id="SEC-ED094-0005" class="chunk sec depth-4" data-kind="section" data-key="section:afad911520db" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0005</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:afad911520db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:afad911520db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:afad911520db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-02 defines the common export contract that later PKG-17 target exporters shall consume before writing target-specific formats. It covers export package structure, export profile metadata, stable ID maps, export manifests, loss reports, and unsupported/approximated/delegated behavior records.</p>
+<p>This deliverable is a contract-level planning artifact. It does not implement JSON schemas, Rust modules, exporters, parsers, harnesses, GUI behavior, persistence runtime, public API endpoints, or target-specific file writers.
+</p></div></div></section>
+<section id="SEC-ED094-0006" class="chunk sec depth-4" data-kind="section" data-key="section:c284da26f19e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0006</span> Contract Objects</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c284da26f19e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c284da26f19e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c284da26f19e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Object | Role | Required downstream behavior |
+|---|---|---|
+| Export package | Binds payloads, target files, manifests, ID maps, diagnostics, and loss reports into one reproducible package concept. | Every exporter shall identify which package members it emits and which are outside its tranche. |
+| Export profile | Declares target name, profile version, target version basis, unit policy, coordinate policy, entity coverage, and target-specific TBDs. | Target exporters shall consume a profile rather than encode hidden target assumptions. |
+| Stable ID map | Maps OpenPipeStress canonical IDs to target record IDs, file names, sidecars, metadata slots, or omitted-target entries. | Every target artifact shall preserve identity directly or through a sidecar map. |
+| Export manifest | Records source model identity, profile identity, package members, hashes where applicable, diagnostics, and boundary notes. | Export packages shall be auditable without relying on unstated runtime context. |
+| Loss report | Records exported, omitted, approximated, delegated, unsupported, and TBD behavior. | Exporters shall not silently approximate unsupported target concepts. |
+</p></div></div></section>
+<section id="SEC-ED094-0007" class="chunk sec depth-4" data-kind="section" data-key="section:b64c89ba307d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0007</span> Source Consumption</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b64c89ba307d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b64c89ba307d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b64c89ba307d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source | Consumption rule |
+|---|---|
+| DEL-17-01 `Source_Basis_Register.md` | Upstream source-basis authority for admitted public/project source IDs, findings, boundaries, and TBD register. SourceRef: `Source_Basis_Register.md#Public and Official Source Evidence`, `#Accepted Project References`, `#TBD Register`. |
+| DEL-17-01 `CAEPIPE_Question_Dossier.md` | Upstream question register for unresolved CAEPIPE claims. SourceRef: `CAEPIPE_Question_Dossier.md#Question Register`, `#Question Boundary`, `#Closure Rule`. |
+| SCA-004 and DAG-005 | Establish PKG-17 scope and sequencing authority. |
+| `docs/CONTRACT.md` and `docs/IP_AND_DATA_BOUNDARY.md` | Govern protected-content, professional-boundary, and no-bypass constraints. |
+| `schemas/model.schema.yaml` | Supplies canonical model identity vocabulary for mapping, without changing the schema in this tranche. |
+</p></div></div></section>
+<section id="SEC-ED094-0008" class="chunk sec depth-4" data-kind="section" data-key="section:52b9901b9c11" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0008</span> DEL-17-01 Source IDs Carried Forward</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52b9901b9c11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52b9901b9c11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52b9901b9c11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source ID | DEL-17-02 use | Location basis |
+|---|---|---|
+| CAEPIPE-IMPORT-MBF | MBF text model input and command-line planning evidence for later CAEPIPE profiles. | `Source_Basis_Register.md#Public and Official Source Evidence`; CAEPIPE `IMPORT MBF`, `Command line operation`, `Format of .MBF`. |
+| CAEPIPE-EXPORT-DATA | CAEPIPE model/result export-surface evidence for later CSV/text parser scoping. | `Source_Basis_Register.md#Public and Official Source Evidence`; CAEPIPE `Export data from CAEPIPE`. |
+| CAEPIPE-EXPORT-MBF | CAEPIPE MBF export evidence for later MBF profile/version discussion. | `Source_Basis_Register.md#Public and Official Source Evidence`; CAEPIPE `EXPORT MBF`. |
+| CAEPIPE-BATCH | Optional external-run harness evidence, limited to user-owned licensed execution planning. | `Source_Basis_Register.md#Public and Official Source Evidence`; CAEPIPE batch `RUNNING CAEPIPE/CAEPIPE 3D+ IN BATCH MODE`. |
+| CAEPIPE-PCF | PCF translator planning evidence with mapping/default caveats for conservative downstream subset work. | `Source_Basis_Register.md#Public and Official Source Evidence`; PCF PDF `Reference`, `PCF to CAEPIPE component Mapping`. |
+| GLTF-2.0 | Review-geometry package evidence for glTF/GLB asset, identity, coordinate, and container semantics. | `Source_Basis_Register.md#Public and Official Source Evidence`; glTF `2.4`, `3.2`, `3.3`, `3.4`, `4`. |
+| PLAN-EXPORT-INTEROP | Strategy and priority basis only; section location remains `location TBD`. | `Source_Basis_Register.md#Accepted Project References`; `location TBD within plan`. |
+| CONTRACT / IP-DATA / SPEC / TYPES / DAG-005 | Governance, workflow, lifecycle, provenance, TBD, data-boundary, and active graph-coordination basis. | `Source_Basis_Register.md#Accepted Project References`; local governance files and DAG-006 approval record locations cited there. |
+</p></div></div></section>
+<section id="SEC-ED094-0009" class="chunk sec depth-4" data-kind="section" data-key="section:f53a2b0450fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0009</span> Local Contract Artifact Inventory</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f53a2b0450fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f53a2b0450fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f53a2b0450fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Artifact | Contract role |
+|---|---|
+| `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` | Human-readable contract kit for the export package/profile/stable-ID/loss-report surface. |
+| `_SEMANTIC.md` | Semantic matrix lens for coverage review; not an engineering authority. |
+| `_SEMANTIC_LENSING.md` | Warranted enrichment register applied by Pass 3; not an authority source by itself. |
+| `Dependencies.csv` | v3.1 dependency register tying DEL-17-02 to upstream source-basis evidence and downstream PKG-17 consumers. |
+| `_run_records/` | Auditable TASK execution records for sealed population and validation passes. |
+</p></div></div></section>
+<section id="SEC-ED094-0010" class="chunk sec depth-4" data-kind="section" data-key="section:588681a28f9d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0010</span> Required Export-Profile Fields</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:588681a28f9d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:588681a28f9d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:588681a28f9d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Meaning |
+|---|---|
+| `profile_id` | Stable identifier for the export profile. |
+| `profile_version` | Version of the OpenPipeStress profile contract. |
+| `target_family` | Target family such as native JSON, CAEPIPE MBF, stress-neutral CSV/JSON, PCF, GLB/glTF, or adapter SDK target. |
+| `target_version_basis` | Cited target version or `TBD` when not yet source-confirmed. |
+| `source_basis_ids` | DEL-17-01 source IDs and project references used by the profile. |
+| `unit_policy` | Declared output units and conversion responsibility. |
+| `coordinate_policy` | Declared coordinate frame, axis convention, and origin policy. |
+| `entity_coverage` | Supported, omitted, approximated, delegated, unsupported, and TBD entity families. |
+| `stable_id_policy` | Direct ID, sidecar ID, metadata ID, or omitted ID behavior. |
+| `loss_report_policy` | Required loss-report categories and blocking diagnostics. |
+| `external_execution_policy` | Optional user-owned harness metadata only, when applicable. |
+| `boundary_notes` | IP, license, private-data, and professional-boundary constraints. |
+</p></div></div></section>
+<section id="SEC-ED094-0011" class="chunk sec depth-4" data-kind="section" data-key="section:c91ab56548f6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0011</span> Stable ID Families</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c91ab56548f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c91ab56548f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c91ab56548f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The common ID map shall account for at least:</p>
+<p>- project and model IDs;
+- line, node, element, component, support, material, section, load case, result case, analysis run, and export IDs;
+- target file IDs, target record IDs, target metadata keys, target sidecar IDs, and omitted-target placeholders.</p>
+<p>If a target cannot carry a canonical ID directly, the exporter shall record the mapping in a sidecar and reference that sidecar from the manifest.
+</p></div></div></section>
+<section id="SEC-ED094-0012" class="chunk sec depth-4" data-kind="section" data-key="section:5aa757300ad3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0012</span> Stable ID Carrier Modes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5aa757300ad3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5aa757300ad3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5aa757300ad3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Mode | Required meaning | DEL-17-02 boundary |
+|---|---|---|
+| Direct target-carried ID | The target artifact contains the canonical OpenPipeStress ID in a source-confirmed target field, metadata slot, name, or equivalent target-carried location. | Allowed only when the downstream target profile cites admitted evidence for the carrier. |
+| Metadata-carried ID | The target artifact carries canonical IDs through a documented metadata surface. | Allowed only when the target metadata behavior is source-confirmed and does not imply solver equivalence. |
+| Sidecar mapping | The target artifact does not carry the canonical ID directly; the export package includes a separate ID-map member referenced from the manifest. | Required fallback whenever direct or metadata carriage is unsupported, ambiguous, or `TBD`. |
+| Omitted-target entry | A canonical ID has no target artifact representation. | Must appear in the ID map and loss report with category, reason, and affected canonical IDs. |</p>
+<p>For CAEPIPE MBF, direct target-carried stable ID claims remain blocked by `TBD-17-01-003`. DEL-17-02 permits sidecar-only MBF mapping as a conservative contract mode, but it does not decide the downstream MBF carrier policy.
+</p></div></div></section>
+<section id="SEC-ED094-0013" class="chunk sec depth-4" data-kind="section" data-key="section:890b628c4515" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0013</span> Loss Categories</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:890b628c4515" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:890b628c4515" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:890b628c4515" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Category | Meaning |
+|---|---|
+| `exported` | Represented directly in the target package. |
+| `omitted` | Not exported, with explicit reason and affected canonical IDs. |
+| `approximated` | Represented by a declared approximation with source and target IDs. |
+| `delegated` | Passed through to a target tool or external workflow without local interpretation. |
+| `unsupported` | Known unsupported behavior that blocks or limits target use. |
+| `tbd` | Behavior not source-confirmed; shall not be represented as supported. |</p>
+<p>Each category shall be visible in the export manifest or loss report even when the export completes. `delegated` means passed through to target configuration or a user-owned external workflow without local interpretation; it does not admit local code-checking logic or bundled target execution.
+</p></div></div></section>
+<section id="SEC-ED094-0014" class="chunk sec depth-4" data-kind="section" data-key="section:dff7a41e5139" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0014</span> DEL-17-01 TBD Carryforward</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dff7a41e5139" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dff7a41e5139" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dff7a41e5139" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| TBD ID | DEL-17-02 treatment | Downstream handoff |
+|---|---|---|
+| TBD-17-01-001 | Preserve target version/profile as `TBD` in export profiles until CAEPIPE version/profile authority is recorded. | DEL-17-04, DEL-17-05 |
+| TBD-17-01-002 | Preserve first MBF record subset as `TBD`; do not encode a first writer subset here. | DEL-17-04 |
+| TBD-17-01-003 | Preserve MBF direct carrier versus sidecar-only stable-ID policy as `TBD`. | DEL-17-02, DEL-17-04 |
+| TBD-17-01-004 | Preserve CSV result-section parser scope as `TBD`. | DEL-17-05, DEL-17-06 |
+| TBD-17-01-005 | Preserve conservative PCF subset and default-warning policy as `TBD`. | DEL-17-07 |
+| TBD-17-01-006 | Preserve glTF/GLB review-geometry identity metadata and sidecar policy as `TBD`. | DEL-17-08 |
+</p></div></div></section>
+<section id="SEC-ED094-0015" class="chunk sec depth-4" data-kind="section" data-key="section:06b58c0fae2b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0015</span> Boundary Summary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06b58c0fae2b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06b58c0fae2b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06b58c0fae2b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No bundled commercial solver or target executable.
+- No proprietary examples, private target data, protected standards tables, material allowables, SIF/flexibility values, or owner criteria.
+- No reverse engineering, license bypass, compatibility overclaim, release claim, code-compliance claim, professional-acceptance claim, or validation claim.
+- No target-specific field semantics beyond DEL-17-01 evidence; unresolved behavior remains `TBD`.
+</p></div></div></section>
+<section id="SEC-ED094-0016" class="chunk sec depth-2" data-kind="section" data-key="section:83bb47e49b61" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED094-0016</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:83bb47e49b61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:83bb47e49b61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:83bb47e49b61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0017" class="chunk sec depth-3" data-kind="section" data-key="section:a30c6c33ca57" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED094-0017</span> Guidance: DEL-17-02 Export package, profile, and stable ID map contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a30c6c33ca57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a30c6c33ca57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a30c6c33ca57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0018" class="chunk sec depth-4" data-kind="section" data-key="section:2034cafaf904" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0018</span> Reader Orientation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2034cafaf904" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2034cafaf904" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2034cafaf904" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this deliverable as the shared contract spine for PKG-17. It tells later exporters what they must disclose and preserve before they write native JSON, CAEPIPE MBF, CAEPIPE harness records, stress-neutral CSV/JSON, PCF, GLB/glTF, or adapter SDK targets.</p>
+<p>The important design rule is simple: an export may be partial, but it shall be explicit. Unsupported target behavior, omitted entities, approximations, delegated execution, and unanswered source questions must be visible in the package manifest, ID map, and loss report.
+</p></div></div></section>
+<section id="SEC-ED094-0019" class="chunk sec depth-4" data-kind="section" data-key="section:ba2f10bff42e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0019</span> Design Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ba2f10bff42e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ba2f10bff42e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ba2f10bff42e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0020" class="chunk sec depth-5" data-kind="section" data-key="section:373aa084f7d8" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED094-0020</span> Export package</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:373aa084f7d8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:373aa084f7d8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:373aa084f7d8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+An export package should be treated as an auditable bundle concept, not only as a target file. Even when the visible output is a single target file, the project still needs a manifest, stable-ID record, diagnostics, and loss report to explain what the output represents.
+</p></div></div></section>
+<section id="SEC-ED094-0021" class="chunk sec depth-5" data-kind="section" data-key="section:dcb5a954cf3f" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED094-0021</span> Export profile</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dcb5a954cf3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dcb5a954cf3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dcb5a954cf3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+An export profile should be the only place where target-specific export assumptions are declared. Later implementation work should consume the profile and fail or warn from its declared coverage. Hidden target defaults are a risk because they make later parser, comparison, and support workflows ambiguous.</p>
+<p>Profile authors should prefer narrow, source-confirmed profiles over broad profiles with unproven target behavior. If a target behavior is plausible but not yet sourced, mark it `TBD` and include the affected downstream deliverables.</p>
+<p>Use `DEL-17-01 Source_Basis_Register.md` as the upstream authority for admitted source IDs. For non-trivial target statements, cite one or more of `CAEPIPE-IMPORT-MBF`, `CAEPIPE-EXPORT-DATA`, `CAEPIPE-EXPORT-MBF`, `CAEPIPE-BATCH`, `CAEPIPE-PCF`, `GLTF-2.0`, or a project reference such as `CONTRACT`, `IP-DATA`, `SPEC`, `TYPES`, and `DAG-006`. If only `PLAN-EXPORT-INTEROP` supports the planning direction, preserve its plan-location `TBD` and do not convert strategy into target-field evidence.
+</p></div></div></section>
+<section id="SEC-ED094-0022" class="chunk sec depth-5" data-kind="section" data-key="section:5a051246a2b2" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED094-0022</span> Stable ID map</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a051246a2b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a051246a2b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a051246a2b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Stable IDs are the recovery path when a target format cannot preserve the OpenPipeStress model structure directly. The map should be useful for:</p>
+<p>- locating a target artifact from a canonical model entity;
+- tracing a target result row back to a model entity;
+- explaining omitted entities;
+- reconciling external run outputs with OpenPipeStress records;
+- diagnosing target-specific approximations.</p>
+<p>Do not use target-generated record order as the only identity mechanism unless the manifest also records why no stronger identity is available.</p>
+<p>Distinguish direct target-carried IDs from sidecar mappings. A direct target-carried ID requires a source-confirmed target field, metadata slot, name, or equivalent carrier. A sidecar mapping is the default when the carrier is absent, ambiguous, or still `TBD`. For CAEPIPE MBF, `TBD-17-01-003` remains open, so later MBF work should not claim direct in-file stable-ID carrying until that question is closed.
+</p></div></div></section>
+<section id="SEC-ED094-0023" class="chunk sec depth-5" data-kind="section" data-key="section:8a849335def9" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED094-0023</span> Loss report</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a849335def9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a849335def9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a849335def9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A loss report should be written for normal exports, not only error cases. A successful target export can still have delegated, omitted, approximated, unsupported, or TBD behavior. This is especially important for CAEPIPE, PCF, and review-geometry targets where public source evidence does not authorize broad compatibility claims.</p>
+<p>Use the categories consistently:</p>
+<p>- `exported`: represented directly in the target artifact or package member;
+- `omitted`: intentionally not emitted, with affected canonical IDs;
+- `approximated`: emitted through a declared approximation;
+- `delegated`: passed through to target configuration or a user-owned workflow without local interpretation;
+- `unsupported`: known unsupported behavior or target limitation;
+- `tbd`: behavior not source-confirmed.</p>
+<p>Do not let `delegated` or `approximated` entries hide target limitations. If target code/check options appear, treat them as pass-through target configuration unless a separate public rule-pack design admits local logic.
+</p></div></div></section>
+<section id="SEC-ED094-0024" class="chunk sec depth-4" data-kind="section" data-key="section:9a704f2b2d8a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0024</span> Target-Specific Carryforward</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a704f2b2d8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a704f2b2d8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a704f2b2d8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Target path | Carryforward from DEL-17-01 |
+|---|---|
+| CAEPIPE MBF | CAEPIPE version/profile, initial MBF record families, required fields, and stable ID carrying strategy remain `TBD` until downstream source review or developer-team clarification closes them. |
+| CAEPIPE external run/CSV | CSV section stability, parser coverage, and licensed executable availability remain `TBD`; harnesses are user-owned and optional. |
+| PCF | Conservative subset and translator-default warning rules remain `TBD`; PCF work shall be loss-report driven. |
+| GLB/glTF | Identity metadata and sidecar policy remain `TBD`; review geometry shall not be treated as solver validation. |
+| Adapter SDK | Additional targets shall inherit this contract and declare their own source basis before target-specific claims. |
+</p></div></div></section>
+<section id="SEC-ED094-0025" class="chunk sec depth-4" data-kind="section" data-key="section:ed6cc9ae6f70" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0025</span> External Execution Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed6cc9ae6f70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed6cc9ae6f70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed6cc9ae6f70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+External target execution is optional and user-owned. A profile may record executable path fields, version fields, license/environment notes, invocation metadata, and output-member hashes where those are useful for a later harness. The contract shall not require bundled executables, copied target examples, license-independent operation, or local interpretation of target solver/code-check behavior.
+</p></div></div></section>
+<section id="SEC-ED094-0026" class="chunk sec depth-4" data-kind="section" data-key="section:e0c0e44ddbfd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0026</span> Boundary Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0c0e44ddbfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0c0e44ddbfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0c0e44ddbfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Use public, official, project-owned, or rights-cleared sources only.
+- Do not copy protected standards tables, commercial examples, proprietary model files, or private target data.
+- Do not describe external tool execution as bundled, automatic, or license-independent.
+- Do not claim compatibility, code compliance, professional acceptance, formal validation, or release readiness from this contract.
+- Do not resolve `TBD` behavior by inference from target names or common industry practice.
+</p></div></div></section>
+<section id="SEC-ED094-0027" class="chunk sec depth-4" data-kind="section" data-key="section:3330e7b8c5fb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0027</span> Reviewer Checklist</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3330e7b8c5fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3330e7b8c5fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3330e7b8c5fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Does every target-specific statement trace to `DEL-17-01` or a project governance source?
+- Are unresolved questions marked `TBD` instead of softened into support language?
+- Does the ID-map guidance preserve canonical identity even when the target format cannot?
+- Does the loss report include successful-export loss categories?
+- Are later deliverables identified as consumers without being populated in this tranche?
+- Did semantic matrix, lens-register, four-document, minimum-fileset, dependency-schema, and diff-hygiene validation pass before downstream consumption?
+</p></div></div></section>
+<section id="SEC-ED094-0028" class="chunk sec depth-2" data-kind="section" data-key="section:b1856c9b5d4f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED094-0028</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1856c9b5d4f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1856c9b5d4f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1856c9b5d4f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0029" class="chunk sec depth-3" data-kind="section" data-key="section:bc71be02ad84" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED094-0029</span> Procedure: DEL-17-02 Export package, profile, and stable ID map contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc71be02ad84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc71be02ad84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc71be02ad84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0030" class="chunk sec depth-4" data-kind="section" data-key="section:304856fa7c02" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0030</span> Population Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:304856fa7c02" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:304856fa7c02" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:304856fa7c02" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm DAG-006 is the approved active graph authority.
+2. Confirm `DEL-17-01` has committed implementation evidence before treating `DEL-17-02` as the next unblocked PKG-17 population target.
+3. Read the local `DEL-17-01` four-document kit, `Source_Basis_Register.md`, and `CAEPIPE_Question_Dossier.md`.
+4. Populate this four-document kit at contract level only.
+5. Build semantic artifacts that map source basis, requirements, downstream consumers, and boundary exclusions.
+6. Extract the local dependency register into `Dependencies.csv`.
+7. Refresh deliverable memory and create a run record.
+8. Validate the four-document kit, minimum fileset, dependency schema, coordination blocker queue, and diff hygiene.
+</p></div></div></section>
+<section id="SEC-ED094-0031" class="chunk sec depth-4" data-kind="section" data-key="section:4e1ddefeb7bf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0031</span> Downstream Consumption Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4e1ddefeb7bf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4e1ddefeb7bf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4e1ddefeb7bf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each later PKG-17 target deliverable:</p>
+<p>1. Start from this contract and the `DEL-17-01` source-basis dossier.
+2. Declare the target profile and target version basis.
+3. Cite the consumed `DEL-17-01` source IDs or record `location TBD` for unresolved source locations.
+4. Declare exported, omitted, approximated, delegated, unsupported, and `TBD` behavior.
+5. Define stable ID behavior before target writing or parser work, distinguishing direct target-carried IDs from sidecar mappings.
+6. Require an export manifest and loss report.
+7. Keep target-specific implementation inside that deliverable&#x27;s approved write scope.
+8. Preserve project data-boundary and professional-boundary exclusions.
+</p></div></div></section>
+<section id="SEC-ED094-0032" class="chunk sec depth-4" data-kind="section" data-key="section:dad46fb0c7b4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0032</span> Contract Population Checklist</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dad46fb0c7b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dad46fb0c7b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dad46fb0c7b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When refining or consuming this contract:</p>
+<p>1. Confirm `Source_Basis_Register.md#Public and Official Source Evidence` is the source for target source IDs.
+2. Confirm `CAEPIPE_Question_Dossier.md#Question Register` is the source for CAEPIPE open questions.
+3. Carry forward `TBD-17-01-001` through `TBD-17-01-006` unless a later admissible source and human scope authority closes the item.
+4. Treat `TBD-17-01-003` as blocking direct MBF stable-ID carrier claims.
+5. Use sidecar mappings whenever direct or metadata carrier evidence is absent, ambiguous, or `TBD`.
+6. Record target executor use only as optional user-owned, license-bound harness metadata.
+7. Keep target code/check options as pass-through target configuration unless separately admitted by a public rule-pack design.
+</p></div></div></section>
+<section id="SEC-ED094-0033" class="chunk sec depth-4" data-kind="section" data-key="section:44443aba9edf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0033</span> Validation Commands</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44443aba9edf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44443aba9edf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44443aba9edf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Run from repository root:</p>
+<p>```bash
+tools/validation/check_four_documents.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+tools/validation/check_min_viable_fileset.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+python3 tools/validation/validate_dependencies_schema.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Dependencies.csv&quot;
+python3 tools/validation/validate_semantic_matrix.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+python3 tools/validation/validate_lens_register.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+rg -n &quot;certify|certified|approve|approved|issue|issued|code compliance|code-compliant|ASME table|protected table|proprietary|validation|validated|formal acceptance|compatibility|CAEPIPE requirement|reverse engineer&quot; &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+rg -n &quot;TBD|tbd|location TBD&quot; &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+git diff --check -- &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;
+```</p>
+<p>If an unscoped worktree check reports findings outside this project&#x27;s write scope, record the finding as external-scope noise and do not treat it as a blocker for DEL-17-02 closeout. Scoped deliverable checks remain the controlling diff-hygiene evidence for this deliverable.
+</p></div></div></section>
+<section id="SEC-ED094-0034" class="chunk sec depth-4" data-kind="section" data-key="section:68fb8c58223a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0034</span> Closeout Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68fb8c58223a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68fb8c58223a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68fb8c58223a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Closeout requires:</p>
+<p>- four-document validation pass;
+- minimum viable fileset validation pass;
+- dependency schema validation pass;
+- semantic matrix validation pass;
+- lens-register validation pass;
+- overclaim/prohibited-term scan reviewed for negative guardrail language versus unsupported affirmative claims;
+- TBD scan reviewed and summarized in `MEMORY.md`;
+- scoped diff-hygiene validation pass, with any outside-project findings recorded as external-scope bypasses rather than blockers;
+- memory update with touched files, validation results, remaining TBDs, and boundary exclusions;
+- run record creation;
+- no edits to `DEL-17-03` through `DEL-17-09` production documents;
+- no lifecycle promotion;
+- no code, schema, release, compatibility, professional, or code-compliance claim.
+</p></div></div></section>
+<section id="SEC-ED094-0035" class="chunk sec depth-4" data-kind="section" data-key="section:8ba62d61e2b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0035</span> Semantic Enrichment Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8ba62d61e2b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8ba62d61e2b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8ba62d61e2b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Pass 3 semantic-lensing enrichment checked `_SEMANTIC_LENSING.md` items `A-001`, `B-001`, `X-001`, and `E-001` against `Specification.md` architecture-basis requirements, `Datasheet.md` local artifact inventory, this procedure&#x27;s validation and closeout checks, and `Guidance.md` reviewer checklist. The resulting closeout checks require downstream target profiles to preserve the architecture basis, keep the local contract artifact set auditable, validate semantic/lens artifacts before consumption, and carry semantic readiness evidence into review.
+</p></div></div></section>
+<section id="SEC-ED094-0036" class="chunk sec depth-2" data-kind="section" data-key="section:e390519b12dc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED094-0036</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e390519b12dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e390519b12dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e390519b12dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0037" class="chunk sec depth-3" data-kind="section" data-key="section:c40dee23f168" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED094-0037</span> Specification: DEL-17-02 Export package, profile, and stable ID map contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c40dee23f168" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c40dee23f168" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c40dee23f168" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED094-0038" class="chunk sec depth-4" data-kind="section" data-key="section:da68472185cc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0038</span> Normative Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:da68472185cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:da68472185cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:da68472185cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-02 shall define common contract requirements for PKG-17 export packages, profiles, stable ID maps, manifests, and loss reports.</p>
+<p>This deliverable shall not implement exporters, schemas, tests, parsers, executable harnesses, GUI features, persistence runtime, public API endpoints, target adapters, or target-file writers. Later deliverables shall implement concrete artifacts only after consuming this contract and their own approved source basis.
+</p></div></div></section>
+<section id="SEC-ED094-0039" class="chunk sec depth-4" data-kind="section" data-key="section:30d9e2bac8ed" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0039</span> Source Authority Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30d9e2bac8ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30d9e2bac8ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30d9e2bac8ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-001 | The deliverable shall consume `DEL-17-01` as the source-basis authority for target-format claims. |
+| DEL-17-02-REQ-002 | Target-specific behavior not resolved by `DEL-17-01 Source_Basis_Register.md#TBD Register` or `CAEPIPE_Question_Dossier.md#Question Register` shall remain `TBD`. |
+| DEL-17-02-REQ-003 | The common contract shall cite project-owned schema/governance sources for canonical identity, hashing, data-boundary, provenance, lifecycle, and professional-boundary requirements. |
+| DEL-17-02-REQ-004 | Later `DEL-17-*` deliverables shall not invent target behavior that is absent from the admitted source basis. |
+| DEL-17-02-REQ-005 | Profiles shall record the source IDs consumed from `DEL-17-01`, including `CAEPIPE-IMPORT-MBF`, `CAEPIPE-EXPORT-DATA`, `CAEPIPE-EXPORT-MBF`, `CAEPIPE-BATCH`, `CAEPIPE-PCF`, `GLTF-2.0`, and relevant project references, or explicitly mark the location/source as `TBD`. |
+</p></div></div></section>
+<section id="SEC-ED094-0040" class="chunk sec depth-4" data-kind="section" data-key="section:147771cd0ac3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0040</span> Architecture-Basis Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:147771cd0ac3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:147771cd0ac3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:147771cd0ac3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-006 | Future concrete export contract schemas derived from this deliverable shall use JSON Schema 2020-12 unless a later approved architecture-basis change supersedes it. |
+| DEL-17-02-REQ-007 | Deterministic JSON payload hashing shall use the project canonical JSON/JCS-compatible hash basis where hashes are recorded for package members or manifests. |
+| DEL-17-02-REQ-008 | Schema-first command, query, and job-result envelopes remain implementation-facing constraints for later API or adapter work; this deliverable records the contract boundary only. |
+</p></div></div></section>
+<section id="SEC-ED094-0041" class="chunk sec depth-4" data-kind="section" data-key="section:8985e508c17b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0041</span> Export Package Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8985e508c17b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8985e508c17b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8985e508c17b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-010 | An export package shall declare a package ID, source model identity, source model version or hash basis, export profile ID, and generation context. |
+| DEL-17-02-REQ-011 | An export package shall list every emitted package member, including target files, JSON payloads, ID maps, manifests, loss reports, diagnostics, and sidecars. |
+| DEL-17-02-REQ-012 | Package members shall have stable paths or declared path-generation rules. |
+| DEL-17-02-REQ-013 | Hashes shall be recorded for deterministic text/JSON members where applicable; binary or target-owned outputs shall either record a hash or record why a hash is unavailable. |
+| DEL-17-02-REQ-014 | Timestamp fields shall be explicitly declared as deterministic, normalized, omitted, or intentionally runtime-dependent. |
+</p></div></div></section>
+<section id="SEC-ED094-0042" class="chunk sec depth-4" data-kind="section" data-key="section:40a16988741d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0042</span> Export Profile Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40a16988741d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40a16988741d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40a16988741d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-020 | An export profile shall declare target family, profile version, target version basis, source-basis IDs, and profile boundary notes. |
+| DEL-17-02-REQ-021 | An export profile shall declare unit policy, coordinate policy, stable-ID policy, and loss-report policy. |
+| DEL-17-02-REQ-022 | An export profile shall classify supported entity families as exported, omitted, approximated, delegated, unsupported, or `TBD`. |
+| DEL-17-02-REQ-023 | A target-specific profile shall not treat unresolved `DEL-17-01` questions as support claims. |
+| DEL-17-02-REQ-024 | External execution, where relevant, shall be optional and user-owned; the profile may record harness metadata but shall not require bundled commercial executables. |
+| DEL-17-02-REQ-025 | Target code/check options shall be recorded only as pass-through target configuration unless a separate public rule-pack design admits local logic. |
+| DEL-17-02-REQ-026 | `PLAN-EXPORT-INTEROP` may be cited for strategy and target ordering only while its precise section remains `location TBD`; it shall not substitute for target-format field evidence. |
+</p></div></div></section>
+<section id="SEC-ED094-0043" class="chunk sec depth-4" data-kind="section" data-key="section:9313b82b0fe4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0043</span> Stable ID Map Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9313b82b0fe4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9313b82b0fe4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9313b82b0fe4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-030 | The ID map shall preserve links from canonical OpenPipeStress IDs to emitted target records, files, metadata fields, or sidecar rows. |
+| DEL-17-02-REQ-031 | The ID map shall record unmapped canonical IDs with omission or unsupported reasons. |
+| DEL-17-02-REQ-032 | The ID map shall be stable across deterministic re-export when the source model identity and profile are unchanged. |
+| DEL-17-02-REQ-033 | A target file that cannot carry canonical IDs shall be paired with a sidecar mapping referenced by the manifest. |
+| DEL-17-02-REQ-034 | ID-map entries shall distinguish source canonical identity from target-generated identity. |
+| DEL-17-02-REQ-035 | ID-map entries shall classify the carrier as `direct_target_carried`, `metadata_carried`, `sidecar_mapping`, or `omitted_target_entry`. |
+| DEL-17-02-REQ-036 | A downstream profile shall not claim a direct target-carried ID unless the target carrier is source-confirmed for that profile. |
+| DEL-17-02-REQ-037 | CAEPIPE MBF direct ID carrying remains `TBD-17-01-003`; sidecar mapping is the conservative fallback until downstream evidence closes the carrier question. |
+</p></div></div></section>
+<section id="SEC-ED094-0044" class="chunk sec depth-4" data-kind="section" data-key="section:8a6b3c94de63" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0044</span> Manifest Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a6b3c94de63" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a6b3c94de63" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a6b3c94de63" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-040 | The manifest shall record source model reference, export package ID, export profile ID, package member inventory, and source-basis references. |
+| DEL-17-02-REQ-041 | The manifest shall include diagnostics and boundary notes sufficient to audit unsupported behavior without opening every package member. |
+| DEL-17-02-REQ-042 | The manifest shall indicate whether target-specific fields are source-confirmed, delegated, unsupported, or `TBD`. |
+| DEL-17-02-REQ-043 | The manifest shall identify sidecar ID-map and loss-report members whenever a target artifact cannot carry canonical identity or loss categories directly. |
+</p></div></div></section>
+<section id="SEC-ED094-0045" class="chunk sec depth-4" data-kind="section" data-key="section:ca9fcf02752c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0045</span> Loss Report Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca9fcf02752c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca9fcf02752c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca9fcf02752c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-050 | The loss report shall be mandatory for every target exporter, including native project-owned exports. |
+| DEL-17-02-REQ-051 | Loss report entries shall include affected canonical IDs, category, severity, target artifact if any, reason, source-basis reference, and downstream implication. |
+| DEL-17-02-REQ-052 | Approximation entries shall describe the approximation at a contract level and shall not hide target limitations. |
+| DEL-17-02-REQ-053 | Unsupported and `TBD` entries shall be blocking when they affect solver-ready or compatibility-sensitive output. |
+| DEL-17-02-REQ-054 | Loss reports shall use the categories `exported`, `omitted`, `approximated`, `delegated`, `unsupported`, and `tbd`. |
+| DEL-17-02-REQ-055 | `Delegated` entries shall identify the target configuration or external workflow that receives the behavior without claiming local interpretation. |
+| DEL-17-02-REQ-056 | `TBD` entries shall name the governing TBD ID when the gap maps to `TBD-17-01-001` through `TBD-17-01-006`. |
+</p></div></div></section>
+<section id="SEC-ED094-0046" class="chunk sec depth-4" data-kind="section" data-key="section:0cf027fed3bb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0046</span> Downstream Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0cf027fed3bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0cf027fed3bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0cf027fed3bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Downstream deliverable | Required use of DEL-17-02 |
+|---|---|
+| DEL-17-03 | Use the common package/profile/ID-map/loss-report contract for the native open JSON package. |
+| DEL-17-04 | Use the contract to define deterministic CAEPIPE MBF writer behavior without hidden unsupported approximations. |
+| DEL-17-05 | Use manifest and profile metadata for optional CAEPIPE external-run harness records and CSV parser boundaries. |
+| DEL-17-06 | Use loss reports and stable IDs for stress-neutral CSV/JSON result packages. |
+| DEL-17-07 | Use profile and loss-report rules for conservative PCF subset exports. |
+| DEL-17-08 | Use stable IDs and metadata/sidecar policy for GLB/glTF review geometry. |
+| DEL-17-09 | Use the common contract as the adapter SDK target contract. |
+</p></div></div></section>
+<section id="SEC-ED094-0047" class="chunk sec depth-4" data-kind="section" data-key="section:164831a566b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0047</span> Boundary Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:164831a566b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:164831a566b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:164831a566b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-02-REQ-090 | The contract shall not include protected standards values, proprietary target examples, private client data, or reverse-engineered target behavior. |
+| DEL-17-02-REQ-091 | The contract shall not claim CAEPIPE compatibility, PCF completeness, glTF solver validity, release readiness, code compliance, professional acceptance, or formal validation. |
+| DEL-17-02-REQ-092 | All later target deliverables shall carry forward unresolved `DEL-17-01` TBDs until source evidence or human scope authority resolves them. |
+| DEL-17-02-REQ-093 | External target execution shall remain optional, user-owned, environment-specific, and license-bound; this contract shall not require or bundle target executors. |
+| DEL-17-02-REQ-094 | Public artifacts shall not include protected standards text, protected tables, commercial examples, proprietary model files, private owner criteria, or license-bypass guidance. |
+</p></div></div></section>
+<section id="SEC-ED094-0048" class="chunk sec depth-4" data-kind="section" data-key="section:4251c12fa960" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED094-0048</span> Acceptance Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4251c12fa960" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4251c12fa960" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4251c12fa960" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-02 is acceptable when:</p>
+<p>- the four-document kit exists;
+- semantic and dependency artifacts exist;
+- `Dependencies.csv` validates against the v3.1 dependency schema;
+- the DAG-005/root blocker queue uses the active evidence register and records `DEL-17-01` as committed;
+- `DEL-17-03` through `DEL-17-09` remain unpopulated beyond existing scaffolds in this tranche;
+- no unauthorized schema, code, lifecycle, release, compatibility, or professional claim is made.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED094";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

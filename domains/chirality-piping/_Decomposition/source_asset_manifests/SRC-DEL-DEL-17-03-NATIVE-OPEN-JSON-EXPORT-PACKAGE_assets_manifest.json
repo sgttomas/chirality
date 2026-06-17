@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE",
+  "source_doc_id": "SRC-DEL-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE",
+  "source_prefix": "ED095",
+  "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/",
+  "catalog_rel_path": "@repo/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE-DATASHEET",
+      "expected_sha256": "8aa49237cae5ddc4a58551ad1ad7a1cb47db712f1b10a1db73795a3de9f3b110",
+      "generated_line_start": 11,
+      "generated_line_end": 67,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE-GUIDANCE",
+      "expected_sha256": "8a4013d6b554bc268bf7f492da9e46239ddb91b1e466f29f3c5fef1381103b6e",
+      "generated_line_start": 71,
+      "generated_line_end": 96,
+      "source_line_start": 1,
+      "source_line_end": 26,
+      "line_offset": -70
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE-PROCEDURE",
+      "expected_sha256": "b7bbd5bf4b4a6f987547c63001f131f18f2a3a753e268185b00552016794b585",
+      "generated_line_start": 100,
+      "generated_line_end": 134,
+      "source_line_start": 1,
+      "source_line_end": 35,
+      "line_offset": -99
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-03-NATIVE-OPEN-JSON-EXPORT-PACKAGE-SPECIFICATION",
+      "expected_sha256": "2fd0e3d545d7b46518ca08ec96c60a5c8b5e0b2509440f9cbee37112d3108390",
+      "generated_line_start": 138,
+      "generated_line_end": 181,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -137
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

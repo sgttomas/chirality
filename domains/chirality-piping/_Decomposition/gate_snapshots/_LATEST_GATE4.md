@@ -1,0 +1,4 @@
+Latest: GATE4_KTY_20260617T153218Z
+Gate: Gate 4 Knowledge Types
+Status: ACCEPTED
+Token: GATE4_ACCEPT_20260617

@@ -1,0 +1,449 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-01-02-COPYRIGHT-AND-PROTECTED-DATA-BOUNDARY-POLICY - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED010-0001">Source Pack: SRC-DEL-DEL-01-02-COPYRIGHT-AND-PROTECTED-DATA-</a> <a href="#SEC-ED010-0002">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED010-0009">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED010-0017">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED010-0024">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a></nav>
+<main>
+<section id="SEC-ED010-0001" class="chunk sec depth-1" data-kind="section" data-key="section:59ca8ff87514" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED010-0001</span> Source Pack: SRC-DEL-DEL-01-02-COPYRIGHT-AND-PROTECTED-DATA-BOUNDARY-POLICY</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59ca8ff87514" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59ca8ff87514" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59ca8ff87514" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED010-0002" class="chunk sec depth-2" data-kind="section" data-key="section:62c4458b31f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED010-0002</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:62c4458b31f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:62c4458b31f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:62c4458b31f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0003" class="chunk sec depth-3" data-kind="section" data-key="section:d87c01daf474" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED010-0003</span> Datasheet: DEL-01-02 Copyright and protected-data boundary policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d87c01daf474" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d87c01daf474" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d87c01daf474" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0004" class="chunk sec depth-4" data-kind="section" data-key="section:cb619a7bc7fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cb619a7bc7fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cb619a7bc7fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cb619a7bc7fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-01-02 |
+| Deliverable name | Copyright and protected-data boundary policy |
+| Package ID | PKG-01 |
+| Package name | Governance, IP Boundary, and Professional Responsibility |
+| Type | DOC_UPDATE |
+| Scope items | SOW-003, SOW-028 |
+| Objective | OBJ-002 |
+| Anticipated repo-level artifacts | docs/IP_AND_DATA_BOUNDARY.md; contribution review checklist |
+| Repo-level artifact status | `docs/IP_AND_DATA_BOUNDARY.md` and `governance/CONTRIBUTION_REVIEW_CHECKLIST.md` exist as draft governance artifacts |
+| Local artifact role | Deliverable-local evidence and review kit for the protected-data boundary policy |
+| Lifecycle authority | Draft/proposal until accepted by human gate |
+</p></div></div></section>
+<section id="SEC-ED010-0005" class="chunk sec depth-4" data-kind="section" data-key="section:1a6f60c32c12" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a6f60c32c12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a6f60c32c12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a6f60c32c12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary boundary | Public repository must not redistribute protected standards/code/vendor data | execution/_Decomposition/SOFTWARE_DECOMP.md §Scope of Work; docs/CONTRACT.md §1 |
+| Contributor governance need | Repository must include IP controls and review procedures | execution/_Decomposition/SOFTWARE_DECOMP.md §Scope of Work; docs/CONTRACT.md §1 |
+| Quarantine posture | Stop ingestion, mark suspected protected content, quarantine outside public examples, record issue, request human/legal review | docs/IP_AND_DATA_BOUNDARY.md §5 |
+| Public data prerequisites | Source, provenance, license or redistribution status, contributor certification, and review disposition | docs/CONTRACT.md §1; docs/IP_AND_DATA_BOUNDARY.md §4 |
+| Legal conclusion authority | Human/legal review required; this deliverable is not a legal opinion | docs/_Registers/ContextBudgetQA.csv row DEL-01-02; docs/README.md §Status |
+| Public examples posture | Invented, public-domain, or permissively licensed examples only | docs/DIRECTIVE.md §3; docs/IP_AND_DATA_BOUNDARY.md §2 |
+</p></div></div></section>
+<section id="SEC-ED010-0006" class="chunk sec depth-4" data-kind="section" data-key="section:35c245a2fe6c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35c245a2fe6c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35c245a2fe6c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35c245a2fe6c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The setup workflow may discuss `docs/IP_AND_DATA_BOUNDARY.md` and the contribution checklist only within this deliverable-local kit.
+- Protected standards text, tables, figures, examples, material allowables, SIF/flexibility tables, protected dimensional tables, proprietary vendor data, copied commercial examples, private rule packs, owner standards, and private project data are excluded from public repository content.
+- Unknown license, provenance, redistribution status, certification mechanism, or review disposition is `TBD` until resolved by human project authority or legal review.
+- Software and agent outputs remain draft/proposal artifacts until accepted by a human gate.
+</p></div></div></section>
+<section id="SEC-ED010-0007" class="chunk sec depth-4" data-kind="section" data-key="section:caeea4537ccf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:caeea4537ccf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:caeea4537ccf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:caeea4537ccf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The intended repo-level policy artifact should be constructed from:</p>
+<p>1. Boundary categories: allowed public content, prohibited public content, private/user-controlled content, and suspected protected content.
+2. Required contribution metadata: source, location, license or redistribution basis, contributor, certification, redistribution status, review status, and disposition.
+3. Review actions: intake screening, provenance check, redistribution-rights check, protected-content scan, quarantine decision, human/legal escalation, and final accept/reject/quarantine outcome.
+4. Non-claims: no legal opinion, no code-compliance claim, no professional engineering approval, no certification/seal/endorsement claim.
+</p></div></div></section>
+<section id="SEC-ED010-0008" class="chunk sec depth-4" data-kind="section" data-key="section:e2e3e1b7391d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2e3e1b7391d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2e3e1b7391d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2e3e1b7391d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- AGENTS.md — OpenPipeStress agent index and Type 2 dispatch rule.
+- docs/DIRECTIVE.md — founding intent, public/private boundary, stop rules.
+- docs/CONTRACT.md — invariant catalog.
+- docs/TYPES.md — canonical vocabulary and provenance labels.
+- docs/SPEC.md — technical implementation context, reports, rule packs, and warning classes.
+- docs/IP_AND_DATA_BOUNDARY.md — draft repo-level policy artifact.
+- governance/CONTRIBUTION_REVIEW_CHECKLIST.md — draft repo-level contribution review checklist.
+- docs/AGENTIC_DEVELOPMENT_WORKFLOW.md — Type 2 execution and review expectations.
+- execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7 — DEL-01-02, SOW-003, SOW-028, OBJ-002, AB-00-01, AB-00-02, AB-00-06, AB-00-08.
+- execution/_DAG/DAG-006/ — approved active graph authority.
+- docs/_Registers/Deliverables.csv, ScopeLedger.csv, ContextBudgetQA.csv — register evidence.
+</p></div></div></section>
+<section id="SEC-ED010-0009" class="chunk sec depth-2" data-kind="section" data-key="section:3319a986494b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED010-0009</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3319a986494b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3319a986494b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3319a986494b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0010" class="chunk sec depth-3" data-kind="section" data-key="section:a4d83e573fd7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED010-0010</span> Guidance: DEL-01-02 Copyright and protected-data boundary policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4d83e573fd7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4d83e573fd7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4d83e573fd7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0011" class="chunk sec depth-4" data-kind="section" data-key="section:866ffa88381e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:866ffa88381e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:866ffa88381e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:866ffa88381e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The policy exists to protect standards-body and vendor intellectual property while allowing OpenPipeStress to remain a public, educational, auditable implementation of open mechanics. It should give maintainers and contributors a conservative intake path: accept only content with documented rights, keep private/project data private, and escalate suspected protected content before it reaches the public repository.
+</p></div></div></section>
+<section id="SEC-ED010-0012" class="chunk sec depth-4" data-kind="section" data-key="section:bfb34bbc6d9a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bfb34bbc6d9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bfb34bbc6d9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bfb34bbc6d9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Open mechanics are public; code-specific values, proprietary libraries, protected standards tables, and owner/project data are not public defaults.
+- Provenance is part of the data, not an optional note.
+- `TBD`, `UNKNOWN_SOURCE`, and `PROTECTED_CONTENT_SUSPECTED` are valid findings; they should not be silently converted into public content.
+- Contributor review is a gate, not a courtesy label.
+- Quarantine is protective and procedural; it is not a finding of infringement or a legal conclusion.
+- Public examples should be original, invented, public-domain, or permissively licensed, with a clear non-engineering notice.
+</p></div></div></section>
+<section id="SEC-ED010-0013" class="chunk sec depth-4" data-kind="section" data-key="section:75ee04594eab" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:75ee04594eab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:75ee04594eab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:75ee04594eab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The existing draft `docs/IP_AND_DATA_BOUNDARY.md` provides categories for allowed public content, prohibited public content, provenance fields, quarantine behavior, private user data, reports, and the contribution review checklist. The draft `governance/CONTRIBUTION_REVIEW_CHECKLIST.md` provides the current checklist surface. Later governance work may still need human decisions for final legal mechanism, license status vocabulary, reviewer roles, and escalation owner.</p>
+<p>Architecture-basis items AB-00-01, AB-00-02, AB-00-06, and AB-00-08 matter as downstream constraints: protected-content and provenance gates should be testable, diagnostics should include `IP_BOUNDARY_WARNING` where implementation later touches contribution/report flows, and adapters/plugins should not bypass provenance or data-boundary controls. This document does not implement those controls.
+</p></div></div></section>
+<section id="SEC-ED010-0014" class="chunk sec depth-4" data-kind="section" data-key="section:cb9e6e77b42d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cb9e6e77b42d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cb9e6e77b42d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cb9e6e77b42d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Usability vs. protected-content risk | Prefer conservative rejection or quarantine when redistribution status is unclear. |
+| Educational examples vs. accidental copying | Use invented examples and avoid code-derived values, table shapes, copied wording, and proprietary benchmark files. |
+| Automation vs. legal judgment | Automated scans can flag risk but cannot be the sole legal control. Human/legal review remains required for suspicious or high-impact contributions. |
+| Public transparency vs. private data protection | Record policy and review outcomes publicly where safe, but do not expose private rule packs, owner standards, project models, or quarantined content. |
+</p></div></div></section>
+<section id="SEC-ED010-0015" class="chunk sec depth-4" data-kind="section" data-key="section:5c80492ac391" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c80492ac391" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c80492ac391" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c80492ac391" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Acceptable pattern: a small invented example model with original values, a non-engineering notice, and provenance marked `PUBLIC_DOMAIN_OR_ORIGINAL`.
+- Review-required pattern: manufacturer data with unclear redistribution terms; record `source_license=TBD` and block public acceptance until resolved.
+- Quarantine pattern: a contribution that appears copied from a standards table; stop ingestion, mark `PROTECTED_CONTENT_SUSPECTED`, move outside public examples, record issue, and request human/legal review.
+</p></div></div></section>
+<section id="SEC-ED010-0016" class="chunk sec depth-4" data-kind="section" data-key="section:eff4e9f51a64" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eff4e9f51a64" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eff4e9f51a64" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eff4e9f51a64" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| C-001 | Exact quarantine storage path is now specified as `quarantine/protected-content/` or maintainer-approved equivalent, but no maintainer-approved alternative path or owner is assigned. | docs/IP_AND_DATA_BOUNDARY.md §5 | governance/CONTRIBUTION_REVIEW_CHECKLIST.md §8 | Procedure §Steps; Specification R3 | Treat `quarantine/protected-content/` as the default unless a maintainer-approved equivalent is recorded. | TBD |
+| C-002 | Contributor certification mechanism is required by policy intent but exact wording/mechanism remains unresolved. | docs/CONTRACT.md OPS-K-IP-2 | docs/DIRECTIVE.md §6 | Specification R2; Procedure checklist | Human/legal review should approve final attestation language. | TBD |
+| C-003 | The contribution checklist path exists, but reviewer role and final governance/legal mechanism remain unresolved. | docs/IP_AND_DATA_BOUNDARY.md §8; governance/CONTRIBUTION_REVIEW_CHECKLIST.md | docs/CONTRACT.md OPS-K-GOV-2, OPS-K-GOV-4 | Specification R11; Procedure §Prerequisites | Human project authority should assign reviewer role and final governance/legal mechanism. | TBD |
+</p></div></div></section>
+<section id="SEC-ED010-0017" class="chunk sec depth-2" data-kind="section" data-key="section:7c6b6856ef79" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED010-0017</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c6b6856ef79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c6b6856ef79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c6b6856ef79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0018" class="chunk sec depth-3" data-kind="section" data-key="section:cfb4fa4c95a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED010-0018</span> Procedure: DEL-01-02 Copyright and protected-data boundary policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cfb4fa4c95a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cfb4fa4c95a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cfb4fa4c95a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0019" class="chunk sec depth-4" data-kind="section" data-key="section:ac45da16575e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac45da16575e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac45da16575e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac45da16575e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to maintain and review the repo-level protected-data boundary policy and contribution checklist without introducing protected content or legal conclusions.
+</p></div></div></section>
+<section id="SEC-ED010-0020" class="chunk sec depth-4" data-kind="section" data-key="section:a43c6efe8f70" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a43c6efe8f70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a43c6efe8f70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a43c6efe8f70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Sealed deliverable context for DEL-01-02.
+- Local sources listed in `_REFERENCES.md`.
+- Applicable invariants from `docs/CONTRACT.md`.
+- Human/legal availability for unresolved legal wording, license, contributor certification, and quarantine-path decisions.
+- Checklist path: `governance/CONTRIBUTION_REVIEW_CHECKLIST.md`.
+- Human project authority assignment of reviewer role and final governance/legal mechanism: `TBD`.
+- No protected standards/code/vendor data in working examples or drafts.
+</p></div></div></section>
+<section id="SEC-ED010-0021" class="chunk sec depth-4" data-kind="section" data-key="section:eb23a22d08c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb23a22d08c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb23a22d08c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb23a22d08c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm scope is limited to DEL-01-02, SOW-003, SOW-028, and OBJ-002.
+2. Read governing local sources: AGENTS.md, docs/DIRECTIVE.md, docs/CONTRACT.md, docs/TYPES.md, docs/SPEC.md, docs/IP_AND_DATA_BOUNDARY.md, governance/CONTRIBUTION_REVIEW_CHECKLIST.md, docs/AGENTIC_DEVELOPMENT_WORKFLOW.md, decomposition, and registers.
+3. Draft or review the policy sections for allowed public content, prohibited public content, private/user-controlled content, required provenance, quarantine, reports, and contributor review.
+4. Draft or review the contribution checklist fields:
+   - contribution description;
+   - source name and source location;
+   - source license or redistribution basis;
+   - contributor identity and certification;
+   - redistribution status;
+   - protected-content risk;
+   - private-data risk;
+   - reviewer disposition;
+   - quarantine/escalation record, if applicable.
+5. If suspected protected content appears, stop ingestion, avoid reproducing it, mark the item `PROTECTED_CONTENT_SUSPECTED`, quarantine outside public examples, record the issue, and request human/legal review.
+6. Replace unknowns with `TBD` rather than inventing license status, legal conclusions, provenance, examples, formulas, or engineering values.
+7. Verify the policy avoids claims of legal advice, code compliance, professional engineering approval, certification, sealing, endorsement, or release fitness.
+8. Perform a field-by-field checklist acceptance review against Specification R2 and R11, treating reviewer role and final governance/legal mechanism as `TBD` until assigned by the human project authority.
+9. Route the repo-level policy/checklist for REVIEW and then human acceptance before treating it as project policy.
+</p></div></div></section>
+<section id="SEC-ED010-0022" class="chunk sec depth-4" data-kind="section" data-key="section:4a3b5e197660" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a3b5e197660" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a3b5e197660" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a3b5e197660" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The four-document kit stays deliverable-local.
+- Repo-level artifacts remain draft governance surfaces unless accepted by a human gate.
+- Prohibited-content categories align with OPS-K-IP-1 and SOW-003.
+- Provenance and contributor-review fields align with OPS-K-IP-2 and OPS-K-GOV-4.
+- Quarantine language aligns with OPS-K-IP-3 and remains non-legal-conclusive.
+- Unknown values and unresolved policy decisions remain `TBD`.
+- The dependency register is schema-valid after extraction.
+</p></div></div></section>
+<section id="SEC-ED010-0023" class="chunk sec depth-4" data-kind="section" data-key="section:d33148c1bf97" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d33148c1bf97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d33148c1bf97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d33148c1bf97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/TASK_RUN_*.md`
+</p></div></div></section>
+<section id="SEC-ED010-0024" class="chunk sec depth-2" data-kind="section" data-key="section:25796f8378d9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED010-0024</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:25796f8378d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:25796f8378d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:25796f8378d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0025" class="chunk sec depth-3" data-kind="section" data-key="section:af5e39d011b5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED010-0025</span> Specification: DEL-01-02 Copyright and protected-data boundary policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af5e39d011b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af5e39d011b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af5e39d011b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED010-0026" class="chunk sec depth-4" data-kind="section" data-key="section:ac55c3bc2f6e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac55c3bc2f6e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac55c3bc2f6e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac55c3bc2f6e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable-local specification defines requirements for the repo-level copyright and protected-data boundary policy and contribution review checklist. It covers public-repository data boundaries, contributor provenance controls, suspected protected-content quarantine, and review evidence. It does not implement product code, decide the project license, provide legal advice, certify compliance, or approve engineering use.
+</p></div></div></section>
+<section id="SEC-ED010-0027" class="chunk sec depth-4" data-kind="section" data-key="section:deb8d541a649" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:deb8d541a649" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:deb8d541a649" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:deb8d541a649" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ReqID | Requirement | Source | Verification |
+|---|---|---|---|
+| DEL-01-02-R1 | The policy shall state that the public repository must not contain protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary commercial data. | docs/CONTRACT.md §1 OPS-K-IP-1; execution/_Decomposition/SOFTWARE_DECOMP.md SOW-003 | Review policy prohibited-content section and protected-content checklist entries. |
+| DEL-01-02-R2 | The policy shall require public data contributions to include source, provenance, license or redistribution status, contributor certification, and review disposition. | docs/CONTRACT.md §1 OPS-K-IP-2; docs/IP_AND_DATA_BOUNDARY.md §4 | Confirm contribution checklist has each metadata field. |
+| DEL-01-02-R3 | The policy shall define suspected protected-content handling as stop, quarantine, issue record, and human/legal escalation. | docs/CONTRACT.md §1 OPS-K-IP-3; docs/IP_AND_DATA_BOUNDARY.md §5 | Confirm quarantine path/process and escalation fields are present; exact path is `TBD`. |
+| DEL-01-02-R4 | The policy shall distinguish open mechanics from user-supplied code-specific and proprietary data. | INIT.md; docs/DIRECTIVE.md §1, §3; docs/CONTRACT.md OPS-K-DATA-1 | Review allowed/prohibited/private categories. |
+| DEL-01-02-R5 | The policy shall state that missing, unknown, or undocumented provenance/redistribution status blocks public acceptance until resolved. | docs/CONTRACT.md OPS-K-DATA-2, OPS-K-IP-2; docs/TYPES.md §5, §7 | Checklist includes `TBD`, `UNKNOWN_SOURCE`, and rejection/quarantine outcomes. |
+| DEL-01-02-R6 | The policy shall require public rule-pack examples and public report templates/examples to avoid protected standards content and use invented or permissively sourced data. | docs/CONTRACT.md OPS-K-RULE-1, OPS-K-REPORT-2; docs/SPEC.md §6, §8 | Review public-example and report-template review rows. |
+| DEL-01-02-R7 | The policy shall make contributor review a maintainer gate for IP, provenance, privacy, and protected-content risks before accepting public contributions. | docs/CONTRACT.md OPS-K-GOV-4; docs/DIRECTIVE.md §6 | Checklist includes review disposition and responsible reviewer field. |
+| DEL-01-02-R8 | The policy shall not claim legal advice, professional engineering approval, certification, sealing, code compliance, or standards-body endorsement. | docs/CONTRACT.md OPS-K-AUTH-1, OPS-K-AGENT-4; docs/DIRECTIVE.md §4.2, §6 | Review notices and forbidden-claim checks. |
+| DEL-01-02-R9 | The policy shall preserve stable IDs and traceability to DEL-01-02, PKG-01, SOW-003, SOW-028, and OBJ-002 in the deliverable-local kit. | docs/CONTRACT.md OPS-K-HIER-1, OPS-K-ID-1; docs/TYPES.md §1-2 | Confirm IDs appear consistently in this kit. |
+| DEL-01-02-R10 | Architecture-facing references to diagnostics, result envelopes, tests, and gates shall remain constraints for downstream implementation only unless this deliverable explicitly resolves them. | execution/_Decomposition/SOFTWARE_DECOMP.md AB-00-06, AB-00-08; sealed brief | Confirm policy text uses non-implementation wording and records downstream handoff. |
+| DEL-01-02-R11 | The repo-level checklist location is `governance/CONTRIBUTION_REVIEW_CHECKLIST.md`; reviewer role and final legal/governance mechanism shall remain `TBD` until assigned by the human project authority. | docs/IP_AND_DATA_BOUNDARY.md §8; governance/CONTRIBUTION_REVIEW_CHECKLIST.md; docs/CONTRACT.md OPS-K-GOV-2, OPS-K-GOV-4 | Confirm the checklist path exists while reviewer and final legal mechanism remain unresolved. |
+</p></div></div></section>
+<section id="SEC-ED010-0028" class="chunk sec depth-4" data-kind="section" data-key="section:f69a0dfb7e23" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f69a0dfb7e23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f69a0dfb7e23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f69a0dfb7e23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No protected standards text or clause-level standard requirements are used as source material. Standards-body content is treated as excluded public-repository content unless explicit redistribution rights are documented and human/legal review accepts it. Specific legal requirements, licenses, and quarantine storage paths are `TBD`.
+</p></div></div></section>
+<section id="SEC-ED010-0029" class="chunk sec depth-4" data-kind="section" data-key="section:4e1caeaeaf36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4e1caeaeaf36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4e1caeaeaf36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4e1caeaeaf36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Four-document kit exists in the deliverable folder.
+- Default sections are present in Datasheet, Specification, Guidance, and Procedure.
+- Requirements cite local project sources rather than protected standard text.
+- Unknowns are marked `TBD`.
+- No product implementation, protected standards/code data, legal conclusion, certification, sealing, approval, or compliance-for-reliance claim is introduced.
+- The contribution checklist verification remains field-by-field; path existence is resolved at `governance/CONTRIBUTION_REVIEW_CHECKLIST.md`, while reviewer role and final legal mechanism remain `TBD`.
+- Dependency register validates against v3.1 schema after extraction.
+</p></div></div></section>
+<section id="SEC-ED010-0030" class="chunk sec depth-4" data-kind="section" data-key="section:e97be97dccba" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED010-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e97be97dccba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e97be97dccba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e97be97dccba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Repo-level artifacts are `docs/IP_AND_DATA_BOUNDARY.md` and `governance/CONTRIBUTION_REVIEW_CHECKLIST.md`. This deliverable-local kit records their current-basis requirements and unresolved governance decisions.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED010";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

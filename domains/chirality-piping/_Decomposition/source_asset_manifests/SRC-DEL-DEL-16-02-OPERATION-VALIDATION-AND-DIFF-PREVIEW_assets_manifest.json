@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW",
+  "source_doc_id": "SRC-DEL-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW",
+  "source_prefix": "ED090",
+  "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/",
+  "catalog_rel_path": "@repo/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW-DATASHEET",
+      "expected_sha256": "883e67381c71c7fc350a901cda1d6e14a6a53c9dcc92abd87e7cbc292410f139",
+      "generated_line_start": 11,
+      "generated_line_end": 71,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW-GUIDANCE",
+      "expected_sha256": "1ec78a11b4d06630e7d4397a563dd04072041dd46c7bfb8b47fcd1b072b9219d",
+      "generated_line_start": 75,
+      "generated_line_end": 125,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -74
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW-PROCEDURE",
+      "expected_sha256": "6d6f020157d55ab4f359ab936c910912368cdf0f7e641774b1f4a7c58f991878",
+      "generated_line_start": 129,
+      "generated_line_end": 208,
+      "source_line_start": 1,
+      "source_line_end": 80,
+      "line_offset": -128
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW-SPECIFICATION",
+      "expected_sha256": "4196cdd2be772ee64cb80426bf9a5338abf9368afd9ea6125bdd2d30e2ef02b2",
+      "generated_line_start": 212,
+      "generated_line_end": 262,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -211
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

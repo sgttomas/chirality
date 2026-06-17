@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL",
+  "source_doc_id": "SRC-DEL-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL",
+  "source_prefix": "ED003",
+  "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/",
+  "catalog_rel_path": "@repo/execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL-DATASHEET",
+      "expected_sha256": "c31d30aed42a3c78de49310e10b3f6dff6f3255f998b5fbc8e041d6a598287d1",
+      "generated_line_start": 11,
+      "generated_line_end": 61,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL-GUIDANCE",
+      "expected_sha256": "6f8fc235f36e14aa15d872e92fdc61c220790d1056f447c6bb59336bfa951438",
+      "generated_line_start": 65,
+      "generated_line_end": 94,
+      "source_line_start": 1,
+      "source_line_end": 30,
+      "line_offset": -64
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL-PROCEDURE",
+      "expected_sha256": "f7660befd17313f133320273960d87b4283f884c127b6377597ae238aee19614",
+      "generated_line_start": 98,
+      "generated_line_end": 135,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -97
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-03-APPLICATION-SERVICE-COMMAND-QUERY-JOB-MODEL-SPECIFICATION",
+      "expected_sha256": "330d24e3c052c0a41cdc00f64ca97365390a22480125554c8097646d7f56a1b3",
+      "generated_line_start": 139,
+      "generated_line_end": 175,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -138
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL",
+  "source_doc_id": "SRC-DEL-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL",
+  "source_prefix": "ED015",
+  "repo_rel_path": "execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/",
+  "catalog_rel_path": "@repo/execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DOMAIN-MODEL-UNITS-AND-CORE-SCHEMAS-1-WORKING-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL-DATASHEET",
+      "expected_sha256": "4598f8c3061a08dd60ffbd6f4687947cc8ad49247ab3985ccfcbd9409521a133",
+      "generated_line_start": 11,
+      "generated_line_end": 92,
+      "source_line_start": 1,
+      "source_line_end": 82,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DOMAIN-MODEL-UNITS-AND-CORE-SCHEMAS-1-WORKING-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL-GUIDANCE",
+      "expected_sha256": "4ffa29bab59782b26e1922331e609bef0bbfa915101eefac1ba6f5e09b045b07",
+      "generated_line_start": 96,
+      "generated_line_end": 173,
+      "source_line_start": 1,
+      "source_line_end": 78,
+      "line_offset": -95
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DOMAIN-MODEL-UNITS-AND-CORE-SCHEMAS-1-WORKING-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL-PROCEDURE",
+      "expected_sha256": "f0de2b4246c248f3468e50757a16c9f0c643a6d6c8fcc928225159f9bf3dfefa",
+      "generated_line_start": 177,
+      "generated_line_end": 260,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -176
+    },
+    {
+      "repo_rel_path": "execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-02-DOMAIN-MODEL-UNITS-AND-CORE-SCHEMAS-1-WORKING-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL-SPECIFICATION",
+      "expected_sha256": "52e5595eb6f415331a77103956e506e40e47d14e4d0bcb9a958f313b6fcda8f6",
+      "generated_line_start": 264,
+      "generated_line_end": 394,
+      "source_line_start": 1,
+      "source_line_end": 131,
+      "line_offset": -263
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

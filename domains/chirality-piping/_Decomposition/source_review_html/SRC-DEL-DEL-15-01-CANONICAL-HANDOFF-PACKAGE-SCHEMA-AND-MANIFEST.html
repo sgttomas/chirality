@@ -1,0 +1,497 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCHEMA-AND-MANIFEST - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED085-0001">Source Pack: SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCH</a> <a href="#SEC-ED085-0002">Component: execution/PKG-15_Handoff and External Prover Work</a> <a href="#SEC-ED085-0009">Component: execution/PKG-15_Handoff and External Prover Work</a> <a href="#SEC-ED085-0017">Component: execution/PKG-15_Handoff and External Prover Work</a> <a href="#SEC-ED085-0024">Component: execution/PKG-15_Handoff and External Prover Work</a></nav>
+<main>
+<section id="SEC-ED085-0001" class="chunk sec depth-1" data-kind="section" data-key="section:b2d620a37a29" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED085-0001</span> Source Pack: SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCHEMA-AND-MANIFEST</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b2d620a37a29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b2d620a37a29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b2d620a37a29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED085-0002" class="chunk sec depth-2" data-kind="section" data-key="section:7a80835b0bb3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED085-0002</span> Component: execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a80835b0bb3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a80835b0bb3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a80835b0bb3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0003" class="chunk sec depth-3" data-kind="section" data-key="section:77f7780a952e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED085-0003</span> Datasheet: DEL-15-01 Canonical handoff package schema and manifest</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:77f7780a952e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:77f7780a952e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:77f7780a952e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0004" class="chunk sec depth-4" data-kind="section" data-key="section:995174a209a3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:995174a209a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:995174a209a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:995174a209a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Source |
+|---|---|---|
+| Deliverable ID | DEL-15-01 | `_CONTEXT.md` |
+| Name | Canonical handoff package schema and manifest | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` |
+| Package | PKG-15 Handoff and External Prover Workflow | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` |
+| Type | API_CONTRACT | `_CONTEXT.md`; `docs/TYPES.md#3-software-deliverable-types` |
+| Scope item | SOW-074 | `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` |
+| Objective | OBJ-017 | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#5-objectives` |
+| Anticipated artifacts | `schemas/handoff_package.schema.json`; handoff manifest schema | `_CONTEXT.md` |
+| Lifecycle input state | `IN_PROGRESS` at review-readiness intake | `_STATUS.md` |
+</p></div></div></section>
+<section id="SEC-ED085-0005" class="chunk sec depth-4" data-kind="section" data-key="section:6f49fd58649e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f49fd58649e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f49fd58649e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f49fd58649e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source / status |
+|---|---|---|
+| Contract surface | Schema-compliant handoff package plus manifest | SOW-074 in `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#4-structured-scope-of-work-ssow` |
+| Schema baseline | JSON Schema 2020-12 contracts | `_CONTEXT.md#Architecture Basis Injection`; `execution/_Decomposition/SOFTWARE_DECOMP.md#82-resolved-architecture-baseline` |
+| Hash baseline | Canonical JSON/JCS-compatible hash basis where JSON payloads are hashed; manifest hashes for non-JSON/binary assets | `_CONTEXT.md#Architecture Basis Injection`; `execution/_Decomposition/SOFTWARE_DECOMP.md#81-architecture-basis-register` |
+| Required package contents named by scope | model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags | SOW-074 in `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` |
+| Professional boundary | Handoff packages support downstream modeling and professional validation workflows without automatic professional approval states | OBJ-017 in `execution/_Decomposition/SOFTWARE_DECOMP.md#5-objectives`; `docs/CONTRACT.md#1-invariant-index` |
+| Target-specific commercial parsers | Deferred / out of this deliverable | SOW-074 notes; `execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues` |
+| Canonical package container | TBD | OI-015 in `execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues` |
+| Handoff target surfaces | Initial export and target surfaces are named by OI-015; concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02 | OI-015 in `execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues` |
+| Schema property names and `$id` values | `$id`: `https://openpipestress.org/schemas/handoff_package.schema.json`; root and nested properties are materialized in `schemas/handoff_package.schema.json` | DEL-15-01 implementation evidence |
+</p></div></div></section>
+<section id="SEC-ED085-0006" class="chunk sec depth-4" data-kind="section" data-key="section:22b1250f91a8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:22b1250f91a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:22b1250f91a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:22b1250f91a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Record |
+|---|---|
+| Data boundary | The public repository must not include protected standards text, protected tables, proprietary vendor data, private project data, or private rule-pack payloads. Source: `docs/IP_AND_DATA_BOUNDARY.md#3-public-repository-must-not-contain`. |
+| Unit boundary | Physical values crossing schema, import/export, report, or rule-evaluation boundaries must carry explicit unit metadata unless explicitly dimensionless. Source: `docs/SPEC.md#4-unit-system-and-dimensional-analysis`. |
+| Diagnostics boundary | Warnings and diagnostics must preserve structured source/provenance fields and must not become code-compliance or professional-approval claims. Source: `docs/CONTRACT.md#1-invariant-index`; AB-00-06 in decomposition. |
+| API/adapter boundary | Adapters and plugins cannot bypass validation, unit checks, provenance, diagnostics, privacy, protected-content, or professional-boundary controls. Source: AB-00-07 in `execution/_Decomposition/SOFTWARE_DECOMP.md#81-architecture-basis-register`. |
+| Dependency context | DAG-002 mirror lists upstream architecture-basis, result export, audit manifest/model hash, immutable model state, analysis run, local FEA handoff, and canonical domain model rows as ACTIVE evidence. Source: local `Dependencies.csv`. |
+</p></div></div></section>
+<section id="SEC-ED085-0007" class="chunk sec depth-4" data-kind="section" data-key="section:36180105609d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:36180105609d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:36180105609d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:36180105609d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The deliverable is a contract-definition unit with a materialized JSON Schema and invented validation fixture. Construction evidence currently supports the following schema/manifest slots:</p>
+<p>| Slot | Required treatment | Source |
+|---|---|---|
+| Package identity | Include stable package identity, schema version, deliverable/package/scope/objective identifiers, and review state fields. | SOW-074; `schemas/handoff_package.schema.json` |
+| Model hash | Represent model basis through the required `model_hash` checksum object, including algorithm, value, canonicalization, and provenance. | SOW-074; AB-00-04 hash basis; `schemas/handoff_package.schema.json` |
+| Units manifest | Represent explicit units through the required `units_manifest` object, including unit system, dimensional basis, entries, diagnostics, and provenance. | SOW-074; `docs/SPEC.md#4-unit-system-and-dimensional-analysis`; `schemas/handoff_package.schema.json` |
+| Entity IDs | Preserve stable model/entity identifiers through required `entity_ids` records with `entity_id`, `entity_kind`, `source_ref`, and optional mapping keys. | SOW-074; `docs/TYPES.md#2-stable-identifiers`; `schemas/handoff_package.schema.json` |
+| Library/rule references | Reference libraries and rule packs through `library_refs` and `rule_pack_refs` identity/checksum/provenance records without copying protected/private payloads. | SOW-074; `docs/IP_AND_DATA_BOUNDARY.md`; `docs/SPEC.md#9-reporting-and-audit`; `schemas/handoff_package.schema.json` |
+| Warnings and unresolved assumptions | Carry structured `warnings`, `unresolved_assumptions`, and `diagnostics` as review evidence with source/provenance fields. | SOW-074; `docs/SPEC.md#8-gui-requirements`; `docs/SPEC.md#9-reporting-and-audit`; `schemas/handoff_package.schema.json` |
+| Target mapping metadata | Reserve a manifest surface for mapping to downstream target fields. Detailed target mapping contract is DEL-15-02. | SOW-074; DEL-15-02 row in decomposition |
+| Unsupported-target flags | Reserve explicit unsupported/approximate target behavior flags. Detailed target contract is DEL-15-02. | SOW-074; OI-015 |
+| Provenance | Preserve source/provenance for reliance-affecting data through the schema&#x27;s required `provenance` object and nested reference provenance records. | `docs/DIRECTIVE.md#22-epistemology--what-is-warranted`; `docs/CONTRACT.md#1-invariant-index`; `schemas/handoff_package.schema.json` |
+</p></div></div></section>
+<section id="SEC-ED085-0008" class="chunk sec depth-4" data-kind="section" data-key="section:1759483a9127" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1759483a9127" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1759483a9127" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1759483a9127" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md`
+- `_REFERENCES.md`
+- `_STATUS.md`
+- local `Dependencies.csv`
+- `execution/_Decomposition/SOFTWARE_DECOMP.md`
+- `docs/_Registers/Deliverables.csv`
+- `docs/_Registers/ScopeLedger.csv`
+- `docs/_Registers/ContextBudgetQA.csv`
+- `docs/CONTRACT.md`
+- `docs/TYPES.md`
+- `docs/SPEC.md`
+- `docs/DIRECTIVE.md`
+- `docs/IP_AND_DATA_BOUNDARY.md`
+</p></div></div></section>
+<section id="SEC-ED085-0009" class="chunk sec depth-2" data-kind="section" data-key="section:effbb54f35e1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED085-0009</span> Component: execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:effbb54f35e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:effbb54f35e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:effbb54f35e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0010" class="chunk sec depth-3" data-kind="section" data-key="section:a4df76b84f7a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED085-0010</span> Guidance: DEL-15-01 Canonical handoff package schema and manifest</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4df76b84f7a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4df76b84f7a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4df76b84f7a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0011" class="chunk sec depth-4" data-kind="section" data-key="section:09941b641db2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09941b641db2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09941b641db2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09941b641db2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-15-01 exists to define a canonical handoff package schema and manifest for downstream modeling and professional validation workflows. The package is evidence-transfer infrastructure: it should make model basis, units, identifiers, warnings, assumptions, provenance, and mapping limitations visible without claiming that software output is professional approval.</p>
+<p>Sources: `_CONTEXT.md`; SOW-074; OBJ-017; `execution/_Decomposition/SOFTWARE_DECOMP.md#7-deliverables`.
+</p></div></div></section>
+<section id="SEC-ED085-0012" class="chunk sec depth-4" data-kind="section" data-key="section:e6534dd6adc0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e6534dd6adc0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e6534dd6adc0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e6534dd6adc0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Schema-first contract | Treat `schemas/handoff_package.schema.json` as the stable JSON Schema 2020-12 API/data contract for this deliverable. | Deliverable type `API_CONTRACT`; JSON Schema 2020-12 architecture basis; June 7 remediation evidence |
+| Evidence preservation | Prefer references, hashes, manifests, and provenance over copied private/protected payloads. | `docs/IP_AND_DATA_BOUNDARY.md`; OPS-K-IP-1 through OPS-K-DATA-3 |
+| Unit explicitness | Do not allow missing or ambiguous units to become downstream assumptions. | `docs/SPEC.md#4-unit-system-and-dimensional-analysis`; OPS-K-UNIT-1 |
+| Stable identity | Preserve stable object/entity identity so downstream mapping can be reviewed and reconciled. | SOW-074; `docs/TYPES.md#2-stable-identifiers` |
+| Boundary clarity | Keep target mapping and unsupported behavior explicit. OI-015 now names initial export and target surfaces, while concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02. | SOW-074; DEL-15-02 row; OI-015 |
+| Professional non-authority | The handoff package may support professional validation workflows, but it must not create automatic approval, certification, sealing, endorsement, or code-compliance states. | OBJ-017; OPS-K-AUTH-1; `docs/TYPES.md#4-analysis-status-vocabulary` |
+</p></div></div></section>
+<section id="SEC-ED085-0013" class="chunk sec depth-4" data-kind="section" data-key="section:977ab4ba377c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:977ab4ba377c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:977ab4ba377c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:977ab4ba377c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The physical package/container remains unresolved for this deliverable. OI-015 names initial export and target surfaces, but concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.
+- DAG-002 rows identify important upstream context, including architecture basis, local FEA handoff contract, result export format, audit manifest/model hash, immutable model states, analysis run records, and canonical domain model schema. These rows are dependency evidence, not authority to inspect or modify sibling deliverable folders during this task.
+- Target mapping metadata and unsupported-target flags are required by SOW-074, but detailed semantics belong to DEL-15-02. DEL-15-01 should reserve clear schema surfaces for those records.
+- The deliverable now has an invented, non-engineering fixture at `fixtures/invented_handoff_package.json`. Public examples or fixtures for this contract must remain invented or otherwise reviewed and must not include protected standards text, private rule-pack payloads, proprietary commercial files, or real project data.
+- Handoff package validation is covered by `tests/test_handoff_package_schema.py`, including Draft 2020-12 schema validation and fixture validation. It should not attempt to prove external solver correctness or code compliance.
+</p></div></div></section>
+<section id="SEC-ED085-0014" class="chunk sec depth-4" data-kind="section" data-key="section:21865962a74f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21865962a74f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21865962a74f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21865962a74f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Preferred direction | Reason |
+|---|---|---|
+| Rich payload vs reference-heavy manifest | Prefer reference-heavy records for private/protected or large payloads. | Preserves data boundary and avoids copying private/protected values. |
+| Target-neutral vs target-specific fields | Keep DEL-15-01 target-neutral and reserve extension/mapping surfaces. | Detailed target mapping belongs to DEL-15-02 and target-specific implementation remains gated by DEL-17-01 and DEL-17-02. |
+| Strict required fields vs unresolved project reality | Require the slots named by SOW-074 using the materialized schema property map. | Avoids hidden defaults while preserving target-specific and container deferrals. |
+| Software status vs professional status | Emit diagnostics/findings and human-review-needed notices, not approval/compliance states. | Maintains OPS-K-AUTH-1 and OBJ-017. |
+</p></div></div></section>
+<section id="SEC-ED085-0015" class="chunk sec depth-4" data-kind="section" data-key="section:45d4b18830e3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45d4b18830e3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45d4b18830e3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45d4b18830e3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current invented example payload is `fixtures/invented_handoff_package.json`. It is provenance-labeled, non-engineering fixture data used to validate `schemas/handoff_package.schema.json` with `jsonschema.Draft202012Validator` through `tests/test_handoff_package_schema.py`.</p>
+<p>Any future example must avoid protected standards content, private project data, private rule-pack content, proprietary values, real secrets, and automatic professional-approval claims.
+</p></div></div></section>
+<section id="SEC-ED085-0016" class="chunk sec depth-4" data-kind="section" data-key="section:1baf8b1559e5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1baf8b1559e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1baf8b1559e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1baf8b1559e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No direct source conflicts were identified in this setup pass. The following open items are unresolved rather than conflicting:</p>
+<p>| Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| OI-015-OPEN | Current decomposition names initial export and target surfaces, but concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, target-specific implementation, and this deliverable&#x27;s physical package/container remain gated. | `execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues` | `_CONTEXT.md#Scope Detail` | Datasheet Attributes; Specification Requirements; Procedure Steps | Keep DEL-15-01 target-neutral; do not claim target-specific mapping maturity before DEL-17-01 and DEL-17-02 evidence. | TBD |
+</p></div></div></section>
+<section id="SEC-ED085-0017" class="chunk sec depth-2" data-kind="section" data-key="section:068cd8db4591" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED085-0017</span> Component: execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:068cd8db4591" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:068cd8db4591" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:068cd8db4591" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0018" class="chunk sec depth-3" data-kind="section" data-key="section:bce4e764550f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED085-0018</span> Procedure: DEL-15-01 Canonical handoff package schema and manifest</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bce4e764550f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bce4e764550f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bce4e764550f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0019" class="chunk sec depth-4" data-kind="section" data-key="section:f10121370335" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f10121370335" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f10121370335" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f10121370335" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the bounded procedure for producing and reviewing the canonical handoff package schema and manifest contract for DEL-15-01. This procedure is operational guidance for the deliverable artifact; it does not implement runtime export behavior.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md`; `docs/CONTRACT.md`; `docs/SPEC.md`.
+</p></div></div></section>
+<section id="SEC-ED085-0020" class="chunk sec depth-4" data-kind="section" data-key="section:837938b48a2d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:837938b48a2d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:837938b48a2d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:837938b48a2d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Evidence / status |
+|---|---|
+| DEL-15-01 context and references are available. | `_CONTEXT.md`; `_REFERENCES.md` |
+| SOW-074 and OBJ-017 are the active scope/objective basis. | `_CONTEXT.md`; decomposition; registers |
+| JSON Schema 2020-12 is the schema baseline. | `_CONTEXT.md#Architecture Basis Injection`; AB-00-04/AB-00-07 |
+| Unit, provenance, diagnostics, privacy, protected-content, and professional-boundary invariants are available. | `docs/CONTRACT.md`; `docs/SPEC.md`; `docs/IP_AND_DATA_BOUNDARY.md` |
+| Existing DAG-002 mirror rows remain ACTIVE evidence and are not reclassified by this setup run. | local `Dependencies.csv`; `_DEPENDENCIES.md` |
+| Package container, concrete mappings, target field coverage, and target-specific implementation remain unresolved. | OI-015; DEL-17-01; DEL-17-02 |
+</p></div></div></section>
+<section id="SEC-ED085-0021" class="chunk sec depth-4" data-kind="section" data-key="section:1accc3b526d0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1accc3b526d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1accc3b526d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1accc3b526d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm deliverable identity from `_CONTEXT.md`, including DEL-15-01, PKG-15, type `API_CONTRACT`, SOW-074, OBJ-017, and anticipated artifacts.
+2. Read the DEL-15-01 decomposition entry and associated SOW-074 / OBJ-017 rows. Record scope as schema/manifest contract work, not runtime export implementation.
+3. List required handoff-package slots from SOW-074: model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and provenance.
+4. Apply architecture-basis constraints that are explicitly injected into `_CONTEXT.md`: JSON Schema 2020-12 contracts, canonical JSON/JCS-compatible hash basis for JSON payloads, schema-first envelopes, and no-bypass adapter controls.
+5. Treat `schemas/handoff_package.schema.json`, its `$id`, and `fixtures/invented_handoff_package.json` as materialized contract evidence; keep package container, concrete mappings, target field coverage, and target-specific implementation gated under OI-015 / DEL-17-01 / DEL-17-02.
+6. Draft or review schema artifacts and fixtures so they preserve references and metadata without copying protected standards text, private project data, private rule-pack payloads, proprietary commercial data, or real secrets.
+7. Ensure the manifest design includes structured warnings, assumptions, provenance, unit metadata, hashes, and professional-boundary posture.
+8. Verify that target mapping metadata and unsupported-target flags are present as contract surfaces while detailed semantics remain delegated to DEL-15-02.
+9. Check that no field, enum, status, or explanatory text creates automatic professional approval, certification, sealing, authentication, endorsement, or code-compliance claims.
+10. Validate dependency artifacts locally if `Dependencies.csv` exists using `python3 tools/validation/validate_dependencies_schema.py`.
+</p></div></div></section>
+<section id="SEC-ED085-0022" class="chunk sec depth-4" data-kind="section" data-key="section:42fb61aa3572" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42fb61aa3572" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42fb61aa3572" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42fb61aa3572" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification item | Method |
+|---|---|
+| Source grounding | Check each non-trivial requirement against `_CONTEXT.md`, decomposition, registers, local DAG-002 mirror, or governing references. |
+| Schema baseline | Validate `schemas/handoff_package.schema.json` with `jsonschema.Draft202012Validator.check_schema` and validate the invented fixture with `python3 tests/test_handoff_package_schema.py`. |
+| Required slots | Confirm the SOW-074 slots are present as requirements or explicit TBD surfaces. |
+| TBD discipline | Confirm package container, concrete mappings, target field coverage, and target-specific implementation are not invented. Schema property names and validation fixture are now materialized evidence. |
+| Data boundary | Check that schema guidance does not embed protected/private/proprietary payloads or examples. |
+| Professional boundary | Check that the contract does not emit automatic approval/compliance/certification statuses. |
+| Dependency mirror preservation | Confirm approved DAG-006 rows remain ACTIVE and are not retired, deleted, or reclassified. |
+</p></div></div></section>
+<section id="SEC-ED085-0023" class="chunk sec depth-4" data-kind="section" data-key="section:e6e20b70cc9a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e6e20b70cc9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e6e20b70cc9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e6e20b70cc9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Maintain these records in the DEL-15-01 folder for setup:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- existing `_DEPENDENCIES.md`
+- existing `Dependencies.csv`
+- `schemas/handoff_package.schema.json`
+- `tests/test_handoff_package_schema.py`
+- `fixtures/invented_handoff_package.json`
+- final run report with dependency-schema validation result and any dependency-extract conflicts
+</p></div></div></section>
+<section id="SEC-ED085-0024" class="chunk sec depth-2" data-kind="section" data-key="section:002cad83f281" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED085-0024</span> Component: execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:002cad83f281" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:002cad83f281" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:002cad83f281" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0025" class="chunk sec depth-3" data-kind="section" data-key="section:5ce36bf74fbc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED085-0025</span> Specification: DEL-15-01 Canonical handoff package schema and manifest</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ce36bf74fbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ce36bf74fbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ce36bf74fbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED085-0026" class="chunk sec depth-4" data-kind="section" data-key="section:4eb8bdb8a1ce" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4eb8bdb8a1ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4eb8bdb8a1ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4eb8bdb8a1ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable defines the contract surface for a canonical handoff package schema and handoff manifest for downstream modeling and professional validation workflows. The scope is bounded to DEL-15-01, PKG-15, SOW-074, and OBJ-017.</p>
+<p>Included:</p>
+<p>- schema/manifest requirements for model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and provenance;
+- JSON Schema 2020-12 alignment for the anticipated `schemas/handoff_package.schema.json` artifact;
+- professional-boundary, unit, provenance, diagnostics, and data-boundary constraints that affect handoff package shape.</p>
+<p>Excluded:</p>
+<p>- implementation of the downstream export workflow, which belongs to DEL-15-03;
+- detailed target mapping semantics and unsupported-behavior taxonomy beyond reserving the required surface, which belongs to DEL-15-02;
+- external-prover lifecycle or approval metadata, which belongs to DEL-15-04;
+- target-specific commercial parser implementation, commercial output ingestion, or automatic professional approval records.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#7-deliverables`; SOW-074; OBJ-017; OI-015.
+</p></div></div></section>
+<section id="SEC-ED085-0027" class="chunk sec depth-4" data-kind="section" data-key="section:c69d60956a7d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c69d60956a7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c69d60956a7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c69d60956a7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement | Source | Verification |
+|---|---|---|---|
+| DEL-15-01-R01 | The handoff package contract shall be represented as a schema-first API/data contract. | `_CONTEXT.md` Type `API_CONTRACT`; `docs/TYPES.md#3-software-deliverable-types` | Confirm artifact naming and schema document role in this deliverable. |
+| DEL-15-01-R02 | The schema baseline shall use JSON Schema 2020-12 unless a later approved architecture change supersedes it. | `_CONTEXT.md#Architecture Basis Injection`; `execution/_Decomposition/SOFTWARE_DECOMP.md#82-resolved-architecture-baseline` | Validate `schemas/handoff_package.schema.json` with Draft 2020-12 tooling. |
+| DEL-15-01-R03 | The package shall include or reference a model hash through the required `model_hash` checksum object, including algorithm, value, canonicalization, and provenance. | SOW-074; AB-00-04 | Review schema properties and fixture validation for model-hash presence. |
+| DEL-15-01-R04 | The package shall include a `units_manifest` with unit system, dimensional basis, entries, diagnostics, and provenance sufficient to avoid silent missing-unit behavior. | SOW-074; `docs/SPEC.md#4-unit-system-and-dimensional-analysis`; OPS-K-UNIT-1 | Schema review plus fixture validation for unit-related fields. |
+| DEL-15-01-R05 | The package shall preserve stable entity IDs used by downstream mapping and review through `entity_ids` records. | SOW-074; `docs/TYPES.md#2-stable-identifiers`; `docs/TYPES.md#8-canonical-domain-object-registry` | Schema review for required ID/reference fields and no positional-only coupling. |
+| DEL-15-01-R06 | The package shall carry library and rule-pack references by identity, version/checksum/source note, or equivalent reference metadata without copying protected/private payloads through `library_refs` and `rule_pack_refs`. | SOW-074; `docs/IP_AND_DATA_BOUNDARY.md#6-private-user-data`; `docs/SPEC.md#9-reporting-and-audit` | Protected-content/privacy review and schema review for reference-only design. |
+| DEL-15-01-R07 | The package shall carry unresolved assumptions, warnings, and diagnostics as explicit review evidence, not silent defaults. | SOW-074; OPS-K-DATA-2; AB-00-06; `docs/SPEC.md#8-gui-requirements` | Schema review for `unresolved_assumptions`, `warnings`, `diagnostics`, and provenance fields. |
+| DEL-15-01-R08 | The package shall reserve target mapping metadata required by SOW-074 while leaving detailed target mapping rules to DEL-15-02. | SOW-074; DEL-15-02 row in decomposition | Cross-deliverable interface review against `schemas/target_mapping.schema.json`. |
+| DEL-15-01-R09 | The package shall reserve unsupported-target flags required by SOW-074 while leaving detailed unsupported behavior semantics to DEL-15-02. | SOW-074; OI-015 | Cross-deliverable interface review against `schemas/target_mapping.schema.json`. |
+| DEL-15-01-R10 | The package and manifest shall preserve provenance for reliance-affecting data and references. | OPS-K-DATA-3; `docs/DIRECTIVE.md#25-axiology--what-values-govern`; `docs/IP_AND_DATA_BOUNDARY.md#4-required-provenance-fields` | Schema review for provenance-bearing records and protected-content gate. |
+| DEL-15-01-R11 | The contract shall not declare certification, sealing, approval, authentication, code compliance, or professional acceptance as automatic software output. | OPS-K-AUTH-1; OBJ-017; `docs/TYPES.md#4-analysis-status-vocabulary` | Text/schema enum review for prohibited automatic statuses. |
+| DEL-15-01-R12 | The package container remains TBD. OI-015 names initial export and target surfaces, while concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02. | OI-015; `_CONTEXT.md#Architecture Basis Injection` | Confirm the handoff schema remains target-neutral and does not claim target-specific mapping maturity. |
+</p></div></div></section>
+<section id="SEC-ED085-0028" class="chunk sec depth-4" data-kind="section" data-key="section:9d1873344e24" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d1873344e24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d1873344e24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d1873344e24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard / governing source | Applicability | Status |
+|---|---|---|
+| JSON Schema 2020-12 | Public schema/interchange baseline for the handoff schema. | Applicable by architecture basis; `$id` is `https://openpipestress.org/schemas/handoff_package.schema.json`. |
+| Project invariant catalog (`docs/CONTRACT.md`) | Governs IP, units, data, professional-boundary, report, governance, and agent behavior. | Applicable. |
+| Project type vocabulary (`docs/TYPES.md`) | Governs deliverable/API contract meaning, stable identifiers, status vocabulary, and epistemic labels. | Applicable. |
+| IP and Data Boundary Policy (`docs/IP_AND_DATA_BOUNDARY.md`) | Governs protected/private data exclusion and provenance fields. | Applicable. |
+| Product/decomposition basis (`execution/_Decomposition/SOFTWARE_DECOMP.md`) | Governs DEL-15-01 scope, SOW-074, OBJ-017, PKG-15 exclusions, architecture basis, and OI-015 TBDs. | Applicable. |
+</p></div></div></section>
+<section id="SEC-ED085-0029" class="chunk sec depth-4" data-kind="section" data-key="section:fe4c2043f5f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe4c2043f5f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe4c2043f5f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe4c2043f5f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check ID | Check | Expected result |
+|---|---|---|
+| V-01 | Confirm required four documents exist and keep the default schema sections. | PASS for this setup output. |
+| V-02 | Confirm all non-trivial schema requirements trace to `_CONTEXT.md`, decomposition, registers, or governing references. | PASS if every requirement has a source. |
+| V-03 | Confirm unsupported specifics are marked `TBD` or `ASSUMPTION`. | PASS if package container, concrete mappings, target field coverage, and target-specific implementation are not invented. |
+| V-04 | Confirm professional-boundary prohibited terms are not used as automatic software statuses. | PASS if no schema requirement creates automatic approval/compliance/certification states. |
+| V-05 | Confirm local `Dependencies.csv` remains a DAG-002 mirror with approved rows preserved as ACTIVE. | PASS if dependency mirror is not retired/reclassified by setup. |
+| V-06 | Run `python3 tests/test_handoff_package_schema.py` and `python3 tools/validation/validate_dependencies_schema.py &lt;DEL folder&gt;/Dependencies.csv` when `Dependencies.csv` exists. | PASS/FAIL recorded in final run report. |
+</p></div></div></section>
+<section id="SEC-ED085-0030" class="chunk sec depth-4" data-kind="section" data-key="section:69c049ee5cf1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED085-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69c049ee5cf1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69c049ee5cf1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69c049ee5cf1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required deliverable records:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- local dependency validation result in the final run report</p>
+<p>Implemented evidence artifacts from `_CONTEXT.md`:</p>
+<p>- `schemas/handoff_package.schema.json`
+- `tests/test_handoff_package_schema.py`
+- `fixtures/invented_handoff_package.json`</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED085";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

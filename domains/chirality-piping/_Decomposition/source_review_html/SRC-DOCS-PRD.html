@@ -1,0 +1,1417 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-PRD - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>111</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD021-0001">Product Requirements Document: OpenPipeStress</a> <a href="#SEC-PD021-0002">1. Executive Summary</a> <a href="#SEC-PD021-0003">2. Background and Product Rationale</a> <a href="#SEC-PD021-0006">3. Product Vision</a> <a href="#SEC-PD021-0007">4. Product Goals</a> <a href="#SEC-PD021-0010">5. Non-Goals</a> <a href="#SEC-PD021-0011">6. Design Principles</a> <a href="#SEC-PD021-0018">7. Target Users and Personas</a> <a href="#SEC-PD021-0024">8. Core User Journeys</a> <a href="#SEC-PD021-0029">9. Scope and Release Strategy</a> <a href="#SEC-PD021-0032">10. Functional Requirements</a> <a href="#SEC-PD021-0033">11. Analytical Engine Requirements</a> <a href="#SEC-PD021-0048">12. Rule-Pack Requirements</a> <a href="#SEC-PD021-0054">13. Material and Component Library Requirements</a> <a href="#SEC-PD021-0060">14. GUI Requirements</a> <a href="#SEC-PD021-0067">15. Reporting and Audit Trail</a> <a href="#SEC-PD021-0071">16. Verification and Validation Requirements</a> <a href="#SEC-PD021-0077">17. Data Governance, IP, and Compliance Requirements</a> <a href="#SEC-PD021-0083">18. Security and Privacy Requirements</a> <a href="#SEC-PD021-0087">19. Platform and Technical Architecture</a> <a href="#SEC-PD021-0091">20. Performance Requirements</a> <a href="#SEC-PD021-0092">21. Accessibility and Usability Requirements</a> <a href="#SEC-PD021-0093">22. Release Milestones</a> <a href="#SEC-PD021-0100">23. Success Metrics</a> <a href="#SEC-PD021-0104">24. Risks and Mitigations</a> <a href="#SEC-PD021-0105">25. Open Questions</a> <a href="#SEC-PD021-0106">26. Glossary</a> <a href="#SEC-PD021-0107">27. Appendix A: Example Project Data Model</a> <a href="#SEC-PD021-0108">28. Appendix B: Example Report Notice</a> <a href="#SEC-PD021-0109">29. Source Notes and External References</a></nav>
+<main>
+<section id="SEC-PD021-0001" class="chunk sec depth-1" data-kind="section" data-key="section:34e704e26877" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD021-0001</span> Product Requirements Document: OpenPipeStress</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:34e704e26877" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:34e704e26877" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:34e704e26877" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Working title:** OpenPipeStress  
+**Product type:** Free and open-source piping stress analysis platform  
+**Document version:** 0.1 Draft  
+**Date:** 2026-04-30  
+**Status:** Product definition / pre-architecture PRD  
+**Intended audience:** Piping stress engineers, software architects, numerical-method developers, open-source contributors, owner-operators, engineering managers, and technical reviewers</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0002" class="chunk sec depth-2" data-kind="section" data-key="section:bb4685ec61c7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0002</span> 1. Executive Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb4685ec61c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb4685ec61c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb4685ec61c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress is a proposed free and open-source software platform for global piping flexibility and stress analysis. The product will implement open, classical, and modern mechanical analysis methods for piping systems while requiring the responsible engineer to provide all code-specific, edition-specific, material, allowable-stress, component, stress-intensification, flexibility-factor, and proprietary design data.</p>
+<p>The core product concept is:</p>
+<p>&gt; **Open mechanics in the solver; user-owned code knowledge in private data and rule packs.**</p>
+<p>The software will provide a modern graphical interface, a transparent 3D line-element analytical engine, a user-defined rule-pack system, private material and component libraries, auditable reports, and a rigorous verification and validation program. It will not distribute ASME code text, ASME tables, ASME formulas copied from standards, ASME material allowable tables, B31J data, B16/B36 dimensional tables, or commercial software examples.</p>
+<p>The product is designed to support engineering workflows for piping systems governed by ASME B31-family codes and other piping design codes, but it will not represent itself as an official ASME product, an ASME-certified tool, or a substitute for a licensed code, responsible engineer, or project design basis.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0003" class="chunk sec depth-2" data-kind="section" data-key="section:05a6adb96d73" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0003</span> 2. Background and Product Rationale</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05a6adb96d73" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05a6adb96d73" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05a6adb96d73" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0004" class="chunk sec depth-3" data-kind="section" data-key="section:87520fb30371" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0004</span> 2.1 Technical Background</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87520fb30371" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87520fb30371" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87520fb30371" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Modern piping stress analysis is fundamentally a global flexibility and stress-recovery problem. The primary model is a pipe centerline represented by line elements, with piping components represented by elastic members, rigid members, local flexibility modifiers, stress-intensification factors, and other engineering corrections. Three-dimensional solid or shell finite element analysis is reserved for selected local details, special components, or cases where the standard global pipe stress model is insufficient.</p>
+<p>The user-supplied reference, **M. W. Kellogg Company, _Design of Piping Systems_ (1956)**, establishes much of the historical and theoretical basis for this model. Its structure aligns with the architecture proposed here:</p>
+<p>- Chapter 2, beginning on page 31 of the scan, frames design assumptions, stress evaluation, and design limits.
+- Chapter 3, beginning on page 53, addresses local components such as pipe bends, miters, branch connections, flanged connections, and equipment interfaces.
+- Chapter 4, beginning on page 90, presents simplified flexibility-analysis methods.
+- Chapter 5, beginning on page 115, presents the general analytical method for flexibility analysis, including simultaneous equations, curved members, multiple planes, restrained ends, branched systems, and intermediate restraints.</p>
+<p>The proposed product updates this lineage using modern numerical methods: sparse 3D frame finite elements, unit-aware data models, nonlinear support solving, deterministic regression tests, and auditable digital reporting.
+</p></div></div></section>
+<section id="SEC-PD021-0005" class="chunk sec depth-3" data-kind="section" data-key="section:5b497fdf41ec" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0005</span> 2.2 Product Opportunity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b497fdf41ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b497fdf41ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b497fdf41ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Commercial piping stress programs are powerful but expensive, opaque, and often difficult to audit at the numerical-method level. Existing open-source structural tools do not generally provide a dedicated piping stress workflow with piping-specific components, load cases, rule-pack logic, private code data management, stress-result review, and calculation-report discipline.</p>
+<p>OpenPipeStress will fill that gap by providing:</p>
+<p>- A credible open analytical core.
+- A piping-specific modeling workflow.
+- A graphical interface suitable for engineering use.
+- A strict separation between open theory and copyrighted/proprietary code data.
+- A validation-oriented development process.
+- Private project libraries and rule packs for licensed engineers and companies.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0006" class="chunk sec depth-2" data-kind="section" data-key="section:8382abb8db4d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0006</span> 3. Product Vision</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8382abb8db4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8382abb8db4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8382abb8db4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress will become the leading transparent, auditable, code-neutral, open-source platform for piping flexibility and stress analysis.</p>
+<p>The product will allow a qualified user to model a piping system, define materials and components, apply loads and restraints, solve the global flexibility problem, recover forces/moments/displacements/stresses, and evaluate those results against user-supplied design rules and allowables.</p>
+<p>The product will emphasize:</p>
+<p>1. **Engineering transparency:** Calculations, assumptions, input values, and rule checks must be visible and auditable.
+2. **Copyright-respecting architecture:** Code-specific values and protected data are entered by the user or imported from lawful private sources.
+3. **Modernized classical theory:** The solver implements the best practical version of line-element piping analysis rather than attempting to replace pipe stress analysis with routine 3D solids analysis.
+4. **Extensibility:** The architecture supports multiple codes, company standards, component libraries, and analysis modules without embedding proprietary standards.
+5. **Validation:** The software is built around testable mechanics, regression cases, and published validation packages.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0007" class="chunk sec depth-2" data-kind="section" data-key="section:4120c0266608" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0007</span> 4. Product Goals</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4120c0266608" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4120c0266608" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4120c0266608" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0008" class="chunk sec depth-3" data-kind="section" data-key="section:31998550dbfc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0008</span> 4.1 Primary Goals</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31998550dbfc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31998550dbfc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31998550dbfc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Provide a free and open-source piping stress analysis platform with a dedicated GUI.
+- Implement a robust 3D centerline/beam-based global piping solver.
+- Support straight pipe, bends, branches, reducers, valves, flanges, expansion joints, rigid elements, and common support/restraint types.
+- Allow the user to define materials, component properties, code allowables, SIFs, flexibility factors, stress indices, and load combinations.
+- Provide a private rule-pack mechanism for code-specific stress checks.
+- Prevent silent use of missing code or component data.
+- Generate auditable reports that identify all assumptions, sources, missing inputs, warnings, results, and rule-pack checksums.
+- Maintain a rigorous verification and validation suite.
+- Avoid distributing copyrighted or proprietary standards content.
+</p></div></div></section>
+<section id="SEC-PD021-0009" class="chunk sec depth-3" data-kind="section" data-key="section:8c0c650c9058" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0009</span> 4.2 Secondary Goals</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8c0c650c9058" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8c0c650c9058" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8c0c650c9058" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Support open exchange formats for integration with CAD, BIM, CAE, and plant design tools.
+- Support educational and research use through non-code example models using invented or public-domain data.
+- Provide optional local-analysis handoff to external FEA tools for nozzles, trunnions, lugs, branch details, or special components.
+- Allow manufacturers to publish permissively licensed component data packages.
+- Allow owner-operators and EPCs to maintain private rule packs and libraries.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0010" class="chunk sec depth-2" data-kind="section" data-key="section:a3279a83cc7f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0010</span> 5. Non-Goals</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a3279a83cc7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a3279a83cc7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a3279a83cc7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress will **not**:</p>
+<p>- Ship ASME B31.1, B31.3, B31J, B16, B36, or other proprietary standards text, tables, figures, examples, or copyrighted code content.
+- Ship ASME material allowable-stress tables.
+- Ship B31J stress-intensification-factor or flexibility-factor equations/tables copied from the standard.
+- Ship B16/B36 component dimension tables unless the data is independently lawful for redistribution.
+- Claim to be ASME-certified, ASME-approved, or endorsed by ASME.
+- Replace the responsible engineer, licensed code edition, project design basis, owner specification, or engineering judgment.
+- Provide automatic legal interpretation of piping codes.
+- Treat global piping stress analysis as routine 3D solid finite element analysis.
+- Certify fabrication, examination, inspection, testing, or construction compliance.
+- Guarantee suitability for nuclear, aerospace, offshore, cryogenic, toxic, lethal-service, or high-consequence applications without additional qualified engineering review.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0011" class="chunk sec depth-2" data-kind="section" data-key="section:fcc00d8a5a0d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0011</span> 6. Design Principles</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fcc00d8a5a0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fcc00d8a5a0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fcc00d8a5a0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0012" class="chunk sec depth-3" data-kind="section" data-key="section:3bba5cf7dd32" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0012</span> 6.1 Open Mechanics, Private Code Data</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3bba5cf7dd32" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3bba5cf7dd32" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3bba5cf7dd32" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The open-source core performs mechanics:</p>
+<p>- Geometry.
+- Section properties.
+- Stiffness assembly.
+- Load application.
+- Thermal strain.
+- Displacement solving.
+- Force and moment recovery.
+- Stress recovery from fundamental mechanics.
+- Load-case algebra.</p>
+<p>The user provides code-specific data:</p>
+<p>- Allowable stresses.
+- Code stress equations.
+- Code load combinations.
+- Code edition settings.
+- Material tables.
+- SIFs.
+- Flexibility factors.
+- Component dimensions.
+- Manufacturer data.
+- Owner-specific acceptance criteria.
+</p></div></div></section>
+<section id="SEC-PD021-0013" class="chunk sec depth-3" data-kind="section" data-key="section:d28d0b4ff807" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0013</span> 6.2 No Silent Engineering Defaults</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d28d0b4ff807" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d28d0b4ff807" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d28d0b4ff807" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Any missing code-required value must produce a visible warning or blocking error. The solver may perform a mechanics-only solve with incomplete code-check data, but it must not report a code pass/fail status unless all required rule-pack inputs are present.
+</p></div></div></section>
+<section id="SEC-PD021-0014" class="chunk sec depth-3" data-kind="section" data-key="section:62a4a64e28f5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0014</span> 6.3 Data Provenance by Design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:62a4a64e28f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:62a4a64e28f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:62a4a64e28f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every material, component, SIF, flexibility factor, load, allowable, and rule-pack value must support source/provenance fields.</p>
+<p>Example source categories:</p>
+<p>- User licensed code.
+- Owner specification.
+- Manufacturer catalog.
+- Vendor calculation.
+- Test report.
+- Engineering calculation.
+- Public-domain source.
+- Invented example value.
+- Unknown/unverified.
+</p></div></div></section>
+<section id="SEC-PD021-0015" class="chunk sec depth-3" data-kind="section" data-key="section:c150af2d7234" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0015</span> 6.4 Global Line-Element Model First</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c150af2d7234" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c150af2d7234" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c150af2d7234" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The primary analysis model is a 3D line-element representation of the piping centerline. Local shell or solid analysis is treated as an optional specialized workflow, not as the default analysis basis.
+</p></div></div></section>
+<section id="SEC-PD021-0016" class="chunk sec depth-3" data-kind="section" data-key="section:c3cd49cf97f6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0016</span> 6.5 Auditability Over Black-Box Automation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3cd49cf97f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3cd49cf97f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3cd49cf97f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The software must make it easier for an engineer to understand and defend a calculation. It must not hide input assumptions, substitutions, or code-relevant decisions.
+</p></div></div></section>
+<section id="SEC-PD021-0017" class="chunk sec depth-3" data-kind="section" data-key="section:0c3a289ce446" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0017</span> 6.6 Unit Safety</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0c3a289ce446" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0c3a289ce446" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0c3a289ce446" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All input, internal calculation, output, rule evaluation, and import/export operations must be unit-aware. Unit conversions must be deterministic and reportable.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0018" class="chunk sec depth-2" data-kind="section" data-key="section:f4db536a6b73" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0018</span> 7. Target Users and Personas</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f4db536a6b73" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f4db536a6b73" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f4db536a6b73" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0019" class="chunk sec depth-3" data-kind="section" data-key="section:4f35d3da21e0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0019</span> 7.1 Piping Stress Engineer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f35d3da21e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f35d3da21e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f35d3da21e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Needs to create piping flexibility models, apply project data, solve load cases, review stresses and reactions, and issue calculation reports.</p>
+<p>Key needs:</p>
+<p>- Fast model creation.
+- Familiar piping components.
+- Load-case and support workflows.
+- Reliable stress/reaction reports.
+- Ability to enter licensed code data manually.
+- Audit trail for all project inputs.
+</p></div></div></section>
+<section id="SEC-PD021-0020" class="chunk sec depth-3" data-kind="section" data-key="section:0c95a735255b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0020</span> 7.2 Owner-Operator Reviewer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0c95a735255b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0c95a735255b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0c95a735255b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Needs to review whether an EPC or vendor model is complete, traceable, and consistent with owner requirements.</p>
+<p>Key needs:</p>
+<p>- Clear assumptions.
+- Rule-pack identification.
+- Data provenance.
+- Missing-data warnings.
+- Report reproducibility.
+</p></div></div></section>
+<section id="SEC-PD021-0021" class="chunk sec depth-3" data-kind="section" data-key="section:02576d91e194" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0021</span> 7.3 Engineering Company Administrator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:02576d91e194" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:02576d91e194" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:02576d91e194" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Needs to maintain private company rule packs, component libraries, default project templates, and approved calculation-report formats.</p>
+<p>Key needs:</p>
+<p>- Private libraries.
+- Access control.
+- Versioned templates.
+- Rule-pack checksums.
+- No accidental redistribution of protected code data.
+</p></div></div></section>
+<section id="SEC-PD021-0022" class="chunk sec depth-3" data-kind="section" data-key="section:aa5cfd28d423" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0022</span> 7.4 Open-Source Contributor</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aa5cfd28d423" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aa5cfd28d423" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aa5cfd28d423" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Needs to contribute solver improvements, GUI features, validation cases, documentation, and permissively licensed data.</p>
+<p>Key needs:</p>
+<p>- Clear architecture.
+- Contribution policy.
+- IP review gates.
+- Automated tests.
+- Public validation cases.
+</p></div></div></section>
+<section id="SEC-PD021-0023" class="chunk sec depth-3" data-kind="section" data-key="section:8e7078de5d2c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0023</span> 7.5 Educator or Researcher</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e7078de5d2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e7078de5d2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e7078de5d2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Needs transparent examples for teaching piping flexibility and stress analysis without relying on proprietary commercial software.</p>
+<p>Key needs:</p>
+<p>- Non-code example models.
+- Mechanics-based validation problems.
+- Clear theory documentation.
+- Inspectable solver outputs.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0024" class="chunk sec depth-2" data-kind="section" data-key="section:e70123807725" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0024</span> 8. Core User Journeys</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e70123807725" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e70123807725" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e70123807725" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0025" class="chunk sec depth-3" data-kind="section" data-key="section:bea2a6b62833" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0025</span> 8.1 Create and Analyze a New Piping System</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bea2a6b62833" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bea2a6b62833" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bea2a6b62833" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User creates a new project and selects a unit system.
+2. User defines project design basis metadata.
+3. User creates or imports a private rule pack.
+4. User defines materials and temperature-dependent properties.
+5. User defines pipe sections and component properties.
+6. User builds the 3D piping centerline in the GUI.
+7. User inserts bends, branches, valves, flanges, reducers, expansion joints, and supports.
+8. User assigns pressures, temperatures, weights, contents, insulation, and imposed displacements.
+9. User defines primitive load cases and combination cases.
+10. User solves the model.
+11. User reviews displacements, rotations, forces, moments, support reactions, and stresses.
+12. User runs private rule-pack checks.
+13. User resolves warnings and missing data.
+14. User generates an auditable calculation report.
+</p></div></div></section>
+<section id="SEC-PD021-0026" class="chunk sec depth-3" data-kind="section" data-key="section:66faed3956c8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0026</span> 8.2 Build a Private Code Rule Pack</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66faed3956c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66faed3956c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66faed3956c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens the rule-pack editor.
+2. User selects a blank schema or company template.
+3. User defines stress categories, load combinations, required variables, allowables, and expressions using their licensed/proprietary sources.
+4. User marks the rule pack as private.
+5. Software validates unit consistency and required input mappings.
+6. Software generates a checksum and version identifier.
+7. Rule pack becomes available for private project use only.
+</p></div></div></section>
+<section id="SEC-PD021-0027" class="chunk sec depth-3" data-kind="section" data-key="section:87fc7336ce73" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0027</span> 8.3 Import Private Component Data</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87fc7336ce73" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87fc7336ce73" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87fc7336ce73" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User imports a private component library file.
+2. Software checks schema, units, required fields, and provenance.
+3. Software flags records with missing source or missing required dimensions.
+4. User assigns components to model elements.
+5. Report records component library name, version, source notes, and checksum.
+</p></div></div></section>
+<section id="SEC-PD021-0028" class="chunk sec depth-3" data-kind="section" data-key="section:169442df8e17" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0028</span> 8.4 Mechanics-Only Educational Example</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:169442df8e17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:169442df8e17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:169442df8e17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens a public example model with invented material and allowable values.
+2. User solves a simple U-loop or frame benchmark.
+3. User compares displacement and force results with hand-calculation references.
+4. No code-compliance claim is made.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0029" class="chunk sec depth-2" data-kind="section" data-key="section:0f048ee72d1a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0029</span> 9. Scope and Release Strategy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0f048ee72d1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0f048ee72d1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0f048ee72d1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0030" class="chunk sec depth-3" data-kind="section" data-key="section:7c7695314a6d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0030</span> 9.1 MVP Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c7695314a6d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c7695314a6d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c7695314a6d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The first minimum viable product must establish the analysis foundation and data-separation model.</p>
+<p>MVP must include:</p>
+<p>- 3D nodes with six degrees of freedom.
+- Straight pipe/beam elements.
+- Rigid elements.
+- Linear anchors and restraints.
+- Weight loads.
+- Thermal loads.
+- Internal pressure metadata and basic pressure-derived stress recovery.
+- Imposed displacements.
+- Linear static solver.
+- Element force and moment recovery.
+- Fundamental stress recovery.
+- YAML/JSON project files.
+- CSV/tabular results.
+- Basic GUI modeler.
+- Rule-pack schema with placeholder/example non-code rules.
+- Blocking warnings for missing required rule-pack inputs.
+- Initial validation suite.
+- Calculation report export.
+</p></div></div></section>
+<section id="SEC-PD021-0031" class="chunk sec depth-3" data-kind="section" data-key="section:26f6b82e370e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0031</span> 9.2 Post-MVP Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26f6b82e370e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26f6b82e370e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26f6b82e370e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Post-MVP development should add:</p>
+<p>- Bend elements with user-entered SIFs/flexibility factors.
+- Branch connection objects with user-entered local modifiers.
+- Reducers, flanges, valves, expansion joints, and spring hangers.
+- Nonlinear supports: gaps, one-way supports, lift-off, friction, and sliding restraints.
+- Load-case algebra and range cases.
+- Dynamic modules: modal, response spectrum, harmonic, and time-history support.
+- Local FEA export workflows.
+- Open validation manual.
+- Private library management.
+- CAD/BIM import/export.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0032" class="chunk sec depth-2" data-kind="section" data-key="section:4841053c9b11" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0032</span> 10. Functional Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4841053c9b11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4841053c9b11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4841053c9b11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Priority | Acceptance Criteria |
+|---|---|---:|---|
+| FR-001 | Create, open, save, and version projects | Must | Project file round-trips without loss of model, units, loads, rule-pack references, or provenance metadata |
+| FR-002 | Support explicit unit systems and conversions | Must | All numerical fields have units; incompatible units are rejected; reports show units used |
+| FR-003 | Provide 3D node and element modeling | Must | User can create and edit nodes, straight pipe elements, and rigid elements in 3D |
+| FR-004 | Support six degrees of freedom per structural node | Must | Solver supports translation and rotation in X/Y/Z at every active node |
+| FR-005 | Provide pipe section property calculations | Must | Area, moment of inertia, section modulus, and mass properties are calculated from user-entered OD/wall/density data |
+| FR-006 | Allow user-defined materials | Must | Materials include density, elastic modulus, Poisson&#x27;s ratio, thermal expansion data, and user-entered allowables where needed |
+| FR-007 | Support basic load cases | Must | Weight, temperature, pressure metadata, concentrated loads, and imposed displacements can be defined and solved |
+| FR-008 | Solve linear static global flexibility problems | Must | Solver passes benchmark tests for beams, frames, thermal cases, and imposed displacements |
+| FR-009 | Recover element forces and moments | Must | Local and global force/moment results are available at element ends |
+| FR-010 | Recover fundamental stresses | Must | Axial, bending, torsional, and pressure-derived stress quantities can be displayed independently of code checks |
+| FR-011 | Provide rule-pack schema | Must | Users can define private stress checks, variables, expressions, allowables, and load-combination mappings |
+| FR-012 | Block incomplete code checks | Must | Software refuses to report pass/fail when required rule-pack values are missing |
+| FR-013 | Provide graphical 3D modeler | Must | User can create/edit pipe geometry, supports, components, and load assignments visually |
+| FR-014 | Provide model tree and property editor | Must | Every model entity can be selected and edited through structured property panels |
+| FR-015 | Provide results visualization | Must | Deformed shape, support reactions, stress tables, and governing ratios are viewable in the GUI |
+| FR-016 | Generate calculation reports | Must | Report includes input summary, assumptions, rule-pack checksum, warnings, results, and provenance |
+| FR-017 | Support bend objects | Should | Bends accept radius, angle, orientation, user-entered SIFs, and user-entered flexibility factors |
+| FR-018 | Support branch connection objects | Should | Branches accept geometry and user-entered local modifiers for header/branch checks |
+| FR-019 | Support valves/flanges/reducers | Should | Components can be represented as rigid or semi-rigid elements with user-entered dimensions, weights, and source notes |
+| FR-020 | Support expansion joints | Should | Expansion joints accept user-entered stiffnesses, effective pressure area, movement limits, and manufacturer provenance |
+| FR-021 | Support nonlinear restraints | Should | Gaps, lift-off, one-way supports, and friction converge for validation cases |
+| FR-022 | Support private material/component libraries | Should | User can load private libraries that are not redistributed with the open-source package |
+| FR-023 | Support import/export | Could | Project and result data can be exchanged using open formats |
+| FR-024 | Support dynamic analysis modules | Could | Modal and response-spectrum modules pass validation benchmarks |
+| FR-025 | Support local FEA export | Could | Selected local geometry and loads can be exported for external shell/solid analysis |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0033" class="chunk sec depth-2" data-kind="section" data-key="section:b4c2844ac0b9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0033</span> 11. Analytical Engine Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4c2844ac0b9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4c2844ac0b9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4c2844ac0b9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0034" class="chunk sec depth-3" data-kind="section" data-key="section:9739b9a37770" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0034</span> 11.1 Core Analysis Model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9739b9a37770" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9739b9a37770" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9739b9a37770" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The solver shall use a 3D line-element model of the piping centerline. Each structural node shall support six degrees of freedom:</p>
+<p>```text
+Ux, Uy, Uz, Rx, Ry, Rz
+```</p>
+<p>Each element shall assemble a local stiffness contribution into the global stiffness matrix. The solver shall support local-to-global coordinate transformations, element-end force recovery, and result extraction in both local and global coordinate systems.
+</p></div></div></section>
+<section id="SEC-PD021-0035" class="chunk sec depth-3" data-kind="section" data-key="section:e65be278c3a4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0035</span> 11.2 Solver Formulation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e65be278c3a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e65be278c3a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e65be278c3a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The initial solver shall implement linear elastic, small-displacement, static 3D frame analysis. Later versions may add geometric nonlinearity and advanced material behavior as optional modules.</p>
+<p>Minimum solver capabilities:</p>
+<p>- Sparse global stiffness matrix assembly.
+- Boundary condition enforcement.
+- Imposed displacement handling.
+- Thermal initial strain handling.
+- Distributed and concentrated load handling.
+- Rigid-link/rigid-element support.
+- Deterministic solution results.
+- Singularity and ill-conditioning detection.
+- Unit-aware result storage.
+</p></div></div></section>
+<section id="SEC-PD021-0036" class="chunk sec depth-3" data-kind="section" data-key="section:0df77c122250" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0036</span> 11.3 Element Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0df77c122250" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0df77c122250" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0df77c122250" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0037" class="chunk sec depth-4" data-kind="section" data-key="section:b404d0b0a7a3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0037</span> 11.3.1 Straight Pipe Element</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b404d0b0a7a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b404d0b0a7a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b404d0b0a7a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The straight pipe element shall support:</p>
+<p>- Axial stiffness.
+- Bending stiffness about two local transverse axes.
+- Torsional stiffness.
+- User-entered or calculated section properties.
+- Distributed weight.
+- Thermal strain.
+- Pressure metadata.
+- Stress recovery stations at element ends and optional intermediate points.
+</p></div></div></section>
+<section id="SEC-PD021-0038" class="chunk sec depth-4" data-kind="section" data-key="section:b107e78148a8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0038</span> 11.3.2 Bend Element / Bend Macro-Element</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b107e78148a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b107e78148a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b107e78148a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The bend object shall support:</p>
+<p>- Bend radius.
+- Bend angle.
+- Bend plane orientation.
+- User-entered in-plane SIF.
+- User-entered out-of-plane SIF.
+- User-entered torsional SIF, where applicable.
+- User-entered in-plane flexibility factor.
+- User-entered out-of-plane flexibility factor.
+- User-entered pressure-stiffening or pressure-modifier settings, where applicable.
+- Optional segmented visualization.</p>
+<p>The software shall not supply protected B31J or code-derived bend values in the public distribution.
+</p></div></div></section>
+<section id="SEC-PD021-0039" class="chunk sec depth-4" data-kind="section" data-key="section:66fff1c4588a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0039</span> 11.3.3 Branch Connection Object</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66fff1c4588a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66fff1c4588a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66fff1c4588a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Branch connection objects shall support:</p>
+<p>- Header element association.
+- Branch element association.
+- Intersection node.
+- Branch angle.
+- Header and branch section assignments.
+- Reinforcement metadata.
+- User-entered header-side SIFs.
+- User-entered branch-side SIFs.
+- User-entered local flexibility modifiers.
+- User-entered source/provenance for each local modifier.
+</p></div></div></section>
+<section id="SEC-PD021-0040" class="chunk sec depth-4" data-kind="section" data-key="section:6f9a4a4b3757" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0040</span> 11.3.4 Rigid Component Element</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f9a4a4b3757" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f9a4a4b3757" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f9a4a4b3757" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Rigid components shall support:</p>
+<p>- Length.
+- Weight.
+- Center of gravity.
+- Rotational inertia metadata.
+- Local orientation.
+- Optional semi-rigid stiffness values.
+- Source/provenance.</p>
+<p>Applicable components include valves, flanges, strainers, instruments, specialty items, and equipment connection stubs.
+</p></div></div></section>
+<section id="SEC-PD021-0041" class="chunk sec depth-4" data-kind="section" data-key="section:221e200de3ad" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0041</span> 11.3.5 Reducer Element</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:221e200de3ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:221e200de3ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:221e200de3ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reducers shall support:</p>
+<p>- Concentric/eccentric geometry.
+- Upstream/downstream section assignments.
+- Length.
+- Weight.
+- Offset vector for eccentric reducers.
+- User-entered local stress modifiers where needed.
+</p></div></div></section>
+<section id="SEC-PD021-0042" class="chunk sec depth-4" data-kind="section" data-key="section:c0c82de05a51" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-PD021-0042</span> 11.3.6 Expansion Joint Element</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0c82de05a51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0c82de05a51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0c82de05a51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Expansion joints shall support:</p>
+<p>- Axial stiffness.
+- Lateral stiffness.
+- Angular stiffness.
+- Torsional stiffness.
+- Effective pressure area.
+- Pressure thrust.
+- Movement limits.
+- Tie rod/hinge/gimbal/limit rod configuration metadata.
+- Manufacturer data provenance.
+</p></div></div></section>
+<section id="SEC-PD021-0043" class="chunk sec depth-3" data-kind="section" data-key="section:7b2e3fc3f881" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0043</span> 11.4 Support and Restraint Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7b2e3fc3f881" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7b2e3fc3f881" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7b2e3fc3f881" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The software shall support these support/restraint types:</p>
+<p>- Anchor.
+- Guide.
+- Line stop.
+- Vertical support.
+- Directional restraint.
+- Translational spring.
+- Rotational spring.
+- Constant-effort support.
+- Variable spring hanger.
+- Rigid strut.
+- Gap support.
+- One-way support.
+- Friction support.
+- Sliding support.</p>
+<p>MVP may include only anchors and linear restraints. Nonlinear supports should be implemented after the linear solver is validated.
+</p></div></div></section>
+<section id="SEC-PD021-0044" class="chunk sec depth-3" data-kind="section" data-key="section:b50f9a401a83" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0044</span> 11.5 Load Types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b50f9a401a83" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b50f9a401a83" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b50f9a401a83" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Primitive load types shall include:</p>
+<p>- Dead weight of pipe.
+- Contents weight.
+- Insulation/refractory/lining weight.
+- Component weight.
+- Internal pressure metadata.
+- Temperature change or total thermal expansion data.
+- Concentrated force.
+- Concentrated moment.
+- Imposed displacement.
+- Imposed rotation.
+- Wind load.
+- Seismic static-equivalent load.
+- Hydrotest load.
+- User-defined occasional load.
+</p></div></div></section>
+<section id="SEC-PD021-0045" class="chunk sec depth-3" data-kind="section" data-key="section:a40a40f04981" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0045</span> 11.6 Load Cases and Combinations</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a40a40f04981" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a40a40f04981" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a40a40f04981" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The software shall distinguish:</p>
+<p>1. **Primitive analysis cases:** Directly solved load cases such as weight, pressure, temperature, imposed displacement, wind, seismic, hydrotest, and user-defined loads.
+2. **Combination cases:** Algebraic combinations or differences of solved cases.
+3. **Rule-check cases:** User-defined mapping of combinations to stress categories and allowable limits.</p>
+<p>The public software shall include a generic load-case builder but shall not ship protected code-specific load-combination requirements.
+</p></div></div></section>
+<section id="SEC-PD021-0046" class="chunk sec depth-3" data-kind="section" data-key="section:1d357a9e289c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0046</span> 11.7 Fundamental Stress Recovery</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d357a9e289c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d357a9e289c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d357a9e289c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The solver shall recover fundamental mechanics quantities before code evaluation:</p>
+<p>- Axial force.
+- Shear forces.
+- Torsional moment.
+- Local bending moments.
+- Resultant bending moment.
+- Axial stress.
+- Bending stress.
+- Torsional shear stress.
+- Pressure hoop stress, if user selects a pressure-stress method.
+- Pressure longitudinal stress, if user selects a pressure-stress method.
+- Principal stress, optional.
+- von Mises equivalent stress, optional.
+- Tresca equivalent stress, optional.</p>
+<p>Code-specific stress formulas shall be handled in user rule packs.
+</p></div></div></section>
+<section id="SEC-PD021-0047" class="chunk sec depth-3" data-kind="section" data-key="section:e2901deb15f6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0047</span> 11.8 Numerical Quality Requirements</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2901deb15f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2901deb15f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2901deb15f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The engine shall:</p>
+<p>- Use deterministic algorithms where practical.
+- Report solver residuals.
+- Detect unconstrained rigid body modes.
+- Detect duplicate or near-duplicate nodes.
+- Detect zero-length or invalid elements.
+- Detect inconsistent units.
+- Store input and output values with sufficient precision for engineering review.
+- Provide reproducible results for a given project file and solver version.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0048" class="chunk sec depth-2" data-kind="section" data-key="section:b8813c5928ac" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0048</span> 12. Rule-Pack Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8813c5928ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8813c5928ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8813c5928ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0049" class="chunk sec depth-3" data-kind="section" data-key="section:efe6778a57ca" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0049</span> 12.1 Purpose</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efe6778a57ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efe6778a57ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efe6778a57ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The rule-pack system is the key mechanism for code-neutral software. It allows users to define code-specific or company-specific checks without the public software distributing protected code content.
+</p></div></div></section>
+<section id="SEC-PD021-0050" class="chunk sec depth-3" data-kind="section" data-key="section:14135d1c5062" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0050</span> 12.2 Rule-Pack Capabilities</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:14135d1c5062" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:14135d1c5062" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:14135d1c5062" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A rule pack shall define:</p>
+<p>- Rule-pack name.
+- Version.
+- Code family or project standard, free text.
+- Code edition, free text.
+- Source/provenance statement.
+- Redistribution status.
+- Required material inputs.
+- Required component inputs.
+- Required project inputs.
+- Stress categories.
+- Load-case mappings.
+- Expressions.
+- Allowables.
+- Warnings.
+- Blocking conditions.
+- Unit expectations.
+</p></div></div></section>
+<section id="SEC-PD021-0051" class="chunk sec depth-3" data-kind="section" data-key="section:91fe450c9dc9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0051</span> 12.3 Rule-Pack Expression Evaluator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91fe450c9dc9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91fe450c9dc9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91fe450c9dc9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The expression evaluator shall be:</p>
+<p>- Unit-aware.
+- Sandboxed.
+- Deterministic.
+- Non-Turing-complete, if practical.
+- Free of arbitrary filesystem or network access.
+- Capable of basic algebra, conditionals, min/max, interpolation, and table lookup using user-provided tables.
+</p></div></div></section>
+<section id="SEC-PD021-0052" class="chunk sec depth-3" data-kind="section" data-key="section:30ba4a5616ca" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0052</span> 12.4 Rule-Pack Data Separation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30ba4a5616ca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30ba4a5616ca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30ba4a5616ca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Public examples may include invented demonstration values. Public examples must not include protected ASME content or copied code formulas.</p>
+<p>Private user rule packs may include the user&#x27;s licensed or proprietary information, subject to the user&#x27;s legal rights and organization policies. The application shall mark such rule packs as private by default.
+</p></div></div></section>
+<section id="SEC-PD021-0053" class="chunk sec depth-3" data-kind="section" data-key="section:bb52f1e10a89" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0053</span> 12.5 Example Rule-Pack Skeleton</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb52f1e10a89" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb52f1e10a89" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb52f1e10a89" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The public repository may include examples like the following, using placeholders rather than code-specific formulas:</p>
+<p>```yaml
+rule_pack:
+  name: &quot;Example non-code piping rule pack&quot;
+  version: &quot;0.1&quot;
+  source: &quot;Invented demonstration values only&quot;
+  redistribution_allowed: true</p>
+<p>required_inputs:
+  material:
+    - elastic_modulus_cold
+    - elastic_modulus_hot
+    - thermal_expansion_range
+    - user_allowable_sustained
+    - user_allowable_displacement
+  component:
+    - user_in_plane_sif
+    - user_out_plane_sif
+    - user_flexibility_factor
+  project:
+    - design_pressure
+    - operating_temperature
+    - ambient_temperature</p>
+<p>checks:
+  sustained_example:
+    combination: &quot;USER_DEFINED_SUSTAINED_CASE&quot;
+    expression: &quot;USER_DEFINED_STRESS_EXPRESSION&quot;
+    allowable: &quot;user_allowable_sustained&quot;
+    result_label: &quot;Example sustained ratio&quot;</p>
+<p>  displacement_example:
+    combination: &quot;USER_DEFINED_DISPLACEMENT_RANGE&quot;
+    expression: &quot;USER_DEFINED_RANGE_EXPRESSION&quot;
+    allowable: &quot;user_allowable_displacement&quot;
+    result_label: &quot;Example displacement ratio&quot;
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0054" class="chunk sec depth-2" data-kind="section" data-key="section:f32c6a85e9f7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0054</span> 13. Material and Component Library Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f32c6a85e9f7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f32c6a85e9f7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f32c6a85e9f7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0055" class="chunk sec depth-3" data-kind="section" data-key="section:4bd9e66c6c52" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0055</span> 13.1 Material Libraries</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4bd9e66c6c52" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4bd9e66c6c52" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4bd9e66c6c52" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Material records shall support:</p>
+<p>- Material name.
+- Specification/grade, free text.
+- Density.
+- Poisson&#x27;s ratio.
+- Elastic modulus versus temperature.
+- Thermal expansion coefficient or total expansion strain versus temperature.
+- Allowable stress versus temperature, user-entered.
+- Yield strength versus temperature, user-entered where needed.
+- Ultimate strength versus temperature, user-entered where needed.
+- Weld/joint/quality factors, user-entered where needed.
+- Corrosion allowance.
+- Mill tolerance.
+- Source/provenance for each property family.
+- Verification status.</p>
+<p>The public repository shall not ship ASME material allowable tables.
+</p></div></div></section>
+<section id="SEC-PD021-0056" class="chunk sec depth-3" data-kind="section" data-key="section:394e497ad8f7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0056</span> 13.2 Pipe Section Libraries</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:394e497ad8f7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:394e497ad8f7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:394e497ad8f7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Pipe section records shall support:</p>
+<p>- Nominal size label, free text.
+- Outside diameter.
+- Wall thickness.
+- Schedule or designation, free text.
+- Corrosion allowance.
+- Mill tolerance.
+- Lining/refractory/insulation metadata.
+- Source/provenance.</p>
+<p>The public repository shall not ship copyrighted B36 tables unless the data is lawful for redistribution.
+</p></div></div></section>
+<section id="SEC-PD021-0057" class="chunk sec depth-3" data-kind="section" data-key="section:27b7497b80f3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0057</span> 13.3 Component Libraries</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:27b7497b80f3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:27b7497b80f3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:27b7497b80f3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Component records shall support:</p>
+<p>- Component type.
+- Manufacturer.
+- Model.
+- Size/rating label.
+- End connection.
+- Length or face-to-face dimension.
+- Weight.
+- Center of gravity.
+- Stiffness behavior.
+- Effective pressure area, if applicable.
+- Movement limits, if applicable.
+- Source/provenance.
+- License or redistribution status.
+</p></div></div></section>
+<section id="SEC-PD021-0058" class="chunk sec depth-3" data-kind="section" data-key="section:f46337c6152f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0058</span> 13.4 Public vs Private Data</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f46337c6152f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f46337c6152f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f46337c6152f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress shall distinguish:</p>
+<p>- **Public bundled data:** Only invented, public-domain, independently generated, or permissively licensed data.
+- **Private user data:** User-entered standards data, owner data, vendor catalogs, material tables, rule packs, and component libraries.
+- **Manufacturer-published data packs:** Permissively licensed component libraries supplied by vendors or contributors with documented redistribution rights.
+</p></div></div></section>
+<section id="SEC-PD021-0059" class="chunk sec depth-3" data-kind="section" data-key="section:bc74803904d1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0059</span> 13.5 Data Import Warnings</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc74803904d1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc74803904d1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc74803904d1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The software shall flag imported data records if:</p>
+<p>- Required fields are missing.
+- Units are missing or inconsistent.
+- Source/provenance is missing.
+- Redistribution status is unclear.
+- Data appears to be a protected standards table.
+- Values are outside user-defined reasonableness checks.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0060" class="chunk sec depth-2" data-kind="section" data-key="section:66a0a6e559b8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0060</span> 14. GUI Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66a0a6e559b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66a0a6e559b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66a0a6e559b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0061" class="chunk sec depth-3" data-kind="section" data-key="section:63109a6fcc5e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0061</span> 14.1 Main Interface Layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:63109a6fcc5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:63109a6fcc5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:63109a6fcc5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The GUI shall include:</p>
+<p>- 3D centerline viewport.
+- Model tree.
+- Property inspector.
+- Material library editor.
+- Component library editor.
+- Load-case manager.
+- Rule-pack manager.
+- Solver console.
+- Results browser.
+- Report generator.
+</p></div></div></section>
+<section id="SEC-PD021-0062" class="chunk sec depth-3" data-kind="section" data-key="section:c0a3830874b9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0062</span> 14.2 3D Viewport</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0a3830874b9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0a3830874b9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0a3830874b9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The 3D viewport shall display:</p>
+<p>- Pipe centerlines.
+- Bend arcs.
+- Branch symbols.
+- Valves.
+- Flanges.
+- Reducers.
+- Expansion joints.
+- Anchors.
+- Guides.
+- Line stops.
+- Springs.
+- Gaps.
+- Node labels.
+- Element labels.
+- Load vectors.
+- Deformed shapes.
+- Reaction arrows.
+- Stress-ratio color maps.
+</p></div></div></section>
+<section id="SEC-PD021-0063" class="chunk sec depth-3" data-kind="section" data-key="section:7d6607a16ce1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0063</span> 14.3 Property Inspector</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d6607a16ce1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d6607a16ce1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d6607a16ce1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Selecting a model entity shall show editable properties, including:</p>
+<p>- Geometry.
+- Material.
+- Section.
+- Component attributes.
+- Loads.
+- Support settings.
+- SIFs/flexibility factors.
+- Source/provenance.
+- Missing-data status.
+- Rule-pack dependencies.
+</p></div></div></section>
+<section id="SEC-PD021-0064" class="chunk sec depth-3" data-kind="section" data-key="section:eab703f3bfe8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0064</span> 14.4 Missing-Data UX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eab703f3bfe8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eab703f3bfe8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eab703f3bfe8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The GUI shall distinguish:</p>
+<p>- **Blocking for solve:** Missing data prevents numerical solution.
+- **Blocking for code check:** Mechanics solve can run, but code pass/fail cannot be reported.
+- **Warning:** Data exists but is incomplete, unverified, or unusual.
+- **Informational:** Assumption or note recorded for audit.</p>
+<p>Example warnings:</p>
+<p>```text
+Cannot perform rule check: material allowable stress at operating temperature is missing.
+```</p>
+<p>```text
+Cannot perform bend stress check: out-of-plane SIF is required by the selected rule pack but has not been entered.
+```</p>
+<p>```text
+Mechanics solve allowed: valve V-101 has no source note for weight. Results are marked unverified.
+```
+</p></div></div></section>
+<section id="SEC-PD021-0065" class="chunk sec depth-3" data-kind="section" data-key="section:319d29591271" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0065</span> 14.5 Rule-Pack Editor</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:319d29591271" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:319d29591271" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:319d29591271" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The rule-pack editor shall provide:</p>
+<p>- Required-input definition.
+- Variable browser.
+- Unit checking.
+- Expression editor.
+- Load-combination mapping.
+- Allowable definition.
+- Private/public status.
+- Source/provenance fields.
+- Validation diagnostics.
+- Checksum generation.</p>
+<p>The editor shall not provide protected code equations as prefilled templates.
+</p></div></div></section>
+<section id="SEC-PD021-0066" class="chunk sec depth-3" data-kind="section" data-key="section:7485954becbf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0066</span> 14.6 Component Wizard</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7485954becbf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7485954becbf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7485954becbf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The component wizard shall help users enter valves, flanges, reducers, expansion joints, and specialty items. It shall request required dimensions and component properties without supplying protected standards tables.</p>
+<p>Example valve wizard fields:</p>
+<p>- Component ID.
+- Valve type.
+- End connection.
+- Size label.
+- Pressure/rating label.
+- Face-to-face or end-to-end length.
+- Weight.
+- Center of gravity.
+- Rigid or semi-rigid behavior.
+- Source/provenance.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0067" class="chunk sec depth-2" data-kind="section" data-key="section:253d3d3917ed" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0067</span> 15. Reporting and Audit Trail</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:253d3d3917ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:253d3d3917ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:253d3d3917ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0068" class="chunk sec depth-3" data-kind="section" data-key="section:fe17a4c45270" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0068</span> 15.1 Report Requirements</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe17a4c45270" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe17a4c45270" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe17a4c45270" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Calculation reports shall include:</p>
+<p>- Project name.
+- Software version.
+- Solver version.
+- Git commit hash or release ID.
+- Date/time.
+- Units.
+- Coordinate system.
+- Model summary.
+- Node table.
+- Element table.
+- Material table.
+- Component table.
+- Support/restraint table.
+- Load cases.
+- Load combinations.
+- Rule-pack name, version, and checksum.
+- Statement that code-specific data was user supplied.
+- Source/provenance summary.
+- Missing-data warnings.
+- Solver diagnostics.
+- Displacements.
+- Rotations.
+- Element forces.
+- Element moments.
+- Support reactions.
+- Equipment terminal loads.
+- Fundamental stress results.
+- Rule-check results.
+- Governing locations.
+- User signoff block.
+</p></div></div></section>
+<section id="SEC-PD021-0069" class="chunk sec depth-3" data-kind="section" data-key="section:46ee45be2287" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0069</span> 15.2 Report Prohibitions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46ee45be2287" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46ee45be2287" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46ee45be2287" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reports generated from public templates shall not reproduce protected ASME code text, tables, examples, or proprietary standards content. Users may maintain private report templates at their own discretion and responsibility.
+</p></div></div></section>
+<section id="SEC-PD021-0070" class="chunk sec depth-3" data-kind="section" data-key="section:b9ffa0f40af0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0070</span> 15.3 Reproducibility</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9ffa0f40af0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9ffa0f40af0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9ffa0f40af0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reports shall include sufficient metadata to reproduce results from the same project file, solver version, and private rule/data libraries.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0071" class="chunk sec depth-2" data-kind="section" data-key="section:cea9062c9eff" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0071</span> 16. Verification and Validation Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cea9062c9eff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cea9062c9eff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cea9062c9eff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0072" class="chunk sec depth-3" data-kind="section" data-key="section:649b0c583895" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0072</span> 16.1 Verification Philosophy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:649b0c583895" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:649b0c583895" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:649b0c583895" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Verification shall prove that the equations are implemented correctly. Validation shall demonstrate that the modeling approach produces credible engineering results within stated assumptions.
+</p></div></div></section>
+<section id="SEC-PD021-0073" class="chunk sec depth-3" data-kind="section" data-key="section:357f95184fab" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0073</span> 16.2 Required Solver Benchmarks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:357f95184fab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:357f95184fab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:357f95184fab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The validation suite shall include mechanics-based examples such as:</p>
+<p>- Cantilever beam with tip force.
+- Cantilever beam with tip moment.
+- Fixed-fixed beam with thermal expansion.
+- Simply supported pipe under uniform weight.
+- L-shaped thermal expansion frame.
+- U-loop thermal expansion benchmark.
+- Torsion-only element.
+- Rigid-link benchmark.
+- Inclined-member coordinate transformation benchmark.
+- Imposed anchor displacement benchmark.
+- Linear spring support benchmark.
+- Gapped support benchmark.
+- Friction support benchmark.
+- Branch assembly benchmark.
+</p></div></div></section>
+<section id="SEC-PD021-0074" class="chunk sec depth-3" data-kind="section" data-key="section:ec1aab33c64f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0074</span> 16.3 Stress Recovery Benchmarks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec1aab33c64f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec1aab33c64f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec1aab33c64f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Stress recovery tests shall include:</p>
+<p>- Axial stress from axial force.
+- Bending stress from moment.
+- Torsional shear from torque.
+- Pressure-derived hoop stress.
+- Pressure-derived longitudinal stress.
+- Stress range from two solved states.
+- User-entered SIF multiplier behavior.
+- User-entered flexibility-factor behavior.
+</p></div></div></section>
+<section id="SEC-PD021-0075" class="chunk sec depth-3" data-kind="section" data-key="section:3b613176bb40" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0075</span> 16.4 Regression Testing</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b613176bb40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b613176bb40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b613176bb40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every release shall run automated tests for:</p>
+<p>- Unit conversion.
+- Matrix assembly.
+- Coordinate transformation.
+- Boundary conditions.
+- Load application.
+- Thermal strain.
+- Force recovery.
+- Stress recovery.
+- Rule-pack evaluation.
+- Nonlinear support convergence, where applicable.
+- Report reproducibility.
+</p></div></div></section>
+<section id="SEC-PD021-0076" class="chunk sec depth-3" data-kind="section" data-key="section:3a4ad2e9caa9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0076</span> 16.5 Validation Manual</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3a4ad2e9caa9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3a4ad2e9caa9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3a4ad2e9caa9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The project shall maintain a validation manual documenting:</p>
+<p>- Test purpose.
+- Input model.
+- Hand calculation or independent reference.
+- Expected result.
+- Software result.
+- Tolerance.
+- Pass/fail status.
+- Solver version.</p>
+<p>Validation examples shall not be copied from protected standards or commercial software manuals unless written permission permits redistribution.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0077" class="chunk sec depth-2" data-kind="section" data-key="section:eb4f4ab0213a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0077</span> 17. Data Governance, IP, and Compliance Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb4f4ab0213a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb4f4ab0213a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb4f4ab0213a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0078" class="chunk sec depth-3" data-kind="section" data-key="section:22c81f4d445c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0078</span> 17.1 Public Repository Restrictions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:22c81f4d445c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:22c81f4d445c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:22c81f4d445c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The public repository shall reject contributions containing:</p>
+<p>- ASME code text.
+- ASME material allowable tables.
+- ASME B31J tables or equations copied from the standard.
+- ASME B16/B36 dimensional tables copied from standards.
+- Screenshots or scans of protected standards.
+- Commercial software examples or manuals without permission.
+- Vendor catalog data without redistribution permission.
+- Any data contribution without provenance.
+</p></div></div></section>
+<section id="SEC-PD021-0079" class="chunk sec depth-3" data-kind="section" data-key="section:438981d65e6d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0079</span> 17.2 Contributor Certification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:438981d65e6d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:438981d65e6d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:438981d65e6d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Contributors shall certify that:</p>
+<p>```text
+I did not copy this contribution from ASME, API, MSS, ISO, EN, CSA, ASTM, a commercial software manual, or any other copyrighted standard or proprietary source unless the material is licensed for redistribution in this project.
+```
+</p></div></div></section>
+<section id="SEC-PD021-0080" class="chunk sec depth-3" data-kind="section" data-key="section:144120ecbb06" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0080</span> 17.3 Private Data Handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:144120ecbb06" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:144120ecbb06" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:144120ecbb06" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Private rule packs and libraries shall be:</p>
+<p>- Stored outside public example directories by default.
+- Marked private in metadata.
+- Excluded from telemetry.
+- Excluded from public bug reports unless the user explicitly attaches them.
+- Identified in reports by name/version/checksum without exposing protected content unless the user requests full reporting.
+</p></div></div></section>
+<section id="SEC-PD021-0081" class="chunk sec depth-3" data-kind="section" data-key="section:bf0d1dddb66a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0081</span> 17.4 Disclaimers</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf0d1dddb66a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf0d1dddb66a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf0d1dddb66a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The application shall include clear user-facing language:</p>
+<p>```text
+This software performs piping flexibility and stress analysis using open mechanical methods. It does not include ASME code text, ASME tables, ASME material allowables, or proprietary code data. Code-specific values and rules must be supplied and verified by the responsible engineer.
+```</p>
+<p>```text
+This software is not affiliated with, endorsed by, certified by, or approved by ASME.
+```
+</p></div></div></section>
+<section id="SEC-PD021-0082" class="chunk sec depth-3" data-kind="section" data-key="section:f00727fa2d97" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0082</span> 17.5 Legal Review Requirement</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f00727fa2d97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f00727fa2d97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f00727fa2d97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Before public release, legal counsel should review:</p>
+<p>- Project name and branding.
+- Documentation language.
+- Disclaimers.
+- Contributor license agreement or developer certificate of origin.
+- Data-contribution policy.
+- Example libraries.
+- Rule-pack examples.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0083" class="chunk sec depth-2" data-kind="section" data-key="section:40f2922310ff" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0083</span> 18. Security and Privacy Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40f2922310ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40f2922310ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40f2922310ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0084" class="chunk sec depth-3" data-kind="section" data-key="section:30173718d0f9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0084</span> 18.1 Local-First Design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30173718d0f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30173718d0f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30173718d0f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The default application shall operate locally. No cloud service shall be required for modeling, solving, rule checking, or reporting.
+</p></div></div></section>
+<section id="SEC-PD021-0085" class="chunk sec depth-3" data-kind="section" data-key="section:c0b70cffbe54" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0085</span> 18.2 Telemetry</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0b70cffbe54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0b70cffbe54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0b70cffbe54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Telemetry shall be disabled by default. If telemetry is added, it must be opt-in and must never transmit private rule packs, component libraries, material data, project files, or calculation results without explicit user action.
+</p></div></div></section>
+<section id="SEC-PD021-0086" class="chunk sec depth-3" data-kind="section" data-key="section:82873079457f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0086</span> 18.3 Private Data Protection</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82873079457f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82873079457f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82873079457f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The product should support:</p>
+<p>- Private library directories.
+- Redaction of private data from bug reports.
+- Optional encrypted storage for private libraries.
+- Checksums for rule packs and libraries.
+- Clear warnings before exporting private data.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0087" class="chunk sec depth-2" data-kind="section" data-key="section:2e677076cbb6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0087</span> 19. Platform and Technical Architecture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2e677076cbb6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2e677076cbb6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2e677076cbb6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0088" class="chunk sec depth-3" data-kind="section" data-key="section:2fe17fe0e1d1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0088</span> 19.1 Proposed Architecture</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fe17fe0e1d1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fe17fe0e1d1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fe17fe0e1d1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+open-pipe-stress/
+  core/
+    geometry/
+    units/
+    materials/
+    sections/
+    elements/
+    supports/
+    loads/
+    solver/
+    nonlinear/
+    stress/
+    results/</p>
+<p>  rules/
+    schema/
+    evaluator/
+    examples_non_code/</p>
+<p>  gui/
+    viewport/
+    model_tree/
+    property_editor/
+    load_cases/
+    rule_pack_editor/
+    results_viewer/
+    report_viewer/</p>
+<p>  data/
+    schemas/
+    empty_templates/
+    public_domain_examples/</p>
+<p>  reports/
+    templates/
+    audit/
+    plots/</p>
+<p>  validation/
+    hand_calcs/
+    benchmarks/
+    regression_cases/</p>
+<p>  docs/
+    theory/
+    user_guide/
+    developer_guide/
+    ip_policy/
+    validation_manual/
+```
+</p></div></div></section>
+<section id="SEC-PD021-0089" class="chunk sec depth-3" data-kind="section" data-key="section:eea123bc19a1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0089</span> 19.2 Technology Selection Criteria</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eea123bc19a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eea123bc19a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eea123bc19a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The final language and framework are open decisions. Candidate implementation approaches should be evaluated by:</p>
+<p>- Numerical performance.
+- Sparse matrix support.
+- Cross-platform GUI support.
+- Maintainability.
+- Strong typing and unit safety.
+- Ability to expose scripting or plugin APIs safely.
+- Open-source dependency licenses.
+- Ease of packaging for Windows, Linux, and macOS.</p>
+<p>Potential architectures include:</p>
+<p>- C++ or Rust core with Qt GUI.
+- Python GUI with compiled numerical core.
+- Rust core with webview/native GUI.
+- Hybrid core library plus multiple front ends.
+</p></div></div></section>
+<section id="SEC-PD021-0090" class="chunk sec depth-3" data-kind="section" data-key="section:ab90fcb7831c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0090</span> 19.3 Public API</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab90fcb7831c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab90fcb7831c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab90fcb7831c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The core solver should expose an API that allows:</p>
+<p>- Model creation.
+- Load-case definition.
+- Solve execution.
+- Result extraction.
+- Rule-pack evaluation.
+- Report generation.
+- Validation-test execution.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0091" class="chunk sec depth-2" data-kind="section" data-key="section:edf5e9a58f20" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0091</span> 20. Performance Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:edf5e9a58f20" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:edf5e9a58f20" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:edf5e9a58f20" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Initial performance targets:</p>
+<p>- Solve small tutorial models interactively.
+- Solve medium models with hundreds of nodes in seconds on a standard engineering workstation.
+- Solve large models with thousands of nodes using sparse matrix methods.
+- Keep GUI responsive during solve through background execution.
+- Provide progress, cancellation, and diagnostic logs for long solves.</p>
+<p>Performance must not compromise auditability or unit safety.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0092" class="chunk sec depth-2" data-kind="section" data-key="section:32c54d1bb3d2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0092</span> 21. Accessibility and Usability Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32c54d1bb3d2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32c54d1bb3d2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32c54d1bb3d2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The GUI should support:</p>
+<p>- Keyboard navigation for major panels.
+- Clear icon labels and tooltips.
+- High-contrast result visualization options.
+- Search/filter in large model trees.
+- Copy/export from result tables.
+- Undo/redo for modeling actions.
+- Project templates.
+- Inline validation messages.
+- Clear separation between solve warnings and code-check warnings.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0093" class="chunk sec depth-2" data-kind="section" data-key="section:b917a610bd7f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0093</span> 22. Release Milestones</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b917a610bd7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b917a610bd7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b917a610bd7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0094" class="chunk sec depth-3" data-kind="section" data-key="section:1fc021eeb1e7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0094</span> 22.1 Release R0: Architecture Prototype</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fc021eeb1e7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fc021eeb1e7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fc021eeb1e7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- Project data schema.
+- Unit system.
+- Minimal solver prototype.
+- Straight pipe/beam element.
+- One or two verification cases.
+- Command-line input/output.</p>
+<p>Exit criteria:</p>
+<p>- Cantilever and fixed-fixed thermal benchmarks pass.
+- Project schema round-trips.
+</p></div></div></section>
+<section id="SEC-PD021-0095" class="chunk sec depth-3" data-kind="section" data-key="section:77c3c57491a8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0095</span> 22.2 Release R1: Core Solver MVP</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:77c3c57491a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:77c3c57491a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:77c3c57491a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- 3D static frame solver.
+- Weight/thermal/imposed displacement loads.
+- Basic stress recovery.
+- CSV results.
+- Validation test suite.</p>
+<p>Exit criteria:</p>
+<p>- Required benchmark suite passes within documented tolerances.
+- Solver detects singular models.
+</p></div></div></section>
+<section id="SEC-PD021-0096" class="chunk sec depth-3" data-kind="section" data-key="section:26831d35f872" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0096</span> 22.3 Release R2: GUI MVP</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26831d35f872" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26831d35f872" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26831d35f872" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- 3D modeler.
+- Model tree.
+- Property editor.
+- Load case manager.
+- Results tables.
+- Deformed shape plot.
+- Basic report generator.</p>
+<p>Exit criteria:</p>
+<p>- User can create, solve, and report a small piping model without editing raw files.
+</p></div></div></section>
+<section id="SEC-PD021-0097" class="chunk sec depth-3" data-kind="section" data-key="section:872aede441bc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0097</span> 22.4 Release R3: Rule-Pack and Private Libraries</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:872aede441bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:872aede441bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:872aede441bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- Rule-pack schema.
+- Expression evaluator.
+- Private material libraries.
+- Private component libraries.
+- Missing-data blockers.
+- Rule-check result tables.</p>
+<p>Exit criteria:</p>
+<p>- User can define a private non-code rule pack and run checks.
+- Software blocks pass/fail when required inputs are missing.
+</p></div></div></section>
+<section id="SEC-PD021-0098" class="chunk sec depth-3" data-kind="section" data-key="section:d63f53943b44" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0098</span> 22.5 Release R4: Piping Components and Nonlinear Supports</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d63f53943b44" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d63f53943b44" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d63f53943b44" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- Bend objects.
+- Branch objects.
+- Rigid valves/flanges/reducers.
+- Expansion joints.
+- Spring hangers.
+- Gaps/lift-off/friction.</p>
+<p>Exit criteria:</p>
+<p>- Nonlinear support validation cases converge.
+- Component provenance appears in reports.
+</p></div></div></section>
+<section id="SEC-PD021-0099" class="chunk sec depth-3" data-kind="section" data-key="section:91b77954a60d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0099</span> 22.6 Release R5: Engineering Beta</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91b77954a60d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91b77954a60d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91b77954a60d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverables:</p>
+<p>- Validation manual.
+- Full report package.
+- IP contribution process.
+- Public issue templates.
+- Private-data redaction workflow.
+- Signed releases.</p>
+<p>Exit criteria:</p>
+<p>- External engineers can reproduce validation examples.
+- Public repository contains no known protected standards data.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0100" class="chunk sec depth-2" data-kind="section" data-key="section:e2c804dc1990" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0100</span> 23. Success Metrics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2c804dc1990" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2c804dc1990" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2c804dc1990" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0101" class="chunk sec depth-3" data-kind="section" data-key="section:0af8255d939f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0101</span> 23.1 Technical Metrics</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0af8255d939f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0af8255d939f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0af8255d939f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Number of verification benchmarks passed.
+- Regression-test coverage.
+- Maximum deviation from hand benchmarks.
+- Solver stability for large models.
+- Number of unresolved critical solver defects.
+- Reproducibility of reports across platforms.
+</p></div></div></section>
+<section id="SEC-PD021-0102" class="chunk sec depth-3" data-kind="section" data-key="section:7c900b0ae47f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0102</span> 23.2 Product Metrics</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c900b0ae47f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c900b0ae47f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c900b0ae47f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Time to create and solve a simple U-loop model.
+- Number of missing-data errors caught before report issue.
+- Number of usable private-library imports.
+- User satisfaction from stress engineers.
+- Documentation completeness.
+- Validation manual completeness.
+</p></div></div></section>
+<section id="SEC-PD021-0103" class="chunk sec depth-3" data-kind="section" data-key="section:f489c6c6798d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0103</span> 23.3 Governance Metrics</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f489c6c6798d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f489c6c6798d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f489c6c6798d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Number of data contributions with complete provenance.
+- Number of rejected IP-risk contributions.
+- Time to review contributions.
+- Number of public examples verified as non-code/non-proprietary.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0104" class="chunk sec depth-2" data-kind="section" data-key="section:32000b56515e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0104</span> 24. Risks and Mitigations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32000b56515e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32000b56515e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32000b56515e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Accidental inclusion of copyrighted standards content | High | Strict contribution policy, IP review, no populated code tables, provenance required |
+| Users mistake software for official code compliance | High | Clear disclaimers, blocking warnings, report language, no ASME branding |
+| Solver errors | High | Verification suite, validation manual, regression tests, peer review |
+| Unit conversion errors | High | Unit-aware data model and expression evaluator |
+| Nonlinear support convergence failures | Medium/High | Active-set diagnostics, convergence criteria, user warnings, validation cases |
+| Missing component data | Medium/High | Blocking warnings and source/provenance requirements |
+| Overreliance on generic defaults | High | No silent defaults for code-relevant data |
+| GUI complexity delays release | Medium | CLI-first solver MVP, then GUI layers |
+| Private data leakage in bug reports | High | Redaction tools and local-first design |
+| Open-source liability concerns | Medium/High | Disclaimers, engineering review requirements, legal review |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0105" class="chunk sec depth-2" data-kind="section" data-key="section:b7756bff83fe" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0105</span> 25. Open Questions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b7756bff83fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b7756bff83fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b7756bff83fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. What open-source license should be used: Apache-2.0, GPLv3, LGPL, MPL, or dual license?
+2. Should the core solver be written in Rust, C++, Python with compiled libraries, or another language?
+3. Should the GUI be Qt, web-based, or another cross-platform framework?
+4. What should the project be named to avoid implying ASME affiliation?
+5. Should a contributor license agreement or developer certificate of origin be required?
+6. What are acceptable public sources for any bundled dimensional data?
+7. Should private rule packs be encrypted by default?
+8. How should the project define engineering-beta versus production-ready?
+9. What tolerance bands should be used for each validation benchmark?
+10. How should commercial software comparison results be handled if users want to contribute them?</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0106" class="chunk sec depth-2" data-kind="section" data-key="section:c296ce22809f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0106</span> 26. Glossary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c296ce22809f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c296ce22809f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c296ce22809f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Allowable stress:** A user-supplied stress limit or stress-value table used by a rule pack.</p>
+<p>**Bend flexibility factor:** A user-supplied modifier used to represent increased flexibility of curved piping components relative to straight pipe behavior.</p>
+<p>**Code-neutral:** The software provides mechanics and workflow without embedding proprietary or edition-specific code requirements.</p>
+<p>**Global piping analysis:** A centerline/beam-style analysis of the piping system as a connected structural network.</p>
+<p>**Local analysis:** A detailed shell or solid analysis of a component or attachment, usually performed outside the global piping model.</p>
+<p>**Primitive load case:** A directly solved load case, such as weight, temperature, pressure metadata, wind, seismic, or imposed displacement.</p>
+<p>**Rule pack:** A user-defined set of required inputs, load combinations, stress expressions, allowables, and pass/fail checks.</p>
+<p>**SIF:** Stress intensification factor; a user-supplied local stress modifier applied during stress recovery or rule checking.</p>
+<p>**Source/provenance:** Metadata identifying where a value came from and whether it is verified, private, public, invented, licensed, or otherwise documented.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0107" class="chunk sec depth-2" data-kind="section" data-key="section:f95916cb5fd3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0107</span> 27. Appendix A: Example Project Data Model</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f95916cb5fd3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f95916cb5fd3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f95916cb5fd3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```yaml
+project:
+  name: &quot;Example OpenPipeStress Project&quot;
+  units: &quot;inch_lbf_F&quot;
+  coordinate_system:
+    vertical_axis: &quot;Y&quot;
+  design_basis:
+    description: &quot;Demonstration only; no code compliance claim&quot;
+    rule_pack: &quot;example_non_code_rule_pack&quot;</p>
+<p>materials:
+  - id: &quot;MAT-001&quot;
+    name: &quot;Example Carbon Steel&quot;
+    source: &quot;Invented demonstration material&quot;
+    density: &quot;0.283 lb/in^3&quot;
+    poisson_ratio: 0.30
+    elastic_modulus:
+      - temperature: &quot;70 degF&quot;
+        value: &quot;29e6 psi&quot;
+        source: &quot;invented example&quot;
+    thermal_expansion:
+      - from_temperature: &quot;70 degF&quot;
+        to_temperature: &quot;400 degF&quot;
+        value: &quot;user supplied&quot;
+        source: &quot;required user input&quot;</p>
+<p>sections:
+  - id: &quot;PIPE-001&quot;
+    label: &quot;User-defined pipe section&quot;
+    od: &quot;10.75 in&quot;
+    wall: &quot;0.365 in&quot;
+    source: &quot;user supplied&quot;</p>
+<p>nodes:
+  - id: &quot;N1&quot;
+    xyz: [&quot;0 in&quot;, &quot;0 in&quot;, &quot;0 in&quot;]
+  - id: &quot;N2&quot;
+    xyz: [&quot;120 in&quot;, &quot;0 in&quot;, &quot;0 in&quot;]</p>
+<p>elements:
+  - id: &quot;E1&quot;
+    type: &quot;straight_pipe&quot;
+    node_i: &quot;N1&quot;
+    node_j: &quot;N2&quot;
+    material: &quot;MAT-001&quot;
+    section: &quot;PIPE-001&quot;</p>
+<p>supports:
+  - id: &quot;S1&quot;
+    node: &quot;N1&quot;
+    type: &quot;anchor&quot;</p>
+<p>load_cases:
+  - id: &quot;W&quot;
+    type: &quot;weight&quot;
+  - id: &quot;T1&quot;
+    type: &quot;temperature&quot;
+    temperature: &quot;400 degF&quot;
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0108" class="chunk sec depth-2" data-kind="section" data-key="section:84a530e5aa79" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0108</span> 28. Appendix B: Example Report Notice</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84a530e5aa79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84a530e5aa79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84a530e5aa79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```text
+This calculation was performed using OpenPipeStress, an open-source piping flexibility and stress-analysis platform. The software performs mechanical analysis using open analytical methods. Code-specific requirements, material allowables, component dimensions, stress intensification factors, flexibility factors, and acceptance criteria were supplied by the user through private project data and rule packs. This software does not include ASME code text, ASME tables, ASME material allowable tables, or proprietary standards content and is not affiliated with or endorsed by ASME.
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD021-0109" class="chunk sec depth-2" data-kind="section" data-key="section:5c8e13f483c7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD021-0109</span> 29. Source Notes and External References</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c8e13f483c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c8e13f483c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c8e13f483c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD021-0110" class="chunk sec depth-3" data-kind="section" data-key="section:0b17cb434860" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0110</span> 29.1 Foundational Technical Reference</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b17cb434860" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b17cb434860" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b17cb434860" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- M. W. Kellogg Company, _Design of Piping Systems_, 1956. User-supplied scanned file: `MWK 1956.pdf`.
+</p></div></div></section>
+<section id="SEC-PD021-0111" class="chunk sec depth-3" data-kind="section" data-key="section:be21b8ae91c5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD021-0111</span> 29.2 Public ASME Reference Pages Used for Product Boundary Context</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be21b8ae91c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be21b8ae91c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be21b8ae91c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These pages are referenced only to define product-boundary context and copyright-sensitive areas. They are not used to reproduce code rules, tables, formulas, or proprietary standards content.</p>
+<p>- ASME, “Use of ASME Copyrighted Information”: https://www.asme.org/codes-standards/find-codes-standards/use-of-asme-copyrighted-information
+- ASME, “B31J - Stress Intensification Factors (i-Factors), Flexibility Factors (k-Factors), and Their Determination for Metallic Piping Components”: https://www.asme.org/codes-standards/find-codes-standards/b31j-stress-intensification-factors-flexibility-factors-determination-metallic-piping-components
+- ASME, “B31.1 - Power Piping”: https://www.asme.org/codes-standards/find-codes-standards/b31-1-power-piping
+- ASME, “B31.3 - Process Piping”: https://www.asme.org/codes-standards/find-codes-standards/b313-2018-process-piping</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD021";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

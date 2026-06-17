@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-CONTRIBUTING",
+  "source_prefix": "RT002",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-CONTRIBUTING_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/CONTRIBUTING.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:03+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-RT002-0001",
+      "line_start": 16,
+      "line_end": 141,
+      "target_section_ids": [
+        "SEC-RT002-0001",
+        "SEC-RT002-0002",
+        "SEC-RT002-0003",
+        "SEC-RT002-0004",
+        "SEC-RT002-0005",
+        "SEC-RT002-0006",
+        "SEC-RT002-0007"
+      ],
+      "estimated_md_tokens": 1120,
+      "contains_oversized_section": false
+    }
+  ]
+}

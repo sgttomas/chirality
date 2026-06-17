@@ -1,0 +1,470 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-07-06-ACCESSIBILITY-AND-USABILITY-BASELINE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED047-0001">Source Pack: SRC-DEL-DEL-07-06-ACCESSIBILITY-AND-USABILITY-B</a> <a href="#SEC-ED047-0002">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED047-0009">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED047-0018">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED047-0025">Component: execution/PKG-07_Graphical User Interface and Eng</a></nav>
+<main>
+<section id="SEC-ED047-0001" class="chunk sec depth-1" data-kind="section" data-key="section:871aa9dce6d4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED047-0001</span> Source Pack: SRC-DEL-DEL-07-06-ACCESSIBILITY-AND-USABILITY-BASELINE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:871aa9dce6d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:871aa9dce6d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:871aa9dce6d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED047-0002" class="chunk sec depth-2" data-kind="section" data-key="section:d3f24882ae1a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED047-0002</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d3f24882ae1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d3f24882ae1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d3f24882ae1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0003" class="chunk sec depth-3" data-kind="section" data-key="section:4ed64224f3b3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED047-0003</span> Datasheet: DEL-07-06 Accessibility and usability baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ed64224f3b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ed64224f3b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ed64224f3b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0004" class="chunk sec depth-4" data-kind="section" data-key="section:6e202e92e3fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e202e92e3fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e202e92e3fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e202e92e3fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-07-06 |
+| Deliverable name | Accessibility and usability baseline |
+| Package ID | PKG-07 |
+| Package name | Graphical User Interface and Engineering Workflow |
+| Type | UX_UI_SLICE |
+| Scope coverage | SOW-036 |
+| Objective support | OBJ-006 |
+| Context envelope | M |
+| Setup state | Draft setup artifact for later implementation review |
+</p></div></div></section>
+<section id="SEC-ED047-0005" class="chunk sec depth-4" data-kind="section" data-key="section:e974a57ba0f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e974a57ba0f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e974a57ba0f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e974a57ba0f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Baseline value |
+|---|---|
+| Work surface | GUI workflow and report-facing review surfaces, limited to setup documentation in this run |
+| Baseline topics | Keyboard navigation, labels/tooltips, contrast/readability, search/filter, copy/export, undo/redo discoverability, inline validation, warning separation |
+| Engineering review focus | Model creation, missing data, results, assumptions, diagnostics, provenance, and human-review boundaries remain visible |
+| Architecture basis | Tauri 2 desktop shell, TypeScript/React/Vite GUI, Three.js where viewport-facing, schema-first command/query/job/result envelopes |
+| Accessibility conformance target | TBD by human ruling; this setup artifact does not assert a WCAG level |
+| Report-facing accessibility target | TBD separately for report preview/export and generated report artifacts |
+| Implementation status | No GUI source, tests, schemas, manifests, or report templates changed in this deliverable |
+</p></div></div></section>
+<section id="SEC-ED047-0006" class="chunk sec depth-4" data-kind="section" data-key="section:33e59c813ec3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:33e59c813ec3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:33e59c813ec3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:33e59c813ec3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Handling |
+|---|---|
+| Missing solve-required data | Must remain visible as a `SOLVE_BLOCKING` diagnostic rather than being silently defaulted |
+| Missing rule-check data | Must remain visible as a `RULE_CHECK_BLOCKING` diagnostic distinct from solve blocking |
+| Weak or missing provenance | Must remain visible as provenance or assumption review information where engineering reliance may be affected |
+| Result or report review | Must preserve units, warnings, assumptions, provenance, and professional-boundary notices |
+| Accessibility evidence artifacts | Screenshots, fixtures, and exported examples must pass protected-content and private-data review before public use |
+| Protected standards or private project data | Must not be introduced into public examples, screenshots, tests, reports, or setup artifacts |
+| Compliance or certification language | Must not be claimed by the GUI, report, software, or agent output |
+</p></div></div></section>
+<section id="SEC-ED047-0007" class="chunk sec depth-4" data-kind="section" data-key="section:625d6431524e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:625d6431524e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:625d6431524e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:625d6431524e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup deliverable defines the future baseline checklist and verification hooks for accessibility and engineering-review usability. It does not select component libraries, implement UI behavior, create automated tests, choose final WCAG conformance, or change report templates.</p>
+<p>Future implementation should translate the checklist into GUI and report tests only after the relevant GUI framework choices and human accessibility target are accepted. Any implementation work remains outside this setup session.
+</p></div></div></section>
+<section id="SEC-ED047-0008" class="chunk sec depth-4" data-kind="section" data-key="section:3554d2260ef4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3554d2260ef4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3554d2260ef4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3554d2260ef4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source | Relevant source slice |
+|---|---|
+| `_CONTEXT.md` | DEL-07-06 identity, SOW-036, OBJ-006, architecture basis injection |
+| `docs/PRD.md` | Sections 6.5, 7, 8, 14, 15, 20, and 21 |
+| `docs/SPEC.md` | Sections 1, 7, and 8 |
+| `docs/CONTRACT.md` | OPS-K-DATA-1/2/3, OPS-K-UNIT-1, OPS-K-AUTH-1, OPS-K-IP-1/2/3, OPS-K-PRIV-1/2, OPS-K-AGENT-1..4 |
+| `docs/TYPES.md` | Analysis-status vocabulary, provenance labels, report/result boundary |
+| `docs/IP_AND_DATA_BOUNDARY.md` | Public/private data and report boundary |
+| `docs/VALIDATION_STRATEGY.md` | GUI workflow validation and report reproducibility validation |
+| `execution/_Decomposition/SOFTWARE_DECOMP.md` | PKG-07, DEL-07-06, AB-00-03, AB-00-05, AB-00-06, AB-00-08, OI-002 |
+| `docs/_Registers/Deliverables.csv` | DEL-07-06 register row |
+| `docs/_Registers/ScopeLedger.csv` | SOW-036 row |
+</p></div></div></section>
+<section id="SEC-ED047-0009" class="chunk sec depth-2" data-kind="section" data-key="section:34d6389c23ae" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED047-0009</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:34d6389c23ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:34d6389c23ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:34d6389c23ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0010" class="chunk sec depth-3" data-kind="section" data-key="section:3480b0c3b07a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED047-0010</span> Guidance: DEL-07-06 Accessibility and usability baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3480b0c3b07a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3480b0c3b07a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3480b0c3b07a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0011" class="chunk sec depth-4" data-kind="section" data-key="section:c7014d27dc3f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7014d27dc3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7014d27dc3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7014d27dc3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable frames accessibility and usability as engineering-review support, not as a standalone visual polish task. The baseline should help a user navigate major GUI panels, find missing inputs, understand warnings, review results, and inspect assumptions without hiding the project boundaries defined by OpenPipeStress governance.
+</p></div></div></section>
+<section id="SEC-ED047-0012" class="chunk sec depth-4" data-kind="section" data-key="section:0d2f5aeb0846" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0d2f5aeb0846" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0d2f5aeb0846" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0d2f5aeb0846" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Accessibility supports auditability: keyboard paths, readable statuses, copy/export, and clear labels help reviewers inspect the model and evidence.
+- Missing data remains visible. The GUI must not hide or silently repair missing solve-required values, rule-check inputs, weak provenance, or assumptions.
+- Warning classes should stay distinct. Solve readiness, rule-check readiness, provenance, assumptions, nonlinear uncertainty, and IP boundary warnings have different engineering meanings.
+- Units and provenance are part of readability. A readable table that omits units or source status is not adequate for engineering review.
+- Accessibility conformance is not finalized here. The exact WCAG or other target remains `TBD` until human ruling.
+- Public fixtures and report examples must remain protected-data-free and private-data-free.
+- The software may support review; it does not certify, approve, seal, authenticate, or declare engineering code compliance.
+</p></div></div></section>
+<section id="SEC-ED047-0013" class="chunk sec depth-4" data-kind="section" data-key="section:8dcc6bf21020" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8dcc6bf21020" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8dcc6bf21020" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8dcc6bf21020" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Keyboard navigation should cover primary work surfaces before detailed shortcuts are optimized. Major panels include the model tree, property inspector, editor surfaces, solver/diagnostic surfaces, results browser, and report preview/export paths named in PRD section 14 and PRD section 21.</p>
+<p>Contrast/readability should be evaluated against engineering review content, not only decorative UI elements. Result color maps, warning badges, units, provenance labels, and status text are high-risk because they affect interpretation of the model and results.</p>
+<p>Search/filter and copy/export matter because engineering models can grow large. These functions should preserve context such as object identity, units, warning class, and source/provenance notes.</p>
+<p>Undo/redo needs a review-aware boundary. It should help users recover reversible modeling edits while preserving diagnostics and not implying that solved or checked states remain valid after content changes.</p>
+<p>Reports are in scope only as report-facing review surfaces and output expectations. This deliverable does not edit report templates, but it preserves the need for readable warnings, assumptions, units, provenance, and professional-boundary notices.</p>
+<p>The target decision is a human project-authority decision, not a TASK inference. Until that decision exists, implementation work should use the qualitative baseline in PRD section 21 and mark measurable conformance claims as `TBD`.
+</p></div></div></section>
+<section id="SEC-ED047-0014" class="chunk sec depth-4" data-kind="section" data-key="section:0b7e5d40c988" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b7e5d40c988" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b7e5d40c988" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b7e5d40c988" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Decision area | Setup guidance |
+|---|---|
+| Qualitative baseline vs. formal target | Use the qualitative PRD baseline now; record the formal target as `TBD` until a human decision. |
+| Visual density vs. readability | Engineering review surfaces may be dense, but units, warning classes, and object identity must remain legible. |
+| Color maps vs. status clarity | Color can help but must not be the only signal for result state, warning class, or rule-check status. |
+| Keyboard workflow vs. shortcut breadth | Establish reliable navigation and focus order before broad shortcut catalogs. |
+| Report preview vs. report template design | Preserve report accessibility requirements without changing report templates in this setup deliverable. |
+</p></div></div></section>
+<section id="SEC-ED047-0015" class="chunk sec depth-4" data-kind="section" data-key="section:5781ac5780de" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5781ac5780de" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5781ac5780de" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5781ac5780de" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- A keyboard user can move from the model tree to the property inspector, inspect a selected component, see that a required rule-pack input is missing, and reach the diagnostic details without using a mouse.
+- A result table copy/export action preserves the quantity name, object identifier, unit, result status, and relevant warning class.
+- A stress-ratio visualization uses color plus a textual/status cue so review does not depend on color alone.
+- A public screenshot fixture uses invented or neutral data and does not expose protected standards content, proprietary values, or private project data.
+</p></div></div></section>
+<section id="SEC-ED047-0016" class="chunk sec depth-4" data-kind="section" data-key="section:99099e33a746" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0016</span> Pass 3 Source Rereads</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:99099e33a746" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:99099e33a746" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:99099e33a746" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The semantic lensing items were treated as candidate improvements only. Enrichments above were checked against `_SEMANTIC_LENSING.md` items B-001 and E-001, `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` section 1, `docs/DIRECTIVE.md` section 2.2, and `docs/TYPES.md` section 4.
+</p></div></div></section>
+<section id="SEC-ED047-0017" class="chunk sec depth-4" data-kind="section" data-key="section:c950dc0f80aa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c950dc0f80aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c950dc0f80aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c950dc0f80aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| DEL-07-06-CF-001 | Baseline accessibility is in scope, but the detailed WCAG target is unresolved. | `docs/_Registers/ScopeLedger.csv` SOW-036 | `execution/_Decomposition/SOFTWARE_DECOMP.md` OI-002 and DEL-07-06 note | Specification Standards and Verification; Guidance Principles | Keep conformance target as `TBD`; allow only qualitative setup requirements until human ruling. | TBD |
+</p></div></div></section>
+<section id="SEC-ED047-0018" class="chunk sec depth-2" data-kind="section" data-key="section:7db990ddcc01" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED047-0018</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7db990ddcc01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7db990ddcc01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7db990ddcc01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0019" class="chunk sec depth-3" data-kind="section" data-key="section:c85b8b0e10ae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED047-0019</span> Procedure: DEL-07-06 Accessibility and usability baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c85b8b0e10ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c85b8b0e10ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c85b8b0e10ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0020" class="chunk sec depth-4" data-kind="section" data-key="section:31953911fa57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31953911fa57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31953911fa57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31953911fa57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the setup procedure for producing and later using the accessibility and usability baseline for engineering-review GUI and report-facing workflows.
+</p></div></div></section>
+<section id="SEC-ED047-0021" class="chunk sec depth-4" data-kind="section" data-key="section:35445d038c4c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35445d038c4c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35445d038c4c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35445d038c4c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Sealed DEL-07-06 context with write scope limited to this deliverable folder.
+- Register scope: SOW-036 and OBJ-006.
+- Applicable invariants: OPS-K-DATA-1/2/3, OPS-K-UNIT-1, OPS-K-AUTH-1, OPS-K-IP-1/2/3, OPS-K-PRIV, OPS-K-AGENT-1..4.
+- Architecture basis: AB-00-03, AB-00-05, AB-00-06, AB-00-08 where relevant to GUI commands, state, diagnostics, result envelopes, and tests.
+- Human ruling remains required for the final accessibility conformance target.
+</p></div></div></section>
+<section id="SEC-ED047-0022" class="chunk sec depth-4" data-kind="section" data-key="section:d13fa2a44c8b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d13fa2a44c8b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d13fa2a44c8b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d13fa2a44c8b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the work is setup/document production only and does not edit GUI source, tests, schemas, manifests, package files, or repo-level docs.
+2. Read the deliverable context, registers, contract, decomposition, and relevant product/specification source slices.
+3. Record the accessibility/usability baseline topics from PRD section 21: keyboard navigation, icon labels/tooltips, high-contrast result visualization, search/filter, copy/export, undo/redo, project templates, inline validation, and solve-vs-code-check warning separation.
+4. Map baseline topics to engineering review needs from OBJ-006: model creation, missing data, results, and assumptions must be visible.
+5. Preserve diagnostic class boundaries from SPEC section 7 and AB-00-06.
+6. Mark exact WCAG or equivalent conformance target as `TBD` pending human decision, including whether the target applies to desktop GUI, report preview/export, generated report files, or separate surfaces.
+7. Define verification hooks for future GUI workflow validation, report reproducibility validation, protected-content review, private-data review, and product-claims review.
+8. Generate semantic and dependency setup artifacts without treating semantic matrices as engineering authority.
+9. Set `_STATUS.md` to `SEMANTIC_READY` only if the four documents, semantic matrix, lensing register, dependency register, and local validation checks pass.
+</p></div></div></section>
+<section id="SEC-ED047-0023" class="chunk sec depth-4" data-kind="section" data-key="section:33b32f5f243c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0023</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:33b32f5f243c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:33b32f5f243c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:33b32f5f243c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Four-document kit | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist with default sections. |
+| Scope control | No files outside the DEL-07-06 working folder are modified by this task. |
+| Accessibility target | Exact WCAG or equivalent target remains `TBD`; no final conformance claim is made. |
+| Data boundary | No protected standards content, proprietary values, or private project data are introduced. |
+| Warning boundary | Solve-blocking and rule-check-blocking warnings remain distinct in future verification hooks. |
+| Fixture boundary | Future screenshots, public examples, and exported report fixtures are checked for protected standards content and private project data. |
+| Professional boundary | No output claims certification, code compliance, sealing, approval, or professional reliance. |
+| Dependency register | `Dependencies.csv` validates against v3.1 schema. |</p>
+<p>Pass 3 lensing source rereads: `_SEMANTIC_LENSING.md` items X-001 and X-002 were checked against `docs/SPEC.md` section 7, `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-06, `docs/IP_AND_DATA_BOUNDARY.md` section 3, and this procedure&#x27;s verification table before this enrichment.
+</p></div></div></section>
+<section id="SEC-ED047-0024" class="chunk sec depth-4" data-kind="section" data-key="section:6a9944622ebf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0024</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a9944622ebf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a9944622ebf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a9944622ebf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`
+- `_STATUS.md`
+</p></div></div></section>
+<section id="SEC-ED047-0025" class="chunk sec depth-2" data-kind="section" data-key="section:e128951bbca1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED047-0025</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e128951bbca1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e128951bbca1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e128951bbca1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0026" class="chunk sec depth-3" data-kind="section" data-key="section:a401072e54a4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED047-0026</span> Specification: DEL-07-06 Accessibility and usability baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a401072e54a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a401072e54a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a401072e54a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED047-0027" class="chunk sec depth-4" data-kind="section" data-key="section:93cfb0680ce4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0027</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93cfb0680ce4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93cfb0680ce4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93cfb0680ce4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies setup evidence for a future accessibility and engineering-review usability baseline for the OpenPipeStress GUI and report-facing review surfaces. It covers baseline keyboard access, labels/tooltips, contrast/readability, large-model navigation, result table copy/export, undo/redo discoverability, inline validation messages, warning separation, and visibility of assumptions needed by engineering reviewers.</p>
+<p>This setup pass does not implement UI behavior, edit GUI source, edit tests, edit schemas, edit package manifests, select a final accessibility standard, assert a WCAG conformance target, alter report templates, or claim professional engineering approval or code compliance.
+</p></div></div></section>
+<section id="SEC-ED047-0028" class="chunk sec depth-4" data-kind="section" data-key="section:4f7790af48e6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f7790af48e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f7790af48e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f7790af48e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement | Source basis | Verification hook |
+|---|---|---|---|
+| DEL-07-06-RQ-001 | The baseline shall keep model creation, missing data, results, assumptions, provenance, and diagnostics visible enough for engineering review. | OBJ-006; PRD sections 6.5, 8, 14, 15; SPEC sections 7 and 8 | Future GUI workflow validation checks review visibility across create, solve, review, and report-preview surfaces. |
+| DEL-07-06-RQ-002 | Major GUI panels and review workflows shall support keyboard navigation paths. | PRD section 21 | Future keyboard navigation tests for major panels and modal/task flows after UI implementation is authorized. |
+| DEL-07-06-RQ-003 | Icon actions, engineering status indicators, and compact controls shall have clear labels or tooltips. | PRD section 21 | Future UI tests or accessibility-tree checks for accessible names and tooltips. |
+| DEL-07-06-RQ-004 | Result visualization and review surfaces shall include high-contrast/readability options sufficient for engineering review, with the exact measurable target marked `TBD` until human ruling. | PRD section 21; SOW-036; OI-002 | Future visual/a11y tests after the human accessibility target and component stack are selected. |
+| DEL-07-06-RQ-005 | Large model-tree and result-review surfaces shall support search/filter and copy/export paths where PRD section 21 identifies them. | PRD section 21; PRD section 14 | Future tests for searchable/filterable model trees and copy/export behavior from result tables. |
+| DEL-07-06-RQ-006 | Inline validation messages shall distinguish solve-blocking, rule-check-blocking, provenance, assumption, nonlinear, and IP-boundary warning classes where applicable. | SPEC section 7; AB-00-06 | Future tests assert diagnostic class display and no collapse of solve warnings into code-check warnings. |
+| DEL-07-06-RQ-007 | Unit-bearing values, result quantities, and report-facing data shall display units and preserve unit-safety context. | OPS-K-UNIT-1; PRD section 6.6; SPEC section 8 | Future UI/report checks verify units remain visible in fields, tables, exports, and report previews. |
+| DEL-07-06-RQ-008 | Undo/redo affordances shall apply only to reversible model edits and shall preserve diagnostics when solve readiness changes. | PRD section 21; AB-00-05 | Future interaction tests verify undo/redo state and diagnostic refresh after reversible edits. |
+| DEL-07-06-RQ-009 | Public GUI fixtures, screenshots, report examples, and checklist examples shall not include protected standards content, proprietary values, private project data, or copied commercial examples. | OPS-K-IP-1/2/3; OPS-K-PRIV; IP_AND_DATA_BOUNDARY sections 2, 3, and 7 | Protected-content/provenance review for public fixtures and templates. |
+| DEL-07-06-RQ-010 | GUI and report-facing language shall not claim certification, sealing, approval, authentication, or automatic engineering code compliance. | OPS-K-AUTH-1; TYPES section 4; PRD sections 8.4 and 15 | Product-claims review and future text snapshot tests for prohibited status/language. |
+</p></div></div></section>
+<section id="SEC-ED047-0029" class="chunk sec depth-4" data-kind="section" data-key="section:11a535479688" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0029</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11a535479688" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11a535479688" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11a535479688" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No final accessibility conformance target is selected by this setup deliverable. `WCAG target TBD` remains the governing state until the human project authority records a target and its applicability to desktop GUI, report preview/export, and generated report artifacts. The decision record should identify whether the target applies equally to interactive desktop workflows, report preview/export surfaces, and generated report files, or whether each surface has a separate target.</p>
+<p>Protected standards text, protected tables, proprietary engineering values, and private project content are not available or needed for this baseline. Clause-level requirements are `TBD` unless later supplied from redistributable sources or a human-approved policy.
+</p></div></div></section>
+<section id="SEC-ED047-0030" class="chunk sec depth-4" data-kind="section" data-key="section:4a2714f58f9e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a2714f58f9e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a2714f58f9e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a2714f58f9e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification area | Minimum setup expectation |
+|---|---|
+| Keyboard access | Future tests cover traversal of major panels, dialogs, and review workflows. |
+| Labels/tooltips | Future checks confirm icon controls and status indicators have accessible names or equivalent labels. |
+| Contrast/readability | Future checks use the human-selected target; until then, review notes remain `TBD` rather than claiming conformance. |
+| Warning separation | Future tests confirm `SOLVE_BLOCKING`, `RULE_CHECK_BLOCKING`, `PROVENANCE_WARNING`, `ASSUMPTION_WARNING`, `NONLINEAR_WARNING`, and `IP_BOUNDARY_WARNING` remain distinguishable. |
+| Engineering review workflow | Future validation walks through model creation, missing-data review, result review, assumptions, and report preview/export. |
+| Unit/provenance visibility | Future UI/report checks confirm unit labels, source/provenance notes, and private/public status remain visible where relevant. |
+| Protected content and privacy | Public fixtures, screenshots, reports, and examples pass protected-content and private-data review. |
+| Professional boundary | Text, diagnostics, statuses, and reports do not use automatic `CODE_COMPLIANT` language or professional approval claims. |</p>
+<p>Pass 3 lensing source rereads: `_SEMANTIC_LENSING.md` items A-001, A-002, F-001, F-002, F-003, and D-001 were checked against `docs/PRD.md` section 21, `docs/CONTRACT.md` OPS-K-AUTH-1, `docs/TYPES.md` section 4, `docs/_Registers/ScopeLedger.csv` SOW-036, and `execution/_Decomposition/SOFTWARE_DECOMP.md` OBJ-006 before this enrichment.
+</p></div></div></section>
+<section id="SEC-ED047-0031" class="chunk sec depth-4" data-kind="section" data-key="section:df87a6c7775b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0031</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df87a6c7775b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df87a6c7775b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df87a6c7775b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Expected future artifacts, when implementation is separately authorized, are:</p>
+<p>- accessibility checklist;
+- UI fixes;
+- tests.</p>
+<p>Exact checklist format, target accessibility standard, automated a11y tooling, component library, state library, test filenames, screenshot policy, and report accessibility target are `TBD`.
+</p></div></div></section>
+<section id="SEC-ED047-0032" class="chunk sec depth-4" data-kind="section" data-key="section:cd2623c83e30" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED047-0032</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd2623c83e30" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd2623c83e30" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd2623c83e30" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| DEL-07-06-CF-001 | SOW-036 requires baseline accessibility/usability, but the detailed WCAG target is explicitly TBD. | `ScopeLedger.csv` SOW-036 notes | `Specification.md#Standards` | Requirements, Standards, Verification | Keep baseline requirements qualitative and defer measurable conformance target to human ruling. | TBD |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED047";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,331 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-ARCHITECTURE-ANALYSIS-STATUS-SEMANTICS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>8</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD005-0001">Analysis Status Semantics</a> <a href="#SEC-PD005-0002">Authority Boundary</a> <a href="#SEC-PD005-0003">Usage Rules</a> <a href="#SEC-PD005-0004">Human Acceptance Records</a> <a href="#SEC-PD005-0005">Result Envelope Requirements</a> <a href="#SEC-PD005-0006">Transition Pattern</a> <a href="#SEC-PD005-0007">Protected Data Boundary</a> <a href="#SEC-PD005-0008">Remaining TBDs</a></nav>
+<main>
+<section id="SEC-PD005-0001" class="chunk sec depth-1" data-kind="section" data-key="section:195d9299a695" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD005-0001</span> Analysis Status Semantics</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:195d9299a695" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:195d9299a695" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:195d9299a695" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines the analysis-status boundary for OpenPipeStress result envelopes. The companion schema is `schemas/analysis_status.schema.yaml`, written as strict JSON syntax so it can be parsed without a YAML dependency.
+</p></div></div></section>
+<section id="SEC-PD005-0002" class="chunk sec depth-2" data-kind="section" data-key="section:db0285d18d44" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0002</span> Authority Boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db0285d18d44" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db0285d18d44" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db0285d18d44" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Analysis statuses describe what the software has computed or found. They do not claim code compliance, certification, sealing, approval, authentication, or professional reliance.</p>
+<p>The software may emit:</p>
+<p>- `MODEL_INCOMPLETE` when solve-required physical inputs are missing.
+- `MECHANICS_SOLVED` when the numerical mechanics solve completed.
+- `RULE_INPUTS_INCOMPLETE` when a model may be solved but rule-pack-required values are missing.
+- `USER_RULE_CHECKED` when a user-defined rule pack has evaluated the result, including checked outcomes with no reported rule failures.
+- `USER_RULE_FAILED` when a user-defined rule pack produced a failing result.
+- `HUMAN_REVIEW_REQUIRED` because professional use always requires competent human review.</p>
+<p>The software must not emit `HUMAN_APPROVED_FOR_PROJECT` as an automatic status. That value is reserved for an external human acceptance record bound to the exact model, result, rule-pack, and report hashes reviewed by the human.
+</p></div></div></section>
+<section id="SEC-PD005-0003" class="chunk sec depth-2" data-kind="section" data-key="section:903d2d00ab3e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0003</span> Usage Rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:903d2d00ab3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:903d2d00ab3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:903d2d00ab3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`MODEL_INCOMPLETE` blocks mechanics solving for the affected subject. It is a finding about missing physical data, not an instruction to invent defaults.</p>
+<p>`MECHANICS_SOLVED` means displacements, reactions, forces, moments, stresses, or related open-mechanics quantities were computed for a specific model snapshot. It does not mean the model has all user rule-pack inputs.</p>
+<p>`RULE_INPUTS_INCOMPLETE` may coexist with `MECHANICS_SOLVED`. It means the rule-pack evaluator lacks required user-supplied code data, owner data, provenance, or private project inputs.</p>
+<p>`USER_RULE_CHECKED` means a user-defined rule pack ran against the available result. It is a software computation using user data and rule definitions, not a professional code-compliance statement.</p>
+<p>OpenPipeStress does not currently define or emit `USER_RULE_PASSED`. A positive user-rule outcome is represented as `USER_RULE_CHECKED` plus `rule_check_details`, such as rule-pack references, evaluation evidence, and a no-failures-reported detail. Adding a separate passed status requires a later human ruling.</p>
+<p>`USER_RULE_FAILED` means a user-defined rule pack returned at least one failing check. The record should preserve rule-pack identity, version, checksum, diagnostics, and affected result references without embedding protected standards text or private rule values in public artifacts.</p>
+<p>`HUMAN_REVIEW_REQUIRED` is expected on reportable result envelopes. Reports and exports must preserve the professional boundary notice.
+</p></div></div></section>
+<section id="SEC-PD005-0004" class="chunk sec depth-2" data-kind="section" data-key="section:47378c60adb6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0004</span> Human Acceptance Records</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47378c60adb6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47378c60adb6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47378c60adb6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Human acceptance is represented separately from `software_status`. A human acceptance record may reference `HUMAN_APPROVED_FOR_PROJECT`, but only as an external record with:</p>
+<p>- a human actor;
+- a record timestamp;
+- model/result/rule/report references where applicable;
+- hashes for the reviewed payloads;
+- a scope notice describing what was accepted.</p>
+<p>If review occurred but project acceptance was not granted, the record uses an explicit non-accepted outcome and does not carry `HUMAN_APPROVED_FOR_PROJECT`. Software, agents, and external systems may write supporting status records, but they cannot be the accepting actor for a `HUMAN_APPROVED_FOR_PROJECT` record.</p>
+<p>Human acceptance does not survive content changes. If a bound model, rule pack, result, or report hash changes, the prior human record no longer applies to the changed content.
+</p></div></div></section>
+<section id="SEC-PD005-0005" class="chunk sec depth-2" data-kind="section" data-key="section:04df024e46ea" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0005</span> Result Envelope Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:04df024e46ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:04df024e46ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:04df024e46ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every status envelope carries:</p>
+<p>- an analysis subject reference;
+- one primary automatic software status and a set of automatic software statuses;
+- rule-check details whenever `USER_RULE_CHECKED` is present;
+- a status stage and basis;
+- source and actor metadata;
+- at least one hash for the payload or evidence basis;
+- optional references to diagnostics, rule packs, reports, or human acceptance records;
+- professional-boundary fields that are fixed false for software compliance, certification, sealing, approval, and authentication claims.</p>
+<p>The automatic status set intentionally excludes `HUMAN_APPROVED_FOR_PROJECT`. A result can be mechanically solved, rule checked, and still require human review. A human acceptance record can be attached later only as a separate hash-bound record.</p>
+<p>Automatic status fields must not contain code-compliance, certification, sealing, approval, authentication, or professional-acceptance claims. Those boundaries are recorded separately as fixed-false professional-boundary fields and, where applicable, external hash-bound human records.
+</p></div></div></section>
+<section id="SEC-PD005-0006" class="chunk sec depth-2" data-kind="section" data-key="section:dcd47327aa78" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0006</span> Transition Pattern</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dcd47327aa78" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dcd47327aa78" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dcd47327aa78" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A typical status progression is:</p>
+<p>1. Model validation emits `MODEL_INCOMPLETE` until solve-required data is present.
+2. Solver/stress recovery emits `MECHANICS_SOLVED` after successful mechanics computation.
+3. Rule evaluation emits `RULE_INPUTS_INCOMPLETE`, `USER_RULE_CHECKED`, or `USER_RULE_FAILED` depending on user rule-pack inputs and check outcomes. A checked outcome with no reported failures stays `USER_RULE_CHECKED` with details.
+4. Report/export surfaces `HUMAN_REVIEW_REQUIRED`.
+5. A separate human workflow may attach a hash-bound `HUMAN_APPROVED_FOR_PROJECT` record.</p>
+<p>These are usage semantics, not a mandatory lifecycle state machine. A result envelope may contain multiple software statuses when they truthfully apply to the same subject and snapshot.
+</p></div></div></section>
+<section id="SEC-PD005-0007" class="chunk sec depth-2" data-kind="section" data-key="section:b85bb6b80929" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0007</span> Protected Data Boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b85bb6b80929" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b85bb6b80929" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b85bb6b80929" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Status records may identify rule packs, reports, sources, diagnostics, and hashes. Public schemas, examples, and report templates must not embed protected standards text, protected tables, copied code formulas, proprietary vendor data, private owner requirements, private rule values, or professional approval claims.
+</p></div></div></section>
+<section id="SEC-PD005-0008" class="chunk sec depth-2" data-kind="section" data-key="section:4caf6dd49700" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD005-0008</span> Remaining TBDs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4caf6dd49700" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4caf6dd49700" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4caf6dd49700" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Exact integration points between this schema and the canonical model/result schema.
+- Exact canonicalization edge cases for non-JSON payload hashes.
+- Human acceptance workflow ownership, storage location, and UI presentation.
+- Any future change from `USER_RULE_CHECKED` details to a separate positive rule-status token requires a human ruling.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD005";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,387 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>9</b></span>
+  <span class="stat">Atoms: <b>41</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD002-0001">ADR-0001: Operation-seam engine unification — wasm32 `operat</a> <a href="#SEC-PD002-0002">Context</a> <a href="#SEC-PD002-0003">Decision</a> <a href="#SEC-PD002-0004">Alternatives Considered</a> <a href="#SEC-PD002-0005">Consequences</a> <a href="#SEC-PD002-0006">Affected Packages</a> <a href="#SEC-PD002-0007">Reconsideration Triggers</a> <a href="#SEC-PD002-0008">Source References</a> <a href="#SEC-PD002-0009">Boundary Note</a></nav>
+<main>
+<section id="SEC-PD002-0001" class="chunk sec depth-1" data-kind="section" data-key="section:70a4a99ef5e6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD002-0001</span> ADR-0001: Operation-seam engine unification — wasm32 `operation_applier` as the sole browser-mode engine</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70a4a99ef5e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70a4a99ef5e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70a4a99ef5e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Status | accepted |
+| Date | 2026-06-11 |
+| Human authority | Human project authority ruling, 2026-06-11, accepting `plans/PLAN_2026-06-11_operation_seam_unification.md` §2 as proposed (ruling record transcribed verbatim in that section; D-13 in `execution/_Coordination/_DECISIONS/_REGISTER.md`, state RULED) |
+| Decision log cross-reference | `DEC-020` in `execution/_Decomposition/SOFTWARE_DECOMP.md` §12 |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:596eb011fc90" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00001"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L1|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0001</span><span class="inout">IN</span><span class="stmt">ADR-0001 records the operation-seam engine unification: the wasm32 build of operation_applier becomes the sole browser-mode engine.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:596eb011fc90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:596eb011fc90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:596eb011fc90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:616bded5be62" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00002"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L5|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0001</span><span class="inout">IN</span><span class="stmt">ADR-0001 status is accepted, dated 2026-06-11.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:616bded5be62" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:616bded5be62" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:616bded5be62" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:461d8ee16acb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00003"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L7|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0001</span><span class="inout">IN</span><span class="stmt">The decision rests on a human project authority ruling of 2026-06-11 accepting plans/PLAN_2026-06-11_operation_seam_unification.md §2 as proposed; recorded as D-13 (state RULED) in execution/_Coordination/_DECISIONS/_REGISTER.md.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:461d8ee16acb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:461d8ee16acb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:461d8ee16acb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9291d0e04425" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00004"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L8|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0001</span><span class="inout">IN</span><span class="stmt">The decision cross-references DEC-020 in execution/_Decomposition/SOFTWARE_DECOMP.md §12.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9291d0e04425" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9291d0e04425" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9291d0e04425" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0002" class="chunk sec depth-2" data-kind="section" data-key="section:672e69e171ad" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0002</span> Context</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:672e69e171ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:672e69e171ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:672e69e171ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The structured editor-operation seam — the enforcement point for
+no-silent-defaults, unit/dimension checks, before-state integrity, and
+professional-boundary receipts — was implemented twice
+(plan §1, FACT basis):</p>
+<p>- **Authoritative engine:** `core/model_operations/operation_applier/src/lib.rs`
+  (Rust, ~4,885 lines, 34 tests), invoked by the `validate_model_operation` /
+  `apply_model_operation` Tauri commands.
+- **Browser mirror:** `apps/desktop/src/services/operationService.ts`
+  (~2,280 lines, 17 tests), used whenever no Tauri backend exists — Vite dev
+  mode, all jsdom/Vitest edit-loop tests, the Playwright e2e harness, and the
+  agent in-browser smoke evidence that closed the 27 tranches of 2026-06-10/11.</p>
+<p>The mirror was a deliberate, code-level choice — its file header names the
+Rust crate as &quot;the contract reference&quot; — and it bought real value: the browser
+evidence loop (Vite dev, jsdom/Vitest, Playwright) and agent verification
+velocity. But no executable contract enforced alignment between the two
+engines (each suite tests only its own engine), and no ADR recorded the
+decision — the ADR surface DEL-00-01 anticipated did not exist in the worktree
+until this entry stood it up.</p>
+<p>Why this was resolved now rather than later: two scheduled work fronts
+multiply the duplication — the R2 from-scratch authoring set (~4–6 new
+operation kinds) and Phase B unit-aware fields (conversion/tolerance logic per
+`DEC-018` — numerically sensitive code that must never be hand-maintained
+twice). The failure mode if unresolved: environment-dependent validation
+outcomes and environment-dependent canonical model hashes — an invisible
+fracture of the project&#x27;s central no-silent-defaults and hash-evidence
+guarantees.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:c040ec4aaf1f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00005"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L12|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The structured editor-operation seam is the enforcement point for no-silent-defaults, unit/dimension checks, before-state integrity, and professional-boundary receipts.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c040ec4aaf1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c040ec4aaf1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c040ec4aaf1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:194626cb66ad" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00006"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L14|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The operation seam was implemented twice (plan §1, FACT basis).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:194626cb66ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:194626cb66ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:194626cb66ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:521dfef4d302" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00007"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L17|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The authoritative engine is core/model_operations/operation_applier/src/lib.rs (Rust, ~4,885 lines, 34 tests), invoked by the validate_model_operation and apply_model_operation Tauri commands.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:521dfef4d302" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:521dfef4d302" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:521dfef4d302" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:66e59628fc11" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00008"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L20|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The browser mirror is apps/desktop/src/services/operationService.ts (~2,280 lines, 17 tests), used whenever no Tauri backend exists.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:66e59628fc11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:66e59628fc11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:66e59628fc11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1307937b3436" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00009"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L21|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The browser mirror is used in Vite dev mode, all jsdom/Vitest edit-loop tests, the Playwright e2e harness, and agent in-browser smoke evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1307937b3436" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1307937b3436" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1307937b3436" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:a1f6523aefda" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00010"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L25|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The mirror was a deliberate code-level choice; its file header names the Rust crate as the contract reference.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:a1f6523aefda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:a1f6523aefda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:a1f6523aefda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:964fbb66bd40" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00011"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L26|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The mirror bought real value: the browser evidence loop (Vite dev, jsdom/Vitest, Playwright) and agent verification velocity.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:964fbb66bd40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:964fbb66bd40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:964fbb66bd40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5a16c129dae9" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00012"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L28|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">No executable contract enforced alignment between the two engines; each suite tests only its own engine.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5a16c129dae9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5a16c129dae9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5a16c129dae9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6e0aee60e83c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00013"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L30|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">No ADR recorded the decision; the ADR surface DEL-00-01 anticipated did not exist in the worktree until this entry created it.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6e0aee60e83c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6e0aee60e83c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6e0aee60e83c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e95193b822d7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00014"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L33|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">Two scheduled work fronts multiply the duplication: the R2 from-scratch authoring set (~4-6 new operation kinds) and Phase B unit-aware fields (conversion/tolerance logic per DEC-018).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e95193b822d7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e95193b822d7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e95193b822d7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d64f7c41ccfa" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00015"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L37|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0002</span><span class="inout">IN</span><span class="stmt">The failure mode if unresolved is environment-dependent validation outcomes and environment-dependent canonical model hashes, fracturing the no-silent-defaults and hash-evidence guarantees.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d64f7c41ccfa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d64f7c41ccfa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d64f7c41ccfa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0003" class="chunk sec depth-2" data-kind="section" data-key="section:3903cb47bc1f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0003</span> Decision</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3903cb47bc1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3903cb47bc1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3903cb47bc1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per the human ruling of 2026-06-11 (plan §2, accepted as proposed):</p>
+<p>- Adopt the **wasm32 build of `core/model_operations/operation_applier`** as
+  the **sole browser-mode operation engine** in every environment without a
+  Tauri backend.
+- **Retire the TypeScript mirror&#x27;s validation/apply logic** at plan tranche T4
+  — deletion by replacement, not amputation: the Rust crate compiled to
+  WebAssembly becomes the engine everywhere before the mirror logic is
+  removed.
+- TypeScript retains only what must remain TypeScript: the **React UI, intent
+  builders, and a thin routing adapter** (Tauri present → `invoke`
+  authoritative path, unchanged; otherwise → the wasm module).
+- The browser evidence loop (Vitest, Playwright, agent smoke) is preserved
+  throughout the transition and afterward exercises the shipped engine rather
+  than a copy.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:f98fdaf561be" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00016"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L46|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0003</span><span class="inout">IN</span><span class="stmt">Decision: adopt the wasm32 build of core/model_operations/operation_applier as the sole browser-mode operation engine in every environment without a Tauri backend.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f98fdaf561be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f98fdaf561be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f98fdaf561be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9d58ea8a375b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00017"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L49|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0003</span><span class="inout">IN</span><span class="stmt">Decision: retire the TypeScript mirror&#x27;s validation/apply logic at plan tranche T4 by deletion-by-replacement — the Rust crate compiled to WebAssembly becomes the engine everywhere before the mirror logic is removed.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9d58ea8a375b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9d58ea8a375b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9d58ea8a375b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c8759690df66" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00018"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L53|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0003</span><span class="inout">IN</span><span class="stmt">Decision: TypeScript retains only the React UI, intent builders, and a thin routing adapter (Tauri present -&gt; invoke authoritative path unchanged; otherwise -&gt; the wasm module).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c8759690df66" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c8759690df66" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c8759690df66" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ec57f9e7b346" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00019"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L57|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0003</span><span class="inout">IN</span><span class="stmt">Decision: the browser evidence loop (Vitest, Playwright, agent smoke) is preserved throughout the transition and afterward exercises the shipped engine rather than a copy.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ec57f9e7b346" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ec57f9e7b346" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ec57f9e7b346" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0004" class="chunk sec depth-2" data-kind="section" data-key="section:7723f82785d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0004</span> Alternatives Considered</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7723f82785d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7723f82785d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7723f82785d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All presented to and declined by the human project authority in the
+2026-06-11 ruling (plan §1 and §2):</p>
+<p>1. **Keep dual engines plus a permanent cross-engine contract test** — safe
+   but inefficient as a steady state; Phase B unit-aware work compounds the
+   dual-maintenance cost.
+2. **Delete browser-mode editing outright** — guts the GUI test layer and the
+   agent verification loop; forces all evidence onto packaged-native
+   automation that does not exist and is weak on macOS.
+3. **Local Rust dev-sidecar over HTTP** — adds a process and a network surface
+   against the local-first/no-daemon posture.
+4. **Deferral until T1 contract-corpus evidence** — declined; the scheduled R2
+   and Phase B work fronts multiply the duplicated surface while the decision
+   waits (plan §1, &quot;why resolve now&quot;).
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:e28196dc22c9" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00020"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L62|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0004</span><span class="inout">IN</span><span class="stmt">All alternatives were presented to and declined by the human project authority in the 2026-06-11 ruling (plan §1 and §2).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e28196dc22c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e28196dc22c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e28196dc22c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:718242c5e4e6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00021"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0004</span><span class="inout">IN</span><span class="stmt">Declined alternative: keep dual engines plus a permanent cross-engine contract test — safe but inefficient as a steady state; Phase B unit-aware work compounds dual-maintenance cost.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:718242c5e4e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:718242c5e4e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:718242c5e4e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f0d5b92aed92" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00022"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L68|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0004</span><span class="inout">IN</span><span class="stmt">Declined alternative: delete browser-mode editing outright — guts the GUI test layer and agent verification loop, forcing evidence onto nonexistent packaged-native automation weak on macOS.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f0d5b92aed92" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f0d5b92aed92" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f0d5b92aed92" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f7e8ce55ceac" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00023"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L71|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0004</span><span class="inout">IN</span><span class="stmt">Declined alternative: a local Rust dev-sidecar over HTTP — adds a process and a network surface against the local-first/no-daemon posture.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f7e8ce55ceac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f7e8ce55ceac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f7e8ce55ceac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:3bcbb97507ff" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00024"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L73|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0004</span><span class="inout">IN</span><span class="stmt">Declined alternative: deferral until T1 contract-corpus evidence — declined because scheduled R2 and Phase B work fronts multiply the duplicated surface while the decision waits.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:3bcbb97507ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:3bcbb97507ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:3bcbb97507ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0005" class="chunk sec depth-2" data-kind="section" data-key="section:c266ac2c61bd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0005</span> Consequences</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c266ac2c61bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c266ac2c61bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c266ac2c61bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Traceable to plan §3 (T3/T4 scope) and §6:</p>
+<p>- **Toolchain prerequisite:** the `wasm32-unknown-unknown` Rust target and
+  wasm-bindgen tooling with **pinned versions** become build prerequisites.
+  Prerequisites are documented; build scripts fail explicitly when tooling is
+  absent — no silent fallback.
+- **A wasm build step enters the frontend loop:** an npm script produces the
+  wasm artifact for the desktop app; generated artifacts are not committed.
+- **Debugging posture:** browser-mode engine issues are debugged through the
+  engine&#x27;s structured diagnostics rather than by stepping through native
+  TypeScript engine logic.
+- **Bundle size / startup impact:** mitigated by lazy engine init; measured
+  against the existing ~577 kB index chunk and recorded in T4 evidence.
+- **Loading shim obligation:** an explicit diagnostic when the wasm asset is
+  absent; never a silent fallback.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:6448e6d6fc26" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00025"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L81|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0005</span><span class="inout">IN</span><span class="stmt">Consequence (toolchain prerequisite): the wasm32-unknown-unknown Rust target and wasm-bindgen tooling with pinned versions become build prerequisites; build scripts fail explicitly when tooling is absent — no silent fallback.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6448e6d6fc26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6448e6d6fc26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6448e6d6fc26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d3088381b369" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00026"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L85|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0005</span><span class="inout">IN</span><span class="stmt">Consequence: a wasm build step enters the frontend loop — an npm script produces the wasm artifact for the desktop app; generated artifacts are not committed.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d3088381b369" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d3088381b369" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d3088381b369" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e02ca1e2bf3f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00027"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L87|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0005</span><span class="inout">IN</span><span class="stmt">Consequence (debugging posture): browser-mode engine issues are debugged through the engine&#x27;s structured diagnostics rather than by stepping through native TypeScript engine logic.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e02ca1e2bf3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e02ca1e2bf3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e02ca1e2bf3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d9d73c43893c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00028"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L90|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0005</span><span class="inout">IN</span><span class="stmt">Consequence (bundle size/startup impact): mitigated by lazy engine init, measured against the existing ~577 kB index chunk and recorded in T4 evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d9d73c43893c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d9d73c43893c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d9d73c43893c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1205995a682e" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00029"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L92|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0005</span><span class="inout">IN</span><span class="stmt">Consequence (loading shim obligation): an explicit diagnostic when the wasm asset is absent; never a silent fallback.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1205995a682e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1205995a682e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1205995a682e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0006" class="chunk sec depth-2" data-kind="section" data-key="section:e288a29247dc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0006</span> Affected Packages</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e288a29247dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e288a29247dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e288a29247dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per the plan §3 write targets and run-record fan-out: PKG-16 (DEL-16-02,
+DEL-16-03), PKG-00 (DEL-00-01 — this surface; DEL-00-02; DEL-00-08), PKG-07
+(DEL-07-02), and PKG-10 (DEL-10-03, T1 rider only).
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:008c8f7c0cda" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00030"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L97|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0006</span><span class="inout">IN</span><span class="stmt">Affected packages (per plan §3 write targets and run-record fan-out): PKG-16 (DEL-16-02, DEL-16-03), PKG-00 (DEL-00-01, DEL-00-02, DEL-00-08), PKG-07 (DEL-07-02), and PKG-10 (DEL-10-03, T1 rider only).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:008c8f7c0cda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:008c8f7c0cda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:008c8f7c0cda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0007" class="chunk sec depth-2" data-kind="section" data-key="section:d3465bb211cb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0007</span> Reconsideration Triggers</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d3465bb211cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d3465bb211cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d3465bb211cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per plan §6 risks and stop rules:</p>
+<p>- **wasm loading proves intractable in the test environment** (Vitest/jsdom):
+  stop and escalate to human ruling. Reintroducing a TypeScript engine as a
+  workaround is not an authorized response — that would recreate the
+  divergence this decision removes.
+- **Material bundle-size or startup regression** beyond what lazy engine init
+  mitigates.
+- **Toolchain availability drift** — the wasm32 target or pinned bindgen
+  tooling becoming unavailable or unpinnable.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:63f24deec71b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00031"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L105|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0007</span><span class="inout">IN</span><span class="stmt">Reconsideration trigger: if wasm loading proves intractable in the test environment (Vitest/jsdom), stop and escalate to human ruling; reintroducing a TypeScript engine as a workaround is not authorized.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:63f24deec71b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:63f24deec71b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:63f24deec71b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:95cf0a0f7f54" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00032"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L109|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0007</span><span class="inout">IN</span><span class="stmt">Reconsideration trigger: material bundle-size or startup regression beyond what lazy engine init mitigates.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:95cf0a0f7f54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:95cf0a0f7f54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:95cf0a0f7f54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:024c396b8d04" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00033"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L111|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0007</span><span class="inout">IN</span><span class="stmt">Reconsideration trigger: toolchain availability drift — the wasm32 target or pinned bindgen tooling becoming unavailable or unpinnable.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:024c396b8d04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:024c396b8d04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:024c396b8d04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0008" class="chunk sec depth-2" data-kind="section" data-key="section:f3b67a3fb036" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0008</span> Source References</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f3b67a3fb036" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f3b67a3fb036" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f3b67a3fb036" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `plans/PLAN_2026-06-11_operation_seam_unification.md` §1 (problem and
+  alternatives), §2 (ruling record and transcription obligations), §3
+  (tranche scopes), §6 (risks and stop rules).
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` §12, row `DEC-020`
+  (transcribed ruling).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md`, row `D-13` (RULED).
+- `core/model_operations/operation_applier/src/lib.rs` and
+  `apps/desktop/src/services/operationService.ts` — the two engine
+  implementations as of the ruling date.
+- DEL-00-01 packet (`Datasheet.md`, `Specification.md`) — ADR surface
+  obligations REQ-01-01..REQ-01-05.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:2fc05077e46f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00034"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L116|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0008</span><span class="inout">IN</span><span class="stmt">Source reference: plans/PLAN_2026-06-11_operation_seam_unification.md §1 (problem and alternatives), §2 (ruling record and transcription obligations), §3 (tranche scopes), §6 (risks and stop rules).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2fc05077e46f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2fc05077e46f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2fc05077e46f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8b7e5b8cdd97" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00035"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L119|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0008</span><span class="inout">IN</span><span class="stmt">Source reference: execution/_Decomposition/SOFTWARE_DECOMP.md §12, row DEC-020 (transcribed ruling).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8b7e5b8cdd97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8b7e5b8cdd97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8b7e5b8cdd97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6f4dd9d49089" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00036"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L121|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0008</span><span class="inout">IN</span><span class="stmt">Source reference: execution/_Coordination/_DECISIONS/_REGISTER.md, row D-13 (RULED).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6f4dd9d49089" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6f4dd9d49089" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6f4dd9d49089" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:848a4f0652cb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00037"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L122|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0008</span><span class="inout">IN</span><span class="stmt">Source reference: core/model_operations/operation_applier/src/lib.rs and apps/desktop/src/services/operationService.ts — the two engine implementations as of the ruling date.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:848a4f0652cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:848a4f0652cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:848a4f0652cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:280f5c8965b3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00038"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L125|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0008</span><span class="inout">IN</span><span class="stmt">Source reference: DEL-00-01 packet (Datasheet.md, Specification.md) — ADR surface obligations REQ-01-01..REQ-01-05.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:280f5c8965b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:280f5c8965b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:280f5c8965b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD002-0009" class="chunk sec depth-2" data-kind="section" data-key="section:cafa8fa2009a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD002-0009</span> Boundary Note</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cafa8fa2009a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cafa8fa2009a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cafa8fa2009a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This ADR records a software development decision only. It is not a
+release-readiness, professional-approval, certification, sealing,
+authentication, or engineering-code-compliance claim. It contains no
+protected standards content and no proprietary data. Semantics of the
+operation seam are preserved — this decision changes *where* validation runs,
+never *what* it accepts (plan §5).</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:2650da15afb6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00039"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L130|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0009</span><span class="inout">IN</span><span class="stmt">Boundary note: this ADR records a software development decision only; it is not a release-readiness, professional-approval, certification, sealing, authentication, or engineering-code-compliance claim.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2650da15afb6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2650da15afb6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2650da15afb6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:fd798aa632fe" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00040"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L132|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0009</span><span class="inout">IN</span><span class="stmt">Boundary note: the ADR contains no protected standards content and no proprietary data.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:fd798aa632fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:fd798aa632fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:fd798aa632fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ec23fa85d611" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD002-00041"><span class="prov">@repo/docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md:L133|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-ARCHITECTURE-ADR-ADR-0001-OPERATION-SEAM-ENGINE-UNIFICATION.html#SEC-PD002-0009</span><span class="inout">IN</span><span class="stmt">Boundary note: semantics of the operation seam are preserved — the decision changes where validation runs, never what it accepts (plan §5).</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ec23fa85d611" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ec23fa85d611" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ec23fa85d611" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

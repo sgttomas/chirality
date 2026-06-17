@@ -1,0 +1,460 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>28</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED096-0001">Source Pack: SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AN</a> <a href="#SEC-ED096-0002">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED096-0009">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED096-0016">Component: execution/PKG-17_Export Format Interoperability/1</a> <a href="#SEC-ED096-0022">Component: execution/PKG-17_Export Format Interoperability/1</a></nav>
+<main>
+<section id="SEC-ED096-0001" class="chunk sec depth-1" data-kind="section" data-key="section:114df0abf6dd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED096-0001</span> Source Pack: SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:114df0abf6dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:114df0abf6dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:114df0abf6dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED096-0002" class="chunk sec depth-2" data-kind="section" data-key="section:63f6497f1dc8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED096-0002</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:63f6497f1dc8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:63f6497f1dc8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:63f6497f1dc8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0003" class="chunk sec depth-3" data-kind="section" data-key="section:f25fc9be0ea4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED096-0003</span> Datasheet: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f25fc9be0ea4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f25fc9be0ea4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f25fc9be0ea4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0004" class="chunk sec depth-4" data-kind="section" data-key="section:b7e0466fa808" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b7e0466fa808" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b7e0466fa808" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b7e0466fa808" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-17-04 |
+| Package | PKG-17 Export Format Interoperability |
+| Type | BACKEND_FEATURE_SLICE |
+| Source foundation | DEL-17-01 and DEL-17-02 |
+| Lifecycle role | First CAEPIPE-specific export profile/writer foundation deliverable |
+</p></div></div></section>
+<section id="SEC-ED096-0005" class="chunk sec depth-4" data-kind="section" data-key="section:8aefb489ff32" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0005</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8aefb489ff32" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8aefb489ff32" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8aefb489ff32" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-04 defines the document-level contract/design and first bounded implementation foundation for a CAEPIPE MBF export profile and deterministic writer. It is grounded in admitted public/official CAEPIPE MBF references, the DEL-17-01 source basis, and the DEL-17-02 export package/profile/loss-report contract.</p>
+<p>The implementation foundation emits a deliberately narrow invented smoke subset, a JSON package contract, a deterministic MBF text member, sidecar stable-ID mapping, diagnostics, and loss reports. It does not implement a parser, external execution harness, public API, GUI action, release claim, CAEPIPE compatibility claim, code-compliance claim, or professional-acceptance claim.
+</p></div></div></section>
+<section id="SEC-ED096-0006" class="chunk sec depth-4" data-kind="section" data-key="section:2f14b5ea0497" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0006</span> Source and Evidence Slots</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f14b5ea0497" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f14b5ea0497" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f14b5ea0497" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source slot | Required treatment |
+|---|---|
+| DEL-17-01 source basis | Carry CAEPIPE source findings, TBD register entries, and question-dossier gates into the target profile. |
+| DEL-17-02 export contract | Carry export profile, stable-ID map, manifest, and loss-report vocabulary into the writer contract. |
+| CAEPIPE public MBF import reference | Treat as evidence for MBF text input, keyword-ordered sections, and command-line behavior only; profile coverage remains source-gated. |
+| CAEPIPE public MBF export reference | Treat as evidence that CAEPIPE exports MBF model data and version-flavoured MBF output; OpenPipeStress support claims remain `TBD`. |
+| Implementation evidence | `core/handoff/caepipe_mbf/`, `schemas/caepipe_mbf_export.schema.json`, `fixtures/caepipe_mbf/invented/`, and `tests/test_caepipe_mbf_export_package.py` provide bounded foundation evidence. |
+</p></div></div></section>
+<section id="SEC-ED096-0007" class="chunk sec depth-4" data-kind="section" data-key="section:baf7932b685f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0007</span> Profile Concepts</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:baf7932b685f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:baf7932b685f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:baf7932b685f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Concept | Required treatment |
+|---|---|
+| Target family | CAEPIPE MBF profile. |
+| Target version basis | `TBD` until source-confirmed. |
+| Record-family subset | `TBD` until downstream source review and/or vendor clarification closes it. |
+| Profile-basis guardrail | The implementation foundation blocks blank or unsupported target-version and record-subset basis values; until source-confirmed closure exists, the profile must carry `TBD-17-01-001`, `TBD-17-01-002`, and `TBD-17-01-003`. |
+| Stable ID strategy | Direct MBF carrying remains `TBD`; the implementation foundation uses manifest-referenced sidecar mapping as the conservative default. |
+| Source basis trace | Each CAEPIPE-specific requirement must map to DEL-17-01, DEL-17-02, a public MBF source, or an explicit `TBD`. |
+| Source basis guardrail | The implementation foundation blocks caller-supplied profile source-basis refs that omit DEL-17-01, DEL-17-02, `CAEPIPE-IMPORT-MBF`, or `CAEPIPE-EXPORT-MBF`, and blocks `DEL-17-03` as CAEPIPE target/source authority. |
+| Loss reporting | Required for exported, omitted, approximated, delegated, unsupported, and TBD behavior. |
+| Unsupported-entity severity | Missing or malformed unsupported-entity evidence blocks the package; explicit unsupported behavior is warning-level by default unless separately marked blocking; `info` severity is not accepted for unsupported behavior. |
+| Pass-through options | May be target configuration only; not local code-checking logic. |
+</p></div></div></section>
+<section id="SEC-ED096-0008" class="chunk sec depth-4" data-kind="section" data-key="section:a45030ab8f9c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0008</span> Boundary Summary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a45030ab8f9c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a45030ab8f9c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a45030ab8f9c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No CAEPIPE executable, commercial example, proprietary model, or copied vendor fixture is added.
+- No reverse-engineered behavior or license-bypass workflow is introduced.
+- No protected standards values, material allowables, SIF/flexibility values, or owner criteria are introduced.
+- MBF export work remains a source-bounded foundation until a later tranche closes target version/profile and record-family coverage.
+- Guardrail diagnostics preserve source uncertainty; they do not close CAEPIPE version/profile, record-family coverage, direct stable-ID carrying, compatibility, or professional reliance.
+- DEL-17-03 may remain historical implementation-pattern evidence, but it is not CAEPIPE MBF source-basis authority.
+</p></div></div></section>
+<section id="SEC-ED096-0009" class="chunk sec depth-2" data-kind="section" data-key="section:b33f716f07be" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED096-0009</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b33f716f07be" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b33f716f07be" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b33f716f07be" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0010" class="chunk sec depth-3" data-kind="section" data-key="section:36603cf0a87c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED096-0010</span> Guidance: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:36603cf0a87c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:36603cf0a87c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:36603cf0a87c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0011" class="chunk sec depth-4" data-kind="section" data-key="section:807a7c0d2381" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0011</span> Design Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:807a7c0d2381" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:807a7c0d2381" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:807a7c0d2381" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Treat CAEPIPE MBF as a narrow, source-confirmed target profile. The purpose is not to claim compatibility; it is to define and test what a bounded deterministic writer foundation may safely emit, what it must omit, and what it must report.</p>
+<p>The safe posture is conservative: if a record family, required field, stable ID carrier, option, or target behavior is not confirmed by admitted source evidence, mark it `TBD` and require a loss-report or profile diagnostic. The first implementation foundation therefore uses sidecar stable-ID mapping and carries direct MBF ID carrying as `TBD-17-01-003`.</p>
+<p>Profile-basis fields are guardrails, not target-support claims. Until later source-confirmed closure exists, blank values or informal target-version/record-subset labels should block the package because they would make unresolved CAEPIPE scope look settled.</p>
+<p>Source-basis refs are also guardrails. A caller-provided CAEPIPE MBF profile should not be able to omit DEL-17-01, DEL-17-02, `CAEPIPE-IMPORT-MBF`, or `CAEPIPE-EXPORT-MBF`, and should not promote DEL-17-03 implementation-pattern evidence into CAEPIPE target/source authority.
+</p></div></div></section>
+<section id="SEC-ED096-0012" class="chunk sec depth-4" data-kind="section" data-key="section:c82da6f071b3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0012</span> Interpretation Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c82da6f071b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c82da6f071b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c82da6f071b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Use DEL-17-01 for CAEPIPE source facts and unanswered questions.
+- Use DEL-17-02 for manifest, profile, ID-map, and loss-report structure.
+- Do not treat MBF text output as equivalent to professional acceptance.
+- Do not turn pass-through target options into local code-checking logic.
+- Do not infer undocumented MBF behavior from the target name or common practice.
+- Treat generated MBF text as a deterministic invented smoke artifact, not as target acceptance evidence.
+</p></div></div></section>
+<section id="SEC-ED096-0013" class="chunk sec depth-4" data-kind="section" data-key="section:7d84945e981a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0013</span> Classification Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d84945e981a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d84945e981a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d84945e981a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Unsupported target behavior must be classified before implementation as blocking, diagnostic-only, delegated, omitted, approximated, or `TBD`. Until that classification exists, the writer contract should preserve the uncertainty rather than enabling a broad MBF support claim.</p>
+<p>For this foundation, explicit unsupported behavior defaults to warning-level loss-report evidence unless the loss entry marks it blocking. Missing unsupported loss coverage, malformed unsupported references, or `info` severity for unsupported behavior are blocking because they would hide material target-scope limits.</p>
+<p>Pass-through CAEPIPE options are metadata for the target profile because they may name target-side analysis settings. They must not become OpenPipeStress local code-checking logic, local professional acceptance logic, or a substitute for user-supplied rule packs and human review.
+</p></div></div></section>
+<section id="SEC-ED096-0014" class="chunk sec depth-4" data-kind="section" data-key="section:2a5fb485ff50" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0014</span> Open Questions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a5fb485ff50" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a5fb485ff50" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a5fb485ff50" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| TBD | Question | Later closure path |
+|---|---|---|
+| TBD-17-04-001 | Which CAEPIPE version/profile is the first target? | Public documentation review or CAEPIPE developer/support clarification. |
+| TBD-17-04-002 | Which MBF record families and required fields are in the first subset? | Source review and bounded implementation design. |
+| TBD-17-04-003 | Can MBF carry stable canonical IDs directly? | Source review; otherwise sidecar-only mapping. |
+| TBD-17-04-004 | Which unsupported entities block export versus produce non-blocking diagnostics? | This foundation uses warning by default with explicit blocking allowed; later source-confirmed profiles may specialize entity-specific severity. |
+</p></div></div></section>
+<section id="SEC-ED096-0015" class="chunk sec depth-4" data-kind="section" data-key="section:e9f7d7ee2990" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0015</span> Foundation Guidance</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9f7d7ee2990" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9f7d7ee2990" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9f7d7ee2990" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The first implementation foundation should remain sidecar-first and loss-report-first:</p>
+<p>- deterministic text output is acceptable only for the invented smoke subset;
+- every canonical identity must appear in a sidecar mapping or an explicit loss entry;
+- every unsupported entity must be a stable reference and must have an explicit unsupported loss entry;
+- target-version, record-subset, and direct stable-ID uncertainty must remain carried as `TBD-17-01-001`, `TBD-17-01-002`, and `TBD-17-01-003`;
+- missing smoke-subset inputs, sidecar IDs, or loss reports should block the package;
+- missing, blank, or weakened profile-basis evidence should block the package;
+- missing or unsafe CAEPIPE source-basis refs should block the package;
+- external execution, CSV parsing, target result interpretation, and target code/check logic remain out of scope.
+</p></div></div></section>
+<section id="SEC-ED096-0016" class="chunk sec depth-2" data-kind="section" data-key="section:11d2096a25c4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED096-0016</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11d2096a25c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11d2096a25c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11d2096a25c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0017" class="chunk sec depth-3" data-kind="section" data-key="section:5c9704cb1cf9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED096-0017</span> Procedure: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c9704cb1cf9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c9704cb1cf9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c9704cb1cf9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0018" class="chunk sec depth-4" data-kind="section" data-key="section:9e1b288b579e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0018</span> Population Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e1b288b579e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e1b288b579e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e1b288b579e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Read DEL-17-01 source-basis dossier and CAEPIPE question dossier.
+2. Read DEL-17-02 export package/profile/stable-ID/loss-report contract.
+3. Draft the CAEPIPE MBF profile/writer four-document kit at contract/design level only.
+4. Generate `_SEMANTIC.md` with `semantic-matrix-build`.
+5. Generate `_SEMANTIC_LENSING.md` with `lens-register`.
+6. Apply warranted P3 enrichment through `four-documents P3_ONLY`.
+7. Extract dependencies into `Dependencies.csv`.
+8. Record memory and run evidence.
+</p></div></div></section>
+<section id="SEC-ED096-0019" class="chunk sec depth-4" data-kind="section" data-key="section:7e9ea79df647" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0019</span> Foundation Implementation Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e9ea79df647" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e9ea79df647" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e9ea79df647" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Bounded foundation implementation work must:</p>
+<p>1. Close or explicitly carry target version and MBF record-family TBDs.
+2. Define the deterministic writer subset from admitted evidence.
+3. Emit a loss report for exported, unsupported, omitted, approximated, delegated, and TBD behavior.
+4. Preserve stable IDs through manifest-referenced sidecars unless direct MBF carrying is source-confirmed.
+5. Block blank or unsupported profile-basis values until target version, record subset, and direct stable-ID carrying are closed by admitted source evidence.
+6. Block missing or unsafe profile source-basis refs so DEL-17-01, DEL-17-02, `CAEPIPE-IMPORT-MBF`, and `CAEPIPE-EXPORT-MBF` remain visible, and DEL-17-03 is not treated as CAEPIPE target/source authority.
+7. Use invented fixtures only.
+8. Avoid CAEPIPE compatibility, release, code-compliance, and professional-acceptance claims.
+9. Keep external execution, CSV parsing, target result interpretation, public API, and GUI integration out of scope unless separately authorized.
+</p></div></div></section>
+<section id="SEC-ED096-0020" class="chunk sec depth-4" data-kind="section" data-key="section:91fc5ef3f322" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0020</span> Implementation Readiness Checks</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91fc5ef3f322" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91fc5ef3f322" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91fc5ef3f322" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Before a later writer tranche begins, re-read DEL-17-01, DEL-17-02, the admitted public MBF references, and this four-document kit. The tranche must record:</p>
+<p>1. Target version/profile closure or explicit carried `TBD`.
+2. MBF record-family and required-field subset closure or explicit carried `TBD`.
+3. Stable-ID direct-carry evidence or manifest-referenced sidecar policy.
+4. Loss-report coverage for exported, omitted, approximated, delegated, unsupported, and `TBD` behavior.
+5. Blocking versus non-blocking diagnostic classification: unsupported behavior defaults to warning-level evidence unless explicitly blocking, while missing coverage, malformed refs, or `info` severity block.
+6. Profile-basis diagnostics proving target-version, record-subset, and carried-TBD evidence cannot be silently omitted or weakened.
+7. Source-basis diagnostics proving required CAEPIPE source authority cannot be silently omitted or replaced by implementation-pattern evidence.
+8. Invented-fixture provenance.
+9. Validation results for the deliverable-local document kit, semantic artifacts, dependency schema, and diff hygiene.
+</p></div></div></section>
+<section id="SEC-ED096-0021" class="chunk sec depth-4" data-kind="section" data-key="section:904fc5549565" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0021</span> Semantic Enrichment Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:904fc5549565" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:904fc5549565" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:904fc5549565" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Pass 3 checked `_SEMANTIC_LENSING.md` against DEL-17-01 CAEPIPE TBDs, DEL-17-02 loss-report/stable-ID requirements, and the public MBF source boundary. Applied TP-EXPORT-004R items added source-basis slots, acceptance criteria, classification guidance, pass-through-option rationale, and implementation readiness checks. No P3 item authorized implementation in this tranche.</p>
+<p>| Register Item | Disposition |
+|---|---|
+| A-001 | Incorporated through implementation readiness checks for source-confirmed MBF target basis before writer enablement. |
+| A-002 | Incorporated through the future implementation validation checklist for writer determinism, loss reports, and boundary claims. |
+| B-001 | Incorporated as a carried `TBD` for first CAEPIPE target version/profile and public citation target. |
+| B-002 | Incorporated through source and evidence slots for DEL-17-01, DEL-17-02, and public MBF references. |
+| C-001 | Incorporated through acceptance criteria requiring CAEPIPE-specific requirements to map to admitted evidence or explicit `TBD` closure. |
+| C-002 | Incorporated as diagnostic classification guidance and an open question for unsupported-entity severity. |
+| F-001 | Incorporated through profile acceptance criteria for target version, record subset, stable-ID policy, loss categories, and invented fixtures. |
+| F-002 | Incorporated through future implementation loss-report coverage checks. |
+| D-001 | Incorporated through fixture provenance acceptance criteria. |
+| D-002 | Incorporated as an open diagnostic policy question for blocker versus warning behavior. |
+| X-001 | Incorporated through implementation readiness checks with required rereads and validation evidence. |
+| E-001 | Incorporated through pass-through-option rationale in guidance. |
+</p></div></div></section>
+<section id="SEC-ED096-0022" class="chunk sec depth-2" data-kind="section" data-key="section:2fd782c2f6d6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED096-0022</span> Component: execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fd782c2f6d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fd782c2f6d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fd782c2f6d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0023" class="chunk sec depth-3" data-kind="section" data-key="section:fbc2d3bb8504" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED096-0023</span> Specification: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fbc2d3bb8504" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fbc2d3bb8504" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fbc2d3bb8504" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED096-0024" class="chunk sec depth-4" data-kind="section" data-key="section:bd3d1b00c516" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0024</span> Normative Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd3d1b00c516" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd3d1b00c516" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd3d1b00c516" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-04 shall define a source-bounded CAEPIPE MBF export profile and deterministic writer contract/design, and may include a first bounded implementation foundation. It shall consume DEL-17-01 source authority and DEL-17-02 package/profile/stable-ID/loss-report requirements.</p>
+<p>This deliverable&#x27;s implementation foundation shall remain limited to deterministic project-owned package building, invented fixtures, schema validation, sidecar stable-ID mapping, diagnostics, and loss reports. It shall not implement a CAEPIPE parser, external run harness, public API, GUI behavior, release claims, CAEPIPE compatibility claims, code-compliance claims, professional-acceptance claims, or full MBF coverage claims.
+</p></div></div></section>
+<section id="SEC-ED096-0025" class="chunk sec depth-4" data-kind="section" data-key="section:39a0e760e5bb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0025</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:39a0e760e5bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:39a0e760e5bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:39a0e760e5bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement |
+|---|---|
+| DEL-17-04-REQ-001 | The CAEPIPE MBF profile shall declare target version basis as `TBD` until source-confirmed. |
+| DEL-17-04-REQ-002 | The first MBF record-family subset shall remain `TBD` until source evidence or human-approved clarification closes it. |
+| DEL-17-04-REQ-003 | The writer contract shall not silently approximate unsupported physical or analytical model entities. |
+| DEL-17-04-REQ-004 | The writer contract shall require a loss report for omitted, approximated, delegated, unsupported, and TBD behavior. |
+| DEL-17-04-REQ-005 | Stable canonical ID carrying inside MBF shall remain `TBD`; sidecar mapping shall be required when direct carrying is not source-confirmed. |
+| DEL-17-04-REQ-006 | Pass-through target options shall remain target configuration metadata and shall not become OpenPipeStress local code-checking logic. |
+| DEL-17-04-REQ-007 | Later implementation shall use invented fixtures only. |
+| DEL-17-04-REQ-008 | The first implementation foundation shall use sidecar stable-ID mapping while `TBD-17-01-003` remains open. |
+| DEL-17-04-REQ-009 | The first implementation foundation shall expose blocking diagnostics when the invented smoke subset, sidecar stable-ID map, or loss report is missing. |
+| DEL-17-04-REQ-010 | The first implementation foundation shall expose blocking diagnostics when target-version basis, record-subset basis, or carried profile TBD references are missing, blank, or weakened without admitted source-confirmed closure. |
+| DEL-17-04-REQ-011 | The first implementation foundation shall expose blocking diagnostics when profile source-basis refs omit DEL-17-01, DEL-17-02, `CAEPIPE-IMPORT-MBF`, or `CAEPIPE-EXPORT-MBF`, or when they include DEL-17-03 as CAEPIPE target/source authority. |
+</p></div></div></section>
+<section id="SEC-ED096-0026" class="chunk sec depth-4" data-kind="section" data-key="section:b92f4624b425" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0026</span> Verification Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b92f4624b425" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b92f4624b425" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b92f4624b425" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Requirement |
+|---|---|
+| Source trace | CAEPIPE-specific statements cite DEL-17-01 source IDs or remain `TBD`. |
+| Boundary trace | No proprietary examples or protected data are introduced. |
+| Loss trace | Unsupported and TBD behavior is visible in the loss-report contract. |
+| Profile-basis trace | Target-version, record-subset, and direct stable-ID uncertainty remain visible through carried TBD refs until source-confirmed closure exists. |
+| Source-basis guardrail trace | Profile and manifest source-basis refs carry the required authority set and do not promote implementation-pattern evidence to CAEPIPE source authority. |
+| Dependency trace | `Dependencies.csv` validates as v3.1. |
+</p></div></div></section>
+<section id="SEC-ED096-0027" class="chunk sec depth-4" data-kind="section" data-key="section:88a95ecc5de0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0027</span> Acceptance Criteria</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88a95ecc5de0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88a95ecc5de0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88a95ecc5de0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Criterion | Acceptance treatment |
+|---|---|
+| Source basis mapping | Each CAEPIPE-specific requirement is traced to DEL-17-01, DEL-17-02, an admitted public MBF reference, or an explicit `TBD` closure path. |
+| Target version closure | REQ-001 remains unresolved until the first CAEPIPE version/profile is source-confirmed or human-approved as a bounded profile decision. |
+| Record subset closure | REQ-002 remains unresolved until MBF record families and required fields are enumerated from admitted evidence. |
+| Stable ID preservation | REQ-005 is accepted only when direct MBF carrying is source-confirmed or the writer uses manifest-referenced sidecar mapping. |
+| Loss category coverage | REQ-004 is accepted only when exported, omitted, approximated, delegated, unsupported, and `TBD` behavior are all visible in the loss report. |
+| Diagnostic classification | `TBD-17-04-004` is addressed for this foundation: malformed unsupported refs, missing unsupported loss coverage, and `info`-severity unsupported losses block; explicit `warning` or `blocking` unsupported losses are accepted as classification evidence. |
+| Profile-basis guardrail | REQ-010 is accepted when diagnostics block blank or unsupported `target_version_basis`, `record_subset_basis`, or carried-TBD evidence while the foundation remains source-bounded. |
+| Source-basis guardrail | REQ-011 is accepted when diagnostics and schema validation block weakened CAEPIPE source-basis refs while preserving DEL-17-03 only as historical implementation-pattern evidence. |
+| Fixture provenance | REQ-007 is accepted only with invented fixtures and no vendor, proprietary, protected, or owner/project examples. |
+| Foundation implementation | REQ-008 and REQ-009 are accepted when schema, builder, fixture, and tests demonstrate sidecar-first IDs, deterministic MBF text, and blocking diagnostics for incomplete packages. |
+</p></div></div></section>
+<section id="SEC-ED096-0028" class="chunk sec depth-4" data-kind="section" data-key="section:64b8365cd078" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED096-0028</span> Downstream Use</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:64b8365cd078" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:64b8365cd078" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:64b8365cd078" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-17-05 may consume this deliverable later for CAEPIPE external run harness and CSV parser work. DEL-17-05 remains blocked until DEL-17-04 has committed evidence.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED096";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

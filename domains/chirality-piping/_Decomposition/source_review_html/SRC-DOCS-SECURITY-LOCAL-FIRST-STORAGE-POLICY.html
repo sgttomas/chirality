@@ -1,0 +1,455 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-SECURITY-LOCAL-FIRST-STORAGE-POLICY - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>11</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD031-0001">Local-First Storage Policy</a> <a href="#SEC-PD031-0002">Scope</a> <a href="#SEC-PD031-0003">Storage Resolution Rules</a> <a href="#SEC-PD031-0004">Metadata-Only Storage Guard Helper</a> <a href="#SEC-PD031-0005">Symbolic Path Classes</a> <a href="#SEC-PD031-0006">Repository Leakage Prohibitions</a> <a href="#SEC-PD031-0007">Persistence Baseline</a> <a href="#SEC-PD031-0008">No-Bypass Surfaces</a> <a href="#SEC-PD031-0009">Diagnostics And Reports</a> <a href="#SEC-PD031-0010">Open Decisions</a> <a href="#SEC-PD031-0011">Verification Expectations</a></nav>
+<main>
+<section id="SEC-PD031-0001" class="chunk sec depth-1" data-kind="section" data-key="section:0ccd198afdca" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD031-0001</span> Local-First Storage Policy</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ccd198afdca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ccd198afdca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ccd198afdca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This policy defines OpenPipeStress local-first storage and private path posture
+for `DEL-12-01`. It is a privacy and product-boundary artifact, not a
+filesystem layout, cloud-service design, encryption claim, secret storage
+design, professional engineering approval, security certification, compliance
+attestation, or claim that analysis results are fit for reliance without
+competent human review.
+</p></div></div></section>
+<section id="SEC-PD031-0002" class="chunk sec depth-2" data-kind="section" data-key="section:8f4cb341fd11" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0002</span> Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f4cb341fd11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f4cb341fd11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f4cb341fd11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress is local-first by default. Private project models, private rule
+packs, private material and component libraries, owner standards, company
+design bases, credentials, secrets, diagnostics, reports, generated outputs,
+and other user-owned engineering data remain user controlled unless a user
+intentionally exports, shares, contributes, or attaches them with documented
+rights.</p>
+<p>The public repository is not a default durable storage location for private
+project, rule-pack, material, component, report, diagnostic, owner-standard,
+credential, secret, or proprietary data.</p>
+<p>The MVP project store/index is local SQLite selected by SCA-003. It must be
+free to use, bundled or otherwise available with the local desktop
+installation, and usable offline. Cloud storage, cloud sync, hosted database,
+daemon, required network, and cloud service behavior are out of MVP unless
+separately approved by the human project authority. Telemetry remains disabled
+by default and must not become a storage or synchronization path.
+</p></div></div></section>
+<section id="SEC-PD031-0003" class="chunk sec depth-2" data-kind="section" data-key="section:05d4d31f8a80" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0003</span> Storage Resolution Rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05d4d31f8a80" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05d4d31f8a80" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05d4d31f8a80" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Storage choices must fail closed. Absent, unknown, unresolved, ambiguous, or
+unsupported storage choices remain explicit warning, finding, or unsupported
+states rather than silent defaults.</p>
+<p>The physical project package/container decision is SCA-003: a local
+SQLite-backed project store/index that stores canonical JSON/JCS-compatible
+payload bytes and private indexed projections behind application-service
+boundaries. Operating-system roots, application data directories, rollback
+semantics, encryption, secret storage, key management, redaction workflow,
+import/export formats, and cloud exception workflow remain unresolved unless
+separately approved.</p>
+<p>This policy does not create real private paths, write files, define a product
+configuration schema, or select storage roots. It authorizes the local-only
+storage profile, not a public SQL interface.
+</p></div></div></section>
+<section id="SEC-PD031-0004" class="chunk sec depth-2" data-kind="section" data-key="section:b8440f4929e2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0004</span> Metadata-Only Storage Guard Helper</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8440f4929e2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8440f4929e2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8440f4929e2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The `core.security.local_first_storage` helper provides a deterministic
+metadata-only guard for storage planning records. Its public surface includes
+`StorageRecord`, `StorageDiagnostic`, `StorageDecision`,
+`StorageGuardResult`, `storage_record(...)`,
+`classify_storage_record(...)`, and `guard_storage_records(...)`.</p>
+<p>The helper classifies only explicit metadata. It does not read files, write
+files, choose operating-system roots, store project payloads, store secrets,
+open SQLite handles, expose direct SQL, transmit data, authorize cloud or
+network storage, implement encryption, or make security-certification,
+professional, approval, authentication, sealing, or code-compliance claims.</p>
+<p>Public-repository and shared contexts block private project, rule-pack,
+material, component, report, diagnostic, cache, and secret storage records by
+default. Local-private retention of private metadata requires explicit user
+intent. Cloud or network storage markers, direct-SQL markers, secret material,
+payload material, and concrete path-like details are blocked or reduced to
+symbolic, safe metadata in guard outputs.
+</p></div></div></section>
+<section id="SEC-PD031-0005" class="chunk sec depth-2" data-kind="section" data-key="section:71547be55c6d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0005</span> Symbolic Path Classes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:71547be55c6d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:71547be55c6d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:71547be55c6d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Until implementation selects concrete roots, storage planning uses symbolic
+path classes only.</p>
+<p>| Symbolic class | Default sensitivity | Boundary rule |
+|---|---|---|
+| `PUBLIC_REPOSITORY_CONTENT` | Public-reviewed | May contain source code, schemas, blank templates, governance docs, and invented examples after protected-content review. |
+| `PUBLIC_EXAMPLE_CONTENT` | Public-reviewed | May contain invented examples or public-permissive content with provenance and review disposition. |
+| `USER_CHOSEN_PROJECT_PACKAGE` | Private by default | Holds user project model data in the SCA-003 local SQLite-backed project store/index at a user-controlled location. |
+| `USER_PRIVATE_LIBRARY_ROOT` | Private by default | Holds user-controlled material, component, section, and owner/library data outside public repository paths. |
+| `USER_PRIVATE_RULE_PACK_ROOT` | Private by default | Holds private rule packs, source notices, checksums, and redistribution status outside public repository paths. |
+| `USER_REPORT_OUTPUT_ROOT` | Private by default | Holds reports, screenshots, review exports, and generated outputs selected by the user. |
+| `USER_DIAGNOSTIC_BUNDLE_ROOT` | Private by default | Holds diagnostics/support bundles only after explicit user review of attachments and contents. |
+| `USER_IMPORT_STAGING_ROOT` | Private or provenance-gated | Holds imported files pending validation, provenance capture, redistribution review, and protected-content checks. |
+| `USER_EXPORT_STAGING_ROOT` | Private or review-gated | Holds export payloads pending redaction/export controls and explicit user action. |
+| `LOCAL_CACHE_ROOT` | Private by default | Holds derived local cache data; cache contents must not become public artifacts by default. |
+| `USER_SECRET_REFERENCE` | Secret reference only | Represents a pointer to future secret handling; actual secret storage is owned by `DEL-12-04` and remains `TBD`. |</p>
+<p>These names are planning classes, not filesystem paths. They must not be
+interpreted as operating-system roots, repository directories, cloud locations,
+or default user paths. SQLite files, write-ahead logs, sidecar indexes, cache
+files, and diagnostics inherit the same private-by-default posture when they
+contain project-derived data.
+</p></div></div></section>
+<section id="SEC-PD031-0006" class="chunk sec depth-2" data-kind="section" data-key="section:d1167cd3633c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0006</span> Repository Leakage Prohibitions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d1167cd3633c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d1167cd3633c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d1167cd3633c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Public repository paths must not be used as default durable storage for:</p>
+<p>- project geometry, loads, supports, load cases, solve results, SQLite project
+  stores, sidecar indexes, or project package payloads;
+- private rule packs, owner standards, company design bases, rule formulas,
+  thresholds, inputs, or evaluation results;
+- private material, component, section, or vendor-derived library values;
+- generated reports, screenshots, review exports, support bundles, diagnostics,
+  local SQLite stores, sidecar indexes, or local cache payloads;
+- model hashes, manifest hashes, report hashes, rule-pack hashes, or private-
+  library hashes that can fingerprint private work;
+- tokens, passwords, API keys, license keys, certificates, private keys,
+  signing keys, cookies, authorization headers, or other secrets;
+- protected standards text, copied examples, copied formulas, standards tables,
+  proprietary engineering values, commercial benchmark content, or protected/
+  code-derived content.</p>
+<p>Contribution workflows may accept public examples or data only after source,
+provenance, license or redistribution status, contributor certification, and
+review disposition are recorded.
+</p></div></div></section>
+<section id="SEC-PD031-0007" class="chunk sec depth-2" data-kind="section" data-key="section:a4236f3bc36d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0007</span> Persistence Baseline</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4236f3bc36d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4236f3bc36d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4236f3bc36d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Local-first storage must preserve the project persistence baseline:</p>
+<p>- versioned persistence;
+- schema-governed payloads;
+- unit-aware data where quantities are present;
+- provenance-preserving records;
+- migration-aware status;
+- deterministic round-trip serialization;
+- canonical JSON/JCS-compatible hashes where JSON payloads are hashed;
+- local SQLite storage as a payload/index substrate rather than domain truth;
+- rebuildable, hash-neutral SQLite FTS5/BM25 retrieval sidecars;
+- explicit findings for missing storage, privacy, provenance, redistribution,
+  migration, or validation decisions.</p>
+<p>Canonical JSON/JCS-compatible payload bytes remain the domain and interchange
+truth. SQLite tables are storage/projection details, not public contracts.
+Large files are referenced in place by path or URI plus hash, size,
+classification, and verification metadata by default; they must not be copied
+into a project package without an explicit export/review workflow.
+</p></div></div></section>
+<section id="SEC-PD031-0008" class="chunk sec depth-2" data-kind="section" data-key="section:1218e1babff7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0008</span> No-Bypass Surfaces</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1218e1babff7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1218e1babff7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1218e1babff7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The private/public path classification and local-first rules apply equally to
+first-party code, plugins, adapters, import/export paths, reports, telemetry,
+CLI runners, diagnostics, tests, private-library mechanisms, application
+services, and support bundle workflows.</p>
+<p>Application services must use the same private/public path classification and
+local-first rules.</p>
+<p>No plugin manifest, adapter declaration, CLI option, imported file, report
+template, rule pack, telemetry setting, diagnostic setting, or environment
+default can bypass:</p>
+<p>- path classification;
+- application-service persistence boundaries;
+- the prohibition on direct SQL, raw SQLite handles, table-name dependencies,
+  or direct project-store mutation by plugins and adapters;
+- unit checks and dimensional checks;
+- provenance checks and redistribution status;
+- protected-content screening;
+- private-data controls;
+- diagnostics and result-envelope warning classes;
+- rule-pack sandboxing;
+- report/export controls;
+- human acceptance boundaries.
+</p></div></div></section>
+<section id="SEC-PD031-0009" class="chunk sec depth-2" data-kind="section" data-key="section:6385293c277f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0009</span> Diagnostics And Reports</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6385293c277f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6385293c277f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6385293c277f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Storage diagnostics must identify unresolved or unsafe storage states without
+printing private payload contents. A diagnostic may state that a path class is
+unresolved, private, public-review-required, export-review-required, missing,
+stale, moved, hash-mismatched, or blocked, but it must not reveal private
+values or secrets.</p>
+<p>Reports and exports remain user-controlled private outputs by default. `DEL-12-02`
+owns redaction and export controls and should consume this policy&#x27;s symbolic
+path-class vocabulary.
+</p></div></div></section>
+<section id="SEC-PD031-0010" class="chunk sec depth-2" data-kind="section" data-key="section:bafff456512f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0010</span> Open Decisions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bafff456512f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bafff456512f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bafff456512f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Decision | Current state |
+|---|---|
+| Physical project package/container | SCA-003 local SQLite-backed project store/index. |
+| Operating-system roots and application data directories | `TBD`; no OS-specific root or real user path is selected. |
+| DB migration and product schema migration framework | `TBD`; the concerns are separate and versioned, migration-aware persistence remains the baseline. |
+| Encryption, secret storage, and key management | `TBD`; no encryption or secret-storage claim is made here. |
+| Redaction workflow and export staging behavior | `TBD`; owned downstream by `DEL-12-02`. |
+| Private-library registry and secret/private-library handling | `TBD`; owned downstream by `DEL-12-04`. |
+| Import/export formats and adapter behavior | `TBD`; no adapter behavior is authorized here. |
+| Cloud exception workflow | `TBD`; cloud storage, cloud sync, and cloud service behavior are out of MVP unless separately approved. |
+</p></div></div></section>
+<section id="SEC-PD031-0011" class="chunk sec depth-2" data-kind="section" data-key="section:bb8628b431f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD031-0011</span> Verification Expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb8628b431f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb8628b431f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb8628b431f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Local-first storage policy and future implementation changes should be checked
+for:</p>
+<p>- traceability to `DEL-12-01`, `PKG-12`, `SOW-029`, and `OBJ-010`;
+- local-first, user-controlled defaults for private project, rule-pack,
+  material/component library, report, diagnostic, generated output, credential,
+  secret, owner-standard, and proprietary data;
+- prohibition on public repository paths as default durable storage for private
+  data;
+- symbolic path classes instead of real paths, OS-specific roots, cloud
+  locations, or user-specific examples;
+- explicit warning or finding states for unresolved or unsafe storage choices;
+- preservation of versioned, schema-governed, provenance-preserving,
+  migration-aware, round-trip testable persistence;
+- preservation of canonical JSON/JCS-compatible payload truth over SQLite
+  projections or sidecars;
+- separation of DB migrations from product schema migrations;
+- no-bypass rules for plugins, adapters, import/export, reports, telemetry,
+  CLI, diagnostics, tests, and application services;
+- absence of protected standards content, proprietary engineering values, real
+  private project data, real secrets, real filesystem paths, hosted database
+  commitments, cloud storage commitments, network requirements, encryption
+  claims, and professional/code-compliance or security-certification claims.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD031";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

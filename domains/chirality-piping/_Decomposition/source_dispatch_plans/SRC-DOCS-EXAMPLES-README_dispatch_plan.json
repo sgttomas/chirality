@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-EXAMPLES-README",
+  "source_prefix": "PD015",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-EXAMPLES-README_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/_Examples/README.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD015-0001",
+      "line_start": 1,
+      "line_end": 5,
+      "target_section_ids": [
+        "SEC-PD015-0001"
+      ],
+      "estimated_md_tokens": 57,
+      "contains_oversized_section": false
+    }
+  ]
+}

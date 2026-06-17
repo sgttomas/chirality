@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-05-04-ANALYSIS-STATUS-SEMANTICS",
+  "source_doc_id": "SRC-DEL-DEL-05-04-ANALYSIS-STATUS-SEMANTICS",
+  "source_prefix": "ED035",
+  "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/",
+  "catalog_rel_path": "@repo/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-05-04-ANALYSIS-STATUS-SEMANTICS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-04-ANALYSIS-STATUS-SEMANTICS-DATASHEET",
+      "expected_sha256": "cf35c7f07792e8133c842af50912af96aab6b98aefb7f5935387a01961691dac",
+      "generated_line_start": 11,
+      "generated_line_end": 85,
+      "source_line_start": 1,
+      "source_line_end": 75,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-04-ANALYSIS-STATUS-SEMANTICS-GUIDANCE",
+      "expected_sha256": "889edbac8be24b3d55e9d453ad0d250570f886983fdec3320f63fc9447f90def",
+      "generated_line_start": 89,
+      "generated_line_end": 156,
+      "source_line_start": 1,
+      "source_line_end": 68,
+      "line_offset": -88
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-04-ANALYSIS-STATUS-SEMANTICS-PROCEDURE",
+      "expected_sha256": "c0699292f8f9c972b247ac920dc262c4e516f91626019bb8b198ed3750861e09",
+      "generated_line_start": 160,
+      "generated_line_end": 220,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -159
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-04-ANALYSIS-STATUS-SEMANTICS-SPECIFICATION",
+      "expected_sha256": "a16d06d5f86001c649a85d2f7ce6dc970a55b9b47f0d550031d2055cfbc57e06",
+      "generated_line_start": 224,
+      "generated_line_end": 280,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -223
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

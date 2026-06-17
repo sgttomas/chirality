@@ -1,0 +1,647 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-13-04-PHYSICAL-TO-ANALYTICAL-TRANSFORMATION-CONTRACT - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>45</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED079-0001">Source Pack: SRC-DEL-DEL-13-04-PHYSICAL-TO-ANALYTICAL-TRANSF</a> <a href="#SEC-ED079-0002">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED079-0011">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED079-0023">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED079-0036">Component: execution/PKG-13_Physical Design Knowledge and Co</a></nav>
+<main>
+<section id="SEC-ED079-0001" class="chunk sec depth-1" data-kind="section" data-key="section:bd9e8ec73478" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED079-0001</span> Source Pack: SRC-DEL-DEL-13-04-PHYSICAL-TO-ANALYTICAL-TRANSFORMATION-CONTRACT</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd9e8ec73478" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd9e8ec73478" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd9e8ec73478" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED079-0002" class="chunk sec depth-2" data-kind="section" data-key="section:ef7940924f64" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED079-0002</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ef7940924f64" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ef7940924f64" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ef7940924f64" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0003" class="chunk sec depth-3" data-kind="section" data-key="section:89db5e1e1c5b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED079-0003</span> Datasheet: DEL-13-04 Physical-to-analytical transformation contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89db5e1e1c5b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89db5e1e1c5b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89db5e1e1c5b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** 2026-05-03
+**Status:** Evidence refresh applied 2026-06-07
+**Source posture:** Current implementation evidence is cited where available; unsupported particulars remain marked `TBD` or `ASSUMPTION`.
+</p></div></div></section>
+<section id="SEC-ED079-0004" class="chunk sec depth-4" data-kind="section" data-key="section:df7911fddcda" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df7911fddcda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df7911fddcda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df7911fddcda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Source |
+|---|---|---|
+| Deliverable ID | DEL-13-04 | `_CONTEXT.md` |
+| Name | Physical-to-analytical transformation contract | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` row DEL-13-04 |
+| Package ID | PKG-13 | `_CONTEXT.md` |
+| Package name | Physical Design Knowledge and Constraint Engine | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` PKG-13 |
+| Deliverable type | BACKEND_FEATURE_SLICE | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` row DEL-13-04 |
+| Scope coverage | SOW-066 | `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` row SOW-066 |
+| Objective support | OBJ-014 | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` objective mapping |
+| Context envelope | L, WATCH | `_CONTEXT.md`; `docs/_Registers/ContextBudgetQA.csv` row DEL-13-04 |
+</p></div></div></section>
+<section id="SEC-ED079-0005" class="chunk sec depth-4" data-kind="section" data-key="section:fbd10aa33360" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fbd10aa33360" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fbd10aa33360" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fbd10aa33360" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current value | Source / note |
+|---|---|---|
+| Primary function | Derive a solver-ready analytical model from the physical model. | SOW-066 in `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` |
+| Determinism requirement | Transformation is deterministic. | SOW-066 in `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` row SOW-066 |
+| Warning obligation | Transformation warnings are recorded when physical design data cannot be represented analytically. | SOW-066 in `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` DEL-13-04 row |
+| Traceability obligation | Transformation traceability is part of OBJ-014 and DEL-13-04 decomposition context. | `execution/_Decomposition/SOFTWARE_DECOMP.md` OBJ-014 and DEL-13-04 |
+| Physical model role | Physical source-of-truth model anchors editable design data. | `docs/SPEC.md` section 3; `docs/TYPES.md` model registry |
+| Analytical model role | Solver-ready idealization / analysis basis derived from the physical model. | `execution/_Decomposition/SOFTWARE_DECOMP.md` glossary row &quot;Analytical Model&quot; |
+| Target mechanics boundary | Primary global analysis model is a 3D centerline/frame model. | `docs/CONTRACT.md` OPS-K-MECH-1; `INIT.md` project principles |
+| Unit handling | Unit-bearing physical values crossing boundaries require explicit unit metadata. | `docs/SPEC.md` section 4; `docs/CONTRACT.md` OPS-K-UNIT-1 |
+| Missing required values | Missing solve-required values are explicit findings, not silent defaults. | `docs/CONTRACT.md` OPS-K-DATA-2; `docs/SPEC.md` missing-data warning classes |
+| Protected-data boundary | Public artifacts must not bundle protected standards data, tables, or proprietary values. | `docs/CONTRACT.md` OPS-K-IP-1; `docs/IP_AND_DATA_BOUNDARY.md` |
+| Professional boundary | Software must not claim certification, sealing, approval, authentication, or code compliance. | `docs/CONTRACT.md` OPS-K-AUTH-1; `INIT.md` |
+| Transform implementation path | `core/model_transform/physical_to_analytical/contract.py` | Current implementation evidence and `MEMORY.md` |
+| Internal solver-boundary adapter path | `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py` | Current implementation evidence and `tests/test_analytical_solver_boundary_adapter.py` |
+| Canonical physical fixture | `fixtures/domain/invented_physical_source_of_truth_model.json` | Current fixture evidence and `tests/test_physical_to_analytical_transform.py` |
+| Focused transform tests | `tests/test_physical_to_analytical_transform.py` | Current transform contract, diagnostic, traceability, and fixture tests |
+| Focused adapter tests | `tests/test_analytical_solver_boundary_adapter.py` | Current internal solver-boundary adapter tests |
+| Current transform result shape | `TransformResult` exposes `analytical_model`, `diagnostics`, `traceability_links`, and `has_blocking_findings`. | `core/model_transform/physical_to_analytical/contract.py` |
+| Current transform settings | Default `TransformSettings` uses `analytical_model_id = ANALYTICAL-DERIVED` and `contract_version = DEL-13-04-0.1`. | `core/model_transform/physical_to_analytical/contract.py` |
+| Exact transform-loss taxonomy | TBD | Implemented `PTA-*` and `ASBA-*` diagnostics are current code/test evidence, not a final release taxonomy. |
+| Exact dependency versions | TBD | `_CONTEXT.md` Architecture Basis Injection &quot;Still TBD&quot;. |
+</p></div></div></section>
+<section id="SEC-ED079-0006" class="chunk sec depth-4" data-kind="section" data-key="section:5506eb6161a0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5506eb6161a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5506eb6161a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5506eb6161a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0007" class="chunk sec depth-5" data-kind="section" data-key="section:bd4867f35ad3" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0007</span> Upstream Inputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd4867f35ad3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd4867f35ad3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd4867f35ad3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The local `Dependencies.csv` is an approved DAG-006 mirror/evidence surface. It lists these ACTIVE upstream dependencies for DEL-13-04:</p>
+<p>| Target | Relationship summary | Source |
+|---|---|---|
+| DEL-00-01 Architecture decision record baseline | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0660 |
+| DEL-00-02 Repository and module boundary architecture | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0661 |
+| DEL-00-03 Application service command-query-job model | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0662 |
+| DEL-00-04 Persistence and schema versioning architecture | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0663 |
+| DEL-00-06 Diagnostics, warning, and result-envelope contract | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0664 |
+| DEL-00-07 API boundary and adapter contract map | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0665 |
+| DEL-00-08 Layered software test and acceptance strategy | Architecture-basis predecessor. | `Dependencies.csv` row DAG-002-E0666 |
+| DEL-02-01 Canonical domain model schema | Physical-to-analytical transform starts from the canonical physical/domain model. | `Dependencies.csv` row DAG-002-E0772 |
+| DEL-13-01 Design knowledge schema and provenance model | Transform consumes design-knowledge schema. | `Dependencies.csv` row DAG-002-E0773 |
+| DEL-13-02 Constraint entity and provenance model | Transform consumes constraint entities. | `Dependencies.csv` row DAG-002-E0774 |
+| DEL-13-03 Constraint validation engine | Transform consumes constraint validation. | `Dependencies.csv` row DAG-002-E0775 |
+| DEL-04-01 3D frame stiffness kernel | Transform targets the frame kernel model. | `Dependencies.csv` row DAG-002-E0776 |
+| DEL-04-03 Linear support and restraint models | Transform needs support/boundary-condition modeling. | `Dependencies.csv` row DAG-002-E0777 |
+| DEL-05-01 Primitive load case engine | Transform needs primitive load semantics. | `Dependencies.csv` row DAG-002-E0778 |
+</p></div></div></section>
+<section id="SEC-ED079-0008" class="chunk sec depth-5" data-kind="section" data-key="section:fbf8818485fb" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0008</span> Boundary Conditions</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fbf8818485fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fbf8818485fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fbf8818485fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Value |
+|---|---|
+| Engineering standards text availability | Not locally available for this deliverable; do not derive clause-level requirements. |
+| PRD v0.2 source availability | Referenced by SOW-066 but not present in `_REFERENCES.md` as a local source; PRD-derived particulars remain `TBD`. |
+| Public data policy | No protected standards text, copied formulas, protected tables, protected examples, proprietary commercial data, or code-specific public defaults. |
+| Solver acceptance policy | Deterministic mechanics tests are required before release; code-compliance acceptance remains outside software authority. |
+| Constraint/provenance upstream | Current DEL-13-02 evidence is `schemas/constraint.schema.json` and `tests/test_constraint_schema.py`; transform consumption beyond copied `constraint_refs` remains broader integration `TBD`. |
+| Constraint-validation upstream | Current DEL-13-03 evidence is `core/constraints/validation/engine.py` and `tests/test_constraint_validation.py`; direct runtime validator invocation by the transform remains `TBD`. |
+| GUI/runtime/API integration | Current transform and adapter are Python implementation/test evidence only; no GUI, runtime command, public API, or external prover workflow is implemented here. These surfaces remain `TBD`. |
+| Persistence/handoff readiness | Current analytical output carries empty `analysis_run_refs`, `comparison_refs`, `handoff_package_refs`, and `external_reference_refs`; persisted package and handoff readiness remain outside this slice and remain `TBD`. |
+</p></div></div></section>
+<section id="SEC-ED079-0009" class="chunk sec depth-4" data-kind="section" data-key="section:5ff88d86a72f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0009</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ff88d86a72f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ff88d86a72f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ff88d86a72f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The deliverable has materialized as a provider-neutral Python transform contract, an internal solver-boundary DTO adapter, a canonical invented fixture, and focused tests. These are implementation evidence only; lifecycle acceptance, release thresholds, professional reliance, and code-compliance claims remain outside software authority.</p>
+<p>| Construct | Required / expected content | Status |
+|---|---|---|
+| Transform contract | Inputs, outputs, deterministic behavior, traceability, warning/diagnostic behavior, and unsupported-data handling for physical-to-analytical conversion. | Implemented at `core/model_transform/physical_to_analytical/contract.py`. |
+| Analytical model output | Derived `analytical_solver_model` with `source_model_ref`, centerline/frame arrays for nodes/elements/materials/sections/supports/load cases, diagnostics, assumptions, and traceability links. | Implemented for current schema-shaped records; broader physical-record coverage, runtime result envelopes, persistence, and handoff readiness remain `TBD`. |
+| Warning/diagnostic records | Deterministic `PTA-*` diagnostics for missing source/model role/coordinate data, missing fields, missing or `TBD` unit metadata, noncanonical dimensions, unsupported component/support/element data, and unresolved references. | Implemented for current contract coverage; final transform-loss taxonomy and release thresholds remain `TBD`. |
+| Internal solver-boundary adapter | Deterministic DTO boundary for nodes, straight-pipe connectivity, property bindings, support targets, load-case records/applications, adapter DTO identity/hash/source-chain records, and adapter diagnostics. | Implemented at `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py`; not a public API, GUI/runtime path, external prover path, or final solver acceptance record. |
+| Traceability records | Physical-to-analytical `traceability_links` plus adapter DTO `source_chain`, `payload_hash_ref`, `result_trace_anchor`, and `solver_input_trace_anchor` for emitted load applications. | Implemented at object/DTO level; field-level scalar traceability and full runtime result trace-chain production remain `TBD`. |
+| Tests | Transform warning/diagnostic tests and internal adapter tests. | Implemented in `tests/test_physical_to_analytical_transform.py` and `tests/test_analytical_solver_boundary_adapter.py` using invented/public-permissive fixture data. |
+</p></div></div></section>
+<section id="SEC-ED079-0010" class="chunk sec depth-4" data-kind="section" data-key="section:a3ba546b0210" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0010</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a3ba546b0210" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a3ba546b0210" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a3ba546b0210" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` - deliverable identity, scope, architecture-basis injection, and accepted decomposition reference.
+- `_REFERENCES.md` - governing reference list and source boundary.
+- `_DEPENDENCIES.md` and `Dependencies.csv` - approved DAG-006 mirror/evidence surface.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` - revision 0.7 package, scope, objective, and deliverable entries.
+- `docs/_Registers/Deliverables.csv` - row DEL-13-04.
+- `docs/_Registers/ScopeLedger.csv` - row SOW-066.
+- `docs/_Registers/ContextBudgetQA.csv` - row DEL-13-04.
+- `docs/CONTRACT.md` - invariant catalog, especially OPS-K-IP-1, OPS-K-DATA-2, OPS-K-AUTH-1, OPS-K-MECH-1, OPS-K-UNIT-1, OPS-K-SOLVER-1.
+- `docs/SPEC.md` - physical model source-of-truth, unit contract, and missing-data warning classes.
+- `docs/TYPES.md` - model, model role, traceability, diagnostic, and mechanics-boundary registry meanings.
+- `docs/IP_AND_DATA_BOUNDARY.md` - protected-content handling policy.
+- `INIT.md` - project principles and stop rules.
+- `core/model_transform/physical_to_analytical/contract.py` - implemented transform contract.
+- `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py` - internal solver-boundary DTO adapter.
+- `fixtures/domain/invented_physical_source_of_truth_model.json` - canonical invented physical source-of-truth fixture.
+- `tests/test_physical_to_analytical_transform.py` - focused transform tests.
+- `tests/test_analytical_solver_boundary_adapter.py` - focused adapter tests.
+- Current DEL-13-02 and DEL-13-03 four-document kits, `MEMORY.md` files, and 2026-06-07 TASK run records - upstream evidence refresh context.
+</p></div></div></section>
+<section id="SEC-ED079-0011" class="chunk sec depth-2" data-kind="section" data-key="section:6089db48504c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED079-0011</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6089db48504c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6089db48504c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6089db48504c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0012" class="chunk sec depth-3" data-kind="section" data-key="section:47c8a650cb9d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED079-0012</span> Guidance: DEL-13-04 Physical-to-analytical transformation contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47c8a650cb9d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47c8a650cb9d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47c8a650cb9d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** 2026-05-03
+**Status:** Evidence refresh applied 2026-06-07
+**Source posture:** Directional guidance is source-grounded where possible; unsupported implementation advice is marked `TBD` or omitted.
+</p></div></div></section>
+<section id="SEC-ED079-0013" class="chunk sec depth-4" data-kind="section" data-key="section:ddc4c58976d4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0013</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ddc4c58976d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ddc4c58976d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ddc4c58976d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-13-04 is the bridge from design authoring to solver execution. Its implemented purpose is to derive a deterministic `analytical_solver_model` from a schema-shaped physical source-of-truth model while preserving diagnostics, omissions, assumptions, and traceability when information cannot cross that boundary exactly.</p>
+<p>Sources: `_CONTEXT.md` Scope Detail and Context Envelope; `execution/_Decomposition/SOFTWARE_DECOMP.md` DEL-13-04 and OBJ-014; `core/model_transform/physical_to_analytical/contract.py`; `tests/test_physical_to_analytical_transform.py`.
+</p></div></div></section>
+<section id="SEC-ED079-0014" class="chunk sec depth-4" data-kind="section" data-key="section:dbb6d985e5a6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0014</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dbb6d985e5a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dbb6d985e5a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dbb6d985e5a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Preserve source-of-truth role | Treat the physical model as the editable source-of-truth and the analytical model as a derived view. Do not overwrite physical design context during transformation. | `docs/SPEC.md` section 3; `docs/TYPES.md` `ModelRole` |
+| Be deterministic | The same physical input and contract configuration should yield the same analytical output and warning set. | SOW-066; `docs/CONTRACT.md` OPS-K-SOLVER-1 |
+| Warn rather than hide loss | When physical data cannot be represented analytically, expose the loss as a warning/diagnostic with traceability. | SOW-066; `docs/TYPES.md` `Diagnostic` |
+| Keep units explicit | Unit-bearing values crossing the boundary need explicit unit metadata; missing or ambiguous units are findings. | `docs/SPEC.md` section 4; `docs/CONTRACT.md` OPS-K-UNIT-1 |
+| Avoid silent engineering defaults | Missing solve-required values must not be silently supplied. | `docs/CONTRACT.md` OPS-K-DATA-2 |
+| Stay code-neutral | Do not introduce protected code data, proprietary values, code-specific public defaults, SIF/flexibility tables, or compliance claims. | `docs/CONTRACT.md`; `docs/IP_AND_DATA_BOUNDARY.md` |
+| Target global frame mechanics | The default analytical target is the project&#x27;s 3D centerline/frame mechanics boundary, not routine shell/solid FEA. | `docs/CONTRACT.md` OPS-K-MECH-1; `INIT.md` |
+</p></div></div></section>
+<section id="SEC-ED079-0015" class="chunk sec depth-4" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0015</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0016" class="chunk sec depth-5" data-kind="section" data-key="section:3557ba3bba56" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0016</span> Transform-Loss Classes</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3557ba3bba56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3557ba3bba56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3557ba3bba56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The sources require warnings for physical design data that cannot be represented analytically, and current implementation evidence supplies concrete diagnostic behavior. The transform emits deterministic `PTA-*` diagnostics for current coverage, including missing source/model role/coordinate data, missing required fields, missing or `TBD` unit metadata, noncanonical quantity dimensions, unsupported components/supports/elements, and unresolved references. The internal adapter emits deterministic `ASBA-*` diagnostics for strict solver-boundary DTO coverage, including missing properties, invalid `y_reference`, unsupported/noncanonical load semantics, unresolved targets, wrong dimensions, nonfinite quantities, unordered uniform-load spans, and wrong model role.</p>
+<p>Guidance: treat those `PTA-*` and `ASBA-*` codes as current implementation/test evidence, not as the final release transform-loss taxonomy. The final taxonomy, release thresholds, and user-facing severity policy remain `TBD` until a governed architecture or release-readiness decision accepts them.
+</p></div></div></section>
+<section id="SEC-ED079-0017" class="chunk sec depth-5" data-kind="section" data-key="section:756e7e39aca0" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0017</span> Upstream Contract Surfaces</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:756e7e39aca0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:756e7e39aca0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:756e7e39aca0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`Dependencies.csv` identifies prerequisite surfaces for canonical domain model schema, design knowledge, constraints, constraint validation, frame stiffness, supports/restraints, primitive loads, diagnostics/result envelopes, API boundaries, persistence/schema versioning, and layered tests. Those rows are evidence of coordination dependencies, not permission to copy or reinterpret sibling deliverable content.</p>
+<p>Current upstream refresh evidence confirms DEL-13-02 has an implemented constraint entity/provenance schema at `schemas/constraint.schema.json`, and DEL-13-03 has an implemented validation engine at `core/constraints/validation/engine.py`. DEL-13-04 currently carries `design_knowledge_refs` and `constraint_refs` through the derived analytical model, but it does not invoke the validation engine, resolve owner criteria, or create a GUI/runtime/API integration path.</p>
+<p>Guidance: implementation work should consume approved upstream contracts through explicit sealed scope and should not use this evidence refresh to reclassify dependencies, expand schema vocabulary, or infer owner/code criteria.
+</p></div></div></section>
+<section id="SEC-ED079-0018" class="chunk sec depth-5" data-kind="section" data-key="section:654f73c63c5c" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0018</span> Diagnostic Placement</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:654f73c63c5c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:654f73c63c5c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:654f73c63c5c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The project vocabulary distinguishes diagnostics and warning classes from professional compliance outcomes. Current transform diagnostics use classes such as `SOLVE_BLOCKING`, `ASSUMPTION_WARNING`, and `NONLINEAR_WARNING`; adapter diagnostics classify blocking findings as `SOLVE_BLOCKING` and other adapter findings as diagnostic evidence only.</p>
+<p>Guidance: transformation and adapter findings should be deterministic, source-linked, and reviewable. They should not state that the model is compliant, professionally accepted, release-ready, or externally proven.
+</p></div></div></section>
+<section id="SEC-ED079-0019" class="chunk sec depth-5" data-kind="section" data-key="section:725a77018065" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0019</span> Data Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:725a77018065" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:725a77018065" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:725a77018065" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Transformation may touch component, material, section, support, load, constraint, and design-knowledge references. Public artifacts must not supply protected or proprietary values for those surfaces. Unknown or suspected protected sources require review/quarantine rather than normalization into public defaults.</p>
+<p>Guidance: tests should use invented or permitted fixtures and should include provenance where data matters.
+</p></div></div></section>
+<section id="SEC-ED079-0020" class="chunk sec depth-4" data-kind="section" data-key="section:16be4bb611a5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0020</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:16be4bb611a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:16be4bb611a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:16be4bb611a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Conservative direction |
+|---|---|
+| Rich physical data vs. solver-ready idealization | Preserve physical richness through traceability and warnings rather than forcing all data into solver elements. |
+| Convenience defaults vs. explicit findings | Prefer explicit `TBD`, warning, or diagnostic records over hidden defaults. |
+| Contract specificity vs. unsupported invention | Specify behavior proven by SOW, decomposition, project invariants, current implementation, and focused tests; leave release taxonomy, external prover behavior, GUI/runtime/API integration, persistence/handoff readiness, and human/professional acceptance `TBD` where evidence does not fix them. |
+| Analytical target breadth vs. global mechanics scope | Keep routine transformation aimed at 3D centerline/frame analysis. Treat shell/solid FEA as a separate handoff path. |
+</p></div></div></section>
+<section id="SEC-ED079-0021" class="chunk sec depth-4" data-kind="section" data-key="section:7b74a443d972" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0021</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7b74a443d972" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7b74a443d972" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7b74a443d972" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Executable invented examples are available in `fixtures/domain/invented_physical_source_of_truth_model.json`, `tests/test_physical_to_analytical_transform.py`, and `tests/test_analytical_solver_boundary_adapter.py`. They are public-permissive test evidence, not owner/project examples or professional design examples. Publication-grade examples, owner/project examples, and any examples containing code/owner criteria remain `TBD` pending source clearance and human acceptance.
+</p></div></div></section>
+<section id="SEC-ED079-0022" class="chunk sec depth-4" data-kind="section" data-key="section:8cf35cc81d72" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0022</span> Source Access Gaps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8cf35cc81d72" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8cf35cc81d72" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8cf35cc81d72" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Gap | Impact | Handling |
+|---|---|---|
+| PRD v0.2 Section8.3 / FR-MOD-007 not locally available through `_REFERENCES.md` | Cannot derive PRD-specific transform clauses beyond SOW-066 wording. | Keep PRD-specific particulars `TBD`. |
+| Broader upstream integration beyond current DEL-13-02/DEL-13-03 refresh evidence | Cannot claim full runtime constraint-validation consumption, GUI presentation, public API behavior, or persisted handoff readiness. | Keep those integration surfaces `TBD` until bounded implementation evidence exists. |
+| OI-012 unresolved architecture detail for loss classes | Transform-loss taxonomy cannot be finalized here. | Record `TBD`; require later architecture/detail task. |
+</p></div></div></section>
+<section id="SEC-ED079-0023" class="chunk sec depth-2" data-kind="section" data-key="section:18e17766bb5d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED079-0023</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18e17766bb5d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18e17766bb5d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18e17766bb5d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0024" class="chunk sec depth-3" data-kind="section" data-key="section:88ccfb175d87" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED079-0024</span> Procedure: DEL-13-04 Physical-to-analytical transformation contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88ccfb175d87" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88ccfb175d87" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88ccfb175d87" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** 2026-05-03
+**Status:** Evidence refresh applied 2026-06-07
+**Source posture:** Operational steps describe how to produce/use the contract without inventing unsupported implementation details.
+</p></div></div></section>
+<section id="SEC-ED079-0025" class="chunk sec depth-4" data-kind="section" data-key="section:9a40e4b06092" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0025</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a40e4b06092" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a40e4b06092" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a40e4b06092" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure defines the conservative workflow for checking and extending the DEL-13-04 physical-to-analytical transformation contract. The implemented workflow keeps the physical model as source of truth, derives a solver-ready analytical representation, records transformation diagnostics, and preserves traceability without introducing protected data, hidden defaults, public API expansion, GUI/runtime behavior, external prover claims, or professional compliance claims.
+</p></div></div></section>
+<section id="SEC-ED079-0026" class="chunk sec depth-4" data-kind="section" data-key="section:267170290798" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0026</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:267170290798" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:267170290798" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:267170290798" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm current deliverable context:
+   - `_CONTEXT.md` identifies DEL-13-04, PKG-13, BACKEND_FEATURE_SLICE, SOW-066, OBJ-014.
+   - `_STATUS.md` is in a state that permits setup drafting before overwriting local production documents.
+2. Confirm governing references:
+   - `_REFERENCES.md`
+   - `execution/_Decomposition/SOFTWARE_DECOMP.md`
+   - `docs/_Registers/Deliverables.csv`
+   - `docs/_Registers/ScopeLedger.csv`
+   - `docs/_Registers/ContextBudgetQA.csv`
+   - `docs/CONTRACT.md`
+   - `docs/SPEC.md`
+   - `docs/TYPES.md`
+   - `docs/IP_AND_DATA_BOUNDARY.md`
+   - `INIT.md`
+3. Treat `Dependencies.csv` as the approved DAG-006 mirror/evidence surface. Preserve approved rows as ACTIVE; do not retire, delete, or reclassify them during this setup workflow.
+4. Use only source-cleared or invented/public-permissive data in examples and tests. Suspected protected content must be quarantined and escalated under project policy.
+5. Inspect current implementation and test evidence:
+   - `core/model_transform/physical_to_analytical/contract.py`
+   - `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py`
+   - `fixtures/domain/invented_physical_source_of_truth_model.json`
+   - `tests/test_physical_to_analytical_transform.py`
+   - `tests/test_analytical_solver_boundary_adapter.py`
+6. Treat current DEL-13-02 and DEL-13-03 four-document kits, `MEMORY.md` files, and TASK run records `TASK_RUN_2026-06-07_1127.md` / `TASK_RUN_2026-06-07_1133.md` as read-only upstream evidence for this refresh.
+</p></div></div></section>
+<section id="SEC-ED079-0027" class="chunk sec depth-4" data-kind="section" data-key="section:cdde4f20ba31" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0027</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0028" class="chunk sec depth-5" data-kind="section" data-key="section:dac4146d98d6" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0028</span> 1. Establish Transform Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dac4146d98d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dac4146d98d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dac4146d98d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Identify the physical model as the source-of-truth input.
+2. Identify the analytical model as a derived solver-ready output with `model_role = analytical_solver_model` and `source_model_ref` pointing back to the physical model.
+3. Confirm the default target mechanics boundary is the 3D centerline/frame model.
+4. Verify supported current physical-record coverage: nodes, straight-pipe elements, supported component metadata when referenced by valid elements, materials, sections, supports, load cases, combinations, diagnostics, unresolved assumptions, and traceability links.
+5. Record broader physical-record coverage as `TBD` unless current implementation/tests explicitly define its handling.
+</p></div></div></section>
+<section id="SEC-ED079-0029" class="chunk sec depth-5" data-kind="section" data-key="section:e281c6144bd3" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0029</span> 2. Define Contract Inputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e281c6144bd3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e281c6144bd3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e281c6144bd3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Declare required input surfaces from source-grounded context:
+   - canonical model/domain schema;
+   - design knowledge and provenance;
+   - constraint entities and constraint validation;
+   - support/restraint semantics;
+   - primitive load semantics;
+   - diagnostics/result-envelope conventions.
+2. For each unit-bearing input, require explicit unit metadata unless the field is explicitly dimensionless.
+3. For each input whose source, provenance, or units are missing, define a diagnostic/warning path instead of a silent default.
+4. For current implementation evidence, verify schema-shaped input/output fields used or produced by `contract.py`, including `id`, `model_role`, `coordinate_system`, `nodes`, `elements`, `components`, `materials`, `sections`, `supports`, `load_cases`, `combinations`, `design_knowledge_refs`, `constraint_refs`, `diagnostics`, `unresolved_assumptions`, and `traceability_links`.
+5. Leave unimplemented schema references, runtime service envelopes, external prover behavior, and field-level scalar traceability `TBD` unless fixed by accessible implementation evidence.
+</p></div></div></section>
+<section id="SEC-ED079-0030" class="chunk sec depth-5" data-kind="section" data-key="section:126963d39010" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0030</span> 3. Define Contract Outputs</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:126963d39010" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:126963d39010" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:126963d39010" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Specify the derived analytical model output at the contract level.
+2. Specify warning/diagnostic output for non-representable physical data, missing solve-required data, weak provenance, unresolved assumptions, or protected/private-data risk where applicable.
+3. Specify traceability links from physical inputs to:
+   - analytical output records;
+   - warnings/diagnostics;
+   - omissions;
+   - assumptions;
+   - unresolved `TBD` items.
+4. For the internal adapter, specify DTO outputs only as internal solver-boundary evidence: nodes, straight-pipe connectivity, property bindings, support targets, load-case records/applications, adapter DTO identity/hash/source-chain records, load-case diagnostics, and diagnostics.
+5. Do not encode compliance, approval, certification, external-prover success, release readiness, or professional reliance status in transform or adapter outputs.
+</p></div></div></section>
+<section id="SEC-ED079-0031" class="chunk sec depth-5" data-kind="section" data-key="section:05450f572b66" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0031</span> 4. Define Determinism Rules</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05450f572b66" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05450f572b66" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05450f572b66" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Define deterministic behavior in terms of equivalent input model, units, transform contract version, and configuration.
+2. Require repeatable analytical output and repeatable warning/diagnostic output for the same basis.
+3. Verify current stable record ordering, stable diagnostic ordering, stable traceability ordering, and adapter DTO hash evidence (`sha256` over sorted JSON payloads with `JCS` vocabulary) where implemented.
+4. Record release-grade canonicalization and broader audit-manifest policy as `TBD` unless fixed by a later governed decision.
+</p></div></div></section>
+<section id="SEC-ED079-0032" class="chunk sec depth-5" data-kind="section" data-key="section:11ed9b6c2cf6" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0032</span> 5. Define Warning Tests</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11ed9b6c2cf6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11ed9b6c2cf6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11ed9b6c2cf6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Create tests for transformation warnings required by SOW-066.
+2. Include negative cases for at least:
+   - missing solve-required physical input;
+   - physical data that lacks a solver-ready analytical representation;
+   - missing or ambiguous unit metadata on a unit-bearing value.
+3. Use invented or permissive fixtures only.
+4. Verify warnings remain diagnostic and do not become compliance or professional acceptance claims.
+5. For the current implementation, run:
+   - `python3 tests/test_physical_to_analytical_transform.py`
+   - `python3 tests/test_analytical_solver_boundary_adapter.py`
+   - `python3 -m pytest -q tests/test_physical_to_analytical_transform.py tests/test_analytical_solver_boundary_adapter.py`
+</p></div></div></section>
+<section id="SEC-ED079-0033" class="chunk sec depth-5" data-kind="section" data-key="section:be55572d9fb9" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0033</span> 6. Review Data Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be55572d9fb9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be55572d9fb9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be55572d9fb9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Scan the contract and tests for protected standards text, protected tables, code-specific defaults, copied formulas, proprietary catalog values, owner standards, or private project data.
+2. Mark uncertain content `TBD` or `protected_suspected` according to policy.
+3. Escalate suspected protected content; do not normalize it into public examples.
+</p></div></div></section>
+<section id="SEC-ED079-0034" class="chunk sec depth-4" data-kind="section" data-key="section:bd4fe6732db2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0034</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd4fe6732db2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd4fe6732db2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd4fe6732db2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected evidence |
+|---|---|
+| Four-doc consistency | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` use the same DEL ID, package, scope, objective, and terminology. |
+| Requirement coverage | Specification requirements trace to SOW-066, OBJ-014, project invariants, or local DAG mirror rows. |
+| Determinism | Tests or planned tests cover repeated transform behavior. |
+| Warning behavior | Tests or planned tests cover warnings for non-representable physical data. |
+| Traceability | Contract records physical-to-analytical links or explicit unresolved gaps. |
+| Unit safety | Missing/ambiguous unit metadata produces findings, not defaults. |
+| Data boundary | No protected/private/proprietary engineering content is introduced. |
+| Professional boundary | Outputs avoid certification, approval, compliance, or professional reliance claims. |
+| Internal adapter boundary | Adapter accepts only strict `analytical_solver_model` mappings and reports DTO/load/orientation/property failures as diagnostics. |
+| Dependency preservation | Existing local dependency rows remain unchanged during evidence refresh; historical row IDs remain audit evidence under the current DAG-006 coordination basis. |
+</p></div></div></section>
+<section id="SEC-ED079-0035" class="chunk sec depth-4" data-kind="section" data-key="section:3bbba5ab2b45" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0035</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3bbba5ab2b45" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3bbba5ab2b45" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3bbba5ab2b45" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Maintain the following deliverable-local records:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `_STATUS.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/**`</p>
+<p>Check the following repo-level implementation and test evidence when verifying this deliverable:</p>
+<p>- `core/model_transform/physical_to_analytical/contract.py`
+- `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py`
+- `fixtures/domain/invented_physical_source_of_truth_model.json`
+- `tests/test_physical_to_analytical_transform.py`
+- `tests/test_analytical_solver_boundary_adapter.py`</p>
+<p>Implementation records are no longer `TBD` for the current transform, internal adapter, canonical fixture, and focused tests listed above. Remaining `TBD` records include final transform-loss taxonomy, release thresholds, external prover behavior, GUI/runtime/API integration, persisted/handoff readiness, broader physical-record coverage, human acceptance, and professional/code-compliance boundaries.
+</p></div></div></section>
+<section id="SEC-ED079-0036" class="chunk sec depth-2" data-kind="section" data-key="section:66c409ddbd30" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED079-0036</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66c409ddbd30" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66c409ddbd30" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66c409ddbd30" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED079-0037" class="chunk sec depth-3" data-kind="section" data-key="section:aaa69b496837" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED079-0037</span> Specification: DEL-13-04 Physical-to-analytical transformation contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aaa69b496837" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aaa69b496837" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aaa69b496837" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Generated:** 2026-05-03
+**Status:** Evidence refresh applied 2026-06-07
+**Source posture:** Requirements below are limited to accessible local sources; unresolved particulars remain `TBD`.
+</p></div></div></section>
+<section id="SEC-ED079-0038" class="chunk sec depth-4" data-kind="section" data-key="section:346ebd9993b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0038</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:346ebd9993b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:346ebd9993b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:346ebd9993b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-13-04 specifies the backend contract for transforming the schema-backed physical model into a solver-ready analytical model and recording traceable transformation warnings when physical design data cannot be represented analytically.
+</p></div></div></section>
+<section id="SEC-ED079-0039" class="chunk sec depth-5" data-kind="section" data-key="section:c424a17a7497" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0039</span> In Scope</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c424a17a7497" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c424a17a7497" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c424a17a7497" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- A deterministic physical-to-analytical transformation contract for SOW-066.
+- Warning / diagnostic behavior for omitted, unsupported, incomplete, or non-representable physical design data.
+- Traceability from source physical model records to derived analytical model records, warnings, omissions, or assumptions.
+- Contract-level tests for transformation warnings.
+- Integration posture with architecture-basis constraints: Rust core/application services, schema-first command/query/job result envelopes, JSON Schema 2020-12 contracts, diagnostics/result envelopes, and deterministic tests where applicable, per `_CONTEXT.md`.
+</p></div></div></section>
+<section id="SEC-ED079-0040" class="chunk sec depth-5" data-kind="section" data-key="section:4132a88ab946" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED079-0040</span> Out of Scope</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4132a88ab946" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4132a88ab946" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4132a88ab946" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Protected standards data, code-specific defaults, protected tables, copied formulas, owner standards, proprietary catalog values, or private project data.
+- Final engineering acceptance, code compliance, certification, sealing, approval, or professional reliance claims.
+- Owner standards or final acceptance logic for physical design constraints, per PKG-13 package exclusions.
+- Final transform-loss taxonomy, release thresholds, dependency versions, external prover behavior, GUI/runtime/API integration, persisted/handoff readiness, broader physical-record coverage, and human/professional acceptance.
+</p></div></div></section>
+<section id="SEC-ED079-0041" class="chunk sec depth-4" data-kind="section" data-key="section:bf98dab12daf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0041</span> Implementation Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf98dab12daf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf98dab12daf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf98dab12daf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Current implementation evidence exists for the DEL-13-04 transform and internal solver-boundary adapter:</p>
+<p>- `core/model_transform/physical_to_analytical/contract.py` implements `transform_physical_to_analytical(...)`, `TransformSettings`, `TransformResult`, deterministic ordering, `analytical_solver_model` output, `PTA-*` diagnostics, and physical-to-analytical traceability links.
+- `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py` implements the internal `adapt_analytical_solver_model(...)` DTO boundary for strict `analytical_solver_model` mappings. It emits deterministic node DTOs, straight-pipe connectivity, property bindings, support targets, load-case records/applications, adapter DTO identity/hash/source-chain records, `load_case_diagnostics`, and adapter diagnostics.
+- `fixtures/domain/invented_physical_source_of_truth_model.json` is the canonical invented physical source-of-truth fixture for current DEL-13-04 tests. It contains public-permissive invented nodes, straight-pipe element, governed `y_reference`, material/section quantities, support, strict load records, visible assumption/diagnostic evidence, and traceability.
+- `tests/test_physical_to_analytical_transform.py` covers deterministic transform behavior, source model preservation, canonical fixture/schema validation, traceability, unit metadata failures, unsupported physical-record/component behavior, strict load metadata, noncanonical quantity dimensions, and forbidden authority-claim text scanning.
+- `tests/test_analytical_solver_boundary_adapter.py` covers deterministic solver-boundary DTO emission, missing-property no-default diagnostics, noncanonical load semantic rejection, invalid orientation diagnostics, load span/runtime diagnostics, adapter DTO hash/source-chain evidence, and analytical-model role enforcement.</p>
+<p>This evidence does not implement a GUI command path, runtime service envelope, public API, persistence/handoff package readiness, external prover behavior, full release threshold policy, or human/professional acceptance.
+</p></div></div></section>
+<section id="SEC-ED079-0042" class="chunk sec depth-4" data-kind="section" data-key="section:a5f341f642fd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0042</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5f341f642fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5f341f642fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5f341f642fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Verification | Source |
+|---|---|---|---|
+| DEL-13-04-REQ-001 | The contract shall transform the physical model into a solver-ready analytical model deterministically. | `tests/test_physical_to_analytical_transform.py` repeats transform over the canonical fixture and deep-copied inputs and expects identical output. | `_CONTEXT.md` SOW-066; `docs/_Registers/ScopeLedger.csv` SOW-066; `core/model_transform/physical_to_analytical/contract.py` |
+| DEL-13-04-REQ-002 | The contract shall record transformation warnings or diagnostics when physical design data cannot be represented analytically. | Transform tests cover missing units, unsupported element/component data, unresolved references, noncanonical dimensions, and unresolved load dimensions. Adapter tests cover unsupported/noncanonical load semantics, invalid orientation, missing properties, unresolved targets, and nonfinite quantities. | `_CONTEXT.md` SOW-066; `execution/_Decomposition/SOFTWARE_DECOMP.md` DEL-13-04; `tests/test_physical_to_analytical_transform.py`; `tests/test_analytical_solver_boundary_adapter.py` |
+| DEL-13-04-REQ-003 | The contract shall preserve the physical model as the editable source-of-truth and produce the analytical model as a derived solver-oriented view. | Schema/contract review confirms physical model role is not overwritten or reclassified by transform output. | `docs/SPEC.md` section 3; `docs/TYPES.md` `Model` and `ModelRole` rows |
+| DEL-13-04-REQ-004 | The contract shall preserve traceability from physical source records to analytical records, omissions, assumptions, warnings, or other transform outcomes. | Transform tests assert physical-to-analytical links for nodes, elements, materials, sections, supports, load cases, components, and diagnostics; adapter tests assert DTO `source_chain` and hash anchors for emitted load applications. Field-level scalar traceability remains `TBD`. | `execution/_Decomposition/SOFTWARE_DECOMP.md` OBJ-014; `docs/TYPES.md` `TraceabilityLink` row; `core/model_transform/physical_to_analytical/contract.py`; `_solver_boundary_adapter.py` |
+| DEL-13-04-REQ-005 | Unit-bearing physical values crossing the transform boundary shall carry explicit unit metadata unless explicitly dimensionless. | Transform tests reject missing, empty, `TBD`, and noncanonical dimensions; adapter tests require finite `Quantity` records with expected dimensions and do not convert or infer units. | `docs/SPEC.md` section 4; `docs/CONTRACT.md` OPS-K-UNIT-1 |
+| DEL-13-04-REQ-006 | Missing solve-required values shall be represented as explicit findings and shall not be silently defaulted by the transformation contract. | Negative transform and adapter tests expect deterministic `PTA-*` or `ASBA-*` diagnostics instead of defaults. | `docs/CONTRACT.md` OPS-K-DATA-2; `docs/SPEC.md` missing-data warning classes |
+| DEL-13-04-REQ-007 | The analytical output shall target the project primary global mechanics boundary: a 3D centerline/frame model. | Contract review confirms no routine shell/solid FEA target is introduced for this deliverable. | `docs/CONTRACT.md` OPS-K-MECH-1; `INIT.md` principles |
+| DEL-13-04-REQ-008 | The contract shall not bundle protected standards content, code-specific default values, protected tables, copied formulas, proprietary catalog values, or owner standards. | Protected-content review / contribution gate; public fixtures use invented or permissive data only. | `docs/CONTRACT.md` OPS-K-IP-1 and OPS-K-DATA-1; `docs/IP_AND_DATA_BOUNDARY.md` |
+| DEL-13-04-REQ-009 | The contract and its warnings shall not claim certification, sealing, approval, authentication, engineering acceptance, or code compliance. | Text/schema review for forbidden authority claims; report/result wording remains diagnostic only. | `docs/CONTRACT.md` OPS-K-AUTH-1; `INIT.md` |
+| DEL-13-04-REQ-010 | Solver-facing changes resulting from this contract shall have deterministic verification tests before release. | Current focused tests are executable with `python3 tests/test_physical_to_analytical_transform.py`, `python3 tests/test_analytical_solver_boundary_adapter.py`, and joint `pytest`; release thresholds remain `TBD`. | `docs/CONTRACT.md` OPS-K-SOLVER-1; `Dependencies.csv` row DAG-002-E0666 |
+| DEL-13-04-REQ-011 | The contract shall treat upstream dependency surfaces as prerequisite context and shall not reinterpret the local dependency mirror as independent dispatch authority. | Dependency artifact review confirms current local dependency rows remain evidence under DAG-006 coordination; this refresh does not edit dependency files. | `_DEPENDENCIES.md` Authority Boundary; `Dependencies.csv`; `_COORDINATION.md` |
+| DEL-13-04-REQ-012 | The internal solver-boundary adapter shall accept only strict `analytical_solver_model` mappings and shall not become a public API, GUI/runtime path, external prover path, or final solver acceptance claim. | Adapter tests enforce analytical-model role, strict load union handling, adapter DTO evidence, and diagnostics for unsupported runtime conditions. | `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py`; `tests/test_analytical_solver_boundary_adapter.py`; `MEMORY.md` |
+</p></div></div></section>
+<section id="SEC-ED079-0043" class="chunk sec depth-4" data-kind="section" data-key="section:ed39e3f8a492" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0043</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed39e3f8a492" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed39e3f8a492" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed39e3f8a492" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No external engineering standard text is locally available or authorized as source material for this deliverable. The governing project standards for this draft are:</p>
+<p>| Standard / policy surface | Applicability |
+|---|---|
+| `docs/CONTRACT.md` | Invariants for data boundary, missing values, professional authority, mechanics boundary, units, and solver tests. |
+| `docs/SPEC.md` | Schema-first model role, unit metadata, diagnostics/warnings, and warning class context. |
+| `docs/TYPES.md` | Vocabulary for model roles, traceability, diagnostics, frame kernel, supports, and load semantics. |
+| `docs/IP_AND_DATA_BOUNDARY.md` | Protected-data and private-data handling. |
+| `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 | Accepted decomposition and SOW/OBJ mapping. |
+| `core/model_transform/physical_to_analytical/contract.py` | Current transform implementation. |
+| `core/model_transform/physical_to_analytical/_solver_boundary_adapter.py` | Current internal adapter implementation. |
+| `tests/test_physical_to_analytical_transform.py` and `tests/test_analytical_solver_boundary_adapter.py` | Current focused verification evidence. |</p>
+<p>Referenced PRD source material (`PRD v0.2 Section8.3`, `FR-MOD-007`) is not locally available in this deliverable&#x27;s references. Any requirement depending on the PRD beyond the SOW-066 text remains `TBD`.
+</p></div></div></section>
+<section id="SEC-ED079-0044" class="chunk sec depth-4" data-kind="section" data-key="section:9ee11496d77d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0044</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ee11496d77d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ee11496d77d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ee11496d77d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification item | Required check | Current status |
+|---|---|---|
+| Deterministic transform | Same input and configuration produce equivalent analytical output and equivalent warnings/diagnostics. | Implemented in `tests/test_physical_to_analytical_transform.py` using `fixtures/domain/invented_physical_source_of_truth_model.json`. |
+| Warning/diagnostic behavior | Non-representable physical data produces deterministic transformation diagnostics. | Implemented for current `PTA-*` and `ASBA-*` coverage; final release taxonomy remains `TBD`. |
+| Traceability coverage | Physical-to-analytical mappings, omissions, warnings, assumptions, adapter DTO hashes, and source chains carry traceability links or explicit gaps. | Implemented at object/DTO level; field-level scalar traceability and full runtime result trace-chain production remain `TBD`. |
+| Unit metadata | Unit-bearing values are not accepted silently without explicit units. | Implemented in transform and adapter tests; no unit conversion is performed. |
+| No silent defaults | Missing solve-required physical data yields findings rather than inferred defaults. | Implemented in transform and adapter tests. |
+| Protected-content boundary | Public contract/tests do not include protected standards text, values, tables, or proprietary data. | Required by OPS-K-IP-1. |
+| Professional boundary | Outputs remain diagnostics / transform artifacts, not compliance or professional-approval claims. | Required by OPS-K-AUTH-1. |
+| DAG mirror preservation | All current local dependency rows remain unchanged by this evidence refresh. | Required by user instruction and `_DEPENDENCIES.md`; dependency files are outside this write scope. |
+| Internal adapter DTO evidence | Strict analytical solver-boundary mappings produce deterministic DTOs or diagnostics. | Implemented in `tests/test_analytical_solver_boundary_adapter.py`. |
+</p></div></div></section>
+<section id="SEC-ED079-0045" class="chunk sec depth-4" data-kind="section" data-key="section:4eff4da2ef9b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED079-0045</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4eff4da2ef9b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4eff4da2ef9b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4eff4da2ef9b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required local artifacts for this setup pass:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`</p>
+<p>Anticipated implementation artifacts from `_CONTEXT.md` and `docs/_Registers/Deliverables.csv`:</p>
+<p>- physical-to-analytical transform contract
+- transform warning tests</p>
+<p>Current implementation artifact paths and focused test fixture names are no longer `TBD`; they are listed above. Remaining `TBD` items are transform-loss taxonomy, release thresholds, external prover behavior, GUI/runtime/API integration, persisted/handoff readiness, broader physical-record coverage, human acceptance, and professional/code-compliance boundaries.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED079";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

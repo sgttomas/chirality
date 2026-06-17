@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT",
+  "source_doc_id": "SRC-DEL-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT",
+  "source_prefix": "ED100",
+  "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/",
+  "catalog_rel_path": "@repo/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT-DATASHEET",
+      "expected_sha256": "bd0f821cca77d60c489d21a5047ccb692d3930e71d35bea4cfd28677bb2e68eb",
+      "generated_line_start": 11,
+      "generated_line_end": 89,
+      "source_line_start": 1,
+      "source_line_end": 79,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT-GUIDANCE",
+      "expected_sha256": "6f82e87e1c39960d15988d53f5f763ccec15b3e6b5f4f2973c1ba23a1b062d9d",
+      "generated_line_start": 93,
+      "generated_line_end": 168,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -92
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT-PROCEDURE",
+      "expected_sha256": "f0158f09e489da4ff3ddeb7b1fb932aab4186c3ecb3e5b755f974abe6a831aef",
+      "generated_line_start": 172,
+      "generated_line_end": 258,
+      "source_line_start": 1,
+      "source_line_end": 87,
+      "line_offset": -171
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-08-GLB-GLTF-REVIEW-GEOMETRY-EXPORT-SPECIFICATION",
+      "expected_sha256": "ee6e8f5e4e443cc511095371bfb53d4a132118a71797a7f2b2549f23b11dbc56",
+      "generated_line_start": 262,
+      "generated_line_end": 369,
+      "source_line_start": 1,
+      "source_line_end": 108,
+      "line_offset": -261
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

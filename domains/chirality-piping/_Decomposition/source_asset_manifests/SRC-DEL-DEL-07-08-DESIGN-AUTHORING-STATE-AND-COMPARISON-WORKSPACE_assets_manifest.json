@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE",
+  "source_doc_id": "SRC-DEL-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE",
+  "source_prefix": "ED049",
+  "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/",
+  "catalog_rel_path": "@repo/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE-DATASHEET",
+      "expected_sha256": "813fb4d68ce8a11e12da686ac0eaaf90cebb3ed13a354f0e2235135046788286",
+      "generated_line_start": 11,
+      "generated_line_end": 70,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE-GUIDANCE",
+      "expected_sha256": "36b3f8a1320547d94e54bccf2ef417aad976487ca2c5f70ffe923fa5881509b5",
+      "generated_line_start": 74,
+      "generated_line_end": 116,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -73
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE-PROCEDURE",
+      "expected_sha256": "a76c68ba7b1868d3b531189eb14b488771935648cae330fd0779412977e0ac51",
+      "generated_line_start": 120,
+      "generated_line_end": 179,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -119
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE-SPECIFICATION",
+      "expected_sha256": "8c17231c8593603e6118d4271b9469ec538a73b13e7831bed5ead5f683646a88",
+      "generated_line_start": 183,
+      "generated_line_end": 252,
+      "source_line_start": 1,
+      "source_line_end": 70,
+      "line_offset": -182
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

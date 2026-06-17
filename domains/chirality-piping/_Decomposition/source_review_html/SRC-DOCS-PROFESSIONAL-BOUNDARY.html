@@ -1,0 +1,402 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-PROFESSIONAL-BOUNDARY - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>11</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD022-0001">Professional Boundary and Product Claims Policy</a> <a href="#SEC-PD022-0002">1. Purpose</a> <a href="#SEC-PD022-0003">2. Current Authority Basis</a> <a href="#SEC-PD022-0004">3. Authority Boundaries</a> <a href="#SEC-PD022-0005">4. Permitted Claims</a> <a href="#SEC-PD022-0006">5. Prohibited Claims</a> <a href="#SEC-PD022-0007">6. Status Vocabulary</a> <a href="#SEC-PD022-0008">7. Human Acceptance Records</a> <a href="#SEC-PD022-0009">8. Report Notice Requirements</a> <a href="#SEC-PD022-0010">9. Product-Claim Review Checklist</a> <a href="#SEC-PD022-0011">10. Open TBDs</a></nav>
+<main>
+<section id="SEC-PD022-0001" class="chunk sec depth-1" data-kind="section" data-key="section:4da6a0a6070a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD022-0001</span> Professional Boundary and Product Claims Policy</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4da6a0a6070a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4da6a0a6070a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4da6a0a6070a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD022-0002" class="chunk sec depth-2" data-kind="section" data-key="section:61522a106ad3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0002</span> 1. Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61522a106ad3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61522a106ad3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61522a106ad3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This policy defines the professional-responsibility boundary for
+OpenPipeStress product, report, documentation, release, and agent claims.</p>
+<p>OpenPipeStress is decision-support software for transparent piping mechanics,
+analysis-grade design-engine workflows, and stress-model authoring. It may
+compute mechanics, evaluate user-supplied rule packs, record diagnostics,
+support design-authoring and comparison workflows, and assemble auditable
+reports. It does not replace competent professional judgment for a
+project-specific piping calculation.</p>
+<p>This policy is project governance. It is not legal advice, professional
+engineering approval, certification, sealing, standards-body endorsement, or a
+code-compliance determination.
+</p></div></div></section>
+<section id="SEC-PD022-0003" class="chunk sec depth-2" data-kind="section" data-key="section:f3cbd178166d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0003</span> 2. Current Authority Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f3cbd178166d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f3cbd178166d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f3cbd178166d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This draft policy is aligned to
+`execution/_Decomposition/SOFTWARE_DECOMP.md` revision `0.7` and approved
+`DAG-006` coordination authority. The project license has been selected as
+`PolyForm-Noncommercial-1.0.0`; this is a project governance notice and not
+legal advice, professional approval, or code-compliance evidence.</p>
+<p>The final contributor legal mechanism, maintainer roster/quorum, release
+authority, legal-review authority, security contact, release-label vocabulary,
+human-acceptance workflow, and jurisdiction-specific professional-practice
+wording remain `TBD` until recorded by the human project authority or qualified
+reviewer.
+</p></div></div></section>
+<section id="SEC-PD022-0004" class="chunk sec depth-2" data-kind="section" data-key="section:ecc6838f6b0d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0004</span> 3. Authority Boundaries</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecc6838f6b0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecc6838f6b0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecc6838f6b0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Surface | What it may state | What it must not state |
+|---|---|---|
+| Solver | Mechanical solve status, numerical results, diagnostics, warnings, and limitations. | That a piping design is professionally approved or code-compliant for reliance. |
+| Rule pack | User-defined check results using recorded user inputs, formulas, and allowables. | That the software has authenticated, sealed, or professionally approved the design. |
+| Report | Inputs, versions, hashes, provenance, warnings, assumptions, results, rule-pack references, limitations, and review notices. | That the report itself certifies, seals, endorses, or approves engineering work. |
+| Design-engine workflow | Model-authoring support, comparison views, handoff packages, export packages, warnings, assumptions, and review aids. | That design-authoring, export, or comparison output is professional acceptance or external solver validation. |
+| Agent output | Drafts, proposals, evidence summaries, checks, and open issues. | That agent output is accepted policy, accepted engineering work, or professional approval without a human gate. |
+| Release notes | Implemented scope, validation evidence, known limitations, data-boundary constraints, and professional-boundary notices. | That a release is suitable for project-specific reliance without competent human review. |
+</p></div></div></section>
+<section id="SEC-PD022-0005" class="chunk sec depth-2" data-kind="section" data-key="section:aada8df9a7f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0005</span> 4. Permitted Claims</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:aada8df9a7f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:aada8df9a7f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:aada8df9a7f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress materials may claim supported behavior when the claim is backed
+by implementation, tests, documentation, or recorded evidence. Permitted claims
+include:</p>
+<p>- mechanics results computed from a recorded model and load basis;
+- user-rule check results computed from user-supplied rule-pack definitions and
+  user-supplied data;
+- diagnostics, warnings, missing-input findings, assumptions, and limitations;
+- design-authoring, comparison, handoff, and export support when described as
+  review support or workflow evidence rather than professional approval;
+- source, provenance, redistribution, version, checksum, and hash records;
+- validation or regression evidence for software behavior;
+- report generation for competent human review;
+- local-first handling of private project, rule-pack, material, and component
+  data when implemented and tested.</p>
+<p>Claims must be specific to the feature, version, data, and evidence available.
+Unsupported claims remain `TBD`, `ASSUMPTION`, or `PROPOSAL`.
+</p></div></div></section>
+<section id="SEC-PD022-0006" class="chunk sec depth-2" data-kind="section" data-key="section:4b3f6583c392" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0006</span> 5. Prohibited Claims</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4b3f6583c392" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4b3f6583c392" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4b3f6583c392" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+OpenPipeStress software, reports, agents, examples, releases, and public
+documentation must not state or imply that the project:</p>
+<p>- certifies, seals, approves, authenticates, or endorses engineering work;
+- declares engineering code compliance for reliance;
+- provides standards-body approval or official interpretation;
+- replaces the engineer of record or other competent professional reviewer;
+- removes the user&#x27;s responsibility to supply applicable code, owner,
+  material, component, load, SIF, flexibility, allowable, and project data;
+- makes public example data suitable for real project use;
+- turns user-rule pass/fail results into professional approval;
+- treats design-engine, comparison, handoff, export, or external-prover
+  metadata as automatic professional validation;
+- provides legal advice or jurisdiction-specific professional-practice advice.</p>
+<p>Prohibited language is unacceptable even when convenient for marketing, release
+notes, generated reports, examples, or UI labels.
+</p></div></div></section>
+<section id="SEC-PD022-0007" class="chunk sec depth-2" data-kind="section" data-key="section:e2e0dfd460a9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0007</span> 6. Status Vocabulary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2e0dfd460a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2e0dfd460a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2e0dfd460a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Product and report language must preserve these distinctions:</p>
+<p>| Status concept | Meaning |
+|---|---|
+| Mechanics solved | The numerical mechanics problem reached a recorded solve state. |
+| User-rule checked | A user-supplied rule pack evaluated recorded inputs and results. |
+| Human review required | Competent review remains required before professional reliance. |
+| Human accepted for project | An external human acceptance record exists for a specific model, rule-pack, and report basis. |</p>
+<p>Software must not emit automatic professional-approval or automatic
+code-compliance statuses. Human acceptance records are external governance or
+project records, not solver-generated conclusions.
+</p></div></div></section>
+<section id="SEC-PD022-0008" class="chunk sec depth-2" data-kind="section" data-key="section:2c2740efcc47" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0008</span> 7. Human Acceptance Records</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2c2740efcc47" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2c2740efcc47" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2c2740efcc47" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If OpenPipeStress stores or references a human acceptance record, that record
+must:</p>
+<p>- identify the human acceptance authority or external record location;
+- bind to the applicable model hash, rule-pack checksum, report hash, software
+  version, and relevant input manifest;
+- identify the scope and limitations of the acceptance;
+- become stale or invalid for reliance when any bound model, rule-pack, report,
+  input manifest, or relevant software basis changes;
+- remain separate from solver, rule-pack, and report-generation outputs.</p>
+<p>The exact acceptance-record storage workflow remains `TBD` until implemented by
+the relevant persistence, report, and governance deliverables.
+</p></div></div></section>
+<section id="SEC-PD022-0009" class="chunk sec depth-2" data-kind="section" data-key="section:08883d05bf22" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0009</span> 8. Report Notice Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08883d05bf22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08883d05bf22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08883d05bf22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Generated reports and public report templates must include notices that:</p>
+<p>- identify OpenPipeStress as decision-support software;
+- distinguish mechanics results from user-rule checks and human professional
+  acceptance;
+- state that code-specific and project-specific data are supplied by the user
+  or by user-controlled private sources;
+- disclose warnings, assumptions, missing data, provenance notes, versions,
+  hashes, and limitations;
+- state that competent human review is required before professional reliance;
+- describe design-authoring, comparison, handoff, export, and external-prover
+  metadata as workflow evidence only, where included;
+- avoid protected standards text, protected tables, proprietary engineering
+  values, private project data, and private rule-pack content unless the user
+  intentionally includes private material in a private report workflow.</p>
+<p>The baseline notice template is `docs/report_notice_template.md`.
+</p></div></div></section>
+<section id="SEC-PD022-0010" class="chunk sec depth-2" data-kind="section" data-key="section:4cc26d2ec879" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0010</span> 9. Product-Claim Review Checklist</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4cc26d2ec879" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4cc26d2ec879" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4cc26d2ec879" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Before merging public-facing claims, generated notices, report templates,
+examples, release notes, or documentation, maintainers must check:</p>
+<p>| Check | Required result |
+|---|---|
+| Evidence support | Claim is supported by implementation, tests, source evidence, or an explicit human ruling. |
+| Professional boundary | Claim does not state or imply certification, sealing, endorsement, approval, or code compliance for reliance. |
+| Status separation | Mechanics solve, user-rule check, missing data, and human acceptance remain separate. |
+| Protected content | Claim or notice does not reproduce protected standards text, tables, figures, examples, code-derived formulas, or proprietary data. |
+| Private data | Claim or report path does not expose private project, rule-pack, material, component, owner-standard, or company data by default. |
+| Limitations | Known limitations, validation status, data-boundary constraints, and professional-responsibility limitations are visible. |</p>
+<p>If a claim is ambiguous, stop and route it to human review before publication.
+</p></div></div></section>
+<section id="SEC-PD022-0011" class="chunk sec depth-2" data-kind="section" data-key="section:04ca07795b6f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD022-0011</span> 10. Open TBDs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:04ca07795b6f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:04ca07795b6f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:04ca07795b6f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| TBD ID | Item | Owner |
+|---|---|---|
+| PB-TBD-001 | Jurisdiction-specific legal or professional-practice wording, if any. | Qualified human/legal/professional reviewer |
+| PB-TBD-002 | Exact storage and invalidation workflow for human acceptance records. | Future persistence/report/governance deliverables |
+| PB-TBD-003 | Release-label vocabulary and final release policy language. | Human project authority |
+| PB-TBD-004 | Legal-review authority for product-claim and professional-practice wording. | Human project authority |
+| PB-TBD-005 | Final acceptance or revision of this draft policy and report notice template. | Human project authority |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD022";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-REPORT-NOTICE-TEMPLATE",
+  "source_prefix": "PD026",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-REPORT-NOTICE-TEMPLATE_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/report_notice_template.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD026-0001",
+      "line_start": 14,
+      "line_end": 123,
+      "target_section_ids": [
+        "SEC-PD026-0001",
+        "SEC-PD026-0002",
+        "SEC-PD026-0003",
+        "SEC-PD026-0004",
+        "SEC-PD026-0005",
+        "SEC-PD026-0006",
+        "SEC-PD026-0007"
+      ],
+      "estimated_md_tokens": 1024,
+      "contains_oversized_section": false
+    }
+  ]
+}

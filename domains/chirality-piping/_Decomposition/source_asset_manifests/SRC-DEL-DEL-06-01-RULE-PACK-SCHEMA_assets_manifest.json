@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-06-01-RULE-PACK-SCHEMA",
+  "source_doc_id": "SRC-DEL-DEL-06-01-RULE-PACK-SCHEMA",
+  "source_prefix": "ED037",
+  "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/",
+  "catalog_rel_path": "@repo/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-06-01-RULE-PACK-SCHEMA.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-01-RULE-PACK-SCHEMA-DATASHEET",
+      "expected_sha256": "709aa2deb03ceb29fb550854ddbda1f8897f7872da26ee54a3198e4509817f3b",
+      "generated_line_start": 11,
+      "generated_line_end": 76,
+      "source_line_start": 1,
+      "source_line_end": 66,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-01-RULE-PACK-SCHEMA-GUIDANCE",
+      "expected_sha256": "db8be9dda699a3008e53b9db3cdda6d88b28c8a1c429230bd9c24980fd0bdc3c",
+      "generated_line_start": 80,
+      "generated_line_end": 134,
+      "source_line_start": 1,
+      "source_line_end": 55,
+      "line_offset": -79
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-01-RULE-PACK-SCHEMA-PROCEDURE",
+      "expected_sha256": "b861e056fdf95df4013fa5243836d4a49d641f95c6cbf2e7f89ad7b84284e1b4",
+      "generated_line_start": 138,
+      "generated_line_end": 188,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -137
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-01-RULE-PACK-SCHEMA-SPECIFICATION",
+      "expected_sha256": "076aae7d24f1886b141be7976c76729e25c7ea896afecb977483a8df9019568d",
+      "generated_line_start": 192,
+      "generated_line_end": 247,
+      "source_line_start": 1,
+      "source_line_end": 56,
+      "line_offset": -191
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,705 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-CODE-TESTS",
+  "source_doc_id": "SRC-CODE-TESTS",
+  "source_prefix": "CT001",
+  "repo_rel_path": "tests/",
+  "catalog_rel_path": "@repo/tests/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-TESTS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "tests/product_preview/test_product_preview_service.py",
+      "source_doc_id": "SRC-TESTS-PRODUCT-PREVIEW-TEST-PRODUCT-PREVIEW-SERVICE",
+      "expected_sha256": "9b13913a7501ec3cc1097d10bdbd8e7b6276e32eac7240b0788defd775b6a71a",
+      "generated_line_start": 11,
+      "generated_line_end": 311,
+      "source_line_start": 1,
+      "source_line_end": 301,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "tests/schema_validation.py",
+      "source_doc_id": "SRC-TESTS-SCHEMA-VALIDATION",
+      "expected_sha256": "c80838f43f2543d5c69e409ccf3b27d1524e45de3a8ebd790db4236863387bf2",
+      "generated_line_start": 315,
+      "generated_line_end": 381,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -314
+    },
+    {
+      "repo_rel_path": "tests/security/test_local_first_storage_policy.py",
+      "source_doc_id": "SRC-TESTS-SECURITY-TEST-LOCAL-FIRST-STORAGE-POLICY",
+      "expected_sha256": "2d70692e0d5c188e7bd34739400aba0bdafe46d9df6ecb462f9456cef5298135",
+      "generated_line_start": 385,
+      "generated_line_end": 832,
+      "source_line_start": 1,
+      "source_line_end": 448,
+      "line_offset": -384
+    },
+    {
+      "repo_rel_path": "tests/security/test_redaction_export_controls.py",
+      "source_doc_id": "SRC-TESTS-SECURITY-TEST-REDACTION-EXPORT-CONTROLS",
+      "expected_sha256": "6a06e90e970535d9384b2478e8e094a832fdc76e3d9713566feb39fbef0ca79e",
+      "generated_line_start": 836,
+      "generated_line_end": 1312,
+      "source_line_start": 1,
+      "source_line_end": 477,
+      "line_offset": -835
+    },
+    {
+      "repo_rel_path": "tests/security/test_secret_private_library_handling.py",
+      "source_doc_id": "SRC-TESTS-SECURITY-TEST-SECRET-PRIVATE-LIBRARY-HANDLING",
+      "expected_sha256": "b959f86f5b1b1959635266285946e86e37cb385154b1876c710cf79b724d707e",
+      "generated_line_start": 1316,
+      "generated_line_end": 1671,
+      "source_line_start": 1,
+      "source_line_end": 356,
+      "line_offset": -1315
+    },
+    {
+      "repo_rel_path": "tests/security/test_telemetry_policy.py",
+      "source_doc_id": "SRC-TESTS-SECURITY-TEST-TELEMETRY-POLICY",
+      "expected_sha256": "a7423e659b4f3c084f50ade4b405c73d974f772afc4bd667594d9738ac9dcd27",
+      "generated_line_start": 1675,
+      "generated_line_end": 2006,
+      "source_line_start": 1,
+      "source_line_end": 332,
+      "line_offset": -1674
+    },
+    {
+      "repo_rel_path": "tests/test_accessibility_usability_baseline.py",
+      "source_doc_id": "SRC-TESTS-TEST-ACCESSIBILITY-USABILITY-BASELINE",
+      "expected_sha256": "5fd1955db278c161c484b018ac1a269cdd7803c04d814eb704e54fa3be528d5d",
+      "generated_line_start": 2010,
+      "generated_line_end": 2278,
+      "source_line_start": 1,
+      "source_line_end": 269,
+      "line_offset": -2009
+    },
+    {
+      "repo_rel_path": "tests/test_adapter_framework_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-ADAPTER-FRAMEWORK-CONTRACT",
+      "expected_sha256": "c3e94858ec5328a6341deaf80ce0f67fe53753a02e509f2463dc7a757f157cb7",
+      "generated_line_start": 2282,
+      "generated_line_end": 2663,
+      "source_line_start": 1,
+      "source_line_end": 382,
+      "line_offset": -2281
+    },
+    {
+      "repo_rel_path": "tests/test_agent_rationale_boundary.py",
+      "source_doc_id": "SRC-TESTS-TEST-AGENT-RATIONALE-BOUNDARY",
+      "expected_sha256": "4415700e3a9e64899b1e3e5b6d8a848a310d2121584183bd1ccc0b70434e5dd5",
+      "generated_line_start": 2667,
+      "generated_line_end": 3010,
+      "source_line_start": 1,
+      "source_line_end": 344,
+      "line_offset": -2666
+    },
+    {
+      "repo_rel_path": "tests/test_analysis_boundary_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYSIS-BOUNDARY-SCHEMA",
+      "expected_sha256": "f4c0ee7cce80f3bbc87b561994dda23e67b7422055b070b459547022e678c8e7",
+      "generated_line_start": 3014,
+      "generated_line_end": 3205,
+      "source_line_start": 1,
+      "source_line_end": 192,
+      "line_offset": -3013
+    },
+    {
+      "repo_rel_path": "tests/test_analysis_run_comparison.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYSIS-RUN-COMPARISON",
+      "expected_sha256": "07f751b4b9b423b241975911009bc2ab04df7b7dc983db2a41eff4a3fed18fb7",
+      "generated_line_start": 3209,
+      "generated_line_end": 3533,
+      "source_line_start": 1,
+      "source_line_end": 325,
+      "line_offset": -3208
+    },
+    {
+      "repo_rel_path": "tests/test_analysis_run_records.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYSIS-RUN-RECORDS",
+      "expected_sha256": "b2e51a7311262daf679ab7951ca4684a6e5b0807682e6dcc6b06c6e22fbc2ce4",
+      "generated_line_start": 3537,
+      "generated_line_end": 3866,
+      "source_line_start": 1,
+      "source_line_end": 330,
+      "line_offset": -3536
+    },
+    {
+      "repo_rel_path": "tests/test_analysis_run_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYSIS-RUN-SCHEMA",
+      "expected_sha256": "ae8d17d579bf73cba72dbb57f844705482758c262d73698822e3913a2db17e21",
+      "generated_line_start": 3870,
+      "generated_line_end": 4112,
+      "source_line_start": 1,
+      "source_line_end": 243,
+      "line_offset": -3869
+    },
+    {
+      "repo_rel_path": "tests/test_analysis_status_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYSIS-STATUS-SCHEMA",
+      "expected_sha256": "d5fccbdc099b5d85a3a257902152cff18590cf7f94897fa704888a8ee436d6ae",
+      "generated_line_start": 4116,
+      "generated_line_end": 4314,
+      "source_line_start": 1,
+      "source_line_end": 199,
+      "line_offset": -4115
+    },
+    {
+      "repo_rel_path": "tests/test_analytical_solver_boundary_adapter.py",
+      "source_doc_id": "SRC-TESTS-TEST-ANALYTICAL-SOLVER-BOUNDARY-ADAPTER",
+      "expected_sha256": "08b53482e9bc3acfb1dee53ce9c7f92d3e699086842def49754a5b06abfc612d",
+      "generated_line_start": 4318,
+      "generated_line_end": 4651,
+      "source_line_start": 1,
+      "source_line_end": 334,
+      "line_offset": -4317
+    },
+    {
+      "repo_rel_path": "tests/test_api_boundary_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-API-BOUNDARY-CONTRACT",
+      "expected_sha256": "dce3385e50fccf47b10df135c2ed5e7f3c30b997b85ede70729e87a307b663fd",
+      "generated_line_start": 4655,
+      "generated_line_end": 5009,
+      "source_line_start": 1,
+      "source_line_end": 355,
+      "line_offset": -4654
+    },
+    {
+      "repo_rel_path": "tests/test_caepipe_external_run_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-CAEPIPE-EXTERNAL-RUN-PACKAGE",
+      "expected_sha256": "97b8174441541b3545d37276226ff83f61fba6cd9ed1f76550bf5094540d99ab",
+      "generated_line_start": 5013,
+      "generated_line_end": 5340,
+      "source_line_start": 1,
+      "source_line_end": 328,
+      "line_offset": -5012
+    },
+    {
+      "repo_rel_path": "tests/test_caepipe_mbf_export_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-CAEPIPE-MBF-EXPORT-PACKAGE",
+      "expected_sha256": "671f5e8f413c938cb30bd371c573dbbf7b754e0cdd02d62d6945e203ea9fbbb9",
+      "generated_line_start": 5344,
+      "generated_line_end": 5883,
+      "source_line_start": 1,
+      "source_line_end": 540,
+      "line_offset": -5343
+    },
+    {
+      "repo_rel_path": "tests/test_calculation_witness.py",
+      "source_doc_id": "SRC-TESTS-TEST-CALCULATION-WITNESS",
+      "expected_sha256": "aacb615a8b3bd5a83517200cc82a102fd53f09d775101cc21dea9db235dae470",
+      "generated_line_start": 5887,
+      "generated_line_end": 6024,
+      "source_line_start": 1,
+      "source_line_end": 138,
+      "line_offset": -5886
+    },
+    {
+      "repo_rel_path": "tests/test_comparison_contracts.py",
+      "source_doc_id": "SRC-TESTS-TEST-COMPARISON-CONTRACTS",
+      "expected_sha256": "0259049773cf3c4151dcc7c21440a0d308279f267588ddbf2be7540f1f0c241b",
+      "generated_line_start": 6028,
+      "generated_line_end": 6497,
+      "source_line_start": 1,
+      "source_line_end": 470,
+      "line_offset": -6027
+    },
+    {
+      "repo_rel_path": "tests/test_component_section_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-COMPONENT-SECTION-SCHEMA",
+      "expected_sha256": "c2c7032a2ea317912a72a0c6998a23dc9dac3060ddd2e5d50b7d94f39ca6b5c4",
+      "generated_line_start": 6501,
+      "generated_line_end": 6958,
+      "source_line_start": 1,
+      "source_line_end": 458,
+      "line_offset": -6500
+    },
+    {
+      "repo_rel_path": "tests/test_constraint_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-CONSTRAINT-SCHEMA",
+      "expected_sha256": "317d7bec39de2b7e474fc6d824a3662ac6fbe7bdd740d773134c335641e1dd11",
+      "generated_line_start": 6962,
+      "generated_line_end": 7241,
+      "source_line_start": 1,
+      "source_line_end": 280,
+      "line_offset": -6961
+    },
+    {
+      "repo_rel_path": "tests/test_constraint_validation.py",
+      "source_doc_id": "SRC-TESTS-TEST-CONSTRAINT-VALIDATION",
+      "expected_sha256": "e890a825e5ed992e68a4b10db617b4fce30f9b60174509ccc750e88c25c9e372",
+      "generated_line_start": 7245,
+      "generated_line_end": 7584,
+      "source_line_start": 1,
+      "source_line_end": 340,
+      "line_offset": -7244
+    },
+    {
+      "repo_rel_path": "tests/test_coordination_maintenance.py",
+      "source_doc_id": "SRC-TESTS-TEST-COORDINATION-MAINTENANCE",
+      "expected_sha256": "03b64168a56285d04efabb7eaf92096cb18a5168201fe831a3ad8a36afdea632",
+      "generated_line_start": 7588,
+      "generated_line_end": 7702,
+      "source_line_start": 1,
+      "source_line_end": 115,
+      "line_offset": -7587
+    },
+    {
+      "repo_rel_path": "tests/test_design_authoring_comparison_workspace.py",
+      "source_doc_id": "SRC-TESTS-TEST-DESIGN-AUTHORING-COMPARISON-WORKSPACE",
+      "expected_sha256": "a61d118c3c9e2e8b1067edddca3bf284b0e6413eb000986c41f0612f37cf93b1",
+      "generated_line_start": 7706,
+      "generated_line_end": 8156,
+      "source_line_start": 1,
+      "source_line_end": 451,
+      "line_offset": -7705
+    },
+    {
+      "repo_rel_path": "tests/test_design_knowledge_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-DESIGN-KNOWLEDGE-SCHEMA",
+      "expected_sha256": "ddeff02be623ea254c8301bbc07650bd2bf8d581d204fd629df72df7e1084f11",
+      "generated_line_start": 8160,
+      "generated_line_end": 8414,
+      "source_line_start": 1,
+      "source_line_end": 255,
+      "line_offset": -8159
+    },
+    {
+      "repo_rel_path": "tests/test_evidence_sweep.py",
+      "source_doc_id": "SRC-TESTS-TEST-EVIDENCE-SWEEP",
+      "expected_sha256": "91c19c47d005c1f62e78ec49a6cc1665d757b44e749bff5d2c0770d06323196b",
+      "generated_line_start": 8418,
+      "generated_line_end": 8728,
+      "source_line_start": 1,
+      "source_line_end": 311,
+      "line_offset": -8417
+    },
+    {
+      "repo_rel_path": "tests/test_export_adapter_sdk.py",
+      "source_doc_id": "SRC-TESTS-TEST-EXPORT-ADAPTER-SDK",
+      "expected_sha256": "5413d8d7b66ee3f5aaf2aecb2ac05fd8adeea033e430c9a5cf5f4124a4d9d4cc",
+      "generated_line_start": 8732,
+      "generated_line_end": 8962,
+      "source_line_start": 1,
+      "source_line_end": 231,
+      "line_offset": -8731
+    },
+    {
+      "repo_rel_path": "tests/test_external_prover_boundary_metadata.py",
+      "source_doc_id": "SRC-TESTS-TEST-EXTERNAL-PROVER-BOUNDARY-METADATA",
+      "expected_sha256": "ef91149b39fcea0d3d6e46da863358dfe0d25109934110bb02f77eb44a32ae6c",
+      "generated_line_start": 8966,
+      "generated_line_end": 9257,
+      "source_line_start": 1,
+      "source_line_end": 292,
+      "line_offset": -8965
+    },
+    {
+      "repo_rel_path": "tests/test_gui_editors_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-GUI-EDITORS-CONTRACT",
+      "expected_sha256": "9c5726143752b659cf740391a15c89122c06a3df791449363879ceac4d9c154c",
+      "generated_line_start": 9261,
+      "generated_line_end": 9347,
+      "source_line_start": 1,
+      "source_line_end": 87,
+      "line_offset": -9260
+    },
+    {
+      "repo_rel_path": "tests/test_handoff_export_workflow.py",
+      "source_doc_id": "SRC-TESTS-TEST-HANDOFF-EXPORT-WORKFLOW",
+      "expected_sha256": "998d8d15fcedeaad83b4903ce1a58ebd5675dc7c3843dfcef3bfe181437c643a",
+      "generated_line_start": 9351,
+      "generated_line_end": 9820,
+      "source_line_start": 1,
+      "source_line_end": 470,
+      "line_offset": -9350
+    },
+    {
+      "repo_rel_path": "tests/test_handoff_package_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-HANDOFF-PACKAGE-SCHEMA",
+      "expected_sha256": "c3bb54defdc8d1d52e827e782c82b3705aaa8f0757a1cd2249dec88814a935d5",
+      "generated_line_start": 9824,
+      "generated_line_end": 10258,
+      "source_line_start": 1,
+      "source_line_end": 435,
+      "line_offset": -9823
+    },
+    {
+      "repo_rel_path": "tests/test_headless_runner_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-HEADLESS-RUNNER-CONTRACT",
+      "expected_sha256": "4fdcb7274945c86338ee361156af474fc3bae9823c420729182c039ed8378c4c",
+      "generated_line_start": 10262,
+      "generated_line_end": 10530,
+      "source_line_start": 1,
+      "source_line_end": 269,
+      "line_offset": -10261
+    },
+    {
+      "repo_rel_path": "tests/test_invented_example_models.py",
+      "source_doc_id": "SRC-TESTS-TEST-INVENTED-EXAMPLE-MODELS",
+      "expected_sha256": "5ef66a252f67d63a478aebf8e8ae2f2c87635fbc31bf87059f609aab6e2d3916",
+      "generated_line_start": 10534,
+      "generated_line_end": 10873,
+      "source_line_start": 1,
+      "source_line_end": 340,
+      "line_offset": -10533
+    },
+    {
+      "repo_rel_path": "tests/test_library_import_provenance.py",
+      "source_doc_id": "SRC-TESTS-TEST-LIBRARY-IMPORT-PROVENANCE",
+      "expected_sha256": "342d684a5d725f671162627cd86df285d056497e38c7681dcfbec1ce8367adac",
+      "generated_line_start": 10877,
+      "generated_line_end": 11071,
+      "source_line_start": 1,
+      "source_line_end": 195,
+      "line_offset": -10876
+    },
+    {
+      "repo_rel_path": "tests/test_local_fea_handoff_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-LOCAL-FEA-HANDOFF-CONTRACT",
+      "expected_sha256": "043651c864da1373b237a81e7fbd87dc646b6340cf04f907c0b0a6a1c661c18c",
+      "generated_line_start": 11075,
+      "generated_line_end": 11373,
+      "source_line_start": 1,
+      "source_line_end": 299,
+      "line_offset": -11074
+    },
+    {
+      "repo_rel_path": "tests/test_material_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-MATERIAL-SCHEMA",
+      "expected_sha256": "68c72d3325c34d0a8661999cf61bd807f7c972aa0fc4dfc5ad3bc84c1c34df99",
+      "generated_line_start": 11377,
+      "generated_line_end": 11664,
+      "source_line_start": 1,
+      "source_line_end": 288,
+      "line_offset": -11376
+    },
+    {
+      "repo_rel_path": "tests/test_missing_data_warning_ux.py",
+      "source_doc_id": "SRC-TESTS-TEST-MISSING-DATA-WARNING-UX",
+      "expected_sha256": "953a8be7a24c7958560354c70573a9ec33ea16cd7c89994ad676ced73bf95cc2",
+      "generated_line_start": 11668,
+      "generated_line_end": 11721,
+      "source_line_start": 1,
+      "source_line_end": 54,
+      "line_offset": -11667
+    },
+    {
+      "repo_rel_path": "tests/test_model_operation_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-MODEL-OPERATION-SCHEMA",
+      "expected_sha256": "f870d002c9385af4069d9e79599a8a0deaeeed911a82229737731e0f8c23fb81",
+      "generated_line_start": 11725,
+      "generated_line_end": 12053,
+      "source_line_start": 1,
+      "source_line_end": 329,
+      "line_offset": -11724
+    },
+    {
+      "repo_rel_path": "tests/test_model_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-MODEL-SCHEMA",
+      "expected_sha256": "f0f5feaed3ada86212f703c1e2f569d2274f8849e9ed60680bf22c578bab1b19",
+      "generated_line_start": 12057,
+      "generated_line_end": 12711,
+      "source_line_start": 1,
+      "source_line_end": 655,
+      "line_offset": -12056
+    },
+    {
+      "repo_rel_path": "tests/test_model_state_comparison.py",
+      "source_doc_id": "SRC-TESTS-TEST-MODEL-STATE-COMPARISON",
+      "expected_sha256": "f1ff90879d822b4e12d811401566820c426849a32343fb50938926db505a59b8",
+      "generated_line_start": 12715,
+      "generated_line_end": 13111,
+      "source_line_start": 1,
+      "source_line_end": 397,
+      "line_offset": -12714
+    },
+    {
+      "repo_rel_path": "tests/test_model_state_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-MODEL-STATE-SCHEMA",
+      "expected_sha256": "78fae3688fde3d5f2a7172fb3e6abf8d152d6cd4b47e4889d369de31b3e56c27",
+      "generated_line_start": 13115,
+      "generated_line_end": 13357,
+      "source_line_start": 1,
+      "source_line_end": 243,
+      "line_offset": -13114
+    },
+    {
+      "repo_rel_path": "tests/test_model_tree_property_inspector.py",
+      "source_doc_id": "SRC-TESTS-TEST-MODEL-TREE-PROPERTY-INSPECTOR",
+      "expected_sha256": "80cc4e15f40c356b02ef84c730755c9b0d31ff6c7439b267a21300a68ee15b84",
+      "generated_line_start": 13361,
+      "generated_line_end": 13444,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -13360
+    },
+    {
+      "repo_rel_path": "tests/test_native_json_export_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-NATIVE-JSON-EXPORT-PACKAGE",
+      "expected_sha256": "8ace2ba804a1c4f9310a40749005f68eb27311694968cea5caf0da2ef2f021ce",
+      "generated_line_start": 13448,
+      "generated_line_end": 13658,
+      "source_line_start": 1,
+      "source_line_end": 211,
+      "line_offset": -13447
+    },
+    {
+      "repo_rel_path": "tests/test_nonlinear_support_regression.py",
+      "source_doc_id": "SRC-TESTS-TEST-NONLINEAR-SUPPORT-REGRESSION",
+      "expected_sha256": "3b2bdf7b9e4ef5b32177fe5571b244519b34dfc53eae61e123b8583ea73ebc9d",
+      "generated_line_start": 13662,
+      "generated_line_end": 13856,
+      "source_line_start": 1,
+      "source_line_end": 195,
+      "line_offset": -13661
+    },
+    {
+      "repo_rel_path": "tests/test_operation_audit_trail.py",
+      "source_doc_id": "SRC-TESTS-TEST-OPERATION-AUDIT-TRAIL",
+      "expected_sha256": "9e436d89d1623bb220ab8aaea7c676f1d7204919e79852d01e07874626274e42",
+      "generated_line_start": 13860,
+      "generated_line_end": 14146,
+      "source_line_start": 1,
+      "source_line_end": 287,
+      "line_offset": -13859
+    },
+    {
+      "repo_rel_path": "tests/test_operation_validation_preview.py",
+      "source_doc_id": "SRC-TESTS-TEST-OPERATION-VALIDATION-PREVIEW",
+      "expected_sha256": "5e456e753c787d70d6c4d55823960f530e75ac34c85f02941bfc68699b0b48b0",
+      "generated_line_start": 14150,
+      "generated_line_end": 14355,
+      "source_line_start": 1,
+      "source_line_end": 206,
+      "line_offset": -14149
+    },
+    {
+      "repo_rel_path": "tests/test_pcf_export_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-PCF-EXPORT-PACKAGE",
+      "expected_sha256": "cb0719559c9f674604f4a276c8a3dfea946ddf1786b9e6f1347e98078e8ff483",
+      "generated_line_start": 14359,
+      "generated_line_end": 14578,
+      "source_line_start": 1,
+      "source_line_end": 220,
+      "line_offset": -14358
+    },
+    {
+      "repo_rel_path": "tests/test_persistence_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-PERSISTENCE-SCHEMA",
+      "expected_sha256": "b48c137cf6c2600d9890e1becb8167df6d33ed3753cba03682478a523934949f",
+      "generated_line_start": 14582,
+      "generated_line_end": 14915,
+      "source_line_start": 1,
+      "source_line_end": 334,
+      "line_offset": -14581
+    },
+    {
+      "repo_rel_path": "tests/test_physical_to_analytical_transform.py",
+      "source_doc_id": "SRC-TESTS-TEST-PHYSICAL-TO-ANALYTICAL-TRANSFORM",
+      "expected_sha256": "bb3a1314cb0e499088daa3a8978a3b49707227c831dd498f3f12f2f5b6190f89",
+      "generated_line_start": 14919,
+      "generated_line_end": 15424,
+      "source_line_start": 1,
+      "source_line_end": 506,
+      "line_offset": -14918
+    },
+    {
+      "repo_rel_path": "tests/test_plugin_manifest_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-PLUGIN-MANIFEST-SCHEMA",
+      "expected_sha256": "0d2abbc4a87d7deffd218144161e1856939f8b156476a1e8cbc670251b2a1f24",
+      "generated_line_start": 15428,
+      "generated_line_end": 15609,
+      "source_line_start": 1,
+      "source_line_end": 182,
+      "line_offset": -15427
+    },
+    {
+      "repo_rel_path": "tests/test_project_persistence_service.py",
+      "source_doc_id": "SRC-TESTS-TEST-PROJECT-PERSISTENCE-SERVICE",
+      "expected_sha256": "d4bc8a73bce6f2c58c8c2b30c37b94ac2a1455b8f66a51f97672c23ded52912e",
+      "generated_line_start": 15613,
+      "generated_line_end": 16258,
+      "source_line_start": 1,
+      "source_line_end": 646,
+      "line_offset": -15612
+    },
+    {
+      "repo_rel_path": "tests/test_release_readiness_script.py",
+      "source_doc_id": "SRC-TESTS-TEST-RELEASE-READINESS-SCRIPT",
+      "expected_sha256": "a24d5bd3b96b278f951b1742a46e4f75e087b1977776869fd36a44f73144ad24",
+      "generated_line_start": 16262,
+      "generated_line_end": 16391,
+      "source_line_start": 1,
+      "source_line_end": 130,
+      "line_offset": -16261
+    },
+    {
+      "repo_rel_path": "tests/test_report_generator_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-REPORT-GENERATOR-CONTRACT",
+      "expected_sha256": "027810b61f97b30e4c60678432996547ef7f7621bd9986328b58dde878c7b10c",
+      "generated_line_start": 16395,
+      "generated_line_end": 16651,
+      "source_line_start": 1,
+      "source_line_end": 257,
+      "line_offset": -16394
+    },
+    {
+      "repo_rel_path": "tests/test_report_protected_content_linter.py",
+      "source_doc_id": "SRC-TESTS-TEST-REPORT-PROTECTED-CONTENT-LINTER",
+      "expected_sha256": "8cd17244f3f1734fcab64b1f3006625b17df86f803b6ac3322991b45a46b2707",
+      "generated_line_start": 16655,
+      "generated_line_end": 16887,
+      "source_line_start": 1,
+      "source_line_end": 233,
+      "line_offset": -16654
+    },
+    {
+      "repo_rel_path": "tests/test_report_sections_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-REPORT-SECTIONS-CONTRACT",
+      "expected_sha256": "c49ed2679b0211765c70373d7262aeadbbd5ab4b01a524b4199b251bc11fe966",
+      "generated_line_start": 16891,
+      "generated_line_end": 17148,
+      "source_line_start": 1,
+      "source_line_end": 258,
+      "line_offset": -16890
+    },
+    {
+      "repo_rel_path": "tests/test_results_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-RESULTS-SCHEMA",
+      "expected_sha256": "be06e29f5db18b69d80d7baa46af7e4eb18773d1b88d1c3f54234b56fe6ea360",
+      "generated_line_start": 17152,
+      "generated_line_end": 17756,
+      "source_line_start": 1,
+      "source_line_end": 605,
+      "line_offset": -17151
+    },
+    {
+      "repo_rel_path": "tests/test_results_viewer_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-RESULTS-VIEWER-CONTRACT",
+      "expected_sha256": "9340da25afd12877dd62af576af0764b1b952a8a3559684a2ee0976c0341c653",
+      "generated_line_start": 17760,
+      "generated_line_end": 17836,
+      "source_line_start": 1,
+      "source_line_end": 77,
+      "line_offset": -17759
+    },
+    {
+      "repo_rel_path": "tests/test_review_geometry_export_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-REVIEW-GEOMETRY-EXPORT-PACKAGE",
+      "expected_sha256": "9f437f9bf037e527909ac273eb5bd7855662d90bddd05cdcaa62187b3300fd95",
+      "generated_line_start": 17840,
+      "generated_line_end": 18203,
+      "source_line_start": 1,
+      "source_line_end": 364,
+      "line_offset": -17839
+    },
+    {
+      "repo_rel_path": "tests/test_rule_pack_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-RULE-PACK-SCHEMA",
+      "expected_sha256": "011d6a8f2e96ec84846e2148df589b382dd1bcf25d40f67745ee720e6136bd9d",
+      "generated_line_start": 18207,
+      "generated_line_end": 18976,
+      "source_line_start": 1,
+      "source_line_end": 770,
+      "line_offset": -18206
+    },
+    {
+      "repo_rel_path": "tests/test_section_properties.py",
+      "source_doc_id": "SRC-TESTS-TEST-SECTION-PROPERTIES",
+      "expected_sha256": "764c8d15d07964e2426aef75f2e445db1144e09eeb9f29830d1f7b02ff65cae7",
+      "generated_line_start": 18980,
+      "generated_line_end": 19177,
+      "source_line_start": 1,
+      "source_line_end": 198,
+      "line_offset": -18979
+    },
+    {
+      "repo_rel_path": "tests/test_security_threat_model.py",
+      "source_doc_id": "SRC-TESTS-TEST-SECURITY-THREAT-MODEL",
+      "expected_sha256": "fc01f4ea9ea5d894f1d61280c5effd89c148ff668e4f9a1a15a960d860e8fd0e",
+      "generated_line_start": 19181,
+      "generated_line_end": 19260,
+      "source_line_start": 1,
+      "source_line_end": 80,
+      "line_offset": -19180
+    },
+    {
+      "repo_rel_path": "tests/test_solve_execution_ux.py",
+      "source_doc_id": "SRC-TESTS-TEST-SOLVE-EXECUTION-UX",
+      "expected_sha256": "f7b89f112f1ae1d99bf5d4c6d1593abef522a65dc7c483807896de4e2e9cb58e",
+      "generated_line_start": 19264,
+      "generated_line_end": 19347,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -19263
+    },
+    {
+      "repo_rel_path": "tests/test_state_comparison_handoff_report_sections.py",
+      "source_doc_id": "SRC-TESTS-TEST-STATE-COMPARISON-HANDOFF-REPORT-SECTIONS",
+      "expected_sha256": "c5ce309ffb3cd5b7addb3d00ed5e1b6dfe59a46ba7311f48a00cc3398aaff6e4",
+      "generated_line_start": 19351,
+      "generated_line_end": 19844,
+      "source_line_start": 1,
+      "source_line_end": 494,
+      "line_offset": -19350
+    },
+    {
+      "repo_rel_path": "tests/test_stress_neutral_export_package.py",
+      "source_doc_id": "SRC-TESTS-TEST-STRESS-NEUTRAL-EXPORT-PACKAGE",
+      "expected_sha256": "d86805e99603eb995ceb401ec9eb37b2b18ba1319a1bb0699781b2d329ec3f20",
+      "generated_line_start": 19848,
+      "generated_line_end": 20184,
+      "source_line_start": 1,
+      "source_line_end": 337,
+      "line_offset": -19847
+    },
+    {
+      "repo_rel_path": "tests/test_target_mapping_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-TARGET-MAPPING-CONTRACT",
+      "expected_sha256": "6911c7c65364070d0af6ada6faeed5579c72b3ead42bcaf214424408db9faf76",
+      "generated_line_start": 20188,
+      "generated_line_end": 20383,
+      "source_line_start": 1,
+      "source_line_end": 196,
+      "line_offset": -20187
+    },
+    {
+      "repo_rel_path": "tests/test_units_schema.py",
+      "source_doc_id": "SRC-TESTS-TEST-UNITS-SCHEMA",
+      "expected_sha256": "029cc0f9c0ad1ef2563ebe4bcd39e900cb87615129bec004025caac131e4a692",
+      "generated_line_start": 20387,
+      "generated_line_end": 20746,
+      "source_line_start": 1,
+      "source_line_end": 360,
+      "line_offset": -20386
+    },
+    {
+      "repo_rel_path": "tests/test_user_guide_status_wording.py",
+      "source_doc_id": "SRC-TESTS-TEST-USER-GUIDE-STATUS-WORDING",
+      "expected_sha256": "29445a8b8b5323666f9eac453b544c40b4c0cf7e6f7c4202196a3fc21691b3e7",
+      "generated_line_start": 20750,
+      "generated_line_end": 20773,
+      "source_line_start": 1,
+      "source_line_end": 24,
+      "line_offset": -20749
+    },
+    {
+      "repo_rel_path": "tests/test_viewport_editor_contract.py",
+      "source_doc_id": "SRC-TESTS-TEST-VIEWPORT-EDITOR-CONTRACT",
+      "expected_sha256": "26d2723b40c9ab7042e44305a1aeaa5d6db9c7279c697e7b1b5110c4e0cf5dc4",
+      "generated_line_start": 20777,
+      "generated_line_end": 21005,
+      "source_line_start": 1,
+      "source_line_end": 229,
+      "line_offset": -20776
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

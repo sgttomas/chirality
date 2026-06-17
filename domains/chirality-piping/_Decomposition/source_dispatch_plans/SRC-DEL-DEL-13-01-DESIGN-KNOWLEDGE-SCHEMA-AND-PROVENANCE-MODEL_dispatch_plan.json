@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-13-01-DESIGN-KNOWLEDGE-SCHEMA-AND-PROVENANCE-MODEL",
+  "source_prefix": "ED076",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-13-01-DESIGN-KNOWLEDGE-SCHEMA-AND-PROVENANCE-MODEL_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-13-01-DESIGN-KNOWLEDGE-SCHEMA-AND-PROVENANCE-MODEL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:00+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED076-0001",
+      "line_start": 9,
+      "line_end": 290,
+      "target_section_ids": [
+        "SEC-ED076-0002",
+        "SEC-ED076-0003",
+        "SEC-ED076-0004",
+        "SEC-ED076-0005",
+        "SEC-ED076-0006",
+        "SEC-ED076-0007",
+        "SEC-ED076-0008",
+        "SEC-ED076-0009",
+        "SEC-ED076-0010",
+        "SEC-ED076-0011",
+        "SEC-ED076-0012",
+        "SEC-ED076-0013",
+        "SEC-ED076-0014",
+        "SEC-ED076-0015",
+        "SEC-ED076-0016",
+        "SEC-ED076-0017",
+        "SEC-ED076-0018",
+        "SEC-ED076-0019",
+        "SEC-ED076-0020",
+        "SEC-ED076-0021",
+        "SEC-ED076-0022",
+        "SEC-ED076-0023",
+        "SEC-ED076-0024",
+        "SEC-ED076-0025",
+        "SEC-ED076-0026",
+        "SEC-ED076-0027",
+        "SEC-ED076-0028",
+        "SEC-ED076-0029",
+        "SEC-ED076-0030"
+      ],
+      "estimated_md_tokens": 4586,
+      "contains_oversized_section": false
+    }
+  ]
+}

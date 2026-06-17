@@ -1,0 +1,1575 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-CODE-CORE",
+  "source_doc_id": "SRC-CODE-CORE",
+  "source_prefix": "CC001",
+  "repo_rel_path": "core/",
+  "catalog_rel_path": "@repo/core/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-CORE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "core/adapters/framework/__init__.py",
+      "source_doc_id": "SRC-CORE-ADAPTERS-FRAMEWORK-INIT",
+      "expected_sha256": "5c58779f3a6c232455f914ffc610089cac71401dc617fe48826870c75f628c6c",
+      "generated_line_start": 11,
+      "generated_line_end": 31,
+      "source_line_start": 1,
+      "source_line_end": 21,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "core/adapters/framework/adapter_framework.py",
+      "source_doc_id": "SRC-CORE-ADAPTERS-FRAMEWORK-ADAPTER-FRAMEWORK",
+      "expected_sha256": "d1fd933a3ef44042de0bbb3b64facb9a501d1da951c0fbc99ce81a2e4b510166",
+      "generated_line_start": 35,
+      "generated_line_end": 638,
+      "source_line_start": 1,
+      "source_line_end": 604,
+      "line_offset": -34
+    },
+    {
+      "repo_rel_path": "core/analysis_runs/__init__.py",
+      "source_doc_id": "SRC-CORE-ANALYSIS-RUNS-INIT",
+      "expected_sha256": "712c525b351a473a7e63b810c6a003d6fac5d97efed9a9c2acfb54af279ce00b",
+      "generated_line_start": 642,
+      "generated_line_end": 654,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -641
+    },
+    {
+      "repo_rel_path": "core/analysis_runs/records.py",
+      "source_doc_id": "SRC-CORE-ANALYSIS-RUNS-RECORDS",
+      "expected_sha256": "9ff691b241c1ab991d0f7f3ed2fcce040c6ffbc060d4fddd733bc5ddd6d9a224",
+      "generated_line_start": 658,
+      "generated_line_end": 983,
+      "source_line_start": 1,
+      "source_line_end": 326,
+      "line_offset": -657
+    },
+    {
+      "repo_rel_path": "core/comparison/analysis_run/engine.py",
+      "source_doc_id": "SRC-CORE-COMPARISON-ANALYSIS-RUN-ENGINE",
+      "expected_sha256": "63dbdd4bf0af91f054b9e0ec4052ef04d3fd82ea436e490f1f19339526bee284",
+      "generated_line_start": 987,
+      "generated_line_end": 1581,
+      "source_line_start": 1,
+      "source_line_end": 595,
+      "line_offset": -986
+    },
+    {
+      "repo_rel_path": "core/comparison/model_state/engine.py",
+      "source_doc_id": "SRC-CORE-COMPARISON-MODEL-STATE-ENGINE",
+      "expected_sha256": "64220403f6b0cfc81e7ecbdbad9a82ec73527644a30aa722592614b08bf067a2",
+      "generated_line_start": 1585,
+      "generated_line_end": 2343,
+      "source_line_start": 1,
+      "source_line_end": 759,
+      "line_offset": -1584
+    },
+    {
+      "repo_rel_path": "core/constraints/validation/__init__.py",
+      "source_doc_id": "SRC-CORE-CONSTRAINTS-VALIDATION-INIT",
+      "expected_sha256": "87ad7e8533b43450340fb2ba6e4ec25153b16659273e2cf9db9dd99687ad5a8f",
+      "generated_line_start": 2347,
+      "generated_line_end": 2361,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -2346
+    },
+    {
+      "repo_rel_path": "core/constraints/validation/engine.py",
+      "source_doc_id": "SRC-CORE-CONSTRAINTS-VALIDATION-ENGINE",
+      "expected_sha256": "03b77722652f9ddffb0cc46c9edf1788572a8424ea98c841a15ff186644b2b1c",
+      "generated_line_start": 2365,
+      "generated_line_end": 3226,
+      "source_line_start": 1,
+      "source_line_end": 862,
+      "line_offset": -2364
+    },
+    {
+      "repo_rel_path": "core/gui/accessibility/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-ACCESSIBILITY-INIT",
+      "expected_sha256": "be1390cba4a3bac4d1aa4ec2cec45a88e2443e56c0d49a876f761189392556ce",
+      "generated_line_start": 3230,
+      "generated_line_end": 3242,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -3229
+    },
+    {
+      "repo_rel_path": "core/gui/accessibility/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-ACCESSIBILITY-ENGINE",
+      "expected_sha256": "dd6cd68e3442f410f922a091c37d6150639f228959238d93d548b45d4411d747",
+      "generated_line_start": 3246,
+      "generated_line_end": 4128,
+      "source_line_start": 1,
+      "source_line_end": 883,
+      "line_offset": -3245
+    },
+    {
+      "repo_rel_path": "core/gui/design_workspace/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-DESIGN-WORKSPACE-INIT",
+      "expected_sha256": "15400a0654e076079b799bd7b485a961aa8bb9b1370440dbd55ed67332c9dc64",
+      "generated_line_start": 4132,
+      "generated_line_end": 4136,
+      "source_line_start": 1,
+      "source_line_end": 5,
+      "line_offset": -4131
+    },
+    {
+      "repo_rel_path": "core/gui/design_workspace/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-DESIGN-WORKSPACE-ENGINE",
+      "expected_sha256": "5a0e216f2c0b4f21477f30b6898035d3a91c0c41b8509981d335994da762718f",
+      "generated_line_start": 4140,
+      "generated_line_end": 5291,
+      "source_line_start": 1,
+      "source_line_end": 1152,
+      "line_offset": -4139
+    },
+    {
+      "repo_rel_path": "core/gui/editors/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-EDITORS-INIT",
+      "expected_sha256": "d28272a06a8718904667d9e5ac5e17f8c26847c51cd03633217df4bba8502ae7",
+      "generated_line_start": 5295,
+      "generated_line_end": 5299,
+      "source_line_start": 1,
+      "source_line_end": 5,
+      "line_offset": -5294
+    },
+    {
+      "repo_rel_path": "core/gui/editors/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-EDITORS-ENGINE",
+      "expected_sha256": "10f52f6abcb06c0ed37c1e470d743e2604cf123fc5596785def44637d37d34b3",
+      "generated_line_start": 5303,
+      "generated_line_end": 5448,
+      "source_line_start": 1,
+      "source_line_end": 146,
+      "line_offset": -5302
+    },
+    {
+      "repo_rel_path": "core/gui/model_tree/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-MODEL-TREE-INIT",
+      "expected_sha256": "124fee21d671313641db5140241b00fa4928594aa6cbdb208d2ba8890ea2c421",
+      "generated_line_start": 5452,
+      "generated_line_end": 5464,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -5451
+    },
+    {
+      "repo_rel_path": "core/gui/model_tree/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-MODEL-TREE-ENGINE",
+      "expected_sha256": "3f99cd30794b4593fb72852c8d8ac3f1f5d08f3f098cd758d58bf2ad7177c33c",
+      "generated_line_start": 5468,
+      "generated_line_end": 5633,
+      "source_line_start": 1,
+      "source_line_end": 166,
+      "line_offset": -5467
+    },
+    {
+      "repo_rel_path": "core/gui/pkg02_boundary.py",
+      "source_doc_id": "SRC-CORE-GUI-PKG02-BOUNDARY",
+      "expected_sha256": "24d006830b1286a4666b3eac9874f5df0fd89693eca05d158456a9139885332a",
+      "generated_line_start": 5637,
+      "generated_line_end": 5970,
+      "source_line_start": 1,
+      "source_line_end": 334,
+      "line_offset": -5636
+    },
+    {
+      "repo_rel_path": "core/gui/results_viewer/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-RESULTS-VIEWER-INIT",
+      "expected_sha256": "257cad23a80c5385cddfe40fa7246ae0b1b0701e0cf88ae7be8611d2c20664ef",
+      "generated_line_start": 5974,
+      "generated_line_end": 5978,
+      "source_line_start": 1,
+      "source_line_end": 5,
+      "line_offset": -5973
+    },
+    {
+      "repo_rel_path": "core/gui/results_viewer/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-RESULTS-VIEWER-ENGINE",
+      "expected_sha256": "059e01305e934ad09c3756493e11b3f72b3d195dd4dd80055afde958263a4003",
+      "generated_line_start": 5982,
+      "generated_line_end": 6145,
+      "source_line_start": 1,
+      "source_line_end": 164,
+      "line_offset": -5981
+    },
+    {
+      "repo_rel_path": "core/gui/solve_execution/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-SOLVE-EXECUTION-INIT",
+      "expected_sha256": "0a62c2a021582312f95c9a49f1250f2db9b0e9f4f3d36ea3adde15d265ecd865",
+      "generated_line_start": 6149,
+      "generated_line_end": 6153,
+      "source_line_start": 1,
+      "source_line_end": 5,
+      "line_offset": -6148
+    },
+    {
+      "repo_rel_path": "core/gui/solve_execution/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-SOLVE-EXECUTION-ENGINE",
+      "expected_sha256": "87dee27335d6b680d5daa159d543baff67320826334825c717b3d676c06cba38",
+      "generated_line_start": 6157,
+      "generated_line_end": 6282,
+      "source_line_start": 1,
+      "source_line_end": 126,
+      "line_offset": -6156
+    },
+    {
+      "repo_rel_path": "core/gui/viewport_editor/Cargo.toml",
+      "source_doc_id": "SRC-CORE-GUI-VIEWPORT-EDITOR-CARGO",
+      "expected_sha256": "e84841c4b2dabcff0eb85b23a5b8d6db7986ca2399c22452cc49db77cb9d3a72",
+      "generated_line_start": 6286,
+      "generated_line_end": 6296,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -6285
+    },
+    {
+      "repo_rel_path": "core/gui/viewport_editor/src/lib.rs",
+      "source_doc_id": "SRC-CORE-GUI-VIEWPORT-EDITOR-SRC-LIB",
+      "expected_sha256": "8d31d2ce5575806ac61e6202a17667fc8e2209395d4ca0e5239b8f6e8bf03b19",
+      "generated_line_start": 6300,
+      "generated_line_end": 6944,
+      "source_line_start": 1,
+      "source_line_end": 645,
+      "line_offset": -6299
+    },
+    {
+      "repo_rel_path": "core/gui/warnings/__init__.py",
+      "source_doc_id": "SRC-CORE-GUI-WARNINGS-INIT",
+      "expected_sha256": "a611f25865cd607a785235eb03e80af48f84c55bdb1bfee30fb1feade3ab6a6b",
+      "generated_line_start": 6948,
+      "generated_line_end": 6952,
+      "source_line_start": 1,
+      "source_line_end": 5,
+      "line_offset": -6947
+    },
+    {
+      "repo_rel_path": "core/gui/warnings/engine.py",
+      "source_doc_id": "SRC-CORE-GUI-WARNINGS-ENGINE",
+      "expected_sha256": "8bd05c6f67908ed276075fa3d0a7786a0e762bdcd8384fa45ff55aee502297f6",
+      "generated_line_start": 6956,
+      "generated_line_end": 7078,
+      "source_line_start": 1,
+      "source_line_end": 123,
+      "line_offset": -6955
+    },
+    {
+      "repo_rel_path": "core/handoff/caepipe_external/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-CAEPIPE-EXTERNAL-INIT",
+      "expected_sha256": "e3e06510aaa5b6d3422aad218aba57be75f3433a89eb7f7230b10ed45b009300",
+      "generated_line_start": 7082,
+      "generated_line_end": 7104,
+      "source_line_start": 1,
+      "source_line_end": 23,
+      "line_offset": -7081
+    },
+    {
+      "repo_rel_path": "core/handoff/caepipe_external/run.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-CAEPIPE-EXTERNAL-RUN",
+      "expected_sha256": "4ca600cd44ec7b04b2e58fff6117c54557a1bbc76b67115ed092592d483c6474",
+      "generated_line_start": 7108,
+      "generated_line_end": 7799,
+      "source_line_start": 1,
+      "source_line_end": 692,
+      "line_offset": -7107
+    },
+    {
+      "repo_rel_path": "core/handoff/caepipe_mbf/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-CAEPIPE-MBF-INIT",
+      "expected_sha256": "6365c760e20a33d248d7ff8f4e218a3032c228ef799130c9b7842b5cf12a0307",
+      "generated_line_start": 7803,
+      "generated_line_end": 7823,
+      "source_line_start": 1,
+      "source_line_end": 21,
+      "line_offset": -7802
+    },
+    {
+      "repo_rel_path": "core/handoff/caepipe_mbf/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-CAEPIPE-MBF-PACKAGE",
+      "expected_sha256": "6b64886231325fc5e63bc542ce41afc265f48a1a877a4bb77811d0a0f2570a5b",
+      "generated_line_start": 7827,
+      "generated_line_end": 8692,
+      "source_line_start": 1,
+      "source_line_end": 866,
+      "line_offset": -7826
+    },
+    {
+      "repo_rel_path": "core/handoff/export_adapter_sdk/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXPORT-ADAPTER-SDK-INIT",
+      "expected_sha256": "ecc935f7e66de3d2cf8fb38c374a241cd793436bdbdd74bff130f8ed6c1c710c",
+      "generated_line_start": 8696,
+      "generated_line_end": 8712,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -8695
+    },
+    {
+      "repo_rel_path": "core/handoff/export_adapter_sdk/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXPORT-ADAPTER-SDK-PACKAGE",
+      "expected_sha256": "419f7f93c23714b267aca8b3d57c4e5f13b7feb54f7a0a09190e54d46d311d56",
+      "generated_line_start": 8716,
+      "generated_line_end": 9418,
+      "source_line_start": 1,
+      "source_line_end": 703,
+      "line_offset": -8715
+    },
+    {
+      "repo_rel_path": "core/handoff/exporter/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXPORTER-INIT",
+      "expected_sha256": "958d81044c77790757ad4b7791379e61ffaaf1b0ed64ac830669f08a5389957a",
+      "generated_line_start": 9422,
+      "generated_line_end": 9436,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -9421
+    },
+    {
+      "repo_rel_path": "core/handoff/exporter/workflow.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXPORTER-WORKFLOW",
+      "expected_sha256": "95c79bb8cd9074b3eece44888b839a957d9e585b79346ec784d14b04347ec665",
+      "generated_line_start": 9440,
+      "generated_line_end": 10020,
+      "source_line_start": 1,
+      "source_line_end": 581,
+      "line_offset": -9439
+    },
+    {
+      "repo_rel_path": "core/handoff/external_prover/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXTERNAL-PROVER-INIT",
+      "expected_sha256": "12c10a01d70dc379fc89ec6d1ed1425066d636c3b6f0cf306b53b5465a85e77e",
+      "generated_line_start": 10024,
+      "generated_line_end": 10040,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -10023
+    },
+    {
+      "repo_rel_path": "core/handoff/external_prover/authority_boundary.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXTERNAL-PROVER-AUTHORITY-BOUNDARY",
+      "expected_sha256": "ef3ef7e38eb575eb2d85ff75b3030363d05071607524d8314b5371a560f71cb2",
+      "generated_line_start": 10044,
+      "generated_line_end": 10095,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -10043
+    },
+    {
+      "repo_rel_path": "core/handoff/external_prover/metadata.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-EXTERNAL-PROVER-METADATA",
+      "expected_sha256": "c0a22875359a4c013fa7767379f620232bdfd6a890a744acc2a2aef283742f16",
+      "generated_line_start": 10099,
+      "generated_line_end": 10584,
+      "source_line_start": 1,
+      "source_line_end": 486,
+      "line_offset": -10098
+    },
+    {
+      "repo_rel_path": "core/handoff/native_json/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-NATIVE-JSON-INIT",
+      "expected_sha256": "b3db3d7927b57929bde23e8bfa29fa14482c27b012ec285ad9506c425629f663",
+      "generated_line_start": 10588,
+      "generated_line_end": 10604,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -10587
+    },
+    {
+      "repo_rel_path": "core/handoff/native_json/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-NATIVE-JSON-PACKAGE",
+      "expected_sha256": "4b86f793d1a88a70bb9a64393bdfe1abf5421cf05cf5191cfa834b460bbcf72b",
+      "generated_line_start": 10608,
+      "generated_line_end": 11163,
+      "source_line_start": 1,
+      "source_line_end": 556,
+      "line_offset": -10607
+    },
+    {
+      "repo_rel_path": "core/handoff/pcf_export/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-PCF-EXPORT-INIT",
+      "expected_sha256": "672d8a0538d8f86a9544b89e5beeaa850d3aef448126adc64d058f885d854908",
+      "generated_line_start": 11167,
+      "generated_line_end": 11181,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -11166
+    },
+    {
+      "repo_rel_path": "core/handoff/pcf_export/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-PCF-EXPORT-PACKAGE",
+      "expected_sha256": "6a83e0c4345025b26d239b2e782413aaea98c0bd4fdb36c8a4a38720708464af",
+      "generated_line_start": 11185,
+      "generated_line_end": 11940,
+      "source_line_start": 1,
+      "source_line_end": 756,
+      "line_offset": -11184
+    },
+    {
+      "repo_rel_path": "core/handoff/review_geometry/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-REVIEW-GEOMETRY-INIT",
+      "expected_sha256": "720bddeb15e539c1ccf80ec704019aad129850a6d52aaa909d97f86950dae814",
+      "generated_line_start": 11944,
+      "generated_line_end": 11962,
+      "source_line_start": 1,
+      "source_line_end": 19,
+      "line_offset": -11943
+    },
+    {
+      "repo_rel_path": "core/handoff/review_geometry/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-REVIEW-GEOMETRY-PACKAGE",
+      "expected_sha256": "688714ee7994c63a040f59c55e59eefb4907e45c03e4fd148c53aa86cf3e4bab",
+      "generated_line_start": 11966,
+      "generated_line_end": 12761,
+      "source_line_start": 1,
+      "source_line_end": 796,
+      "line_offset": -11965
+    },
+    {
+      "repo_rel_path": "core/handoff/stress_neutral/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-STRESS-NEUTRAL-INIT",
+      "expected_sha256": "91784463cba9672b1584b4538e3268143ba57e3a7e95cd855a5973cac8f8a4f1",
+      "generated_line_start": 12765,
+      "generated_line_end": 12785,
+      "source_line_start": 1,
+      "source_line_end": 21,
+      "line_offset": -12764
+    },
+    {
+      "repo_rel_path": "core/handoff/stress_neutral/package.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-STRESS-NEUTRAL-PACKAGE",
+      "expected_sha256": "3c4422888b428a69bd10c512cc6be64fab0d21b5fb4c5216b040011f65b124a2",
+      "generated_line_start": 12789,
+      "generated_line_end": 13488,
+      "source_line_start": 1,
+      "source_line_end": 700,
+      "line_offset": -12788
+    },
+    {
+      "repo_rel_path": "core/handoff/target_mapping/__init__.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-TARGET-MAPPING-INIT",
+      "expected_sha256": "00b8c258afe98e34cc9321d0d83c46b05edde066618e3df97c07a30d270e2688",
+      "generated_line_start": 13492,
+      "generated_line_end": 13508,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -13491
+    },
+    {
+      "repo_rel_path": "core/handoff/target_mapping/contract.py",
+      "source_doc_id": "SRC-CORE-HANDOFF-TARGET-MAPPING-CONTRACT",
+      "expected_sha256": "a8b8e8ac07533d3917f7deb0c0b18fecb868cf987ea27772527606733cecb3c1",
+      "generated_line_start": 13512,
+      "generated_line_end": 13868,
+      "source_line_start": 1,
+      "source_line_end": 357,
+      "line_offset": -13511
+    },
+    {
+      "repo_rel_path": "core/library_import/README.md",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-README",
+      "expected_sha256": "eb2664c4f48a74ce4355d38060e822b9b1a64966e1e71b7c2956e940373ebc6e",
+      "generated_line_start": 13872,
+      "generated_line_end": 13888,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -13871
+    },
+    {
+      "repo_rel_path": "core/library_import/library_import_document/Cargo.toml",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-LIBRARY-IMPORT-DOCUMENT-CARGO",
+      "expected_sha256": "9b13bc06fc4a8b701e817239c53ea7ded3ed01ba238d9b4f5209d8a6ce52bc8c",
+      "generated_line_start": 13892,
+      "generated_line_end": 13900,
+      "source_line_start": 1,
+      "source_line_end": 9,
+      "line_offset": -13891
+    },
+    {
+      "repo_rel_path": "core/library_import/library_import_document/README.md",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-LIBRARY-IMPORT-DOCUMENT-README",
+      "expected_sha256": "d744e59cfe2e36722e3d1ca2d29df3ad797c59dfcd8da124d5e1d62bdf304881",
+      "generated_line_start": 13904,
+      "generated_line_end": 13950,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -13903
+    },
+    {
+      "repo_rel_path": "core/library_import/library_import_document/src/lib.rs",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-LIBRARY-IMPORT-DOCUMENT-SRC-LIB",
+      "expected_sha256": "3636d39e07cf0b728803b8b44284d8571633f06cee4560fdf653de082e0986b5",
+      "generated_line_start": 13954,
+      "generated_line_end": 14686,
+      "source_line_start": 1,
+      "source_line_end": 733,
+      "line_offset": -13953
+    },
+    {
+      "repo_rel_path": "core/library_import/library_import_document/tests/provenance_parity.rs",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-LIBRARY-IMPORT-DOCUMENT-TESTS-PROVENANCE-PARITY",
+      "expected_sha256": "42330f3abaa5a1c3f87d2ea6bf1f930a07f0c4f0058030e392477add40f692ae",
+      "generated_line_start": 14690,
+      "generated_line_end": 14890,
+      "source_line_start": 1,
+      "source_line_end": 201,
+      "line_offset": -14689
+    },
+    {
+      "repo_rel_path": "core/library_import/provenance_checker.py",
+      "source_doc_id": "SRC-CORE-LIBRARY-IMPORT-PROVENANCE-CHECKER",
+      "expected_sha256": "16175f386d479d1072152dfe10e3de54a1cb6ccc02949e08febb448a72d84f73",
+      "generated_line_start": 14894,
+      "generated_line_end": 15235,
+      "source_line_start": 1,
+      "source_line_end": 342,
+      "line_offset": -14893
+    },
+    {
+      "repo_rel_path": "core/loads/load_case_algebra/Cargo.toml",
+      "source_doc_id": "SRC-CORE-LOADS-LOAD-CASE-ALGEBRA-CARGO",
+      "expected_sha256": "b675c2414a573332d33e9e29d5db907ec4582c75b1bd53ece52a6dda26f746da",
+      "generated_line_start": 15239,
+      "generated_line_end": 15250,
+      "source_line_start": 1,
+      "source_line_end": 12,
+      "line_offset": -15238
+    },
+    {
+      "repo_rel_path": "core/loads/load_case_algebra/README.md",
+      "source_doc_id": "SRC-CORE-LOADS-LOAD-CASE-ALGEBRA-README",
+      "expected_sha256": "c88b08b9dab3d05e02c884001479a538f731a61f40fe47788aa55e5d1aa0b8d7",
+      "generated_line_start": 15254,
+      "generated_line_end": 15302,
+      "source_line_start": 1,
+      "source_line_end": 49,
+      "line_offset": -15253
+    },
+    {
+      "repo_rel_path": "core/loads/load_case_algebra/src/lib.rs",
+      "source_doc_id": "SRC-CORE-LOADS-LOAD-CASE-ALGEBRA-SRC-LIB",
+      "expected_sha256": "fd70056f81320e33fad4f7e05152a4c83f2a97fd20aaaad384f25eff0b66a050",
+      "generated_line_start": 15306,
+      "generated_line_end": 16383,
+      "source_line_start": 1,
+      "source_line_end": 1078,
+      "line_offset": -15305
+    },
+    {
+      "repo_rel_path": "core/loads/primitive_loads/Cargo.toml",
+      "source_doc_id": "SRC-CORE-LOADS-PRIMITIVE-LOADS-CARGO",
+      "expected_sha256": "97959fbf7124f55b39ea51a33ae1da1f1abcc9fc1b969f7d42d9ea0fcab894a0",
+      "generated_line_start": 16387,
+      "generated_line_end": 16399,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -16386
+    },
+    {
+      "repo_rel_path": "core/loads/primitive_loads/README.md",
+      "source_doc_id": "SRC-CORE-LOADS-PRIMITIVE-LOADS-README",
+      "expected_sha256": "3e65193683b32a1237db25ed7bd11262d55950e8895cd9435360f1218544d24f",
+      "generated_line_start": 16403,
+      "generated_line_end": 16483,
+      "source_line_start": 1,
+      "source_line_end": 81,
+      "line_offset": -16402
+    },
+    {
+      "repo_rel_path": "core/loads/primitive_loads/src/lib.rs",
+      "source_doc_id": "SRC-CORE-LOADS-PRIMITIVE-LOADS-SRC-LIB",
+      "expected_sha256": "3d9b5e119c6cf076d2119bac567c03229dca83aa7a630904f9e41084337c9804",
+      "generated_line_start": 16487,
+      "generated_line_end": 20275,
+      "source_line_start": 1,
+      "source_line_end": 3789,
+      "line_offset": -16486
+    },
+    {
+      "repo_rel_path": "core/loads/stress_recovery/Cargo.toml",
+      "source_doc_id": "SRC-CORE-LOADS-STRESS-RECOVERY-CARGO",
+      "expected_sha256": "d6eee12b661aa7723a5d87185029d5505c6a500cbc88bc479423247ce2da53f6",
+      "generated_line_start": 20279,
+      "generated_line_end": 20291,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -20278
+    },
+    {
+      "repo_rel_path": "core/loads/stress_recovery/README.md",
+      "source_doc_id": "SRC-CORE-LOADS-STRESS-RECOVERY-README",
+      "expected_sha256": "8b58be4905cf7605b56793965cd0ec8de2a4b37f34bdf5ee4a361aa4d46e815f",
+      "generated_line_start": 20295,
+      "generated_line_end": 20354,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -20294
+    },
+    {
+      "repo_rel_path": "core/loads/stress_recovery/src/lib.rs",
+      "source_doc_id": "SRC-CORE-LOADS-STRESS-RECOVERY-SRC-LIB",
+      "expected_sha256": "83312bce2debee7dabd5c09471fd8b0e72d7f2b66e532eb02e467a96d4081beb",
+      "generated_line_start": 20358,
+      "generated_line_end": 21998,
+      "source_line_start": 1,
+      "source_line_end": 1641,
+      "line_offset": -20357
+    },
+    {
+      "repo_rel_path": "core/loads/user_loads/Cargo.toml",
+      "source_doc_id": "SRC-CORE-LOADS-USER-LOADS-CARGO",
+      "expected_sha256": "2bdadac76a6e8b8f9e9ba4808bd339c3f10e114f34b9a8573cb998a899f7b2b9",
+      "generated_line_start": 22002,
+      "generated_line_end": 22015,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -22001
+    },
+    {
+      "repo_rel_path": "core/loads/user_loads/README.md",
+      "source_doc_id": "SRC-CORE-LOADS-USER-LOADS-README",
+      "expected_sha256": "5bc7df76e6068f7675aedc70096c558e3273d0a8b79febd3caddb68ecbf40169",
+      "generated_line_start": 22019,
+      "generated_line_end": 22063,
+      "source_line_start": 1,
+      "source_line_end": 45,
+      "line_offset": -22018
+    },
+    {
+      "repo_rel_path": "core/loads/user_loads/src/lib.rs",
+      "source_doc_id": "SRC-CORE-LOADS-USER-LOADS-SRC-LIB",
+      "expected_sha256": "688c84a2c26dac651ca1a40ac408f1805f5a505c17a3493491a855ecda606ddc",
+      "generated_line_start": 22067,
+      "generated_line_end": 24166,
+      "source_line_start": 1,
+      "source_line_end": 2100,
+      "line_offset": -22066
+    },
+    {
+      "repo_rel_path": "core/model_operations/agent_rationale/__init__.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-AGENT-RATIONALE-INIT",
+      "expected_sha256": "ca122a208df731235e49e4d506a97679605378d3a7613bb7c62d362a4d5d6ae1",
+      "generated_line_start": 24170,
+      "generated_line_end": 24182,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -24169
+    },
+    {
+      "repo_rel_path": "core/model_operations/agent_rationale/engine.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-AGENT-RATIONALE-ENGINE",
+      "expected_sha256": "4cbd2b2cdbf3d7b6dcf6509abe94ba8da16a49dba079e36117ceee3901d932a8",
+      "generated_line_start": 24186,
+      "generated_line_end": 24664,
+      "source_line_start": 1,
+      "source_line_end": 479,
+      "line_offset": -24185
+    },
+    {
+      "repo_rel_path": "core/model_operations/audit_trail/__init__.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-AUDIT-TRAIL-INIT",
+      "expected_sha256": "433894ee66904a85f90b8218eea713c43cf3534386e86e28a47c4443646e7f54",
+      "generated_line_start": 24668,
+      "generated_line_end": 24680,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -24667
+    },
+    {
+      "repo_rel_path": "core/model_operations/audit_trail/engine.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-AUDIT-TRAIL-ENGINE",
+      "expected_sha256": "c4e57493ff53bf6ec485183ab5f2a51557acccdd900bb1c284b48a5100469c9e",
+      "generated_line_start": 24684,
+      "generated_line_end": 25299,
+      "source_line_start": 1,
+      "source_line_end": 616,
+      "line_offset": -24683
+    },
+    {
+      "repo_rel_path": "core/model_operations/operation_applier/Cargo.toml",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-OPERATION-APPLIER-CARGO",
+      "expected_sha256": "0a60331dac87de644cdc3ff4c4b2a0a125a313b73fb74efcf3e6e29c55deeff6",
+      "generated_line_start": 25303,
+      "generated_line_end": 25331,
+      "source_line_start": 1,
+      "source_line_end": 29,
+      "line_offset": -25302
+    },
+    {
+      "repo_rel_path": "core/model_operations/operation_applier/src/lib.rs",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-OPERATION-APPLIER-SRC-LIB",
+      "expected_sha256": "73ee17ea91af9749bbb2c51644461589c81a1ca7a2ee5ddf2b5b757609e48d1e",
+      "generated_line_start": 25335,
+      "generated_line_end": 34778,
+      "source_line_start": 1,
+      "source_line_end": 9444,
+      "line_offset": -25334
+    },
+    {
+      "repo_rel_path": "core/model_operations/operation_applier/tests/canonical_hash_parity.rs",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-OPERATION-APPLIER-TESTS-CANONICAL-HASH-PARITY",
+      "expected_sha256": "9b276fe31bed6dffb0da4e6e2e7fc63298862913defdce9a1395fe12851bf9ea",
+      "generated_line_start": 34782,
+      "generated_line_end": 34856,
+      "source_line_start": 1,
+      "source_line_end": 75,
+      "line_offset": -34781
+    },
+    {
+      "repo_rel_path": "core/model_operations/operation_applier/tests/contract_corpus.rs",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-OPERATION-APPLIER-TESTS-CONTRACT-CORPUS",
+      "expected_sha256": "4894143555a43beff379288097724c68557393f604315a4ac8a31b5846f81183",
+      "generated_line_start": 34860,
+      "generated_line_end": 35265,
+      "source_line_start": 1,
+      "source_line_end": 406,
+      "line_offset": -34859
+    },
+    {
+      "repo_rel_path": "core/model_operations/validation_preview/__init__.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-VALIDATION-PREVIEW-INIT",
+      "expected_sha256": "6957ae8eab7cde24876de9c73327d7426f6b5cc8463fd5f9e2cb0356545bca22",
+      "generated_line_start": 35269,
+      "generated_line_end": 35283,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -35268
+    },
+    {
+      "repo_rel_path": "core/model_operations/validation_preview/engine.py",
+      "source_doc_id": "SRC-CORE-MODEL-OPERATIONS-VALIDATION-PREVIEW-ENGINE",
+      "expected_sha256": "342aed62b3242dc39ced7181beca4ad9ec8a34b1b69a97f0e24ffaf22650dc83",
+      "generated_line_start": 35287,
+      "generated_line_end": 36039,
+      "source_line_start": 1,
+      "source_line_end": 753,
+      "line_offset": -35286
+    },
+    {
+      "repo_rel_path": "core/model_transform/physical_to_analytical/_solver_boundary_adapter.py",
+      "source_doc_id": "SRC-CORE-MODEL-TRANSFORM-PHYSICAL-TO-ANALYTICAL-SOLVER-BOUNDARY-ADAPTER",
+      "expected_sha256": "3c9c53019b9e557576d80fb5f1178ce61104a49617bed5d9b942350f6841d990",
+      "generated_line_start": 36043,
+      "generated_line_end": 37295,
+      "source_line_start": 1,
+      "source_line_end": 1253,
+      "line_offset": -36042
+    },
+    {
+      "repo_rel_path": "core/model_transform/physical_to_analytical/contract.py",
+      "source_doc_id": "SRC-CORE-MODEL-TRANSFORM-PHYSICAL-TO-ANALYTICAL-CONTRACT",
+      "expected_sha256": "c5de65349b6d3d3ef2829cf1243729fa171ae330ac32174f65a69128edfa74e2",
+      "generated_line_start": 37299,
+      "generated_line_end": 38039,
+      "source_line_start": 1,
+      "source_line_end": 741,
+      "line_offset": -37298
+    },
+    {
+      "repo_rel_path": "core/product_physics/Cargo.toml",
+      "source_doc_id": "SRC-CORE-PRODUCT-PHYSICS-CARGO",
+      "expected_sha256": "d6c77897045711767edd5e8bec34d5ab3249e8fe96d46d4cf68d212b8bd0a4e6",
+      "generated_line_start": 38043,
+      "generated_line_end": 38062,
+      "source_line_start": 1,
+      "source_line_end": 20,
+      "line_offset": -38042
+    },
+    {
+      "repo_rel_path": "core/product_physics/examples/preview_result.rs",
+      "source_doc_id": "SRC-CORE-PRODUCT-PHYSICS-EXAMPLES-PREVIEW-RESULT",
+      "expected_sha256": "6cb68ea97330ee541d80318a5bcd69469957bfd39edcbf71d4313faae85e8241",
+      "generated_line_start": 38066,
+      "generated_line_end": 38083,
+      "source_line_start": 1,
+      "source_line_end": 18,
+      "line_offset": -38065
+    },
+    {
+      "repo_rel_path": "core/product_physics/src/lib.rs",
+      "source_doc_id": "SRC-CORE-PRODUCT-PHYSICS-SRC-LIB",
+      "expected_sha256": "cef7dbdf2b3e028126a956f0875215f3ba1b0cb0a7b995e1c5c703c7b19f82c3",
+      "generated_line_start": 38087,
+      "generated_line_end": 42329,
+      "source_line_start": 1,
+      "source_line_end": 4243,
+      "line_offset": -38086
+    },
+    {
+      "repo_rel_path": "core/product_physics/src/validation.rs",
+      "source_doc_id": "SRC-CORE-PRODUCT-PHYSICS-SRC-VALIDATION",
+      "expected_sha256": "328fab8057ae0746bdd37c29f5d2bbbd4fb1297c17eafc66ab346263303d6cb1",
+      "generated_line_start": 42333,
+      "generated_line_end": 42992,
+      "source_line_start": 1,
+      "source_line_end": 660,
+      "line_offset": -42332
+    },
+    {
+      "repo_rel_path": "core/product_preview/__init__.py",
+      "source_doc_id": "SRC-CORE-PRODUCT-PREVIEW-INIT",
+      "expected_sha256": "8af5293781d49422e59f4a962b7263652775bf12f6a5834a47956c48109a8003",
+      "generated_line_start": 42996,
+      "generated_line_end": 43018,
+      "source_line_start": 1,
+      "source_line_end": 23,
+      "line_offset": -42995
+    },
+    {
+      "repo_rel_path": "core/product_preview/service.py",
+      "source_doc_id": "SRC-CORE-PRODUCT-PREVIEW-SERVICE",
+      "expected_sha256": "b356e8ce660af055c4f8323900f9673494890062641f80479a87db4da309ea1e",
+      "generated_line_start": 43022,
+      "generated_line_end": 43425,
+      "source_line_start": 1,
+      "source_line_end": 404,
+      "line_offset": -43021
+    },
+    {
+      "repo_rel_path": "core/project_persistence/__init__.py",
+      "source_doc_id": "SRC-CORE-PROJECT-PERSISTENCE-INIT",
+      "expected_sha256": "45b3bc3120e45d13e3c19aaa833087e31dbf191d71beda4fa25bcb4e30ef8e48",
+      "generated_line_start": 43429,
+      "generated_line_end": 43465,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -43428
+    },
+    {
+      "repo_rel_path": "core/project_persistence/service.py",
+      "source_doc_id": "SRC-CORE-PROJECT-PERSISTENCE-SERVICE",
+      "expected_sha256": "bf0ac299cc5ce1ac929db406accb940ce3c64efd5d83f35033a330532bc575c4",
+      "generated_line_start": 43469,
+      "generated_line_end": 44220,
+      "source_line_start": 1,
+      "source_line_end": 752,
+      "line_offset": -43468
+    },
+    {
+      "repo_rel_path": "core/reporting/audit_manifest/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-AUDIT-MANIFEST-CARGO",
+      "expected_sha256": "3445e3291a48e01d9ebeaf3d07308b34c22a2ade3a808597cabd6788b33ce237",
+      "generated_line_start": 44224,
+      "generated_line_end": 44234,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -44223
+    },
+    {
+      "repo_rel_path": "core/reporting/audit_manifest/README.md",
+      "source_doc_id": "SRC-CORE-REPORTING-AUDIT-MANIFEST-README",
+      "expected_sha256": "e9ce2c2ac9d08304490c0b0b8e93193f25299a39c9182728bd602e6130df05c7",
+      "generated_line_start": 44238,
+      "generated_line_end": 44273,
+      "source_line_start": 1,
+      "source_line_end": 36,
+      "line_offset": -44237
+    },
+    {
+      "repo_rel_path": "core/reporting/audit_manifest/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-AUDIT-MANIFEST-SRC-LIB",
+      "expected_sha256": "d89cdd50888de53a9106e3ae3f4c21ec928ba38939604a5ffbf567fe97142606",
+      "generated_line_start": 44277,
+      "generated_line_end": 45271,
+      "source_line_start": 1,
+      "source_line_end": 995,
+      "line_offset": -44276
+    },
+    {
+      "repo_rel_path": "core/reporting/protected_content_linter/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-PROTECTED-CONTENT-LINTER-CARGO",
+      "expected_sha256": "68e6e702c7f38a3844766b49a7b7f59efb997251c7e9364850689b68537b9ddd",
+      "generated_line_start": 45275,
+      "generated_line_end": 45285,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -45274
+    },
+    {
+      "repo_rel_path": "core/reporting/protected_content_linter/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-PROTECTED-CONTENT-LINTER-SRC-LIB",
+      "expected_sha256": "25349fdcce3e4e48ec7db7219724397dd38bc70f32446c2dd150361508013323",
+      "generated_line_start": 45289,
+      "generated_line_end": 45859,
+      "source_line_start": 1,
+      "source_line_end": 571,
+      "line_offset": -45288
+    },
+    {
+      "repo_rel_path": "core/reporting/report_generator/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-GENERATOR-CARGO",
+      "expected_sha256": "8fbc574d818a9a459e5a914c37cc6861c0e4b389e179408738933ab6ac94414f",
+      "generated_line_start": 45863,
+      "generated_line_end": 45877,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -45862
+    },
+    {
+      "repo_rel_path": "core/reporting/report_generator/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-GENERATOR-SRC-LIB",
+      "expected_sha256": "82b2a055cc1fc88eb15c4237cdc4feafc38e23e84fe117b980f60b64e12cc864",
+      "generated_line_start": 45881,
+      "generated_line_end": 47015,
+      "source_line_start": 1,
+      "source_line_end": 1135,
+      "line_offset": -45880
+    },
+    {
+      "repo_rel_path": "core/reporting/report_renderer/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-RENDERER-CARGO",
+      "expected_sha256": "2b11cc0e6f934d73f841ac7969b4cfe03184300ab955b19b2b496142b5aba9ed",
+      "generated_line_start": 47019,
+      "generated_line_end": 47037,
+      "source_line_start": 1,
+      "source_line_end": 19,
+      "line_offset": -47018
+    },
+    {
+      "repo_rel_path": "core/reporting/report_renderer/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-RENDERER-SRC-LIB",
+      "expected_sha256": "4ac7e71f2d4ccb3c8e7a942c37399eeae889f45c1b7879a9abd429d389f61773",
+      "generated_line_start": 47041,
+      "generated_line_end": 47816,
+      "source_line_start": 1,
+      "source_line_end": 776,
+      "line_offset": -47040
+    },
+    {
+      "repo_rel_path": "core/reporting/report_renderer/tests/render.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-RENDERER-TESTS-RENDER",
+      "expected_sha256": "4d55503de9e97356a62847063a2592db645c9ce43866ad328f40ffd6dfb14df4",
+      "generated_line_start": 47820,
+      "generated_line_end": 48051,
+      "source_line_start": 1,
+      "source_line_end": 232,
+      "line_offset": -47819
+    },
+    {
+      "repo_rel_path": "core/reporting/report_sections/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-SECTIONS-CARGO",
+      "expected_sha256": "b2a20f3f4e5908f738a0feb09cf844522687d934830b18036ce941e059a7dca9",
+      "generated_line_start": 48055,
+      "generated_line_end": 48069,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -48054
+    },
+    {
+      "repo_rel_path": "core/reporting/report_sections/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-REPORT-SECTIONS-SRC-LIB",
+      "expected_sha256": "967e50a40bdc2e57a5e89383d49cf2bbeb083c23706e01af8c43069bbc5de8e4",
+      "generated_line_start": 48073,
+      "generated_line_end": 49038,
+      "source_line_start": 1,
+      "source_line_end": 966,
+      "line_offset": -48072
+    },
+    {
+      "repo_rel_path": "core/reporting/result_export/Cargo.toml",
+      "source_doc_id": "SRC-CORE-REPORTING-RESULT-EXPORT-CARGO",
+      "expected_sha256": "a2840927e732377382b64403210ed36de3239e697f246290443e6d47f4e47576",
+      "generated_line_start": 49042,
+      "generated_line_end": 49053,
+      "source_line_start": 1,
+      "source_line_end": 12,
+      "line_offset": -49041
+    },
+    {
+      "repo_rel_path": "core/reporting/result_export/src/lib.rs",
+      "source_doc_id": "SRC-CORE-REPORTING-RESULT-EXPORT-SRC-LIB",
+      "expected_sha256": "868c8d387efad61b1743c083d2bd265143bdd64cfb14c570765888c2b18c5103",
+      "generated_line_start": 49057,
+      "generated_line_end": 50693,
+      "source_line_start": 1,
+      "source_line_end": 1637,
+      "line_offset": -49056
+    },
+    {
+      "repo_rel_path": "core/reporting/state_comparison_handoff_sections/__init__.py",
+      "source_doc_id": "SRC-CORE-REPORTING-STATE-COMPARISON-HANDOFF-SECTIONS-INIT",
+      "expected_sha256": "e6baf5e3c6d525dd216b18d6355ddd2bfa3cb008af0c712762c16b951e3862fb",
+      "generated_line_start": 50697,
+      "generated_line_end": 50713,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -50696
+    },
+    {
+      "repo_rel_path": "core/reporting/state_comparison_handoff_sections/engine.py",
+      "source_doc_id": "SRC-CORE-REPORTING-STATE-COMPARISON-HANDOFF-SECTIONS-ENGINE",
+      "expected_sha256": "de56d050c7f4499f09ef5d9a6efad25544db0019e4b22298e840415ba002c609",
+      "generated_line_start": 50717,
+      "generated_line_end": 51663,
+      "source_line_start": 1,
+      "source_line_end": 947,
+      "line_offset": -50716
+    },
+    {
+      "repo_rel_path": "core/rules/completeness_checker/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RULES-COMPLETENESS-CHECKER-CARGO",
+      "expected_sha256": "3f3e2c40814d61aa058d20aafbe9195198d16e6d39868b409cbacd02813ca98d",
+      "generated_line_start": 51667,
+      "generated_line_end": 51677,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -51666
+    },
+    {
+      "repo_rel_path": "core/rules/completeness_checker/README.md",
+      "source_doc_id": "SRC-CORE-RULES-COMPLETENESS-CHECKER-README",
+      "expected_sha256": "19965f19bde00330d248c54552a8d2286d495b5f3fed808925ea3a61786abeec",
+      "generated_line_start": 51681,
+      "generated_line_end": 51715,
+      "source_line_start": 1,
+      "source_line_end": 35,
+      "line_offset": -51680
+    },
+    {
+      "repo_rel_path": "core/rules/completeness_checker/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RULES-COMPLETENESS-CHECKER-SRC-LIB",
+      "expected_sha256": "5c7a37bdc17121367d50a0a45711662473e5a0cf1e84087bf7cb41184cf595c7",
+      "generated_line_start": 51719,
+      "generated_line_end": 52574,
+      "source_line_start": 1,
+      "source_line_end": 856,
+      "line_offset": -51718
+    },
+    {
+      "repo_rel_path": "core/rules/expression_evaluator/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RULES-EXPRESSION-EVALUATOR-CARGO",
+      "expected_sha256": "b8e0d58e9eeff3161447c3f2b49e449a8ddc00ab1289f28127e9b388f0c66444",
+      "generated_line_start": 52578,
+      "generated_line_end": 52588,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -52577
+    },
+    {
+      "repo_rel_path": "core/rules/expression_evaluator/README.md",
+      "source_doc_id": "SRC-CORE-RULES-EXPRESSION-EVALUATOR-README",
+      "expected_sha256": "9a582419937b54b5d71abc78df2dd0b4a37a1e4eda57f8ad112714e2cedd3ee8",
+      "generated_line_start": 52592,
+      "generated_line_end": 52663,
+      "source_line_start": 1,
+      "source_line_end": 72,
+      "line_offset": -52591
+    },
+    {
+      "repo_rel_path": "core/rules/expression_evaluator/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RULES-EXPRESSION-EVALUATOR-SRC-LIB",
+      "expected_sha256": "461eb4f47d5137e1fa542ae85a2468eab584e853f929bbabc9d39a09c3a981eb",
+      "generated_line_start": 52667,
+      "generated_line_end": 54997,
+      "source_line_start": 1,
+      "source_line_end": 2331,
+      "line_offset": -52666
+    },
+    {
+      "repo_rel_path": "core/rules/expression_evaluator/tests/conformance_corpus.rs",
+      "source_doc_id": "SRC-CORE-RULES-EXPRESSION-EVALUATOR-TESTS-CONFORMANCE-CORPUS",
+      "expected_sha256": "469c32866b3f85237168253ad0ca8b2109237589144316e53bede2744b627fe6",
+      "generated_line_start": 55001,
+      "generated_line_end": 55844,
+      "source_line_start": 1,
+      "source_line_end": 844,
+      "line_offset": -55000
+    },
+    {
+      "repo_rel_path": "core/rules/rule_check_runner/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RULES-RULE-CHECK-RUNNER-CARGO",
+      "expected_sha256": "2b6192fda5a5130ece476cdc7f7d4e62d0282281a6f9c5e37bd6634688f727f1",
+      "generated_line_start": 55848,
+      "generated_line_end": 55860,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -55847
+    },
+    {
+      "repo_rel_path": "core/rules/rule_check_runner/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-CHECK-RUNNER-SRC-LIB",
+      "expected_sha256": "590cc5ebbab4ab8f6055fd07de5464c1cccc6fb273e22e6c08135d7877d34758",
+      "generated_line_start": 55864,
+      "generated_line_end": 57550,
+      "source_line_start": 1,
+      "source_line_end": 1687,
+      "line_offset": -55863
+    },
+    {
+      "repo_rel_path": "core/rules/rule_check_runner/tests/acceptability_relation_run.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-CHECK-RUNNER-TESTS-ACCEPTABILITY-RELATION-RUN",
+      "expected_sha256": "24fccb1beae7ec484b943f28b3a12fff1625dc1ff160db460245dd96ab154901",
+      "generated_line_start": 57554,
+      "generated_line_end": 57690,
+      "source_line_start": 1,
+      "source_line_end": 137,
+      "line_offset": -57553
+    },
+    {
+      "repo_rel_path": "core/rules/rule_check_runner/tests/invented_demo_run.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-CHECK-RUNNER-TESTS-INVENTED-DEMO-RUN",
+      "expected_sha256": "a3c31a110e842ee9b39fb3ba825c6da5c5598ead9581d6aaa28e393c13e11baa",
+      "generated_line_start": 57694,
+      "generated_line_end": 57810,
+      "source_line_start": 1,
+      "source_line_end": 117,
+      "line_offset": -57693
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_document/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-DOCUMENT-CARGO",
+      "expected_sha256": "1750b0c7fead14062263ba3ee07890316064e239fd1e497c58aebb2e56152b26",
+      "generated_line_start": 57814,
+      "generated_line_end": 57825,
+      "source_line_start": 1,
+      "source_line_end": 12,
+      "line_offset": -57813
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_document/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-DOCUMENT-SRC-LIB",
+      "expected_sha256": "df06710579551929c5449425294709cff196126a571c81ab8c3b3cdaba9ac49e",
+      "generated_line_start": 57829,
+      "generated_line_end": 59194,
+      "source_line_start": 1,
+      "source_line_end": 1366,
+      "line_offset": -57828
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_document/tests/corpus_parity.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-DOCUMENT-TESTS-CORPUS-PARITY",
+      "expected_sha256": "020ba9422f93a8358d320ca3f995a834d5390642e8b8aa4d59f70f4fb32df1a2",
+      "generated_line_start": 59198,
+      "generated_line_end": 59252,
+      "source_line_start": 1,
+      "source_line_end": 55,
+      "line_offset": -59197
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_document/tests/invented_demo_document.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-DOCUMENT-TESTS-INVENTED-DEMO-DOCUMENT",
+      "expected_sha256": "26179e710dccb2caa6ab9039c30f265f3a726cc00e66374118c470858b4f14e6",
+      "generated_line_start": 59256,
+      "generated_line_end": 59367,
+      "source_line_start": 1,
+      "source_line_end": 112,
+      "line_offset": -59255
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_lifecycle/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-LIFECYCLE-CARGO",
+      "expected_sha256": "bb3ca5cfd2e37d864234ad56c41cceba05ec3baa9bd7036247203d46f432d0da",
+      "generated_line_start": 59371,
+      "generated_line_end": 59381,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -59370
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_lifecycle/README.md",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-LIFECYCLE-README",
+      "expected_sha256": "4699064fa634ceab60411d8439c260e7b3c7b25f736205a0ce6f1eded204f1f4",
+      "generated_line_start": 59385,
+      "generated_line_end": 59434,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -59384
+    },
+    {
+      "repo_rel_path": "core/rules/rule_pack_lifecycle/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RULES-RULE-PACK-LIFECYCLE-SRC-LIB",
+      "expected_sha256": "99027cb8c53557d3c4a08319f9a4fb7149e5fdfb0823dc56e109198296b480f5",
+      "generated_line_start": 59438,
+      "generated_line_end": 60380,
+      "source_line_start": 1,
+      "source_line_end": 943,
+      "line_offset": -59437
+    },
+    {
+      "repo_rel_path": "core/runner/headless/Cargo.toml",
+      "source_doc_id": "SRC-CORE-RUNNER-HEADLESS-CARGO",
+      "expected_sha256": "a12efb470793a711de7f0fbda62089e19b127679e61a029daf2b0c0b3df0f63e",
+      "generated_line_start": 60384,
+      "generated_line_end": 60401,
+      "source_line_start": 1,
+      "source_line_end": 18,
+      "line_offset": -60383
+    },
+    {
+      "repo_rel_path": "core/runner/headless/src/lib.rs",
+      "source_doc_id": "SRC-CORE-RUNNER-HEADLESS-SRC-LIB",
+      "expected_sha256": "f223bf19458508202b23a1fd687fa39ceac62b7da374cecd7b2b825637822d62",
+      "generated_line_start": 60405,
+      "generated_line_end": 61714,
+      "source_line_start": 1,
+      "source_line_end": 1310,
+      "line_offset": -60404
+    },
+    {
+      "repo_rel_path": "core/section_properties/README.md",
+      "source_doc_id": "SRC-CORE-SECTION-PROPERTIES-README",
+      "expected_sha256": "34735e05b6b89fea54f24a67db4090579948c4c20f1aee237871f18ffbeca210",
+      "generated_line_start": 61718,
+      "generated_line_end": 61750,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -61717
+    },
+    {
+      "repo_rel_path": "core/section_properties/calculator.py",
+      "source_doc_id": "SRC-CORE-SECTION-PROPERTIES-CALCULATOR",
+      "expected_sha256": "07a34f146af07563700cf6d3de2ef32c5a8bc69f72c5ed508a561c0ac639ee53",
+      "generated_line_start": 61754,
+      "generated_line_end": 62173,
+      "source_line_start": 1,
+      "source_line_end": 420,
+      "line_offset": -61753
+    },
+    {
+      "repo_rel_path": "core/security/local_first_storage/__init__.py",
+      "source_doc_id": "SRC-CORE-SECURITY-LOCAL-FIRST-STORAGE-INIT",
+      "expected_sha256": "b0f4cdd50b320a345866308012a98b387286893a2b212782c13cc9a02c45294d",
+      "generated_line_start": 62177,
+      "generated_line_end": 62197,
+      "source_line_start": 1,
+      "source_line_end": 21,
+      "line_offset": -62176
+    },
+    {
+      "repo_rel_path": "core/security/local_first_storage/controls.py",
+      "source_doc_id": "SRC-CORE-SECURITY-LOCAL-FIRST-STORAGE-CONTROLS",
+      "expected_sha256": "2a6b472aa3b40c4a532ebd681a6bb1f9d5d3eb4e3e60cbffb388aacc4fee32af",
+      "generated_line_start": 62201,
+      "generated_line_end": 63240,
+      "source_line_start": 1,
+      "source_line_end": 1040,
+      "line_offset": -62200
+    },
+    {
+      "repo_rel_path": "core/security/redaction/__init__.py",
+      "source_doc_id": "SRC-CORE-SECURITY-REDACTION-INIT",
+      "expected_sha256": "2036171bf7fb5631a5f2f33cb26465f6da86ef998facf7f238723105adf4b11d",
+      "generated_line_start": 63244,
+      "generated_line_end": 63262,
+      "source_line_start": 1,
+      "source_line_end": 19,
+      "line_offset": -63243
+    },
+    {
+      "repo_rel_path": "core/security/redaction/controls.py",
+      "source_doc_id": "SRC-CORE-SECURITY-REDACTION-CONTROLS",
+      "expected_sha256": "737669521fce7b8f2a4a5b4b1676bbf330358e109bd31b51d66c23400b35a5cc",
+      "generated_line_start": 63266,
+      "generated_line_end": 63891,
+      "source_line_start": 1,
+      "source_line_end": 626,
+      "line_offset": -63265
+    },
+    {
+      "repo_rel_path": "core/security/secret_private_library/__init__.py",
+      "source_doc_id": "SRC-CORE-SECURITY-SECRET-PRIVATE-LIBRARY-INIT",
+      "expected_sha256": "c49c7feedaabc7221c99a1f9fe9176748ac718b9d57c761f34892986307b42c4",
+      "generated_line_start": 63895,
+      "generated_line_end": 63925,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -63894
+    },
+    {
+      "repo_rel_path": "core/security/secret_private_library/controls.py",
+      "source_doc_id": "SRC-CORE-SECURITY-SECRET-PRIVATE-LIBRARY-CONTROLS",
+      "expected_sha256": "3debcf4f8aa982b6b8073c3639eecdb4bb4e47389dd2cb8811f83908d1a79f5d",
+      "generated_line_start": 63929,
+      "generated_line_end": 65023,
+      "source_line_start": 1,
+      "source_line_end": 1095,
+      "line_offset": -63928
+    },
+    {
+      "repo_rel_path": "core/security/telemetry_policy/__init__.py",
+      "source_doc_id": "SRC-CORE-SECURITY-TELEMETRY-POLICY-INIT",
+      "expected_sha256": "f3a52b9033b0f16defc9926a8b2bd0bba4db7a484c766696d75c56c970f6b8b1",
+      "generated_line_start": 65027,
+      "generated_line_end": 65047,
+      "source_line_start": 1,
+      "source_line_end": 21,
+      "line_offset": -65026
+    },
+    {
+      "repo_rel_path": "core/security/telemetry_policy/controls.py",
+      "source_doc_id": "SRC-CORE-SECURITY-TELEMETRY-POLICY-CONTROLS",
+      "expected_sha256": "f2865fc33561992e5680074c5db78a96f8fb246b84787c7e91866110971baaba",
+      "generated_line_start": 65051,
+      "generated_line_end": 66211,
+      "source_line_start": 1,
+      "source_line_end": 1161,
+      "line_offset": -65050
+    },
+    {
+      "repo_rel_path": "core/serialization/canonical_json/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SERIALIZATION-CANONICAL-JSON-CARGO",
+      "expected_sha256": "30dac091c5df988b0beeaf316b0a36157d73526c8a5466664f4efb433e4ab91d",
+      "generated_line_start": 66215,
+      "generated_line_end": 66230,
+      "source_line_start": 1,
+      "source_line_end": 16,
+      "line_offset": -66214
+    },
+    {
+      "repo_rel_path": "core/serialization/canonical_json/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SERIALIZATION-CANONICAL-JSON-SRC-LIB",
+      "expected_sha256": "3fc4c97586988d4ef0ba5cfa748fbf26366230a4d95a3826d17f25247a7d1897",
+      "generated_line_start": 66234,
+      "generated_line_end": 66560,
+      "source_line_start": 1,
+      "source_line_end": 327,
+      "line_offset": -66233
+    },
+    {
+      "repo_rel_path": "core/solver/diagnostics/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-DIAGNOSTICS-CARGO",
+      "expected_sha256": "b97f1331ea132a493008eb94d985b6afd26c8ea13476e56c1fa2a098f34244b6",
+      "generated_line_start": 66564,
+      "generated_line_end": 66578,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -66563
+    },
+    {
+      "repo_rel_path": "core/solver/diagnostics/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-DIAGNOSTICS-README",
+      "expected_sha256": "df6388aa636f91084878f1a01943d2f1b9c47a1eda8bee32f15d836e3c3dc24d",
+      "generated_line_start": 66582,
+      "generated_line_end": 66609,
+      "source_line_start": 1,
+      "source_line_end": 28,
+      "line_offset": -66581
+    },
+    {
+      "repo_rel_path": "core/solver/diagnostics/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-DIAGNOSTICS-SRC-LIB",
+      "expected_sha256": "af7c078813da24df142eb0688e9313a6b821ec4a932c8647fe7dd133cedaacb7",
+      "generated_line_start": 66613,
+      "generated_line_end": 67758,
+      "source_line_start": 1,
+      "source_line_end": 1146,
+      "line_offset": -66612
+    },
+    {
+      "repo_rel_path": "core/solver/frame_kernel/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-FRAME-KERNEL-CARGO",
+      "expected_sha256": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+      "generated_line_start": 67762,
+      "generated_line_end": 67772,
+      "source_line_start": 1,
+      "source_line_end": 11,
+      "line_offset": -67761
+    },
+    {
+      "repo_rel_path": "core/solver/frame_kernel/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-FRAME-KERNEL-README",
+      "expected_sha256": "7d731b1ce74592b3d6d73ee0321b9d7085eca69a8b04c214de3d776dbb0512a0",
+      "generated_line_start": 67776,
+      "generated_line_end": 67823,
+      "source_line_start": 1,
+      "source_line_end": 48,
+      "line_offset": -67775
+    },
+    {
+      "repo_rel_path": "core/solver/frame_kernel/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-FRAME-KERNEL-SRC-LIB",
+      "expected_sha256": "2de1b6836c39b5b6213878ff3f7290c92fddd4339f14da925cb5fd72041d67b8",
+      "generated_line_start": 67827,
+      "generated_line_end": 69510,
+      "source_line_start": 1,
+      "source_line_end": 1684,
+      "line_offset": -67826
+    },
+    {
+      "repo_rel_path": "core/solver/linear_supports/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-LINEAR-SUPPORTS-CARGO",
+      "expected_sha256": "db634677878b548ca51ad7b14d0532540b0471a439ac7e8d7e28a405b32e5b08",
+      "generated_line_start": 69514,
+      "generated_line_end": 69525,
+      "source_line_start": 1,
+      "source_line_end": 12,
+      "line_offset": -69513
+    },
+    {
+      "repo_rel_path": "core/solver/linear_supports/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-LINEAR-SUPPORTS-README",
+      "expected_sha256": "d30c76b992d30951381e386cf482b769af8409e993668811fbdc5ad1606848b1",
+      "generated_line_start": 69529,
+      "generated_line_end": 69569,
+      "source_line_start": 1,
+      "source_line_end": 41,
+      "line_offset": -69528
+    },
+    {
+      "repo_rel_path": "core/solver/linear_supports/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-LINEAR-SUPPORTS-SRC-LIB",
+      "expected_sha256": "1b23899cc93f5d4a56742cb3ba5c617d1d4b401c903e42412300e86c803de50e",
+      "generated_line_start": 69573,
+      "generated_line_end": 70529,
+      "source_line_start": 1,
+      "source_line_end": 957,
+      "line_offset": -69572
+    },
+    {
+      "repo_rel_path": "core/solver/nonlinear_supports/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-NONLINEAR-SUPPORTS-CARGO",
+      "expected_sha256": "328a321c2d77b620665f449dbdb58246953299cacffcaae25bb542e7339f3b64",
+      "generated_line_start": 70533,
+      "generated_line_end": 70545,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -70532
+    },
+    {
+      "repo_rel_path": "core/solver/nonlinear_supports/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-NONLINEAR-SUPPORTS-README",
+      "expected_sha256": "ad1b546ab7adb74facc0a584aa2a03b6bbafc1e413a28cb7fbac268089e3ff90",
+      "generated_line_start": 70549,
+      "generated_line_end": 70593,
+      "source_line_start": 1,
+      "source_line_end": 45,
+      "line_offset": -70548
+    },
+    {
+      "repo_rel_path": "core/solver/nonlinear_supports/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-NONLINEAR-SUPPORTS-SRC-LIB",
+      "expected_sha256": "ab0c918a0bbbf84e2a9842755bcd4e65c071fc5ac9505f67c0e799a04a9ea937",
+      "generated_line_start": 70597,
+      "generated_line_end": 71661,
+      "source_line_start": 1,
+      "source_line_end": 1065,
+      "line_offset": -70596
+    },
+    {
+      "repo_rel_path": "core/solver/performance_harness/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-PERFORMANCE-HARNESS-CARGO",
+      "expected_sha256": "e0b4a13926a7fffdb45547b2b35e00b72ce2d24a038aa10d0662be16ab99bc0a",
+      "generated_line_start": 71665,
+      "generated_line_end": 71678,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -71664
+    },
+    {
+      "repo_rel_path": "core/solver/performance_harness/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-PERFORMANCE-HARNESS-README",
+      "expected_sha256": "efd2a1f8a7407f9b978cf4f168068dd8db146bff125b7d680b5d01f1536c1fe7",
+      "generated_line_start": 71682,
+      "generated_line_end": 71713,
+      "source_line_start": 1,
+      "source_line_end": 32,
+      "line_offset": -71681
+    },
+    {
+      "repo_rel_path": "core/solver/performance_harness/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-PERFORMANCE-HARNESS-SRC-LIB",
+      "expected_sha256": "5e924e6bd52ce9fa5ba5eb5bca3c5b839aae845ccee1ae73bc3b6ddd852ed221",
+      "generated_line_start": 71717,
+      "generated_line_end": 73111,
+      "source_line_start": 1,
+      "source_line_end": 1395,
+      "line_offset": -71716
+    },
+    {
+      "repo_rel_path": "core/solver/sparse_direct/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-SPARSE-DIRECT-CARGO",
+      "expected_sha256": "3c80029904a6af6443cd5af5c7b8de98e1eaf6ba573a50408fce6ea63fc2192e",
+      "generated_line_start": 73115,
+      "generated_line_end": 73128,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -73114
+    },
+    {
+      "repo_rel_path": "core/solver/sparse_direct/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-SPARSE-DIRECT-README",
+      "expected_sha256": "47dcd22e13523c1431e0b93089b6e87b252d2166e3400ebf2b082c607a0c9acc",
+      "generated_line_start": 73132,
+      "generated_line_end": 73190,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -73131
+    },
+    {
+      "repo_rel_path": "core/solver/sparse_direct/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-SPARSE-DIRECT-SRC-LIB",
+      "expected_sha256": "e952ee85d116903f170ec502ef92ca41153a1b46b6f408cb3b4eabf4c0ca998b",
+      "generated_line_start": 73194,
+      "generated_line_end": 74171,
+      "source_line_start": 1,
+      "source_line_end": 978,
+      "line_offset": -73193
+    },
+    {
+      "repo_rel_path": "core/solver/straight_pipe/Cargo.toml",
+      "source_doc_id": "SRC-CORE-SOLVER-STRAIGHT-PIPE-CARGO",
+      "expected_sha256": "7aed2782a0421df01ca78d58c26c8648d179b871d5cdd2503b2e911bacd42ff4",
+      "generated_line_start": 74175,
+      "generated_line_end": 74186,
+      "source_line_start": 1,
+      "source_line_end": 12,
+      "line_offset": -74174
+    },
+    {
+      "repo_rel_path": "core/solver/straight_pipe/README.md",
+      "source_doc_id": "SRC-CORE-SOLVER-STRAIGHT-PIPE-README",
+      "expected_sha256": "d4bfdeaecbdb163a4ec70ca6c6a1255c83195f6f25670f9ac19a6f89dc1d689c",
+      "generated_line_start": 74190,
+      "generated_line_end": 74212,
+      "source_line_start": 1,
+      "source_line_end": 23,
+      "line_offset": -74189
+    },
+    {
+      "repo_rel_path": "core/solver/straight_pipe/src/lib.rs",
+      "source_doc_id": "SRC-CORE-SOLVER-STRAIGHT-PIPE-SRC-LIB",
+      "expected_sha256": "67565f4a5d0389100ead5d218f40e167e08d674568133db002cc8868145b4f79",
+      "generated_line_start": 74216,
+      "generated_line_end": 76584,
+      "source_line_start": 1,
+      "source_line_end": 2369,
+      "line_offset": -74215
+    },
+    {
+      "repo_rel_path": "core/units/Cargo.toml",
+      "source_doc_id": "SRC-CORE-UNITS-CARGO",
+      "expected_sha256": "7216e6bddcdd99ed45d7ed9a8fc9471016a719bbc80d201d980eda69592220a7",
+      "generated_line_start": 76588,
+      "generated_line_end": 76601,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -76587
+    },
+    {
+      "repo_rel_path": "core/units/README.md",
+      "source_doc_id": "SRC-CORE-UNITS-README",
+      "expected_sha256": "37b2727ead7e915b0651ec39ec85a5087afb6f7c188be38922e3108e77c86cc1",
+      "generated_line_start": 76605,
+      "generated_line_end": 76735,
+      "source_line_start": 1,
+      "source_line_end": 131,
+      "line_offset": -76604
+    },
+    {
+      "repo_rel_path": "core/units/src/lib.rs",
+      "source_doc_id": "SRC-CORE-UNITS-SRC-LIB",
+      "expected_sha256": "4bd102e98cc6be95562002637b48af4517dc88c9d82c23f8d1aede7c5fcf8592",
+      "generated_line_start": 76739,
+      "generated_line_end": 78388,
+      "source_line_start": 1,
+      "source_line_end": 1650,
+      "line_offset": -76738
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

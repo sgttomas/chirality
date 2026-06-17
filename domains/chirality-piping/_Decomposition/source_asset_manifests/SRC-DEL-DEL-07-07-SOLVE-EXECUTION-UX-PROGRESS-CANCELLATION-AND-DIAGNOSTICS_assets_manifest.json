@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS",
+  "source_doc_id": "SRC-DEL-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS",
+  "source_prefix": "ED048",
+  "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/",
+  "catalog_rel_path": "@repo/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS-DATASHEET",
+      "expected_sha256": "bf76771ffa3744721757c2e2a237fa4e6579b9cba2d6b71abea2b585f7fc923a",
+      "generated_line_start": 11,
+      "generated_line_end": 82,
+      "source_line_start": 1,
+      "source_line_end": 72,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS-GUIDANCE",
+      "expected_sha256": "c0ea08df418d01940b4bc4333b00b73cecc3a3c7b5c1ad27378715f841ee0482",
+      "generated_line_start": 86,
+      "generated_line_end": 146,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -85
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS-PROCEDURE",
+      "expected_sha256": "a03f636f6fafc4a8d15e6be95214d2a9159cdb355782818fce6b88a1d6318fed",
+      "generated_line_start": 150,
+      "generated_line_end": 235,
+      "source_line_start": 1,
+      "source_line_end": 86,
+      "line_offset": -149
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS-SPECIFICATION",
+      "expected_sha256": "dd14187ef903ddaa9b8735d4b8fb1450bd3cfac36fc9dd235ee8cb536ff8959a",
+      "generated_line_start": 239,
+      "generated_line_end": 298,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -238
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

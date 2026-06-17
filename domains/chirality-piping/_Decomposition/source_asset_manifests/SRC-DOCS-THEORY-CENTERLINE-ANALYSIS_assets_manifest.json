@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-THEORY-CENTERLINE-ANALYSIS",
+  "source_doc_id": "SRC-DOCS-THEORY-CENTERLINE-ANALYSIS",
+  "source_name": "centerline_analysis.md",
+  "source_prefix": "PD037",
+  "repo_rel_path": "docs/theory/centerline_analysis.md",
+  "catalog_rel_path": "@repo/docs/theory/centerline_analysis.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

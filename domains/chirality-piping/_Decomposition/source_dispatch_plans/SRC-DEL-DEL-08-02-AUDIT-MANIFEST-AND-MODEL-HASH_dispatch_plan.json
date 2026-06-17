@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-08-02-AUDIT-MANIFEST-AND-MODEL-HASH",
+  "source_prefix": "ED051",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-08-02-AUDIT-MANIFEST-AND-MODEL-HASH_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-08-02-AUDIT-MANIFEST-AND-MODEL-HASH.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:59+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED051-0001",
+      "line_start": 9,
+      "line_end": 245,
+      "target_section_ids": [
+        "SEC-ED051-0002",
+        "SEC-ED051-0003",
+        "SEC-ED051-0004",
+        "SEC-ED051-0005",
+        "SEC-ED051-0006",
+        "SEC-ED051-0007",
+        "SEC-ED051-0008",
+        "SEC-ED051-0009",
+        "SEC-ED051-0010",
+        "SEC-ED051-0011",
+        "SEC-ED051-0012",
+        "SEC-ED051-0013",
+        "SEC-ED051-0014",
+        "SEC-ED051-0015",
+        "SEC-ED051-0016",
+        "SEC-ED051-0017",
+        "SEC-ED051-0018",
+        "SEC-ED051-0019",
+        "SEC-ED051-0020",
+        "SEC-ED051-0021",
+        "SEC-ED051-0022",
+        "SEC-ED051-0023",
+        "SEC-ED051-0024",
+        "SEC-ED051-0025",
+        "SEC-ED051-0026",
+        "SEC-ED051-0027",
+        "SEC-ED051-0028",
+        "SEC-ED051-0029",
+        "SEC-ED051-0030"
+      ],
+      "estimated_md_tokens": 3211,
+      "contains_oversized_section": false
+    }
+  ]
+}

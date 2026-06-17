@@ -1,0 +1,462 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-09-01-MECHANICS-BENCHMARK-SUITE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>33</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED056-0001">Source Pack: SRC-DEL-DEL-09-01-MECHANICS-BENCHMARK-SUITE</a> <a href="#SEC-ED056-0002">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED056-0010">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED056-0019">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED056-0026">Component: execution/PKG-09_Verification, Validation, and Qu</a></nav>
+<main>
+<section id="SEC-ED056-0001" class="chunk sec depth-1" data-kind="section" data-key="section:f6779c318904" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED056-0001</span> Source Pack: SRC-DEL-DEL-09-01-MECHANICS-BENCHMARK-SUITE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6779c318904" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6779c318904" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6779c318904" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED056-0002" class="chunk sec depth-2" data-kind="section" data-key="section:44a09f39be20" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED056-0002</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44a09f39be20" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44a09f39be20" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44a09f39be20" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0003" class="chunk sec depth-3" data-kind="section" data-key="section:4a3378fb7cc7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED056-0003</span> Datasheet: DEL-09-01 Mechanics benchmark suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a3378fb7cc7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a3378fb7cc7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a3378fb7cc7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0004" class="chunk sec depth-4" data-kind="section" data-key="section:6c366f360697" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c366f360697" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c366f360697" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c366f360697" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-09-01 |
+| Package ID | PKG-09 |
+| Package | Verification, Validation, and Quality Oracles |
+| Deliverable type | TEST_SUITE |
+| Decomposition basis | `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 |
+| Scope items | SOW-026 |
+| Objectives | OBJ-008 |
+| Context envelope | M |
+| Lifecycle state during setup | Draft setup evidence only; not implementation and not ISSUED |
+</p></div></div></section>
+<section id="SEC-ED056-0005" class="chunk sec depth-4" data-kind="section" data-key="section:3df5a8af392d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3df5a8af392d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3df5a8af392d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3df5a8af392d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Setup value |
+|---|---|
+| Suite purpose | Define the evidence boundary for future mechanics benchmark cases that exercise solver and stress-recovery behavior through original/public mechanics examples. |
+| Benchmark families | Cantilevers, frames, thermal growth, imposed displacement, and local-to-global stiffness transforms. |
+| Solver boundary | The suite observes solver behavior; this setup pass does not implement solver logic, benchmark source files, tests, or final comparison tolerances. |
+| Source posture | Benchmark sources must be original, public-domain, public-permissive, or otherwise documented for redistribution before entering public artifacts. |
+| Data boundary | Protected standards examples, code text, protected tables, proprietary commercial benchmarks, and vendor/private project data are excluded. |
+| Tolerance posture | Final numerical tolerances, benchmark acceptance ranges, and release thresholds remain `TBD` pending solver prototype and human authority. |
+| Result posture | Benchmark outputs should preserve units, solver version, diagnostics/result-envelope fields, assumptions, provenance, and limitations once implementation is authorized. |
+</p></div></div></section>
+<section id="SEC-ED056-0006" class="chunk sec depth-4" data-kind="section" data-key="section:381f24d0d544" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:381f24d0d544" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:381f24d0d544" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:381f24d0d544" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup context authorizes only document production and local setup registers. It does not authorize edits to validation benchmark source files, implementation tests, solver modules, repo-level CI, or `ISSUED` lifecycle state.</p>
+<p>The future mechanics benchmark suite must stay aligned with the architecture-basis constraints for module boundaries, diagnostics/result envelopes, layered validation gates, unit safety, and protected-content/provenance review. Exact fixture schema, runner command, solver numerical library, output comparison format, comparison tolerances, and CI/release thresholds remain `TBD`.
+</p></div></div></section>
+<section id="SEC-ED056-0007" class="chunk sec depth-4" data-kind="section" data-key="section:6905783de647" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6905783de647" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6905783de647" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6905783de647" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Construction item | Status |
+|---|---|
+| `validation/benchmarks/mechanics` | Anticipated future artifact; not created or edited in this setup pass. |
+| Hand-calculation notes | Anticipated future artifact; formulas and numerical cases must be original/public/permissive and source-noted. |
+| Cantilever cases | Required family; concrete geometry, loads, units, expected values, and tolerances are `TBD`. |
+| Frame cases | Required family; concrete portal/frame cases and acceptance ranges are `TBD`. |
+| Thermal growth cases | Required family; material/thermal inputs must be user/original/public-permissive and unit-aware; values are `TBD`. |
+| Imposed displacement cases | Required family; boundary-condition semantics and expected reactions/displacements are `TBD`. |
+| Stiffness transform cases | Required family; local/global transform cases and expected matrices/results are `TBD`. |
+| Provenance index | Required before public fixture publication; exact format is `TBD`. |
+</p></div></div></section>
+<section id="SEC-ED056-0008" class="chunk sec depth-4" data-kind="section" data-key="section:10d5aead5a18" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:10d5aead5a18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:10d5aead5a18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:10d5aead5a18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for deliverable identity, scope, objectives, anticipated artifacts, and architecture-basis injection.
+- `_REFERENCES.md` for governing local references.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7, rows for PKG-09, DEL-09-01, SOW-026, OBJ-008, AB-00-01, AB-00-02, AB-00-06, and AB-00-08.
+- `docs/_Registers/Deliverables.csv` row DEL-09-01.
+- `docs/_Registers/ScopeLedger.csv` row SOW-026.
+- `docs/_Registers/ContextBudgetQA.csv` row DEL-09-01.
+- `docs/SPEC.md` sections 4.1, 4.2, 4.5, and 9.
+- `docs/VALIDATION_STRATEGY.md` sections 1, 2, 4, and 5.
+- `docs/CONTRACT.md` invariants OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-AUTH-1, OPS-K-SOLVER-1, and OPS-K-AGENT-1..4.
+</p></div></div></section>
+<section id="SEC-ED056-0009" class="chunk sec depth-4" data-kind="section" data-key="section:292560907a7d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0009</span> Open Setup Questions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:292560907a7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:292560907a7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:292560907a7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Question | Needed from |
+|---|---|
+| Which mechanics benchmark fixtures and public/permissive sources are approved for implementation? | Validation owner / IP review owner |
+| What numerical comparison tolerance policy is acceptable for each benchmark family? | Solver lead / validation owner / human project authority |
+| What fixture schema, runner interface, and result-envelope fields should executable benchmarks use? | Architecture / solver / validation owners |
+| Which benchmark cases gate release and which are advisory regression checks? | QA/release owner / human project authority |
+</p></div></div></section>
+<section id="SEC-ED056-0010" class="chunk sec depth-2" data-kind="section" data-key="section:0375e12efdf5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED056-0010</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0375e12efdf5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0375e12efdf5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0375e12efdf5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0011" class="chunk sec depth-3" data-kind="section" data-key="section:c7f59c3c5d19" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED056-0011</span> Guidance: DEL-09-01 Mechanics benchmark suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7f59c3c5d19" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7f59c3c5d19" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7f59c3c5d19" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0012" class="chunk sec depth-4" data-kind="section" data-key="section:adec5adf8079" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:adec5adf8079" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:adec5adf8079" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:adec5adf8079" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable prepares the evidence boundary for a future mechanics benchmark suite. It exists to make open mechanics verification repeatable and reviewable while preserving the data boundary between public mechanics cases and protected standards or proprietary examples.
+</p></div></div></section>
+<section id="SEC-ED056-0013" class="chunk sec depth-4" data-kind="section" data-key="section:c06547923baa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c06547923baa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c06547923baa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c06547923baa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Treat benchmarks as verification evidence, not as solver implementation.
+- Use public/original mechanics cases with clear provenance and redistribution status.
+- Keep final comparison tolerances and release thresholds as `TBD` until approved by the proper human authority.
+- Make units, assumptions, expected result fields, diagnostics, and limitations explicit.
+- Preserve the distinction between mechanics verification, user-rule checks, and professional approval.
+</p></div></div></section>
+<section id="SEC-ED056-0014" class="chunk sec depth-4" data-kind="section" data-key="section:0e3550579115" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e3550579115" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e3550579115" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e3550579115" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Cantilever, frame, thermal-growth, imposed-displacement, and stiffness-transform cases exercise different solver interfaces. Future implementation should identify which solver/load/support contracts each case depends on before marking a benchmark executable.</p>
+<p>Thermal-growth and imposed-displacement cases can look similar to code or owner-standard examples if copied from protected sources. Future workers should create original cases or use permissively licensed/public-domain mechanics references, then record source and license status before publishing fixtures.</p>
+<p>Stiffness-transform cases should isolate local-to-global coordinate behavior and sign conventions. Concrete transform matrices, geometry, expected values, and numerical tolerances are not authorized by this setup pass.
+</p></div></div></section>
+<section id="SEC-ED056-0015" class="chunk sec depth-4" data-kind="section" data-key="section:b04951f1cae6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0015</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b04951f1cae6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b04951f1cae6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b04951f1cae6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Simple hand checks vs representative piping behavior | Start with analytically transparent cases; broaden only when provenance and expected-result derivations remain reviewable. |
+| Strict tolerances vs solver maturity | Record exact and approximate expected values separately when authorized; final acceptance tolerances remain `TBD`. |
+| Public benchmark usefulness vs IP risk | Prefer original/public mechanics cases even when protected examples are familiar. |
+| Release gating vs exploratory regression | Distinguish required release benchmarks from advisory regression checks after human QA policy is approved. |
+</p></div></div></section>
+<section id="SEC-ED056-0016" class="chunk sec depth-4" data-kind="section" data-key="section:0e44d6570c01" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0016</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e44d6570c01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e44d6570c01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e44d6570c01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Concrete benchmark geometries, material values, loads, boundary conditions, expected results, and comparison tolerances are `TBD`. Future examples must be original, public-domain, or permissively licensed and must include provenance.
+</p></div></div></section>
+<section id="SEC-ED056-0017" class="chunk sec depth-4" data-kind="section" data-key="section:204a81fa33b4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:204a81fa33b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:204a81fa33b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:204a81fa33b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| None | No source conflict identified in setup evidence. | N/A | N/A | N/A | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED056-0018" class="chunk sec depth-4" data-kind="section" data-key="section:975c142fc8a9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0018</span> Open Enrichment Items</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:975c142fc8a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:975c142fc8a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:975c142fc8a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Item | Status |
+|---|---|
+| Approved benchmark fixture list and source basis | TBD |
+| Approved numerical tolerance/comparison policy | TBD |
+| Approved fixture schema and result-envelope comparison format | TBD |
+| Release-gating vs advisory benchmark classification | TBD |
+</p></div></div></section>
+<section id="SEC-ED056-0019" class="chunk sec depth-2" data-kind="section" data-key="section:e0ec612cb586" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED056-0019</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0ec612cb586" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0ec612cb586" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0ec612cb586" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0020" class="chunk sec depth-3" data-kind="section" data-key="section:c2a12bb35463" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED056-0020</span> Procedure: DEL-09-01 Mechanics benchmark suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c2a12bb35463" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c2a12bb35463" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c2a12bb35463" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0021" class="chunk sec depth-4" data-kind="section" data-key="section:07a20016994d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0021</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07a20016994d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07a20016994d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07a20016994d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Describe how a future TASK worker should produce or use the mechanics benchmark suite once implementation is authorized, while preserving the current setup-only boundary.
+</p></div></div></section>
+<section id="SEC-ED056-0022" class="chunk sec depth-4" data-kind="section" data-key="section:e2a0ac5ac448" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0022</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2a0ac5ac448" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2a0ac5ac448" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2a0ac5ac448" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Accepted frame-stiffness and coordinate-transform interfaces from PKG-04 implementation deliverables.
+- Accepted straight-element mechanics behavior for cantilever-style cases.
+- Accepted support, restraint, and imposed-displacement semantics for boundary-condition cases.
+- Accepted load/thermal input semantics where thermal-growth benchmarks require them.
+- Accepted unit-system, diagnostics, and result-envelope contracts for benchmark inputs and outputs.
+- Original, public-domain, public-permissive, or otherwise lawfully redistributable benchmark sources with provenance.
+- Human-approved numerical tolerance and release-gate policy; current value is `TBD`.
+</p></div></div></section>
+<section id="SEC-ED056-0023" class="chunk sec depth-4" data-kind="section" data-key="section:715e2faf73fc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0023</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:715e2faf73fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:715e2faf73fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:715e2faf73fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the sealed brief authorizes benchmark implementation and lists exact write targets.
+2. Read the accepted solver interfaces, unit-system contract, diagnostics/result-envelope contract, and applicable validation strategy.
+3. Select or create benchmark fixtures only from original, public-domain, public-permissive, or otherwise documented lawful sources.
+4. For each fixture, record benchmark family, source/provenance, redistribution status, assumptions, units, model inputs, expected result fields, and derivation notes.
+5. Keep protected standards examples, proprietary commercial benchmarks, vendor-private data, and copied code-derived formulas out of public fixtures.
+6. Run benchmark cases through the authorized solver or headless runner without changing solver logic.
+7. Compare outputs using the approved comparison/tolerance policy; if no approved policy exists, record `TBD` rather than inventing pass/fail criteria.
+8. Capture solver version, result-envelope fields, warnings, diagnostics, assumptions, limitations, and comparison records.
+9. Stop and escalate if fixture provenance is missing, protected content is suspected, numerical tolerances are unsupported, or output wording implies certification, code compliance, or professional approval.
+</p></div></div></section>
+<section id="SEC-ED056-0024" class="chunk sec depth-4" data-kind="section" data-key="section:87cb3f482e27" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0024</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:87cb3f482e27" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:87cb3f482e27" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:87cb3f482e27" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected evidence |
+|---|---|
+| Scope boundary | Benchmark work stays in authorized validation/test locations and does not modify solver logic unless separately authorized. |
+| Family coverage | Fixture inventory covers cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms or records an explicit `TBD`. |
+| Fixture provenance | Every public fixture records source, license/redistribution status, and review disposition. |
+| Unit safety | Inputs, expected values, and solver outputs pass accepted dimensional checks. |
+| Tolerance authority | Comparison tolerances cite an approved source or remain `TBD`. |
+| Diagnostics/reporting boundary | Results preserve warnings/assumptions/limitations and avoid certification or compliance claims. |
+</p></div></div></section>
+<section id="SEC-ED056-0025" class="chunk sec depth-4" data-kind="section" data-key="section:258548c804f6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0025</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:258548c804f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:258548c804f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:258548c804f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Benchmark fixture inventory and provenance index.
+- Hand-calculation or derivation notes for each case.
+- Solver version and benchmark runner settings.
+- Unit-check and result-envelope comparison records.
+- Review notes for tolerance policy, fixture approval, and human rulings.
+</p></div></div></section>
+<section id="SEC-ED056-0026" class="chunk sec depth-2" data-kind="section" data-key="section:8f1bb67c86a8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED056-0026</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f1bb67c86a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f1bb67c86a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f1bb67c86a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0027" class="chunk sec depth-3" data-kind="section" data-key="section:f4af51058cd4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED056-0027</span> Specification: DEL-09-01 Mechanics benchmark suite</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f4af51058cd4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f4af51058cd4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f4af51058cd4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED056-0028" class="chunk sec depth-4" data-kind="section" data-key="section:029cd8d9e85c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0028</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:029cd8d9e85c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:029cd8d9e85c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:029cd8d9e85c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies setup evidence for a future mechanics benchmark suite covering cantilevers, frames, thermal growth, imposed displacement, and stiffness transforms.</p>
+<p>This setup pass does not implement benchmark source files, add tests, create numerical hand-calculation cases, modify solver code, edit validation directories outside this deliverable, choose final tolerances, or introduce protected/proprietary benchmark data.
+</p></div></div></section>
+<section id="SEC-ED056-0029" class="chunk sec depth-4" data-kind="section" data-key="section:3504adb2ef01" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0029</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3504adb2ef01" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3504adb2ef01" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3504adb2ef01" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement | Source basis | Verification hook |
+|---|---|---|---|
+| DEL-09-01-RQ-001 | The benchmark suite shall remain separate from solver implementation and shall not modify production solver behavior. | DEL-09-01 context; AB-00-02; docs/SPEC.md section 9 | Module boundary review once implementation exists. |
+| DEL-09-01-RQ-002 | The suite shall cover cantilever, frame, thermal-growth, imposed-displacement, and stiffness-transform benchmark families. | DEL-09-01 context; docs/VALIDATION_STRATEGY.md section 2 | Fixture inventory review against required families. |
+| DEL-09-01-RQ-003 | Benchmark sources and expected-result derivations shall be original, public-domain, public-permissive, or otherwise documented with redistribution rights. | SOW-026; docs/VALIDATION_STRATEGY.md section 5; OPS-K-IP-1..3 | Protected-content/provenance review before publication. |
+| DEL-09-01-RQ-004 | Benchmark inputs and expected outputs shall be unit-aware and dimensionally checked. | OPS-K-UNIT-1; docs/SPEC.md sections 4.1 and 4.2 | Unit validation tests once fixture schema exists. |
+| DEL-09-01-RQ-005 | The suite shall preserve solver diagnostics, result-envelope status, solver version, assumptions, provenance, and limitations where supported by implementation contracts. | AB-00-06; docs/SPEC.md sections 4.5 and 9 | Result-envelope comparison and diagnostic review. |
+| DEL-09-01-RQ-006 | The setup artifacts shall not set final numerical tolerances, release thresholds, or benchmark pass/fail authority without human approval. | OI-005; OPS-K-AGENT-1..4 | Review confirms unresolved tolerances remain `TBD`. |
+| DEL-09-01-RQ-007 | The suite shall remain mechanics verification support and shall not claim certification, code compliance, professional approval, or project-specific reliance. | OPS-K-AUTH-1; docs/VALIDATION_STRATEGY.md section 1 | Review of result labels, reports, and release notes. |
+</p></div></div></section>
+<section id="SEC-ED056-0030" class="chunk sec depth-4" data-kind="section" data-key="section:861816efd4c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0030</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:861816efd4c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:861816efd4c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:861816efd4c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No protected standard text, proprietary benchmark suite, commercial software example, or vendor dataset is available in this deliverable-local setup context. Any future mechanics case must record source, provenance, license/redistribution status, contributor certification, and review disposition before it is accepted as a public benchmark.</p>
+<p>Clause-level or code-specific validation requirements are `TBD` and must not be inferred from protected standards.
+</p></div></div></section>
+<section id="SEC-ED056-0031" class="chunk sec depth-4" data-kind="section" data-key="section:6a72cbdbe18a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0031</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a72cbdbe18a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a72cbdbe18a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a72cbdbe18a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification area | Minimum setup expectation |
+|---|---|
+| Required family coverage | The future fixture inventory explicitly maps each case to one or more required benchmark families. |
+| Analytical derivation | Hand-calculation notes identify assumptions, units, equations used from public/original mechanics, and expected result fields. |
+| Numerical comparison | Tolerance policy is cited when approved; until then each tolerance field remains `TBD`. |
+| Unit safety | Inputs, expected values, and outputs are dimensionally checked under the accepted unit system. |
+| Data boundary | Fixture provenance confirms original/public/permissive status and excludes protected standards/commercial examples. |
+| Diagnostics/result envelopes | Benchmark outputs preserve warnings, diagnostics, solver version, and limitations without compliance claims. |
+</p></div></div></section>
+<section id="SEC-ED056-0032" class="chunk sec depth-4" data-kind="section" data-key="section:e71119a965df" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0032</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e71119a965df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e71119a965df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e71119a965df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Expected future artifacts, when implementation is authorized, are:</p>
+<p>- `validation/benchmarks/mechanics` fixture set;
+- hand-calculation notes for each benchmark family;
+- fixture provenance and redistribution-status index;
+- benchmark runner or integration notes;
+- comparison-result records suitable for regression and release-gate review.</p>
+<p>The exact module paths, fixture schema, runner command, result export format, numerical tolerances, and CI gates are `TBD` and must not be resolved by this setup pass.
+</p></div></div></section>
+<section id="SEC-ED056-0033" class="chunk sec depth-4" data-kind="section" data-key="section:6d7bb69a54a1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED056-0033</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Issue | Contenders | Human ruling |
+|---|---|---|---|
+| None | No source conflict identified in setup evidence. | N/A | N/A |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED056";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

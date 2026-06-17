@@ -1,0 +1,550 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-12-01-LOCAL-FIRST-STORAGE-AND-PRIVATE-DATA-PATHS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>38</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED071-0001">Source Pack: SRC-DEL-DEL-12-01-LOCAL-FIRST-STORAGE-AND-PRIVA</a> <a href="#SEC-ED071-0002">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED071-0010">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED071-0024">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED071-0032">Component: execution/PKG-12_Security, Privacy, and Private D</a></nav>
+<main>
+<section id="SEC-ED071-0001" class="chunk sec depth-1" data-kind="section" data-key="section:1f7d20f8aeb9" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED071-0001</span> Source Pack: SRC-DEL-DEL-12-01-LOCAL-FIRST-STORAGE-AND-PRIVATE-DATA-PATHS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f7d20f8aeb9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f7d20f8aeb9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f7d20f8aeb9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED071-0002" class="chunk sec depth-2" data-kind="section" data-key="section:23e2bb729cc8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED071-0002</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23e2bb729cc8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23e2bb729cc8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23e2bb729cc8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0003" class="chunk sec depth-3" data-kind="section" data-key="section:cedce08fcbab" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED071-0003</span> Datasheet: DEL-12-01 Local-first storage and private data paths</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cedce08fcbab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cedce08fcbab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cedce08fcbab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0004" class="chunk sec depth-4" data-kind="section" data-key="section:7ce331925d63" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ce331925d63" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ce331925d63" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ce331925d63" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-12-01 |
+| Deliverable Name | Local-first storage and private data paths |
+| Package ID | PKG-12 |
+| Package Name | Security, Privacy, and Private Data Handling |
+| Deliverable Type | SECURITY_CONTROL |
+| Scope Item | SOW-029 |
+| Objective | OBJ-010 |
+| Setup Run Date | 2026-04-30 |
+| Readiness Evidence Basis | 2026-06-07 metadata-only guard code, policy documentation, tests, and fan-in evidence; no lifecycle promotion by this alignment run |
+</p></div></div></section>
+<section id="SEC-ED071-0005" class="chunk sec depth-4" data-kind="section" data-key="section:0a0cbc69a10b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a0cbc69a10b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a0cbc69a10b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a0cbc69a10b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value |
+|---|---|
+| Product posture | Local-first by default |
+| Protected private data classes | Private rule packs; private material data; private component data; project models; user-owned code/design-basis data |
+| Public repository boundary | Public code, schemas, workflows, and invented examples only; no protected standards data or user-private engineering data |
+| Cloud posture | Out of MVP unless separately approved by the human project authority |
+| Persistence baseline | Versioned JSON-schema-governed persistence with canonical JSON/JCS-compatible hashes for JSON payloads |
+| Physical project package/container mechanics | TBD; SCA-003 establishes the local SQLite-backed storage profile, but OS roots, runtime persistence behavior, and package mechanics remain deferred |
+| Implementation status | Metadata-only local-first storage guard helper exists as of 2026-06-07; runtime storage implementation remains deferred |
+| Real private path creation | None |
+| Secret handling | TBD and owned by DEL-12-04; no real secret storage, encryption, or key-management behavior is selected here |
+</p></div></div></section>
+<section id="SEC-ED071-0006" class="chunk sec depth-4" data-kind="section" data-key="section:a62756f96595" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a62756f96595" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a62756f96595" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a62756f96595" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Constraint |
+|---|---|
+| Local-first storage | Private project and library data remain user-controlled by default and are not transmitted or committed publicly by default. |
+| Deterministic persistence | Storage conventions must remain compatible with deterministic round-trip serialization, schema versions, migrations, units, provenance, and reproducibility manifests. |
+| Path convention level | This deliverable records symbolic path classes only; OS-specific roots and the physical package/container remain implementation-level TBD. |
+| Public/private separation | Public repository paths must not be used as default private-library or private-project storage locations. |
+| Export/report boundary | Export and report paths can expose private data and must defer redaction/export controls to DEL-12-02. |
+| Professional boundary | Storage status, rule-pack presence, or report export must not be framed as certification, sealing, approval, or code compliance. |
+</p></div></div></section>
+<section id="SEC-ED071-0007" class="chunk sec depth-4" data-kind="section" data-key="section:bf28e27e0c10" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0007</span> Symbolic Path Classes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf28e27e0c10" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf28e27e0c10" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf28e27e0c10" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Symbolic Path Class | Intended Use | Boundary |
+|---|---|---|
+| `PUBLIC_REPO_ROOT` | Public source, schemas, documentation, invented examples, and validation artifacts safe for redistribution. | Must not hold private rule packs, owner standards, project models, private material libraries, private component libraries, credentials, or protected standards data. |
+| `USER_CHOSEN_PROJECT_PATH` | User-selected local project model storage. | Private by default; actual folder and physical container remain TBD. |
+| `USER_PRIVATE_LIBRARY_ROOT` | User-controlled local location for private rule packs, material libraries, component libraries, and owner/company design-basis data. | Must be outside default public repository paths and must not be committed publicly by default. |
+| `PROJECT_PRIVATE_ASSET_ROOT` | Project-scoped private attachments, local manifests, and non-public supporting files. | Symbolic only in this deliverable; physical packaging and migration strategy remain TBD. |
+| `REPORT_EXPORT_TARGET` | Local report/export destination selected by the user. | May contain private values; redaction/export safeguards belong to DEL-12-02. |
+| `APP_CACHE_OR_SESSION_STATE` | Transient GUI/session/cache state. | Must not become an ungoverned durable private-data store. |
+</p></div></div></section>
+<section id="SEC-ED071-0008" class="chunk sec depth-4" data-kind="section" data-key="section:23493417d5f9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0008</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23493417d5f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23493417d5f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23493417d5f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This artifact began as a documentation-level storage boundary. As of 2026-06-07, readiness evidence also includes a metadata-only guard helper and focused tests. The deliverable output is limited to:</p>
+<p>- local-first storage policy requirements in `Specification.md`;
+- private path convention guidance in this datasheet and `Guidance.md`;
+- verification expectations and current metadata-guard evidence in `Procedure.md`;
+- semantic matrix/lensing and dependency setup artifacts.
+- product-level policy documentation in `docs/security/local_first_storage_policy.md`;
+- metadata-only guard code in `core/security/local_first_storage/`;
+- focused tests in `tests/security/test_local_first_storage_policy.py`.</p>
+<p>The June 7 guard helper classifies explicit storage metadata only. It does not create a runtime storage service, choose OS-specific roots, create real private directories, store payloads or secrets, open SQLite handles, authorize direct SQL, implement encryption or key management, create cloud service assumptions, or make approval, security-certification, professional, sealing, authentication, or code-compliance claims.
+</p></div></div></section>
+<section id="SEC-ED071-0009" class="chunk sec depth-4" data-kind="section" data-key="section:6d2d22e9ea6e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d2d22e9ea6e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d2d22e9ea6e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d2d22e9ea6e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source | Use |
+|---|---|
+| `INIT.md` | Bootstrap boundaries: open mechanics, private data, human authority, no certification claims. |
+| `AGENTS.md` | Type 2 scoped execution and write-scope constraints. |
+| `docs/DIRECTIVE.md` | Local/private data principles, hidden cloud/telemetry exclusion, professional boundary. |
+| `docs/CONTRACT.md` | OPS-K-IP, OPS-K-DATA, OPS-K-PRIV, OPS-K-AUTH, OPS-K-UNIT, and agent invariants. |
+| `docs/TYPES.md` | SECURITY_CONTROL type, private/user-supplied data vocabulary, canonical object registry. |
+| `docs/SPEC.md` | Layered architecture, project storage-policy field, private rule-pack schema, report and agentic acceptance semantics. |
+| `docs/IP_AND_DATA_BOUNDARY.md` | Public/private data policy and private user data boundary. |
+| `docs/security/local_first_storage_policy.md` | Product-level local-first storage policy and metadata-only guard helper boundary. |
+| `core/security/local_first_storage/` | Metadata-only storage guard helper evidence; not a runtime storage implementation. |
+| `tests/security/test_local_first_storage_policy.py` | Focused invented-fixture tests for metadata classification and public/private leakage blocking. |
+| `execution/_Decomposition/SOFTWARE_DECOMP.md` | PKG-12, DEL-12-01, SOW-029, OBJ-010, AB-00 architecture basis. |
+| `docs/_Registers/Deliverables.csv` | Deliverable identity, anticipated artifacts, context/risk notes. |
+| `docs/_Registers/ScopeLedger.csv` | Scope ledger row for SOW-029. |
+| `TASK_RUN_2026-06-07_0140.md` and package fan-in run `WORKING_ITEMS_RUN_2026-06-07_0150_TP-PKG12-LOCAL-PRIVACY-GUARDS-FANIN.md` | June 7 implementation and fan-in evidence; no lifecycle, approval, storage-schema, runtime-storage, cloud, encryption, or certification claim. |
+</p></div></div></section>
+<section id="SEC-ED071-0010" class="chunk sec depth-2" data-kind="section" data-key="section:4b3c7505d796" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED071-0010</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4b3c7505d796" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4b3c7505d796" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4b3c7505d796" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0011" class="chunk sec depth-3" data-kind="section" data-key="section:82d9e8be7a8c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED071-0011</span> Guidance: DEL-12-01 Local-first storage and private data paths</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82d9e8be7a8c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82d9e8be7a8c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82d9e8be7a8c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0012" class="chunk sec depth-4" data-kind="section" data-key="section:bc0891cda786" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc0891cda786" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc0891cda786" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc0891cda786" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable keeps OpenPipeStress private-data handling aligned with the product stance: open mechanics and public schemas, but user-controlled private project, rule-pack, material, component, owner, and code/design-basis data.</p>
+<p>The guidance remains policy and evidence level. June 7 evidence adds a metadata-only guard helper and tests, but this deliverable still does not select OS-specific roots, create real private paths, store payloads or secrets, implement encryption/key management, or close runtime storage behavior.
+</p></div></div></section>
+<section id="SEC-ED071-0013" class="chunk sec depth-4" data-kind="section" data-key="section:9428fdb4a0f9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9428fdb4a0f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9428fdb4a0f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9428fdb4a0f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance |
+|---|---|
+| Local-first default | Assume private engineering data remains on user-controlled local storage unless a later approved scope change says otherwise. |
+| Public/private separation | Public repository content may include code, schemas, blank templates, import mechanisms, and invented examples; private rule packs, libraries, owner standards, and project models stay outside public paths by default. |
+| Symbolic before physical | Use symbolic path classes in planning. SCA-003 establishes a local SQLite-backed MVP storage profile, but OS-specific roots, runtime persistence behavior, and package/container mechanics remain deferred. |
+| Persistence compatibility | Do not define storage conventions that conflict with versioned schema governance, migration status, canonical JSON/JCS-compatible hashing, provenance, unit awareness, or round-trip reproducibility. |
+| No silent defaults | Unknown roots, package choices, privacy statuses, or provenance fields remain `TBD` or warnings. |
+| No-bypass adapters | Import/export, plugins, and private library adapters must still pass through validation, unit, provenance, diagnostic, and public/private boundary controls. |
+| Human authority | Storage controls and reports support review; they do not certify, seal, approve, authenticate, or declare code compliance. |
+</p></div></div></section>
+<section id="SEC-ED071-0014" class="chunk sec depth-4" data-kind="section" data-key="section:ae5b21fc787d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae5b21fc787d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0015" class="chunk sec depth-5" data-kind="section" data-key="section:2395e63a7b93" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED071-0015</span> Private Data Classes</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2395e63a7b93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2395e63a7b93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2395e63a7b93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Treat these as private by default unless the user intentionally contributes or exports them with documented redistribution rights:</p>
+<p>- project models and project-local assets;
+- private rule packs and owner design bases;
+- material libraries and allowable-like values;
+- component libraries, manufacturer/vendor data, geometry catalogs, and stiffness data;
+- code-specific formulas, interpretations, load combinations, SIFs, flexibility factors, and protected standards-derived content;
+- report exports containing private engineering values.
+</p></div></div></section>
+<section id="SEC-ED071-0016" class="chunk sec depth-5" data-kind="section" data-key="section:456a6d34742a" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED071-0016</span> Path Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:456a6d34742a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:456a6d34742a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:456a6d34742a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Prefer planning language like `USER_PRIVATE_LIBRARY_ROOT` and `USER_CHOSEN_PROJECT_PATH` instead of real filesystem examples. Real examples can accidentally normalize a repository path, a cloud-synced folder, or a user-specific secret-bearing directory as the expected pattern.
+</p></div></div></section>
+<section id="SEC-ED071-0017" class="chunk sec depth-5" data-kind="section" data-key="section:30bb12b595d4" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED071-0017</span> Report and Export Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30bb12b595d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30bb12b595d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30bb12b595d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Local report/export destinations are still private-data risk surfaces. DEL-12-01 defines path and storage posture; DEL-12-02 owns redaction/export safeguards and should consume the path-class vocabulary from this deliverable.
+</p></div></div></section>
+<section id="SEC-ED071-0018" class="chunk sec depth-5" data-kind="section" data-key="section:a5735816a35d" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED071-0018</span> Private Library and Secret Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5735816a35d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5735816a35d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5735816a35d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-12-04 owns secret and private-library handling. DEL-12-01 should not define credential storage, secret material, encryption, key management, or concrete private-library registry behavior beyond the local-first and public/private path boundary. The 2026-06-07 DEL-12-04 guard alignment is downstream evidence, not authority for DEL-12-01 to select real secret handling.
+</p></div></div></section>
+<section id="SEC-ED071-0019" class="chunk sec depth-5" data-kind="section" data-key="section:db636ecab8fa" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED071-0019</span> Metadata-Only Guard Boundary</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db636ecab8fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db636ecab8fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db636ecab8fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The June 7 `core.security.local_first_storage` helper is a metadata-only guard. It classifies explicit records, blocks unsafe public/shared or remote/direct-SQL/secret/payload markers, and returns safe metadata. It is not a runtime storage service, schema migration layer, physical package/container implementation, cloud exception mechanism, encryption feature, key-management feature, or approval workflow.
+</p></div></div></section>
+<section id="SEC-ED071-0020" class="chunk sec depth-4" data-kind="section" data-key="section:fee82618fa85" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0020</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fee82618fa85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fee82618fa85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fee82618fa85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Implication |
+|---|---|
+| User-chosen project path vs. app-managed data directory | User choice improves transparency; app-managed roots can reduce leakage risk. The project has not selected final OS roots or application data directories. |
+| Local SQLite profile vs. final package mechanics | SCA-003 resolves the MVP storage profile as local SQLite-backed, but package/container mechanics, sidecar handling, and user-visible root behavior remain TBD. |
+| Single project package vs. separate private library roots | A package can simplify portability; separate roots can reduce accidental sharing. The detailed package/container mechanics remain TBD. |
+| Checksums in public manifests vs. private metadata | Hashes support reproducibility and tamper detection, but manifests must not reveal private values or protected source text. |
+| Local-first default vs. future collaboration | MVP excludes cloud services unless approved; any later collaboration feature must preserve explicit user intent and no private data transmission by default. |
+</p></div></div></section>
+<section id="SEC-ED071-0021" class="chunk sec depth-4" data-kind="section" data-key="section:00dd64aee2b4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0021</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00dd64aee2b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00dd64aee2b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00dd64aee2b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following are symbolic examples only:</p>
+<p>| Scenario | Acceptable Planning Expression | Avoid |
+|---|---|---|
+| User project model | `USER_CHOSEN_PROJECT_PATH` plus deterministic project manifest | A real path under this repository or a cloud-synced default |
+| Private rule pack | `USER_PRIVATE_LIBRARY_ROOT/rule_packs/&lt;private-id&gt;` as a symbolic class | A bundled public rule-pack file copied from a protected source |
+| Material library | Private library reference with provenance and redistribution status | Public material allowable table without documented rights |
+| Report export | User-selected local export target with future redaction controls | Public report template containing protected formulas or private values |
+</p></div></div></section>
+<section id="SEC-ED071-0022" class="chunk sec depth-4" data-kind="section" data-key="section:39c1a99c5ace" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0022</span> Open Issues and TBDs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:39c1a99c5ace" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:39c1a99c5ace" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:39c1a99c5ace" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Issue ID | Topic | Status | Notes |
+|---|---|---|---|
+| LFSP-OI-001 | Physical project package/container mechanics | TBD | SCA-003 establishes the local SQLite-backed MVP storage profile; exact package/container mechanics, sidecar behavior, and user-visible root handling remain implementation-level TBD. |
+| LFSP-OI-002 | OS-specific private-data roots | TBD | This run defines symbolic path classes only. |
+| LFSP-OI-003 | Executable storage tests | PARTIAL / TBD | Metadata-only guard tests exist as of 2026-06-07. Runtime storage-service, OS-root, package/container, migration, and integration tests remain future work. |
+| LFSP-OI-004 | Cloud exception approval path | TBD | Cloud services are out of MVP unless separately approved. The exact approval record format is not defined here. |
+| LFSP-OI-005 | Secret storage, encryption, and key management | TBD | Owned by DEL-12-04 and later implementation/governance decisions, not this DEL-12-01 alignment run. |
+| LFSP-OI-006 | Runtime storage service and schema migration behavior | TBD | The metadata-only guard does not read/write project stores, open SQLite handles, or implement migrations. |
+| LFSP-OI-007 | Lifecycle acceptance and approval choices | TBD | Review-readiness evidence is not `ISSUED`, release approval, security certification, professional approval, sealing, authentication, or code-compliance acceptance. |
+</p></div></div></section>
+<section id="SEC-ED071-0023" class="chunk sec depth-4" data-kind="section" data-key="section:2835eeb91745" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0023</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2835eeb91745" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2835eeb91745" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2835eeb91745" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| LFSP-CON-001 | The deliverable title implies storage path decisions, while accepted authority only supports a local SQLite-backed MVP storage profile plus metadata-only guard evidence; package mechanics, roots, and runtime behavior remain TBD. | `docs/_Registers/Deliverables.csv` row DEL-12-01; `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 | `docs/security/local_first_storage_policy.md`; `TASK_RUN_2026-06-07_0140.md`; package fan-in `WORKING_ITEMS_RUN_2026-06-07_0150_TP-PKG12-LOCAL-PRIVACY-GUARDS-FANIN.md` | Specification Requirements; Procedure Steps; Open Issues | Preserve symbolic path classes and metadata-only guard evidence; defer physical root/container mechanics and runtime storage decisions. | TBD |
+</p></div></div></section>
+<section id="SEC-ED071-0024" class="chunk sec depth-2" data-kind="section" data-key="section:8a3b39931be0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED071-0024</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a3b39931be0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a3b39931be0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a3b39931be0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0025" class="chunk sec depth-3" data-kind="section" data-key="section:dce8a72eb25d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED071-0025</span> Procedure: DEL-12-01 Local-first storage and private data paths</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dce8a72eb25d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dce8a72eb25d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dce8a72eb25d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0026" class="chunk sec depth-4" data-kind="section" data-key="section:0b9ec6a340a8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0026</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b9ec6a340a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b9ec6a340a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b9ec6a340a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to maintain the DEL-12-01 storage-boundary artifact set, align it with implementation evidence, and guide future runtime storage work without crossing the private-data, protected-data, cloud-service-default, secret-handling, or authority-claim boundaries.
+</p></div></div></section>
+<section id="SEC-ED071-0027" class="chunk sec depth-4" data-kind="section" data-key="section:6023c577a379" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0027</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6023c577a379" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6023c577a379" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6023c577a379" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Required State |
+|---|---|
+| Sealed deliverable context | DEL-12-01, PKG-12, SOW-029, OBJ-010, explicit write scope |
+| Governance sources | `INIT.md`, `AGENTS.md`, `docs/CONTRACT.md`, `docs/TYPES.md`, `docs/SPEC.md`, and decomposition/register rows read |
+| Architecture basis | AB-00-04 persistence baseline and related AB-00 items injected as constraints, not copied wholesale |
+| Scope boundary | No edits outside this deliverable folder |
+| Protected/private data boundary | No real private values, credentials, protected standards content, or proprietary data introduced |
+| Current metadata-guard evidence | 2026-06-07 run records identify `core/security/local_first_storage/`, `docs/security/local_first_storage_policy.md`, and `tests/security/test_local_first_storage_policy.py` as metadata-only guard evidence |
+</p></div></div></section>
+<section id="SEC-ED071-0028" class="chunk sec depth-4" data-kind="section" data-key="section:127674c5be3a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0028</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:127674c5be3a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:127674c5be3a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:127674c5be3a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Step | Action | Output |
+|---|---|---|
+| 1 | Confirm DEL-12-01 identity, scope, objective, invariants, and write scope. | `_CONTEXT.md` remains the scope anchor. |
+| 2 | Classify storage-relevant private data classes: project models, private rule packs, material data, component data, owner/code data, report exports. | `Datasheet.md` private data class table. |
+| 3 | Define symbolic path classes rather than physical directories or package/container choices. | `Datasheet.md` symbolic path class table. |
+| 4 | Translate local-first and private-boundary constraints into requirements. | `Specification.md` LFSP requirements and verification table. |
+| 5 | Record implementation guidance, trade-offs, and open issues without deciding the physical container. | `Guidance.md` principles, trade-offs, open issues, and conflict table. |
+| 6 | Build semantic matrix and lensing artifacts after the four documents exist. | `_SEMANTIC.md` and `_SEMANTIC_LENSING.md`. |
+| 7 | Apply P3 lensing by surfacing warranted TBDs or gaps in the four documents only when source evidence supports the edit. | Open issues and verification gaps are visible. |
+| 8 | Extract dependency register rows for anchors and explicit execution information flow. | `Dependencies.csv` and `_DEPENDENCIES.md`. |
+| 9 | Run validation checks and update `_STATUS.md` to `SEMANTIC_READY` only if setup gates pass. | Final status and run records. |
+| 10 | For later readiness-evidence alignment, replace stale setup-only language only where run records, product docs, code, or tests prove new evidence exists. | The four documents distinguish current metadata-only guard evidence from deferred runtime storage and approval decisions. |
+</p></div></div></section>
+<section id="SEC-ED071-0029" class="chunk sec depth-4" data-kind="section" data-key="section:69e902a0249e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0029</span> Future Implementation Procedure</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69e902a0249e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69e902a0249e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69e902a0249e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When a later implementation task is authorized, it should:</p>
+<p>1. Preserve the symbolic path classes unless a human-approved design decision replaces them.
+2. Select OS-specific roots and/or physical project packaging only through the appropriate architecture or storage deliverable.
+3. Keep private data outside default public repository paths.
+4. Preserve the existing metadata-only guard tests and add repo-leakage, path-resolution, serialization round-trip, provenance, migration, and report/export boundary tests for any future runtime storage behavior.
+5. Verify no plugin, adapter, import, export, or private library path bypasses validation, units, provenance, diagnostics, sandboxing, or public/private boundary controls.
+6. Preserve `TBD` or warning status for unresolved storage decisions.
+</p></div></div></section>
+<section id="SEC-ED071-0030" class="chunk sec depth-4" data-kind="section" data-key="section:f2cc08d7a426" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2cc08d7a426" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2cc08d7a426" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2cc08d7a426" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Method | Expected Result |
+|---|---|---|
+| Four-document presence | Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist. | Present. |
+| Dependency schema | Run `python3 tools/validation/validate_dependencies_schema.py &lt;deliverable&gt;/Dependencies.csv`. | Valid v3.1 schema. |
+| Enum spot checks | Run `python3 tools/validation/validate_enum.py` against dependency enum values used in the register. | Valid enums. |
+| Semantic audit | Confirm `_SEMANTIC.md` contains `Audit: PASS`. | PASS. |
+| Lensing coverage | Count `_SEMANTIC_LENSING.md` lens rows for matrices A, B, C, F, D, X, and E. | 96 rows. |
+| June 7 metadata-guard evidence | Confirm `core/security/local_first_storage/`, `docs/security/local_first_storage_policy.md`, `tests/security/test_local_first_storage_policy.py`, `TASK_RUN_2026-06-07_0140.md`, and package fan-in evidence exist. | Present; evidence is metadata-only and side-effect-free. |
+| Boundary scan | Search deliverable files for real secrets, hidden cloud defaults, protected standards content, approval claims, professional claims, code-compliance claims, or security-certification claims. | No disallowed content found. |
+| Lifecycle status | Read `_STATUS.md` without editing it. | This alignment does not promote lifecycle state; later lifecycle transitions require human-gated workflow authority. |
+</p></div></div></section>
+<section id="SEC-ED071-0031" class="chunk sec depth-4" data-kind="section" data-key="section:46961805a51c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0031</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46961805a51c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46961805a51c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46961805a51c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original setup workflow left these records in the deliverable folder:</p>
+<p>- four production documents;
+- `_SEMANTIC.md`;
+- `_SEMANTIC_LENSING.md`;
+- `Dependencies.csv`;
+- `_DEPENDENCIES.md`;
+- `_run_records/*`;
+- `_STATUS.md`.</p>
+<p>The 2026-06-07 readiness evidence also cites product-level artifacts outside this deliverable folder:</p>
+<p>- `docs/security/local_first_storage_policy.md`;
+- `core/security/local_first_storage/`;
+- `tests/security/test_local_first_storage_policy.py`.</p>
+<p>Do not move any artifact to `ISSUED` during setup or readiness-evidence alignment. Do not use this procedure to approve runtime storage, cloud behavior, encryption/key management, real secret storage, professional reliance, code compliance, security certification, or release readiness.
+</p></div></div></section>
+<section id="SEC-ED071-0032" class="chunk sec depth-2" data-kind="section" data-key="section:193eab6c9e12" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED071-0032</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:193eab6c9e12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:193eab6c9e12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:193eab6c9e12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0033" class="chunk sec depth-3" data-kind="section" data-key="section:70e1601ca4f3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED071-0033</span> Specification: DEL-12-01 Local-first storage and private data paths</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70e1601ca4f3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70e1601ca4f3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70e1601ca4f3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED071-0034" class="chunk sec depth-4" data-kind="section" data-key="section:b9b182dc1fd7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0034</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9b182dc1fd7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9b182dc1fd7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9b182dc1fd7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the local-first storage boundary and symbolic private data path conventions for project models, private rule packs, private material data, private component data, and related user-owned code/design-basis data.</p>
+<p>The original setup run was documentation production only. Later bounded TASK evidence now exists: a metadata-only `core.security.local_first_storage` guard helper, updated `docs/security/local_first_storage_policy.md`, and focused invented-fixture tests in `tests/security/test_local_first_storage_policy.py`.</p>
+<p>This deliverable still does not implement runtime storage, choose OS-specific roots, create private paths, create real secrets or private data, implement encryption or key management, introduce cloud service defaults, or make approval, security-certification, professional, sealing, authentication, or code-compliance claims. SCA-003 establishes the local SQLite-backed MVP storage profile, but detailed physical package/container mechanics remain deferred.
+</p></div></div></section>
+<section id="SEC-ED071-0035" class="chunk sec depth-4" data-kind="section" data-key="section:dfb10b76b6b4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0035</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dfb10b76b6b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dfb10b76b6b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dfb10b76b6b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement ID | Requirement | Source Basis | Verification |
+|---|---|---|---|
+| LFSP-REQ-001 | The product storage posture shall be local-first by default for private project, rule-pack, material, component, and code/design-basis data. | SOW-029; OPS-K-PRIV-1; `docs/DIRECTIVE.md` §6 | Confirm the storage policy text states local-first default and private-data user control. |
+| LFSP-REQ-002 | The public repository shall not be the default durable location for user-private project models, private rule packs, private material libraries, private component libraries, owner standards, credentials, or proprietary data. | OPS-K-IP-1; OPS-K-DATA-1; `docs/IP_AND_DATA_BOUNDARY.md` §§3,6 | Boundary review checks public/private path class separation. |
+| LFSP-REQ-003 | Cloud storage, cloud sync, or cloud service transmission shall be out of MVP unless separately approved by the human project authority through governance or scope change. | SOW-029 notes; `docs/DIRECTIVE.md` §4.2 | Verify no cloud service is assumed in this deliverable&#x27;s artifacts. |
+| LFSP-REQ-004 | Storage conventions shall align with the architecture persistence baseline: versioned, unit-aware, provenance-preserving, schema-governed, migration-aware, round-trip testable persistence with canonical JSON/JCS-compatible hashes for JSON payloads. | AB-00-04; SOW-050; `execution/_Decomposition/SOFTWARE_DECOMP.md` §8 | Cross-check private path language against the deterministic persistence baseline. |
+| LFSP-REQ-005 | The physical project package/container mechanics, OS-specific roots, and runtime persistence behavior remain deferred even though SCA-003 establishes a local SQLite-backed MVP storage profile. | Acceptance/risk note; AB-00-04; SCA-003 authority reflected in `docs/security/local_first_storage_policy.md` | Verify every package/root/runtime-storage reference preserves the remaining `TBD` decisions and does not treat the metadata-only guard as a storage service. |
+| LFSP-REQ-006 | Path conventions shall use symbolic path classes until implementation chooses OS-specific roots, application data directories, or project package structure. | Acceptance/risk note; setup write-scope constraint | Confirm no real user path, secret path, or environment-specific private data location is created. |
+| LFSP-REQ-007 | Private rule-pack references shall preserve identity, version, checksum, source notice, and redistribution status without bundling protected formulas, code text, allowables, or proprietary values into public artifacts. | OPS-K-RULE-3; `docs/SPEC.md` §6; `docs/IP_AND_DATA_BOUNDARY.md` §§3,6 | Review rule-pack path references for metadata-only public handling. |
+| LFSP-REQ-008 | Material, component, section, rule-pack, report, and project data crossing storage/import/export boundaries shall preserve provenance and redistribution/privacy status. | OPS-K-IP-2; OPS-K-DATA-3; OPS-K-UNIT-1; `docs/TYPES.md` §§7-8 | Future schema and adapter tests check provenance fields and unit-bearing values. |
+| LFSP-REQ-009 | Storage diagnostics and result/report envelopes shall surface private/public boundary warnings without claiming certification, sealing, approval, authentication, or automatic code compliance. | OPS-K-AUTH-1; AB-00-06; `docs/SPEC.md` §§7-8 | Future diagnostics/report tests check warnings and professional-boundary notices. |
+| LFSP-REQ-010 | Adapters, imports, exports, plugins, and private-library access shall not bypass unit checks, provenance checks, diagnostics, sandboxing, or public/private data-boundary controls. | AB-00-02; AB-00-07; OPS-K-PRIV-1 | Future adapter/plugin tests must exercise no-bypass behavior. |
+| LFSP-REQ-011 | Tests for implemented storage behavior shall include private-path resolution, repository-leakage prevention, deterministic round-trip serialization, migration status handling, provenance preservation, and report/export boundary checks. | AB-00-08; `docs/SPEC.md` §§9,11; `TASK_RUN_2026-06-07_0140.md` | Focused metadata-only guard tests now exist for classification and leakage blocking. Runtime storage-service tests, OS-root tests, package/container tests, migration tests, and report/export integration tests remain future work. |
+| LFSP-REQ-012 | Missing storage choices, unresolved roots, and incomplete private-data handling shall be explicit `TBD`, warning, or finding states rather than silent defaults. | OPS-K-DATA-2; OPS-K-AGENT-1; `docs/DIRECTIVE.md` §3 | Review the deliverable for visible TBD/open issue entries. |
+</p></div></div></section>
+<section id="SEC-ED071-0036" class="chunk sec depth-4" data-kind="section" data-key="section:f9fffa9234c5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0036</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9fffa9234c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9fffa9234c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9fffa9234c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No external engineering code, code clause, standards table, protected formula, material allowable, SIF/flexibility table, protected dimensional table, or proprietary catalog source is used or reproduced by this deliverable.</p>
+<p>The controlling project sources for this deliverable are the OpenPipeStress governance and decomposition artifacts listed in `Datasheet.md` and `_REFERENCES.md`, plus the June 7 readiness-evidence run records cited in this alignment.
+</p></div></div></section>
+<section id="SEC-ED071-0037" class="chunk sec depth-4" data-kind="section" data-key="section:cdad7b0e1212" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0037</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cdad7b0e1212" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cdad7b0e1212" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cdad7b0e1212" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification ID | Check | Expected Result |
+|---|---|---|
+| LFSP-VER-001 | Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist. | Four-document kit is present. |
+| LFSP-VER-002 | Validate `Dependencies.csv` with `tools/validation/validate_dependencies_schema.py`. | Schema valid with all 29 v3.1 columns. |
+| LFSP-VER-003 | Confirm `_SEMANTIC.md` audit result is PASS and `_SEMANTIC_LENSING.md` has complete matrix coverage for A, B, C, F, D, X, and E. | Semantic setup gates pass. |
+| LFSP-VER-004 | Confirm June 7 code, policy documentation, and focused tests exist for the metadata-only guard helper. | `core/security/local_first_storage/`, `docs/security/local_first_storage_policy.md`, `tests/security/test_local_first_storage_policy.py`, and `TASK_RUN_2026-06-07_0140.md` are present. |
+| LFSP-VER-005 | Search deliverable and evidence artifacts for disallowed claims or real secret/path examples. | No runtime storage service, real secret, cloud service default, protected data, approval claim, professional claim, code-compliance claim, or security-certification claim is introduced. |
+| LFSP-VER-006 | Confirm this alignment does not edit `_STATUS.md` or promote lifecycle state. | Lifecycle status remains owned by `_STATUS.md` and later human-gated review/transition workflows. |
+</p></div></div></section>
+<section id="SEC-ED071-0038" class="chunk sec depth-4" data-kind="section" data-key="section:1be5fbe204aa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED071-0038</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1be5fbe204aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1be5fbe204aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1be5fbe204aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required setup and readiness-evidence artifacts:</p>
+<p>- `Datasheet.md`;
+- `Specification.md`;
+- `Guidance.md`;
+- `Procedure.md`;
+- `_SEMANTIC.md`;
+- `_SEMANTIC_LENSING.md`;
+- `Dependencies.csv`;
+- `_DEPENDENCIES.md`;
+- `_run_records/*`;
+- `_STATUS.md`.
+- `docs/security/local_first_storage_policy.md`;
+- `core/security/local_first_storage/`;
+- `tests/security/test_local_first_storage_policy.py`.</p>
+<p>Implementation artifacts and decisions still deferred:</p>
+<p>- runtime storage service behavior;
+- storage schema edits;
+- runtime storage tests beyond the metadata-only guard coverage;
+- physical project package/container mechanics and OS-specific roots;
+- real private paths, secrets, credentials, or private data.
+- cloud exception workflow;
+- encryption, secret storage, and key management;
+- lifecycle acceptance, release approval, or professional/security/code-compliance approval.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED071";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,490 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-08-01-CALCULATION-REPORT-GENERATOR - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>34</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED050-0001">Source Pack: SRC-DEL-DEL-08-01-CALCULATION-REPORT-GENERATOR</a> <a href="#SEC-ED050-0002">Component: execution/PKG-08_Reporting, Audit, and Reproducib</a> <a href="#SEC-ED050-0009">Component: execution/PKG-08_Reporting, Audit, and Reproducib</a> <a href="#SEC-ED050-0018">Component: execution/PKG-08_Reporting, Audit, and Reproducib</a> <a href="#SEC-ED050-0027">Component: execution/PKG-08_Reporting, Audit, and Reproducib</a></nav>
+<main>
+<section id="SEC-ED050-0001" class="chunk sec depth-1" data-kind="section" data-key="section:ae4602ee7e07" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED050-0001</span> Source Pack: SRC-DEL-DEL-08-01-CALCULATION-REPORT-GENERATOR</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ae4602ee7e07" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ae4602ee7e07" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ae4602ee7e07" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED050-0002" class="chunk sec depth-2" data-kind="section" data-key="section:053ec9398478" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0002</span> Component: execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:053ec9398478" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:053ec9398478" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:053ec9398478" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0003" class="chunk sec depth-3" data-kind="section" data-key="section:d664adbef901" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0003</span> Datasheet: DEL-08-01 Calculation report generator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d664adbef901" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d664adbef901" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d664adbef901" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0004" class="chunk sec depth-4" data-kind="section" data-key="section:527ded033f2d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:527ded033f2d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:527ded033f2d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:527ded033f2d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-08-01 |
+| Deliverable name | Calculation report generator |
+| Package ID | PKG-08 |
+| Package name | Reporting, Audit, and Reproducibility |
+| Deliverable type | BACKEND_FEATURE_SLICE |
+| Scope item | SOW-024 |
+| Objective | OBJ-007 |
+| Context envelope | L |
+| Current setup status | SEMANTIC_READY setup artifacts prepared |
+</p></div></div></section>
+<section id="SEC-ED050-0005" class="chunk sec depth-4" data-kind="section" data-key="section:7d2301e5ca18" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d2301e5ca18" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d2301e5ca18" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d2301e5ca18" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Source-grounded value |
+|---|---|
+| Production family | Calculation reports for OpenPipeStress analysis outputs. |
+| Required report content | Inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations. |
+| Anticipated downstream artifacts | Report renderer, report template, tests. |
+| Setup-session implementation boundary | Renderer source, templates outside this deliverable, tests, schemas, and repo-level artifacts are out of write scope. |
+| Architecture baseline | Rust core/application services, schema-first command/query/job/result envelopes, JSON Schema 2020-12 contracts, canonical JSON/JCS-compatible hash basis where JSON payload hashes are used. |
+| Report authority boundary | Reports are decision-support artifacts and must not claim certification, sealing, approval, authentication, or automatic code compliance. |
+| Protected-content boundary | Public templates/examples must not reproduce protected standards text, protected standards tables, protected figures, proprietary formulas, or protected code-derived content. |
+</p></div></div></section>
+<section id="SEC-ED050-0006" class="chunk sec depth-4" data-kind="section" data-key="section:40c98bc9a558" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40c98bc9a558" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40c98bc9a558" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40c98bc9a558" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Handling requirement |
+|---|---|
+| Missing solve-required data | Preserve as explicit diagnostics or report findings; do not hide with silent defaults. |
+| Missing rule-check-required data | Preserve as explicit rule-check-blocking diagnostics or findings; do not imply a completed check. |
+| User-supplied code data | Record as user-supplied or private/provenance-tagged data; do not convert it into public defaults. |
+| Rule-pack references | Report only identity, version, checksum, source/provenance notices, redistribution status, and user-provided report notices; do not reproduce protected rule text. |
+| Professional reliance | Include a notice that competent human review is required before project reliance. |
+| Unit-bearing values | Preserve units and dimensional context in generated report sections. |
+| Private project data | Keep redaction/export handling visible as a requirement and defer detailed controls to PKG-12 where needed. |
+</p></div></div></section>
+<section id="SEC-ED050-0007" class="chunk sec depth-4" data-kind="section" data-key="section:d43b5d583c96" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d43b5d583c96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d43b5d583c96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d43b5d583c96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The calculation report generator deliverable is specified here as a bounded backend feature slice, not implemented in this setup session. Its future implementation should assemble report content from schema-first project/model/result envelopes, diagnostics, provenance metadata, and rule-pack references. The report generator must preserve the diagnostic/result-envelope boundary injected by AB-00-03 and AB-00-06: report content reflects mechanics outputs, user-rule-check outputs, warnings, assumptions, and limitations without promoting software output into professional approval.</p>
+<p>The setup artifact family prepared for this session is:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`
+- `_STATUS.md`
+</p></div></div></section>
+<section id="SEC-ED050-0008" class="chunk sec depth-4" data-kind="section" data-key="section:31475cecafac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31475cecafac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31475cecafac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31475cecafac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source | SourceRef | Use |
+|---|---|---|
+| `_CONTEXT.md` | Scope Coverage; Architecture Basis Injection | Deliverable identity, scope, objective, accepted architecture basis, and write boundary. |
+| `docs/_Registers/Deliverables.csv` | Row DEL-08-01 | Registered description, anticipated artifacts, scope, objective, context envelope, and risk note. |
+| `docs/_Registers/ScopeLedger.csv` | Row SOW-024 | Report content scope and protected-content warning. |
+| `docs/CONTRACT.md` | OPS-K-IP-1..3, OPS-K-DATA-1..3, OPS-K-RULE-1..3, OPS-K-AUTH-1, OPS-K-REPORT-1..2, OPS-K-PRIV-1..2, OPS-K-UNIT-1, OPS-K-AGENT-1..4 | Invariant constraints for report generation. |
+| `docs/SPEC.md` | Sections 1, 3, 6, 7, 8, 9, 11 | Architecture, report domain object, rule-pack metadata, warning classes, reporting/audit content, report tests, and acceptance semantics. |
+| `docs/TYPES.md` | Sections 4, 6, 8, 9 | Analysis-status vocabulary, professional boundary terms, report settings/report object definitions, and lifecycle meaning. |
+| `docs/DIRECTIVE.md` | Sections 2, 3, 4, 5, 6 | Founding data/professional boundaries, stop rules, and auditability principles. |</p></div></div></section>
+<section id="SEC-ED050-0009" class="chunk sec depth-2" data-kind="section" data-key="section:a0521d412b4b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0009</span> Component: execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0521d412b4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0521d412b4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0521d412b4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0010" class="chunk sec depth-3" data-kind="section" data-key="section:dbbb6f0fd39f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0010</span> Guidance: DEL-08-01 Calculation report generator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dbbb6f0fd39f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dbbb6f0fd39f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dbbb6f0fd39f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0011" class="chunk sec depth-4" data-kind="section" data-key="section:863d1bc443af" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:863d1bc443af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:863d1bc443af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:863d1bc443af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The calculation report generator exists to make analysis outputs reviewable and reproducible without converting software output into professional approval. It should help a competent reviewer see what was analyzed, what data was supplied, what assumptions or gaps remain, what warnings were raised, what rule-pack metadata was used, and what limitations apply.
+</p></div></div></section>
+<section id="SEC-ED050-0012" class="chunk sec depth-4" data-kind="section" data-key="section:978f13845966" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:978f13845966" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:978f13845966" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:978f13845966" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance |
+|---|---|
+| Auditability first | Report content should be traceable to model inputs, result envelopes, diagnostics, provenance records, report settings, and rule-pack references. |
+| Boundary clarity | The report should separate mechanics solve output, user-rule-check output, incomplete inputs, and human review. |
+| No protected content | Public report templates and examples should contain placeholders, invented values, or safe metadata, not protected code text/tables/formulas. |
+| No professional overclaim | Report language should say what the software computed and what data was supplied, not that the work is certified, sealed, approved, or code-compliant for reliance. |
+| Unit visibility | Unit-bearing values should display units and keep dimensional context visible. |
+| Reproducibility | Reports should bind to versions, hashes, manifests, warnings, and rule-pack checksums so reviewers can reproduce or compare results. |
+| Local-first privacy | Private project/rule/material/component data should remain user-controlled unless intentionally exported with documented rights. |
+</p></div></div></section>
+<section id="SEC-ED050-0013" class="chunk sec depth-4" data-kind="section" data-key="section:8bb23a7628b1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8bb23a7628b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8bb23a7628b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8bb23a7628b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The report generator will depend on upstream model/result/rule-pack envelopes that are not implemented in this setup session. Where the current source set does not provide exact field names, template structure, renderer API, or output format, those details remain `TBD` for future sealed implementation briefs.</p>
+<p>The report generator should be conservative about rule-pack content. A report can identify a rule pack, version, checksum, required-input state, source notice, redistribution status, and user-provided notice. It should not copy protected rule text or proprietary formulas into public templates/examples.</p>
+<p>The report generator should expose warnings as findings, not as decoration. Missing solve-required values, rule-check-required values, weak provenance, assumptions, nonlinear uncertainty, and IP-boundary concerns should be report-visible when present in the input envelopes.
+</p></div></div></section>
+<section id="SEC-ED050-0014" class="chunk sec depth-4" data-kind="section" data-key="section:8c89904bc704" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8c89904bc704" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8c89904bc704" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8c89904bc704" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Conservative direction |
+|---|---|
+| Human-readable PDF/HTML vs structured output | This deliverable can define report assembly behavior, but result export format is a separate DEL-08-04 concern. Avoid binding a public transport/output format here beyond setup requirements. |
+| Rich template language vs protected-content control | Prefer constrained placeholders and safe metadata over a template model that encourages copying protected code text into public examples. |
+| User-private templates vs public templates | User-private templates may contain user-owned content under user responsibility; public templates must stay protected-content-free. |
+| Completion language vs professional boundary | Use &quot;generated&quot;, &quot;computed&quot;, &quot;reported&quot;, &quot;checked by user rule pack&quot; and &quot;human review required&quot;; avoid compliance/certification language. |
+</p></div></div></section>
+<section id="SEC-ED050-0015" class="chunk sec depth-4" data-kind="section" data-key="section:4f07c0462a41" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f07c0462a41" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f07c0462a41" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f07c0462a41" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Safe report section labels may include:</p>
+<p>- Model input summary
+- Source and provenance summary
+- Load case and combination summary
+- Result summary
+- Warnings and missing data
+- Assumptions and limitations
+- Rule-pack references and checksums
+- Reproducibility manifest
+- Professional review notice</p>
+<p>These labels are illustrative only and do not define a renderer template in this setup session.
+</p></div></div></section>
+<section id="SEC-ED050-0016" class="chunk sec depth-4" data-kind="section" data-key="section:c7442003d3ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7442003d3ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7442003d3ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7442003d3ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No source conflicts were identified in the local reference set for this setup run.</p>
+<p>| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| None | None identified | N/A | N/A | N/A | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED050-0017" class="chunk sec depth-4" data-kind="section" data-key="section:cc23637cb8eb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0017</span> Open Questions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc23637cb8eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc23637cb8eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc23637cb8eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Question | Current disposition |
+|---|---|---|
+| OQ-08-01-001 | Exact renderer library, file format, and report template language. | TBD; outside setup-session write scope. |
+| OQ-08-01-002 | Exact report schema fields and result-envelope field names. | TBD; downstream schema/service deliverables must define before implementation. |
+| OQ-08-01-003 | Redaction/export configuration for private project data in shared reports. | TBD; coordinate with PKG-12 in future sealed work. |
+| OQ-08-01-004 | Human approval workflow and acceptance-record binding to report hashes. | TBD; outside software authority unless human governance defines a record process. |</p></div></div></section>
+<section id="SEC-ED050-0018" class="chunk sec depth-2" data-kind="section" data-key="section:f350445337d6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0018</span> Component: execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f350445337d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f350445337d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f350445337d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0019" class="chunk sec depth-3" data-kind="section" data-key="section:cb3bd9f6a77f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0019</span> Procedure: DEL-08-01 Calculation report generator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cb3bd9f6a77f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cb3bd9f6a77f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cb3bd9f6a77f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0020" class="chunk sec depth-4" data-kind="section" data-key="section:bc1b9cd5064d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc1b9cd5064d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc1b9cd5064d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc1b9cd5064d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure records the setup and future implementation workflow for the calculation report generator deliverable. It does not implement renderer code.
+</p></div></div></section>
+<section id="SEC-ED050-0021" class="chunk sec depth-4" data-kind="section" data-key="section:47795c86a3c7" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47795c86a3c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47795c86a3c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47795c86a3c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status |
+|---|---|
+| Sealed deliverable scope for DEL-08-01 | Present in `_CONTEXT.md` and user brief. |
+| Scope item and objective mapping | Present: SOW-024 and OBJ-007. |
+| Applicable invariants | Present in `docs/CONTRACT.md` and user brief. |
+| Architecture basis injection | Present in `_CONTEXT.md` with AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, AB-00-08. |
+| Renderer/template/test/schema implementation authority | Not present in this setup session; future sealed brief required. |
+</p></div></div></section>
+<section id="SEC-ED050-0022" class="chunk sec depth-4" data-kind="section" data-key="section:cdde4f20ba31" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cdde4f20ba31" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0023" class="chunk sec depth-5" data-kind="section" data-key="section:f93b27188090" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED050-0023</span> Setup sequence completed in this session</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f93b27188090" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f93b27188090" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f93b27188090" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Run `four-documents` with `RUN_PASSES=P1_P2`.
+2. Run `semantic-matrix-build`.
+3. Run `lens-register`.
+4. Run `four-documents` with `RUN_PASSES=P3_ONLY`.
+5. Run `dependency-extract`.
+6. Validate the resulting setup files and dependency schema.
+7. Set `_STATUS.md` to `SEMANTIC_READY` only after the setup gates pass.
+</p></div></div></section>
+<section id="SEC-ED050-0024" class="chunk sec depth-5" data-kind="section" data-key="section:26e64da32068" data-status="unreviewed" data-depth="5" data-page="" data-in-scope="true"><header class="sec-head"><h6 class="sec-title"><span class="sid">SEC-ED050-0024</span> Future implementation sequence</h6><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26e64da32068" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26e64da32068" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26e64da32068" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm a sealed implementation brief for DEL-08-01 or a split deliverable if scope expands.
+2. Read the current report/result/rule-pack schemas and application-service result envelopes.
+3. Define report input contract without bypassing units, provenance, diagnostics, or private-data controls.
+4. Implement report assembly with safe placeholders and metadata-only rule-pack references.
+5. Add report fixtures for mechanics-only, user-rule-check, incomplete-rule-input, warning-heavy, and protected-content-risk cases.
+6. Add reproducibility tests for deterministic report output and manifest/hash binding.
+7. Add protected-content and prohibited-claim gates for public templates/examples.
+8. Route to REVIEW with explicit evidence: fixtures, tests, lint output, dependency register, and limitations.
+</p></div></div></section>
+<section id="SEC-ED050-0025" class="chunk sec depth-4" data-kind="section" data-key="section:f33f7970b157" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0025</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f33f7970b157" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f33f7970b157" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f33f7970b157" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Setup verification for this session:</p>
+<p>- `tools/validation/check_four_documents.sh &lt;deliverable&gt;` passes.
+- `tools/validation/check_min_viable_fileset.sh &lt;deliverable&gt;` passes.
+- `python3 tools/validation/validate_dependencies_schema.py &lt;deliverable&gt;/Dependencies.csv` passes.
+- Dependency enum validation passes for all enum fields in ACTIVE rows.
+- `_SEMANTIC.md` final result tables contain no algebra/operator leaks and no final cell over 80 characters.
+- `_SEMANTIC_LENSING.md` includes complete lens coverage for matrices A, B, C, F, D, X, and E.
+- `rg` checks do not identify prohibited certification or protected-standards claims in DEL-08-01 artifacts.
+</p></div></div></section>
+<section id="SEC-ED050-0026" class="chunk sec depth-4" data-kind="section" data-key="section:bb1c4404c8b9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0026</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb1c4404c8b9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb1c4404c8b9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb1c4404c8b9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required records for this setup session:</p>
+<p>- `_run_records/TASK_RUN_2026-04-30_1200_four-documents-p1-p2.md`
+- `_run_records/TASK_RUN_2026-04-30_1205_semantic-matrix-build.md`
+- `_run_records/TASK_RUN_2026-04-30_1210_lens-register.md`
+- `_run_records/TASK_RUN_2026-04-30_1215_four-documents-p3.md`
+- `_run_records/TASK_RUN_2026-04-30_1220_dependency-extract.md`</p>
+<p>Future implementation records should include source slices used, tests run, report fixture outputs, protected-content scans, reproducibility checks, and open issues.</p></div></div></section>
+<section id="SEC-ED050-0027" class="chunk sec depth-2" data-kind="section" data-key="section:77172a4187bd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED050-0027</span> Component: execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:77172a4187bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:77172a4187bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:77172a4187bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0028" class="chunk sec depth-3" data-kind="section" data-key="section:612a1049fea6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED050-0028</span> Specification: DEL-08-01 Calculation report generator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:612a1049fea6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:612a1049fea6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:612a1049fea6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED050-0029" class="chunk sec depth-4" data-kind="section" data-key="section:433621325861" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0029</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:433621325861" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:433621325861" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:433621325861" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable defines the calculation report generator behavior for OpenPipeStress reporting. It covers report assembly requirements for model input summaries, load cases, results, warnings, assumptions, source/provenance notes, rule-pack references, checksums, and limitations.</p>
+<p>This setup session does not implement renderer source, report templates outside this deliverable, tests, schemas, or repo-level artifacts. Those remain future implementation work under sealed deliverable scope and review.
+</p></div></div></section>
+<section id="SEC-ED050-0030" class="chunk sec depth-4" data-kind="section" data-key="section:901034844483" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0030</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:901034844483" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:901034844483" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:901034844483" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | SourceRef | Verification |
+|---|---|---|---|
+| R-08-01-001 | The report generator shall assemble auditable reports that include inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations. | ScopeLedger.csv row SOW-024; CONTRACT.md OPS-K-REPORT-1; SPEC.md section 8 | Inspect generated report contract/template behavior in future implementation tests. |
+| R-08-01-002 | Reports shall include software version, solver version, model hash, input manifest, unit system, provenance summary, load cases/combinations, mechanical results, warnings, assumptions, missing data, rule-pack name/version/checksum, user-supplied data notice, and professional-review notice where those inputs exist. | SPEC.md section 8 | Report fixture/golden-output tests verify presence and omission rules. |
+| R-08-01-003 | Public report templates and examples shall not reproduce protected code text, protected standards tables, protected figures, proprietary formulas, protected examples, protected dimensional tables, or proprietary commercial data. | CONTRACT.md OPS-K-IP-1, OPS-K-REPORT-2; SPEC.md section 8 | Protected-content report gate and human review before public release. |
+| R-08-01-004 | Reports shall not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance. | CONTRACT.md OPS-K-AUTH-1; TYPES.md sections 4 and 8; DIRECTIVE.md sections 2 and 6 | Text review/lint gate checks prohibited claim language. |
+| R-08-01-005 | Reports shall distinguish mechanics solved, user-rule checked, rule inputs incomplete, and human review required states. | TYPES.md section 4; SOFTWARE_DECOMP.md AB-00-03 and AB-00-06 | Status fields in report fixtures are checked against analysis-status vocabulary. |
+| R-08-01-006 | Reports shall preserve unit context for unit-bearing inputs and results. | CONTRACT.md OPS-K-UNIT-1; SPEC.md sections 3 and 8 | Unit-aware fixture tests verify displayed and structured units. |
+| R-08-01-007 | Reports shall disclose diagnostics using result-envelope-compatible warning classes including solve-blocking, rule-check-blocking, provenance, assumption, nonlinear, and IP-boundary warnings when present. | SPEC.md section 7; SOFTWARE_DECOMP.md AB-00-06 | Diagnostic fixture tests verify warning class pass-through and report rendering. |
+| R-08-01-008 | Reports shall treat rule packs as user/private design-basis artifacts and expose only safe metadata such as identity, version, checksum, source notice, redistribution status, required-input status, and user-provided report notices. | SPEC.md section 6; CONTRACT.md OPS-K-DATA-1, OPS-K-RULE-3 | Rule-pack report fixtures verify metadata display and protected-content exclusion. |
+| R-08-01-009 | The report generator shall use schema-first command/query/job result envelopes and application-service boundaries; adapters/plugins must not bypass units, provenance, diagnostics, sandboxing, or report controls. | SOFTWARE_DECOMP.md AB-00-02, AB-00-03, AB-00-07 | Architecture review verifies service boundary conformance before implementation acceptance. |
+| R-08-01-010 | Report reproducibility tests shall verify deterministic output for the same model/result/rule-pack inputs, versions, and report settings, subject to explicitly documented volatile fields. | SPEC.md section 9; CONTRACT.md OPS-K-REPORT-1 | Future tests compare normalized report outputs and audit manifests. |
+</p></div></div></section>
+<section id="SEC-ED050-0031" class="chunk sec depth-4" data-kind="section" data-key="section:b5975fe5b53d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0031</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b5975fe5b53d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b5975fe5b53d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b5975fe5b53d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No protected standards text, protected tables, protected formulas, or proprietary code examples are used as source content for this deliverable. Any future user-private report template or rule-pack notice remains user responsibility and must be handled outside public-template distribution unless redistribution rights are documented.
+</p></div></div></section>
+<section id="SEC-ED050-0032" class="chunk sec depth-4" data-kind="section" data-key="section:c9daf44b9dc3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0032</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c9daf44b9dc3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c9daf44b9dc3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c9daf44b9dc3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The future implementation should be accepted only after these checks exist and pass:</p>
+<p>- Four-document setup artifacts exist for this deliverable.
+- `Dependencies.csv` is valid v3.1 and every ACTIVE row has evidence.
+- Report fixtures cover mechanics-only, rule-inputs-incomplete, user-rule-checked, warnings-present, and protected-content-risk cases.
+- Report reproducibility tests normalize volatile metadata and verify stable report payloads.
+- Protected-content and prohibited-claim gates scan public report templates/examples.
+- Human review confirms that the report generator does not assert compliance, certification, sealing, or project acceptance.
+</p></div></div></section>
+<section id="SEC-ED050-0033" class="chunk sec depth-4" data-kind="section" data-key="section:d044abc1646e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0033</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d044abc1646e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d044abc1646e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d044abc1646e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required setup documentation for this deliverable:</p>
+<p>- `Datasheet.md` records identity, boundaries, conditions, and reference basis.
+- `Specification.md` records requirements and verification targets.
+- `Guidance.md` records rationale, principles, trade-offs, and open questions.
+- `Procedure.md` records execution and future implementation workflow.
+- `_SEMANTIC.md` and `_SEMANTIC_LENSING.md` record semantic setup evidence only.
+- `Dependencies.csv` and `_DEPENDENCIES.md` record information-flow dependencies.
+- `_run_records/*` record setup sequence evidence.
+</p></div></div></section>
+<section id="SEC-ED050-0034" class="chunk sec depth-4" data-kind="section" data-key="section:c22bb624e489" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED050-0034</span> Acceptance Criteria For This Setup Session</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c22bb624e489" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c22bb624e489" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c22bb624e489" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No file outside `execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/` is edited.
+- No renderer source, external report template, test, schema, or repo-level artifact is modified.
+- Setup artifacts are source-grounded to local governance, decomposition, register, and context files.
+- No protected standards content or certification/compliance claim is introduced.
+- `_STATUS.md` reports `SEMANTIC_READY` only after the four-document kit, semantic artifacts, dependency register, and validation checks are complete.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED050";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

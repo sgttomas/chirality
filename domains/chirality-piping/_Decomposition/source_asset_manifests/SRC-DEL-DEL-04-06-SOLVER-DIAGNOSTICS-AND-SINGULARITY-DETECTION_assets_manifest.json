@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION",
+  "source_doc_id": "SRC-DEL-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION",
+  "source_prefix": "ED031",
+  "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/",
+  "catalog_rel_path": "@repo/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION-DATASHEET",
+      "expected_sha256": "93ccf9de570f74a520c907267aad2db02eb1b08a4e2db5be4569ddd36dfe2c42",
+      "generated_line_start": 11,
+      "generated_line_end": 91,
+      "source_line_start": 1,
+      "source_line_end": 81,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION-GUIDANCE",
+      "expected_sha256": "05c583234066ca047bad02781ae7b42a73e1bdce5879f9e83973074c1a298c7f",
+      "generated_line_start": 95,
+      "generated_line_end": 151,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -94
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION-PROCEDURE",
+      "expected_sha256": "16422265be9d13bf113bbc7c392cdafda90d3d8acea6e97555c20b3a46448268",
+      "generated_line_start": 155,
+      "generated_line_end": 214,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -154
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION-SPECIFICATION",
+      "expected_sha256": "b334a16ea32ada54d356f268eec1ae5ed33c5dbb4a62510a485408c8d762ccbd",
+      "generated_line_start": 218,
+      "generated_line_end": 264,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -217
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

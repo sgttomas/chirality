@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE",
+  "source_prefix": "ED082",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:00+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED082-0001",
+      "line_start": 9,
+      "line_end": 255,
+      "target_section_ids": [
+        "SEC-ED082-0002",
+        "SEC-ED082-0003",
+        "SEC-ED082-0004",
+        "SEC-ED082-0005",
+        "SEC-ED082-0006",
+        "SEC-ED082-0007",
+        "SEC-ED082-0008",
+        "SEC-ED082-0009",
+        "SEC-ED082-0010",
+        "SEC-ED082-0011",
+        "SEC-ED082-0012",
+        "SEC-ED082-0013",
+        "SEC-ED082-0014",
+        "SEC-ED082-0015",
+        "SEC-ED082-0016",
+        "SEC-ED082-0017",
+        "SEC-ED082-0018",
+        "SEC-ED082-0019",
+        "SEC-ED082-0020",
+        "SEC-ED082-0021",
+        "SEC-ED082-0022",
+        "SEC-ED082-0023",
+        "SEC-ED082-0024",
+        "SEC-ED082-0025",
+        "SEC-ED082-0026",
+        "SEC-ED082-0027",
+        "SEC-ED082-0028",
+        "SEC-ED082-0029",
+        "SEC-ED082-0030"
+      ],
+      "estimated_md_tokens": 3657,
+      "contains_oversized_section": false
+    }
+  ]
+}

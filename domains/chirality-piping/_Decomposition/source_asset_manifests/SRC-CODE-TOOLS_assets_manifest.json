@@ -1,0 +1,85 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-CODE-TOOLS",
+  "source_doc_id": "SRC-CODE-TOOLS",
+  "source_prefix": "CL001",
+  "repo_rel_path": "tools/",
+  "catalog_rel_path": "@repo/tools/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-TOOLS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "tools/REGISTRY.md",
+      "source_doc_id": "SRC-TOOLS-REGISTRY",
+      "expected_sha256": "b09efea672c19390e0f2f83542a9f5db6edaae610b4c2a5d3538bc7b25d5a47e",
+      "generated_line_start": 11,
+      "generated_line_end": 25,
+      "source_line_start": 1,
+      "source_line_end": 15,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "tools/coordination/dependency_semantic_refresh_fanin.py",
+      "source_doc_id": "SRC-TOOLS-COORDINATION-DEPENDENCY-SEMANTIC-REFRESH-FANIN",
+      "expected_sha256": "f482db80628c3e7ea5340d9d29610738ee6de120a8e28cca6868d46255159fa7",
+      "generated_line_start": 29,
+      "generated_line_end": 163,
+      "source_line_start": 1,
+      "source_line_end": 135,
+      "line_offset": -28
+    },
+    {
+      "repo_rel_path": "tools/coordination/dependency_type_rectification.py",
+      "source_doc_id": "SRC-TOOLS-COORDINATION-DEPENDENCY-TYPE-RECTIFICATION",
+      "expected_sha256": "6ea4d097dbceaf64c78080470d1f1cd65977592eaee8279a7931f53b2b3f4d67",
+      "generated_line_start": 167,
+      "generated_line_end": 1106,
+      "source_line_start": 1,
+      "source_line_end": 940,
+      "line_offset": -166
+    },
+    {
+      "repo_rel_path": "tools/coordination/list_deliverable_status.py",
+      "source_doc_id": "SRC-TOOLS-COORDINATION-LIST-DELIVERABLE-STATUS",
+      "expected_sha256": "597626dcfaf4e34040837771ca5d61af786cb3c05bbe589e898b5b97f6229e82",
+      "generated_line_start": 1110,
+      "generated_line_end": 1390,
+      "source_line_start": 1,
+      "source_line_end": 281,
+      "line_offset": -1109
+    },
+    {
+      "repo_rel_path": "tools/release/check_release_readiness.py",
+      "source_doc_id": "SRC-TOOLS-RELEASE-CHECK-RELEASE-READINESS",
+      "expected_sha256": "a08d9dc4910c03a6e389b83fbb22ae78d318366cc685de6776abe02158abdaa4",
+      "generated_line_start": 1394,
+      "generated_line_end": 1657,
+      "source_line_start": 1,
+      "source_line_end": 264,
+      "line_offset": -1393
+    },
+    {
+      "repo_rel_path": "tools/release/run_evidence_sweep.py",
+      "source_doc_id": "SRC-TOOLS-RELEASE-RUN-EVIDENCE-SWEEP",
+      "expected_sha256": "2c165051afd7464d709a1c0823f3ea928b16935cd641fa85662b85558a02fcae",
+      "generated_line_start": 1661,
+      "generated_line_end": 2059,
+      "source_line_start": 1,
+      "source_line_end": 399,
+      "line_offset": -1660
+    },
+    {
+      "repo_rel_path": "tools/validation/validate_dependencies_schema.py",
+      "source_doc_id": "SRC-TOOLS-VALIDATION-VALIDATE-DEPENDENCIES-SCHEMA",
+      "expected_sha256": "75cd74768cc8edf91c6f40b582f0fb570d2427894e6c2236ea2fe7d384291f5f",
+      "generated_line_start": 2063,
+      "generated_line_end": 2232,
+      "source_line_start": 1,
+      "source_line_end": 170,
+      "line_offset": -2062
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

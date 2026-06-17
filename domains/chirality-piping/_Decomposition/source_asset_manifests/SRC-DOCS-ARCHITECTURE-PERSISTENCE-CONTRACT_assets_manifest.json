@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-ARCHITECTURE-PERSISTENCE-CONTRACT",
+  "source_doc_id": "SRC-DOCS-ARCHITECTURE-PERSISTENCE-CONTRACT",
+  "source_name": "persistence_contract.md",
+  "source_prefix": "PD008",
+  "repo_rel_path": "docs/architecture/persistence_contract.md",
+  "catalog_rel_path": "@repo/docs/architecture/persistence_contract.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

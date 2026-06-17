@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-ARCHITECTURE-PLUGIN-BOUNDARY",
+  "source_prefix": "PD009",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-ARCHITECTURE-PLUGIN-BOUNDARY_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/architecture/plugin_boundary.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD009-0001",
+      "line_start": 13,
+      "line_end": 112,
+      "target_section_ids": [
+        "SEC-PD009-0001",
+        "SEC-PD009-0002",
+        "SEC-PD009-0003",
+        "SEC-PD009-0004",
+        "SEC-PD009-0005",
+        "SEC-PD009-0006",
+        "SEC-PD009-0007"
+      ],
+      "estimated_md_tokens": 1581,
+      "contains_oversized_section": false
+    }
+  ]
+}

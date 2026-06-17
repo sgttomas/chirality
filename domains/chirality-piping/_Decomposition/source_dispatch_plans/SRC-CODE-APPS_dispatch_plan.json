@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "source": "SRC-CODE-APPS",
+  "source_prefix": "CA001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-CODE-APPS_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-APPS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 21,
+  "generated_utc": "2026-06-17T01:26:56+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-CA001-0001",
+      "line_start": 9,
+      "line_end": 150,
+      "target_section_ids": [
+        "SEC-CA001-0002",
+        "SEC-CA001-0003",
+        "SEC-CA001-0004",
+        "SEC-CA001-0005"
+      ],
+      "estimated_md_tokens": 790,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0002",
+      "line_start": 151,
+      "line_end": 2012,
+      "target_section_ids": [
+        "SEC-CA001-0006"
+      ],
+      "estimated_md_tokens": 15328,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0003",
+      "line_start": 2013,
+      "line_end": 3606,
+      "target_section_ids": [
+        "SEC-CA001-0007",
+        "SEC-CA001-0008",
+        "SEC-CA001-0009",
+        "SEC-CA001-0010",
+        "SEC-CA001-0011",
+        "SEC-CA001-0012",
+        "SEC-CA001-0013",
+        "SEC-CA001-0014",
+        "SEC-CA001-0015",
+        "SEC-CA001-0016",
+        "SEC-CA001-0017",
+        "SEC-CA001-0018",
+        "SEC-CA001-0019",
+        "SEC-CA001-0020",
+        "SEC-CA001-0021",
+        "SEC-CA001-0022",
+        "SEC-CA001-0023",
+        "SEC-CA001-0024",
+        "SEC-CA001-0025",
+        "SEC-CA001-0026",
+        "SEC-CA001-0027",
+        "SEC-CA001-0028",
+        "SEC-CA001-0029",
+        "SEC-CA001-0030",
+        "SEC-CA001-0031",
+        "SEC-CA001-0032",
+        "SEC-CA001-0033",
+        "SEC-CA001-0034",
+        "SEC-CA001-0035",
+        "SEC-CA001-0036",
+        "SEC-CA001-0037",
+        "SEC-CA001-0038",
+        "SEC-CA001-0039",
+        "SEC-CA001-0040",
+        "SEC-CA001-0041",
+        "SEC-CA001-0042",
+        "SEC-CA001-0043",
+        "SEC-CA001-0044",
+        "SEC-CA001-0045",
+        "SEC-CA001-0046",
+        "SEC-CA001-0047",
+        "SEC-CA001-0048",
+        "SEC-CA001-0049",
+        "SEC-CA001-0050",
+        "SEC-CA001-0051"
+      ],
+      "estimated_md_tokens": 14835,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0004",
+      "line_start": 3607,
+      "line_end": 5037,
+      "target_section_ids": [
+        "SEC-CA001-0052",
+        "SEC-CA001-0053",
+        "SEC-CA001-0054",
+        "SEC-CA001-0055",
+        "SEC-CA001-0056",
+        "SEC-CA001-0057",
+        "SEC-CA001-0058",
+        "SEC-CA001-0059",
+        "SEC-CA001-0060",
+        "SEC-CA001-0061",
+        "SEC-CA001-0062",
+        "SEC-CA001-0063",
+        "SEC-CA001-0064",
+        "SEC-CA001-0065",
+        "SEC-CA001-0066",
+        "SEC-CA001-0067",
+        "SEC-CA001-0068",
+        "SEC-CA001-0069",
+        "SEC-CA001-0070",
+        "SEC-CA001-0071",
+        "SEC-CA001-0072",
+        "SEC-CA001-0073",
+        "SEC-CA001-0074",
+        "SEC-CA001-0075",
+        "SEC-CA001-0076",
+        "SEC-CA001-0077",
+        "SEC-CA001-0078",
+        "SEC-CA001-0079",
+        "SEC-CA001-0080",
+        "SEC-CA001-0081",
+        "SEC-CA001-0082",
+        "SEC-CA001-0083",
+        "SEC-CA001-0084",
+        "SEC-CA001-0085",
+        "SEC-CA001-0086",
+        "SEC-CA001-0087",
+        "SEC-CA001-0088",
+        "SEC-CA001-0089",
+        "SEC-CA001-0090",
+        "SEC-CA001-0091"
+      ],
+      "estimated_md_tokens": 14747,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0005",
+      "line_start": 5038,
+      "line_end": 6126,
+      "target_section_ids": [
+        "SEC-CA001-0092",
+        "SEC-CA001-0093",
+        "SEC-CA001-0094",
+        "SEC-CA001-0095",
+        "SEC-CA001-0096",
+        "SEC-CA001-0097",
+        "SEC-CA001-0098",
+        "SEC-CA001-0099",
+        "SEC-CA001-0100",
+        "SEC-CA001-0101",
+        "SEC-CA001-0102",
+        "SEC-CA001-0103",
+        "SEC-CA001-0104",
+        "SEC-CA001-0105",
+        "SEC-CA001-0106",
+        "SEC-CA001-0107",
+        "SEC-CA001-0108",
+        "SEC-CA001-0109",
+        "SEC-CA001-0110",
+        "SEC-CA001-0111",
+        "SEC-CA001-0112",
+        "SEC-CA001-0113",
+        "SEC-CA001-0114",
+        "SEC-CA001-0115",
+        "SEC-CA001-0116",
+        "SEC-CA001-0117",
+        "SEC-CA001-0118",
+        "SEC-CA001-0119",
+        "SEC-CA001-0120",
+        "SEC-CA001-0121",
+        "SEC-CA001-0122",
+        "SEC-CA001-0123"
+      ],
+      "estimated_md_tokens": 11062,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0006",
+      "line_start": 6127,
+      "line_end": 8171,
+      "target_section_ids": [
+        "SEC-CA001-0124",
+        "SEC-CA001-0125",
+        "SEC-CA001-0126",
+        "SEC-CA001-0127",
+        "SEC-CA001-0128",
+        "SEC-CA001-0129",
+        "SEC-CA001-0130",
+        "SEC-CA001-0131",
+        "SEC-CA001-0132",
+        "SEC-CA001-0133",
+        "SEC-CA001-0134"
+      ],
+      "estimated_md_tokens": 10175,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0007",
+      "line_start": 8172,
+      "line_end": 14168,
+      "target_section_ids": [
+        "SEC-CA001-0135"
+      ],
+      "estimated_md_tokens": 19633,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0008",
+      "line_start": 14169,
+      "line_end": 14826,
+      "target_section_ids": [
+        "SEC-CA001-0136",
+        "SEC-CA001-0137",
+        "SEC-CA001-0138"
+      ],
+      "estimated_md_tokens": 2789,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0009",
+      "line_start": 14827,
+      "line_end": 22219,
+      "target_section_ids": [
+        "SEC-CA001-0139"
+      ],
+      "estimated_md_tokens": 18927,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0010",
+      "line_start": 22220,
+      "line_end": 26183,
+      "target_section_ids": [
+        "SEC-CA001-0140",
+        "SEC-CA001-0141",
+        "SEC-CA001-0142",
+        "SEC-CA001-0143",
+        "SEC-CA001-0144",
+        "SEC-CA001-0145"
+      ],
+      "estimated_md_tokens": 14059,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0011",
+      "line_start": 26184,
+      "line_end": 30398,
+      "target_section_ids": [
+        "SEC-CA001-0146",
+        "SEC-CA001-0147",
+        "SEC-CA001-0148",
+        "SEC-CA001-0149",
+        "SEC-CA001-0150",
+        "SEC-CA001-0151",
+        "SEC-CA001-0152",
+        "SEC-CA001-0153",
+        "SEC-CA001-0154",
+        "SEC-CA001-0155"
+      ],
+      "estimated_md_tokens": 14938,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0012",
+      "line_start": 30399,
+      "line_end": 34509,
+      "target_section_ids": [
+        "SEC-CA001-0156",
+        "SEC-CA001-0157",
+        "SEC-CA001-0158",
+        "SEC-CA001-0159",
+        "SEC-CA001-0160",
+        "SEC-CA001-0161"
+      ],
+      "estimated_md_tokens": 14715,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0013",
+      "line_start": 34510,
+      "line_end": 38686,
+      "target_section_ids": [
+        "SEC-CA001-0162",
+        "SEC-CA001-0163",
+        "SEC-CA001-0164",
+        "SEC-CA001-0165",
+        "SEC-CA001-0166",
+        "SEC-CA001-0167",
+        "SEC-CA001-0168",
+        "SEC-CA001-0169"
+      ],
+      "estimated_md_tokens": 14999,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0014",
+      "line_start": 38687,
+      "line_end": 42619,
+      "target_section_ids": [
+        "SEC-CA001-0170",
+        "SEC-CA001-0171",
+        "SEC-CA001-0172",
+        "SEC-CA001-0173",
+        "SEC-CA001-0174",
+        "SEC-CA001-0175",
+        "SEC-CA001-0176",
+        "SEC-CA001-0177"
+      ],
+      "estimated_md_tokens": 14490,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0015",
+      "line_start": 42620,
+      "line_end": 45725,
+      "target_section_ids": [
+        "SEC-CA001-0178",
+        "SEC-CA001-0179",
+        "SEC-CA001-0180",
+        "SEC-CA001-0181",
+        "SEC-CA001-0182",
+        "SEC-CA001-0183",
+        "SEC-CA001-0184"
+      ],
+      "estimated_md_tokens": 11794,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0016",
+      "line_start": 45726,
+      "line_end": 48396,
+      "target_section_ids": [
+        "SEC-CA001-0185",
+        "SEC-CA001-0186",
+        "SEC-CA001-0187",
+        "SEC-CA001-0188"
+      ],
+      "estimated_md_tokens": 12084,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0017",
+      "line_start": 48397,
+      "line_end": 51333,
+      "target_section_ids": [
+        "SEC-CA001-0189",
+        "SEC-CA001-0190",
+        "SEC-CA001-0191",
+        "SEC-CA001-0192"
+      ],
+      "estimated_md_tokens": 13538,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0018",
+      "line_start": 51334,
+      "line_end": 55444,
+      "target_section_ids": [
+        "SEC-CA001-0193",
+        "SEC-CA001-0194",
+        "SEC-CA001-0195",
+        "SEC-CA001-0196",
+        "SEC-CA001-0197",
+        "SEC-CA001-0198",
+        "SEC-CA001-0199",
+        "SEC-CA001-0200",
+        "SEC-CA001-0201"
+      ],
+      "estimated_md_tokens": 14998,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0019",
+      "line_start": 55445,
+      "line_end": 58448,
+      "target_section_ids": [
+        "SEC-CA001-0202",
+        "SEC-CA001-0203",
+        "SEC-CA001-0204",
+        "SEC-CA001-0205",
+        "SEC-CA001-0206",
+        "SEC-CA001-0207",
+        "SEC-CA001-0208",
+        "SEC-CA001-0209",
+        "SEC-CA001-0210",
+        "SEC-CA001-0211",
+        "SEC-CA001-0212",
+        "SEC-CA001-0213",
+        "SEC-CA001-0214"
+      ],
+      "estimated_md_tokens": 14084,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0020",
+      "line_start": 58449,
+      "line_end": 62640,
+      "target_section_ids": [
+        "SEC-CA001-0215",
+        "SEC-CA001-0216",
+        "SEC-CA001-0217",
+        "SEC-CA001-0218",
+        "SEC-CA001-0219",
+        "SEC-CA001-0220",
+        "SEC-CA001-0221",
+        "SEC-CA001-0222",
+        "SEC-CA001-0223"
+      ],
+      "estimated_md_tokens": 13953,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CA001-0021",
+      "line_start": 62641,
+      "line_end": 63415,
+      "target_section_ids": [
+        "SEC-CA001-0224",
+        "SEC-CA001-0225"
+      ],
+      "estimated_md_tokens": 2661,
+      "contains_oversized_section": false
+    }
+  ]
+}

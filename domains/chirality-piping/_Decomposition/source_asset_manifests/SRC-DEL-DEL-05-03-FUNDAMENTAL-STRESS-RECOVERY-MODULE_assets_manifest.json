@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE",
+  "source_doc_id": "SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE",
+  "source_prefix": "ED034",
+  "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/",
+  "catalog_rel_path": "@repo/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE-DATASHEET",
+      "expected_sha256": "ecbd2ea22a110abfeceb2a009ff2e4d06b60d7e2989a8c8cbd27b27d368c6aa8",
+      "generated_line_start": 11,
+      "generated_line_end": 86,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE-GUIDANCE",
+      "expected_sha256": "98df1b00ef7f2a422160c4ef17c6a5ffe7921357fbee612702853b95e04676a9",
+      "generated_line_start": 90,
+      "generated_line_end": 143,
+      "source_line_start": 1,
+      "source_line_end": 54,
+      "line_offset": -89
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE-PROCEDURE",
+      "expected_sha256": "73c8d828c175967103e412181c7d1aa55e5a8288ef7b7ccf5e57f67307456597",
+      "generated_line_start": 147,
+      "generated_line_end": 191,
+      "source_line_start": 1,
+      "source_line_end": 45,
+      "line_offset": -146
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE-SPECIFICATION",
+      "expected_sha256": "9f0dbb2855c591fbd28f03da610479f07d67b58a4e927f43e92c1fa983f4c260",
+      "generated_line_start": 195,
+      "generated_line_end": 249,
+      "source_line_start": 1,
+      "source_line_end": 55,
+      "line_offset": -194
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

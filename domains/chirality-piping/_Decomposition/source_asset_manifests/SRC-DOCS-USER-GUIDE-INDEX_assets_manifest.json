@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-USER-GUIDE-INDEX",
+  "source_doc_id": "SRC-DOCS-USER-GUIDE-INDEX",
+  "source_name": "index.md",
+  "source_prefix": "PD039",
+  "repo_rel_path": "docs/user_guide/index.md",
+  "catalog_rel_path": "@repo/docs/user_guide/index.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL",
+  "source_doc_id": "SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL",
+  "source_prefix": "ED023",
+  "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/",
+  "catalog_rel_path": "@repo/execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL-DATASHEET",
+      "expected_sha256": "b98cba729a3f47683902d545c20f6087f6e609d731c34833d004b12f105adac6",
+      "generated_line_start": 11,
+      "generated_line_end": 72,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL-GUIDANCE",
+      "expected_sha256": "5d72e1acfd6a1db1b12de0fe2151c7537c46e0dfcbb226aedb1acf6f93a7faf2",
+      "generated_line_start": 76,
+      "generated_line_end": 113,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -75
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL-PROCEDURE",
+      "expected_sha256": "95b611d0e3ac43e0ea1edbd6b214f1152ba8d18f9d635c223d96f05e96fa92b9",
+      "generated_line_start": 117,
+      "generated_line_end": 156,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -116
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-06-EXPANSION-JOINT-COMPONENT-MODEL-SPECIFICATION",
+      "expected_sha256": "ab45e0c8d47543822543e43a6f3bb3aace4d268bdc15e13784b6ed0f172ff7a6",
+      "generated_line_start": 160,
+      "generated_line_end": 224,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -159
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

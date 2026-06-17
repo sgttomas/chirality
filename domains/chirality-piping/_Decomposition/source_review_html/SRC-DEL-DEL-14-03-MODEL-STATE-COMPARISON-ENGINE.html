@@ -1,0 +1,472 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED082-0001">Source Pack: SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE</a> <a href="#SEC-ED082-0002">Component: execution/PKG-14_Model States, Analysis Runs, and</a> <a href="#SEC-ED082-0009">Component: execution/PKG-14_Model States, Analysis Runs, and</a> <a href="#SEC-ED082-0017">Component: execution/PKG-14_Model States, Analysis Runs, and</a> <a href="#SEC-ED082-0024">Component: execution/PKG-14_Model States, Analysis Runs, and</a></nav>
+<main>
+<section id="SEC-ED082-0001" class="chunk sec depth-1" data-kind="section" data-key="section:6487b2e7aba8" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED082-0001</span> Source Pack: SRC-DEL-DEL-14-03-MODEL-STATE-COMPARISON-ENGINE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6487b2e7aba8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6487b2e7aba8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6487b2e7aba8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED082-0002" class="chunk sec depth-2" data-kind="section" data-key="section:3516ee913872" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED082-0002</span> Component: execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3516ee913872" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3516ee913872" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3516ee913872" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0003" class="chunk sec depth-3" data-kind="section" data-key="section:88218089efe9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED082-0003</span> Datasheet: DEL-14-03 Model-state comparison engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88218089efe9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88218089efe9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88218089efe9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0004" class="chunk sec depth-4" data-kind="section" data-key="section:effafe9fabf1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:effafe9fabf1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:effafe9fabf1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:effafe9fabf1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-14-03 |
+| Name | Model-state comparison engine |
+| Package ID | PKG-14 |
+| Package Name | Model States, Analysis Runs, and Comparison |
+| Type | BACKEND_FEATURE_SLICE |
+| Description | Implement deterministic state diffs using stable IDs and explicit mapping records. |
+| Anticipated artifacts | state comparison engine; state diff tests |
+| Scope coverage | SOW-073; SOW-071 |
+| Objective support | OBJ-016 |
+| Context envelope | L |</p>
+<p>Source: `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` section &quot;PKG-14 - Model States, Analysis Runs, and Comparison&quot;; `docs/_Registers/Deliverables.csv` row `DEL-14-03`.
+</p></div></div></section>
+<section id="SEC-ED082-0005" class="chunk sec depth-4" data-kind="section" data-key="section:075ca8a28105" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:075ca8a28105" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:075ca8a28105" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:075ca8a28105" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary function | Compute deterministic added, removed, changed, and unchanged model-entity diffs between model states. | `_CONTEXT.md` Context Envelope; `execution/_Decomposition/SOFTWARE_DECOMP.md` row `DEL-14-03` |
+| Identity basis | Stable IDs are the primary matching surface. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `docs/TYPES.md` `Reference` definition |
+| Mapping basis | Explicit mapping records are required where direct stable-ID comparison is insufficient. Mapping workflow details remain `TBD`. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `execution/_Decomposition/SOFTWARE_DECOMP.md` open issue `OI-014` |
+| State basis | Model states are named immutable records with tags, notes, external references, unresolved assumptions, warnings, and deterministic hashes. | `docs/_Registers/ScopeLedger.csv` row `SOW-071` |
+| Authority boundary | Comparison output is diagnostic/audit functionality, not external validation or professional acceptance. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `docs/CONTRACT.md` invariants `OPS-K-AUTH-1`, `OPS-K-MECH-2` |
+| Architecture basis | Rust core/application services, schema-first command/query/job result envelopes, JSON Schema 2020-12, and JCS-compatible hash basis where JSON payloads are hashed. | `_CONTEXT.md` Architecture Basis Injection; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 8.1 |
+</p></div></div></section>
+<section id="SEC-ED082-0006" class="chunk sec depth-4" data-kind="section" data-key="section:30ceeb2ebf49" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30ceeb2ebf49" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30ceeb2ebf49" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30ceeb2ebf49" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Input state schema | Depends on `DEL-14-01` immutable model state records. |
+| Mapping and tolerance contracts | Depends on `DEL-14-05`; tolerance defaults and mapping workflows remain `TBD`. |
+| Unit-aware comparison of unit-bearing values | Depends on `DEL-02-02` unit system and dimensional-analysis core contract. |
+| Analysis-run result deltas | Out of this deliverable except where SOW-073 context informs state comparison; the analysis-run comparison engine is `DEL-14-04`. |
+| External validation/prover status | Excluded. The package does not ingest commercial prover outputs comprehensively or determine external validation. |</p>
+<p>Source: `Dependencies.csv` approved DAG-002 mirror rows `DAG-002-E0792`, `DAG-002-E0793`, `DAG-002-E0794`; `_CONTEXT.md` Package Exclusions; `execution/_Decomposition/SOFTWARE_DECOMP.md` rows `DEL-14-03`, `DEL-14-04`, `DEL-14-05`.
+</p></div></div></section>
+<section id="SEC-ED082-0007" class="chunk sec depth-4" data-kind="section" data-key="section:873b1444fd08" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:873b1444fd08" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:873b1444fd08" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:873b1444fd08" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Construction surface | Conservative construction note |
+|---|---|
+| Backend slice | Implement as a backend/service feature aligned with the Rust core/application-service architecture basis. Exact module path is `TBD`. |
+| Input contract | Accept two immutable model-state references or payloads once `DEL-14-01` defines the state record contract. |
+| Matching contract | Prefer stable IDs. Require explicit mapping records for intentional correspondence where IDs differ. |
+| Diff contract | Report added, removed, changed, and unchanged model entities. Exact entity categories and payload normalization are `TBD` pending state schema detail. |
+| Hash/canonicalization | Where JSON payloads are hashed, use the accepted JCS-compatible canonical JSON basis. |
+| Diagnostics | Preserve warnings, unresolved assumptions, provenance, and professional-boundary status in result envelopes. |
+| Tests | Provide deterministic state diff tests covering stable-ID matches, mapped entities, and unmatched entities. Exact fixture model content is `TBD` and must avoid protected/private data. |
+</p></div></div></section>
+<section id="SEC-ED082-0008" class="chunk sec depth-4" data-kind="section" data-key="section:be95f4c81cda" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be95f4c81cda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be95f4c81cda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be95f4c81cda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` - deliverable identity, scope, architecture-basis injection, and dependency envelope.
+- `_REFERENCES.md` - local reference index for this deliverable.
+- `Dependencies.csv` - approved DAG-006 local mirror/evidence surface.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` - accepted revision 0.7 current decomposition basis.
+- `docs/_Registers/Deliverables.csv` - deliverable row `DEL-14-03`.
+- `docs/_Registers/ScopeLedger.csv` - rows `SOW-071` and `SOW-073`.
+- `docs/CONTRACT.md` - invariants for IDs, units, professional authority, data, and agent behavior.
+- `docs/SPEC.md` - unit, persistence, analysis-boundary, reporting/result-envelope, and validation mechanics.
+- `docs/TYPES.md` - reference, traceability, checksum, diagnostic, result, and report boundary definitions.
+</p></div></div></section>
+<section id="SEC-ED082-0009" class="chunk sec depth-2" data-kind="section" data-key="section:d1e7a5705e8f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED082-0009</span> Component: execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d1e7a5705e8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d1e7a5705e8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d1e7a5705e8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0010" class="chunk sec depth-3" data-kind="section" data-key="section:5872991ac281" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED082-0010</span> Guidance: DEL-14-03 Model-state comparison engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5872991ac281" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5872991ac281" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5872991ac281" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0011" class="chunk sec depth-4" data-kind="section" data-key="section:1e9d405b2378" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e9d405b2378" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e9d405b2378" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e9d405b2378" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable exists to make immutable model states reviewable through deterministic comparison. The comparison should support design iteration by identifying added, removed, changed, and unchanged model entities without converting that comparison into an external validation or professional approval state.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` row `DEL-14-03`; `docs/_Registers/ScopeLedger.csv` rows `SOW-071` and `SOW-073`.
+</p></div></div></section>
+<section id="SEC-ED082-0012" class="chunk sec depth-4" data-kind="section" data-key="section:073fdef5664d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:073fdef5664d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:073fdef5664d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:073fdef5664d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance |
+|---|---|
+| Stable identity first | Treat stable IDs and typed references as the primary comparison surface. Positional or display-name matching is an implementation risk unless explicitly justified by a mapping contract. |
+| Explicit mappings | When two states intentionally refer to corresponding entities with different IDs, use explicit mapping records. Do not infer hidden engineering equivalence from proximity, naming, or apparent similarity without a source-backed rule. |
+| Deterministic output | The same inputs should produce the same classifications and serialized result shape. Hashing or canonical serialization details are governed by the persistence/hash basis where JSON payloads are involved. |
+| No silent defaults | Missing mappings, missing units, unsupported entity categories, and unresolved assumptions should become diagnostics or `TBD`, not implicit acceptance. |
+| Metadata preservation | Notes, warnings, external references, unresolved assumptions, provenance, and hashes attached to model states are part of the review context. |
+| Boundary clarity | The comparison is diagnostic/audit functionality. It must not imply professional review, code compliance, external prover approval, or certification. |</p>
+<p>Sources: `docs/DIRECTIVE.md` sections 2.2 and 3; `docs/CONTRACT.md` invariants `OPS-K-DATA-2`, `OPS-K-AUTH-1`, `OPS-K-MECH-2`; `docs/SPEC.md` sections 4, 4.3, and 4.4.
+</p></div></div></section>
+<section id="SEC-ED082-0013" class="chunk sec depth-4" data-kind="section" data-key="section:4421791b2f90" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4421791b2f90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4421791b2f90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4421791b2f90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Consideration |
+|---|---|
+| Model-state versus analysis-run comparison | `DEL-14-03` is scoped to model-state diffs. Analysis-run result deltas are separately assigned to `DEL-14-04`; mapping/tolerance/export contracts are assigned to `DEL-14-05`. |
+| Tolerances | Comparison tolerance defaults and mapping workflows are an open issue (`OI-014`). Treat detailed tolerance behavior as `TBD` until resolved. |
+| Unit-normalized values | SOW-073 mentions unit-normalized result deltas, but the unit contract dependency (`DEL-02-02`) and comparison contract dependency (`DEL-14-05`) must be honored before numeric comparison policy is finalized. |
+| Entity granularity | The exact model entity categories are `TBD` until the immutable state schema and canonical domain model detail are available. |
+| Fixture content | Tests should use invented/public-safe fixtures and should carry provenance status. Do not import protected standards examples or proprietary project data. |
+| Context size | The deliverable has an `L` context envelope and WATCH risk; scope should be split or escalated if it expands beyond deterministic model-state entity diffs. |
+</p></div></div></section>
+<section id="SEC-ED082-0014" class="chunk sec depth-4" data-kind="section" data-key="section:86ef2b949791" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86ef2b949791" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86ef2b949791" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86ef2b949791" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Direction |
+|---|---|
+| Strict stable-ID matching vs. heuristic matching | Prefer strict stable-ID matching. Use explicit mapping records for intentional correspondence. Heuristics are `TBD` and require human-approved scope if introduced. |
+| Rich diff payload vs. bounded backend slice | Start with source-supported classifications and diagnostic metadata. Defer UI overlays, report formatting, and export semantics to their owning deliverables. |
+| Canonical hash comparison vs. field-level comparison | Hashes support reproducibility, but field-level changed classification needs a source-defined normalization policy. The exact field comparison policy remains `TBD`. |
+| Numeric tolerance vs. exact equality | Numeric tolerance policy is not yet source-defined for this deliverable. Unit and tolerance dependencies must be resolved before implementation claims are made. |
+</p></div></div></section>
+<section id="SEC-ED082-0015" class="chunk sec depth-4" data-kind="section" data-key="section:617be0ca9e5b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:617be0ca9e5b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:617be0ca9e5b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:617be0ca9e5b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Source-grounded example categories are limited to:</p>
+<p>- an entity appears only in the later state: added;
+- an entity appears only in the earlier state: removed;
+- an entity appears in both states with the same stable ID or explicit mapping and no relevant difference: unchanged;
+- an entity appears in both states with the same stable ID or explicit mapping and a source-supported relevant difference: changed.</p>
+<p>Concrete fixture entities, fields, values, units, tolerances, and mapping records are `TBD` until the state schema and mapping/tolerance contract are available.
+</p></div></div></section>
+<section id="SEC-ED082-0016" class="chunk sec depth-4" data-kind="section" data-key="section:ab8c0c1a5922" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ab8c0c1a5922" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ab8c0c1a5922" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ab8c0c1a5922" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| C-14-03-001 | Dependency-extract v3.1 write-form enums would normalize/reclassify several approved DAG-006 mirror values, but the project task rule says to preserve approved DAG-006 rows as ACTIVE without reclassification. | `skills/dependency-extract/SKILL.md` &quot;Canonical enums&quot;; `Dependencies.csv` approved mirror rows | User task instruction for `DEL-14-03` dependency handling | Dependency register handling; final report | Preserve the approved mirror unchanged and record the conflict. | TBD |
+</p></div></div></section>
+<section id="SEC-ED082-0017" class="chunk sec depth-2" data-kind="section" data-key="section:0055ccbaff79" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED082-0017</span> Component: execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0055ccbaff79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0055ccbaff79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0055ccbaff79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0018" class="chunk sec depth-3" data-kind="section" data-key="section:9e8ba61a798d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED082-0018</span> Procedure: DEL-14-03 Model-state comparison engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e8ba61a798d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e8ba61a798d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e8ba61a798d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0019" class="chunk sec depth-4" data-kind="section" data-key="section:9c9c224fa1c4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9c9c224fa1c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9c9c224fa1c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9c9c224fa1c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce or use the model-state comparison engine in a way that remains deterministic, source-grounded, unit-aware where applicable, and bounded to diagnostic/audit comparison of immutable model states.
+</p></div></div></section>
+<section id="SEC-ED082-0020" class="chunk sec depth-4" data-kind="section" data-key="section:30ae25283965" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30ae25283965" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30ae25283965" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30ae25283965" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status / source |
+|---|---|
+| Immutable model-state record contract | Upstream dependency `DEL-14-01`; approved DAG-002 mirror row `DAG-002-E0792`. |
+| Mapping/tolerance contract | Upstream dependency `DEL-14-05`; approved DAG-002 mirror row `DAG-002-E0793`; details `TBD` per `OI-014`. |
+| Unit system and dimensional-analysis contract | Upstream dependency `DEL-02-02`; approved DAG-002 mirror row `DAG-002-E0794`. |
+| Architecture basis | `AB-00-01`, `AB-00-02`, `AB-00-03`, `AB-00-04`, `AB-00-06`, `AB-00-07`, and `AB-00-08` in `_CONTEXT.md`. |
+| Professional/IP boundary | `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, and `docs/IP_AND_DATA_BOUNDARY.md`. |
+</p></div></div></section>
+<section id="SEC-ED082-0021" class="chunk sec depth-4" data-kind="section" data-key="section:0e459af45517" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e459af45517" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e459af45517" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e459af45517" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the work is limited to `DEL-14-03` model-state entity diffs. Escalate if the task expands into analysis-run result deltas, export formats, GUI overlays, external prover status, or professional approval workflow.</p>
+<p>2. Identify the immutable state input contract from `DEL-14-01`. If the contract is unavailable, record the input schema as `TBD` and do not invent entity fields.</p>
+<p>3. Identify the comparison mapping contract from `DEL-14-05`. If unavailable, implement only stable-ID matching assumptions that are source-supported, and mark manual mapping behavior `TBD`.</p>
+<p>4. Identify unit-bearing fields through the unit contract from `DEL-02-02`. Do not compare unit-bearing values as bare numbers; missing or incompatible unit metadata should produce diagnostics.</p>
+<p>5. Define the comparison input envelope as two model-state references or payloads plus any explicit mapping/settings record. Exact service/API syntax is `TBD`.</p>
+<p>6. Match entities by stable ID. Apply explicit mapping records where the mapping contract allows them. Treat unresolved correspondence as unmatched or diagnostic rather than hidden equivalence.</p>
+<p>7. Classify entities into added, removed, changed, and unchanged categories. Exact field-level normalization and change significance rules are `TBD` pending state schema and mapping/tolerance contract detail.</p>
+<p>8. Preserve review context: state hashes, warnings, unresolved assumptions, notes, external references, provenance, and diagnostics where present.</p>
+<p>9. Return a deterministic result envelope with professional-boundary language. Do not emit automatic certification, sealing, code-compliance, external-validation, or human-approval statuses.</p>
+<p>10. Build state diff tests using invented/public-safe fixtures. Cover stable-ID matching, added/removed/changed/unchanged classifications, mapping behavior once available, deterministic repeatability, unit metadata diagnostics, and forbidden-claim checks.
+</p></div></div></section>
+<section id="SEC-ED082-0022" class="chunk sec depth-4" data-kind="section" data-key="section:6a816177e152" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a816177e152" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a816177e152" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a816177e152" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected evidence |
+|---|---|
+| Stable-ID determinism | Repeated comparisons of the same fixtures produce identical classifications and result serialization where implemented. |
+| Mapping behavior | Explicit mappings produce expected correspondence; missing mappings remain visible. `TBD` until `DEL-14-05` exists. |
+| Changed classification | Source-supported relevant field changes are reported as changed. Exact normalization policy is `TBD`. |
+| Unit metadata | Unit-bearing fields require unit/dimension context or produce diagnostics. |
+| Metadata preservation | Warnings, assumptions, external references, notes, provenance, and hashes are not silently dropped. |
+| Boundary language | No result label claims professional acceptance, code compliance, certification, sealing, authentication, or external validation. |
+| Fixture governance | Test fixtures are invented/public-safe and do not include protected standards text, proprietary values, or private project data. |
+</p></div></div></section>
+<section id="SEC-ED082-0023" class="chunk sec depth-4" data-kind="section" data-key="section:a340a4e65bcd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a340a4e65bcd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a340a4e65bcd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a340a4e65bcd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implementation/module path: `TBD`.
+- State comparison service or engine contract: `TBD`.
+- State diff test artifact path: `TBD`.
+- Fixture provenance notes: `TBD`.
+- Dependency notes: preserve the existing DAG-002 mirror rows as ACTIVE unless a future approved coordination workflow changes the mirror.
+</p></div></div></section>
+<section id="SEC-ED082-0024" class="chunk sec depth-2" data-kind="section" data-key="section:6d7d64d8622b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED082-0024</span> Component: execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d7d64d8622b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d7d64d8622b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d7d64d8622b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0025" class="chunk sec depth-3" data-kind="section" data-key="section:c7f89055b41f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED082-0025</span> Specification: DEL-14-03 Model-state comparison engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7f89055b41f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7f89055b41f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7f89055b41f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED082-0026" class="chunk sec depth-4" data-kind="section" data-key="section:8484eddc1deb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8484eddc1deb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8484eddc1deb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8484eddc1deb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies a backend feature slice for deterministic comparison of immutable model states. It covers the model-state side of SOW-073 and the SOW-071 state-record context needed by that comparison. It must report added, removed, changed, and unchanged model entities using stable IDs and explicit mapping records where required.</p>
+<p>This deliverable excludes the full analysis-run comparison engine (`DEL-14-04`), the mapping/tolerance/export contract definition (`DEL-14-05`), the immutable state data model itself (`DEL-14-01`), and any claim of external validation, certification, code compliance, sealing, or professional approval.</p>
+<p>Sources: `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` rows `DEL-14-01` through `DEL-14-05`; `docs/_Registers/ScopeLedger.csv` rows `SOW-071` and `SOW-073`.
+</p></div></div></section>
+<section id="SEC-ED082-0027" class="chunk sec depth-4" data-kind="section" data-key="section:e516c812893b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e516c812893b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e516c812893b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e516c812893b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source | Verification |
+|---|---|---|---|
+| REQ-14-03-001 | The engine shall compare two immutable model-state records or references once the `DEL-14-01` state contract is available. | `docs/_Registers/ScopeLedger.csv` row `SOW-071`; `Dependencies.csv` row `DAG-002-E0792` | Unit test with two known state fixtures; schema validation once state schema exists. |
+| REQ-14-03-002 | The engine shall use stable IDs as the primary entity matching basis. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `docs/TYPES.md` `Reference` definition | Unit tests showing order-independent, stable-ID-based matching. |
+| REQ-14-03-003 | The engine shall require explicit mapping records where comparison cannot rely on direct stable-ID correspondence. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `Dependencies.csv` row `DAG-002-E0793` | Unit tests for manually mapped entities after `DEL-14-05` defines mapping records. |
+| REQ-14-03-004 | The engine shall classify model entities as added, removed, changed, or unchanged. | `_CONTEXT.md` Context Envelope; `execution/_Decomposition/SOFTWARE_DECOMP.md` row `DEL-14-03` | Unit tests for each classification. |
+| REQ-14-03-005 | The same two input states, mappings, and comparison settings shall produce deterministic diff output. | `docs/_Registers/ScopeLedger.csv` row `SOW-073`; `docs/CONTRACT.md` `OPS-K-ID-1`; `docs/SPEC.md` section 4.4 | Repeat-run tests comparing serialized result envelopes or canonical hashes where available. |
+| REQ-14-03-006 | The comparison shall preserve relevant state metadata, including unresolved assumptions, warnings, notes, external references, and deterministic hashes when those fields are present in the state contract. | `docs/_Registers/ScopeLedger.csv` row `SOW-071`; `docs/SPEC.md` section 3 Domain objects | Tests confirming metadata is not discarded from comparison context. |
+| REQ-14-03-007 | Unit-bearing changed values shall not be compared as bare numbers without unit/dimension metadata or an explicit unit-normalization contract. | `docs/SPEC.md` section 4 Unit system and dimensional analysis; `Dependencies.csv` row `DAG-002-E0794` | Tests for unit metadata handling; `TBD` until `DEL-02-02` and `DEL-14-05` provide final contracts. |
+| REQ-14-03-008 | Comparison result envelopes shall carry diagnostics/provenance sufficient to expose missing mappings, unsupported comparison categories, unresolved assumptions, and professional-boundary limits. | `docs/SPEC.md` sections 4.3 and 9; `execution/_Decomposition/SOFTWARE_DECOMP.md` `AB-00-06` | Tests asserting diagnostic fields and no forbidden status labels. |
+| REQ-14-03-009 | Outputs shall not claim certification, sealing, authentication, professional approval, code compliance, or external validation. | `docs/CONTRACT.md` `OPS-K-AUTH-1`; `docs/DIRECTIVE.md` section 3; `docs/_Registers/ScopeLedger.csv` row `SOW-073` | Protected-claim review of result labels and report/export-facing strings. |
+| REQ-14-03-010 | State diff tests shall use invented, public-safe fixtures and must not include protected standards text, proprietary values, or private project data. | `docs/CONTRACT.md` `OPS-K-IP-1`, `OPS-K-RULE-1`; `docs/SPEC.md` section 10 | Fixture provenance review and protected-content gate. |
+</p></div></div></section>
+<section id="SEC-ED082-0028" class="chunk sec depth-4" data-kind="section" data-key="section:1b0cf99e9d93" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b0cf99e9d93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b0cf99e9d93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b0cf99e9d93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No external engineering standard text is locally available or required for this deliverable. Governing project standards are the local OpenPipeStress documents listed in `_REFERENCES.md`, especially:</p>
+<p>- `docs/CONTRACT.md` for invariant boundaries.
+- `docs/SPEC.md` for unit, persistence, result-envelope, and validation expectations.
+- `docs/TYPES.md` for stable references, traceability links, checksums, diagnostics, and result/report boundary concepts.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 for scope partitioning and architecture-basis constraints.</p>
+<p>Any clause-level external standard requirement is `TBD` and must not be inferred.
+</p></div></div></section>
+<section id="SEC-ED082-0029" class="chunk sec depth-4" data-kind="section" data-key="section:35b8a5f8cf09" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:35b8a5f8cf09" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:35b8a5f8cf09" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:35b8a5f8cf09" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification area | Minimum check |
+|---|---|
+| Stable-ID matching | Reorder equivalent entity lists and confirm unchanged diff output. |
+| Added/removed classification | Compare fixtures with entities present in only one state. |
+| Changed classification | Compare fixtures with the same stable ID and intentionally changed public-safe fields. |
+| Explicit mapping | Use mapping records from `DEL-14-05` once available; until then, mark detailed mapping behavior `TBD`. |
+| Unit-bearing value handling | Confirm missing or incompatible unit metadata produces diagnostics rather than silent numeric comparison. |
+| Determinism | Repeat the same comparison and compare canonical serialized output or result hash where implemented. |
+| Boundary language | Assert no output status or label implies professional acceptance, code compliance, certification, sealing, or external validation. |
+</p></div></div></section>
+<section id="SEC-ED082-0030" class="chunk sec depth-4" data-kind="section" data-key="section:8dfa52a3d56b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED082-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8dfa52a3d56b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8dfa52a3d56b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8dfa52a3d56b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required local evidence for this deliverable:</p>
+<p>- state comparison engine artifact or module path, `TBD` until implementation;
+- state diff tests;
+- notes identifying dependency on `DEL-14-01`, `DEL-14-05`, and `DEL-02-02`;
+- comparison result-envelope shape or service contract, `TBD` until implementation;
+- protected-content/provenance status for fixtures and examples.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED082";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

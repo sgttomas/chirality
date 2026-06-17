@@ -1,0 +1,495 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED091-0001">Source Pack: SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION</a> <a href="#SEC-ED091-0002">Component: execution/PKG-16_Model Operation and Agent Propos</a> <a href="#SEC-ED091-0009">Component: execution/PKG-16_Model Operation and Agent Propos</a> <a href="#SEC-ED091-0017">Component: execution/PKG-16_Model Operation and Agent Propos</a> <a href="#SEC-ED091-0024">Component: execution/PKG-16_Model Operation and Agent Propos</a></nav>
+<main>
+<section id="SEC-ED091-0001" class="chunk sec depth-1" data-kind="section" data-key="section:e6b03daf1d8a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED091-0001</span> Source Pack: SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e6b03daf1d8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e6b03daf1d8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e6b03daf1d8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED091-0002" class="chunk sec depth-2" data-kind="section" data-key="section:3938a60fa428" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED091-0002</span> Component: execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3938a60fa428" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3938a60fa428" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3938a60fa428" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0003" class="chunk sec depth-3" data-kind="section" data-key="section:ed95ff92590f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED091-0003</span> Datasheet: DEL-16-03 User acceptance and operation audit trail</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed95ff92590f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed95ff92590f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed95ff92590f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0004" class="chunk sec depth-4" data-kind="section" data-key="section:23545ea32ba5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23545ea32ba5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23545ea32ba5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23545ea32ba5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Source |
+|---|---|---|
+| Deliverable ID | DEL-16-03 | `_CONTEXT.md` |
+| Deliverable name | User acceptance and operation audit trail | `_CONTEXT.md` |
+| Package ID | PKG-16 | `_CONTEXT.md` |
+| Package name | Model Operation and Agent Proposal Framework | `_CONTEXT.md` |
+| Deliverable type | BACKEND_FEATURE_SLICE | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` row DEL-16-03 |
+| Scope items | SOW-069, SOW-070 | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5 and section 7 |
+| Objective support | OBJ-015 | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5 |
+| Context envelope | M | `_CONTEXT.md`; `docs/_Registers/ContextBudgetQA.csv` row DEL-16-03 |
+</p></div></div></section>
+<section id="SEC-ED091-0005" class="chunk sec depth-4" data-kind="section" data-key="section:f0528f80063a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f0528f80063a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f0528f80063a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f0528f80063a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current value | Source / note |
+|---|---|---|
+| Intended artifact | Operation audit log | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` row DEL-16-03 |
+| Intended test artifact | Acceptance workflow tests | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` row DEL-16-03 |
+| Operation dispositions in scope | Accepted and rejected operations | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 7 PKG-16 deliverables |
+| Required audit subjects | Affected entities, actor/source metadata, timestamps, assumptions | `_CONTEXT.md` |
+| Required accepted-operation preservation | Operation history, rationale, assumptions, affected entities, audit metadata | SOW-070 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5 |
+| Required pre-application workflow context | Schema validation, constraint validation, diff preview, controlled application through the model engine | SOW-069 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5 |
+| Default autonomy posture | User acceptance is required unless later explicitly changed | `_CONTEXT.md`; OI-016 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 12 |
+| Professional-boundary posture | Operation history supports design iteration without professional approval claims | SOW-070 note in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5; `docs/DIRECTIVE.md` section 3 |
+</p></div></div></section>
+<section id="SEC-ED091-0006" class="chunk sec depth-4" data-kind="section" data-key="section:2e3e9f1a9c9e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2e3e9f1a9c9e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2e3e9f1a9c9e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2e3e9f1a9c9e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Current audit-trail implementation path | Established for this slice at `core/model_operations/audit_trail/engine.py`. |
+| Current validation-preview dependency path | Established read-only dependency at `core/model_operations/validation_preview/engine.py`. |
+| Current operation schema and fixture basis | Established upstream evidence at `schemas/model_operation.schema.json`, `fixtures/model_operations/invented_operation_set_valid.json`, and `fixtures/model_operations/invented_accepted_model_state.json`. |
+| Explicit user acceptance requirement | Established: accepted records require `acceptance_signal.accepted is True`, `decision == accept`, and `actor_type == user`; agent-only acceptance is held for user acceptance. |
+| Blocked validation behavior | Established: accepted records require passed schema, constraint, and unit validation, generated diff preview, and `application_status: not_applied`; blocking validation prevents accepted status. |
+| Model-state hash requirement | Established: accepted records require a current accepted model-state hash and matching model-state current-hash precondition. |
+| Accepted-state mutation behavior | Established: audit recording does not apply operations or mutate accepted model state; outputs expose `accepted_model_state_unchanged`. |
+| Rejected-record behavior | Established: rejected operations are recorded as rejected audit records and set `accepted_model_state_mutated` to `false`. |
+| Missing input diagnostics | Established: missing validation outcome, diff-preview reference, user decision, timestamp, and rationale are surfaced as visible `TBD` diagnostics or placeholder values. |
+| Deterministic record shape | Established: records are sorted by canonical JSON, hashes are derived from stable JSON serialization, and focused tests compare canonical output stability. |
+| Professional/compliance claims | Established: current audit output carries boundary flags and focused tests reject prohibited professional, certification, sealing, authentication, approval, and code-compliance wording. |
+| Durable persistence container or storage mechanism | TBD; current implementation returns an in-memory audit payload and does not define long-term storage. |
+| Long-term retention policy | TBD; rejected operations are recorded in the current payload, but durable retention duration and disposal rules are not defined. |
+| Final actor identity model beyond current fields | TBD; current fields include `actor_type`, `actor_ref`, and `source_role`, but final identity/authentication semantics are not defined. |
+| Timestamp precision policy beyond current fixture evidence | TBD; current fixture/test evidence uses ISO-like UTC strings, but project-wide precision/clock policy is not defined. |
+| Operation application outside this slice | TBD; this slice records audit decisions and explicitly does not apply operations. |
+| Human review dispositions | TBD; review finding disposition fields remain subject to the human disposition gate. |
+| Exact dependency versions | TBD per `_CONTEXT.md` architecture basis injection. |
+| Protected or proprietary engineering data in public examples | Not permitted by `docs/DIRECTIVE.md` section 3 and `docs/IP_AND_DATA_BOUNDARY.md` sections 3-5. |
+</p></div></div></section>
+<section id="SEC-ED091-0007" class="chunk sec depth-4" data-kind="section" data-key="section:144b336341a9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:144b336341a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:144b336341a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:144b336341a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-16-03 is a backend feature-slice control surface for recording operation acceptance outcomes and audit metadata. The current implementation is the deterministic audit-trail module at `core/model_operations/audit_trail/engine.py`, exercised by `tests/test_operation_audit_trail.py`. It consumes structured operation envelopes, validation/diff-preview evidence, acceptance or rejection signals, actor/source metadata, timestamps, rationale, audit metadata, and accepted model-state references.</p>
+<p>The module records accepted, rejected, and held-for-user-acceptance outcomes without applying operations or mutating accepted model state. Accepted audit records require explicit user acceptance, nonblocking validation/preview evidence, hash-bound diff-preview evidence, and a current accepted model-state hash that matches the operation precondition. Missing inputs remain visible as `TBD` diagnostics. Durable persistence, retention policy, final actor identity semantics, timestamp precision policy, operation application, and human review dispositions remain outside the established implementation facts for this slice.
+</p></div></div></section>
+<section id="SEC-ED091-0008" class="chunk sec depth-4" data-kind="section" data-key="section:9e9f11b5d523" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e9f11b5d523" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e9f11b5d523" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e9f11b5d523" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md`
+- `_REFERENCES.md`
+- `_DEPENDENCIES.md`
+- `Dependencies.csv`
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7
+- `docs/_Registers/Deliverables.csv`
+- `docs/_Registers/ScopeLedger.csv`
+- `docs/_Registers/ContextBudgetQA.csv`
+- `docs/DIRECTIVE.md`
+- `docs/CONTRACT.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/IP_AND_DATA_BOUNDARY.md`
+- `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`
+- `core/model_operations/audit_trail/engine.py`
+- `core/model_operations/validation_preview/engine.py`
+- `schemas/model_operation.schema.json`
+- `fixtures/model_operations/invented_operation_set_valid.json`
+- `fixtures/model_operations/invented_accepted_model_state.json`
+- `tests/test_operation_audit_trail.py`
+- `tests/test_operation_validation_preview.py`
+- `tests/test_model_operation_schema.py`
+</p></div></div></section>
+<section id="SEC-ED091-0009" class="chunk sec depth-2" data-kind="section" data-key="section:c12c88444978" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED091-0009</span> Component: execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c12c88444978" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c12c88444978" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c12c88444978" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0010" class="chunk sec depth-3" data-kind="section" data-key="section:8f1fe426008c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED091-0010</span> Guidance: DEL-16-03 User acceptance and operation audit trail</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f1fe426008c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f1fe426008c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f1fe426008c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0011" class="chunk sec depth-4" data-kind="section" data-key="section:7a0179e9589b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a0179e9589b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a0179e9589b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a0179e9589b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable exists to make model-operation acceptance reviewable and reproducible. It connects structured model operations and validation/diff preview outcomes to a durable audit surface that records whether an operation was accepted or rejected and preserves the metadata needed to understand the resulting model-state history.
+</p></div></div></section>
+<section id="SEC-ED091-0012" class="chunk sec depth-4" data-kind="section" data-key="section:4f9d926d068d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f9d926d068d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f9d926d068d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f9d926d068d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Route model changes through structured operations. SOW-069 states that GUI and agent edits pass through schema validation, constraint validation, diff preview, and controlled application through the model engine.
+- Preserve review context for accepted operations. SOW-070 identifies operation history, rationale, assumptions, affected entities, and audit metadata as needed for reproducible model-state review.
+- Treat explicit user acceptance as the current accepted-record gate. The current audit implementation requires `accepted: true`, `decision: accept`, and `actor_type: user`; otherwise the record is held for user acceptance unless it is explicitly rejected.
+- Require nonblocking validation and preview evidence before accepted status. Current accepted records require passed schema, constraint, and unit validation, generated diff preview, `application_status: not_applied`, a hash-bound diff-preview reference, and current accepted-state hash evidence.
+- Keep audit recording separate from operation application. The current module records audit payloads and does not mutate accepted model state.
+- Keep professional authority separate. The project permits computation and audit support, but not certification, sealing, approval, authentication, or automatic code-compliance claims.
+- Prefer explicit TBDs over silent defaults. Unknown schema fields, autonomy details, persistence mechanics, and acceptance criteria remain TBD until supported by a sealed implementation brief or accepted architecture decision.
+</p></div></div></section>
+<section id="SEC-ED091-0013" class="chunk sec depth-4" data-kind="section" data-key="section:4a4bec1f16a5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a4bec1f16a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a4bec1f16a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a4bec1f16a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The audit trail depends on upstream operation schema and validation/diff preview surfaces recorded in the approved local DAG mirror. Current implementation evidence for those surfaces is outside this deliverable folder and read-only for this run: `schemas/model_operation.schema.json`, `core/model_operations/validation_preview/engine.py`, `fixtures/model_operations/invented_operation_set_valid.json`, and `fixtures/model_operations/invented_accepted_model_state.json`.</p>
+<p>The current audit trail preserves enough metadata in returned payloads to make a model-operation acceptance decision reviewable: operation history, affected entities, actor/source metadata, validation outcome, diff-preview reference, accepted model-state reference/hash, rationale, assumptions, audit metadata, deterministic record hashes, top-level audit-trail hash, and visible diagnostics. It does not define storage tables, durable event streams, final actor identity policy, timestamp precision policy, long-term retention, or operation application.</p>
+<p>Public fixtures or examples for this deliverable should avoid protected standards data, proprietary project records, and code-specific acceptance criteria unless they have documented public redistribution rights.
+</p></div></div></section>
+<section id="SEC-ED091-0014" class="chunk sec depth-4" data-kind="section" data-key="section:8f761c492bdb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f761c492bdb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f761c492bdb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f761c492bdb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Conservative guidance |
+|---|---|
+| Acceptance metadata detail | Capture source-backed minimum fields first; add implementation-specific fields only when the schema or service contract exists. |
+| Rejected-operation retention | Current payload records rejected operations without mutating state; durable retention duration and storage remain TBD. |
+| Agent autonomy | Keep explicit user acceptance as the accepted-record gate; do not infer autonomous acceptance from agent proposal capability. |
+| Blocked validation | Treat blocking validation or preview evidence as preventing accepted status; record diagnostics visibly instead of upgrading status. |
+| Accepted-state handling | Treat audit recording as nonmutating; operation application belongs outside this slice until separately resolved. |
+| Professional wording | Use audit/review/development acceptance language; avoid professional approval or code-compliance wording. |
+| Dependency mirror handling | Preserve approved DAG-006 rows as ACTIVE; do not reinterpret the mirror as a fresh extraction result. |
+</p></div></div></section>
+<section id="SEC-ED091-0015" class="chunk sec depth-4" data-kind="section" data-key="section:a5496563137c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5496563137c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5496563137c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5496563137c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Current source-backed examples are the invented operation and accepted-state fixtures under `fixtures/model_operations/`, exercised by `tests/test_operation_audit_trail.py`, `tests/test_operation_validation_preview.py`, and `tests/test_model_operation_schema.py`. They are public invented examples and do not establish protected engineering facts.
+</p></div></div></section>
+<section id="SEC-ED091-0016" class="chunk sec depth-4" data-kind="section" data-key="section:56250a6de9bf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56250a6de9bf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56250a6de9bf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56250a6de9bf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No source conflicts were identified during Pass 1/2 drafting. The following unresolved items are not conflicts; they are source gaps to resolve later:</p>
+<p>| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| TBD | Durable persistence container, long-term retention policy, final actor identity model beyond `actor_type`/`actor_ref`/`source_role`, timestamp precision policy beyond current fixture evidence, operation application outside this slice, and human review dispositions are not resolved by the current implementation evidence. | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md`; `core/model_operations/audit_trail/engine.py`; focused tests | No persistence container, retention policy, final identity policy, timestamp policy, application workflow, or human disposition ruling present | Datasheet Conditions; Specification Documentation; Procedure Records | Future sealed Type 2 implementation brief or human governance ruling | TBD |
+</p></div></div></section>
+<section id="SEC-ED091-0017" class="chunk sec depth-2" data-kind="section" data-key="section:b94395e7d92a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED091-0017</span> Component: execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b94395e7d92a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b94395e7d92a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b94395e7d92a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0018" class="chunk sec depth-3" data-kind="section" data-key="section:5e1efded463a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED091-0018</span> Procedure: DEL-16-03 User acceptance and operation audit trail</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e1efded463a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e1efded463a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e1efded463a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0019" class="chunk sec depth-4" data-kind="section" data-key="section:149f6631c661" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:149f6631c661" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:149f6631c661" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:149f6631c661" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the conservative operating procedure for producing and later verifying the DEL-16-03 backend feature slice. This procedure is evidence-aligned guidance for the current narrow implementation and does not claim durable persistence, operation application, lifecycle closure, or downstream governance decisions.</p>
+<p>Current evidence now establishes a narrow implementation at `core/model_operations/audit_trail/engine.py` and focused tests at `tests/test_operation_audit_trail.py`. This procedure therefore distinguishes current audit-record behavior from unresolved downstream storage, retention, identity, timestamp, operation-application, and human-disposition matters.
+</p></div></div></section>
+<section id="SEC-ED091-0020" class="chunk sec depth-4" data-kind="section" data-key="section:027db9101ca4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:027db9101ca4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:027db9101ca4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:027db9101ca4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Current deliverable context: `_CONTEXT.md`.
+- Governing reference list: `_REFERENCES.md`.
+- Accepted decomposition basis: `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7.
+- Approved local DAG-002 dependency mirror: `_DEPENDENCIES.md` and `Dependencies.csv`.
+- Upstream context recorded in the local mirror, including architecture-basis rows DAG-002-E0744 through DAG-002-E0750 and execution context rows DAG-002-E0832 through DAG-002-E0836.
+- Default user-acceptance posture from `_CONTEXT.md` and OI-016.
+- Current audit-trail implementation: `core/model_operations/audit_trail/engine.py`.
+- Current validation-preview implementation: `core/model_operations/validation_preview/engine.py`.
+- Current upstream schema and fixtures: `schemas/model_operation.schema.json`, `fixtures/model_operations/invented_operation_set_valid.json`, and `fixtures/model_operations/invented_accepted_model_state.json`.
+- Current focused tests: `tests/test_operation_audit_trail.py`, `tests/test_operation_validation_preview.py`, and `tests/test_model_operation_schema.py`.
+</p></div></div></section>
+<section id="SEC-ED091-0021" class="chunk sec depth-4" data-kind="section" data-key="section:c599b26f4c7f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c599b26f4c7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c599b26f4c7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c599b26f4c7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the work is still bounded to DEL-16-03, PKG-16, SOW-069, SOW-070, and OBJ-015.
+2. Confirm that the operation under review is represented as a structured model operation. If not, record a rejection or TBD path rather than applying a hidden mutation.
+3. Confirm that schema validation, constraint validation, unit validation, diff preview status, and application status are available from the upstream validation-preview surface.
+4. Do not mark an audit record accepted unless validation has passed, diff preview has been generated, application status remains `not_applied`, a hash-bound diff-preview reference is present, and the operation current-hash precondition matches the accepted model-state hash.
+5. Require an explicit user-acceptance signal before recording an operation as accepted. Under current behavior this means `accepted: true`, `decision: accept`, and `actor_type: user`.
+6. If validation is blocked, accepted-state hash evidence is missing or mismatched, diff-preview hash evidence is missing, or the user signal is absent/non-user, record the operation as held for user acceptance rather than accepted.
+7. For accepted operations, preserve operation history, rationale, assumptions, affected entities, validation outcome, diff-preview reference, accepted model-state reference, and audit metadata needed for reproducible model-state review.
+8. For rejected operations, preserve rejected disposition and audit metadata without mutating accepted model state. Exact durable rejection-retention policy remains TBD.
+9. For missing validation outcome, diff-preview reference, user decision, timestamp, rationale, source, actor, or audit metadata, preserve visible `TBD` diagnostics or placeholder fields rather than silently defaulting.
+10. Avoid language or fields that imply professional approval, certification, sealing, authentication, or code compliance.
+11. Validate public fixtures and examples for protected-content, provenance, privacy, and data-boundary issues before treating them as acceptable test data.
+12. Produce acceptance workflow tests covering accepted, rejected, held-for-user-acceptance, blocked validation, missing hash, missing input/TBD, deterministic output, accepted-state nonmutation, and professional-boundary wording paths.
+</p></div></div></section>
+<section id="SEC-ED091-0022" class="chunk sec depth-4" data-kind="section" data-key="section:8dc2f7b1f402" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8dc2f7b1f402" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8dc2f7b1f402" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8dc2f7b1f402" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Scope check | Deliverable ID, package, scope items, and objective match `_CONTEXT.md`, registers, and decomposition. |
+| Acceptance gate check | Proposed operations cannot become accepted audit records without the required user-acceptance signal under the current default posture. |
+| Validation gate check | Blocked schema, constraint, unit, or diff-preview evidence prevents accepted audit status. |
+| Hash binding check | Accepted audit records require a hash-bound diff-preview reference and accepted model-state hash evidence matching operation preconditions. |
+| Audit metadata check | Accepted-operation records preserve source-backed audit metadata categories from SOW-070 and `_CONTEXT.md`. |
+| Rejection path check | Rejected operations are recorded as rejected and do not mutate accepted model state. |
+| Nonmutation check | Audit recording and validation preview do not apply operations or mutate accepted model state. |
+| Assumption/TBD check | Missing implementation details remain visible as TBD or assumptions. |
+| Boundary check | Audit records and tests avoid professional-approval claims and protected/private data leakage. |
+</p></div></div></section>
+<section id="SEC-ED091-0023" class="chunk sec depth-4" data-kind="section" data-key="section:bbe77594d1c9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbe77594d1c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbe77594d1c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbe77594d1c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Operation audit log.
+- Acceptance workflow tests.
+- Review notes for unresolved TBDs and assumptions.
+- Protected-content/provenance check results for any public fixtures.
+- Future human decisions that change the default acceptance/autonomy posture.
+- Future human decisions for durable persistence container, long-term retention policy, final actor identity model, timestamp precision policy, operation application outside this slice, and review finding dispositions.
+</p></div></div></section>
+<section id="SEC-ED091-0024" class="chunk sec depth-2" data-kind="section" data-key="section:27d60f34d439" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED091-0024</span> Component: execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:27d60f34d439" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:27d60f34d439" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:27d60f34d439" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0025" class="chunk sec depth-3" data-kind="section" data-key="section:47d6630caaad" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED091-0025</span> Specification: DEL-16-03 User acceptance and operation audit trail</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47d6630caaad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47d6630caaad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47d6630caaad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED091-0026" class="chunk sec depth-4" data-kind="section" data-key="section:2531e793e141" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2531e793e141" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2531e793e141" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2531e793e141" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-16-03 covers the backend feature slice for recording accepted/rejected model operations, affected entities, actor/source metadata, timestamps, assumptions, operation history, rationale, and audit metadata needed for reproducible model-state review.</p>
+<p>The scope is bounded to SOW-069 and SOW-070 and supports OBJ-015. It does not implement hidden model mutation, autonomous engineering acceptance, professional approval, certification, sealing, or code-compliance claims. Exact audit-log schema, persistence details, and autonomy policy beyond the default user-acceptance posture remain TBD until a sealed implementation brief resolves them.</p>
+<p>Current implementation evidence establishes a narrow deterministic audit-record constructor at `core/model_operations/audit_trail/engine.py`. It returns an audit payload for structured operation inputs and does not persist the payload, apply operations, or mutate accepted model state. The current upstream operation schema, validation/preview engine, fixtures, and focused tests are the evidence basis for this specification update.
+</p></div></div></section>
+<section id="SEC-ED091-0027" class="chunk sec depth-4" data-kind="section" data-key="section:f2339af7f76b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2339af7f76b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2339af7f76b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2339af7f76b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source | Verification approach |
+|---|---|---|---|
+| DEL-16-03-REQ-001 | GUI and agent edits that reach this surface shall be represented as structured model operations before controlled application. | SOW-069 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5; `docs/_Registers/ScopeLedger.csv` row SOW-069 | Acceptance workflow tests confirm only structured operation inputs are accepted by the audit workflow. |
+| DEL-16-03-REQ-002 | The acceptance workflow shall account for schema validation, constraint validation, unit validation, diff preview, and non-application status before an audit record may be marked accepted. | SOW-069 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5; `core/model_operations/audit_trail/engine.py`; `core/model_operations/validation_preview/engine.py` | `tests/test_operation_audit_trail.py` asserts blocked validation prevents accepted records; `tests/test_operation_validation_preview.py` asserts invalid schema/unit/constraint/direct-mutation paths block preview and keep `application_status` as `not_applied`. |
+| DEL-16-03-REQ-003 | The audit trail shall record accepted, rejected, and held-for-user-acceptance operation outcomes. | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 7 PKG-16; `core/model_operations/audit_trail/engine.py` | `tests/test_operation_audit_trail.py` asserts accepted, rejected, and held-for-user-acceptance dispositions and decision counts. |
+| DEL-16-03-REQ-004 | The audit trail shall record affected entities, actor/source metadata, timestamps, assumptions, validation outcomes, diff-preview references, operation history, audit metadata, and explicit visible `TBD` diagnostics for missing inputs. | `_CONTEXT.md`; `core/model_operations/audit_trail/engine.py` | `tests/test_operation_audit_trail.py` asserts affected entities, actor/source metadata, unresolved assumptions, validation outcome, diff-preview ref, and visible missing-input diagnostics. |
+| DEL-16-03-REQ-005 | Accepted model-operation audit records shall preserve operation history, rationale, assumptions, affected entities, audit metadata, accepted model-state references, and hash evidence needed for reproducible model-state review. | SOW-070 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 5; `docs/_Registers/ScopeLedger.csv` row SOW-070; `core/model_operations/audit_trail/engine.py` | Focused tests confirm accepted records retain review metadata, diff-preview evidence, model-state hash references, and stable record hashes. |
+| DEL-16-03-REQ-006 | The default workflow shall require explicit user acceptance before a record can be marked accepted. | `_CONTEXT.md`; OI-016 in `execution/_Decomposition/SOFTWARE_DECOMP.md` section 12; `core/model_operations/audit_trail/engine.py` | `tests/test_operation_audit_trail.py` covers that agent-only or missing acceptance signals produce `held_for_user_acceptance` with `AUDIT-EXPLICIT-USER-ACCEPTANCE-REQUIRED`. |
+| DEL-16-03-REQ-007 | The audit trail shall not represent operation acceptance as professional approval, certification, sealing, or code compliance. | `docs/DIRECTIVE.md` section 3; `INIT.md`; `docs/TYPES.md` section 9; SOW-070 note | Tests or review checks assert terminology remains development/audit oriented and does not create professional reliance claims. |
+| DEL-16-03-REQ-008 | Public examples and records shall not introduce protected standards text, code-specific values, proprietary project data, or private engineering data by default. | `docs/DIRECTIVE.md` section 3; `docs/IP_AND_DATA_BOUNDARY.md` sections 3-5; `docs/CONTRACT.md` OPS-K-PRIV and OPS-K-AGENT invariants | Protected-content/provenance review gate for fixtures and sample audit records. |
+| DEL-16-03-REQ-009 | Missing data and assumptions shall be visible rather than silently defaulted. | `docs/DIRECTIVE.md` section 3; `docs/CONTRACT.md` OPS-K-AGENT-1; `docs/SPEC.md` section 12 | Tests verify unresolved assumptions and missing required inputs are recorded or surfaced as TBD. |
+| DEL-16-03-REQ-010 | Accepted audit records shall require a hash-bound diff-preview reference and a current accepted model-state hash that matches the operation current-hash precondition. | `core/model_operations/audit_trail/engine.py`; `schemas/model_operation.schema.json`; `fixtures/model_operations/invented_accepted_model_state.json` | `tests/test_operation_audit_trail.py` asserts missing model-state hash prevents accepted status; the audit engine also emits blocking diagnostics for missing or mismatched operation current-hash preconditions and missing diff-preview hash. |
+| DEL-16-03-REQ-011 | Audit recording shall not mutate accepted model state or apply the operation. | `_CONTEXT.md`; package exclusion for hidden mutation; `core/model_operations/audit_trail/engine.py`; `core/model_operations/validation_preview/engine.py` | `tests/test_operation_audit_trail.py` asserts rejected records do not mutate accepted state; `tests/test_operation_validation_preview.py` asserts validation preview does not mutate accepted state and application status remains `not_applied`. |
+| DEL-16-03-REQ-012 | Rejected operations shall be recorded as audit-only rejected records with accepted-state mutation set false. | `_CONTEXT.md`; `core/model_operations/audit_trail/engine.py` | `tests/test_operation_audit_trail.py` asserts rejected decision counts, rejected status, unchanged accepted state, and `accepted_model_state_mutated` false. |
+</p></div></div></section>
+<section id="SEC-ED091-0028" class="chunk sec depth-4" data-kind="section" data-key="section:2f6f674069a9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2f6f674069a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2f6f674069a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2f6f674069a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No external piping code, protected standard, or engineering acceptance standard text is locally accessible for this deliverable. Governing standards for this setup pass are the project governance documents and accepted software decomposition listed in `_REFERENCES.md`.</p>
+<p>Architecture basis in `_CONTEXT.md` records JSON Schema 2020-12 contracts and canonical JSON/JCS-compatible hash basis where JSON payloads are hashed. Current upstream operation records are governed by `schemas/model_operation.schema.json`, and the current audit payload uses stable JSON serialization plus SHA-256 hashes for record and audit-trail identity. A standalone persisted DEL-16-03 audit-log schema and persistence mechanism remain TBD.
+</p></div></div></section>
+<section id="SEC-ED091-0029" class="chunk sec depth-4" data-kind="section" data-key="section:b1ffa85feeb2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b1ffa85feeb2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b1ffa85feeb2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b1ffa85feeb2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification target | Required evidence |
+|---|---|
+| Scope alignment | DEL-16-03 ID, PKG-16 package, SOW-069/SOW-070 scope, and OBJ-015 objective match `_CONTEXT.md`, registers, and decomposition. |
+| Audit-log content | Operation audit log records disposition, affected entities, actor/source metadata, timestamp, assumptions, rationale/history where accepted, and audit metadata. |
+| Acceptance workflow | Tests cover accepted and rejected model-operation paths and demonstrate that default user acceptance gates proposed operations. |
+| Boundary language | Review confirms no professional approval, certification, sealing, or code-compliance claim is introduced. |
+| Data boundary | Review confirms no protected standards text, proprietary project data, or private engineering data appears in public fixtures or examples. |
+| State nonmutation | Tests confirm audit recording and validation preview leave accepted model state unchanged and do not apply operations. |
+| Hash binding | Tests and code inspection confirm accepted audit records require current accepted-state hash evidence and hash-bound preview evidence. |
+</p></div></div></section>
+<section id="SEC-ED091-0030" class="chunk sec depth-4" data-kind="section" data-key="section:a57404f26468" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED091-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a57404f26468" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a57404f26468" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a57404f26468" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Expected artifacts from `_CONTEXT.md` and `docs/_Registers/Deliverables.csv`:</p>
+<p>- operation audit log
+- acceptance workflow tests</p>
+<p>Current implementation and test evidence:</p>
+<p>- `core/model_operations/audit_trail/engine.py`
+- `tests/test_operation_audit_trail.py`
+- `core/model_operations/validation_preview/engine.py`
+- `tests/test_operation_validation_preview.py`
+- `schemas/model_operation.schema.json`
+- `tests/test_model_operation_schema.py`
+- `fixtures/model_operations/invented_operation_set_valid.json`
+- `fixtures/model_operations/invented_accepted_model_state.json`</p>
+<p>Durable persistence container, long-term retention policy, final actor identity model beyond current fields, timestamp precision policy beyond fixture evidence, operation application outside this slice, and human review dispositions remain TBD.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED091";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

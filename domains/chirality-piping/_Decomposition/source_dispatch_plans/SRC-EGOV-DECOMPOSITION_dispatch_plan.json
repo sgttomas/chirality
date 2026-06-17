@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-DECOMPOSITION",
+  "source_prefix": "EG001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-EGOV-DECOMPOSITION_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-EGOV-DECOMPOSITION.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 2,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG001-0001",
+      "line_start": 9,
+      "line_end": 575,
+      "target_section_ids": [
+        "SEC-EG001-0002",
+        "SEC-EG001-0003",
+        "SEC-EG001-0004",
+        "SEC-EG001-0005",
+        "SEC-EG001-0006",
+        "SEC-EG001-0007",
+        "SEC-EG001-0008",
+        "SEC-EG001-0009",
+        "SEC-EG001-0010",
+        "SEC-EG001-0011",
+        "SEC-EG001-0012",
+        "SEC-EG001-0013",
+        "SEC-EG001-0014",
+        "SEC-EG001-0015",
+        "SEC-EG001-0016",
+        "SEC-EG001-0017",
+        "SEC-EG001-0018",
+        "SEC-EG001-0019",
+        "SEC-EG001-0020",
+        "SEC-EG001-0021",
+        "SEC-EG001-0022",
+        "SEC-EG001-0023",
+        "SEC-EG001-0024",
+        "SEC-EG001-0025",
+        "SEC-EG001-0026",
+        "SEC-EG001-0027",
+        "SEC-EG001-0028",
+        "SEC-EG001-0029",
+        "SEC-EG001-0030",
+        "SEC-EG001-0031",
+        "SEC-EG001-0032",
+        "SEC-EG001-0033",
+        "SEC-EG001-0034",
+        "SEC-EG001-0035"
+      ],
+      "estimated_md_tokens": 12586,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-EG001-0002",
+      "line_start": 576,
+      "line_end": 625,
+      "target_section_ids": [
+        "SEC-EG001-0036",
+        "SEC-EG001-0037"
+      ],
+      "estimated_md_tokens": 5614,
+      "contains_oversized_section": false
+    }
+  ]
+}

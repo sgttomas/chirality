@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS",
+  "source_doc_id": "SRC-DEL-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS",
+  "source_prefix": "ED080",
+  "repo_rel_path": "execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/",
+  "catalog_rel_path": "@repo/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-14-MODEL-STATES-ANALYSIS-RUNS-AND-COMPARISON-1-WORKING-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS-DATASHEET",
+      "expected_sha256": "c179915ecd0732f6caa154377d49756239cb6f4ce909232faf626c966607a45b",
+      "generated_line_start": 11,
+      "generated_line_end": 69,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-14-MODEL-STATES-ANALYSIS-RUNS-AND-COMPARISON-1-WORKING-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS-GUIDANCE",
+      "expected_sha256": "de74a7f82f087c37ef116270e489328c115c2d84c534e65632e61e565b8857b5",
+      "generated_line_start": 73,
+      "generated_line_end": 115,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -72
+    },
+    {
+      "repo_rel_path": "execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-14-MODEL-STATES-ANALYSIS-RUNS-AND-COMPARISON-1-WORKING-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS-PROCEDURE",
+      "expected_sha256": "9ed2dee6f8c838e7ddd198bc5c1236524dec251e1115c19a023d4c285396b8ae",
+      "generated_line_start": 119,
+      "generated_line_end": 170,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -118
+    },
+    {
+      "repo_rel_path": "execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-14-MODEL-STATES-ANALYSIS-RUNS-AND-COMPARISON-1-WORKING-DEL-14-01-IMMUTABLE-MODEL-STATE-RECORDS-SPECIFICATION",
+      "expected_sha256": "be156094ce13b0efcdcdf2c957243573ec2206fbdbb9b00a7d63710dcdb4a34a",
+      "generated_line_start": 174,
+      "generated_line_end": 238,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -173
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

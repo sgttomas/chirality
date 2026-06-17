@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR",
+  "source_doc_id": "SRC-DEL-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR",
+  "source_prefix": "ED038",
+  "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/",
+  "catalog_rel_path": "@repo/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR-DATASHEET",
+      "expected_sha256": "3d5f9b4d1ce8f03b40d49591c5cf2b8d6d955f842b57fa45ab9d030a5cb468ba",
+      "generated_line_start": 11,
+      "generated_line_end": 77,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR-GUIDANCE",
+      "expected_sha256": "f16061c62055bc6e5d27f1b2b188f0c3ef84a0f5e9dad3b62a8feed629b21629",
+      "generated_line_start": 81,
+      "generated_line_end": 140,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -80
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR-PROCEDURE",
+      "expected_sha256": "c4f8fab5fc860d73ea7d692bed3b6716bed88bbdd5f08986b6715e33ca97e074",
+      "generated_line_start": 144,
+      "generated_line_end": 202,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -143
+    },
+    {
+      "repo_rel_path": "execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-06-RULE-PACKS-AND-USER-SUPPLIED-CODE-CHECK-ENGINE-1-WORKING-DEL-06-02-SANDBOXED-UNIT-AWARE-EXPRESSION-EVALUATOR-SPECIFICATION",
+      "expected_sha256": "91777fee206b2649e1f1ed53d1e9c6ebbed832dccca83b2edd0dffa0fb324a63",
+      "generated_line_start": 206,
+      "generated_line_end": 264,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -205
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

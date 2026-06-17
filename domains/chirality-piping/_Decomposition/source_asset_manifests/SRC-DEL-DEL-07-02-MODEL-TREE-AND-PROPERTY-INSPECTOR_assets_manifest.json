@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR",
+  "source_doc_id": "SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR",
+  "source_prefix": "ED043",
+  "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/",
+  "catalog_rel_path": "@repo/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR-DATASHEET",
+      "expected_sha256": "3900475fb170a3702c54f9c28ac0f4424746fa51ef413442aa97e67f801f0ef6",
+      "generated_line_start": 11,
+      "generated_line_end": 82,
+      "source_line_start": 1,
+      "source_line_end": 72,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR-GUIDANCE",
+      "expected_sha256": "630eafb0c27a41d23335d5759489935e06f733f94fec4be1d642bb042fa82ccf",
+      "generated_line_start": 86,
+      "generated_line_end": 131,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -85
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR-PROCEDURE",
+      "expected_sha256": "b8479c5442a842a7717fc432b8fd02c8e9a1ebf7274f1c82a5801bcd0a8e6eef",
+      "generated_line_start": 135,
+      "generated_line_end": 179,
+      "source_line_start": 1,
+      "source_line_end": 45,
+      "line_offset": -134
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR-SPECIFICATION",
+      "expected_sha256": "fd864256e66c47d06c4a1d7aafdfbec3d663acf695ffa89c633180f1daf5d24c",
+      "generated_line_start": 183,
+      "generated_line_end": 247,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -182
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

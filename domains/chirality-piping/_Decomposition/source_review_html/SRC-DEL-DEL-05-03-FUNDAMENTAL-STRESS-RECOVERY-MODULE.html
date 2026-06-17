@@ -1,0 +1,474 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED034-0001">Source Pack: SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-M</a> <a href="#SEC-ED034-0002">Component: execution/PKG-05_Loads, Load Cases, and Stress Re</a> <a href="#SEC-ED034-0010">Component: execution/PKG-05_Loads, Load Cases, and Stress Re</a> <a href="#SEC-ED034-0018">Component: execution/PKG-05_Loads, Load Cases, and Stress Re</a> <a href="#SEC-ED034-0025">Component: execution/PKG-05_Loads, Load Cases, and Stress Re</a></nav>
+<main>
+<section id="SEC-ED034-0001" class="chunk sec depth-1" data-kind="section" data-key="section:72b2b1c94379" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED034-0001</span> Source Pack: SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72b2b1c94379" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72b2b1c94379" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72b2b1c94379" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED034-0002" class="chunk sec depth-2" data-kind="section" data-key="section:38045abeec0f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED034-0002</span> Component: execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:38045abeec0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:38045abeec0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:38045abeec0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0003" class="chunk sec depth-3" data-kind="section" data-key="section:7f1fa8b7cf23" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED034-0003</span> Datasheet: DEL-05-03 Fundamental stress recovery module</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f1fa8b7cf23" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f1fa8b7cf23" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f1fa8b7cf23" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0004" class="chunk sec depth-4" data-kind="section" data-key="section:244ccb03effa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:244ccb03effa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:244ccb03effa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:244ccb03effa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-05-03 |
+| Package ID | PKG-05 |
+| Package | Loads, Load Cases, and Stress Recovery |
+| Type | BACKEND_FEATURE_SLICE |
+| Scope item | SOW-015 |
+| Objective | OBJ-003 |
+| Context envelope | M |
+| Anticipated artifacts | stress recovery module; hand-calc tests |
+</p></div></div></section>
+<section id="SEC-ED034-0005" class="chunk sec depth-4" data-kind="section" data-key="section:dda907b4c2da" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dda907b4c2da" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dda907b4c2da" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dda907b4c2da" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current value |
+|---|---|
+| Module purpose | Recover code-neutral mechanics stresses from explicit force resultants, pressure-basis inputs, section properties, station resultants, and two-state mechanics ranges. |
+| Implemented module path | `core/loads/stress_recovery` Rust crate, package `open_pipe_stress_stress_recovery`. |
+| Implemented API surface | `recover_stresses`, `recover_stresses_with_unit_metadata`, `recover_stress_range`, `recover_station_stresses`, `recover_station_stress_sweep`, `ForceResultants::from_element_end_resultants`, and `ForceResultants::from_station_resultants`. |
+| Covered mechanics | Axial normal stress, bending normal stress about y/z, torsional shear stress, thin-wall pressure hoop and longitudinal membrane stress, station-local stress recovery, ordered station stress sweeps, and mechanics-only component ranges. |
+| Excluded mechanics | Code stress categories, allowables, rule-pack equations, certification decisions, and professional compliance judgments. |
+| Analysis boundary | Mechanics recovery within the 3D centerline/frame solver result flow; shell/solid FEA remains a downstream local-analysis handoff path and is not implemented by this crate. |
+| Unit policy | `StressRecoveryInputUnitMetadata` validates explicit unit metadata against accepted canonical dimensions for present force, moment, pressure, geometry, section-property, and stress-boundary quantities. Unit conversion constants and a project conversion catalog remain `TBD`. |
+| Data provenance policy | Section properties, geometry, pressure, and other solve inputs are user-supplied, generated by governed upstream modules, or lawfully imported private/project data. |
+</p></div></div></section>
+<section id="SEC-ED034-0006" class="chunk sec depth-4" data-kind="section" data-key="section:7605757711e5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7605757711e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7605757711e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7605757711e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Force-result source contract | Element-end and straight-pipe station adapters are implemented for explicit mechanics resultants; final application-service/result-envelope ownership remains `TBD`. |
+| Section-property source contract | Implemented input fields are area, y/z section modulus, torsion constant, and torsion radius; the authoritative upstream section-property deliverable/source remains subject to REVIEW. |
+| Pressure-result convention | Implemented optional `PressureBasis` uses explicit pressure, membrane radius, and wall thickness to recover mechanics pressure hoop and longitudinal components; it does not classify code stress. |
+| Station convention | Implemented station recovery preserves caller-supplied station identity and validated station fraction. Sweep recovery preserves caller order and assigns deterministic indexed IDs from a caller-provided prefix. |
+| Mechanics-only range convention | Implemented range recovery computes component-wise absolute deltas between two unblocked recovered mechanics states. It blocks incomplete states and asymmetric optional components, and it is not a fatigue, equivalent-stress, allowable, or code range check. |
+| Stress component naming | Implemented component fields are `axial_normal`, `bending_normal_y`, `bending_normal_z`, `torsional_shear`, `pressure_hoop`, and `pressure_longitudinal`. Public report/rule-pack naming remains `TBD`. |
+| Hand-calc fixture data | Unit tests use synthetic/cleared values. Any broader benchmark or publication fixture scope remains `TBD` and must not use protected standards content. |
+</p></div></div></section>
+<section id="SEC-ED034-0007" class="chunk sec depth-4" data-kind="section" data-key="section:89d2eb67721e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89d2eb67721e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89d2eb67721e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89d2eb67721e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implementation evidence exists in `core/loads/stress_recovery/README.md` and `core/loads/stress_recovery/src/lib.rs`. The crate performs open-mechanics recovery for:</p>
+<p>- axial normal stress from axial force divided by area;
+- bending normal stress components from bending moments divided by corresponding section moduli;
+- torsional shear stress from torque, torsion radius, and torsion constant;
+- pressure membrane hoop stress from pressure, membrane radius, and wall thickness, with longitudinal pressure stress as one half of hoop stress;
+- stress summaries limited to max/min normal mechanics values and maximum torsional shear magnitude;
+- station-local recovery from straight-pipe station resultants; and
+- ordered station sweeps and mechanics-only component ranges.</p>
+<p>Missing resultants, missing section or pressure inputs, non-finite values, non-positive properties, missing or incompatible unit metadata, non-finite recovered outputs, incomplete mechanics status, blocked range states, and status-boundary violations produce explicit findings rather than silent defaults.</p>
+<p>This deliverable remains mechanics-only. It does not add design-code stress equations, allowables, stress indices, SIF/flexibility tables, protected standards content, public pipe tables, rule checks, reporting, GUI behavior, local FEA handoff, release claims, or professional/code-compliance conclusions.
+</p></div></div></section>
+<section id="SEC-ED034-0008" class="chunk sec depth-4" data-kind="section" data-key="section:0f6b961123e5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0f6b961123e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0f6b961123e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0f6b961123e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for deliverable identity, scope, artifacts, and architecture-basis injection.
+- `docs/_Registers/Deliverables.csv` row `DEL-05-03`.
+- `docs/_Registers/ScopeLedger.csv` row `SOW-015`.
+- `docs/_Registers/ContextBudgetQA.csv` row `DEL-05-03`.
+- `docs/CONTRACT.md` invariants listed in the sealed brief.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 architecture basis IDs `AB-00-01`, `AB-00-02`, `AB-00-03`, `AB-00-06`, and `AB-00-08`.
+- `core/loads/stress_recovery/README.md` for implemented crate scope and boundary.
+- `core/loads/stress_recovery/src/lib.rs` for implemented API, data types, findings, and tests.
+</p></div></div></section>
+<section id="SEC-ED034-0009" class="chunk sec depth-4" data-kind="section" data-key="section:123b421e9067" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0009</span> Open Questions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:123b421e9067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:123b421e9067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:123b421e9067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Question | Status |
+|---|---|
+| Which application-service/result-envelope contract owns stress recovery persistence and external command/query results? | `TBD` |
+| Which upstream section-property deliverable supplies production properties and unit metadata? | `TBD` |
+| What public report/rule-pack labels and sign conventions wrap the implemented mechanics component fields? | `TBD` |
+| Which deterministic hand-calc and benchmark cases are accepted for release evidence without protected standards content? | `TBD` |
+| What production tolerance policy and unit conversion catalog apply outside this mechanics-only crate? | `TBD` |
+</p></div></div></section>
+<section id="SEC-ED034-0010" class="chunk sec depth-2" data-kind="section" data-key="section:513c017e0a22" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED034-0010</span> Component: execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:513c017e0a22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:513c017e0a22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:513c017e0a22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0011" class="chunk sec depth-3" data-kind="section" data-key="section:31fd086f1714" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED034-0011</span> Guidance: DEL-05-03 Fundamental stress recovery module</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31fd086f1714" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31fd086f1714" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31fd086f1714" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0012" class="chunk sec depth-4" data-kind="section" data-key="section:80873475fd36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:80873475fd36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:80873475fd36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:80873475fd36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable isolates fundamental mechanics stress recovery as a bounded solver/load-result feature. The implemented crate converts governed mechanical resultants, section properties, optional pressure-basis inputs, and straight-pipe station resultants into stress components while leaving code categorization, acceptability, and professional compliance outside the module.
+</p></div></div></section>
+<section id="SEC-ED034-0013" class="chunk sec depth-4" data-kind="section" data-key="section:a4e48a4258f5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4e48a4258f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4e48a4258f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4e48a4258f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Keep mechanics computation separate from rule-pack acceptability and human compliance judgment.
+- Treat pressure, section properties, dimensions, material-related values, and examples as governed inputs, not hidden defaults.
+- Prefer explicit `TBD` and explicit diagnostics over silent assumptions when stress recovery inputs are incomplete.
+- Preserve unit and provenance information through stress inputs, intermediate checks, and outputs.
+- Use only synthetic, public-domain, or otherwise cleared hand-calc fixtures.
+- Treat stress ranges as mechanics component deltas only. Do not convert them into fatigue decisions, equivalent stresses, code stress ranges, allowable comparisons, or professional conclusions.
+- Preserve station identity and caller order when recovering station-local stresses or station sweeps.
+</p></div></div></section>
+<section id="SEC-ED034-0014" class="chunk sec depth-4" data-kind="section" data-key="section:537dffa36928" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:537dffa36928" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:537dffa36928" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:537dffa36928" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implemented evidence is in `core/loads/stress_recovery/README.md` and `core/loads/stress_recovery/src/lib.rs`. The crate recovers:</p>
+<p>- axial normal stress from axial force and area;
+- bending normal stress components from y/z bending moments and section moduli;
+- torsional shear stress from torsional moment, torsion radius, and torsion constant;
+- pressure hoop and longitudinal membrane stress from explicit pressure, radius, and wall thickness;
+- station-local stresses from straight-pipe station resultants; and
+- ordered station sweeps and two-state mechanics-only component ranges.</p>
+<p>The implementation already validates finite inputs, positive section/pressure geometry properties, unit metadata dimensions for present quantities, station fractions, analysis-status boundaries, and result-boundary metadata. Missing or invalid values produce findings and block recovered outputs where required.</p>
+<p>The module still depends on upstream/downstream contracts for production section-property authority, final unit conversions, solver/result-envelope ownership, application-service APIs, persistence, report labels, rule-pack consumers, release benchmarks, and professional reliance policy. Those contracts remain `TBD` unless separately accepted.</p>
+<p>Verification should use open mechanics and cleared data. Any educational or hand-check example must avoid copying protected standards examples, tables, allowables, or formula presentations.
+</p></div></div></section>
+<section id="SEC-ED034-0015" class="chunk sec depth-4" data-kind="section" data-key="section:57672ee751b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0015</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:57672ee751b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:57672ee751b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:57672ee751b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Guidance |
+|---|---|
+| Mechanics stress vs code stress | Recover fundamental stress components here; keep code equations, categories, and allowables in rule packs or private/user inputs. |
+| Completeness vs data boundary | Record missing section properties, pressure, or force resultants as findings rather than providing public defaults. |
+| Solver result scope vs stress recovery scope | Consume governed mechanical resultants; do not duplicate global solver assembly or element force recovery. |
+| Station recovery vs station generation | Recover station stresses from supplied straight-pipe station resultants; station generation and global solver interpolation belong upstream. |
+| Sweep determinism vs interpretation | Preserve caller order and deterministic IDs in station sweeps; do not infer controlling stress locations or design acceptance. |
+| Range utility vs code meaning | Provide component-wise absolute mechanics deltas only; fatigue, equivalent stress, and code stress range interpretation remain downstream. |
+| Test usefulness vs IP boundary | Use clear hand-calc cases, but keep values invented/cleared and avoid protected standard examples. |
+</p></div></div></section>
+<section id="SEC-ED034-0016" class="chunk sec depth-4" data-kind="section" data-key="section:07aa48403160" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0016</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07aa48403160" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07aa48403160" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07aa48403160" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Concrete public-facing examples remain `TBD`. Existing crate unit tests use synthetic values for implemented behavior. Future examples must use synthetic or cleared data and must not reproduce protected standards content.
+</p></div></div></section>
+<section id="SEC-ED034-0017" class="chunk sec depth-4" data-kind="section" data-key="section:43204c3e01eb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43204c3e01eb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43204c3e01eb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43204c3e01eb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Issue | Contenders | Human ruling |
+|---|---|---|---|
+| None | No conflict found between the mechanics-only deliverable boundary and current implementation evidence. | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED034-0018" class="chunk sec depth-2" data-kind="section" data-key="section:696b6f0f5545" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED034-0018</span> Component: execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:696b6f0f5545" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:696b6f0f5545" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:696b6f0f5545" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0019" class="chunk sec depth-3" data-kind="section" data-key="section:4253e57bf6a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED034-0019</span> Procedure: DEL-05-03 Fundamental stress recovery module</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4253e57bf6a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4253e57bf6a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4253e57bf6a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0020" class="chunk sec depth-4" data-kind="section" data-key="section:bd6439ccfecb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd6439ccfecb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd6439ccfecb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd6439ccfecb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the bounded procedure for maintaining, reviewing, and extending the implemented fundamental stress recovery module without expanding beyond the approved mechanics-only deliverable boundary.
+</p></div></div></section>
+<section id="SEC-ED034-0021" class="chunk sec depth-4" data-kind="section" data-key="section:f90a4ab24bf1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f90a4ab24bf1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f90a4ab24bf1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f90a4ab24bf1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm the sealed brief names `DEL-05-03` and write scope is this deliverable folder or a separately approved implementation scope.
+- Confirm upstream architecture basis constraints from `AB-00-01`, `AB-00-02`, `AB-00-03`, `AB-00-06`, and `AB-00-08`.
+- Confirm the current implementation evidence in `core/loads/stress_recovery/README.md` and `core/loads/stress_recovery/src/lib.rs`.
+- Confirm unit metadata, result-boundary, station-resultant, and result-envelope interfaces to be used; unresolved production integration items remain `TBD`.
+- Confirm all example force resultants, section properties, pressure values, and fixtures are synthetic, public-domain, or otherwise cleared.
+</p></div></div></section>
+<section id="SEC-ED034-0022" class="chunk sec depth-4" data-kind="section" data-key="section:ed8a6ad9fab8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed8a6ad9fab8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed8a6ad9fab8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed8a6ad9fab8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Re-read `_CONTEXT.md`, `Specification.md`, and `_DEPENDENCIES.md`.
+2. Re-read `core/loads/stress_recovery/README.md` and `core/loads/stress_recovery/src/lib.rs` before changing deliverable docs or code.
+3. Identify the accepted module boundary for mechanics stress recovery and its relation to solver result recovery, load cases, rule packs, reports, GUI, and local FEA handoff.
+4. For maintenance work, preserve the implemented mechanics-only API behavior unless the sealed brief explicitly authorizes a bounded change.
+5. For new behavior, identify required input contracts for axial force, bending moments, torsion, pressure, section properties, station resultants, units, diagnostics, ranges, and result envelopes.
+6. Add or preserve explicit findings for missing solve-required values, invalid/non-finite values, non-positive properties, unit metadata defects, incomplete statuses, blocked states, and status-boundary violations; do not apply silent defaults.
+7. Add deterministic tests with synthetic or cleared inputs for any changed behavior.
+8. Verify recovered stresses remain mechanical results and do not claim code compliance, release acceptance, or professional approval.
+</p></div></div></section>
+<section id="SEC-ED034-0023" class="chunk sec depth-4" data-kind="section" data-key="section:40393e50ca1f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0023</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40393e50ca1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40393e50ca1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40393e50ca1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected evidence |
+|---|---|
+| Scope boundary | Implementation changes are limited to the approved implementation scope for DEL-05-03. |
+| Unit behavior | Unit metadata tests pass and missing/wrong dimensions fail explicitly; conversion constants remain outside this crate. |
+| Missing input behavior | Missing solve-required force, pressure, section-property, status, range, or unit metadata inputs produce findings. |
+| Stress result behavior | Recovered mechanics stress components are deterministic for accepted synthetic/cleared cases. |
+| Station behavior | Station recovery preserves station identity and fraction; station sweeps preserve caller order and deterministic indexed IDs. |
+| Range behavior | Mechanics-only ranges are component-wise deltas between two unblocked stress states and do not imply fatigue/code acceptance. |
+| IP/data boundary | No protected tables, code formulas, examples, material allowables, or proprietary data are added. |
+</p></div></div></section>
+<section id="SEC-ED034-0024" class="chunk sec depth-4" data-kind="section" data-key="section:1ba1b54d22d2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0024</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1ba1b54d22d2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1ba1b54d22d2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1ba1b54d22d2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implementation notes or pull request summary when code work is authorized.
+- Cargo test output for `core/loads/stress_recovery`.
+- Hand-calc or benchmark test results where applicable.
+- Fixture provenance notes.
+- Protected-content review evidence where applicable.
+- Any human rulings for `TBD` items.
+</p></div></div></section>
+<section id="SEC-ED034-0025" class="chunk sec depth-2" data-kind="section" data-key="section:84e7db40c609" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED034-0025</span> Component: execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84e7db40c609" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84e7db40c609" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84e7db40c609" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0026" class="chunk sec depth-3" data-kind="section" data-key="section:7a044021d1b0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED034-0026</span> Specification: DEL-05-03 Fundamental stress recovery module</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a044021d1b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a044021d1b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a044021d1b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED034-0027" class="chunk sec depth-4" data-kind="section" data-key="section:876c1096971a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0027</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:876c1096971a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:876c1096971a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:876c1096971a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the implemented fundamental stress recovery backend slice in `core/loads/stress_recovery`. It covers mechanics stress recovery from axial force, bending, torsion, pressure, section properties, straight-pipe station resultants, station sweeps, unit metadata, result-boundary records, and mechanics-only component ranges.</p>
+<p>This documentation alignment records existing implementation evidence only. It does not edit core code, introduce protected code stress equations, encode allowables, classify code stress categories, publish benchmark acceptance criteria, or make certification/compliance claims.
+</p></div></div></section>
+<section id="SEC-ED034-0028" class="chunk sec depth-4" data-kind="section" data-key="section:4dda38a36cca" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4dda38a36cca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4dda38a36cca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4dda38a36cca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement | Source basis | Verification hook |
+|---|---|---|---|
+| DEL-05-03-RQ-001 | The stress recovery module shall recover fundamental mechanics stresses from force resultants, moments, pressure, and section properties. | SOW-015; DEL-05-03 context | Implemented by `recover_stresses`; implemented test cases cover axial, bending, torsion, pressure, and mechanics summaries. |
+| DEL-05-03-RQ-002 | The module shall remain mechanics-only and shall not encode code stress categories, code allowables, or professional compliance decisions. | SOW-015 note; OPS-K-MECH-2; OPS-K-RULE-1; OPS-K-IP-1 | Crate README boundary plus implemented test cases for summaries without allowables and analysis status boundary. |
+| DEL-05-03-RQ-003 | Inputs and outputs shall be unit-aware and dimensionally checked across force, moment, pressure, section-property, and stress quantities. | OPS-K-UNIT-1 | Implemented by `StressRecoveryInputUnitMetadata`, `recover_stresses_with_unit_metadata`, and `StressComponents::to_result_boundary_record`; implemented test cases cover missing/wrong dimensions and boundary records. |
+| DEL-05-03-RQ-004 | Missing solve-required stress recovery inputs shall produce explicit findings rather than silent defaults. | OPS-K-DATA-2; OPS-K-AGENT-1 | Implemented test cases cover missing resultants, non-positive properties, non-finite pressure, non-finite recovered values, incomplete statuses, blocked ranges, and asymmetric optional components. |
+| DEL-05-03-RQ-005 | Result envelopes and diagnostics shall preserve source/provenance and shall not claim certification, compliance, or human approval. | AB-00-03; AB-00-06; OPS-K-AGENT-4 | Boundary records carry schema, provenance, payload, and payload-hash references; human approval statuses are rejected as automatic software output. Final application-service persistence remains `TBD`. |
+| DEL-05-03-RQ-006 | Solver/load/stress behavior changes shall include deterministic verification tests before release use. | OPS-K-SOLVER-1; AB-00-08 | Crate unit tests are authored for the implemented behavior. Release benchmark publication scope and production tolerance policy remain `TBD`. |
+| DEL-05-03-RQ-007 | Architecture choices shall preserve layer/module boundaries and must not let adapters, reports, or rule packs bypass governed mechanics results. | AB-00-02; OPS-K-MECH-2 | Implemented crate consumes explicit mechanics inputs and canonical metadata; rule-pack/report/API integration remains downstream. |
+| DEL-05-03-RQ-008 | The module shall preserve station identity for straight-pipe station stress recovery and shall support ordered station stress sweeps without reordering caller input. | SOW-015; DEL-05-03 context | Implemented by `StationStressRecoveryInput`, `recover_station_stresses`, and `recover_station_stress_sweep`; implemented test cases cover station identity, station fraction validation, order preservation, and invalid station rejection. |
+| DEL-05-03-RQ-009 | Mechanics-only stress range recovery shall compute component-wise ranges only between two unblocked recovered mechanics states. | SOW-015; mechanics-only boundary | Implemented by `recover_stress_range`; implemented test cases cover component ranges, blocked states, asymmetric optional components, and non-finite range differences. |
+</p></div></div></section>
+<section id="SEC-ED034-0029" class="chunk sec depth-4" data-kind="section" data-key="section:3e2ce7104db9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0029</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3e2ce7104db9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3e2ce7104db9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3e2ce7104db9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No protected standard text, protected code formulas, protected tables, material allowables, or proprietary commercial data are available in this deliverable-local context. Any future standard or code basis must be introduced only as a lawful private/project input or non-protected pointer with provenance. Clause-level requirements are `TBD`.
+</p></div></div></section>
+<section id="SEC-ED034-0030" class="chunk sec depth-4" data-kind="section" data-key="section:a7befc19cb71" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a7befc19cb71" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a7befc19cb71" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a7befc19cb71" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification area | Current evidence |
+|---|---|
+| Mechanics boundary | `core/loads/stress_recovery/README.md` and implemented test cases evidence recovered stresses as mechanics results, not code acceptability outcomes. |
+| Unit safety | Unit metadata validation checks present force, moment, pressure, section-property, geometry, and stress-boundary dimensions; conversion constants remain `TBD`. |
+| Missing inputs | Findings are emitted for missing resultants, section properties, pressure inputs, unit metadata, incompatible dimensions, non-finite values, non-positive properties, incomplete mechanics statuses, blocked states, and status-boundary violations. |
+| Station behavior | Station adapters validate station fraction and finite station fields, preserve station identity, and recover station-local mechanics stresses. |
+| Sweep behavior | Station sweeps preserve caller order and create deterministic indexed station IDs from the provided prefix. |
+| Range behavior | Component ranges are absolute deltas between two unblocked mechanics states; asymmetric optional pressure/range components block the range result. |
+| Hand calculations | Current tests use synthetic/cleared values. Exact release hand-calc, benchmark publication, and tolerance acceptance scope remain `TBD`. |
+| IP/data boundary | The crate excludes protected standards examples, copied code formulas, allowables, SIF/flexibility tables, public pipe tables, and proprietary data. |
+</p></div></div></section>
+<section id="SEC-ED034-0031" class="chunk sec depth-4" data-kind="section" data-key="section:602e5e5b0c7f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0031</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:602e5e5b0c7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:602e5e5b0c7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:602e5e5b0c7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implemented artifacts evidenced for this deliverable are:</p>
+<p>- `core/loads/stress_recovery/README.md`;
+- `core/loads/stress_recovery/Cargo.toml`;
+- `core/loads/stress_recovery/src/lib.rs`;
+- crate unit tests embedded in `src/lib.rs`.</p>
+<p>Final application-service command/query surfaces, persistence, public report/rule-pack labels, production tolerances, release benchmark scope, and professional reliance policy remain `TBD`.
+</p></div></div></section>
+<section id="SEC-ED034-0032" class="chunk sec depth-4" data-kind="section" data-key="section:b14d180110b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED034-0032</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b14d180110b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b14d180110b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b14d180110b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Issue | Contenders | Human ruling |
+|---|---|---|---|
+| None | No source conflict identified between deliverable context and implemented stress-recovery evidence. | N/A | N/A |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED034";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

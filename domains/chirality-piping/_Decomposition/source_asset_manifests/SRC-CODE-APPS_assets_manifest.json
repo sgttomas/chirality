@@ -1,0 +1,1045 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-CODE-APPS",
+  "source_doc_id": "SRC-CODE-APPS",
+  "source_prefix": "CA001",
+  "repo_rel_path": "apps/",
+  "catalog_rel_path": "@repo/apps/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-APPS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "apps/desktop/SMOKE.md",
+      "source_doc_id": "SRC-APPS-DESKTOP-SMOKE",
+      "expected_sha256": "3c2bde4aad57e30b000219f77cc0041bfe560c3a41ac006e5be8bd9e9724dc64",
+      "generated_line_start": 11,
+      "generated_line_end": 6125,
+      "source_line_start": 1,
+      "source_line_end": 6115,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "apps/desktop/e2e/r2-smoke.spec.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-E2E-R2-SMOKE-SPEC",
+      "expected_sha256": "1902253aaf5fc65d6e124103c82adfb3bc18cdac8bcfc50c1a65a58effb0a0c8",
+      "generated_line_start": 6129,
+      "generated_line_end": 7366,
+      "source_line_start": 1,
+      "source_line_end": 1238,
+      "line_offset": -6128
+    },
+    {
+      "repo_rel_path": "apps/desktop/e2e/wasm-engine-dist.spec.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-E2E-WASM-ENGINE-DIST-SPEC",
+      "expected_sha256": "2eb9010ccab97ee117a0aa9a7e810dc8a9d36463743e2938ff64e71d86042534",
+      "generated_line_start": 7370,
+      "generated_line_end": 7397,
+      "source_line_start": 1,
+      "source_line_end": 28,
+      "line_offset": -7369
+    },
+    {
+      "repo_rel_path": "apps/desktop/index.html",
+      "source_doc_id": "SRC-APPS-DESKTOP-INDEX",
+      "expected_sha256": "e6c61f8443b68c41c21d352df4ccf0babd96f1ac879ee5a0750acf3a679ad812",
+      "generated_line_start": 7401,
+      "generated_line_end": 7416,
+      "source_line_start": 1,
+      "source_line_end": 16,
+      "line_offset": -7400
+    },
+    {
+      "repo_rel_path": "apps/desktop/playwright.config.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-PLAYWRIGHT-CONFIG",
+      "expected_sha256": "6b48ff663a24a40e1f5f7a38ccdb5c86bd88f5f5c2339eac5bfadf34eafcd921",
+      "generated_line_start": 7420,
+      "generated_line_end": 7497,
+      "source_line_start": 1,
+      "source_line_end": 78,
+      "line_offset": -7419
+    },
+    {
+      "repo_rel_path": "apps/desktop/playwright.dist.config.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-PLAYWRIGHT-DIST-CONFIG",
+      "expected_sha256": "d53c01817b11718850b2b2b52e0132825931741998d4214a0d0c7e533c2b5756",
+      "generated_line_start": 7501,
+      "generated_line_end": 7567,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -7500
+    },
+    {
+      "repo_rel_path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-PUBLIC-WASM-ENGINE-OPEN-PIPE-STRESS-OPERATION-APPLIER-D",
+      "expected_sha256": "0b615887289eb2d54fb865b973f1347f7934446cb6678da2d6b381bd209a8cfa",
+      "generated_line_start": 7571,
+      "generated_line_end": 7637,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -7570
+    },
+    {
+      "repo_rel_path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js",
+      "source_doc_id": "SRC-APPS-DESKTOP-PUBLIC-WASM-ENGINE-OPEN-PIPE-STRESS-OPERATION-APPLIER",
+      "expected_sha256": "0b98095328662e7ff8e74810ace1e133ffa239fd43d60415151f459eee7ba992",
+      "generated_line_start": 7641,
+      "generated_line_end": 7951,
+      "source_line_start": 1,
+      "source_line_end": 311,
+      "line_offset": -7640
+    },
+    {
+      "repo_rel_path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-PUBLIC-WASM-ENGINE-OPEN-PIPE-STRESS-OPERATION-APPLIER-BG-WASM-D",
+      "expected_sha256": "f26379f17643335dceeb489341402beea965e9fbaaeab1fb069f52a865b92b1a",
+      "generated_line_start": 7955,
+      "generated_line_end": 7967,
+      "source_line_start": 1,
+      "source_line_end": 13,
+      "line_offset": -7954
+    },
+    {
+      "repo_rel_path": "apps/desktop/scripts/build-wasm-engine.mjs",
+      "source_doc_id": "SRC-APPS-DESKTOP-SCRIPTS-BUILD-WASM-ENGINE",
+      "expected_sha256": "68d00cfa282600c2cb60c7f51764a96623bca1d795b8e92086b90fd8338e2914",
+      "generated_line_start": 7971,
+      "generated_line_end": 8135,
+      "source_line_start": 1,
+      "source_line_end": 165,
+      "line_offset": -7970
+    },
+    {
+      "repo_rel_path": "apps/desktop/src-tauri/Cargo.toml",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TAURI-CARGO",
+      "expected_sha256": "ecb0791c6667684137dcf508e770bd4107621a60d7e2e070f0f88b099eabef3b",
+      "generated_line_start": 8139,
+      "generated_line_end": 8164,
+      "source_line_start": 1,
+      "source_line_end": 26,
+      "line_offset": -8138
+    },
+    {
+      "repo_rel_path": "apps/desktop/src-tauri/build.rs",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TAURI-BUILD",
+      "expected_sha256": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f",
+      "generated_line_start": 8168,
+      "generated_line_end": 8170,
+      "source_line_start": 1,
+      "source_line_end": 3,
+      "line_offset": -8167
+    },
+    {
+      "repo_rel_path": "apps/desktop/src-tauri/src/lib.rs",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TAURI-SRC-LIB",
+      "expected_sha256": "00ce01bbbbf481ca339c4a21051df5422c77b9f5a8d1e5684ec22d3d0d51b4f5",
+      "generated_line_start": 8174,
+      "generated_line_end": 14167,
+      "source_line_start": 1,
+      "source_line_end": 5994,
+      "line_offset": -8173
+    },
+    {
+      "repo_rel_path": "apps/desktop/src-tauri/src/main.rs",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TAURI-SRC-MAIN",
+      "expected_sha256": "ab5c71e4952fec8df35e2f71a7179115c13f4f88709d4078f627ac7116c8734b",
+      "generated_line_start": 14171,
+      "generated_line_end": 14173,
+      "source_line_start": 1,
+      "source_line_end": 3,
+      "line_offset": -14170
+    },
+    {
+      "repo_rel_path": "apps/desktop/src-tauri/src/model_document_migration.rs",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TAURI-SRC-MODEL-DOCUMENT-MIGRATION",
+      "expected_sha256": "ce3e36b018559eafe1955155b0cb0ce6e2aac6ad3556c9fded7a17306741c704",
+      "generated_line_start": 14177,
+      "generated_line_end": 14604,
+      "source_line_start": 1,
+      "source_line_end": 428,
+      "line_offset": -14176
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/App.deadControls.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-APP-DEADCONTROLS-TEST",
+      "expected_sha256": "125372c8633db3c2937ae775bcddc8279016bc9d126942e723081c287ce723ce",
+      "generated_line_start": 14608,
+      "generated_line_end": 14825,
+      "source_line_start": 1,
+      "source_line_end": 218,
+      "line_offset": -14607
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/App.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-APP-TEST",
+      "expected_sha256": "5a537ce637cac2bb0f9234ebccf38f1a3abc7c16df6176c77ee1a16d390d9373",
+      "generated_line_start": 14829,
+      "generated_line_end": 22218,
+      "source_line_start": 1,
+      "source_line_end": 7390,
+      "line_offset": -14828
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/App.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-APP",
+      "expected_sha256": "513c8580c19e6f1b033a98a84afbd9694fed122c97e577f6f4b6ce88eda097a9",
+      "generated_line_start": 22222,
+      "generated_line_end": 24783,
+      "source_line_start": 1,
+      "source_line_end": 2562,
+      "line_offset": -22221
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/accessibility-baseline/AccessibilityBaselinePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-ACCESSIBILITY-BASELINE-ACCESSIBILITYBASELINEPANEL",
+      "expected_sha256": "f29576aaa04bf19b247022a5b2814c7a26cae6a3c201dbc98e16949f1df49520",
+      "generated_line_start": 24787,
+      "generated_line_end": 24980,
+      "source_line_start": 1,
+      "source_line_end": 194,
+      "line_offset": -24786
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/adapter-framework/AdapterFrameworkPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-ADAPTER-FRAMEWORK-ADAPTERFRAMEWORKPANEL",
+      "expected_sha256": "bc18947d21f838fd741a06696fcffb37aff897367a352ee67d5bcef0486c4dfa",
+      "generated_line_start": 24984,
+      "generated_line_end": 25311,
+      "source_line_start": 1,
+      "source_line_end": 328,
+      "line_offset": -24983
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/agent-proposals/AgentProposalPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-AGENT-PROPOSALS-AGENTPROPOSALPANEL",
+      "expected_sha256": "207d77f145f79c9987f984a057b29cf6f63ead9d7dcdcd1a70da2023195f2a51",
+      "generated_line_start": 25315,
+      "generated_line_end": 25450,
+      "source_line_start": 1,
+      "source_line_end": 136,
+      "line_offset": -25314
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/build-readiness/BuildReadinessPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-BUILD-READINESS-BUILDREADINESSPANEL",
+      "expected_sha256": "78d3382e44891e4dc22604019ca6c518007966ea4d95031f6450840a6963010a",
+      "generated_line_start": 25454,
+      "generated_line_end": 25722,
+      "source_line_start": 1,
+      "source_line_end": 269,
+      "line_offset": -25453
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/caepipe-external/CaepipeExternalHarnessPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-CAEPIPE-EXTERNAL-CAEPIPEEXTERNALHARNESSPANEL",
+      "expected_sha256": "6b88de88b460be876bc84dd2e20782a96d0591937202a0d0356de340c8727db9",
+      "generated_line_start": 25726,
+      "generated_line_end": 26182,
+      "source_line_start": 1,
+      "source_line_end": 457,
+      "line_offset": -25725
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/caepipe-mbf/CaepipeMbfExportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-CAEPIPE-MBF-CAEPIPEMBFEXPORTPANEL",
+      "expected_sha256": "dbd3ada145c1d5967d7985875e628b1b418d7a3ae349f4e4ec1adabda75a6851",
+      "generated_line_start": 26186,
+      "generated_line_end": 26949,
+      "source_line_start": 1,
+      "source_line_end": 764,
+      "line_offset": -26185
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/comparison/ComparisonPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-COMPARISON-COMPARISONPANEL",
+      "expected_sha256": "38f15d7aae585c2dc5126caa63543c91096d8d499626c74eed3dedab20a436ea",
+      "generated_line_start": 26953,
+      "generated_line_end": 27082,
+      "source_line_start": 1,
+      "source_line_end": 130,
+      "line_offset": -26952
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/design-workspace/DesignWorkspacePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-DESIGN-WORKSPACE-DESIGNWORKSPACEPANEL",
+      "expected_sha256": "32eee9e41ff605db81739e8e783956857a7433b45dc40f757fe07f8aa921a9da",
+      "generated_line_start": 27086,
+      "generated_line_end": 27351,
+      "source_line_start": 1,
+      "source_line_end": 266,
+      "line_offset": -27085
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/diagnostics/DiagnosticsPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-DIAGNOSTICS-DIAGNOSTICSPANEL",
+      "expected_sha256": "99b3ae49099329ea0abd49a4406e3f13399f387c8ed7b79a6343fc0dddb3321b",
+      "generated_line_start": 27355,
+      "generated_line_end": 27563,
+      "source_line_start": 1,
+      "source_line_end": 209,
+      "line_offset": -27354
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/diff-preview/DiffPreviewPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-DIFF-PREVIEW-DIFFPREVIEWPANEL",
+      "expected_sha256": "9652505d48231a2b9a6aa5031b8b48fede1e7eb728d75528fdd9bb3a09988eee",
+      "generated_line_start": 27567,
+      "generated_line_end": 27864,
+      "source_line_start": 1,
+      "source_line_end": 298,
+      "line_offset": -27566
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/editor-contract/EditorContractPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-EDITOR-CONTRACT-EDITORCONTRACTPANEL",
+      "expected_sha256": "ae3d53a649cb9cf6e8d0a2dad17139b86ab0ecc9a2bbc0fd91bbb36abf339bd0",
+      "generated_line_start": 27868,
+      "generated_line_end": 28294,
+      "source_line_start": 1,
+      "source_line_end": 427,
+      "line_offset": -27867
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/export-adapter-sdk/ExportAdapterSdkPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-EXPORT-ADAPTER-SDK-EXPORTADAPTERSDKPANEL",
+      "expected_sha256": "350a6e10c5d064bb4f7ac4b1252b52d194bd2c985ef00c93012de7802a4c720b",
+      "generated_line_start": 28298,
+      "generated_line_end": 28804,
+      "source_line_start": 1,
+      "source_line_end": 507,
+      "line_offset": -28297
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/export-review/ExportReviewPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-EXPORT-REVIEW-EXPORTREVIEWPANEL",
+      "expected_sha256": "8f82bfa2a154fac731be7528f8f386647cf752f3c4b2d1c452cdfa6f9dd593ae",
+      "generated_line_start": 28808,
+      "generated_line_end": 29872,
+      "source_line_start": 1,
+      "source_line_end": 1065,
+      "line_offset": -28807
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/exportUnitDisclosure.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-EXPORTUNITDISCLOSURE",
+      "expected_sha256": "2f8e796d51b45a6156f50a3b1dbde37cef635ba436bac2fcb64eb8eb36c01a58",
+      "generated_line_start": 29876,
+      "generated_line_end": 29969,
+      "source_line_start": 1,
+      "source_line_end": 94,
+      "line_offset": -29875
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/external-prover/ExternalProverBoundaryPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-EXTERNAL-PROVER-EXTERNALPROVERBOUNDARYPANEL",
+      "expected_sha256": "5b25792dbe296d90859e3e227c31be2845908197b2bce51896fdd671d2851252",
+      "generated_line_start": 29973,
+      "generated_line_end": 30397,
+      "source_line_start": 1,
+      "source_line_end": 425,
+      "line_offset": -29972
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/handoff/HandoffPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-HANDOFF-HANDOFFPANEL",
+      "expected_sha256": "932362f6685fde8d38c296f3d4d6be8c5ee9c0a01dbbee3ca1bcbd66460b5cd0",
+      "generated_line_start": 30401,
+      "generated_line_end": 30679,
+      "source_line_start": 1,
+      "source_line_end": 279,
+      "line_offset": -30400
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/headless-runner/HeadlessRunnerPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-HEADLESS-RUNNER-HEADLESSRUNNERPANEL",
+      "expected_sha256": "4b84ff1fae412bc7c444a2d1005574ab5755c6c703e97d0f1a49598896b895c3",
+      "generated_line_start": 30683,
+      "generated_line_end": 30999,
+      "source_line_start": 1,
+      "source_line_end": 317,
+      "line_offset": -30682
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/knowledge/KnowledgePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-KNOWLEDGE-KNOWLEDGEPANEL",
+      "expected_sha256": "b8e818288a38f4eec55d664fdea1136eddfd2a741564db1bc573cb5099b66067",
+      "generated_line_start": 31003,
+      "generated_line_end": 31077,
+      "source_line_start": 1,
+      "source_line_end": 75,
+      "line_offset": -31002
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/library/LibraryManagerPanel.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-LIBRARY-LIBRARYMANAGERPANEL-TEST",
+      "expected_sha256": "144027b2359aa725a1329fae0e05028d859129499538510ab2f685222395befe",
+      "generated_line_start": 31081,
+      "generated_line_end": 31337,
+      "source_line_start": 1,
+      "source_line_end": 257,
+      "line_offset": -31080
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/library/LibraryManagerPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-LIBRARY-LIBRARYMANAGERPANEL",
+      "expected_sha256": "e73ac60118fd284efd5067a90a29234fa897417af1e1c93bf92943e265ec85e0",
+      "generated_line_start": 31341,
+      "generated_line_end": 31833,
+      "source_line_start": 1,
+      "source_line_end": 493,
+      "line_offset": -31340
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-LOAD-CASES-LOADCASEMANAGERPANEL",
+      "expected_sha256": "03061d5c8b5cc7bd7e6dfa8d2cbca24063737d2c27d77c587022d581f2e2cb5c",
+      "generated_line_start": 31837,
+      "generated_line_end": 34508,
+      "source_line_start": 1,
+      "source_line_end": 2672,
+      "line_offset": -31836
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-LOCAL-FEA-HANDOFF-LOCALFEAHANDOFFPANEL-TEST",
+      "expected_sha256": "34b99bbc7f00222bc5b96ad342c92b820f4c7c3dead906d9e0bc141ab1326225",
+      "generated_line_start": 34512,
+      "generated_line_end": 34654,
+      "source_line_start": 1,
+      "source_line_end": 143,
+      "line_offset": -34511
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/local-fea-handoff/LocalFeaHandoffPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-LOCAL-FEA-HANDOFF-LOCALFEAHANDOFFPANEL",
+      "expected_sha256": "2ef942d82130771b8c34a766ef4aa86b9dddd62d236d8a46c740d4a2c6131f6d",
+      "generated_line_start": 34658,
+      "generated_line_end": 35167,
+      "source_line_start": 1,
+      "source_line_end": 510,
+      "line_offset": -34657
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/missing-data/MissingDataBlockingPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-MISSING-DATA-MISSINGDATABLOCKINGPANEL",
+      "expected_sha256": "9c55d1255499b6c9dd120e5ef15928577180f31f750ec84e17721ff9fba30d07",
+      "generated_line_start": 35171,
+      "generated_line_end": 35621,
+      "source_line_start": 1,
+      "source_line_end": 451,
+      "line_offset": -35170
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/model-tree/ModelTree.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-MODEL-TREE-MODELTREE",
+      "expected_sha256": "d614705af305804ee465f27a55446454c7920dac297a39b0acd9bd964723727b",
+      "generated_line_start": 35625,
+      "generated_line_end": 35929,
+      "source_line_start": 1,
+      "source_line_end": 305,
+      "line_offset": -35624
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/model-tree/PropertyInspector.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-MODEL-TREE-PROPERTYINSPECTOR",
+      "expected_sha256": "1f0fed596f91f53cad5cc9dd8a9ef9620b0318072d3c24fc0bdf20894f6b9839",
+      "generated_line_start": 35933,
+      "generated_line_end": 37589,
+      "source_line_start": 1,
+      "source_line_end": 1657,
+      "line_offset": -35932
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/model-workspace/modelView.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-MODEL-WORKSPACE-MODELVIEW",
+      "expected_sha256": "358e5d8a1f29d64dccbb639304226fbed8eeec4fa809a880bc395e5aede40f33",
+      "generated_line_start": 37593,
+      "generated_line_end": 37753,
+      "source_line_start": 1,
+      "source_line_end": 161,
+      "line_offset": -37592
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/native-package/NativePackagePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-NATIVE-PACKAGE-NATIVEPACKAGEPANEL",
+      "expected_sha256": "9982ca8591d559522773f84065dd6604db037b4f490c4295f868bc5e22be1f68",
+      "generated_line_start": 37757,
+      "generated_line_end": 38505,
+      "source_line_start": 1,
+      "source_line_end": 749,
+      "line_offset": -37756
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/operations/OperationApplyPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-OPERATIONS-OPERATIONAPPLYPANEL",
+      "expected_sha256": "099ca658ed6404c9eeafc4f46e457d7e31d8f01455891647f01acd1f48ad9dab",
+      "generated_line_start": 38509,
+      "generated_line_end": 38685,
+      "source_line_start": 1,
+      "source_line_end": 177,
+      "line_offset": -38508
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/operations/OperationLedgerPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-OPERATIONS-OPERATIONLEDGERPANEL",
+      "expected_sha256": "a088a40addf4dae382efa30ab0796192de60da7a6a9d7454402d1cd4a54dd40b",
+      "generated_line_start": 38689,
+      "generated_line_end": 39081,
+      "source_line_start": 1,
+      "source_line_end": 393,
+      "line_offset": -38688
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/pcf-export/PcfExportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-PCF-EXPORT-PCFEXPORTPANEL",
+      "expected_sha256": "dcde9f3c903a0dbd5ea2e2e20ea6c1e1d204b8f8795082343053e83396032818",
+      "generated_line_start": 39085,
+      "generated_line_end": 39871,
+      "source_line_start": 1,
+      "source_line_end": 787,
+      "line_offset": -39084
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/project-storage/ProjectStorageAuditPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-PROJECT-STORAGE-PROJECTSTORAGEAUDITPANEL",
+      "expected_sha256": "2ff5c8d275d372ce0cd6079e22130b833434fa9a513be1df752c74922a3f8c29",
+      "generated_line_start": 39875,
+      "generated_line_end": 40175,
+      "source_line_start": 1,
+      "source_line_end": 301,
+      "line_offset": -39874
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/project-validation/ProjectValidationPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-PROJECT-VALIDATION-PROJECTVALIDATIONPANEL",
+      "expected_sha256": "7c759ffc1f5e969ef597be0ab59cc65e9501b984b829367069b0c7d3ad2e6fc6",
+      "generated_line_start": 40179,
+      "generated_line_end": 40950,
+      "source_line_start": 1,
+      "source_line_end": 772,
+      "line_offset": -40178
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/report-lint/ReportLintPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REPORT-LINT-REPORTLINTPANEL",
+      "expected_sha256": "8d3c5e5287372eb4b87663a24e7be1f0915928df233ad4d02aa500bdab3d95e1",
+      "generated_line_start": 40954,
+      "generated_line_end": 41411,
+      "source_line_start": 1,
+      "source_line_end": 458,
+      "line_offset": -40953
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/report/RenderedReportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REPORT-RENDEREDREPORTPANEL",
+      "expected_sha256": "7262cdb85077926083548bb46baca6c0461f9b886fdda2826c02ce94f8f960fa",
+      "generated_line_start": 41415,
+      "generated_line_end": 41576,
+      "source_line_start": 1,
+      "source_line_end": 162,
+      "line_offset": -41414
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/report/ReportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REPORT-REPORTPANEL",
+      "expected_sha256": "a5209bc853f902ff71c7350599c86533c1272649c078302e0094a6cc0742351e",
+      "generated_line_start": 41580,
+      "generated_line_end": 42316,
+      "source_line_start": 1,
+      "source_line_end": 737,
+      "line_offset": -41579
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/report/renderableReportInput.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REPORT-RENDERABLEREPORTINPUT",
+      "expected_sha256": "c41f59ff4af08f94b471cb8357838683c614a7fd2a9a3ea2d0785dc87da62342",
+      "generated_line_start": 42320,
+      "generated_line_end": 42618,
+      "source_line_start": 1,
+      "source_line_end": 299,
+      "line_offset": -42319
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/report/renderedReport.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REPORT-RENDEREDREPORT-TEST",
+      "expected_sha256": "bc7345d80c9cca307c009180e8ba22472ece46d3d93edb8655e1cd16652d8a94",
+      "generated_line_start": 42622,
+      "generated_line_end": 42971,
+      "source_line_start": 1,
+      "source_line_end": 350,
+      "line_offset": -42621
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/result-export/ResultExportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RESULT-EXPORT-RESULTEXPORTPANEL",
+      "expected_sha256": "48ce9e066f26e44ef3f0d4931e507588178727ed7fbf9d9a3f3ec78fa9db85a5",
+      "generated_line_start": 42975,
+      "generated_line_end": 43300,
+      "source_line_start": 1,
+      "source_line_end": 326,
+      "line_offset": -42974
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/results/ResultsPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RESULTS-RESULTSPANEL",
+      "expected_sha256": "9a15f71a174e4dca1edc25a621672fe1e052410052af08bf574a04cc0f70c915",
+      "generated_line_start": 43304,
+      "generated_line_end": 43805,
+      "source_line_start": 1,
+      "source_line_end": 502,
+      "line_offset": -43303
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/results/resultInterpretation.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RESULTS-RESULTINTERPRETATION",
+      "expected_sha256": "8eb50b9d39acdb9c34ebd55429ed606d450c51eef05d6dae68511c6ddbee9963",
+      "generated_line_start": 43809,
+      "generated_line_end": 44105,
+      "source_line_start": 1,
+      "source_line_end": 297,
+      "line_offset": -43808
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/review-geometry/ReviewGeometryPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-REVIEW-GEOMETRY-REVIEWGEOMETRYPANEL",
+      "expected_sha256": "592a03d8c80edb86acdb0aa6aabf34f584a2fae02e266842f262856c1568fb44",
+      "generated_line_start": 44109,
+      "generated_line_end": 44883,
+      "source_line_start": 1,
+      "source_line_end": 775,
+      "line_offset": -44108
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-check/RuleCheckPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-CHECK-RULECHECKPANEL",
+      "expected_sha256": "fba5d9bbcd301c87dd6275ea9bb4d6d391ba5a3888b301e5845de297be486e4c",
+      "generated_line_start": 44887,
+      "generated_line_end": 45169,
+      "source_line_start": 1,
+      "source_line_end": 283,
+      "line_offset": -44886
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-check/RuleCheckRunPanel.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-CHECK-RULECHECKRUNPANEL-TEST",
+      "expected_sha256": "23db04aec4e7e537da921c8eb7d98dfa0a6da02474f099004124009dba75e1ef",
+      "generated_line_start": 45173,
+      "generated_line_end": 45724,
+      "source_line_start": 1,
+      "source_line_end": 552,
+      "line_offset": -45172
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-check/RuleCheckRunPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-CHECK-RULECHECKRUNPANEL",
+      "expected_sha256": "f35c467292a375df6de0db8a68e6d0002058492af6f06ab8337890c0fd566d26",
+      "generated_line_start": 45728,
+      "generated_line_end": 46668,
+      "source_line_start": 1,
+      "source_line_end": 941,
+      "line_offset": -45727
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/CheckDefinitionsEditor.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-CHECKDEFINITIONSEDITOR-TEST",
+      "expected_sha256": "e25479f93947034bdc1ca64118290924f9fd755a846597363da9efe8905a3db5",
+      "generated_line_start": 46672,
+      "generated_line_end": 47094,
+      "source_line_start": 1,
+      "source_line_end": 423,
+      "line_offset": -46671
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/CheckDefinitionsEditor.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-CHECKDEFINITIONSEDITOR",
+      "expected_sha256": "d9143d9c5572eebe406160f57ad9735b29c2729f6552f9bbe3200d73bb69ff5c",
+      "generated_line_start": 47098,
+      "generated_line_end": 47683,
+      "source_line_start": 1,
+      "source_line_end": 586,
+      "line_offset": -47097
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/DeclarationsEditor.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-DECLARATIONSEDITOR-TEST",
+      "expected_sha256": "6050586897c1c91e45ee0dbba43399c4c1f8dd1b42ce6b1e901882edaf085416",
+      "generated_line_start": 47687,
+      "generated_line_end": 48395,
+      "source_line_start": 1,
+      "source_line_end": 709,
+      "line_offset": -47686
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/DeclarationsEditor.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-DECLARATIONSEDITOR",
+      "expected_sha256": "2651798062cf343a6e27891ff44296f877bb5577e2ed80f6b8b0ed6f967a2f7d",
+      "generated_line_start": 48399,
+      "generated_line_end": 49271,
+      "source_line_start": 1,
+      "source_line_end": 873,
+      "line_offset": -48398
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/ExpressionComposer.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-EXPRESSIONCOMPOSER-TEST",
+      "expected_sha256": "aade8aaf3b6fd4740dcacbd7b59fbef13e552369fff5166d47adaf2f81f9c4d7",
+      "generated_line_start": 49275,
+      "generated_line_end": 49860,
+      "source_line_start": 1,
+      "source_line_end": 586,
+      "line_offset": -49274
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/ExpressionComposer.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-EXPRESSIONCOMPOSER",
+      "expected_sha256": "5c6b911fef50dce7eed11bb65e0dd8b425eaadc2cd75e4a55603d2e9d49aef88",
+      "generated_line_start": 49864,
+      "generated_line_end": 51085,
+      "source_line_start": 1,
+      "source_line_end": 1222,
+      "line_offset": -49863
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/RulePackManagerPanel.test.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-RULEPACKMANAGERPANEL-TEST",
+      "expected_sha256": "fd69e09ef5d2c666079c194b63d7c78a60905d9fd979dcc5d3e2c7e123a19aca",
+      "generated_line_start": 51089,
+      "generated_line_end": 51332,
+      "source_line_start": 1,
+      "source_line_end": 244,
+      "line_offset": -51088
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/rule-packs/RulePackManagerPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RULE-PACKS-RULEPACKMANAGERPANEL",
+      "expected_sha256": "e9a3691282af574748290adc962000d8cade6c23c9f22c65a86175bc383714cc",
+      "generated_line_start": 51336,
+      "generated_line_end": 51873,
+      "source_line_start": 1,
+      "source_line_end": 538,
+      "line_offset": -51335
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/run-audit/RunAuditPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-RUN-AUDIT-RUNAUDITPANEL",
+      "expected_sha256": "1c911dcde90434874b2b63e3a22b150251cf072a099e5318d26784621bddde3d",
+      "generated_line_start": 51877,
+      "generated_line_end": 51983,
+      "source_line_start": 1,
+      "source_line_end": 107,
+      "line_offset": -51876
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/secret-private-library/SecretPrivateLibraryPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-SECRET-PRIVATE-LIBRARY-SECRETPRIVATELIBRARYPANEL",
+      "expected_sha256": "5027429964388e7d8a3b6b92b1c9af28f8b46c8b5f584cc62010e357a14f6434",
+      "generated_line_start": 51987,
+      "generated_line_end": 52387,
+      "source_line_start": 1,
+      "source_line_end": 401,
+      "line_offset": -51986
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/security-threat-model/SecurityThreatModelPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-SECURITY-THREAT-MODEL-SECURITYTHREATMODELPANEL",
+      "expected_sha256": "b24630d50d9d6a771c24139f9b9e841d24e5b5f9cbc06b9fc186f2e17352d997",
+      "generated_line_start": 52391,
+      "generated_line_end": 52683,
+      "source_line_start": 1,
+      "source_line_end": 293,
+      "line_offset": -52390
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/solve/SolvePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-SOLVE-SOLVEPANEL",
+      "expected_sha256": "15395602cf5555473670a52dd1c63e3af24fb9ec42c5779e95a6c5d9774eeca8",
+      "generated_line_start": 52687,
+      "generated_line_end": 52998,
+      "source_line_start": 1,
+      "source_line_end": 312,
+      "line_offset": -52686
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-STRESS-NEUTRAL-STRESSNEUTRALEXPORTPANEL",
+      "expected_sha256": "43088a31ee845e77cbda64dd974de7eed0c2ee4c3a9a1224f9332462d9b151e1",
+      "generated_line_start": 53002,
+      "generated_line_end": 53574,
+      "source_line_start": 1,
+      "source_line_end": 573,
+      "line_offset": -53001
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/telemetry/TelemetryBoundaryPanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-TELEMETRY-TELEMETRYBOUNDARYPANEL",
+      "expected_sha256": "4b96dfbe4418ba459b73b21501dd338d0a32464f2fc78f166da16707841e4203",
+      "generated_line_start": 53578,
+      "generated_line_end": 53853,
+      "source_line_start": 1,
+      "source_line_end": 276,
+      "line_offset": -53577
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/validation-evidence/ValidationEvidencePanel.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-VALIDATION-EVIDENCE-VALIDATIONEVIDENCEPANEL",
+      "expected_sha256": "74485e40b8f86ef6624910f1d717727aabe5ad26d24a28e005ee426a680388e4",
+      "generated_line_start": 53857,
+      "generated_line_end": 54093,
+      "source_line_start": 1,
+      "source_line_end": 237,
+      "line_offset": -53856
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/features/viewport/PipeViewport.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-FEATURES-VIEWPORT-PIPEVIEWPORT",
+      "expected_sha256": "4fc1e1a08b72acb48862d1ed8be0dea0379150a7b1bef0805c30f3220ae55128",
+      "generated_line_start": 54097,
+      "generated_line_end": 55443,
+      "source_line_start": 1,
+      "source_line_end": 1347,
+      "line_offset": -54096
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/main.tsx",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-MAIN",
+      "expected_sha256": "525f0802ef08be2869cec123731c5f88eb83b8819863f27010edf0824ce7e5c5",
+      "generated_line_start": 55447,
+      "generated_line_end": 55456,
+      "source_line_start": 1,
+      "source_line_end": 10,
+      "line_offset": -55446
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/hashService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-HASHSERVICE-TEST",
+      "expected_sha256": "c71815e70495366ea46e232c6d00217cd44a871f5c302faad5cd21f8fc3d6586",
+      "generated_line_start": 55460,
+      "generated_line_end": 55575,
+      "source_line_start": 1,
+      "source_line_end": 116,
+      "line_offset": -55459
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/hashService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-HASHSERVICE",
+      "expected_sha256": "5ccb4b3a8c79c1814aa694e4ad94d563fa943a5203c87aaaa581065b6bcf185c",
+      "generated_line_start": 55579,
+      "generated_line_end": 55672,
+      "source_line_start": 1,
+      "source_line_end": 94,
+      "line_offset": -55578
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/libraryImportService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-LIBRARYIMPORTSERVICE-TEST",
+      "expected_sha256": "701c729a203a511168f1741bb5787dc3205b0a69479adb5533d86e1bd8108831",
+      "generated_line_start": 55676,
+      "generated_line_end": 55992,
+      "source_line_start": 1,
+      "source_line_end": 317,
+      "line_offset": -55675
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/libraryImportService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-LIBRARYIMPORTSERVICE",
+      "expected_sha256": "7e06c8d25a528b9bf9b2492c58fc16e91e2dbcc85167bc247e0f232cedb2c809",
+      "generated_line_start": 55996,
+      "generated_line_end": 56380,
+      "source_line_start": 1,
+      "source_line_end": 385,
+      "line_offset": -55995
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/operationContractCorpus.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-OPERATIONCONTRACTCORPUS-TEST",
+      "expected_sha256": "37e2dba3bdbe79902621800f737cc451b60ef3469476d5cf6f0e9cf23bf8a033",
+      "generated_line_start": 56384,
+      "generated_line_end": 56706,
+      "source_line_start": 1,
+      "source_line_end": 323,
+      "line_offset": -56383
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/operationService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-OPERATIONSERVICE-TEST",
+      "expected_sha256": "967e388848fb1f99010eeecaebd23d88f63f973293efdd8144f0c7857f5d40a7",
+      "generated_line_start": 56710,
+      "generated_line_end": 56874,
+      "source_line_start": 1,
+      "source_line_end": 165,
+      "line_offset": -56709
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/operationService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-OPERATIONSERVICE",
+      "expected_sha256": "8f213ac1f3a0afb1f98072b7fa476e6d89ce13bde9b44e6fa56f60a13b5670e2",
+      "generated_line_start": 56878,
+      "generated_line_end": 56989,
+      "source_line_start": 1,
+      "source_line_end": 112,
+      "line_offset": -56877
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/previewService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-PREVIEWSERVICE-TEST",
+      "expected_sha256": "203969601ed15529b9566885fad0b8acec2ad15a473327a5d751ab8f3df9eab3",
+      "generated_line_start": 56993,
+      "generated_line_end": 57119,
+      "source_line_start": 1,
+      "source_line_end": 127,
+      "line_offset": -56992
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/previewService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-PREVIEWSERVICE",
+      "expected_sha256": "4a0decd1d43750962e38216220bd23980719bd4da22b826de0c9f6fedee9808b",
+      "generated_line_start": 57123,
+      "generated_line_end": 57681,
+      "source_line_start": 1,
+      "source_line_end": 559,
+      "line_offset": -57122
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/projectService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-PROJECTSERVICE-TEST",
+      "expected_sha256": "66e2787a7e8d0fba256eda4dc6ea7678d4422d7bbe203c456c6a6edaf3b54ccf",
+      "generated_line_start": 57685,
+      "generated_line_end": 57822,
+      "source_line_start": 1,
+      "source_line_end": 138,
+      "line_offset": -57684
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/projectService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-PROJECTSERVICE",
+      "expected_sha256": "3eec7f4d866c8b366ea4493f97f225db8bb711f2838957af1cbb3149b026c275",
+      "generated_line_start": 57826,
+      "generated_line_end": 58386,
+      "source_line_start": 1,
+      "source_line_end": 561,
+      "line_offset": -57825
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/reportRenderService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-REPORTRENDERSERVICE",
+      "expected_sha256": "7cc63d5b5b45f19966aa09883fe3573d68923798aeeedcbc6463decbfe983890",
+      "generated_line_start": 58390,
+      "generated_line_end": 58447,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -58389
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/ruleCheckService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-RULECHECKSERVICE-TEST",
+      "expected_sha256": "c8126ddd814b74025a43959875ec07e11637f335d3046b0ba3a8845a929c8126",
+      "generated_line_start": 58451,
+      "generated_line_end": 58676,
+      "source_line_start": 1,
+      "source_line_end": 226,
+      "line_offset": -58450
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/ruleCheckService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-RULECHECKSERVICE",
+      "expected_sha256": "be84043f2127ebee87127bdab4fc83857451573a98501183b52d5227437ed082",
+      "generated_line_start": 58680,
+      "generated_line_end": 58971,
+      "source_line_start": 1,
+      "source_line_end": 292,
+      "line_offset": -58679
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/rulePackService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-RULEPACKSERVICE",
+      "expected_sha256": "57abe308ac36bd46e254d04ed179a82b460a8d8632c13563d4b838453ad3b039",
+      "generated_line_start": 58975,
+      "generated_line_end": 59411,
+      "source_line_start": 1,
+      "source_line_end": 437,
+      "line_offset": -58974
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/unitCatalogService.test.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-UNITCATALOGSERVICE-TEST",
+      "expected_sha256": "4706104ec6f5d917cbd89414522c8d5d403361e696cff69154577cc7850379c1",
+      "generated_line_start": 59415,
+      "generated_line_end": 59574,
+      "source_line_start": 1,
+      "source_line_end": 160,
+      "line_offset": -59414
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/unitCatalogService.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-UNITCATALOGSERVICE",
+      "expected_sha256": "9fd993c69b0b5f10a2aab80231a48d704d4535784541e6ef87a2d53f9acdc6a6",
+      "generated_line_start": 59578,
+      "generated_line_end": 59772,
+      "source_line_start": 1,
+      "source_line_end": 195,
+      "line_offset": -59577
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/usePackageHash.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-USEPACKAGEHASH",
+      "expected_sha256": "38ef59a04866a70979e57befe214bc2ff86bb88b3975c84bd7735a118396d601",
+      "generated_line_start": 59776,
+      "generated_line_end": 59824,
+      "source_line_start": 1,
+      "source_line_end": 49,
+      "line_offset": -59775
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/services/wasmEngine/loadWasmEngine.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-SERVICES-WASMENGINE-LOADWASMENGINE",
+      "expected_sha256": "d4a91090013a83d53810a91cbdebcde264f7cac32363f4fb41b9a48e01aab3a9",
+      "generated_line_start": 59828,
+      "generated_line_end": 59979,
+      "source_line_start": 1,
+      "source_line_end": 152,
+      "line_offset": -59827
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/styles.css",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-STYLES",
+      "expected_sha256": "57b87ffe78228a725e4af4e730b8f9380e9810e3c847984bb60942e7ae3fddc5",
+      "generated_line_start": 59983,
+      "generated_line_end": 62626,
+      "source_line_start": 1,
+      "source_line_end": 2644,
+      "line_offset": -59982
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/test/setup.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TEST-SETUP",
+      "expected_sha256": "65c02a3ba648174d681c4389b61707c58e8ee02cc7228b9446074a2ac1772e38",
+      "generated_line_start": 62630,
+      "generated_line_end": 62639,
+      "source_line_start": 1,
+      "source_line_end": 10,
+      "line_offset": -62629
+    },
+    {
+      "repo_rel_path": "apps/desktop/src/types.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-SRC-TYPES",
+      "expected_sha256": "8c3102f29eb9efb21a9d2abf0e20278b465b64d36921f57c6478cecda1da21d4",
+      "generated_line_start": 62643,
+      "generated_line_end": 63325,
+      "source_line_start": 1,
+      "source_line_end": 683,
+      "line_offset": -62642
+    },
+    {
+      "repo_rel_path": "apps/desktop/vite.config.ts",
+      "source_doc_id": "SRC-APPS-DESKTOP-VITE-CONFIG",
+      "expected_sha256": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+      "generated_line_start": 63329,
+      "generated_line_end": 63415,
+      "source_line_start": 1,
+      "source_line_end": 87,
+      "line_offset": -63328
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

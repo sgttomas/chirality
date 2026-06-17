@@ -1,0 +1,319 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-CONTRACT — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>4</b></span>
+  <span class="stat">Atoms: <b>45</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD011-0001">CONTRACT — OpenPipeStress Invariant Catalog</a> <a href="#SEC-PD011-0002">1. Invariant index</a> <a href="#SEC-PD011-0003">2. Enforcement map</a> <a href="#SEC-PD011-0004">3. Retired invariants</a></nav>
+<main>
+<section id="SEC-PD011-0001" class="chunk sec depth-1" data-kind="section" data-key="section:f472d47acace" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD011-0001</span> CONTRACT — OpenPipeStress Invariant Catalog</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f472d47acace" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f472d47acace" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f472d47acace" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines binding invariants for agentic development of OpenPipeStress. Invariants are intended to become enforceable through schemas, tests, linters, review gates, and human governance.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:ff13bab8c9d5" data-status="unreviewed" data-inout="OUT" data-atom-id="HBA-PD011-00001"><span class="prov">@repo/docs/CONTRACT.md:L13|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0001</span><span class="inout">OUT</span><span class="stmt">Document title: CONTRACT — OpenPipeStress Invariant Catalog.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ff13bab8c9d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ff13bab8c9d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ff13bab8c9d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:84cb50debba1" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00002"><span class="prov">@repo/docs/CONTRACT.md:L15|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0001</span><span class="inout">IN</span><span class="stmt">This document defines binding invariants for agentic development of OpenPipeStress.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:84cb50debba1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:84cb50debba1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:84cb50debba1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1c968b705061" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00003"><span class="prov">@repo/docs/CONTRACT.md:L15|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0001</span><span class="inout">IN</span><span class="stmt">Invariants are intended to become enforceable through schemas, tests, linters, review gates, and human governance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1c968b705061" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1c968b705061" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1c968b705061" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD011-0002" class="chunk sec depth-2" data-kind="section" data-key="section:6a2107ce2f1c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0002</span> 1. Invariant index</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a2107ce2f1c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a2107ce2f1c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a2107ce2f1c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+|ID|Invariant|Enforcement|
+|---|---|---|
+|OPS-K-HIER-1|Packages are flat work domains; deliverables are the smallest production units.|SOFTWARE_DECOMP coverage audit; human review|
+|OPS-K-ID-1|Package, deliverable, scope, objective, decision, and issue IDs are stable and not reused.|Decomposition registers; review|
+|OPS-K-IP-1|The public repository must not contain protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary commercial data.|Contributor review; report linter; legal review|
+|OPS-K-IP-2|Every public data contribution must include source, provenance, license/redistribution status, contributor certification, and review disposition.|Data import validator; contribution checklist|
+|OPS-K-IP-3|Suspected protected content must be quarantined and escalated; agents must not paraphrase protected tables into public data.|Stop rule; human/legal review|
+|OPS-K-DATA-1|Code-specific values are user-supplied or lawfully imported private data, not bundled public defaults.|Rule-pack completeness checker; library governance|
+|OPS-K-DATA-2|Missing solve-required or rule-check-required values are explicit findings, never silent defaults.|GUI warnings; solver/rule engine validation|
+|OPS-K-DATA-3|Materials, components, SIFs, flexibility factors, allowables, and rule-pack values carry provenance fields.|Schema validation|
+|OPS-K-AUTH-1|Software and agents must not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance.|Report templates; product-claims policy; review|
+|OPS-K-AUTH-2|Human acceptance records, if used, bind to specific model/rule/report hashes and do not survive content changes without re-review.|Audit manifest; hash checks|
+|OPS-K-MECH-1|The primary global analysis model is a 3D centerline/frame model; shell/solid FEA is a local-analysis handoff path.|Architecture review; docs|
+|OPS-K-MECH-2|The solver computes mechanics; rule packs evaluate user-defined acceptability; professional compliance remains human judgment.|Analysis status model; reports|
+|OPS-K-UNIT-1|All calculations, formulas, imported values, and exports must be unit-aware and dimensionally checked.|Unit tests; schema validation; rule evaluator|
+|OPS-K-SOLVER-1|Solver changes require deterministic verification tests before release.|CI; V&amp;V gate|
+|OPS-K-SOLVER-2|Nonlinear support behavior must report convergence, active-set state, and unresolved non-convergence.|Solver tests; result schema|
+|OPS-K-RULE-1|Public rule-pack examples must use invented non-code values and clear non-engineering notices.|Contribution review; report linter|
+|OPS-K-RULE-2|The expression evaluator is sandboxed; rule packs cannot execute arbitrary code.|Security tests; architecture review|
+|OPS-K-RULE-3|Rule packs are versioned, checksummed, source-noted, and marked public/private.|Rule-pack schema validation|
+|OPS-K-REPORT-1|Reports must disclose model version, solver version, rule-pack checksum, source/provenance notes, warnings, assumptions, and limitations.|Report generator tests|
+|OPS-K-REPORT-2|Public report templates and examples must not reproduce protected standards content.|Report protected-content linter; human review|
+|OPS-K-PRIV-1|Private project, material, component, and rule-pack data must not be transmitted or committed publicly by default.|Storage policy; telemetry config; CI checks|
+|OPS-K-PRIV-2|Telemetry is off by default and cannot include private engineering/code data.|Security review; telemetry tests|
+|OPS-K-GOV-1|The human project authority selected `PolyForm-Noncommercial-1.0.0` as the project license on 2026-06-03; governance and release records must state the selected license without treating it as legal advice, professional approval, certification, sealing, authentication, or a code-compliance claim.|Maintainer policy; release review|
+|OPS-K-GOV-2|Maintainer authority, release authority, and public-governance decisions must be recorded in public governance artifacts before they are treated as project policy.|Maintainer policy; decision records|
+|OPS-K-GOV-3|Public releases must disclose scope, validation status, known limitations, data-boundary constraints, and professional-responsibility limitations.|Release checklist; human review gate|
+|OPS-K-GOV-4|Maintainers must apply IP, provenance, privacy, and protected-content review before accepting public repository contributions.|Contribution review; protected-content gate|
+|OPS-K-AGENT-1|Agents must not invent engineering values, scope, source citations, or legal conclusions; unknowns become `TBD`.|Agent instructions; review|
+|OPS-K-AGENT-2|Agents must surface conflicts and gaps rather than silently resolving them.|Review; conflict/open issue registers|
+|OPS-K-AGENT-3|Type 2 execution requires sealed context and explicit deliverable scope.|Agentic workflow; orchestration|
+|OPS-K-AGENT-4|Agent outputs are drafts/proposals until accepted by a human gate.|Review; lifecycle state|
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:41e3264ab516" data-status="unreviewed" data-inout="OUT" data-atom-id="HBA-PD011-00004"><span class="prov">@repo/docs/CONTRACT.md:L17|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">OUT</span><span class="stmt">Section heading: Invariant index.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:41e3264ab516" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:41e3264ab516" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:41e3264ab516" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:012be03314ad" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00005"><span class="prov">@repo/docs/CONTRACT.md:L21|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-HIER-1: Packages are flat work domains; deliverables are the smallest production units. Enforced via SOFTWARE_DECOMP coverage audit and human review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:012be03314ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:012be03314ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:012be03314ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:681034e2a798" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00006"><span class="prov">@repo/docs/CONTRACT.md:L22|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-ID-1: Package, deliverable, scope, objective, decision, and issue IDs are stable and not reused. Enforced via decomposition registers and review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:681034e2a798" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:681034e2a798" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:681034e2a798" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d2fbc73cefba" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00007"><span class="prov">@repo/docs/CONTRACT.md:L23|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-IP-1: The public repository must not contain protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary commercial data. Enforced via contributor review, report linter, and legal review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d2fbc73cefba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d2fbc73cefba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d2fbc73cefba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:067b791bfbeb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00008"><span class="prov">@repo/docs/CONTRACT.md:L24|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-IP-2: Every public data contribution must include source, provenance, license/redistribution status, contributor certification, and review disposition. Enforced via data import validator and contribution checklist.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:067b791bfbeb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:067b791bfbeb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:067b791bfbeb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:43b4de163779" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00009"><span class="prov">@repo/docs/CONTRACT.md:L25|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-IP-3: Suspected protected content must be quarantined and escalated; agents must not paraphrase protected tables into public data. Enforced via stop rule and human/legal review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:43b4de163779" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:43b4de163779" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:43b4de163779" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e7560c6cbbc3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00010"><span class="prov">@repo/docs/CONTRACT.md:L26|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-DATA-1: Code-specific values are user-supplied or lawfully imported private data, not bundled public defaults. Enforced via rule-pack completeness checker and library governance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e7560c6cbbc3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e7560c6cbbc3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e7560c6cbbc3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:511888b141ea" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00011"><span class="prov">@repo/docs/CONTRACT.md:L27|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-DATA-2: Missing solve-required or rule-check-required values are explicit findings, never silent defaults. Enforced via GUI warnings and solver/rule engine validation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:511888b141ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:511888b141ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:511888b141ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d54dc85d6555" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00012"><span class="prov">@repo/docs/CONTRACT.md:L28|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-DATA-3: Materials, components, SIFs, flexibility factors, allowables, and rule-pack values carry provenance fields. Enforced via schema validation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d54dc85d6555" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d54dc85d6555" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d54dc85d6555" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ab6a47bd9a1b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00013"><span class="prov">@repo/docs/CONTRACT.md:L29|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AUTH-1: Software and agents must not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance. Enforced via report templates, product-claims policy, and review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ab6a47bd9a1b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ab6a47bd9a1b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ab6a47bd9a1b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d2448c1c1099" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00014"><span class="prov">@repo/docs/CONTRACT.md:L30|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AUTH-2: Human acceptance records, if used, bind to specific model/rule/report hashes and do not survive content changes without re-review. Enforced via audit manifest and hash checks.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d2448c1c1099" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d2448c1c1099" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d2448c1c1099" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:4d11ae2be19c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00015"><span class="prov">@repo/docs/CONTRACT.md:L31|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-MECH-1: The primary global analysis model is a 3D centerline/frame model; shell/solid FEA is a local-analysis handoff path. Enforced via architecture review and docs.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:4d11ae2be19c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:4d11ae2be19c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:4d11ae2be19c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:0779bd6c2af3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00016"><span class="prov">@repo/docs/CONTRACT.md:L32|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-MECH-2: The solver computes mechanics; rule packs evaluate user-defined acceptability; professional compliance remains human judgment. Enforced via analysis status model and reports.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:0779bd6c2af3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:0779bd6c2af3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:0779bd6c2af3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:edadbb14662d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00017"><span class="prov">@repo/docs/CONTRACT.md:L33|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-UNIT-1: All calculations, formulas, imported values, and exports must be unit-aware and dimensionally checked. Enforced via unit tests, schema validation, and rule evaluator.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:edadbb14662d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:edadbb14662d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:edadbb14662d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5ad5134dab93" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00018"><span class="prov">@repo/docs/CONTRACT.md:L34|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-SOLVER-1: Solver changes require deterministic verification tests before release. Enforced via CI and V&amp;V gate.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5ad5134dab93" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5ad5134dab93" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5ad5134dab93" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:3bcbb596cfcc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00019"><span class="prov">@repo/docs/CONTRACT.md:L35|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-SOLVER-2: Nonlinear support behavior must report convergence, active-set state, and unresolved non-convergence. Enforced via solver tests and result schema.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:3bcbb596cfcc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:3bcbb596cfcc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:3bcbb596cfcc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:cc381199c5ee" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00020"><span class="prov">@repo/docs/CONTRACT.md:L36|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-RULE-1: Public rule-pack examples must use invented non-code values and clear non-engineering notices. Enforced via contribution review and report linter.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:cc381199c5ee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:cc381199c5ee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:cc381199c5ee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b2795882783c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00021"><span class="prov">@repo/docs/CONTRACT.md:L37|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-RULE-2: The expression evaluator is sandboxed; rule packs cannot execute arbitrary code. Enforced via security tests and architecture review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b2795882783c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b2795882783c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b2795882783c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1526c419910b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00022"><span class="prov">@repo/docs/CONTRACT.md:L38|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-RULE-3: Rule packs are versioned, checksummed, source-noted, and marked public/private. Enforced via rule-pack schema validation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1526c419910b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1526c419910b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1526c419910b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:a0add4fcc349" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00023"><span class="prov">@repo/docs/CONTRACT.md:L39|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-REPORT-1: Reports must disclose model version, solver version, rule-pack checksum, source/provenance notes, warnings, assumptions, and limitations. Enforced via report generator tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:a0add4fcc349" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:a0add4fcc349" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:a0add4fcc349" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:4015c9cd20da" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00024"><span class="prov">@repo/docs/CONTRACT.md:L40|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-REPORT-2: Public report templates and examples must not reproduce protected standards content. Enforced via report protected-content linter and human review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:4015c9cd20da" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:4015c9cd20da" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:4015c9cd20da" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:0394c85ae777" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00025"><span class="prov">@repo/docs/CONTRACT.md:L41|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-PRIV-1: Private project, material, component, and rule-pack data must not be transmitted or committed publicly by default. Enforced via storage policy, telemetry config, and CI checks.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:0394c85ae777" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:0394c85ae777" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:0394c85ae777" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:fa152a7a9b4e" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00026"><span class="prov">@repo/docs/CONTRACT.md:L42|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-PRIV-2: Telemetry is off by default and cannot include private engineering/code data. Enforced via security review and telemetry tests.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:fa152a7a9b4e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:fa152a7a9b4e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:fa152a7a9b4e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7fb239679728" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00027"><span class="prov">@repo/docs/CONTRACT.md:L43|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-GOV-1: The human project authority selected PolyForm-Noncommercial-1.0.0 as the project license on 2026-06-03; governance and release records must state the selected license without treating it as legal advice, professional approval, certification, sealing, authentication, or a code-compliance claim. Enforced via maintainer policy and release review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7fb239679728" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7fb239679728" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7fb239679728" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c4f7905b7b36" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00028"><span class="prov">@repo/docs/CONTRACT.md:L44|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-GOV-2: Maintainer authority, release authority, and public-governance decisions must be recorded in public governance artifacts before they are treated as project policy. Enforced via maintainer policy and decision records.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c4f7905b7b36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c4f7905b7b36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c4f7905b7b36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:3a902de6c319" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00029"><span class="prov">@repo/docs/CONTRACT.md:L45|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-GOV-3: Public releases must disclose scope, validation status, known limitations, data-boundary constraints, and professional-responsibility limitations. Enforced via release checklist and human review gate.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:3a902de6c319" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:3a902de6c319" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:3a902de6c319" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5ccc515b1d16" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00030"><span class="prov">@repo/docs/CONTRACT.md:L46|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-GOV-4: Maintainers must apply IP, provenance, privacy, and protected-content review before accepting public repository contributions. Enforced via contribution review and protected-content gate.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5ccc515b1d16" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5ccc515b1d16" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5ccc515b1d16" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:de130143cb06" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00031"><span class="prov">@repo/docs/CONTRACT.md:L47|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AGENT-1: Agents must not invent engineering values, scope, source citations, or legal conclusions; unknowns become TBD. Enforced via agent instructions and review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:de130143cb06" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:de130143cb06" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:de130143cb06" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bf5fe80c0167" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00032"><span class="prov">@repo/docs/CONTRACT.md:L48|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AGENT-2: Agents must surface conflicts and gaps rather than silently resolving them. Enforced via review and conflict/open issue registers.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bf5fe80c0167" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bf5fe80c0167" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bf5fe80c0167" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:cf28cb4c8645" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00033"><span class="prov">@repo/docs/CONTRACT.md:L49|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AGENT-3: Type 2 execution requires sealed context and explicit deliverable scope. Enforced via agentic workflow and orchestration.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:cf28cb4c8645" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:cf28cb4c8645" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:cf28cb4c8645" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:fbe6af2517ff" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00034"><span class="prov">@repo/docs/CONTRACT.md:L50|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0002</span><span class="inout">IN</span><span class="stmt">OPS-K-AGENT-4: Agent outputs are drafts/proposals until accepted by a human gate. Enforced via review and lifecycle state.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:fbe6af2517ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:fbe6af2517ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:fbe6af2517ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD011-0003" class="chunk sec depth-2" data-kind="section" data-key="section:2fb9e34c6cfd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0003</span> 2. Enforcement map</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fb9e34c6cfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fb9e34c6cfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fb9e34c6cfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Enforcement point | Invariants checked |
+|---|---|
+| Decomposition review | OPS-K-HIER-1, OPS-K-ID-1, OPS-K-AGENT-3 |
+| Schema validation | OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-RULE-3 |
+| CI/test suite | OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-SOLVER-2, OPS-K-RULE-2, OPS-K-REPORT-2 |
+| Contributor review | OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-RULE-1 |
+| Report generation | OPS-K-AUTH-1, OPS-K-MECH-2, OPS-K-REPORT-1, OPS-K-REPORT-2 |
+| Human review gate | OPS-K-AUTH-1, OPS-K-AUTH-2, OPS-K-AGENT-4 |
+| Security/privacy review | OPS-K-PRIV-1, OPS-K-PRIV-2, OPS-K-RULE-2 |
+| Maintainer/release governance | OPS-K-GOV-1, OPS-K-GOV-2, OPS-K-GOV-3, OPS-K-GOV-4, OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-AUTH-1 |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:b1d1c164d41f" data-status="unreviewed" data-inout="OUT" data-atom-id="HBA-PD011-00035"><span class="prov">@repo/docs/CONTRACT.md:L52|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">OUT</span><span class="stmt">Section heading: Enforcement map.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b1d1c164d41f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b1d1c164d41f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b1d1c164d41f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:be92539008ab" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00036"><span class="prov">@repo/docs/CONTRACT.md:L56|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Decomposition review checks invariants OPS-K-HIER-1, OPS-K-ID-1, and OPS-K-AGENT-3.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:be92539008ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:be92539008ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:be92539008ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:53250dc52eb0" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00037"><span class="prov">@repo/docs/CONTRACT.md:L57|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Schema validation checks invariants OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, and OPS-K-RULE-3.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:53250dc52eb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:53250dc52eb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:53250dc52eb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bc4c685f0e7a" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00038"><span class="prov">@repo/docs/CONTRACT.md:L58|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: CI/test suite checks invariants OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-SOLVER-2, OPS-K-RULE-2, and OPS-K-REPORT-2.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bc4c685f0e7a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bc4c685f0e7a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bc4c685f0e7a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:47421f08e578" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00039"><span class="prov">@repo/docs/CONTRACT.md:L59|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Contributor review checks invariants OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, and OPS-K-RULE-1.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:47421f08e578" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:47421f08e578" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:47421f08e578" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c58e342deb3a" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00040"><span class="prov">@repo/docs/CONTRACT.md:L60|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Report generation checks invariants OPS-K-AUTH-1, OPS-K-MECH-2, OPS-K-REPORT-1, and OPS-K-REPORT-2.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c58e342deb3a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c58e342deb3a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c58e342deb3a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:62a431665cd4" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00041"><span class="prov">@repo/docs/CONTRACT.md:L61|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Human review gate checks invariants OPS-K-AUTH-1, OPS-K-AUTH-2, and OPS-K-AGENT-4.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:62a431665cd4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:62a431665cd4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:62a431665cd4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:dc2e3859c0ed" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00042"><span class="prov">@repo/docs/CONTRACT.md:L62|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Security/privacy review checks invariants OPS-K-PRIV-1, OPS-K-PRIV-2, and OPS-K-RULE-2.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:dc2e3859c0ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:dc2e3859c0ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:dc2e3859c0ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5d4d5b6d9b46" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00043"><span class="prov">@repo/docs/CONTRACT.md:L63|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0003</span><span class="inout">IN</span><span class="stmt">Enforcement map: Maintainer/release governance checks invariants OPS-K-GOV-1, OPS-K-GOV-2, OPS-K-GOV-3, OPS-K-GOV-4, OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, and OPS-K-AUTH-1.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5d4d5b6d9b46" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5d4d5b6d9b46" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5d4d5b6d9b46" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD011-0004" class="chunk sec depth-2" data-kind="section" data-key="section:76a8cdbadcb9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD011-0004</span> 3. Retired invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:76a8cdbadcb9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:76a8cdbadcb9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:76a8cdbadcb9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+None.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:466b6a239234" data-status="unreviewed" data-inout="OUT" data-atom-id="HBA-PD011-00044"><span class="prov">@repo/docs/CONTRACT.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0004</span><span class="inout">OUT</span><span class="stmt">Section heading: Retired invariants.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:466b6a239234" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:466b6a239234" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:466b6a239234" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9764e06b6927" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD011-00045"><span class="prov">@repo/docs/CONTRACT.md:L67|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#SEC-PD011-0004</span><span class="inout">IN</span><span class="stmt">There are currently no retired invariants.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9764e06b6927" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9764e06b6927" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9764e06b6927" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD011";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE",
+  "source_doc_id": "SRC-DEL-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE",
+  "source_prefix": "ED004",
+  "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/",
+  "catalog_rel_path": "@repo/execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE-DATASHEET",
+      "expected_sha256": "a5dfa56cff714507cb9adaffb80975f8ec5b68ab57fb197e35a70c0bc8523570",
+      "generated_line_start": 11,
+      "generated_line_end": 62,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE-GUIDANCE",
+      "expected_sha256": "98ee46fe59e9f6685c17ac7c791586ef7aabfc3f7ccdaea99936d44bff0e1c4d",
+      "generated_line_start": 66,
+      "generated_line_end": 96,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -65
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE-PROCEDURE",
+      "expected_sha256": "bb7b395f01a32aacc02ede519e06632a8d958ff5bd0dfb9c94256f95bd7ea119",
+      "generated_line_start": 100,
+      "generated_line_end": 137,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -99
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-04_Persistence and schema versioning architecture/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-04-PERSISTENCE-AND-SCHEMA-VERSIONING-ARCHITECTURE-SPECIFICATION",
+      "expected_sha256": "62b584adfc1f3e5821039c64b56c7112ced8cf75eede853f6f00ceb07d97d492",
+      "generated_line_start": 141,
+      "generated_line_end": 177,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -140
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

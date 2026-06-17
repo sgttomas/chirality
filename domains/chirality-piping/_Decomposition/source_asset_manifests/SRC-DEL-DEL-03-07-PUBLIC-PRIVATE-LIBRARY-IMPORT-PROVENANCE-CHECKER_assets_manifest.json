@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER",
+  "source_doc_id": "SRC-DEL-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER",
+  "source_prefix": "ED024",
+  "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/",
+  "catalog_rel_path": "@repo/execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER-DATASHEET",
+      "expected_sha256": "850f207d5da0658759e2fde85b4b264e07d0d99ab390b1960ffc14f834b0ed6c",
+      "generated_line_start": 11,
+      "generated_line_end": 69,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER-GUIDANCE",
+      "expected_sha256": "99e5ce49ab32d14dbb53295658175981f6d453e3e65a0a582f5e884b322a96e2",
+      "generated_line_start": 73,
+      "generated_line_end": 124,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -72
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER-PROCEDURE",
+      "expected_sha256": "383aa7595b53e1fa604ab02ab4d2e2cda2e6c1f57f69a6f0e8d35967b01b8ecf",
+      "generated_line_start": 128,
+      "generated_line_end": 173,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -127
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-07_Public-private library import provenance checker/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-07-PUBLIC-PRIVATE-LIBRARY-IMPORT-PROVENANCE-CHECKER-SPECIFICATION",
+      "expected_sha256": "97b044e14ccecf62fc9df620a79ca748571e1918260e558178d60bb7e3c73b64",
+      "generated_line_start": 177,
+      "generated_line_end": 237,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -176
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

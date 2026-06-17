@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-PLAN",
+  "source_prefix": "PD020",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-PLAN_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/PLAN.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD020-0001",
+      "line_start": 8,
+      "line_end": 185,
+      "target_section_ids": [
+        "SEC-PD020-0001",
+        "SEC-PD020-0002",
+        "SEC-PD020-0003",
+        "SEC-PD020-0004",
+        "SEC-PD020-0005",
+        "SEC-PD020-0006",
+        "SEC-PD020-0007",
+        "SEC-PD020-0008",
+        "SEC-PD020-0009",
+        "SEC-PD020-0010"
+      ],
+      "estimated_md_tokens": 2100,
+      "contains_oversized_section": false
+    }
+  ]
+}

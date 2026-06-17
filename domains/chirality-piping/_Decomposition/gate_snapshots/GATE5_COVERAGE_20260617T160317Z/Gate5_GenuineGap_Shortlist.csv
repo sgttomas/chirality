@@ -1,0 +1,47 @@
+SourceDocID,SectionID,Depth,Title,RepoRelPath
+SRC-CODE-VALIDATION,SEC-CV001-0148,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0192,4,Fixture Notes,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0196,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0202,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0208,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0215,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0223,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0229,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0235,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0254,4,Invented Stress Section Inputs,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0264,4,Invented Stress Section Inputs,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0273,4,Invented Stress Section Inputs,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0282,4,Invented Stress Section Inputs,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0288,4,Provenance,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0291,4,Invented Stress Section Inputs,validation/
+SRC-CODE-VALIDATION,SEC-CV001-0297,4,Provenance,validation/
+SRC-DEL-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE,SEC-ED001-0026,4,Records to Preserve,execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/
+SRC-DEL-DEL-00-08-LAYERED-SOFTWARE-TEST-AND-ACCEPTANCE-STRATEGY,SEC-ED008-0026,4,Records to Preserve,execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-08_Layered software test and acceptance strategy/
+SRC-DEL-DEL-02-03-CODE-NEUTRAL-ANALYSIS-BOUNDARY-MODEL,SEC-ED015-0011,4,Purpose,"execution/PKG-02_Domain Model, Units, and Core Schemas/1_Working/DEL-02-03_Code-neutral analysis boundary model/"
+SRC-DEL-DEL-03-03-BEND-AND-ELBOW-COMPONENT-MODEL-FIELDS,SEC-ED020-0004,4,Identification,"execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-03_Bend and elbow component model fields/"
+SRC-DEL-DEL-03-03-BEND-AND-ELBOW-COMPONENT-MODEL-FIELDS,SEC-ED020-0030,4,Documentation,"execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-03_Bend and elbow component model fields/"
+SRC-DEL-DEL-03-05-RIGID-COMPONENT-MODELS-FOR-VALVES-FLANGES-REDUCERS-AND-SPECIALTY-ITEMS,SEC-ED022-0004,4,Identification,"execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-05_Rigid component models for valves, flanges, reducers, and specialty items/"
+SRC-DEL-DEL-04-06-SOLVER-DIAGNOSTICS-AND-SINGULARITY-DETECTION,SEC-ED031-0004,4,Identification,execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection/
+SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE,SEC-ED034-0004,4,Identification,"execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/"
+SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE,SEC-ED034-0009,4,Open Questions,"execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/"
+SRC-DEL-DEL-05-03-FUNDAMENTAL-STRESS-RECOVERY-MODULE,SEC-ED034-0030,4,Verification,"execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/"
+SRC-DEL-DEL-07-03-MATERIAL-COMPONENT-AND-RULE-PACK-EDITORS,SEC-ED044-0020,4,Semantic Lensing Application,"execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-03_Material, component, and rule-pack editors/"
+SRC-DEL-DEL-07-04-MISSING-DATA-WARNING-AND-BLOCKING-UX,SEC-ED045-0004,4,Identification,execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-04_Missing-data warning and blocking UX/
+SRC-DEL-DEL-07-07-SOLVE-EXECUTION-UX-PROGRESS-CANCELLATION-AND-DIAGNOSTICS,SEC-ED048-0032,4,Documentation,"execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/"
+SRC-DEL-DEL-07-08-DESIGN-AUTHORING-STATE-AND-COMPARISON-WORKSPACE,SEC-ED049-0020,4,Prerequisites,execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/
+SRC-DEL-DEL-10-04-BUILD-PACKAGING-AND-CI-CD-PIPELINE,SEC-ED064-0009,4,TBD and Human-Ruling Slots,"execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/"
+SRC-DEL-DEL-10-04-BUILD-PACKAGING-AND-CI-CD-PIPELINE,SEC-ED064-0017,4,Human-Ruling Queue,"execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/"
+SRC-DEL-DEL-10-04-BUILD-PACKAGING-AND-CI-CD-PIPELINE,SEC-ED064-0033,4,Documentation,"execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/"
+SRC-DEL-DEL-11-04-INVENTED-EDUCATIONAL-EXAMPLE-MODELS,SEC-ED069-0004,4,Identification,"execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-04_Invented educational example models/"
+SRC-DEL-DEL-12-01-LOCAL-FIRST-STORAGE-AND-PRIVATE-DATA-PATHS,SEC-ED071-0037,4,Verification,"execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/"
+SRC-DEL-DEL-12-02-PRIVATE-DATA-REDACTION-AND-EXPORT-CONTROLS,SEC-ED072-0029,4,Prerequisites,"execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/"
+SRC-DEL-DEL-12-02-PRIVATE-DATA-REDACTION-AND-EXPORT-CONTROLS,SEC-ED072-0039,4,Verification,"execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/"
+SRC-DEL-DEL-12-02-PRIVATE-DATA-REDACTION-AND-EXPORT-CONTROLS,SEC-ED072-0040,4,Documentation,"execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/"
+SRC-DEL-DEL-12-05-SECURITY-THREAT-MODEL,SEC-ED075-0039,4,Verification,"execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model/"
+SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL,SEC-ED077-0020,4,Prerequisites,execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/
+SRC-DEL-DEL-13-04-PHYSICAL-TO-ANALYTICAL-TRANSFORMATION-CONTRACT,SEC-ED079-0045,4,Documentation,execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-04_Physical-to-analytical transformation contract/
+SRC-DEL-DEL-14-05-COMPARISON-MAPPING-TOLERANCE-AND-EXPORT-CONTRACTS,SEC-ED084-0020,4,Prerequisites,"execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts/"
+SRC-DEL-DEL-14-05-COMPARISON-MAPPING-TOLERANCE-AND-EXPORT-CONTRACTS,SEC-ED084-0029,4,Verification,"execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts/"
+SRC-DEL-DEL-16-02-OPERATION-VALIDATION-AND-DIFF-PREVIEW,SEC-ED090-0020,4,Prerequisites,execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/
+SRC-DEL-DEL-17-06-STRESS-NEUTRAL-CSV-JSON-PACKAGE,SEC-ED098-0037,4,Documentation,execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package/
+SRC-DOCS-PRD,SEC-PD021-0001,1,Product Requirements Document: OpenPipeStress,docs/PRD.md

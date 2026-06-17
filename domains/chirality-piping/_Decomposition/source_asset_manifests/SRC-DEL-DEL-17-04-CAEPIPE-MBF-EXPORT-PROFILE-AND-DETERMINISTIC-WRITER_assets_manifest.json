@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER",
+  "source_doc_id": "SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER",
+  "source_prefix": "ED096",
+  "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/",
+  "catalog_rel_path": "@repo/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER-DATASHEET",
+      "expected_sha256": "62ca5a1b91d89d379c9ce79f75f40d7622cfb3b5708c9247315781f51a439f0d",
+      "generated_line_start": 11,
+      "generated_line_end": 61,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER-GUIDANCE",
+      "expected_sha256": "e4284fcebf682befd5b02bff7b21a77940b6bbe9373ff778ee16e58eae1090db",
+      "generated_line_start": 65,
+      "generated_line_end": 114,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -64
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER-PROCEDURE",
+      "expected_sha256": "95a28c611da5c39a813b39cb7d7406a2fa52c29e87aeb6d6b941100de674f1f9",
+      "generated_line_start": 118,
+      "generated_line_end": 176,
+      "source_line_start": 1,
+      "source_line_end": 59,
+      "line_offset": -117
+    },
+    {
+      "repo_rel_path": "execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-17-EXPORT-FORMAT-INTEROPERABILITY-1-WORKING-DEL-17-04-CAEPIPE-MBF-EXPORT-PROFILE-AND-DETERMINISTIC-WRITER-SPECIFICATION",
+      "expected_sha256": "71247b6205b3a4532a89f2ea39c2f1258031ff63225efe8966b34d1f0d71e2b7",
+      "generated_line_start": 180,
+      "generated_line_end": 232,
+      "source_line_start": 1,
+      "source_line_end": 53,
+      "line_offset": -179
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

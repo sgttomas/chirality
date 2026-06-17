@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-SCOPECHANGE-OPENPIPESTRESS-PRD-V0-2",
+  "source_doc_id": "SRC-DOCS-SCOPECHANGE-OPENPIPESTRESS-PRD-V0-2",
+  "source_name": "OpenPipeStress_PRD_v0.2.md",
+  "source_prefix": "PD027",
+  "repo_rel_path": "docs/_ScopeChange/OpenPipeStress_PRD_v0.2.md",
+  "catalog_rel_path": "@repo/docs/_ScopeChange/OpenPipeStress_PRD_v0.2.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

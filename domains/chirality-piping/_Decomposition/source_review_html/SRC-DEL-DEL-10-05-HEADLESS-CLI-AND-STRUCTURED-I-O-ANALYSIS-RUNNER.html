@@ -1,0 +1,454 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED065-0001">Source Pack: SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I</a> <a href="#SEC-ED065-0002">Component: execution/PKG-10_Build, Packaging, API, and Inter</a> <a href="#SEC-ED065-0009">Component: execution/PKG-10_Build, Packaging, API, and Inter</a> <a href="#SEC-ED065-0018">Component: execution/PKG-10_Build, Packaging, API, and Inter</a> <a href="#SEC-ED065-0025">Component: execution/PKG-10_Build, Packaging, API, and Inter</a></nav>
+<main>
+<section id="SEC-ED065-0001" class="chunk sec depth-1" data-kind="section" data-key="section:89be004d06c4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED065-0001</span> Source Pack: SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89be004d06c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89be004d06c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89be004d06c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED065-0002" class="chunk sec depth-2" data-kind="section" data-key="section:de34982ff509" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED065-0002</span> Component: execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de34982ff509" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de34982ff509" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de34982ff509" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0003" class="chunk sec depth-3" data-kind="section" data-key="section:08a6163aea9d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED065-0003</span> Datasheet: DEL-10-05 Headless CLI and structured I/O analysis runner</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08a6163aea9d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08a6163aea9d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08a6163aea9d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0004" class="chunk sec depth-4" data-kind="section" data-key="section:07340b34667c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07340b34667c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07340b34667c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07340b34667c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Source |
+|---|---|---|
+| Deliverable ID | DEL-10-05 | `_CONTEXT.md` |
+| Package ID | PKG-10 | `_CONTEXT.md` |
+| Package | Build, Packaging, API, and Interoperability | `_CONTEXT.md` |
+| Type | BACKEND_FEATURE_SLICE | `_CONTEXT.md`; `docs/TYPES.md` section 3 |
+| Lifecycle target for setup | SEMANTIC_READY | `skills/semantic-matrix-build/SKILL.md` |
+| Current production posture | Setup/document production only; no CLI/source implementation in this run | Sealed TASK brief |
+</p></div></div></section>
+<section id="SEC-ED065-0005" class="chunk sec depth-4" data-kind="section" data-key="section:bdb781adb690" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdb781adb690" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdb781adb690" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdb781adb690" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Primary purpose | Headless or structured I/O solve execution for early solver verification, regression, and automation before full GUI maturity | `docs/_Registers/ScopeLedger.csv` row SOW-054; `docs/_Registers/Deliverables.csv` row DEL-10-05 |
+| Required alignment | Schema-first command/query/job envelopes and result exports | `docs/_Registers/Deliverables.csv` row DEL-10-05; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 8.1 AB-00-03 |
+| Reproducibility basis | Deterministic, unit-safe model data flow; canonical JSON and JCS-compatible hashing where JSON payload hashes are used | `_CONTEXT.md` Architecture Basis Injection; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 8.2 |
+| Diagnostics basis | Result envelopes and diagnostics carry machine-readable warning/error information and must not claim certification or code compliance | `execution/_Decomposition/SOFTWARE_DECOMP.md` section 8.1 AB-00-06; `docs/CONTRACT.md` invariant OPS-K-AUTH-1 |
+| Build/automation relationship | Must remain compatible with reproducible build, packaging, and CI/CD workflows; exact CI provider and release matrix are TBD | `docs/_Registers/ScopeLedger.csv` row SOW-032; `execution/_Decomposition/SOFTWARE_DECOMP.md` section 8.2 |
+| Public/private boundary | No protected standards data, proprietary catalog values, private rule packs, or private project data are public defaults | `INIT.md`; `docs/DIRECTIVE.md` sections 3-4; `docs/CONTRACT.md` OPS-K-IP-1 and OPS-K-PRIV-1 |
+</p></div></div></section>
+<section id="SEC-ED065-0006" class="chunk sec depth-4" data-kind="section" data-key="section:a1a829c4704b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1a829c4704b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1a829c4704b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1a829c4704b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Exact CLI command names | TBD; not established in this setup deliverable |
+| Exact structured input schema fields | TBD; must come from schema/API implementation work, not this setup pass |
+| Public API transport | TBD per SCA-001 remaining-TBD boundary |
+| External import/export format list | TBD; schema-first JSON envelopes are the baseline |
+| CI provider and coverage thresholds | TBD; release gates remain future implementation detail |
+| Protected-data status | No protected standards text, tables, examples, material allowables, SIF/flexibility tables, proprietary values, or certification claims introduced here |
+</p></div></div></section>
+<section id="SEC-ED065-0007" class="chunk sec depth-4" data-kind="section" data-key="section:9cfed506fc11" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9cfed506fc11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9cfed506fc11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9cfed506fc11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup pass defines the future runner as a governed automation surface, not as implemented software. The eventual implementation is expected to sit at the application-service boundary and call domain/solver/reporting services through schema-governed commands, queries, jobs, diagnostics, and result envelopes.</p>
+<p>The future runner must not bypass unit validation, provenance validation, result-envelope diagnostics, rule-pack sandbox boundaries, private-data controls, report controls, or human professional review boundaries. Any concrete command syntax, schema field list, file extension, package manifest change, or CI workflow file remains outside this setup run.
+</p></div></div></section>
+<section id="SEC-ED065-0008" class="chunk sec depth-4" data-kind="section" data-key="section:fd3d32ac28bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd3d32ac28bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd3d32ac28bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd3d32ac28bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for sealed deliverable identity, SOW/OBJ coverage, acceptance/risk notes, and architecture-basis injection.
+- `docs/CONTRACT.md` for invariants OPS-K-IP-1/2/3, OPS-K-DATA-1/2/3, OPS-K-UNIT-1, OPS-K-RULE-1/2/3, OPS-K-PRIV-1/2, OPS-K-AUTH-1, and OPS-K-AGENT-1..4.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` sections 8, 9, 11, and 12 for architecture basis, scope ledger, open issues, and accepted decisions.
+- `docs/_Registers/Deliverables.csv` row DEL-10-05.
+- `docs/_Registers/ScopeLedger.csv` rows SOW-054 and SOW-032.
+- `docs/SPEC.md` sections 1, 7, 8, 9, and 10 for layer boundaries, diagnostics/reporting, V&amp;V, and deliverable mechanics.
+- `docs/TYPES.md` sections 3, 4, 6, 8, and 9 for deliverable type, analysis-status vocabulary, data boundaries, object registry, and lifecycle semantics.</p></div></div></section>
+<section id="SEC-ED065-0009" class="chunk sec depth-2" data-kind="section" data-key="section:868a0c380047" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED065-0009</span> Component: execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:868a0c380047" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:868a0c380047" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:868a0c380047" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0010" class="chunk sec depth-3" data-kind="section" data-key="section:8823cdf0c41f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED065-0010</span> Guidance: DEL-10-05 Headless CLI and structured I/O analysis runner</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8823cdf0c41f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8823cdf0c41f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8823cdf0c41f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0011" class="chunk sec depth-4" data-kind="section" data-key="section:cd414e8623f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd414e8623f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd414e8623f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd414e8623f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable keeps the early automation path coherent while GUI maturity, packaging details, and result export schemas are still evolving. The headless runner is useful only if it exercises the same governed service boundaries that GUI and downstream automation will rely on.
+</p></div></div></section>
+<section id="SEC-ED065-0012" class="chunk sec depth-4" data-kind="section" data-key="section:0e25bf18d82f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e25bf18d82f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e25bf18d82f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e25bf18d82f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Treat the runner as an application-service client, not a solver shortcut.
+- Keep command/query/job separation visible so progress, cancellation, diagnostics, and result envelopes stay testable.
+- Preserve unit safety and deterministic serialization across input, solve, and output.
+- Prefer explicit `TBD` over invented command names, schema fields, CI provider decisions, or platform matrices.
+- Keep protected standards data, private project data, private rule packs, and proprietary component/material values out of public fixtures.
+- Use result statuses as software findings only; professional reliance still requires competent human review.
+</p></div></div></section>
+<section id="SEC-ED065-0013" class="chunk sec depth-4" data-kind="section" data-key="section:3041563de613" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3041563de613" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3041563de613" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3041563de613" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The future runner should be useful for R0/R1 verification and regression work before a complete GUI exists. That usefulness depends on stable structured I/O, reproducible runs, and machine-readable diagnostics. It does not require this setup pass to pick final commands, package scripts, or file formats.</p>
+<p>The runner is also adjacent to several other deliverables. It must align with the command/query/job model, diagnostics/result envelopes, result export format, build/CI pipeline, unit system, persistence/hash strategy, and solver diagnostics. Those relationships are dependencies and constraints, not permission to edit those deliverables here.
+</p></div></div></section>
+<section id="SEC-ED065-0014" class="chunk sec depth-4" data-kind="section" data-key="section:25a7c4ff9e98" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:25a7c4ff9e98" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:25a7c4ff9e98" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:25a7c4ff9e98" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Choice | Benefit | Risk | Setup posture |
+|---|---|---|---|
+| Early headless path before full GUI | Enables solver verification and automation earlier | Can bypass GUI warnings if service boundaries are ignored | Require command/job/result-envelope alignment |
+| Schema-first I/O | Supports tests, regression comparison, and downstream tooling | Final fields can be over-specified too early | Keep exact schema fields TBD |
+| JSON/JCS-compatible reproducibility | Supports stable hashes and audit trails | Physical package/container remains unresolved | Record accepted basis and defer container details |
+| CLI command surface | Familiar for CI and developer workflows | Command names may ossify before architecture is ready | Do not define final command syntax in setup |
+</p></div></div></section>
+<section id="SEC-ED065-0015" class="chunk sec depth-4" data-kind="section" data-key="section:32375637a70c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32375637a70c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32375637a70c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32375637a70c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No executable CLI examples are provided in this setup run. Future examples must use invented/public-permissive data only and include visible diagnostics for missing data, provenance warnings, and professional-boundary notices where applicable.
+</p></div></div></section>
+<section id="SEC-ED065-0016" class="chunk sec depth-4" data-kind="section" data-key="section:55fbc09892bd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0016</span> Pass 3 Semantic Lensing Notes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:55fbc09892bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:55fbc09892bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:55fbc09892bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The semantic lensing register reinforced three points for downstream work:</p>
+<p>- Exact command names and schema fields remain TBD until implementation scope or human approval resolves them.
+- Future implementation must include a verification hook showing that no CLI/source, fixture, manifest, or repo-level automation file is modified outside its sealed write scope.
+- Result export compatibility must be tested against the schema-first result-envelope baseline instead of an ad hoc output shape.
+</p></div></div></section>
+<section id="SEC-ED065-0017" class="chunk sec depth-4" data-kind="section" data-key="section:a15a21612c72" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a15a21612c72" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a15a21612c72" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a15a21612c72" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| None | No conflicting source statements identified during setup. | N/A | N/A | N/A | N/A | N/A |</p></div></div></section>
+<section id="SEC-ED065-0018" class="chunk sec depth-2" data-kind="section" data-key="section:462c9b035ce5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED065-0018</span> Component: execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:462c9b035ce5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:462c9b035ce5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:462c9b035ce5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0019" class="chunk sec depth-3" data-kind="section" data-key="section:578b9f7ddf76" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED065-0019</span> Procedure: DEL-10-05 Headless CLI and structured I/O analysis runner</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:578b9f7ddf76" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:578b9f7ddf76" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:578b9f7ddf76" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0020" class="chunk sec depth-4" data-kind="section" data-key="section:18f1a86809d3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18f1a86809d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18f1a86809d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18f1a86809d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the setup and future execution procedure for a governed headless runner deliverable without implementing the runner in this session.
+</p></div></div></section>
+<section id="SEC-ED065-0021" class="chunk sec depth-4" data-kind="section" data-key="section:bb1afaaf826d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb1afaaf826d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb1afaaf826d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb1afaaf826d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Sealed context for DEL-10-05 with write scope limited to this deliverable folder.
+- Governing references listed in `_REFERENCES.md`.
+- Architecture-basis constraints injected in `_CONTEXT.md`.
+- No protected standards data, proprietary values, private project data, or certification/compliance claims in the artifacts.
+- Future implementation must receive a separate sealed brief before changing CLI/source files, fixtures, package manifests, CI files, or repo-level automation.
+</p></div></div></section>
+<section id="SEC-ED065-0022" class="chunk sec depth-4" data-kind="section" data-key="section:53530c6b5f36" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:53530c6b5f36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:53530c6b5f36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:53530c6b5f36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_STATUS.md`, decomposition and register rows for DEL-10-05, SOW-054, and SOW-032.
+2. Draft the four-document kit from accessible governance, decomposition, and register sources.
+3. Keep exact CLI commands, schema fields, public API transport, CI provider, release matrix, and package/container details as `TBD` unless a cited source or human ruling resolves them.
+4. Generate `_SEMANTIC.md` from the deliverable-local perspective and production documents.
+5. Generate `_SEMANTIC_LENSING.md` from `_SEMANTIC.md` and the four production documents.
+6. Apply warranted semantic-lensing items conservatively, with source reread evidence and no new implementation particulars.
+7. Generate `Dependencies.csv` and `_DEPENDENCIES.md` from local source documents and the decomposition basis.
+8. Validate the four-document kit, dependency schema, semantic coverage, lens coverage, and status state.
+9. Record run evidence under `_run_records/`.
+</p></div></div></section>
+<section id="SEC-ED065-0023" class="chunk sec depth-4" data-kind="section" data-key="section:16db8e143327" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0023</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:16db8e143327" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:16db8e143327" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:16db8e143327" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Setup is acceptable for `SEMANTIC_READY` only when:</p>
+<p>- `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist.
+- `_SEMANTIC.md` is populated and has no failed final-cell semantic gate.
+- `_SEMANTIC_LENSING.md` includes all required lens coverage rows.
+- `Dependencies.csv` validates against v3.1 schema.
+- `_DEPENDENCIES.md` counts align with `Dependencies.csv`.
+- `_STATUS.md` records `SEMANTIC_READY` only, not `ISSUED`.
+- `git status` shows changes only inside this deliverable folder for this run.
+</p></div></div></section>
+<section id="SEC-ED065-0024" class="chunk sec depth-4" data-kind="section" data-key="section:980395a0eb13" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0024</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:980395a0eb13" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:980395a0eb13" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:980395a0eb13" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required records:</p>
+<p>- Four production documents.
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_STATUS.md`
+- `_run_records/TASK_RUN_2026-04-30_1105_four-documents-p1-p2.md`
+- `_run_records/TASK_RUN_2026-04-30_1105_semantic-matrix-build.md`
+- `_run_records/TASK_RUN_2026-04-30_1105_lens-register.md`
+- `_run_records/TASK_RUN_2026-04-30_1105_four-documents-p3.md`
+- `_run_records/TASK_RUN_2026-04-30_1105_dependency-extract.md`</p></div></div></section>
+<section id="SEC-ED065-0025" class="chunk sec depth-2" data-kind="section" data-key="section:33febb7c59c2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED065-0025</span> Component: execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:33febb7c59c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:33febb7c59c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:33febb7c59c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0026" class="chunk sec depth-3" data-kind="section" data-key="section:7487020a259d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED065-0026</span> Specification: DEL-10-05 Headless CLI and structured I/O analysis runner</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7487020a259d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7487020a259d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7487020a259d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED065-0027" class="chunk sec depth-4" data-kind="section" data-key="section:c7f50c400ca9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0027</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7f50c400ca9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7f50c400ca9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7f50c400ca9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable defines setup-stage requirements and evidence for a future headless CLI or equivalent structured I/O analysis runner. The future runner exists to support early solver verification, regression automation, and non-GUI execution paths while the full GUI matures.</p>
+<p>This setup run does not implement CLI/source code, fixtures, package manifests, CI workflows, external adapters, result-export schemas, or final command syntax. Those remain future implementation artifacts or separate deliverables.
+</p></div></div></section>
+<section id="SEC-ED065-0028" class="chunk sec depth-4" data-kind="section" data-key="section:c77ea178ce05" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c77ea178ce05" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c77ea178ce05" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c77ea178ce05" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source | Verification |
+|---|---|---|---|
+| R-01 | The future runner must execute through schema-first command/query/job/result-envelope boundaries rather than direct solver bypasses. | `_CONTEXT.md` Architecture Basis Injection; `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-03 | Confirm future implementation calls application-service contracts and preserves command/job separation. |
+| R-02 | Structured input and output must remain unit-aware, deterministic, and reproducible. | `docs/CONTRACT.md` OPS-K-UNIT-1; `docs/_Registers/ScopeLedger.csv` SOW-054 and OBJ-012 | Confirm future fixtures include unit-bearing values and deterministic rerun expectations. |
+| R-03 | Missing solve-required or rule-check-required data must surface as diagnostics, not silent defaults. | `docs/CONTRACT.md` OPS-K-DATA-2; `docs/DIRECTIVE.md` section 3 | Confirm future runner exits/results include blocking diagnostics for missing required inputs. |
+| R-04 | Result output must align with schema-first result exports and diagnostic/result-envelope contracts. | `docs/_Registers/ScopeLedger.csv` SOW-046 and SOW-061; `docs/_Registers/Deliverables.csv` DEL-10-05 notes | Confirm future outputs can be consumed by regression comparison and report/result export workflows without private-data leakage. |
+| R-05 | Diagnostics must preserve code/class/severity/source/object/remediation/provenance semantics and no compliance/certification claim. | `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-06; `docs/CONTRACT.md` OPS-K-AUTH-1 | Confirm future error/warning examples include professional-boundary notices where relevant. |
+| R-06 | The future runner must support build and CI automation without deciding the CI provider, package manifest, or release matrix in this setup pass. | `docs/_Registers/ScopeLedger.csv` SOW-032; `execution/_Decomposition/SOFTWARE_DECOMP.md` OI-002 and DEC-012 | Record remaining TBDs and avoid editing package manifests or repo-level automation files. |
+| R-07 | Public examples and fixtures must use original/invented or otherwise permitted data and must not embed protected standards content. | `docs/CONTRACT.md` OPS-K-IP-1 and OPS-K-RULE-1; `docs/DIRECTIVE.md` sections 3-5 | Future fixture review must check protected-content risk and provenance. |
+| R-08 | The runner must not transmit private project, material, component, or rule-pack data by default. | `docs/CONTRACT.md` OPS-K-PRIV-1/2; `docs/DIRECTIVE.md` section 6 | Future runner configuration review must confirm local-first/private-data defaults. |
+| R-09 | Runner results may indicate mechanics solve and user-rule-check statuses but must not use automatic code-compliance status. | `docs/TYPES.md` section 4; `docs/CONTRACT.md` OPS-K-MECH-2 and OPS-K-AUTH-1 | Future status tests must reject misleading compliance/certification wording. |
+</p></div></div></section>
+<section id="SEC-ED065-0029" class="chunk sec depth-4" data-kind="section" data-key="section:94d68ae67c4d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0029</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94d68ae67c4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94d68ae67c4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94d68ae67c4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or basis | Applicability | Status |
+|---|---|---|
+| JSON Schema 2020-12 baseline | Governs public schema/interchange posture for future structured I/O | Accepted by SCA-001; exact schema files TBD |
+| Canonical JSON/JCS-compatible hashing | Applies where JSON payload hashes are used for reproducibility | Accepted by SCA-001; physical package/container TBD |
+| Command/query/job/result-envelope baseline | Governs application-service separation for GUI/headless execution | Accepted by SCA-001; concrete interface language TBD |
+| Professional responsibility boundary | Prohibits software or agent claims of certification, sealing, approval, or automatic code compliance | Binding invariant |
+</p></div></div></section>
+<section id="SEC-ED065-0030" class="chunk sec depth-4" data-kind="section" data-key="section:d369f0019044" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d369f0019044" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d369f0019044" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d369f0019044" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Setup verification for this run is limited to document/setup artifacts:</p>
+<p>- Four-document kit exists with required sections.
+- `_SEMANTIC.md` contains matrices A, B, C, F, D, K, G, X, T, and E and passes local semantic-gate checks.
+- `_SEMANTIC_LENSING.md` includes complete coverage for A, B, C, F, D, X, and E.
+- `Dependencies.csv` includes the v3.1 dependency schema and active rows with evidence.
+- `_STATUS.md` remains no higher than `SEMANTIC_READY`.
+- No files are written outside the assigned deliverable folder.</p>
+<p>Future implementation verification remains TBD and must be handled in a later sealed task. It should include schema validation, deterministic runner regression cases, diagnostic failure cases, result-export compatibility checks, protected-content/provenance gates, and CI automation checks as applicable.
+</p></div></div></section>
+<section id="SEC-ED065-0031" class="chunk sec depth-4" data-kind="section" data-key="section:6a5b3dd68052" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0031</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a5b3dd68052" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a5b3dd68052" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a5b3dd68052" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required setup artifacts for this run:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`
+- `_STATUS.md`
+</p></div></div></section>
+<section id="SEC-ED065-0032" class="chunk sec depth-4" data-kind="section" data-key="section:f54f6a223201" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED065-0032</span> Pass 3 Lensing Addendum</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f54f6a223201" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f54f6a223201" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f54f6a223201" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Semantic lensing identified one implementation-sensitive TBD that must remain visible: exact CLI command names, exact structured I/O schema fields, public API transport, CI provider, and release matrix are not established by this setup deliverable. Future implementation work must resolve those details through sealed scope or human approval before hard-coding commands, schema fields, or automation behavior.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED065";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

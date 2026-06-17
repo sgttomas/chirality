@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-TYPES",
+  "source_doc_id": "SRC-DOCS-TYPES",
+  "source_name": "TYPES.md",
+  "source_prefix": "PD038",
+  "repo_rel_path": "docs/TYPES.md",
+  "catalog_rel_path": "@repo/docs/TYPES.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

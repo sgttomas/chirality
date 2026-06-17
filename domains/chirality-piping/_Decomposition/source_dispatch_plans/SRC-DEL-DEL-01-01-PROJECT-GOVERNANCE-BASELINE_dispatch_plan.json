@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE",
+  "source_prefix": "ED009",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED009-0001",
+      "line_start": 9,
+      "line_end": 291,
+      "target_section_ids": [
+        "SEC-ED009-0002",
+        "SEC-ED009-0003",
+        "SEC-ED009-0004",
+        "SEC-ED009-0005",
+        "SEC-ED009-0006",
+        "SEC-ED009-0007",
+        "SEC-ED009-0008",
+        "SEC-ED009-0009",
+        "SEC-ED009-0010",
+        "SEC-ED009-0011",
+        "SEC-ED009-0012",
+        "SEC-ED009-0013",
+        "SEC-ED009-0014",
+        "SEC-ED009-0015",
+        "SEC-ED009-0016",
+        "SEC-ED009-0017",
+        "SEC-ED009-0018",
+        "SEC-ED009-0019",
+        "SEC-ED009-0020",
+        "SEC-ED009-0021",
+        "SEC-ED009-0022",
+        "SEC-ED009-0023",
+        "SEC-ED009-0024",
+        "SEC-ED009-0025",
+        "SEC-ED009-0026",
+        "SEC-ED009-0027",
+        "SEC-ED009-0028",
+        "SEC-ED009-0029",
+        "SEC-ED009-0030",
+        "SEC-ED009-0031",
+        "SEC-ED009-0032"
+      ],
+      "estimated_md_tokens": 3198,
+      "contains_oversized_section": false
+    }
+  ]
+}

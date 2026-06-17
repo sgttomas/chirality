@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL",
+  "source_doc_id": "SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL",
+  "source_prefix": "ED091",
+  "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/",
+  "catalog_rel_path": "@repo/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL-DATASHEET",
+      "expected_sha256": "c4035226791a03b2680a62734acb19e35bad4583ff2e637437a1823de0bd776a",
+      "generated_line_start": 11,
+      "generated_line_end": 92,
+      "source_line_start": 1,
+      "source_line_end": 82,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL-GUIDANCE",
+      "expected_sha256": "f346b39b72b8972e7ded1d1c484a122d1a52fcc1cd8b2e74abb08cf62309255a",
+      "generated_line_start": 96,
+      "generated_line_end": 142,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -95
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL-PROCEDURE",
+      "expected_sha256": "679a8d36ee53717d6d609bd68d69be12b368ae6672cb0600a96cdbd1cf123bdf",
+      "generated_line_start": 146,
+      "generated_line_end": 203,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -145
+    },
+    {
+      "repo_rel_path": "execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-16-MODEL-OPERATION-AND-AGENT-PROPOSAL-FRAMEWORK-1-WORKING-DEL-16-03-USER-ACCEPTANCE-AND-OPERATION-AUDIT-TRAIL-SPECIFICATION",
+      "expected_sha256": "5a57ea87c352d973c18723446e0eb05e78481603c231b820a1c17dd4e63fbae6",
+      "generated_line_start": 207,
+      "generated_line_end": 270,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -206
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

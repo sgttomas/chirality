@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-08-03-WARNINGS-ASSUMPTIONS-AND-PROVENANCE-REPORT-SECTION",
+  "source_prefix": "ED052",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-08-03-WARNINGS-ASSUMPTIONS-AND-PROVENANCE-REPORT-SECTION_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-08-03-WARNINGS-ASSUMPTIONS-AND-PROVENANCE-REPORT-SECTION.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:59+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED052-0001",
+      "line_start": 9,
+      "line_end": 324,
+      "target_section_ids": [
+        "SEC-ED052-0002",
+        "SEC-ED052-0003",
+        "SEC-ED052-0004",
+        "SEC-ED052-0005",
+        "SEC-ED052-0006",
+        "SEC-ED052-0007",
+        "SEC-ED052-0008",
+        "SEC-ED052-0009",
+        "SEC-ED052-0010",
+        "SEC-ED052-0011",
+        "SEC-ED052-0012",
+        "SEC-ED052-0013",
+        "SEC-ED052-0014",
+        "SEC-ED052-0015",
+        "SEC-ED052-0016",
+        "SEC-ED052-0017",
+        "SEC-ED052-0018",
+        "SEC-ED052-0019",
+        "SEC-ED052-0020",
+        "SEC-ED052-0021",
+        "SEC-ED052-0022",
+        "SEC-ED052-0023",
+        "SEC-ED052-0024",
+        "SEC-ED052-0025",
+        "SEC-ED052-0026",
+        "SEC-ED052-0027",
+        "SEC-ED052-0028",
+        "SEC-ED052-0029",
+        "SEC-ED052-0030",
+        "SEC-ED052-0031",
+        "SEC-ED052-0032"
+      ],
+      "estimated_md_tokens": 4366,
+      "contains_oversized_section": false
+    }
+  ]
+}

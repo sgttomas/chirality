@@ -1,0 +1,373 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>10</b></span>
+  <span class="stat">Atoms: <b>40</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD042-0001">Contribution Review Checklist</a> <a href="#SEC-PD042-0002">Current Authority Basis</a> <a href="#SEC-PD042-0003">1. Contribution Identity</a> <a href="#SEC-PD042-0004">2. Source And Rights Evidence</a> <a href="#SEC-PD042-0005">3. Protected-Content Screen</a> <a href="#SEC-PD042-0006">4. Private-Data Screen</a> <a href="#SEC-PD042-0007">5. Engineering And Product-Claim Screen</a> <a href="#SEC-PD042-0008">6. Tests And Evidence</a> <a href="#SEC-PD042-0009">7. Disposition</a> <a href="#SEC-PD042-0010">8. Quarantine Record</a></nav>
+<main>
+<section id="SEC-PD042-0001" class="chunk sec depth-1" data-kind="section" data-key="section:805a7c1112f4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD042-0001</span> Contribution Review Checklist</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:805a7c1112f4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:805a7c1112f4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:805a7c1112f4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This checklist is a project-governance intake record for public repository contributions. It is not legal advice, professional engineering approval, certification, sealing, standards-body endorsement, or a code-compliance claim.</p>
+<p>Use this checklist before accepting contributions that add or modify public data, examples, report templates, benchmark cases, import fixtures, documentation excerpts, rule-pack examples, component/material/library records, or generated artifacts that may expose private or protected content.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:ddf45168fde3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00001"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L19|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0001</span><span class="inout">IN</span><span class="stmt">The Contribution Review Checklist is a project-governance intake record for public repository contributions.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ddf45168fde3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ddf45168fde3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ddf45168fde3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7b7267f8d49f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00002"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L19|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0001</span><span class="inout">IN</span><span class="stmt">The checklist is not legal advice, professional engineering approval, certification, sealing, standards-body endorsement, or a code-compliance claim.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7b7267f8d49f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7b7267f8d49f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7b7267f8d49f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b77c5217b10b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00003"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L21|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0001</span><span class="inout">IN</span><span class="stmt">Use the checklist before accepting contributions that add or modify public data, examples, report templates, benchmark cases, import fixtures, documentation excerpts, rule-pack examples, component/material/library records, or generated artifacts that may expose private or protected content.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b77c5217b10b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b77c5217b10b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b77c5217b10b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0002" class="chunk sec depth-2" data-kind="section" data-key="section:4171c202c199" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0002</span> Current Authority Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4171c202c199" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4171c202c199" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4171c202c199" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This draft checklist is aligned to
+`execution/_Decomposition/SOFTWARE_DECOMP.md` revision `0.7` and approved
+`DAG-006` coordination authority. The project license has been selected as
+`PolyForm-Noncommercial-1.0.0`; this checklist records contribution-source
+rights and redistribution evidence separately from that project license notice.</p>
+<p>The final contributor legal mechanism, maintainer roster/quorum, release
+authority, legal-review authority, security contact, release-label vocabulary,
+human-acceptance workflow, and jurisdiction-specific professional-practice
+wording remain `TBD` until recorded by the human project authority or qualified
+reviewer.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:951a6310f334" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00004"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L25|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0002</span><span class="inout">IN</span><span class="stmt">This draft checklist is aligned to execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7 and approved DAG-006 coordination authority.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:951a6310f334" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:951a6310f334" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:951a6310f334" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8565475cc403" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00005"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L27|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0002</span><span class="inout">IN</span><span class="stmt">The project license has been selected as PolyForm-Noncommercial-1.0.0.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8565475cc403" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8565475cc403" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8565475cc403" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:899eb970e1e6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00006"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L28|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0002</span><span class="inout">IN</span><span class="stmt">The checklist records contribution-source rights and redistribution evidence separately from the project license notice.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:899eb970e1e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:899eb970e1e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:899eb970e1e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5fa02c8b6b1d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00007"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L31|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0002</span><span class="inout">IN</span><span class="stmt">The final contributor legal mechanism, maintainer roster/quorum, release authority, legal-review authority, security contact, release-label vocabulary, human-acceptance workflow, and jurisdiction-specific professional-practice wording remain TBD until recorded by the human project authority or qualified reviewer.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5fa02c8b6b1d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5fa02c8b6b1d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5fa02c8b6b1d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0003" class="chunk sec depth-2" data-kind="section" data-key="section:0f77677c78ad" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0003</span> 1. Contribution Identity</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0f77677c78ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0f77677c78ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0f77677c78ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Review value |
+|---|---|
+| Review ID | `TBD` |
+| Contribution title | `TBD` |
+| Contributor | `TBD` |
+| Reviewer | `TBD` |
+| Related deliverable / issue / PR | `TBD` |
+| Changed paths | `TBD` |
+| Contribution type | `code`, `schema`, `documentation`, `example`, `benchmark`, `data`, `template`, `other` |
+| Project license notice | `PolyForm-Noncommercial-1.0.0` |
+| Contributor certification record | `governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md` or equivalent |
+| Review date | `TBD` |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:66ffaf8ab537" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00008"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L39|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0003</span><span class="inout">IN</span><span class="stmt">The Contribution Identity section records review ID, contribution title, contributor, reviewer, related deliverable/issue/PR, changed paths, contribution type, project license notice, contributor certification record, and review date.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:66ffaf8ab537" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:66ffaf8ab537" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:66ffaf8ab537" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:75a75a9a078f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00009"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L47|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0003</span><span class="inout">IN</span><span class="stmt">Allowed contribution-type values are code, schema, documentation, example, benchmark, data, template, and other.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:75a75a9a078f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:75a75a9a078f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:75a75a9a078f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:524f36fdfdfc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00010"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L49|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0003</span><span class="inout">IN</span><span class="stmt">The default contributor certification record is governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md or equivalent.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:524f36fdfdfc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:524f36fdfdfc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:524f36fdfdfc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0004" class="chunk sec depth-2" data-kind="section" data-key="section:6f143be83e7f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0004</span> 2. Source And Rights Evidence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f143be83e7f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f143be83e7f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f143be83e7f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Review value |
+|---|---|
+| Source name | `TBD` |
+| Source location | `TBD` |
+| Source type | `invented`, `original`, `public_domain`, `permissive_license`, `private_user_supplied`, `proprietary_with_permission`, `unknown`, `protected_suspected` |
+| Source license / redistribution basis | `TBD` |
+| Contributor certification | `TBD` |
+| Contributor certification statement accepted for review | `yes`, `no`, `TBD` |
+| Redistribution status | `public_permissive`, `private_only`, `unknown`, `protected_suspected`, `rejected` |
+| Evidence attachment / note | `TBD` |</p>
+<p>Acceptance requires a recorded source, redistribution basis, contributor certification, and reviewer disposition. `unknown`, `protected_suspected`, or missing evidence cannot be accepted as public data.</p>
+<p>Use `governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md` for the default
+contributor certification record unless a maintainer-approved form preserves
+the same source, rights, redistribution, protected-content, private-data, and
+review fields. The project license is `PolyForm-Noncommercial-1.0.0`; the final
+project-wide contributor legal mechanism remains `TBD`.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:384baaad01bc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00011"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L54|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">The Source And Rights Evidence section records source name, source location, source type, source license/redistribution basis, contributor certification, certification-statement acceptance, redistribution status, and evidence attachment/note.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:384baaad01bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:384baaad01bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:384baaad01bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b6dc3be0273b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00012"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L58|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">Allowed source-type values are invented, original, public_domain, permissive_license, private_user_supplied, proprietary_with_permission, unknown, and protected_suspected.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b6dc3be0273b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b6dc3be0273b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b6dc3be0273b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1a1ce36652aa" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00013"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L62|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">Allowed redistribution-status values are public_permissive, private_only, unknown, protected_suspected, and rejected.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1a1ce36652aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1a1ce36652aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1a1ce36652aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5b533b333a98" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00014"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">Acceptance requires a recorded source, redistribution basis, contributor certification, and reviewer disposition.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5b533b333a98" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5b533b333a98" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5b533b333a98" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:16f12a0ef05d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00015"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">Contributions with unknown, protected_suspected, or missing evidence cannot be accepted as public data.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:16f12a0ef05d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:16f12a0ef05d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:16f12a0ef05d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:278237e3bff7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00016"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L67|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0004</span><span class="inout">IN</span><span class="stmt">Use governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md for the default contributor certification record unless a maintainer-approved form preserves the same source, rights, redistribution, protected-content, private-data, and review fields.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:278237e3bff7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:278237e3bff7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:278237e3bff7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0005" class="chunk sec depth-2" data-kind="section" data-key="section:e0f1e7a3a716" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0005</span> 3. Protected-Content Screen</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0f1e7a3a716" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0f1e7a3a716" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0f1e7a3a716" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Result | Notes |
+|---|---|---|
+| No standards-body code text, commentary, figures, or examples copied into public content | `pending` | `TBD` |
+| No copied material allowable tables, SIF tables, flexibility-factor tables, or protected dimensional/rating tables | `pending` | `TBD` |
+| No copied commercial software examples, report templates, benchmark files, or proprietary formulas without permission | `pending` | `TBD` |
+| No proprietary vendor catalog data without documented redistribution rights | `pending` | `TBD` |
+| Public examples use invented, original, public-domain, or permissively licensed values only | `pending` | `TBD` |
+| Documentation excerpts are original summaries or permissively licensed quotations within project policy | `pending` | `TBD` |</p>
+<p>Allowed result values are `pass`, `fail`, `pending`, `not_applicable`, and `escalated`.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:10dc3cf6f22d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00017"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L77|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies no standards-body code text, commentary, figures, or examples are copied into public content.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:10dc3cf6f22d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:10dc3cf6f22d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:10dc3cf6f22d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:14ac94e4128f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00018"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L78|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies no copied material allowable tables, SIF tables, flexibility-factor tables, or protected dimensional/rating tables are included.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:14ac94e4128f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:14ac94e4128f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:14ac94e4128f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b478647e7fd2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00019"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L79|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies no copied commercial software examples, report templates, benchmark files, or proprietary formulas are included without permission.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b478647e7fd2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b478647e7fd2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b478647e7fd2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:84d9dcc8fafd" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00020"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L80|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies no proprietary vendor catalog data is included without documented redistribution rights.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:84d9dcc8fafd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:84d9dcc8fafd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:84d9dcc8fafd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d987d7ca2ea3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00021"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L81|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies public examples use invented, original, public-domain, or permissively licensed values only.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d987d7ca2ea3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d987d7ca2ea3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d987d7ca2ea3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5a2bdbfdcb76" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00022"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L82|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">The Protected-Content Screen verifies documentation excerpts are original summaries or permissively licensed quotations within project policy.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5a2bdbfdcb76" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5a2bdbfdcb76" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5a2bdbfdcb76" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d297538f9653" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00023"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L84|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0005</span><span class="inout">IN</span><span class="stmt">Allowed screen result values are pass, fail, pending, not_applicable, and escalated.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d297538f9653" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d297538f9653" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d297538f9653" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0006" class="chunk sec depth-2" data-kind="section" data-key="section:620fe01c32f5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0006</span> 4. Private-Data Screen</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:620fe01c32f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:620fe01c32f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:620fe01c32f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Result | Notes |
+|---|---|---|
+| No private project model, owner standard, company design basis, or client data is included | `pending` | `TBD` |
+| No private material, component, rule-pack, allowable, SIF, flexibility, or load-combination data is included | `pending` | `TBD` |
+| Telemetry, issue logs, screenshots, and reports exclude private engineering data by default | `pending` | `TBD` |
+| Private-only content is stored outside public examples and marked private-only where referenced | `pending` | `TBD` |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:bd1a220bfb96" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00024"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L90|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0006</span><span class="inout">IN</span><span class="stmt">The Private-Data Screen verifies no private project model, owner standard, company design basis, or client data is included.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bd1a220bfb96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bd1a220bfb96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bd1a220bfb96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c7090699852a" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00025"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L91|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0006</span><span class="inout">IN</span><span class="stmt">The Private-Data Screen verifies no private material, component, rule-pack, allowable, SIF, flexibility, or load-combination data is included.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c7090699852a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c7090699852a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c7090699852a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c72c16e53455" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00026"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L92|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0006</span><span class="inout">IN</span><span class="stmt">The Private-Data Screen verifies telemetry, issue logs, screenshots, and reports exclude private engineering data by default.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c72c16e53455" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c72c16e53455" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c72c16e53455" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9ba07769a312" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00027"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L93|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0006</span><span class="inout">IN</span><span class="stmt">The Private-Data Screen verifies private-only content is stored outside public examples and marked private-only where referenced.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9ba07769a312" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9ba07769a312" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9ba07769a312" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0007" class="chunk sec depth-2" data-kind="section" data-key="section:c2b480796284" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0007</span> 5. Engineering And Product-Claim Screen</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c2b480796284" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c2b480796284" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c2b480796284" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Result | Notes |
+|---|---|---|
+| No claim of professional engineering approval, certification, sealing, authentication, or code compliance for reliance | `pending` | `TBD` |
+| No standards-body endorsement or official approval claim | `pending` | `TBD` |
+| Missing engineering values remain `TBD` or explicit findings rather than defaults | `pending` | `TBD` |
+| Mechanics results, user rule checks, and human acceptance remain distinct | `pending` | `TBD` |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:8a5b00ddc8ba" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00028"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L99|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0007</span><span class="inout">IN</span><span class="stmt">The Engineering And Product-Claim Screen verifies no claim of professional engineering approval, certification, sealing, authentication, or code compliance for reliance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8a5b00ddc8ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8a5b00ddc8ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8a5b00ddc8ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d005c23932a7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00029"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L100|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0007</span><span class="inout">IN</span><span class="stmt">The Engineering And Product-Claim Screen verifies no standards-body endorsement or official approval claim.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d005c23932a7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d005c23932a7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d005c23932a7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:57e8d5417093" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00030"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L101|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0007</span><span class="inout">IN</span><span class="stmt">The Engineering And Product-Claim Screen verifies missing engineering values remain TBD or explicit findings rather than defaults.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:57e8d5417093" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:57e8d5417093" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:57e8d5417093" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1c8a1a797952" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00031"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L102|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0007</span><span class="inout">IN</span><span class="stmt">The Engineering And Product-Claim Screen verifies mechanics results, user rule checks, and human acceptance remain distinct.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1c8a1a797952" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1c8a1a797952" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1c8a1a797952" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0008" class="chunk sec depth-2" data-kind="section" data-key="section:51b80ad7aa79" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0008</span> 6. Tests And Evidence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51b80ad7aa79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51b80ad7aa79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51b80ad7aa79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Review value |
+|---|---|
+| Required tests / scans run | `TBD` |
+| Protected-content scan result | `TBD` |
+| Schema / provenance validation result | `TBD` |
+| Contributor certification template review | `TBD` |
+| Documentation review result | `TBD` |
+| Explicit deferrals | `TBD` |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:c2b1ebd63b79" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00032"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L106|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0008</span><span class="inout">IN</span><span class="stmt">The Tests And Evidence section records required tests/scans run, protected-content scan result, schema/provenance validation result, contributor certification template review, documentation review result, and explicit deferrals.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c2b1ebd63b79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c2b1ebd63b79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c2b1ebd63b79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0009" class="chunk sec depth-2" data-kind="section" data-key="section:5aa62cb131af" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0009</span> 7. Disposition</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5aa62cb131af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5aa62cb131af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5aa62cb131af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Review value |
+|---|---|
+| Review disposition | `pending`, `accepted`, `rejected`, `quarantined`, `private_only`, `escalated`, `TBD` |
+| Disposition rationale | `TBD` |
+| Required follow-up | `TBD` |
+| Human/legal escalation needed | `yes`, `no`, `TBD` |
+| Approving maintainer / authority | `TBD` |</p>
+<p>`accepted` is allowed only when source rights, protected-content risk, private-data risk, and product-claim review are closed or explicitly deferred by a recorded maintainer decision.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:781b7a60f826" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00033"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L117|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0009</span><span class="inout">IN</span><span class="stmt">The Disposition section records review disposition, disposition rationale, required follow-up, human/legal escalation need, and approving maintainer/authority.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:781b7a60f826" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:781b7a60f826" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:781b7a60f826" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e94ecbff2ff6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00034"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L119|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0009</span><span class="inout">IN</span><span class="stmt">Allowed review-disposition values are pending, accepted, rejected, quarantined, private_only, escalated, and TBD.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e94ecbff2ff6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e94ecbff2ff6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e94ecbff2ff6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e339896d44d5" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00035"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L125|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0009</span><span class="inout">IN</span><span class="stmt">A contribution may be marked accepted only when source rights, protected-content risk, private-data risk, and product-claim review are closed or explicitly deferred by a recorded maintainer decision.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e339896d44d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e339896d44d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e339896d44d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD042-0010" class="chunk sec depth-2" data-kind="section" data-key="section:6354db60329d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD042-0010</span> 8. Quarantine Record</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6354db60329d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6354db60329d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6354db60329d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Complete this section when any protected or private content risk is unresolved.</p>
+<p>| Field | Review value |
+|---|---|
+| Quarantine status | `not_required`, `required`, `complete`, `TBD` |
+| Quarantine path | `quarantine/protected-content/` or maintainer-approved equivalent |
+| Issue / decision record | `TBD` |
+| Escalation owner | `TBD` |
+| Resolution | `TBD` |</p>
+<p>Quarantined material must not be copied into public examples, converted into public defaults, or used as public fixture data while the review remains unresolved.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:5ec3547a0fc7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00036"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L129|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0010</span><span class="inout">IN</span><span class="stmt">Complete the Quarantine Record section when any protected or private content risk is unresolved.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5ec3547a0fc7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5ec3547a0fc7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5ec3547a0fc7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e847b28e5742" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00037"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L131|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0010</span><span class="inout">IN</span><span class="stmt">The Quarantine Record section records quarantine status, quarantine path, issue/decision record, escalation owner, and resolution.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e847b28e5742" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e847b28e5742" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e847b28e5742" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:48843138db68" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00038"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L133|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0010</span><span class="inout">IN</span><span class="stmt">Allowed quarantine-status values are not_required, required, complete, and TBD.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:48843138db68" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:48843138db68" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:48843138db68" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:2d6ef8a41efb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00039"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L134|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0010</span><span class="inout">IN</span><span class="stmt">The default quarantine path is quarantine/protected-content/ or a maintainer-approved equivalent.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2d6ef8a41efb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2d6ef8a41efb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2d6ef8a41efb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:669791c12eea" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD042-00040"><span class="prov">@repo/governance/CONTRIBUTION_REVIEW_CHECKLIST.md:L139|domains/chirality-piping/_Decomposition/source_review_html/SRC-GOVERNANCE-CONTRIBUTION-REVIEW-CHECKLIST.html#SEC-PD042-0010</span><span class="inout">IN</span><span class="stmt">Quarantined material must not be copied into public examples, converted into public defaults, or used as public fixture data while the review remains unresolved.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:669791c12eea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:669791c12eea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:669791c12eea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD042";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

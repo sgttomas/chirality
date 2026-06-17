@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-15-03-DOWNSTREAM-MODELING-EXPORT-WORKFLOW",
+  "source_prefix": "ED087",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-15-03-DOWNSTREAM-MODELING-EXPORT-WORKFLOW_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-15-03-DOWNSTREAM-MODELING-EXPORT-WORKFLOW.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:00+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED087-0001",
+      "line_start": 9,
+      "line_end": 249,
+      "target_section_ids": [
+        "SEC-ED087-0002",
+        "SEC-ED087-0003",
+        "SEC-ED087-0004",
+        "SEC-ED087-0005",
+        "SEC-ED087-0006",
+        "SEC-ED087-0007",
+        "SEC-ED087-0008",
+        "SEC-ED087-0009",
+        "SEC-ED087-0010",
+        "SEC-ED087-0011",
+        "SEC-ED087-0012",
+        "SEC-ED087-0013",
+        "SEC-ED087-0014",
+        "SEC-ED087-0015",
+        "SEC-ED087-0016",
+        "SEC-ED087-0017",
+        "SEC-ED087-0018",
+        "SEC-ED087-0019",
+        "SEC-ED087-0020",
+        "SEC-ED087-0021",
+        "SEC-ED087-0022",
+        "SEC-ED087-0023",
+        "SEC-ED087-0024",
+        "SEC-ED087-0025",
+        "SEC-ED087-0026",
+        "SEC-ED087-0027",
+        "SEC-ED087-0028",
+        "SEC-ED087-0029",
+        "SEC-ED087-0030",
+        "SEC-ED087-0031"
+      ],
+      "estimated_md_tokens": 3646,
+      "contains_oversized_section": false
+    }
+  ]
+}

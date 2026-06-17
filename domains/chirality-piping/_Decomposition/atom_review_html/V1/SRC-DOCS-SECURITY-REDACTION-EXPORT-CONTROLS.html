@@ -1,0 +1,367 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>8</b></span>
+  <span class="stat">Atoms: <b>38</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD032-0001">Redaction And Export Controls</a> <a href="#SEC-PD032-0002">Classification Basis</a> <a href="#SEC-PD032-0003">Export Contexts</a> <a href="#SEC-PD032-0004">Protected Classes</a> <a href="#SEC-PD032-0005">Actions</a> <a href="#SEC-PD032-0006">Diagnostics</a> <a href="#SEC-PD032-0007">Source Data</a> <a href="#SEC-PD032-0008">Verification Expectations</a></nav>
+<main>
+<section id="SEC-PD032-0001" class="chunk sec depth-1" data-kind="section" data-key="section:fb3fbebb91ea" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD032-0001</span> Redaction And Export Controls</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb3fbebb91ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb3fbebb91ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb3fbebb91ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document defines the `DEL-12-02` redaction and export-control behavior for
+public reports, public examples, shared model exports, downstream-tool exports,
+and local/private exports. The control is local-first and operates on an
+export/report representation. It does not mutate source project data, move
+quarantine material, transmit data to a cloud service, decide legal rights, or
+provide professional approval.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:52eeddf2cba7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00001"><span class="prov">@repo/docs/security/redaction_export_controls.md:L23|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0001</span><span class="inout">IN</span><span class="stmt">DEL-12-02 defines redaction and export-control behavior for public reports, public examples, shared model exports, downstream-tool exports, and local/private exports.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:52eeddf2cba7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:52eeddf2cba7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:52eeddf2cba7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ce59faecc6c1" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00002"><span class="prov">@repo/docs/security/redaction_export_controls.md:L25|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0001</span><span class="inout">IN</span><span class="stmt">The redaction control is local-first and operates on an export/report representation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ce59faecc6c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ce59faecc6c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ce59faecc6c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d0563067f2d3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00003"><span class="prov">@repo/docs/security/redaction_export_controls.md:L26|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0001</span><span class="inout">IN</span><span class="stmt">The control does not mutate source project data, move quarantine material, transmit data to a cloud service, decide legal rights, or provide professional approval.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d0563067f2d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d0563067f2d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d0563067f2d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0002" class="chunk sec depth-2" data-kind="section" data-key="section:7bad07f8da1d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0002</span> Classification Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7bad07f8da1d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7bad07f8da1d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7bad07f8da1d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Redaction decisions use explicit metadata only. The control does not infer
+sensitivity from engineering-looking values, filenames, text patterns, or
+hidden guesses.</p>
+<p>A value-bearing export field should carry:</p>
+<p>- `field_class`;
+- `privacy_classification`;
+- `redistribution_status`;
+- `review_status`;
+- `provenance` where the source is not self-evident public metadata.</p>
+<p>The control also consumes explicit storage/privacy indicators when present:
+`contains_payload`, `payload_present`, `secret_material_present`,
+`direct_sql_access`, storage-bypass flags, `cloud_or_network_reference`,
+`concrete_path_present`, symbolic path/locality metadata, and local/private
+intent metadata. These indicators are treated as metadata gates only. They do
+not authorize payload storage, direct SQLite access, raw SQL access, network or
+cloud behavior, concrete user-path disclosure, secret handling, or source-data
+mutation.</p>
+<p>Absent, unknown, `TBD`, pending, rejected, or quarantined metadata does not
+silently pass into public/shared exports. It produces warning, redaction, or
+blocking behavior.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:63926f3e89db" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00004"><span class="prov">@repo/docs/security/redaction_export_controls.md:L32|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">Redaction decisions use explicit metadata only.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:63926f3e89db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:63926f3e89db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:63926f3e89db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:82477656ee75" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00005"><span class="prov">@repo/docs/security/redaction_export_controls.md:L33|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">The control does not infer sensitivity from engineering-looking values, filenames, text patterns, or hidden guesses.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:82477656ee75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:82477656ee75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:82477656ee75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:258350970b9b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00006"><span class="prov">@repo/docs/security/redaction_export_controls.md:L36|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">A value-bearing export field should carry field_class, privacy_classification, redistribution_status, review_status, and provenance where the source is not self-evident public metadata.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:258350970b9b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:258350970b9b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:258350970b9b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:898d8f815bf9" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00007"><span class="prov">@repo/docs/security/redaction_export_controls.md:L44|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">The control consumes explicit storage/privacy indicators when present: contains_payload, payload_present, secret_material_present, direct_sql_access, storage-bypass flags, cloud_or_network_reference, concrete_path_present, symbolic path/locality metadata, and local/private intent metadata.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:898d8f815bf9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:898d8f815bf9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:898d8f815bf9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8c4c8d7a7de2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00008"><span class="prov">@repo/docs/security/redaction_export_controls.md:L47|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">Storage/privacy indicators are treated as metadata gates only.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8c4c8d7a7de2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8c4c8d7a7de2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8c4c8d7a7de2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:73db37481949" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00009"><span class="prov">@repo/docs/security/redaction_export_controls.md:L48|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">Storage/privacy indicators do not authorize payload storage, direct SQLite access, raw SQL access, network or cloud behavior, concrete user-path disclosure, secret handling, or source-data mutation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:73db37481949" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:73db37481949" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:73db37481949" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f3bc726d9842" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00010"><span class="prov">@repo/docs/security/redaction_export_controls.md:L53|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0002</span><span class="inout">IN</span><span class="stmt">Absent, unknown, TBD, pending, rejected, or quarantined metadata does not silently pass into public/shared exports; it produces warning, redaction, or blocking behavior.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f3bc726d9842" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f3bc726d9842" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f3bc726d9842" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0003" class="chunk sec depth-2" data-kind="section" data-key="section:f2637838725f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0003</span> Export Contexts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2637838725f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2637838725f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2637838725f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Context | Default handling |
+|---|---|
+| `public_report` | Include public metadata and invented public examples; redact private or unresolved values; block suspected protected content and professional-boundary claims. |
+| `public_example` | Same as `public_report`; examples must be invented or public-permissive reviewed content. |
+| `shared_model` | Redact private project, material, component, rule-pack, owner-standard, design-basis, path, and secret-like data unless metadata supports sharing. |
+| `downstream_tool` | Redact unresolved or private values unless explicit metadata supports the handoff. |
+| `local_private` | Retain private values only when explicit local/private user intent is recorded; emit warning findings. |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:23592643ab90" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00011"><span class="prov">@repo/docs/security/redaction_export_controls.md:L61|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0003</span><span class="inout">IN</span><span class="stmt">For public_report context: include public metadata and invented public examples; redact private or unresolved values; block suspected protected content and professional-boundary claims.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:23592643ab90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:23592643ab90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:23592643ab90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:c843781b97fb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00012"><span class="prov">@repo/docs/security/redaction_export_controls.md:L62|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0003</span><span class="inout">IN</span><span class="stmt">For public_example context: same handling as public_report; examples must be invented or public-permissive reviewed content.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c843781b97fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c843781b97fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c843781b97fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e3415ece7067" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00013"><span class="prov">@repo/docs/security/redaction_export_controls.md:L63|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0003</span><span class="inout">IN</span><span class="stmt">For shared_model context: redact private project, material, component, rule-pack, owner-standard, design-basis, path, and secret-like data unless metadata supports sharing.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e3415ece7067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e3415ece7067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e3415ece7067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e627254ebb85" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00014"><span class="prov">@repo/docs/security/redaction_export_controls.md:L64|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0003</span><span class="inout">IN</span><span class="stmt">For downstream_tool context: redact unresolved or private values unless explicit metadata supports the handoff.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e627254ebb85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e627254ebb85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e627254ebb85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e17a18d330a2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00015"><span class="prov">@repo/docs/security/redaction_export_controls.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0003</span><span class="inout">IN</span><span class="stmt">For local_private context: retain private values only when explicit local/private user intent is recorded, and emit warning findings.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e17a18d330a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e17a18d330a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e17a18d330a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0004" class="chunk sec depth-2" data-kind="section" data-key="section:525dbeddb2e9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0004</span> Protected Classes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:525dbeddb2e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:525dbeddb2e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:525dbeddb2e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The default protected classes are:</p>
+<p>- private project data;
+- private material data;
+- private component data;
+- private rule-pack data;
+- owner-standard data;
+- company design-basis data;
+- path data;
+- secret-like data;
+- suspected protected content;
+- unresolved provenance or redistribution status.</p>
+<p>Safe metadata such as IDs, versions, checksums, source notes, warning summaries,
+schema versions, and provenance summaries may remain visible where metadata
+marks them public or invented public examples.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:2bef9410a34d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00016"><span class="prov">@repo/docs/security/redaction_export_controls.md:L69|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0004</span><span class="inout">IN</span><span class="stmt">The default protected classes are private project data, private material data, private component data, private rule-pack data, owner-standard data, company design-basis data, path data, secret-like data, suspected protected content, and unresolved provenance or redistribution status.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2bef9410a34d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2bef9410a34d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2bef9410a34d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ff5ab198fee6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00017"><span class="prov">@repo/docs/security/redaction_export_controls.md:L82|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0004</span><span class="inout">IN</span><span class="stmt">Safe metadata such as IDs, versions, checksums, source notes, warning summaries, schema versions, and provenance summaries may remain visible where metadata marks them public or invented public examples.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ff5ab198fee6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ff5ab198fee6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ff5ab198fee6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0005" class="chunk sec depth-2" data-kind="section" data-key="section:0e09fc0d3348" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0005</span> Actions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e09fc0d3348" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e09fc0d3348" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e09fc0d3348" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Action | Meaning |
+|---|---|
+| `include` | Export the field as-is because metadata permits it. |
+| `warning_only` | Retain the value and emit a warning, limited to local/private exports with explicit intent or unresolved metadata in local/private context. |
+| `redact_value` | Replace the field value or text with a redaction marker while keeping non-sensitive metadata. |
+| `redact_field` | Keep only minimal field identity and classification metadata. |
+| `omit_field` | Remove the field from the export representation. |
+| `block_export` | Mark the export as blocked until metadata, rights, protected-content, or professional-boundary issues are resolved. |
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:c7effeae1440" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00018"><span class="prov">@repo/docs/security/redaction_export_controls.md:L90|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action include: export the field as-is because metadata permits it.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:c7effeae1440" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:c7effeae1440" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:c7effeae1440" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:441bbaaa29c6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00019"><span class="prov">@repo/docs/security/redaction_export_controls.md:L91|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action warning_only: retain the value and emit a warning, limited to local/private exports with explicit intent or unresolved metadata in local/private context.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:441bbaaa29c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:441bbaaa29c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:441bbaaa29c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:895d641a13d7" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00020"><span class="prov">@repo/docs/security/redaction_export_controls.md:L92|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action redact_value: replace the field value or text with a redaction marker while keeping non-sensitive metadata.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:895d641a13d7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:895d641a13d7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:895d641a13d7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1f0b258f5aa4" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00021"><span class="prov">@repo/docs/security/redaction_export_controls.md:L93|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action redact_field: keep only minimal field identity and classification metadata.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1f0b258f5aa4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1f0b258f5aa4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1f0b258f5aa4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:199f6538b60c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00022"><span class="prov">@repo/docs/security/redaction_export_controls.md:L94|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action omit_field: remove the field from the export representation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:199f6538b60c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:199f6538b60c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:199f6538b60c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ca330c6178ff" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00023"><span class="prov">@repo/docs/security/redaction_export_controls.md:L95|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0005</span><span class="inout">IN</span><span class="stmt">Action block_export: mark the export as blocked until metadata, rights, protected-content, or professional-boundary issues are resolved.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ca330c6178ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ca330c6178ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ca330c6178ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0006" class="chunk sec depth-2" data-kind="section" data-key="section:51e368dc9e25" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0006</span> Diagnostics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51e368dc9e25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51e368dc9e25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51e368dc9e25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Findings are machine-readable and include a reason code, finding class,
+severity, affected path, action, message, and remediation. The expected finding
+classes include `IP_BOUNDARY_WARNING`, `PRIVATE_DATA_WARNING`,
+`PROVENANCE_WARNING`, `STORAGE_BOUNDARY_WARNING`, and
+`PROFESSIONAL_BOUNDARY_WARNING`.</p>
+<p>Unknown provenance, unknown redistribution status, missing metadata, rejected
+review status, quarantined review status, suspected protected content, and
+professional-boundary claims are explicit findings. A clean redaction run is
+review evidence only, not a legal or professional clearance.</p>
+<p>Storage/privacy hardening adds blocking findings for payload material, explicit
+secret-material flags, cloud or network references, direct SQL or raw SQLite
+access, and storage-bypass metadata. Concrete path indicators are reduced to a
+redacted representation so concrete user paths are not emitted.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:ff2b1bee2c85" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00024"><span class="prov">@repo/docs/security/redaction_export_controls.md:L99|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">Findings are machine-readable and include a reason code, finding class, severity, affected path, action, message, and remediation.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ff2b1bee2c85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ff2b1bee2c85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ff2b1bee2c85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f8b74f7f9c07" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00025"><span class="prov">@repo/docs/security/redaction_export_controls.md:L101|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">Expected finding classes include IP_BOUNDARY_WARNING, PRIVATE_DATA_WARNING, PROVENANCE_WARNING, STORAGE_BOUNDARY_WARNING, and PROFESSIONAL_BOUNDARY_WARNING.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f8b74f7f9c07" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f8b74f7f9c07" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f8b74f7f9c07" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:eec953d91cb4" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00026"><span class="prov">@repo/docs/security/redaction_export_controls.md:L105|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">Unknown provenance, unknown redistribution status, missing metadata, rejected review status, quarantined review status, suspected protected content, and professional-boundary claims are explicit findings.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:eec953d91cb4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:eec953d91cb4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:eec953d91cb4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e2dd230d5ead" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00027"><span class="prov">@repo/docs/security/redaction_export_controls.md:L108|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">A clean redaction run is review evidence only, not a legal or professional clearance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e2dd230d5ead" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e2dd230d5ead" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e2dd230d5ead" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7b1a3d41751f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00028"><span class="prov">@repo/docs/security/redaction_export_controls.md:L110|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">Storage/privacy hardening adds blocking findings for payload material, explicit secret-material flags, cloud or network references, direct SQL or raw SQLite access, and storage-bypass metadata.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7b1a3d41751f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7b1a3d41751f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7b1a3d41751f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:3e72a9f72736" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00029"><span class="prov">@repo/docs/security/redaction_export_controls.md:L112|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0006</span><span class="inout">IN</span><span class="stmt">Concrete path indicators are reduced to a redacted representation so concrete user paths are not emitted.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:3e72a9f72736" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:3e72a9f72736" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:3e72a9f72736" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0007" class="chunk sec depth-2" data-kind="section" data-key="section:f2790f1157e0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0007</span> Source Data</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f2790f1157e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f2790f1157e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f2790f1157e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The implementation copies the export/report representation before applying
+redaction. Source project models, private libraries, rule packs, report inputs,
+and local storage paths are not modified by this control.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:9a500f5b3ee3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00030"><span class="prov">@repo/docs/security/redaction_export_controls.md:L117|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0007</span><span class="inout">IN</span><span class="stmt">The implementation copies the export/report representation before applying redaction.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9a500f5b3ee3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9a500f5b3ee3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9a500f5b3ee3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:186e140ed728" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00031"><span class="prov">@repo/docs/security/redaction_export_controls.md:L118|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0007</span><span class="inout">IN</span><span class="stmt">Source project models, private libraries, rule packs, report inputs, and local storage paths are not modified by this control.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:186e140ed728" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:186e140ed728" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:186e140ed728" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD032-0008" class="chunk sec depth-2" data-kind="section" data-key="section:9966f69a0b9d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD032-0008</span> Verification Expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9966f69a0b9d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9966f69a0b9d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9966f69a0b9d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-12-02 should be checked for:</p>
+<p>- schema traceability to `DEL-12-02`, `PKG-12`, `SOW-040`, and `OBJ-010`;
+- explicit metadata only classification;
+- redaction of private project, material, component, rule-pack, owner-standard,
+  company design-basis, path, and secret-like values in public/shared exports;
+- warnings or redaction for missing provenance and unknown redistribution;
+- blocking or redaction for payload material, secret-material flags,
+  cloud/network references, direct SQL/raw SQLite access, storage bypass
+  markers, and concrete path indicators;
+- explicit local/private intent before retaining private values;
+- no cloud transmission, secret handling, source mutation, protected standards
+  content, non-invented private payloads, concrete user paths, direct
+  SQL/storage bypass, or professional-authority assertions.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:db05c2c1a59d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00032"><span class="prov">@repo/docs/security/redaction_export_controls.md:L123|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for schema traceability to DEL-12-02, PKG-12, SOW-040, and OBJ-010.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:db05c2c1a59d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:db05c2c1a59d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:db05c2c1a59d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:00f2569f0e61" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00033"><span class="prov">@repo/docs/security/redaction_export_controls.md:L126|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for explicit-metadata-only classification.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:00f2569f0e61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:00f2569f0e61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:00f2569f0e61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1215fe9d5eeb" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00034"><span class="prov">@repo/docs/security/redaction_export_controls.md:L127|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for redaction of private project, material, component, rule-pack, owner-standard, company design-basis, path, and secret-like values in public/shared exports.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1215fe9d5eeb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1215fe9d5eeb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1215fe9d5eeb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:25e309142817" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00035"><span class="prov">@repo/docs/security/redaction_export_controls.md:L129|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for warnings or redaction for missing provenance and unknown redistribution.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:25e309142817" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:25e309142817" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:25e309142817" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f3f2adc58d53" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00036"><span class="prov">@repo/docs/security/redaction_export_controls.md:L130|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for blocking or redaction for payload material, secret-material flags, cloud/network references, direct SQL/raw SQLite access, storage bypass markers, and concrete path indicators.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f3f2adc58d53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f3f2adc58d53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f3f2adc58d53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:a884a8415d2c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00037"><span class="prov">@repo/docs/security/redaction_export_controls.md:L133|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for explicit local/private intent before retaining private values.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:a884a8415d2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:a884a8415d2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:a884a8415d2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:533a518a74a2" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD032-00038"><span class="prov">@repo/docs/security/redaction_export_controls.md:L134|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS.html#SEC-PD032-0008</span><span class="inout">IN</span><span class="stmt">DEL-12-02 should be checked for no cloud transmission, secret handling, source mutation, protected standards content, non-invented private payloads, concrete user paths, direct SQL/storage bypass, or professional-authority assertions.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:533a518a74a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:533a518a74a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:533a518a74a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD032";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

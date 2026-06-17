@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCHEMA-AND-MANIFEST",
+  "source_prefix": "ED085",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCHEMA-AND-MANIFEST_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-15-01-CANONICAL-HANDOFF-PACKAGE-SCHEMA-AND-MANIFEST.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:00+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED085-0001",
+      "line_start": 9,
+      "line_end": 274,
+      "target_section_ids": [
+        "SEC-ED085-0002",
+        "SEC-ED085-0003",
+        "SEC-ED085-0004",
+        "SEC-ED085-0005",
+        "SEC-ED085-0006",
+        "SEC-ED085-0007",
+        "SEC-ED085-0008",
+        "SEC-ED085-0009",
+        "SEC-ED085-0010",
+        "SEC-ED085-0011",
+        "SEC-ED085-0012",
+        "SEC-ED085-0013",
+        "SEC-ED085-0014",
+        "SEC-ED085-0015",
+        "SEC-ED085-0016",
+        "SEC-ED085-0017",
+        "SEC-ED085-0018",
+        "SEC-ED085-0019",
+        "SEC-ED085-0020",
+        "SEC-ED085-0021",
+        "SEC-ED085-0022",
+        "SEC-ED085-0023",
+        "SEC-ED085-0024",
+        "SEC-ED085-0025",
+        "SEC-ED085-0026",
+        "SEC-ED085-0027",
+        "SEC-ED085-0028",
+        "SEC-ED085-0029",
+        "SEC-ED085-0030"
+      ],
+      "estimated_md_tokens": 3958,
+      "contains_oversized_section": false
+    }
+  ]
+}

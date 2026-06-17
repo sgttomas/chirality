@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION",
+  "source_doc_id": "SRC-DEL-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION",
+  "source_prefix": "ED036",
+  "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/",
+  "catalog_rel_path": "@repo/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION-DATASHEET",
+      "expected_sha256": "502ff6f43d15b3fa4689da5d494caddf737a6e9bb2c15c606227b6c3660f910c",
+      "generated_line_start": 11,
+      "generated_line_end": 90,
+      "source_line_start": 1,
+      "source_line_end": 80,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION-GUIDANCE",
+      "expected_sha256": "10476f46028890e77a50e838f0e688f2a8ca12b4b956973b1301463b02a43abc",
+      "generated_line_start": 94,
+      "generated_line_end": 162,
+      "source_line_start": 1,
+      "source_line_end": 69,
+      "line_offset": -93
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION-PROCEDURE",
+      "expected_sha256": "4e016f0de742ae13c3a1c849c1c0aec9745b530620ac9856dbee97e1f03b25e9",
+      "generated_line_start": 166,
+      "generated_line_end": 245,
+      "source_line_start": 1,
+      "source_line_end": 80,
+      "line_offset": -165
+    },
+    {
+      "repo_rel_path": "execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-05-LOADS-LOAD-CASES-AND-STRESS-RECOVERY-1-WORKING-DEL-05-05-CONCENTRATED-AND-DISTRIBUTED-USER-LOAD-APPLICATION-SPECIFICATION",
+      "expected_sha256": "fad28d8d3cd70dba0e8a07300d9022cbb9d4b006f62325a9a6d190756b7e7488",
+      "generated_line_start": 249,
+      "generated_line_end": 329,
+      "source_line_start": 1,
+      "source_line_end": 81,
+      "line_offset": -248
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

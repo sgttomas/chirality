@@ -1,0 +1,473 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>35</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED043-0001">Source Pack: SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPE</a> <a href="#SEC-ED043-0002">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED043-0011">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED043-0020">Component: execution/PKG-07_Graphical User Interface and Eng</a> <a href="#SEC-ED043-0027">Component: execution/PKG-07_Graphical User Interface and Eng</a></nav>
+<main>
+<section id="SEC-ED043-0001" class="chunk sec depth-1" data-kind="section" data-key="section:56fc7f734c4e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED043-0001</span> Source Pack: SRC-DEL-DEL-07-02-MODEL-TREE-AND-PROPERTY-INSPECTOR</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56fc7f734c4e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56fc7f734c4e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56fc7f734c4e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED043-0002" class="chunk sec depth-2" data-kind="section" data-key="section:4c8e13b9188f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED043-0002</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c8e13b9188f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c8e13b9188f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c8e13b9188f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0003" class="chunk sec depth-3" data-kind="section" data-key="section:a9d4e2d519c1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED043-0003</span> Datasheet: DEL-07-02 Model tree and property inspector</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9d4e2d519c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9d4e2d519c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9d4e2d519c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0004" class="chunk sec depth-4" data-kind="section" data-key="section:5f8cb8092293" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f8cb8092293" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f8cb8092293" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f8cb8092293" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-07-02 |
+| Package ID | PKG-07 |
+| Package | Graphical User Interface and Engineering Workflow |
+| Type | UX_UI_SLICE |
+| Scope items | SOW-020, SOW-021 |
+| Objective | OBJ-006 |
+| Context envelope | M |
+| Anticipated artifacts | model tree; property inspector; UI tests |
+</p></div></div></section>
+<section id="SEC-ED043-0005" class="chunk sec depth-4" data-kind="section" data-key="section:86fff413c1ac" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86fff413c1ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86fff413c1ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86fff413c1ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Setup value |
+|---|---|
+| UI surface | Single GUI work surface for tree navigation and selected-entity property inspection. |
+| Primary entities | Project, Model, Node, Element, Component, Material, Section, Support, LoadCase, Combination, RulePackRef, Result, and diagnostics where applicable. |
+| GUI baseline | Tauri 2 desktop shell, TypeScript/React/Vite GUI, and Three.js viewport where viewport-facing. Exact component and state libraries are `TBD`. |
+| State boundary | Durable project/model state is separate from transient session, viewport, selection, and job-progress state. GUI mutations route through application-service commands. |
+| Missing-data posture | Missing solve-required and rule-check-required values are surfaced as explicit findings, not defaulted silently. |
+| Data boundary | Private project, material, component, and rule-pack data remain user-controlled and are not transmitted or committed publicly by default. |
+</p></div></div></section>
+<section id="SEC-ED043-0006" class="chunk sec depth-4" data-kind="section" data-key="section:2a3b3cb151c1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a3b3cb151c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a3b3cb151c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a3b3cb151c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Tree hierarchy and grouping rules | `TBD`; must be derived from accepted domain/schema contracts, not invented in this setup pass. |
+| Property editor field inventory | `TBD`; must preserve unit-bearing fields, provenance, private/public status, and missing-data findings. |
+| Selection synchronization contract | `TBD`; must align model tree, property inspector, and 3D viewport selection without storing transient state as durable model state. |
+| Command/query contract | `TBD`; edits must route through application-service commands and reads through governed queries or result envelopes. |
+| UI tests | `TBD`; future tests should cover tree navigation, selection, editable/read-only property state, missing-data visibility, and protected/private data boundaries. |
+</p></div></div></section>
+<section id="SEC-ED043-0007" class="chunk sec depth-4" data-kind="section" data-key="section:0218116814ef" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0218116814ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0218116814ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0218116814ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup kit describes the future UI slice boundary only. It does not implement product UI, edit GUI source files, choose unresolved UI libraries, create tests, introduce engineering default values, or move any artifact to `ISSUED`.</p>
+<p>The future model tree and property inspector are expected to consume accepted schema/service contracts for object identity, unit-bearing fields, provenance, diagnostics, rule-pack/private-library status, and command/query/result-envelope behavior. Missing or unresolved engineering data remains visible as `TBD` or diagnostic state.
+</p></div></div></section>
+<section id="SEC-ED043-0008" class="chunk sec depth-4" data-kind="section" data-key="section:805e3d3956c6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0008</span> Setup Slot Checklist</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:805e3d3956c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:805e3d3956c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:805e3d3956c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Slot | Setup status | Owner/source status |
+|---|---|---|
+| Tree grouping and hierarchy rules | `TBD` | Expected from accepted domain/schema and GUI state contracts. |
+| Inspector field inventory | `TBD` | Expected from accepted domain/schema contracts for model entities and library references. |
+| Unit display and edit hooks | `TBD` | Expected from accepted unit and command/query contracts. |
+| Provenance and redistribution/private-status display | `TBD` | Expected from material/component/rule-pack/library contracts. |
+| Diagnostic classes and affected-object display | `TBD` | Expected from diagnostics/result-envelope contract. |
+| Fixture, screenshot, and UI test data policy | `TBD` | Must remain synthetic, public-domain, or otherwise cleared. |
+</p></div></div></section>
+<section id="SEC-ED043-0009" class="chunk sec depth-4" data-kind="section" data-key="section:0988e5c0cb3d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0988e5c0cb3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0988e5c0cb3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0988e5c0cb3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for deliverable identity, scope, artifacts, and architecture-basis injection.
+- `docs/_Registers/Deliverables.csv` row `DEL-07-02`.
+- `docs/_Registers/ScopeLedger.csv` rows `SOW-020` and `SOW-021`.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7, `PKG-07`, `OBJ-006`, and architecture basis IDs `AB-00-03`, `AB-00-05`, `AB-00-06`, `AB-00-07`, and `AB-00-08`.
+- `docs/CONTRACT.md` invariants `OPS-K-DATA-1`, `OPS-K-DATA-2`, `OPS-K-DATA-3`, `OPS-K-UNIT-1`, `OPS-K-RULE-1`, `OPS-K-RULE-3`, `OPS-K-PRIV-1`, `OPS-K-PRIV-2`, `OPS-K-IP-1`, `OPS-K-IP-2`, `OPS-K-IP-3`, and `OPS-K-AGENT-1..4`.
+- `docs/SPEC.md` sections 1, 3, 6, 7, 10, and 11.
+- `docs/TYPES.md` sections 3, 4, 5, 6, 7, 8, and 9.
+</p></div></div></section>
+<section id="SEC-ED043-0010" class="chunk sec depth-4" data-kind="section" data-key="section:df148bff05b3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0010</span> Open Setup Questions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df148bff05b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df148bff05b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df148bff05b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Question | Status |
+|---|---|
+| Which accepted schema version supplies the property inspector field inventory? | `TBD` |
+| Which GUI state library, if any, is accepted for transient selection and inspector state? | `TBD` |
+| Which application-service commands and queries are accepted for model tree edits and property reads? | `TBD` |
+| Which diagnostics contract shape is accepted for inline missing-data and provenance warnings? | `TBD` |
+| Which UI test framework conventions apply to this slice beyond the architecture-basis Playwright/Vitest expectation? | `TBD` |
+</p></div></div></section>
+<section id="SEC-ED043-0011" class="chunk sec depth-2" data-kind="section" data-key="section:c4c807cf9a54" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED043-0011</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c4c807cf9a54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c4c807cf9a54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c4c807cf9a54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0012" class="chunk sec depth-3" data-kind="section" data-key="section:52d7befcee00" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED043-0012</span> Guidance: DEL-07-02 Model tree and property inspector</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52d7befcee00" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52d7befcee00" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52d7befcee00" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0013" class="chunk sec depth-4" data-kind="section" data-key="section:bcc48e42e239" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0013</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcc48e42e239" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcc48e42e239" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcc48e42e239" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable exists to bound the navigation and inspection work surface for the OpenPipeStress GUI. The future implementation should help users see model structure, selected-entity data, missing inputs, assumptions, provenance, and private/rule-pack status early in the workflow.
+</p></div></div></section>
+<section id="SEC-ED043-0014" class="chunk sec depth-4" data-kind="section" data-key="section:936bf3572ad4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0014</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:936bf3572ad4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:936bf3572ad4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:936bf3572ad4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Treat the model tree as navigation and visibility, not a second durable model store.
+- Route edits through application-service commands and keep selection, expansion, filtering, and panel focus as transient GUI state.
+- Show missing solve-required and rule-check-required values as explicit findings instead of silently filling defaults.
+- Preserve unit and provenance context for editable engineering fields.
+- Keep rule-pack checks, private-library values, and professional acceptance distinct from the open mechanics model.
+- Keep implementation choices that remain unresolved, including component/state libraries and exact command/query names, as `TBD`.
+</p></div></div></section>
+<section id="SEC-ED043-0015" class="chunk sec depth-4" data-kind="section" data-key="section:c704e3d6a56a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0015</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c704e3d6a56a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c704e3d6a56a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c704e3d6a56a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The tree and inspector will likely depend on upstream domain schema, persistence, command/query/job envelope, diagnostics, rule-pack, material/component/library, unit, and GUI state contracts. This setup pass records those dependencies but does not resolve them.</p>
+<p>The inspector should support workflows that make engineering gaps visible before solve execution or rule checking. It should not turn missing code-specific, material, component, SIF/flexibility, allowable, or rule-pack values into public defaults. Private project and library data should remain local/user-controlled unless a later export or contribution path is explicitly authorized with documented rights.
+</p></div></div></section>
+<section id="SEC-ED043-0016" class="chunk sec depth-4" data-kind="section" data-key="section:205b14d267ee" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0016</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:205b14d267ee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:205b14d267ee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:205b14d267ee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Guidance |
+|---|---|
+| Tree richness vs scope control | Include the navigation and inspection concepts needed by DEL-07-02, but leave specialized editors to DEL-07-03 and missing-data blocking UX to DEL-07-04 unless an accepted brief expands scope. |
+| Convenience vs data boundary | Do not prefill protected/code-specific values for convenience; use visible `TBD`, diagnostics, or incomplete-state UI. |
+| Selection state vs durable data | Keep current selection, tree expansion, filters, and panel focus out of durable project state unless a persistence contract later authorizes a view-state record. |
+| Editable inspector vs command boundary | Inspector edits should be command-backed and validation-aware; direct mutation of durable model objects from UI state should be avoided. |
+| Rule status vs professional judgment | Show user-rule/check readiness or diagnostics only as software findings; do not present them as professional code compliance. |
+</p></div></div></section>
+<section id="SEC-ED043-0017" class="chunk sec depth-4" data-kind="section" data-key="section:eb1918e89fa9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0017</span> Boundary Rationale</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb1918e89fa9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb1918e89fa9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb1918e89fa9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The inspector is a convenience surface over governed model and service contracts. Command-backed edits keep validation, unit checks, diagnostics, provenance handling, undo/redo scope, and result-envelope behavior in the application-service boundary instead of allowing UI state to become an alternate authority.</p>
+<p>The split with adjacent GUI deliverables remains explicit: DEL-07-02 owns navigation and selected-entity inspection setup, DEL-07-03 owns specialized material/component/rule-pack editor implementation, and DEL-07-04 owns missing-data warning and blocking UX unless a later sealed brief or human ruling changes that boundary.
+</p></div></div></section>
+<section id="SEC-ED043-0018" class="chunk sec depth-4" data-kind="section" data-key="section:a32a6df39763" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0018</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a32a6df39763" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a32a6df39763" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a32a6df39763" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Concrete UI examples, screenshots, and fixtures are `TBD`. Future examples must use synthetic, public-domain, or otherwise cleared model data and must not reproduce protected standards content, proprietary project data, or protected code examples.
+</p></div></div></section>
+<section id="SEC-ED043-0019" class="chunk sec depth-4" data-kind="section" data-key="section:cd48f54d82ec" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0019</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd48f54d82ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd48f54d82ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd48f54d82ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Issue | Contenders | Human ruling |
+|---|---|---|---|
+| None | No setup conflict found. | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED043-0020" class="chunk sec depth-2" data-kind="section" data-key="section:2110dff4a844" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED043-0020</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2110dff4a844" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2110dff4a844" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2110dff4a844" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0021" class="chunk sec depth-3" data-kind="section" data-key="section:a6d3eaf2c3a5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED043-0021</span> Procedure: DEL-07-02 Model tree and property inspector</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a6d3eaf2c3a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a6d3eaf2c3a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a6d3eaf2c3a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0022" class="chunk sec depth-4" data-kind="section" data-key="section:9de0f4cd5189" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0022</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9de0f4cd5189" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9de0f4cd5189" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9de0f4cd5189" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Define the bounded procedure for a future implementation task to produce and verify the model tree and property inspector without expanding scope during this setup pass.
+</p></div></div></section>
+<section id="SEC-ED043-0023" class="chunk sec depth-4" data-kind="section" data-key="section:8f3a5a791196" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0023</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f3a5a791196" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f3a5a791196" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f3a5a791196" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm the sealed brief names `DEL-07-02` and the approved implementation write scope before any GUI source or test file is edited.
+- Confirm upstream architecture basis constraints from `AB-00-03`, `AB-00-05`, `AB-00-06`, `AB-00-07`, and `AB-00-08`.
+- Confirm accepted domain/schema contracts for entity identity, unit-bearing values, provenance, diagnostics, rule-pack references, and private-library references.
+- Confirm accepted application-service command/query contracts for inspector edits and tree/selection reads.
+- Confirm all UI fixtures, screenshots, and examples are synthetic, public-domain, or otherwise cleared for repository use.
+</p></div></div></section>
+<section id="SEC-ED043-0024" class="chunk sec depth-4" data-kind="section" data-key="section:18eaf0c0b993" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0024</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18eaf0c0b993" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18eaf0c0b993" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18eaf0c0b993" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Re-read `_CONTEXT.md`, `Specification.md`, `_DEPENDENCIES.md`, and any accepted upstream schema/service contracts.
+2. Identify the entity types and field groups that DEL-07-02 owns for tree navigation and selected-entity inspection.
+3. Define tree-to-viewport-to-inspector selection behavior using transient GUI state and stable model identities.
+4. Define property inspector read-only/editable states and command-backed mutation paths.
+5. Preserve unit display/edit hooks, dimensional validation, provenance, private/public status, and rule-pack checksum/source status in the inspector where relevant.
+6. Add visible findings for missing solve-required inputs, missing rule-check inputs, provenance warnings, assumptions, and IP-boundary warnings without creating defaults.
+7. Implement the UI slice only after a separate implementation brief authorizes GUI source and test edits.
+8. Add UI tests for tree navigation, selection synchronization, inspector field groups, missing-data visibility, provenance/private status, and command/query boundary behavior.
+</p></div></div></section>
+<section id="SEC-ED043-0025" class="chunk sec depth-4" data-kind="section" data-key="section:681d1d39e2ab" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0025</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:681d1d39e2ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:681d1d39e2ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:681d1d39e2ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected evidence |
+|---|---|
+| Scope boundary | Changes are limited to the approved implementation scope for DEL-07-02. |
+| Tree/selection behavior | UI tests confirm model tree selection updates the inspector and stays aligned with stable model identity. |
+| Inspector behavior | UI tests confirm selected entity type controls visible field groups and command-backed edit behavior. |
+| Missing-data behavior | UI tests confirm missing solve-required and rule-check-required values are explicit findings. |
+| Unit/provenance behavior | Tests or review evidence confirm unit, provenance, checksum, and private/public status are not dropped. |
+| IP/privacy boundary | Fixtures and UI text contain no protected standards content, proprietary values, private project data, or compliance claims. |
+</p></div></div></section>
+<section id="SEC-ED043-0026" class="chunk sec depth-4" data-kind="section" data-key="section:2e1bbb05eb39" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0026</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2e1bbb05eb39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2e1bbb05eb39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2e1bbb05eb39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implementation notes or pull request summary when code work is authorized.
+- UI test results.
+- Command/query boundary review evidence.
+- Fixture and screenshot provenance notes.
+- Protected-content review evidence where applicable.
+- Missing-data, provenance, and private-status UI evidence.
+- Any human rulings for `TBD` items.
+</p></div></div></section>
+<section id="SEC-ED043-0027" class="chunk sec depth-2" data-kind="section" data-key="section:809404e2d8d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED043-0027</span> Component: execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:809404e2d8d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:809404e2d8d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:809404e2d8d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0028" class="chunk sec depth-3" data-kind="section" data-key="section:81d28003851b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED043-0028</span> Specification: DEL-07-02 Model tree and property inspector</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81d28003851b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81d28003851b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81d28003851b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED043-0029" class="chunk sec depth-4" data-kind="section" data-key="section:6707a02b74e0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0029</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6707a02b74e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6707a02b74e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6707a02b74e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies setup evidence for the future model tree and property inspector GUI slice. It covers tree navigation, selected-entity property presentation/editing, selection synchronization with the 3D centerline workflow, missing-data visibility, provenance/private-data presentation, and UI test expectations at a setup level.</p>
+<p>This setup pass does not implement GUI source, edit tests, select unresolved component/state libraries, introduce engineering defaults, embed protected standards content, or claim professional approval/code compliance.
+</p></div></div></section>
+<section id="SEC-ED043-0030" class="chunk sec depth-4" data-kind="section" data-key="section:411ed0c31ba2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0030</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:411ed0c31ba2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:411ed0c31ba2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:411ed0c31ba2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Req ID | Requirement | Source basis | Verification hook |
+|---|---|---|---|
+| DEL-07-02-RQ-001 | The model tree shall expose navigation for centerline model entities and piping component visualization without duplicating durable model truth in transient UI state. | SOW-020; AB-00-05; docs/SPEC.md section 7 | Future UI tests for tree rendering, selection, and model identity consistency. |
+| DEL-07-02-RQ-002 | The property inspector shall present selected-entity fields for materials, sections, components, load cases, supports, rule-pack references, and private-library references where this slice owns the inspector surface. | SOW-021; docs/SPEC.md sections 3 and 7 | Future UI tests for entity-specific inspector panels and read-only/editable state. |
+| DEL-07-02-RQ-003 | Unit-bearing values shown or edited through the inspector shall preserve unit awareness and dimensional validation hooks. | OPS-K-UNIT-1; docs/TYPES.md object registry | Unit/display/edit validation tests once schema and service contracts are accepted. |
+| DEL-07-02-RQ-004 | Missing solve-required or rule-check-required values shall be visible as findings and shall not be silently supplied by the tree, inspector, or UI defaults. | OPS-K-DATA-2; OBJ-006; docs/SPEC.md section 7 | Negative UI tests for missing physical inputs and missing rule-pack inputs. |
+| DEL-07-02-RQ-005 | Provenance and redistribution/private status shall remain visible for materials, sections, components, and rule-pack references where inspector fields expose them. | OPS-K-DATA-3; OPS-K-RULE-3; OPS-K-PRIV-1; docs/TYPES.md sections 7 and 8 | UI tests for provenance/status display and private/public boundary indicators. |
+| DEL-07-02-RQ-006 | GUI mutations from the property inspector shall route through application-service commands; tree/inspector reads shall use governed query or result-envelope boundaries. | AB-00-03; AB-00-05 | Service-boundary review and command/query interaction tests. |
+| DEL-07-02-RQ-007 | Diagnostics shown in the inspector shall use governed diagnostic/result-envelope concepts and shall not claim certification, sealing, professional approval, or automatic code compliance. | AB-00-06; OPS-K-AGENT-4; docs/TYPES.md analysis statuses | Diagnostic presentation tests and protected/professional-claim review. |
+| DEL-07-02-RQ-008 | Public examples, screenshots, fixtures, and test data for the UI slice shall not contain protected standards text, protected tables, proprietary commercial data, or private project data. | OPS-K-IP-1; OPS-K-IP-3; OPS-K-RULE-1; OPS-K-PRIV-1 | Protected-content and fixture provenance review. |
+</p></div></div></section>
+<section id="SEC-ED043-0031" class="chunk sec depth-4" data-kind="section" data-key="section:49df629d717c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0031</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49df629d717c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49df629d717c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49df629d717c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No protected standard text, protected tables, protected examples, material allowables, SIF/flexibility tables, proprietary component values, or proprietary project data are available in this deliverable-local setup context. Any future standards or owner-code basis must remain a private/user-supplied input or a non-protected pointer with provenance. Clause-level requirements are `TBD`.
+</p></div></div></section>
+<section id="SEC-ED043-0032" class="chunk sec depth-4" data-kind="section" data-key="section:99a1398f3fcb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0032</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:99a1398f3fcb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:99a1398f3fcb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:99a1398f3fcb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification area | Minimum setup expectation |
+|---|---|
+| Tree navigation | Tests should confirm tree nodes represent accepted model entities and preserve stable identity through selection. |
+| Property inspector | Tests should confirm selected entity type controls visible field groups and editability. |
+| Missing data | Tests should show missing solve-required and rule-check-required values remain visible and classified. |
+| Unit safety | Tests should cover unit-bearing value display/edit pathways and dimensional validation failures once contracts exist. |
+| Provenance/privacy | Tests should show provenance and private/public redistribution status are visible where relevant. |
+| Command/query boundary | Tests or review evidence should show inspector edits do not bypass application-service commands. |
+| Professional boundary | UI text, diagnostics, and fixtures must not claim code compliance, certification, approval, or sealing. |
+</p></div></div></section>
+<section id="SEC-ED043-0033" class="chunk sec depth-4" data-kind="section" data-key="section:871e6679ee81" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0033</span> Verification Coverage Slots</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:871e6679ee81" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:871e6679ee81" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:871e6679ee81" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Coverage slot | Required future evidence |
+|---|---|
+| Tree navigation and stable identity | UI test or review evidence that tree entries map to accepted model identities. |
+| Selection synchronization | UI test or review evidence that tree, viewport, and inspector selection remain aligned without durable-state drift. |
+| Inspector field groups | UI test or review evidence that selected entity type controls visible field groups and editability. |
+| Transient/durable state split | Review evidence that selection, expansion, filters, and panel focus remain transient unless a persistence contract authorizes otherwise. |
+| Command-backed edits | UI/service test or review evidence that inspector mutations route through application-service commands. |
+| Missing-data visibility | Negative UI tests for solve-required and rule-check-required gaps. |
+| Provenance/privacy visibility | UI tests or review evidence for provenance, checksum/source status, and private/public redistribution indicators. |
+| Protected/professional-boundary review | Evidence that fixtures and UI text avoid protected data and compliance/certification claims. |
+</p></div></div></section>
+<section id="SEC-ED043-0034" class="chunk sec depth-4" data-kind="section" data-key="section:1f2ad33a194d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0034</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f2ad33a194d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f2ad33a194d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f2ad33a194d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Expected future artifacts, when implementation is separately authorized, are:</p>
+<p>- model tree;
+- property inspector;
+- UI tests.</p>
+<p>Exact source paths, component library, state library, schema version, command/query names, test filenames, and screenshot fixture policy are `TBD`.
+</p></div></div></section>
+<section id="SEC-ED043-0035" class="chunk sec depth-4" data-kind="section" data-key="section:6d7bb69a54a1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED043-0035</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d7bb69a54a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Issue | Contenders | Human ruling |
+|---|---|---|---|
+| None | No source conflict identified in setup evidence. | N/A | N/A |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED043";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

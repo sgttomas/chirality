@@ -1,0 +1,390 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-VALIDATION-STRATEGY — review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">atom-review</span>
+  <span class="stat">Sections: <b>7</b></span>
+  <span class="stat">Atoms: <b>55</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD041-0001">Verification and Validation Strategy</a> <a href="#SEC-PD041-0002">1. Principle</a> <a href="#SEC-PD041-0003">2. Benchmark families</a> <a href="#SEC-PD041-0004">3. Validation manual structure</a> <a href="#SEC-PD041-0005">4. Release gate</a> <a href="#SEC-PD041-0006">5. Benchmark source rule</a> <a href="#SEC-PD041-0007">6. Evidence-bundle storage</a></nav>
+<main>
+<section id="SEC-PD041-0001" class="chunk sec depth-1" data-kind="section" data-key="section:f585208e94af" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD041-0001</span> Verification and Validation Strategy</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f585208e94af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f585208e94af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f585208e94af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD041-0002" class="chunk sec depth-2" data-kind="section" data-key="section:bf41ea5cc56e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0002</span> 1. Principle</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf41ea5cc56e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf41ea5cc56e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf41ea5cc56e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Verification proves that the software solves the stated mechanics problem correctly within declared tolerances. Validation evaluates whether the software workflow is fit for its intended engineering support role. Neither replaces project-specific professional judgment.</p>
+<p>This draft is aligned to `execution/_Decomposition/SOFTWARE_DECOMP.md`
+revision `0.7` and approved `execution/_DAG/DAG-006/` graph coordination
+authority. `DAG-006` preserves dependency coordination and does not itself
+authorize lifecycle changes, release labels, professional approval, legal
+clearance, certification, sealing, authentication, or code-compliance claims.</p>
+<p>This strategy keeps five evidence surfaces separate:</p>
+<p>- mechanics verification: benchmark comparison for open mechanics behavior;
+- validation evidence: workflow fitness, reproducibility, warnings, and
+  limitation evidence;
+- user-rule checks: deterministic computation against user-supplied rule-pack
+  inputs and definitions;
+- release quality evidence: software maturity inputs for future release gates;
+- professional reliance: competent human review outside automatic software
+  authority.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:29ec39592204" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00001"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L19|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Verification proves that the software solves the stated mechanics problem correctly within declared tolerances.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:29ec39592204" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:29ec39592204" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:29ec39592204" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ddd3231934c1" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00002"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L19|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Validation evaluates whether the software workflow is fit for its intended engineering support role.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ddd3231934c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ddd3231934c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ddd3231934c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:f675bf584d29" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00003"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L19|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Neither verification nor validation replaces project-specific professional judgment.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f675bf584d29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f675bf584d29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f675bf584d29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8d8b6b234d77" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00004"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L21|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">This draft is aligned to execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7 and approved execution/_DAG/DAG-006/ graph coordination authority.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8d8b6b234d77" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8d8b6b234d77" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8d8b6b234d77" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:490b1266960d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00005"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L23|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">DAG-006 preserves dependency coordination and does not authorize lifecycle changes, release labels, professional approval, legal clearance, certification, sealing, authentication, or code-compliance claims.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:490b1266960d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:490b1266960d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:490b1266960d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:41999f6b967e" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00006"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L27|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">The strategy keeps five evidence surfaces separate.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:41999f6b967e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:41999f6b967e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:41999f6b967e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:98d2e4f46c35" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00007"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L29|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Mechanics verification is benchmark comparison for open mechanics behavior.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:98d2e4f46c35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:98d2e4f46c35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:98d2e4f46c35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:5bea936ebb94" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00008"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L30|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Validation evidence covers workflow fitness, reproducibility, warnings, and limitation evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:5bea936ebb94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:5bea936ebb94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:5bea936ebb94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:22a1dfdf984d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00009"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L32|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">User-rule checks are deterministic computation against user-supplied rule-pack inputs and definitions.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:22a1dfdf984d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:22a1dfdf984d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:22a1dfdf984d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8368d5302a2d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00010"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L34|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Release quality evidence is software maturity inputs for future release gates.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8368d5302a2d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8368d5302a2d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8368d5302a2d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:471686558ae4" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00011"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L35|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0002</span><span class="inout">IN</span><span class="stmt">Professional reliance is competent human review outside automatic software authority.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:471686558ae4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:471686558ae4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:471686558ae4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD041-0003" class="chunk sec depth-2" data-kind="section" data-key="section:8dc322dac499" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0003</span> 2. Benchmark families</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8dc322dac499" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8dc322dac499" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8dc322dac499" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Family | Examples | Required evidence |
+|---|---|---|
+| Units and schemas | dimensional conversions, invalid unit rejection, schema completeness | automated tests |
+| Frame mechanics | cantilever, fixed-fixed thermal growth, portal frame, inclined member transforms | hand calculations and automated comparisons |
+| Piping loads | weight, pressure thrust where modeled, imposed displacement, thermal expansion | hand calculations and regression outputs |
+| Stress recovery | axial, bending, torsion, pressure membrane, stress range | hand calculations |
+| Nonlinear supports | one-way support, gap, lift-off, friction active state | convergence and state trace |
+| Rule packs | invented demo values, missing required inputs, unit mismatch, unsafe expression | evaluator tests |
+| Reports | reproducibility, checksum stability, warning inclusion, protected-content lint | report tests |</p>
+<p>Where benchmark evidence relies on a hand calculation, the source of record is
+the machine-readable hand-calc witness artifact. Human-facing Markdown, MathML,
+PDF, or report excerpts are deterministic renderings from that witness for
+inspection and review. Automated comparisons, hashes, provenance review, and
+repeatability checks must bind to the machine-readable witness, not to a
+manually edited rendering.</p>
+<p>The initial mechanics benchmark suite for `DEL-09-01` lives under
+`validation/benchmarks/mechanics/` with hand-calculation notes under
+`validation/hand_calcs/mechanics/`. Its required fixture families are
+cantilever, frame, thermal growth, imposed displacement, and stiffness
+transform. The fixtures use original invented values and keep final release
+tolerances, CI gates, and professional reliance policy as `TBD` until human
+approval.</p>
+<p>The initial stress recovery benchmark suite for `DEL-09-02` lives under
+`validation/benchmarks/stress/` with hand-calculation notes under
+`validation/hand_calcs/stress/`. Its required fixture families are axial
+normal stress, bending normal stress, torsional shear stress, pressure membrane
+stress, and mechanics-only stress range. The fixtures use original invented
+values and keep final release tolerances, CI gates, fatigue/allowable
+criteria, and professional reliance policy as `TBD` until human approval.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:ecfd6ab58681" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00012"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L42|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Units and schemas benchmark family covers dimensional conversions, invalid unit rejection, and schema completeness, with automated tests as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ecfd6ab58681" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ecfd6ab58681" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ecfd6ab58681" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e687d45417dd" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00013"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L43|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Frame mechanics benchmark family covers cantilever, fixed-fixed thermal growth, portal frame, and inclined member transforms, with hand calculations and automated comparisons as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e687d45417dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e687d45417dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e687d45417dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d57e0282a5df" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00014"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L44|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Piping loads benchmark family covers weight, pressure thrust where modeled, imposed displacement, and thermal expansion, with hand calculations and regression outputs as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d57e0282a5df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d57e0282a5df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d57e0282a5df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:789bd54b1d9b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00015"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L45|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Stress recovery benchmark family covers axial, bending, torsion, pressure membrane, and stress range, with hand calculations as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:789bd54b1d9b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:789bd54b1d9b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:789bd54b1d9b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9e95d53d7498" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00016"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L46|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Nonlinear supports benchmark family covers one-way support, gap, lift-off, and friction active state, with convergence and state trace as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9e95d53d7498" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9e95d53d7498" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9e95d53d7498" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b4b4440df892" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00017"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L47|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Rule packs benchmark family covers invented demo values, missing required inputs, unit mismatch, and unsafe expression, with evaluator tests as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b4b4440df892" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b4b4440df892" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b4b4440df892" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:55d950260169" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00018"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L48|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Reports benchmark family covers reproducibility, checksum stability, warning inclusion, and protected-content lint, with report tests as required evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:55d950260169" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:55d950260169" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:55d950260169" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bd426384f70c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00019"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L50|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Where benchmark evidence relies on a hand calculation, the source of record is the machine-readable hand-calc witness artifact.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bd426384f70c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bd426384f70c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bd426384f70c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ae8d9ad56aac" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00020"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L51|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Human-facing Markdown, MathML, PDF, or report excerpts are deterministic renderings from the hand-calc witness for inspection and review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ae8d9ad56aac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ae8d9ad56aac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ae8d9ad56aac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:9b7a71054356" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00021"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L53|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">Automated comparisons, hashes, provenance review, and repeatability checks must bind to the machine-readable witness, not to a manually edited rendering.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:9b7a71054356" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:9b7a71054356" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:9b7a71054356" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6e121ed0a932" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00022"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L57|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The initial mechanics benchmark suite for DEL-09-01 lives under validation/benchmarks/mechanics/ with hand-calculation notes under validation/hand_calcs/mechanics/.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6e121ed0a932" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6e121ed0a932" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6e121ed0a932" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:4eb3e2888c78" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00023"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L59|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The mechanics benchmark suite required fixture families are cantilever, frame, thermal growth, imposed displacement, and stiffness transform.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:4eb3e2888c78" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:4eb3e2888c78" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:4eb3e2888c78" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:a4de3fef7043" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00024"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L61|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The mechanics benchmark fixtures use original invented values and keep final release tolerances, CI gates, and professional reliance policy as TBD until human approval.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:a4de3fef7043" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:a4de3fef7043" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:a4de3fef7043" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:63fb4b21036c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00025"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L65|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The initial stress recovery benchmark suite for DEL-09-02 lives under validation/benchmarks/stress/ with hand-calculation notes under validation/hand_calcs/stress/.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:63fb4b21036c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:63fb4b21036c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:63fb4b21036c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:2673cfc6a3ed" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00026"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L67|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The stress recovery benchmark suite required fixture families are axial normal stress, bending normal stress, torsional shear stress, pressure membrane stress, and mechanics-only stress range.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2673cfc6a3ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2673cfc6a3ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2673cfc6a3ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:4cb425dc7e42" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00027"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L69|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0003</span><span class="inout">IN</span><span class="stmt">The stress recovery benchmark fixtures use original invented values and keep final release tolerances, CI gates, fatigue/allowable criteria, and professional reliance policy as TBD until human approval.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:4cb425dc7e42" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:4cb425dc7e42" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:4cb425dc7e42" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD041-0004" class="chunk sec depth-2" data-kind="section" data-key="section:4eea05455c50" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0004</span> 3. Validation manual structure</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4eea05455c50" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4eea05455c50" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4eea05455c50" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The validation manual skeleton lives at `docs/validation_manual/index.md`. It
+is a draft evidence-organization surface for maintainers and reviewers; it is
+not an engineering seal, code-compliance ruling, or project-specific reliance
+record.</p>
+<p>The validation manual shall include these sections:</p>
+<p>1. product scope and limitations;
+2. solver theory summary;
+3. unit and schema verification;
+4. element verification;
+5. load and stress recovery verification;
+6. nonlinear support verification;
+7. rule-pack evaluator verification;
+8. GUI workflow validation;
+9. report reproducibility validation;
+10. known limitations and open issues.</p>
+<p>Each section must state whether it is verification evidence, workflow
+validation evidence, user-rule-check evidence, or professional-reliance context.
+Missing evidence, unapproved thresholds, and unresolved source/provenance
+questions remain explicit `TBD` items until a governed decision or evidence
+record exists.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:dd3309979fa9" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00028"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L75|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">The validation manual skeleton lives at docs/validation_manual/index.md.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:dd3309979fa9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:dd3309979fa9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:dd3309979fa9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b6f1a465276b" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00029"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L76|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">The validation manual is a draft evidence-organization surface for maintainers and reviewers; it is not an engineering seal, code-compliance ruling, or project-specific reliance record.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b6f1a465276b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b6f1a465276b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b6f1a465276b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:fadd58aac401" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00030"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L82|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">The validation manual shall include sections for product scope and limitations, solver theory summary, unit and schema verification, element verification, and load and stress recovery verification.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:fadd58aac401" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:fadd58aac401" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:fadd58aac401" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:b73712dbf34d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00031"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L87|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">The validation manual shall include sections for nonlinear support verification, rule-pack evaluator verification, GUI workflow validation, report reproducibility validation, and known limitations and open issues.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:b73712dbf34d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:b73712dbf34d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:b73712dbf34d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ad03af405ad3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00032"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L93|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">Each validation manual section must state whether it is verification evidence, workflow validation evidence, user-rule-check evidence, or professional-reliance context.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ad03af405ad3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ad03af405ad3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ad03af405ad3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:bc2fe4f58a22" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00033"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L95|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0004</span><span class="inout">IN</span><span class="stmt">Missing evidence, unapproved thresholds, and unresolved source/provenance questions remain explicit TBD items until a governed decision or evidence record exists.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:bc2fe4f58a22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:bc2fe4f58a22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:bc2fe4f58a22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD041-0005" class="chunk sec depth-2" data-kind="section" data-key="section:70e2d6e4d0d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0005</span> 4. Release gate</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70e2d6e4d0d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70e2d6e4d0d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70e2d6e4d0d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Release quality evidence is distinct from validation evidence and professional
+reliance. Until the release-label vocabulary and final release policy are
+settled by the human project authority, validation evidence may only be used as
+input to a future release-quality review.</p>
+<p>A future release-quality review should record, at minimum:</p>
+<p>- mechanics benchmark status for affected solver behavior;
+- stress-recovery benchmark status for affected stress/result behavior;
+- nonlinear support regression status where nonlinear behavior is affected;
+- rule-pack missing-input, unit, provenance, and sandbox test status where rule
+  behavior is affected;
+- report reproducibility, checksum, warning, and protected-content lint status
+  where reports, public examples, or templates are affected;
+- known limitations, unresolved risks, and human-maintainer dispositions.</p>
+<p>The final benchmark tolerance policy, public benchmark source acceptance
+process, release-label policy, GUI validation evidence requirements, and
+validation evidence-bundle storage format remain `TBD`.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:228152b3d857" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00034"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L101|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">Release quality evidence is distinct from validation evidence and professional reliance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:228152b3d857" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:228152b3d857" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:228152b3d857" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:150eaba4e050" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00035"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L102|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">Until the release-label vocabulary and final release policy are settled by the human project authority, validation evidence may only be used as input to a future release-quality review.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:150eaba4e050" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:150eaba4e050" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:150eaba4e050" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:70580401a2cc" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00036"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L108|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record mechanics benchmark status for affected solver behavior.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:70580401a2cc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:70580401a2cc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:70580401a2cc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:ee832e520fbf" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00037"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L109|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record stress-recovery benchmark status for affected stress/result behavior.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:ee832e520fbf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:ee832e520fbf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:ee832e520fbf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6ab2b10d747e" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00038"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L110|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record nonlinear support regression status where nonlinear behavior is affected.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6ab2b10d747e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6ab2b10d747e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6ab2b10d747e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:61a37e4555b3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00039"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L111|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record rule-pack missing-input, unit, provenance, and sandbox test status where rule behavior is affected.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:61a37e4555b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:61a37e4555b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:61a37e4555b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6c1f77c0502a" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00040"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L113|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record report reproducibility, checksum, warning, and protected-content lint status where reports, public examples, or templates are affected.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6c1f77c0502a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6c1f77c0502a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6c1f77c0502a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:0d236783ac1d" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00041"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L115|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">A future release-quality review should record known limitations, unresolved risks, and human-maintainer dispositions.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:0d236783ac1d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:0d236783ac1d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:0d236783ac1d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:8bbee5c58cfa" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00042"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L117|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0005</span><span class="inout">IN</span><span class="stmt">The final benchmark tolerance policy, public benchmark source acceptance process, release-label policy, GUI validation evidence requirements, and validation evidence-bundle storage format remain TBD.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:8bbee5c58cfa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:8bbee5c58cfa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:8bbee5c58cfa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD041-0006" class="chunk sec depth-2" data-kind="section" data-key="section:4ff2be8bc9d6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0006</span> 5. Benchmark source rule</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ff2be8bc9d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ff2be8bc9d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ff2be8bc9d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Validation examples must be original, public-domain, or permissively licensed.
+Protected code examples and commercial software examples are not acceptable
+unless written permission is documented.</p>
+<p>Each public mechanics benchmark fixture must record source/provenance,
+redistribution status, contributor or generator note, assumptions, units,
+expected result fields, and review disposition before it is treated as accepted
+public validation evidence.</p>
+<p>Each public hand-calc witness must be original, public-domain, or permissively
+licensed; record units, assumptions, symbolic and numeric steps, expected
+results, tolerance basis or `TBD`, provenance, redistribution status, and
+review disposition; and generate any human rendering deterministically from the
+machine-readable witness artifact.</p>
+<p>Each public stress recovery benchmark fixture must follow the same provenance
+rule and must remain limited to open mechanics component comparisons. Stress
+range fixtures are mechanics differences between result states; they are not
+fatigue checks, allowable comparisons, code compliance checks, or professional
+approval records.</p>
+<p>The public benchmark source acceptance workflow remains `TBD`. Until it is
+settled, source/provenance records are review evidence only and must not be
+treated as legal clearance or final public benchmark acceptance.
+</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:97285f8a78da" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00043"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L123|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Validation examples must be original, public-domain, or permissively licensed.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:97285f8a78da" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:97285f8a78da" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:97285f8a78da" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:7f46759ad8c0" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00044"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L124|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Protected code examples and commercial software examples are not acceptable unless written permission is documented.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:7f46759ad8c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:7f46759ad8c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:7f46759ad8c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:741be9906df6" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00045"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L127|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Each public mechanics benchmark fixture must record source/provenance, redistribution status, contributor or generator note, assumptions, units, expected result fields, and review disposition before it is treated as accepted public validation evidence.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:741be9906df6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:741be9906df6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:741be9906df6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:d836c7c66ef3" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00046"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L132|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Each public hand-calc witness must be original, public-domain, or permissively licensed.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:d836c7c66ef3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:d836c7c66ef3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:d836c7c66ef3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:2090720bd737" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00047"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L133|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Each public hand-calc witness must record units, assumptions, symbolic and numeric steps, expected results, tolerance basis or TBD, provenance, redistribution status, and review disposition.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2090720bd737" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2090720bd737" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2090720bd737" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:2c5ce57abd9a" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00048"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L135|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Any human rendering of a hand-calc witness must be generated deterministically from the machine-readable witness artifact.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:2c5ce57abd9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:2c5ce57abd9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:2c5ce57abd9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:1ffe4c2b2192" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00049"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L138|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Each public stress recovery benchmark fixture must follow the same provenance rule and must remain limited to open mechanics component comparisons.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:1ffe4c2b2192" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:1ffe4c2b2192" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:1ffe4c2b2192" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6ff3b956c962" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00050"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L140|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">Stress range fixtures are mechanics differences between result states; they are not fatigue checks, allowable comparisons, code compliance checks, or professional approval records.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6ff3b956c962" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6ff3b956c962" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6ff3b956c962" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:6489d8e5cde4" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00051"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L144|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0006</span><span class="inout">IN</span><span class="stmt">The public benchmark source acceptance workflow remains TBD; until settled, source/provenance records are review evidence only and must not be treated as legal clearance or final public benchmark acceptance.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:6489d8e5cde4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:6489d8e5cde4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:6489d8e5cde4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+<section id="SEC-PD041-0007" class="chunk sec depth-2" data-kind="section" data-key="section:03ac936c0531" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD041-0007</span> 6. Evidence-bundle storage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03ac936c0531" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03ac936c0531" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03ac936c0531" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Validation evidence bundles must preserve source artifacts, commands, generated
+outputs, hashes or checksums where applicable, provenance, review disposition,
+known limitations, and unresolved `TBD` items. The long-term storage location,
+package format, retention policy, and release attachment workflow for reviewed
+validation evidence bundles remain `TBD`.</p>
+<p>GUI validation evidence is also `TBD` until GUI workflow deliverables provide
+the relevant surfaces. Future GUI evidence should preserve missing-data
+visibility, warning presentation, analysis-status transitions, accessibility or
+usability findings where applicable, and screenshots or automated interaction
+records without making professional-reliance claims.</p><ul class="atoms"><li class="chunk atom" data-kind="atom" data-key="atom:f145e72e459c" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00052"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L150|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0007</span><span class="inout">IN</span><span class="stmt">Validation evidence bundles must preserve source artifacts, commands, generated outputs, hashes or checksums where applicable, provenance, review disposition, known limitations, and unresolved TBD items.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:f145e72e459c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:f145e72e459c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:f145e72e459c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:e0b128bb984f" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00053"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L153|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0007</span><span class="inout">IN</span><span class="stmt">The long-term storage location, package format, retention policy, and release attachment workflow for reviewed validation evidence bundles remain TBD.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:e0b128bb984f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:e0b128bb984f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:e0b128bb984f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:3185d6530bbe" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00054"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L156|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0007</span><span class="inout">IN</span><span class="stmt">GUI validation evidence is TBD until GUI workflow deliverables provide the relevant surfaces.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:3185d6530bbe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:3185d6530bbe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:3185d6530bbe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li><li class="chunk atom" data-kind="atom" data-key="atom:51fd2fd493ea" data-status="unreviewed" data-inout="IN" data-atom-id="HBA-PD041-00055"><span class="prov">@repo/docs/VALIDATION_STRATEGY.md:L157|domains/chirality-piping/_Decomposition/source_review_html/SRC-DOCS-VALIDATION-STRATEGY.html#SEC-PD041-0007</span><span class="inout">IN</span><span class="stmt">Future GUI evidence should preserve missing-data visibility, warning presentation, analysis-status transitions, accessibility or usability findings where applicable, and screenshots or automated interaction records without making professional-reliance claims.</span><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_atom:51fd2fd493ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_atom:51fd2fd493ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_atom:51fd2fd493ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></li></ul></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD041";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

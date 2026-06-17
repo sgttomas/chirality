@@ -1,0 +1,511 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED009-0001">Source Pack: SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE</a> <a href="#SEC-ED009-0002">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED009-0010">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED009-0018">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a> <a href="#SEC-ED009-0025">Component: execution/PKG-01_Governance, IP Boundary, and Pro</a></nav>
+<main>
+<section id="SEC-ED009-0001" class="chunk sec depth-1" data-kind="section" data-key="section:eb26020c9fa5" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED009-0001</span> Source Pack: SRC-DEL-DEL-01-01-PROJECT-GOVERNANCE-BASELINE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb26020c9fa5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb26020c9fa5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb26020c9fa5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED009-0002" class="chunk sec depth-2" data-kind="section" data-key="section:3d3d8bbf9ad5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED009-0002</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d3d8bbf9ad5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d3d8bbf9ad5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d3d8bbf9ad5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0003" class="chunk sec depth-3" data-kind="section" data-key="section:00adc1a7d9c1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED009-0003</span> Datasheet: DEL-01-01 Project governance baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00adc1a7d9c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00adc1a7d9c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00adc1a7d9c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0004" class="chunk sec depth-4" data-kind="section" data-key="section:a4dda5b44e57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4dda5b44e57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4dda5b44e57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4dda5b44e57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-01-01 |
+| Package ID | PKG-01 |
+| Package Name | Governance, IP Boundary, and Professional Responsibility |
+| Deliverable Name | Project governance baseline |
+| Type | DOC_UPDATE |
+| Scope Items | SOW-001, SOW-048 |
+| Objectives | OBJ-001, OBJ-002 |
+| Context Envelope | M |
+| Decomposition Basis | execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7 |
+| Coordination Basis | execution/_DAG/DAG-006/ approved active graph authority |
+| Status | IN_PROGRESS governance baseline refresh |
+</p></div></div></section>
+<section id="SEC-ED009-0005" class="chunk sec depth-4" data-kind="section" data-key="section:4c27d3a82933" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4c27d3a82933" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4c27d3a82933" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4c27d3a82933" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| Product stance | Source-available noncommercial piping stress analysis platform | SOW-001; docs/DIRECTIVE.md Section 6 |
+| License selection | `PolyForm-Noncommercial-1.0.0` | Human project authority ruling on 2026-06-03; OPS-K-GOV-1; SOW-048 notes |
+| Governance surfaces | `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `governance/MAINTAINERS.md` | _CONTEXT.md anticipated artifacts |
+| Policy scope | Governance baseline, maintainer policy skeleton, release/governance boundary language | DEL-01-01 register row; SOW-048 |
+| Public data boundary | Protected standards text, tables, figures, examples, protected formulas, material allowables, SIF/flexibility tables, protected dimensional tables, and proprietary commercial data are not public repository content | OPS-K-IP-1; docs/DIRECTIVE.md Sections 3 and 4 |
+| Professional authority boundary | Software and agents do not certify, seal, approve, authenticate, or declare engineering code compliance for reliance | OPS-K-AUTH-1; docs/DIRECTIVE.md Section 6 |
+| Agent authority boundary | Type 2 outputs are drafts/proposals until accepted by a human gate | OPS-K-AGENT-4; docs/AGENTIC_DEVELOPMENT_WORKFLOW.md |
+</p></div></div></section>
+<section id="SEC-ED009-0006" class="chunk sec depth-4" data-kind="section" data-key="section:5884942fd9af" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5884942fd9af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5884942fd9af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5884942fd9af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Status |
+|---|---|
+| Repo-level governance surfaces exist and are explicitly in current-basis refresh scope | Applied |
+| No protected standards/code data is reproduced | Applied |
+| No legal conclusion beyond draft policy language is made | Applied |
+| Maintainer roster, release authority, quorum, and signing | TBD |
+| Public release maturity labels and validation disclosure format | TBD |
+| Human project authority for governance decisions | TBD |
+</p></div></div></section>
+<section id="SEC-ED009-0007" class="chunk sec depth-4" data-kind="section" data-key="section:9fa7d108947c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0007</span> Governance Decision Surface</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9fa7d108947c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9fa7d108947c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9fa7d108947c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Decision Surface | Current Value | Authority Needed |
+|---|---|---|
+| Project license | `PolyForm-Noncommercial-1.0.0` | Human project authority ruling recorded 2026-06-03 |
+| Maintainer roster | TBD | Human project authority |
+| Maintainer quorum or approval model | TBD | Human project authority |
+| Release authority | TBD | Human project authority |
+| Release signing or provenance process | TBD | Human project authority |
+| Legal review process for license/IP questions | TBD | Human project authority |
+</p></div></div></section>
+<section id="SEC-ED009-0008" class="chunk sec depth-4" data-kind="section" data-key="section:245861d2b737" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0008</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:245861d2b737" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:245861d2b737" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:245861d2b737" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable-local kit describes the baseline content and current-basis
+maintenance rules for public governance artifacts. It may update
+`docs/README.md` and `governance/MAINTAINERS.md` under explicit tranche write
+scope. The project license is resolved as `PolyForm-Noncommercial-1.0.0`;
+remaining human-governed decisions stay `TBD`.</p>
+<p>The baseline is constructed from:</p>
+<p>- scope item SOW-001: source-available noncommercial platform intent;
+- scope item SOW-048: license, governance, release, and maintainer policy obligation;
+- objective OBJ-001: auditable, inspectable, extensible platform;
+- objective OBJ-002: protected-standards and user-supplied-data separation;
+- contract invariants for hierarchy, identifiers, IP boundary, professional authority, governance, and agent execution.
+</p></div></div></section>
+<section id="SEC-ED009-0009" class="chunk sec depth-4" data-kind="section" data-key="section:913077e82749" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:913077e82749" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:913077e82749" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:913077e82749" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md`
+- `_REFERENCES.md`
+- `execution/_Decomposition/SOFTWARE_DECOMP.md`
+- `execution/_DAG/DAG-006/`
+- `docs/_Registers/Deliverables.csv`
+- `docs/_Registers/ScopeLedger.csv`
+- `docs/_Registers/ContextBudgetQA.csv`
+- `docs/CONTRACT.md`
+- `docs/DIRECTIVE.md`
+- `docs/TYPES.md`
+- `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`
+</p></div></div></section>
+<section id="SEC-ED009-0010" class="chunk sec depth-2" data-kind="section" data-key="section:dd48f9682f53" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED009-0010</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd48f9682f53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd48f9682f53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd48f9682f53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0011" class="chunk sec depth-3" data-kind="section" data-key="section:bea9346fcfb0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED009-0011</span> Guidance: DEL-01-01 Project governance baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bea9346fcfb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bea9346fcfb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bea9346fcfb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0012" class="chunk sec depth-4" data-kind="section" data-key="section:3af84b6e1748" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3af84b6e1748" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3af84b6e1748" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3af84b6e1748" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable-local kit gives later human or Type 1 governance work a
+structured baseline for the public project governance surface. It is
+intentionally conservative: it records required policy boundaries and
+unresolved choices without asserting legal conclusions, release acceptance, or
+final project policy.
+</p></div></div></section>
+<section id="SEC-ED009-0013" class="chunk sec depth-4" data-kind="section" data-key="section:6a665ed82755" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a665ed82755" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a665ed82755" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a665ed82755" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Open mechanics, protected standards.** Governance should support a public, inspectable mechanics platform while preventing protected standards content or proprietary commercial data from entering public artifacts.
+- **Maintainer authority is project authority only.** Maintainers may govern repository process, releases, and contribution acceptance; they do not professionally approve piping calculations by maintaining or releasing software.
+- **Release labels are software labels.** A release may describe maturity, validation evidence, and known limitations; it must not imply engineering compliance, certification, endorsement, or sealing.
+- **Unknown policy choices remain TBD.** The project license is selected as `PolyForm-Noncommercial-1.0.0`; release quorum, maintainer roster, signing process, and legal review process remain human-governed `TBD`s.
+- **Drafts are not policy.** Agent outputs are proposals until accepted by the human gate and recorded in the appropriate public governance artifact.
+</p></div></div></section>
+<section id="SEC-ED009-0014" class="chunk sec depth-4" data-kind="section" data-key="section:41a2b6a540bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:41a2b6a540bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:41a2b6a540bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:41a2b6a540bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current governing documents already contain much of the baseline intent.
+Repo-level governance edits should avoid duplicating or weakening existing
+invariants. `governance/MAINTAINERS.md` should point back to
+`docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/IP_AND_DATA_BOUNDARY.md`, and
+the current decomposition/DAG authority rather than restating every invariant
+in full.</p>
+<p>Contribution review should be written as a gate with explicit evidence fields. At minimum, public data contributions need source, provenance, redistribution status, contributor certification, and review disposition. Suspected protected content should be quarantined and escalated rather than rewritten or paraphrased.</p>
+<p>Release review should include a checklist for scope disclosure, validation status, known limitations, data-boundary constraints, and professional-responsibility limits. These are governance and communication controls, not proofs of engineering adequacy for a project.</p>
+<p>The human project authority selected `PolyForm-Noncommercial-1.0.0` for the
+project license on 2026-06-03. The human project authority record, maintainer,
+release, and policy acceptance decisions remain unresolved; until recorded,
+those choices remain `TBD` and should be routed for human ruling before
+repo-level governance artifacts are changed.
+</p></div></div></section>
+<section id="SEC-ED009-0015" class="chunk sec depth-4" data-kind="section" data-key="section:ecd72dee1351" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0015</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecd72dee1351" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecd72dee1351" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecd72dee1351" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Guidance |
+|---|---|
+| Project license | Use `PolyForm-Noncommercial-1.0.0` as selected by human project authority. |
+| Central maintainer vs quorum model | Leave as `TBD`; record the selected model before treating it as policy. |
+| Public examples vs educational usefulness | Public examples must remain invented, permissively sourced, or public-domain with provenance. |
+| Automation vs human review | Automation can provide evidence, but protected-content, legal, and professional-boundary decisions remain human governance gates. |
+| Concise policy vs complete policy | Prefer concise public policy backed by explicit checklists and decision records; avoid vague assurances. |
+</p></div></div></section>
+<section id="SEC-ED009-0016" class="chunk sec depth-4" data-kind="section" data-key="section:17e165e43909" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0016</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:17e165e43909" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:17e165e43909" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:17e165e43909" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Acceptable draft phrasing:</p>
+<p>- &quot;The project license is PolyForm Noncommercial 1.0.0.&quot;
+- &quot;Maintainer approval is repository governance and is not professional engineering approval.&quot;
+- &quot;Public releases disclose validation status and known limitations.&quot;</p>
+<p>Unacceptable draft phrasing:</p>
+<p>- &quot;This release is code compliant.&quot;
+- &quot;Maintainer approval certifies calculations.&quot;
+- &quot;The project includes standards-derived allowables by default.&quot;
+</p></div></div></section>
+<section id="SEC-ED009-0017" class="chunk sec depth-4" data-kind="section" data-key="section:b8f416570c13" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8f416570c13" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8f416570c13" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8f416570c13" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| C-01-01-001 | Project license was previously unresolved. | SOW-048; OPS-K-GOV-1 | docs/DIRECTIVE.md Section 6 | Datasheet Conditions; Specification Requirements; Procedure Steps | Use `PolyForm-Noncommercial-1.0.0` as selected by human project authority. | Resolved 2026-06-03 |
+| C-01-01-002 | Maintainer roster, quorum, release signing, and release authority are required governance choices but are not yet recorded. | OPS-K-GOV-2; docs/DIRECTIVE.md Section 6 | _CONTEXT.md anticipated artifacts | Specification Requirements; Procedure Records | Treat all role/quorum/signing values as `TBD` and do not treat them as policy. | TBD |
+</p></div></div></section>
+<section id="SEC-ED009-0018" class="chunk sec depth-2" data-kind="section" data-key="section:b189bf2fd03f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED009-0018</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b189bf2fd03f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b189bf2fd03f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b189bf2fd03f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0019" class="chunk sec depth-3" data-kind="section" data-key="section:7a33959330dc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED009-0019</span> Procedure: DEL-01-01 Project governance baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a33959330dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a33959330dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a33959330dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0020" class="chunk sec depth-4" data-kind="section" data-key="section:0b20f285448c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b20f285448c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b20f285448c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b20f285448c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how to produce, refresh, and review the DEL-01-01
+governance baseline artifacts and authorized visible governance surfaces.
+</p></div></div></section>
+<section id="SEC-ED009-0021" class="chunk sec depth-4" data-kind="section" data-key="section:7964d0312912" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7964d0312912" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7964d0312912" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7964d0312912" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Sealed DEL-01-01 brief and write scope.
+- `_CONTEXT.md`, `_REFERENCES.md`, current decomposition revision `0.7`,
+  approved `DAG-006`, and register rows for DEL-01-01.
+- Access to `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/TYPES.md`, and `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`.
+- No protected standards/code data or proprietary contribution data.
+</p></div></div></section>
+<section id="SEC-ED009-0022" class="chunk sec depth-4" data-kind="section" data-key="section:6366a3349d1c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6366a3349d1c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6366a3349d1c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6366a3349d1c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the deliverable identity: DEL-01-01, PKG-01, SOW-001, SOW-048, OBJ-001, and OBJ-002.
+2. Read the applicable contract invariants for hierarchy, IDs, IP boundary, professional authority, governance, and agent execution.
+3. Draft or refresh deliverable-local `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`; edit repo-level governance targets only when the active tranche grants explicit write scope.
+4. Record the selected project license as `PolyForm-Noncommercial-1.0.0`; mark remaining unresolved governance choices as `TBD`, including maintainer roster, quorum, release signing, release authority, and legal review process.
+5. Check that draft language does not assert certification, sealing, endorsement, code compliance, legal opinion, or professional approval.
+6. Generate `_SEMANTIC.md` as a question-shaping semantic lens after the four documents exist.
+7. Generate `_SEMANTIC_LENSING.md` from `_SEMANTIC.md` and the four production documents.
+8. Apply P3 enrichment only where the lensing register identifies warranted additions supported by local sources.
+9. Generate `Dependencies.csv` and refresh `_DEPENDENCIES.md` using conservative dependency extraction.
+10. Persist `_run_records` evidence for the setup or refresh sequence and leave `_STATUS.md` unchanged unless a separate human lifecycle gate authorizes a transition.
+</p></div></div></section>
+<section id="SEC-ED009-0023" class="chunk sec depth-4" data-kind="section" data-key="section:beb77defaf42" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0023</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:beb77defaf42" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:beb77defaf42" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:beb77defaf42" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Scope boundary | Writes stay within the deliverable folder and any explicitly authorized governance surfaces. |
+| Repo-level targets | `docs/README.md` and `governance/MAINTAINERS.md` may be edited when explicitly authorized; `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, lifecycle files, release records, and DAG artifacts are not edited by this refresh. |
+| Protected content | No protected standards/code text, tables, examples, or proprietary data are reproduced. |
+| Professional boundary | No certification, approval, sealing, authentication, or compliance-for-reliance claim appears. |
+| Unknowns | Unresolved policy values are marked `TBD`. |
+| Setup artifacts | Four documents, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`, `Dependencies.csv`, `_DEPENDENCIES.md`, and `_run_records` exist. |</p>
+<p>Release validation disclosures are communication controls. They must not be treated as professional reliance approval, code compliance, certification, sealing, endorsement, or authentication.</p>
+<p>The durable run record should explicitly state whether repo-level artifacts were edited, whether protected standards/code content was reproduced, and which unresolved governance decisions remain `TBD`.
+</p></div></div></section>
+<section id="SEC-ED009-0024" class="chunk sec depth-4" data-kind="section" data-key="section:c06420c91983" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0024</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c06420c91983" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c06420c91983" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c06420c91983" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/TASK_RUN_*.md`
+</p></div></div></section>
+<section id="SEC-ED009-0025" class="chunk sec depth-2" data-kind="section" data-key="section:af66a3cdda9c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED009-0025</span> Component: execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af66a3cdda9c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af66a3cdda9c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af66a3cdda9c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0026" class="chunk sec depth-3" data-kind="section" data-key="section:427ce1c441ec" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED009-0026</span> Specification: DEL-01-01 Project governance baseline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:427ce1c441ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:427ce1c441ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:427ce1c441ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED009-0027" class="chunk sec depth-4" data-kind="section" data-key="section:863cffd9db2c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0027</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:863cffd9db2c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:863cffd9db2c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:863cffd9db2c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies a draft governance baseline for OpenPipeStress. It covers the intended public/free/open-source posture, maintainer and release policy skeleton needs, and required policy boundaries for protected content, professional authority, and agent-generated outputs.</p>
+<p>This deliverable excludes product implementation, solver behavior, GUI
+behavior, legal advice, license selection, certification/approval language,
+release acceptance, and professional/code-compliance claims. It may update the
+visible docs index and maintainer policy skeleton when an approved tranche
+explicitly grants repo-level governance write scope.
+</p></div></div></section>
+<section id="SEC-ED009-0028" class="chunk sec depth-4" data-kind="section" data-key="section:f8db9d103a55" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f8db9d103a55" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f8db9d103a55" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f8db9d103a55" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Basis | Verification |
+|---|---|---|---|
+| REQ-01-01-01 | The governance baseline must preserve the human-selected project license, `PolyForm-Noncommercial-1.0.0`, while avoiding legal advice and professional/code-compliance claims. | SOW-001; SOW-048; OPS-K-GOV-1 | Confirm the selected license is visible and no legal conclusion is asserted. |
+| REQ-01-01-02 | Governance language must distinguish project governance approval from professional engineering approval. | OPS-K-AUTH-1; docs/DIRECTIVE.md Section 6 | Check that maintainer/release approval is not described as certification, sealing, authentication, endorsement, or code-compliance approval. |
+| REQ-01-01-03 | Public contribution and release policy language must include protected-content, provenance, redistribution-rights, privacy, and review gates. | OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-GOV-4 | Check for policy slots covering source/provenance, redistribution status, contributor certification, review disposition, quarantine/escalation, and private-data risk. |
+| REQ-01-01-04 | Public release policy language must require disclosure of scope, validation status, known limitations, data-boundary constraints, and professional-responsibility limitations. | OPS-K-GOV-3 | Check release policy skeleton for each disclosure category or an explicit `TBD` slot. |
+| REQ-01-01-05 | Maintainer authority, release authority, and public-governance decisions must be recorded in public governance artifacts before being treated as project policy. | OPS-K-GOV-2 | Check that draft language does not treat unrecorded roles, quorum, signing, or license choices as effective policy. |
+| REQ-01-01-06 | Agent-produced governance content must remain draft/proposal material until accepted by the human gate. | OPS-K-AGENT-4; docs/AGENTIC_DEVELOPMENT_WORKFLOW.md | Check for draft status and absence of issued/final acceptance claims. |
+| REQ-01-01-07 | Unknown governance values must be marked `TBD`; the deliverable must not invent legal conclusions, maintainer identities, quorum rules, signing process, or compliance claims. | OPS-K-AGENT-1; docs/DIRECTIVE.md Section 6 | Inspect all governance-value fields and open policy choices. |
+| REQ-01-01-08 | The deliverable must preserve flat package/deliverable identity and stable IDs. | OPS-K-HIER-1; OPS-K-ID-1 | Confirm DEL-01-01, PKG-01, SOW, and OBJ IDs match registers. |
+</p></div></div></section>
+<section id="SEC-ED009-0029" class="chunk sec depth-4" data-kind="section" data-key="section:a212b4928336" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0029</span> Acceptance Criteria</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a212b4928336" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a212b4928336" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a212b4928336" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Criterion | Evidence |
+|---|---|---|
+| AC-01-01-01 | Project license is recorded as `PolyForm-Noncommercial-1.0.0`; no legal conclusion is asserted. | Datasheet decision surface; Guidance conflict C-01-01-001 |
+| AC-01-01-02 | Contribution-review policy slots include source, provenance, redistribution status, contributor certification, review disposition, quarantine status, and private-data risk. | Specification REQ-01-01-03; future repo-level governance artifact review |
+| AC-01-01-03 | Release policy slots include scope, validation status, known limitations, data-boundary constraints, professional-responsibility limitations, and release maturity wording marked `TBD` until decided. | Specification REQ-01-01-04; Guidance trade-offs |
+| AC-01-01-04 | Maintainer/release authority values remain `TBD` until recorded by the human project authority. | Datasheet decision surface; Guidance conflict C-01-01-002 |
+| AC-01-01-05 | Run evidence records which repo-level governance artifacts were edited and confirms no protected standards/code content was reproduced. | `_run_records/TASK_RUN_*.md` |
+</p></div></div></section>
+<section id="SEC-ED009-0030" class="chunk sec depth-4" data-kind="section" data-key="section:9b1e8d23e6d5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0030</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b1e8d23e6d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b1e8d23e6d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b1e8d23e6d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or Authority | Status |
+|---|---|
+| `docs/CONTRACT.md` invariant catalog | Accessible draft governance authority |
+| `docs/DIRECTIVE.md` founding directive | Accessible draft governance authority |
+| `docs/TYPES.md` identity and vocabulary | Accessible draft governance authority |
+| Project license | `PolyForm-Noncommercial-1.0.0`; see `LICENSE.md` and official PolyForm URL |
+| Protected standards/code requirements | Not reproduced; public data boundary only |
+</p></div></div></section>
+<section id="SEC-ED009-0031" class="chunk sec depth-4" data-kind="section" data-key="section:68f9deb68abd" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0031</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68f9deb68abd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68f9deb68abd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68f9deb68abd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Verification for this setup deliverable is document review:</p>
+<p>- compare DEL-01-01 identity, scope items, objectives, and anticipated artifacts against `_CONTEXT.md`, current decomposition revision `0.7`, `DAG-006`, and the registers;
+- confirm all applicable contract invariants are named or reflected;
+- confirm any repo-level governance edits stay within the authorized tranche write scope;
+- confirm no protected standards content, proprietary data, legal conclusion, or professional certification claim was introduced;
+- confirm `PolyForm-Noncommercial-1.0.0` is used for the selected project license and `TBD` is used for unresolved maintainer, release, quorum, signing, and human-authority choices;
+- confirm `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`, `Dependencies.csv`, `_DEPENDENCIES.md`, and `_run_records` evidence exist after the setup workflow completes.
+</p></div></div></section>
+<section id="SEC-ED009-0032" class="chunk sec depth-4" data-kind="section" data-key="section:7aff39cfbe10" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED009-0032</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7aff39cfbe10" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7aff39cfbe10" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7aff39cfbe10" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Anticipated downstream artifacts from the register are:</p>
+<p>- `docs/CONTRACT.md`
+- `docs/DIRECTIVE.md`
+- `governance/MAINTAINERS.md`</p>
+<p>For current-basis refresh work, `docs/README.md` and
+`governance/MAINTAINERS.md` may be updated as governance surfaces. Changes to
+release acceptance and lifecycle state remain outside this tranche unless
+separately authorized.</p>
+<p>The release maturity label taxonomy, validation-status wording, release signing process, and governance acceptance record format remain `TBD`.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED009";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

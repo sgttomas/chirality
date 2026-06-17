@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS",
+  "source_prefix": "PD032",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-SECURITY-REDACTION-EXPORT-CONTROLS_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/security/redaction_export_controls.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD032-0001",
+      "line_start": 21,
+      "line_end": 136,
+      "target_section_ids": [
+        "SEC-PD032-0001",
+        "SEC-PD032-0002",
+        "SEC-PD032-0003",
+        "SEC-PD032-0004",
+        "SEC-PD032-0005",
+        "SEC-PD032-0006",
+        "SEC-PD032-0007",
+        "SEC-PD032-0008"
+      ],
+      "estimated_md_tokens": 951,
+      "contains_oversized_section": false
+    }
+  ]
+}

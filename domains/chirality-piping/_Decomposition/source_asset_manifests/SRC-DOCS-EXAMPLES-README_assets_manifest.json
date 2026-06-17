@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-EXAMPLES-README",
+  "source_doc_id": "SRC-DOCS-EXAMPLES-README",
+  "source_name": "README.md",
+  "source_prefix": "PD015",
+  "repo_rel_path": "docs/_Examples/README.md",
+  "catalog_rel_path": "@repo/docs/_Examples/README.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,3 @@
+Severity,Category,EvidenceFile,SourceRef,Message
+CRITICAL,MISSING_REQUIRED_FILE,domains/chirality-piping/_Decomposition/annex_objectives.csv,file,Missing DOMAIN decomposition annex: objectives
+CRITICAL,MISSING_REQUIRED_FILE,domains/chirality-piping/_Decomposition/annex_coverage_telemetry.csv,file,Missing DOMAIN decomposition annex: coverage

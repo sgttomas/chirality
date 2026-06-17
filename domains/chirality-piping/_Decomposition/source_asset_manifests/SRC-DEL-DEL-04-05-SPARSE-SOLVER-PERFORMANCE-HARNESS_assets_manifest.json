@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS",
+  "source_doc_id": "SRC-DEL-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS",
+  "source_prefix": "ED030",
+  "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/",
+  "catalog_rel_path": "@repo/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS-DATASHEET",
+      "expected_sha256": "b8e1586be4b1a09545d3dfd087930e7bec1e048abf7566ab6cc5704669bbf9bb",
+      "generated_line_start": 11,
+      "generated_line_end": 71,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS-GUIDANCE",
+      "expected_sha256": "97593e337bf7d4e933c2d8dcada038f86ccf942387faeae3aba25e16b228134a",
+      "generated_line_start": 75,
+      "generated_line_end": 121,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -74
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS-PROCEDURE",
+      "expected_sha256": "2d0a8c8e659251e0f9aba7803a91d26902fb0486534d12b4a0048265c3ee42d1",
+      "generated_line_start": 125,
+      "generated_line_end": 167,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -124
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-05-SPARSE-SOLVER-PERFORMANCE-HARNESS-SPECIFICATION",
+      "expected_sha256": "6feacaa902599cd11251bac222cb8bc951cd4ef817efc51547a660c9b3c81972",
+      "generated_line_start": 171,
+      "generated_line_end": 220,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -170
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

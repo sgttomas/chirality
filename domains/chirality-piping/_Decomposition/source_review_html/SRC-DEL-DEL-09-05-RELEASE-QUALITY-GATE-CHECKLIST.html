@@ -1,0 +1,497 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>35</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED060-0001">Source Pack: SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIS</a> <a href="#SEC-ED060-0002">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED060-0010">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED060-0021">Component: execution/PKG-09_Verification, Validation, and Qu</a> <a href="#SEC-ED060-0028">Component: execution/PKG-09_Verification, Validation, and Qu</a></nav>
+<main>
+<section id="SEC-ED060-0001" class="chunk sec depth-1" data-kind="section" data-key="section:47e2fd0b6995" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED060-0001</span> Source Pack: SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:47e2fd0b6995" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:47e2fd0b6995" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:47e2fd0b6995" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED060-0002" class="chunk sec depth-2" data-kind="section" data-key="section:9e2d7f3fafa2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED060-0002</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e2d7f3fafa2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e2d7f3fafa2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e2d7f3fafa2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0003" class="chunk sec depth-3" data-kind="section" data-key="section:f8cdf366af65" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED060-0003</span> Datasheet: DEL-09-05 Release quality gate checklist</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f8cdf366af65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f8cdf366af65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f8cdf366af65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0004" class="chunk sec depth-4" data-kind="section" data-key="section:0bd6caadcf85" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bd6caadcf85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bd6caadcf85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bd6caadcf85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Field | Value |
+|---|---|
+| Deliverable ID | DEL-09-05 |
+| Package ID | PKG-09 |
+| Package | Verification, Validation, and Quality Oracles |
+| Type | CI_CD_CHANGE |
+| Lifecycle target | SEMANTIC_READY for setup review; not ISSUED |
+| Scope items | SOW-026, SOW-027 |
+| Objective | OBJ-008 |
+| Anticipated artifacts | release QA checklist; CI quality gates |
+| Write boundary | Deliverable-local setup artifacts only |
+</p></div></div></section>
+<section id="SEC-ED060-0005" class="chunk sec depth-4" data-kind="section" data-key="section:5f3cb0d68661" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f3cb0d68661" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f3cb0d68661" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f3cb0d68661" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Gate family | Release trigger | Required evidence class | Authority boundary |
+|---|---|---|---|
+| Solver changes | Changes to stiffness, loads, numerical solve behavior, diagnostics, or stress recovery behavior | Deterministic verification/regression evidence for mechanics, stress recovery, nonlinear behavior where applicable, unit checks, and diagnostic reporting | Verifies mechanics behavior only; does not certify project-specific engineering acceptance |
+| Rule-engine changes | Changes to rule-pack schema, expression evaluation, required-input handling, sandboxing, or checksum/provenance semantics | Sandbox, unit-awareness, missing-input, deterministic evaluator, invented example, and provenance evidence | Evaluates user-defined rule packs only; does not assert code compliance |
+| GUI releases | Changes to modeling, editing, solve execution, warnings, results, or report workflow UX | Workflow checks for required warnings, blocking states, result visibility, accessibility/usability, and regression coverage | Presents decision-support state without professional approval claims |
+| Report-template releases | Changes to public report templates, examples, export manifests, notices, or reproducibility records | Reproducibility, checksum stability, warning inclusion, provenance, and protected-content lint evidence | Public templates must not embed protected standards content or certification language |
+</p></div></div></section>
+<section id="SEC-ED060-0006" class="chunk sec depth-4" data-kind="section" data-key="section:0e5fa8c80038" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e5fa8c80038" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e5fa8c80038" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e5fa8c80038" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Scope is process and CI gate definition only. This setup does not modify CI workflows, tests, release files outside this deliverable, or repo-level artifacts.
+- Final numerical tolerances, coverage percentages, performance thresholds, CI provider details, signing process, release matrix, and maintainer quorum remain `TBD` unless later approved by the human project authority.
+- Release labels describe software maturity and validation evidence only. They must not imply code compliance, endorsement, sealing, certification, or project-specific engineering acceptance.
+- Benchmark sources and public examples must be original, public-domain, or permissively licensed with documented provenance.
+- Missing solve-required or rule-check-required data is a finding and cannot be hidden by a release gate.
+</p></div></div></section>
+<section id="SEC-ED060-0007" class="chunk sec depth-4" data-kind="section" data-key="section:0ab106ed210c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0007</span> Gate Outcome Vocabulary</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ab106ed210c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ab106ed210c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ab106ed210c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Outcome | Meaning |
+|---|---|
+| PASS | Required evidence for the routed gate family is present and applicable checks pass. |
+| FAIL | Required evidence exists and shows a gate failure. |
+| BLOCKED_TBD | A required threshold, automation command, authority decision, or evidence source is unresolved. |
+| HUMAN_REVIEW_REQUIRED | Protected-content, private-data, professional-boundary, release-label, or waiver questions need human disposition. |
+</p></div></div></section>
+<section id="SEC-ED060-0008" class="chunk sec depth-4" data-kind="section" data-key="section:40dd7cb1f274" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0008</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40dd7cb1f274" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40dd7cb1f274" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40dd7cb1f274" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>The checklist is organized as a gate-routing artifact:</p>
+<p>1. classify the change as solver, rule-engine, GUI, report-template, or mixed;
+2. collect the required evidence bundle for each applicable family;
+3. verify protected-data, provenance, privacy, and professional-boundary checks;
+4. record open risks, `TBD` thresholds, and unresolved human decisions;
+5. require human maintainer acceptance for release governance without treating that acceptance as professional engineering approval.
+</p></div></div></section>
+<section id="SEC-ED060-0009" class="chunk sec depth-4" data-kind="section" data-key="section:07049e309639" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07049e309639" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07049e309639" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07049e309639" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `_CONTEXT.md` - DEL-09-05 identity, scope, objective, and architecture-basis injection.
+- `docs/_Registers/Deliverables.csv` - DEL-09-05 row.
+- `docs/_Registers/ScopeLedger.csv` - SOW-026 and SOW-027 rows.
+- `docs/CONTRACT.md` - invariant catalog, especially OPS-K-IP, OPS-K-DATA, OPS-K-AUTH, OPS-K-UNIT, OPS-K-RULE, and OPS-K-AGENT invariants.
+- `docs/DIRECTIVE.md` - release, stop-rule, validation, IP, and professional-boundary principles.
+- `docs/SPEC.md` - numerical quality, rule-pack evaluator, GUI warning classes, reports, V&amp;V mechanics, and acceptance semantics.
+- `docs/VALIDATION_STRATEGY.md` - benchmark families, validation manual structure, release gate, and benchmark source rule.
+- `docs/IP_AND_DATA_BOUNDARY.md` - protected-content, provenance, quarantine, private-data, and report-boundary policy.
+- `execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-08_Layered software test and acceptance strategy/Specification.md` - layered test obligations and deferred threshold decisions.
+</p></div></div></section>
+<section id="SEC-ED060-0010" class="chunk sec depth-2" data-kind="section" data-key="section:8ff140162bb2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED060-0010</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8ff140162bb2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8ff140162bb2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8ff140162bb2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0011" class="chunk sec depth-3" data-kind="section" data-key="section:6e8404c265a3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED060-0011</span> Guidance: DEL-09-05 Release quality gate checklist</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e8404c265a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e8404c265a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e8404c265a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0012" class="chunk sec depth-4" data-kind="section" data-key="section:6f5326efe497" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f5326efe497" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f5326efe497" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f5326efe497" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>This deliverable gives future release work a bounded checklist for release quality gates. It should make gate routing, required evidence, data-boundary checks, and human governance decisions visible before solver, rule-engine, GUI, or report-template changes are promoted.
+</p></div></div></section>
+<section id="SEC-ED060-0013" class="chunk sec depth-4" data-kind="section" data-key="section:a2de7e063434" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a2de7e063434" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a2de7e063434" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a2de7e063434" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Treat release gates as software-quality and governance controls, not professional engineering approval.
+- Use deterministic evidence where available: tests, validation scripts, benchmark comparisons, report reproducibility checks, protected-content lint, and review records.
+- Keep mechanics verification separate from validation of the workflow and separate again from user-rule checks or professional reliance.
+- Require provenance for benchmark sources, public examples, rule-pack references, and report-facing data.
+- Mark unresolved thresholds and release-authority choices as `TBD` until a human ruling exists.
+- Block or escalate suspected protected content instead of paraphrasing, normalizing, or incorporating it.
+</p></div></div></section>
+<section id="SEC-ED060-0014" class="chunk sec depth-4" data-kind="section" data-key="section:f30189099aa9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f30189099aa9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f30189099aa9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f30189099aa9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>The gate families overlap. A report-template release that changes warning presentation may also need GUI or status-semantics evidence. A solver change that affects result envelopes may need report reproducibility evidence. Mixed changes should run the union of applicable gate families, with duplicated evidence referenced once in the release bundle.</p>
+<p>The checklist should be CI-friendly, but this setup deliverable does not create or alter CI workflows. Future CI implementation should consume this checklist as requirements input and keep final threshold choices visible for human approval.
+</p></div></div></section>
+<section id="SEC-ED060-0015" class="chunk sec depth-4" data-kind="section" data-key="section:de5c444f3ab8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0015</span> Release Label Rationale</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de5c444f3ab8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de5c444f3ab8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de5c444f3ab8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Release labels communicate software maturity and validation evidence. They are not professional engineering approval of any piping calculation, model, rule-pack result, or report. The minimum engineering-beta conditions in `docs/VALIDATION_STRATEGY.md#4` should therefore be read as release-governance criteria: required benchmarks and checks pass, protected-content lint passes where applicable, and open risks are listed and accepted by human maintainers.
+</p></div></div></section>
+<section id="SEC-ED060-0016" class="chunk sec depth-4" data-kind="section" data-key="section:5b18c187367a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0016</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b18c187367a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b18c187367a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b18c187367a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Choice | Benefit | Risk | Guidance |
+|---|---|---|---|
+| Conservative gate routing | Reduces under-tested release paths | May run more checks than a narrow change strictly needs | Prefer conservative routing until package-specific ownership and CI thresholds are approved |
+| Thresholds marked `TBD` | Preserves human authority and avoids invented targets | Leaves later implementation work with open decisions | Record the missing decision in the release bundle and route to human maintainers |
+| Protected-content lint plus human review | Gives fast feedback while preserving legal/professional judgment | Lint cannot prove legal safety | Treat lint as evidence only, not a legal conclusion |
+| Human maintainer acceptance | Records project governance approval | Could be mistaken for engineering approval | Use explicit wording that governance acceptance is not professional acceptance of a piping calculation |
+</p></div></div></section>
+<section id="SEC-ED060-0017" class="chunk sec depth-4" data-kind="section" data-key="section:bc42670fb690" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0017</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bc42670fb690" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bc42670fb690" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bc42670fb690" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Change example | Gate routing | Notes |
+|---|---|---|
+| Solver stiffness transform update | Solver gate; report gate if output manifests change | Requires deterministic benchmark/regression evidence and visible numerical-quality diagnostics |
+| Rule-pack evaluator parser change | Rule-engine gate; security/privacy gate if sandbox surface changes | Requires sandbox, unit, missing-input, and invented-example evidence |
+| Results viewer release | GUI gate; report gate if export/preview changes | Requires warning/status visibility and regression evidence |
+| Public report template wording change | Report-template gate | Requires protected-content lint, reproducibility evidence, and professional-boundary notice check |
+</p></div></div></section>
+<section id="SEC-ED060-0018" class="chunk sec depth-4" data-kind="section" data-key="section:bdacb813ce65" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0018</span> Human-Ruling Queue</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdacb813ce65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdacb813ce65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdacb813ce65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- TBD: final numerical tolerance policy for solver and stress recovery benchmarks.
+- TBD: performance thresholds and permitted variance policy for release gates.
+- TBD: coverage thresholds for Cargo, Vitest, Playwright, validation, and protected-content gates.
+- TBD: CI provider, release matrix, signing/release attestation process, and maintainer quorum.
+- TBD: engineering-beta label policy beyond the minimum conditions in `docs/VALIDATION_STRATEGY.md#4`.
+- TBD: exact CI command names, automation owners, gate owners, and waiver approver roles.
+</p></div></div></section>
+<section id="SEC-ED060-0019" class="chunk sec depth-4" data-kind="section" data-key="section:b9d870b0a4ab" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0019</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b9d870b0a4ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b9d870b0a4ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b9d870b0a4ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>No source conflicts were identified during setup. Open decisions are recorded as `TBD` items rather than conflicts.
+</p></div></div></section>
+<section id="SEC-ED060-0020" class="chunk sec depth-4" data-kind="section" data-key="section:06ae628c5195" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0020</span> Boundaries</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06ae628c5195" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06ae628c5195" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06ae628c5195" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>This checklist is a draft setup artifact. It does not:
+- certify a calculation or model;
+- declare code compliance;
+- replace competent professional review;
+- grant redistribution rights for standards, vendor, owner, or user-private data;
+- authorize CI workflow edits or release publication.
+</p></div></div></section>
+<section id="SEC-ED060-0021" class="chunk sec depth-2" data-kind="section" data-key="section:cb839a5bd736" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED060-0021</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cb839a5bd736" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cb839a5bd736" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cb839a5bd736" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0022" class="chunk sec depth-3" data-kind="section" data-key="section:c68d76ebca9c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED060-0022</span> Procedure: DEL-09-05 Release quality gate checklist</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c68d76ebca9c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c68d76ebca9c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c68d76ebca9c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0023" class="chunk sec depth-4" data-kind="section" data-key="section:626a2ec9d31f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0023</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:626a2ec9d31f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:626a2ec9d31f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:626a2ec9d31f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Define the operational procedure for applying release quality gates to solver changes, rule-engine changes, GUI releases, and report-template releases.
+</p></div></div></section>
+<section id="SEC-ED060-0024" class="chunk sec depth-4" data-kind="section" data-key="section:3798908123ec" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0024</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3798908123ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3798908123ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3798908123ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- The release candidate scope is identified by changed packages, deliverables, source paths, or artifacts.
+- The relevant benchmark, regression, validation, GUI, rule-engine, report, and protected-content checks are available or explicitly marked `TBD`.
+- Benchmark sources and public examples have documented provenance and redistribution status.
+- Any suspected protected or private data is quarantined before gate evidence is assembled.
+- Thresholds not approved by human authority remain `TBD`; this procedure does not invent them.
+</p></div></div></section>
+<section id="SEC-ED060-0025" class="chunk sec depth-4" data-kind="section" data-key="section:ffc848f58d24" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0025</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ffc848f58d24" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ffc848f58d24" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ffc848f58d24" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>1. Classify the release candidate.
+   - Mark all applicable families: solver, rule-engine, GUI, report-template, or mixed.
+   - If classification is uncertain, route to the broader family set and record the uncertainty.
+   - If a change is mixed, run the union of applicable gate families unless a human release-authority waiver is recorded with risk disposition.</p>
+<p>2. Assemble the common evidence bundle.
+   - Record commit/artifact identifiers, software version, solver version if applicable, model or fixture hashes where applicable, commands run, results, warnings, open risks, and unresolved `TBD` decisions.
+   - Record provenance for benchmark sources, public examples, report templates, and rule-pack references.
+   - Record that governance acceptance is not professional engineering approval.</p>
+<p>3. Apply solver-change gates when routed.
+   - Verify mechanics benchmarks required for the affected solver behavior.
+   - Verify stress-recovery benchmarks when stresses, resultants, or report-facing stress values are affected.
+   - Verify nonlinear support convergence/state traces when nonlinear behavior is affected.
+   - Verify unit-aware calculations, deterministic repeatability, numerical diagnostics, and warning/result-envelope behavior.
+   - Keep final tolerances and performance thresholds as `TBD` unless a human ruling exists.</p>
+<p>4. Apply rule-engine gates when routed.
+   - Verify sandboxing and arbitrary-code exclusion.
+   - Verify unit-aware expression handling and deterministic evaluation.
+   - Verify missing required inputs produce explicit findings, not silent defaults.
+   - Verify invented public examples remain non-code and protected-content free.
+   - Verify rule-pack identity, version, checksum, source note, and public/private marking are preserved.</p>
+<p>5. Apply GUI release gates when routed.
+   - Verify visible distinction among solve-blocking missing data, rule-check-blocking missing data, provenance warnings, assumption warnings, nonlinear warnings, and IP-boundary warnings.
+   - Verify workflows do not present mechanics solved, user-rule checked, and professional approval as the same state.
+   - Verify expected model editing, solve execution, result viewing, warning, and report-preview/export workflows for the release scope.
+   - Verify accessibility/usability evidence where GUI surfaces are affected, with detailed thresholds remaining `TBD` unless approved elsewhere.</p>
+<p>6. Apply report-template gates when routed.
+   - Verify report reproducibility and checksum/hash stability.
+   - Verify warning, assumption, limitation, provenance, rule-pack reference, and professional-boundary notices are present.
+   - Run or require protected-content lint for public templates/examples.
+   - Record the protected-content lint command/tool as `TBD` until DEL-10-04 or a human release-governance ruling supplies the automation detail.
+   - Confirm public templates do not embed protected standards text, copied tables, protected formulas, proprietary data, or certification/compliance claims.</p>
+<p>7. Review open risks and unresolved decisions.
+   - List all open risks, `TBD` thresholds, missing evidence, failing checks, and protected-data concerns.
+   - A release may not proceed when required evidence is missing unless the human release authority explicitly accepts that risk for the relevant maturity label.</p>
+<p>8. Record the gate outcome.
+   - Use `PASS` only when required evidence is present and all applicable gates pass.
+   - Use `FAIL` when evidence exists and shows a gate failure.
+   - Use `BLOCKED_TBD` when a necessary threshold, authority decision, or required check is unresolved.
+   - Use `HUMAN_REVIEW_REQUIRED` when professional-boundary, protected-content, private-data, or release-label questions require human disposition.
+</p></div></div></section>
+<section id="SEC-ED060-0026" class="chunk sec depth-4" data-kind="section" data-key="section:23c5f4c94b15" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0026</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23c5f4c94b15" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23c5f4c94b15" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23c5f4c94b15" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Confirm the final checklist covers solver, rule-engine, GUI, and report-template gate families.
+- Confirm the procedure does not modify CI workflows, tests, release files outside this deliverable, or repo-level artifacts.
+- Confirm no final thresholds are asserted without human authority.
+- Confirm no protected standards text, protected examples, copied formulas, allowables, SIF/flexibility tables, proprietary values, or private user data are introduced.
+- Confirm no software or agent output claims certification, sealing, endorsement, official compliance, or professional approval.
+- Confirm setup artifacts include semantic matrices, semantic lensing, dependency artifacts, run records, and `SEMANTIC_READY` status only after validation passes.
+</p></div></div></section>
+<section id="SEC-ED060-0027" class="chunk sec depth-4" data-kind="section" data-key="section:e77d38da9c7c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0027</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e77d38da9c7c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e77d38da9c7c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e77d38da9c7c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Preserve these records in the release gate evidence bundle or deliverable-local setup record as applicable:
+- release-gate checklist result;
+- commands and outputs for relevant deterministic checks;
+- benchmark/regression fixture provenance;
+- protected-content/provenance review notes;
+- open risk and `TBD` decision log;
+- human maintainer governance acceptance record, including validation status, known limitations, open risks, unresolved `TBD` decisions, and professional-boundary notice;
+- statement that professional reliance requires competent human review.
+</p></div></div></section>
+<section id="SEC-ED060-0028" class="chunk sec depth-2" data-kind="section" data-key="section:d2d4e31938b3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED060-0028</span> Component: execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2d4e31938b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2d4e31938b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2d4e31938b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0029" class="chunk sec depth-3" data-kind="section" data-key="section:31e025a3726a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED060-0029</span> Specification: DEL-09-05 Release quality gate checklist</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:31e025a3726a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:31e025a3726a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:31e025a3726a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED060-0030" class="chunk sec depth-4" data-kind="section" data-key="section:0156d45e4c14" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0030</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0156d45e4c14" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0156d45e4c14" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0156d45e4c14" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>This specification defines the deliverable-local release quality gate checklist for solver changes, rule-engine changes, GUI releases, and report-template releases. It converts PKG-09 verification and validation obligations into process and CI gate criteria without editing CI workflows or setting final thresholds.</p>
+<p>Out of scope:
+- implementing CI jobs, tests, solver logic, GUI workflows, rule-engine logic, or report templates;
+- moving artifacts to `ISSUED`;
+- selecting final tolerance, coverage, performance, release-matrix, signing, or maintainer-quorum thresholds without human authority;
+- asserting certification, code compliance, professional approval, or engineering reliance.
+</p></div></div></section>
+<section id="SEC-ED060-0031" class="chunk sec depth-4" data-kind="section" data-key="section:c3567a8540b2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0031</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3567a8540b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3567a8540b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3567a8540b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| ID | Requirement | Evidence |
+|---|---|---|
+| RQG-001 | The checklist shall route each release-impacting change to one or more gate families: solver, rule-engine, GUI, report-template, or mixed. | `Datasheet.md#Attributes`; `Procedure.md#Steps` |
+| RQG-002 | Solver-change gates shall require deterministic verification/regression evidence for applicable mechanics, stress recovery, nonlinear behavior, unit-aware calculations, numerical-quality diagnostics, and warning/result-envelope behavior before release use. | `docs/SPEC.md#4.5`; `docs/SPEC.md#9`; `docs/VALIDATION_STRATEGY.md#2`; `docs/CONTRACT.md#OPS-K-SOLVER-1` |
+| RQG-003 | Rule-engine gates shall require evidence for sandboxing, unit awareness, deterministic evaluation, required-input completeness, invented example data, rule-pack checksum/provenance handling, and absence of arbitrary code execution. | `docs/SPEC.md#6`; `docs/CONTRACT.md#OPS-K-RULE-1`; `docs/CONTRACT.md#OPS-K-RULE-2`; `docs/CONTRACT.md#OPS-K-RULE-3` |
+| RQG-004 | GUI release gates shall require workflow evidence that missing solve data, missing rule-check data, provenance weakness, assumptions, nonlinear uncertainty, and IP-boundary warnings remain visible and cannot be collapsed into generic success states. | `docs/SPEC.md#7`; `docs/TYPES.md#4`; `docs/DIRECTIVE.md#2.2` |
+| RQG-005 | Report-template gates shall require reproducibility, checksum stability, warning inclusion, provenance disclosure, professional-boundary notice, and protected-content lint evidence. | `docs/SPEC.md#8`; `docs/VALIDATION_STRATEGY.md#2`; `docs/IP_AND_DATA_BOUNDARY.md#7` |
+| RQG-006 | The checklist shall preserve the distinction between mechanics verification, workflow validation, user-rule checking, and professional review. | `docs/VALIDATION_STRATEGY.md#1`; `docs/TYPES.md#4`; `docs/DIRECTIVE.md#2.2` |
+| RQG-007 | A release candidate shall not be labeled engineering beta unless the release-gate evidence required by `docs/VALIDATION_STRATEGY.md#4` is present and open risks are listed and accepted by human maintainers. | `docs/VALIDATION_STRATEGY.md#4`; `docs/DIRECTIVE.md#6` |
+| RQG-008 | Public release-gate artifacts shall not contain protected standards text, copied code formulas, protected examples, material allowables, SIF/flexibility tables, protected dimensional tables, proprietary commercial data, or private user data. | `docs/CONTRACT.md#OPS-K-IP-1`; `docs/IP_AND_DATA_BOUNDARY.md#3`; `docs/DIRECTIVE.md#4.2` |
+| RQG-009 | Thresholds and release-authority decisions that lack a cited human ruling shall remain `TBD` and shall not be silently selected by this deliverable. | `_CONTEXT.md#Architecture Basis Injection`; `DEL-00-08/Specification.md#Requirements`; `docs/TYPES.md#5` |
+| RQG-010 | Gate records shall identify evidence commands/results, benchmark source provenance, known limitations, open risks, unresolved `TBD` items, and the human governance decision surface. | `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md#5`; `docs/DIRECTIVE.md#6`; `docs/SPEC.md#11` |
+| RQG-011 | Mixed changes shall run the union of applicable gate families unless the human release authority records an explicit waiver and risk disposition. | `Guidance.md#Considerations`; `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md#5`; `docs/DIRECTIVE.md#6` |
+| RQG-012 | Human release-governance records shall list validation status, known limitations, open risks, unresolved `TBD` decisions, and professional-boundary notices. | `docs/DIRECTIVE.md#6`; `docs/VALIDATION_STRATEGY.md#4`; `Procedure.md#Records` |
+</p></div></div></section>
+<section id="SEC-ED060-0032" class="chunk sec depth-4" data-kind="section" data-key="section:991f704664ff" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0032</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:991f704664ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:991f704664ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:991f704664ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>No protected standards text or clause-level code requirements are used as source authority for this setup deliverable. Applicable project-governance sources are the local OpenPipeStress governance, specification, validation, IP/data-boundary, decomposition, register, and PKG-00 architecture-basis documents listed in `Datasheet.md#References`.
+</p></div></div></section>
+<section id="SEC-ED060-0033" class="chunk sec depth-4" data-kind="section" data-key="section:51c3afd1daeb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0033</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51c3afd1daeb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51c3afd1daeb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51c3afd1daeb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Requirement | Setup verification approach |
+|---|---|
+| RQG-001 | Confirm `Procedure.md` includes deterministic gate-family classification. |
+| RQG-002 | Confirm solver gate criteria mention mechanics, stress recovery, nonlinear behavior where applicable, units, diagnostics, and deterministic regression evidence without selecting final numeric thresholds. |
+| RQG-003 | Confirm rule-engine gate criteria mention sandboxing, unit awareness, required inputs, invented examples, checksums, provenance, and arbitrary-code exclusion. |
+| RQG-004 | Confirm GUI gate criteria preserve the warning/status distinctions from `docs/SPEC.md` and `docs/TYPES.md`. |
+| RQG-005 | Confirm report-template gate criteria include reproducibility, checksums, warnings, provenance, protected-content lint, and professional-boundary notices. |
+| RQG-006 | Confirm wording separates verification, validation, user-rule checks, and professional review. |
+| RQG-007 | Confirm engineering-beta wording is conditional and tied to human maintainer risk acceptance. |
+| RQG-008 | Confirm no protected data, code-derived values, or private user data were introduced. |
+| RQG-009 | Confirm thresholds and release-authority choices remain `TBD`. |
+| RQG-010 | Confirm dependency and run-record artifacts preserve evidence and open issues. |
+| RQG-011 | Confirm mixed-change examples and procedure use union routing unless a human waiver is recorded. |
+| RQG-012 | Confirm release-governance record fields include validation status, limitations, risks, `TBD` decisions, and professional-boundary notice. |
+</p></div></div></section>
+<section id="SEC-ED060-0034" class="chunk sec depth-4" data-kind="section" data-key="section:ccef893a5aaa" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0034</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ccef893a5aaa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ccef893a5aaa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ccef893a5aaa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Required setup artifacts for this deliverable:
+- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/TASK_RUN_*.md`
+- `_STATUS.md`
+</p></div></div></section>
+<section id="SEC-ED060-0035" class="chunk sec depth-4" data-kind="section" data-key="section:ed8446ae58ef" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED060-0035</span> Acceptance Criteria</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed8446ae58ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed8446ae58ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed8446ae58ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- The deliverable remains inside the assigned write scope.
+- All four production documents exist with default sections represented.
+- Semantic matrix and lensing artifacts exist and do not claim engineering authority.
+- `Dependencies.csv` validates against the v3.1 dependency schema.
+- `Current State` is `SEMANTIC_READY` only after the setup artifacts and dependency schema validation pass.
+- No CI workflows, release files outside this folder, tests, or repo-level artifacts are modified.
+- No certification, code-compliance, endorsement, sealing, or professional-approval claim is made.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED060";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

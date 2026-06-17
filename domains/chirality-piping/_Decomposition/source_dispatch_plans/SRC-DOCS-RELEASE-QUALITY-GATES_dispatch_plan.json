@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-RELEASE-QUALITY-GATES",
+  "source_prefix": "PD025",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-RELEASE-QUALITY-GATES_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/RELEASE_QUALITY_GATES.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD025-0001",
+      "line_start": 15,
+      "line_end": 168,
+      "target_section_ids": [
+        "SEC-PD025-0001",
+        "SEC-PD025-0002",
+        "SEC-PD025-0003",
+        "SEC-PD025-0004",
+        "SEC-PD025-0005",
+        "SEC-PD025-0006",
+        "SEC-PD025-0007",
+        "SEC-PD025-0008",
+        "SEC-PD025-0009",
+        "SEC-PD025-0010",
+        "SEC-PD025-0011"
+      ],
+      "estimated_md_tokens": 1210,
+      "contains_oversized_section": false
+    }
+  ]
+}

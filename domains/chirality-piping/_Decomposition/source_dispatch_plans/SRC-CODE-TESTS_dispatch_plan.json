@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "source": "SRC-CODE-TESTS",
+  "source_prefix": "CT001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-CODE-TESTS_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-TESTS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 5,
+  "generated_utc": "2026-06-17T01:26:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-CT001-0001",
+      "line_start": 9,
+      "line_end": 4652,
+      "target_section_ids": [
+        "SEC-CT001-0002",
+        "SEC-CT001-0003",
+        "SEC-CT001-0004",
+        "SEC-CT001-0005",
+        "SEC-CT001-0006",
+        "SEC-CT001-0007",
+        "SEC-CT001-0008",
+        "SEC-CT001-0009",
+        "SEC-CT001-0010",
+        "SEC-CT001-0011",
+        "SEC-CT001-0012",
+        "SEC-CT001-0013",
+        "SEC-CT001-0014",
+        "SEC-CT001-0015",
+        "SEC-CT001-0016"
+      ],
+      "estimated_md_tokens": 14411,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CT001-0002",
+      "line_start": 4653,
+      "line_end": 9348,
+      "target_section_ids": [
+        "SEC-CT001-0017",
+        "SEC-CT001-0018",
+        "SEC-CT001-0019",
+        "SEC-CT001-0020",
+        "SEC-CT001-0021",
+        "SEC-CT001-0022",
+        "SEC-CT001-0023",
+        "SEC-CT001-0024",
+        "SEC-CT001-0025",
+        "SEC-CT001-0026",
+        "SEC-CT001-0027",
+        "SEC-CT001-0028",
+        "SEC-CT001-0029",
+        "SEC-CT001-0030",
+        "SEC-CT001-0031"
+      ],
+      "estimated_md_tokens": 13853,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CT001-0003",
+      "line_start": 9349,
+      "line_end": 14356,
+      "target_section_ids": [
+        "SEC-CT001-0032",
+        "SEC-CT001-0033",
+        "SEC-CT001-0034",
+        "SEC-CT001-0035",
+        "SEC-CT001-0036",
+        "SEC-CT001-0037",
+        "SEC-CT001-0038",
+        "SEC-CT001-0039",
+        "SEC-CT001-0040",
+        "SEC-CT001-0041",
+        "SEC-CT001-0042",
+        "SEC-CT001-0043",
+        "SEC-CT001-0044",
+        "SEC-CT001-0045",
+        "SEC-CT001-0046",
+        "SEC-CT001-0047",
+        "SEC-CT001-0048"
+      ],
+      "estimated_md_tokens": 14278,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CT001-0004",
+      "line_start": 14357,
+      "line_end": 19348,
+      "target_section_ids": [
+        "SEC-CT001-0049",
+        "SEC-CT001-0050",
+        "SEC-CT001-0051",
+        "SEC-CT001-0052",
+        "SEC-CT001-0053",
+        "SEC-CT001-0054",
+        "SEC-CT001-0055",
+        "SEC-CT001-0056",
+        "SEC-CT001-0057",
+        "SEC-CT001-0058",
+        "SEC-CT001-0059",
+        "SEC-CT001-0060",
+        "SEC-CT001-0061",
+        "SEC-CT001-0062",
+        "SEC-CT001-0063",
+        "SEC-CT001-0064"
+      ],
+      "estimated_md_tokens": 14953,
+      "contains_oversized_section": false
+    },
+    {
+      "unit_id": "UNIT-CT001-0005",
+      "line_start": 19349,
+      "line_end": 21005,
+      "target_section_ids": [
+        "SEC-CT001-0065",
+        "SEC-CT001-0066",
+        "SEC-CT001-0067",
+        "SEC-CT001-0068",
+        "SEC-CT001-0069",
+        "SEC-CT001-0070"
+      ],
+      "estimated_md_tokens": 4793,
+      "contains_oversized_section": false
+    }
+  ]
+}

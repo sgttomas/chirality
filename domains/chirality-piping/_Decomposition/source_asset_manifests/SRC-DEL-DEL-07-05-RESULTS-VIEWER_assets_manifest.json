@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-07-05-RESULTS-VIEWER",
+  "source_doc_id": "SRC-DEL-DEL-07-05-RESULTS-VIEWER",
+  "source_prefix": "ED046",
+  "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/",
+  "catalog_rel_path": "@repo/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-07-05-RESULTS-VIEWER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-05-RESULTS-VIEWER-DATASHEET",
+      "expected_sha256": "632c3a470dca210becb829f2e9f5fdbbe1a2843a1242302d522d3a981db2090f",
+      "generated_line_start": 11,
+      "generated_line_end": 73,
+      "source_line_start": 1,
+      "source_line_end": 63,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-05-RESULTS-VIEWER-GUIDANCE",
+      "expected_sha256": "bc83f8970a00ea147aa4d4856c60d741630434249d24eb64de2c52107dd7a904",
+      "generated_line_start": 77,
+      "generated_line_end": 137,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -76
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-05-RESULTS-VIEWER-PROCEDURE",
+      "expected_sha256": "5f70139caaea61481b497836c298139205c496d603c050f97eb6c4adebe76ec2",
+      "generated_line_start": 141,
+      "generated_line_end": 189,
+      "source_line_start": 1,
+      "source_line_end": 49,
+      "line_offset": -140
+    },
+    {
+      "repo_rel_path": "execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-07-GRAPHICAL-USER-INTERFACE-AND-ENGINEERING-WORKFLOW-1-WORKING-DEL-07-05-RESULTS-VIEWER-SPECIFICATION",
+      "expected_sha256": "8706686ce847a2c3377fd943ced8fc50ea8c2bd2471cb7e8985f4846f7461190",
+      "generated_line_start": 193,
+      "generated_line_end": 248,
+      "source_line_start": 1,
+      "source_line_end": 56,
+      "line_offset": -192
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

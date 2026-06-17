@@ -1,0 +1,469 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED026-0001">Source Pack: SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL</a> <a href="#SEC-ED026-0002">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED026-0009">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED026-0017">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED026-0024">Component: execution/PKG-04_Solver Core and Numerical Method</a></nav>
+<main>
+<section id="SEC-ED026-0001" class="chunk sec depth-1" data-kind="section" data-key="section:7d514e2390b1" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED026-0001</span> Source Pack: SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d514e2390b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d514e2390b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d514e2390b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED026-0002" class="chunk sec depth-2" data-kind="section" data-key="section:1987e361116f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED026-0002</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1987e361116f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1987e361116f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1987e361116f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0003" class="chunk sec depth-3" data-kind="section" data-key="section:4059bb77e3c0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED026-0003</span> Datasheet: DEL-04-01 3D frame stiffness kernel</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4059bb77e3c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4059bb77e3c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4059bb77e3c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0004" class="chunk sec depth-4" data-kind="section" data-key="section:2c3953786331" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2c3953786331" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2c3953786331" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2c3953786331" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-04-01 |
+| Deliverable name | 3D frame stiffness kernel |
+| Package ID | PKG-04 |
+| Package name | Solver Core and Numerical Methods |
+| Type | BACKEND_FEATURE_SLICE |
+| Decomposition basis | execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7 |
+| Register basis | docs/_Registers/Deliverables.csv row DEL-04-01 |
+| Scope items | SOW-005, SOW-035 |
+| Objective support | OBJ-003 |
+| Context envelope | L |
+| Context QA risk | WATCH |
+</p></div></div></section>
+<section id="SEC-ED026-0005" class="chunk sec depth-4" data-kind="section" data-key="section:72899a898384" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72899a898384" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72899a898384" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72899a898384" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current value |
+|---|---|
+| Primary model class | 3D centerline/frame model |
+| Nodal degrees of freedom | Six degrees of freedom per node |
+| Intended kernel responsibility | Global frame stiffness assembly, coordinate transforms, boundary conditions, and sparse solve interface |
+| Anticipated implementation location | core/solver/frame_kernel |
+| Anticipated verification artifacts | Unit tests |
+| Sparse performance scope | Required design concern; concrete performance targets are TBD |
+| Reproducibility scope | Required for practical piping models; exact reproducibility envelope is TBD |
+| Solver numerical library | TBD |
+| Tolerance policy | TBD; no numerical tolerances are defined by this setup kit |
+| Physical formulation details | TBD; future implementation must use lawful, source-grounded mechanics references and avoid protected formulas/data |
+</p></div></div></section>
+<section id="SEC-ED026-0006" class="chunk sec depth-4" data-kind="section" data-key="section:6d8c9e4f8fe8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6d8c9e4f8fe8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6d8c9e4f8fe8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6d8c9e4f8fe8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- This deliverable is bounded to the global stiffness kernel and sparse solve interface setup for a 3D centerline/frame system.
+- This deliverable does not implement straight pipe element mechanics, support families, nonlinear support active-set logic, load cases, stress recovery, diagnostics, rule-pack evaluation, GUI behavior, reports, or packaging except as interface constraints named by the sealed context.
+- The kernel must remain unit-aware and dimensionally checked through the project unit contracts.
+- Missing solve-required values must be surfaced as explicit findings rather than silently defaulted.
+- Solver mechanics and rule-pack acceptability decisions remain separated; this deliverable must not claim code compliance or professional certification.
+- Protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, and proprietary commercial data are out of bounds.
+</p></div></div></section>
+<section id="SEC-ED026-0007" class="chunk sec depth-4" data-kind="section" data-key="section:76b7ff145990" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:76b7ff145990" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:76b7ff145990" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:76b7ff145990" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The setup kit identifies these future implementation surfaces without creating code:</p>
+<p>| Surface | Setup expectation |
+|---|---|
+| Model topology input | Node and element connectivity for a 3D frame/centerline model, details TBD |
+| Degree-of-freedom mapping | Stable six-DOF-per-node indexing contract, exact ordering TBD |
+| Coordinate transform handling | Transform interface for local-to-global assembly, convention TBD |
+| Boundary-condition handling | Interface for applying restraints/imposed conditions supplied by other deliverables, details TBD |
+| Sparse assembly | Sparse global matrix assembly interface, storage format TBD |
+| Sparse solve interface | Solver adapter boundary for selected numerical library, library TBD |
+| Result envelope | Must fit architecture-basis command/query/job result and diagnostic envelope constraints |
+| Verification | Deterministic unit tests are required before release use |
+</p></div></div></section>
+<section id="SEC-ED026-0008" class="chunk sec depth-4" data-kind="section" data-key="section:41674bed3d77" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:41674bed3d77" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:41674bed3d77" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:41674bed3d77" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` - local sealed context for DEL-04-01.
+- `_REFERENCES.md` - governing references and register pointers.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 - PKG-04, DEL-04-01, SOW-005, SOW-035, OBJ-003, AB-00-01, AB-00-02, AB-00-03, AB-00-06, AB-00-08.
+- `docs/_Registers/Deliverables.csv` - row DEL-04-01.
+- `docs/_Registers/ScopeLedger.csv` - rows SOW-005 and SOW-035.
+- `docs/_Registers/ContextBudgetQA.csv` - row DEL-04-01.
+- `docs/CONTRACT.md` - applicable invariants named in the task brief.
+</p></div></div></section>
+<section id="SEC-ED026-0009" class="chunk sec depth-2" data-kind="section" data-key="section:3ad0af52915e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED026-0009</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3ad0af52915e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3ad0af52915e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3ad0af52915e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0010" class="chunk sec depth-3" data-kind="section" data-key="section:c0a2a32181bb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED026-0010</span> Guidance: DEL-04-01 3D frame stiffness kernel</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0a2a32181bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0a2a32181bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0a2a32181bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0011" class="chunk sec depth-4" data-kind="section" data-key="section:58f8fcbfd4c2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:58f8fcbfd4c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:58f8fcbfd4c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:58f8fcbfd4c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable prepares the bounded implementation surface for the central 3D frame stiffness kernel. Its value is to keep global centerline mechanics, sparse numerical behavior, reproducibility, units, diagnostics, protected-data controls, and professional-boundary language aligned before code is written.
+</p></div></div></section>
+<section id="SEC-ED026-0012" class="chunk sec depth-4" data-kind="section" data-key="section:d06a5c3a096b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d06a5c3a096b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d06a5c3a096b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d06a5c3a096b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Keep the global model line-element based unless a later handoff explicitly routes local analysis to shell/solid FEA.
+- Treat six degrees of freedom per node as a scope fact, not as permission to invent an ordering or sign convention.
+- Keep coordinate conventions, matrix storage format, solver library, tolerances, and benchmark targets as TBD until a source-backed implementation brief or human ruling seals them.
+- Separate mechanics computation from rule-pack evaluation and professional approval.
+- Use deterministic, rights-cleared verification fixtures. Do not use copied standards examples or protected commercial data.
+- Surface missing values, singular/ill-conditioned states, and assumptions as explicit result-envelope findings rather than silent behavior.
+</p></div></div></section>
+<section id="SEC-ED026-0013" class="chunk sec depth-4" data-kind="section" data-key="section:74b648f73f3f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74b648f73f3f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74b648f73f3f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74b648f73f3f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The accessible source set is the decomposition, registers, contract, and local context. It does not provide detailed mechanics formulas, reference-element derivations, numerical tolerances, sparse storage formats, or benchmark thresholds. Future implementation must therefore source those details from lawful references or human-approved architecture decisions.</p>
+<p>Architecture basis rows constrain the future implementation shape:</p>
+<p>- AB-00-01 requires decision records for accepted architecture choices and reconsideration triggers.
+- AB-00-02 keeps dependencies pointed inward toward domain contracts and preserves layer responsibilities.
+- AB-00-03 separates commands, queries, jobs, result envelopes, progress/cancellation, and mechanics/rule/human approval states.
+- AB-00-06 requires structured diagnostics and avoids certification/compliance claims.
+- AB-00-08 requires layered solver tests and protected-content/provenance gates.
+</p></div></div></section>
+<section id="SEC-ED026-0014" class="chunk sec depth-4" data-kind="section" data-key="section:29acd7465e4e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:29acd7465e4e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:29acd7465e4e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:29acd7465e4e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Current guidance |
+|---|---|
+| Sparse solver library | TBD. Choosing one now would exceed setup scope. |
+| Coordinate convention | TBD. Must be consistent across element, support, load, result, and report interfaces. |
+| Performance targets | TBD. SOW-035 requires sparse performance and reproducibility, but concrete thresholds are not available. |
+| Verification fixtures | Use invented, rights-cleared, non-authoritative fixtures only after implementation is scoped; label them as test fixtures, not engineering examples. |
+| Kernel boundaries | Keep element stiffness, support behavior, diagnostics, load application, and stress recovery in their assigned deliverables unless a human-approved change amends the decomposition. |
+</p></div></div></section>
+<section id="SEC-ED026-0015" class="chunk sec depth-4" data-kind="section" data-key="section:2095807f6c21" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2095807f6c21" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2095807f6c21" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2095807f6c21" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TBD`: A future fixture set may include a minimal frame topology to test DOF mapping, but this setup kit does not define values, tolerances, or expected results.
+- `TBD`: A future architecture decision may choose a sparse matrix representation, but this setup kit does not select one.
+</p></div></div></section>
+<section id="SEC-ED026-0016" class="chunk sec depth-4" data-kind="section" data-key="section:fc63cd931adc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fc63cd931adc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fc63cd931adc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fc63cd931adc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| None | No source conflict found in setup sources. | N/A | N/A | N/A | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED026-0017" class="chunk sec depth-2" data-kind="section" data-key="section:60107ed1d07a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED026-0017</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:60107ed1d07a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:60107ed1d07a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:60107ed1d07a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0018" class="chunk sec depth-3" data-kind="section" data-key="section:073b510ccf08" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED026-0018</span> Procedure: DEL-04-01 3D frame stiffness kernel</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:073b510ccf08" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:073b510ccf08" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:073b510ccf08" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0019" class="chunk sec depth-4" data-kind="section" data-key="section:067418be7ed4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:067418be7ed4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:067418be7ed4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:067418be7ed4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure defines how a future TASK worker should proceed from the local setup kit into implementation without expanding beyond DEL-04-01.
+</p></div></div></section>
+<section id="SEC-ED026-0020" class="chunk sec depth-4" data-kind="section" data-key="section:c5a407b87ecf" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c5a407b87ecf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c5a407b87ecf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c5a407b87ecf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm the active deliverable is DEL-04-01 and the write scope is the assigned deliverable or future implementation path explicitly authorized by a sealed brief.
+- Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, `_SEMANTIC.md`, and `_SEMANTIC_LENSING.md`.
+- Confirm applicable invariants: OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-DATA-2, OPS-K-REPORT-1, OPS-K-AGENT-1..4, and OPS-K-IP-1.
+- Confirm architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08.
+- Obtain or cite lawful mechanics/numerics references before implementing formulas, expected numerical values, tolerances, or benchmark thresholds.
+</p></div></div></section>
+<section id="SEC-ED026-0021" class="chunk sec depth-4" data-kind="section" data-key="section:38d033eaf3ea" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:38d033eaf3ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:38d033eaf3ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:38d033eaf3ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Reconfirm scope boundaries against SOW-005 and SOW-035.
+2. Identify any implementation decisions still TBD, including DOF ordering, coordinate convention, sparse storage, solver library, error handling policy, tolerance policy, and reproducibility target.
+3. If a TBD decision is needed to write code, record it as a required human/architecture ruling rather than guessing.
+4. Define interfaces for model topology, six-DOF node mapping, frame assembly, coordinate transforms, boundary-condition application, sparse solve invocation, unit validation, and result/diagnostic output.
+5. Keep straight pipe element behavior, supports, nonlinear supports, loads, stress recovery, diagnostics specialization, reports, and rule packs at their assigned deliverable boundaries.
+6. Implement only from lawful, source-grounded mechanics and numerics references after the implementation brief authorizes code work.
+7. Create deterministic unit tests before release use; use rights-cleared fixtures with explicit units and no protected data.
+8. Ensure missing solve-required inputs produce explicit findings and do not become silent defaults.
+9. Ensure output envelopes preserve mechanics/rule/human approval separation and do not claim certification or compliance.
+10. Run protected-content and provenance checks before any release or handoff.
+</p></div></div></section>
+<section id="SEC-ED026-0022" class="chunk sec depth-4" data-kind="section" data-key="section:a6df53ce3351" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a6df53ce3351" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a6df53ce3351" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a6df53ce3351" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm no implementation values were invented from this setup kit.
+- Confirm unit-aware and dimensionally checked interfaces are present in implementation scope.
+- Confirm deterministic tests exist for every implemented kernel behavior.
+- Confirm sparse performance and reproducibility checks are coordinated with DEL-04-05 when targets are sealed.
+- Confirm diagnostics/result envelopes align with AB-00-03 and AB-00-06.
+- Confirm protected-content review passes before release.
+</p></div></div></section>
+<section id="SEC-ED026-0023" class="chunk sec depth-4" data-kind="section" data-key="section:0d35bbdb8540" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0d35bbdb8540" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0d35bbdb8540" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0d35bbdb8540" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implementation brief and sealed write scope.
+- Architecture decisions for TBD items.
+- Source/provenance records for mechanics and numerical references.
+- Unit test and CI results.
+- Protected-content review result.
+- Result-envelope and diagnostics samples.
+</p></div></div></section>
+<section id="SEC-ED026-0024" class="chunk sec depth-2" data-kind="section" data-key="section:fec16109ee8b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED026-0024</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fec16109ee8b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fec16109ee8b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fec16109ee8b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0025" class="chunk sec depth-3" data-kind="section" data-key="section:83bdc46b7e84" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED026-0025</span> Specification: DEL-04-01 3D frame stiffness kernel</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:83bdc46b7e84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:83bdc46b7e84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:83bdc46b7e84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED026-0026" class="chunk sec depth-4" data-kind="section" data-key="section:532defe9760f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:532defe9760f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:532defe9760f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:532defe9760f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup specification covers the future backend feature slice for a 3D frame stiffness kernel. The sealed scope is DEL-04-01 in PKG-04, implementing the global 3D frame stiffness assembly, coordinate transforms, boundary conditions, and sparse solve interface for a 3D centerline/frame model with six degrees of freedom per node.</p>
+<p>Out of scope for this deliverable:</p>
+<p>- Solver implementation in this setup run.
+- Numeric tolerances, convergence thresholds, performance targets, or solver library selection.
+- Protected standards formulas, examples, tables, or proprietary commercial data.
+- Straight pipe element details owned by DEL-04-02.
+- Support/restraint model families owned by DEL-04-03 and DEL-04-04.
+- Solver diagnostics layer owned by DEL-04-06.
+- Rule-pack acceptability, code compliance decisions, certification claims, and professional approval.
+</p></div></div></section>
+<section id="SEC-ED026-0027" class="chunk sec depth-4" data-kind="section" data-key="section:919a24bfb473" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:919a24bfb473" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:919a24bfb473" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:919a24bfb473" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-04-01-REQ-001 | Future implementation shall model the primary global analysis system as a 3D centerline/frame model. | SOW-005; OPS-K-MECH-1 |
+| DEL-04-01-REQ-002 | Future implementation shall represent each frame node with six degrees of freedom. | SOW-005 |
+| DEL-04-01-REQ-003 | Future implementation shall provide global stiffness assembly for the frame system. | Deliverables.csv row DEL-04-01 |
+| DEL-04-01-REQ-004 | Future implementation shall provide coordinate transform handling between local and global frame representations; exact convention is TBD. | Deliverables.csv row DEL-04-01 |
+| DEL-04-01-REQ-005 | Future implementation shall provide a boundary-condition application interface; supported restraint semantics are delegated to later support deliverables unless explicitly sealed in this deliverable. | Deliverables.csv row DEL-04-01; package scope |
+| DEL-04-01-REQ-006 | Future implementation shall expose a sparse solve interface designed for sparse numerical performance and reproducible practical-model results; performance targets are TBD. | SOW-035 |
+| DEL-04-01-REQ-007 | Future implementation shall remain unit-aware and dimensionally checked. | OPS-K-UNIT-1 |
+| DEL-04-01-REQ-008 | Future implementation shall report missing solve-required values as explicit findings and shall not supply silent defaults. | OPS-K-DATA-2 |
+| DEL-04-01-REQ-009 | Solver outputs shall compute mechanics only and shall not decide rule-pack acceptability or professional compliance. | OPS-K-MECH-2 |
+| DEL-04-01-REQ-010 | Solver changes shall require deterministic verification tests before release. | OPS-K-SOLVER-1; AB-00-08 |
+| DEL-04-01-REQ-011 | Diagnostics and result envelopes crossing service boundaries shall preserve code, class, severity, source, affected object, message, remediation, and provenance fields where applicable. | AB-00-03; AB-00-06 |
+| DEL-04-01-REQ-012 | Future implementation shall not import protected formulas/data or embed protected standards text, tables, figures, examples, or proprietary data. | OPS-K-IP-1 |
+</p></div></div></section>
+<section id="SEC-ED026-0028" class="chunk sec depth-4" data-kind="section" data-key="section:9f611871581e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f611871581e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f611871581e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f611871581e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Project invariants in `docs/CONTRACT.md` are governing for this setup kit.
+- Decomposition and register rows cited in `_CONTEXT.md` are governing for scope and objectives.
+- External mechanics references for future implementation are TBD and must be lawful, source-grounded, and compatible with the protected-data boundary.
+- No code standard clause, protected formula, or professional compliance criterion is adopted by this setup kit.
+</p></div></div></section>
+<section id="SEC-ED026-0029" class="chunk sec depth-4" data-kind="section" data-key="section:8bf74784d161" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8bf74784d161" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8bf74784d161" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8bf74784d161" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification approach |
+|---|---|
+| DEL-04-01-REQ-001, DEL-04-01-REQ-002 | Unit tests should verify model topology and six-DOF mapping after implementation; exact cases TBD. |
+| DEL-04-01-REQ-003, DEL-04-01-REQ-004 | Unit tests should verify deterministic assembly and transform behavior using rights-cleared fixtures; equations and expected values TBD. |
+| DEL-04-01-REQ-005 | Unit tests should verify boundary-condition application semantics once restraint interfaces are sealed. |
+| DEL-04-01-REQ-006 | Sparse performance and reproducibility checks should be coordinated with DEL-04-05; target sizes and metrics TBD. |
+| DEL-04-01-REQ-007 | Unit and schema tests should verify dimensional compatibility and unit-aware inputs/outputs. |
+| DEL-04-01-REQ-008, DEL-04-01-REQ-011 | Tests should verify missing-value and diagnostics/result-envelope behavior without silent defaults. |
+| DEL-04-01-REQ-009 | Tests/reviews should verify mechanics outputs remain separate from rule-pack or compliance determinations. |
+| DEL-04-01-REQ-010 | CI must include deterministic solver verification gates before release use. |
+| DEL-04-01-REQ-012 | Protected-content review gates must check that fixtures, docs, and source comments contain no protected standards or proprietary data. |
+</p></div></div></section>
+<section id="SEC-ED026-0030" class="chunk sec depth-4" data-kind="section" data-key="section:f18f93ab1dc4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED026-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f18f93ab1dc4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f18f93ab1dc4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f18f93ab1dc4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future implementation should maintain:</p>
+<p>- `core/solver/frame_kernel` module documentation.
+- Unit test records for frame assembly, coordinate transforms, boundary conditions, unit handling, missing-value diagnostics, and sparse solve interface behavior.
+- Result-envelope and diagnostics examples that disclose assumptions, warnings, model/solver versions, and provenance without certification claims.
+- TBD register entries for unresolved formulation, tolerance, solver-library, and performance-target decisions.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED026";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

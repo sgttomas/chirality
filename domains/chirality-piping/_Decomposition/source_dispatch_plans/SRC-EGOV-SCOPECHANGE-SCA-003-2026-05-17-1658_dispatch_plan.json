@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EGOV-SCOPECHANGE-SCA-003-2026-05-17-1658",
+  "source_prefix": "EG004",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-EGOV-SCOPECHANGE-SCA-003-2026-05-17-1658_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-EGOV-SCOPECHANGE-SCA-003-2026-05-17-1658.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-EG004-0001",
+      "line_start": 9,
+      "line_end": 134,
+      "target_section_ids": [
+        "SEC-EG004-0002",
+        "SEC-EG004-0003",
+        "SEC-EG004-0004",
+        "SEC-EG004-0005",
+        "SEC-EG004-0006",
+        "SEC-EG004-0007",
+        "SEC-EG004-0008",
+        "SEC-EG004-0009",
+        "SEC-EG004-0010",
+        "SEC-EG004-0011",
+        "SEC-EG004-0012",
+        "SEC-EG004-0013",
+        "SEC-EG004-0014",
+        "SEC-EG004-0015"
+      ],
+      "estimated_md_tokens": 987,
+      "contains_oversized_section": false
+    }
+  ]
+}

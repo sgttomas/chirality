@@ -1,0 +1,525 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-CODE-VALIDATION",
+  "source_doc_id": "SRC-CODE-VALIDATION",
+  "source_prefix": "CV001",
+  "repo_rel_path": "validation/",
+  "catalog_rel_path": "@repo/validation/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-VALIDATION.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "validation/benchmarks/mechanics/Cargo.toml",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-MECHANICS-CARGO",
+      "expected_sha256": "633099e95b0015f7f7003dc338e4c0eb1a6d9a090899801b54ce027c2ffda462",
+      "generated_line_start": 11,
+      "generated_line_end": 30,
+      "source_line_start": 1,
+      "source_line_end": 20,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/mechanics/README.md",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-MECHANICS-README",
+      "expected_sha256": "46ce6bc9e19d8705bb16f1332f7306222995d2411a0d6bf7941ed484c555a775",
+      "generated_line_start": 34,
+      "generated_line_end": 87,
+      "source_line_start": 1,
+      "source_line_end": 54,
+      "line_offset": -33
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/mechanics/src/lib.rs",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-MECHANICS-SRC-LIB",
+      "expected_sha256": "d8c0c3e5dc9e02490e7c827630725ed1a9800c289421ff249786f996a1068b8c",
+      "generated_line_start": 91,
+      "generated_line_end": 4620,
+      "source_line_start": 1,
+      "source_line_end": 4530,
+      "line_offset": -90
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/nonlinear/Cargo.toml",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-NONLINEAR-CARGO",
+      "expected_sha256": "c8cec08f1609a85eaa95a144b7c180664060fbda6f4a27377bd447ca3958c777",
+      "generated_line_start": 4624,
+      "generated_line_end": 4637,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -4623
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/nonlinear/README.md",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-NONLINEAR-README",
+      "expected_sha256": "8aedca6788d955fa0d5d2e2000a4e180f0092f0d2be75836e0f05a43282167d0",
+      "generated_line_start": 4641,
+      "generated_line_end": 4657,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -4640
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/nonlinear/src/lib.rs",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-NONLINEAR-SRC-LIB",
+      "expected_sha256": "e732e17f6004ee75d3577c44fdfe3f4c1a8554f6cf19a4788dfee24a88d1c7f1",
+      "generated_line_start": 4661,
+      "generated_line_end": 5364,
+      "source_line_start": 1,
+      "source_line_end": 704,
+      "line_offset": -4660
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/stress/Cargo.toml",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-STRESS-CARGO",
+      "expected_sha256": "c7a36bc0395979f104908f73846fd1acaf572ed5f15de061f7333a72b901a6ef",
+      "generated_line_start": 5368,
+      "generated_line_end": 5381,
+      "source_line_start": 1,
+      "source_line_end": 14,
+      "line_offset": -5367
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/stress/README.md",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-STRESS-README",
+      "expected_sha256": "03cb204a286e955e3e95740aaec255b243bb54a83076aef78f0b461d5d2448b7",
+      "generated_line_start": 5385,
+      "generated_line_end": 5438,
+      "source_line_start": 1,
+      "source_line_end": 54,
+      "line_offset": -5384
+    },
+    {
+      "repo_rel_path": "validation/benchmarks/stress/src/lib.rs",
+      "source_doc_id": "SRC-VALIDATION-BENCHMARKS-STRESS-SRC-LIB",
+      "expected_sha256": "3369276571446f1e3485f4da86d1a05cc14c3c1602661ccca4746c312b610a04",
+      "generated_line_start": 5442,
+      "generated_line_end": 7509,
+      "source_line_start": 1,
+      "source_line_end": 2068,
+      "line_offset": -5441
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/README.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-README",
+      "expected_sha256": "fb969b419fb95251872b7131e2c9c13e1929c6d11117763c78864c6622dfe1ce",
+      "generated_line_start": 7513,
+      "generated_line_end": 7595,
+      "source_line_start": 1,
+      "source_line_end": 83,
+      "line_offset": -7512
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/cantilever_tip_force.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-CANTILEVER-TIP-FORCE",
+      "expected_sha256": "bbe12571a53a1cc121899e1ba00e49776576697ac5e834c02bd0d4eafefe6694",
+      "generated_line_start": 7599,
+      "generated_line_end": 7639,
+      "source_line_start": 1,
+      "source_line_end": 41,
+      "line_offset": -7598
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/fixed_fixed_thermal_axial.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-FIXED-FIXED-THERMAL-AXIAL",
+      "expected_sha256": "41cd5e34fd4ff8924f9405b1cb2ac063a3c485e2dd3791dfafb9342e3549cd7d",
+      "generated_line_start": 7643,
+      "generated_line_end": 7684,
+      "source_line_start": 1,
+      "source_line_end": 42,
+      "line_offset": -7642
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/imposed_displacement_spring.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-IMPOSED-DISPLACEMENT-SPRING",
+      "expected_sha256": "7007b544fa1bd2a520a0953ad176a7e770f6b7659dafd03ba25ef25e375b9e9e",
+      "generated_line_start": 7688,
+      "generated_line_end": 7719,
+      "source_line_start": 1,
+      "source_line_end": 32,
+      "line_offset": -7687
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/inclined_member_transform.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-INCLINED-MEMBER-TRANSFORM",
+      "expected_sha256": "7ce6fe567cc1976b8585132830bff8482b5be1b81a9885ebbc51d60f1d2d5106",
+      "generated_line_start": 7723,
+      "generated_line_end": 7754,
+      "source_line_start": 1,
+      "source_line_end": 32,
+      "line_offset": -7722
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/portal_frame_sway.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-PORTAL-FRAME-SWAY",
+      "expected_sha256": "14cf450b00da0ef455bee3eb574d25514bc768a01c4d7dfb50c6d25c92549d37",
+      "generated_line_start": 7758,
+      "generated_line_end": 7803,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -7757
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/primitive_load_preparation.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-PRIMITIVE-LOAD-PREPARATION",
+      "expected_sha256": "27516cf26d79e7241b943c9689e3b8fe2623d1def9dd8b9ac20484bd405620ac",
+      "generated_line_start": 7807,
+      "generated_line_end": 7848,
+      "source_line_start": 1,
+      "source_line_end": 42,
+      "line_offset": -7806
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/straight_pipe_weight_recovery.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-STRAIGHT-PIPE-WEIGHT-RECOVERY",
+      "expected_sha256": "47d3d713d86f0c761fb83fd7a87d4083e669df5846251f2b72a66c79265cce9a",
+      "generated_line_start": 7852,
+      "generated_line_end": 7899,
+      "source_line_start": 1,
+      "source_line_end": 48,
+      "line_offset": -7851
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/support_boundary_mixed.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-SUPPORT-BOUNDARY-MIXED",
+      "expected_sha256": "7e621424d52bbd7a7494d7873e85c6d750f37b4b4c2f8212e35814a8b96588d0",
+      "generated_line_start": 7903,
+      "generated_line_end": 7940,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -7902
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_002_linear_static_integration.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-002-LINEAR-STATIC-INTEGRATION",
+      "expected_sha256": "48c69e60daf35c767f4419a51af4759c92ecf74e4dba8296ba8ad2b9cf346912",
+      "generated_line_start": 7944,
+      "generated_line_end": 8031,
+      "source_line_start": 1,
+      "source_line_end": 88,
+      "line_offset": -7943
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_004_load_to_resultant.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-004-LOAD-TO-RESULTANT",
+      "expected_sha256": "0a668d9e8c9899ea0d1bea607edc83ba090f03ee67d9afca06a6f34f56a04dd5",
+      "generated_line_start": 8035,
+      "generated_line_end": 8206,
+      "source_line_start": 1,
+      "source_line_end": 172,
+      "line_offset": -8034
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_005_oriented_load_to_resultant.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-005-ORIENTED-LOAD-TO-RESULTANT",
+      "expected_sha256": "2ce5852f038e63b55681fe7770e726619b6023987da6714d317d3782bc491d93",
+      "generated_line_start": 8210,
+      "generated_line_end": 8394,
+      "source_line_start": 1,
+      "source_line_end": 185,
+      "line_offset": -8209
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_006_partial_span_load_to_resultant.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-006-PARTIAL-SPAN-LOAD-TO-RESULTANT",
+      "expected_sha256": "fe7b35886eb40d3af3237cce40d7c1cb056772d513dae3a1a015b3ac4fd47eb0",
+      "generated_line_start": 8398,
+      "generated_line_end": 8550,
+      "source_line_start": 1,
+      "source_line_end": 153,
+      "line_offset": -8397
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_007_station_sweep_resultants.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-007-STATION-SWEEP-RESULTANTS",
+      "expected_sha256": "a1238ea6e94e61e616e8d943577d5f69ac45b93f8ffab0b02ce59ab433d04132",
+      "generated_line_start": 8554,
+      "generated_line_end": 8661,
+      "source_line_start": 1,
+      "source_line_end": 108,
+      "line_offset": -8553
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_008_thermal_pressure_axial_effects.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-008-THERMAL-PRESSURE-AXIAL-EFFECTS",
+      "expected_sha256": "7e262f37a6fc7987696771b9984dbbd2f578775f0d37f4dfa60a6ea2d1a2241b",
+      "generated_line_start": 8665,
+      "generated_line_end": 8788,
+      "source_line_start": 1,
+      "source_line_end": 124,
+      "line_offset": -8664
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_009_combined_load_axial_effects.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-009-COMBINED-LOAD-AXIAL-EFFECTS",
+      "expected_sha256": "d803269c614eb40f62532b266c80129b8a1493403211957331ef1a4f9084caf8",
+      "generated_line_start": 8792,
+      "generated_line_end": 8952,
+      "source_line_start": 1,
+      "source_line_end": 161,
+      "line_offset": -8791
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_014_canonical_analytical_payload.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-014-CANONICAL-ANALYTICAL-PAYLOAD",
+      "expected_sha256": "3e4ab720d59b842511305a7d5294c4899851c9a154b65ef2514f85e470a46bd9",
+      "generated_line_start": 8956,
+      "generated_line_end": 9128,
+      "source_line_start": 1,
+      "source_line_end": 173,
+      "line_offset": -8955
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/mechanics/tp_phys_015a_canonical_solve_result_envelope.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-MECHANICS-TP-PHYS-015A-CANONICAL-SOLVE-RESULT-ENVELOPE",
+      "expected_sha256": "de367138b4ccacbce4939f02b9e822be638d5b7ac794d481c8d88cd0cc035869",
+      "generated_line_start": 9132,
+      "generated_line_end": 9260,
+      "source_line_start": 1,
+      "source_line_end": 129,
+      "line_offset": -9131
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/README.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-README",
+      "expected_sha256": "8a7d37294d2ea6328597b9415985892b9fcbf31a69f15ac54b7182113caea555",
+      "generated_line_start": 9264,
+      "generated_line_end": 9298,
+      "source_line_start": 1,
+      "source_line_end": 35,
+      "line_offset": -9263
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/active_set_one_way.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-ACTIVE-SET-ONE-WAY",
+      "expected_sha256": "8e40c0758b29190c341b293cc31bf9716c007fd5501eda45827a45d8f1ba17d7",
+      "generated_line_start": 9302,
+      "generated_line_end": 9340,
+      "source_line_start": 1,
+      "source_line_end": 39,
+      "line_offset": -9301
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/friction_transition.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-FRICTION-TRANSITION",
+      "expected_sha256": "b83c77857467d3caa6e9930a421ac0c255ce5969055cfa7da543744685f9c7c9",
+      "generated_line_start": 9344,
+      "generated_line_end": 9384,
+      "source_line_start": 1,
+      "source_line_end": 41,
+      "line_offset": -9343
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/gap_closure.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-GAP-CLOSURE",
+      "expected_sha256": "06b72ff17e726c6b4c0eadc1c5771181679151d652891014d0fce7af6ef74c84",
+      "generated_line_start": 9388,
+      "generated_line_end": 9427,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -9387
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/lift_off.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-LIFT-OFF",
+      "expected_sha256": "7078b4d72bbf7c95720c5ba1ed0a5b4d1f3434240c2a4f4e287c0983de5e953e",
+      "generated_line_start": 9431,
+      "generated_line_end": 9470,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -9430
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/nonlinear/unresolved_nonconvergence.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-NONLINEAR-UNRESOLVED-NONCONVERGENCE",
+      "expected_sha256": "e7977192b096849aad2bdf252ac51a3e6ee97b4a4dd94ff8eb69cd06feb2c46a",
+      "generated_line_start": 9474,
+      "generated_line_end": 9513,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -9473
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/README.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-README",
+      "expected_sha256": "77cb48e666e034cd6c70584730b49dc416bbaa2f4b434c70e1c5b51ff3e0b638",
+      "generated_line_start": 9517,
+      "generated_line_end": 9578,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -9516
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/axial_normal.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-AXIAL-NORMAL",
+      "expected_sha256": "59dfdd74b19a5d184656c80760b02db4e0007c2be2acb7fd63a239764ff5498d",
+      "generated_line_start": 9582,
+      "generated_line_end": 9615,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -9581
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/bending_normal.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-BENDING-NORMAL",
+      "expected_sha256": "49485447342d37787deb5e85d48d9db9b879109cc26a67d71fb8848c88383ee8",
+      "generated_line_start": 9619,
+      "generated_line_end": 9659,
+      "source_line_start": 1,
+      "source_line_end": 41,
+      "line_offset": -9618
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/generated/tp_phys_015_section_property_stress_witness.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-GENERATED-TP-PHYS-015-SECTION-PROPERTY-STRESS-WITNESS",
+      "expected_sha256": "513a512f9660d6151295b82a20683ee195d95abbf43f997a6e9cb5261ed7faa8",
+      "generated_line_start": 9663,
+      "generated_line_end": 9727,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -9662
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/integrated_straight_pipe_resultants.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-INTEGRATED-STRAIGHT-PIPE-RESULTANTS",
+      "expected_sha256": "53d3956da4084a31934a1701b7317aaa1cef89e74dfeaab05a82ec9601db860a",
+      "generated_line_start": 9731,
+      "generated_line_end": 9829,
+      "source_line_start": 1,
+      "source_line_end": 99,
+      "line_offset": -9730
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/pressure_membrane.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-PRESSURE-MEMBRANE",
+      "expected_sha256": "f3eded5f9685684070551661e6b56039a774af7961bec6e3030ffad2f9f7d6a1",
+      "generated_line_start": 9833,
+      "generated_line_end": 9875,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -9832
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/stress_range.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-STRESS-RANGE",
+      "expected_sha256": "e35971736e964302172a3eb312978e9bdd434cef4e8937dc9482351f8271d695",
+      "generated_line_start": 9879,
+      "generated_line_end": 9944,
+      "source_line_start": 1,
+      "source_line_end": 66,
+      "line_offset": -9878
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/torsional_shear.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TORSIONAL-SHEAR",
+      "expected_sha256": "40c7a032a5debaba81a85143bc2011fb3218070d48373b6bf653e1a6d28e99c5",
+      "generated_line_start": 9948,
+      "generated_line_end": 9983,
+      "source_line_start": 1,
+      "source_line_end": 36,
+      "line_offset": -9947
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_004_load_to_resultant_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-004-LOAD-TO-RESULTANT-STRESS",
+      "expected_sha256": "720d773ab9353a4814010a7847f2e9881a22577cfbdf0b0f7a9ecdbab798a9e6",
+      "generated_line_start": 9987,
+      "generated_line_end": 10074,
+      "source_line_start": 1,
+      "source_line_end": 88,
+      "line_offset": -9986
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_005_oriented_load_to_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-005-ORIENTED-LOAD-TO-STRESS",
+      "expected_sha256": "2b5fe058a01bb66089f729465d44a6d5090d65768f86487dd346def47b2c9e7f",
+      "generated_line_start": 10078,
+      "generated_line_end": 10217,
+      "source_line_start": 1,
+      "source_line_end": 140,
+      "line_offset": -10077
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_006_partial_span_load_to_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-006-PARTIAL-SPAN-LOAD-TO-STRESS",
+      "expected_sha256": "59acba692f3d2f2b0cec6ce39dc8e6277f8987d666b7e5c52838756ed300986e",
+      "generated_line_start": 10221,
+      "generated_line_end": 10355,
+      "source_line_start": 1,
+      "source_line_end": 135,
+      "line_offset": -10220
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_007_station_sweep_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-007-STATION-SWEEP-STRESS",
+      "expected_sha256": "a3dcef94130bcb4759fe4796e40b0632a06e675f19b3d0594f207db06fda7ab7",
+      "generated_line_start": 10359,
+      "generated_line_end": 10462,
+      "source_line_start": 1,
+      "source_line_end": 104,
+      "line_offset": -10358
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_008_thermal_axial_effect_to_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-008-THERMAL-AXIAL-EFFECT-TO-STRESS",
+      "expected_sha256": "c659ffff2b656cb4b4f763e25c32a50787c59f041c941ab3397971dc5e24df57",
+      "generated_line_start": 10466,
+      "generated_line_end": 10564,
+      "source_line_start": 1,
+      "source_line_end": 99,
+      "line_offset": -10465
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_009_combined_axial_bending_to_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-009-COMBINED-AXIAL-BENDING-TO-STRESS",
+      "expected_sha256": "f125d83ee8166b6c208ce9528f1c462c299389847aa22bfda5c5403f9ee8fa31",
+      "generated_line_start": 10568,
+      "generated_line_end": 10697,
+      "source_line_start": 1,
+      "source_line_end": 130,
+      "line_offset": -10567
+    },
+    {
+      "repo_rel_path": "validation/hand_calcs/stress/tp_phys_015_canonical_resultant_stress.md",
+      "source_doc_id": "SRC-VALIDATION-HAND-CALCS-STRESS-TP-PHYS-015-CANONICAL-RESULTANT-STRESS",
+      "expected_sha256": "8d99c0c231e9ca3e4c38fbb63c0df2546d36fc15bb04a61cb809598b9c04f383",
+      "generated_line_start": 10701,
+      "generated_line_end": 10840,
+      "source_line_start": 1,
+      "source_line_end": 140,
+      "line_offset": -10700
+    },
+    {
+      "repo_rel_path": "validation/witness/README.md",
+      "source_doc_id": "SRC-VALIDATION-WITNESS-README",
+      "expected_sha256": "a4c866d3f232aef4377b2df2c4c112fb6691dcb74e46fada5e77d89eae006ed8",
+      "generated_line_start": 10844,
+      "generated_line_end": 10863,
+      "source_line_start": 1,
+      "source_line_end": 20,
+      "line_offset": -10843
+    },
+    {
+      "repo_rel_path": "validation/witness/tools/__init__.py",
+      "source_doc_id": "SRC-VALIDATION-WITNESS-TOOLS-INIT",
+      "expected_sha256": "8e70bc9172ec769811153c94a9bd84f28b3d2fb6720a7cacaffdc0f56c071a9a",
+      "generated_line_start": 10867,
+      "generated_line_end": 10868,
+      "source_line_start": 1,
+      "source_line_end": 2,
+      "line_offset": -10866
+    },
+    {
+      "repo_rel_path": "validation/witness/tools/witness_validator.py",
+      "source_doc_id": "SRC-VALIDATION-WITNESS-TOOLS-WITNESS-VALIDATOR",
+      "expected_sha256": "7f7c26cbcb2b4fe0b60e30b4ff330166ca35bb700aca0576877f4e73bbbf3857",
+      "generated_line_start": 10872,
+      "generated_line_end": 11470,
+      "source_line_start": 1,
+      "source_line_end": 599,
+      "line_offset": -10871
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

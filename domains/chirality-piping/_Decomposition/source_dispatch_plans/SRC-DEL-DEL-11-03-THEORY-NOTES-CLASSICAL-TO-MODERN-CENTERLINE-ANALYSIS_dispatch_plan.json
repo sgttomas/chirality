@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-11-03-THEORY-NOTES-CLASSICAL-TO-MODERN-CENTERLINE-ANALYSIS",
+  "source_prefix": "ED068",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-11-03-THEORY-NOTES-CLASSICAL-TO-MODERN-CENTERLINE-ANALYSIS_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-11-03-THEORY-NOTES-CLASSICAL-TO-MODERN-CENTERLINE-ANALYSIS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:59+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED068-0001",
+      "line_start": 9,
+      "line_end": 367,
+      "target_section_ids": [
+        "SEC-ED068-0002",
+        "SEC-ED068-0003",
+        "SEC-ED068-0004",
+        "SEC-ED068-0005",
+        "SEC-ED068-0006",
+        "SEC-ED068-0007",
+        "SEC-ED068-0008",
+        "SEC-ED068-0009",
+        "SEC-ED068-0010",
+        "SEC-ED068-0011",
+        "SEC-ED068-0012",
+        "SEC-ED068-0013",
+        "SEC-ED068-0014",
+        "SEC-ED068-0015",
+        "SEC-ED068-0016",
+        "SEC-ED068-0017",
+        "SEC-ED068-0018",
+        "SEC-ED068-0019",
+        "SEC-ED068-0020",
+        "SEC-ED068-0021",
+        "SEC-ED068-0022",
+        "SEC-ED068-0023",
+        "SEC-ED068-0024",
+        "SEC-ED068-0025",
+        "SEC-ED068-0026",
+        "SEC-ED068-0027",
+        "SEC-ED068-0028",
+        "SEC-ED068-0029",
+        "SEC-ED068-0030",
+        "SEC-ED068-0031"
+      ],
+      "estimated_md_tokens": 5132,
+      "contains_oversized_section": false
+    }
+  ]
+}

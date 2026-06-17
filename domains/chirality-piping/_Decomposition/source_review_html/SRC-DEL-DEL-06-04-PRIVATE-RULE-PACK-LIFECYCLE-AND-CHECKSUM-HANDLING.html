@@ -1,0 +1,496 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-06-04-PRIVATE-RULE-PACK-LIFECYCLE-AND-CHECKSUM-HANDLING - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED040-0001">Source Pack: SRC-DEL-DEL-06-04-PRIVATE-RULE-PACK-LIFECYCLE-A</a> <a href="#SEC-ED040-0002">Component: execution/PKG-06_Rule Packs and User-Supplied Cod</a> <a href="#SEC-ED040-0009">Component: execution/PKG-06_Rule Packs and User-Supplied Cod</a> <a href="#SEC-ED040-0017">Component: execution/PKG-06_Rule Packs and User-Supplied Cod</a> <a href="#SEC-ED040-0024">Component: execution/PKG-06_Rule Packs and User-Supplied Cod</a></nav>
+<main>
+<section id="SEC-ED040-0001" class="chunk sec depth-1" data-kind="section" data-key="section:88721a62fd15" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED040-0001</span> Source Pack: SRC-DEL-DEL-06-04-PRIVATE-RULE-PACK-LIFECYCLE-AND-CHECKSUM-HANDLING</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88721a62fd15" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88721a62fd15" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88721a62fd15" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED040-0002" class="chunk sec depth-2" data-kind="section" data-key="section:23b1317e9f8b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0002</span> Component: execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23b1317e9f8b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23b1317e9f8b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23b1317e9f8b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0003" class="chunk sec depth-3" data-kind="section" data-key="section:e0db150b1359" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0003</span> Datasheet: DEL-06-04 Private rule-pack lifecycle and checksum handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0db150b1359" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0db150b1359" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0db150b1359" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0004" class="chunk sec depth-4" data-kind="section" data-key="section:0e334fe789a9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e334fe789a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e334fe789a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e334fe789a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-06-04 |
+| Deliverable name | Private rule-pack lifecycle and checksum handling |
+| Package ID | PKG-06 |
+| Package name | Rule Packs and User-Supplied Code Check Engine |
+| Deliverable type | BACKEND_FEATURE_SLICE |
+| Scope item | SOW-042 |
+| Objectives | OBJ-002, OBJ-005 |
+| Current setup role | Document and setup artifact production only; no implementation files changed |
+</p></div></div></section>
+<section id="SEC-ED040-0005" class="chunk sec depth-4" data-kind="section" data-key="section:ff71a8abdbfe" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff71a8abdbfe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff71a8abdbfe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff71a8abdbfe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Setup value |
+|---|---|
+| Rule-pack boundary | Rule packs are user-owned or private design-basis artifacts; public project content is limited to schemas, mechanics, workflows, and invented examples. |
+| Lifecycle subject | Version identity, source/provenance notes, public/private or redistribution status, checksum metadata, and audit/report references for rule packs. |
+| Checksum basis | JSON rule-pack payloads use canonical JSON with JCS-compatible canonicalization before hashing. Non-JSON or binary assets require manifest-level hashes and an explicit payload reference. |
+| Required checksum metadata | Algorithm, canonicalization where applicable, payload reference, checksum value, and statement of what was hashed. |
+| Redistribution status | Must be explicit. Supported values are owned by the rule-pack schema deliverable; project sources require at least private, public-permissive, unknown, and suspected-protected handling. |
+| Public repository posture | Private rule-pack content, licensed standards text, copied formulas, proprietary tables, owner requirements, and vendor data without redistribution rights are not committed publicly. |
+| Report posture | Reports may reference rule-pack ID/name, version, checksum, and source note without exposing protected formulas or private values in public templates. |
+</p></div></div></section>
+<section id="SEC-ED040-0006" class="chunk sec depth-4" data-kind="section" data-key="section:90ff006c8d89" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90ff006c8d89" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90ff006c8d89" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90ff006c8d89" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Constraint |
+|---|---|
+| Protected data | Do not include protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, dimensional standards, or proprietary vendor data. |
+| Private data | Private rule packs remain user-controlled and are not transmitted, exported, or committed by default. |
+| Professional responsibility | Rule-pack evaluation is software decision support using user data. It is not certification, sealing, approval, endorsement, or a code-compliance claim. |
+| Unit awareness | Rule-pack values and evaluator inputs must remain unit-aware where numeric quantities are involved; missing required units or values are findings, not silent defaults. |
+| Architecture basis | SCA-001 requires JSON Schema 2020-12 contracts, schema-first command/query/job result envelopes, and canonical JSON/JCS-compatible hash basis where JSON payloads are hashed. |
+| Deferred decisions | Private storage location, encryption defaults, access-control policy defaults, permission grant persistence, and physical project container are deferred to PKG-12/PKG-02 architecture decisions unless separately approved. |
+</p></div></div></section>
+<section id="SEC-ED040-0007" class="chunk sec depth-4" data-kind="section" data-key="section:f9ad10ae7c0a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9ad10ae7c0a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9ad10ae7c0a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9ad10ae7c0a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup surface describes the future implementation contract without creating implementation files. A later implementation task for DEL-06-04 should produce a local lifecycle and checksum mechanism that:</p>
+<p>- records rule-pack identity, version, source notice, redistribution/private status, checksum metadata, and review/quarantine disposition;
+- binds checksum values to explicit payload references rather than environment-local paths or volatile session state;
+- records diagnostics for missing provenance, missing redistribution status, stale hashes, suspected protected content, and attempts to expose private content publicly;
+- exposes audit-manifest hooks for reports and reproducibility artifacts without embedding private rule-pack formulas or values in public templates;
+- defers storage location, encryption, and access-control defaults to the security/privacy package.
+</p></div></div></section>
+<section id="SEC-ED040-0008" class="chunk sec depth-4" data-kind="section" data-key="section:9a02106831fe" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a02106831fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a02106831fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a02106831fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- INIT.md - bootstrap boundaries for open mechanics, private code data, and professional responsibility.
+- docs/CONTRACT.md - OPS-K-RULE-3, OPS-K-DATA-1/2/3, OPS-K-PRIV, OPS-K-IP-1/2/3, OPS-K-UNIT-1, OPS-K-AGENT-1..4.
+- docs/SPEC.md - rule-pack evaluator minimum sections and report/audit requirements.
+- docs/IP_AND_DATA_BOUNDARY.md - public/private data and quarantine policy.
+- docs/PRD.md - rule-pack requirements, user journey, reporting, and private data handling.
+- docs/architecture/persistence_contract.md - canonical JSON/JCS hash basis and hash metadata.
+- docs/architecture/code_neutral_analysis_boundary.md - rule-pack reference and professional-boundary separation.
+- docs/architecture/extension_domain_contracts.md - no-bypass constraints for provenance, privacy, checksums, and protected-content controls.
+- execution/_Decomposition/SOFTWARE_DECOMP.md - DEL-06-04 scope and SCA-001 architecture basis.
+</p></div></div></section>
+<section id="SEC-ED040-0009" class="chunk sec depth-2" data-kind="section" data-key="section:bb1e766b0566" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0009</span> Component: execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb1e766b0566" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb1e766b0566" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb1e766b0566" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0010" class="chunk sec depth-3" data-kind="section" data-key="section:f5e458ce054a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0010</span> Guidance: DEL-06-04 Private rule-pack lifecycle and checksum handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f5e458ce054a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f5e458ce054a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f5e458ce054a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0011" class="chunk sec depth-4" data-kind="section" data-key="section:f6d34668288b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6d34668288b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6d34668288b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6d34668288b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-06-04 exists to keep rule-pack lifecycle and checksum behavior auditable without putting protected or private rule-pack content into the public repository. The future implementation should let users reference and validate their own design bases while preserving the code-neutral, private-data boundary.
+</p></div></div></section>
+<section id="SEC-ED040-0012" class="chunk sec depth-4" data-kind="section" data-key="section:ee92c4383816" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ee92c4383816" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ee92c4383816" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ee92c4383816" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Treat the checksum as evidence about a specific payload, not as proof of engineering correctness.
+- Treat privacy and redistribution status as explicit metadata, not an inference from file location.
+- Prefer source notes and provenance over embedded protected text.
+- Keep lifecycle diagnostics visible: missing provenance, missing checksum, stale checksum, private-data export attempts, and suspected protected content are findings.
+- Preserve the mechanics/rule/professional boundary: a user-rule check is not professional approval.
+- Keep storage, encryption, access policy, and secret handling decisions out of this deliverable unless the human project authority records a later architecture decision.
+</p></div></div></section>
+<section id="SEC-ED040-0013" class="chunk sec depth-4" data-kind="section" data-key="section:5c8536c0f34b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c8536c0f34b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c8536c0f34b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c8536c0f34b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Guidance |
+|---|---|
+| JCS basis | For JSON rule-pack payloads, canonicalize with the project-selected JCS-compatible basis before hashing. Record `algorithm`, `canonicalization`, `payload_ref`, and `value`. |
+| Payload boundary | A hash must state what was hashed. Do not hash local paths, timestamps, UI state, or other volatile fields as reproducibility evidence unless excluded or documented in a manifest. |
+| Private marking | A rule pack with unknown redistribution rights should not be treated as public. The safer state is private or unknown until reviewed. |
+| Protected suspected | Suspected protected standards or proprietary content should trigger quarantine/human review rather than public commit. |
+| Audit hooks | Reports and exports should identify rule-pack name or ID, version, checksum, and source note. They should not expose private formulas or protected tables in public templates. |
+| Unit metadata | Rule-pack values used for numeric evaluation need units or dimension metadata where applicable. Missing units should block or warn rather than default silently. |
+| Deferred architecture | Private storage directories, encryption defaults, access grants, revocation, and credential handling belong to PKG-12 and persistence decisions. |
+</p></div></div></section>
+<section id="SEC-ED040-0014" class="chunk sec depth-4" data-kind="section" data-key="section:dea10c57f950" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dea10c57f950" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dea10c57f950" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dea10c57f950" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Trade-off | Direction for this setup |
+|---|---|
+| Strong reproducibility vs. privacy | Reference hashes and source notes without publishing private payloads. |
+| Detailed source trace vs. protected-content risk | Store source notices and provenance summaries; do not copy licensed text or tables into public artifacts. |
+| Local-first convenience vs. governed export | Keep private data local by default; require explicit export/report decisions for any exposure. |
+| Schema stability vs. implementation detail | Record metadata and lifecycle expectations now; leave enum finalization and module contracts to implementation/schema deliverables. |
+</p></div></div></section>
+<section id="SEC-ED040-0015" class="chunk sec depth-4" data-kind="section" data-key="section:54dc571b98a1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54dc571b98a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54dc571b98a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54dc571b98a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Safe public examples for this deliverable may show metadata shape only, using invented placeholders such as:</p>
+<p>```yaml
+rule_pack_ref:
+  id: &quot;invented-demo-only&quot;
+  version: &quot;0.1.0&quot;
+  source_notice: &quot;Invented demonstration values only&quot;
+  redistribution_status: &quot;public_permissive&quot;
+  checksum:
+    algorithm: &quot;sha256&quot;
+    canonicalization: &quot;JCS&quot;
+    payload_ref: &quot;rule_pack&quot;
+    value: &quot;TBD&quot;
+```</p>
+<p>Private or protected formulas, allowables, code text, tables, and owner design-basis values must not be substituted into public examples.
+</p></div></div></section>
+<section id="SEC-ED040-0016" class="chunk sec depth-4" data-kind="section" data-key="section:df29850b5cc2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df29850b5cc2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df29850b5cc2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df29850b5cc2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| C-06-04-001 | Exact private storage location, encryption default, and access-control policy are required for implementation but out of scope for this deliverable. | DEL-06-04 context notes: access control details defer to PKG-12 | docs/PRD.md Section 18.3 lists optional encrypted storage | Datasheet Conditions; Specification R-06-04-011; Procedure Prerequisites | Defer to PKG-12 and persistence architecture; do not decide here. | TBD |
+| C-06-04-002 | Exact schema enum set for redistribution/private status is not finalized by this deliverable. | docs/SPEC.md Section 6 uses `private`, `public_permissive`, `unknown` | docs/IP_AND_DATA_BOUNDARY.md includes `private_only` and `protected_suspected` for data records | Specification R-06-04-003; Datasheet Attributes | Record minimum lifecycle need and defer final enum ownership to DEL-06-01/schema work. | TBD |
+</p></div></div></section>
+<section id="SEC-ED040-0017" class="chunk sec depth-2" data-kind="section" data-key="section:f0d5f44d972a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0017</span> Component: execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f0d5f44d972a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f0d5f44d972a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f0d5f44d972a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0018" class="chunk sec depth-3" data-kind="section" data-key="section:f02577800fb0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0018</span> Procedure: DEL-06-04 Private rule-pack lifecycle and checksum handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f02577800fb0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f02577800fb0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f02577800fb0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0019" class="chunk sec depth-4" data-kind="section" data-key="section:f4298e4720d4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f4298e4720d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f4298e4720d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f4298e4720d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This procedure describes how a future bounded implementation task should produce private rule-pack lifecycle and checksum handling while preserving the public/private data boundary. It also records how this setup run should be verified.
+</p></div></div></section>
+<section id="SEC-ED040-0020" class="chunk sec depth-4" data-kind="section" data-key="section:0e3aeae85981" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e3aeae85981" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e3aeae85981" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e3aeae85981" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Read and apply INIT.md, AGENTS.md, docs/CONTRACT.md, docs/SPEC.md, docs/IP_AND_DATA_BOUNDARY.md, docs/PRD.md, and the DEL-06-04 sealed context.
+- Confirm the implementation task has an explicit write scope before editing code, schemas, registry modules, or tests.
+- Treat DEL-06-01 rule-pack schema as an upstream schema source for final field names and enum ownership.
+- Treat DEL-08-02 audit manifest/model hash as a downstream consumer of rule-pack checksum metadata.
+- Treat PKG-12 security/privacy deliverables as the owner for private storage locations, encryption/access defaults, telemetry, redaction, and secret handling.
+- Do not use or create real private rule-pack payloads in public repository artifacts.
+</p></div></div></section>
+<section id="SEC-ED040-0021" class="chunk sec depth-4" data-kind="section" data-key="section:d8ac66866a25" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d8ac66866a25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d8ac66866a25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d8ac66866a25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Establish the rule-pack lifecycle metadata boundary.
+   - Include identity, version, source notice, redistribution/private status, checksum metadata, diagnostics, and review/quarantine disposition.
+   - Do not embed protected code text, copied formulas, private values, or proprietary tables.</p>
+<p>2. Define checksum payload boundaries.
+   - For JSON payloads, use canonical JSON with JCS-compatible canonicalization before hashing.
+   - Record algorithm, canonicalization, payload reference, and checksum value.
+   - For non-JSON or binary assets, create a manifest-level hash entry and mark unresolved partition details as `TBD`.</p>
+<p>3. Define stale-check and lifecycle diagnostics.
+   - Missing source note, missing redistribution status, missing checksum, stale checksum, suspected protected content, and attempted public export of private content must be explicit diagnostics.
+   - Missing rule-check-required values or units remain rule/check findings, not defaulted values.</p>
+<p>4. Connect audit/report hooks.
+   - Provide report-facing references to rule-pack ID/name, version, checksum, and source note.
+   - Public templates must not render private formulas, protected tables, or copied standards text.</p>
+<p>5. Preserve professional-boundary wording.
+   - Do not emit `CODE_COMPLIANT`, certification, approval, sealing, endorsement, or equivalent professional reliance language.
+   - Keep human acceptance external and hash-bound if it is introduced by later work.</p>
+<p>6. Defer private storage and access decisions.
+   - Record storage location, encryption defaults, access-control policy, permission persistence, and credential handling as `TBD` or PKG-12-owned unless the sealed brief explicitly authorizes them.</p>
+<p>7. Verify setup artifacts for this run.
+   - Confirm the four documents exist.
+   - Confirm semantic matrix and lensing artifacts exist.
+   - Validate `Dependencies.csv` with the v3.1 schema validator.
+   - Check dependency enum fields with `validate_enum.py`.
+   - Confirm `_STATUS.md` remains `SEMANTIC_READY` only after all setup gates pass.
+</p></div></div></section>
+<section id="SEC-ED040-0022" class="chunk sec depth-4" data-kind="section" data-key="section:f5c60300e639" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f5c60300e639" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f5c60300e639" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f5c60300e639" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Four-document kit | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist. |
+| Data boundary scan | No private rule-pack payloads, protected standards data, proprietary formulas, or code-compliance claims are present. |
+| Checksum basis | Specification and guidance state JCS-compatible canonical JSON for JSON payload hashes. |
+| Deferred decisions | Storage, encryption, access-control defaults, and physical container decisions remain deferred. |
+| Dependency schema | `Dependencies.csv` validates as v3.1. |
+| Lifecycle state | `_STATUS.md` states `SEMANTIC_READY` after setup artifacts validate. |
+</p></div></div></section>
+<section id="SEC-ED040-0023" class="chunk sec depth-4" data-kind="section" data-key="section:508fa9e255d2" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:508fa9e255d2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:508fa9e255d2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:508fa9e255d2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This setup session records:</p>
+<p>- four-document drafting and P3 enrichment in the production documents;
+- semantic matrix output in `_SEMANTIC.md`;
+- semantic lensing register in `_SEMANTIC_LENSING.md`;
+- dependency extraction results in `Dependencies.csv` and `_DEPENDENCIES.md`;
+- run records in `_run_records/`;
+- final lifecycle state in `_STATUS.md`.
+</p></div></div></section>
+<section id="SEC-ED040-0024" class="chunk sec depth-2" data-kind="section" data-key="section:30e2a84c64f2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED040-0024</span> Component: execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30e2a84c64f2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30e2a84c64f2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30e2a84c64f2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0025" class="chunk sec depth-3" data-kind="section" data-key="section:fabfc1029298" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED040-0025</span> Specification: DEL-06-04 Private rule-pack lifecycle and checksum handling</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fabfc1029298" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fabfc1029298" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fabfc1029298" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED040-0026" class="chunk sec depth-4" data-kind="section" data-key="section:88ecb9cc48e4" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88ecb9cc48e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88ecb9cc48e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88ecb9cc48e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable defines the setup contract for private rule-pack lifecycle and checksum handling in PKG-06. It covers metadata, lifecycle guardrails, checksum handling, audit/report hooks, and diagnostics needed to keep rule packs versioned, source-noted, checksum-addressed, and marked for redistribution/private status.</p>
+<p>This setup does not implement registry modules, schemas, tests, encryption, private storage, access-control defaults, or private rule-pack content.
+</p></div></div></section>
+<section id="SEC-ED040-0027" class="chunk sec depth-4" data-kind="section" data-key="section:570fdd7db32a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:570fdd7db32a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:570fdd7db32a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:570fdd7db32a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement ID | Requirement | Source basis |
+|---|---|---|
+| R-06-04-001 | A rule-pack lifecycle record shall include stable rule-pack identity, human-readable name, version, source/provenance notice, redistribution/private status, and checksum metadata. | docs/CONTRACT.md OPS-K-RULE-3; docs/SPEC.md Section 6; docs/PRD.md Section 12 |
+| R-06-04-002 | Private rule packs shall be marked private by default unless a public-permissive redistribution basis is explicitly recorded. | docs/PRD.md Section 12.4 and 17.3; docs/IP_AND_DATA_BOUNDARY.md Section 6 |
+| R-06-04-003 | Public project artifacts shall not contain private rule-pack content, protected standards text, protected tables, copied code formulas, proprietary vendor data, owner standards, or company design bases. | docs/CONTRACT.md OPS-K-IP-1/3; docs/IP_AND_DATA_BOUNDARY.md Section 3 |
+| R-06-04-004 | JSON rule-pack payload hashes shall use canonical JSON with JCS-compatible canonicalization and shall record algorithm, canonicalization, payload reference, and checksum value. | docs/architecture/persistence_contract.md Hash Rules; SCA-001 architecture basis |
+| R-06-04-005 | Non-JSON or binary rule-pack-related assets shall be represented by manifest hashes with explicit payload references; exact partitioning remains TBD. | docs/architecture/persistence_contract.md Hash Rules and Remaining TBDs |
+| R-06-04-006 | A checksum shall identify what was hashed and shall not depend on environment-local paths, timestamps, UI session state, or other volatile fields unless their treatment is explicitly documented. | docs/architecture/persistence_contract.md Hash Rules |
+| R-06-04-007 | The lifecycle shall emit diagnostics for missing source notice, missing redistribution status, stale or missing checksum, suspected protected content, attempted public export of private content, and rule-check-required data gaps. | docs/SPEC.md Sections 6-8; docs/architecture/code_neutral_analysis_boundary.md Boundary Rules |
+| R-06-04-008 | Reports and exports may reference private rule-pack identity, version, checksum, and source note without exposing protected formulas or private values in public templates. | docs/IP_AND_DATA_BOUNDARY.md Section 7; docs/PRD.md Section 15 |
+| R-06-04-009 | Rule-pack lifecycle status shall not state or imply professional certification, sealing, approval, endorsement, or automatic code compliance. | INIT.md Agent rule; docs/CONTRACT.md OPS-K-AUTH-1; docs/architecture/code_neutral_analysis_boundary.md Status Separation |
+| R-06-04-010 | Numeric rule-pack inputs and values shall preserve unit metadata where applicable; missing required values or units shall be explicit findings. | docs/CONTRACT.md OPS-K-UNIT-1 and OPS-K-DATA-2/3 |
+| R-06-04-011 | Storage location, encryption default, access-control policy, permission persistence, and private-library secret handling are deferred architecture decisions for PKG-12 and related persistence work. | DEL-06-04 Context Envelope Notes; docs/architecture/persistence_contract.md Remaining TBDs |
+| R-06-04-012 | The implementation boundary shall preserve schema-first service/result envelope behavior and shall not allow adapters or plugins to bypass provenance, privacy, protected-content, checksum, or report controls. | docs/architecture/extension_domain_contracts.md No-Bypass Rules |
+</p></div></div></section>
+<section id="SEC-ED040-0028" class="chunk sec depth-4" data-kind="section" data-key="section:312b763d561e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:312b763d561e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:312b763d561e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:312b763d561e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No engineering code or standards-body requirement is implemented by this setup deliverable. Applicable project governance sources are:</p>
+<p>- OPS-K-RULE-3: rule packs are versioned, checksummed, source-noted, and marked public/private.
+- OPS-K-DATA-1/2/3: code-specific values are user-supplied/private, missing values are findings, and values carry provenance.
+- OPS-K-PRIV-1/2: private data is not committed or transmitted publicly by default; telemetry is off by default and cannot include private engineering/code data.
+- OPS-K-IP-1/2/3: protected content is excluded, provenance is required for public data, and suspected protected content is quarantined.
+- OPS-K-UNIT-1: calculations, formulas, imported values, and exports are unit-aware and dimensionally checked.
+- OPS-K-AGENT-1..4: no invented engineering values, gaps surfaced, sealed scope respected, outputs draft until accepted.
+</p></div></div></section>
+<section id="SEC-ED040-0029" class="chunk sec depth-4" data-kind="section" data-key="section:c776393a469e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c776393a469e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c776393a469e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c776393a469e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Verification ID | Check |
+|---|---|
+| V-06-04-001 | Four setup documents exist and retain required sections. |
+| V-06-04-002 | `_SEMANTIC.md` exists and contains matrix sections A, B, C, F, D, K, G, X, T, and E. |
+| V-06-04-003 | `_SEMANTIC_LENSING.md` exists and contains lens coverage for matrices A, B, C, F, D, X, and E. |
+| V-06-04-004 | `Dependencies.csv` exists, is parseable, and contains all v3.1 required columns. |
+| V-06-04-005 | Dependency enum fields use canonical values where checked. |
+| V-06-04-006 | `_DEPENDENCIES.md` summarizes active anchors and execution edges consistently with `Dependencies.csv`. |
+| V-06-04-007 | No private rule-pack contents, protected standards data, proprietary formulas, or certification/compliance claims are introduced. |
+| V-06-04-008 | `_STATUS.md` is set to `SEMANTIC_READY` only after setup artifacts and local validations pass. |
+</p></div></div></section>
+<section id="SEC-ED040-0030" class="chunk sec depth-4" data-kind="section" data-key="section:074cc68f408d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED040-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:074cc68f408d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:074cc68f408d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:074cc68f408d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required setup outputs for this session are:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`
+- `_STATUS.md`</p>
+<p>Implementation outputs such as registry modules, schemas, tests, encryption/access policy defaults, private storage paths, and actual private rule-pack files are outside this setup session.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED040";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

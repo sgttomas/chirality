@@ -1,0 +1,35 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-EGOV-SCOPECHANGE-SCA-004-2026-05-18-0000",
+  "source_doc_id": "SRC-EGOV-SCOPECHANGE-SCA-004-2026-05-18-0000",
+  "source_prefix": "EG005",
+  "repo_rel_path": "execution/_ScopeChange/SCA-004_2026-05-18_0000/",
+  "catalog_rel_path": "@repo/execution/_ScopeChange/SCA-004_2026-05-18_0000/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-EGOV-SCOPECHANGE-SCA-004-2026-05-18-0000.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-004_2026-05-18_0000/Impact_Assessment.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-004-2026-05-18-0000-IMPACT-ASSESSMENT",
+      "expected_sha256": "17a0a2b8ff01a64ec0134f8ff99e20bfd24545400f2833b74036e157c43a6adc",
+      "generated_line_start": 11,
+      "generated_line_end": 37,
+      "source_line_start": 1,
+      "source_line_end": 27,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/_ScopeChange/SCA-004_2026-05-18_0000/Propagation_Plan.md",
+      "source_doc_id": "SRC-EXECUTION-SCOPECHANGE-SCA-004-2026-05-18-0000-PROPAGATION-PLAN",
+      "expected_sha256": "80df836496994716092f536fecdf8320a09a655a7e2ae1ea33d7c961e75b3848",
+      "generated_line_start": 41,
+      "generated_line_end": 68,
+      "source_line_start": 1,
+      "source_line_end": 28,
+      "line_offset": -40
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

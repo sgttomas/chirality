@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE",
+  "source_doc_id": "SRC-DEL-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE",
+  "source_prefix": "ED001",
+  "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/",
+  "catalog_rel_path": "@repo/execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE-DATASHEET",
+      "expected_sha256": "583e25c53abe3c6bb6d99edc327587fc1c2c2346e3b11d3b86d6aa30d79e01cb",
+      "generated_line_start": 11,
+      "generated_line_end": 61,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE-GUIDANCE",
+      "expected_sha256": "ef63f96c73270ceb80ccdc0aa3c6c2957a1d4b9f404df45663dd65eb65a98537",
+      "generated_line_start": 65,
+      "generated_line_end": 95,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -64
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE-PROCEDURE",
+      "expected_sha256": "f0b6534567e6ba75bf31a3b8ed3935915cec77f556dc210b23109c6ba0a31f7f",
+      "generated_line_start": 99,
+      "generated_line_end": 136,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -98
+    },
+    {
+      "repo_rel_path": "execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-01_Architecture decision record baseline/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-00-SOFTWARE-ARCHITECTURE-RUNWAY-1-WORKING-DEL-00-01-ARCHITECTURE-DECISION-RECORD-BASELINE-SPECIFICATION",
+      "expected_sha256": "3b4fca9218ef98b0741344a8b8d323a20d4046e83080aecd04bccc6c78acb04e",
+      "generated_line_start": 140,
+      "generated_line_end": 176,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -139
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

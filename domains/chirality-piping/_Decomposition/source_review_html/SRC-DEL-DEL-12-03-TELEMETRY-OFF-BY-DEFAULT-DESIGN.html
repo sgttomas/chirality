@@ -1,0 +1,503 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-12-03-TELEMETRY-OFF-BY-DEFAULT-DESIGN - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED073-0001">Source Pack: SRC-DEL-DEL-12-03-TELEMETRY-OFF-BY-DEFAULT-DESI</a> <a href="#SEC-ED073-0002">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED073-0010">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED073-0018">Component: execution/PKG-12_Security, Privacy, and Private D</a> <a href="#SEC-ED073-0025">Component: execution/PKG-12_Security, Privacy, and Private D</a></nav>
+<main>
+<section id="SEC-ED073-0001" class="chunk sec depth-1" data-kind="section" data-key="section:d8d5051b7bdf" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED073-0001</span> Source Pack: SRC-DEL-DEL-12-03-TELEMETRY-OFF-BY-DEFAULT-DESIGN</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d8d5051b7bdf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d8d5051b7bdf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d8d5051b7bdf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED073-0002" class="chunk sec depth-2" data-kind="section" data-key="section:efe135d0b067" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED073-0002</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efe135d0b067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efe135d0b067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efe135d0b067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0003" class="chunk sec depth-3" data-kind="section" data-key="section:bd80b7f5dc04" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED073-0003</span> Datasheet: DEL-12-03 Telemetry off-by-default design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bd80b7f5dc04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bd80b7f5dc04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bd80b7f5dc04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0004" class="chunk sec depth-4" data-kind="section" data-key="section:51d6bfcd090c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51d6bfcd090c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51d6bfcd090c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51d6bfcd090c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-12-03 |
+| Deliverable name | Telemetry off-by-default design |
+| Package ID | PKG-12 |
+| Package name | Security, Privacy, and Private Data Handling |
+| Deliverable type | SECURITY_CONTROL |
+| Scope item | SOW-037 |
+| Objective | OBJ-010 |
+| Context envelope | S |
+| Current local lifecycle state | IN_PROGRESS; this evidence alignment does not change `_STATUS.md` or promote lifecycle. |
+</p></div></div></section>
+<section id="SEC-ED073-0005" class="chunk sec depth-4" data-kind="section" data-key="section:760cb5d5b44f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:760cb5d5b44f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:760cb5d5b44f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:760cb5d5b44f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Value | Source |
+|---|---|---|
+| MVP telemetry posture | No telemetry by default; telemetry may be a no-op in MVP. | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md` SOW-037 and OI-008 |
+| User consent posture | Any telemetry, if later implemented, is opt-in only and requires explicit human approval before design activation. | `execution/_Decomposition/SOFTWARE_DECOMP.md` OI-008; `docs/CONTRACT.md` OPS-K-PRIV-2 |
+| Forbidden telemetry content | Private project data, code-specific data, private rule-pack data, private material/component data, secrets, paths, report content, and protected standards content. | `docs/CONTRACT.md` OPS-K-IP-1/2/3, OPS-K-DATA-1/2/3, OPS-K-PRIV-1/2 |
+| Local-first boundary | No cloud operation is included unless separately authorized. | `_CONTEXT.md`; `docs/DIRECTIVE.md` Section 4.2 |
+| Current evidence artifacts | Telemetry policy, metadata-only telemetry guard helper, and focused policy/helper tests now exist. Runtime telemetry, product config schema/storage, consent surface, endpoint/vendor/transport, event schema/allowlist, retention, and support-bundle workflow remain deferred. | `_CONTEXT.md`; `docs/security/telemetry_policy.md`; `core/security/telemetry_policy/`; `tests/security/test_telemetry_policy.py`; `_run_records/TASK_RUN_2026-06-07_0141.md` |
+</p></div></div></section>
+<section id="SEC-ED073-0006" class="chunk sec depth-4" data-kind="section" data-key="section:c2cf31a27734" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c2cf31a27734" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c2cf31a27734" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c2cf31a27734" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Required handling |
+|---|---|
+| Configuration key is absent | Treat telemetry as disabled. |
+| Configuration value is malformed | Treat telemetry as disabled and emit a diagnostic or validation finding. |
+| User has not explicitly opted in | Do not initialize telemetry transport, collection, background jobs, or upload queues. |
+| Human approval for runtime telemetry collection is absent | Keep runtime telemetry as no-op/default-off and record telemetry details as TBD. |
+| A payload field could expose private or protected data | Exclude the field and record an IP/privacy boundary finding. |
+</p></div></div></section>
+<section id="SEC-ED073-0007" class="chunk sec depth-4" data-kind="section" data-key="section:94c61e139387" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94c61e139387" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94c61e139387" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94c61e139387" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable began as a design-boundary setup kit. Current June 7 evidence also includes a metadata-only guard helper and focused tests that harden the default-off policy before any payload construction. The helper is not a runtime telemetry system and does not authorize endpoint, vendor, transport, queue, upload job, persistence, retention, consent UI/CLI, support-bundle workflow, or professional/code-compliance authority.</p>
+<p>| Artifact | Construction intent | Current evidence result |
+|---|---|---|
+| Telemetry policy | State the default-off, opt-in, privacy-preserving rule set. | Captured in this kit and implemented as repo policy in `docs/security/telemetry_policy.md`. |
+| Config defaults | Define default-disabled behavior for absent, empty, unknown, unsupported, malformed, or incomplete telemetry metadata. | Implemented in `core/security/telemetry_policy/` as metadata-only config resolution; exact product config schema and storage location remain `TBD`. |
+| Tests | Prove default-off, fail-closed, allowlist-gated, no-payload, and no-network-default behavior for the metadata-only guard. | Covered by `tests/security/test_telemetry_policy.py`; Worker B reported 15 passing tests and parent fan-in reported 44 passing PKG-12 privacy-guard tests. |
+</p></div></div></section>
+<section id="SEC-ED073-0008" class="chunk sec depth-4" data-kind="section" data-key="section:163bbd74ed07" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0008</span> June 7 Readiness Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:163bbd74ed07" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:163bbd74ed07" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:163bbd74ed07" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Evidence | Current interpretation |
+|---|---|
+| `core/security/telemetry_policy/` | Provides metadata-only `TelemetryConfig`, `TelemetryEventAttempt`, diagnostics, decision/result records, config resolution, and event guard behavior before payload construction. |
+| `tests/security/test_telemetry_policy.py` | Tests default-off config handling, opt-in/allowlist gates, rejected unknown events/fields, rejected private/protected/secret/path/hash/report/professional-claim field classes, and no payload or network initialization flags. |
+| `docs/security/telemetry_policy.md` | Documents the policy and helper non-authority boundary while preserving open `TBD` decisions. |
+| `_run_records/TASK_RUN_2026-06-07_0141.md` and package fan-in | Record successful focused tests, `git diff --check`, and boundary scan evidence. |
+</p></div></div></section>
+<section id="SEC-ED073-0009" class="chunk sec depth-4" data-kind="section" data-key="section:1399cfef76f8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0009</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1399cfef76f8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1399cfef76f8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1399cfef76f8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `INIT.md` for project bootstrap and boundary rules.
+- `AGENTS.md` for bounded Type 2 dispatch rules.
+- `docs/CONTRACT.md` for OPS-K-IP, OPS-K-DATA, OPS-K-AUTH, OPS-K-PRIV, and OPS-K-AGENT invariants.
+- `docs/DIRECTIVE.md` for founding boundaries and out-of-scope hidden cloud telemetry.
+- `docs/IP_AND_DATA_BOUNDARY.md` for public/private data handling limits.
+- `docs/SPEC.md` for architecture, diagnostics, reports, and acceptance semantics.
+- `docs/security/telemetry_policy.md` for the implemented policy and metadata-only guard boundary.
+- `core/security/telemetry_policy/` for metadata-only helper evidence.
+- `tests/security/test_telemetry_policy.py` for focused default-off/helper tests.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 for PKG-12, DEL-12-03, SOW-037, OBJ-010, OI-008, and AB-00-01/02/03/04/06/07/08.
+- `execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/_run_records/TASK_RUN_2026-06-07_0141.md`.
+- `execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/_run_records/WORKING_ITEMS_RUN_2026-06-07_0150_TP-PKG12-LOCAL-PRIVACY-GUARDS-FANIN.md`.
+- `docs/_Registers/Deliverables.csv` row DEL-12-03.
+- `docs/_Registers/ScopeLedger.csv` row SOW-037.
+- `docs/_Registers/ContextBudgetQA.csv` row DEL-12-03.
+</p></div></div></section>
+<section id="SEC-ED073-0010" class="chunk sec depth-2" data-kind="section" data-key="section:cc32cd68489c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED073-0010</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc32cd68489c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc32cd68489c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc32cd68489c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0011" class="chunk sec depth-3" data-kind="section" data-key="section:a9a8ad8f000f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED073-0011</span> Guidance: DEL-12-03 Telemetry off-by-default design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9a8ad8f000f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9a8ad8f000f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9a8ad8f000f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0012" class="chunk sec depth-4" data-kind="section" data-key="section:a990e5dfcd1a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0012</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a990e5dfcd1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a990e5dfcd1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a990e5dfcd1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This guidance explains how to interpret the telemetry boundary for OpenPipeStress. The product is local-first, public-repository content must avoid protected standards data, and private project/rule/component/material data stays user controlled. Telemetry is therefore not a default feature; it is either absent/no-op or explicitly approved, opt-in, and payload-limited.</p>
+<p>As of the June 7 readiness evidence alignment, DEL-12-03 has repo policy documentation, a metadata-only guard helper, and focused tests. That helper evaluates configuration metadata and event-attempt metadata before payload construction. It is not runtime telemetry and does not choose product config storage, consent UI/CLI, endpoint, vendor, transport, retention, support-bundle workflow, or approval records.
+</p></div></div></section>
+<section id="SEC-ED073-0013" class="chunk sec depth-4" data-kind="section" data-key="section:43a853050523" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0013</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43a853050523" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43a853050523" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43a853050523" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance |
+|---|---|
+| Default-off | Design the product so no telemetry path is active until an explicit opt-in is recorded. |
+| No hidden cloud behavior | Do not introduce endpoints, upload queues, background jobs, or remote storage as implicit behavior. |
+| Private data never leaves by telemetry | Treat project models, rule packs, code-specific values, reports, hashes, paths, secrets, private libraries, and protected standards content as forbidden telemetry content. |
+| Allowlist over redaction-only | If telemetry is later approved, use a small approved event allowlist. Redaction can be a second guard, not the primary permission model. |
+| Local evidence | Keep approval records, config state, and test evidence local and reviewable. |
+| Human authority | Telemetry status must never imply professional engineering review, certification, sealing, or code compliance. |
+</p></div></div></section>
+<section id="SEC-ED073-0014" class="chunk sec depth-4" data-kind="section" data-key="section:32154c62f59e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0014</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32154c62f59e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32154c62f59e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32154c62f59e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- A no-op runtime telemetry path is acceptable for MVP if tests prove that no default outbound behavior exists.
+- The current `core/security/telemetry_policy/` helper is an acceptable metadata-only guardrail for default-off behavior. It should stay pre-payload and local unless a later sealed brief authorizes runtime integration.
+- A future opt-in design needs a human-approved allowlist before implementation. Without that approval, event names, endpoint details, vendor choices, and payload fields remain `TBD`.
+- Configuration defaults should fail closed: missing, unset, unknown, or malformed values disable telemetry.
+- Product diagnostics may report that telemetry is disabled or misconfigured, but diagnostic text should not echo private payload content.
+- Plugins and adapters must not create their own telemetry side channel or bypass core privacy filters.
+</p></div></div></section>
+<section id="SEC-ED073-0015" class="chunk sec depth-4" data-kind="section" data-key="section:a5d22be524b6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0015</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5d22be524b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5d22be524b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5d22be524b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Option | Benefit | Risk | Current disposition |
+|---|---|---|---|
+| No telemetry in MVP | Small privacy surface and simple verification. | Less automatic usage insight. | Preferred by SOW-037 notes and OI-008 until human approval changes it. |
+| Opt-in telemetry later | Can support voluntary product-improvement metrics. | Requires strong payload governance and user trust. | Allowed only after explicit human/security approval. |
+| Redaction-only telemetry | Easier to retrofit around broad events. | Higher leakage risk if payloads are assembled before filtering. | Not sufficient as the primary design. |
+| Local diagnostics instead of telemetry | Preserves reviewability without transmission. | Users must share diagnostics intentionally for support. | Compatible with local-first policy. |
+</p></div></div></section>
+<section id="SEC-ED073-0016" class="chunk sec depth-4" data-kind="section" data-key="section:f7128f610389" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0016</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7128f610389" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7128f610389" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7128f610389" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Concrete product config syntax and runtime event schemas are `TBD` because the implementation surface is not selected in this deliverable. The permitted current example behavior is:</p>
+<p>- absent telemetry config means disabled;
+- empty, unknown, unsupported, malformed, or incomplete telemetry metadata means disabled;
+- user has not opted in means disabled;
+- MVP may contain no telemetry implementation;
+- allowlisted low-sensitivity metadata can be evaluated by the helper only after explicit opt-in, approved consent surface metadata, and human-approved allowlist evidence are present;
+- unknown events, unknown fields, private/protected/secret/path/hash/report/professional-claim field classes, and payload-shaped attempts are rejected before payload construction;
+- any future telemetry payload is approved by allowlist and excludes private/protected engineering data.
+</p></div></div></section>
+<section id="SEC-ED073-0017" class="chunk sec depth-4" data-kind="section" data-key="section:98c7f26c57fc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0017</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:98c7f26c57fc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:98c7f26c57fc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:98c7f26c57fc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| None | No source conflict identified in this evidence alignment. | N/A | N/A | N/A | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED073-0018" class="chunk sec depth-2" data-kind="section" data-key="section:0cfc7eddec5b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED073-0018</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0cfc7eddec5b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0cfc7eddec5b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0cfc7eddec5b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0019" class="chunk sec depth-3" data-kind="section" data-key="section:51789db5a4e0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED073-0019</span> Procedure: DEL-12-03 Telemetry off-by-default design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51789db5a4e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51789db5a4e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51789db5a4e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0020" class="chunk sec depth-4" data-kind="section" data-key="section:01d14136e931" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0020</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01d14136e931" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01d14136e931" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01d14136e931" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this procedure to produce or review a telemetry design for OpenPipeStress without breaching the local-first privacy boundary. The current evidence set includes design documents, `docs/security/telemetry_policy.md`, a metadata-only guard helper in `core/security/telemetry_policy/`, and focused tests in `tests/security/test_telemetry_policy.py`. It does not implement runtime telemetry transport, endpoint, vendor, upload queue/job, telemetry persistence, product config schema/storage, consent UI/CLI, retention, support-bundle workflow, or approval records.
+</p></div></div></section>
+<section id="SEC-ED073-0021" class="chunk sec depth-4" data-kind="section" data-key="section:bdee2aeaa193" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0021</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdee2aeaa193" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdee2aeaa193" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdee2aeaa193" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Status |
+|---|---|
+| Sealed deliverable context for DEL-12-03 | Present in `_CONTEXT.md`. |
+| Scope item SOW-037 and objective OBJ-010 | Present in decomposition/registers. |
+| Applicable invariants OPS-K-IP, OPS-K-DATA, OPS-K-AUTH, OPS-K-PRIV, OPS-K-AGENT | Present in `docs/CONTRACT.md`. |
+| Telemetry policy documentation | Present in `docs/security/telemetry_policy.md`. |
+| Metadata-only guard helper and focused tests | Present in `core/security/telemetry_policy/` and `tests/security/test_telemetry_policy.py`. |
+| Explicit human/security approval for runtime telemetry collection | TBD; absent for runtime telemetry implementation. |
+| Product configuration surface and schema | TBD; not selected by this deliverable. |
+</p></div></div></section>
+<section id="SEC-ED073-0022" class="chunk sec depth-4" data-kind="section" data-key="section:a5dcb32c7b84" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0022</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5dcb32c7b84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5dcb32c7b84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5dcb32c7b84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the current brief is scoped only to DEL-12-03 and the assigned folder.
+2. Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `INIT.md`, `AGENTS.md`, `docs/CONTRACT.md`, the DEL-12-03 register rows, and the applicable PKG-12/architecture-basis decomposition rows.
+3. Treat telemetry as disabled unless explicit approved opt-in configuration exists.
+4. If no human/security approval exists for telemetry collection, keep event names, endpoint details, vendor selections, payload fields, and transport behavior as `TBD` or no-op.
+5. Verify configuration behavior so absent, unset, empty, unknown, unsupported, malformed, or incomplete telemetry metadata resolves to disabled.
+6. Verify payload rules so private project, code, rule-pack, material, component, report, path, hash, secret, protected standards content, and professional/code-compliance claim fields cannot be collected or transmitted.
+7. Verify tests that prove metadata-only default-off behavior, no payload/network initialization flags, event allowlist enforcement, and forbidden-field rejection. Runtime startup, plugin/adapter/report/private-library route tests remain future scope until those surfaces call the helper.
+8. Record any unresolved approval, config, endpoint, or payload decision as `TBD` for human/security ruling.
+9. Do not write product code or repo-level product artifacts unless a later sealed brief explicitly authorizes that scope.
+</p></div></div></section>
+<section id="SEC-ED073-0023" class="chunk sec depth-4" data-kind="section" data-key="section:03571c57ec11" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0023</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03571c57ec11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03571c57ec11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03571c57ec11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Pass condition |
+|---|---|
+| Four-document kit exists | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` are present. |
+| Telemetry policy artifact exists | `docs/security/telemetry_policy.md` is present and documents default-off policy plus metadata-only helper boundaries. |
+| Metadata-only helper exists | `core/security/telemetry_policy/` is present and evaluates config/event metadata before payload construction. |
+| Default sections preserved | Each document retains its required default section headings. |
+| Privacy default | Specification states disabled-by-default and fail-closed config behavior. |
+| No private data transmission | Specification forbids private project/code/rule/material/component/report/path/hash/secret/protected content in telemetry payloads. |
+| No cloud assumption | Documents do not define cloud operation, endpoint, vendor, or upload behavior without human approval. |
+| Current tests | `tests/security/test_telemetry_policy.py` covers metadata-only default-off, no-payload/no-network flags, allowlist gating, and forbidden-field rejection. |
+| Future test expectations | Specification and Procedure keep runtime no-network-before-opt-in, product config, and no-bypass tests explicit for later integration surfaces. |
+| Lifecycle | `_STATUS.md` remains outside this run&#x27;s write scope; current local state is `IN_PROGRESS`, and this evidence alignment is not lifecycle promotion or acceptance. |
+</p></div></div></section>
+<section id="SEC-ED073-0024" class="chunk sec depth-4" data-kind="section" data-key="section:1eefacad2aa9" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0024</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1eefacad2aa9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1eefacad2aa9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1eefacad2aa9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliverable-local records:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`</p>
+<p>Current external evidence records include `docs/security/telemetry_policy.md`, `core/security/telemetry_policy/`, `tests/security/test_telemetry_policy.py`, `_run_records/TASK_RUN_2026-06-07_0141.md`, and the PKG-12 package fan-in run record. Future implementation records, if authorized, should include human approval evidence, config schema/default fixtures, payload allowlist, transport-disabled runtime tests, opt-in tests, payload privacy tests, and plugin/adapter bypass tests.
+</p></div></div></section>
+<section id="SEC-ED073-0025" class="chunk sec depth-2" data-kind="section" data-key="section:b3fde2090f20" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED073-0025</span> Component: execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b3fde2090f20" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b3fde2090f20" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b3fde2090f20" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0026" class="chunk sec depth-3" data-kind="section" data-key="section:2c67229c587f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED073-0026</span> Specification: DEL-12-03 Telemetry off-by-default design</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2c67229c587f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2c67229c587f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2c67229c587f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED073-0027" class="chunk sec depth-4" data-kind="section" data-key="section:676e644e7094" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0027</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:676e644e7094" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:676e644e7094" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:676e644e7094" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the privacy and configuration design for telemetry in OpenPipeStress. It covers policy, default configuration behavior, and tests needed to prove that telemetry is disabled by default and cannot transmit private engineering, code, rule-pack, component, material, report, secret, path, or protected standards data.</p>
+<p>Current June 7 evidence includes the repo policy in `docs/security/telemetry_policy.md`, a metadata-only guard helper in `core/security/telemetry_policy/`, and focused tests in `tests/security/test_telemetry_policy.py`. This evidence does not define a telemetry vendor, create cloud service behavior, choose an endpoint, add transport/upload/persistence behavior, select a consent UI or CLI, approve telemetry collection, or change lifecycle state. Any runtime telemetry implementation remains blocked on explicit human/security approval.
+</p></div></div></section>
+<section id="SEC-ED073-0028" class="chunk sec depth-4" data-kind="section" data-key="section:ad5c29f8430c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ad5c29f8430c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ad5c29f8430c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ad5c29f8430c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Verification |
+|---|---|---|
+| TEL-REQ-001 | Telemetry shall be disabled by default. An absent, unset, empty, unknown, unsupported, malformed, or incomplete telemetry setting shall resolve to disabled. | Covered for metadata input by `tests/security/test_telemetry_policy.py`; product config schema/storage remains `TBD`. |
+| TEL-REQ-002 | Telemetry shall not initialize network transport, background upload jobs, queues, or persistence for telemetry unless the user has explicitly opted in. | Metadata helper exposes no network/payload initialization and tests assert no network, endpoint, vendor, upload queue/job, persistence, or external client flags; runtime startup remains `TBD`. |
+| TEL-REQ-003 | Telemetry, if later implemented, shall require explicit human/security approval of the event allowlist before any event is collected. | Helper requires allowlist approval metadata before allowing a metadata event; actual approval records and event allowlist remain `TBD`. |
+| TEL-REQ-004 | Telemetry shall not collect or transmit private project models, code-specific rule data, private rule packs, private material or component libraries, generated reports, model hashes, local file paths, user secrets, credentials, or protected standards content. | Helper rejects forbidden field classes before payload construction; protected-content/privacy scan evidence is recorded in the June 7 package fan-in. |
+| TEL-REQ-005 | Opt-in state shall be represented as a local configuration value whose default is false. The exact storage location and schema are TBD until the implementation deliverable chooses the product config surface. | Metadata resolution tests cover fail-closed behavior; product config-default fixture remains `TBD` until schema exists. |
+| TEL-REQ-006 | Turning telemetry on shall require an affirmative user action distinct from accepting general terms, installing the software, opening a project, or running a solve. | UX/service acceptance test once UI or CLI surface exists. |
+| TEL-REQ-007 | Telemetry settings and diagnostics shall preserve the distinction between mechanics solved, user-rule checked, and human-approved states; telemetry shall not create professional approval or compliance claims. | Report/diagnostic text scan; status vocabulary test. |
+| TEL-REQ-008 | Telemetry-related diagnostics, if emitted, shall use the project diagnostic envelope when available and shall not include private payload content in messages. | Diagnostic schema test; privacy snapshot test. |
+| TEL-REQ-009 | Plugins, adapters, import/export paths, reports, and private-library mechanisms shall not bypass telemetry opt-in or privacy filters. | Adapter/plugin boundary tests when those surfaces exist. |
+| TEL-REQ-010 | If telemetry remains unimplemented in MVP, product behavior shall remain a no-op with tests proving no outbound telemetry behavior is reachable by default. | No-op smoke test; network-denial or transport-mock test. |
+</p></div></div></section>
+<section id="SEC-ED073-0029" class="chunk sec depth-4" data-kind="section" data-key="section:c0919a53a805" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0029</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0919a53a805" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0919a53a805" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0919a53a805" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Source | Applicable constraint |
+|---|---|
+| `docs/CONTRACT.md` OPS-K-PRIV-1 | Private project, material, component, and rule-pack data must not be transmitted or committed publicly by default. |
+| `docs/CONTRACT.md` OPS-K-PRIV-2 | Telemetry is off by default and cannot include private engineering or code data. |
+| `docs/CONTRACT.md` OPS-K-IP-1/2/3 | Protected standards text, tables, examples, copied formulas, and proprietary data must not enter public artifacts or telemetry payloads. |
+| `docs/CONTRACT.md` OPS-K-AUTH-1/2 | Software and agents must not claim certification, sealing, approval, authentication, or engineering code compliance for reliance. |
+| `docs/DIRECTIVE.md` Section 4.2 | Hidden cloud storage or telemetry of private project/rule data is out of scope. |
+| `docs/IP_AND_DATA_BOUNDARY.md` Sections 3 and 6 | Private rule packs, owner standards, company design bases, component catalogs, and project data remain user controlled. |
+| `execution/_Decomposition/SOFTWARE_DECOMP.md` SOW-037 and OI-008 | Telemetry, if implemented, is opt-in and privacy preserving; MVP default is no telemetry; any telemetry design requires explicit human approval. |
+</p></div></div></section>
+<section id="SEC-ED073-0030" class="chunk sec depth-4" data-kind="section" data-key="section:be272aa05347" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be272aa05347" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be272aa05347" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be272aa05347" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Current metadata-guard evidence plus minimum test coverage for any later implementation:</p>
+<p>| Test ID | Test intent | Expected result |
+|---|---|---|
+| TEL-TEST-001 | Resolve absent, empty, unknown, unsupported, malformed, or incomplete telemetry metadata. | Current helper tests show telemetry resolves disabled and initializes no transport, endpoint, vendor, upload queue/job, persistence, or external client. |
+| TEL-TEST-002 | Load malformed product config once product config schema exists. | Telemetry remains disabled and a validation finding is emitted. This is still `TBD` for product config storage/schema. |
+| TEL-TEST-003 | Attempt to emit telemetry before opt-in or without approved allowlist evidence. | Current helper tests show event attempts are blocked locally before payload construction. Runtime network-denial/startup tests remain future scope. |
+| TEL-TEST-004 | Attempt to include private model, rule-pack, material, component, report, path, hash, secret, protected, or professional-claim fields. | Current helper tests reject the field before payload construction. |
+| TEL-TEST-005 | Enable opt-in using an explicit approved config path. | Only approved allowlist fields are eligible for metadata-only allowance; actual consent surface and approval record remain `TBD`. |
+| TEL-TEST-006 | Exercise plugin, adapter, report, and private-library routes. | No route bypasses telemetry opt-in or payload filtering. Runtime route coverage remains future scope until those surfaces call the helper. |
+| TEL-TEST-007 | Scan telemetry messages and docs. | No certification, approval, seal, security-certification, or automatic code-compliance claims appear. |
+</p></div></div></section>
+<section id="SEC-ED073-0031" class="chunk sec depth-4" data-kind="section" data-key="section:60ff8260d5e5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0031</span> Current Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:60ff8260d5e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:60ff8260d5e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:60ff8260d5e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Evidence | Result |
+|---|---|
+| Worker B run record | `_run_records/TASK_RUN_2026-06-07_0141.md` records successful metadata-only helper implementation, 15 focused telemetry tests passing, and `git diff --check` passing for the worker write set. |
+| Package fan-in | `WORKING_ITEMS_RUN_2026-06-07_0150_TP-PKG12-LOCAL-PRIVACY-GUARDS-FANIN.md` records 44 passing PKG-12 privacy-guard tests and no runtime telemetry endpoint, vendor, transport, upload queue/job, persistence, schema, or approval artifact introduced. |
+| Policy document | `docs/security/telemetry_policy.md` documents default-off semantics, forbidden payload classes, the metadata-only helper boundary, and open decisions. |
+</p></div></div></section>
+<section id="SEC-ED073-0032" class="chunk sec depth-4" data-kind="section" data-key="section:609049ad26f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED073-0032</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:609049ad26f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:609049ad26f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:609049ad26f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The deliverable-local artifact set remains:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+- `_SEMANTIC.md`
+- `_SEMANTIC_LENSING.md`
+- `Dependencies.csv`
+- `_DEPENDENCIES.md`
+- `_run_records/*`</p>
+<p>Current external evidence artifacts are `docs/security/telemetry_policy.md`, `core/security/telemetry_policy/`, and `tests/security/test_telemetry_policy.py`. Future runtime telemetry, product config schema/storage, consent UI/CLI, endpoint/vendor/transport, retention, event allowlist/schema, and support-bundle implementation artifacts remain `TBD` and shall remain outside this setup folder unless dispatched by a separate sealed brief.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED073";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

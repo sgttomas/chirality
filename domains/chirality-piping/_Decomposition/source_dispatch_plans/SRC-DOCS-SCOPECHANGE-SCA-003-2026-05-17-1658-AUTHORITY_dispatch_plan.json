@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-SCOPECHANGE-SCA-003-2026-05-17-1658-AUTHORITY",
+  "source_prefix": "PD030",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-SCOPECHANGE-SCA-003-2026-05-17-1658-AUTHORITY_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/_ScopeChange/SCA-003_2026-05-17_1658/Authority.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD030-0001",
+      "line_start": 9,
+      "line_end": 33,
+      "target_section_ids": [
+        "SEC-PD030-0001",
+        "SEC-PD030-0002",
+        "SEC-PD030-0003",
+        "SEC-PD030-0004"
+      ],
+      "estimated_md_tokens": 191,
+      "contains_oversized_section": false
+    }
+  ]
+}

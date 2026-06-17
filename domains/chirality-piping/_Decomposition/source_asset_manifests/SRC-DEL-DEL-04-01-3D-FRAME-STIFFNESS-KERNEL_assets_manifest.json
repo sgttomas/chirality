@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL",
+  "source_doc_id": "SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL",
+  "source_prefix": "ED026",
+  "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/",
+  "catalog_rel_path": "@repo/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL-DATASHEET",
+      "expected_sha256": "6f64a42012fd04a3b704af3edebdc95b9dbdafb13d8a425d5ccd6a37c5a15c77",
+      "generated_line_start": 11,
+      "generated_line_end": 76,
+      "source_line_start": 1,
+      "source_line_end": 66,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL-GUIDANCE",
+      "expected_sha256": "dfcedecb8c02697b67dac8f4c81c6b33ce45cfeb5c0b0e39b844f107f23c4567",
+      "generated_line_start": 80,
+      "generated_line_end": 126,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -79
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL-PROCEDURE",
+      "expected_sha256": "020caf45087fff3186899cbce48c2812161d259fdc8fd1d647923756df496788",
+      "generated_line_start": 130,
+      "generated_line_end": 173,
+      "source_line_start": 1,
+      "source_line_end": 44,
+      "line_offset": -129
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-01-3D-FRAME-STIFFNESS-KERNEL-SPECIFICATION",
+      "expected_sha256": "5a91c5012c270d39136bf50f56f55851d0e9e1f073809943c0b443914a1d9d34",
+      "generated_line_start": 177,
+      "generated_line_end": 238,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -176
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

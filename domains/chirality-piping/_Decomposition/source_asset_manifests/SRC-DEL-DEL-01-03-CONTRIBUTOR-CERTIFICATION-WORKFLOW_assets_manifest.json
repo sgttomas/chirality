@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW",
+  "source_doc_id": "SRC-DEL-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW",
+  "source_prefix": "ED011",
+  "repo_rel_path": "execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/",
+  "catalog_rel_path": "@repo/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-GOVERNANCE-IP-BOUNDARY-AND-PROFESSIONAL-RESPONSIBILITY-1-WORKING-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW-DATASHEET",
+      "expected_sha256": "ad69141df7066196c84023753a49d2ada71884e23bedf20a3fa9ac6b405b5244",
+      "generated_line_start": 11,
+      "generated_line_end": 85,
+      "source_line_start": 1,
+      "source_line_end": 75,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-GOVERNANCE-IP-BOUNDARY-AND-PROFESSIONAL-RESPONSIBILITY-1-WORKING-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW-GUIDANCE",
+      "expected_sha256": "830676b31abcdd61c4c291aa62e31acbfc9adf2492038fbe6ff376114e0089ee",
+      "generated_line_start": 89,
+      "generated_line_end": 149,
+      "source_line_start": 1,
+      "source_line_end": 61,
+      "line_offset": -88
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-GOVERNANCE-IP-BOUNDARY-AND-PROFESSIONAL-RESPONSIBILITY-1-WORKING-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW-PROCEDURE",
+      "expected_sha256": "dcc12561ad5b304b40b882db72adaa34b80529a99a6b1309da885fd6247fecc0",
+      "generated_line_start": 153,
+      "generated_line_end": 230,
+      "source_line_start": 1,
+      "source_line_end": 78,
+      "line_offset": -152
+    },
+    {
+      "repo_rel_path": "execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-01-GOVERNANCE-IP-BOUNDARY-AND-PROFESSIONAL-RESPONSIBILITY-1-WORKING-DEL-01-03-CONTRIBUTOR-CERTIFICATION-WORKFLOW-SPECIFICATION",
+      "expected_sha256": "a418f3bbf1d148b1556cfc63da8c5d2a5bbae16b4135ae695613c631a5e4e2bf",
+      "generated_line_start": 234,
+      "generated_line_end": 297,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -233
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

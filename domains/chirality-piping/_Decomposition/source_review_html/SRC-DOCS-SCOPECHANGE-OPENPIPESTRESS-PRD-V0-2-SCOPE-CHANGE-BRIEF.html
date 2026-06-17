@@ -1,0 +1,971 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-SCOPECHANGE-OPENPIPESTRESS-PRD-V0-2-SCOPE-CHANGE-BRIEF - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>93</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-PD028-0001">Scope-Change Brief: `OpenPipeStress_PRD_v0.2.md` Compared to</a> <a href="#SEC-PD028-0002">Executive Summary</a> <a href="#SEC-PD028-0003">1. Product Identity Changed</a> <a href="#SEC-PD028-0004">Original PRD</a> <a href="#SEC-PD028-0005">New PRD</a> <a href="#SEC-PD028-0006">Developer Impact</a> <a href="#SEC-PD028-0007">2. The Authority Boundary Is Now More Explicit</a> <a href="#SEC-PD028-0008">Original PRD</a> <a href="#SEC-PD028-0009">New PRD</a> <a href="#SEC-PD028-0010">Developer Impact</a> <a href="#SEC-PD028-0011">3. A Schema-Backed Physical Model Is Now the Source of Truth</a> <a href="#SEC-PD028-0012">Original PRD</a> <a href="#SEC-PD028-0013">New PRD</a> <a href="#SEC-PD028-0014">Developer Impact</a> <a href="#SEC-PD028-0015">4. Design Knowledge and Constraints Were Added as First-Clas</a> <a href="#SEC-PD028-0016">Original PRD</a> <a href="#SEC-PD028-0017">New PRD</a> <a href="#SEC-PD028-0018">Developer Impact</a> <a href="#SEC-PD028-0019">5. GUI Scope Expanded from Stress Modeler to Design-Authorin</a> <a href="#SEC-PD028-0020">Original PRD</a> <a href="#SEC-PD028-0021">New PRD</a> <a href="#SEC-PD028-0022">Developer Impact</a> <a href="#SEC-PD028-0023">6. Agent-Assisted Model Operations Are Now in Scope</a> <a href="#SEC-PD028-0024">Original PRD</a> <a href="#SEC-PD028-0025">New PRD</a> <a href="#SEC-PD028-0026">Developer Impact</a> <a href="#SEC-PD028-0027">7. Model States and Analysis Runs Are New Core Entities</a> <a href="#SEC-PD028-0028">Original PRD</a> <a href="#SEC-PD028-0029">New PRD</a> <a href="#SEC-PD028-0030">Developer Impact</a> <a href="#SEC-PD028-0031">8. A Generic Comparison Tool Was Added</a> <a href="#SEC-PD028-0032">Original PRD</a> <a href="#SEC-PD028-0033">New PRD</a> <a href="#SEC-PD028-0034">Developer Impact</a> <a href="#SEC-PD028-0035">9. External Prover Workflow Added, but Heavy Integration Def</a> <a href="#SEC-PD028-0036">Original PRD</a> <a href="#SEC-PD028-0037">New PRD</a> <a href="#SEC-PD028-0038">Developer Impact</a> <a href="#SEC-PD028-0039">10. Formal Prover-Status Lifecycle Was Intentionally Not Add</a> <a href="#SEC-PD028-0040">Original PRD</a> <a href="#SEC-PD028-0041">New PRD</a> <a href="#SEC-PD028-0042">Developer Impact</a> <a href="#SEC-PD028-0043">11. Requirements Were Reorganized into More Implementation-S</a> <a href="#SEC-PD028-0044">Original PRD</a> <a href="#SEC-PD028-0045">New PRD</a> <a href="#SEC-PD028-0046">Developer Impact</a> <a href="#SEC-PD028-0047">12. Analytical Solver Scope Mostly Remains Intact</a> <a href="#SEC-PD028-0048">What Stayed the Same</a> <a href="#SEC-PD028-0049">What Changed</a> <a href="#SEC-PD028-0050">Developer Impact</a> <a href="#SEC-PD028-0051">13. Dynamic Analysis Was Deprioritized</a> <a href="#SEC-PD028-0052">Original PRD</a> <a href="#SEC-PD028-0053">New PRD</a> <a href="#SEC-PD028-0054">Developer Impact</a> <a href="#SEC-PD028-0055">14. Release Roadmap Changed Significantly</a> <a href="#SEC-PD028-0056">Original Roadmap</a> <a href="#SEC-PD028-0057">New Roadmap</a> <a href="#SEC-PD028-0058">Developer Impact</a> <a href="#SEC-PD028-0059">15. MVP Scope Expanded in Some Places and Narrowed in Others</a> <a href="#SEC-PD028-0060">Added to MVP</a> <a href="#SEC-PD028-0061">Still in MVP</a> <a href="#SEC-PD028-0062">Explicitly Excluded from MVP</a> <a href="#SEC-PD028-0063">Developer Impact</a> <a href="#SEC-PD028-0064">16. Reporting Changed from “Calculation Report” to Broader A</a> <a href="#SEC-PD028-0065">Original PRD</a> <a href="#SEC-PD028-0066">New PRD</a> <a href="#SEC-PD028-0067">Developer Impact</a> <a href="#SEC-PD028-0068">17. Validation Scope Now Includes Reproducibility and Compar</a> <a href="#SEC-PD028-0069">Original PRD</a> <a href="#SEC-PD028-0070">New PRD</a> <a href="#SEC-PD028-0071">Developer Impact</a> <a href="#SEC-PD028-0072">18. IP/Data Governance Remained Mostly Unchanged but Was Int</a> <a href="#SEC-PD028-0073">Original PRD</a> <a href="#SEC-PD028-0074">New PRD</a> <a href="#SEC-PD028-0075">Developer Impact</a> <a href="#SEC-PD028-0076">19. Personas Shifted Toward Designers and Agent-Enhanced Use</a> <a href="#SEC-PD028-0077">Original PRD</a> <a href="#SEC-PD028-0078">New PRD</a> <a href="#SEC-PD028-0079">Developer Impact</a> <a href="#SEC-PD028-0080">20. The New PRD Removed or Deemphasized Some Original Sectio</a> <a href="#SEC-PD028-0081">Developer Impact</a> <a href="#SEC-PD028-0082">21. Practical Backlog Changes for Developers</a> <a href="#SEC-PD028-0083">Add These New Epics</a> <a href="#SEC-PD028-0091">22. Defer These Until Later</a> <a href="#SEC-PD028-0092">23. Keep These from the Original PRD</a> <a href="#SEC-PD028-0093">24. One-Sentence Guidance for Future Agents</a></nav>
+<main>
+<section id="SEC-PD028-0001" class="chunk sec depth-1" data-kind="section" data-key="section:0bea67afbdfd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0001</span> Scope-Change Brief: `OpenPipeStress_PRD_v0.2.md` Compared to `PRD.md`</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bea67afbdfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bea67afbdfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bea67afbdfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Purpose:** This document describes how `OpenPipeStress_PRD_v0.2.md` differs from the earlier uploaded `PRD.md`, from the perspective of future software-development agents changing the scope of work for OpenPipeStress.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0002" class="chunk sec depth-2" data-kind="section" data-key="section:9ae8cb05efc4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0002</span> Executive Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9ae8cb05efc4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9ae8cb05efc4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9ae8cb05efc4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD does **not** remove the piping stress analytical engine. It preserves that ambition. The major change is that the product is no longer scoped as a standalone “free and open-source piping stress analysis platform,” as in the original PRD, but as an **analysis-grade piping design engine and stress-model authoring environment** that uses a full internal solver for design iteration and produces handoff-ready model data for downstream professional validation.</p>
+<p>The original PRD positioned the product around global piping flexibility and stress analysis. The new PRD positions it around design knowledge, schema-backed physical modeling, GUI/agent-assisted iteration, state comparison, and prover-tool handoff.</p>
+<p>For development planning, the main instruction is:</p>
+<p>&gt; Keep building the serious piping stress engine, but move the software architecture outward from “solver + GUI + reports” to “schema-backed design model + solver + GUI + model states + comparison + handoff workflow.”</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0003" class="chunk sec depth-1" data-kind="section" data-key="section:56de81c2307f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0003</span> 1. Product Identity Changed</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56de81c2307f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56de81c2307f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56de81c2307f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0004" class="chunk sec depth-2" data-kind="section" data-key="section:79e919eb7f22" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0004</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:79e919eb7f22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:79e919eb7f22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:79e919eb7f22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD describes OpenPipeStress as a:</p>
+<p>&gt; “Free and open-source piping stress analysis platform.”</p>
+<p>Its product vision is to become the leading transparent, auditable, code-neutral, open-source platform for piping flexibility and stress analysis. The core concept is “open mechanics in the solver; user-owned code knowledge in private data and rule packs.”
+</p></div></div></section>
+<section id="SEC-PD028-0005" class="chunk sec depth-2" data-kind="section" data-key="section:8a2589c922b2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0005</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a2589c922b2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a2589c922b2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a2589c922b2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD describes OpenPipeStress as an:</p>
+<p>&gt; “Analysis-grade piping design engine and stress-model authoring environment.”</p>
+<p>It explicitly says the product is **not intended to become an industry-standard professional stress-analysis platform** or replace authenticated commercial software. Instead, it operates earlier in the design workflow, where routes, supports, constraints, equipment interfaces, and design assumptions are still evolving.
+</p></div></div></section>
+<section id="SEC-PD028-0006" class="chunk sec depth-2" data-kind="section" data-key="section:fce48a002a31" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0006</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fce48a002a31" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fce48a002a31" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fce48a002a31" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future development should not treat the product as merely an open CAESAR II / AutoPIPE substitute. The implementation should support a broader design-authoring workflow:</p>
+<p>```text
+design knowledge
+→ physical model
+→ analytical model
+→ internal solve
+→ route/support iteration
+→ saved model states
+→ comparison
+→ handoff package
+→ external validation by professional tool
+```</p>
+<p>The solver remains core, but it is no longer the whole product.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0007" class="chunk sec depth-1" data-kind="section" data-key="section:688097b9174e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0007</span> 2. The Authority Boundary Is Now More Explicit</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:688097b9174e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:688097b9174e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:688097b9174e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0008" class="chunk sec depth-2" data-kind="section" data-key="section:3f8ff3775ace" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0008</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f8ff3775ace" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f8ff3775ace" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f8ff3775ace" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD already included non-goals and disclaimers: it would not claim ASME certification, would not replace the responsible engineer, and would not provide automatic legal interpretation of piping codes.
+</p></div></div></section>
+<section id="SEC-PD028-0009" class="chunk sec depth-2" data-kind="section" data-key="section:3f42a692c005" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0009</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f42a692c005" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f42a692c005" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f42a692c005" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD makes this distinction central to the product boundary:</p>
+<p>&gt; The product boundary is not defined by solver capability. OpenPipeStress shall have a full analytical engine. The boundary is defined by claim authority.</p>
+<p>The new governing distinction is:</p>
+<p>```text
+OpenPipeStress computes and helps design.
+The external prover tool validates for reliance.
+The responsible engineer accepts.
+```
+</p></div></div></section>
+<section id="SEC-PD028-0010" class="chunk sec depth-2" data-kind="section" data-key="section:a56901a110ec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0010</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a56901a110ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a56901a110ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a56901a110ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not weaken the solver because the tool is “non-authoritative.” The solver should still be correct, deterministic, benchmarked, and useful.</p>
+<p>But UI labels, reports, exports, comparison screens, agent output, and documentation must avoid language that implies final approval, certification, code compliance for reliance, or professional acceptance.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0011" class="chunk sec depth-1" data-kind="section" data-key="section:1f11a4c9d44d" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0011</span> 3. A Schema-Backed Physical Model Is Now the Source of Truth</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f11a4c9d44d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f11a4c9d44d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f11a4c9d44d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0012" class="chunk sec depth-2" data-kind="section" data-key="section:3e9763e0e600" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0012</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3e9763e0e600" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3e9763e0e600" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3e9763e0e600" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD required project files, a model tree, a property editor, GUI modeling, and round-trippable data, but it mostly described the model from the perspective of a stress-analysis input file.
+</p></div></div></section>
+<section id="SEC-PD028-0013" class="chunk sec depth-2" data-kind="section" data-key="section:bb64feb8e50a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0013</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb64feb8e50a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb64feb8e50a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb64feb8e50a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD makes the **schema-backed physical model** the central source of truth. It distinguishes three model layers:</p>
+<p>```text
+Physical model
+Analytical model
+Handoff model
+```</p>
+<p>The physical model is richer than the analytical model. It includes geometry, components, supports, constraints, equipment interfaces, provenance, unresolved assumptions, and design intent. The analytical model is the idealized solver-ready representation. The handoff model is the target-specific export representation.
+</p></div></div></section>
+<section id="SEC-PD028-0014" class="chunk sec depth-2" data-kind="section" data-key="section:6e765eec26ea" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0014</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e765eec26ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e765eec26ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e765eec26ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future agents should implement model architecture as layered data, not as one flat solver input schema.</p>
+<p>Required architecture shift:</p>
+<p>```text
+Old emphasis:
+  project file → solver model → results/report</p>
+<p>New emphasis:
+  physical model → analytical transform → solver run → result state
+                 → handoff transform → downstream package
+```</p>
+<p>The physical model should support design entities that may not directly appear in the solver, such as routing corridors, no-go volumes, supportable zones, design knowledge records, unresolved assumptions, and future agent operation rationale.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0015" class="chunk sec depth-1" data-kind="section" data-key="section:34e5f13b97a9" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0015</span> 4. Design Knowledge and Constraints Were Added as First-Class Product Scope</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:34e5f13b97a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:34e5f13b97a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:34e5f13b97a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0016" class="chunk sec depth-2" data-kind="section" data-key="section:e507a0d5b816" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0016</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e507a0d5b816" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e507a0d5b816" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e507a0d5b816" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD focused on materials, components, load cases, private rule packs, solver inputs, and reports. It did not define a broad design knowledge layer for routing, supportability, equipment interfaces, accessibility, constructability, or project constraints.
+</p></div></div></section>
+<section id="SEC-PD028-0017" class="chunk sec depth-2" data-kind="section" data-key="section:c216d2d7a895" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0017</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c216d2d7a895" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c216d2d7a895" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c216d2d7a895" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD adds a full **Design Knowledge** concept. It includes line lists, P&amp;ID-derived connectivity, equipment/nozzle locations, pipe specifications, routing corridors, no-go volumes, rack elevations, supportable structural zones, valve access, slope/drain/vent requirements, insulation/clearance envelopes, construction constraints, owner preferences, and stress-review triggers.</p>
+<p>It also adds a **constraint engine** for connectivity, endpoint matching, supportable span ranges, clearance envelopes, no-go volumes, slope requirements, drain/vent logic, valve access zones, supportable structure zones, and missing required data.
+</p></div></div></section>
+<section id="SEC-PD028-0018" class="chunk sec depth-2" data-kind="section" data-key="section:ef18967dcb25" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0018</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ef18967dcb25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ef18967dcb25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ef18967dcb25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add new domain modules beyond the stress solver:</p>
+<p>```text
+design_knowledge/
+constraints/
+routing_context/
+support_zones/
+equipment_interfaces/
+clearance_volumes/
+provenance/
+```</p>
+<p>The GUI should allow users to enter, inspect, and validate these constraints. Future route/support generation should consume this layer rather than inventing geometry directly.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0019" class="chunk sec depth-1" data-kind="section" data-key="section:91b59c4bcb26" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0019</span> 5. GUI Scope Expanded from Stress Modeler to Design-Authoring Environment</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91b59c4bcb26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91b59c4bcb26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91b59c4bcb26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0020" class="chunk sec depth-2" data-kind="section" data-key="section:440b8962b569" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0020</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:440b8962b569" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:440b8962b569" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:440b8962b569" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original GUI requirements included a 3D centerline viewport, model tree, property inspector, material and component library editors, load-case manager, rule-pack manager, solver console, results browser, and report generator.
+</p></div></div></section>
+<section id="SEC-PD028-0021" class="chunk sec depth-2" data-kind="section" data-key="section:8d0956fecf3d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0021</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d0956fecf3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d0956fecf3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d0956fecf3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new GUI scope adds:</p>
+<p>- operation history;
+- design knowledge panel;
+- constraint/warning panel;
+- model state and analysis run browser;
+- comparison browser;
+- comparison overlays;
+- routing corridors;
+- no-go volumes;
+- supportable zones;
+- model-state overlay comparisons.
+</p></div></div></section>
+<section id="SEC-PD028-0022" class="chunk sec depth-2" data-kind="section" data-key="section:bf64dbae7392" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0022</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf64dbae7392" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf64dbae7392" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf64dbae7392" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The GUI should not be designed only as a stress-input editor. It should be designed as an interactive model authoring environment.</p>
+<p>The viewport needs to support both engineering-analysis visualization and design-context visualization:</p>
+<p>```text
+Analysis overlays:
+  deformed shape
+  reactions
+  displacements
+  stresses
+  terminal loads</p>
+<p>Design overlays:
+  route corridors
+  forbidden zones
+  support zones
+  clearance envelopes
+  changed entities
+  comparison overlays
+```</p>
+<p>This likely affects scene graph design, entity selection, property binding, undo/redo, operation history, and model-state visualization.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0023" class="chunk sec depth-1" data-kind="section" data-key="section:e869e095643d" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0023</span> 6. Agent-Assisted Model Operations Are Now in Scope</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e869e095643d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e869e095643d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e869e095643d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0024" class="chunk sec depth-2" data-kind="section" data-key="section:62dc058e7ecc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0024</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:62dc058e7ecc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:62dc058e7ecc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:62dc058e7ecc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD did not meaningfully include agent-assisted design. It focused on human GUI workflow, rule packs, solver, validation, and reports.
+</p></div></div></section>
+<section id="SEC-PD028-0025" class="chunk sec depth-2" data-kind="section" data-key="section:96eeb202d192" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0025</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:96eeb202d192" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:96eeb202d192" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:96eeb202d192" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD adds an agent-enhanced workflow. Agents may propose route/support/model changes, but those proposals must become structured model operations, pass schema and constraint validation, be shown as diffs, and require user acceptance unless configured otherwise.
+</p></div></div></section>
+<section id="SEC-PD028-0026" class="chunk sec depth-2" data-kind="section" data-key="section:9dc3e0157d71" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0026</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9dc3e0157d71" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9dc3e0157d71" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9dc3e0157d71" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not let future agent features mutate the model through free-form text or hidden side effects.</p>
+<p>Implement an operation pipeline:</p>
+<p>```text
+agent/user instruction
+→ proposed model operation
+→ schema validation
+→ constraint validation
+→ diff preview
+→ user accept/reject
+→ committed model state
+```</p>
+<p>This means future development should introduce a formal operation model early, even before advanced agents exist.</p>
+<p>Example operation categories:</p>
+<p>```text
+add_route_segment
+move_node
+insert_bend
+add_support
+change_support_type
+modify_pipe_section
+add_no_go_volume
+assign_material
+revise_load_case
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0027" class="chunk sec depth-1" data-kind="section" data-key="section:ea8f0a3c6695" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0027</span> 7. Model States and Analysis Runs Are New Core Entities</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea8f0a3c6695" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea8f0a3c6695" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea8f0a3c6695" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0028" class="chunk sec depth-2" data-kind="section" data-key="section:1e3d3cb1a50c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0028</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e3d3cb1a50c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e3d3cb1a50c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e3d3cb1a50c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD required create/open/save/version projects and reproducible reports, but it did not define immutable model states or analysis runs as first-class entities.
+</p></div></div></section>
+<section id="SEC-PD028-0029" class="chunk sec depth-2" data-kind="section" data-key="section:bf476f0164ec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0029</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf476f0164ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf476f0164ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf476f0164ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD defines:</p>
+<p>- **Model State:** a named, immutable snapshot of a model at a point in time;
+- **Analysis Run:** a solver execution attached to a specific model state;
+- **Comparison:** a deterministic diff between two model states and/or two analysis runs.</p>
+<p>Each analysis run must bind to exact model state, solver version, settings, units, load cases, and rule-pack/library references.
+</p></div></div></section>
+<section id="SEC-PD028-0030" class="chunk sec depth-2" data-kind="section" data-key="section:340a769f35cd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0030</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:340a769f35cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:340a769f35cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:340a769f35cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The persistence model needs to support immutable snapshots and run records, not just mutable project files.</p>
+<p>Add concepts like:</p>
+<p>```text
+Project
+  ModelState[]
+    PhysicalModel
+    AnalyticalInputBasis
+    Assumptions
+    Warnings
+    Hash</p>
+<p>  AnalysisRun[]
+    model_state_id
+    solver_version
+    settings
+    load_cases
+    diagnostics
+    results
+    results_hash
+```</p>
+<p>This also affects report generation, reproducibility, comparison, undo/redo, export, and validation.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0031" class="chunk sec depth-1" data-kind="section" data-key="section:981b72754f26" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0031</span> 8. A Generic Comparison Tool Was Added</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:981b72754f26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:981b72754f26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:981b72754f26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0032" class="chunk sec depth-2" data-kind="section" data-key="section:4701df7cf84c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0032</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4701df7cf84c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4701df7cf84c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4701df7cf84c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD included validation benchmarks, report reproducibility, and possible commercial software comparison as an open question, but it did not include a product feature for comparing two model states or analysis result sets.
+</p></div></div></section>
+<section id="SEC-PD028-0033" class="chunk sec depth-2" data-kind="section" data-key="section:cd2e2ce6c5ec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0033</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd2e2ce6c5ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd2e2ce6c5ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd2e2ce6c5ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD adds a generic deterministic comparison tool. It compares two model states and optionally two analysis runs using stable IDs, manual mappings, unit-normalized quantities, and tolerance profiles. It is explicitly **not** a comprehensive external-prover result ingestion platform in the MVP.
+</p></div></div></section>
+<section id="SEC-PD028-0034" class="chunk sec depth-2" data-kind="section" data-key="section:326c0507fe56" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0034</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:326c0507fe56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:326c0507fe56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:326c0507fe56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Add a `compare` subsystem with these responsibilities:</p>
+<p>```text
+state diff:
+  added / removed / changed entities
+  geometry changes
+  topology changes
+  support changes
+  load changes
+  material changes
+  solver-setting changes
+  warning/assumption changes</p>
+<p>result diff:
+  displacement deltas
+  rotation deltas
+  force/moment deltas
+  support reaction deltas
+  equipment terminal load deltas
+  stress/result deltas
+  diagnostics deltas
+```</p>
+<p>Entity mapping must support at least:</p>
+<p>```text
+stable ID match
+manual user mapping
+unmatched / added / deleted classification
+```</p>
+<p>Future external result comparison should be accommodated architecturally, but not implemented as an MVP dependency.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0035" class="chunk sec depth-1" data-kind="section" data-key="section:496826cb0416" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0035</span> 9. External Prover Workflow Added, but Heavy Integration Deferred</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:496826cb0416" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:496826cb0416" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:496826cb0416" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0036" class="chunk sec depth-2" data-kind="section" data-key="section:a598da9ec384" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0036</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a598da9ec384" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a598da9ec384" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a598da9ec384" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Import/export was a secondary goal or “Could” requirement. CAD/BIM/CAE exchange and commercial software comparisons were future or open-ended topics.
+</p></div></div></section>
+<section id="SEC-PD028-0037" class="chunk sec depth-2" data-kind="section" data-key="section:311a463e6f6e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0037</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:311a463e6f6e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:311a463e6f6e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:311a463e6f6e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD makes downstream handoff central. It defines an **external prover tool** as an accepted professional stress-analysis platform used outside OpenPipeStress to validate results for project reliance. It also defines a handoff package containing canonical model data, units manifest, entity IDs, library references, rule references, unresolved assumptions, warnings, hashes, and target mapping metadata.</p>
+<p>However, the MVP explicitly does **not** include comprehensive external commercial tool result ingestion, forced prover status lifecycle, or automatic professional acceptance records.
+</p></div></div></section>
+<section id="SEC-PD028-0038" class="chunk sec depth-2" data-kind="section" data-key="section:b668481371ba" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0038</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b668481371ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b668481371ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b668481371ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement export/handoff infrastructure before building target-specific commercial-tool parsers.</p>
+<p>Near-term scope:</p>
+<p>```text
+canonical schema export
+handoff manifest
+model hash
+units manifest
+entity ID manifest
+library/rule references
+warnings
+unresolved assumptions
+target mapping metadata where known
+unsupported-target flags
+```</p>
+<p>Deferred scope:</p>
+<p>```text
+CAESAR II output parser
+AutoPIPE output parser
+automatic prover validation status
+formal approval lifecycle
+commercial-tool result reconciliation
+```</p>
+<p>Future agents should not overbuild external integration prematurely.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0039" class="chunk sec depth-1" data-kind="section" data-key="section:fa7388d0c81f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0039</span> 10. Formal Prover-Status Lifecycle Was Intentionally Not Added</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fa7388d0c81f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fa7388d0c81f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fa7388d0c81f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0040" class="chunk sec depth-2" data-kind="section" data-key="section:5b0890337c2f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0040</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b0890337c2f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b0890337c2f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b0890337c2f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD had no prover-status lifecycle. It did have report signoff, disclaimers, and professional limitations.
+</p></div></div></section>
+<section id="SEC-PD028-0041" class="chunk sec depth-2" data-kind="section" data-key="section:be1b763f3380" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0041</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be1b763f3380" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be1b763f3380" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be1b763f3380" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD explicitly says the MVP shall **not** force a formal prover-status vocabulary or lifecycle. Instead, users can use model names, state names, tags, notes, external reference fields, attachments/links, and comparison reports.
+</p></div></div></section>
+<section id="SEC-PD028-0042" class="chunk sec depth-2" data-kind="section" data-key="section:63ab7915734c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0042</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:63ab7915734c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:63ab7915734c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:63ab7915734c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not build a rigid approval workflow in the MVP.</p>
+<p>Implement flexible metadata instead:</p>
+<p>```text
+state.name
+state.tags[]
+state.notes[]
+state.external_references[]
+comparison.name
+report.notes
+```</p>
+<p>Avoid hard-coded statuses like:</p>
+<p>```text
+PROVER_VALIDATED
+APPROVED
+CERTIFIED
+CODE_COMPLIANT
+READY_FOR_CONSTRUCTION
+```</p>
+<p>Those labels would create professional-boundary risk and are contrary to the chosen scope.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0043" class="chunk sec depth-1" data-kind="section" data-key="section:5c4114c122bb" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0043</span> 11. Requirements Were Reorganized into More Implementation-Specific Domains</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c4114c122bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c4114c122bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c4114c122bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0044" class="chunk sec depth-2" data-kind="section" data-key="section:0eaed2c1a170" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0044</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0eaed2c1a170" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0eaed2c1a170" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0eaed2c1a170" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD used a single functional requirements table with FR-001 through FR-025. It covered project files, units, modeling, solver, rule packs, GUI, reports, components, nonlinear supports, import/export, dynamic modules, and local FEA export.
+</p></div></div></section>
+<section id="SEC-PD028-0045" class="chunk sec depth-2" data-kind="section" data-key="section:89bf4f661228" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0045</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89bf4f661228" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89bf4f661228" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89bf4f661228" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD reorganizes requirements into domain-specific groups:</p>
+<p>```text
+FR-MOD   model and schema
+FR-KNOW  design knowledge and constraints
+FR-GUI   graphical interface
+FR-SOL   analytical engine
+FR-RULE  rule packs and private data
+FR-CMP   model state / analysis run / comparison
+FR-HAND  handoff and export
+FR-AGENT agent-assisted design
+FR-REP   reporting
+```
+</p></div></div></section>
+<section id="SEC-PD028-0046" class="chunk sec depth-2" data-kind="section" data-key="section:6f2c73755ba4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0046</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f2c73755ba4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f2c73755ba4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f2c73755ba4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future work breakdown should follow these subsystem boundaries. The new PRD is better suited for modular architecture and backlog creation.</p>
+<p>A likely repository/module structure should now include more than the original `core`, `rules`, `gui`, `reports`, and `validation` directories. It should also include concepts such as:</p>
+<p>```text
+schema/
+physical_model/
+analytical_model/
+model_transform/
+design_knowledge/
+constraints/
+operations/
+states/
+runs/
+comparison/
+handoff/
+agents/
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0047" class="chunk sec depth-1" data-kind="section" data-key="section:58b95e17bd3d" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0047</span> 12. Analytical Solver Scope Mostly Remains Intact</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:58b95e17bd3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:58b95e17bd3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:58b95e17bd3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0048" class="chunk sec depth-2" data-kind="section" data-key="section:e2614cf274c2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0048</span> What Stayed the Same</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2614cf274c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2614cf274c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2614cf274c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD retains the core solver commitments from the original PRD:</p>
+<p>- six-degree-of-freedom nodes;
+- 3D frame/line-element analysis;
+- straight pipe elements;
+- rigid elements;
+- linear supports/restraints;
+- load cases;
+- weight, thermal, pressure metadata, imposed displacement;
+- force/moment recovery;
+- fundamental stress recovery;
+- bends, branches, valves, flanges, reducers, expansion joints;
+- nonlinear restraints;
+- singularity and ill-conditioning diagnostics.
+</p></div></div></section>
+<section id="SEC-PD028-0049" class="chunk sec depth-2" data-kind="section" data-key="section:ef12ae49b9c1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0049</span> What Changed</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ef12ae49b9c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ef12ae49b9c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ef12ae49b9c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The solver is now explicitly embedded in a broader design workflow. The new PRD describes the analytical model as being derived from the physical model, and results are attached to analysis runs tied to immutable model states.
+</p></div></div></section>
+<section id="SEC-PD028-0050" class="chunk sec depth-2" data-kind="section" data-key="section:5ca37ae3b062" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0050</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ca37ae3b062" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ca37ae3b062" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ca37ae3b062" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Do not interpret v0.2 as reducing solver seriousness.</p>
+<p>The correct implementation priority is:</p>
+<p>```text
+solver correctness remains mandatory
++
+solver inputs/outputs must be state-bound, traceable, comparable, and exportable
+```</p>
+<p>The analytical engine should be developed with stable serialization, result schemas, reproducibility, comparison, and handoff in mind from the beginning.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0051" class="chunk sec depth-1" data-kind="section" data-key="section:9d2f9a88d35c" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0051</span> 13. Dynamic Analysis Was Deprioritized</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d2f9a88d35c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d2f9a88d35c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d2f9a88d35c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0052" class="chunk sec depth-2" data-kind="section" data-key="section:65f5c718af40" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0052</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:65f5c718af40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:65f5c718af40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:65f5c718af40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original post-MVP scope included dynamic modules: modal, response spectrum, harmonic, and time-history support. The functional requirements table also included dynamic analysis as a “Could” requirement.
+</p></div></div></section>
+<section id="SEC-PD028-0053" class="chunk sec depth-2" data-kind="section" data-key="section:f642d006914f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0053</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f642d006914f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f642d006914f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f642d006914f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD does not emphasize dynamic analysis in the main roadmap. It says later modules may add dynamics, but the release milestones are now focused on schema, solver, GUI, states/runs/comparison, rule packs/private libraries, piping components/nonlinear supports, design knowledge/handoff, and agent-assisted design.
+</p></div></div></section>
+<section id="SEC-PD028-0054" class="chunk sec depth-2" data-kind="section" data-key="section:fd1137b64874" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0054</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd1137b64874" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd1137b64874" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd1137b64874" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Dynamic analysis should be deferred unless specifically reprioritized.</p>
+<p>Near-term development should favor:</p>
+<p>```text
+state/run infrastructure
+comparison
+physical-to-analytical transformation
+handoff manifests
+design constraints
+GUI model authoring
+```</p>
+<p>over:</p>
+<p>```text
+modal analysis
+response spectrum
+harmonic response
+time history
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0055" class="chunk sec depth-1" data-kind="section" data-key="section:0b46a54ac17b" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0055</span> 14. Release Roadmap Changed Significantly</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0b46a54ac17b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0b46a54ac17b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0b46a54ac17b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0056" class="chunk sec depth-2" data-kind="section" data-key="section:4065ffe88cfd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0056</span> Original Roadmap</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4065ffe88cfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4065ffe88cfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4065ffe88cfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original release path was:</p>
+<p>```text
+R0 Architecture Prototype
+R1 Core Solver MVP
+R2 GUI MVP
+R3 Rule-Pack and Private Libraries
+R4 Piping Components and Nonlinear Supports
+R5 Engineering Beta
+```
+</p></div></div></section>
+<section id="SEC-PD028-0057" class="chunk sec depth-2" data-kind="section" data-key="section:2792578fd8e5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0057</span> New Roadmap</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2792578fd8e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2792578fd8e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2792578fd8e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new roadmap is:</p>
+<p>```text
+R0 Schema and Solver Prototype
+R1 Core Analytical Engine MVP
+R2 GUI and Physical Model MVP
+R3 States, Runs, and Generic Comparison
+R4 Rule Packs and Private Libraries
+R5 Piping Components and Nonlinear Supports
+R6 Design Knowledge and Handoff Beta
+R7 Agent-Assisted Design and Candidate Generation
+```
+</p></div></div></section>
+<section id="SEC-PD028-0058" class="chunk sec depth-2" data-kind="section" data-key="section:b974b4382756" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0058</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b974b4382756" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b974b4382756" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b974b4382756" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Two new major releases were inserted:</p>
+<p>```text
+R3: states/runs/comparison
+R6: design knowledge/handoff
+R7: agents/candidate generation
+```</p>
+<p>Rule packs move later relative to comparison. The project should not rush directly from solver/GUI into rule packs and components without establishing model-state persistence and comparison infrastructure.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0059" class="chunk sec depth-1" data-kind="section" data-key="section:f87c27f61cb6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0059</span> 15. MVP Scope Expanded in Some Places and Narrowed in Others</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f87c27f61cb6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f87c27f61cb6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f87c27f61cb6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0060" class="chunk sec depth-2" data-kind="section" data-key="section:bb2622df59ac" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0060</span> Added to MVP</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb2622df59ac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb2622df59ac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb2622df59ac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new MVP adds:</p>
+<p>- canonical project schema;
+- local-first storage;
+- named immutable model states;
+- analysis runs tied to states;
+- basic model-state comparison;
+- basic analysis-run comparison;
+- export of canonical schema-compliant model package;
+- IP/data-boundary notices;
+- professional-boundary notices.
+</p></div></div></section>
+<section id="SEC-PD028-0061" class="chunk sec depth-2" data-kind="section" data-key="section:edcc9ae15109" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0061</span> Still in MVP</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:edcc9ae15109" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:edcc9ae15109" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:edcc9ae15109" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The following remain in MVP:</p>
+<p>- 3D six-degree-of-freedom nodes;
+- straight pipe/beam elements;
+- rigid elements;
+- anchors and linear restraints;
+- weight loads;
+- thermal loads;
+- pressure metadata;
+- imposed displacements;
+- linear static solver;
+- force/moment recovery;
+- fundamental stress recovery;
+- basic GUI modeler;
+- private rule-pack schema with non-code examples;
+- missing-data blockers;
+- report generation;
+- validation suite.
+</p></div></div></section>
+<section id="SEC-PD028-0062" class="chunk sec depth-2" data-kind="section" data-key="section:d6b6fffb3027" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0062</span> Explicitly Excluded from MVP</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d6b6fffb3027" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d6b6fffb3027" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d6b6fffb3027" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD explicitly excludes:</p>
+<p>- comprehensive external commercial tool result ingestion;
+- forced prover-status lifecycle;
+- protected standards data;
+- automatic professional acceptance records;
+- advanced nonlinear/dynamic modules unless otherwise prioritized.
+</p></div></div></section>
+<section id="SEC-PD028-0063" class="chunk sec depth-2" data-kind="section" data-key="section:795238a22fa6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0063</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:795238a22fa6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:795238a22fa6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:795238a22fa6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The MVP is now more architecture-heavy. It needs durable data modeling and reproducibility earlier. The main added implementation burden is not numerical; it is model lifecycle infrastructure.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0064" class="chunk sec depth-1" data-kind="section" data-key="section:3e1891189707" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0064</span> 16. Reporting Changed from “Calculation Report” to Broader Audit/Report Package</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3e1891189707" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3e1891189707" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3e1891189707" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0065" class="chunk sec depth-2" data-kind="section" data-key="section:a9f61b40feb9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0065</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9f61b40feb9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9f61b40feb9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9f61b40feb9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD focused on calculation reports with model summaries, load cases, rule-pack checksums, warnings, results, and signoff blocks.
+</p></div></div></section>
+<section id="SEC-PD028-0066" class="chunk sec depth-2" data-kind="section" data-key="section:b458f8e603e8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0066</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b458f8e603e8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b458f8e603e8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b458f8e603e8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD expands reports to include:</p>
+<p>- model summary reports;
+- analysis result reports;
+- warning and assumption reports;
+- user-rule check reports;
+- model state comparison reports;
+- analysis run comparison reports;
+- handoff package manifests.</p>
+<p>It also includes a stronger report notice identifying the software as decision-support software and stating that it does not certify, seal, approve, authenticate, or determine code compliance for professional reliance.
+</p></div></div></section>
+<section id="SEC-PD028-0067" class="chunk sec depth-2" data-kind="section" data-key="section:6f2c94656ece" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0067</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f2c94656ece" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f2c94656ece" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f2c94656ece" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reports should be generated from state/run/comparison/handoff records, not only from the current mutable project model.</p>
+<p>Report generator inputs should include:</p>
+<p>```text
+model_state_id
+analysis_run_id
+comparison_id optional
+handoff_package_id optional
+rule_pack checksum
+library references
+warnings
+assumptions
+hashes
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0068" class="chunk sec depth-1" data-kind="section" data-key="section:bdd3118d78e6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0068</span> 17. Validation Scope Now Includes Reproducibility and Comparison Determinism</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdd3118d78e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdd3118d78e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdd3118d78e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0069" class="chunk sec depth-2" data-kind="section" data-key="section:e5e53c26bf8a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0069</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e5e53c26bf8a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e5e53c26bf8a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e5e53c26bf8a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD included solver benchmarks, stress recovery benchmarks, regression testing, and a validation manual.
+</p></div></div></section>
+<section id="SEC-PD028-0070" class="chunk sec depth-2" data-kind="section" data-key="section:7827ec39a916" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0070</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7827ec39a916" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7827ec39a916" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7827ec39a916" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD keeps those but adds tests for:</p>
+<p>- schema round-trip;
+- model state hashing;
+- analysis run reproducibility;
+- comparison output determinism;
+- report reproducibility.</p>
+<p>It also reframes external professional tool comparisons as optional validation evidence, not automatic professional acceptance.
+</p></div></div></section>
+<section id="SEC-PD028-0071" class="chunk sec depth-2" data-kind="section" data-key="section:4cff831d7bfd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0071</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4cff831d7bfd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4cff831d7bfd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4cff831d7bfd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CI/test planning must cover persistence and lifecycle behavior, not just solver math.</p>
+<p>Add regression tests such as:</p>
+<p>```text
+same model state + same solver version → same result hash
+same pair of states + same mapping/tolerances → same comparison output
+schema serialize/deserialize → no loss of typed data
+report generation from same state/run → reproducible report metadata
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0072" class="chunk sec depth-1" data-kind="section" data-key="section:cde0e917a22a" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0072</span> 18. IP/Data Governance Remained Mostly Unchanged but Was Integrated More Strongly</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cde0e917a22a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cde0e917a22a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cde0e917a22a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0073" class="chunk sec depth-2" data-kind="section" data-key="section:05d8d56befcf" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0073</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05d8d56befcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05d8d56befcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05d8d56befcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original PRD already had strong IP/data restrictions: no ASME text, tables, B31J content, B16/B36 tables, protected examples, or commercial software material without permission.
+</p></div></div></section>
+<section id="SEC-PD028-0074" class="chunk sec depth-2" data-kind="section" data-key="section:616b0a902085" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0074</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:616b0a902085" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:616b0a902085" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:616b0a902085" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD retains those requirements and aligns them with the separate IP/Data Boundary Policy, which states that the public repository may contain open solver algorithms, schemas, blank templates, invented example data, permissively licensed data, validation benchmarks, and private-library import mechanisms, but must not contain protected standards data, proprietary vendor catalogs without rights, commercial software examples without permission, private rule packs, owner standards, or protected code-specific acceptance criteria.
+</p></div></div></section>
+<section id="SEC-PD028-0075" class="chunk sec depth-2" data-kind="section" data-key="section:cde9178be687" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0075</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cde9178be687" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cde9178be687" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cde9178be687" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No major scope reversal here. Continue implementing private-by-default rule packs, libraries, provenance metadata, and protected-content quarantine workflows.</p>
+<p>The difference is that provenance and private-data handling now also apply to:</p>
+<p>```text
+design knowledge
+constraints
+handoff packages
+comparison reports
+agent rationale
+external references
+```</p>
+<p>not only materials, components, and rule packs.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0076" class="chunk sec depth-1" data-kind="section" data-key="section:75a2b7651afc" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0076</span> 19. Personas Shifted Toward Designers and Agent-Enhanced Users</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:75a2b7651afc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:75a2b7651afc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:75a2b7651afc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0077" class="chunk sec depth-2" data-kind="section" data-key="section:8487674d8c8d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0077</span> Original PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8487674d8c8d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8487674d8c8d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8487674d8c8d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The original personas were:</p>
+<p>- piping stress engineer;
+- owner-operator reviewer;
+- engineering company administrator;
+- open-source contributor;
+- educator/researcher.
+</p></div></div></section>
+<section id="SEC-PD028-0078" class="chunk sec depth-2" data-kind="section" data-key="section:a5d4160b22f0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0078</span> New PRD</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a5d4160b22f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a5d4160b22f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a5d4160b22f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new personas include:</p>
+<p>- piping designer / layout engineer;
+- piping stress engineer;
+- owner-operator reviewer;
+- engineering company administrator;
+- open-source contributor;
+- agent-enhanced user.</p>
+<p>The educator/researcher persona is no longer a primary persona, though educational/research examples remain a secondary goal.
+</p></div></div></section>
+<section id="SEC-PD028-0079" class="chunk sec depth-2" data-kind="section" data-key="section:66f791517f15" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0079</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66f791517f15" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66f791517f15" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66f791517f15" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+UX should support design iteration, not just stress-calculation report preparation.</p>
+<p>Prioritize workflows like:</p>
+<p>```text
+create route
+place supports
+inspect constraints
+run analysis
+modify support
+save new state
+compare before/after
+export handoff
+```</p>
+<p>not only:</p>
+<p>```text
+build stress model
+run code check
+issue calculation report
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0080" class="chunk sec depth-1" data-kind="section" data-key="section:ead79b8073ba" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0080</span> 20. The New PRD Removed or Deemphasized Some Original Sections</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ead79b8073ba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ead79b8073ba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ead79b8073ba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The new PRD does not carry over the original sections on:</p>
+<p>- detailed platform/technical architecture directory layout;
+- performance requirements;
+- accessibility and usability requirements;
+- explicit source notes and external ASME reference pages;
+- detailed technology selection criteria.</p>
+<p>This does not necessarily mean those requirements are invalid. It means v0.2 focused on product scope and workflow realignment.
+</p></div></div></section>
+<section id="SEC-PD028-0081" class="chunk sec depth-2" data-kind="section" data-key="section:572afcb63331" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0081</span> Developer Impact</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:572afcb63331" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:572afcb63331" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:572afcb63331" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future agents should not assume performance, accessibility, or architecture concerns are intentionally abandoned. They should be reintroduced in a future technical architecture document or v0.3 PRD.</p>
+<p>Recommended follow-up artifacts:</p>
+<p>```text
+TECHNICAL_ARCHITECTURE.md
+DATA_MODEL_SPEC.md
+COMPARISON_ENGINE_SPEC.md
+HANDOFF_PACKAGE_SPEC.md
+GUI_UX_REQUIREMENTS.md
+PERFORMANCE_REQUIREMENTS.md
+ACCESSIBILITY_REQUIREMENTS.md
+AGENT_OPERATION_SPEC.md
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0082" class="chunk sec depth-1" data-kind="section" data-key="section:266fd31e9a06" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0082</span> 21. Practical Backlog Changes for Developers</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:266fd31e9a06" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:266fd31e9a06" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:266fd31e9a06" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0083" class="chunk sec depth-2" data-kind="section" data-key="section:2d2621933816" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-PD028-0083</span> Add These New Epics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2d2621933816" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2d2621933816" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2d2621933816" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-PD028-0084" class="chunk sec depth-3" data-kind="section" data-key="section:ced1ee4348b8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0084</span> Epic 1: Canonical Physical Model Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ced1ee4348b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ced1ee4348b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ced1ee4348b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement a schema that can represent:</p>
+<p>```text
+physical entities
+analytical entities
+constraints
+design knowledge
+provenance
+warnings
+assumptions
+external references
+stable IDs
+```
+</p></div></div></section>
+<section id="SEC-PD028-0085" class="chunk sec depth-3" data-kind="section" data-key="section:a4c58b3849a6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0085</span> Epic 2: Physical-to-Analytical Transformation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4c58b3849a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4c58b3849a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4c58b3849a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement deterministic transformation from physical model to solver model, including warnings when physical design data cannot be represented analytically.
+</p></div></div></section>
+<section id="SEC-PD028-0086" class="chunk sec depth-3" data-kind="section" data-key="section:70b7b3ac01cd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0086</span> Epic 3: Model States and Analysis Runs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:70b7b3ac01cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:70b7b3ac01cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:70b7b3ac01cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement immutable snapshots, result records, hashes, and reproducibility metadata.
+</p></div></div></section>
+<section id="SEC-PD028-0087" class="chunk sec depth-3" data-kind="section" data-key="section:4598f5e43144" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0087</span> Epic 4: Generic Comparison Engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4598f5e43144" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4598f5e43144" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4598f5e43144" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement deterministic diffs for model states and analysis runs, including stable-ID mapping, manual mapping, tolerance profiles, and tabular/graphical output.
+</p></div></div></section>
+<section id="SEC-PD028-0088" class="chunk sec depth-3" data-kind="section" data-key="section:890e7c9765c1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0088</span> Epic 5: Handoff Package Generator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:890e7c9765c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:890e7c9765c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:890e7c9765c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement canonical model export, manifests, hashes, warnings, unresolved assumptions, entity ID mappings, and target mapping metadata.
+</p></div></div></section>
+<section id="SEC-PD028-0089" class="chunk sec depth-3" data-kind="section" data-key="section:05c17a09d2d4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0089</span> Epic 6: Design Knowledge and Constraint Engine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05c17a09d2d4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05c17a09d2d4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05c17a09d2d4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement routing corridors, no-go volumes, support zones, clearance checks, equipment interfaces, and explicit design-knowledge records.
+</p></div></div></section>
+<section id="SEC-PD028-0090" class="chunk sec depth-3" data-kind="section" data-key="section:1e6e633d50f7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-PD028-0090</span> Epic 7: Agent Operation Framework</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e6e633d50f7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e6e633d50f7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e6e633d50f7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Implement structured operations, schema validation, diff preview, user acceptance, rationale capture, and audit trail.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0091" class="chunk sec depth-1" data-kind="section" data-key="section:3064ffa7ecd7" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0091</span> 22. Defer These Until Later</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3064ffa7ecd7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3064ffa7ecd7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3064ffa7ecd7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future agents should avoid pulling these into the MVP unless the project owner explicitly reprioritizes them:</p>
+<p>```text
+commercial stress software output parsers
+automatic external prover comparison
+formal prover lifecycle/status enforcement
+automatic professional acceptance records
+dynamic analysis modules
+comprehensive CAD/BIM integration
+advanced route optimization
+automatic code-compliance claims
+cloud-dependent workflows
+```</p>
+<p>The new PRD explicitly defers comprehensive external-prover result ingestion and forced prover status, while preserving future external result states as an architectural possibility.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0092" class="chunk sec depth-1" data-kind="section" data-key="section:7a35b1743232" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0092</span> 23. Keep These from the Original PRD</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a35b1743232" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a35b1743232" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a35b1743232" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Future agents should **not** discard the following original scope. The new PRD intentionally preserves it:</p>
+<p>```text
+full analytical piping stress engine
+3D frame/line-element solver
+six-degree-of-freedom nodes
+pipe, bend, branch, rigid component, reducer, expansion joint concepts
+linear and nonlinear supports
+fundamental stress recovery
+load cases and combinations
+user-supplied rule packs
+private material/component libraries
+unit safety
+no silent engineering defaults
+IP/data separation
+validation benchmarks
+auditable reports
+local-first operation
+```</p>
+<p>The project still follows the original intent of open mechanics and private code data, but now adds design-engine scope, state comparison, handoff, and external professional validation boundaries.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-PD028-0093" class="chunk sec depth-1" data-kind="section" data-key="section:061fe01a4e39" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-PD028-0093</span> 24. One-Sentence Guidance for Future Agents</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:061fe01a4e39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:061fe01a4e39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:061fe01a4e39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When changing development scope, future agents should treat `OpenPipeStress_PRD_v0.2.md` as shifting the project from:</p>
+<p>&gt; **an open piping stress analysis platform**</p>
+<p>to:</p>
+<p>&gt; **an analysis-grade piping design engine with a full stress-analysis core, schema-backed physical model, GUI/agent-assisted iteration, immutable model states, deterministic comparison, and handoff packages for downstream professional validation.**</p>
+<p>The solver remains essential; what changed is the surrounding product architecture and the authority boundary.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "PD028";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,452 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-04-03-LINEAR-SUPPORT-AND-RESTRAINT-MODELS - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>30</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED028-0001">Source Pack: SRC-DEL-DEL-04-03-LINEAR-SUPPORT-AND-RESTRAINT-</a> <a href="#SEC-ED028-0002">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED028-0009">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED028-0017">Component: execution/PKG-04_Solver Core and Numerical Method</a> <a href="#SEC-ED028-0024">Component: execution/PKG-04_Solver Core and Numerical Method</a></nav>
+<main>
+<section id="SEC-ED028-0001" class="chunk sec depth-1" data-kind="section" data-key="section:cb747abccadd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED028-0001</span> Source Pack: SRC-DEL-DEL-04-03-LINEAR-SUPPORT-AND-RESTRAINT-MODELS</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cb747abccadd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cb747abccadd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cb747abccadd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-03_Linear support and restraint models/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED028-0002" class="chunk sec depth-2" data-kind="section" data-key="section:969a65eb3a84" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED028-0002</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-03_Linear support and restraint models/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:969a65eb3a84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:969a65eb3a84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:969a65eb3a84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0003" class="chunk sec depth-3" data-kind="section" data-key="section:76f7fd76c378" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED028-0003</span> Datasheet: DEL-04-03 Linear support and restraint models</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:76f7fd76c378" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:76f7fd76c378" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:76f7fd76c378" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0004" class="chunk sec depth-4" data-kind="section" data-key="section:fc8e40672600" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fc8e40672600" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fc8e40672600" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fc8e40672600" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-04-03 |
+| Package ID | PKG-04 |
+| Package name | Solver Core and Numerical Methods |
+| Type | BACKEND_FEATURE_SLICE |
+| Scope item | SOW-011 |
+| Objective | OBJ-003 |
+| Context envelope | M |
+| Anticipated artifacts | support model; linear restraint tests |
+</p></div></div></section>
+<section id="SEC-ED028-0005" class="chunk sec depth-4" data-kind="section" data-key="section:97851bf3b160" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:97851bf3b160" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:97851bf3b160" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:97851bf3b160" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current value | Source |
+|---|---|---|
+| Covered support families | Anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data. | `_CONTEXT.md` Description; `docs/_Registers/ScopeLedger.csv` row SOW-011 |
+| Analysis basis | Support behavior is part of the primary 3D centerline/frame global model with six degrees of freedom per node. | `docs/CONTRACT.md` OPS-K-MECH-1; `docs/SPEC.md` section 4.1 |
+| Support implementation surface | `core/solver/linear_supports` implements the bounded mechanics-boundary slice for linear support records, prepared boundary data, and dense-system support application. | `core/solver/linear_supports/README.md`; `core/solver/linear_supports/src/lib.rs` |
+| Frame DOF boundary | `FrameDof` is re-exported from `open_pipe_stress_frame_kernel`; `NodeDof::global_index()` delegates to frame-kernel `node_dof_index`. | `core/solver/linear_supports/src/lib.rs`; `_run_records/TASK_RUN_2026-06-05_0732_TP-DEL-04-03-04-06_SUPPORT-BOUNDARY-HARDENING_A.md` |
+| Linear-only boundary | This deliverable covers implemented linear support/restraint behavior. Nonlinear one-way behavior, lift-off, gaps, and friction belong to DEL-04-04 unless explicitly deferred back by human authority. | `execution/_Decomposition/SOFTWARE_DECOMP.md` rows DEL-04-03 and DEL-04-04 |
+| Unit metadata | `SupportQuantity` retains dimension intent and can carry caller-supplied `UnitSystemRef` and `QuantityUnitMetadata`; it validates metadata dimension matches and does not convert or default values. | `core/solver/linear_supports/src/lib.rs`; `core/solver/linear_supports/README.md` |
+| Imposed displacement boundary data | Imposed displacement entries are prepared as prescribed DOFs with explicit displacement or rotation values for the frame-kernel prescribed-displacement boundary. | `core/solver/linear_supports/src/lib.rs` |
+| Default stiffness values | TBD. No invented support stiffness/defaults are introduced by the implementation or this document kit. | `docs/CONTRACT.md` OPS-K-AGENT-1; human hard stop |
+</p></div></div></section>
+<section id="SEC-ED028-0006" class="chunk sec depth-4" data-kind="section" data-key="section:3d1a07a79358" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d1a07a79358" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d1a07a79358" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d1a07a79358" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Public artifacts must not include protected standards text, protected tables, copied formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary support/vendor data. Source: `docs/CONTRACT.md` OPS-K-IP-1.
+- Missing solve-required support data must become explicit findings or diagnostics, not silent defaults. Source: `docs/CONTRACT.md` OPS-K-DATA-2.
+- Numerical values affecting calculations must be unit-aware and dimensionally checked. Source: `docs/CONTRACT.md` OPS-K-UNIT-1.
+- Solver output remains a mechanics result; rule-pack acceptability and professional compliance remain outside this deliverable. Source: `docs/CONTRACT.md` OPS-K-MECH-2.
+- Solver changes require deterministic verification tests before release. Source: `docs/CONTRACT.md` OPS-K-SOLVER-1.
+</p></div></div></section>
+<section id="SEC-ED028-0007" class="chunk sec depth-4" data-kind="section" data-key="section:f37aa593a6e8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f37aa593a6e8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f37aa593a6e8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f37aa593a6e8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Construction slot | Current state |
+|---|---|
+| Support model | Implemented Rust types cover rigid restraints, springs, and imposed displacement boundary data for the SOW-011 families. The crate remains mechanics-only and linear-only. |
+| DOF mapping | Support effects map to frame-kernel `FrameDof` values `Ux`, `Uy`, `Uz`, `Rx`, `Ry`, and `Rz`; global indices are computed through `node_dof_index`. Support coordinate policy beyond explicit node DOFs remains TBD. |
+| Boundary preparation | `prepare_boundary` produces restrained DOFs, spring entries, imposed displacement entries, and deterministic support findings for missing, invalid, duplicate, or out-of-range support data. |
+| Boundary application | `apply_linear_supports` validates a dense global system through the frame kernel, adds prepared spring stiffness to global stiffness diagonals, and reduces rigid plus imposed displacement DOFs through the frame-kernel prescribed-displacement boundary. Sparse solver integration and final result-envelope integration remain downstream. |
+| Diagnostics | Current crate findings include local support finding code, support ID, and message. AB-00-06 result-envelope mapping remains downstream integration work. |
+| Tests | Current evidence records `cargo test --manifest-path core/solver/linear_supports/Cargo.toml --locked` passing 14 tests, including frame-kernel DOF parity, unit metadata, boundary preparation, and boundary application coverage. |
+</p></div></div></section>
+<section id="SEC-ED028-0008" class="chunk sec depth-4" data-kind="section" data-key="section:3cfa2cd3098e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3cfa2cd3098e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3cfa2cd3098e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3cfa2cd3098e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` for sealed deliverable identity and applicable architecture basis IDs.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 for SOW-011, OBJ-003, PKG-04, DEL-04-03, and AB-00-01/02/03/06/08.
+- `docs/_Registers/Deliverables.csv`, `ScopeLedger.csv`, and `ContextBudgetQA.csv` for register rows.
+- `docs/CONTRACT.md` for applicable invariants.
+- `docs/SPEC.md`, `docs/TYPES.md`, and `docs/INTENT.md` for public architecture and vocabulary slices.
+</p></div></div></section>
+<section id="SEC-ED028-0009" class="chunk sec depth-2" data-kind="section" data-key="section:974df0fa2ed1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED028-0009</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-03_Linear support and restraint models/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:974df0fa2ed1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:974df0fa2ed1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:974df0fa2ed1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0010" class="chunk sec depth-3" data-kind="section" data-key="section:3fc1c2f8711b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED028-0010</span> Guidance: DEL-04-03 Linear support and restraint models</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3fc1c2f8711b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3fc1c2f8711b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3fc1c2f8711b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0011" class="chunk sec depth-4" data-kind="section" data-key="section:2a98b00b3b57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2a98b00b3b57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2a98b00b3b57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2a98b00b3b57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable documents the implemented linear support/restraint slice of the global solver. It makes boundary conditions explicit enough for deterministic dense-system mechanics preparation and application while staying protected-data safe and outside professional/code-compliance judgment.
+</p></div></div></section>
+<section id="SEC-ED028-0012" class="chunk sec depth-4" data-kind="section" data-key="section:42acc84dcd56" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42acc84dcd56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42acc84dcd56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42acc84dcd56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Treat supports as mechanics-boundary data in the 3D centerline/frame model, not as local shell/solid FEA features. Source: `docs/CONTRACT.md` OPS-K-MECH-1.
+- Keep the solver/rule/human boundary visible. A restraint reaction or displacement result is a mechanics result, not an automatic code-compliance finding. Source: OPS-K-MECH-2.
+- Prefer explicit required inputs over defaults. If a support stiffness, direction, coordinate basis, imposed displacement value, or target reference is required and absent, emit a finding. Source: OPS-K-DATA-2.
+- Keep every numerical support input unit-aware. Translational stiffness, rotational stiffness, displacement, and rotation units need dimensional checks before solve use. Source: OPS-K-UNIT-1.
+- Keep linear and nonlinear scope separate. Linear springs and fixed restraints belong here; activation, lift-off, gaps, one-way supports, and friction are DEL-04-04 unless a later sealed brief changes scope.
+- Use original or permissive test fixtures. Do not import protected support catalog values, code examples, vendor tables, or copied commercial benchmark cases. Source: OPS-K-IP-1.
+- Keep frame-kernel DOF authority centralized. `FrameDof` is re-exported from `open_pipe_stress_frame_kernel`, and support global DOF indices are computed through `node_dof_index`.
+</p></div></div></section>
+<section id="SEC-ED028-0013" class="chunk sec depth-4" data-kind="section" data-key="section:09b6990fab3c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09b6990fab3c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09b6990fab3c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09b6990fab3c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `core/solver/linear_supports` now represents anchors, guides, line stops, vertical supports, springs, and imposed displacements through explicit node DOFs, restrained DOF lists, spring entries, and imposed displacement entries.
+- `SupportQuantity` records value, quantity dimension, optional unit-system reference, and optional unit metadata. It validates finite or positive finite values and rejects unit metadata whose canonical dimension does not match the support quantity. It does not perform unit conversion or provide defaults.
+- `prepare_boundary` is the implemented preparation surface. It returns restrained DOFs, spring entries, imposed displacement entries, and findings for missing DOFs, missing stiffness/displacement values, invalid dimensions, repeated restraints, and out-of-range nodes.
+- `apply_linear_supports` is the implemented dense-system application surface. It validates through the frame kernel, adds spring stiffness to global stiffness diagonals, and reduces rigid and imposed displacement DOFs through the frame-kernel prescribed-displacement boundary.
+- Support coordinate policy remains TBD. The current crate maps explicit node DOFs and does not define arbitrary global, local, or user-defined support direction conventions.
+- Imposed displacement boundary data may interact with load-case handling in PKG-05, but this deliverable currently implements the support-side boundary data and frame-kernel prescribed-displacement reduction only.
+- Diagnostics should be useful to GUI, CLI, report, and adapter consumers through result-envelope fields required by AB-00-06.
+- Final result-envelope integration remains downstream; current `SupportFinding` values are crate-local findings with code, support ID, and message.
+- AB-00-01 requires accepted decisions to be recorded when this deliverable resolves deferred choices. This review-readiness alignment does not create repo-level ADR files.
+</p></div></div></section>
+<section id="SEC-ED028-0014" class="chunk sec depth-4" data-kind="section" data-key="section:59a912ae44b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59a912ae44b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59a912ae44b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59a912ae44b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Choice | Benefit | Risk / TBD |
+|---|---|---|
+| Represent rigid restraints as prescribed zero displacements in dense boundary application | Clear mechanics boundary condition using the frame-kernel prescribed-displacement reducer. | Sparse-solver integration, final result-envelope mapping, and release criteria remain downstream. |
+| Represent linear springs as unit-bearing stiffness data | Keeps support behavior testable and explicit. | No default stiffnesses may be invented; source/provenance remains required. |
+| Keep nonlinear behavior out of this deliverable | Preserves a bounded linear slice. | Users may expect guides/stops to include gaps or one-way action; that expectation must route to DEL-04-04 or remain TBD. |
+| Use invented/public benchmark fixtures | Protects IP boundary. | Validation breadth is limited until lawful engineering examples are reviewed. |
+</p></div></div></section>
+<section id="SEC-ED028-0015" class="chunk sec depth-4" data-kind="section" data-key="section:5309099956b0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5309099956b0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5309099956b0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5309099956b0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Valid example category: an invented frame/support fixture with public-domain dimensions and unit-bearing user-entered stiffness values.
+- Invalid example category: a copied support stiffness table, code-derived default, vendor catalog value without redistribution rights, or commercial software benchmark copied into public tests.
+</p></div></div></section>
+<section id="SEC-ED028-0016" class="chunk sec depth-4" data-kind="section" data-key="section:df33be46135e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df33be46135e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df33be46135e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df33be46135e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No source conflicts were identified during this alignment. Open policy and integration details remain `TBD`, not conflicts.
+</p></div></div></section>
+<section id="SEC-ED028-0017" class="chunk sec depth-2" data-kind="section" data-key="section:eec1be6f6b06" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED028-0017</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-03_Linear support and restraint models/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eec1be6f6b06" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eec1be6f6b06" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eec1be6f6b06" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0018" class="chunk sec depth-3" data-kind="section" data-key="section:c5956631e96f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED028-0018</span> Procedure: DEL-04-03 Linear support and restraint models</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c5956631e96f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c5956631e96f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c5956631e96f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0019" class="chunk sec depth-4" data-kind="section" data-key="section:03fe5edb4f0c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03fe5edb4f0c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03fe5edb4f0c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03fe5edb4f0c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this procedure to verify DEL-04-03 review-readiness evidence for the implemented linear support/restraint slice without expanding scope into nonlinear supports, sparse solver integration, final result-envelope integration, release approval, or professional/code-compliance claims.
+</p></div></div></section>
+<section id="SEC-ED028-0020" class="chunk sec depth-4" data-kind="section" data-key="section:52f686e467cb" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52f686e467cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52f686e467cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52f686e467cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Confirm the active scope is DEL-04-03 / PKG-04 and SOW-011 only.
+- Read `_CONTEXT.md`, `_REFERENCES.md`, `docs/CONTRACT.md`, and the SOFTWARE_DECOMP rows for SOW-011, OBJ-003, DEL-04-03, DEL-04-04, and AB-00-01/02/03/06/08.
+- Confirm protected data and professional-compliance hard stops before drafting support examples or tests.
+- Confirm the current implementation evidence in `core/solver/linear_supports/README.md`, `core/solver/linear_supports/src/lib.rs`, and the June 5 support-boundary-hardening run record.
+- Confirm any support coordinate policy, sparse solver integration, final result-envelope integration, release-readiness criterion, or professional/code-compliance conclusion is either already accepted by a governed decision or marked `TBD`.
+</p></div></div></section>
+<section id="SEC-ED028-0021" class="chunk sec depth-4" data-kind="section" data-key="section:f40a6b4e007d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f40a6b4e007d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f40a6b4e007d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f40a6b4e007d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the support family taxonomy in `LinearSupport` covers anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data.
+2. Confirm `FrameDof` is re-exported from `open_pipe_stress_frame_kernel` and `NodeDof::global_index()` delegates to frame-kernel `node_dof_index`.
+3. Confirm each support family maps to explicit node DOFs and that support coordinate policy beyond explicit DOF selection remains `TBD`.
+4. Confirm `SupportQuantity` preserves value, dimension, optional unit-system reference, and optional unit metadata; verify dimension mismatch is rejected rather than converted or defaulted.
+5. Confirm `prepare_boundary` returns restrained DOFs, spring entries, imposed displacement entries, and deterministic support findings for missing, invalid, duplicate, or out-of-range data.
+6. Confirm `apply_linear_supports` validates a dense global system through the frame kernel, adds spring stiffness to global diagonals, and reduces rigid plus imposed displacement DOFs through the frame-kernel prescribed-displacement boundary.
+7. Confirm current local evidence records 14 passing `linear_supports` tests and does not rely on protected support catalog values, code-derived defaults, or copied commercial benchmarks.
+8. Confirm nonlinear one-way, gap, lift-off, friction, active-set behavior, sparse solver integration, final result-envelope integration, support coordinate policy, release claims, and professional/code-compliance claims remain outside this deliverable alignment.
+9. Record any later resolved architecture or representation choices through the approved decision-record path. The exact repo-level ADR location is outside this task and remains `TBD`.
+</p></div></div></section>
+<section id="SEC-ED028-0022" class="chunk sec depth-4" data-kind="section" data-key="section:e558650d071b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e558650d071b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e558650d071b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e558650d071b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Four-document kit exists and uses consistent terminology for linear support/restraint models.
+- Required support-data gaps are represented as `TBD` or support findings, not defaults.
+- Current test evidence references deterministic mechanics verification and unit/dimensional checks for support stiffness and imposed displacement values.
+- Implementation evidence includes `prepare_boundary`, `apply_linear_supports`, frame-kernel `FrameDof` re-export, `node_dof_index` indexing, `SupportQuantity` unit metadata, and 14 passing `linear_supports` tests.
+- No protected standards text, copied formulas, protected tables, proprietary vendor data, or certification/compliance claims are introduced.
+- Nonlinear support behavior is not implemented or specified as part of this linear deliverable.
+</p></div></div></section>
+<section id="SEC-ED028-0023" class="chunk sec depth-4" data-kind="section" data-key="section:60d10df0aed1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:60d10df0aed1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:60d10df0aed1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:60d10df0aed1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`.
+- `_SEMANTIC.md` and `_SEMANTIC_LENSING.md` historical semantic artifacts.
+- `Dependencies.csv` v3.1 and `_DEPENDENCIES.md`.
+- `_run_records/TASK_RUN_*.md` entries for four-documents P1/P2, semantic matrix, lens register, four-documents P3, dependency extraction, implementation evidence, support boundary hardening, and this review-readiness alignment.
+</p></div></div></section>
+<section id="SEC-ED028-0024" class="chunk sec depth-2" data-kind="section" data-key="section:475ea61126d2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED028-0024</span> Component: execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-03_Linear support and restraint models/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:475ea61126d2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:475ea61126d2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:475ea61126d2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0025" class="chunk sec depth-3" data-kind="section" data-key="section:a99b11ed86b6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED028-0025</span> Specification: DEL-04-03 Linear support and restraint models</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a99b11ed86b6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a99b11ed86b6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a99b11ed86b6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED028-0026" class="chunk sec depth-4" data-kind="section" data-key="section:a60ee2865d57" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a60ee2865d57" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a60ee2865d57" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a60ee2865d57" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable provides the current linear support and restraint mechanics-boundary implementation for PKG-04. The implemented crate is `core/solver/linear_supports`; it covers anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data as listed in SOW-011.</p>
+<p>Out of scope:</p>
+<p>- Nonlinear active-set behavior such as one-way restraints, lift-off, gaps, and friction, assigned to DEL-04-04.
+- Sparse solver selection, performance harness work, final result-envelope integration, and support coordinate policy beyond explicit node DOFs.
+- Code compliance, certification, professional approval, or bundled protected standards/vendor values.
+</p></div></div></section>
+<section id="SEC-ED028-0027" class="chunk sec depth-4" data-kind="section" data-key="section:da208ac65d59" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0027</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:da208ac65d59" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:da208ac65d59" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:da208ac65d59" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| DEL-04-03-R01 | The support model shall cover the SOW-011 families: anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data. | `docs/_Registers/ScopeLedger.csv` row SOW-011 |
+| DEL-04-03-R02 | Linear support data shall be expressible against the 3D centerline/frame model and the six node degrees of freedom through the frame-kernel `FrameDof` boundary. | `docs/CONTRACT.md` OPS-K-MECH-1; `docs/SPEC.md` section 4.1; `core/solver/linear_supports/src/lib.rs` |
+| DEL-04-03-R03 | The support model shall keep mechanics solving separate from user-rule evaluation and human professional compliance judgment. | `docs/CONTRACT.md` OPS-K-MECH-2 |
+| DEL-04-03-R04 | Support stiffnesses, imposed displacements, rotations, and related numerical data shall retain unit intent through `SupportQuantity`; caller-supplied unit metadata shall match the support quantity dimension. | `docs/CONTRACT.md` OPS-K-UNIT-1; `core/solver/linear_supports/src/lib.rs` |
+| DEL-04-03-R05 | Missing solve-required support data shall be reported as explicit findings or diagnostics, never silently filled by defaults. | `docs/CONTRACT.md` OPS-K-DATA-2 |
+| DEL-04-03-R06 | Public support examples and test fixtures shall avoid protected standards text, protected tables, copied formulas, proprietary vendor data, and unsupported default values. | `docs/CONTRACT.md` OPS-K-IP-1 |
+| DEL-04-03-R07 | Support findings shall remain explicit at the crate boundary; mapping those findings into final AB-00-06 result-envelope fields remains downstream integration work. | `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-06 |
+| DEL-04-03-R08 | The support model shall preserve module boundaries and inward dependencies toward domain contracts; adapters/plugins must not bypass validation, diagnostics, or governance. | `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-02 |
+| DEL-04-03-R09 | Solver-facing support changes shall be covered by deterministic verification tests before release use. | `docs/CONTRACT.md` OPS-K-SOLVER-1; `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-08 |
+| DEL-04-03-R10 | Unknown support coordinate policy, sparse solver integration points, final result-envelope integration, and release-readiness criteria shall remain `TBD` until resolved by a governed brief or human decision. | `docs/CONTRACT.md` OPS-K-AGENT-1; `_CONTEXT.md` Still TBD |
+| DEL-04-03-R11 | Documentation shall not imply nonlinear support behavior, a penalty method, sparse solver integration, release approval, professional approval, or code-compliance acceptance. | Human hard stop; `execution/_Decomposition/SOFTWARE_DECOMP.md` AB-00-01 |
+| DEL-04-03-R12 | Boundary preparation and application shall use `prepare_boundary` and `apply_linear_supports` as the current implemented surfaces for dense-system support handling. | `core/solver/linear_supports/src/lib.rs`; `core/solver/linear_supports/README.md` |
+</p></div></div></section>
+<section id="SEC-ED028-0028" class="chunk sec depth-4" data-kind="section" data-key="section:f59758fa6e14" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0028</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f59758fa6e14" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f59758fa6e14" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f59758fa6e14" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Public project invariants in `docs/CONTRACT.md` apply, especially OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-DATA-2, OPS-K-AGENT-1..4, and OPS-K-IP-1.
+- SCA-001 architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08 apply as dispatch constraints.
+- External piping design-code clauses, support stiffness defaults, and vendor support catalogs are not accessible sources for this deliverable kit; any such requirement is `TBD` and must be user-supplied or rights-cleared before use.
+</p></div></div></section>
+<section id="SEC-ED028-0029" class="chunk sec depth-4" data-kind="section" data-key="section:ded4bb2ab6f0" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0029</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ded4bb2ab6f0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ded4bb2ab6f0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ded4bb2ab6f0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement | Verification approach / current evidence |
+|---|---|
+| R01, R02 | Implementation review confirms all SOW-011 support families are represented without leaving the six-DOF centerline model; `FrameDof` is re-exported from `open_pipe_stress_frame_kernel` and `NodeDof::global_index()` uses `node_dof_index`. |
+| R03 | Result/status review confirms mechanics-solved state is not represented as rule-pass or professional approval. |
+| R04 | Unit tests cover `SupportQuantity` finite/positive validation, canonical dimension IDs, caller-supplied unit metadata, and metadata dimension mismatch rejection. |
+| R05, R07 | Negative tests omit required support data and verify explicit support findings; final result-envelope mapping remains deferred. |
+| R06 | Protected-content/provenance review checks public examples and tests. |
+| R08 | Architecture review checks dependency direction and no-bypass behavior. |
+| R09 | June 5 evidence records `cargo test --manifest-path core/solver/linear_supports/Cargo.toml --locked` passing 14 tests. |
+| R10 | Open policy and integration choices are tracked as `TBD` or decision-record inputs, not hidden assumptions. |
+| R11 | Review confirms artifacts do not claim nonlinear behavior, release approval, professional approval, code compliance, sparse solver integration, or invented support stiffness/defaults. |
+| R12 | Tests cover `prepare_boundary` output and `apply_linear_supports` spring diagonal application, imposed displacement force adjustment, rigid zero-displacement reduction, and blocking findings before reduction. |
+</p></div></div></section>
+<section id="SEC-ED028-0030" class="chunk sec depth-4" data-kind="section" data-key="section:69269553f463" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED028-0030</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69269553f463" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69269553f463" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69269553f463" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The implemented evidence for this deliverable includes:</p>
+<p>- `core/solver/linear_supports/README.md`;
+- `core/solver/linear_supports/src/lib.rs`;
+- deliverable-local run records for the May 15 and June 5 implementation slices;
+- this four-document kit and `MEMORY.md`.</p>
+<p>Decision records are still required for any later resolution of support coordinate policy, sparse solver integration, final result-envelope integration, release criteria, or other governed choices outside the current bounded implementation.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED028";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-05-02-LOAD-CASE-ALGEBRA-ENGINE",
+  "source_prefix": "ED033",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-05-02-LOAD-CASE-ALGEBRA-ENGINE_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-05-02-LOAD-CASE-ALGEBRA-ENGINE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:58+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED033-0001",
+      "line_start": 9,
+      "line_end": 191,
+      "target_section_ids": [
+        "SEC-ED033-0002",
+        "SEC-ED033-0003",
+        "SEC-ED033-0004",
+        "SEC-ED033-0005",
+        "SEC-ED033-0006",
+        "SEC-ED033-0007",
+        "SEC-ED033-0008",
+        "SEC-ED033-0009",
+        "SEC-ED033-0010",
+        "SEC-ED033-0011",
+        "SEC-ED033-0012",
+        "SEC-ED033-0013",
+        "SEC-ED033-0014",
+        "SEC-ED033-0015",
+        "SEC-ED033-0016",
+        "SEC-ED033-0017",
+        "SEC-ED033-0018",
+        "SEC-ED033-0019",
+        "SEC-ED033-0020",
+        "SEC-ED033-0021",
+        "SEC-ED033-0022",
+        "SEC-ED033-0023",
+        "SEC-ED033-0024",
+        "SEC-ED033-0025",
+        "SEC-ED033-0026",
+        "SEC-ED033-0027",
+        "SEC-ED033-0028",
+        "SEC-ED033-0029",
+        "SEC-ED033-0030"
+      ],
+      "estimated_md_tokens": 2444,
+      "contains_oversized_section": false
+    }
+  ]
+}

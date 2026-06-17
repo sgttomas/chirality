@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": "SRC-CODE-TOOLS",
+  "source_prefix": "CL001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-CODE-TOOLS_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-CODE-TOOLS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-CL001-0001",
+      "line_start": 9,
+      "line_end": 2232,
+      "target_section_ids": [
+        "SEC-CL001-0002",
+        "SEC-CL001-0003",
+        "SEC-CL001-0004",
+        "SEC-CL001-0005",
+        "SEC-CL001-0006",
+        "SEC-CL001-0007",
+        "SEC-CL001-0008",
+        "SEC-CL001-0009",
+        "SEC-CL001-0010"
+      ],
+      "estimated_md_tokens": 9026,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-SECURITY-TELEMETRY-POLICY",
+  "source_prefix": "PD034",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-SECURITY-TELEMETRY-POLICY_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/security/telemetry_policy.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD034-0001",
+      "line_start": 21,
+      "line_end": 171,
+      "target_section_ids": [
+        "SEC-PD034-0001",
+        "SEC-PD034-0002",
+        "SEC-PD034-0003",
+        "SEC-PD034-0004",
+        "SEC-PD034-0005",
+        "SEC-PD034-0006",
+        "SEC-PD034-0007",
+        "SEC-PD034-0008",
+        "SEC-PD034-0009",
+        "SEC-PD034-0010",
+        "SEC-PD034-0011"
+      ],
+      "estimated_md_tokens": 1562,
+      "contains_oversized_section": false
+    }
+  ]
+}

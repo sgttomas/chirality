@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-piping-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-ARCHITECTURE-ANALYSIS-STATUS-SEMANTICS",
+  "source_doc_id": "SRC-DOCS-ARCHITECTURE-ANALYSIS-STATUS-SEMANTICS",
+  "source_name": "analysis_status_semantics.md",
+  "source_prefix": "PD005",
+  "repo_rel_path": "docs/architecture/analysis_status_semantics.md",
+  "catalog_rel_path": "@repo/docs/architecture/analysis_status_semantics.md",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "assets": [],
+  "pages": []
+}

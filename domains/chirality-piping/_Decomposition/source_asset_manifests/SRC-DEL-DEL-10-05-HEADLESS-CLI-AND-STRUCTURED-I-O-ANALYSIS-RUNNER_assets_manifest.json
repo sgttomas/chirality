@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER",
+  "source_doc_id": "SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER",
+  "source_prefix": "ED065",
+  "repo_rel_path": "execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/",
+  "catalog_rel_path": "@repo/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-10-BUILD-PACKAGING-API-AND-INTEROPERABILITY-1-WORKING-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER-DATASHEET",
+      "expected_sha256": "8dda8712942e79431a9ea40183c496ab0cf6cc6b4495b58ddcf96a9d5f9e8b9c",
+      "generated_line_start": 11,
+      "generated_line_end": 61,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-10-BUILD-PACKAGING-API-AND-INTEROPERABILITY-1-WORKING-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER-GUIDANCE",
+      "expected_sha256": "cddb4d520f694dae85c156c9fd8da3ba3fd418bc16009c9c03505ad18db55a2e",
+      "generated_line_start": 65,
+      "generated_line_end": 112,
+      "source_line_start": 1,
+      "source_line_end": 48,
+      "line_offset": -64
+    },
+    {
+      "repo_rel_path": "execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-10-BUILD-PACKAGING-API-AND-INTEROPERABILITY-1-WORKING-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER-PROCEDURE",
+      "expected_sha256": "d162e4bade1900be407077377c824c1da942e9d6ebc5430e818fa400798aab38",
+      "generated_line_start": 116,
+      "generated_line_end": 169,
+      "source_line_start": 1,
+      "source_line_end": 54,
+      "line_offset": -115
+    },
+    {
+      "repo_rel_path": "execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-10-BUILD-PACKAGING-API-AND-INTEROPERABILITY-1-WORKING-DEL-10-05-HEADLESS-CLI-AND-STRUCTURED-I-O-ANALYSIS-RUNNER-SPECIFICATION",
+      "expected_sha256": "91283da5ec93d96541e6b242096d125939cc329497d766b7843d36664e60d71e",
+      "generated_line_start": 173,
+      "generated_line_end": 235,
+      "source_line_start": 1,
+      "source_line_end": 63,
+      "line_offset": -172
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

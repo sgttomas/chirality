@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-ARCHITECTURE-CODE-NEUTRAL-ANALYSIS-BOUNDARY",
+  "source_prefix": "PD006",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-ARCHITECTURE-CODE-NEUTRAL-ANALYSIS-BOUNDARY_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/architecture/code_neutral_analysis_boundary.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD006-0001",
+      "line_start": 11,
+      "line_end": 62,
+      "target_section_ids": [
+        "SEC-PD006-0001",
+        "SEC-PD006-0002",
+        "SEC-PD006-0003",
+        "SEC-PD006-0004",
+        "SEC-PD006-0005",
+        "SEC-PD006-0006"
+      ],
+      "estimated_md_tokens": 555,
+      "contains_oversized_section": false
+    }
+  ]
+}

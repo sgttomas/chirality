@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST",
+  "source_doc_id": "SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST",
+  "source_prefix": "ED060",
+  "repo_rel_path": "execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/",
+  "catalog_rel_path": "@repo/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VERIFICATION-VALIDATION-AND-QUALITY-ORACLES-1-WORKING-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST-DATASHEET",
+      "expected_sha256": "205ed6dcb793f4c1e6a21ffaa8bd0f9058407346837db0261e9aea3309997647",
+      "generated_line_start": 11,
+      "generated_line_end": 67,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VERIFICATION-VALIDATION-AND-QUALITY-ORACLES-1-WORKING-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST-GUIDANCE",
+      "expected_sha256": "d91b6a91b87903e6dba57a1e2191e2b85ae2d856d77254129c9c59ff7e7a9310",
+      "generated_line_start": 71,
+      "generated_line_end": 125,
+      "source_line_start": 1,
+      "source_line_end": 55,
+      "line_offset": -70
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VERIFICATION-VALIDATION-AND-QUALITY-ORACLES-1-WORKING-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST-PROCEDURE",
+      "expected_sha256": "b724e8f062b576076fbdc789e34b8881cb49fc74536c12e8f345d59370dd8839",
+      "generated_line_start": 129,
+      "generated_line_end": 205,
+      "source_line_start": 1,
+      "source_line_end": 77,
+      "line_offset": -128
+    },
+    {
+      "repo_rel_path": "execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-09-VERIFICATION-VALIDATION-AND-QUALITY-ORACLES-1-WORKING-DEL-09-05-RELEASE-QUALITY-GATE-CHECKLIST-SPECIFICATION",
+      "expected_sha256": "b06ee5c987681d1d04991d4e46a4f1c67428dc8a326f2efc4ac3e0c174aefe34",
+      "generated_line_start": 209,
+      "generated_line_end": 275,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -208
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

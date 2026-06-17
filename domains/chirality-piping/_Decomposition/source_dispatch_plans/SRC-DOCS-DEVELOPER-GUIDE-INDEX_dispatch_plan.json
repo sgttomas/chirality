@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-DEVELOPER-GUIDE-INDEX",
+  "source_prefix": "PD013",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DOCS-DEVELOPER-GUIDE-INDEX_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping/docs/developer_guide/index.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:27:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-PD013-0001",
+      "line_start": 11,
+      "line_end": 348,
+      "target_section_ids": [
+        "SEC-PD013-0001",
+        "SEC-PD013-0002",
+        "SEC-PD013-0003",
+        "SEC-PD013-0004",
+        "SEC-PD013-0005",
+        "SEC-PD013-0006",
+        "SEC-PD013-0007",
+        "SEC-PD013-0008",
+        "SEC-PD013-0009"
+      ],
+      "estimated_md_tokens": 3260,
+      "contains_oversized_section": false
+    }
+  ]
+}

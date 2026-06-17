@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS",
+  "source_doc_id": "SRC-DEL-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS",
+  "source_prefix": "ED067",
+  "repo_rel_path": "execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/",
+  "catalog_rel_path": "@repo/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-11-DOCUMENTATION-EXAMPLES-AND-EDUCATION-1-WORKING-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS-DATASHEET",
+      "expected_sha256": "821c09bae4dd6666c63863e294839e933a294f3a00627d3e608c1f5f6e8a33eb",
+      "generated_line_start": 11,
+      "generated_line_end": 80,
+      "source_line_start": 1,
+      "source_line_end": 70,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-11-DOCUMENTATION-EXAMPLES-AND-EDUCATION-1-WORKING-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS-GUIDANCE",
+      "expected_sha256": "6daccf2b029182787cc4f8e4e31bd646b5359fffd08833ac42889db097ae9b05",
+      "generated_line_start": 84,
+      "generated_line_end": 191,
+      "source_line_start": 1,
+      "source_line_end": 108,
+      "line_offset": -83
+    },
+    {
+      "repo_rel_path": "execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-11-DOCUMENTATION-EXAMPLES-AND-EDUCATION-1-WORKING-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS-PROCEDURE",
+      "expected_sha256": "77000717802ac72db5c3e6a7a0328252700c3023e567a7e0adeda09f89af32c1",
+      "generated_line_start": 195,
+      "generated_line_end": 285,
+      "source_line_start": 1,
+      "source_line_end": 91,
+      "line_offset": -194
+    },
+    {
+      "repo_rel_path": "execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-11-DOCUMENTATION-EXAMPLES-AND-EDUCATION-1-WORKING-DEL-11-02-DEVELOPER-GUIDE-FOR-SOLVER-AND-RULE-PACKS-SPECIFICATION",
+      "expected_sha256": "2555c0b43db40f92546304111aed13b05814eab838b81bed7f542dd0047368e4",
+      "generated_line_start": 289,
+      "generated_line_end": 360,
+      "source_line_start": 1,
+      "source_line_end": 72,
+      "line_offset": -288
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

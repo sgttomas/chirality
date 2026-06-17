@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DEL-DEL-01-04-PROFESSIONAL-RESPONSIBILITY-AND-PRODUCT-CLAIMS-POLICY",
+  "source_prefix": "ED012",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_skeletons/SRC-DEL-DEL-01-04-PROFESSIONAL-RESPONSIBILITY-AND-PRODUCT-CLAIMS-POLICY_skeleton.reviewed.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-01-04-PROFESSIONAL-RESPONSIBILITY-AND-PRODUCT-CLAIMS-POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-17T01:26:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-ED012-0001",
+      "line_start": 9,
+      "line_end": 244,
+      "target_section_ids": [
+        "SEC-ED012-0002",
+        "SEC-ED012-0003",
+        "SEC-ED012-0004",
+        "SEC-ED012-0005",
+        "SEC-ED012-0006",
+        "SEC-ED012-0007",
+        "SEC-ED012-0008",
+        "SEC-ED012-0009",
+        "SEC-ED012-0010",
+        "SEC-ED012-0011",
+        "SEC-ED012-0012",
+        "SEC-ED012-0013",
+        "SEC-ED012-0014",
+        "SEC-ED012-0015",
+        "SEC-ED012-0016",
+        "SEC-ED012-0017",
+        "SEC-ED012-0018",
+        "SEC-ED012-0019",
+        "SEC-ED012-0020",
+        "SEC-ED012-0021",
+        "SEC-ED012-0022",
+        "SEC-ED012-0023",
+        "SEC-ED012-0024",
+        "SEC-ED012-0025",
+        "SEC-ED012-0026",
+        "SEC-ED012-0027",
+        "SEC-ED012-0028",
+        "SEC-ED012-0029",
+        "SEC-ED012-0030",
+        "SEC-ED012-0031"
+      ],
+      "estimated_md_tokens": 3165,
+      "contains_oversized_section": false
+    }
+  ]
+}

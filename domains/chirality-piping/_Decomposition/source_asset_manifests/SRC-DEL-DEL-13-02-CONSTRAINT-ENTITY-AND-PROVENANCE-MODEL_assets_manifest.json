@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL",
+  "source_doc_id": "SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL",
+  "source_prefix": "ED077",
+  "repo_rel_path": "execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/",
+  "catalog_rel_path": "@repo/execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-13-PHYSICAL-DESIGN-KNOWLEDGE-AND-CONSTRAINT-ENGINE-1-WORKING-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL-DATASHEET",
+      "expected_sha256": "ea24357be99ffdc9aabf38e281a1814e637dbffed91e4ce5618695008f2ec2a1",
+      "generated_line_start": 11,
+      "generated_line_end": 75,
+      "source_line_start": 1,
+      "source_line_end": 65,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-13-PHYSICAL-DESIGN-KNOWLEDGE-AND-CONSTRAINT-ENGINE-1-WORKING-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL-GUIDANCE",
+      "expected_sha256": "ffd2f5630ad767b05f55a817f7dceffa1ab00209912ae355a99e10106ef0641a",
+      "generated_line_start": 79,
+      "generated_line_end": 121,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -78
+    },
+    {
+      "repo_rel_path": "execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-13-PHYSICAL-DESIGN-KNOWLEDGE-AND-CONSTRAINT-ENGINE-1-WORKING-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL-PROCEDURE",
+      "expected_sha256": "79cdb4fca1a7bbeb7b0fafa5dd79c1484c852e93d933c0dd3d96fe8c24391c80",
+      "generated_line_start": 125,
+      "generated_line_end": 177,
+      "source_line_start": 1,
+      "source_line_end": 53,
+      "line_offset": -124
+    },
+    {
+      "repo_rel_path": "execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-13-PHYSICAL-DESIGN-KNOWLEDGE-AND-CONSTRAINT-ENGINE-1-WORKING-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL-SPECIFICATION",
+      "expected_sha256": "6a633b130a1132679e4f610ce5ed5b15e2fa9646518a56180d4d05bad9cf5344",
+      "generated_line_start": 181,
+      "generated_line_end": 242,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -180
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

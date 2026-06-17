@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR",
+  "source_doc_id": "SRC-DEL-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR",
+  "source_prefix": "ED025",
+  "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/",
+  "catalog_rel_path": "@repo/execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR-DATASHEET",
+      "expected_sha256": "855c0be24e5a265c98828c5a6145f6a1d75c93f68b2807423c0df5efc4cf8e51",
+      "generated_line_start": 11,
+      "generated_line_end": 80,
+      "source_line_start": 1,
+      "source_line_end": 70,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR-GUIDANCE",
+      "expected_sha256": "c18b63873b0338eb8c9aa2ac13bff5e8b343feb05099a177b908d0bb6fe62670",
+      "generated_line_start": 84,
+      "generated_line_end": 132,
+      "source_line_start": 1,
+      "source_line_end": 49,
+      "line_offset": -83
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR-PROCEDURE",
+      "expected_sha256": "5f2be1df9aa9d3020c08e115d7baaf1f5ab9c64cb480c1aa754e1427d47cd10c",
+      "generated_line_start": 136,
+      "generated_line_end": 182,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -135
+    },
+    {
+      "repo_rel_path": "execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-03-PIPING-COMPONENTS-MATERIALS-AND-LIBRARY-DATA-MODEL-1-WORKING-DEL-03-08-PIPE-SECTION-PROPERTY-AND-MASS-PROPERTY-CALCULATOR-SPECIFICATION",
+      "expected_sha256": "a787d2e2195014b87b3af13843880ca07753628d36ad133f17b7c2f173b9846f",
+      "generated_line_start": 186,
+      "generated_line_end": 237,
+      "source_line_start": 1,
+      "source_line_end": 52,
+      "line_offset": -185
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

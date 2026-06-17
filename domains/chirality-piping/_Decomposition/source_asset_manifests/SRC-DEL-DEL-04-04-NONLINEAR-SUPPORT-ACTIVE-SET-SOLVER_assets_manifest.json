@@ -1,0 +1,55 @@
+{
+  "schema_version": "chirality-piping-grouped-source/v1",
+  "doc_stem": "SRC-DEL-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER",
+  "source_doc_id": "SRC-DEL-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER",
+  "source_prefix": "ED029",
+  "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/",
+  "catalog_rel_path": "@repo/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/",
+  "source_manifest_sha256": "db0eb6efdc56db7a137a6e00ef42c9ace4ab46da3fd85b94d53208ee57734bf7",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality-piping/_Decomposition/source_pack_markdown/SRC-DEL-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_components": [
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/Datasheet.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER-DATASHEET",
+      "expected_sha256": "fb7357adee39c1fcdf1775df066e32f018db15b7367d3f08a3b8b5c36418e7b1",
+      "generated_line_start": 11,
+      "generated_line_end": 66,
+      "source_line_start": 1,
+      "source_line_end": 56,
+      "line_offset": -10
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/Guidance.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER-GUIDANCE",
+      "expected_sha256": "cf31f6e572836e2c7995699019219e1b68fe9af96619811ef0cfd36181dad18f",
+      "generated_line_start": 70,
+      "generated_line_end": 107,
+      "source_line_start": 1,
+      "source_line_end": 38,
+      "line_offset": -69
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/Procedure.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER-PROCEDURE",
+      "expected_sha256": "e87b80bb7d510b6db3c04faebe8d50d3245069c97fa2fb39502af8e5466f4188",
+      "generated_line_start": 111,
+      "generated_line_end": 152,
+      "source_line_start": 1,
+      "source_line_end": 42,
+      "line_offset": -110
+    },
+    {
+      "repo_rel_path": "execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/Specification.md",
+      "source_doc_id": "SRC-EXECUTION-PKG-04-SOLVER-CORE-AND-NUMERICAL-METHODS-1-WORKING-DEL-04-04-NONLINEAR-SUPPORT-ACTIVE-SET-SOLVER-SPECIFICATION",
+      "expected_sha256": "829c214c9643d16248f292e44c23301fbb1734a5c49dce3daf92bff131b8a7cd",
+      "generated_line_start": 156,
+      "generated_line_end": 186,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -155
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

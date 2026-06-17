@@ -1,0 +1,474 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>31</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-ED077-0001">Source Pack: SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENA</a> <a href="#SEC-ED077-0002">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED077-0009">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED077-0017">Component: execution/PKG-13_Physical Design Knowledge and Co</a> <a href="#SEC-ED077-0024">Component: execution/PKG-13_Physical Design Knowledge and Co</a></nav>
+<main>
+<section id="SEC-ED077-0001" class="chunk sec depth-1" data-kind="section" data-key="section:369489c4ecac" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-ED077-0001</span> Source Pack: SRC-DEL-DEL-13-02-CONSTRAINT-ENTITY-AND-PROVENANCE-MODEL</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:369489c4ecac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:369489c4ecac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:369489c4ecac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Grouping: `GROUPED_DELIVERABLE`  RepoGlob: `execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/`</p>
+<p>Source truth remains the original repo component files listed under each
+component heading. This generated markdown is a DOMAIN_DECOMP review and
+worker substrate only.
+</p></div></div></section>
+<section id="SEC-ED077-0002" class="chunk sec depth-2" data-kind="section" data-key="section:c858d5b277aa" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED077-0002</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Datasheet.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c858d5b277aa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c858d5b277aa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c858d5b277aa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0003" class="chunk sec depth-3" data-kind="section" data-key="section:9237de05a19b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED077-0003</span> Datasheet: DEL-13-02 Constraint entity and provenance model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9237de05a19b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9237de05a19b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9237de05a19b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0004" class="chunk sec depth-4" data-kind="section" data-key="section:e7b94db2c933" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0004</span> Identification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e7b94db2c933" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e7b94db2c933" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e7b94db2c933" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Value | Source |
+|---|---|---|
+| Deliverable ID | DEL-13-02 | `_CONTEXT.md` |
+| Name | Constraint entity and provenance model | `_CONTEXT.md` |
+| Package ID | PKG-13 | `_CONTEXT.md` |
+| Package name | Physical Design Knowledge and Constraint Engine | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-13` |
+| Type | DATA_MODEL_CHANGE | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` |
+| Anticipated artifact | `schemas/constraint.schema.json` | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` |
+| Anticipated artifact | constraint provenance model | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv` |
+| Scope coverage | SOW-068, SOW-067 | `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` |
+| Objective support | OBJ-014, OBJ-018 | `_CONTEXT.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#Objective-to-Deliverable Mapping` |
+| Context envelope | M | `_CONTEXT.md`; `docs/_Registers/ContextBudgetQA.csv` |
+</p></div></div></section>
+<section id="SEC-ED077-0005" class="chunk sec depth-4" data-kind="section" data-key="section:e80cac6034d5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0005</span> Attributes</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e80cac6034d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e80cac6034d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e80cac6034d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Attribute | Current source-grounded value |
+|---|---|
+| Constraint categories in scope | connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data (`SOW-068`) |
+| Related design knowledge inputs | endpoints, line data, routing corridors, no-go volumes, supportable zones, equipment interfaces, access constraints, slope/drain/vent requirements, and owner/project metadata (`SOW-067`) |
+| Provenance posture | Constraint records must identify user/project/import/agent/source provenance where known (`_CONTEXT.md`; `docs/_Registers/Deliverables.csv`) |
+| Model relationship | The physical model is the editable source of truth and carries typed references to design knowledge, constraints, diagnostics, unresolved assumptions, and traceability (`docs/SPEC.md#3 Domain model and schema`) |
+| Schema baseline | `schemas/constraint.schema.json` implements a strict JSON Schema 2020-12 contract with `$schema` = `https://json-schema.org/draft/2020-12/schema` and `$id` = `https://openpipestress.org/schemas/constraint.schema.json` |
+| Schema identity and version slot | The implemented root object requires `schema_version` with semantic-version string pattern `^[0-9]+\\.[0-9]+\\.[0-9]+$`; concrete instance version values remain payload-specific and review-controlled |
+| Root required properties | `schema_version`, `deliverable_id`, `package_id`, `scope_items`, `objectives`, `data_boundary`, and `constraint_set` |
+| Constraint set shape | `ConstraintSet` requires `constraint_set_id`, `project_ref`, `model_ref`, `design_knowledge_refs`, `constraints`, `diagnostics`, `provenance`, and `professional_boundary` |
+| Constraint record shape | `ConstraintRecord` requires `constraint_id`, `constraint_kind`, `name`, `state`, `source_type`, `target_refs`, `design_knowledge_refs`, `parameters`, `diagnostics`, `assumptions`, `validation_status`, `provenance`, and `professional_boundary` |
+| Constraint kind enum | `connectivity`, `clearance`, `no_go_volume`, `support_zone`, `route_conflict`, `slope`, `drain`, `vent`, `access`, `equipment_interface`, `missing_required_data`, and `TBD` |
+| Diagnostic class enum | `CONSTRAINT_MISSING_DATA`, `CONNECTIVITY_CONFLICT`, `CLEARANCE_CONFLICT`, `ROUTE_CONFLICT`, `SUPPORT_ZONE_CONFLICT`, `SLOPE_DRAIN_VENT_CONFLICT`, `PROVENANCE_WARNING`, `UNIT_WARNING`, `IP_BOUNDARY_WARNING`, `SCHEMA_VALIDATION`, and `TBD` |
+| Provenance shape | `Provenance` requires `source_name`, `source_location`, `source_license`, `contributor`, `contributor_certification`, `redistribution_status`, `review_status`, and `privacy_classification` |
+| Unit posture | Unit-bearing values use `Quantity` with required `value`, `unit`, `dimension`, and `provenance`; the current dimension enum matches the accepted PKG-02 dimension vocabulary tested by `tests/test_constraint_schema.py` |
+| Professional-boundary posture | Constraint entities and outputs must not encode software-generated professional approval, certification, sealing, authentication, or code-compliance labels (`docs/CONTRACT.md`; `docs/SPEC.md#4.3 Analysis status and authority boundary`) |
+| IP/data posture | Public artifacts must not bundle protected owner standards, protected code criteria, proprietary project data, copied standards text, protected tables, or code-specific values (`INIT.md`; `docs/IP_AND_DATA_BOUNDARY.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-13`) |
+</p></div></div></section>
+<section id="SEC-ED077-0006" class="chunk sec depth-4" data-kind="section" data-key="section:7f67f43ca5c8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0006</span> Conditions</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f67f43ca5c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f67f43ca5c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f67f43ca5c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Condition | Handling |
+|---|---|
+| Source of constraints | Constraints are represented from available user/project/import/agent/source design knowledge. Protected owner or code standards are not bundled as public defaults. |
+| Missing required data | Missing data is represented as an explicit constraint/diagnostic finding with provenance rather than silently defaulted. |
+| Validation result role | The schema provides diagnostic and `validation_status` slots. Runtime validation behavior remains downstream in `DEL-13-03` and is still `TBD` for this deliverable. |
+| Engineering acceptance | Constraint records may support review, but they do not provide professional acceptance or code-compliance certification. |
+| Dependency inputs | The approved local dependency mirror records upstream architecture basis, design knowledge schema, canonical domain model schema, unit contract, persistence contract, and professional-boundary policy as active predecessor context. |
+| Public examples | The implemented schema encodes `data_boundary.public_examples_policy` as `invented_or_cleared_data_only`; actual public example payload selection, review, and publication remain `TBD`. |
+| Downstream consumption | Physical-to-analytical transform consumption, GUI presentation/blocking behavior, and runtime constraint validation remain downstream `TBD` items. |
+</p></div></div></section>
+<section id="SEC-ED077-0007" class="chunk sec depth-4" data-kind="section" data-key="section:12436496b5ec" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0007</span> Construction</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:12436496b5ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:12436496b5ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:12436496b5ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The deliverable is a data-model production unit. The implemented construction target is `schemas/constraint.schema.json`, a strict JSON Schema 2020-12 contract for provenance-marked constraint records. It defines root identity fields, `ConstraintSet`, `ConstraintRecord`, `ConstraintKind`, `Diagnostic`, `Parameter`, `Quantity`, `Provenance`, `Reference`, `ValidationStatus`, and `ProfessionalBoundary` definitions.</p>
+<p>The schema structure, `$id`, `$schema`, required properties, reusable `$defs`, and enum spellings are no longer `TBD` for the implemented artifact. Future schema revisions remain human-gated bounded work. Runtime constraint validation, GUI presentation, physical-to-analytical transform consumption, and public example payload policy remain `TBD`; any future public examples must be invented or otherwise cleared for redistribution and must not contain protected standards data, owner standards, proprietary project data, code-specific limits, or professional-approval claims.
+</p></div></div></section>
+<section id="SEC-ED077-0008" class="chunk sec depth-4" data-kind="section" data-key="section:3f924e03cb7d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0008</span> References</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3f924e03cb7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3f924e03cb7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3f924e03cb7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `_CONTEXT.md` - deliverable identity, scope, artifacts, context envelope, architecture-basis injection.
+- `_REFERENCES.md` - deliverable-local reference index.
+- `_DEPENDENCIES.md` and `Dependencies.csv` - approved DAG-006 mirror/evidence surface for active predecessor context.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` - revision 0.7 package and deliverable basis.
+- `docs/_Registers/Deliverables.csv`, `docs/_Registers/ScopeLedger.csv`, `docs/_Registers/ContextBudgetQA.csv` - machine-readable deliverable, scope, and context rows.
+- `INIT.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/IP_AND_DATA_BOUNDARY.md` - governing boundaries for schema, provenance, unit safety, privacy/IP, and professional responsibility.
+- `schemas/constraint.schema.json` - implemented JSON Schema 2020-12 constraint entity and provenance contract.
+- `tests/test_constraint_schema.py` - stdlib structural evidence for schema identity, required definitions, enum coverage, unit dimensions, data-boundary constants, and professional-boundary constants.
+</p></div></div></section>
+<section id="SEC-ED077-0009" class="chunk sec depth-2" data-kind="section" data-key="section:009f94dbf068" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED077-0009</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Guidance.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:009f94dbf068" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:009f94dbf068" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:009f94dbf068" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0010" class="chunk sec depth-3" data-kind="section" data-key="section:72e84fe3c22c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED077-0010</span> Guidance: DEL-13-02 Constraint entity and provenance model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72e84fe3c22c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72e84fe3c22c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72e84fe3c22c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0011" class="chunk sec depth-4" data-kind="section" data-key="section:91abcb5db5af" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0011</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91abcb5db5af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91abcb5db5af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91abcb5db5af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DEL-13-02 exists to make physical design constraints explicit, traceable, and reviewable before a later validation engine evaluates available design knowledge. The deliverable supports OBJ-014 by contributing constraint records to the schema-backed piping design model, and it supports OBJ-018 by preserving IP and professional-boundary limits across constraint data.
+</p></div></div></section>
+<section id="SEC-ED077-0012" class="chunk sec depth-4" data-kind="section" data-key="section:1238057ac332" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0012</span> Principles</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1238057ac332" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1238057ac332" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1238057ac332" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Principle | Guidance | Source |
+|---|---|---|
+| Represent findings, not hidden defaults | Missing data and unmet constraints should surface as explicit findings or diagnostics with provenance. Do not silently supply engineering values. | `INIT.md`; `docs/CONTRACT.md` OPS-K-DATA-2; `docs/SPEC.md#4.3 Analysis status and authority boundary` |
+| Keep design knowledge user/project supplied | Constraint categories may refer to owner/project design knowledge, but public artifacts must not bundle owner standards, protected code criteria, proprietary project data, or code-specific values. | SOW-067; `docs/IP_AND_DATA_BOUNDARY.md`; `execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-13` |
+| Preserve provenance | Constraint records should identify where known information came from, including user, project, import, agent, or source provenance. Unknown provenance should remain visible as `TBD`, not normalized away. | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv`; `docs/CONTRACT.md` OPS-K-IP-2, OPS-K-DATA-3 |
+| Separate schema from validation engine | This deliverable defines representation and provenance. Deterministic validation behavior belongs to DEL-13-03. | `execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-13` |
+| Preserve professional responsibility | Constraint records and validation messages support review but must not become automatic professional approval or code-compliance certification. | `docs/CONTRACT.md` OPS-K-AUTH-1; `docs/SPEC.md#4.3 Analysis status and authority boundary` |
+</p></div></div></section>
+<section id="SEC-ED077-0013" class="chunk sec depth-4" data-kind="section" data-key="section:abbd8d09042f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0013</span> Considerations</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:abbd8d09042f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:abbd8d09042f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:abbd8d09042f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Constraint categories are source-grounded by SOW-068 and implemented as `ConstraintKind`: `connectivity`, `clearance`, `no_go_volume`, `support_zone`, `route_conflict`, `slope`, `drain`, `vent`, `access`, `equipment_interface`, `missing_required_data`, and `TBD`.
+- Design-knowledge associations are source-grounded by SOW-067 and represented through typed `Reference` objects plus `design_knowledge_refs`; runtime interpretation of those references remains downstream.
+- Unit-bearing quantities referenced by constraints should not bypass the canonical unit contract. The implemented `Quantity` definition requires `value`, `unit`, `dimension`, and `provenance`, and the test fixes the dimension enum to the accepted PKG-02 vocabulary.
+- Provenance should distinguish known facts from unresolved assumptions or imported claims. The implemented `Provenance` definition requires source, contributor, redistribution, review, and privacy-classification fields.
+- The approved dependency mirror and current DAG-006 coordination basis indicate upstream architecture, canonical model, unit, persistence, design knowledge, and professional-boundary context. They are evidence for predecessor context, not authority to reclassify dependencies.
+- Runtime constraint validation, GUI presentation/blocking behavior, physical-to-analytical transform consumption, and actual public example payload policy remain `TBD`.
+</p></div></div></section>
+<section id="SEC-ED077-0014" class="chunk sec depth-4" data-kind="section" data-key="section:7feb3a508c79" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0014</span> Trade-offs</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7feb3a508c79" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7feb3a508c79" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7feb3a508c79" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Topic | Conservative position |
+|---|---|
+| Category breadth | Include the categories explicitly named by SOW-068; defer additional categories to human-approved scope or later decomposition change. |
+| Example payloads | Prefer no examples until invented/public-permissive examples are reviewed. Do not use real owner/project standards or protected code examples. |
+| Validation detail | Use the implemented diagnostic and validation-status slots, but avoid encoding DEL-13-03 engine behavior as if already implemented. |
+| Professional status | Use diagnostics and review-needed findings; avoid approval/certification/compliance statuses. |
+</p></div></div></section>
+<section id="SEC-ED077-0015" class="chunk sec depth-4" data-kind="section" data-key="section:9f3c6c184df5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0015</span> Examples</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f3c6c184df5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f3c6c184df5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f3c6c184df5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No source-grounded example payload is available in the local references. The schema includes `data_boundary.public_examples_policy = invented_or_cleared_data_only`, but example records and any public example publication policy remain `TBD` and must be invented or otherwise cleared for redistribution before inclusion in public artifacts.
+</p></div></div></section>
+<section id="SEC-ED077-0016" class="chunk sec depth-4" data-kind="section" data-key="section:a404ed279637" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0016</span> Conflict Table (for human ruling)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a404ed279637" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a404ed279637" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a404ed279637" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| NONE | No direct source conflict detected in the accessible DEL-13-02 context. Remaining `TBD` items are downstream runtime validation, GUI behavior, transform consumption, and public examples. | `_CONTEXT.md`; `_REFERENCES.md`; `Dependencies.csv`; decomposition/register slices; `schemas/constraint.schema.json`; `tests/test_constraint_schema.py` | N/A | N/A | N/A | N/A |
+</p></div></div></section>
+<section id="SEC-ED077-0017" class="chunk sec depth-2" data-kind="section" data-key="section:441b35041559" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED077-0017</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Procedure.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:441b35041559" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:441b35041559" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:441b35041559" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0018" class="chunk sec depth-3" data-kind="section" data-key="section:44f9a6736bf5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED077-0018</span> Procedure: DEL-13-02 Constraint entity and provenance model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44f9a6736bf5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44f9a6736bf5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44f9a6736bf5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0019" class="chunk sec depth-4" data-kind="section" data-key="section:2bcb5c341d39" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0019</span> Purpose</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2bcb5c341d39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2bcb5c341d39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2bcb5c341d39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Provide a bounded procedure for producing and checking the DEL-13-02 constraint entity and provenance model artifacts without crossing the data boundary or claiming implementation evidence that does not yet exist.
+</p></div></div></section>
+<section id="SEC-ED077-0020" class="chunk sec depth-4" data-kind="section" data-key="section:ca73212a9a7c" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0020</span> Prerequisites</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca73212a9a7c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca73212a9a7c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca73212a9a7c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Prerequisite | Source |
+|---|---|
+| Current deliverable context and register rows for DEL-13-02, SOW-067, SOW-068, OBJ-014, and OBJ-018 | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv`; `docs/_Registers/ScopeLedger.csv`; `docs/_Registers/ContextBudgetQA.csv` |
+| Accepted revision 0.7 current decomposition basis for PKG-13 and DEL-13-02 | `execution/_Decomposition/SOFTWARE_DECOMP.md` |
+| Project invariants for protected data, missing-data findings, provenance, units, and professional boundaries | `INIT.md`; `docs/CONTRACT.md`; `docs/SPEC.md`; `docs/IP_AND_DATA_BOUNDARY.md` |
+| Active predecessor context from approved DAG-006 mirror | `_DEPENDENCIES.md`; `Dependencies.csv` |
+| Architecture basis: Rust core/application services, JSON Schema 2020-12, schema-first envelopes, canonical JSON/JCS-compatible hash basis where JSON payloads are hashed | `_CONTEXT.md#Architecture Basis Injection` |
+| Implemented constraint schema and focused structural test | `schemas/constraint.schema.json`; `tests/test_constraint_schema.py` |
+</p></div></div></section>
+<section id="SEC-ED077-0021" class="chunk sec depth-4" data-kind="section" data-key="section:a1d84f384fba" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0021</span> Steps</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1d84f384fba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1d84f384fba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1d84f384fba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm the deliverable identity remains DEL-13-02 in PKG-13 and the intended artifact remains `schemas/constraint.schema.json` plus a constraint provenance model.
+2. Enumerate only the source-grounded constraint categories named by SOW-068: connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data.
+3. Enumerate only the source-grounded related design knowledge categories named by SOW-067: endpoints, line data, routing corridors, no-go volumes, supportable zones, equipment interfaces, access constraints, slope/drain/vent requirements, and owner/project metadata.
+4. Inspect `schemas/constraint.schema.json` for the implemented root properties: `schema_version`, `deliverable_id`, `package_id`, `scope_items`, `objectives`, `data_boundary`, and `constraint_set`.
+5. Confirm the schema identity: `$schema` = `https://json-schema.org/draft/2020-12/schema`, `$id` = `https://openpipestress.org/schemas/constraint.schema.json`, and `schema_version` matching `^[0-9]+\\.[0-9]+\\.[0-9]+$`.
+6. Confirm the implemented `ConstraintSet`, `ConstraintRecord`, `ConstraintKind`, `Diagnostic`, `Parameter`, `Quantity`, `Provenance`, `Reference`, `ValidationStatus`, and `ProfessionalBoundary` definitions are present.
+7. Ensure every unit-bearing physical quantity in the model is represented through the implemented `Quantity` contract with explicit `unit`, `dimension`, and `provenance`.
+8. Include provenance capacity for user/project/import/agent/source-derived origin where known; represent unknown or unresolved provenance explicitly through the schema&#x27;s `TBD`, review, privacy, and redistribution statuses.
+9. Ensure missing required data is represented as a finding, diagnostic, assumption, or validation status, not a silent default.
+10. Exclude protected standards text, protected tables, owner standards, proprietary project data, code-specific values, and professional approval/code-compliance statuses from public schema artifacts and examples.
+11. Record traceability from schema content back to SOW-067, SOW-068, OBJ-014, OBJ-018, and applicable governance invariants.
+12. Defer validation-engine behavior, user-interface behavior, physical-to-analytical transform consumption, public example payload policy, and acceptance tests that depend on downstream runtime behavior to later bounded work unless a human-approved brief expands this deliverable.
+</p></div></div></section>
+<section id="SEC-ED077-0022" class="chunk sec depth-4" data-kind="section" data-key="section:08a43ee60bbe" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0022</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:08a43ee60bbe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:08a43ee60bbe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:08a43ee60bbe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check | Expected result |
+|---|---|
+| Scope check | Schema/model content maps to SOW-067 and SOW-068 without adding unapproved protected or owner-specific requirements. |
+| Provenance check | Constraint records can identify known user/project/import/agent/source provenance or explicitly mark unknown provenance. |
+| Missing-data check | Required missing information appears as diagnostics/findings, not defaults. |
+| Unit check | Unit-bearing values are unit-aware or blocked as `TBD`. |
+| Professional-boundary check | No schema field or fixture asserts software-generated approval, certification, sealing, authentication, or code compliance. |
+| Data-boundary check | Public artifacts contain no protected standards text, protected tables, proprietary catalog data, private owner data, or code-specific values. |
+| Dependency mirror check | Current DAG-006 predecessor context and preserved historical DAG-002 local mirror rows remain unchanged if dependency extraction is run in this folder. |
+| JSON syntax check | `python3 -m json.tool schemas/constraint.schema.json` completes successfully. |
+| Schema structural test | `python3 tests/test_constraint_schema.py` completes successfully. |
+</p></div></div></section>
+<section id="SEC-ED077-0023" class="chunk sec depth-4" data-kind="section" data-key="section:7bbef901d7bc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0023</span> Records</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7bbef901d7bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7bbef901d7bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7bbef901d7bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Updated `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`.
+- Updated `_REFERENCES.md`, `MEMORY.md`, and a TASK run record when an evidence-refresh pass is performed.
+- Existing lifecycle state in `_STATUS.md` is not changed by an evidence-refresh pass unless a human explicitly approves a lifecycle gate.
+- Implemented schema artifact: `schemas/constraint.schema.json` or human-approved successor path.
+- Current verification evidence: `python3 -m json.tool schemas/constraint.schema.json`, `python3 tests/test_constraint_schema.py`, and `git diff --check` when feasible.
+</p></div></div></section>
+<section id="SEC-ED077-0024" class="chunk sec depth-2" data-kind="section" data-key="section:49860082cb7d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-ED077-0024</span> Component: execution/PKG-13_Physical Design Knowledge and Constraint Engine/1_Working/DEL-13-02_Constraint entity and provenance model/Specification.md</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49860082cb7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49860082cb7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49860082cb7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0025" class="chunk sec depth-3" data-kind="section" data-key="section:4a4f14a08545" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-ED077-0025</span> Specification: DEL-13-02 Constraint entity and provenance model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a4f14a08545" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a4f14a08545" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a4f14a08545" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-ED077-0026" class="chunk sec depth-4" data-kind="section" data-key="section:ad65c09cc79f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0026</span> Scope</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ad65c09cc79f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ad65c09cc79f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ad65c09cc79f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This deliverable specifies the data-model contract for representing constraint entities and their provenance for the PKG-13 physical design knowledge and constraint engine. It covers constraint records for connectivity, route conflicts, clearance conflicts, no-go/support-zone conflicts, slope/drain/vent conflicts, and missing required data, using the design knowledge categories named by SOW-067 and SOW-068.</p>
+<p>This deliverable does not implement the constraint validation engine, infer hidden owner standards, define protected code requirements, bundle proprietary project data, create final engineering acceptance logic, or claim professional approval. Those exclusions are grounded in the PKG-13 decomposition notes, `INIT.md`, `docs/CONTRACT.md`, and `docs/IP_AND_DATA_BOUNDARY.md`.
+</p></div></div></section>
+<section id="SEC-ED077-0027" class="chunk sec depth-4" data-kind="section" data-key="section:18a2d4c40e5a" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0027</span> Implementation Evidence</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18a2d4c40e5a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18a2d4c40e5a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18a2d4c40e5a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current implementation evidence is `schemas/constraint.schema.json` and `tests/test_constraint_schema.py`. The schema declares JSON Schema 2020-12, `$id` `https://openpipestress.org/schemas/constraint.schema.json`, root constants for `DEL-13-02` and `PKG-13`, and required root properties for `schema_version`, `deliverable_id`, `package_id`, `scope_items`, `objectives`, `data_boundary`, and `constraint_set`.</p>
+<p>The schema defines reusable `$defs` for `ConstraintSet`, `ConstraintRecord`, `ConstraintKind`, `Diagnostic`, `Parameter`, `Quantity`, `Provenance`, `Reference`, `ValidationStatus`, and `ProfessionalBoundary`. The accompanying stdlib test checks schema identity, required definitions, required fields, enum coverage, PKG-02 dimension vocabulary alignment, protected-text exclusions, data-boundary constants, and professional-boundary constants.
+</p></div></div></section>
+<section id="SEC-ED077-0028" class="chunk sec depth-4" data-kind="section" data-key="section:95ef317abc80" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0028</span> Requirements</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:95ef317abc80" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:95ef317abc80" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:95ef317abc80" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Requirement | Source |
+|---|---|---|
+| R-13-02-001 | The constraint model shall represent constraint records for connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data. | SOW-068 in `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` |
+| R-13-02-002 | The constraint model shall support association to user-supplied design knowledge categories including endpoints, line data, routing corridors, no-go volumes, supportable zones, equipment interfaces, access constraints, slope/drain/vent requirements, and owner/project metadata. | SOW-067 in `_CONTEXT.md`; `docs/_Registers/ScopeLedger.csv` |
+| R-13-02-003 | Constraint records shall carry provenance sufficient to identify user/project/import/agent/source provenance where known. | `_CONTEXT.md`; `docs/_Registers/Deliverables.csv`; `docs/_Registers/ContextBudgetQA.csv` |
+| R-13-02-004 | Missing solve-required or rule-check-required values shall be modeled as explicit findings or diagnostics, not silent defaults. | `docs/CONTRACT.md` OPS-K-DATA-2; `docs/SPEC.md#4.3 Analysis status and authority boundary` |
+| R-13-02-005 | Unit-bearing physical values referenced by constraints shall use the canonical unit contract or another explicitly approved unit-bearing quantity representation; dimensionless treatment shall not be used as a fallback for missing units. | `docs/SPEC.md#4 Unit system and dimensional analysis`; `docs/CONTRACT.md` OPS-K-UNIT-1 |
+| R-13-02-006 | Public schema artifacts and examples shall not embed protected standards text, protected tables, protected criteria, proprietary catalog data, private owner standards, private project data, or code-specific values. | `INIT.md`; `docs/IP_AND_DATA_BOUNDARY.md`; `docs/CONTRACT.md` OPS-K-IP-1, OPS-K-DATA-1 |
+| R-13-02-007 | The constraint model shall not define software-generated statuses for certification, sealing, authentication, professional approval, or code-compliance acceptance. | `docs/CONTRACT.md` OPS-K-AUTH-1; `docs/SPEC.md#4.3 Analysis status and authority boundary` |
+| R-13-02-008 | The schema shall align with the accepted JSON Schema 2020-12 basis where JSON schema artifacts are produced. | `_CONTEXT.md#Architecture Basis Injection`; `docs/TYPES.md#Domain object vocabulary` |
+| R-13-02-009 | Constraint records shall be able to participate in the physical source-of-truth model through typed references, diagnostics/warnings, unresolved assumptions, and traceability links. | `docs/SPEC.md#3 Domain model and schema`; `docs/TYPES.md#Domain object vocabulary` |
+| R-13-02-010 | The implemented schema shall declare stable schema identity and a version slot: `$schema` = `https://json-schema.org/draft/2020-12/schema`, `$id` = `https://openpipestress.org/schemas/constraint.schema.json`, and required `schema_version` matching `^[0-9]+\\.[0-9]+\\.[0-9]+$`. | `schemas/constraint.schema.json`; `tests/test_constraint_schema.py` |
+</p></div></div></section>
+<section id="SEC-ED077-0029" class="chunk sec depth-4" data-kind="section" data-key="section:6b01dfd36a4b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0029</span> Standards</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6b01dfd36a4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6b01dfd36a4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6b01dfd36a4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Standard or basis | Status for this deliverable |
+|---|---|
+| JSON Schema 2020-12 | Implemented by `schemas/constraint.schema.json`; verified by `python3 -m json.tool schemas/constraint.schema.json` and `tests/test_constraint_schema.py`. |
+| Project IP/data-boundary policy | Governing source for public/private data handling and protected-content exclusions. |
+| Project invariant catalog | Governing source for provenance, unit safety, missing-data findings, and professional-boundary requirements. |
+| Owner standards and engineering codes | Not bundled or paraphrased here. Any private owner/code requirements remain user-supplied or privately imported with provenance and review status. |
+</p></div></div></section>
+<section id="SEC-ED077-0030" class="chunk sec depth-4" data-kind="section" data-key="section:6024d685feb1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0030</span> Verification</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6024d685feb1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6024d685feb1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6024d685feb1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Requirement IDs | Verification approach |
+|---|---|
+| R-13-02-001, R-13-02-002 | `tests/test_constraint_schema.py` checks required `ConstraintKind` values and diagnostic classes for the in-scope categories. |
+| R-13-02-003 | `tests/test_constraint_schema.py` checks `SourceType` coverage for `user`, `project`, `import`, `agent`, and `source_derived`, plus required `Provenance` fields. |
+| R-13-02-004 | Schema review checks `missing_required_data`, `CONSTRAINT_MISSING_DATA`, diagnostics, assumptions, and missing-data validation statuses; runtime validation behavior remains downstream in `DEL-13-03`. |
+| R-13-02-005 | `tests/test_constraint_schema.py` checks `Quantity` required fields and exact alignment with the accepted PKG-02 dimension vocabulary. |
+| R-13-02-006 | `tests/test_constraint_schema.py` checks data-boundary constants and scans schema strings for forbidden protected/professional-claim text. |
+| R-13-02-007 | `tests/test_constraint_schema.py` checks `ProfessionalBoundary` constants require human review and prohibit software compliance, certification, sealing, approval, and authentication claims. |
+| R-13-02-008, R-13-02-010 | `python3 -m json.tool schemas/constraint.schema.json` checks JSON syntax; `schemas/constraint.schema.json` declares `$id`; `tests/test_constraint_schema.py` checks the JSON Schema 2020-12 declaration, root identity constants, and required version slot. |
+| R-13-02-009 | Schema review confirms typed `Reference` objects, diagnostics, assumptions, provenance, and model/design-knowledge references are available; physical-to-analytical transform consumption remains downstream `TBD`. |
+</p></div></div></section>
+<section id="SEC-ED077-0031" class="chunk sec depth-4" data-kind="section" data-key="section:5f3f7d467677" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-ED077-0031</span> Documentation</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5f3f7d467677" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5f3f7d467677" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5f3f7d467677" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required deliverable documentation and evidence:</p>
+<p>- `schemas/constraint.schema.json` or a human-approved successor path.
+- Constraint provenance model definitions inside `schemas/constraint.schema.json`.
+- `tests/test_constraint_schema.py` as current focused stdlib structural evidence.
+- Traceability from schema elements to SOW-067, SOW-068, OBJ-014, and OBJ-018.
+- Data-boundary notes for any examples or fixtures.
+- Verification notes for JSON syntax validation, unit/provenance compatibility, missing-data diagnostics, and professional-boundary review.
+- Public example payloads, GUI presentation behavior, runtime validation behavior, and transform consumption remain `TBD` until later bounded work.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "ED077";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>
