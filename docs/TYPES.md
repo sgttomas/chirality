@@ -134,7 +134,7 @@ Legacy values `INBOUND` and `OUTBOUND` normalize to `UPSTREAM` and `DOWNSTREAM` 
 | `ENABLES` | Execution | This deliverable enables downstream work |
 | `OTHER` | Both | Default for ANCHOR rows; catch-all for EXECUTION rows |
 
-Legacy types `COORDINATION` and `INFORMATION` MUST NOT be emitted in new extractions.
+Legacy types such as `COORDINATION` / `INFORMATION`, and project-specific labels such as `ARCHITECTURE_BASIS`, `DOMAIN_MODEL`, `*_PREDECESSOR`, or `*_CONTRACT`, are read-only migration inputs. Current v3.1 registers MUST emit only the canonical values above and preserve the legacy label in provenance notes or documented extension fields.
 
 ### 3.5 Target Types
 
@@ -163,6 +163,8 @@ Legacy types `COORDINATION` and `INFORMATION` MUST NOT be emitted in new extract
 |---|---|---|
 | `SatisfactionStatus` | `TBD`, `PENDING`, `IN_PROGRESS`, `SATISFIED`, `WAIVED`, `NOT_APPLICABLE` | Closure lifecycle (has the dependency been fulfilled?) |
 | `Status` | `ACTIVE`, `RETIRED` | Extraction lifecycle (is the dependency currently observed in sources?) |
+
+Candidate/non-gating graph dispositions are governance worklist states, not dependency `Status` values. They MUST NOT be represented as `Status=CANDIDATE` in current v3.1 registers.
 
 ---
 

@@ -191,6 +191,8 @@ Per-source skeleton lift, dispatch-unit planning, HTML rendering, and atom/vocab
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
 | `analyze_dep_closure.py` | Python 3 | Full dependency graph analysis: schema, orphans, cycles (SCC), hubs, bidirectional pairs, coverage | EXECUTION_ROOT, --output-dir | closure_summary.json + 6 CSV reports |
+| `audit_dag.py` | Python 3 | Audit an aggregate DAG dependency register; optional `--canonical` mode validates current v3.1 enum and row-rule semantics while preserving historical read compatibility | `--dag-dir`, optional `--canonical`, `--strict`, `--json-out`, `--markdown-out` | Console summary; optional DAG_Audit JSON/Markdown; strict exit code |
+| `materialize_local_dependencies.py` | Python 3 | Materialize deliverable-local dependency mirrors from an aggregate DAG; optional `--canonical-output` excludes candidate rows and reports canonical validation findings | `--dag-dir`, `--execution-root`, optional `--canonical-output`, `--refresh-pointers` | Local `Dependencies.csv` mirrors and optional `_DEPENDENCIES.md` pointers |
 | `accumulate_supersession_map.py` | Python 3 | Deterministically accumulate cumulative `Supersession_Map.csv` rows from accepted prior maps plus current SCA delta rows, with optional check-mode comparison for closure audit | repeatable `[--prior-map]`, repeatable `[--delta]`, `--output-map`, `[--allow-empty]`, `[--check-map]`, `[--output-findings]` | Cumulative `Supersession_Map.csv`; optional findings CSV; exit 0/1/2 |
 
 ---

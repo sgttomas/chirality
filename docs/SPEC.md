@@ -439,8 +439,6 @@ The `RegisterSchemaVersion` column MUST be present in every row and set to `v3.1
 | `CONSTRAINT` | Preferred | Explicit constraint or condition |
 | `ENABLES` | Preferred | This deliverable enables downstream work |
 | `OTHER` | Preferred | Dependency that does not fit other categories; used for ANCHOR rows |
-| `COORDINATION` | Legacy | Do not emit in new extractions |
-| `INFORMATION` | Legacy | Do not emit in new extractions |
 
 **TargetType:**
 | Value | Meaning |
@@ -535,6 +533,8 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 **DependencyType normalization (see §6.3):**
 - `COORDINATION` (legacy) → `OTHER` (canonical, used for ANCHOR rows and catch-all)
 - `INFORMATION` (legacy) → Interpret context and map to `PREREQUISITE`, `INTERFACE`, `HANDOVER`, `CONSTRAINT`, or `ENABLES` as appropriate
+- Project-specific dependency labels such as `ARCHITECTURE_BASIS`, `DOMAIN_MODEL`, `*_PREDECESSOR`, `*_CONTRACT`, or `SERVICE_API` are read-only migration inputs, not v3.1 core enum values. Current registers MUST map them to the canonical `DependencyType` set and preserve the original label in `Notes` or a documented extension column.
+- `CANDIDATE` is not a valid `Status`. Candidate/non-gating graph dispositions belong in graph-governance worklists or review packets outside the canonical `Dependencies.csv` / `DependencyEdges.csv` register.
 
 **SchemaVersion handling:**
 - If `RegisterSchemaVersion` is missing from an existing file, add it on write and set to `v3.1`
