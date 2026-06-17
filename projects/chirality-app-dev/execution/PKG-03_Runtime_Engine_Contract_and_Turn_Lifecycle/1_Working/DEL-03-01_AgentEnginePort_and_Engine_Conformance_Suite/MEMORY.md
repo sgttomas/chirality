@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-05-24 - CODEV-001 tranche implemented the initial product-owned runtime boundary in `frontend/src/lib/harness/agent-engine-port.ts`.
 - 2026-05-24 - Stable browser `UIEvent` names remain unchanged and provider-neutral.
 - 2026-05-24 - Runtime evidence JSONL support added through `frontend/src/lib/harness/event-schema.ts` and `frontend/src/lib/harness/session-events.ts`.

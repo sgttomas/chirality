@@ -18,7 +18,7 @@ Evidence basis:
 - Provider selection truth: `frontend/src/lib/harness/runtime.ts`
 - Persona gap truth: `frontend/src/lib/harness/persona-manager.ts`
 - Accepted dependency closure discovery: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
-- Static status scan: 53 deliverable `_STATUS.md` files, all with `**Current State:** SEMANTIC_READY`
+- Static status scan: 53 deliverable `_STATUS.md` files, all with `**Current State:** IN_PROGRESS` after the 2026-06-16 human-authorized lifecycle update.
 
 Paths below are relative to `projects/chirality-app-dev/`.
 
@@ -58,16 +58,21 @@ Paths below are relative to `projects/chirality-app-dev/`.
 ## Deliverable Status Reconciliation Note
 
 The live decomposition deliverable status surface is not a runtime-completion surface.
-A static scan found 53 deliverable `_STATUS.md` files and every one reports
-`**Current State:** SEMANTIC_READY`.
+At STAB-00 intake, a static scan found 53 deliverable `_STATUS.md` files and every one
+reported `**Current State:** SEMANTIC_READY`; that state represented decomposition and
+semantic/lensing readiness, not runtime completion. On 2026-06-16, the human project
+authority advanced all 53 deliverable lifecycle states to `IN_PROGRESS` because active
+code implementation is underway.
 
 STAB-00 records this as a reconciliation note only:
 
-- `SEMANTIC_READY` is a decomposition-process state from the semantic/lensing workflow.
 - The v3.2 decomposition remains topology authority.
 - The matrix above is the runtime-implementation view for the stabilization program.
-- No `_STATUS.md` files were bulk-edited; forward lifecycle transitions remain
-  actor-authorized and approval-SHA-gated where applicable.
+- `IN_PROGRESS` does not imply `CHECKING`, `ISSUED`, release readiness, dependency
+  satisfaction, professional approval, certification, sealing, authentication, or
+  code-compliance acceptance.
+- Forward lifecycle transitions remain actor-authorized and approval-SHA-gated where
+  applicable.
 
 ## Human Ruling Posture
 

@@ -74,10 +74,12 @@ Reconciliation issues confirmed by research (drives STAB-00 and STAB-05):
   exist in source (PRD §2 assessment, KG-004/005/006/010; PLAN/PRD R2–R5 forward
   roadmap). A minority are genuinely stale; a few were still accurate gaps at baseline
   (the persona-stub gap was closed by STAB-05).
-- All **53** deliverable `_STATUS.md` files read `Current State: SEMANTIC_READY`
-  (uniform 2026-05-20 decomposition value). The v3.2 decomposition remains the topology
-  authority, but `_STATUS.md` lifecycle state does **not** reflect runtime implementation
-  and must not be read as runtime completion.
+- At STAB-00 intake, all **53** deliverable `_STATUS.md` files read
+  `Current State: SEMANTIC_READY` (uniform 2026-05-20 decomposition value). On
+  2026-06-16, the human project authority advanced all 53 deliverable lifecycle states to
+  `IN_PROGRESS` because active code implementation is underway. The v3.2 decomposition
+  remains the topology authority, and `_STATUS.md` lifecycle state must not be read as
+  runtime completion.
 - The `agentSdk` provider is opt-in in source (`CHIRALITY_HARNESS_PROVIDER=agentSdk`;
   default is the stub manager), while several strategic docs call the Claude Agent SDK /
   Anthropic path the "current shipped path." This framing should be reconciled and a
@@ -162,14 +164,15 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic` and scripted opt-in `agentSdk` dev proof; packaged subprocess proof remains STAB-02(d) |
 | 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/mcp/read-tools.ts`; `frontend/src/lib/harness/mcp/tool-names.ts`; `frontend/src/lib/harness/sdk-options-builder.ts` | `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts`; descriptor/options tests | DEL-07-04 / DEL-07-05 (MCP half) | **LANDED 2026-06-16** (`workspaceWrite`-gated by D-APP-13 Option A) |
 
-**Deliverable-status reconciliation note (STAB-00 output).** Every deliverable
-`_STATUS.md` reads `SEMANTIC_READY`, which is a *decomposition-process* state set on
-2026-05-20, not a runtime-implementation state. The matrix above is the authoritative
+**Deliverable-status reconciliation note (STAB-00 output, updated 2026-06-16).** The
+former project-wide `SEMANTIC_READY` status was a decomposition-process state set from
+semantic/lensing work, not a runtime-completion state. On 2026-06-16, the human project
+authority advanced all 53 deliverable `_STATUS.md` files to `IN_PROGRESS` because active
+code implementation is underway. The matrix above remains the authoritative
 runtime-implementation view; the decomposition remains the **topology** authority only.
-`_STATUS.md` files are **not** mass-edited by this plan: forward-only transitions are
-actor-authorized and SHA-gated, and rewriting them is itself a human-gated lifecycle
-action. The reconciliation is recorded as this derived note plus the matrix, not as bulk
-status edits.
+The `IN_PROGRESS` lifecycle state does not imply `CHECKING`, `ISSUED`, release readiness,
+dependency satisfaction, professional approval, certification, sealing, authentication,
+or code-compliance acceptance.
 
 ## 6. Tranche Spine
 
