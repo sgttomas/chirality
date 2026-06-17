@@ -19,6 +19,10 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
   - Executes the section8 validator and enforces required test IDs.
   - Executes the section9 validator in report-only mode for the initial integration cycle.
   - Copies the summary to `frontend/artifacts/harness/section8/latest/summary.json`.
+- `npm run harness:validate:agentsdk-packaged-proof`
+  - Imports the packaged SDK module from `app.asar.unpacked`.
+  - Runs a scripted no-live `query()` turn to record the resolved native subprocess command.
+  - Verifies controlled `CLAUDE_CONFIG_DIR` and `HOME` propagation for transcript/config posture.
 
 ## Prerequisites
 
@@ -67,6 +71,7 @@ Fail the pipeline when command exit code is non-zero.
 - Stable premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`
 - Stable Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`
 - Integrity summary (instruction-root): `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+- Packaged SDK proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`
 
 ## Repeatability Check
 

@@ -68,7 +68,7 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover remains pending after the Option B hold ruling and STAB-02(d) package-layout proof; `D-APP-13` mutating Chirality MCP exposure is ruled), and validation policy.
+0. `plans/PLAN_2026-06-16_runtime_stabilization.md` is the **active governing development queue** (tranches STAB-00..STAB-06), accepted by `D-APP-11`. Select tranches from its spine and sequencing (§6, §10). It carries its own current-state matrix, required-human-ruling list (`D-APP-12` default-provider cutover remains pending after the Option B hold ruling, STAB-02(d) package-layout proof, and no-live packaged resolver/HOME proof; `D-APP-13` mutating Chirality MCP exposure is ruled), and validation policy.
 1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the completed non-governing SCC-resolution plan. It records closure of the residual six-node strict dependency SCC; it is closed history and is no longer the active queue.
 2. `plans/PLAN_2026-06-13_runtime_completion.md` is retired as the active queue and retained only as historical completion evidence for landed runtime work.
 3. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.

@@ -45,6 +45,13 @@ describe('dmg packaging policy', () => {
     expect(dist).toContain('CSC_IDENTITY_AUTO_DISCOVERY=false');
   });
 
+  it('exposes a no-live packaged agentSdk resolver proof command', async () => {
+    const pkg = await readPackageJson();
+    const proof = pkg.scripts?.['harness:validate:agentsdk-packaged-proof'] ?? '';
+
+    expect(proof).toContain('verify-packaged-agent-sdk-runtime.mjs');
+  });
+
   it('pins macOS minimum version and arm64 dmg target', async () => {
     const pkg = await readPackageJson();
     const minimumSystemVersion = pkg.build?.mac?.minimumSystemVersion ?? '';

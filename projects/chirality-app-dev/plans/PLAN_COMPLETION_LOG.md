@@ -6,6 +6,56 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - Runtime stabilization packaged SDK no-live proof landed (`STAB-02d`)
+
+Landed the non-live packaged resolver/HOME proof harness allowed by the D-APP-12 Option B
+hold path. This does not change the default provider: `agentSdk` remains opt-in until the
+human rules D-APP-12.
+
+Runtime validation changes:
+
+- Added `frontend/scripts/verify-packaged-agent-sdk-runtime.mjs`.
+- Added `npm run harness:validate:agentsdk-packaged-proof`.
+- The proof imports the packaged SDK module from `app.asar.unpacked`, runs a scripted
+  no-live SDK `query()` turn, records the SDK-resolved native CLI command, and verifies
+  controlled temp `CLAUDE_CONFIG_DIR` / `HOME` propagation.
+- Added focused tests for the pass path and for resolver escape outside
+  `app.asar.unpacked/node_modules`.
+- Updated validation/build/release docs and harness README to route the new evidence
+  command.
+- Prepared the updated D-APP-12 packet:
+  `execution/_Coordination/_DECISIONS/D-APP-12_PACKET_STAB02D_PROOF_2026-06-17.md`.
+
+Validation passed: focused script/package-policy suite
+`npm run test -- src/__tests__/scripts/verify-packaged-agent-sdk-runtime.test.ts
+src/__tests__/scripts/dmg-packaging-policy.test.ts` (2 files, 7 tests);
+`npm run desktop:pack`; packaged-directory
+`npm run harness:validate:agentsdk-packaged-proof`; `npm run typecheck`;
+`npm run harness:validate:agentsdk-dev-turn`; `npm run harness:validate:section9`
+(`HARNESS_SECTION9_STATUS=pass`, 13 checks); full `npm run test` (52 files, 375 tests);
+`npm run harness:validate:premerge` against a local Next server
+(`HARNESS_PREMERGE_STATUS=pass`, Section 8 8 checks, Section 9 report-only 13 checks);
+`npm run desktop:dist`; mounted-DMG integrity check with
+`npm run instruction-root:integrity -- --bundle-root '/Volumes/Chirality
+0.1.0-arm64/Chirality.app/Contents/Resources' --output-root
+artifacts/harness/instruction-root-integrity/dmg-mounted-2026-06-17`; mounted-DMG
+packaged proof with `npm run harness:validate:agentsdk-packaged-proof -- --bundle-root
+'/Volumes/Chirality 0.1.0-arm64/Chirality.app/Contents/Resources' --output-root
+artifacts/harness/packaged-agent-sdk/dmg-mounted-2026-06-17`; and shortened scripted
+network proof
+`npm run proof:network-policy -- --provider agentSdk --scripted-agent-sdk --runs 1
+--idle-seconds 5 --idle-sample-seconds 5 --output-dir
+artifacts/harness/network-policy-agentSdk-short-2026-06-17`.
+
+Skipped/limited checks: no live packaged provider turn was run, no stored API key was
+loaded, and actual live CLI transcript creation remains unproven. The default-duration
+network proof was skipped because its defaults run three 10-minute idle windows; the
+shortened scripted proof preserves the no-live provider posture for this tranche.
+
+Residual handoff: D-APP-12 remains `AWAITING_RULING`. The next human ruling must decide
+whether no-live packaged resolver/HOME evidence is sufficient for default-provider cutover
+or whether one bounded live packaged read-tool proof is still required.
+
 ## 2026-06-16 - Runtime stabilization packaged SDK layout proof partial (`STAB-02d`)
 
 Recorded the D-APP-12 Option B hold ruling and continued STAB-02(d) without changing the

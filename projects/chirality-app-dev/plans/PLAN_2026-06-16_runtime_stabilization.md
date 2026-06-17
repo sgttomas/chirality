@@ -106,7 +106,8 @@ remains pending for default-provider cutover in `_DECISIONS/_REGISTER.md` (§9).
   governance reconciliation precede new capability.
 - **Unit-proven is not runtime-proven.** The opt-in `agentSdk` path now has scripted
   dev-turn and scripted network-proof evidence through the real SDK `query()` surface,
-  while packaged subprocess evidence remains separate and open. The plan treats
+  plus no-live packaged resolver/HOME evidence from `app.asar.unpacked`. Live packaged
+  provider behavior remains separate and unproven. The plan treats
   "has a passing unit/contract test", "completes a dev/scripted turn", and "completes a
   packaged subprocess turn" as distinct evidence tiers and never lets one masquerade as
   another.
@@ -160,7 +161,7 @@ a named sub-behavior missing), **GAP** (specified, not implemented), **METADATA-
 | 23 | **PersonaComposer from instruction root** | `persona-manager.ts` (`PersonaComposer`) | `lib/persona-manager.test.ts`, `api/harness/routes.test.ts`, `lib/claude-agent-sdk-manager.test.ts` | DEL-04-04 | LANDED |
 | 24 | Section 8 running-app validation + stable premerge artifact | `scripts/validate-harness-section8.mjs`, `scripts/validate-harness-premerge.mjs` | `scripts/*` | DEL-09-01 | LANDED |
 | 25 | **Section 9 runtime validation IDs (aggregator)** | `scripts/validate-harness-section9.mjs` | targeted deterministic Vitest groups | DEL-09-02 | LANDED (report-only premerge integration) |
-| 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts` | DEL-09-04 | PARTIAL 2026-06-16 (SDK `asarUnpack` and packaged/mounted-DMG SDK presence proven; packaged live read-tool turn, transcript, and HOME behavior remain blocked pending explicit live-provider approval or a non-live resolver/HOME proof harness) |
+| 26 | macOS DMG packaging + SDK subprocess probe | `package.json` build, `scripts/verify-instruction-root-integrity.mjs`, `scripts/verify-packaged-agent-sdk-runtime.mjs` | `scripts/dmg-packaging-policy.test.ts`, `scripts/verify-instruction-root-integrity.test.ts`, `scripts/verify-packaged-agent-sdk-runtime.test.ts` | DEL-09-04 | LANDED 2026-06-17 for package layout plus no-live packaged resolver/HOME proof; live packaged provider behavior remains unproven and default cutover remains D-APP-12-gated |
 | 27 | Network policy proof | `scripts/run-network-policy-proof.mjs` | `scripts/build-network-policy.test.ts` | DEL-09-06 | LANDED for default/`anthropic` and scripted opt-in `agentSdk` dev proof; packaged subprocess proof remains STAB-02(d) |
 | 28 | **Mutating Chirality MCP tools** (`status_transition`, `deps_write`) | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/mcp/read-tools.ts`; `frontend/src/lib/harness/mcp/tool-names.ts`; `frontend/src/lib/harness/sdk-options-builder.ts` | `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts`; descriptor/options tests | DEL-07-04 / DEL-07-05 (MCP half) | **LANDED 2026-06-16** (`workspaceWrite`-gated by D-APP-13 Option A) |
 
@@ -182,7 +183,7 @@ Tranche numbers are identities, not a strict linear order; see §10 for the depe
 |---|---|---|---|
 | `STAB-00` Baseline Reconciliation & ID Canonicalization | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Artifacts: `plans/artifacts/runtime_capability_matrix.md` and `plans/artifacts/stab00_reconciliation_disposition.md`. Residual handoff: STAB-01 uses canonical Section 9 IDs; STAB-06 consumes the disposition list. | Governance gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-01` Section 9 Validation Surface | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Added `validate-harness-section9.mjs` for 13 canonical deterministic IDs, npm script, stable ignored artifact path, docs, and additive report-only premerge integration. Residual handoff: STAB-03 item B and STAB-04 can consume the Section 9 validation namespace; Section 9 should flip from report-only to hard-fail after one stable cycle. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
-| `STAB-02` SDK Runtime Readiness & Cutover Decision | **PARTIAL 2026-06-16:** steps (a), (b), and (c) landed; step (d) package-layout proof partially landed after D-APP-12 Option B. | API-key injection scopes the resolved key to the active SDK turn and restores prior env state; route-level opt-in `agentSdk` scripted dev-turn validation exercises the real SDK `query()` path; `proof:network-policy -- --provider agentSdk --scripted-agent-sdk` runs the opt-in SDK adapter with an offline SDK subprocess and records loopback/Anthropic allowlist evidence; `desktop:pack`, `desktop:dist`, and mounted-DMG integrity now prove the SDK JS package and darwin-arm64 CLI package resolve from `app.asar.unpacked`. Remaining: packaged read-tool `agentSdk` turn plus transcript/HOME behavior, blocked pending explicit live-provider approval or a new non-live packaged resolver/HOME proof harness; updated D-APP-12 packet prepared. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d). |
+| `STAB-02` SDK Runtime Readiness & Cutover Decision | **READINESS LANDED 2026-06-17; DEFAULT CUTOVER PENDING D-APP-12.** | API-key injection, route-level opt-in `agentSdk` scripted dev-turn validation, scripted `agentSdk` network proof, package layout, mounted-DMG SDK presence, and no-live packaged resolver/HOME proof are landed. Live packaged provider behavior remains explicitly unproven; `agentSdk` remains opt-in until D-APP-12 rules otherwise. | Runtime premerge + security/network gate; packaging gate (`build`, `desktop:pack`, `desktop:dist`) for (d); see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-03` Session Replay, Artifact Evidence & Subagent Records | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Generalized descriptor-driven artifact overflow across hook, MCP, and async SDK mapper paths; added replay summaries and full synthetic event-class replay coverage; added bounded write/edit diff summaries; wired adapter-observed child-run records into SDK task events; added direct tool-evidence/artifact tests and Section 9 coverage. Residual handoff: STAB-02 real/scripted turns can later exercise the same replay/artifact surfaces against live SDK evidence. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-04` Deterministic Chirality MCP Maturity | **LANDED 2026-06-16** on `codex/chirality-app-work`. | D-APP-13 Option A approved stepwise `status_transition` then `deps_write`; implementation exposes only requested `workspaceWrite` mutating Chirality MCP handlers, with in-handler permission/evidence wrapping because raw SDK MCP `mcp_message` calls bypass automatic `canUseTool` / hook callbacks. Evidence records permission decisions, target-file SHA/byte metadata, bounded diff summaries, redacted failures, and result summaries only. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
 | `STAB-05` Persona Composer from Instruction Root | **LANDED 2026-06-16** on `codex/chirality-app-work`. | Replaced `StubPersonaManager` with instruction-root-driven `PersonaComposer`; surfaced content-derived boot fingerprints and turn prompt hashes. Residual handoff: STAB-02 real/scripted `agentSdk` turns now run with governed persona context before D-APP-12 cutover review. | Runtime premerge gate; see `plans/PLAN_COMPLETION_LOG.md`. |
@@ -232,8 +233,9 @@ Residual handoff:
 ### STAB-02 — SDK Runtime Readiness & Default-Provider Cutover Decision
 
 Goal: prove the real SDK path is functional, governable, and safe enough for a future
-default-provider decision. **Internal ordering matters** — steps (a), (b), and (c) have
-landed, and step (d) is the `BLOCKED_TBD` packaging gate.
+default-provider decision. **Internal ordering matters** — steps (a), (b), (c), and the
+no-live packaged resolver/HOME proof path for step (d) have landed. Default-provider
+cutover remains gated by D-APP-12.
 
 - **(a) API-key injection for the active turn (load-bearing GAP). LANDED 2026-06-16.**
   `ClaudeAgentSdkManager` now sets `process.env.ANTHROPIC_API_KEY` to the resolved active
@@ -257,7 +259,8 @@ landed, and step (d) is the `BLOCKED_TBD` packaging gate.
   records provider/scripted status, treats any TCP endpoint outside loopback and
   `api.anthropic.com` as non-allowlisted, and preserves the CONF-002 OCSP/CRL carve-out
   note. This is not packaged subprocess evidence.
-- **(d) Packaged subprocess probe. PARTIAL 2026-06-16 after D-APP-12 Option B.**
+- **(d) Packaged subprocess probe. LANDED 2026-06-17 as a no-live packaged
+  resolver/HOME proof after D-APP-12 Option B.**
   Added electron-builder `asarUnpack` for
   `node_modules/@anthropic-ai/claude-agent-sdk/**` and
   `node_modules/@anthropic-ai/claude-agent-sdk-*/**`; extended
@@ -266,13 +269,13 @@ landed, and step (d) is the `BLOCKED_TBD` packaging gate.
   `desktop:dist`, and mounted-DMG SDK presence. The verifier records the actual
   resolver-visible darwin-arm64 CLI package root:
   `app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64`.
-  Remaining blocker: no packaged read-tool `agentSdk` turn was run because no
-  live-provider proof was explicitly approved and the packaged app can load a stored API
-  key from the Electron profile; the existing scripted SDK proof is intentionally
-  development/test-only and would bypass native CLI resolution. Transcript/HOME behavior
-  therefore remains unproven. Do **not** claim STAB-02(d) fully landed until a live
-  packaged turn is explicitly approved or a separate non-live packaged resolver/HOME
-  proof harness lands.
+  On 2026-06-17, added `harness:validate:agentsdk-packaged-proof`, which imports the
+  packaged SDK module from `app.asar.unpacked`, runs a scripted no-live `query()` turn,
+  records the resolver-selected native CLI command, and verifies controlled
+  `CLAUDE_CONFIG_DIR`/`HOME` propagation. The proof passed against both the packaged
+  directory build and the mounted DMG, resolving the non-live resolver/HOME evidence path.
+  No live packaged provider turn was run; live provider behavior and default-provider
+  readiness remain D-APP-12 human-gated.
 
 Default-provider cutover decision (D-APP-12, §9): keep `agentSdk` opt-in until (a)–(d)
 plus Section 8 and Section 9 are green. **Packaged subprocess proof is a hard prerequisite
@@ -409,7 +412,7 @@ Recorded in `execution/_Coordination/_DECISIONS/_REGISTER.md`:
 | ID | Decision | Blocks | State |
 |---|---|---|---|
 | `D-APP-11` | Accept the Runtime Stabilization program as the active development queue. | Selection of this plan as the active queue; coordination re-pointing. | **RULED** 2026-06-16 (this plan's acceptance). |
-| `D-APP-12` | Default-provider cutover from the current default to the SDK-backed Anthropic path. | Any change making `agentSdk` the default; any doc stating the SDK is the active default. | **AWAITING_RULING** — packet prepared in STAB-02 once (a)–(d) + Section 8/9 are green; packaged-subprocess proof recommended as a hard prerequisite. |
+| `D-APP-12` | Default-provider cutover from the current default to the SDK-backed Anthropic path. | Any change making `agentSdk` the default; any doc stating the SDK is the active default. | **AWAITING_RULING** — updated packet prepared after STAB-02(a)–(d), Section 8/9, package, mounted-DMG, and no-live packaged resolver/HOME evidence passed. |
 | `D-APP-13` | Exposure of bounded mutating Chirality MCP tools (`status_transition`, `deps_write`) from metadata-only to `workspaceWrite`-gated, incl. whether the tool may perform human-gated (`CHECKING`/`ISSUED`) transitions and the required actor identity. | STAB-04 implementation. | **RULED 2026-06-16** — Option A approved at `execution/_Coordination/_DECISIONS/D-APP-13_RULING_2026-06-16.md`; stepwise `status_transition` then `deps_write` implementation may proceed with handler-level permission/evidence wrapping. |
 
 Tranches **not** requiring a new ruling beyond D-APP-11: STAB-00, STAB-01, STAB-03,
@@ -430,7 +433,7 @@ STAB-00  (prerequisite: canonical IDs + reconciled baseline)
   ├─► STAB-06  (consumes STAB-00 disposition list; runs last among doc edits)
   └─► (informs all)
 
-STAB-02  (a → b → c → d internal order; a–c landed, d = packaging gate)
+STAB-02  (a → b → c → d internal order; readiness landed)
   └─► D-APP-12 cutover ruling AFTER (a)–(d) + Section 8 + Section 9 green + STAB-05
 
 STAB-01 ──► STAB-03 item B (malformed-tail feeds Section 9)
@@ -479,12 +482,12 @@ why runtime commands were skipped.
 
 | Risk | Mitigation |
 |---|---|
-| "Unit-proven" mistaken for "runtime-proven" for the SDK path | STAB-02 steps (b) and (c) landed route-level scripted dev-turn and scripted network-proof evidence; D-APP-12 remains gated on packaged subprocess evidence in step (d). |
+| "Unit-proven" mistaken for "runtime-proven" for the SDK path | STAB-02 steps (b), (c), and (d) landed route-level scripted dev-turn, scripted network-proof, and no-live packaged resolver/HOME evidence; D-APP-12 still decides whether live packaged provider evidence is required before default cutover. |
 | API key never reaches the SDK (load-bearing gap) | STAB-02 step (a) landed key-injection + redaction coverage together; steps (b) and (c) now exercise that path through route-level scripted SDK evidence. |
 | ID/string drift (adapter_/sdk_/_deny_first; `anthropic` vs `agentSdk`) | STAB-00 canonicalizes; STAB-01 and STAB-06 pull from `SPEC.md` / `runtime.ts` only. |
 | New Section 9 aggregator destabilizes the Section 8 gate | Separate TMP root + artifact path; additive premerge; report-only for one cycle then hard-fail. |
 | `canUseTool`/hooks may not fire for in-process MCP tools | STAB-04 probe landed: raw SDK MCP `mcp_message` calls do not automatically invoke callbacks, so mutating MCP tools require in-handler permission/evidence wrapping unless future live-CLI evidence supersedes this. |
-| Packaging blocker (asar/HOME/signing) blocks default cutover | STAB-02 step (d) treats a passed packaged-subprocess turn as a hard prerequisite or records a concrete blocker. |
+| Packaging blocker (asar/HOME/signing) blocks default cutover | STAB-02 step (d) landed package layout plus no-live packaged resolver/HOME evidence; D-APP-12 still decides whether live packaged provider evidence is required before default cutover. |
 | Editing PRD/PLAN/SPEC drifts policy | STAB-06 limits to factual corrections + dated supersession notes; policy changes gated behind D-APP-12. |
 | `_STATUS.md` mass-edit triggers lifecycle gates | No bulk edits; reconciliation captured as a derived note + matrix; topology authority preserved. |
 
