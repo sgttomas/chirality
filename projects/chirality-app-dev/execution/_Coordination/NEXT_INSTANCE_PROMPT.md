@@ -20,7 +20,7 @@
 
 ## Active Direction
 
-The active development queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. LP-00 landed the D-APP-15 decision packet and active-queue pointers. LP-01 landed the D-APP-15 Option A ruling, approving one bounded live packaged `agentSdk` read-tool proof. LP-02 landed the exact command path, package path, API-key supply method, artifact directory, stop conditions, and redaction checks in `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. The next tranche is LP-03 Live Packaged Read-Tool Proof, limited to one live provider run under D-APP-15. The R6 Extensibility & MCP Boundary Maturity program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, tranches R6-01..R6-05) is completed closed history after R6-05; R6-04 was deferred as optional organization work. R6 matured the local/in-process tool extension boundary (collision-prevention invariant, regenerable tool catalog, contributor docs) on top of the stabilized runtime and exposed no new capability. The Runtime Stabilization program (STAB-00..STAB-06) is also completed closed history. Current stabilized runtime posture:
+The active development queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. LP-00 landed the D-APP-15 decision packet and active-queue pointers. LP-01 landed the D-APP-15 Option A ruling, approving one bounded live packaged `agentSdk` read-tool proof. LP-02 landed the exact command path, package path, API-key supply method, artifact directory, stop conditions, and redaction checks in `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 consumed the single D-APP-15-approved live run and failed before `Read` tool execution because the selected model was unavailable or inaccessible; evidence is recorded in `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`. D-APP-16 is awaiting ruling before any retry, waiver, or close disposition. The R6 Extensibility & MCP Boundary Maturity program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, tranches R6-01..R6-05) is completed closed history after R6-05; R6-04 was deferred as optional organization work. R6 matured the local/in-process tool extension boundary (collision-prevention invariant, regenerable tool catalog, contributor docs) on top of the stabilized runtime and exposed no new capability. The Runtime Stabilization program (STAB-00..STAB-06) is also completed closed history. Current stabilized runtime posture:
 
 - a local desktop harness for governed agents;
 - a Chirality-owned runtime contract and audit/event model;
@@ -35,21 +35,21 @@ Select from the active live packaged proof plan. Do not select from the complete
 Default priority:
 
 1. Repair failing validation for already-landed runtime/control-plane work first if such a regression is found.
-2. Continue with LP-03 Live Packaged Read-Tool Proof.
-3. Use `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` for the exact command path, package path, API-key supply method, artifact directory, stop conditions, and redaction checks.
-4. Run at most one live packaged proof under the D-APP-15 Option A constraints.
+2. Do not rerun the live proof. D-APP-16 is awaiting ruling after the LP-03 selected-model blocker.
+3. If D-APP-16 approves a retry, use `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` as the base procedure with only the human-approved model/key changes.
+4. If D-APP-16 denies or waives retry, record the selected disposition before closing or preparing any later packet.
 5. If any work requires remote MCP, plugins, broad tool search, domain tools, default-provider cutover, provider/network expansion beyond the bounded Anthropic proof path, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
 6. Do not revive a completed/closed/retired plan or invent a replacement queue.
 
 ## Execution Rules
 
-- No R6 tranche remains active after R6-05 closeout. The completed R6 and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`, `D-APP-14`, and `D-APP-15` are ruled. Run at most one live packaged provider proof, using the landed LP-02 procedure.
+- No R6 tranche remains active after R6-05 closeout. The completed R6 and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`, `D-APP-14`, and `D-APP-15` are ruled. D-APP-15's one live run has been consumed. D-APP-16 is awaiting ruling; do not run another live packaged provider proof unless that ruling explicitly approves it.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
 - Keep writes scoped to the selected tranche.
 - Use `{REPO_ROOT}/../pi` and `plans/pi-agent-harness-assessment.md` only as read-only pattern-corpus references where they refine the active plan item.
-- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, Pi migrations, or new runtime roadmap work unless the active plan item and human rulings explicitly allow them. D-APP-15 is ruled; live provider use is limited to the single LP-03 proof run under the LP-02 procedure.
+- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, Pi migrations, or new runtime roadmap work unless the active plan item and human rulings explicitly allow them. D-APP-16 blocks any second live provider use.
 - D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
 - Stop when any further progress requires a human ruling.
 
@@ -71,4 +71,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending or blocking from `_DECISIONS/_REGISTER.md`;
-- next selected tranche, or state that the active live packaged proof queue is waiting on LP-03 proof execution or LP-04 evidence review.
+- next selected tranche, or state that the active live packaged proof queue is waiting on D-APP-16.

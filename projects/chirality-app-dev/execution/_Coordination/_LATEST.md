@@ -11,10 +11,12 @@ Active coordination surfaces:
 Active development queue:
 
 - `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` (Live Packaged
-  `agentSdk` Read-Tool Proof plan). LP-02 landed the exact proof procedure; LP-03 Live
-  Packaged Read-Tool Proof is next.
+  `agentSdk` Read-Tool Proof plan). LP-03 consumed the D-APP-15 live run and failed on
+  selected-model availability/access; D-APP-16 is awaiting ruling.
 - `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` (LP-03 command,
   package path, key supply, artifact directory, stop conditions, and redaction checks).
+- `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`
+  (LP-03 failed-proof evidence and redaction disposition).
 
 Completed planning and history surfaces:
 

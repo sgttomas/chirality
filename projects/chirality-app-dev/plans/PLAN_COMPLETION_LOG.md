@@ -6,6 +6,46 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-18 - Live packaged agentSdk proof executed with model blocker (`LP-03`)
+
+Executed the D-APP-15-approved app-directory live packaged `agentSdk` read-tool proof once,
+after LP-02 landed the exact procedure.
+
+Validation/proof commands:
+
+- `npm run desktop:pack` passed, including `npm run instruction-root:integrity`.
+- `npm run harness:validate:agentsdk-packaged-proof -- --bundle-root
+  dist/mac-arm64/Chirality.app/Contents/Resources --output-root
+  artifacts/harness/packaged-agent-sdk/lp03-no-live-baseline-2026-06-18` passed.
+- `npm run harness:validate:agentsdk-packaged-live-read-tool -- --bundle-root
+  dist/mac-arm64/Chirality.app/Contents/Resources --api-key-file
+  /tmp/chirality-dapp15/anthropic_api_key --output-root
+  artifacts/harness/packaged-agent-sdk-live/lp03-app-dir-2026-06-18 --timeout-ms
+  180000` failed.
+
+The live failure occurred before read-tool execution: Claude Code reported that the
+selected model `claude-sonnet-4-20250514` may not exist or may not be accessible for the
+supplied key. The SDK stream did not report a `Read` tool use and did not report the proof
+token. The expected packaged SDK native command existed and remained under
+`app.asar.unpacked/node_modules`.
+
+Evidence recorded:
+
+- `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`.
+- `execution/_Coordination/_DECISIONS/D-APP-16_PACKET_2026-06-18.md`.
+- `_DECISIONS/_REGISTER.md` now marks D-APP-16 `AWAITING_RULING`.
+
+Redaction checks passed: the proof script reported zero API-key findings across the live
+proof output directory, generated proof project root, controlled `CLAUDE_CONFIG_DIR`, and
+controlled `HOME`; an additional artifact-directory scan also reported zero key-string
+matches. The temporary API key file at `/tmp/chirality-dapp15/anthropic_api_key` was
+removed after the proof attempt.
+
+Residual handoff: D-APP-16 must be ruled before any retry, model change, new key-file use,
+waiver path, or close disposition. This evidence does not support a D-APP-12
+default-provider cutover packet. `agentSdk` remains opt-in and D-APP-12 continues to hold
+default-provider cutover.
+
 ## 2026-06-18 - Live packaged agentSdk proof procedure landed (`LP-02`)
 
 Finalized the bounded live packaged `agentSdk` read-tool proof harness and procedure
