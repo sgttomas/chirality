@@ -10,7 +10,9 @@ Active coordination surfaces:
 
 Active development queue:
 
-- None selected. The next active plan must be selected by the human project authority.
+- `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` (Live Packaged
+  `agentSdk` Read-Tool Proof plan). The first live-proof tranche is blocked until
+  `D-APP-15` is ruled.
 
 Completed planning and history surfaces:
 

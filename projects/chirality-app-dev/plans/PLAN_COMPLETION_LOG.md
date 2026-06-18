@@ -6,6 +6,42 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-17 - Live packaged agentSdk proof queue activated (`LP-00`)
+
+Prepared the active Live Packaged `agentSdk` Read-Tool Proof queue after human direction to
+prepare D-APP-15 and a bounded active plan as the next Chirality App Dev queue.
+
+Governance/control-plane changes:
+
+- Added `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` as the active
+  queue.
+- Added `execution/_Coordination/_DECISIONS/D-APP-15_PACKET_2026-06-17.md`, asking
+  whether one bounded live packaged `agentSdk` read-tool proof may run before any later
+  D-APP-12 cutover recommendation.
+- Updated `_DECISIONS/_REGISTER.md` to mark D-APP-15 `AWAITING_RULING`.
+- Refreshed `_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, `_LATEST.md`, and docs index
+  surfaces so future instances select from the live-proof plan and stop at D-APP-15 before
+  live provider execution.
+
+No runtime source, package manifest, proof script, provider policy, tool exposure, network
+policy, release posture, or professional-boundary behavior changed. `agentSdk` remains
+opt-in and default-provider cutover remains held by D-APP-12.
+
+Validation passed: governance diff hygiene, docs manifest JSON parse, path existence
+checks for the new plan and D-APP-15 packet, targeted active-queue and D-APP-15 reference
+checks, and no-runtime-code-change confirmation.
+
+Skipped checks: frontend tests, typecheck, premerge, instruction-root integrity,
+packaging, network proof, live provider proof, build, desktop pack, and desktop dist were
+skipped because LP-00 changed only governance/control-plane/docs surfaces and did not
+change executable runtime behavior, TypeScript contracts, harness workflow behavior,
+instruction-root packaging, provider scope, outbound network, package layout, release
+posture, or proof scripts.
+
+Residual handoff: D-APP-15 is `AWAITING_RULING`. Do not run live packaged provider proof
+until D-APP-15 is ruled. Do not prepare or recommend default-provider cutover until D-APP-12
+is revisited after proof, waiver, denial, or blocker disposition.
+
 ## 2026-06-17 - R6 contract refresh and closeout landed (`R6-05`)
 
 Closed the R6 Extensibility & MCP Boundary Maturity program. R6-01, R6-02, R6-03, and

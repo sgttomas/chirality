@@ -30,6 +30,7 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
 | `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
 | `execution/_Reconciliation/DepClosure/_LATEST.md` and latest DepClosure snapshot | Dependency/SCC discovery evidence. | Snapshot evidence informs blocker analysis; it does not replace decomposition truth or plan selection. |
+| `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` | Active Live Packaged `agentSdk` Read-Tool Proof queue. | Does not approve live provider use before D-APP-15, default-provider cutover before D-APP-12, release readiness, or professional reliance. |
 | `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` | Completed R6 Extensibility & MCP Boundary Maturity program. | Records local/in-process tool catalog, naming, collision prevention, and contributor-doc work; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_runtime_stabilization.md` | Completed Runtime Stabilization program. | Records STAB-00..STAB-06 runtime stabilization work, evidence, and rulings; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_six_node_scc_resolution.md` | Completed non-governing SCC-resolution tranche-selection surface. | Records SCC-resolution work; does not change product requirements, decomposition truth, or release posture. |
@@ -41,12 +42,14 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 
 ## 3. Current Development Posture
 
-The current default work mode is bounded app-integration tranches, but no active
-development queue is currently selected. The R6 Extensibility & MCP Boundary Maturity
-program is completed closed history after R6-05; R6-04 was deferred as optional
-organization work. The Runtime Stabilization program is completed closed history after
-STAB-06. The residual six-node strict dependency SCC is closed by accepted DepClosure
-snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The completed
+The current default work mode is bounded app-integration tranches. The active development
+queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. It prepares
+D-APP-15 and may run one bounded live packaged `agentSdk` read-tool proof only after
+D-APP-15 is ruled. The R6 Extensibility & MCP Boundary Maturity program is completed
+closed history after R6-05; R6-04 was deferred as optional organization work. The Runtime
+Stabilization program is completed closed history after STAB-06. The residual six-node
+strict dependency SCC is closed by accepted DepClosure snapshot
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The completed
 SCC-resolution plan has:
 
 - a safe-move tranche for source-grounded decompose/invert dependency-row moves;
@@ -57,10 +60,10 @@ SCC-resolution plan has:
 Select exactly one tranche unless the human explicitly approves batching. Tranches
 selected from unblocked rows in a human-selected active plan are pre-approved for
 execution within their stated write scope. Stop when further progress requires a human
-ruling. Do not return to the completed R6 program, completed Runtime Stabilization plan,
-the closed SCC-resolution plan, or the retired runtime completion plan for new
-implementation work, and do not invent a replacement active queue when none has been
-selected.
+ruling. In the active live-proof plan, LP-00 may land governance/control-plane activation,
+but LP-02/LP-03 live provider work waits for D-APP-15. Do not return to the completed R6
+program, completed Runtime Stabilization plan, the closed SCC-resolution plan, or the
+retired runtime completion plan for new implementation work.
 
 ## 4. Phase-Aware Loop
 
@@ -73,10 +76,11 @@ selected.
 | Build and release evidence | What proves software-quality posture? | Docs, validation, packaging, or evidence tranche. | Evidence routing, package integrity, release-quality gates, no release claims. |
 | Domain-engine future scope | How will Chirality govern domain truth without owning it? | Decision packet, profile, adapter, or proposal workflow. | Protected paths, operation proposals, deterministic checks, human acceptance. |
 
-The current phase is post-R6 closeout. Runtime integration through the retired completion
-plan, Runtime Stabilization program, and R6 local/in-process extension-boundary program is
-landed through the accepted scope; future broad runtime roadmap work waits until the human
-selects a new governed plan. Formal lifecycle issuance, release readiness, professional
+The current phase is live packaged first-adapter proof preparation. Runtime integration
+through the retired completion plan, Runtime Stabilization program, and R6 local/in-process
+extension-boundary program is landed through the accepted scope. The active plan collects
+or dispositions the one packaged-live proof prerequisite named by D-APP-12 before any
+later default-provider review. Formal lifecycle issuance, release readiness, professional
 approval, certification, sealing, authentication, and code-compliance acceptance remain
 separate human-governed states.
 
@@ -87,7 +91,7 @@ separate human-governed states.
 3. Discover current state from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, source, tests, validation evidence, and git history.
 4. Read authority and implementation-reference files needed for the selected tranche.
 5. Record `git status --short` before planning or edits.
-6. Select the earliest unblocked active-plan item only when a human-selected active plan exists; otherwise stop and report that no active queue is selected.
+6. Select the earliest unblocked active-plan item; for the current live-proof queue, stop at D-APP-15 before live provider execution.
 7. Keep writes scoped to the tranche.
 8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
 9. Update affected SCC-resolution plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
@@ -114,7 +118,7 @@ A valid closeout identifies:
 - validation performed, including skipped checks and reasons;
 - files changed;
 - decision packets or human rulings pending;
-- next selected plan item, or state that no active development queue is selected;
+- next selected plan item, or state that the active queue is waiting on D-APP-15;
 - `CHANGE` closeout result, including commit and push result when completed.
 
 For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.
