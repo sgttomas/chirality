@@ -83,6 +83,7 @@ Other live task-family agents (DELIVERABLE_TASK, AGGREGATION, DOMAIN_HYPERGRAPH)
 | Agent | Instruction File | Role |
 | --- | --- | --- |
 | PREPARATION | `AGENT_PREPARATION.md` | Scaffold package/deliverable folders |
+| RESEARCHER | `AGENT_RESEARCHER.md` | Dispatched research specialist; executes one research brief into an immutable evidence packet + structured return (the Type-2 executor of RESEARCH) |
 | AGGREGATION | `AGENT_AGGREGATION.md` | Cross-scope synthesis snapshots |
 | TASK | `AGENT_TASK.md` | Generic bounded-task shell; loads profile/skill and executes within explicit scope |
 | DELIVERABLE_TASK | `AGENT_DELIVERABLE_TASK.md` | Preserved deliverable-local SME helper workflow |

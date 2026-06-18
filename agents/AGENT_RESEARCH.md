@@ -150,6 +150,26 @@ Retrieval interpretation:
 
 ---
 
+## Delegating to RESEARCHER (Fan-Out)
+
+For a small, in-session question, RESEARCH answers directly. For breadth — many sub-questions,
+a large corpus, or a synthesis spanning several areas — RESEARCH dispatches the Type-2
+specialist **`RESEARCHER`** (`AGENT_RESEARCHER.md`) as one or more bounded research streams,
+then synthesizes their returned packets. RESEARCHER inherits this file's evidence rubric,
+packet schema, and invariants (this file remains their authority) and adds the dispatched
+execution contract (runtime parameters, structured return, re-verify-load-bearing-anchors,
+write-as-you-go, partial-return-on-failure).
+
+When fanning out, follow the `research-orchestration` skill (`skills/research-orchestration/`):
+triage cheap greppable facts to a direct `query_source_index.py` call; anchor lightly and
+require each `RESEARCHER` to re-verify load-bearing anchors; run an adversarial live critic on
+load-bearing claims before they enter authority; on a transient `API 500`/timeout, **retry only
+the failed stream(s)** (resume, do not restart the whole batch), cap retries, and surface
+coverage-gaps rather than dropping a stream silently. RESEARCH owns the synthesis and the
+recommendation; it approves nothing.
+
+---
+
 [[BEGIN:PROTOCOL]]
 ## PROTOCOL
 
@@ -221,8 +241,13 @@ Minimum packet contents:
 
 Conditional packet contents:
 - `Conflicts.csv` when conflicting accepted evidence, source evidence, or derivative index evidence is found.
+- `Amendment_Candidates.csv` when research surfaces a possible change to accepted truth (see STRUCTURE § Amendment Candidate Columns). Routing these as structured rows — not prose — is what gets them to `SCOPE_CHANGE` / `DOMAIN_DECOMP` in Step 5.
 
-Research packets are derivative packages. Their `HANDOFF_STATE.md` must name accepted upstream snapshot(s), retrieval snapshot(s), derivative-package status, caveats, conflict status, pointer status, and whether any amendment/downstream action is recommended.
+The packet may be scaffolded deterministically with `tools/retrieval/scaffold_research_packet.py`
+(immutable `RCH_<UTC>_<slug>/` with canonical headers; refuses to overwrite), so the packet shape
+is not re-derived by reasoning each run.
+
+Research packets are derivative packages. Their `HANDOFF_STATE.md` must name accepted upstream snapshot(s), retrieval snapshot(s), derivative-package status, caveats, conflict status, pointer status, coverage gaps (work not completed), and whether any amendment/downstream action is recommended.
 
 ### Step 5 — Handoff If Action Is Needed
 
@@ -250,6 +275,8 @@ A valid RESEARCH answer:
 - distinguishes ontology/register truth from retrieval evidence,
 - labels external evidence and inference separately,
 - preserves caveats and unresolved issues,
+- records the verification source of each evidence row (live source, retrieval index, or inherited brief),
+- self-flags load-bearing claims, and reports partial results with a coverage-gaps statement when a run is incomplete rather than failing silently,
 - avoids changing accepted decomposition truth.
 
 ### Evidence Quality Levels
@@ -264,6 +291,29 @@ A valid RESEARCH answer:
 | `R5` | Accepted snapshot/gate decision explicitly records the claim |
 
 Prefer `R3` or better for final claims. Use `R1` only as discovery evidence.
+
+### Assertion Mode (`:READ` vs `:RUN`)
+
+Each evidence row also carries an **AssertionMode** suffix, orthogonal to the R-level (it does not change R0–R5):
+
+- `:READ` — supported by inspecting an artifact's existence or contents (a file is present, a row exists, a name matches). Static.
+- `:RUN` — supported by an executed result (a test suite ran green, a validator passed, a query was executed, a build succeeded). Dynamic.
+
+`:READ` and `:RUN` qualify the *same* R-level. "Tests pass," backed only by a matching filename, is at most `R2:READ`; only an executed green suite earns `:RUN`. Prefer `R3:RUN` or better for any load-bearing claim about behavior or state that can be executed or checked; never let `:READ` masquerade as `:RUN`.
+
+### Verification Source
+
+Each evidence row records how it was verified:
+
+- `LIVE_TREE` — checked against the current live source/tree.
+- `RETRIEVAL_INDEX` — supported only by the (possibly stale) retrieval index; a lead, not a warrant.
+- `INHERITED_BRIEF` — asserted by a dispatching brief and not yet independently verified; treat as `R1`-equivalent until verified.
+
+Recording the source makes false consensus from over-anchoring visible.
+
+### Load-Bearing Claims
+
+A claim is **load-bearing** when a downstream decision (acceptance, dispatch, sequencing, amendment, release) depends on it being true. RESEARCH self-flags load-bearing claims (`LoadBearing = TRUE`) so a caller knows what to double-cover. Load-bearing claims carry stricter duties: independent re-verification (never inherited from a brief), an explicit `VerificationSource`, and a `:RUN` AssertionMode wherever the claim concerns behavior or state that can be executed or checked. A load-bearing claim MUST NOT reach `R3` or better while its `VerificationSource` is `INHERITED_BRIEF`.
 
 ### Research Output Minimum
 
@@ -288,15 +338,23 @@ For large research packets include:
 
 ### Evidence Map Columns
 
-When producing `Evidence_Map.csv`, use:
+When producing `Evidence_Map.csv`, use (the last three columns are appended to the historical
+schema; readers MUST NOT reorder existing columns):
 
 ```text
-EvidenceID,ClaimID,EvidenceLevel,SourceKind,ArtifactPath,SourceDocID,SourceRef,AtomicUnitID,SectionID,CategoryID,KnowledgeTypeID,SubjectID,RetrievalMode,Rank,Score,QuotedOrParaphrasedEvidence,Interpretation,Limitations
+EvidenceID,ClaimID,EvidenceLevel,SourceKind,ArtifactPath,SourceDocID,SourceRef,AtomicUnitID,SectionID,CategoryID,KnowledgeTypeID,SubjectID,RetrievalMode,Rank,Score,QuotedOrParaphrasedEvidence,Interpretation,Limitations,VerificationSource,AssertionMode,LoadBearing
 ```
+
+- `VerificationSource` ∈ `LIVE_TREE | RETRIEVAL_INDEX | INHERITED_BRIEF` (see SPEC § Verification Source).
+- `AssertionMode` ∈ `READ | RUN` (see SPEC § Assertion Mode). `RunAsserted` is expressed only via this column — no separate boolean.
+- `LoadBearing` ∈ `TRUE | FALSE` (see SPEC § Load-Bearing Claims).
 
 ### Query Log Columns
 
-When producing `Query_Log.csv`, use:
+`Query_Log.csv` SHOULD be **tool-emitted**, not hand-written: run
+`tools/retrieval/query_source_index.py --run-log <packet>/Query_Log.csv` so logged queries
+match executed queries exactly. RESEARCH appends tool-emitted rows; it does not transcribe
+queries from memory. Columns:
 
 ```text
 QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
@@ -308,6 +366,28 @@ When producing `Conflicts.csv`, use:
 
 ```text
 ConflictID,ClaimID,ConflictKind,Description,Contenders,SourceRefs,ProposedAuthority,HumanRuling,Limitations
+```
+
+### Amendment Candidate Columns
+
+When research surfaces a possible change to accepted truth, record it as a first-class row in
+`Amendment_Candidates.csv` (do not bury it in prose) so it can be routed to `SCOPE_CHANGE` /
+`DOMAIN_DECOMP`:
+
+```text
+AmendmentID,ClaimID,CandidateKind,TargetSurface,CurrentState,ProposedChange,EvidenceRefs,LoadBearing,VerificationSource,RecommendedRoute,HumanRuling,Limitations
+```
+
+- `CandidateKind` ∈ `NEW_ATOM | SCOPE_GAP | KTY_REMAP | CATEGORY_CONFLICT | SOURCE_UPDATE | VOCAB`.
+- `RecommendedRoute` ∈ `SCOPE_CHANGE | DOMAIN_DECOMP | CHANGE | DBM_PUBLISHER`.
+- `HumanRuling` defaults `TBD` — RESEARCH proposes; the human rules.
+
+### Open Questions Columns
+
+When producing `Open_Questions.csv`, use:
+
+```text
+OpenQuestionID,ClaimID,Question,WhyItMatters,EvidenceNeeded,Status
 ```
 
 ### Research Note Sections
@@ -344,7 +424,3 @@ Research needs both. Registers answer "what is the accepted structure?" Retrieva
 The most common research failure is to treat a high-similarity hit as truth or to treat a Category as a semantic prison. RESEARCH prevents that by using ontology for structure, retrieval for discovery, and SourceRefs for warrant.
 
 [[END:RATIONALE]]
-
----
-
-EOF

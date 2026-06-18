@@ -185,3 +185,49 @@ def test_json_output_includes_mode(monkeypatch, capsys):
 
     assert payload["mode"] == "dense"
     assert payload["results"] == [{"chunk_id": "CHK-1"}]
+
+
+def test_render_filters_skips_default_archive_state():
+    args = make_args("bm25", category_id="CAT-001", chunk_type="LEDGER_ATOM")
+    rendered = query_tool.render_filters(args)
+    assert "category_id=CAT-001" in rendered
+    assert "chunk_type=LEDGER_ATOM" in rendered
+    assert "archive_state" not in rendered  # ACTIVE is the default, omitted
+
+
+def test_log_query_writes_header_once_then_appends(tmp_path):
+    log = tmp_path / "Query_Log.csv"
+    common = dict(snapshot=Path("/snap/SRCIDX_X"), domain_root="domains/d",
+                  mode="bm25", filters="", k=3, utc="2026-01-01T00:00:00Z")
+    query_tool.log_query(log, query="alpha", result_count=2, **common)
+    query_tool.log_query(log, query="beta", result_count=0, **common)
+    lines = log.read_text(encoding="utf-8").splitlines()
+    assert lines[0] == ",".join(query_tool.QUERY_LOG_COLUMNS)
+    assert len(lines) == 3  # header + 2 rows
+    assert lines[1].split(",")[query_tool.QUERY_LOG_COLUMNS.index("ResultCount")] == "2"
+    assert lines[1].split(",")[query_tool.QUERY_LOG_COLUMNS.index("Snapshot")] == "SRCIDX_X"
+
+
+def test_main_run_log_records_one_row_per_query(monkeypatch, tmp_path):
+    log = tmp_path / "Query_Log.csv"
+    monkeypatch.setattr(sys, "argv", [
+        "query_source_index.py", "--query", "needle", "--mode", "bm25", "--json", "--run-log", str(log),
+    ])
+    monkeypatch.setattr(query_tool, "resolve_snapshot_path", lambda snapshot, domain_root: Path("/snapshot"))
+    monkeypatch.setattr(query_tool, "load_index_build", lambda snapshot: {"row_count": 1})
+    monkeypatch.setattr(query_tool, "query_one", lambda *a, **k: [{"chunk_id": "C1"}, {"chunk_id": "C2"}])
+
+    assert query_tool.main() == 0
+    lines = log.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2  # header + 1 row
+    row = lines[1].split(",")
+    assert row[query_tool.QUERY_LOG_COLUMNS.index("ResultCount")] == "2"
+    assert row[query_tool.QUERY_LOG_COLUMNS.index("Query")] == "needle"
+
+
+def test_run_log_and_log_dir_are_mutually_exclusive(monkeypatch, capsys):
+    monkeypatch.setattr(sys, "argv", [
+        "query_source_index.py", "--query", "x", "--run-log", "/tmp/a.csv", "--log-dir", "/tmp",
+    ])
+    with pytest.raises(SystemExit):
+        query_tool.main()
