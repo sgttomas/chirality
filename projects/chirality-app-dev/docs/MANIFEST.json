@@ -110,7 +110,7 @@
   "notes": [
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
-    "plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md is the active development queue; live proof execution is blocked until D-APP-15 is ruled.",
+    "plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md is the active development queue; D-APP-15 Option A approves one bounded proof run after LP-02 finalizes proof details.",
     "plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md is completed R6 Extensibility and MCP Boundary Maturity history; R6-04 was deferred as optional organization work.",
     "plans/PLAN_2026-06-16_runtime_stabilization.md is completed Runtime Stabilization history.",
     "plans/PLAN_2026-06-16_six_node_scc_resolution.md is completed SCC-resolution history.",

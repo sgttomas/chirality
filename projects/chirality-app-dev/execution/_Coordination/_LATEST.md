@@ -11,8 +11,8 @@ Active coordination surfaces:
 Active development queue:
 
 - `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` (Live Packaged
-  `agentSdk` Read-Tool Proof plan). The first live-proof tranche is blocked until
-  `D-APP-15` is ruled.
+  `agentSdk` Read-Tool Proof plan). LP-01 landed the D-APP-15 Option A ruling; LP-02
+  Proof Harness Finalization is next.
 
 Completed planning and history surfaces:
 

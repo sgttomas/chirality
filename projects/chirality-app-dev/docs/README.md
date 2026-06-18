@@ -37,7 +37,9 @@ Ordinary agentic work enters through:
 
 The active development queue is
 `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. Its live proof is
-blocked until D-APP-15 is ruled. The R6 Extensibility & MCP Boundary Maturity plan,
+approved by D-APP-15 Option A for one bounded run, but LP-02 must finalize the command,
+package path, key supply method, artifact directory, stop conditions, and redaction checks
+before LP-03 executes. The R6 Extensibility & MCP Boundary Maturity plan,
 Runtime Stabilization plan, and SCC-resolution plan are completed closed history.
 `docs/PLAN.md` remains strategic roadmap context, and
 `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
@@ -61,7 +63,7 @@ The active development queue is
 the completed R6 surface is `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`;
 the completed stabilization surface is `plans/PLAN_2026-06-16_runtime_stabilization.md`;
 the completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
-D-APP-15 is awaiting ruling before any live packaged provider proof can execute. Current
-runtime implementation truth remains in source, tests, validation artifacts, and git
-history. Current coordination state is discovered rather than tracked in a separate
-next-instance state file.
+D-APP-15 is ruled Option A; LP-02 proof harness finalization is next. Current runtime
+implementation truth remains in source, tests, validation artifacts, and git history.
+Current coordination state is discovered rather than tracked in a separate next-instance
+state file.
