@@ -6,6 +6,44 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-18 - Live packaged agentSdk proof procedure landed (`LP-02`)
+
+Finalized the bounded live packaged `agentSdk` read-tool proof harness and procedure
+required before LP-03 may consume the D-APP-15 Option A one-run approval.
+
+Runtime/proof and control-plane changes:
+
+- Added `frontend/scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs`.
+- Added `npm run harness:validate:agentsdk-packaged-live-read-tool`.
+- Added focused fixture coverage at
+  `frontend/src/__tests__/scripts/run-live-packaged-agent-sdk-read-tool-proof.test.ts`.
+- Added `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`, naming the
+  app-directory package path, exact live command, API-key-file supply method, artifact
+  directory, stop conditions, and redaction checks.
+- Updated the active plan and coordination prompts so LP-03 is next.
+
+The live script imports the packaged SDK from `app.asar.unpacked`, requires an explicit
+key file or explicit env-key opt-in, creates controlled proof `projectRoot`,
+`CLAUDE_CONFIG_DIR`, and `HOME` directories, allows only the SDK `Read` tool, records
+summary-only SDK message observations, and scans proof output/temp roots for the API key
+string before returning pass. It does not approve default-provider cutover; `agentSdk`
+remains opt-in and D-APP-12 still holds the cutover decision.
+
+Validation passed: `node --check scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs`;
+`npm run test -- src/__tests__/scripts/run-live-packaged-agent-sdk-read-tool-proof.test.ts
+src/__tests__/scripts/verify-packaged-agent-sdk-runtime.test.ts`; `npm run typecheck`;
+`git diff --check`.
+
+Skipped checks: full `npm run test`, `npm run harness:validate:premerge`,
+`npm run instruction-root:integrity`, `npm run desktop:pack`, `npm run desktop:dist`, and
+the live provider proof were skipped during LP-02 because LP-02 finalized the command and
+tests but did not yet execute the single approved live proof run. LP-03 is responsible for
+packaging and the live proof execution.
+
+Residual handoff: LP-03 Live Packaged Read-Tool Proof is next. It must use
+`plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`, app-directory package
+path first, and at most one live provider proof run under D-APP-15.
+
 ## 2026-06-18 - D-APP-15 ruling landed (`LP-01`)
 
 Recorded the D-APP-15 Option A ruling for one bounded live packaged `agentSdk` read-tool

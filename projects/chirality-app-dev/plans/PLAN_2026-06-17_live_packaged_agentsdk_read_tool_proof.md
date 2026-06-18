@@ -1,7 +1,7 @@
 # Live Packaged agentSdk Read-Tool Proof Plan
 
 **Date:** 2026-06-17
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE - LP-02 READY
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE - LP-03 READY
 **Queue-selection authority:** human project authority in chat, 2026-06-17:
 `APPROVE: Prepare D-APP-15 and a bounded active plan for the live packaged agentSdk read-tool proof as the next Chirality App Dev queue.`
 **Decision packet:** `execution/_Coordination/_DECISIONS/D-APP-15_PACKET_2026-06-17.md`
@@ -29,8 +29,8 @@ D-APP-12 Option B accepted non-live packaged SDK resolver/HOME evidence but held
 default-provider cutover. The ruling says a later cutover packet should first request or
 prepare one bounded live packaged read-tool proof path unless the human waives that proof.
 
-This plan turns that prerequisite into a bounded queue. LP-00 and LP-01 have landed; LP-02
-is next:
+This plan turns that prerequisite into a bounded queue. LP-00, LP-01, and LP-02 have
+landed; LP-03 is next:
 
 - prepare D-APP-15;
 - obtain a ruling on whether live provider use is approved;
@@ -64,8 +64,8 @@ Known residual evidence gap:
 |---|---|---|---|---|
 | `LP-00` Queue Activation and D-APP-15 Packet | **LANDED 2026-06-17.** | Created this active plan, prepared D-APP-15 packet, updated decision register and coordination pointers. | Governance/control-plane only. | Governance gate: diff hygiene, JSON/path checks, stale active-queue search, no-runtime-change confirmation. |
 | `LP-01` D-APP-15 Ruling Intake | **LANDED 2026-06-18.** | Recorded D-APP-15 Option A approval for one bounded live packaged `agentSdk` read-tool proof. | Decision record and control-plane updates only. | Governance gate: diff hygiene, path checks, targeted D-APP-15 state checks, no-runtime-change confirmation. |
-| `LP-02` Proof Harness Finalization | **NEXT / READY.** | Finalize exact command path, package path, env/API-key supply, artifact directory, stop conditions, and redaction checks. | Proof scripts/tests only if needed; docs/control-plane evidence updates. | Focused tests/typecheck if source changes; static checks if command-only. |
-| `LP-03` Live Packaged Read-Tool Proof | **BLOCKED on LP-02.** | Execute at most one bounded live packaged read-tool proof and capture artifacts. | Local proof artifact generation; no default-provider change. | Packaging/security/network gate selected by D-APP-15 ruling; artifact and redaction review. |
+| `LP-02` Proof Harness Finalization | **LANDED 2026-06-18.** | Finalized exact command path, package path, API-key-file supply, artifact directory, stop conditions, and redaction checks. Added `npm run harness:validate:agentsdk-packaged-live-read-tool` and `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. | Proof script/test and docs/control-plane evidence updates. | Passed focused packaged-proof tests, live-proof fixture test, typecheck, and diff hygiene. |
+| `LP-03` Live Packaged Read-Tool Proof | **NEXT / READY.** | Execute at most one bounded live packaged read-tool proof and capture artifacts. | Local proof artifact generation; no default-provider change. | Packaging/security/network gate selected by D-APP-15 ruling; artifact and redaction review. |
 | `LP-04` Evidence Review and D-APP-12 Disposition | **BLOCKED on LP-03.** | Decide whether evidence supports preparing a later D-APP-12 cutover packet, records a blocker, or closes with continued opt-in posture. | Decision packet/control-plane only unless proof bug fixes are separately approved. | Governance gate plus any proof-artifact checks referenced by the review. |
 | `LP-05` Closeout | **BLOCKED on LP-04.** | Close the plan, update coordination, completion log, and handoff state. | Governance/control-plane only. | Governance gate; runtime commands skipped unless executable behavior changed. |
 
@@ -115,7 +115,9 @@ npm run desktop:dist
 npm run harness:validate:agentsdk-packaged-proof
 ```
 
-The live proof command and network/key checks must be named in LP-02 before LP-03 runs.
+The live proof command and network/key checks are named in
+`plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 must use that
+procedure and may run the live command at most once under D-APP-15.
 
 ## 7. Acceptance Criteria
 

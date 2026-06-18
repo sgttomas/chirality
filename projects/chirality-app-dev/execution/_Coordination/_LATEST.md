@@ -11,8 +11,10 @@ Active coordination surfaces:
 Active development queue:
 
 - `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` (Live Packaged
-  `agentSdk` Read-Tool Proof plan). LP-01 landed the D-APP-15 Option A ruling; LP-02
-  Proof Harness Finalization is next.
+  `agentSdk` Read-Tool Proof plan). LP-02 landed the exact proof procedure; LP-03 Live
+  Packaged Read-Tool Proof is next.
+- `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` (LP-03 command,
+  package path, key supply, artifact directory, stop conditions, and redaction checks).
 
 Completed planning and history surfaces:
 
