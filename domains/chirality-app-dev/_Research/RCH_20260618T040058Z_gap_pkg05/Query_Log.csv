@@ -1,0 +1,2 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-492ee944b019aa9029bd,2026-06-18T04:01:44Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,HarnessEvent schema append-only JSONL session events writer,,8,8,

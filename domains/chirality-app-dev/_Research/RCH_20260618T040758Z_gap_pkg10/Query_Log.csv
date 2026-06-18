@@ -1,0 +1,4 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-01aa3044841c7a8e38a3,2026-06-18T04:09:01Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,DomainEngineProfile protected path proposal path future boundary,,8,8,
+Q-a86ace54de23294e82e3,2026-06-18T04:09:15Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,OperationProposal record human gate acceptance apply status,,6,6,
+Q-b10f7bf28d20635862cc,2026-06-18T04:09:16Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,OpenPipeStress fixture domain profile validation deterministic,,6,6,

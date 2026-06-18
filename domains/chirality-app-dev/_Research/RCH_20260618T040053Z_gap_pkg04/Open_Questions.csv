@@ -1,0 +1,4 @@
+OpenQuestionID,ClaimID,Question,WhyItMatters,EvidenceNeeded,Status
+OQ-01,DEL-04-01-approver,Who is the assigned ResponsibleParty/human approver for the DEL-04-01 ADOPT/ADOPT_WITH_RESIDUAL_RISK/FALLBACK decision?,Adoption verdict cannot be recorded without an approver; blocks DEL-04-01 closure,Identity assignment in _CONTEXT.md or decision register,OPEN
+OQ-02,DEL-04-01-packaging-closure,Does the RULED live packaged agentSdk read-tool proof (D-APP-15/16) close the probe-record BLOCKED_TBD packaging+subprocess-version rows or are they carried as residual risk?,Determines whether DEL-04-01 can proceed to CHECKING,Refresh of Evidence_CODEV-001 against the RULED proof,OPEN
+OQ-03,ref006,Will REF-006 docs/PRD.md HASH_MISMATCH be resolved or explicitly accepted before PKG-04 closure?,PRD-derived FR rows in DEL-04-02/03/05 and DEL-04-01-VER-010 depend on it,Source-state reconciliation or human ruling,OPEN

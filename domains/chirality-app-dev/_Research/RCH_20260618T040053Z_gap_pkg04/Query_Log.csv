@@ -1,0 +1,2 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-2f137f4ea16b354a5ab2,2026-06-18T04:01:34Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,SdkOptionsBuilder settingSources isolation tools mapping,,8,8,

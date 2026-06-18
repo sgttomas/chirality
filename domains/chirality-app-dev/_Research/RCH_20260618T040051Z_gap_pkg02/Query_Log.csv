@@ -1,0 +1,5 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-093c0af85a6897f323e3,2026-06-18T04:02:12Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,desktop shell header navigation portal workbench pipeline active route,,6,6,
+Q-c495072e63f94d2507db,2026-06-18T04:02:46Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,working root file tree panel skipped directories truncation scope scan,,5,5,
+Q-f83990a4d734c6fad178,2026-06-18T04:02:46Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,toolkit options pane resize collapse local UI state chat draft preset persistence,,5,5,
+Q-f94749413dffcd9cc1d9,2026-06-18T04:02:47Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,API key settings safeStorage env none precedence typed runtime error redaction,,5,5,

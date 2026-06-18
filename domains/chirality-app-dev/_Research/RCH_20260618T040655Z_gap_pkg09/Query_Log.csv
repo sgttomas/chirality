@@ -1,0 +1,3 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-2c4bc8a46facef8d8264,2026-06-18T04:09:02Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,section 8 section 9 harness validation premerge summary artifact,,8,8,
+Q-6865104ebbdcd71ff4bf,2026-06-18T04:09:05Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,macOS DMG packaging instruction root integrity SDK subprocess network key attachment renderer security,,8,8,

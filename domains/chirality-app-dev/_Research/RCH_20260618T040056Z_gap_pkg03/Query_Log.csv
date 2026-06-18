@@ -1,0 +1,2 @@
+QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
+Q-4c829f7c0ed7ba98123e,2026-06-18T04:01:34Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,AgentEnginePort RuntimeEngineContract runTurn TurnInput UIEvent,,8,8,
