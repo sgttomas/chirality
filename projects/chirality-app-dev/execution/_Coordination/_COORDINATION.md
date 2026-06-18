@@ -4,7 +4,7 @@
 **Active persona:** `WORKING_ITEMS`
 **Default work mode:** bounded app-integration tranches
 **Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and opt-in `agentSdk` probe path. D-APP-12 Option B holds the default-provider cutover. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
-**Current active queue:** `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. LP-00 landed the D-APP-15 packet and active-queue pointers. LP-01 landed the D-APP-15 Option A ruling. LP-02 landed the bounded live packaged proof command/procedure in `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 consumed the single D-APP-15 live run and failed before `Read` tool execution because the selected model was unavailable or inaccessible; evidence is recorded in `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`. D-APP-16 is `AWAITING_RULING` and blocks any retry, waiver, or close disposition that depends on the failed proof. The R6 Extensibility & MCP Boundary Maturity program `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is completed closed history after R6-05; R6-04 was explicitly deferred as optional organization work. The Runtime Stabilization program `plans/PLAN_2026-06-16_runtime_stabilization.md` (STAB-00..STAB-06) and the six-node SCC plan are also completed closed history.
+**Current active queue:** `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. LP-00 landed the D-APP-15 packet and active-queue pointers. LP-01 landed the D-APP-15 Option A ruling. LP-02 landed the bounded live packaged proof command/procedure in `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 consumed the single D-APP-15 live run and failed before `Read` tool execution because the selected model was unavailable or inaccessible; evidence is recorded in `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`. D-APP-16 approved one model-corrected retry, which also failed on model availability. D-APP-17 approved bounded CLI-documented alias troubleshooting; the `sonnet` app-directory packaged live read-tool proof passed and is recorded in `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md`. D-APP-18 is `AWAITING_RULING` and blocks any default-provider cutover implementation or governance text declaring SDK default. The R6 Extensibility & MCP Boundary Maturity program `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is completed closed history after R6-05; R6-04 was explicitly deferred as optional organization work. The Runtime Stabilization program `plans/PLAN_2026-06-16_runtime_stabilization.md` (STAB-00..STAB-06) and the six-node SCC plan are also completed closed history.
 
 ## Active Surface
 
@@ -35,9 +35,10 @@ Primary authority and guidance:
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `execution/_ScopeChange/_LATEST.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
-- `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` - active Live Packaged `agentSdk` Read-Tool Proof plan; LP-03 executed with blocker, D-APP-16 awaiting ruling
+- `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` - active Live Packaged `agentSdk` Read-Tool Proof plan; live `sonnet` proof passed, D-APP-18 awaiting ruling
 - `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` - exact LP-03 command, package path, key supply, artifact directory, stop conditions, and redaction checks
 - `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md` - LP-03 failed-proof evidence and redaction disposition
+- `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md` - successful app-directory packaged live read-tool proof evidence
 - `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` - completed R6 Extensibility & MCP Boundary Maturity program (R6-01..R6-05; R6-04 deferred), accepted by D-APP-14 and closed by R6-05
 - `plans/PLAN_2026-06-16_runtime_stabilization.md` - completed Runtime Stabilization program (STAB-00..STAB-06), accepted by D-APP-11 and closed by STAB-06
 - `plans/PLAN_2026-06-16_six_node_scc_resolution.md` - completed non-governing SCC-resolution tranche-selection plan (closed history)
@@ -72,7 +73,7 @@ Authoritative state:
 
 Guidance and history surfaces:
 
-0. `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` is the active queue. LP-00 landed D-APP-15 preparation, LP-01 landed the D-APP-15 Option A ruling, LP-02 landed the exact proof command/procedure, and LP-03 consumed the approved live run but failed on selected-model availability/access before `Read` tool use. D-APP-16 is awaiting ruling before any retry, waiver, or close disposition. The plan does not approve default-provider cutover; D-APP-12 still holds that decision.
+0. `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` is the active queue. LP-00 landed D-APP-15 preparation, LP-01 landed the D-APP-15 Option A ruling, LP-02 landed the exact proof command/procedure, LP-03 consumed the approved live run but failed on selected-model availability/access before `Read` tool use, D-APP-16 approved one retry that also failed on model availability, and D-APP-17 approved bounded CLI alias troubleshooting that passed with `sonnet`. D-APP-18 is awaiting ruling before any default-provider cutover implementation or governance wording. The plan does not itself approve default-provider cutover.
 0a. `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` is completed closed history after R6-05. It matured the local/in-process tool extension boundary (catalog, naming, collision prevention, contributor docs) and exposed no new capability; remote MCP, plugins, broad tool search, and domain tools remain out of scope (§7). R6-04 was deferred as optional organization work.
 0b. `plans/PLAN_2026-06-16_runtime_stabilization.md` is completed closed history (tranches STAB-00..STAB-06), accepted by `D-APP-11` and closed by STAB-06. It records the current runtime stabilization evidence, D-APP-12 Option B hold ruling, and D-APP-13 mutating MCP ruling, but it is no longer an active tranche-selection queue.
 1. `plans/PLAN_2026-06-16_six_node_scc_resolution.md` is the completed non-governing SCC-resolution plan. It records closure of the residual six-node strict dependency SCC; it is closed history and is no longer the active queue.
@@ -94,7 +95,7 @@ At the start of a new loop:
 4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
 5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
 6. Read `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` as the active queue; read `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` and `plans/PLAN_2026-06-16_runtime_stabilization.md` as completed history and evidence context.
-7. Read `_DECISIONS/_REGISTER.md` for ruled and pending human decisions. `D-APP-14` accepted the now-completed R6 program; `D-APP-12` is ruled Option B and blocks default-provider cutover until later proof/ruling; `D-APP-13` is ruled; `D-APP-15` is ruled and its one live proof run has been consumed; `D-APP-16` is awaiting ruling.
+7. Read `_DECISIONS/_REGISTER.md` for ruled and pending human decisions. `D-APP-14` accepted the now-completed R6 program; `D-APP-12` is ruled Option B and blocks default-provider cutover until later proof/ruling; `D-APP-13`, `D-APP-15`, `D-APP-16`, and `D-APP-17` are ruled and consumed; `D-APP-18` is awaiting ruling.
 8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
 9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
 10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
@@ -119,9 +120,9 @@ A tranche is acceptable when it has:
 Default ordering:
 
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work first if such a regression is found.
-2. Do not rerun the live proof. D-APP-16 is awaiting ruling after the LP-03 selected-model blocker.
-3. If D-APP-16 approves a retry, use `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` as the base procedure with only the human-approved model/key changes.
-4. If D-APP-16 denies or waives retry, record the selected disposition before closing or preparing any later packet.
+2. Do not rerun the live proof; D-APP-17 passed with `sonnet`.
+3. Stop at D-APP-18 until the human rules whether default-provider cutover implementation may proceed, remain held, or require more evidence.
+4. Do not change provider defaults or governance wording declaring SDK default before D-APP-18 is ruled.
 5. If any work requires remote MCP, plugins, broad tool search, domain tools, default-provider cutover, provider/network expansion beyond the bounded Anthropic proof path, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
 6. Do not revive a completed/closed/retired plan or invent a replacement queue.
 

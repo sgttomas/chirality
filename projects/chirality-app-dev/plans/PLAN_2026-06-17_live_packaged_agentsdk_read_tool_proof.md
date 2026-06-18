@@ -1,7 +1,7 @@
 # Live Packaged agentSdk Read-Tool Proof Plan
 
 **Date:** 2026-06-17
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE - D-APP-16 AWAITING RULING
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE - D-APP-18 AWAITING RULING
 **Queue-selection authority:** human project authority in chat, 2026-06-17:
 `APPROVE: Prepare D-APP-15 and a bounded active plan for the live packaged agentSdk read-tool proof as the next Chirality App Dev queue.`
 **Decision packet:** `execution/_Coordination/_DECISIONS/D-APP-15_PACKET_2026-06-17.md`
@@ -29,10 +29,12 @@ D-APP-12 Option B accepted non-live packaged SDK resolver/HOME evidence but held
 default-provider cutover. The ruling says a later cutover packet should first request or
 prepare one bounded live packaged read-tool proof path unless the human waives that proof.
 
-This plan turns that prerequisite into a bounded queue. LP-00, LP-01, LP-02, and LP-03
-have landed. LP-03 consumed the single D-APP-15-approved live run and failed before
-read-tool execution because the selected model was unavailable or inaccessible for the
-supplied key. D-APP-16 is now awaiting a human ruling before any retry, waiver, or close
+This plan turns that prerequisite into a bounded queue. LP-00 through LP-04 have landed.
+LP-03 consumed the single D-APP-15-approved live run and failed before read-tool execution
+because the selected model was unavailable or inaccessible for the supplied key. D-APP-16
+approved one model-corrected retry, which also failed on model availability. D-APP-17 then
+approved bounded CLI-documented model-alias troubleshooting; the `sonnet` app-directory
+live read-tool proof passed. D-APP-18 is now awaiting ruling for default-provider cutover
 disposition.
 
 - prepare D-APP-15;
@@ -57,11 +59,14 @@ Already landed and not reopened by this plan:
 
 Known residual evidence gap:
 
-- Live packaged `agentSdk` provider behavior from the packaged app path is not proven.
-- Actual live SDK transcript creation/location under packaged execution is not proven.
+- Live packaged `agentSdk` provider behavior from the app-directory packaged path is
+  proven with model alias `sonnet`; see
+  `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md`.
+- Actual live SDK transcript creation/location under packaged execution is proven for the
+  D-APP-17 controlled `CLAUDE_CONFIG_DIR`; transcript content was not committed.
 - Default-provider readiness is not ruled.
-- LP-03 app-directory live execution reached the live provider path but failed on selected
-  model availability/access before any `Read` tool use; see
+- LP-03 and D-APP-16 attempts reached the live provider path but failed on selected model
+  availability/access before any `Read` tool use; see
   `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`.
 
 ## 3. Tranche Spine
@@ -72,8 +77,8 @@ Known residual evidence gap:
 | `LP-01` D-APP-15 Ruling Intake | **LANDED 2026-06-18.** | Recorded D-APP-15 Option A approval for one bounded live packaged `agentSdk` read-tool proof. | Decision record and control-plane updates only. | Governance gate: diff hygiene, path checks, targeted D-APP-15 state checks, no-runtime-change confirmation. |
 | `LP-02` Proof Harness Finalization | **LANDED 2026-06-18.** | Finalized exact command path, package path, API-key-file supply, artifact directory, stop conditions, and redaction checks. Added `npm run harness:validate:agentsdk-packaged-live-read-tool` and `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. | Proof script/test and docs/control-plane evidence updates. | Passed focused packaged-proof tests, live-proof fixture test, typecheck, and diff hygiene. |
 | `LP-03` Live Packaged Read-Tool Proof | **EXECUTED 2026-06-18 - BLOCKER RECORDED.** | Executed the one D-APP-15-approved app-directory live proof. The package build and no-live packaged resolver baseline passed; the live proof failed on selected-model availability/access before `Read` tool use. | Local proof artifact generation; no default-provider change. | `npm run desktop:pack`; no-live packaged proof pass; live proof fail; redaction scans pass; evidence recorded in `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`. |
-| `LP-04` Evidence Review and D-APP-12 Disposition | **NEXT / BLOCKED ON D-APP-16 RULING.** | Decide whether to approve one model-corrected retry, deny retry and close with blocker, waive successful proof for later D-APP-12 review, or apply a custom disposition. | Decision packet/control-plane only unless proof retry is separately approved. | Governance gate plus any proof-artifact checks referenced by the review. |
-| `LP-05` Closeout | **BLOCKED on LP-04.** | Close the plan, update coordination, completion log, and handoff state. | Governance/control-plane only. | Governance gate; runtime commands skipped unless executable behavior changed. |
+| `LP-04` Evidence Review and D-APP-12 Disposition | **LANDED 2026-06-18.** | Recorded D-APP-16 and D-APP-17 rulings, captured successful `sonnet` packaged live read-tool evidence, and prepared D-APP-18 default-provider cutover packet. | Decision/evidence/control-plane only; no default-provider code change. | No-live packaged baseline pass; live `sonnet` proof pass; redaction scans pass; diff hygiene. |
+| `LP-05` Closeout | **NEXT / BLOCKED ON D-APP-18 RULING.** | Close the live-proof plan or proceed to a separate default-provider cutover implementation queue according to D-APP-18. | Governance/control-plane only unless D-APP-18 approves implementation. | Governance gate; runtime commands skipped unless executable behavior changed. |
 
 ## 4. Boundaries
 
@@ -95,8 +100,12 @@ This queue does not authorize:
 D-APP-15 is ruled Option A. It permitted one bounded live packaged proof run only. LP-03
 consumed that run.
 
-D-APP-16 is awaiting ruling. It blocks any second live packaged proof run, any retry with a
-different model, and any waiver-based D-APP-12 cutover packet after the failed proof.
+D-APP-16 is ruled Option A and has been consumed.
+
+D-APP-17 is ruled custom and has been consumed by the successful `sonnet` proof.
+
+D-APP-18 is awaiting ruling. It blocks any default-provider cutover implementation and any
+governance text declaring SDK default.
 
 After LP-03, a separate D-APP-12 ruling remains required before any default-provider
 cutover. A successful proof does not itself make `agentSdk` the default.
@@ -126,9 +135,9 @@ npm run harness:validate:agentsdk-packaged-proof
 ```
 
 The live proof command and network/key checks are named in
-`plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 used that
-procedure once under D-APP-15. No further live proof run may proceed without D-APP-16 or a
-later human ruling.
+`plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. D-APP-17 used that
+procedure with model alias `sonnet` and passed. No default-provider implementation may
+proceed without D-APP-18 or a later human ruling.
 
 ## 7. Acceptance Criteria
 

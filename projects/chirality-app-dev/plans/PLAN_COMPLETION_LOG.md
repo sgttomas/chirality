@@ -6,6 +6,60 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-18 - Live packaged agentSdk proof passed and D-APP-18 prepared (`LP-04`)
+
+Recorded D-APP-16 and D-APP-17 rulings after the initial LP-03 model blocker. The
+D-APP-16 approved retry with model `haiku-4.5` failed on the same selected-model
+availability/access class. D-APP-17 then approved bounded CLI-documented model-alias
+troubleshooting while retaining the temporary key file; the first alias attempt, `sonnet`,
+passed, so the `opus` fallback was not run.
+
+Validation/proof commands:
+
+- packaged CLI help inspection showed model aliases such as `sonnet` or `opus`, and full
+  names such as `claude-sonnet-4-6`;
+- packaged SDK path check passed;
+- `npm run harness:validate:agentsdk-packaged-proof -- --bundle-root
+  dist/mac-arm64/Chirality.app/Contents/Resources --output-root
+  artifacts/harness/packaged-agent-sdk/dapp16-no-live-baseline-2026-06-18` passed;
+- `npm run harness:validate:agentsdk-packaged-live-read-tool -- --bundle-root
+  dist/mac-arm64/Chirality.app/Contents/Resources --api-key-file
+  /tmp/chirality-dapp15/anthropic_api_key --output-root
+  artifacts/harness/packaged-agent-sdk-live/dapp17-sonnet-app-dir-2026-06-18 --model
+  sonnet --timeout-ms 180000` passed.
+
+Observed successful proof facts:
+
+- `status`: `pass`;
+- `model`: `sonnet`;
+- expected packaged command exists, is a file, and remains under
+  `app.asar.unpacked/node_modules`;
+- SDK message count: `7`;
+- `Read` tool observed: `true`;
+- proof token observed: `true`;
+- SDK reported error: `false`;
+- redaction finding count: `0`.
+
+Evidence recorded:
+
+- `execution/_Coordination/_DECISIONS/D-APP-16_RULING_2026-06-18.md`;
+- `execution/_Coordination/_DECISIONS/D-APP-17_RULING_2026-06-18.md`;
+- `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md`;
+- `execution/_Coordination/_DECISIONS/D-APP-18_PACKET_2026-06-18.md`;
+- `_DECISIONS/_REGISTER.md` now marks D-APP-16 and D-APP-17 `RULED`, and D-APP-18
+  `AWAITING_RULING`.
+
+The controlled `CLAUDE_CONFIG_DIR` contained a generated SDK transcript `.jsonl` file. The
+transcript content was not committed. Redaction checks passed across the proof artifact
+directory, generated proof project root, controlled `CLAUDE_CONFIG_DIR`, and controlled
+`HOME`; an additional artifact-directory scan reported zero key-string matches. Per user
+direction, `/tmp/chirality-dapp15/anthropic_api_key` was retained.
+
+Residual handoff: D-APP-18 must be ruled before any default-provider cutover
+implementation or governance wording declaring SDK default. The successful proof does not
+itself approve provider defaults, release readiness, mounted-DMG parity, provider
+expansion, remote MCP/plugins/tool search/domain tools, or professional-boundary changes.
+
 ## 2026-06-18 - Live packaged agentSdk proof executed with model blocker (`LP-03`)
 
 Executed the D-APP-15-approved app-directory live packaged `agentSdk` read-tool proof once,
