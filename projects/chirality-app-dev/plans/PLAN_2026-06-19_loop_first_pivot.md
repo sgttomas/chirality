@@ -1,7 +1,7 @@
 # Loop-First Pivot (D-APP-28) Plan
 
 **Date:** 2026-06-19
-**Status:** PROPOSAL (awaiting owner review)
+**Status:** ACTIVE (build-ready; SD-1/2/3 ruled — D-APP-30/31/32)
 **Governing ruling:** `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md` (Option B — full loop-first pivot)
 **Packet:** `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`
 **Active design:** `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (§3.1 primary loop, §3.2 sidebar, §3.3 tertiary screens, §5 build sequence; the D-APP-28 ruling/packet name the §5 "Transitional placement decision" bullet — DESIGN line 111 — as "§5.2", the transitional sidebar-left note)
@@ -113,11 +113,11 @@ Deferrals **not reopened** by this plan: **D-APP-26** (editable document screen 
 
 ## 8. Required Human Rulings
 
-D-APP-28 is **already RULED** (Option B, `D-APP-28_RULING_2026-06-19.md`) — this plan does not re-litigate it. Tranches surface the following NEW sub-decisions, each **flagged for its own packet; approval is not assumed**:
+D-APP-28 is **already RULED** (Option B, `D-APP-28_RULING_2026-06-19.md`) — this plan does not re-litigate it. The sub-decisions the tranches surfaced were packeted and **ruled 2026-06-19**:
 
-- **SD-1 — Exact in-place launch UX (28c).** The ruling mandates "boot a session in-place" but not the interaction (cell click swaps `?agent=` on the mounted loop; whether a prior in-flight turn is preserved-and-queued vs. confirmed-before-switch; what visual transition signals the boot). Needs a packet before 28c finalizes the UX.
-- **SD-2 — OPERATIVE/Type-2 pipeline cells (28c).** OPERATIVE cells (and deliverable rows) target `/pipeline` Type-2 work that cannot boot at `/chat` (D-APP-24 guard). Whether they (a) keep a route hop to the retained `/pipeline`, (b) open the pipeline tertiary form in-place, or (c) require a brief, intersects the excluded D-APP-27 INIT-TASK question and needs its own packet. Until ruled, 28c leaves OPERATIVE cells on their current `navigationScheduler.schedule` (route still present, nothing deleted).
-- **SD-3 — Tertiary-form affordance + sidebar tab surface (28d).** Whether demoted `/workbench`/`/pipeline` get new `SidebarTabId` entries (`workspace-sidebar.tsx:11-18`), a menu, or an overlay — an IA detail that changes the sidebar's public tab set. If it expands `SidebarTabId`, packet it before 28d.
+- **SD-1 — In-place launch UX (28c) → D-APP-30 RULED Option B.** A Type-0/Type-1 cell click swaps `?agent=` on the mounted loop immediately when idle, and is **guarded mid-turn** by reusing the Tranche-5c `streaming` / `useHarnessStreaming` flag so an in-flight turn is never clobbered; a brief loop focus/transition signals the boot.
+- **SD-2 — OPERATIVE/Type-2 pipeline cells (28c) → D-APP-31 RULED Option B (staged with 28d).** OPERATIVE cells (and deliverable rows) open the governed `/pipeline` form as an **in-place tertiary form**, landing once the 28d / D-APP-32 affordance exists; the **interim through 28c is the retained `/pipeline` route hop** (nothing deleted). D-APP-27 is not reopened.
+- **SD-3 — Tertiary-form affordance + sidebar tab surface (28d) → D-APP-32 RULED Option A.** Demoted screens get **new `SidebarTabId` tabs** (`workspace-sidebar.tsx:11-18`), each opening its full-screen tertiary form. Chat history stays on the right as the existing `Sessions` tab (Tranche 5c) — no left rail (owner directive, 2026-06-19).
 
 ## 9. Validation Policy
 
@@ -148,9 +148,9 @@ End-state checks (all must hold at 28e):
 - Routing/matrix: `frontend/src/app/page.tsx`, `frontend/src/app/workbench/page.tsx` + `workbench-client.tsx`, `frontend/src/app/pipeline/page.tsx` + `pipeline-client.tsx`, `frontend/src/app/chat/page.tsx`; `frontend/src/components/portal/agent-matrix.tsx` (scheduler+`router.push` :13-21, `schedule(cell.target)` :66, deliverable rows :104); `frontend/src/lib/portal/agent-matrix-cells.ts`; `frontend/src/lib/shell/loop-first.ts` (`buildDirectChatHref` :19-24, `CHAT_ROUTE`/`CHAT_SECTION` :11-12).
 - Session boot/guard: `frontend/src/app/api/harness/session/create/route.ts`; `assertDirectChatPersona` (`frontend/src/lib/harness/agent-roster.ts:98`, D-APP-24).
 - Tests/build: `frontend/src/__tests__/lib/layout-state.test.ts` (pure clamping/collapse), `agent-matrix-cells.test.ts` (route + Type-0/1 roster guard), `loop-first.test.ts`, `navigation-intent.test.ts`; `frontend/package.json` (:14-15); `frontend/next.config.mjs`.
-- Decision substrate: `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`, `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md`, `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-28 row: RULED Option B); D-APP-23/24 rows; D-APP-26 (Option C defer), D-APP-27 (Option C exclude), D-APP-29 (Option A defer) rulings.
+- Decision substrate: `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`, `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md`, `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-28 row: RULED Option B); D-APP-23/24 rows; D-APP-26 (Option C defer), D-APP-27 (Option C exclude), D-APP-29 (Option A defer) rulings; D-APP-30 (Option B guard mid-turn), D-APP-31 (Option B in-place form, staged with 28d), D-APP-32 (Option A new sidebar tabs) rulings (SD-1/2/3).
 - Design: `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` §3.1 (line 52), §3.2 (line 58), §3.3 (line 70), §5 (line 106); the "Transitional placement decision" bullet at line 111 (the transitional sidebar-left note the D-APP-28 ruling/packet call "§5.2"); Tranche 5b 477-test record and Tranche 5c 491-test record at line 122.
 
 ## 12. Finalization Rule
 
-The plan is complete when `28a`–`28d` have landed, each typecheck- + vitest-green (491 baseline) with `next build` prerendering the affected routes, and the §10 acceptance checks all hold. Closeout is recorded in `28e`: update DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; annotate the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` with the landed-tranche summary; write the resume / next-instance prompt; and add a plan completion record. Any sub-decision (SD-1/SD-2/SD-3) that arises is packeted under `execution/_Coordination/_DECISIONS/` and ruled before the dependent tranche finalizes — they are not assumed approved by D-APP-28.
+The plan is complete when `28a`–`28d` have landed, each typecheck- + vitest-green (491 baseline) with `next build` prerendering the affected routes, and the §10 acceptance checks all hold. Closeout is recorded in `28e`: update DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; annotate the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` with the landed-tranche summary; write the resume / next-instance prompt; and add a plan completion record. SD-1/SD-2/SD-3 were ruled 2026-06-19 (D-APP-30/31/32); any further sub-decision that arises is packeted under `execution/_Coordination/_DECISIONS/` and ruled before the dependent tranche finalizes — none is assumed approved by D-APP-28.
