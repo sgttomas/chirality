@@ -74,6 +74,35 @@ describe('shell layout state helpers', () => {
     expect(constrained).toBe(250);
   });
 
+  it('clamps the two-pane (sidebar + chat) geometry the shell now uses (toolkitVisible=false)', () => {
+    // After the Tool Kit folded into the sidebar, app-shell always passes
+    // toolkitVisible=false, so only two side panes and two handles count.
+    const state = createDefaultLayoutState();
+
+    // chat max = layoutWidth - fileTree(280) - 2 handles(24) - MAIN_MIN(520).
+    const chatMax = clampPaneWidthForLayout({
+      pane: 'chat',
+      requestedWidth: 1500,
+      state,
+      layoutWidth: 1800,
+      toolkitVisible: false
+    });
+    expect(chatMax).toBe(1800 - 280 - 24 - 520);
+
+    // sidebar (fileTree) max = layoutWidth - chat(320) - 2 handles(24) - MAIN_MIN(520).
+    const sidebarMax = clampPaneWidthForLayout({
+      pane: 'fileTree',
+      requestedWidth: 1500,
+      state,
+      layoutWidth: 1800,
+      toolkitVisible: false
+    });
+    expect(sidebarMax).toBe(1800 - 320 - 24 - 520);
+
+    // The toolkit pane resolves to zero width in this mode and never renders.
+    expect(resolvePaneWidth(state, 'toolkit', false)).toBe(0);
+  });
+
   it('falls back to simple min/max clamping when layout width is invalid', () => {
     const state = createDefaultLayoutState();
     const result = clampPaneWidthForLayout({

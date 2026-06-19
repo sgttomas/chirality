@@ -16,6 +16,8 @@ import {
   readChatDraftSnapshotFromStorage
 } from '../../lib/harness/chat-draft';
 import { type UiAttachment } from '../../lib/harness/ui-attachments';
+import type { HarnessEvent } from '../../lib/harness/event-schema';
+import { useHarnessEventActions } from '../workspace/harness-events-provider';
 import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatMarkdown } from './chat-markdown';
@@ -106,9 +108,18 @@ function AttachmentChips({ items }: { items: UiAttachment[] }): JSX.Element | nu
   );
 }
 
+function isHarnessEvent(value: unknown): value is HarnessEvent {
+  return (
+    Boolean(value) &&
+    typeof value === 'object' &&
+    typeof (value as Record<string, unknown>).type === 'string'
+  );
+}
+
 export function ChatPanel(): JSX.Element {
   const { projectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
+  const { appendEvent, clearEvents } = useHarnessEventActions();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [draft, setDraft] = useState('');
@@ -268,6 +279,7 @@ export function ChatPanel(): JSX.Element {
     setDraft('');
     setAttachments([]);
     setIsRunning(true);
+    clearEvents();
 
     const operatorMessageId = `operator-${Date.now()}`;
     const assistantId = `assistant-${Date.now() + 1}`;
@@ -302,6 +314,13 @@ export function ChatPanel(): JSX.Element {
           ...(optsPayload ? { opts: optsPayload } : {})
         },
         (streamEvent) => {
+          if (streamEvent.event === 'harness:event') {
+            if (isHarnessEvent(streamEvent.data)) {
+              appendEvent(streamEvent.data);
+            }
+            return;
+          }
+
           if (streamEvent.event === 'chat:delta') {
             const chunk = readTextField(streamEvent.data);
             if (chunk) {

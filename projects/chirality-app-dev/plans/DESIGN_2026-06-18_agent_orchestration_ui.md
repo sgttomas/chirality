@@ -105,8 +105,10 @@ Contract/test impact (all expected, all updated): add `harness:event` to `PUBLIC
 
 ## 5. Build sequence
 
-1. **Event bridge (keystone, in progress).** `harness:event` passthrough → lights up the live loop + Subagents + Tools views under `agentSdk`. Additive, low-risk.
-2. **Shell refactor.** Fixed 3-pane shell → event-loop + collapsible multi-view sidebar; fold the live file tree in as the "Files" tab; mount bridge-fed Subagents/Tools tabs.
+1. **Event bridge (keystone, DONE — commit `64940ad65`).** `harness:event` passthrough → lights up the live loop + Subagents + Tools views under `agentSdk`. Additive, low-risk.
+2. **Shell refactor (DONE).** Fixed 3-pane shell → event-loop + collapsible multi-view sidebar; fold the live file tree in as the "Files" tab; mount bridge-fed Subagents/Tools tabs.
+   - **What shipped:** `WorkspaceSidebar` (`components/shell/workspace-sidebar.tsx`) — one collapsible, tabbed pane: Files (existing tree) · Tools · Subagents · Document (placeholder) · Workflow (placeholder) · Tool Kit. The Tool Kit folded from its former dedicated pane + "Show Tool Kit" checkbox into a tab (nothing deleted). A shared `HarnessEventsProvider` (`components/workspace/harness-events-provider.tsx`) buffers the live `harness:event` stream; the chat panel (producer) appends/clears it and the Tools/Subagents views (consumers) read it. Pure, DOM-free derivations (`lib/shell/harness-event-views.ts`) collapse the `tool.*` / `subagent.*` lifecycle into rows — so live and replay render identically.
+   - **Transitional placement decision:** the sidebar evolves *in place from the current left file-tree pane* (lowest churn, keeps all three routes working with `children` still the main execution surface and Chat the live loop on the right). The design's eventual "sidebar on the right of the primary screen" assumes the later routing phase where main = the loop; that is the open decision in §6 (portal launch model) and is intentionally not forced here.
 3. **Control: the permission pause.** Make `ask` mode pause-and-approve (needs the bridge's `tool.permission` + a decision channel back to the SDK). Surface the operator mode selector.
 4. **Document content API + viewer.** `GET /api/working-root/deliverable/content` (copy `readRequiredFile`) + markdown viewer (reuse `chat-markdown`). Serves both the Document sidebar view and the doc-copilot tertiary screen.
 5. **Personas + evolved portal.** Rewrite route-gated `resolvePersona`; persona picker (38); fix the broken EVALUATIVE cells; direct-chat screen; session list UI.

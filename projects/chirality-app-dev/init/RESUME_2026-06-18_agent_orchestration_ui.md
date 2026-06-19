@@ -8,11 +8,12 @@ Minimalist resume prompt for the next session. Continues an iterative UI/workflo
 ## One-line model
 PRIMARY = live harness-event-stream loop + collapsible multi-view sidebar (Files / Subagents / Tools / Document / Workflow). SECONDARY = run setup → later task-management phase (deferred). TERTIARY = all current UI (matrix portal, pipeline, workbench, file tree) — kept, reachable via the sidebar, not the focus.
 
-## Done (committed `64940ad65`, on `main`, not pushed)
-Phase 1 keystone — rich `harness:event` passthrough bridging the persisted `HarnessEvent` vocabulary to the live UIEvent stream under the `agentSdk` provider. Files: `lib/harness/{types,agent-engine-port,harness-ui-bridge,claude-agent-sdk-manager}.ts` + tests. Full typecheck + 387 tests green.
+## Done
+- **Phase 1 keystone** (committed `64940ad65`, pushed) — rich `harness:event` passthrough bridging the persisted `HarnessEvent` vocabulary to the live UIEvent stream under the `agentSdk` provider. Files: `lib/harness/{types,agent-engine-port,harness-ui-bridge,claude-agent-sdk-manager}.ts` + tests.
+- **Phase 2 shell refactor** (uncommitted on `main`) — `app-shell.tsx` left pane is now `WorkspaceSidebar`: one collapsible tabbed pane (Files · Tools · Subagents · Document · Workflow · Tool Kit) implementing the WAI-ARIA tabs pattern (roving tabindex, arrow nav, tabpanel); active tab lifted to AppShell so it survives collapse. Tool Kit folded from a dedicated pane + checkbox into a tab. `HarnessEventsProvider` split into stable actions + data contexts (producer doesn't re-render on appends); chat panel appends/clears via the actions hook; `ToolStreamView`/`SubagentStreamView` memo-derive via pure `lib/shell/harness-event-views.ts` (subagent rows keyed by `taskId`, tool summary-completions folded onto preceding rows). Sidebar placed transitionally on the LEFT (main = route `children`, Chat = live loop on right) — see DESIGN §5.2. Hardened against a 12-finding adversarial review. Full typecheck + 401 tests green.
 
-## Next — Phase 2: shell refactor
-Turn the fixed 3-pane shell (`components/shell/app-shell.tsx`) into the event-loop + collapsible multi-view sidebar. Fold the live file tree in as the "Files" tab; add Subagents and Tools tabs that render the now-bridged `harness:event` stream (consume it in `components/shell/chat-panel.tsx` / a new event-stream renderer — today it ignores unknown types). See DESIGN §3.2 and §5.
+## Next — Phase 3: the permission pause + operator mode selector
+Make `ask` mode pause-and-approve. Needs the bridge's `tool.permission` event surfaced as an inline approval card + a decision channel back to the SDK (today `ask` resolves to DENY — see DESIGN §2.4 and §3.4). Then surface the session-fixed operator mode selector (open decision §6: live switcher vs session-fixed). See DESIGN §5.3.
 
 ## Must-not-break facts
 - Public UIEvent contract is enforced by `engine-conformance.ts` + `PUBLIC_UI_EVENT_NAMES`; `process:exit` must stay the terminal event; provider-shaped event *names* are rejected (payload metadata is allowed).
@@ -21,7 +22,7 @@ Turn the fixed 3-pane shell (`components/shell/app-shell.tsx`) into the event-lo
 - Don't touch unrelated dirty files under `projects/chirality-piping/`.
 
 ## Verify before resuming
-From `projects/chirality-app-dev/frontend`: `npx vitest run` (expect 387 pass) and `npm run typecheck` (expect exit 0).
+From `projects/chirality-app-dev/frontend`: `npx vitest run` (expect 401 pass) and `npm run typecheck` (expect exit 0).
 
 ## Open decisions (owner's call — see DESIGN §6)
 Live mode-switcher vs session-fixed; where the `ask` approve/deny pause lives; document content-API contract; editor tech (markdown-source vs WYSIWYG); whether to also bridge manager-level turn-lifecycle events + the Anthropic manager.

@@ -3,6 +3,7 @@ import './globals.css';
 import { WorkspaceProvider } from '../components/workspace/workspace-provider';
 import { ToolkitProvider } from '../components/workspace/toolkit-provider';
 import { DeliverablesProvider } from '../components/workspace/deliverables-provider';
+import { HarnessEventsProvider } from '../components/workspace/harness-events-provider';
 
 export const metadata: Metadata = {
   title: 'Chirality Workflow Shell',
@@ -19,7 +20,9 @@ export default function RootLayout({
       <body>
         <WorkspaceProvider>
           <DeliverablesProvider>
-            <ToolkitProvider>{children}</ToolkitProvider>
+            <ToolkitProvider>
+              <HarnessEventsProvider>{children}</HarnessEventsProvider>
+            </ToolkitProvider>
           </DeliverablesProvider>
         </WorkspaceProvider>
       </body>

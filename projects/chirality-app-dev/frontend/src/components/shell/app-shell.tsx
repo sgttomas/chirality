@@ -26,11 +26,9 @@ import {
   type ResizablePaneKey
 } from '../../lib/shell/layout-state';
 import { ApiKeySettings } from '../settings/api-key-settings';
-import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel } from './chat-panel';
-import { FileTreePanel } from './file-tree-panel';
-import { OperatorToolkitPanel } from './operator-toolkit-panel';
+import { WorkspaceSidebar, type SidebarTabId } from './workspace-sidebar';
 
 type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH';
 
@@ -52,8 +50,13 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
   { href: '/workbench', label: 'WORKBENCH' }
 ];
 
+// Two resizable side panes remain after the Tool Kit folded into the sidebar as
+// a tab: `fileTree` is the multi-view workspace sidebar, `chat` is the live loop.
+// The `toolkit` entries below are retained only to satisfy the frozen
+// `Record<ResizablePaneKey, ...>` type (layout-state.ts is intentionally
+// unchanged); no resize handle is ever rendered for the `toolkit` pane.
 const PANE_TITLE: Record<ResizablePaneKey, string> = {
-  fileTree: 'File Tree',
+  fileTree: 'Workspace',
   toolkit: 'Tool Kit',
   chat: 'Chat Panel'
 };
@@ -64,9 +67,12 @@ const DRAG_DIRECTION: Record<ResizablePaneKey, 1 | -1> = {
   chat: -1
 };
 
+// The dedicated Tool Kit pane is gone (it is now a sidebar tab); the layout
+// geometry therefore always computes for the two-pane sidebar + chat shell.
+const TOOLKIT_PANE_VISIBLE = false;
+
 export function AppShell({ section, title, subtitle, children }: AppShellProps): JSX.Element {
   const pathname = usePathname();
-  const { isToolkitVisible, setToolkitVisible } = useToolkit();
   const {
     projectRoot,
     hasElectronDirectoryPicker,
@@ -83,6 +89,9 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
   );
   const [layoutWidth, setLayoutWidth] = useState(0);
   const [resizingPane, setResizingPane] = useState<ResizablePaneKey | null>(null);
+  // Lifted out of WorkspaceSidebar so the chosen tab survives the pane being
+  // unmounted while collapsed.
+  const [sidebarTab, setSidebarTab] = useState<SidebarTabId>('files');
   const layoutRef = useRef<HTMLElement | null>(null);
   const dragStateRef = useRef<{
     pane: ResizablePaneKey;
@@ -126,7 +135,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
     return () => {
       observer.disconnect();
     };
-  }, [isToolkitVisible]);
+  }, []);
 
   const currentRootLabel = useMemo(
     () => projectRoot ?? 'No working root selected',
@@ -136,11 +145,10 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
   const gridStyle = useMemo(
     () =>
       ({
-        '--pane-file-tree-width': `${resolvePaneWidth(layoutState, 'fileTree', isToolkitVisible)}px`,
-        '--pane-toolkit-width': `${resolvePaneWidth(layoutState, 'toolkit', isToolkitVisible)}px`,
-        '--pane-chat-width': `${resolvePaneWidth(layoutState, 'chat', isToolkitVisible)}px`
+        '--pane-file-tree-width': `${resolvePaneWidth(layoutState, 'fileTree', TOOLKIT_PANE_VISIBLE)}px`,
+        '--pane-chat-width': `${resolvePaneWidth(layoutState, 'chat', TOOLKIT_PANE_VISIBLE)}px`
       }) as CSSProperties,
-    [isToolkitVisible, layoutState]
+    [layoutState]
   );
 
   const resizePaneByDelta = useCallback(
@@ -152,7 +160,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           requestedWidth,
           state: current,
           layoutWidth,
-          toolkitVisible: isToolkitVisible
+          toolkitVisible: TOOLKIT_PANE_VISIBLE
         });
 
         return {
@@ -168,7 +176,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
         };
       });
     },
-    [isToolkitVisible, layoutWidth]
+    [layoutWidth]
   );
 
   const togglePaneCollapse = useCallback((pane: ResizablePaneKey): void => {
@@ -218,7 +226,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           requestedWidth,
           state: current,
           layoutWidth,
-          toolkitVisible: isToolkitVisible
+          toolkitVisible: TOOLKIT_PANE_VISIBLE
         });
 
         return {
@@ -249,7 +257,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
       window.removeEventListener('pointerup', stopResizing);
       window.removeEventListener('pointercancel', stopResizing);
     };
-  }, [isToolkitVisible, layoutWidth, resizingPane]);
+  }, [layoutWidth, resizingPane]);
 
   function handleResizeKeyDown(event: KeyboardEvent<HTMLDivElement>, pane: ResizablePaneKey): void {
     const step = event.shiftKey ? 40 : 16;
@@ -287,7 +295,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           requestedWidth,
           state: current,
           layoutWidth,
-          toolkitVisible: isToolkitVisible
+          toolkitVisible: TOOLKIT_PANE_VISIBLE
         });
 
         return {
@@ -306,7 +314,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
   }
 
   function renderResizeHandle(pane: ResizablePaneKey): JSX.Element {
-    const widthNow = resolvePaneWidth(layoutState, pane, isToolkitVisible);
+    const widthNow = resolvePaneWidth(layoutState, pane, TOOLKIT_PANE_VISIBLE);
     const isActive = resizingPane === pane;
 
     return (
@@ -412,16 +420,6 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           <p className="working-root-current" title={currentRootLabel}>
             Active root: {currentRootLabel}
           </p>
-          <label className="toolkit-checkbox">
-            <input
-              type="checkbox"
-              checked={isToolkitVisible}
-              onChange={(event) => {
-                setToolkitVisible(event.target.checked);
-              }}
-            />
-            Show Tool Kit sidebar
-          </label>
           {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
         </div>
         <div className="working-root-settings">
@@ -431,12 +429,14 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
 
       <section
         ref={layoutRef}
-        className={isToolkitVisible ? 'shell-grid shell-grid--resizable shell-grid--with-toolkit' : 'shell-grid shell-grid--resizable'}
+        className="shell-grid shell-grid--resizable"
         style={gridStyle}
       >
         <div
           className={
-            layoutState.collapsed.fileTree ? 'shell-pane shell-pane--file-tree shell-pane--collapsed' : 'shell-pane shell-pane--file-tree'
+            layoutState.collapsed.fileTree
+              ? 'shell-pane shell-pane--sidebar shell-pane--collapsed'
+              : 'shell-pane shell-pane--sidebar'
           }
         >
           <button
@@ -449,9 +449,10 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
             {layoutState.collapsed.fileTree ? 'Expand' : 'Collapse'}
           </button>
           {layoutState.collapsed.fileTree ? (
-            <span className="shell-pane-collapsed-label">File Tree</span>
-          ) : null}
-          <FileTreePanel />
+            <span className="shell-pane-collapsed-label">Workspace</span>
+          ) : (
+            <WorkspaceSidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
+          )}
         </div>
 
         {renderResizeHandle('fileTree')}
@@ -462,31 +463,6 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           </header>
           <div className="panel-body">{children}</div>
         </section>
-
-        {isToolkitVisible ? (
-          <>
-            {renderResizeHandle('toolkit')}
-            <div
-              className={
-                layoutState.collapsed.toolkit ? 'shell-pane shell-pane--toolkit shell-pane--collapsed' : 'shell-pane shell-pane--toolkit'
-              }
-            >
-              <button
-                type="button"
-                className="shell-pane-toggle button-muted"
-                onClick={() => {
-                  togglePaneCollapse('toolkit');
-                }}
-              >
-                {layoutState.collapsed.toolkit ? 'Expand' : 'Collapse'}
-              </button>
-              {layoutState.collapsed.toolkit ? (
-                <span className="shell-pane-collapsed-label">Tool Kit</span>
-              ) : null}
-              <OperatorToolkitPanel />
-            </div>
-          </>
-        ) : null}
 
         {renderResizeHandle('chat')}
 

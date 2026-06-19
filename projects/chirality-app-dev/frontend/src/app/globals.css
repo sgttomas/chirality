@@ -232,7 +232,6 @@ button:disabled {
 
 .shell-grid {
   --pane-file-tree-width: 280px;
-  --pane-toolkit-width: 300px;
   --pane-chat-width: 320px;
   --pane-handle-width: 12px;
   display: grid;
@@ -245,17 +244,6 @@ button:disabled {
   gap: 0.75rem;
   min-height: 66vh;
   align-items: stretch;
-}
-
-.shell-grid--with-toolkit {
-  grid-template-columns:
-    minmax(56px, var(--pane-file-tree-width))
-    var(--pane-handle-width)
-    minmax(0, 1fr)
-    var(--pane-handle-width)
-    minmax(56px, var(--pane-toolkit-width))
-    var(--pane-handle-width)
-    minmax(56px, var(--pane-chat-width));
 }
 
 .shell-pane {
@@ -1269,11 +1257,36 @@ button:disabled {
   .toolkit-warning p {
     color: #f5dc9f;
   }
+
+  .harness-stream-item--completed {
+    border-left-color: #5fd38a;
+  }
+
+  .harness-stream-item--permission {
+    border-left-color: #e0b061;
+  }
+
+  .harness-status-badge--completed {
+    border-color: #2f7a4d;
+    background: #14301f;
+    color: #6fdf97;
+  }
+
+  .harness-status-badge--failed {
+    border-color: #7a3a3a;
+    background: #321a1a;
+    color: #ff9b9b;
+  }
+
+  .harness-status-badge--permission {
+    border-color: #74613a;
+    background: #2d2718;
+    color: #e7c98c;
+  }
 }
 
 @media (max-width: 1180px) {
-  .shell-grid,
-  .shell-grid--with-toolkit {
+  .shell-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1319,8 +1332,7 @@ button:disabled {
     flex-wrap: wrap;
   }
 
-  .shell-grid,
-  .shell-grid--with-toolkit {
+  .shell-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1474,4 +1486,204 @@ button:disabled {
     min-width: unset;
     width: 100%;
   }
+}
+
+/* Collapsible multi-view workspace sidebar (DESIGN §3.2) */
+.workspace-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.workspace-sidebar-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0.4rem 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-muted);
+}
+
+.workspace-sidebar-tab {
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: var(--text-subtle);
+  border-radius: 0.4rem 0.4rem 0 0;
+  padding: 0.32rem 0.6rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.workspace-sidebar-tab:hover {
+  color: var(--accent);
+}
+
+.workspace-sidebar-tab--active {
+  border-color: var(--border);
+  background: var(--panel);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.workspace-sidebar-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.workspace-sidebar-body > .panel {
+  width: 100%;
+}
+
+/* Bridge-fed Tools / Subagents stream views */
+.panel--stream .panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.harness-stream-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.harness-stream-item {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--panel-muted);
+  padding: 0.45rem 0.55rem;
+}
+
+.harness-stream-item--queued {
+  border-left-color: var(--text-subtle);
+}
+
+.harness-stream-item--running {
+  border-left-color: var(--accent);
+}
+
+.harness-stream-item--completed {
+  border-left-color: #1a7f37;
+}
+
+.harness-stream-item--failed {
+  border-left-color: var(--error);
+}
+
+.harness-stream-item--permission {
+  border-left-color: #b7791f;
+}
+
+.harness-stream-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.harness-stream-name {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.82rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.harness-status-badge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text-subtle);
+}
+
+.harness-status-badge--queued {
+  border-color: var(--border);
+  background: var(--panel-muted);
+  color: var(--text-subtle);
+}
+
+.harness-status-badge--running {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.harness-status-badge--completed {
+  border-color: #1a7f37;
+  background: #e6f4ea;
+  color: #1a7f37;
+}
+
+.harness-status-badge--failed {
+  border-color: var(--error);
+  background: #fbe9e7;
+  color: var(--error);
+}
+
+.harness-status-badge--permission {
+  border-color: #b7791f;
+  background: #fdf3e0;
+  color: #b7791f;
+}
+
+.harness-stream-paths {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.harness-stream-paths li {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+}
+
+.harness-stream-path-field {
+  color: var(--text-subtle);
+  flex: 0 0 auto;
+}
+
+.harness-stream-path-value {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.harness-stream-description,
+.harness-stream-summary {
+  margin: 0.35rem 0 0;
+  font-size: 0.76rem;
+  color: var(--text-primary);
+}
+
+.harness-stream-summary {
+  color: var(--text-subtle);
+}
+
+.harness-stream-meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.7rem;
+  color: var(--text-subtle);
 }
