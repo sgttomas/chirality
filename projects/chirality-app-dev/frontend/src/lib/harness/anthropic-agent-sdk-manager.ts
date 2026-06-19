@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getUiApiKey } from './api-key-store';
 import { HarnessError } from './errors';
+import { createHarnessEvent, type HarnessEventType } from './event-schema';
+import { harnessEventToUiEvent } from './harness-ui-bridge';
+import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 
 type ActiveTurnState = {
@@ -669,6 +672,27 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
 
   constructor(private readonly clientFactory: AnthropicClientFactory = buildAnthropicClient) {}
 
+  // D-APP-25 Anthropic-manager parity: persist and bridge a manager-level
+  // lifecycle event through the same provider-neutral path as the Claude SDK
+  // manager. The bridge (harnessEventToUiEvent) redacts configured API keys, so
+  // no new leak path is introduced.
+  private async *emitLifecycle(
+    sessionId: string,
+    type: HarnessEventType,
+    data: Record<string, unknown> = {}
+  ): AsyncGenerator<UIEvent> {
+    const event = createHarnessEvent({
+      sessionId,
+      type,
+      data: { provider: 'anthropic', ...data }
+    });
+    await appendHarnessEvent(event);
+    const bridged = harnessEventToUiEvent(event);
+    if (bridged) {
+      yield bridged;
+    }
+  }
+
   async interrupt(sessionId: string): Promise<void> {
     const activeTurn = this.activeTurns.get(sessionId);
     if (!activeTurn) {
@@ -677,6 +701,16 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       });
     }
 
+    // Persisted-only, mirroring the Claude SDK manager: interruption.requested
+    // originates from the operator's own interrupt action (out-of-band from the
+    // turn stream), so it is recorded for replay but not bridged live.
+    await appendHarnessEvent(
+      createHarnessEvent({
+        sessionId,
+        type: 'interruption.requested',
+        data: { provider: 'anthropic' }
+      })
+    );
     activeTurn.interrupted = true;
     activeTurn.abortController?.abort();
   }
@@ -692,6 +726,10 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
 
     let timeoutHandle: NodeJS.Timeout | undefined;
     let timedOut = false;
+    // Tracks whether turn.accepted was emitted, so the catch/interrupt teardown
+    // only closes a lifecycle that was actually opened (bootstrap turns stay
+    // lifecycle-free, mirroring the Claude SDK manager).
+    let lifecycleOpened = false;
 
     const claudeSessionId = session.claudeSessionId ?? `claude_${randomUUID()}`;
     const trimmedMessage = message.trim();
@@ -715,6 +753,18 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         return;
       }
 
+      const isBootstrap = trimmedMessage === 'bootstrap';
+      if (!isBootstrap) {
+        // Open the turn timeline (accepted -> started -> completed/cancelled/failed)
+        // for real turns. session:init is already the first public UIEvent.
+        yield* this.emitLifecycle(session.sessionId, 'turn.accepted', {
+          model: opts.model || FALLBACK_MODEL,
+          persona: opts.persona,
+          mode: opts.mode
+        });
+        lifecycleOpened = true;
+      }
+
       if (trimmedMessage.includes(TURN_SDK_FAIL_MARKER)) {
         throw new HarnessError('SDK_FAILURE', 500, 'Turn failed before completion', {
           marker: TURN_SDK_FAIL_MARKER
@@ -730,6 +780,9 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
             output: 'permission denied'
           }
         };
+        yield* this.emitLifecycle(session.sessionId, 'turn.completed', {
+          stopReason: 'permission_denied'
+        });
         yield {
           type: 'chat:complete',
           data: {
@@ -762,7 +815,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
 
       const apiKey = readAnthropicApiKey();
 
-      if (trimmedMessage === 'bootstrap') {
+      if (isBootstrap) {
         yield {
           type: 'process:exit',
           data: {
@@ -803,10 +856,14 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         }
       );
 
+      yield* this.emitLifecycle(session.sessionId, 'turn.started');
+
       let fullText = '';
 
       for await (const event of stream) {
         if (turnState.interrupted) {
+          yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
+          yield* this.emitLifecycle(session.sessionId, 'turn.cancelled');
           yield {
             type: 'process:exit',
             data: {
@@ -837,6 +894,10 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         }
       }
 
+      yield* this.emitLifecycle(session.sessionId, 'turn.completed', {
+        stopReason: 'end_turn',
+        textLength: fullText.length
+      });
       yield {
         type: 'chat:complete',
         data: {
@@ -855,6 +916,10 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       };
     } catch (error) {
       if (turnState.interrupted) {
+        if (lifecycleOpened) {
+          yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
+          yield* this.emitLifecycle(session.sessionId, 'turn.cancelled');
+        }
         yield {
           type: 'process:exit',
           data: {
@@ -865,33 +930,41 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         return;
       }
 
+      // Resolve the throwable using the existing precedence (timeout, typed
+      // HarnessError, classified SDK/network error, raw), then bridge a
+      // redacted turn.failed before re-throwing so the loop sees the failure
+      // in the turn timeline.
+      let failure: unknown;
       if (timedOut) {
-        throw new HarnessError('SDK_FAILURE', 504, 'Anthropic request timed out', {
+        failure = new HarnessError('SDK_FAILURE', 504, 'Anthropic request timed out', {
           provider: 'anthropic',
           category: 'REQUEST_TIMEOUT'
         });
+      } else if (error instanceof HarnessError) {
+        failure = error;
+      } else {
+        failure = toAnthropicSdkError(error) ?? toNetworkError(error) ?? error;
       }
 
-      if (error instanceof HarnessError) {
-        throw error;
+      if (lifecycleOpened) {
+        const failureMessage = failure instanceof Error ? failure.message : 'Anthropic turn failed';
+        yield* this.emitLifecycle(session.sessionId, 'turn.failed', {
+          error: redactConfiguredApiKeys(failureMessage) ?? failureMessage
+        });
       }
 
-      const sdkError = toAnthropicSdkError(error);
-      if (sdkError) {
-        throw sdkError;
-      }
-
-      const networkError = toNetworkError(error);
-      if (networkError) {
-        throw networkError;
-      }
-
-      throw error;
+      throw failure;
     } finally {
       if (timeoutHandle) {
         clearTimeout(timeoutHandle);
       }
-      this.activeTurns.delete(session.sessionId);
+      // Identity-guarded teardown (parity with the Claude SDK manager, DESIGN
+      // §5.3): only retire THIS turn's state. If the turn lock was released early
+      // and a newer same-session turn already installed fresh state, this stale
+      // teardown must not clobber it.
+      if (this.activeTurns.get(session.sessionId) === turnState) {
+        this.activeTurns.delete(session.sessionId);
+      }
     }
   }
 }

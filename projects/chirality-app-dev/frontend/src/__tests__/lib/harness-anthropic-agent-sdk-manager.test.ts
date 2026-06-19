@@ -1,8 +1,9 @@
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AnthropicAgentSdkManager } from '../../lib/harness/anthropic-agent-sdk-manager';
+import { replayHarnessEvents } from '../../lib/harness/session-events';
 import { UIEvent } from '../../lib/harness/types';
 
 async function* createStream(events: unknown[]): AsyncIterable<unknown> {
@@ -49,6 +50,10 @@ const opts = {
 };
 
 let tmpDir = '';
+// D-APP-25 parity adds lifecycle persistence (appendHarnessEvent) to the
+// Anthropic manager. Isolate the session-events root to a per-test tmpdir so
+// turns never write events.jsonl into the working tree.
+let sessionRootDir = '';
 const globalState = globalThis as unknown as Record<string, string | undefined>;
 
 async function writeFixtureFile(name: string, content: string | Buffer): Promise<string> {
@@ -67,6 +72,11 @@ async function getFixturePath(name: string): Promise<string> {
   return path.join(tmpDir, name);
 }
 
+beforeEach(async () => {
+  sessionRootDir = await mkdtemp(path.join(os.tmpdir(), 'anthropic-sdk-manager-events-'));
+  process.env.CHIRALITY_SESSION_ROOT = path.join(sessionRootDir, 'sessions');
+});
+
 afterEach(() => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
@@ -74,6 +84,7 @@ afterEach(() => {
   delete process.env.CHIRALITY_ANTHROPIC_MAX_TOKENS;
   delete process.env.CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS;
   delete process.env.CHIRALITY_ANTHROPIC_VERSION;
+  delete process.env.CHIRALITY_SESSION_ROOT;
   delete globalState.__CHIRALITY_UI_API_KEY__;
 });
 
@@ -81,6 +92,10 @@ afterEach(async () => {
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
+  }
+  if (sessionRootDir) {
+    await rm(sessionRootDir, { recursive: true, force: true });
+    sessionRootDir = '';
   }
 });
 
@@ -127,7 +142,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 503
@@ -159,13 +182,23 @@ describe('AnthropicAgentSdkManager', () => {
 
     expect(events.map((event) => event.type)).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
       'chat:delta',
       'chat:delta',
+      'harness:event',
       'chat:complete',
       'session:complete',
       'process:exit'
     ]);
-    expect(events[3]).toMatchObject({
+    // The bridged lifecycle timeline: turn.accepted -> turn.started before the
+    // deltas, turn.completed after them.
+    expect(
+      events
+        .filter((event) => event.type === 'harness:event')
+        .map((event) => (event as { data: { type: string } }).data.type)
+    ).toEqual(['turn.accepted', 'turn.started', 'turn.completed']);
+    expect(events[6]).toMatchObject({
       type: 'chat:complete',
       data: {
         text: 'Hello world'
@@ -186,6 +219,77 @@ describe('AnthropicAgentSdkManager', () => {
         signal: expect.any(AbortSignal)
       })
     );
+  });
+
+  it('persists the manager-lifecycle timeline to events.jsonl for replay parity', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockResolvedValue(
+      createStream([{ type: 'content_block_delta', delta: { text: 'Hi' } }, { type: 'message_stop' }])
+    );
+    const clientFactory = vi.fn(() => ({ messages: { create: createMock } }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+
+    await collectEvents(manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }]));
+
+    // Parity with the Claude SDK manager: the lifecycle vocabulary is persisted
+    // (live == replay), tagged with the anthropic provider.
+    const replay = await replayHarnessEvents(session.sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'turn.completed'
+    ]);
+    expect(replay.events[0].data).toMatchObject({
+      provider: 'anthropic',
+      model: 'claude-sonnet-test'
+    });
+  });
+
+  it('bridges and persists cancellation lifecycle when interrupted mid-stream', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const manager = new AnthropicAgentSdkManager(
+      (() => ({
+        messages: {
+          create: vi.fn(async () =>
+            (async function* (): AsyncGenerator<unknown> {
+              yield { type: 'content_block_delta', delta: { text: 'partial' } };
+              await manager.interrupt(session.sessionId);
+              yield { type: 'content_block_delta', delta: { text: ' more' } };
+            })()
+          )
+        }
+      })) as never
+    );
+
+    const events = await collectEvents(
+      manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])
+    );
+
+    const sequence = events.map((event) => event.type);
+    expect(sequence[sequence.length - 1]).toBe('process:exit');
+    expect(events.at(-1)).toMatchObject({
+      type: 'process:exit',
+      data: { exitCode: 130, interrupted: true }
+    });
+    const bridgedTypes = events
+      .filter((event) => event.type === 'harness:event')
+      .map((event) => (event as { data: { type: string } }).data.type);
+    expect(bridgedTypes).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'interruption.completed',
+      'turn.cancelled'
+    ]);
+
+    // interruption.requested is persisted (operator action) but not bridged live.
+    const replay = await replayHarnessEvents(session.sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'interruption.requested',
+      'interruption.completed',
+      'turn.cancelled'
+    ]);
   });
 
   it('fails closed when CHIRALITY_ANTHROPIC_API_URL host is outside Anthropic allowlist', async () => {
@@ -209,7 +313,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 400,
@@ -244,7 +356,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 400,
@@ -279,7 +399,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 400,
@@ -312,7 +440,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 400,
@@ -346,7 +482,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 400,
@@ -407,7 +551,15 @@ describe('AnthropicAgentSdkManager', () => {
       thrown = error;
     }
 
-    expect(events.map((event) => event.type)).toEqual(['session:init']);
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
     expect(thrown).toMatchObject({
       type: 'SDK_FAILURE',
       status: 401,

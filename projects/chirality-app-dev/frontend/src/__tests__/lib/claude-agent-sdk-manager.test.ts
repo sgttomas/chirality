@@ -120,6 +120,8 @@ describe('ClaudeAgentSdkManager', () => {
 
     expect(events.map((event) => event.type)).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
       'chat:delta',
       'harness:event',
       'harness:event',
@@ -128,10 +130,17 @@ describe('ClaudeAgentSdkManager', () => {
       'process:exit'
     ]);
     // The rich harness events bridge to the live stream before the terminal uiEvents.
+    // turn.accepted / turn.started bridge immediately after session:init (D-APP-25),
+    // then model.completed / turn.completed from the result message.
     const harnessEventTypes = events
       .filter((event) => event.type === 'harness:event')
       .map((event) => event.data.type);
-    expect(harnessEventTypes).toEqual(['model.completed', 'turn.completed']);
+    expect(harnessEventTypes).toEqual([
+      'turn.accepted',
+      'turn.started',
+      'model.completed',
+      'turn.completed'
+    ]);
     expect(query).toHaveBeenCalledWith(
       expect.objectContaining({
         prompt: 'hello',
@@ -242,7 +251,11 @@ describe('ClaudeAgentSdkManager', () => {
       status: 500,
       message: 'SDK failed with [REDACTED_API_KEY]'
     });
-    expect(events).toEqual([]);
+    // The synchronous SDK failure bridges a redacted turn.failed before throwing
+    // (D-APP-25). turn.accepted was buffered but never flushed (no session:init),
+    // so it stays persisted-only — the live stream carries only turn.failed.
+    expect(events.map((event) => (event as { type: string }).type)).toEqual(['harness:event']);
+    expect((events[0] as { data: { type: string } }).data.type).toBe('turn.failed');
     expect(observedApiKeys).toEqual([uiApiKey]);
     expect(process.env.ANTHROPIC_API_KEY).toBe(priorApiKey);
     const replay = await replayHarnessEvents('sess_sdk');
@@ -330,9 +343,13 @@ describe('ClaudeAgentSdkManager', () => {
 
     expect(harnessTypes).toContain('tool.permission');
     expect(sequence[sequence.length - 1]).toBe('process:exit');
+    // turn.accepted / turn.started bridge immediately after session:init (D-APP-25).
+    expect(harnessTypes.slice(0, 2)).toEqual(['turn.accepted', 'turn.started']);
     // The bridged permission event lands after session:init and before the terminal exit.
-    const permIndex = sequence.indexOf('harness:event');
-    expect(sequence.indexOf('session:init')).toBeLessThan(permIndex);
+    const permIndex = events.findIndex(
+      (event) => event.type === 'harness:event' && event.data.type === 'tool.permission'
+    );
+    expect(permIndex).toBeGreaterThan(sequence.indexOf('session:init'));
     expect(permIndex).toBeLessThan(sequence.lastIndexOf('process:exit'));
   });
 });

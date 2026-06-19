@@ -288,8 +288,12 @@ describe('agentSdk scripted dev turn validation', () => {
     const events = parseSse(rawSse);
 
     expect(turnResponse.status).toBe(200);
+    // turn.accepted / turn.started bridge after session:init (D-APP-25), then the
+    // model.completed / turn.completed evidence before the terminal uiEvents.
     expect(events.map((event) => event.type)).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
       'chat:delta',
       'harness:event',
       'harness:event',

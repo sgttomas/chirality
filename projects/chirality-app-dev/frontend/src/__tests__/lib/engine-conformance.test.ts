@@ -233,6 +233,8 @@ describe('engine conformance fixtures', () => {
     expect(report.issues).toEqual([]);
     expect(report.eventTypes).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
       'chat:delta',
       'harness:event',
       'harness:event',
@@ -281,11 +283,14 @@ describe('engine conformance fixtures', () => {
     });
 
     expect(report.passed).toBe(true);
-    // Each persisted harness event (except per-token deltas and adapter.initialized)
+    // turn.accepted / turn.started bridge after session:init (D-APP-25), then each
+    // persisted harness event (except per-token deltas and adapter.initialized)
     // bridges to a harness:event on the live stream: tool.queued, tool.started,
     // tool.completed, message.completed, model.completed, turn.completed.
     expect(report.eventTypes).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
       'harness:event',
       'harness:event',
       'harness:event',
@@ -375,7 +380,15 @@ describe('engine conformance fixtures', () => {
     });
 
     expect(report.passed).toBe(true);
-    expect(report.eventTypes).toEqual(['session:init', 'harness:event', 'process:exit']);
+    // session:init, then the buffered turn.accepted / turn.started, then the
+    // mapper's turn.failed for the error result, then terminal process:exit.
+    expect(report.eventTypes).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'process:exit'
+    ]);
     expect(report.events.at(-1)).toMatchObject({
       type: 'process:exit',
       data: {
@@ -406,7 +419,16 @@ describe('engine conformance fixtures', () => {
     });
 
     expect(report.passed).toBe(true);
-    expect(report.eventTypes).toEqual(['session:init', 'process:exit']);
+    // session:init, the buffered turn.accepted / turn.started, then the bridged
+    // interruption.completed / turn.cancelled cancellation pair, then terminal exit.
+    expect(report.eventTypes).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'process:exit'
+    ]);
     expect(report.events.at(-1)).toMatchObject({
       type: 'process:exit',
       data: {

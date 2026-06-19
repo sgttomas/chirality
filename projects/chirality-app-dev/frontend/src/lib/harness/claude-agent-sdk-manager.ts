@@ -11,7 +11,7 @@ import {
 } from './sdk-message-mapper';
 import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
-import { createHarnessEvent } from './event-schema';
+import { createHarnessEvent, type HarnessEvent } from './event-schema';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
 import {
   getPermissionEventChannel,
@@ -137,6 +137,33 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     this.activeTurns.set(input.session.sessionId, activeTurn);
     let restoreSdkApiKey: (() => void) | undefined;
 
+    // D-APP-25 manager-lifecycle bridging. `turn.accepted` / `turn.started` are
+    // emitted before the SDK reports session:init, so we hold their bridged
+    // UIEvents and flush them immediately after session:init keeps the public
+    // contract (session:init present, process:exit terminal) intact even if the
+    // turn is interrupted before the adapter initializes. Terminal lifecycle
+    // events (interruption.completed / turn.cancelled / turn.failed) bridge in
+    // place via emitAndBridge.
+    const pendingLifecycleUiEvents: UIEvent[] = [];
+    let lifecycleBridgeFlushed = false;
+    const bufferLifecycleBridge = (event: HarnessEvent): void => {
+      const bridged = harnessEventToUiEvent(event);
+      if (bridged) {
+        pendingLifecycleUiEvents.push(bridged);
+      }
+    };
+    const emitAndBridge = async function* (
+      type: HarnessEvent['type'],
+      data: Record<string, unknown>
+    ): AsyncGenerator<UIEvent> {
+      const event = createHarnessEvent({ sessionId: input.session.sessionId, type, data });
+      await appendHarnessEvent(event);
+      const bridged = harnessEventToUiEvent(event);
+      if (bridged) {
+        yield bridged;
+      }
+    };
+
     const bootstrapSessionId = input.session.sdkSessionId ?? input.session.claudeSessionId ?? `sdk_${randomUUID()}`;
 
     try {
@@ -173,35 +200,35 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       });
       const sdkPrompt = buildSdkPrompt(input.message, input.contentBlocks);
       restoreSdkApiKey = installAnthropicApiKeyForSdkTurn();
-      await appendHarnessEvent(
-        createHarnessEvent({
-          sessionId: input.session.sessionId,
-          type: 'turn.accepted',
-          data: {
-            provider: 'claude-agent-sdk',
-            sdkPackageVersion: SDK_PACKAGE_VERSION,
-            persona: input.opts.persona,
-            mode: input.opts.mode,
-            personaPromptHash,
-            bootFingerprint: input.session.bootFingerprint,
-            model: input.opts.model
-          }
-        })
-      );
+      const turnAcceptedEvent = createHarnessEvent({
+        sessionId: input.session.sessionId,
+        type: 'turn.accepted',
+        data: {
+          provider: 'claude-agent-sdk',
+          sdkPackageVersion: SDK_PACKAGE_VERSION,
+          persona: input.opts.persona,
+          mode: input.opts.mode,
+          personaPromptHash,
+          bootFingerprint: input.session.bootFingerprint,
+          model: input.opts.model
+        }
+      });
+      await appendHarnessEvent(turnAcceptedEvent);
+      bufferLifecycleBridge(turnAcceptedEvent);
       const sdkStream = this.sdkQuery({
         prompt: sdkPrompt,
         options: sdkOptions
       });
       activeTurn.query = sdkStream;
-      await appendHarnessEvent(
-        createHarnessEvent({
-          sessionId: input.session.sessionId,
-          type: 'turn.started',
-          data: {
-            provider: 'claude-agent-sdk'
-          }
-        })
-      );
+      const turnStartedEvent = createHarnessEvent({
+        sessionId: input.session.sessionId,
+        type: 'turn.started',
+        data: {
+          provider: 'claude-agent-sdk'
+        }
+      });
+      await appendHarnessEvent(turnStartedEvent);
+      bufferLifecycleBridge(turnStartedEvent);
 
       let sawTerminal = false;
       const mapperState = createSdkToolEvidenceState({
@@ -250,24 +277,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         }
 
         if (activeTurn.interrupted) {
-          await appendHarnessEvent(
-            createHarnessEvent({
-              sessionId: input.session.sessionId,
-              type: 'interruption.completed',
-              data: {
-                provider: 'claude-agent-sdk'
-              }
-            })
-          );
-          await appendHarnessEvent(
-            createHarnessEvent({
-              sessionId: input.session.sessionId,
-              type: 'turn.cancelled',
-              data: {
-                provider: 'claude-agent-sdk'
-              }
-            })
-          );
+          yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
+          yield* emitAndBridge('turn.cancelled', { provider: 'claude-agent-sdk' });
           yield {
             type: 'process:exit',
             data: {
@@ -305,6 +316,16 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
             sawTerminal = true;
           }
           yield event;
+          // Flush the buffered turn.accepted / turn.started bridges immediately
+          // after session:init so the live timeline reads accepted -> started
+          // while keeping session:init as the first public UIEvent.
+          if (!lifecycleBridgeFlushed && event.type === 'session:init') {
+            for (const lifecycleEvent of pendingLifecycleUiEvents) {
+              yield lifecycleEvent;
+            }
+            pendingLifecycleUiEvents.length = 0;
+            lifecycleBridgeFlushed = true;
+          }
         }
 
         sdkNext = sdkIterator.next();
@@ -320,24 +341,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       }
     } catch (error) {
       if (activeTurn.interrupted || abortController.signal.aborted) {
-        await appendHarnessEvent(
-          createHarnessEvent({
-            sessionId: input.session.sessionId,
-            type: 'interruption.completed',
-            data: {
-              provider: 'claude-agent-sdk'
-            }
-          })
-        );
-        await appendHarnessEvent(
-          createHarnessEvent({
-            sessionId: input.session.sessionId,
-            type: 'turn.cancelled',
-            data: {
-              provider: 'claude-agent-sdk'
-            }
-          })
-        );
+        yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
+        yield* emitAndBridge('turn.cancelled', { provider: 'claude-agent-sdk' });
         yield {
           type: 'process:exit',
           data: {
@@ -351,17 +356,11 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       const messageText =
         redactConfiguredApiKeys(error instanceof Error ? error.message : 'Claude Agent SDK turn failed') ??
         'Claude Agent SDK turn failed';
-      await appendHarnessEvent(
-        createHarnessEvent({
-          sessionId: input.session.sessionId,
-          type: 'turn.failed',
-          data: {
-            provider: 'claude-agent-sdk',
-            sdkPackageVersion: SDK_PACKAGE_VERSION,
-            error: messageText
-          }
-        })
-      );
+      yield* emitAndBridge('turn.failed', {
+        provider: 'claude-agent-sdk',
+        sdkPackageVersion: SDK_PACKAGE_VERSION,
+        error: messageText
+      });
       throw new HarnessError('SDK_FAILURE', 500, messageText, {
         provider: 'claude-agent-sdk',
         sdkPackageVersion: SDK_PACKAGE_VERSION
