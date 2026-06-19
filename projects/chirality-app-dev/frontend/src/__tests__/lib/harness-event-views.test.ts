@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { HarnessEvent, HarnessEventType } from '../../lib/harness/event-schema';
 import {
+  derivePermissionRequests,
   deriveSubagentActivity,
   deriveToolActivity
 } from '../../lib/shell/harness-event-views';
@@ -175,5 +176,54 @@ describe('deriveSubagentActivity', () => {
 
   it('ignores non-subagent harness events', () => {
     expect(deriveSubagentActivity([event('tool.completed', { toolUseId: 't1' })])).toEqual([]);
+  });
+});
+
+describe('derivePermissionRequests', () => {
+  it('surfaces an ask as a pending request with reason and path fields', () => {
+    const events = [
+      event('tool.permission', {
+        behavior: 'ask',
+        toolUseId: 'tp1',
+        toolName: 'Write',
+        reason: 'requires interactive approval and write hooks before execution.',
+        mode: 'ask',
+        safeMetadata: { inputMetadata: { pathFields: { file_path: '/proj/x.ts' } } }
+      })
+    ];
+
+    const rows = derivePermissionRequests(events);
+
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({
+      key: 'tp1',
+      toolName: 'Write',
+      status: 'pending',
+      mode: 'ask',
+      pathFields: { file_path: '/proj/x.ts' }
+    });
+  });
+
+  it('resolves the same request when the operator verdict follows', () => {
+    const allowed = derivePermissionRequests([
+      event('tool.permission', { behavior: 'ask', toolUseId: 'tp1', toolName: 'Write' }),
+      event('tool.permission', { behavior: 'allow', toolUseId: 'tp1', toolName: 'Write', source: 'human' })
+    ]);
+    expect(allowed).toHaveLength(1);
+    expect(allowed[0].status).toBe('allowed');
+
+    const denied = derivePermissionRequests([
+      event('tool.permission', { behavior: 'ask', toolUseId: 'tp2', toolName: 'Bash' }),
+      event('tool.permission', { behavior: 'deny', toolUseId: 'tp2', toolName: 'Bash', source: 'human' })
+    ]);
+    expect(denied[0].status).toBe('denied');
+  });
+
+  it('ignores straight policy allows/denies that never paused on ask', () => {
+    const rows = derivePermissionRequests([
+      event('tool.permission', { behavior: 'allow', toolUseId: 'auto1', toolName: 'Read' }),
+      event('tool.permission', { behavior: 'deny', toolUseId: 'auto2', toolName: 'Bash' })
+    ]);
+    expect(rows).toEqual([]);
   });
 });

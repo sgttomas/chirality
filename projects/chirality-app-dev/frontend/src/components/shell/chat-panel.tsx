@@ -22,6 +22,7 @@ import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatMarkdown } from './chat-markdown';
 import { FilePicker } from './file-picker';
+import { PermissionRequests } from './permission-requests';
 
 type ChatMessage = {
   id: string;
@@ -44,6 +45,23 @@ const PERSONA_ALIASES: Record<string, string> = {
   RECONCILING: 'RECONCILIATION',
   AGENTS: 'HELPS_HUMANS'
 };
+
+// Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
+// `opts.mode` values consumed by the permission overlay. Sent per turn so the
+// operator can switch the posture live without re-creating the session.
+type OperatorModeOption = {
+  value: string;
+  label: string;
+};
+
+const OPERATOR_MODES: readonly OperatorModeOption[] = [
+  { value: 'readOnly', label: 'Read-only' },
+  { value: 'ask', label: 'Plan (ask)' },
+  { value: 'workspaceWrite', label: 'Gated-write' },
+  { value: 'bypass', label: 'Autonomous' }
+];
+
+const DEFAULT_OPERATOR_MODE = 'ask';
 
 function readTextField(data: unknown): string | undefined {
   if (!data || typeof data !== 'object') {
@@ -127,6 +145,7 @@ export function ChatPanel(): JSX.Element {
   const [draftStorageWritable, setDraftStorageWritable] = useState(true);
   const [draftStorageWarning, setDraftStorageWarning] = useState<string | null>(null);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [runtimeStatus, setRuntimeStatus] = useState<string | null>(null);
@@ -311,7 +330,7 @@ export function ChatPanel(): JSX.Element {
           sessionId: session.sessionId,
           message: text,
           attachments: preservedAttachments.map((item) => item.path),
-          ...(optsPayload ? { opts: optsPayload } : {})
+          opts: { ...(optsPayload ?? {}), mode: operatorMode }
         },
         (streamEvent) => {
           if (streamEvent.event === 'harness:event') {
@@ -469,8 +488,24 @@ export function ChatPanel(): JSX.Element {
       <header className="panel-header">
         <h2>Chat Panel</h2>
         <p className="chat-meta">
-          Persona: {activePersona} | Mode: {activeMode}
+          Persona: {activePersona} | Section: {activeMode}
         </p>
+        <label className="chat-mode-selector">
+          <span>Operator mode</span>
+          <select
+            value={operatorMode}
+            disabled={isRunning}
+            onChange={(event) => {
+              setOperatorMode(event.target.value);
+            }}
+          >
+            {OPERATOR_MODES.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </header>
 
       <div className="panel-body chat-transcript">
@@ -491,6 +526,7 @@ export function ChatPanel(): JSX.Element {
             ) : null}
           </article>
         ))}
+        <PermissionRequests sessionId={activeSession?.sessionId ?? null} />
       </div>
 
       {draftStorageWarning ? (

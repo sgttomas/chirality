@@ -166,6 +166,24 @@ export async function bootHarnessSession(input: SessionBootRequest): Promise<Ses
   );
 }
 
+export async function decideHarnessPermission(input: {
+  sessionId: string;
+  toolUseId: string;
+  verdict: 'allow' | 'deny';
+}): Promise<{ ok: boolean; decided: boolean }> {
+  return requestHarnessJson<{ ok: boolean; decided: boolean }>(
+    '/api/harness/permission',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(input)
+    },
+    'Unable to submit permission decision'
+  );
+}
+
 export async function interruptHarnessSession(input: InterruptRequest): Promise<void> {
   await requestHarnessJson<{ ok: boolean }>(
     '/api/harness/interrupt',

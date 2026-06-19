@@ -1,6 +1,6 @@
 import type { CanUseTool, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'node:crypto';
-import { createHarnessEvent } from './event-schema';
+import { createHarnessEvent, type HarnessEvent } from './event-schema';
 import { appendHarnessEvent } from './session-events';
 import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
 import { evaluateToolPathPolicy } from './tool-path-policy';
@@ -289,27 +289,38 @@ export async function appendHarnessPermissionDecisionEvent(input: {
   decision: HarnessPermissionDecision;
   descriptor?: HarnessToolDescriptor;
   sdkToolUseId?: string;
+  // When provided, the persisted event is also published to the live channel so
+  // it reaches the browser while the SDK is suspended awaiting a verdict.
+  publishEvent?: (event: HarnessEvent) => void;
 }): Promise<void> {
-  await appendHarnessEvent(
-    createHarnessEvent({
-      sessionId: input.decision.sessionId,
-      type: 'tool.permission',
-      turnId: input.decision.turnId,
-      data: {
-        behavior: input.decision.decision,
-        decisionId: input.decision.decisionId,
-        reason: input.decision.reason,
-        source: input.decision.source,
-        toolName: input.decision.toolName,
-        adapterToolUseId: input.sdkToolUseId,
-        toolUseId: input.sdkToolUseId,
-        mode: input.decision.safeMetadata?.mode,
-        ...summarizeToolDescriptor(input.descriptor),
-        safeMetadata: input.decision.safeMetadata
-      }
-    })
-  );
+  const event = createHarnessEvent({
+    sessionId: input.decision.sessionId,
+    type: 'tool.permission',
+    turnId: input.decision.turnId,
+    data: {
+      behavior: input.decision.decision,
+      decisionId: input.decision.decisionId,
+      reason: input.decision.reason,
+      source: input.decision.source,
+      toolName: input.decision.toolName,
+      adapterToolUseId: input.sdkToolUseId,
+      toolUseId: input.sdkToolUseId,
+      mode: input.decision.safeMetadata?.mode,
+      ...summarizeToolDescriptor(input.descriptor),
+      safeMetadata: input.decision.safeMetadata
+    }
+  });
+  await appendHarnessEvent(event);
+  input.publishEvent?.(event);
 }
+
+export type HumanPermissionRequest = {
+  sessionId: string;
+  toolUseId?: string;
+  toolName: string;
+  reason: string;
+  decisionId: string;
+};
 
 export function createHarnessCanUseTool(input: {
   sessionId: string;
@@ -317,6 +328,12 @@ export function createHarnessCanUseTool(input: {
   projectRoot?: string;
   delegatedSubagents?: readonly string[];
   resolveDescriptor: (toolName: string) => HarnessToolDescriptor | undefined;
+  // When provided, an `ask` decision suspends until the operator returns a
+  // verdict (the inline approval pause). When absent, `ask` denies as before.
+  requestHumanDecision?: (request: HumanPermissionRequest) => Promise<HarnessPermissionDecisionValue>;
+  // When provided, each persisted permission decision is also published to the
+  // live channel so it reaches the browser in real time.
+  publishEvent?: (event: HarnessEvent) => void;
 }): CanUseTool {
   return async (toolName, toolInput, options) => {
     const descriptor = input.resolveDescriptor(toolName);
@@ -367,7 +384,8 @@ export function createHarnessCanUseTool(input: {
       await appendHarnessPermissionDecisionEvent({
         decision,
         descriptor,
-        sdkToolUseId: options.toolUseID
+        sdkToolUseId: options.toolUseID,
+        publishEvent: input.publishEvent
       });
     } catch (error) {
       const message = error instanceof Error ? error.message : 'unknown audit append failure';
@@ -376,6 +394,54 @@ export function createHarnessCanUseTool(input: {
         message: `Chirality audit event append failed; denying tool execution. ${message}`,
         toolUseID: options.toolUseID
       };
+    }
+
+    // Only suspend for a human verdict when the call has an addressable id the UI
+    // can echo back to the broker; without it, fall through to the standalone
+    // ask→deny rather than registering an unreachable pending entry.
+    if (decision.decision === 'ask' && input.requestHumanDecision && options.toolUseID) {
+      let verdict: HarnessPermissionDecisionValue = 'deny';
+      try {
+        verdict = await input.requestHumanDecision({
+          sessionId: input.sessionId,
+          toolUseId: options.toolUseID,
+          toolName,
+          reason: decision.reason,
+          decisionId: decision.decisionId
+        });
+      } catch {
+        verdict = 'deny';
+      }
+
+      const humanDecision: HarnessPermissionDecision = {
+        ...decision,
+        decisionId: `perm_${randomUUID()}`,
+        decision: verdict === 'allow' ? 'allow' : 'deny',
+        source: 'human',
+        decidedAt: new Date().toISOString(),
+        reason:
+          verdict === 'allow'
+            ? `Operator approved ${descriptor?.name ?? toolName}.`
+            : `Operator denied ${descriptor?.name ?? toolName}.`,
+        safeMetadata: {
+          ...decision.safeMetadata,
+          humanVerdict: verdict,
+          askDecisionId: decision.decisionId
+        }
+      };
+
+      try {
+        await appendHarnessPermissionDecisionEvent({
+          decision: humanDecision,
+          descriptor,
+          sdkToolUseId: options.toolUseID,
+          publishEvent: input.publishEvent
+        });
+      } catch {
+        // Best-effort audit of the human verdict; the SDK result below is authoritative.
+      }
+
+      return permissionDecisionToSdkResult(humanDecision, options.toolUseID);
     }
 
     return permissionDecisionToSdkResult(decision, options.toolUseID);

@@ -3,7 +3,22 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildSdkOptions } from '../../lib/harness/sdk-options-builder';
+import {
+  getPermissionBroker,
+  resetPermissionBrokerForTests
+} from '../../lib/harness/permission-broker';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
+
+/** Wait until the broker has registered a pending request for the session. */
+async function waitForPending(sessionId: string): Promise<void> {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    if (getPermissionBroker().pendingCount(sessionId) >= 1) {
+      return;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+  throw new Error('Timed out waiting for a pending permission request');
+}
 
 const session: SessionRecord = {
   sessionId: 'sess_1',
@@ -27,6 +42,7 @@ let tmpDir = '';
 
 afterEach(async () => {
   vi.unstubAllEnvs();
+  resetPermissionBrokerForTests();
   delete process.env.CHIRALITY_SDK_SETTING_SOURCES;
   delete process.env.CHIRALITY_ALLOW_SDK_BYPASS;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
@@ -372,19 +388,46 @@ describe('buildSdkOptions', () => {
       toolUseID: 'tool_read'
     });
 
-    await expect(
-      askOptions.canUseTool?.(
-        'Write',
-        { file_path: 'README.md', content: 'changed' },
-        {
-          signal: new AbortController().signal,
-          toolUseID: 'tool_write'
-        }
-      )
-    ).resolves.toMatchObject({
+    // In ask mode a gated tool now suspends for an operator verdict (Phase 3).
+    const pendingDenied = askOptions.canUseTool?.(
+      'Write',
+      { file_path: 'README.md', content: 'changed' },
+      {
+        signal: new AbortController().signal,
+        toolUseID: 'tool_write'
+      }
+    );
+    await waitForPending(callbackSession.sessionId);
+    expect(
+      getPermissionBroker().decide({
+        sessionId: callbackSession.sessionId,
+        toolUseId: 'tool_write',
+        verdict: 'deny'
+      })
+    ).toBe(true);
+    await expect(pendingDenied).resolves.toMatchObject({
       behavior: 'deny',
-      message: expect.stringContaining('requires application approval'),
       toolUseID: 'tool_write'
+    });
+
+    // The same pause resolves to allow when the operator approves.
+    const pendingAllowed = askOptions.canUseTool?.(
+      'Write',
+      { file_path: 'README.md', content: 'changed' },
+      {
+        signal: new AbortController().signal,
+        toolUseID: 'tool_write_ask_allow'
+      }
+    );
+    await waitForPending(callbackSession.sessionId);
+    getPermissionBroker().decide({
+      sessionId: callbackSession.sessionId,
+      toolUseId: 'tool_write_ask_allow',
+      verdict: 'allow'
+    });
+    await expect(pendingAllowed).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_write_ask_allow'
     });
 
     const workspaceWriteOptions = buildSdkOptions({
@@ -422,18 +465,24 @@ describe('buildSdkOptions', () => {
       toolUseID: 'tool_bash_allowed'
     });
 
-    await expect(
-      askOptions.canUseTool?.(
-        'Bash',
-        { command: 'npm test' },
-        {
-          signal: new AbortController().signal,
-          toolUseID: 'tool_bash_ask'
-        }
-      )
-    ).resolves.toMatchObject({
+    // Shell tools in ask mode also suspend for an operator verdict (Phase 3).
+    const pendingBash = askOptions.canUseTool?.(
+      'Bash',
+      { command: 'npm test' },
+      {
+        signal: new AbortController().signal,
+        toolUseID: 'tool_bash_ask'
+      }
+    );
+    await waitForPending(callbackSession.sessionId);
+    getPermissionBroker().decide({
+      sessionId: callbackSession.sessionId,
+      toolUseId: 'tool_bash_ask',
+      verdict: 'deny'
+    });
+    await expect(pendingBash).resolves.toMatchObject({
       behavior: 'deny',
-      message: expect.stringContaining('requires application approval')
+      toolUseID: 'tool_bash_ask'
     });
 
     await expect(
@@ -450,6 +499,20 @@ describe('buildSdkOptions', () => {
       message: expect.stringContaining("Unknown harness tool 'mystery'"),
       toolUseID: 'tool_unknown'
     });
+
+    // A gated ask with no addressable toolUseID must not register an unreachable
+    // pending entry; it denies immediately instead of suspending.
+    await expect(
+      askOptions.canUseTool?.(
+        'Write',
+        { file_path: 'README.md', content: 'changed' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: ''
+        }
+      )
+    ).resolves.toMatchObject({ behavior: 'deny' });
+    expect(getPermissionBroker().pendingCount(callbackSession.sessionId)).toBe(0);
   });
 
   it('allows Agent permission callbacks only for delegated children in workspaceWrite mode', async () => {

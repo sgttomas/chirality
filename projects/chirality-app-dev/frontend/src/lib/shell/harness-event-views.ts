@@ -40,6 +40,18 @@ export type SubagentActivityRow = {
   eventCount: number;
 };
 
+export type PermissionRequestStatus = 'pending' | 'allowed' | 'denied';
+
+export type PermissionRequestRow = {
+  key: string;
+  toolName: string;
+  reason: string;
+  status: PermissionRequestStatus;
+  mode?: string;
+  pathFields: Record<string, string>;
+  timestamp: string;
+};
+
 const TOOL_STATUS_BY_TYPE: Partial<Record<HarnessEventType, ToolActivityStatus>> = {
   'tool.queued': 'queued',
   'tool.permission': 'permission',
@@ -163,6 +175,76 @@ export function deriveToolActivity(events: readonly HarnessEvent[]): ToolActivit
       lastEventType: event.type,
       timestamp: event.timestamp,
       eventCount: (existing?.eventCount ?? 0) + 1
+    });
+  }
+
+  return [...rows.values()];
+}
+
+function readNestedPathFields(data: Record<string, unknown>): Record<string, string> {
+  // Path metadata lives at data.safeMetadata.inputMetadata.pathFields.
+  const safeMetadata = data.safeMetadata;
+  if (!safeMetadata || typeof safeMetadata !== 'object') {
+    return {};
+  }
+  const inputMetadata = (safeMetadata as Record<string, unknown>).inputMetadata;
+  if (!inputMetadata || typeof inputMetadata !== 'object') {
+    return {};
+  }
+  return readStringRecord((inputMetadata as Record<string, unknown>).pathFields);
+}
+
+const PERMISSION_STATUS_BY_BEHAVIOR: Record<string, PermissionRequestStatus> = {
+  ask: 'pending',
+  allow: 'allowed',
+  deny: 'denied'
+};
+
+/**
+ * Collapse `tool.permission` events into one row per gated tool call, in
+ * first-seen order. Only calls that entered the `ask` (pending) state are
+ * surfaced — straight policy allows/denies are not operator-actionable. The
+ * status reflects the latest behavior, so an `ask` followed by the operator's
+ * `allow`/`deny` resolves the same row.
+ */
+export function derivePermissionRequests(events: readonly HarnessEvent[]): PermissionRequestRow[] {
+  const rows = new Map<string, PermissionRequestRow>();
+
+  for (const event of events) {
+    if (event.type !== 'tool.permission') {
+      continue;
+    }
+
+    const data = event.data ?? {};
+    const behavior = readString(data.behavior);
+    const status = behavior ? PERMISSION_STATUS_BY_BEHAVIOR[behavior] : undefined;
+    if (!status) {
+      continue;
+    }
+
+    const key =
+      readString(data.toolUseId) ??
+      readString(data.adapterToolUseId) ??
+      readString(data.decisionId) ??
+      event.eventId;
+    const existing = rows.get(key);
+
+    // Surface a row only once it has entered (or is entering) the pending state.
+    if (!existing && status !== 'pending') {
+      continue;
+    }
+
+    const pathFields = readNestedPathFields(data);
+
+    rows.set(key, {
+      key,
+      toolName: readString(data.toolName) ?? existing?.toolName ?? 'tool',
+      reason: readString(data.reason) ?? existing?.reason ?? '',
+      status,
+      mode: readString(data.mode) ?? existing?.mode,
+      pathFields:
+        Object.keys(pathFields).length > 0 ? pathFields : (existing?.pathFields ?? {}),
+      timestamp: event.timestamp
     });
   }
 

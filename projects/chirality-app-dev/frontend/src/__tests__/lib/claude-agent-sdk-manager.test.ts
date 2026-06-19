@@ -5,6 +5,11 @@ import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
+import {
+  getPermissionEventChannel,
+  resetPermissionEventChannelForTests
+} from '../../lib/harness/permission-event-channel';
+import type { HarnessEvent } from '../../lib/harness/event-schema';
 import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
 
 async function* createSdkStream(events: SDKMessage[]): AsyncGenerator<SDKMessage, void> {
@@ -49,6 +54,7 @@ afterEach(async () => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_SESSION_ROOT;
+  resetPermissionEventChannelForTests();
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
     tmpDir = '';
@@ -245,5 +251,88 @@ describe('ClaudeAgentSdkManager', () => {
     expect(serializedEvents).toContain('[REDACTED_API_KEY]');
     expect(serializedEvents).not.toContain(uiApiKey);
     expect(serializedEvents).not.toContain(priorApiKey);
+  });
+
+  it('bridges out-of-band permission events into the live stream while the SDK is paused', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-manager-perm-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    resetPermissionEventChannelForTests();
+
+    const initMessage: SDKMessage = {
+      type: 'system',
+      subtype: 'init',
+      session_id: 'sdk_1',
+      uuid: '00000000-0000-0000-0000-0000000000a1',
+      apiKeySource: 'temporary',
+      claude_code_version: '1.2.3',
+      cwd: '/tmp/project',
+      tools: [],
+      mcp_servers: [],
+      model: 'claude-test',
+      permissionMode: 'default',
+      slash_commands: [],
+      output_style: 'default',
+      skills: [],
+      plugins: []
+    };
+    const resultMessage: SDKMessage = {
+      type: 'result',
+      subtype: 'success',
+      duration_ms: 10,
+      duration_api_ms: 9,
+      is_error: false,
+      num_turns: 1,
+      result: 'done',
+      stop_reason: 'end_turn',
+      total_cost_usd: 0,
+      usage: {} as never,
+      modelUsage: {},
+      permission_denials: [],
+      uuid: '00000000-0000-0000-0000-0000000000a3',
+      session_id: 'sdk_1'
+    };
+    const permissionEvent: HarnessEvent = {
+      schemaVersion: 1,
+      eventId: 'evt_perm_1',
+      sessionId: 'sess_sdk',
+      timestamp: '2026-06-18T00:00:00.000Z',
+      type: 'tool.permission',
+      data: { behavior: 'ask', toolUseId: 'tp1', toolName: 'Write' }
+    };
+
+    async function* scriptedWithPause(): AsyncGenerator<SDKMessage, void> {
+      yield initMessage;
+      // Simulate canUseTool publishing while the SDK is suspended awaiting a verdict:
+      // the channel resolves while the SDK iterator stays pending.
+      getPermissionEventChannel().publish('sess_sdk', permissionEvent);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      yield resultMessage;
+    }
+
+    const stream = scriptedWithPause() as AsyncGenerator<SDKMessage, void> & {
+      interrupt: () => Promise<void>;
+      close: () => void;
+    };
+    stream.interrupt = vi.fn(async () => undefined);
+    stream.close = vi.fn();
+    const query = vi.fn(() => stream);
+
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'persona prompt');
+    const events = [];
+    for await (const event of manager.startTurn(session, 'hello', opts)) {
+      events.push(event);
+    }
+
+    const sequence = events.map((event) => event.type);
+    const harnessTypes = events
+      .filter((event) => event.type === 'harness:event')
+      .map((event) => event.data.type);
+
+    expect(harnessTypes).toContain('tool.permission');
+    expect(sequence[sequence.length - 1]).toBe('process:exit');
+    // The bridged permission event lands after session:init and before the terminal exit.
+    const permIndex = sequence.indexOf('harness:event');
+    expect(sequence.indexOf('session:init')).toBeLessThan(permIndex);
+    expect(permIndex).toBeLessThan(sequence.lastIndexOf('process:exit'));
   });
 });

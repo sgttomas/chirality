@@ -10,10 +10,11 @@ PRIMARY = live harness-event-stream loop + collapsible multi-view sidebar (Files
 
 ## Done
 - **Phase 1 keystone** (committed `64940ad65`, pushed) — rich `harness:event` passthrough bridging the persisted `HarnessEvent` vocabulary to the live UIEvent stream under the `agentSdk` provider. Files: `lib/harness/{types,agent-engine-port,harness-ui-bridge,claude-agent-sdk-manager}.ts` + tests.
-- **Phase 2 shell refactor** (uncommitted on `main`) — `app-shell.tsx` left pane is now `WorkspaceSidebar`: one collapsible tabbed pane (Files · Tools · Subagents · Document · Workflow · Tool Kit) implementing the WAI-ARIA tabs pattern (roving tabindex, arrow nav, tabpanel); active tab lifted to AppShell so it survives collapse. Tool Kit folded from a dedicated pane + checkbox into a tab. `HarnessEventsProvider` split into stable actions + data contexts (producer doesn't re-render on appends); chat panel appends/clears via the actions hook; `ToolStreamView`/`SubagentStreamView` memo-derive via pure `lib/shell/harness-event-views.ts` (subagent rows keyed by `taskId`, tool summary-completions folded onto preceding rows). Sidebar placed transitionally on the LEFT (main = route `children`, Chat = live loop on right) — see DESIGN §5.2. Hardened against a 12-finding adversarial review. Full typecheck + 401 tests green.
+- **Phase 2 shell refactor** (committed `94335d08e`, pushed) — `app-shell.tsx` left pane is `WorkspaceSidebar`: one collapsible tabbed pane (Files · Tools · Subagents · Document · Workflow · Tool Kit) with the WAI-ARIA tabs pattern; active tab lifted to AppShell. `HarnessEventsProvider` split into stable actions + data contexts; views memo-derive via pure `lib/shell/harness-event-views.ts`. Sidebar transitionally on the LEFT (DESIGN §5.2). Hardened against a 12-finding review.
+- **Phase 3 permission pause + live mode switcher** (uncommitted on `main`) — operator-mode selector in the chat panel sends `opts.mode` per turn (live switch; `opts.mode` is the single operator-mode lever for permissions/tool-pool/persona/SDK mode). `ask` now suspends `canUseTool` on the singleton `PermissionBroker` (keyed `sessionId+toolUseId`, 5-min auto-deny) until `POST /api/harness/permission`; hard-denies + path/shell policy gate before `ask`. Because `tool.permission` events fire while the SDK iterator is suspended, the manager **merges a `SessionPermissionChannel`** into its live stream via `Promise.race` so they bridge live as `harness:event`s; inline cards (`permission-requests.tsx`) derive from the stream. 4 review findings fixed; 3 deferred to a Phase 3.1 backlog (DESIGN §5.3). Full typecheck + 422 tests green.
 
-## Next — Phase 3: the permission pause + operator mode selector
-Make `ask` mode pause-and-approve. Needs the bridge's `tool.permission` event surfaced as an inline approval card + a decision channel back to the SDK (today `ask` resolves to DENY — see DESIGN §2.4 and §3.4). Then surface the session-fixed operator mode selector (open decision §6: live switcher vs session-fixed). See DESIGN §5.3.
+## Next — Phase 4: document content API + viewer
+`GET /api/working-root/deliverable/content` (copy `deliverable-contracts.ts:readRequiredFile`) + a markdown viewer reusing `chat-markdown`; serves the sidebar Document tab and the doc-copilot tertiary screen (DESIGN §3.2, §5.4). Optionally first clear the Phase 3.1 deferred-hardening backlog in DESIGN §5.3.
 
 ## Must-not-break facts
 - Public UIEvent contract is enforced by `engine-conformance.ts` + `PUBLIC_UI_EVENT_NAMES`; `process:exit` must stay the terminal event; provider-shaped event *names* are rejected (payload metadata is allowed).
@@ -22,7 +23,7 @@ Make `ask` mode pause-and-approve. Needs the bridge's `tool.permission` event su
 - Don't touch unrelated dirty files under `projects/chirality-piping/`.
 
 ## Verify before resuming
-From `projects/chirality-app-dev/frontend`: `npx vitest run` (expect 401 pass) and `npm run typecheck` (expect exit 0).
+From `projects/chirality-app-dev/frontend`: `npx vitest run` (expect 422 pass) and `npm run typecheck` (expect exit 0).
 
 ## Open decisions (owner's call — see DESIGN §6)
 Live mode-switcher vs session-fixed; where the `ask` approve/deny pause lives; document content-API contract; editor tech (markdown-source vs WYSIWYG); whether to also bridge manager-level turn-lifecycle events + the Anthropic manager.

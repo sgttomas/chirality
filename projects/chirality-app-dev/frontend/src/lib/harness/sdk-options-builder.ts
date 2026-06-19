@@ -5,6 +5,8 @@ import {
   createHarnessCanUseTool,
   normalizeHarnessPermissionMode
 } from './permission-overlay';
+import { getPermissionBroker } from './permission-broker';
+import { getPermissionEventChannel } from './permission-event-channel';
 import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
 import {
   createChiralityMcpServers,
@@ -116,7 +118,11 @@ export function buildSdkOptions(input: {
       mode: input.opts.mode,
       projectRoot: input.session.projectRoot,
       delegatedSubagents: subagentBridge?.delegatedSubagents,
-      resolveDescriptor: getHarnessToolDescriptor
+      resolveDescriptor: getHarnessToolDescriptor,
+      requestHumanDecision: ({ sessionId, toolUseId }) =>
+        getPermissionBroker().request({ sessionId, toolUseId }).verdict,
+      publishEvent: (event) =>
+        getPermissionEventChannel().publish(input.session.sessionId, event)
     }),
     hooks: createChiralityToolHooks({
       sessionId: input.session.sessionId,

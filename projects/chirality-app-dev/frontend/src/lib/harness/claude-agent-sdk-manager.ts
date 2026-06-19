@@ -13,6 +13,8 @@ import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 import { createHarnessEvent } from './event-schema';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
+import { getPermissionEventChannel } from './permission-event-channel';
+import { getPermissionBroker } from './permission-broker';
 
 type SdkQuery = typeof query;
 
@@ -203,7 +205,44 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         projectRoot: input.session.projectRoot,
         mode: input.opts.mode
       });
-      for await (const sdkMessage of sdkStream) {
+
+      // Merge the SDK message stream with the out-of-band permission-event
+      // channel. `canUseTool` publishes `tool.permission` events to the channel
+      // while the SDK iterator is suspended awaiting a verdict, so racing the two
+      // lets those events reach the browser live (as `harness:event`s) instead of
+      // being stranded until the SDK produces its next message.
+      const permissionChannel = getPermissionEventChannel().open(input.session.sessionId);
+      const sdkIterator = sdkStream[Symbol.asyncIterator]();
+      let sdkNext = sdkIterator.next();
+      let permNext = permissionChannel.next();
+      // A promise that never settles — parks the permission side of the race once
+      // the channel is closed so the SDK side decides the rest of the stream.
+      const never = new Promise<never>(() => {}) as ReturnType<typeof permissionChannel.next>;
+
+      while (true) {
+        const winner = await Promise.race([
+          sdkNext.then((result) => ({ kind: 'sdk' as const, result })),
+          permNext.then((result) => ({ kind: 'perm' as const, result }))
+        ]);
+
+        if (winner.kind === 'perm') {
+          if (winner.result.done) {
+            permNext = never;
+            continue;
+          }
+          const bridged = harnessEventToUiEvent(winner.result.value);
+          if (bridged) {
+            yield bridged;
+          }
+          permNext = permissionChannel.next();
+          continue;
+        }
+
+        const { value: sdkMessage, done } = winner.result;
+        if (done) {
+          break;
+        }
+
         if (activeTurn.interrupted) {
           await appendHarnessEvent(
             createHarnessEvent({
@@ -247,12 +286,22 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
             yield bridged;
           }
         }
+        // Flush any buffered permission events before this message's uiEvents so a
+        // terminal process:exit always stays last.
+        for (const event of permissionChannel.drain()) {
+          const bridged = harnessEventToUiEvent(event);
+          if (bridged) {
+            yield bridged;
+          }
+        }
         for (const event of mapped.uiEvents) {
           if (event.type === 'process:exit') {
             sawTerminal = true;
           }
           yield event;
         }
+
+        sdkNext = sdkIterator.next();
       }
 
       if (!sawTerminal) {
@@ -312,6 +361,11 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         sdkPackageVersion: SDK_PACKAGE_VERSION
       });
     } finally {
+      // Release any approval the turn is still suspended on (e.g. the SSE stream
+      // was cancelled without an interrupt call) so no broker entry outlives the
+      // turn, then tear down the live channel.
+      getPermissionBroker().clearSession(input.session.sessionId, 'deny');
+      getPermissionEventChannel().close(input.session.sessionId);
       restoreSdkApiKey?.();
       this.activeTurns.delete(input.session.sessionId);
     }
