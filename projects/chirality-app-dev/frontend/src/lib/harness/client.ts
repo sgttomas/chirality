@@ -1,4 +1,6 @@
 import type { AgentRosterEntry } from './agent-roster';
+import type { HarnessEvent } from './event-schema';
+import type { HarnessReplaySummary } from './session-events';
 import type {
   CoordinationMode,
   HarnessErrorResponse,
@@ -10,6 +12,12 @@ import type {
   SessionRecord,
   TurnRequest
 } from './types';
+
+export type SessionEventsReplay = {
+  events: HarnessEvent[];
+  malformedLineCount: number;
+  summary: HarnessReplaySummary;
+};
 
 type JsonLike = Record<string, unknown>;
 
@@ -150,6 +158,33 @@ export async function listDirectChatPersonas(): Promise<AgentRosterEntry[]> {
   );
 
   return payload.agents;
+}
+
+/**
+ * List the harness sessions recorded for a Working Root (most-recent ordering
+ * is whatever the server returns). Feeds the Phase 5 session-list UI (D-APP-22).
+ */
+export async function listHarnessSessions(projectRoot: string): Promise<SessionRecord[]> {
+  const payload = await requestHarnessJson<{ sessions: SessionRecord[] }>(
+    `/api/harness/session/list?projectRoot=${encodeURIComponent(projectRoot)}`,
+    { method: 'GET' },
+    'Unable to list harness sessions'
+  );
+
+  return payload.sessions;
+}
+
+/**
+ * Replay a session's persisted harness events (D-APP-22 hydrate-on-open). The
+ * caller seeds the live buffer with `events`; `malformedLineCount` is surfaced
+ * so a corrupt log is reported, not silently dropped.
+ */
+export async function replaySessionEvents(sessionId: string): Promise<SessionEventsReplay> {
+  return requestHarnessJson<SessionEventsReplay>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/events`,
+    { method: 'GET' },
+    'Unable to load session events'
+  );
 }
 
 export async function createHarnessSession(input: SessionCreateRequest): Promise<SessionRecord> {

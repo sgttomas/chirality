@@ -9,6 +9,7 @@ import {
   type ReactNode
 } from 'react';
 import type { HarnessEvent } from '../../lib/harness/event-schema';
+import { boundHarnessEventBuffer } from '../../lib/shell/harness-event-buffer';
 
 /**
  * Holds the live, bridged `harness:event` stream for the active turn so that
@@ -25,41 +26,59 @@ import type { HarnessEvent } from '../../lib/harness/event-schema';
 type HarnessEventActions = {
   appendEvent: (event: HarnessEvent) => void;
   clearEvents: () => void;
+  /**
+   * Replace the buffer with a past session's persisted events (hydrate-on-open,
+   * D-APP-22). Bounded to `MAX_LIVE_HARNESS_EVENTS`; replacing (not appending)
+   * means same-turn live events are never double-counted.
+   */
+  hydrateEvents: (events: readonly HarnessEvent[]) => void;
+  /**
+   * Mark a live turn as active. Lets buffer consumers (e.g. the session list)
+   * avoid replacing the buffer mid-turn — hydrating a past session while a turn
+   * streams would mix two sessions' events (D-APP-22 "no same-turn mix").
+   */
+  setStreaming: (streaming: boolean) => void;
 };
 
 const HarnessEventsDataContext = createContext<HarnessEvent[] | null>(null);
 const HarnessEventActionsContext = createContext<HarnessEventActions | null>(null);
+const HarnessStreamingContext = createContext<boolean | null>(null);
 
 /** Bound the buffer so a long-running, tool-heavy turn cannot grow without limit. */
 export const MAX_LIVE_HARNESS_EVENTS = 2000;
 
 export function HarnessEventsProvider({ children }: { children: ReactNode }): JSX.Element {
   const [events, setEvents] = useState<HarnessEvent[]>([]);
+  const [streaming, setStreamingState] = useState(false);
 
   const appendEvent = useCallback((event: HarnessEvent) => {
-    setEvents((existing) => {
-      const next = [...existing, event];
-      if (next.length > MAX_LIVE_HARNESS_EVENTS) {
-        return next.slice(next.length - MAX_LIVE_HARNESS_EVENTS);
-      }
-      return next;
-    });
+    setEvents((existing) => boundHarnessEventBuffer([...existing, event], MAX_LIVE_HARNESS_EVENTS));
   }, []);
 
   const clearEvents = useCallback(() => {
     setEvents([]);
   }, []);
 
+  const hydrateEvents = useCallback((incoming: readonly HarnessEvent[]) => {
+    setEvents(boundHarnessEventBuffer(incoming, MAX_LIVE_HARNESS_EVENTS));
+  }, []);
+
+  const setStreaming = useCallback((value: boolean) => {
+    setStreamingState(value);
+  }, []);
+
   const actions = useMemo<HarnessEventActions>(
-    () => ({ appendEvent, clearEvents }),
-    [appendEvent, clearEvents]
+    () => ({ appendEvent, clearEvents, hydrateEvents, setStreaming }),
+    [appendEvent, clearEvents, hydrateEvents, setStreaming]
   );
 
   return (
     <HarnessEventActionsContext.Provider value={actions}>
-      <HarnessEventsDataContext.Provider value={events}>
-        {children}
-      </HarnessEventsDataContext.Provider>
+      <HarnessStreamingContext.Provider value={streaming}>
+        <HarnessEventsDataContext.Provider value={events}>
+          {children}
+        </HarnessEventsDataContext.Provider>
+      </HarnessStreamingContext.Provider>
     </HarnessEventActionsContext.Provider>
   );
 }
@@ -80,4 +99,13 @@ export function useHarnessEventActions(): HarnessEventActions {
     throw new Error('useHarnessEventActions must be used inside HarnessEventsProvider');
   }
   return actions;
+}
+
+/** Whether a live turn is currently streaming events into the buffer. */
+export function useHarnessStreaming(): boolean {
+  const streaming = useContext(HarnessStreamingContext);
+  if (streaming === null) {
+    throw new Error('useHarnessStreaming must be used inside HarnessEventsProvider');
+  }
+  return streaming;
 }

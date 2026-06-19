@@ -4,6 +4,8 @@ import {
   bootHarnessSession,
   createHarnessSession,
   listDirectChatPersonas,
+  listHarnessSessions,
+  replaySessionEvents,
   scaffoldHarnessExecutionRoot,
   streamHarnessTurn
 } from '../../lib/harness/client';
@@ -305,6 +307,59 @@ describe('harness client helpers', () => {
     expect(agents.map((agent) => agent.name)).toEqual(['HELPS_HUMANS', 'WORKING_ITEMS']);
     const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     expect(input).toBe('/api/harness/agents?directChat=1');
+    expect(init.method).toBe('GET');
+  });
+
+  it('lists sessions for a working root', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({
+        sessions: [
+          {
+            sessionId: 'sess_1',
+            projectRoot: '/tmp/project',
+            persona: 'WORKING_ITEMS',
+            mode: 'CHAT',
+            createdAt: '2026-06-18T00:00:00.000Z',
+            updatedAt: '2026-06-18T00:00:00.000Z'
+          }
+        ]
+      })
+    );
+
+    const sessions = await listHarnessSessions('/tmp/project');
+
+    expect(sessions.map((session) => session.sessionId)).toEqual(['sess_1']);
+    const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(input).toBe('/api/harness/session/list?projectRoot=%2Ftmp%2Fproject');
+    expect(init.method).toBe('GET');
+  });
+
+  it('replays a session event log through the events route', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({
+        events: [
+          {
+            schemaVersion: 1,
+            eventId: 'e1',
+            sessionId: 'sess_1',
+            timestamp: '2026-06-18T00:00:00.000Z',
+            type: 'tool.started',
+            data: { toolUseId: 't1', toolName: 'Read' }
+          }
+        ],
+        malformedLineCount: 2,
+        summary: { eventCount: 1, malformedLineCount: 2, eventTypeCounts: { 'tool.started': 1 } }
+      })
+    );
+
+    const replay = await replaySessionEvents('sess_1');
+
+    expect(replay.events).toHaveLength(1);
+    expect(replay.malformedLineCount).toBe(2);
+    const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(input).toBe('/api/harness/session/sess_1/events');
     expect(init.method).toBe('GET');
   });
 });

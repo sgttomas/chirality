@@ -6,8 +6,10 @@ import {
   deriveSubagentActivity,
   deriveToolActivity
 } from '../../lib/shell/harness-event-views';
+import { SessionListPanel } from '../../components/shell/session-list-view';
 import { SubagentStreamList } from '../../components/shell/subagent-stream-view';
 import { ToolStreamList } from '../../components/shell/tool-stream-view';
+import type { SessionRecord } from '../../lib/harness/types';
 
 let counter = 0;
 
@@ -74,5 +76,64 @@ describe('SubagentStreamList rendering', () => {
     expect(html).toContain('TASK');
     expect(html).toContain('Investigate the failing import');
     expect(html).toContain('harness-status-badge--completed');
+  });
+});
+
+describe('SessionListPanel rendering', () => {
+  const sampleSessions: SessionRecord[] = [
+    {
+      sessionId: 'sess_1',
+      projectRoot: '/tmp/project',
+      persona: 'WORKING_ITEMS',
+      mode: 'CHAT',
+      createdAt: '2026-06-18T00:00:00.000Z',
+      updatedAt: '2026-06-18T00:00:00.000Z'
+    }
+  ];
+
+  const baseProps = {
+    hasProjectRoot: true,
+    sessions: sampleSessions,
+    loading: false,
+    error: null,
+    notice: null,
+    openingId: null,
+    streaming: false,
+    onRefresh: () => {},
+    onOpen: () => {}
+  };
+
+  it('prompts for a Working Root when none is selected', () => {
+    const html = renderToStaticMarkup(
+      createElement(SessionListPanel, { ...baseProps, hasProjectRoot: false })
+    );
+    expect(html).toContain('Select a Working Root');
+  });
+
+  it('renders an enabled Open button per session when idle', () => {
+    const html = renderToStaticMarkup(createElement(SessionListPanel, baseProps));
+    expect(html).toContain('WORKING_ITEMS');
+    expect(html).toContain('>Open<');
+    expect(html).not.toContain('disabled=""');
+  });
+
+  it('disables Open and warns while a turn is streaming', () => {
+    const html = renderToStaticMarkup(
+      createElement(SessionListPanel, { ...baseProps, streaming: true })
+    );
+    expect(html).toContain('A turn is running');
+    // The Open button must be disabled so a mid-turn hydrate cannot replace the
+    // live buffer (D-APP-22 "no same-turn mix").
+    expect(html).toContain('disabled=""');
+  });
+
+  it('shows the open-result notice when not streaming', () => {
+    const html = renderToStaticMarkup(
+      createElement(SessionListPanel, {
+        ...baseProps,
+        notice: 'Loaded 3 events. View them in the Tools / Subagents tabs.'
+      })
+    );
+    expect(html).toContain('Loaded 3 events');
   });
 });

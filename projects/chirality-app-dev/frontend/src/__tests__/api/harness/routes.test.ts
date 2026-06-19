@@ -20,6 +20,7 @@ type RouteModules = {
   createRoute: typeof import('../../../app/api/harness/session/create/route');
   listRoute: typeof import('../../../app/api/harness/session/list/route');
   idRoute: typeof import('../../../app/api/harness/session/[id]/route');
+  eventsRoute: typeof import('../../../app/api/harness/session/[id]/events/route');
   bootRoute: typeof import('../../../app/api/harness/session/boot/route');
   turnRoute: typeof import('../../../app/api/harness/turn/route');
   interruptRoute: typeof import('../../../app/api/harness/interrupt/route');
@@ -37,16 +38,25 @@ let context: TestContext;
 async function importRouteModules(): Promise<RouteModules> {
   vi.resetModules();
 
-  const [createRoute, listRoute, idRoute, bootRoute, turnRoute, interruptRoute, runtimeModule] =
-    await Promise.all([
-      import('../../../app/api/harness/session/create/route'),
-      import('../../../app/api/harness/session/list/route'),
-      import('../../../app/api/harness/session/[id]/route'),
-      import('../../../app/api/harness/session/boot/route'),
-      import('../../../app/api/harness/turn/route'),
-      import('../../../app/api/harness/interrupt/route'),
-      import('../../../lib/harness/runtime')
-    ]);
+  const [
+    createRoute,
+    listRoute,
+    idRoute,
+    eventsRoute,
+    bootRoute,
+    turnRoute,
+    interruptRoute,
+    runtimeModule
+  ] = await Promise.all([
+    import('../../../app/api/harness/session/create/route'),
+    import('../../../app/api/harness/session/list/route'),
+    import('../../../app/api/harness/session/[id]/route'),
+    import('../../../app/api/harness/session/[id]/events/route'),
+    import('../../../app/api/harness/session/boot/route'),
+    import('../../../app/api/harness/turn/route'),
+    import('../../../app/api/harness/interrupt/route'),
+    import('../../../lib/harness/runtime')
+  ]);
 
   runtimeModule.resetHarnessRuntimeForTests();
 
@@ -54,6 +64,7 @@ async function importRouteModules(): Promise<RouteModules> {
     createRoute,
     listRoute,
     idRoute,
+    eventsRoute,
     bootRoute,
     turnRoute,
     interruptRoute,
@@ -1223,5 +1234,82 @@ describe('direct-chat persona gate (D-APP-24)', () => {
     });
 
     expect(response.status).toBe(200);
+  });
+});
+
+describe('session events replay (D-APP-22)', () => {
+  it('replays persisted events with an honest malformed-line count', async () => {
+    const routes = await importRouteModules();
+    const { body } = await createSession(routes, context.projectRoot, {
+      persona: 'WORKING_ITEMS',
+      mode: 'WORKBENCH'
+    });
+    const sessionId = body.session.sessionId;
+
+    const eventsDir = path.join(process.env.CHIRALITY_SESSION_ROOT as string, sessionId);
+    await mkdir(eventsDir, { recursive: true });
+    const line1 = JSON.stringify({
+      schemaVersion: 1,
+      eventId: 'e1',
+      sessionId,
+      timestamp: '2026-06-18T00:00:00.000Z',
+      type: 'tool.started',
+      data: { toolUseId: 't1', toolName: 'Read' }
+    });
+    const line2 = JSON.stringify({
+      schemaVersion: 1,
+      eventId: 'e2',
+      sessionId,
+      timestamp: '2026-06-18T00:00:01.000Z',
+      type: 'tool.completed',
+      data: { toolUseId: 't1', toolName: 'Read' }
+    });
+    await writeFile(path.join(eventsDir, 'events.jsonl'), `${line1}\n{ broken json\n${line2}\n`, 'utf8');
+
+    const response = await routes.eventsRoute.GET(
+      new Request(`http://localhost/api/harness/session/${sessionId}/events`),
+      { params: { id: sessionId } }
+    );
+
+    expect(response.status).toBe(200);
+    const replay = (await response.json()) as {
+      events: Array<{ eventId: string }>;
+      malformedLineCount: number;
+      summary: { eventCount: number };
+    };
+    expect(replay.events.map((entry) => entry.eventId)).toEqual(['e1', 'e2']);
+    expect(replay.malformedLineCount).toBe(1);
+    expect(replay.summary.eventCount).toBe(2);
+  });
+
+  it('returns an empty replay for a session with no event log', async () => {
+    const routes = await importRouteModules();
+    const { body } = await createSession(routes, context.projectRoot, {
+      persona: 'WORKING_ITEMS',
+      mode: 'WORKBENCH'
+    });
+    const sessionId = body.session.sessionId;
+
+    const response = await routes.eventsRoute.GET(
+      new Request(`http://localhost/api/harness/session/${sessionId}/events`),
+      { params: { id: sessionId } }
+    );
+
+    expect(response.status).toBe(200);
+    const replay = (await response.json()) as { events: unknown[]; malformedLineCount: number };
+    expect(replay.events).toEqual([]);
+    expect(replay.malformedLineCount).toBe(0);
+  });
+
+  it('rejects a session id containing path-traversal characters', async () => {
+    const routes = await importRouteModules();
+
+    const response = await routes.eventsRoute.GET(
+      new Request('http://localhost/api/harness/session/x/events'),
+      { params: { id: '../../etc' } }
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({ error: { type: 'INVALID_REQUEST' } });
   });
 });

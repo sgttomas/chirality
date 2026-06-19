@@ -1,0 +1,32 @@
+import { NextResponse } from 'next/server';
+import { HarnessError } from '../../../../../../lib/harness/errors';
+import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harness/http';
+import { replayHarnessEvents } from '../../../../../../lib/harness/session-events';
+
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
+/**
+ * GET /api/harness/session/[id]/events — replay a session's persisted
+ * `events.jsonl` (D-APP-22 hydrate-on-open). Returns the parsed events plus the
+ * honest `malformedLineCount` and a summary; reuses `replayHarnessEvents` (no
+ * forked parser). A missing log yields an empty replay, not an error.
+ */
+export async function GET(_request: Request, context: RouteContext): Promise<Response> {
+  try {
+    const sessionId = requireNonEmptyString(context.params.id, 'id');
+    // The id is joined into an on-disk events path; reject separators / `..`
+    // so a crafted id can never traverse outside the session store.
+    if (sessionId.includes('/') || sessionId.includes('\\') || sessionId.includes('..')) {
+      throw new HarnessError('INVALID_REQUEST', 400, `Invalid session id '${sessionId}'`);
+    }
+
+    const replay = await replayHarnessEvents(sessionId);
+    return NextResponse.json(replay, { status: 200 });
+  } catch (error) {
+    return errorResponse(error);
+  }
+}

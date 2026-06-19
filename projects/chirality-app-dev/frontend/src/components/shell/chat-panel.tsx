@@ -121,7 +121,7 @@ function isHarnessEvent(value: unknown): value is HarnessEvent {
 export function ChatPanel(): JSX.Element {
   const { projectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
-  const { appendEvent, clearEvents } = useHarnessEventActions();
+  const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [draft, setDraft] = useState('');
@@ -282,6 +282,7 @@ export function ChatPanel(): JSX.Element {
     setDraft('');
     setAttachments([]);
     setIsRunning(true);
+    setStreaming(true);
     clearEvents();
 
     const operatorMessageId = `operator-${Date.now()}`;
@@ -464,6 +465,7 @@ export function ChatPanel(): JSX.Element {
       );
     } finally {
       setIsRunning(false);
+      setStreaming(false);
     }
   }
 

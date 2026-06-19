@@ -4,11 +4,13 @@ import { useRef, type KeyboardEvent } from 'react';
 import { DocumentView } from './document-view';
 import { FileTreePanel } from './file-tree-panel';
 import { OperatorToolkitPanel } from './operator-toolkit-panel';
+import { SessionListView } from './session-list-view';
 import { SubagentStreamView } from './subagent-stream-view';
 import { ToolStreamView } from './tool-stream-view';
 
 export type SidebarTabId =
   | 'files'
+  | 'sessions'
   | 'tools'
   | 'subagents'
   | 'document'
@@ -22,6 +24,7 @@ type SidebarTab = {
 
 const SIDEBAR_TABS: readonly SidebarTab[] = [
   { id: 'files', label: 'Files' },
+  { id: 'sessions', label: 'Sessions' },
   { id: 'tools', label: 'Tools' },
   { id: 'subagents', label: 'Subagents' },
   { id: 'document', label: 'Document' },
@@ -142,6 +145,7 @@ export function WorkspaceSidebar({ activeTab, onTabChange }: WorkspaceSidebarPro
         tabIndex={0}
       >
         {activeTab === 'files' ? <FileTreePanel /> : null}
+        {activeTab === 'sessions' ? <SessionListView /> : null}
         {activeTab === 'tools' ? <ToolStreamView /> : null}
         {activeTab === 'subagents' ? <SubagentStreamView /> : null}
         {activeTab === 'document' ? <DocumentView /> : null}

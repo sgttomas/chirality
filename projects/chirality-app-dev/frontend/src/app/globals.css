@@ -389,6 +389,70 @@ button:disabled {
   background: var(--accent-soft);
 }
 
+/* Session list (Sessions sidebar tab, D-APP-22 hydrate-on-open). */
+.session-list-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.session-list-notice {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  margin: 0 0 0.5rem;
+}
+
+.session-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.session-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-muted);
+}
+
+.session-list-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.session-list-persona {
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.session-list-mode {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+}
+
+.session-list-time {
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-list-open {
+  flex-shrink: 0;
+}
+
 .shell-resize-handle {
   align-self: stretch;
   border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--border));
