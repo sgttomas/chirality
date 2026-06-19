@@ -10,7 +10,8 @@ describe('agent engine port contract', () => {
       'tool:result',
       'session:complete',
       'turn:error',
-      'process:exit'
+      'process:exit',
+      'harness:event'
     ]);
     expect(PUBLIC_UI_EVENT_NAMES.join(' ')).not.toMatch(/sdk|anthropic|claude/i);
   });

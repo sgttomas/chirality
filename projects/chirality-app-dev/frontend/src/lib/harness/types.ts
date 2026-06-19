@@ -1,3 +1,5 @@
+import type { HarnessEvent } from './event-schema';
+
 export type HarnessErrorType =
   | 'INVALID_REQUEST'
   | 'TURN_IN_PROGRESS'
@@ -239,6 +241,14 @@ export type UIEvent =
         fatal?: boolean;
         errorDetails?: unknown;
       };
+    }
+  | {
+      // Provider-neutral passthrough of a rich, redacted HarnessEvent. Carries the
+      // same shape persisted to events.jsonl so the live stream and replay log are
+      // identical. The browser may ignore types it does not render. See
+      // harness-ui-bridge.ts for which HarnessEvent types are forwarded.
+      type: 'harness:event';
+      data: HarnessEvent;
     };
 
 export interface ISessionManager {

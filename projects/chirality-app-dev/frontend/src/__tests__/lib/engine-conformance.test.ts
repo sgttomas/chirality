@@ -234,10 +234,14 @@ describe('engine conformance fixtures', () => {
     expect(report.eventTypes).toEqual([
       'session:init',
       'chat:delta',
+      'harness:event',
+      'harness:event',
       'chat:complete',
       'session:complete',
       'process:exit'
     ]);
+    // harness:event is a provider-neutral type name even though its payload carries
+    // provider metadata (providerMetadataAllowed); the public type stream stays neutral.
     expect(report.eventTypes.join(' ')).not.toMatch(/sdk|claude|anthropic/i);
     expect(query).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -277,8 +281,17 @@ describe('engine conformance fixtures', () => {
     });
 
     expect(report.passed).toBe(true);
+    // Each persisted harness event (except per-token deltas and adapter.initialized)
+    // bridges to a harness:event on the live stream: tool.queued, tool.started,
+    // tool.completed, message.completed, model.completed, turn.completed.
     expect(report.eventTypes).toEqual([
       'session:init',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'harness:event',
+      'harness:event',
       'chat:complete',
       'session:complete',
       'process:exit'
@@ -362,7 +375,7 @@ describe('engine conformance fixtures', () => {
     });
 
     expect(report.passed).toBe(true);
-    expect(report.eventTypes).toEqual(['session:init', 'process:exit']);
+    expect(report.eventTypes).toEqual(['session:init', 'harness:event', 'process:exit']);
     expect(report.events.at(-1)).toMatchObject({
       type: 'process:exit',
       data: {

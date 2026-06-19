@@ -12,6 +12,7 @@ import {
 import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 import { createHarnessEvent } from './event-schema';
+import { harnessEventToUiEvent } from './harness-ui-bridge';
 
 type SdkQuery = typeof query;
 
@@ -239,6 +240,12 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         );
         for (const event of mapped.harnessEvents) {
           await appendHarnessEvent(event);
+          const bridged = harnessEventToUiEvent(event);
+          if (bridged) {
+            // Forward rich evidence before the thin uiEvents of the same message so the
+            // terminal process:exit (a uiEvent) remains the final public event.
+            yield bridged;
+          }
         }
         for (const event of mapped.uiEvents) {
           if (event.type === 'process:exit') {

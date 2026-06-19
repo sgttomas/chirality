@@ -115,10 +115,17 @@ describe('ClaudeAgentSdkManager', () => {
     expect(events.map((event) => event.type)).toEqual([
       'session:init',
       'chat:delta',
+      'harness:event',
+      'harness:event',
       'chat:complete',
       'session:complete',
       'process:exit'
     ]);
+    // The rich harness events bridge to the live stream before the terminal uiEvents.
+    const harnessEventTypes = events
+      .filter((event) => event.type === 'harness:event')
+      .map((event) => event.data.type);
+    expect(harnessEventTypes).toEqual(['model.completed', 'turn.completed']);
     expect(query).toHaveBeenCalledWith(
       expect.objectContaining({
         prompt: 'hello',

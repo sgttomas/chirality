@@ -291,6 +291,8 @@ describe('agentSdk scripted dev turn validation', () => {
     expect(events.map((event) => event.type)).toEqual([
       'session:init',
       'chat:delta',
+      'harness:event',
+      'harness:event',
       'chat:complete',
       'session:complete',
       'process:exit'

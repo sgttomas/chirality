@@ -28,5 +28,6 @@ export const PUBLIC_UI_EVENT_NAMES = [
   'tool:result',
   'session:complete',
   'turn:error',
-  'process:exit'
+  'process:exit',
+  'harness:event'
 ] as const satisfies readonly UIEvent['type'][];
