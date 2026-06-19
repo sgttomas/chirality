@@ -17,6 +17,7 @@ import {
 } from '../../lib/harness/chat-draft';
 import { type UiAttachment } from '../../lib/harness/ui-attachments';
 import type { HarnessEvent } from '../../lib/harness/event-schema';
+import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions } from '../workspace/harness-events-provider';
 import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
@@ -36,14 +37,6 @@ type ActiveSession = {
   projectRoot: string;
   persona: string;
   mode: string;
-};
-
-const PERSONA_ALIASES: Record<string, string> = {
-  HELP: 'HELP_HUMAN',
-  ORCHESTRATE: 'ORCHESTRATOR',
-  AGGREGATE: 'AGGREGATION',
-  RECONCILING: 'RECONCILIATION',
-  AGENTS: 'HELPS_HUMANS'
 };
 
 // Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
@@ -70,20 +63,6 @@ function readTextField(data: unknown): string | undefined {
 
   const text = (data as Record<string, unknown>).text;
   return typeof text === 'string' ? text : undefined;
-}
-
-function resolvePersona(pathname: string, rawAgent: string | null): string {
-  if (pathname.startsWith('/workbench')) {
-    const candidate = rawAgent?.trim();
-    if (!candidate) {
-      return 'WORKING_ITEMS';
-    }
-
-    const normalized = candidate.toUpperCase();
-    return PERSONA_ALIASES[normalized] ?? normalized;
-  }
-
-  return 'WORKING_ITEMS';
 }
 
 function resolveMode(pathname: string): string {
@@ -159,8 +138,8 @@ export function ChatPanel(): JSX.Element {
   ]);
 
   const activePersona = useMemo(
-    () => resolvePersona(pathname, searchParams.get('agent')),
-    [pathname, searchParams]
+    () => resolvePersona(searchParams.get('agent')),
+    [searchParams]
   );
   const activeMode = useMemo(() => resolveMode(pathname), [pathname]);
 
