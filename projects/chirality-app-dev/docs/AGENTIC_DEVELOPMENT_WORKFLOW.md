@@ -30,7 +30,9 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
 | `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
 | `execution/_Reconciliation/DepClosure/_LATEST.md` and latest DepClosure snapshot | Dependency/SCC discovery evidence. | Snapshot evidence informs blocker analysis; it does not replace decomposition truth or plan selection. |
-| `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` | Active Live Packaged `agentSdk` Read-Tool Proof queue. | D-APP-15 approves one bounded proof run only after LP-02 finalizes proof details; does not approve default-provider cutover before D-APP-12, release readiness, or professional reliance. |
+| `plans/PLAN_2026-06-19_loop_first_pivot.md` | Active D-APP-28 full loop-first pivot queue. | Tranche spine 28a -> 28b -> 28c -> 28d -> 28e; routing/layout change only; does not touch the public UIEvent contract or permission plane, and does not approve default-provider cutover. |
+| `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` | Active Agent-Orchestration UI & Information Architecture redesign arc; Phases 1-5 complete. | Design basis for the harness-ability reorganization; does not by itself authorize tranches beyond the active loop-first pivot queue. |
+| `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` | Completed Live Packaged `agentSdk` Read-Tool Proof queue. | Records the bounded proof run (D-APP-17 passed with `sonnet`) and its `plans/artifacts/*` evidence; no longer selects active tranches; does not approve default-provider cutover before D-APP-18, release readiness, or professional reliance. |
 | `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` | Completed R6 Extensibility & MCP Boundary Maturity program. | Records local/in-process tool catalog, naming, collision prevention, and contributor-doc work; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_runtime_stabilization.md` | Completed Runtime Stabilization program. | Records STAB-00..STAB-06 runtime stabilization work, evidence, and rulings; no longer selects active tranches. |
 | `plans/PLAN_2026-06-16_six_node_scc_resolution.md` | Completed non-governing SCC-resolution tranche-selection surface. | Records SCC-resolution work; does not change product requirements, decomposition truth, or release posture. |
@@ -43,14 +45,19 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 ## 3. Current Development Posture
 
 The current default work mode is bounded app-integration tranches. The active development
-queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. D-APP-15
-approves one bounded live packaged `agentSdk` read-tool proof, and LP-02 must finalize
-proof details before LP-03 runs it. The R6 Extensibility & MCP Boundary Maturity program is completed
-closed history after R6-05; R6-04 was deferred as optional organization work. The Runtime
-Stabilization program is completed closed history after STAB-06. The residual six-node
-strict dependency SCC is closed by accepted DepClosure snapshot
-`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The completed
-SCC-resolution plan has:
+queue is `plans/PLAN_2026-06-19_loop_first_pivot.md` — the D-APP-28 full loop-first pivot,
+with tranche spine 28a -> 28b -> 28c -> 28d -> 28e. No tranche has started; no source code
+is written yet. This is a routing/layout change only: the public UIEvent contract and the
+permission plane are untouched, in-flight turns survive every relayout, and nothing is
+deleted. It builds on the active Agent-Orchestration UI & Information Architecture redesign
+arc (`plans/DESIGN_2026-06-18_agent_orchestration_ui.md`), whose Phases 1-5 are complete
+(typecheck clean, 491 vitest tests, `next build` green). The Live Packaged `agentSdk`
+Read-Tool Proof is completed closed history (D-APP-17 passed with `sonnet`). The R6
+Extensibility & MCP Boundary Maturity program is completed closed history after R6-05;
+R6-04 was deferred as optional organization work. The Runtime Stabilization program is
+completed closed history after STAB-06. The residual six-node strict dependency SCC is
+closed by accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. The
+completed SCC-resolution plan has:
 
 - a safe-move tranche for source-grounded decompose/invert dependency-row moves;
 - a required fresh dependency-closure audit after the safe-move tranche;
@@ -60,10 +67,12 @@ SCC-resolution plan has:
 Select exactly one tranche unless the human explicitly approves batching. Tranches
 selected from unblocked rows in a human-selected active plan are pre-approved for
 execution within their stated write scope. Stop when further progress requires a human
-ruling. In the active live-proof plan, LP-02 finalizes command/path/key/artifact/redaction
-details before LP-03 executes the one approved proof run. Do not return to the completed
-R6 program, completed Runtime Stabilization plan, the closed SCC-resolution plan, or the
-retired runtime completion plan for new implementation work.
+ruling. In the active loop-first pivot plan, advance the 28a -> 28b -> 28c -> 28d -> 28e
+spine in order, keeping each tranche independently `npm run typecheck` + vitest-green
+(491 baseline) with `next build` prerendering affected routes. Do not return to the
+completed live-proof plan, completed R6 program, completed Runtime Stabilization plan, the
+closed SCC-resolution plan, or the retired runtime completion plan for new implementation
+work.
 
 ## 4. Phase-Aware Loop
 
@@ -76,13 +85,16 @@ retired runtime completion plan for new implementation work.
 | Build and release evidence | What proves software-quality posture? | Docs, validation, packaging, or evidence tranche. | Evidence routing, package integrity, release-quality gates, no release claims. |
 | Domain-engine future scope | How will Chirality govern domain truth without owning it? | Decision packet, profile, adapter, or proposal workflow. | Protected paths, operation proposals, deterministic checks, human acceptance. |
 
-The current phase is live packaged first-adapter proof preparation. Runtime integration
-through the retired completion plan, Runtime Stabilization program, and R6 local/in-process
-extension-boundary program is landed through the accepted scope. The active plan collects
-or dispositions the one packaged-live proof prerequisite named by D-APP-12 before any
-later default-provider review. Formal lifecycle issuance, release readiness, professional
-approval, certification, sealing, authentication, and code-compliance acceptance remain
-separate human-governed states.
+The current phase is the agent-orchestration UI loop-first pivot (`plans/PLAN_2026-06-19_loop_first_pivot.md`),
+building on the redesign arc whose Phases 1-5 are complete. Runtime integration through the
+retired completion plan, Runtime Stabilization program, R6 local/in-process
+extension-boundary program, and the completed live packaged first-adapter proof is landed
+through the accepted scope. The active plan reorganizes routing/layout around the live
+event-stream loop without touching the public UIEvent contract or permission plane. D-APP-18
+(default-provider cutover) remains a separate open decision before any default-provider
+review. Formal lifecycle issuance, release readiness, professional approval, certification,
+sealing, authentication, and code-compliance acceptance remain separate human-governed
+states.
 
 ## 5. Standard Session Flow
 
@@ -91,10 +103,10 @@ separate human-governed states.
 3. Discover current state from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, source, tests, validation evidence, and git history.
 4. Read authority and implementation-reference files needed for the selected tranche.
 5. Record `git status --short` before planning or edits.
-6. Select the earliest unblocked active-plan item; for the current live-proof queue, finish LP-02 before LP-03 live provider execution.
+6. Select the earliest unblocked active-plan item; for the current loop-first pivot queue, advance the 28a -> 28b -> 28c -> 28d -> 28e tranche spine in order.
 7. Keep writes scoped to the tranche.
 8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
-9. Update affected SCC-resolution plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
+9. Update affected active-plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
 10. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
 11. `CHANGE` commits and pushes validated work as the ordinary terminal action when validation and git state allow closeout.
 
@@ -118,7 +130,7 @@ A valid closeout identifies:
 - validation performed, including skipped checks and reasons;
 - files changed;
 - decision packets or human rulings pending;
-- next selected plan item, or state that the active queue is waiting on LP-02/LP-03 proof execution;
+- next selected plan item, or state which loop-first pivot tranche (28a -> 28b -> 28c -> 28d -> 28e) is next in the active queue;
 - `CHANGE` closeout result, including commit and push result when completed.
 
 For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.

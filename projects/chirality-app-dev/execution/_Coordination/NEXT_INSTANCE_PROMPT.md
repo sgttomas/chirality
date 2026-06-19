@@ -9,7 +9,7 @@
 5. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
 6. Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md`.
 7. Read `{WORKING_ROOT}/execution/_Coordination/_LATEST.md` for discovery pointers only.
-8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` as the active queue; read `PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` and `PLAN_2026-06-16_runtime_stabilization.md` as completed history/evidence context.
+8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-19_loop_first_pivot.md` as the active queue, and `{WORKING_ROOT}/plans/DESIGN_2026-06-18_agent_orchestration_ui.md` as the active design; read `PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`, `PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, and `PLAN_2026-06-16_runtime_stabilization.md` as completed history/evidence context.
 9. Read `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/_REGISTER.md`.
 10. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
 11. Read `{WORKING_ROOT}/execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
@@ -20,7 +20,17 @@
 
 ## Active Direction
 
-The active development queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. LP-00 landed the D-APP-15 decision packet and active-queue pointers. LP-01 landed the D-APP-15 Option A ruling, approving one bounded live packaged `agentSdk` read-tool proof. LP-02 landed the exact command path, package path, API-key supply method, artifact directory, stop conditions, and redaction checks in `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md`. LP-03 consumed the single D-APP-15-approved live run and failed before `Read` tool execution because the selected model was unavailable or inaccessible; evidence is recorded in `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`. D-APP-16 approved one model-corrected retry, which also failed on model availability. D-APP-17 approved bounded CLI-documented alias troubleshooting; the `sonnet` app-directory packaged live read-tool proof passed and is recorded in `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md`. D-APP-18 is awaiting ruling before any default-provider cutover implementation or governance text declaring SDK default. The R6 Extensibility & MCP Boundary Maturity program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, tranches R6-01..R6-05) is completed closed history after R6-05; R6-04 was deferred as optional organization work. R6 matured the local/in-process tool extension boundary (collision-prevention invariant, regenerable tool catalog, contributor docs) on top of the stabilized runtime and exposed no new capability. The Runtime Stabilization program (STAB-00..STAB-06) is also completed closed history. Current stabilized runtime posture:
+The active development arc is the Agent-Orchestration UI & Information Architecture redesign — `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` — which reorganizes the app around harness abilities (the live event-stream loop) instead of the filesystem. Phases 1-5 are COMPLETE: (1) keystone `harness:event` bridge; (2) shell refactor to a collapsible multi-view sidebar; (3) permission pause + live operator-mode switcher, plus (3.1) hardening; (4) read-only document content API + viewer, plus the D-APP-25 manager-lifecycle + Anthropic-parity bridge tranche; (5) typed agent roster + route-free persona resolution + direct-chat `/chat` surface + session list + hydrate-on-open. Typecheck is clean, 491 vitest tests pass, and `next build` is green.
+
+The active development queue is `plans/PLAN_2026-06-19_loop_first_pivot.md` — the D-APP-28 full loop-first pivot. Its tranche spine is 28a -> 28b -> 28c -> 28d -> 28e, each independently `npm run typecheck` + vitest-green (491 baseline) with `next build` prerendering affected routes. 28a (extract a reusable sidebar-right loop primitive) and 28b (flip AppShell to sidebar-right + geometry guard tests) are self-contained; 28c/28d consume the ruled sub-decisions. NO tranche has started — no source code has been written yet. This is a routing/layout change only: the public UIEvent contract and the permission plane are untouched, in-flight turns survive every relayout, and nothing is deleted.
+
+D-APP-20 through D-APP-32 are ALL RULED (`execution/_Coordination/_DECISIONS/_REGISTER.md`). Key rulings: D-APP-28 -> Option B (full loop-first pivot); D-APP-30 -> B (guard-mid-turn in-place launch); D-APP-31 -> B (in-place `/pipeline` tertiary form, staged with 28d); D-APP-32 -> A (new sidebar tabs). Chat history stays on the RIGHT as the existing Sessions tab — no left rail (owner directive 2026-06-19). The Phase rulings D-APP-20..25 are ruled AND implemented.
+
+D-APP-18 (default-provider cutover) remains separately AWAITING_RULING: `agentSdk` stays the opt-in probe (the default provider is `stub`); do not change provider defaults or declare SDK default before D-APP-18 is ruled. D-APP-18 is now a SEPARATE open decision, NOT the active development gate — it only blocks default-provider cutover, not the loop-first pivot.
+
+Completed closed history (retain as evidence, do not revive as a queue): the live packaged `agentSdk` read-tool proof (`plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`, where D-APP-17 passed with `sonnet`) and its `plans/artifacts/*` evidence; the R6 Extensibility & MCP Boundary Maturity program (`plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`, R6-04 deferred); the Runtime Stabilization program (`plans/PLAN_2026-06-16_runtime_stabilization.md`, STAB-00..06); `plans/PLAN_2026-06-16_six_node_scc_resolution.md`; and `plans/PLAN_2026-06-13_runtime_completion.md`.
+
+Current stabilized runtime posture:
 
 - a local desktop harness for governed agents;
 - a Chirality-owned runtime contract and audit/event model;
@@ -30,26 +40,26 @@ The active development queue is `plans/PLAN_2026-06-17_live_packaged_agentsdk_re
 
 ## Selection Rules
 
-Select from the active live packaged proof plan. Do not select from the completed R6 program, completed Runtime Stabilization spine, closed SCC-resolution plan, or retired runtime completion plan.
+Select the earliest unblocked tranche from the active loop-first pivot plan (`plans/PLAN_2026-06-19_loop_first_pivot.md`). 28a and 28b are unblocked and self-contained; 28c/28d consume the ruled sub-decisions and follow once their predecessors land. Do not select from the completed live packaged proof plan, the completed R6 program, the completed Runtime Stabilization spine, the closed SCC-resolution plan, or the retired runtime completion plan.
 
 Default priority:
 
-1. Repair failing validation for already-landed runtime/control-plane work first if such a regression is found.
-2. Do not rerun the live proof; D-APP-17 passed with `sonnet`.
-3. Stop at D-APP-18 until the human rules whether default-provider cutover implementation may proceed, remain held, or require more evidence.
-4. Do not change provider defaults or governance wording declaring SDK default before D-APP-18 is ruled.
+1. Repair failing validation for already-landed runtime/control-plane/UI work first if such a regression is found.
+2. Advance the loop-first pivot tranche spine in order (28a -> 28b -> 28c -> 28d -> 28e), keeping each tranche typecheck + vitest-green (491 baseline) with `next build` prerendering affected routes.
+3. Treat D-APP-18 as a SEPARATE still-open decision that only blocks default-provider cutover; it does not gate the pivot. Do not change provider defaults or governance wording declaring SDK default before D-APP-18 is ruled.
+4. Keep the public UIEvent contract and the permission plane untouched during the pivot; in-flight turns must survive every relayout, and nothing is deleted.
 5. If any work requires remote MCP, plugins, broad tool search, domain tools, default-provider cutover, provider/network expansion beyond the bounded Anthropic proof path, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
 6. Do not revive a completed/closed/retired plan or invent a replacement queue.
 
 ## Execution Rules
 
-- No R6 tranche remains active after R6-05 closeout. The completed R6 and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`, `D-APP-14`, `D-APP-15`, `D-APP-16`, and `D-APP-17` are ruled. D-APP-18 is awaiting ruling; do not implement default-provider cutover unless that ruling explicitly approves it.
+- The active queue is the loop-first pivot (`plans/PLAN_2026-06-19_loop_first_pivot.md`); no tranche has started. The completed live-proof, R6, and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`..`D-APP-17` and D-APP-20..D-APP-32 are ruled. D-APP-18 is awaiting ruling; do not implement default-provider cutover unless that ruling explicitly approves it.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
 - Keep writes scoped to the selected tranche.
 - Use `{REPO_ROOT}/../pi` and `plans/pi-agent-harness-assessment.md` only as read-only pattern-corpus references where they refine the active plan item.
-- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, Pi migrations, or new runtime roadmap work unless the active plan item and human rulings explicitly allow them. D-APP-18 blocks any default-provider cutover implementation.
+- Do not perform provider-network, concrete non-Anthropic provider, Pi migrations, default-provider cutover, or new runtime roadmap work unless the active plan item and human rulings explicitly allow them. D-APP-18 blocks any default-provider cutover implementation.
 - D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
 - Stop when any further progress requires a human ruling.
 
@@ -71,4 +81,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending or blocking from `_DECISIONS/_REGISTER.md`;
-- next selected tranche, or state that the active live packaged proof queue is waiting on D-APP-18.
+- next selected tranche, or state that the active loop-first pivot queue (`plans/PLAN_2026-06-19_loop_first_pivot.md`) has no started tranche and that D-APP-18 remains separately open for default-provider cutover.

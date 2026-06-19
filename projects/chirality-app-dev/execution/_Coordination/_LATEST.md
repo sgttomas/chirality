@@ -6,22 +6,26 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md`
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-20..D-APP-32 RULED; D-APP-18 default-provider cutover AWAITING_RULING).
 
 Active development queue:
 
+- `plans/PLAN_2026-06-19_loop_first_pivot.md` (D-APP-28 full loop-first pivot). Tranche spine
+  28a -> 28b -> 28c -> 28d -> 28e; no tranche started. Routing/layout change only — public
+  UIEvent contract + permission plane untouched.
+- `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (active design: Agent-Orchestration UI &
+  Information Architecture redesign; Phases 1-5 COMPLETE).
+
+Completed planning and history surfaces:
+
 - `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` (Live Packaged
-  `agentSdk` Read-Tool Proof plan). D-APP-17 `sonnet` proof passed; D-APP-18 is awaiting
-  default-provider cutover disposition.
+  `agentSdk` Read-Tool Proof plan; D-APP-17 `sonnet` proof passed; closed history).
 - `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` (LP-03 command,
   package path, key supply, artifact directory, stop conditions, and redaction checks).
 - `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md`
   (LP-03 failed-proof evidence and redaction disposition).
 - `plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md`
   (successful app-directory packaged live read-tool proof evidence).
-
-Completed planning and history surfaces:
-
 - `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md` (R6 Extensibility & MCP Boundary Maturity program, R6-01..R6-05; accepted by `execution/_Coordination/_DECISIONS/D-APP-14_RULING_2026-06-17.md`, closed by R6-05; R6-04 deferred as optional organization work).
 - `plans/PLAN_2026-06-16_runtime_stabilization.md` (Runtime Stabilization program, STAB-00..STAB-06; accepted by `execution/_Coordination/_DECISIONS/D-APP-11_RULING_2026-06-16.md`, closed by STAB-06).
 - `plans/PLAN_2026-06-16_six_node_scc_resolution.md` (closed; no longer the active queue)
