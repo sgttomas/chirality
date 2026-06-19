@@ -1,6 +1,12 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { parseAgentClass, parseAgentType, type AgentClass } from './agent-instruction';
+import {
+  parseAgentClass,
+  parseAgentType,
+  readAgentInstruction,
+  type AgentClass
+} from './agent-instruction';
+import { HarnessError } from './errors';
 import { assertInstructionRootReadable } from './instruction-root';
 
 /**
@@ -77,4 +83,35 @@ export function selectDirectChatPersonas(
   roster: readonly AgentRosterEntry[]
 ): AgentRosterEntry[] {
   return roster.filter(isDirectChatPersona);
+}
+
+/**
+ * Server-side enforcement of the direct-chat Type-0/Type-1 restriction
+ * (D-APP-24). The picker only *offers* Type-0/Type-1 personas, but the
+ * session-boot path has no inherent type gate — so a hand-edited
+ * `/chat?agent=<Type-2>` URL could otherwise boot a task agent as a top-level
+ * persona session, bypassing subagent governance (which engages only on
+ * *delegated* subagents). Call this when creating a direct-chat session: it
+ * throws an `INVALID_REQUEST` if the persona is not Type-0/Type-1. The picker
+ * and the server thus share one enforcement predicate (`isDirectChatPersona`).
+ */
+export async function assertDirectChatPersona(
+  persona: string,
+  instructionRootOverride?: string
+): Promise<void> {
+  const instruction = await readAgentInstruction(persona, instructionRootOverride);
+  const entry: AgentRosterEntry = {
+    name: persona,
+    type: parseAgentType(instruction.content),
+    class: parseAgentClass(instruction.content)
+  };
+
+  if (!isDirectChatPersona(entry)) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      `Persona '${persona}' is not available for direct chat; only Type-0/Type-1 personas may run a direct-chat session (Type-2 task agents run via orchestration).`,
+      { persona, type: entry.type }
+    );
+  }
 }

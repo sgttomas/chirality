@@ -22,16 +22,19 @@ describe('resolvePersona', () => {
   it('maps display-label aliases to persona ids', () => {
     expect(resolvePersona('HELP')).toBe('HELP_HUMAN');
     expect(resolvePersona('ORCHESTRATE')).toBe('ORCHESTRATOR');
-    expect(resolvePersona('RECONCILING')).toBe('RECONCILIATION');
     expect(resolvePersona('AGENTS')).toBe('HELPS_HUMANS');
   });
 
-  it('no longer aliases AGGREGATE (the Type-2 task agent); REVIEW resolves directly', () => {
-    // The NORMATIVE/REVIEWING cell was re-pointed from the removed
-    // AGGREGATE->AGGREGATION (Type-2 TASK) alias to the Type-1 REVIEW persona.
+  it('no longer aliases the re-pointed matrix cells; their personas resolve directly', () => {
+    // NORMATIVE/REVIEWING re-pointed AGGREGATE->AGGREGATION (Type-2 TASK) to the
+    // Type-1 REVIEW persona; EVALUATIVE/REVIEWING re-pointed
+    // RECONCILING->RECONCILIATION to the Type-1 RESEARCH persona.
     expect(PERSONA_ALIASES.AGGREGATE).toBeUndefined();
+    expect(PERSONA_ALIASES.RECONCILING).toBeUndefined();
     expect(resolvePersona('REVIEW')).toBe('REVIEW');
+    expect(resolvePersona('RESEARCH')).toBe('RESEARCH');
     expect(resolvePersona('AGGREGATE')).toBe('AGGREGATE');
+    expect(resolvePersona('RECONCILING')).toBe('RECONCILING');
   });
 
   it('fixes the broken EVALUATIVE/APPLYING cell: DEPENDENCIES -> EVALUATION (Type-1 persona)', () => {

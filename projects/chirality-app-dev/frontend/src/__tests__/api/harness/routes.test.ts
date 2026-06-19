@@ -1163,3 +1163,65 @@ AGENT_TYPE: 2
     });
   });
 });
+
+describe('direct-chat persona gate (D-APP-24)', () => {
+  async function writeTypedAgents(): Promise<void> {
+    const agentsDir = path.join(context.instructionRoot, 'agents');
+    await writeFile(
+      path.join(agentsDir, 'AGENT_WORKING_ITEMS.md'),
+      'AGENT_TYPE: 1\nAGENT_CLASS: PERSONA\n',
+      'utf8'
+    );
+    await writeFile(
+      path.join(agentsDir, 'AGENT_TASK.md'),
+      'AGENT_TYPE: 2\nAGENT_CLASS: TASK\n',
+      'utf8'
+    );
+  }
+
+  it('rejects creating a CHAT-mode session with a Type-2 task persona', async () => {
+    const routes = await importRouteModules();
+    await writeTypedAgents();
+
+    const response = await routes.createRoute.POST(
+      new Request('http://localhost/api/harness/session/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectRoot: context.projectRoot,
+          persona: 'TASK',
+          mode: 'CHAT'
+        })
+      })
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({ error: { type: 'INVALID_REQUEST' } });
+  });
+
+  it('allows a CHAT-mode session with a Type-1 persona', async () => {
+    const routes = await importRouteModules();
+    await writeTypedAgents();
+
+    const { response, body } = await createSession(routes, context.projectRoot, {
+      persona: 'WORKING_ITEMS',
+      mode: 'CHAT'
+    });
+
+    expect(response.status).toBe(200);
+    expect(body.session.persona).toBe('WORKING_ITEMS');
+    expect(body.session.mode).toBe('CHAT');
+  });
+
+  it('does not gate non-CHAT sections (workbench may still create any persona)', async () => {
+    const routes = await importRouteModules();
+    await writeTypedAgents();
+
+    const { response } = await createSession(routes, context.projectRoot, {
+      persona: 'TASK',
+      mode: 'WORKBENCH'
+    });
+
+    expect(response.status).toBe(200);
+  });
+});

@@ -108,8 +108,8 @@ export const MATRIX_ROWS: Array<{
       {
         row: 'EVALUATIVE',
         column: 'REVIEWING',
-        label: 'RECONCILING',
-        target: '/workbench?agent=RECONCILING&row=EVALUATIVE&column=REVIEWING'
+        label: 'RESEARCH',
+        target: '/workbench?agent=RESEARCH&row=EVALUATIVE&column=REVIEWING'
       }
     ]
   }

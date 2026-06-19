@@ -17,6 +17,7 @@ import {
 } from '../../lib/harness/chat-draft';
 import { type UiAttachment } from '../../lib/harness/ui-attachments';
 import type { HarnessEvent } from '../../lib/harness/event-schema';
+import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions } from '../workspace/harness-events-provider';
 import { useToolkit } from '../workspace/toolkit-provider';
@@ -72,6 +73,10 @@ function resolveMode(pathname: string): string {
 
   if (pathname.startsWith('/pipeline')) {
     return 'PIPELINE';
+  }
+
+  if (pathname.startsWith('/chat')) {
+    return CHAT_SECTION;
   }
 
   return 'PORTAL';

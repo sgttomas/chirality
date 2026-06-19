@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   Suspense,
   useCallback,
@@ -25,12 +23,9 @@ import {
   type LayoutStorageState,
   type ResizablePaneKey
 } from '../../lib/shell/layout-state';
-import { ApiKeySettings } from '../settings/api-key-settings';
-import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel } from './chat-panel';
+import { ShellFrame, type ShellSection } from './shell-frame';
 import { WorkspaceSidebar, type SidebarTabId } from './workspace-sidebar';
-
-type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH';
 
 type AppShellProps = {
   section: ShellSection;
@@ -38,17 +33,6 @@ type AppShellProps = {
   subtitle: string;
   children: ReactNode;
 };
-
-type NavigationItem = {
-  href: string;
-  label: ShellSection;
-};
-
-const NAVIGATION_ITEMS: NavigationItem[] = [
-  { href: '/', label: 'PORTAL' },
-  { href: '/pipeline', label: 'PIPELINE' },
-  { href: '/workbench', label: 'WORKBENCH' }
-];
 
 // Two resizable side panes remain after the Tool Kit folded into the sidebar as
 // a tab: `fileTree` is the multi-view workspace sidebar, `chat` is the live loop.
@@ -72,18 +56,6 @@ const DRAG_DIRECTION: Record<ResizablePaneKey, 1 | -1> = {
 const TOOLKIT_PANE_VISIBLE = false;
 
 export function AppShell({ section, title, subtitle, children }: AppShellProps): JSX.Element {
-  const pathname = usePathname();
-  const {
-    projectRoot,
-    hasElectronDirectoryPicker,
-    errorMessage,
-    clearError,
-    applyProjectRoot,
-    chooseProjectRoot,
-    clearProjectRoot
-  } = useWorkspace();
-  const [draftPath, setDraftPath] = useState(projectRoot ?? '');
-  const [updateNotice] = useState<string | null>(null);
   const [layoutState, setLayoutState] = useState<LayoutStorageState>(() =>
     createDefaultLayoutState()
   );
@@ -98,10 +70,6 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
     startX: number;
     startWidth: number;
   } | null>(null);
-
-  useEffect(() => {
-    setDraftPath(projectRoot ?? '');
-  }, [projectRoot]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -136,11 +104,6 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
       observer.disconnect();
     };
   }, []);
-
-  const currentRootLabel = useMemo(
-    () => projectRoot ?? 'No working root selected',
-    [projectRoot]
-  );
 
   const gridStyle = useMemo(
     () =>
@@ -337,96 +300,8 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
     );
   }
 
-  async function applyDraftPath(): Promise<void> {
-    const nextPath = draftPath.trim();
-    if (!nextPath) {
-      clearProjectRoot();
-      return;
-    }
-
-    await applyProjectRoot(nextPath);
-  }
-
   return (
-    <main className="shell">
-      <header className="shell-header">
-        <div className="shell-header-main">
-          <div className="shell-brand-row">
-            <img
-              src="/chirality-app-icon.svg"
-              alt="Chirality app icon"
-              className="shell-brand-tile"
-              width={48}
-              height={48}
-            />
-            <div className="shell-brand-meta">
-              <p className="shell-kicker">{section}</p>
-              <h1>{title}</h1>
-            </div>
-          </div>
-          <p className="shell-subtitle">{subtitle}</p>
-          {updateNotice ? (
-            <p className="shell-update-banner" role="status" aria-live="polite">
-              {updateNotice}
-            </p>
-          ) : null}
-        </div>
-
-        <nav className="shell-nav" aria-label="Primary navigation">
-          {NAVIGATION_ITEMS.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                className={active ? 'shell-nav-link shell-nav-link--active' : 'shell-nav-link'}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-      </header>
-
-      <section className="working-root-bar">
-        <div className="working-root-fields">
-          <label htmlFor="project-root-input">Working Root (`projectRoot`)</label>
-          <div className="working-root-controls">
-            <input
-              id="project-root-input"
-              value={draftPath}
-              onChange={(event) => {
-                setDraftPath(event.target.value);
-                if (errorMessage) {
-                  clearError();
-                }
-              }}
-              placeholder="/absolute/path/to/execution/root"
-            />
-            <button type="button" onClick={() => void applyDraftPath()}>
-              Apply Path
-            </button>
-            <button
-              type="button"
-              className={hasElectronDirectoryPicker ? '' : 'button-muted'}
-              onClick={() => void chooseProjectRoot()}
-            >
-              Choose Folder
-            </button>
-            <button type="button" className="button-muted" onClick={clearProjectRoot}>
-              Clear
-            </button>
-          </div>
-          <p className="working-root-current" title={currentRootLabel}>
-            Active root: {currentRootLabel}
-          </p>
-          {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
-        </div>
-        <div className="working-root-settings">
-          <ApiKeySettings />
-        </div>
-      </section>
-
+    <ShellFrame section={section} title={title} subtitle={subtitle}>
       <section
         ref={layoutRef}
         className="shell-grid shell-grid--resizable"
@@ -495,6 +370,6 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           </Suspense>
         </div>
       </section>
-    </main>
+    </ShellFrame>
   );
 }

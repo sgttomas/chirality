@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useDeliverables } from '../workspace/deliverables-provider';
 import { createNavigationIntentScheduler } from '../../lib/workspace/navigation-intent';
 import { MATRIX_ROWS } from '../../lib/portal/agent-matrix-cells';
+import { buildDirectChatHref } from '../../lib/shell/loop-first';
 
 export function AgentMatrix(): JSX.Element {
   const router = useRouter();
@@ -27,12 +28,23 @@ export function AgentMatrix(): JSX.Element {
 
   return (
     <section className="portal-matrix">
-      <header>
-        <h3>Agent Matrix</h3>
-        <p>
-          Select any cell to open its execution surface. NORMATIVE and EVALUATIVE cells route to
-          WORKBENCH. OPERATIVE cells route to PIPELINE categories.
-        </p>
+      <header className="portal-matrix-header">
+        <div className="portal-matrix-heading">
+          <h3>Agent Matrix</h3>
+          <p>
+            Select any cell to open its execution surface. NORMATIVE and EVALUATIVE cells route to
+            WORKBENCH. OPERATIVE cells route to PIPELINE categories.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="portal-start-session"
+          onClick={() => {
+            navigationScheduler.schedule(buildDirectChatHref());
+          }}
+        >
+          Start direct-chat session →
+        </button>
       </header>
 
       <div className="matrix-grid" role="grid" aria-label="Chirality Agent Matrix">

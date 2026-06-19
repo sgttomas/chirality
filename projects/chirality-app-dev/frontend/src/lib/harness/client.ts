@@ -1,3 +1,4 @@
+import type { AgentRosterEntry } from './agent-roster';
 import type {
   CoordinationMode,
   HarnessErrorResponse,
@@ -134,6 +135,21 @@ export function harnessApiErrorMessage(error: unknown): string {
   }
 
   return 'Unexpected harness API failure';
+}
+
+/**
+ * Fetch the direct-chat persona roster (Type-0/Type-1 only, server-filtered via
+ * `?directChat=1`) for the persona picker. D-APP-24 restricts direct chat to
+ * conversational personas; Type-2 task agents run only via orchestration.
+ */
+export async function listDirectChatPersonas(): Promise<AgentRosterEntry[]> {
+  const payload = await requestHarnessJson<{ agents: AgentRosterEntry[] }>(
+    '/api/harness/agents?directChat=1',
+    { method: 'GET' },
+    'Unable to load direct-chat personas'
+  );
+
+  return payload.agents;
 }
 
 export async function createHarnessSession(input: SessionCreateRequest): Promise<SessionRecord> {

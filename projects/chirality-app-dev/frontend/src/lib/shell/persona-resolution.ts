@@ -17,23 +17,23 @@ export const DEFAULT_PERSONA = 'WORKING_ITEMS';
  * the `AGENT_<id>.md` stem consumed by `buildSystemPrompt`.
  *
  * `DEPENDENCIES → EVALUATION` fixes the broken EVALUATIVE/APPLYING matrix cell
- * (D-APP-23): there is no `AGENT_DEPENDENCIES.md`. Its three EVALUATIVE siblings
- * all resolve to Type-0/Type-1 personas (AGENTS→HELPS_HUMANS, CHANGE,
- * RECONCILING→RECONCILIATION); EVALUATION is the Type-1 persona for the
- * evaluative valley. The Type-2 `EVALUATION_DEPENDENCY_AUDIT` task agent is
- * deliberately NOT used here — task agents run via orchestration, not as a
- * `/workbench` persona session.
+ * (D-APP-23): there is no `AGENT_DEPENDENCIES.md`. Its EVALUATIVE siblings all
+ * resolve to Type-0/Type-1 personas (AGENTS→HELPS_HUMANS, CHANGE, RESEARCH);
+ * EVALUATION is the Type-1 persona for the evaluative valley. The Type-2
+ * `EVALUATION_DEPENDENCY_AUDIT` task agent is deliberately NOT used here — task
+ * agents run via orchestration, not as a `/workbench` persona session.
  *
- * The former `AGGREGATE → AGGREGATION` alias was removed: AGGREGATION is a
- * Type-2 TASK agent, so the NORMATIVE/REVIEWING matrix cell was re-pointed at
- * the Type-1 REVIEW persona (which resolves directly, no alias). The
- * `agent-matrix-cells.test.ts` guard now enforces that every `/workbench`
+ * Two former aliases were removed because they pointed at non-persona cells:
+ * `AGGREGATE → AGGREGATION` (the NORMATIVE/REVIEWING cell was re-pointed at the
+ * Type-1 REVIEW persona — AGGREGATION is a Type-2 TASK agent), and
+ * `RECONCILING → RECONCILIATION` (the EVALUATIVE/REVIEWING cell is now the
+ * Type-1 RESEARCH persona). Both RESEARCH and REVIEW resolve directly, no
+ * alias. The `agent-matrix-cells.test.ts` guard enforces that every `/workbench`
  * matrix target resolves to a Type-0/Type-1 persona.
  */
 export const PERSONA_ALIASES: Record<string, string> = {
   HELP: 'HELP_HUMAN',
   ORCHESTRATE: 'ORCHESTRATOR',
-  RECONCILING: 'RECONCILIATION',
   AGENTS: 'HELPS_HUMANS',
   DEPENDENCIES: 'EVALUATION'
 };

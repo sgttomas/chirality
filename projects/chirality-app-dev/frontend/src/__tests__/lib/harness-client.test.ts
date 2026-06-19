@@ -3,6 +3,7 @@ import {
   HarnessApiClientError,
   bootHarnessSession,
   createHarnessSession,
+  listDirectChatPersonas,
   scaffoldHarnessExecutionRoot,
   streamHarnessTurn
 } from '../../lib/harness/client';
@@ -286,5 +287,24 @@ describe('harness client helpers', () => {
     const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     expect(input).toBe('/api/harness/scaffold');
     expect(init.method).toBe('POST');
+  });
+
+  it('lists direct-chat personas through the Type-0/Type-1 filtered route', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({
+        agents: [
+          { name: 'HELPS_HUMANS', type: 0, class: 'PERSONA' },
+          { name: 'WORKING_ITEMS', type: 1, class: 'PERSONA' }
+        ]
+      })
+    );
+
+    const agents = await listDirectChatPersonas();
+
+    expect(agents.map((agent) => agent.name)).toEqual(['HELPS_HUMANS', 'WORKING_ITEMS']);
+    const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(input).toBe('/api/harness/agents?directChat=1');
+    expect(init.method).toBe('GET');
   });
 });
