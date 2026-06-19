@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { decideHarnessPermission } from '../../lib/harness/client';
 import {
-  derivePermissionRequests,
+  selectPendingPermissionRequests,
   type PermissionRequestRow
 } from '../../lib/shell/harness-event-views';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
@@ -48,13 +48,17 @@ export function PermissionDecisionCards({
   }, [requestKeys]);
 
   async function decide(row: PermissionRequestRow, verdict: 'allow' | 'deny'): Promise<void> {
-    if (!sessionId) {
+    // Prefer the session captured on the request itself, so a pending approval
+    // stays actionable even if the operator navigated away and the panel's
+    // `sessionId` prop is now null/different (DESIGN §5.3 item b).
+    const targetSessionId = row.sessionId || sessionId;
+    if (!targetSessionId) {
       return;
     }
     setSubmitting((current) => ({ ...current, [row.key]: verdict }));
     setError(null);
     try {
-      await decideHarnessPermission({ sessionId, toolUseId: row.key, verdict });
+      await decideHarnessPermission({ sessionId: targetSessionId, toolUseId: row.key, verdict });
       // The follow-up tool.permission event removes this card from the stream.
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Unable to submit decision.');
@@ -80,6 +84,7 @@ export function PermissionDecisionCards({
       {requests.map((row) => {
         const pendingVerdict = submitting[row.key];
         const pathEntries = Object.entries(row.pathFields);
+        const canDecide = Boolean(row.sessionId || sessionId);
         return (
           <article
             key={row.key}
@@ -108,7 +113,7 @@ export function PermissionDecisionCards({
               <button
                 type="button"
                 className="permission-card-approve"
-                disabled={Boolean(pendingVerdict) || !sessionId}
+                disabled={Boolean(pendingVerdict) || !canDecide}
                 onClick={() => {
                   void decide(row, 'allow');
                 }}
@@ -118,7 +123,7 @@ export function PermissionDecisionCards({
               <button
                 type="button"
                 className="button-muted permission-card-deny"
-                disabled={Boolean(pendingVerdict) || !sessionId}
+                disabled={Boolean(pendingVerdict) || !canDecide}
                 onClick={() => {
                   void decide(row, 'deny');
                 }}
@@ -138,12 +143,26 @@ export function PermissionDecisionCards({
  * Live wrapper: reads the bridged harness-event stream and surfaces only the
  * gated tool calls awaiting an operator decision (DESIGN §3.1 approval cards).
  * Isolated from the chat transcript so its per-event re-renders stay cheap.
+ *
+ * `active` reflects whether a turn is still streaming. Once the turn ends (normal
+ * completion, error, or interrupt) the broker has auto-denied every still-pending
+ * request, so a leftover `pending` row is no longer actionable — surfacing it
+ * would be misleading and lets it linger until the next turn clears the stream
+ * (DESIGN §5.3 item a). Gating on the turn being live removes the card the moment
+ * the turn ends, regardless of whether the deny resolution won the publish/close
+ * race against channel teardown.
  */
-export function PermissionRequests({ sessionId }: { sessionId: string | null }): JSX.Element | null {
+export function PermissionRequests({
+  sessionId,
+  active = true
+}: {
+  sessionId: string | null;
+  active?: boolean;
+}): JSX.Element | null {
   const { events } = useHarnessEvents();
   const pending = useMemo(
-    () => derivePermissionRequests(events).filter((row) => row.status === 'pending'),
-    [events]
+    () => selectPendingPermissionRequests(events, active),
+    [events, active]
   );
   return <PermissionDecisionCards sessionId={sessionId} requests={pending} />;
 }

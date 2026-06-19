@@ -526,7 +526,7 @@ export function ChatPanel(): JSX.Element {
             ) : null}
           </article>
         ))}
-        <PermissionRequests sessionId={activeSession?.sessionId ?? null} />
+        <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
       </div>
 
       {draftStorageWarning ? (

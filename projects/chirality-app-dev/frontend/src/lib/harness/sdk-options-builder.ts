@@ -120,7 +120,13 @@ export function buildSdkOptions(input: {
       delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor,
       requestHumanDecision: ({ sessionId, toolUseId }) =>
-        getPermissionBroker().request({ sessionId, toolUseId }).verdict,
+        getPermissionBroker().request({
+          sessionId,
+          toolUseId,
+          // The turn's AbortController is its identity, so teardown can scope the
+          // clear to this turn and not deny a newer same-session turn's approvals.
+          turnToken: input.abortController
+        }).verdict,
       publishEvent: (event) =>
         getPermissionEventChannel().publish(input.session.sessionId, event)
     }),

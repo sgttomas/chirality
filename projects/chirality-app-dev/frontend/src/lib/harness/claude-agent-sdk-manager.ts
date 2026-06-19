@@ -13,7 +13,10 @@ import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 import { createHarnessEvent } from './event-schema';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
-import { getPermissionEventChannel } from './permission-event-channel';
+import {
+  getPermissionEventChannel,
+  type SessionPermissionChannel
+} from './permission-event-channel';
 import { getPermissionBroker } from './permission-broker';
 
 type SdkQuery = typeof query;
@@ -22,6 +25,7 @@ type ActiveTurnState = {
   abortController: AbortController;
   query?: Query;
   interrupted: boolean;
+  permissionChannel?: SessionPermissionChannel;
 };
 
 const SDK_PACKAGE_VERSION = '0.3.150';
@@ -212,6 +216,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       // lets those events reach the browser live (as `harness:event`s) instead of
       // being stranded until the SDK produces its next message.
       const permissionChannel = getPermissionEventChannel().open(input.session.sessionId);
+      // Capture this turn's channel instance so teardown only retires its own.
+      activeTurn.permissionChannel = permissionChannel;
       const sdkIterator = sdkStream[Symbol.asyncIterator]();
       let sdkNext = sdkIterator.next();
       let permNext = permissionChannel.next();
@@ -363,11 +369,17 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     } finally {
       // Release any approval the turn is still suspended on (e.g. the SSE stream
       // was cancelled without an interrupt call) so no broker entry outlives the
-      // turn, then tear down the live channel.
-      getPermissionBroker().clearSession(input.session.sessionId, 'deny');
-      getPermissionEventChannel().close(input.session.sessionId);
+      // turn, then tear down the live channel. All three teardowns are scoped to
+      // THIS turn's identity (its AbortController / channel instance / state), so
+      // if the one-turn lock was released early (the cancel/disconnect path) and a
+      // newer same-session turn already installed fresh state, this stale teardown
+      // cannot clobber it (DESIGN §5.3 identity guard).
+      getPermissionBroker().clearSession(input.session.sessionId, 'deny', abortController);
+      getPermissionEventChannel().close(input.session.sessionId, activeTurn.permissionChannel);
       restoreSdkApiKey?.();
-      this.activeTurns.delete(input.session.sessionId);
+      if (this.activeTurns.get(input.session.sessionId) === activeTurn) {
+        this.activeTurns.delete(input.session.sessionId);
+      }
     }
   }
 }

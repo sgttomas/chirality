@@ -63,6 +63,46 @@ describe('PermissionEventChannelRegistry', () => {
     await expect(channel.next()).resolves.toEqual({ value: undefined, done: true });
   });
 
+  it('closes a pre-existing same-session channel when re-opened, releasing its waiter', async () => {
+    const registry = new PermissionEventChannelRegistry();
+    const first = registry.open('s1');
+    const firstParked = first.next();
+
+    // Re-opening the same session must close the stale channel (DESIGN §5.3 item c)...
+    const second = registry.open('s1');
+    await expect(firstParked).resolves.toEqual({ value: undefined, done: true });
+
+    // ...and publishes now route only to the live channel, not the closed one.
+    const secondParked = second.next();
+    registry.publish('s1', evt('a'));
+    await expect(secondParked).resolves.toMatchObject({ value: { eventId: 'a' }, done: false });
+  });
+
+  it('close(sessionId, channel) does not evict a newer channel that replaced it', async () => {
+    const registry = new PermissionEventChannelRegistry();
+    const stale = registry.open('s1');
+    const fresh = registry.open('s1'); // replaces stale; stale is now closed
+    const freshParked = fresh.next();
+
+    // A stale turn's teardown passes its own (already-closed) instance: it must NOT
+    // close+delete the newer registered channel (DESIGN §5.3 identity guard).
+    registry.close('s1', stale);
+
+    registry.publish('s1', evt('a'));
+    await expect(freshParked).resolves.toMatchObject({ value: { eventId: 'a' }, done: false });
+  });
+
+  it('close(sessionId, channel) evicts when the instance still owns the slot', async () => {
+    const registry = new PermissionEventChannelRegistry();
+    const channel = registry.open('s1');
+    const parked = channel.next();
+
+    registry.close('s1', channel);
+    await expect(parked).resolves.toEqual({ value: undefined, done: true });
+    // Slot is freed: a later open starts fresh.
+    expect(registry.open('s1')).not.toBe(channel);
+  });
+
   it('exposes a resettable process-wide singleton', () => {
     const first = getPermissionEventChannel();
     expect(getPermissionEventChannel()).toBe(first);

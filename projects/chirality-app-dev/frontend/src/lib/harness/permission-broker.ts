@@ -16,6 +16,12 @@ type PendingEntry = {
   key: string;
   sessionId: string;
   toolUseId: string;
+  /**
+   * Opaque per-turn identity (the turn's AbortController). Lets a turn's teardown
+   * clear only the approvals it registered, so a stale turn's `finally` cannot
+   * deny a newer same-session turn's pending approvals (DESIGN §5.3 identity guard).
+   */
+  turnToken?: unknown;
   resolve: (verdict: PermissionVerdict) => void;
   timer: ReturnType<typeof setTimeout> | null;
 };
@@ -47,6 +53,7 @@ export class PermissionBroker {
     sessionId: string;
     toolUseId?: string;
     timeoutMs?: number;
+    turnToken?: unknown;
   }): { toolUseId: string; verdict: Promise<PermissionVerdict> } {
     const toolUseId = input.toolUseId ?? `perm_${randomUUID()}`;
     const key = keyFor(input.sessionId, toolUseId);
@@ -68,6 +75,7 @@ export class PermissionBroker {
         key,
         sessionId: input.sessionId,
         toolUseId,
+        turnToken: input.turnToken,
         resolve,
         timer
       });
@@ -81,14 +89,28 @@ export class PermissionBroker {
     return this.settle(keyFor(input.sessionId, input.toolUseId), input.verdict);
   }
 
-  /** Resolve every pending request for a session (e.g. on interrupt). */
-  clearSession(sessionId: string, verdict: PermissionVerdict = 'deny'): number {
+  /**
+   * Resolve pending requests for a session (e.g. on interrupt or turn teardown).
+   * When `turnToken` is given, only entries registered by that turn are settled,
+   * so a stale turn's teardown cannot deny a newer same-session turn's approvals.
+   * Omitting it (the explicit-interrupt path, which holds the one-turn lock and
+   * therefore targets the single active turn) clears every pending entry.
+   */
+  clearSession(
+    sessionId: string,
+    verdict: PermissionVerdict = 'deny',
+    turnToken?: unknown
+  ): number {
     let count = 0;
     for (const entry of [...this.pending.values()]) {
-      if (entry.sessionId === sessionId) {
-        this.settle(entry.key, verdict);
-        count += 1;
+      if (entry.sessionId !== sessionId) {
+        continue;
       }
+      if (turnToken !== undefined && entry.turnToken !== turnToken) {
+        continue;
+      }
+      this.settle(entry.key, verdict);
+      count += 1;
     }
     return count;
   }

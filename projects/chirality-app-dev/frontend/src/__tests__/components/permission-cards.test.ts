@@ -7,6 +7,7 @@ import type { PermissionRequestRow } from '../../lib/shell/harness-event-views';
 function row(overrides: Partial<PermissionRequestRow> = {}): PermissionRequestRow {
   return {
     key: 'tp1',
+    sessionId: 's1',
     toolName: 'Write',
     reason: 'requires interactive approval and write hooks before execution.',
     status: 'pending',
@@ -15,6 +16,10 @@ function row(overrides: Partial<PermissionRequestRow> = {}): PermissionRequestRo
     timestamp: '2026-06-18T00:00:00.000Z',
     ...overrides
   };
+}
+
+function disabledAttributeCount(html: string): number {
+  return (html.match(/disabled=""/g) ?? []).length;
 }
 
 describe('PermissionDecisionCards rendering', () => {
@@ -38,5 +43,28 @@ describe('PermissionDecisionCards rendering', () => {
     expect(html).toContain('/proj/x.ts');
     expect(html).toContain('Approve');
     expect(html).toContain('Deny');
+  });
+
+  it('keeps the actions enabled from the per-request session even when the panel prop is null', () => {
+    // DESIGN §5.3 item b: the row carries its own session, so navigating away
+    // (which nulls the panel's sessionId) must not disable the approval.
+    const html = renderToStaticMarkup(
+      createElement(PermissionDecisionCards, {
+        sessionId: null,
+        requests: [row({ sessionId: 'captured-session' })]
+      })
+    );
+    expect(disabledAttributeCount(html)).toBe(0);
+  });
+
+  it('disables the actions when neither the row nor the panel has a session', () => {
+    const html = renderToStaticMarkup(
+      createElement(PermissionDecisionCards, {
+        sessionId: null,
+        requests: [row({ sessionId: '' })]
+      })
+    );
+    // Both Approve and Deny are disabled.
+    expect(disabledAttributeCount(html)).toBe(2);
   });
 });

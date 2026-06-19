@@ -3,17 +3,22 @@ import type { HarnessEvent, HarnessEventType } from '../../lib/harness/event-sch
 import {
   derivePermissionRequests,
   deriveSubagentActivity,
-  deriveToolActivity
+  deriveToolActivity,
+  selectPendingPermissionRequests
 } from '../../lib/shell/harness-event-views';
 
 let counter = 0;
 
-function event(type: HarnessEventType, data: Record<string, unknown>): HarnessEvent {
+function event(
+  type: HarnessEventType,
+  data: Record<string, unknown>,
+  sessionId = 'sess_test'
+): HarnessEvent {
   counter += 1;
   return {
     schemaVersion: 1,
     eventId: `evt_${counter}`,
-    sessionId: 'sess_test',
+    sessionId,
     timestamp: `2026-06-18T00:00:0${counter % 10}.000Z`,
     type,
     data
@@ -197,6 +202,7 @@ describe('derivePermissionRequests', () => {
     expect(rows).toHaveLength(1);
     expect(rows[0]).toMatchObject({
       key: 'tp1',
+      sessionId: 'sess_test',
       toolName: 'Write',
       status: 'pending',
       mode: 'ask',
@@ -225,5 +231,53 @@ describe('derivePermissionRequests', () => {
       event('tool.permission', { behavior: 'deny', toolUseId: 'auto2', toolName: 'Bash' })
     ]);
     expect(rows).toEqual([]);
+  });
+
+  it('captures the owning session per request from a non-default session id', () => {
+    // A distinct session id proves the row tracks event.sessionId rather than a
+    // constant or the wrong field (DESIGN §5.3 item b).
+    const rows = derivePermissionRequests([
+      event(
+        'tool.permission',
+        { behavior: 'ask', toolUseId: 'tp9', toolName: 'Write' },
+        'sess_owner_9'
+      )
+    ]);
+    expect(rows).toHaveLength(1);
+    expect(rows[0].sessionId).toBe('sess_owner_9');
+  });
+});
+
+describe('selectPendingPermissionRequests', () => {
+  const askEvents = [
+    event('tool.permission', {
+      behavior: 'ask',
+      toolUseId: 'tp1',
+      toolName: 'Write',
+      reason: 'requires interactive approval and write hooks before execution.'
+    })
+  ];
+
+  it('surfaces pending requests while the turn is live (active)', () => {
+    const rows = selectPendingPermissionRequests(askEvents, true);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({ key: 'tp1', status: 'pending' });
+  });
+
+  it('surfaces nothing once the turn has ended (inactive), even with a pending event', () => {
+    expect(selectPendingPermissionRequests(askEvents, false)).toEqual([]);
+  });
+
+  it('drops a request that has resolved while still active', () => {
+    const resolved = [
+      ...askEvents,
+      event('tool.permission', {
+        behavior: 'allow',
+        toolUseId: 'tp1',
+        toolName: 'Write',
+        source: 'human'
+      })
+    ];
+    expect(selectPendingPermissionRequests(resolved, true)).toEqual([]);
   });
 });

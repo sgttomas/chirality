@@ -60,6 +60,10 @@ export class PermissionEventChannelRegistry {
   private readonly channels = new Map<string, SessionPermissionChannel>();
 
   open(sessionId: string): SessionPermissionChannel {
+    // Close any pre-existing channel for this session before replacing it, so a
+    // re-`open` (an overlapping same-session turn, or a retried boot) cannot
+    // strand the previous channel's parked waiter or leak it in the map.
+    this.channels.get(sessionId)?.close();
     const channel = new SessionPermissionChannel();
     this.channels.set(sessionId, channel);
     return channel;
@@ -69,10 +73,21 @@ export class PermissionEventChannelRegistry {
     this.channels.get(sessionId)?.publish(event);
   }
 
-  close(sessionId: string): void {
-    const channel = this.channels.get(sessionId);
-    if (channel) {
+  /**
+   * Tear down a session channel. When `channel` is supplied, only close+delete
+   * when it is still the registered instance — so a stale turn's teardown cannot
+   * close a newer same-session turn's channel that has since replaced it in the
+   * map (DESIGN §5.3 identity guard). Always closes the passed instance itself.
+   */
+  close(sessionId: string, channel?: SessionPermissionChannel): void {
+    const registered = this.channels.get(sessionId);
+    if (channel && registered !== channel) {
+      // A newer turn owns this session's slot; only retire our own instance.
       channel.close();
+      return;
+    }
+    if (registered) {
+      registered.close();
       this.channels.delete(sessionId);
     }
   }

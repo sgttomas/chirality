@@ -58,6 +58,35 @@ describe('PermissionBroker', () => {
     await expect(other.verdict).resolves.toBe('allow');
   });
 
+  it('clears only the owning turn when a turnToken is supplied', async () => {
+    const broker = new PermissionBroker();
+    const tokenN = new AbortController();
+    const tokenN1 = new AbortController();
+    // Two turns share a session (the cancel/disconnect race); each tags its requests.
+    const stale = broker.request({ sessionId: 's1', toolUseId: 'a', turnToken: tokenN });
+    const fresh = broker.request({ sessionId: 's1', toolUseId: 'b', turnToken: tokenN1 });
+
+    // The stale turn's teardown must deny only its own request, not the newer one.
+    const cleared = broker.clearSession('s1', 'deny', tokenN);
+    expect(cleared).toBe(1);
+    await expect(stale.verdict).resolves.toBe('deny');
+    expect(broker.pendingCount('s1')).toBe(1);
+
+    broker.decide({ sessionId: 's1', toolUseId: 'b', verdict: 'allow' });
+    await expect(fresh.verdict).resolves.toBe('allow');
+  });
+
+  it('still clears every pending request for a session when no turnToken is given', async () => {
+    const broker = new PermissionBroker();
+    const a = broker.request({ sessionId: 's1', toolUseId: 'a', turnToken: new AbortController() });
+    const b = broker.request({ sessionId: 's1', toolUseId: 'b', turnToken: new AbortController() });
+
+    // The explicit-interrupt path holds the one-turn lock and clears all.
+    expect(broker.clearSession('s1', 'deny')).toBe(2);
+    await expect(a.verdict).resolves.toBe('deny');
+    await expect(b.verdict).resolves.toBe('deny');
+  });
+
   it('supersedes an earlier request for the same key by denying it', async () => {
     const broker = new PermissionBroker();
     const first = broker.request({ sessionId: 's1', toolUseId: 'dup' });

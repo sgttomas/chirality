@@ -44,6 +44,12 @@ export type PermissionRequestStatus = 'pending' | 'allowed' | 'denied';
 
 export type PermissionRequestRow = {
   key: string;
+  /**
+   * The session that owns this gated call, captured from the event so the
+   * approval can be posted even if the operator has since navigated away and the
+   * UI's notion of the "active" session has changed (DESIGN §5.3 item b).
+   */
+  sessionId: string;
   toolName: string;
   reason: string;
   status: PermissionRequestStatus;
@@ -238,6 +244,7 @@ export function derivePermissionRequests(events: readonly HarnessEvent[]): Permi
 
     rows.set(key, {
       key,
+      sessionId: event.sessionId,
       toolName: readString(data.toolName) ?? existing?.toolName ?? 'tool',
       reason: readString(data.reason) ?? existing?.reason ?? '',
       status,
@@ -249,6 +256,24 @@ export function derivePermissionRequests(events: readonly HarnessEvent[]): Permi
   }
 
   return [...rows.values()];
+}
+
+/**
+ * Select the operator-actionable permission requests for the approval cards: the
+ * gated calls still awaiting a decision, but only while a turn is live (`active`).
+ * Once the turn ends the broker has auto-denied every still-pending request, so a
+ * leftover `pending` row is no longer actionable and must not be surfaced
+ * (DESIGN §5.3 item a). Pure so both branches are unit-testable without the React
+ * wrapper or a DOM.
+ */
+export function selectPendingPermissionRequests(
+  events: readonly HarnessEvent[],
+  active: boolean
+): PermissionRequestRow[] {
+  if (!active) {
+    return [];
+  }
+  return derivePermissionRequests(events).filter((row) => row.status === 'pending');
 }
 
 /**
