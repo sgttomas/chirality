@@ -6,6 +6,36 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-19 - Loop-first pivot reusable sidebar-right primitive landed (`28a`)
+
+Extracted the `/chat` sidebar-right loop layout into
+`frontend/src/components/shell/sidebar-right-loop-layout.tsx` and rewired
+`LoopShell` to consume it. The primitive owns the `loop-grid` / `loop-main`
+structure plus right-sidebar collapse and active-tab state; `LoopShell` still
+passes through the same persona picker and Suspense-wrapped `ChatPanel`.
+
+No route behavior changed. `AppShell`, `layout-state.ts`, the public `UIEvent`
+contract, and the permission plane were untouched. No test files were edited.
+The collapse-without-unmount property was preserved: the browser check showed
+`/chat` with the main loop left and the Tools sidebar tab right, then collapse
+changed the grid from `853px 360px` to `1157px 56px` while `Chat Panel`
+remained mounted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 68 files, 491 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Local browser check against `http://localhost:3000/chat` passed for right-side
+  sidebar placement, default Tools tab, collapsed Workspace label, and mounted
+  chat panel.
+
+Residual handoff: `28b` is next. It flips `AppShell` to sidebar-right, inverts
+the resize drag direction, and adds geometry guard tests in the same tranche.
+D-APP-18 remains separately awaiting ruling and still blocks default-provider
+cutover only.
+
 ## 2026-06-18 - Live packaged agentSdk proof passed and D-APP-18 prepared (`LP-04`)
 
 Recorded D-APP-16 and D-APP-17 rulings after the initial LP-03 model blocker. The

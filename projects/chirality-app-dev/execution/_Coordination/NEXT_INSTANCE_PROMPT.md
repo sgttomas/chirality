@@ -22,7 +22,7 @@
 
 The active development arc is the Agent-Orchestration UI & Information Architecture redesign — `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` — which reorganizes the app around harness abilities (the live event-stream loop) instead of the filesystem. Phases 1-5 are COMPLETE: (1) keystone `harness:event` bridge; (2) shell refactor to a collapsible multi-view sidebar; (3) permission pause + live operator-mode switcher, plus (3.1) hardening; (4) read-only document content API + viewer, plus the D-APP-25 manager-lifecycle + Anthropic-parity bridge tranche; (5) typed agent roster + route-free persona resolution + direct-chat `/chat` surface + session list + hydrate-on-open. Typecheck is clean, 491 vitest tests pass, and `next build` is green.
 
-The active development queue is `plans/PLAN_2026-06-19_loop_first_pivot.md` — the D-APP-28 full loop-first pivot. Its tranche spine is 28a -> 28b -> 28c -> 28d -> 28e, each independently `npm run typecheck` + vitest-green (491 baseline) with `next build` prerendering affected routes. 28a (extract a reusable sidebar-right loop primitive) and 28b (flip AppShell to sidebar-right + geometry guard tests) are self-contained; 28c/28d consume the ruled sub-decisions. NO tranche has started — no source code has been written yet. This is a routing/layout change only: the public UIEvent contract and the permission plane are untouched, in-flight turns survive every relayout, and nothing is deleted.
+The active development queue is `plans/PLAN_2026-06-19_loop_first_pivot.md` — the D-APP-28 full loop-first pivot. Its tranche spine is 28a -> 28b -> 28c -> 28d -> 28e, each independently `npm run typecheck` + vitest-green (491 baseline) with `next build` prerendering affected routes. 28a (extract a reusable sidebar-right loop primitive) LANDED 2026-06-19; 28b (flip AppShell to sidebar-right + geometry guard tests) is next and self-contained; 28c/28d consume the ruled sub-decisions. This is a routing/layout change only: the public UIEvent contract and the permission plane are untouched, in-flight turns survive every relayout, and nothing is deleted.
 
 D-APP-20 through D-APP-32 are ALL RULED (`execution/_Coordination/_DECISIONS/_REGISTER.md`). Key rulings: D-APP-28 -> Option B (full loop-first pivot); D-APP-30 -> B (guard-mid-turn in-place launch); D-APP-31 -> B (in-place `/pipeline` tertiary form, staged with 28d); D-APP-32 -> A (new sidebar tabs). Chat history stays on the RIGHT as the existing Sessions tab — no left rail (owner directive 2026-06-19). The Phase rulings D-APP-20..25 are ruled AND implemented.
 
@@ -40,7 +40,7 @@ Current stabilized runtime posture:
 
 ## Selection Rules
 
-Select the earliest unblocked tranche from the active loop-first pivot plan (`plans/PLAN_2026-06-19_loop_first_pivot.md`). 28a and 28b are unblocked and self-contained; 28c/28d consume the ruled sub-decisions and follow once their predecessors land. Do not select from the completed live packaged proof plan, the completed R6 program, the completed Runtime Stabilization spine, the closed SCC-resolution plan, or the retired runtime completion plan.
+Select the earliest unblocked tranche from the active loop-first pivot plan (`plans/PLAN_2026-06-19_loop_first_pivot.md`). 28a has landed; 28b is the next unblocked self-contained tranche. 28c/28d consume the ruled sub-decisions and follow once their predecessors land. Do not select from the completed live packaged proof plan, the completed R6 program, the completed Runtime Stabilization spine, the closed SCC-resolution plan, or the retired runtime completion plan.
 
 Default priority:
 
@@ -53,7 +53,7 @@ Default priority:
 
 ## Execution Rules
 
-- The active queue is the loop-first pivot (`plans/PLAN_2026-06-19_loop_first_pivot.md`); no tranche has started. The completed live-proof, R6, and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`..`D-APP-17` and D-APP-20..D-APP-32 are ruled. D-APP-18 is awaiting ruling; do not implement default-provider cutover unless that ruling explicitly approves it.
+- The active queue is the loop-first pivot (`plans/PLAN_2026-06-19_loop_first_pivot.md`); 28a has landed and 28b is next. The completed live-proof, R6, and Runtime Stabilization plans no longer grant pre-approval for new work. D-APP-12 Option B holds default-provider cutover (`agentSdk` remains opt-in); `D-APP-13`..`D-APP-17` and D-APP-20..D-APP-32 are ruled. D-APP-18 is awaiting ruling; do not implement default-provider cutover unless that ruling explicitly approves it.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
@@ -81,4 +81,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending or blocking from `_DECISIONS/_REGISTER.md`;
-- next selected tranche, or state that the active loop-first pivot queue (`plans/PLAN_2026-06-19_loop_first_pivot.md`) has no started tranche and that D-APP-18 remains separately open for default-provider cutover.
+- next selected tranche, or state that the active loop-first pivot queue (`plans/PLAN_2026-06-19_loop_first_pivot.md`) has no remaining unstarted tranche and that D-APP-18 remains separately open for default-provider cutover.

@@ -1,7 +1,7 @@
 # Loop-First Pivot (D-APP-28) Plan
 
 **Date:** 2026-06-19
-**Status:** ACTIVE (build-ready; SD-1/2/3 ruled — D-APP-30/31/32)
+**Status:** ACTIVE (28a landed; 28b next; SD-1/2/3 ruled — D-APP-30/31/32)
 **Governing ruling:** `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md` (Option B — full loop-first pivot)
 **Packet:** `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`
 **Active design:** `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (§3.1 primary loop, §3.2 sidebar, §3.3 tertiary screens, §5 build sequence; the D-APP-28 ruling/packet name the §5 "Transitional placement decision" bullet — DESIGN line 111 — as "§5.2", the transitional sidebar-left note)
@@ -41,7 +41,7 @@ The shipped D-APP-23 Option C hybrid this pivot reworks (all paths under `fronte
 
 | Tranche | Purpose | Primary scope | Minimum validation |
 |---|---|---|---|
-| `28a` | Make the sidebar-right loop layout a reusable primitive | Generalize the `loop-grid` sidebar-right structure (shared with `WorkspaceSidebar`/`ChatPanel`) so route surfaces can adopt it without forking `LoopShell`; no route behavior change yet | `npm run typecheck`; `npx vitest run` (491 green, no test edits); `next build` prerenders `/`, `/chat`, `/workbench`, `/pipeline` |
+| `28a` | **LANDED 2026-06-19.** Make the sidebar-right loop layout a reusable primitive | Added `SidebarRightLoopLayout` and rewired `LoopShell` to consume it; no route behavior change, no test edits, `AppShell` untouched | Passed `npm run typecheck`; `npx vitest run` (491 green); `npm run build` prerendered `/`, `/chat`, `/workbench`, `/pipeline`; browser `/chat` collapse check passed |
 | `28b` | Flip the sidebar to the RIGHT app-wide + update geometry tests in the SAME tranche | Re-order `AppShell` grid (CSS `.shell-grid` + JSX children) to sidebar-right; invert `DRAG_DIRECTION`; fix collapsed-label/handle CSS; update/extend layout-geometry tests in the same commit | `npm run typecheck`; `npx vitest run` (geometry tests updated, suite green); `next build` prerenders affected routes |
 | `28c` | Portal `/` becomes a loop-first home with in-place matrix launch | `page.tsx` renders the loop-first shell; `AgentMatrix` Type-0/Type-1 cells boot in-place via `buildDirectChatHref` (no `router.push`-to-route-as-main); OPERATIVE cells gated on a sub-decision (§8) | `npm run typecheck`; `npx vitest run` (matrix/route tests updated, suite green); `next build` prerenders `/` |
 | `28d` | Demote `/workbench` + `/pipeline` to sidebar-reachable tertiary forms (kept, not deleted) | `WorkbenchClient`/`PipelineClient` reachable as tertiary forms from the sidebar; routes remain and still render; nav reflects tertiary status | `npm run typecheck`; `npx vitest run` (suite green); `next build` prerenders `/`, `/workbench`, `/pipeline`, `/chat` |
@@ -52,6 +52,15 @@ Each tranche is independently typecheck- and test-green and leaves all three wor
 ## 5. Tranche Detail
 
 ### 28a — Reusable sidebar-right loop primitive
+
+**Status: LANDED 2026-06-19.** `frontend/src/components/shell/sidebar-right-loop-layout.tsx`
+now owns the reusable sidebar-right grid and collapse/tab state; `LoopShell` passes its
+existing persona picker and Suspense-wrapped `ChatPanel` through unchanged. `AppShell`,
+route behavior, the public `UIEvent` contract, and the permission plane were not touched.
+Validation: `npm run typecheck`; `npx vitest run` (491 tests); `npm run build`
+(`next build` prerendered `/`, `/chat`, `/workbench`, `/pipeline`); browser `/chat`
+geometry/collapse check verified the sidebar remains right-side and collapse changes only
+the sidebar width while the chat panel remains mounted.
 
 - **Scope.** Extract the sidebar-right relayout structure currently hard-coded in `loop-shell.tsx` (:32-78: `loop-grid` + `loop-main` left + `shell-pane--sidebar loop-sidebar` right + collapse toggle) into a primitive that route surfaces can adopt. `LoopShell` and (later) the portal both consume it; `WorkspaceSidebar` and the Suspense-wrapped `ChatPanel` are passed through unchanged.
 - **What changes.** A single sidebar-right layout component/structure plus its `.loop-grid`-family CSS becomes the shared substrate; `LoopShell` is rewired to consume it with identical visible behavior. No route page changes; `AppShell` is untouched in this tranche.
@@ -98,9 +107,9 @@ Each tranche is independently typecheck- and test-green and leaves all three wor
 
 ## 6. Sequencing
 
-`28a → 28b → 28c → 28d → 28e`.
+`28a LANDED → 28b NEXT → 28c → 28d → 28e`.
 
-- `28a` **de-risks the rest**: extracting the sidebar-right primitive first means `28b` (AppShell flip) and `28c` (portal) consume a proven structure rather than each forking layout.
+- `28a` landed the sidebar-right primitive, so `28b` (AppShell flip) and `28c` (portal) can consume a proven structure rather than each forking layout.
 - `28b` must land before `28c`/`28d` so the app is already sidebar-right when route surfaces become loop-first.
 - `28c ∥ 28d` are *logically* parallelizable (portal vs. workbench/pipeline are independent surfaces), but to keep review bounded and the IA coherent they land sequentially `28c → 28d`; either may be split further if a single diff grows too large to review.
 - `28e` is strictly last (records the realized end-state).
