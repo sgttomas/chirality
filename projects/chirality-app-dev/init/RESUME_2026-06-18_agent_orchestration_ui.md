@@ -16,11 +16,11 @@ PRIMARY = live harness-event-stream loop + collapsible multi-view sidebar (Files
 ## Phase 3.1 hardening (DONE — committed `01dbcf778`, pushed)
 Cleared the deferred backlog + an identity-guard race an adversarial review surfaced (DESIGN §5.3): (a) cards hide on turn-end via `PermissionRequests active={isRunning}` + pure `selectPendingPermissionRequests`; (b) each `PermissionRequestRow` carries its own `sessionId` so a pending approval survives navigation; (c) `open()` closes a pre-existing same-session channel. Plus **identity-guarded teardown** — registry `close(sessionId, channel?)`, broker `clearSession(sessionId, verdict, turnToken?)`, and `activeTurns.delete` are scoped to the owning turn's `AbortController`/channel instance, closing a TOCTOU race on the SSE-cancel path.
 
-## Owner rulings on the §6 open decisions (2026-06-19, all RULED — uncommitted)
+## Owner rulings on the §6 open decisions (2026-06-19, all RULED — committed `bd253da64`, pushed)
 Six decision packets prepared + ruled (records + `_REGISTER.md` under `execution/_Coordination/_DECISIONS/`): **D-APP-20** content API → read-only batch, relative-path-within-deliverable (Option B); **D-APP-21** editor → defer, CodeMirror markdown-source later; **D-APP-22** loop history → live-only now, hydrate-on-open with Phase 5; **D-APP-23** portal → hybrid (routes + loop-first entry, sidebar right only for that surface); **D-APP-24** direct chat → restrict picker to Type-0/Type-1, INIT-TASK brief later; **D-APP-25** bridge → **both** manager-lifecycle events + AnthropicManager parity (bounded tranche).
 
-## Phase 4 document content API + viewer (DONE — uncommitted)
-Per D-APP-20 Option B: `readDeliverableContent` + `GET /api/working-root/deliverable/content?projectRoot&deliverablePath&file` (read-only; `file` validated inside the canonical deliverable dir via lexical + post-realpath re-check, typed-404 stat guard) + `DocumentView` sidebar tab reusing `chat-markdown`, body-state via pure `lib/shell/document-view-state.ts`. Hardened against a 7-finding review. Typecheck clean, 452 tests. **Not yet committed.**
+## Phase 4 document content API + viewer (DONE — committed `91c28682a`, pushed)
+Per D-APP-20 Option B: `readDeliverableContent` + `GET /api/working-root/deliverable/content?projectRoot&deliverablePath&file` (read-only; `file` validated inside the canonical deliverable dir via lexical + post-realpath re-check, typed-404 stat guard) + `DocumentView` sidebar tab reusing `chat-markdown`, body-state via pure `lib/shell/document-view-state.ts`. Hardened against a 7-finding review. Typecheck clean, 452 tests.
 
 ## Next — D-APP-25 bridge tranche, then Phase 5
 **D-APP-25 (approved, bounded tranche):** bridge manager-lifecycle events (`turn.*`/`interruption.*`) + bring `AnthropicAgentSdkManager` to `harness:event` parity — one public event type, `process:exit` terminal, redaction unchanged, reuse `harnessEventToUiEvent`. Then **Phase 5** (personas + hybrid portal per D-APP-23/24/22).
@@ -39,4 +39,4 @@ From `projects/chirality-app-dev/frontend`: `npx vitest run` (expect 452 pass) a
 All §6 open calls are now RULED (D-APP-20..25 above). Remaining design latitude lives inside those rulings' "later" follow-ons (editable editor, hydrate-on-open, INIT-TASK brief, full loop-first pivot).
 
 ## Session status (2026-06-19)
-Phase 3.1 committed+pushed (`01dbcf778`). Since then, uncommitted: the six D-APP-20..25 packets+rulings and the Phase 4 implementation (both adversarially reviewed — Phase 4 review: 24 agents, 7 confirmed / 3 rejected, all confirmed fixed). Typecheck clean, 452 tests. Next action: commit the rulings + Phase 4 (owner's go), then the D-APP-25 bridge tranche.
+All work committed + pushed; `main` in sync with `origin/main`, working tree clean. This session landed: Phase 3.1 (`01dbcf778`), D-APP-20..25 rulings (`bd253da64`), Phase 4 document content API + viewer (`91c28682a`) — Phase 4 adversarially reviewed (24 agents, 7 confirmed / 3 rejected, all confirmed fixed). Typecheck clean, 452 tests. **Next tranche: D-APP-25** (manager-lifecycle + AnthropicManager bridge), then Phase 5.
