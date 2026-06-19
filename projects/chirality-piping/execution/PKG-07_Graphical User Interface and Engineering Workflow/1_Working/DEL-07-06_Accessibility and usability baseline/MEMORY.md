@@ -1,5 +1,47 @@
 # DEL-07-06 Memory
 
+## 2026-06-19 - TP-R3UX-PACKAGEKIT-002 C5.7R Inc 7 packaged re-pass kit
+
+WORKING_ITEMS rebuilt the packaged macOS `.app` after C5.7R Inc 0-6 and
+prepared the human TP-MAC-189 re-pass handoff. The bundle path is
+`apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`,
+built from commit `60fb533fe`.
+
+Validation passed: `npm run tauri -- build --bundles app`; 8-second packaged
+executable boot probe with process state `SN`, `stdout_bytes=0`,
+`stderr_bytes=0`, and clean termination. Inc 6/7 closeout evidence also
+includes dist Playwright 1/1 and DEC-025 sweep
+`SWEEP_20260619T144814Z_48083bd29407-dirty.json`.
+
+Evidence is recorded in
+`_run_records/WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-PACKAGEKIT-002.md` and
+`apps/desktop/SMOKE.md` TP-MAC-274.
+
+F-4 and A3 remain open until the human TP-MAC-189 packaged re-pass is recorded.
+No lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-19 - TP-R3UX-GRIDMODE-001 C5.7R Inc 6 layout grid
+
+WORKING_ITEMS added the committed Inc 6 bulk-tabular Grid mode to the Model
+pane. Tree mode remains available; Grid mode exposes editable tables for nodes,
+pipes, supports, materials, sections, components, load cases, and combinations.
+Changed cells queue ordinary structured review intents through the existing
+operation seam; no new backend contract or direct model mutation path was
+introduced.
+
+Evidence is recorded in
+`_run_records/WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-GRIDMODE-001.md` and
+`apps/desktop/SMOKE.md` TP-MAC-273.
+
+Validation passed: focused App Vitest 57/57; full desktop Vitest 400/400;
+desktop production build; dev Playwright 18/18; dist Playwright 1/1. The
+existing Vite large-chunk warning remains.
+
+Boundary preserved: frontend authoring ergonomics only. No lifecycle
+transition, release-readiness claim, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
 ## 2026-06-17 - TP-UNITS-BTAIL-A11YUNITVISIBILITY-001 unit-visibility evidence
 
 - WORKING_ITEMS added explicit unit-visibility evidence to the desktop

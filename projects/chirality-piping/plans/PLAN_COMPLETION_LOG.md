@@ -14,6 +14,102 @@ certification, or code-compliance claim.
 
 ---
 
+## 2026-06-19 - C5.7R packaged re-pass kit Inc 7 (`TP-R3UX-PACKAGEKIT-002`)
+
+Rebuilt the macOS `.app` after C5.7R Inc 0-6 and prepared the human TP-MAC-189
+packaged re-pass handoff. The bundle was produced at
+`apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`
+from commit `60fb533fe`.
+
+Validation: `npm run tauri -- build --bundles app` passed; the packaged
+executable boot probe ran for 8 seconds with process state `SN`,
+`stdout_bytes=0`, `stderr_bytes=0`, and clean termination. The Inc 6/7
+closeout evidence also includes dist Playwright 1/1 and DEC-025 sweep
+`SWEEP_20260619T144814Z_48083bd29407-dirty.json` passing overall.
+
+Evidence: `apps/desktop/SMOKE.md` TP-MAC-274; DEL-07-06 run record
+`WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-PACKAGEKIT-002.md`.
+
+Residuals: the human TP-MAC-189 packaged re-pass is now the next gated item.
+F-4/A3 remain open until that human record passes or records the next bounded
+repair.
+
+Boundary: package/evidence/handoff only. No lifecycle transition,
+release-readiness claim, professional approval, certification, sealing,
+authentication, or code-compliance claim changed.
+
+---
+
+## 2026-06-19 - C5.7R layout grid Inc 6 (`TP-R3UX-GRIDMODE-001`)
+
+Landed the committed bulk-tabular follow-through from the workspace redesign:
+the Model pane now supports Tree and Grid modes, with Grid mode exposing
+spreadsheet-style editable rows for nodes, pipes, supports, materials,
+sections, components, load cases, and combinations.
+
+Changed cells fan out to ordinary structured `EditorOperationIntent`s through
+the existing review/apply seam. Unit-bearing grid edits carry explicit unit
+metadata; relationship cells that are not part of this slice remain read-only.
+
+Evidence: `apps/desktop/SMOKE.md` TP-MAC-273; DEL-07-06 run record
+`WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-GRIDMODE-001.md`.
+
+Validation: focused App Vitest passed 57/57; full desktop Vitest passed
+18/18 files and 400/400 tests; desktop production build passed with the
+existing Vite chunk-size warning; dev Playwright passed 18/18; dist
+Playwright passed 1/1. The DEC-025 evidence sweep passed overall:
+`validation/evidence/sweeps/SWEEP_20260619T144814Z_48083bd29407-dirty.json`.
+
+Residuals: Inc 7 packaged build/pass-prep remains before the next human
+TP-MAC-189 packaged re-pass; F-4/A3 remain open until the human pass is
+recorded.
+
+Boundary: frontend authoring ergonomics and tests only. No solver, schema,
+evaluator, persistence, backend API, unit storage, protected-content,
+private-data, network/telemetry, lifecycle, release-readiness, professional
+approval, certification, sealing, authentication, or code-compliance claim
+changed.
+
+---
+
+## 2026-06-19 - C5.7R workspace redesign Inc 0-5 (`TP-R3UX-WORKSPACEREDESIGN-001`)
+
+Landed the minimum workspace redesign required before the first C5.7 packaged
+human-pass reattempt: one workflow ribbon replaces the prior journey rail,
+workspace tabs, and guided journey stack; storage/boundary/evidence detail is
+collapsed into an Audit drawer; diagnostics and missing-input blockers are
+collapsed into an Issues drawer; the viewport is promoted to the central hero
+canvas; and the inspector now exposes display-only dual-unit context,
+provenance, and required-field flags.
+
+The app shell now renders a slim title bar, six-stop ribbon, tree/canvas/
+inspector workspace, command/selection bar, and global status bar. The
+Operation Apply panel no longer defaults to raw route/unit/session strings;
+it uses compact chips and human-readable receipts while retaining governed
+operation packet assertions.
+
+Evidence: `apps/desktop/SMOKE.md` TP-MAC-272; DEL-07-06 run record
+`WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-WORKSPACEREDESIGN-001.md`.
+
+Validation: `npm test --workspace apps/desktop` passed 18/18 test files and
+399/399 tests; `npm run test:e2e --workspace apps/desktop` passed 18/18;
+`npm run test:e2e:dist --workspace apps/desktop` passed 1/1; `npm run build
+--workspace apps/desktop` passed with the existing Vite chunk-size warning.
+The DEC-025 evidence sweep passed overall:
+`validation/evidence/sweeps/SWEEP_20260619T072613Z_5dbd406023ba-dirty.json`.
+
+Residuals: Inc 6 bulk tabular grid remains a committed C5.7R follow-through
+item; the C5.7 packaged human pass must still be rebuilt and re-run before
+F-4/A3 can close.
+
+Boundary: frontend shell/presentation/test coverage only. No solver, schema,
+evaluator, persistence, backend API, unit storage, protected-content,
+private-data, network/telemetry, lifecycle, release-readiness, professional
+approval, certification, sealing, authentication, or code-compliance claim
+changed.
+
+---
+
 ## 2026-06-18 - B-tail export-review non-unit boundary classification (`TP-UNITS-BTAIL-EXPORTREVNONUNITBOUNDARY-001`)
 
 Landed one bounded Phase B-tail Export Safety Review matrix cleanup while C5.7
