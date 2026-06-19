@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, type KeyboardEvent } from 'react';
+import { DocumentView } from './document-view';
 import { FileTreePanel } from './file-tree-panel';
 import { OperatorToolkitPanel } from './operator-toolkit-panel';
 import { SubagentStreamView } from './subagent-stream-view';
@@ -143,12 +144,7 @@ export function WorkspaceSidebar({ activeTab, onTabChange }: WorkspaceSidebarPro
         {activeTab === 'files' ? <FileTreePanel /> : null}
         {activeTab === 'tools' ? <ToolStreamView /> : null}
         {activeTab === 'subagents' ? <SubagentStreamView /> : null}
-        {activeTab === 'document' ? (
-          <SidebarPlaceholder
-            title="Document"
-            note="Document preview lands with the content API (Phase 4)."
-          />
-        ) : null}
+        {activeTab === 'document' ? <DocumentView /> : null}
         {activeTab === 'workflow' ? (
           <SidebarPlaceholder
             title="Workflow"

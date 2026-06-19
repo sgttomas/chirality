@@ -185,6 +185,120 @@ export async function readDeliverableStatus(
   }
 }
 
+export interface DeliverableContentResult {
+  projectRoot: string;
+  deliverablePath: string;
+  /** The relative path within the deliverable that was actually served. */
+  file: string;
+  filePath: string;
+  content: string;
+}
+
+/** Default document served when no `file` is requested; always present per the lifecycle contract. */
+export const DEFAULT_DELIVERABLE_CONTENT_FILE = '_STATUS.md';
+
+/**
+ * Read a single document file from within a deliverable directory (D-APP-20
+ * Option B: read-only, keyed by `deliverablePath` + a validated relative `file`).
+ * The deliverable directory is normalized and canonicalized first; the requested
+ * `file` must be relative and must resolve — lexically AND after symlink
+ * resolution — inside that canonical directory, so it can never escape the
+ * deliverable (or the project root, which already contains it).
+ */
+export async function readDeliverableContent(input: {
+  projectRoot: string;
+  deliverablePath: string;
+  file?: string;
+}): Promise<DeliverableContentResult> {
+  const projectRoot = await normalizeProjectRoot(input.projectRoot);
+  const canonicalProjectRoot = await normalizeCanonicalProjectRoot(projectRoot);
+  const deliverablePath = await normalizeDeliverablePath(
+    projectRoot,
+    canonicalProjectRoot,
+    input.deliverablePath
+  );
+
+  const requestedFile = (input.file ?? '').trim() || DEFAULT_DELIVERABLE_CONTENT_FILE;
+  if (path.isAbsolute(requestedFile)) {
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE',
+      400,
+      'file must be a relative path inside the deliverable',
+      { file: requestedFile }
+    );
+  }
+
+  const candidatePath = path.resolve(deliverablePath, requestedFile);
+  const lexicalRelative = path.relative(deliverablePath, candidatePath);
+  if (lexicalRelative.startsWith('..') || path.isAbsolute(lexicalRelative)) {
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE',
+      400,
+      'file must resolve inside the deliverable directory',
+      { file: requestedFile }
+    );
+  }
+
+  let canonicalFilePath: string;
+  try {
+    canonicalFilePath = await realpath(candidatePath);
+  } catch {
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_CONTENT_NOT_FOUND',
+      404,
+      'file is not accessible in the deliverable',
+      { file: requestedFile }
+    );
+  }
+
+  const canonicalRelative = path.relative(deliverablePath, canonicalFilePath);
+  if (canonicalRelative.startsWith('..') || path.isAbsolute(canonicalRelative)) {
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE',
+      400,
+      'file must resolve inside the deliverable directory',
+      { file: requestedFile }
+    );
+  }
+
+  let fileStat;
+  try {
+    fileStat = await stat(canonicalFilePath);
+  } catch {
+    // A race (e.g. the file is unlinked between realpath and stat) must surface
+    // as the same typed 404 as the other not-found paths, not an opaque 500 that
+    // leaks the raw error message — mirrors the realpath catch above.
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_CONTENT_NOT_FOUND',
+      404,
+      'file is not accessible in the deliverable',
+      { file: requestedFile }
+    );
+  }
+  if (!fileStat.isFile()) {
+    throw new WorkspaceOperationError(
+      'DELIVERABLE_CONTENT_NOT_FOUND',
+      404,
+      'file must point to a regular file in the deliverable',
+      { file: requestedFile }
+    );
+  }
+
+  const content = await readRequiredFile(
+    canonicalFilePath,
+    'DELIVERABLE_CONTENT_NOT_FOUND',
+    'file is not accessible in the deliverable'
+  );
+
+  return {
+    projectRoot,
+    deliverablePath,
+    file: canonicalRelative,
+    filePath: canonicalFilePath,
+    content
+  };
+}
+
 export interface DeliverableStatusTransitionInput extends LifecycleTransitionOptions {
   projectRoot: string;
   deliverablePath: string;

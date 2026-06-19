@@ -9,6 +9,7 @@ type RouteModules = {
   statusRoute: typeof import('../../../app/api/working-root/deliverable/status/route');
   transitionRoute: typeof import('../../../app/api/working-root/deliverable/status/transition/route');
   dependenciesRoute: typeof import('../../../app/api/working-root/deliverable/dependencies/route');
+  contentRoute: typeof import('../../../app/api/working-root/deliverable/content/route');
 };
 
 type FixtureContext = {
@@ -71,12 +72,25 @@ function makeDependencyRow(
 
 async function importRouteModules(): Promise<RouteModules> {
   vi.resetModules();
-  const [statusRoute, transitionRoute, dependenciesRoute] = await Promise.all([
+  const [statusRoute, transitionRoute, dependenciesRoute, contentRoute] = await Promise.all([
     import('../../../app/api/working-root/deliverable/status/route'),
     import('../../../app/api/working-root/deliverable/status/transition/route'),
-    import('../../../app/api/working-root/deliverable/dependencies/route')
+    import('../../../app/api/working-root/deliverable/dependencies/route'),
+    import('../../../app/api/working-root/deliverable/content/route')
   ]);
-  return { statusRoute, transitionRoute, dependenciesRoute };
+  return { statusRoute, transitionRoute, dependenciesRoute, contentRoute };
+}
+
+function contentRequest(
+  projectRoot: string,
+  deliverablePath: string,
+  file?: string
+): Request {
+  const params = new URLSearchParams({ projectRoot, deliverablePath });
+  if (file !== undefined) {
+    params.set('file', file);
+  }
+  return new Request(`http://localhost/api/working-root/deliverable/content?${params.toString()}`);
 }
 
 beforeEach(async () => {
@@ -431,5 +445,151 @@ describe('working-root deliverable contract routes', () => {
 
     const csv = await readFile(fixture.dependenciesFilePath, 'utf8');
     expect(csv).toContain('IN_PROGRESS');
+  });
+
+  it('serves _STATUS.md content by default when no file is requested', async () => {
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath)
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { content: string; file: string };
+    expect(body.file).toBe('_STATUS.md');
+    expect(body.content).toContain('**Current State:** INITIALIZED');
+  });
+
+  it('serves an explicit relative file within the deliverable', async () => {
+    await writeFile(
+      path.join(fixture.deliverablePath, 'Specification.md'),
+      '# Spec\n\nThe body of the deliverable.\n',
+      'utf8'
+    );
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'Specification.md')
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { content: string; file: string };
+    expect(body.file).toBe('Specification.md');
+    expect(body.content).toContain('The body of the deliverable.');
+  });
+
+  it('rejects a file that traverses out of the deliverable directory', async () => {
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, '../_STATUS.md')
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
+    });
+  });
+
+  it('rejects an absolute file path', async () => {
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, '/etc/hosts')
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
+    });
+  });
+
+  it('returns 404 for a missing file in the deliverable', async () => {
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'Datasheet.md')
+    );
+
+    expect(response.status).toBe(404);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
+    });
+  });
+
+  it('rejects a symlinked file that resolves outside the deliverable', async () => {
+    const externalSecret = path.join(fixture.tmpRoot, 'outside-secret.md');
+    await writeFile(externalSecret, '# Secret\n\nshould never be served.\n', 'utf8');
+    const escapingLink = path.join(fixture.deliverablePath, 'escape.md');
+    await symlink(externalSecret, escapingLink);
+
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'escape.md')
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
+    });
+  });
+
+  it('rejects a file reached through a symlinked directory component that escapes', async () => {
+    // The escape is via an intermediate directory symlink, not a leaf-file symlink:
+    // the post-realpath containment re-check must catch mid-path symlink resolution.
+    const externalDir = path.join(fixture.tmpRoot, 'outside-dir');
+    await mkdir(externalDir, { recursive: true });
+    await writeFile(path.join(externalDir, 'Spec.md'), '# External\n\nleaked.\n', 'utf8');
+    await symlink(externalDir, path.join(fixture.deliverablePath, 'linkdir'));
+
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'linkdir/Spec.md')
+    );
+
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
+    });
+  });
+
+  it('serves a valid file nested in a subdirectory and reports its relative path', async () => {
+    await mkdir(path.join(fixture.deliverablePath, 'attachments'), { recursive: true });
+    await writeFile(
+      path.join(fixture.deliverablePath, 'attachments', 'diagram.md'),
+      '# Diagram\n\nnested body.\n',
+      'utf8'
+    );
+
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'attachments/diagram.md')
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { content: string; file: string };
+    expect(body.file).toBe(path.join('attachments', 'diagram.md'));
+    expect(body.content).toContain('nested body.');
+  });
+
+  it('returns 404 when the requested file is the deliverable directory itself', async () => {
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, '.')
+    );
+
+    expect(response.status).toBe(404);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
+    });
+  });
+
+  it('returns 404 when the requested file is a subdirectory, not a regular file', async () => {
+    await mkdir(path.join(fixture.deliverablePath, 'subdir'), { recursive: true });
+
+    const routes = await importRouteModules();
+    const response = await routes.contentRoute.GET(
+      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'subdir')
+    );
+
+    expect(response.status).toBe(404);
+    expect(await response.json()).toMatchObject({
+      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
+    });
   });
 });
