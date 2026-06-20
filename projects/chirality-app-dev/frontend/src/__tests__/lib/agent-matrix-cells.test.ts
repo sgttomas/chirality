@@ -27,7 +27,7 @@ function loopAgentParam(target: string): string | null {
 }
 
 describe('agent matrix cell wiring', () => {
-  it('routes NORMATIVE/EVALUATIVE cells to the loop-first portal and OPERATIVE cells to /pipeline', () => {
+  it('encodes NORMATIVE/EVALUATIVE persona intent and OPERATIVE Pipeline intent', () => {
     for (const cell of ALL_CELLS) {
       if (cell.row === 'OPERATIVE') {
         expect(cell.target.startsWith('/pipeline')).toBe(true);

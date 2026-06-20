@@ -1,13 +1,13 @@
 'use client';
 
 import { Suspense } from 'react';
-import { AgentMatrix } from '../portal/agent-matrix';
 import { buildPortalPersonaHref } from '../../lib/shell/loop-first';
 import { useHarnessStreaming } from '../workspace/harness-events-provider';
 import { ChatPanel } from './chat-panel';
 import { PersonaPicker } from './persona-picker';
 import { ShellFrame } from './shell-frame';
 import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
+import { createTertiarySidebarTabs } from './tertiary-sidebar-tabs';
 
 /**
  * Loop-first portal (`/`, D-APP-28/30). The live loop is the primary surface;
@@ -17,6 +17,7 @@ import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
  */
 export function PortalLoopShell(): JSX.Element {
   const streaming = useHarnessStreaming();
+  const tertiaryTabs = createTertiarySidebarTabs();
 
   return (
     <ShellFrame
@@ -24,7 +25,7 @@ export function PortalLoopShell(): JSX.Element {
       title="Live Loop Portal"
       subtitle="Run the live harness loop first; use the right sidebar to reach matrix and workspace surfaces."
     >
-      <SidebarRightLoopLayout defaultSidebarTab="portal" portalTab={<AgentMatrix />}>
+      <SidebarRightLoopLayout defaultSidebarTab="portal" {...tertiaryTabs}>
         <div className="loop-persona-bar">
           <PersonaPicker buildHref={buildPortalPersonaHref} disabled={streaming} />
           {streaming ? (

@@ -6,6 +6,7 @@ import { ChatPanel } from './chat-panel';
 import { PersonaPicker } from './persona-picker';
 import { ShellFrame } from './shell-frame';
 import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
+import { createTertiarySidebarTabs } from './tertiary-sidebar-tabs';
 
 /**
  * The loop-first / direct-chat surface (`/chat`, D-APP-23 hybrid). The live loop
@@ -15,13 +16,15 @@ import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
  * (Type-0/Type-1, D-APP-24) drives the loop via `?agent=`.
  */
 export function LoopShell(): JSX.Element {
+  const tertiaryTabs = createTertiarySidebarTabs();
+
   return (
     <ShellFrame
       section={CHAT_SECTION}
       title="Direct Chat"
       subtitle="Run a live session with a Type-0/Type-1 persona; the multi-view sidebar is on the right."
     >
-      <SidebarRightLoopLayout defaultSidebarTab="tools">
+      <SidebarRightLoopLayout defaultSidebarTab="tools" {...tertiaryTabs}>
         <div className="loop-persona-bar">
           <PersonaPicker />
         </div>

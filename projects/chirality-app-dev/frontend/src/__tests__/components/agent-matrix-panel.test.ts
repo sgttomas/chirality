@@ -22,6 +22,7 @@ describe('AgentMatrixPanel rendering', () => {
   it('describes loop-first launch behavior for matrix cells', () => {
     const html = renderToStaticMarkup(createElement(AgentMatrixPanel, baseProps));
     expect(html).toContain('Type-0/Type-1 cells focus the mounted live loop');
+    expect(html).toContain('governed Pipeline form in the sidebar');
     expect(html).toContain('Focus live loop');
     expect(html).toContain('>Loop<');
     expect(html).toContain('>Pipeline<');

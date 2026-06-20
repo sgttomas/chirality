@@ -1807,6 +1807,28 @@ button:disabled {
   width: 100%;
 }
 
+.workspace-sidebar-body > .pipeline-layout,
+.workspace-sidebar-body > .workbench-layout {
+  width: 100%;
+  min-width: 0;
+  overflow: auto;
+  padding: 0.65rem;
+}
+
+.workspace-sidebar-body .pipeline-grid,
+.workspace-sidebar-body .pipeline-contract-metrics,
+.workspace-sidebar-body .pipeline-transition-grid,
+.workspace-sidebar-body .workbench-card dl {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.workspace-sidebar-body .pipeline-card,
+.workspace-sidebar-body .pipeline-summary,
+.workspace-sidebar-body .pipeline-contracts,
+.workspace-sidebar-body .workbench-card {
+  border-radius: 8px;
+}
+
 /* Bridge-fed Tools / Subagents stream views */
 .panel--stream .panel-header {
   display: flex;

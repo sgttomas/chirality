@@ -6,7 +6,9 @@ import { WorkspaceSidebar, type SidebarTabId } from './workspace-sidebar';
 type SidebarRightLoopLayoutProps = {
   children: ReactNode;
   defaultSidebarTab?: SidebarTabId;
+  pipelineTab?: ReactNode;
   portalTab?: ReactNode;
+  workbenchTab?: ReactNode;
 };
 
 /**
@@ -17,7 +19,9 @@ type SidebarRightLoopLayoutProps = {
 export function SidebarRightLoopLayout({
   children,
   defaultSidebarTab = 'files',
-  portalTab
+  pipelineTab,
+  portalTab,
+  workbenchTab
 }: SidebarRightLoopLayoutProps): JSX.Element {
   const [sidebarTab, setSidebarTab] = useState<SidebarTabId>(defaultSidebarTab);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -52,7 +56,9 @@ export function SidebarRightLoopLayout({
           <WorkspaceSidebar
             activeTab={sidebarTab}
             onTabChange={setSidebarTab}
+            pipelineTab={pipelineTab}
             portalTab={portalTab}
+            workbenchTab={workbenchTab}
           />
         )}
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   useDeliverables,
   type DeliverablesScan
@@ -13,7 +13,9 @@ import {
   matrixCellLaunchKind,
   type MatrixCell
 } from '../../lib/portal/agent-matrix-cells';
+import { mergeMatrixTargetIntoCurrentUrl } from '../../lib/portal/agent-matrix-launch';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
+import { useWorkspaceSidebarActions } from '../shell/workspace-sidebar';
 import { useHarnessStreaming } from '../workspace/harness-events-provider';
 
 function focusLiveLoopInput(): void {
@@ -66,7 +68,7 @@ export function AgentMatrixPanel({
           <h3>Agent Matrix</h3>
           <p>
             Type-0/Type-1 cells focus the mounted live loop. OPERATIVE cells keep the
-            governed PIPELINE route until the tertiary form lands.
+            governed Pipeline form in the sidebar.
           </p>
         </div>
         <button
@@ -163,6 +165,9 @@ export function AgentMatrixPanel({
 
 export function AgentMatrix(): JSX.Element {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const sidebarActions = useWorkspaceSidebarActions();
   const { loading, error, scan } = useDeliverables();
   const streaming = useHarnessStreaming();
   const [launchNotice, setLaunchNotice] = useState<string | null>(null);
@@ -201,9 +206,20 @@ export function AgentMatrix(): JSX.Element {
     if (matrixCellLaunchKind(cell) === 'loop-persona') {
       const rawAgent = agentParamFromTarget(cell.target);
       const persona = resolvePersona(rawAgent);
-      router.replace(cell.target, { scroll: false });
+      router.replace(mergeMatrixTargetIntoCurrentUrl(cell.target, pathname, searchParams), {
+        scroll: false
+      });
       setLaunchNotice(`${persona} selected in the live loop.`);
       focusLiveLoopInput();
+      return;
+    }
+
+    if (cell.target.startsWith('/pipeline') && sidebarActions) {
+      router.replace(mergeMatrixTargetIntoCurrentUrl(cell.target, pathname, searchParams), {
+        scroll: false
+      });
+      sidebarActions.openTab('pipeline');
+      setLaunchNotice('Pipeline opened in the sidebar.');
       return;
     }
 
@@ -221,7 +237,17 @@ export function AgentMatrix(): JSX.Element {
       taskScopeMode: 'DELIVERABLES',
       scopeKey: deliverableKey
     });
-    navigationScheduler.schedule(`/pipeline?${params.toString()}`);
+    const pipelineTarget = `/pipeline?${params.toString()}`;
+    if (sidebarActions) {
+      router.replace(mergeMatrixTargetIntoCurrentUrl(pipelineTarget, pathname, searchParams), {
+        scroll: false
+      });
+      sidebarActions.openTab('pipeline');
+      setLaunchNotice('Pipeline TASK scope opened in the sidebar.');
+      return;
+    }
+
+    navigationScheduler.schedule(pipelineTarget);
   }
 
   return (

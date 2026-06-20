@@ -6,6 +6,50 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Loop-first pivot tertiary route demotion landed (`28d`)
+
+Demoted `/workbench` and `/pipeline` into sidebar-reachable tertiary forms while
+keeping both routes as thin deep-link entry points. `WorkbenchSurface` and
+`PipelineSurface` now render in the right sidebar beside the mounted live loop;
+Portal, Workbench, and Pipeline are available as `WorkspaceSidebar` tabs when a
+loop shell supplies those surfaces. Top navigation now exposes only `PORTAL` as
+primary navigation.
+
+Implemented the D-APP-31 in-place Pipeline behavior. OPERATIVE matrix cells and
+deliverable rows open the Pipeline tab without routing away from the mounted
+loop, and a pure launch helper folds Pipeline/persona intent into the current
+URL query while clearing stale Pipeline scope params. The public `UIEvent`
+contract and permission plane were untouched, and no route or tertiary screen
+was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- Focused tests passed: `agent-matrix-panel`, `workspace-sidebar`,
+  `agent-matrix-cells`, `agent-matrix-launch`, and `loop-first` (13 tests).
+- `npm test` passed: 71 files, 499 tests.
+- Browser checks against `http://localhost:3000/` passed: Portal/Workbench/
+  Pipeline tabs were sidebar-reachable, live chat remained mounted while tabs
+  switched, OPERATIVE AUDIT opened Pipeline in-place at `/?category=AUDIT`,
+  and a deliverable row opened `TASK` Pipeline intent in-place with
+  `taskScopeMode=DELIVERABLES` and the selected `scopeKey`.
+- Direct route browser checks passed for `/workbench?agent=CHANGE` and
+  `/pipeline?category=AUDIT`: both kept the live loop primary, opened the
+  correct sidebar tab, and exposed only `PORTAL` in primary navigation.
+- Mobile browser check at 390px passed: Portal/Workbench/Pipeline tabs remained
+  reachable and no horizontal overflow was detected.
+- `npm run harness:validate:premerge` passed against an isolated short-lived
+  dev server: Section 8 8/8 and Section 9 report-only 13/13.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- `npm run desktop:pack` passed, including instruction-root integrity.
+- `git diff --check` passed.
+
+Residual handoff: `28e` is next. It records the realized end-state in DESIGN
+§5, closes the transitional sidebar-left note, annotates D-APP-28 in the
+decision register, and performs final coordination closeout. D-APP-18 remains
+separately awaiting ruling and still blocks default-provider cutover only.
+
 ## 2026-06-19 - Loop-first pivot portal home and matrix launch landed (`28c`)
 
 Converted `/` into a loop-first portal home. `PortalLoopShell` renders the live

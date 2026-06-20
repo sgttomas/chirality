@@ -13,13 +13,10 @@ type NavigationItem = {
   label: string;
 };
 
-// Route surfaces keep their top-nav tabs; the loop-first `/chat` surface is
-// reached from the portal "start session" entry (D-APP-23), not a nav tab, so
-// it is intentionally absent here.
+// The loop-first pivot keeps route entry points for deep links, but Workbench
+// and Pipeline are tertiary sidebar tabs rather than primary top-nav screens.
 const NAVIGATION_ITEMS: NavigationItem[] = [
-  { href: '/', label: 'PORTAL' },
-  { href: '/pipeline', label: 'PIPELINE' },
-  { href: '/workbench', label: 'WORKBENCH' }
+  { href: '/', label: 'PORTAL' }
 ];
 
 type ShellFrameProps = {

@@ -3,13 +3,14 @@
  * is importable in the node-env test runner without pulling in the client
  * component. The matrix convention (rendered in the component header):
  *
- *   NORMATIVE / EVALUATIVE cells  → `/?agent=…`             (mounted loop persona swap)
- *   OPERATIVE cells (marked `*`)  → `/pipeline?category=…`  (Type-2 task work)
+ *   NORMATIVE / EVALUATIVE cells  → `/?agent=…`             (mounted loop persona intent)
+ *   OPERATIVE cells (marked `*`)  → `/pipeline?category=…`  (Type-2 task intent)
  *
  * A mechanical guard (`agent-matrix-cells.test.ts`) asserts every
  * loop-persona target resolves (through `resolvePersona`) to a roster
  * entry whose type is 0 or 1, so a Type-2 task agent can never again be wired to
- * boot as a top-level loop persona session.
+ * boot as a top-level loop persona session. The client component folds these
+ * targets into the currently mounted loop shell route.
  */
 
 export type MatrixCell = {
