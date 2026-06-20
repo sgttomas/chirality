@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Deliverables admitted to inspection (`INSP-01`)
+
+Recorded the owner-blessed `approvalSha`
+`8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec` for the D-APP-19 Option D inspection-entry transition
+(`plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`) and moved all 53 deliverables from
+`IN_PROGRESS` to `CHECKING`. This is admission to inspection only: 0 deliverables were issued, and
+`CHECKING -> ISSUED` remains a future human gate.
+
+Transition evidence:
+
+- `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`
+- `plans/artifacts/insp01_status_transition_log_2026-06-20.json`
+
+Result: 53/53 `_STATUS.md` files now read `Current State: CHECKING`; each records
+`Checking Approval SHA: 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `Authorization Basis`, and
+`Directive`. The plan-preferred HTTP route was unavailable because `frontend/node_modules/` is absent
+in this checkout, so the transition used a local Node script mirroring the lifecycle semantics
+delegated by the route. No source/runtime files changed; no provider, release, domain-engine,
+REF-006, AMD-01, or PKG-10 doc-only decision was made.
+
+Validation: post-transition status count check (`53 CHECKING`, `0 IN_PROGRESS`, `0 ISSUED`, 53 SHA
+fields, 53 authorization-basis fields, 53 directive fields), `git diff --check`, path/link checks,
+and stale-reference searches. Frontend tests/build were skipped because this tranche changed only
+deliverable `_STATUS.md` files and governance/evidence artifacts, and `frontend/node_modules/` is not
+installed.
+
 ## 2026-06-20 - Deliverable-inspection phase opened (INSP-00 / INSP-00b)
 
 Ruled D-APP-19 **Option D (custom)**: open a deliverable-INSPECTION phase (issuance deferred) per

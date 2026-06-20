@@ -17,8 +17,12 @@ Active development queue:
   INSP-05 -> INSP-FINAL. `INSP-01a` executed 2026-06-20, found a status-history preservation
   blocker (`plans/artifacts/insp01a_status_preflight_2026-06-20.md`), and reran clean under the
   D-APP-33 semantic-history acceptance ruling
-  (`plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`). `INSP-01` is blocked until the owner
-  confirms the blessed approvalSha.
+  (`plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`). `INSP-01` landed 2026-06-20 with
+  owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; all 53 deliverables are now
+  `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`. Evidence:
+  `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md` and
+  `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`. Next selected tranche pair:
+  `INSP-02` control-plane truth-fix and `INSP-03` inspection sweep.
 
 Completed / superseded queues (history, non-governing):
 

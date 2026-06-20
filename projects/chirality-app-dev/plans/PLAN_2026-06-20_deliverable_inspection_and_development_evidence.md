@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling. `INSP-01` is blocked pending the owner-blessed `approvalSha`.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. Next tranche pair: `INSP-02` control-plane truth-fix and `INSP-03` inspection sweep.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -11,13 +11,14 @@
 
 ## 1. Purpose
 
-The runtime/orchestration arc is built and at rest, but the project's **53 deliverables are all
-`IN_PROGRESS`, 0 `CHECKING`, 0 `ISSUED`** and only **2** stale `Evidence_*.md` files exist. The
-owner does not want to issue deliverables yet — there is more development work to do. This program
-is **diagnostic**: move every deliverable into `CHECKING` (under review), **inspect each at
-issuance-gate rigor to form new evidence on how to proceed developing the application**, and use the
-exercise to **evaluate whether the per-deliverable human-gate issuance process is the one to keep**.
-Issuance (`CHECKING -> ISSUED`) is deferred.
+The runtime/orchestration arc is built and at rest. At program start, the project's **53
+deliverables were all `IN_PROGRESS`, 0 `CHECKING`, 0 `ISSUED`** and only **2** stale
+`Evidence_*.md` files existed. `INSP-01` has now moved all 53 deliverables into `CHECKING`
+(under review), with 0 `ISSUED`. The owner does not want to issue deliverables yet — there is more
+development work to do. This program is **diagnostic**: inspect each deliverable at issuance-gate
+rigor to **form new evidence on how to proceed developing the application**, and use the exercise to
+**evaluate whether the per-deliverable human-gate issuance process is the one to keep**. Issuance
+(`CHECKING -> ISSUED`) is deferred.
 
 The output is: 53 per-deliverable Assessments (true state vs spec + a forward development
 recommendation), an evaluation of the gate process, and a synthesized, dependency-ordered
@@ -25,8 +26,8 @@ development roadmap.
 
 ## 2. Substrate (verified live, 2026-06-20)
 
-- **11 packages, 53 deliverables under `execution/PKG-*/1_Working/DEL-XX-YY/`**; every `_STATUS.md`
-  reads `Current State: IN_PROGRESS`; 0 `CHECKING`, 0 `ISSUED`.
+- **11 packages, 53 deliverables under `execution/PKG-*/1_Working/DEL-XX-YY/`**; after `INSP-01`,
+  every `_STATUS.md` reads `Current State: CHECKING`; 0 `IN_PROGRESS`, 0 `ISSUED`.
 - **Lifecycle** (`docs/SPEC.md` §4.2): `OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS ->
   CHECKING -> ISSUED`. `CHECKING` and `ISSUED` are non-delegable human gates (`CONTRACT` K-GATE-1 /
   K-AUTH-1 / K-AUTH-2).
@@ -86,7 +87,7 @@ development roadmap.
 | `INSP-00` Open phase **(DONE 2026-06-20)** | Record D-APP-19 Option D ruling; author this plan; supersede prior plans. | Governance only. | Ruling recorded; plan exists; `git diff --check`. |
 | `INSP-00b` Repoint coordination **(DONE 2026-06-20)** | Make this the single active queue; orient the dev loop. | `_COORDINATION` / `_LATEST` / `NEXT_INSTANCE_PROMPT` / `_REGISTER`. | All surfaces name this plan; no surface asserts loop-first active. |
 | `INSP-01a` Normalize preflight | **RERUN 2026-06-20 - PASSED under D-APP-33 acceptance basis.** Dry-run the 53 `_STATUS.md` rewrites in memory; prove zero unaccepted prose loss. | Read-only preflight evidence at `plans/artifacts/insp01a_status_preflight_2026-06-20.md` and rerun evidence at `plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`; no deliverable status files changed. | Passed after D-APP-33 accepted normalization loss for the 52 semantic/provisional history bullets; zero unaccepted drops. |
-| `INSP-01` Move 53 -> CHECKING | Apply `IN_PROGRESS -> CHECKING` to all 53 with the owner-blessed SHA. | Lifecycle transitions via the HTTP API. | **BLOCKED** pending owner-blessed `approvalSha`; then `53 CHECKING` / 0 `IN_PROGRESS`; 53 `**Checking Approval SHA:**`; one `_STATUS.md` diffed clean. |
+| `INSP-01` Move 53 -> CHECKING **(DONE 2026-06-20)** | Applied `IN_PROGRESS -> CHECKING` to all 53 with owner-blessed SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. | 53 deliverable `_STATUS.md` files; evidence at `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`, `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`, and `plans/artifacts/insp01_status_transition_log_2026-06-20.json`. | `53 CHECKING` / 0 `IN_PROGRESS` / 0 `ISSUED`; 53 `**Checking Approval SHA:**`; no transition failures. HTTP route unavailable because `frontend/node_modules/` is absent, so the transition used mirrored lifecycle semantics. |
 | `INSP-02` Control-plane truth-fix | Repoint PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`. | `analyze_dep_closure.py execution` -> SCC 0; control doc acyclic. |
 | `INSP-03` Inspection sweep | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. | 53/53 Assessments; CRITIC pass; cited `vitest run <file>` green. |
 | `INSP-04` Gate-process evaluation | Recommend keep/modify/replace the per-deliverable approvalSha gate. | Memo + any new packets. | Explicit recommendation; packets registered AWAITING. |
@@ -123,6 +124,16 @@ as **application, not approval**. Enumerate with
 `find execution/PKG-* -maxdepth 2 -type d -path '*1_Working/DEL-*'` (expect 53). Partial-tolerant,
 re-runnable (re-hitting a CHECKING deliverable returns a typed not-allowed error). Do **not**
 build/package/premerge while the dev server is up.
+
+**2026-06-20 result:** landed. Owner approved SHA
+`8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; record:
+`plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`. The transition moved all 53 deliverables
+from `IN_PROGRESS` to `CHECKING`, recorded `Checking Approval SHA` in all 53, and left 0
+`IN_PROGRESS` / 0 `ISSUED`. Evidence:
+`plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`; machine-readable log:
+`plans/artifacts/insp01_status_transition_log_2026-06-20.json`. The HTTP route could not be used
+because `frontend/node_modules/` is absent in this checkout; the transition used a local Node script
+mirroring the lifecycle operation delegated by the route.
 
 ### INSP-02 — Control-plane truth-fix
 Repoint `execution/PKG-00…/1_Working/DAG_CLOSURE_CONTROL.md` (and `execution/_Reconciliation/_LATEST.md`
@@ -177,7 +188,7 @@ convention:
 ## 9. Sequencing
 
 `INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
-`INSP-01` -> (`INSP-02` ∥ `INSP-03`) -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-02 and
+`INSP-01` (done) -> (`INSP-02` ∥ `INSP-03`) -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-02 and
 INSP-03 overlap (the control-plane truth-fix is independent of the per-deliverable sweep). INSP-04
 and INSP-05 consume the completed sweep.
 
@@ -195,8 +206,11 @@ and INSP-05 consume the completed sweep.
 
 ## 11. Required Human Rulings
 
-- **D-APP-19** — RULED (Option D custom; this plan). Owner confirms the blessed `approvalSha` before INSP-01.
-- **D-APP-33** — RULED (custom semantic/provisional-history normalization acceptance). `INSP-01a` reran clean under this acceptance basis; `INSP-01` is still blocked pending the owner-blessed `approvalSha`.
+- **D-APP-19** — RULED (Option D custom; this plan). Owner confirmed blessed `approvalSha`
+  `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec` for INSP-01 on 2026-06-20; record:
+  `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`.
+- **D-APP-33** — RULED (custom semantic/provisional-history normalization acceptance). `INSP-01a`
+  reran clean under this acceptance basis before `INSP-01`.
 - **REF-006** (PRD-hash), **AMD-01** (UI render-test bar), **PKG-10 doc-only basis** — separate later rulings, informed by the inspection; not pre-decided here.
 - Any issuance (`CHECKING -> ISSUED`) — a future, separate, per-deliverable human gate; out of scope for this plan.
 - New forks surfaced by INSP-03/04/05 — raised as PROPOSAL D-APP packets.
@@ -235,8 +249,9 @@ PKG-00 control-doc grep), plus the transposed RESEARCHER fan-out evidence captur
 
 `INSP-00`/`INSP-00b` updated `_COORDINATION.md`, `_LATEST.md`, `NEXT_INSTANCE_PROMPT.md`, and the
 register to make this the active queue; prior plans are marked superseded-as-active with pointers
-here. D-APP-33 cleared the `INSP-01a` semantic-history blocker, and the rerun passed under that
-acceptance basis. Landed tranche narrative moves to `plans/PLAN_COMPLETION_LOG.md`. Work stops
-whenever the next step requires a human ruling (the blessed SHA, REF-006, AMD-01, PKG-10 basis, any
-issuance gate, or a new fork). Issuance is reconsidered only after the inspection and the
-gate-process evaluation conclude.
+here. D-APP-33 cleared the `INSP-01a` semantic-history blocker, the rerun passed under that
+acceptance basis, and `INSP-01` moved all 53 deliverables to `CHECKING` with owner-blessed SHA
+`8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. Landed tranche narrative moves to
+`plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next step requires a human ruling (REF-006,
+AMD-01, PKG-10 basis, any issuance gate, or a new fork). Issuance is reconsidered only after the
+inspection and the gate-process evaluation conclude.
