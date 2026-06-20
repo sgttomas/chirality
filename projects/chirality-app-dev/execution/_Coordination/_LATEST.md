@@ -24,10 +24,12 @@ Active development queue:
   `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`. `INSP-02` landed 2026-06-20
   and aligned PKG-00 control-plane documents with accepted acyclic DepClosure snapshot
   `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`; evidence:
-  `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. `INSP-03` wave 001 is recorded:
-  PKG-00 control-plane assessments DEL-00-01 and DEL-00-02 are complete (2/53), 51 assessments
-  remain pending, and the coverage index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`.
-  Next selected work: continue `INSP-03` with the PKG-01 wave.
+  `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. `INSP-03` waves 001-002 are
+  recorded: PKG-00 control-plane assessments DEL-00-01 and DEL-00-02 plus PKG-01 governance/reliance
+  assessments DEL-01-01 through DEL-01-04 are complete (6/53), 47 assessments remain pending,
+  reviewed SHA `e2e9806c3fe9d2420372af8e771f9e4d5bb7d648` is recorded for wave 002 per owner
+  instruction, and the coverage index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`.
+  Next selected work: continue `INSP-03` with the PKG-02 wave.
 
 Completed / superseded queues (history, non-governing):
 
