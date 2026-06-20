@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. Next tranche: `INSP-03` inspection sweep.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. `INSP-03` is in progress: wave 001 completed the two PKG-00 control-plane assessments (2/53) and recorded `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Next wave: PKG-01.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -88,7 +88,7 @@ development roadmap.
 | `INSP-01a` Normalize preflight | **RERUN 2026-06-20 - PASSED under D-APP-33 acceptance basis.** Dry-run the 53 `_STATUS.md` rewrites in memory; prove zero unaccepted prose loss. | Read-only preflight evidence at `plans/artifacts/insp01a_status_preflight_2026-06-20.md` and rerun evidence at `plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`; no deliverable status files changed. | Passed after D-APP-33 accepted normalization loss for the 52 semantic/provisional history bullets; zero unaccepted drops. |
 | `INSP-01` Move 53 -> CHECKING **(DONE 2026-06-20)** | Applied `IN_PROGRESS -> CHECKING` to all 53 with owner-blessed SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. | 53 deliverable `_STATUS.md` files; evidence at `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`, `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`, and `plans/artifacts/insp01_status_transition_log_2026-06-20.json`. | `53 CHECKING` / 0 `IN_PROGRESS` / 0 `ISSUED`; 53 `**Checking Approval SHA:**`; no transition failures. HTTP route unavailable because `frontend/node_modules/` is absent, so the transition used mirrored lifecycle semantics. |
 | `INSP-02` Control-plane truth-fix **(DONE 2026-06-20)** | Repointed PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`; evidence at `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. | `analyze_dep_closure.py execution` -> SCC 0; control docs acyclic. |
-| `INSP-03` Inspection sweep | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. | 53/53 Assessments; CRITIC pass; cited `vitest run <file>` green. |
+| `INSP-03` Inspection sweep **(IN PROGRESS; wave 001 complete 2026-06-20)** | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. Wave 001 wrote PKG-00 assessments for DEL-00-01 and DEL-00-02 plus `plans/artifacts/insp03_assessment_index_2026-06-20.md`; no semantic files were produced. | Completion gate remains 53/53 Assessments; wave 001 validation recorded 2/53 complete, 0 issued, direct enumeration 53 deliverables, and DepClosure analyzer SCC 0. |
 | `INSP-04` Gate-process evaluation | Recommend keep/modify/replace the per-deliverable approvalSha gate. | Memo + any new packets. | Explicit recommendation; packets registered AWAITING. |
 | `INSP-05` Development roadmap | Synthesize 53 Assessments into a prioritized, dependency-ordered roadmap. | Roadmap artifact; new packets. | Covers all 53 + G1-G6; cross-checked vs the dep DAG. |
 | `INSP-FINAL` Closeout | Confirm 53 still CHECKING (0 ISSUED); record completion; set next queue. | Control-plane + completion log. | 0 ISSUED; SHA re-confirmed; completion logged. |
@@ -155,6 +155,14 @@ relevant `docs/`; then writes one Assessment (§8), citing `file:line` + `test::
 Orchestrator builds a 53-row index; a CRITIC verifies 53/53 coverage and runnable evidence for every
 PASS; cited `vitest run <file>` re-runs green (server-safe).
 
+**2026-06-20 wave 001 result:** in progress. PKG-00 control-plane deliverables DEL-00-01 and
+DEL-00-02 now have `Assessment_INSP-03_*.md` files. The assessment index at
+`plans/artifacts/insp03_assessment_index_2026-06-20.md` records 2/53 complete, 51 pending, and 0
+issued. Wave 001 produced assessment artifacts only; no semantic files were created. Validation used
+direct top-level deliverable enumeration and reran `analyze_dep_closure.py execution` with 51 valid
+dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, and 0 bidirectional pairs. Frontend
+tests were not applicable to this control-plane-only wave.
+
 ### INSP-04 — Issuance-gate-process evaluation
 From the inspection + the at-scale CHECKING exercise (INSP-01), a memo recommending keep / modify /
 replace the per-deliverable `approvalSha` human-gate model: practicality at 53 scale, whether the SHA
@@ -194,9 +202,9 @@ convention:
 ## 9. Sequencing
 
 `INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
-`INSP-01` (done) -> `INSP-02` (done) -> `INSP-03` -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`.
-INSP-03 now consumes the corrected control-plane posture. INSP-04 and INSP-05 consume the completed
-sweep.
+`INSP-01` (done) -> `INSP-02` (done) -> `INSP-03` (in progress; PKG-00 wave 001 complete) ->
+`INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-03 now consumes the corrected control-plane posture;
+its next wave is PKG-01. INSP-04 and INSP-05 consume the completed sweep.
 
 ## 10. Validation Policy
 
@@ -258,7 +266,9 @@ register to make this the active queue; prior plans are marked superseded-as-act
 here. D-APP-33 cleared the `INSP-01a` semantic-history blocker, the rerun passed under that
 acceptance basis, and `INSP-01` moved all 53 deliverables to `CHECKING` with owner-blessed SHA
 `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. `INSP-02` aligned PKG-00 with the accepted acyclic
-DepClosure snapshot. Landed tranche narrative moves to
+DepClosure snapshot. `INSP-03` wave 001 recorded PKG-00 assessment coverage at
+`plans/artifacts/insp03_assessment_index_2026-06-20.md`; INSP-03 itself remains open until 53/53
+assessments are complete. Landed tranche narrative moves to
 `plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next step requires a human ruling (REF-006,
 AMD-01, PKG-10 basis, any issuance gate, or a new fork). Issuance is reconsidered only after the
 inspection and the gate-process evaluation conclude.
