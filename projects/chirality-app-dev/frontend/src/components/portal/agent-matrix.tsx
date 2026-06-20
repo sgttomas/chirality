@@ -1,51 +1,94 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDeliverables } from '../workspace/deliverables-provider';
+import {
+  useDeliverables,
+  type DeliverablesScan
+} from '../workspace/deliverables-provider';
 import { createNavigationIntentScheduler } from '../../lib/workspace/navigation-intent';
-import { MATRIX_ROWS } from '../../lib/portal/agent-matrix-cells';
-import { buildDirectChatHref } from '../../lib/shell/loop-first';
+import {
+  MATRIX_ROWS,
+  isMatrixLaunchBlockedByStreaming,
+  matrixCellLaunchKind,
+  type MatrixCell
+} from '../../lib/portal/agent-matrix-cells';
+import { resolvePersona } from '../../lib/shell/persona-resolution';
+import { useHarnessStreaming } from '../workspace/harness-events-provider';
 
-export function AgentMatrix(): JSX.Element {
-  const router = useRouter();
-  const { loading, error, scan } = useDeliverables();
-  const navigationScheduler = useMemo(
-    () =>
-      createNavigationIntentScheduler({
-        onNavigate: (target) => {
-          router.push(target);
-        }
-      }),
-    [router]
-  );
+function focusLiveLoopInput(): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
 
-  useEffect(() => {
-    return () => {
-      navigationScheduler.cancel();
-    };
-  }, [navigationScheduler]);
+  window.requestAnimationFrame(() => {
+    document.querySelector<HTMLInputElement>('[data-chat-input="primary"]')?.focus();
+  });
+}
+
+function agentParamFromTarget(target: string): string | null {
+  try {
+    const url = new URL(target, 'http://chirality.local');
+    return url.searchParams.get('agent');
+  } catch {
+    return null;
+  }
+}
+
+type AgentMatrixPanelProps = {
+  loading: boolean;
+  error: string | null;
+  scan: DeliverablesScan | null;
+  streaming: boolean;
+  launchNotice: string | null;
+  onFocusLoop: () => void;
+  onCellLaunch: (cell: MatrixCell) => void;
+  onDeliverableLaunch: (deliverableKey: string) => void;
+};
+
+export function AgentMatrixPanel({
+  loading,
+  error,
+  scan,
+  streaming,
+  launchNotice,
+  onFocusLoop,
+  onCellLaunch,
+  onDeliverableLaunch
+}: AgentMatrixPanelProps): JSX.Element {
+  const blocked = isMatrixLaunchBlockedByStreaming(streaming);
+  const blockedTitle = 'A turn is running; wait for it to finish before changing launch context.';
 
   return (
-    <section className="portal-matrix">
+    <section className="portal-matrix portal-matrix--sidebar">
       <header className="portal-matrix-header">
         <div className="portal-matrix-heading">
           <h3>Agent Matrix</h3>
           <p>
-            Select any cell to open its execution surface. NORMATIVE and EVALUATIVE cells route to
-            WORKBENCH. OPERATIVE cells route to PIPELINE categories.
+            Type-0/Type-1 cells focus the mounted live loop. OPERATIVE cells keep the
+            governed PIPELINE route until the tertiary form lands.
           </p>
         </div>
         <button
           type="button"
           className="portal-start-session"
-          onClick={() => {
-            navigationScheduler.schedule(buildDirectChatHref());
-          }}
+          disabled={blocked}
+          title={blocked ? blockedTitle : undefined}
+          onClick={onFocusLoop}
         >
-          Start direct-chat session →
+          Focus live loop
         </button>
       </header>
+
+      {streaming ? (
+        <p className="portal-launch-notice" role="status">
+          A turn is running. Matrix launches are paused so the mounted loop is not clobbered.
+        </p>
+      ) : launchNotice ? (
+        <p className="portal-launch-notice" role="status">
+          {launchNotice}
+        </p>
+      ) : null}
 
       <div className="matrix-grid" role="grid" aria-label="Chirality Agent Matrix">
         <div className="matrix-header-cell" />
@@ -57,18 +100,24 @@ export function AgentMatrix(): JSX.Element {
         {MATRIX_ROWS.map((row) => (
           <div key={row.rowLabel} className="matrix-row-group">
             <div className="matrix-row-label">{row.rowLabel}</div>
-            {row.cells.map((cell) => (
-              <button
-                key={`${cell.row}-${cell.column}`}
-                type="button"
-                className="matrix-cell"
-                onClick={() => {
-                  navigationScheduler.schedule(cell.target);
-                }}
-              >
-                <span>{cell.label}</span>
-              </button>
-            ))}
+            {row.cells.map((cell) => {
+              const launchKind = matrixCellLaunchKind(cell);
+              return (
+                <button
+                  key={`${cell.row}-${cell.column}`}
+                  type="button"
+                  className="matrix-cell"
+                  disabled={blocked}
+                  title={blocked ? blockedTitle : undefined}
+                  onClick={() => {
+                    onCellLaunch(cell);
+                  }}
+                >
+                  <span>{cell.label}</span>
+                  <small>{launchKind === 'loop-persona' ? 'Loop' : 'Pipeline'}</small>
+                </button>
+              );
+            })}
           </div>
         ))}
       </div>
@@ -94,14 +143,10 @@ export function AgentMatrix(): JSX.Element {
                   key={deliverable.path}
                   type="button"
                   className="portal-deliverable-row"
-                  title={deliverable.path}
+                  title={blocked ? blockedTitle : deliverable.path}
+                  disabled={blocked}
                   onClick={() => {
-                    const params = new URLSearchParams({
-                      category: 'TASK',
-                      taskScopeMode: 'DELIVERABLES',
-                      scopeKey: deliverableKey
-                    });
-                    navigationScheduler.schedule(`/pipeline?${params.toString()}`);
+                    onDeliverableLaunch(deliverableKey);
                   }}
                 >
                   <span className="portal-deliverable-key">{deliverableKey}</span>
@@ -113,5 +158,82 @@ export function AgentMatrix(): JSX.Element {
         )}
       </section>
     </section>
+  );
+}
+
+export function AgentMatrix(): JSX.Element {
+  const router = useRouter();
+  const { loading, error, scan } = useDeliverables();
+  const streaming = useHarnessStreaming();
+  const [launchNotice, setLaunchNotice] = useState<string | null>(null);
+  const navigationScheduler = useMemo(
+    () =>
+      createNavigationIntentScheduler({
+        onNavigate: (target) => {
+          router.push(target);
+        }
+      }),
+    [router]
+  );
+
+  useEffect(() => {
+    return () => {
+      navigationScheduler.cancel();
+    };
+  }, [navigationScheduler]);
+
+  function focusLoop(): void {
+    if (streaming) {
+      setLaunchNotice('A turn is running; wait for it to finish before changing launch context.');
+      return;
+    }
+
+    setLaunchNotice('Live loop focused.');
+    focusLiveLoopInput();
+  }
+
+  function launchCell(cell: MatrixCell): void {
+    if (streaming) {
+      setLaunchNotice('A turn is running; wait for it to finish before changing launch context.');
+      return;
+    }
+
+    if (matrixCellLaunchKind(cell) === 'loop-persona') {
+      const rawAgent = agentParamFromTarget(cell.target);
+      const persona = resolvePersona(rawAgent);
+      router.replace(cell.target, { scroll: false });
+      setLaunchNotice(`${persona} selected in the live loop.`);
+      focusLiveLoopInput();
+      return;
+    }
+
+    navigationScheduler.schedule(cell.target);
+  }
+
+  function launchDeliverable(deliverableKey: string): void {
+    if (streaming) {
+      setLaunchNotice('A turn is running; wait for it to finish before opening PIPELINE.');
+      return;
+    }
+
+    const params = new URLSearchParams({
+      category: 'TASK',
+      taskScopeMode: 'DELIVERABLES',
+      scopeKey: deliverableKey
+    });
+    navigationScheduler.schedule(`/pipeline?${params.toString()}`);
+  }
+
+  return (
+    <AgentMatrixPanel
+      loading={loading}
+      error={error}
+      scan={scan}
+      streaming={streaming}
+      launchNotice={launchNotice}
+      onFocusLoop={focusLoop}
+      onCellLaunch={launchCell}
+      onDeliverableLaunch={launchDeliverable}
+    />
   );
 }

@@ -6,6 +6,7 @@ import { WorkspaceSidebar, type SidebarTabId } from './workspace-sidebar';
 type SidebarRightLoopLayoutProps = {
   children: ReactNode;
   defaultSidebarTab?: SidebarTabId;
+  portalTab?: ReactNode;
 };
 
 /**
@@ -15,7 +16,8 @@ type SidebarRightLoopLayoutProps = {
  */
 export function SidebarRightLoopLayout({
   children,
-  defaultSidebarTab = 'files'
+  defaultSidebarTab = 'files',
+  portalTab
 }: SidebarRightLoopLayoutProps): JSX.Element {
   const [sidebarTab, setSidebarTab] = useState<SidebarTabId>(defaultSidebarTab);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -47,7 +49,11 @@ export function SidebarRightLoopLayout({
         {sidebarCollapsed ? (
           <span className="shell-pane-collapsed-label">Workspace</span>
         ) : (
-          <WorkspaceSidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
+          <WorkspaceSidebar
+            activeTab={sidebarTab}
+            onTabChange={setSidebarTab}
+            portalTab={portalTab}
+          />
         )}
       </div>
     </section>

@@ -6,6 +6,44 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-19 - Loop-first pivot portal home and matrix launch landed (`28c`)
+
+Converted `/` into a loop-first portal home. `PortalLoopShell` renders the live
+loop as the primary pane and opens the right sidebar on a new Portal tab that
+hosts the Agent Matrix. Type-0/Type-1 matrix cells now change `?agent=` on the
+mounted `/` loop instead of routing to `/workbench`; when the chat prompt is
+enabled, launches focus the mounted prompt. The mid-turn launch guard reuses the
+existing shared streaming flag. OPERATIVE cells and deliverable rows retain the
+interim `/pipeline` route hop until 28d lands the ruled tertiary-form behavior.
+
+Added portal/matrix guard coverage for loop-persona targets, streaming launch
+blocking, portal href construction, and sidebar Agent Matrix rendering. The
+public `UIEvent` contract and permission plane were untouched, and no route or
+tertiary screen was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 69 files, 496 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Browser checks against `http://localhost:3000/` passed: desktop layout showed
+  live loop primary with the Portal tab selected in the right sidebar; Type-0/1
+  matrix launch stayed on `/` and selected the resolved persona; with a Working
+  Root selected, Type-1 launch focused the mounted chat input; OPERATIVE DECOMP
+  retained the staged `/pipeline?category=DECOMP` route hop.
+- Mobile browser check at 390px passed after responsive tightening: the loop
+  main and sidebar stack at full width and no horizontal overflow was detected.
+- `npm run harness:validate:premerge` passed on rerun: Section 8 8/8 and
+  Section 9 report-only 13/13. The first attempt failed while the dev server was
+  racing a build rewrite of `.next` and was not retained as the final evidence.
+- `npm run desktop:pack` passed, including instruction-root integrity.
+
+Residual handoff: `28d` is next. It demotes `/workbench` and `/pipeline` into
+sidebar-reachable tertiary forms using the ruled D-APP-31/D-APP-32 decisions.
+D-APP-18 remains separately awaiting ruling and still blocks default-provider
+cutover only.
+
 ## 2026-06-19 - Loop-first pivot AppShell sidebar-right geometry landed (`28b`)
 
 Flipped `AppShell` route surfaces to the right-sidebar geometry: the rendered

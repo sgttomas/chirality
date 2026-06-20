@@ -7,6 +7,12 @@ import { harnessApiErrorMessage, listDirectChatPersonas } from '../../lib/harnes
 import { buildDirectChatHref } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 
+type PersonaPickerProps = {
+  buildHref?: (persona: string) => string;
+  disabled?: boolean;
+  onPersonaSelected?: (persona: string) => void;
+};
+
 /**
  * Direct-chat persona picker (D-APP-24). Lists Type-0/Type-1 personas only
  * (server-filtered via `listDirectChatPersonas`); selecting one drives the
@@ -14,7 +20,11 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
  * already consumes to boot the chosen persona on the next turn. Type-2 task
  * agents are never offered — they run only via orchestration.
  */
-export function PersonaPicker(): JSX.Element {
+export function PersonaPicker({
+  buildHref = buildDirectChatHref,
+  disabled = false,
+  onPersonaSelected
+}: PersonaPickerProps): JSX.Element {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [personas, setPersonas] = useState<AgentRosterEntry[]>([]);
@@ -55,9 +65,11 @@ export function PersonaPicker(): JSX.Element {
       <select
         id="persona-picker-select"
         value={loading ? '' : selected}
-        disabled={loading || personas.length === 0}
+        disabled={disabled || loading || personas.length === 0}
         onChange={(event) => {
-          router.replace(buildDirectChatHref(event.target.value));
+          const persona = event.target.value;
+          router.replace(buildHref(persona));
+          onPersonaSelected?.(persona);
         }}
       >
         {loading ? <option value="">Loading personas…</option> : null}

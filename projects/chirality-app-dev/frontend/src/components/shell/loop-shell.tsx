@@ -10,10 +10,9 @@ import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
 /**
  * The loop-first / direct-chat surface (`/chat`, D-APP-23 hybrid). The live loop
  * (ChatPanel) is the primary pane and the multi-view sidebar sits on the
- * **right** — the mirror of the route surfaces, where it is on the left. The
- * sidebar collapses without unmounting the chat, so an in-flight turn survives
- * the relayout (D-APP-23 constraint). The persona picker (Type-0/Type-1,
- * D-APP-24) drives the loop via `?agent=`.
+ * **right**. The sidebar collapses without unmounting the chat, so an in-flight
+ * turn survives the relayout (D-APP-23 constraint). The persona picker
+ * (Type-0/Type-1, D-APP-24) drives the loop via `?agent=`.
  */
 export function LoopShell(): JSX.Element {
   return (
