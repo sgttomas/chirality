@@ -37,6 +37,11 @@ Runtime implementation direction:
 - Claude Agent SDK / Anthropic remains the first concrete adapter and is the key-aware
   default provider per the D-APP-18 ruling (Option A): the real `agentSdk` path when an
   Anthropic key is configured, else `stub` (an explicit opt-in remains available).
+- Chirality builds the governance, UI, audit, lifecycle, and adapter layer **over** provider
+  harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex
+  feature parity. Generic harness primitives the adapter provides well are governed, not
+  reimplemented. Pi is reference-only; any other provider/harness path requires a fresh governed
+  tranche (CONTRACT K-ENGINE-6).
 - Chirality should not reimplement generic primitives that the current adapter provides well when they can be governed by Chirality-owned policy: model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK session transcripts, subagent invocation, and compaction messages.
 - Chirality must treat every provider/SDK as a replaceable engine behind product-owned contracts, not as the product runtime contract itself. Chirality's event schema, session canonicality, permission semantics, lifecycle authority, tool-exposure rules, professional-boundary posture, and human gates remain product-owned.
 - Chirality still owns the product-critical governance shell: instruction-root versus working-root separation, persona/system-prompt composition, working-root validation, professional-boundary posture, `_STATUS.md` lifecycle authority, `Dependencies.csv` contract behavior, subagent governance allowlists, path containment, instruction-root write blocking, runtime redaction, provenance events, UI transport compatibility, local packaging, the Chirality audit mirror, and the fallback criteria for replacing an adapter if a product-critical boundary cannot be verified.
@@ -1256,7 +1261,7 @@ For macOS DMG:
 
 The current execution decomposition is issued, but the harness runtime needs a forward implementation sequence. This sequence updates the product roadmap without reactivating retired PKG-08 project-level hardening deliverables.
 
-The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter and the key-aware default provider (per D-APP-18), while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Provider expansion beyond the Anthropic path remains human-gated.
+The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter and the key-aware default provider (per D-APP-18), while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6); Pi is reference-only. Provider expansion beyond the Anthropic path remains human-gated and requires a fresh governed tranche.
 
 ### R0 — Runtime Scope Confirmation, First-Adapter Probe, and Reliance Boundary Register
 

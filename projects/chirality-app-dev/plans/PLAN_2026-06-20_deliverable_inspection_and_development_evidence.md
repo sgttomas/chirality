@@ -137,7 +137,11 @@ D-APP packets (present, don't self-rule).
 ### INSP-05 — Synthesis -> development roadmap
 Consolidate the 53 Assessments into a prioritized, dependency-ordered roadmap ("how to proceed
 developing the application"), absorbing G1-G6 + inspection findings (incl. the PKG-10 P4 wording fix
-and the G5 reconciliations), each sized S/M/L with prerequisites. Surface new decisions as packets.
+and the G5 reconciliations), each sized S/M/L with prerequisites. **Filter every roadmap item through
+CONTRACT K-ENGINE-6**: Chirality is a governance/UI/audit/lifecycle/adapter layer over provider
+harness mechanics — drop or flag-for-ruling any item that builds a standalone general harness, chases
+Claude Code / Pi / Codex feature parity, or reimplements a generic primitive the adapter provides
+well. Surface new decisions as packets.
 
 ### INSP-FINAL — Closeout
 Confirm 53 still `CHECKING`, 0 `ISSUED`; re-confirm the blessed SHA still names the substantive
@@ -156,7 +160,7 @@ convention:
 4. **Gap Inventory** — mapped to G1-G6, severity-ranked.
 5. **Source-State Caveat** — REF-006 PRD `HASH_MISMATCH` (finding only).
 6. **Dependency Closure Note** — marks no `Dependencies.csv` rows satisfied.
-7. **Forward Development Recommendation** — ordered next steps; type (code/doc/test/reconcile); size S/M/L; prerequisites; "what it'd take to be issuance-ready."
+7. **Forward Development Recommendation** — ordered next steps; type (code/doc/test/reconcile); size S/M/L; prerequisites; "what it'd take to be issuance-ready." Each step carries a **strategic-fit flag**: mark anything that drifts toward a standalone general agent harness or Claude Code / Pi / Codex feature parity as OFF-STRATEGY (CONTRACT K-ENGINE-6 — Chirality is a governance/UI/audit/lifecycle/adapter layer over provider harness mechanics).
 8. **Issuance-Gate-Process Observations** — per-deliverable input to INSP-04.
 
 ## 9. Sequencing
@@ -202,7 +206,11 @@ No `CHECKING -> ISSUED`; no code development (G1-G6 are roadmap outputs; only th
 truth-fix is applied); no pre-deciding REF-006 / AMD-01 / PKG-10 doc-only basis; all `docs/PLAN.md`
 §11 fences closed (R7 / domain-engine, remote MCP, plugins, broad tool search, non-Anthropic
 providers, Windows/Linux packaging, shipped `bypassPermissions`, release signing/notarization/
-publication, professional/reliance claims); no provider-default change.
+publication, professional/reliance claims); no provider-default change. **Strategic lens
+(CONTRACT K-ENGINE-6):** assessments and the roadmap stay within Chirality's governance / UI / audit
+/ lifecycle / adapter layer over provider harness mechanics — not a standalone general agent harness,
+not Claude Code / Pi / Codex feature parity; Pi reference-only; any other provider/harness path needs
+a fresh governed tranche.
 
 ## 14. Evidence Basis
 

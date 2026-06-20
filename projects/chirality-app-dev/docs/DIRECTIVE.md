@@ -115,6 +115,8 @@ The instruction root defines how agents should behave. The working root contains
 
 Chirality should use a provider-adapter runtime architecture for generic agent-loop mechanics where an external provider or SDK satisfies Chirality requirements behind product-owned contracts. The Claude Agent SDK / Anthropic path is the first concrete adapter and, per the human-gated D-APP-18 ruling (Option A), the key-aware default provider — the real `agentSdk` path when an Anthropic key is configured, else `stub`. Provider/SDK adapters may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
 
+Chirality builds the **governance, UI, audit, lifecycle, and adapter layer over** those provider harness mechanics. It does **not** build a standalone general agent harness, and it does **not** chase Claude Code / Pi / Codex feature parity — generic harness primitives the current adapter provides well are governed, not reimplemented. Pi remains reference-only. Any other provider or harness path requires a fresh governed tranche (D-APP-01/02/03). This boundary is invariant K-ENGINE-6.
+
 Provider/SDK adapters do not own Chirality’s product contract. Chirality owns:
 
 - `AgentEnginePort` / `RuntimeEngineContract`;

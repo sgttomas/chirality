@@ -32,11 +32,11 @@ Completed closed history (retain as evidence, do not revive as a queue): the liv
 
 Current stabilized runtime posture:
 
-- a local desktop harness for governed agents;
+- a **governance / UI / audit / lifecycle / adapter layer over provider harness mechanics** — NOT a standalone general agent harness, and NOT a Claude Code / Pi / Codex feature-parity effort; generic harness primitives the adapter provides well are governed, not reimplemented (CONTRACT **K-ENGINE-6**);
 - a Chirality-owned runtime contract and audit/event model;
 - provider-adapter-general runtime architecture;
 - Claude Agent SDK / Anthropic as the first concrete adapter, now the **key-aware default provider** per D-APP-18 (real `agentSdk` when an Anthropic key is configured, else `stub`); the earlier D-APP-12 Option B hold on the default is superseded for the default selection only;
-- Pi retained as a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+- Pi retained as a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target; any other provider/harness path requires a fresh governed tranche.
 
 ## Selection Rules
 
@@ -48,7 +48,7 @@ Default priority:
 2. Advance the inspection tranche spine in order — INSP-01a (normalize preflight) -> INSP-01 (53 -> CHECKING) -> (INSP-02 ∥ INSP-03) -> INSP-04 -> INSP-05 -> INSP-FINAL — keeping each governance-gate / typecheck+vitest green as applicable, and stopping the dev server before any build/pack/premerge.
 3. Issuance is DEFERRED: do NOT transition any deliverable `CHECKING -> ISSUED`, and do NOT pre-decide REF-006 (PRD-hash) / AMD-01 (UI render-test bar) / the PKG-10 doc-only basis — each is a separate later ruling informed by the inspection.
 4. The owner confirms ONE blessed `approvalSha` (commit HEAD) before INSP-01; apply transitions mechanically (actor=HUMAN, the owner-blessed SHA), never mint a SHA or claim approval. `CHECKING` = admitted-to-inspection, not approved-for-issue.
-5. No code development in this plan (G1-G6 are roadmap outputs; only the INSP-02 control-doc truth-fix is applied). Keep the public UIEvent contract, permission plane, and provider posture untouched; cross no `docs/PLAN.md` §11 fence.
+5. No code development in this plan (G1-G6 are roadmap outputs; only the INSP-02 control-doc truth-fix is applied). Keep the public UIEvent contract, permission plane, and provider posture untouched; cross no `docs/PLAN.md` §11 fence. Apply the CONTRACT **K-ENGINE-6** strategic lens to every assessment and roadmap item — Chirality is a governance/UI/audit/lifecycle/adapter layer over provider harness mechanics; flag standalone-harness or Claude Code / Pi / Codex parity-chasing recommendations as OFF-STRATEGY.
 6. D-APP-18 is RULED (Option A); its key-aware default cutover has landed. Provider/network EXPANSION beyond the Anthropic path and release/distribution posture remain separately gated — do not broaden providers or declare release readiness without a fresh ruling.
 7. If any work requires remote MCP, plugins, broad tool search, domain tools, provider/network expansion, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling.
 8. Do not revive a completed/closed/retired/superseded plan or invent a replacement queue.
