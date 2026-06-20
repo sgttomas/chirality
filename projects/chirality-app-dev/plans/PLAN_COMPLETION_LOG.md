@@ -6,6 +6,19 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Governance loose-end cleanup
+
+Closed `plans/PLAN_2026-06-19_validation_server_build_isolation.md` (OPEN -> CLOSED):
+its dev-server/`.next`-race sequencing rule is now codified in `docs/BUILD_AND_RELEASE.md`
+§4 and `docs/VALIDATION_STRATEGY.md` §3 (it was already in the `_COORDINATION.md` /
+`NEXT_INSTANCE_PROMPT.md` dev-loop guidance); `_COORDINATION.md` and `_LATEST.md` updated
+from "open" to "closed/codified".
+
+Corrected a stale status header on `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`,
+which still read "ACTIVE GOVERNING DEVELOPMENT QUEUE - D-APP-18 AWAITING RULING" though every
+other surface treated it as completed closed history and D-APP-18 is now ruled; set to
+COMPLETED / CLOSED HISTORY. Docs-only; no code change.
+
 ## 2026-06-20 - D-APP-18 default-provider cutover landed (key-aware default)
 
 Ruled D-APP-18 Option A and implemented the bounded default-provider cutover.

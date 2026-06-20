@@ -17,10 +17,11 @@ Active development queue:
 - `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (active design: Agent-Orchestration UI &
   Information Architecture redesign; Phases 1-5 COMPLETE).
 
-Open validation-loop follow-up:
+Closed validation-loop follow-up:
 
-- `plans/PLAN_2026-06-19_validation_server_build_isolation.md` (stop local dev server before
-  build/package/premerge validation unless the command owns server lifecycle).
+- `plans/PLAN_2026-06-19_validation_server_build_isolation.md` (CLOSED — sequencing rule codified
+  in `docs/BUILD_AND_RELEASE.md` §4 and `docs/VALIDATION_STRATEGY.md` §3: stop the local dev
+  server before build/package/premerge unless the command owns server lifecycle).
 
 Completed planning and history surfaces:
 

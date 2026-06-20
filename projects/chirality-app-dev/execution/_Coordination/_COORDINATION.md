@@ -37,7 +37,7 @@ Primary authority and guidance:
 - `frontend/docs/harness/runtime_engine_contract.md`
 - `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` - active Agent-Orchestration UI & Information Architecture redesign design; Phases 1-5 complete
 - `plans/PLAN_2026-06-19_loop_first_pivot.md` - completed D-APP-28 full loop-first pivot (28a, 28b, 28c, 28d, and 28e landed; no remaining unstarted tranche)
-- `plans/PLAN_2026-06-19_validation_server_build_isolation.md` - open validation-loop follow-up; stop dev server before build/package/premerge validation unless the command owns server lifecycle
+- `plans/PLAN_2026-06-19_validation_server_build_isolation.md` - CLOSED validation-loop follow-up; its sequencing rule (stop dev server before build/package/premerge unless the command owns server lifecycle) is codified in `docs/BUILD_AND_RELEASE.md` §4 and `docs/VALIDATION_STRATEGY.md` §3
 - `plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md` - completed Live Packaged `agentSdk` Read-Tool Proof plan; live `sonnet` proof passed (D-APP-17); D-APP-18 since ruled Option A and its key-aware default-provider cutover landed
 - `plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md` - exact LP-03 command, package path, key supply, artifact directory, stop conditions, and redaction checks
 - `plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md` - LP-03 failed-proof evidence and redaction disposition

@@ -1,7 +1,7 @@
 # Validation Server/Build Isolation Follow-Up
 
 **Date:** 2026-06-19
-**Status:** OPEN
+**Status:** CLOSED 2026-06-20 — sequencing rule codified in `docs/BUILD_AND_RELEASE.md` §4 and `docs/VALIDATION_STRATEGY.md` §3, plus the dev-loop guidance in `_COORDINATION.md` and `NEXT_INSTANCE_PROMPT.md`.
 **Discovered during:** D-APP-28 loop-first pivot tranche `28c`
 
 ## Issue

@@ -62,6 +62,8 @@ Run commands from `frontend/` unless stated otherwise.
 
 `npm run harness:validate:premerge` requires a running harness API. By default it targets `http://127.0.0.1:3000`; see `frontend/docs/harness/README.md` for `HARNESS_BASE_URL` and `HARNESS_PROJECT_ROOT` overrides.
 
+Stop any local Next dev server before running `npm run build`, `npm run desktop:pack`, `npm run desktop:dist`, or `npm run harness:validate:premerge` unless the command owns the server lifecycle. A dev server racing a `.next` rewrite can surface a transient module-resolution failure (e.g. `.next/server/vendor-chunks/next.js`); record such a failure as an environment sequencing failure, not a product regression — isolate the dev server, then rerun.
+
 ## 5. Evidence Bundles
 
 A build or release-evidence record should capture:

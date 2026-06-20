@@ -1,7 +1,7 @@
 # Live Packaged agentSdk Read-Tool Proof Plan
 
 **Date:** 2026-06-17
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE - D-APP-18 AWAITING RULING
+**Status:** COMPLETED / CLOSED HISTORY (live `sonnet` proof passed under D-APP-17; D-APP-18 since ruled Option A and the key-aware default-provider cutover landed)
 **Queue-selection authority:** human project authority in chat, 2026-06-17:
 `APPROVE: Prepare D-APP-15 and a bounded active plan for the live packaged agentSdk read-tool proof as the next Chirality App Dev queue.`
 **Decision packet:** `execution/_Coordination/_DECISIONS/D-APP-15_PACKET_2026-06-17.md`

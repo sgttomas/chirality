@@ -33,7 +33,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 |---|---|
 | `npm run test` | Vitest unit and contract checks for API routes, runtime libraries, SDK mapping, tool descriptors, session events, UI helpers, script policies, and governance helpers. |
 | `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
-| `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable. |
+| `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable; stop any local dev server before build/pack/premerge to avoid a `.next` dev/build race (see `docs/BUILD_AND_RELEASE.md` §4). |
 | `npm run harness:validate:section9` | Section 9 deterministic runtime-ID aggregation over targeted Vitest files with stable summary artifact at `frontend/artifacts/harness/section9/latest/summary.json`. |
 | `npm run harness:validate:agentsdk-dev-turn` | Route-level opt-in `agentSdk` scripted dev-turn validation using the real SDK `query()` path and an offline scripted subprocess. |
 | `npm run harness:validate:agentsdk-mcp-probe` | STAB-04 SDK/MCP behavior probe proving raw in-process MCP `mcp_message` calls, explicit `canUseTool`, and explicit hook callbacks remain distinct evidence paths. |
