@@ -4,13 +4,15 @@ Date: 2026-05-24
 
 Prepared by: RECONCILIATION
 
-Status: HUMAN_RULINGS_PENDING
+Status: SUPERSEDED_BY_SAFE_MOVES
 
-Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/`
+Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
 
 ## Purpose
 
-Three read-only cluster reviews assessed the remaining six-node SCC after bidirectional-pair cleanup. This package converts those findings into a decision surface for human rulings and a later CHANGE handoff. It does not mutate dependency registers, initiate SCOPE_CHANGE, or claim closure.
+Three read-only cluster reviews assessed the remaining six-node SCC after bidirectional-pair cleanup. This package converted those findings into a decision surface for human rulings and a later CHANGE handoff. It did not mutate dependency registers, initiate SCOPE_CHANGE, or claim closure.
+
+This package is now historical evidence. The later accepted `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` snapshot closes the residual SCC for dependency-closure discovery.
 
 Residual SCC nodes:
 
@@ -52,15 +54,15 @@ Rows to preserve explicitly:
 - `DEP-04-03-008`
 - `DEP-04-03-009`
 
-## Proposed CHANGE Handoff If Approved
+## Historical CHANGE Candidate Set
 
-If the human approves this longer-cycle ruling, CHANGE may apply the following schema-compatible row treatments:
+The following row treatments were candidates before safe-moves closure superseded this package:
 
 - Set `DEP-03-03-006`, `DEP-03-03-007`, `DEP-03-02-009`, and `DEP-04-03-010` to `Status=RETIRED`, `SatisfactionStatus=NOT_APPLICABLE`, and `LastSeen=2026-05-24`, with notes citing the accepted SCC-001 longer-cycle ruling.
 - Preserve the named hard prerequisite, runtime boundary, persistence, mapper-prerequisite, and remaining interface rows.
 - Validate all touched dependency registers before and after mutation.
 - Run AUDIT_DEP_CLOSURE into a new immutable snapshot.
 
-## Acceptance Constraint
+## Superseding Closure Evidence
 
-SCC-001 may be closed only if the resulting DepClosure snapshot reports `scc_count = 0`. If `scc_count > 0`, record graph reduction only and repeat on the remaining residual SCC.
+SCC-001 is closed for dependency-closure discovery by `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`, which reports `scc_count = 0`. No dependency-row mutation remains pending from this package.

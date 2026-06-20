@@ -6,11 +6,11 @@
 |---|---|
 | ControlPackageID | PKG-00 |
 | ControlPackageName | DAG Closure and Project Control |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` |
-| StrictFullGraphStatus | CYCLIC |
-| StrictSCCCount | 1 |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` |
+| StrictFullGraphStatus | ACYCLIC |
+| StrictSCCCount | 0 |
 | BlockerSubsetStatus | ACYCLIC |
-| ProjectBlockedAvailableReportable | NO |
+| ProjectBlockedAvailableReportable | YES - dependency-closure discovery only |
 
 ## Workflow
 
@@ -24,7 +24,7 @@ Project-level reconciliation is an agentic workflow:
 6. Run a new DepClosure scan.
 7. Repeat until strict SCC count is 0.
 
-Step-4 rulings draw on the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): resolve each SCC by one of four recorded moves — decompose / invert / merge / cut. The retire/preserve rulings recorded below are the cut/keep subset; the residual six-node longer cycle (no remaining bidirectional pairs) may require *decompose* (split a too-coarse node such as `DEL-03-04`), *invert* (reverse a dependency behind a contract), or *merge* if no edge in it can be honestly reclassified as non-blocking. Cut and merge are human-gated.
+Step-4 rulings draw on the shared cycle-driven resolution doctrine (the shared repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`): resolve each SCC by one of four recorded moves — decompose / invert / merge / cut. The accepted `SCC-SAFE-MOVES-001` snapshot applied source-grounded `decompose` moves to the residual six-node longer cycle and now reports strict SCC count `0`. Future SCCs, if introduced by later dependency changes, must be resolved by a newly recorded move and accepted immutable snapshot.
 
 ## Control Deliverable Readiness
 
@@ -44,7 +44,7 @@ WORKING_ITEMS prepared SCC Resolution Cases for bounded TASK work. These cases a
 | Case | Control Deliverable | Scope | Status |
 |---|---|---|---|
 | `CASE-SCC-002_PKG-10_Policy_Proposal` | `DEL-00-01` | SCC-002 PKG-10 policy/proposal pair | `CLOSED_BY_DEPCLOSURE` |
-| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `DEP_CLOSURE_PENDING` |
+| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `CLOSED_BY_DEPCLOSURE` |
 
 ## Seed Packets
 
@@ -61,7 +61,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 six-node longer-cycle residual SCC | Use `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` and its closure report to prepare the next longer-cycle ruling package for `DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, and `DEL-05-02`. |
+| - | - | No active SCC closure queue | Latest accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports `scc_count = 0`; proceed with the D-APP-19 inspection queue. |
 
 ## SCC-001 Dispatch Evidence
 
@@ -70,7 +70,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 - `SCC-001_Ruling_Workbook.csv` indexes the 12 bidirectional pairs plus longer-cycle cross-links that can keep SCC-001 alive.
 - `SCC-001_Dispatch_Plan.md` records which evidence tasks may run in parallel and which governance, mutation, and closure gates must remain sequential.
 
-SCC-001 ready-tranche dependency rows have now been changed by CHANGE and verified by DepClosure as graph reduction only. No SCOPE_CHANGE intake has been selected, and SCC-001 remains open until a later immutable DepClosure snapshot proves strict closure.
+SCC-001 ready-tranche dependency rows were changed by CHANGE and verified by DepClosure as graph reduction only. No SCOPE_CHANGE intake was selected. The later accepted `SCC-SAFE-MOVES-001` DepClosure snapshot now proves strict closure.
 
 ## SCC-001 Ready Tranche 001 Evidence
 
@@ -84,6 +84,12 @@ The human approved the residual ruling package. CHANGE retired `DEP-03-01-006`, 
 
 AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves all bidirectional pairs are removed, but SCC-001 is not closed: `scc_count = 1`, `graph_edges = 101`, and the residual SCC has 6 nodes (`DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, `DEL-05-02`).
 
+## SCC-001 Safe Moves Closure Evidence
+
+The accepted snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` closes the residual SCC for dependency-closure discovery. Its `Dependency_Closure_Report.md` records `PASS`, strict `scc_count = 0`, active strict deliverable execution edges `97`, bidirectional pair count `0`, and schema-invalid registers `0`.
+
+`Closure_Acceptance_Audit.md` accepts this immutable snapshot for discovery and independently reran the analyzer with matching values. The snapshot is derivative evidence only; it does not replace decomposition truth, product requirements, source/test evidence, decision records, lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.
+
 ## SCC-002 Closure Evidence
 
 RECONCILIATION converted the approved SCC-002 ruling into a CHANGE handoff. CHANGE retired `DEP-10-02-004` as non-blocking interface/reference evidence and preserved `DEP-10-03-006` as the hard prerequisite. AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/` proves SCC-002 is absent: `scc_count = 1`, `graph_edges = 113`, and no `DEL-10-02` / `DEL-10-03` bidirectional pair remains.
@@ -95,3 +101,5 @@ The DAG is produced as a consequence of SCC closure. Completion requires DepClos
 - `scc_count = 0`
 - strict FULL_GRAPH acyclic
 - blocker state reportable by ORCHESTRATOR
+
+This acceptance condition is satisfied for dependency-closure discovery by `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. It does not create lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.

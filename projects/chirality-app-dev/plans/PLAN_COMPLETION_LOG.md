@@ -6,6 +6,27 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - PKG-00 control plane aligned to acyclic DepClosure (`INSP-02`)
+
+Landed the D-APP-19 inspection-program control-plane truth-fix. PKG-00 control surfaces now treat
+`execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` as the current
+accepted dependency-closure snapshot, with strict `scc_count = 0` for dependency-closure discovery.
+SCC-001 and SCC-002 case/control artifacts were updated from stale residual/open wording to
+`CLOSED_BY_DEPCLOSURE` or historical/superseded status as applicable.
+
+Evidence:
+
+- `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Closure_Acceptance_Audit.md`
+
+Validation: reran `analyze_dep_closure.py execution` with 51 valid dependency files, 554 rows, graph
+46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, and 0 invalid registers; ran governance diff
+hygiene and stale-current-state searches. Frontend tests/build were skipped because this tranche
+changed only governance/control-plane documentation and coordination evidence; no runtime/source
+files changed. This is not lifecycle issuance, release readiness, professional approval,
+certification, sealing, authentication, or code-compliance acceptance.
+
 ## 2026-06-20 - Deliverables admitted to inspection (`INSP-01`)
 
 Recorded the owner-blessed `approvalSha`

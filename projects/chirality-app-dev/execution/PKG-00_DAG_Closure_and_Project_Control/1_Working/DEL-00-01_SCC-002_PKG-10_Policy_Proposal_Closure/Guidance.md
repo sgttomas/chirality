@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this deliverable as a bounded control record for SCC-002, not as a place to mutate dependency edges. The purpose is to preserve the current DepClosure evidence, focus review on the two SCC-002 rows, and hand a source-grounded ruling path to RECONCILIATION.
+Use this deliverable as a bounded control record for SCC-002, not as a place to mutate dependency edges. The purpose is to preserve SCC-002 closure evidence while pointing current graph-state discovery at the accepted acyclic DepClosure snapshot.
 
 Sources: `_CONTEXT.md` section `Deliverable Scope`; `README.md` sections `Purpose` and `Boundary`; `DAG_CLOSURE_CONTROL.md` section `Workflow`.
 
@@ -16,7 +16,7 @@ Sources: `_CONTEXT.md` section `Deliverable Scope`; `README.md` sections `Purpos
 
 ## Considerations
 
-The current DepClosure snapshot reports strict FULL_GRAPH as `CYCLIC`, with two remaining SCCs and SCC-002 as the smaller two-node cycle (`Dependency_Closure_Report.md` sections `Verdict` and `Remaining SCCs`; `Evidence/scc_summary.csv`). The blocker subset is already acyclic, so the remaining issue is strict graph closure rather than blocker-subset closure (`Dependency_Closure_Report.md` section `Evidence Summary`).
+The current accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports strict FULL_GRAPH as `ACYCLIC` with `scc_count = 0`. Earlier SCC-002 evidence remains historical support for the row treatment that removed the PKG-10 policy/proposal pair from the SCC set.
 
 The two source rows differ in reading:
 
@@ -29,8 +29,8 @@ Sources: PKG-10 `Dependencies.csv` rows `DEP-10-02-004` and `DEP-10-03-006`.
 
 | Option | Benefit | Risk | Current disposition |
 |---|---|---|---|
-| Preserve both rows unchanged | No unsupported mutation; preserves evidence. | SCC-002 remains cyclic. | Acceptable as an interim handoff, not closure. |
-| Preserve `DEP-10-03-006` and reclassify or satisfy `DEP-10-02-004` | Matches the current triage reading if source evidence supports it. | Requires source citation and owning-register update outside this task. | Candidate for RECONCILIATION ruling. |
+| Preserve both rows unchanged | No unsupported mutation; preserves evidence. | Historical option only; SCC-002 would remain cyclic. | Superseded by accepted SCC-002 row treatment. |
+| Preserve `DEP-10-03-006` and reclassify or satisfy `DEP-10-02-004` | Matches the current triage reading if source evidence supports it. | Requires source citation and owning-register update outside this task. | Historical path implemented by CHANGE and verified by DepClosure. |
 | Retire or waive either row without citation | Produces apparent graph relief. | Violates triage instruction and source-grounding rules. | Not allowed. |
 | Add a PKG-00 dependency register | Could make the control deliverable visible to graph tooling. | Violates PKG-00 boundary and may pollute product graph discovery. | Not allowed without later human ruling. |
 
@@ -38,7 +38,7 @@ Sources: PKG-10 `Dependencies.csv` rows `DEP-10-02-004` and `DEP-10-03-006`.
 
 - Valid ruling shape: "Preserve `DEP-10-03-006`; propose action for `DEP-10-02-004` only after citing its source row and supporting artifact evidence."
 - Invalid ruling shape: "Delete the weaker row because a cycle exists." The current triage evidence forbids waiver or retirement without source citation.
-- Valid closure evidence: a later DepClosure snapshot whose report shows strict FULL_GRAPH acyclic and `scc_count = 0`.
+- Valid closure evidence: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports strict FULL_GRAPH acyclic and `scc_count = 0`.
 
 ## Ruling Rationale Notes
 

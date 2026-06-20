@@ -4,13 +4,15 @@ Date: 2026-05-24
 
 Prepared by: RECONCILIATION
 
-Status: APPROVED_AND_IMPLEMENTED_GRAPH_REDUCTION_ONLY
+Status: SUPERSEDED_BY_SAFE_MOVES
 
-Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/`
+Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`
 
 ## Purpose
 
 Four read-only pair reviews assessed the remaining bidirectional pairs in the SCC-001 residual graph. This package converted those findings into a decision surface for human rulings and a CHANGE handoff. The human approved the rulings, CHANGE applied the four row retirements, and DepClosure snapshot `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` verified graph reduction only.
+
+This package is now historical evidence. The later accepted `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` snapshot reports strict `scc_count = 0` for dependency-closure discovery.
 
 ## Residual Pair Recommendations
 
@@ -30,7 +32,7 @@ The human approved the four rulings above. CHANGE applied the following schema-c
 - Validate all touched dependency registers before and after mutation.
 - Run AUDIT_DEP_CLOSURE into a new immutable snapshot. Complete: `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320`.
 
-## DepClosure Result
+## Historical DepClosure Result
 
 The residual closeout scan removed all bidirectional pairs, but did not close SCC-001:
 
@@ -48,6 +50,6 @@ The residual closeout scan removed all bidirectional pairs, but did not close SC
 - Redaction/persistence evidence: `DEP-05-02-009`, `DEP-05-03-011`
 - Permission/write-hook evidence: `DEP-06-01-011`, `DEP-06-04-007`
 
-## Closure Constraint
+## Superseding Closure Evidence
 
-SCC-001 remains open until a later accepted DepClosure snapshot proves `scc_count = 0`. Strict project-wide `BLOCKED` / `UNBLOCKED` remains unavailable while any strict SCC remains.
+SCC-001 is closed for dependency-closure discovery by the later accepted `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` snapshot, which proves `scc_count = 0`. This does not create lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.

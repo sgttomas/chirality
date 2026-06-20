@@ -2,7 +2,7 @@
 
 ## Purpose
 
-DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current evidence says strict FULL_GRAPH is still cyclic, blocker-subset is acyclic, and SCC-001 remains the large runtime / SDK / session / tooling SCC to address after the smaller SCC-002 queue item.
+DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current accepted DepClosure evidence says the strict graph is acyclic for dependency-closure discovery: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports strict `scc_count = 0`, bidirectional pair count `0`, and schema-invalid register count `0`.
 
 Sources: `_CONTEXT.md` (Deliverable Scope), `README.md` (Purpose, Boundary), `DAG_CLOSURE_CONTROL.md` (Control Status, Current Queue), `Dependency_Closure_Report.md` (Verdict, Ruling).
 
@@ -12,17 +12,16 @@ Sources: `_CONTEXT.md` (Deliverable Scope), `README.md` (Purpose, Boundary), `DA
 - Keep DEL-00-02 outside product dependency graph discovery.
 - Preserve source-grounding: any row decision must cite the owning product dependency row and the evidence that justifies the ruling.
 - Use existing dependency schema semantics only.
-- Keep unresolved edge decisions as `TBD` / handoff items until RECONCILIATION or another approved workflow records evidence-backed rulings.
+- Treat earlier unresolved edge decisions as historical unless a future dependency change introduces a new SCC or reopens a specific row under a governed workflow.
 
 Sources: `DAG_CLOSURE_CONTROL.md` (Workflow), `SCC_Triage_Workbook.csv` (RecommendedAction, DoNotDo), `_DEPENDENCIES.md` (Boundary).
 
 ## Considerations
 
-- SCC-001 contains 18 nodes across PKG-03, PKG-04, PKG-05, and PKG-06 deliverables. The node list must be copied from the accepted DepClosure snapshot, not reconstructed from memory.
-- `Evidence/bidirectional_pairs.csv` lists 13 bidirectional pairs overall; 12 are in SCC-001 and one is the separate SCC-002 pair.
-- The current DepClosure report states that the canonical dependency ID migration was graph-neutral and that no dependency edge semantics were changed by the snapshot.
-- `SCC_Triage_Workbook.csv` gives a default reading for SCC-001: generate a focused ruling workbook and classify each edge as hard sequencing, interface evidence, downstream handoff, duplicate reciprocal evidence, already satisfied, or co-development-only.
-- The classification list is a triage vocabulary for the ruling workbook. It is not permission to invent new dependency schema values; every classification must be normalized into an allowed existing dependency-schema action or left `TBD` / `NEEDS_HUMAN_RULING` when the schema action is not evidenced.
+- The current accepted snapshot contains no non-trivial SCC membership; `Evidence/scc_summary.csv` has only the header row.
+- `Dependency_Closure_Report.md` records active strict deliverable execution edges `97`, strict SCC count `0`, and bidirectional pair count `0`.
+- `Closure_Acceptance_Audit.md` accepts the safe-moves snapshot for dependency-closure discovery and independently reran the analyzer with matching `scc_count = 0` evidence.
+- Earlier triage files remain useful as evidence history, but they are not the current graph-state authority.
 
 Sources: `Evidence/scc_summary.csv`, `Evidence/bidirectional_pairs.csv`, `Dependency_Closure_Report.md` (Evidence Summary, Ruling), `SCC_Triage_Workbook.csv`.
 
@@ -33,7 +32,7 @@ Sources: `Evidence/scc_summary.csv`, `Evidence/bidirectional_pairs.csv`, `Depend
 | Fast graph closure vs. evidence fidelity | Prefer evidence fidelity. | PKG-00 non-goals forbid inventing or deleting dependency edges merely to force DAG closure. |
 | Control deliverable dependencies vs. product dependencies | Keep control dependencies unregistered in DEL-00-02. | Adding `Dependencies.csv` would promote the control deliverable into analyzer discovery. |
 | Immediate mutation vs. ruling workbook | Produce the ruling workbook first. | The accepted workflow requires inspecting source-grounded rows before mutation. |
-| Reporting project status vs. waiting for DepClosure | Wait for strict acyclic FULL_GRAPH evidence. | Current DepClosure evidence remains CYCLIC. |
+| Reporting dependency-closure status | Use the accepted safe-moves snapshot and state its boundary. | Current DepClosure evidence is acyclic for discovery, but does not create lifecycle issuance or release/professional approval. |
 
 ## Examples
 

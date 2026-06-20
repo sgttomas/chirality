@@ -15,17 +15,18 @@
 | Candidate remedies bucketed | PASS |
 | SCOPE_CHANGE candidates selected | NONE |
 | DepClosure rerun after CHANGE | PASS - `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` |
-| Strict SCC count after tranche | 1 |
-| Residual SCC sizes | 6 |
+| Accepted safe-moves DepClosure snapshot | PASS - `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` |
+| Strict SCC count after safe moves | 0 |
+| Residual SCC sizes | 0 |
 | Residual bidirectional pairs | 0 |
 | Residual ruling package | PASS - `SCC-001_Residual_Ruling_Package.md` |
 | Longer-cycle ruling package | PASS - `SCC-001_Longer_Cycle_Ruling_Package.md` |
-| CaseState | DEP_CLOSURE_PENDING |
+| CaseState | CLOSED_BY_DEPCLOSURE |
 | Validator status | PASS - `python3 /Users/ryan/ai-env/projects/chirality/tools/validation/validate_scc_resolution_case.py` |
 
 ## Readiness Verdict
 
-DEP_CLOSURE_PENDING. CHANGE implemented the human-approved residual closeout tranche and AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves graph reduction only: `scc_count = 1`, residual SCC size `6`, `graph_edges = 101`, and `bidirectional_pair_count = 0`. The case is not closed, does not initiate SCOPE_CHANGE, does not amend decomposition truth or product text, and does not report project-wide blocker state.
+CLOSED_BY_DEPCLOSURE for dependency-closure discovery. CHANGE implemented the human-approved residual closeout tranche and AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proved graph reduction only. The later accepted snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` reports `scc_count = 0`, active strict deliverable execution edges `97`, bidirectional pair count `0`, and schema-invalid registers `0`. The case does not initiate SCOPE_CHANGE and does not amend decomposition truth or product text.
 
 ## Residual Ruling Readiness
 
@@ -33,4 +34,4 @@ DEP_CLOSURE_PENDING. CHANGE implemented the human-approved residual closeout tra
 
 ## Longer-Cycle Ruling Readiness
 
-`SCC-001_Longer_Cycle_Ruling_Package.md` records the six-node longer-cycle recommendations and a pending CHANGE handoff. Human approval remains required before any further dependency-row mutation.
+`SCC-001_Longer_Cycle_Ruling_Package.md` records the earlier six-node longer-cycle recommendations. The later accepted `SCC-SAFE-MOVES-001` snapshot closes the residual SCC for discovery through source-grounded `decompose` moves; no remaining SCC-driven dependency-row mutation is pending from this case.

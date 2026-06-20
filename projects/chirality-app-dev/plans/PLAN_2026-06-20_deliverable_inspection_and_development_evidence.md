@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. Next tranche pair: `INSP-02` control-plane truth-fix and `INSP-03` inspection sweep.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. Next tranche: `INSP-03` inspection sweep.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -40,8 +40,7 @@ development roadmap.
   deliverables stay in `1_Working/`. No bulk endpoint; per-deliverable calls. **`CHECKING` is
   one-way** (backward transitions throw).
 - **Dependency graph:** live DepClosure `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` is acyclic
-  (SCC 0), but PKG-00 `DAG_CLOSURE_CONTROL.md` still records the stale `CYCLIC`/`SCC=1`
-  (2026-05-24) — prerequisite P2.
+  (SCC 0), and `INSP-02` aligned PKG-00 control surfaces to that accepted snapshot.
 - **Evidence convention:** the 2 existing `Evidence_*.md` (DEL-03-01, DEL-04-01) use a
   matrix of Case|Subject|Status (PASS/PARTIAL/FAIL/BLOCKED_TBD)|Evidence + Source-State Caveat +
   Dependency Closure Note. Per deliverable, requirements live in `Specification.md`
@@ -51,7 +50,7 @@ development roadmap.
 
 | Pkg | Roadmap | Deliverable reality | Dominant gap |
 |---|---|---|---|
-| PKG-00 | DAG/control | 1 COMPLETE, 1 SUBSTANTIAL | Control-plane bookkeeping stale (P2) |
+| PKG-00 | DAG/control | 1 COMPLETE, 1 SUBSTANTIAL | Control-plane bookkeeping aligned in `INSP-02`; inspect remaining deliverable evidence in `INSP-03` |
 | PKG-01 | R0 governance | 2 SUBSTANTIAL, 2 PARTIAL | `reliance_boundary_register.md` (G6); checklists; PRD-hash (P1) |
 | PKG-02 | Baseline UI | 1 COMPLETE, 4 SUBSTANTIAL | UI render-test acceptance bar (P3/AMD-01); TBD reconciliations |
 | PKG-03 | R1 engine | 4 SUBSTANTIAL | Stale Evidence; 2 spec↔impl reconciliations + interrupt taxonomy (G5); 2 missing docs |
@@ -66,7 +65,7 @@ development roadmap.
 ## 4. Cross-Cutting Prerequisites (transposed P1-P5; treated as findings/inputs, not pre-decided)
 
 - **P1 — REF-006 PRD-hash.** `docs/PRD.md` `HASH_MISMATCH` across PKG-01/03/04/06/07/08/10. Separate later ruling (refresh accepted hash or governed bypass).
-- **P2 — PKG-00 control-plane reconciliation.** Stale `CYCLIC`/`SCC=1` in `DAG_CLOSURE_CONTROL.md`; repoint to `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. **Applied in INSP-02** (the one bounded truth-fix).
+- **P2 — PKG-00 control-plane reconciliation.** Stale `CYCLIC`/`SCC=1` in `DAG_CLOSURE_CONTROL.md`; repoint to `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. **Applied in INSP-02**; evidence: `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`.
 - **P3 — AMD-01 UI render-test acceptance bar.** No React render-test infra exists; do PKG-02/08 UI deliverables need component-render tests at the gate, or does logic/API coverage suffice? Separate later ruling.
 - **P4 — PKG-10 doc-only acceptance basis + status truth.** The five PKG-10 `_STATUS.md` falsely claim "active code implementation underway"; define a doc-only acceptance path for contract deliverables while R7 stays fenced. Recorded as findings (INSP-03) + later ruling.
 - **P5 — Evidence/assessment template.** Defined in this plan (the Assessment artifact, INSP-03).
@@ -88,7 +87,7 @@ development roadmap.
 | `INSP-00b` Repoint coordination **(DONE 2026-06-20)** | Make this the single active queue; orient the dev loop. | `_COORDINATION` / `_LATEST` / `NEXT_INSTANCE_PROMPT` / `_REGISTER`. | All surfaces name this plan; no surface asserts loop-first active. |
 | `INSP-01a` Normalize preflight | **RERUN 2026-06-20 - PASSED under D-APP-33 acceptance basis.** Dry-run the 53 `_STATUS.md` rewrites in memory; prove zero unaccepted prose loss. | Read-only preflight evidence at `plans/artifacts/insp01a_status_preflight_2026-06-20.md` and rerun evidence at `plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`; no deliverable status files changed. | Passed after D-APP-33 accepted normalization loss for the 52 semantic/provisional history bullets; zero unaccepted drops. |
 | `INSP-01` Move 53 -> CHECKING **(DONE 2026-06-20)** | Applied `IN_PROGRESS -> CHECKING` to all 53 with owner-blessed SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. | 53 deliverable `_STATUS.md` files; evidence at `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`, `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`, and `plans/artifacts/insp01_status_transition_log_2026-06-20.json`. | `53 CHECKING` / 0 `IN_PROGRESS` / 0 `ISSUED`; 53 `**Checking Approval SHA:**`; no transition failures. HTTP route unavailable because `frontend/node_modules/` is absent, so the transition used mirrored lifecycle semantics. |
-| `INSP-02` Control-plane truth-fix | Repoint PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`. | `analyze_dep_closure.py execution` -> SCC 0; control doc acyclic. |
+| `INSP-02` Control-plane truth-fix **(DONE 2026-06-20)** | Repointed PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`; evidence at `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. | `analyze_dep_closure.py execution` -> SCC 0; control docs acyclic. |
 | `INSP-03` Inspection sweep | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. | 53/53 Assessments; CRITIC pass; cited `vitest run <file>` green. |
 | `INSP-04` Gate-process evaluation | Recommend keep/modify/replace the per-deliverable approvalSha gate. | Memo + any new packets. | Explicit recommendation; packets registered AWAITING. |
 | `INSP-05` Development roadmap | Synthesize 53 Assessments into a prioritized, dependency-ordered roadmap. | Roadmap artifact; new packets. | Covers all 53 + G1-G6; cross-checked vs the dep DAG. |
@@ -140,6 +139,13 @@ Repoint `execution/PKG-00…/1_Working/DAG_CLOSURE_CONTROL.md` (and `execution/_
 if it cites the stale snapshot) from `CYCLIC`/`SCC=1` to the acyclic `SAFE_MOVES_001` posture; mark
 the SCC cases closed. This is the only substantive write to non-`_STATUS` content during execution.
 
+**2026-06-20 result:** landed. PKG-00 `DAG_CLOSURE_CONTROL.md`, `CONTROL_REGISTER.csv`, DEL-00-01
+and DEL-00-02 control docs, SCC-001 case artifacts, and `execution/_Reconciliation/_LATEST.md` now
+point current dependency-closure posture at `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
+Validation reran `analyze_dep_closure.py execution` with 51 valid dependency files, 554 rows, graph
+46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, and 0 invalid registers. Evidence:
+`plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`.
+
 ### INSP-03 — Per-deliverable inspection sweep (multi-agent)
 Package-batched, dependency-wave order (`SAFE_MOVES_001`; orphans `DEL-01-01/01-03/02-04/10-04/10-05`
 any wave), disjoint write scope (one Assessment per agent, per `AGENTS.md`). Each inspector reads the
@@ -188,9 +194,9 @@ convention:
 ## 9. Sequencing
 
 `INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
-`INSP-01` (done) -> (`INSP-02` ∥ `INSP-03`) -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-02 and
-INSP-03 overlap (the control-plane truth-fix is independent of the per-deliverable sweep). INSP-04
-and INSP-05 consume the completed sweep.
+`INSP-01` (done) -> `INSP-02` (done) -> `INSP-03` -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`.
+INSP-03 now consumes the corrected control-plane posture. INSP-04 and INSP-05 consume the completed
+sweep.
 
 ## 10. Validation Policy
 
@@ -251,7 +257,8 @@ PKG-00 control-doc grep), plus the transposed RESEARCHER fan-out evidence captur
 register to make this the active queue; prior plans are marked superseded-as-active with pointers
 here. D-APP-33 cleared the `INSP-01a` semantic-history blocker, the rerun passed under that
 acceptance basis, and `INSP-01` moved all 53 deliverables to `CHECKING` with owner-blessed SHA
-`8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. Landed tranche narrative moves to
+`8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. `INSP-02` aligned PKG-00 with the accepted acyclic
+DepClosure snapshot. Landed tranche narrative moves to
 `plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next step requires a human ruling (REF-006,
 AMD-01, PKG-10 basis, any issuance gate, or a new fork). Issuance is reconsidered only after the
 inspection and the gate-process evaluation conclude.

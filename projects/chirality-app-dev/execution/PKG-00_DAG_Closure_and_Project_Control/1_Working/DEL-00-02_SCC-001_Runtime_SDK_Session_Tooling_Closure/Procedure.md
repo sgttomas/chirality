@@ -6,52 +6,40 @@ Define the operational workflow for producing SCC-001 control records from the a
 
 ## Prerequisites
 
-- Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/`.
+- Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
 - Required evidence files:
-  - `Evidence/scc_summary.csv`
-  - `Evidence/bidirectional_pairs.csv`
-  - `SCC_Triage_Workbook.csv`
   - `Dependency_Closure_Report.md`
-- `RUN_SUMMARY.md`
+  - `Closure_Acceptance_Audit.md`
+  - `Evidence/closure_summary.json`
+  - `Evidence/scc_summary.csv`
 - DEL-00-02 remains a control deliverable with no `Dependencies.csv`.
-- Access to owning product deliverable dependency registers and cited source evidence is required before any future row decision can be accepted; access owner/acquisition path remains TBD / HumanRuling.
+- Earlier triage and ruling-workbook artifacts remain historical evidence; no active SCC-001 row decision remains pending from this case.
 
 Sources: `_REFERENCES.md`, `_DEPENDENCIES.md`, `DAG_CLOSURE_CONTROL.md` (Workflow), `SCC_Triage_Workbook.csv` (RecommendedAction).
 
 ## Steps
 
 1. Confirm the accepted upstream DepClosure snapshot path from `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md`.
-2. Read `Dependency_Closure_Report.md` and `RUN_SUMMARY.md` to confirm strict FULL_GRAPH remains CYCLIC and blocker-subset remains ACYCLIC.
-3. Read `Evidence/scc_summary.csv` and extract only the SCC-001 node set.
-4. Read `Evidence/bidirectional_pairs.csv` and select the 12 pairs whose nodes are both in the SCC-001 node set.
-5. Create the focused SCC-001 ruling workbook using the current bidirectional-pair evidence and the `SCC_Triage_Workbook.csv` directive. The workbook output path/name is TBD; until a human or approved workflow chooses a path, use a proposed record name of `SCC-001_Ruling_Workbook.csv` inside the DEL-00-02 control records without treating that proposal as authoritative.
-6. For each workbook row, identify the owning product dependency row(s) and cited evidence source(s).
-7. Classify each edge using the triage categories from `SCC_Triage_Workbook.csv`: hard sequencing, interface evidence, downstream handoff, duplicate reciprocal evidence, already satisfied, or co-development-only.
-8. Convert each classification into an allowed existing dependency-schema action only when source evidence supports it. Otherwise mark the row `TBD` or `NEEDS_HUMAN_RULING`.
-9. Apply accepted row changes only in the owning product deliverable registers, not in DEL-00-02.
-10. Run a new DepClosure scan after accepted row changes.
-11. Record the follow-up snapshot path, strict SCC verdict, remaining blockers, and handoff state in DEL-00-02 control records.
+2. Read `Dependency_Closure_Report.md` and `Closure_Acceptance_Audit.md`.
+3. Confirm strict `scc_count = 0`, bidirectional pair count `0`, schema-invalid register count `0`, and strict graph acyclic posture.
+4. Confirm `Evidence/scc_summary.csv` contains only the header row.
+5. Record the closure snapshot path, strict SCC verdict, and remaining-boundary notes in DEL-00-02 control records.
 
 ## Verification
 
 | Check | Expected Result |
 |---|---|
 | DEL-00-02 dependency register check | No `Dependencies.csv` exists in this folder. |
-| Snapshot alignment | `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md` point to the same accepted DepClosure snapshot before workbook generation. |
-| SCC node fidelity | Workbook SCC-001 nodes match `Evidence/scc_summary.csv`. |
-| Bidirectional pair fidelity | Workbook input pairs are drawn from `Evidence/bidirectional_pairs.csv`; SCC-002 pair is excluded from SCC-001 rulings. |
-| Source-grounding | Each proposed dependency row decision cites the owning row and supporting source evidence. |
+| Snapshot alignment | `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md` point to the same accepted DepClosure snapshot. |
+| SCC closure fidelity | `Evidence/scc_summary.csv` contains only the header row. |
 | Schema discipline | No new dependency type or schema value is introduced. |
-| Closure evidence | Follow-up DepClosure reports `scc_count = 0` and strict FULL_GRAPH acyclic before project-wide blocker state is reportable. |
-| Follow-up snapshot record | Records include the immutable follow-up DepClosure snapshot path and strict FULL_GRAPH result after accepted row changes. |
+| Closure evidence | Accepted DepClosure reports `scc_count = 0` and strict FULL_GRAPH acyclic. |
+| Snapshot record | Records include the immutable DepClosure snapshot path and strict FULL_GRAPH result. |
 
 ## Records
 
-- Focused SCC-001 ruling workbook.
-- Minimum workbook columns: `PairID`, `NodeA`, `NodeB`, `OwningRegisterPath`, `DependencyID`, `CurrentDependencyType`, `CurrentStatus`, `EvidenceCitation`, `TriageClassification`, `AllowedSchemaAction`, `Ruling`, `HumanRuling`, `RemainingBlockerStatus`, `Notes`.
-- Per-row decision records with owning register path, dependency ID, source citation, ruling, and remaining blocker status.
-- Product-register diffs for any accepted row changes.
-- New immutable DepClosure snapshot, including the snapshot path and strict FULL_GRAPH result.
+- Historical focused SCC-001 ruling workbook and row records.
+- Accepted immutable DepClosure snapshot, including the snapshot path and strict FULL_GRAPH result.
 - Handoff state naming accepted upstream snapshot, derivative-package status, closure verdict, rerun requirements, and remaining blockers.
 
 ## Pass 3 Disposition

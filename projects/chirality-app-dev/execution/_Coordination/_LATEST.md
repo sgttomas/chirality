@@ -13,7 +13,7 @@ Active development queue:
 - `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
-  INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> (INSP-02 ∥ INSP-03) -> INSP-04 ->
+  INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> INSP-02 -> INSP-03 -> INSP-04 ->
   INSP-05 -> INSP-FINAL. `INSP-01a` executed 2026-06-20, found a status-history preservation
   blocker (`plans/artifacts/insp01a_status_preflight_2026-06-20.md`), and reran clean under the
   D-APP-33 semantic-history acceptance ruling
@@ -21,8 +21,11 @@ Active development queue:
   owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; all 53 deliverables are now
   `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`. Evidence:
   `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md` and
-  `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`. Next selected tranche pair:
-  `INSP-02` control-plane truth-fix and `INSP-03` inspection sweep.
+  `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`. `INSP-02` landed 2026-06-20
+  and aligned PKG-00 control-plane documents with accepted acyclic DepClosure snapshot
+  `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`; evidence:
+  `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. Next selected tranche:
+  `INSP-03` inspection sweep.
 
 Completed / superseded queues (history, non-governing):
 
