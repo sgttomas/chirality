@@ -2,6 +2,7 @@ import { AnthropicAgentSdkManager } from './anthropic-agent-sdk-manager';
 import { StubAgentSdkManager } from './agent-sdk-manager';
 import { ClaudeAgentSdkManager } from './claude-agent-sdk-manager';
 import { AttachmentResolver } from './attachment-resolver';
+import { hasUiApiKey } from './api-key-store';
 import { PersonaComposer } from './persona-manager';
 import { FileSessionManager } from './session-manager';
 import { TurnEngine } from './turn-engine';
@@ -31,12 +32,43 @@ function asNonEmptyString(value: string | undefined): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+/**
+ * Whether an Anthropic API key is configured via the UI Settings store or the
+ * environment. Mirrors the key sources TurnEngine trusts
+ * (`hasAnthropicApiKeyConfigured`) so the default provider and the per-turn key
+ * gate agree on what "a key is configured" means.
+ */
+function hasConfiguredAnthropicKey(env: NodeJS.ProcessEnv): boolean {
+  return (
+    hasUiApiKey() ||
+    Boolean(
+      asNonEmptyString(env.ANTHROPIC_API_KEY) ?? asNonEmptyString(env.CHIRALITY_ANTHROPIC_API_KEY)
+    )
+  );
+}
+
 export function resolveHarnessProviderMode(env: NodeJS.ProcessEnv = process.env): HarnessProviderMode {
   const raw = asNonEmptyString(env.CHIRALITY_HARNESS_PROVIDER)?.toLowerCase();
+
+  // An explicit CHIRALITY_HARNESS_PROVIDER selection always wins, so dev/CI can
+  // pin any provider — including 'stub' — regardless of whether a key is present.
   if (raw === 'agentsdk' || raw === 'agent-sdk' || raw === 'claude-agent-sdk') {
     return 'agentSdk';
   }
-  return raw === 'anthropic' ? 'anthropic' : 'stub';
+  if (raw === 'anthropic') {
+    return 'anthropic';
+  }
+  if (raw === 'stub') {
+    return 'stub';
+  }
+
+  // D-APP-18 (Option A) key-aware default: with no explicit selection, use the
+  // real Claude Agent SDK path when an Anthropic API key is configured (env or
+  // UI Settings), otherwise fall back to the keyless stub so development works
+  // without a key and never fails a turn on a missing key. The provider manager
+  // is selected once at runtime construction; adding a key after a keyless start
+  // requires an app restart to switch off the stub.
+  return hasConfiguredAnthropicKey(env) ? 'agentSdk' : 'stub';
 }
 
 function buildAgentSdkManager(mode: HarnessProviderMode): IAgentSdkManager {

@@ -128,6 +128,13 @@ beforeEach(async () => {
 
   process.env.CHIRALITY_SESSION_ROOT = path.join(tmpRoot, '.chirality', 'sessions');
   process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+  // Keep the provider default deterministic: with the D-APP-18 key-aware default,
+  // an ambient Anthropic key would otherwise flip the unset-provider default to
+  // agentSdk. Clear provider + key state so these route tests exercise the stub.
+  delete process.env.CHIRALITY_HARNESS_PROVIDER;
+  delete process.env.ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  delete (globalThis as Record<string, unknown>).__CHIRALITY_UI_API_KEY__;
   context = { tmpRoot, projectRoot, instructionRoot };
 });
 

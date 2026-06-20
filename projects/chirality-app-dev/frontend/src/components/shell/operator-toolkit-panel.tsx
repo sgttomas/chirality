@@ -68,7 +68,7 @@ export function OperatorToolkitPanel(): JSX.Element {
             onChange={(event) => {
               updateValues({ model: event.target.value });
             }}
-            placeholder="claude-sonnet-4-20250514"
+            placeholder="haiku"
           />
         </label>
 

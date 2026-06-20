@@ -57,7 +57,7 @@ The approved vNext direction is:
 
 > **Provider-adapter-general, contract-owned, and Chirality-governed.**
 
-Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter and is shipped as the opt-in `agentSdk` probe path; D-APP-12 Option B holds the default-provider cutover. Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
+Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter and is the key-aware default provider per D-APP-18 (the real `agentSdk` path when an Anthropic key is configured, else `stub`). Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
 
 2026-06-17 stabilization note: R0-R5 roadmap text below is retained as strategic history.
 Runtime Stabilization landed the runtime spine, validation surface, persona composer,
@@ -463,7 +463,7 @@ Create the R0/R1 implementation plan before code changes:
 This plan remains acceptable only if:
 
 - the first slice remains R0/R1 runtime contract + first-adapter probe + TurnEngine + event log + prompt composer + settings isolation;
-- Claude Agent SDK / Anthropic remains the first adapter and opt-in `agentSdk` probe path while provider-adapter generality remains the strategic architecture;
+- Claude Agent SDK / Anthropic remains the first adapter and, per D-APP-18, the key-aware default provider while provider-adapter generality remains the strategic architecture;
 - no write/bash/subagent/domain capability is exposed before permission, hooks, result storage, and event logging pass validation;
 - roadmap order stays clear: provider-adapter runtime spine before tool expansion, read before writes/bash, domain after core harness stability;
 - runtime event logging does not reactivate retired pipeline run-record scope;

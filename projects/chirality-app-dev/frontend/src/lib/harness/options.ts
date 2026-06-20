@@ -10,7 +10,7 @@ import {
 } from './agent-instruction';
 import { HarnessOpts, ResolvedOpts, SessionRecord } from './types';
 
-const DEFAULT_MODEL = 'claude-sonnet-4-20250514';
+const DEFAULT_MODEL = 'haiku';
 const DEFAULT_TOOLS = ['read', 'write', 'bash'];
 const DEFAULT_MAX_TURNS = 12;
 const GLOBAL_MODEL_ENV_VAR = 'CHIRALITY_GLOBAL_MODEL';

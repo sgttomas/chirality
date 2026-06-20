@@ -636,7 +636,7 @@ Rules:
 
 ### 12.1 Adapter Position
 
-Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and opt-in `agentSdk` probe path, subject to ongoing conformance tests and D-APP-12 default-provider rulings. Concrete non-Anthropic providers require bounded future implementation scope.
+Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and the key-aware default provider (per the D-APP-18 ruling), subject to ongoing conformance tests; further provider expansion remains human-gated. Concrete non-Anthropic providers require bounded future implementation scope.
 
 ### 12.2 Shipped First-Adapter Settings Isolation
 

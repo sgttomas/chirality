@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-20..D-APP-32 RULED; D-APP-18 default-provider cutover AWAITING_RULING).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18 + D-APP-20..D-APP-32 RULED; D-APP-18 default-provider cutover ruled Option A and landed as a key-aware default).
 
 Active development queue:
 

@@ -82,7 +82,7 @@ max_turns: 5
     const resolved = await resolveRuntimeOptions(makeSession(), {});
 
     expect(resolved).toMatchObject({
-      model: 'claude-sonnet-4-20250514',
+      model: 'haiku',
       tools: ['bash', 'read'],
       maxTurns: 5,
       persona: 'WORKING_ITEMS',
@@ -122,7 +122,7 @@ model: claude-persona
     process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
 
     const resolved = await resolveRuntimeOptions(makeSession(), {});
-    expect(resolved.model).toBe('claude-sonnet-4-20250514');
+    expect(resolved.model).toBe('haiku');
   });
 
   it('lets opts override persona/global defaults', async () => {

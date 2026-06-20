@@ -6,6 +6,48 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - D-APP-18 default-provider cutover landed (key-aware default)
+
+Ruled D-APP-18 Option A and implemented the bounded default-provider cutover.
+`resolveHarnessProviderMode` (`frontend/src/lib/harness/runtime.ts`) now uses a
+key-aware default: with no explicit `CHIRALITY_HARNESS_PROVIDER`, it selects the
+real `agentSdk` path when an Anthropic API key is configured (env
+`ANTHROPIC_API_KEY`/`CHIRALITY_ANTHROPIC_API_KEY` or the UI Settings store) and
+falls back to `stub` when none is. Explicit `stub`/`anthropic`/`agentSdk` still
+win, so `stub` remains an opt-in. The provider manager is selected once at
+runtime construction; adding a key after a keyless start needs an app restart to
+leave the stub.
+
+Per the ruling, scope is bounded to the default selection plus its docs/control-plane
+alignment — no provider expansion, and no release/distribution posture
+(signing/notarization/publication remain separately gated). The D-APP-12 hold on
+the default is superseded for the default selection only.
+
+Control-plane alignment: `_REGISTER.md` (D-APP-18 -> RULED Option A), `_LATEST.md`,
+`_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, and governed docs
+DIRECTIVE/PRD/SPEC/CONTRACT (K-ENGINE-3)/PLAN updated from "opt-in probe /
+D-APP-12 holds cutover" to the key-aware default.
+
+Validation:
+
+- `npm run typecheck` exit 0.
+- `npx vitest run` 503 passed (71 files), +4 over the prior 499 baseline; new cases
+  cover the key-aware default and the explicit-`stub` override. A re-run with an
+  ambient `ANTHROPIC_API_KEY` also passed 503 (suite stays deterministic).
+- `npx next build` exit 0.
+
+Follow-on (same session): the first real-model run surfaced `model_not_found` on the
+hardcoded default `claude-sonnet-4-20250514` (a dated snapshot the account cannot
+access) — the same model-availability wall as D-APP-15/16, which D-APP-17 cleared with
+an alias. Corrected `DEFAULT_MODEL` (`options.ts`) and the anthropic adapter's
+`FALLBACK_MODEL` (`anthropic-agent-sdk-manager.ts`) to the `haiku` alias (owner choice),
+and aligned the operator-toolkit model placeholder. The cutover itself was validated by
+this run: the agentSdk path authenticated and reached the model before the model-id
+rejection. Model remains overridable per-session (`opts.model`) and globally
+(`CHIRALITY_GLOBAL_MODEL`).
+
+Ruling record: `execution/_Coordination/_DECISIONS/D-APP-18_RULING_2026-06-20.md`.
+
 ## 2026-06-20 - Loop-first pivot closeout landed (`28e`)
 
 Closed the D-APP-28 loop-first pivot plan. DESIGN §5 now records that the
