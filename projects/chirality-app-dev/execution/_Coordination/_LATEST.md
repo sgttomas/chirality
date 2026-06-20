@@ -14,8 +14,10 @@ Active development queue:
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
   INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> (INSP-02 ∥ INSP-03) -> INSP-04 ->
-  INSP-05 -> INSP-FINAL; **INSP-01 is the earliest unstarted tranche** (owner confirms the blessed
-  approvalSha first).
+  INSP-05 -> INSP-FINAL. `INSP-01a` executed 2026-06-20 and found a status-history preservation
+  blocker (`plans/artifacts/insp01a_status_preflight_2026-06-20.md`); D-APP-33 is AWAITING_RULING.
+  `INSP-01` is blocked until D-APP-33 is ruled, remediation lands, `INSP-01a` reruns clean, and the
+  owner confirms the blessed approvalSha.
 
 Completed / superseded queues (history, non-governing):
 
