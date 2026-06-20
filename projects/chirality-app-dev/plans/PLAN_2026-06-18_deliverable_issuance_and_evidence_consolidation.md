@@ -1,7 +1,7 @@
 # Deliverable Issuance & Evidence Consolidation Program Plan
 
 **Date:** 2026-06-18
-**Status:** PROPOSAL / DRAFT — requires human acceptance ruling (`D-APP-19`) before it becomes an active development queue. It does **not** re-point `_COORDINATION.md` / `NEXT_INSTANCE_PROMPT.md` / `_LATEST.md`; those change only on acceptance.
+**Status:** SUPERSEDED-as-active 2026-06-20 by `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`. D-APP-19 was ruled **Option D (custom)**: open an inspection phase first (issuance deferred). This proposal's still-valid materials (§3 current-state map, §5 P1-P5, §6 G1-G6, §7 tranche spine) are transposed into the inspection plan; the issuance spine here is retained as the **eventual follow-on**, to be reconsidered after the inspection and the gate-process evaluation conclude. Non-governing as an active queue.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** `WORKING_ITEMS` (RESEARCHER fan-out evidence, 2026-06-18)

@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Deliverable-inspection phase opened (INSP-00 / INSP-00b)
+
+Ruled D-APP-19 **Option D (custom)**: open a deliverable-INSPECTION phase (issuance deferred) per
+owner directive. Authored the governing plan
+`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (transposing the
+issuance proposal's current-state map, prerequisites P1-P5, and code gaps G1-G6), recorded
+`execution/_Coordination/_DECISIONS/D-APP-19_RULING_2026-06-20.md`, and flipped the register row to
+RULED.
+
+Retired/superseded prior plans as active queue (history retained): the issuance proposal
+`PLAN_2026-06-18_…` (materials transposed; issuance spine retained as the eventual follow-on) and
+the complete loop-first pivot `PLAN_2026-06-19_loop_first_pivot.md`; the runtime / R6 / SCC /
+live-proof / validation-isolation plans were already closed history. Repointed `_COORDINATION.md`,
+`_LATEST.md`, and `NEXT_INSTANCE_PROMPT.md` (Entry Protocol, Active Direction, Selection Rules,
+Closeout) to make the inspection plan the single active queue with **INSP-01 the earliest unstarted
+tranche**.
+
+Execution of INSP-01 onward (preflight, the 53 `IN_PROGRESS -> CHECKING` transitions, the
+control-plane truth-fix, the multi-agent inspection sweep, the gate-process evaluation, and the
+development roadmap) is **handed off** to the implementing agent via the dev loop, after the owner
+confirms the blessed `approvalSha`. Docs-only this turn; no source touched; nothing issued.
+
 ## 2026-06-20 - Governance loose-end cleanup
 
 Closed `plans/PLAN_2026-06-19_validation_server_build_isolation.md` (OPEN -> CLOSED):

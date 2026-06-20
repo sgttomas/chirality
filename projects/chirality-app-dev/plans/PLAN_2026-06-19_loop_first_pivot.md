@@ -1,7 +1,7 @@
 # Loop-First Pivot (D-APP-28) Plan
 
 **Date:** 2026-06-19
-**Status:** COMPLETE (28a, 28b, 28c, 28d, and 28e landed; SD-1/2/3 ruled — D-APP-30/31/32)
+**Status:** COMPLETE (28a, 28b, 28c, 28d, and 28e landed; SD-1/2/3 ruled — D-APP-30/31/32). SUPERSEDED-as-active 2026-06-20 by `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (closed history; non-governing as an active queue).
 **Governing ruling:** `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md` (Option B — full loop-first pivot)
 **Packet:** `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`
 **Active design:** `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (§3.1 primary loop, §3.2 sidebar, §3.3 tertiary screens, §5 build sequence; the D-APP-28 ruling/packet name the §5 "Transitional placement decision" bullet — DESIGN line 111 — as "§5.2", the transitional sidebar-left note)

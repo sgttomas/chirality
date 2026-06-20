@@ -6,14 +6,22 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18 + D-APP-20..D-APP-32 RULED; D-APP-18 default-provider cutover ruled Option A and landed as a key-aware default).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-32 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
 
 Active development queue:
 
-- No remaining unstarted tranche in `plans/PLAN_2026-06-19_loop_first_pivot.md`
-  (D-APP-28 full loop-first pivot). Tranche spine 28a -> 28b -> 28c -> 28d -> 28e
-  has LANDED. Routing/layout change only — public UIEvent contract + permission plane
-  untouched.
+- `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
+  Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
+  to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
+  INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> (INSP-02 ∥ INSP-03) -> INSP-04 ->
+  INSP-05 -> INSP-FINAL; **INSP-01 is the earliest unstarted tranche** (owner confirms the blessed
+  approvalSha first).
+
+Completed / superseded queues (history, non-governing):
+
+- `plans/PLAN_2026-06-19_loop_first_pivot.md` (D-APP-28 full loop-first pivot; 28a-28e LANDED).
+- `plans/PLAN_2026-06-18_deliverable_issuance_and_evidence_consolidation.md` (issuance program;
+  materials transposed into the inspection plan; issuance spine retained as eventual follow-on).
 - `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (active design: Agent-Orchestration UI &
   Information Architecture redesign; Phases 1-5 COMPLETE).
 
