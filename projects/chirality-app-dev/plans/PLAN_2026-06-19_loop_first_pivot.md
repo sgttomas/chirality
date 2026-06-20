@@ -1,7 +1,7 @@
 # Loop-First Pivot (D-APP-28) Plan
 
 **Date:** 2026-06-19
-**Status:** ACTIVE (28a landed; 28b next; SD-1/2/3 ruled — D-APP-30/31/32)
+**Status:** ACTIVE (28a and 28b landed; 28c next; SD-1/2/3 ruled — D-APP-30/31/32)
 **Governing ruling:** `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md` (Option B — full loop-first pivot)
 **Packet:** `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`
 **Active design:** `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (§3.1 primary loop, §3.2 sidebar, §3.3 tertiary screens, §5 build sequence; the D-APP-28 ruling/packet name the §5 "Transitional placement decision" bullet — DESIGN line 111 — as "§5.2", the transitional sidebar-left note)
@@ -24,7 +24,7 @@ The shipped D-APP-23 Option C hybrid this pivot reworks (all paths under `fronte
 - **Routes today.** `frontend/src/app/page.tsx` → `AppShell` + `AgentMatrix`; `frontend/src/app/workbench/page.tsx` → `WorkbenchClient` (Suspense); `frontend/src/app/pipeline/page.tsx` → `PipelineClient` (Suspense); `frontend/src/app/chat/page.tsx` → `LoopShell` (Suspense).
 - **Matrix navigation = route-as-main.** `frontend/src/components/portal/agent-matrix.tsx` schedules navigation via `createNavigationIntentScheduler` (wired `router.push(target)` :13-21) — cells call `navigationScheduler.schedule(cell.target)` (:66). Targets are static in `frontend/src/lib/portal/agent-matrix-cells.ts`: NORMATIVE/EVALUATIVE → `/workbench?agent=…` (Type-0/Type-1); OPERATIVE → `/pipeline?category=…` (Type-2). Deliverable rows schedule `/pipeline?category=TASK&…&scopeKey=…` (agent-matrix.tsx:104).
 - **Route-free in-place boot already exists.** `ChatPanel` resolves persona from `?agent=` and mode from pathname, and boots the session on first message via `createHarnessSession`/`bootHarnessSession` (POST `/api/harness/session/create`, D-APP-24 `assertDirectChatPersona` guard at agent-roster.ts:98). `buildDirectChatHref(persona)` (`frontend/src/lib/shell/loop-first.ts:19-24`) is the route-free href builder; `CHAT_ROUTE`/`CHAT_SECTION` at :11-12.
-- **Test/build baseline.** `frontend/package.json`: `test` = `vitest run` (:14), `typecheck` = `tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false` (:15, next + electron). `frontend/next.config.mjs` is minimal (`reactStrictMode: true`), no prerender directives. DESIGN §5 records Tranche 5b at **477 tests** (line 122); the current suite baseline is **491** (Tranche 5c, DESIGN line 122; explorer test-surface map). **No test encodes DOM grid-column order, sidebar placement, or drag direction** — `frontend/src/__tests__/lib/layout-state.test.ts` is pure clamping/collapse math (placement-independent), `agent-matrix-cells.test.ts` asserts route targets + the Type-0/1 roster guard, `loop-first.test.ts` asserts href building, `navigation-intent.test.ts` asserts turn-boundary coalescing.
+- **Test/build baseline.** `frontend/package.json`: `test` = `vitest run` (:14), `typecheck` = `tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false` (:15, next + electron). `frontend/next.config.mjs` is minimal (`reactStrictMode: true`), no prerender directives. DESIGN §5 records Tranche 5b at **477 tests** (line 122); Tranche 5c established the pre-pivot **491-test** baseline. Tranche 28b added the AppShell right-sidebar geometry guard, so the current post-28b suite baseline is **492 tests**. At pivot start no test encoded DOM grid-column order, sidebar placement, or drag direction; 28b now guards the shared AppShell grid-order and drag-direction constants in `frontend/src/__tests__/lib/layout-state.test.ts`.
 
 ## 3. Gaps the Pivot Closes
 
@@ -42,7 +42,7 @@ The shipped D-APP-23 Option C hybrid this pivot reworks (all paths under `fronte
 | Tranche | Purpose | Primary scope | Minimum validation |
 |---|---|---|---|
 | `28a` | **LANDED 2026-06-19.** Make the sidebar-right loop layout a reusable primitive | Added `SidebarRightLoopLayout` and rewired `LoopShell` to consume it; no route behavior change, no test edits, `AppShell` untouched | Passed `npm run typecheck`; `npx vitest run` (491 green); `npm run build` prerendered `/`, `/chat`, `/workbench`, `/pipeline`; browser `/chat` collapse check passed |
-| `28b` | Flip the sidebar to the RIGHT app-wide + update geometry tests in the SAME tranche | Re-order `AppShell` grid (CSS `.shell-grid` + JSX children) to sidebar-right; invert `DRAG_DIRECTION`; fix collapsed-label/handle CSS; update/extend layout-geometry tests in the same commit | `npm run typecheck`; `npx vitest run` (geometry tests updated, suite green); `next build` prerenders affected routes |
+| `28b` | **LANDED 2026-06-19.** Flip the sidebar to the RIGHT app-wide + update geometry tests in the SAME tranche | Re-ordered `AppShell` grid (CSS `.shell-grid` + JSX children) to sidebar-right; moved drag-direction/grid-order constants into `layout-state.ts`; added stable `data-shell-slot` markers and layout-geometry assertions | Passed `npm run typecheck`; `npx vitest run` (492 green); `npm run build` prerendered `/`, `/chat`, `/workbench`, `/pipeline`; browser `/`, `/workbench`, `/pipeline` geometry/collapse/drag checks passed |
 | `28c` | Portal `/` becomes a loop-first home with in-place matrix launch | `page.tsx` renders the loop-first shell; `AgentMatrix` Type-0/Type-1 cells boot in-place via `buildDirectChatHref` (no `router.push`-to-route-as-main); OPERATIVE cells gated on a sub-decision (§8) | `npm run typecheck`; `npx vitest run` (matrix/route tests updated, suite green); `next build` prerenders `/` |
 | `28d` | Demote `/workbench` + `/pipeline` to sidebar-reachable tertiary forms (kept, not deleted) | `WorkbenchClient`/`PipelineClient` reachable as tertiary forms from the sidebar; routes remain and still render; nav reflects tertiary status | `npm run typecheck`; `npx vitest run` (suite green); `next build` prerenders `/`, `/workbench`, `/pipeline`, `/chat` |
 | `28e` | Closeout | DESIGN §5 + line-111 "§5.2" note update (loop-primary end-state; close the transitional sidebar-left note), resume prompt, `_REGISTER.md` annotation, plan completion record | Governance gate; runtime commands re-run if any source changed in this tranche |
@@ -71,6 +71,17 @@ the sidebar width while the chat panel remains mounted.
 - **Acceptance:** `npm run typecheck` clean; `npx vitest run` green with **zero test edits** (no test encodes this structure); `next build` prerenders `/`, `/chat`, `/workbench`, `/pipeline`; `/chat` is visually identical to pre-tranche.
 
 ### 28b — Sidebar-right app-wide + geometry tests (same tranche)
+
+**Status: LANDED 2026-06-19.** `AppShell` now renders main → chat handle →
+chat → workspace handle → workspace sidebar, with the workspace sidebar right-most
+on route surfaces. The shared grid template, rendered slot order, and drag-direction
+signs live in `layout-state.ts`; `AppShell` consumes the grid template and marks
+rendered panes/handles with `data-shell-slot` for browser-verifiable geometry. The
+workspace resize sign is inverted for the right-edge placement. Validation:
+`npm run typecheck`; `npx vitest run` (492 tests); `npm run build` (`next build`
+prerendered `/`, `/chat`, `/workbench`, `/pipeline`); browser route checks verified
+the slot order on `/`, `/workbench`, and `/pipeline`, workspace collapse to 56px
+with centered label, and left-drag growth from 280px to 360px.
 
 - **Scope.** Flip `AppShell` from sidebar-left to sidebar-right: re-order `grid-template-columns` in `globals.css` `.shell-grid` (currently `minmax(56px,var(--pane-file-tree-width)) | handle | 1fr | handle | minmax(56px,var(--pane-chat-width))`) and the JSX grid children in app-shell.tsx (~:311-371) so the workspace sidebar is the right-most pane. Invert `DRAG_DIRECTION` (app-shell.tsx:48-52) for the moved panes and verify the delta sign at app-shell.tsx:183. Adjust the collapsed-label/handle CSS (`.shell-pane-collapsed-label`, the `.shell-pane--collapsed` toggle rules) for the right-edge placement.
 - **Tests in the same commit.** No existing test breaks on the flip (the suite encodes no DOM order), but this tranche **adds** layout-geometry/route assertions so the right-placement is regression-guarded going forward, extending `frontend/src/__tests__/lib/layout-state.test.ts` (clamping is placement-independent and stays green; new assertions cover the pane ordering/drag-direction invariant the flip introduces). Bundling code + test in one commit satisfies the binding "each tranche independently typecheck + layout-geometry/route tests green."
@@ -107,10 +118,10 @@ the sidebar width while the chat panel remains mounted.
 
 ## 6. Sequencing
 
-`28a LANDED → 28b NEXT → 28c → 28d → 28e`.
+`28a LANDED → 28b LANDED → 28c NEXT → 28d → 28e`.
 
 - `28a` landed the sidebar-right primitive, so `28b` (AppShell flip) and `28c` (portal) can consume a proven structure rather than each forking layout.
-- `28b` must land before `28c`/`28d` so the app is already sidebar-right when route surfaces become loop-first.
+- `28b` landed the AppShell sidebar-right flip, so `28c`/`28d` start from an app-wide right-sidebar geometry.
 - `28c ∥ 28d` are *logically* parallelizable (portal vs. workbench/pipeline are independent surfaces), but to keep review bounded and the IA coherent they land sequentially `28c → 28d`; either may be split further if a single diff grows too large to review.
 - `28e` is strictly last (records the realized end-state).
 
@@ -133,7 +144,7 @@ D-APP-28 is **already RULED** (Option B, `D-APP-28_RULING_2026-06-19.md`) — th
 Per-tranche gates (binding):
 
 - `npm run typecheck` — `tsc --noEmit` for both the Next and electron configs (`frontend/package.json` `typecheck`, :15); must be clean.
-- `npx vitest run` — full suite green against the **491-test baseline** (DESIGN §5 records 477 at Tranche 5b line 122; the current baseline at Tranche 5c is 491). `28b` updates/extends layout-geometry tests **in the same commit**; `28c` retargets `agent-matrix-cells.test.ts` while preserving its Type-0/Type-1 roster guard; `loop-first.test.ts` and `navigation-intent.test.ts` stay green. New layout-geometry/route assertions are expected in `28b`/`28c`.
+- `npx vitest run` — full suite green against the current **492-test baseline** after 28b (DESIGN §5 records 477 at Tranche 5b line 122; Tranche 5c established 491; 28b added one layout-geometry guard). `28c` retargets `agent-matrix-cells.test.ts` while preserving its Type-0/Type-1 roster guard; `loop-first.test.ts` and `navigation-intent.test.ts` stay green. New route assertions are expected in `28c`.
 - `next build` — must prerender the affected routes (`/`, `/chat`, `/workbench`, `/pipeline`). `frontend/next.config.mjs` needs no prerender-directive change (the pivot is grid/routing, not a render-mode change).
 - Manual visual/interaction check is required where no test covers DOM structure: grid column order, resize-handle drag direction, and collapsed-label placement after the `28b` flip.
 
@@ -148,7 +159,7 @@ End-state checks (all must hold at 28e):
 5. **Nothing is deleted.**
 6. The public **UIEvent contract and permission plane are unchanged** (no diff under the engine/permission paths).
 7. **In-flight turns survive** every relayout (`ChatPanel` never unmounted across sidebar flip, in-place launch, or tertiary-form open).
-8. `npm run typecheck` + `npx vitest run` (491 baseline) green and `next build` prerenders the affected routes at each landed tranche.
+8. `npm run typecheck` + `npx vitest run` (current 492 baseline after 28b) green and `next build` prerenders the affected routes at each landed tranche.
 
 ## 11. Evidence Basis
 
@@ -156,10 +167,10 @@ End-state checks (all must hold at 28e):
 - Geometry/CSS: `frontend/src/lib/shell/layout-state.ts` (`ResizablePaneKey` :1, `LAYOUT_STORAGE_KEY` :8); `frontend/src/app/globals.css` (`.shell-grid`, `.loop-grid`, `.shell-pane--collapsed`, `.shell-pane-collapsed-label`).
 - Routing/matrix: `frontend/src/app/page.tsx`, `frontend/src/app/workbench/page.tsx` + `workbench-client.tsx`, `frontend/src/app/pipeline/page.tsx` + `pipeline-client.tsx`, `frontend/src/app/chat/page.tsx`; `frontend/src/components/portal/agent-matrix.tsx` (scheduler+`router.push` :13-21, `schedule(cell.target)` :66, deliverable rows :104); `frontend/src/lib/portal/agent-matrix-cells.ts`; `frontend/src/lib/shell/loop-first.ts` (`buildDirectChatHref` :19-24, `CHAT_ROUTE`/`CHAT_SECTION` :11-12).
 - Session boot/guard: `frontend/src/app/api/harness/session/create/route.ts`; `assertDirectChatPersona` (`frontend/src/lib/harness/agent-roster.ts:98`, D-APP-24).
-- Tests/build: `frontend/src/__tests__/lib/layout-state.test.ts` (pure clamping/collapse), `agent-matrix-cells.test.ts` (route + Type-0/1 roster guard), `loop-first.test.ts`, `navigation-intent.test.ts`; `frontend/package.json` (:14-15); `frontend/next.config.mjs`.
+- Tests/build: `frontend/src/__tests__/lib/layout-state.test.ts` (clamping/collapse plus 28b AppShell right-sidebar grid-order/drag-sign guard), `agent-matrix-cells.test.ts` (route + Type-0/1 roster guard), `loop-first.test.ts`, `navigation-intent.test.ts`; `frontend/package.json` (:14-15); `frontend/next.config.mjs`.
 - Decision substrate: `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`, `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md`, `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-28 row: RULED Option B); D-APP-23/24 rows; D-APP-26 (Option C defer), D-APP-27 (Option C exclude), D-APP-29 (Option A defer) rulings; D-APP-30 (Option B guard mid-turn), D-APP-31 (Option B in-place form, staged with 28d), D-APP-32 (Option A new sidebar tabs) rulings (SD-1/2/3).
-- Design: `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` §3.1 (line 52), §3.2 (line 58), §3.3 (line 70), §5 (line 106); the "Transitional placement decision" bullet at line 111 (the transitional sidebar-left note the D-APP-28 ruling/packet call "§5.2"); Tranche 5b 477-test record and Tranche 5c 491-test record at line 122.
+- Design: `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` §3.1 (line 52), §3.2 (line 58), §3.3 (line 70), §5 (line 106); the "Transitional placement decision" bullet at line 111 (the transitional sidebar-left note the D-APP-28 ruling/packet call "§5.2"); Tranche 5b 477-test record and Tranche 5c 491-test record at line 122; Tranche 28b raised the current suite baseline to 492.
 
 ## 12. Finalization Rule
 
-The plan is complete when `28a`–`28d` have landed, each typecheck- + vitest-green (491 baseline) with `next build` prerendering the affected routes, and the §10 acceptance checks all hold. Closeout is recorded in `28e`: update DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; annotate the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` with the landed-tranche summary; write the resume / next-instance prompt; and add a plan completion record. SD-1/SD-2/SD-3 were ruled 2026-06-19 (D-APP-30/31/32); any further sub-decision that arises is packeted under `execution/_Coordination/_DECISIONS/` and ruled before the dependent tranche finalizes — none is assumed approved by D-APP-28.
+The plan is complete when `28a`–`28d` have landed, each typecheck- + vitest-green (current 492 baseline after 28b, or higher if a later tranche adds tests) with `next build` prerendering the affected routes, and the §10 acceptance checks all hold. Closeout is recorded in `28e`: update DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; annotate the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` with the landed-tranche summary; write the resume / next-instance prompt; and add a plan completion record. SD-1/SD-2/SD-3 were ruled 2026-06-19 (D-APP-30/31/32); any further sub-decision that arises is packeted under `execution/_Coordination/_DECISIONS/` and ruled before the dependent tranche finalizes — none is assumed approved by D-APP-28.

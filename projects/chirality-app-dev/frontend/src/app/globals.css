@@ -234,13 +234,9 @@ button:disabled {
   --pane-file-tree-width: 280px;
   --pane-chat-width: 320px;
   --pane-handle-width: 12px;
+  --shell-grid-template-columns: minmax(0, 1fr) var(--pane-handle-width) minmax(56px, var(--pane-chat-width)) var(--pane-handle-width) minmax(56px, var(--pane-file-tree-width));
   display: grid;
-  grid-template-columns:
-    minmax(56px, var(--pane-file-tree-width))
-    var(--pane-handle-width)
-    minmax(0, 1fr)
-    var(--pane-handle-width)
-    minmax(56px, var(--pane-chat-width));
+  grid-template-columns: var(--shell-grid-template-columns);
   gap: 0.75rem;
   min-height: 66vh;
   align-items: stretch;

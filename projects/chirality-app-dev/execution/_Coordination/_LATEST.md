@@ -11,7 +11,7 @@ Active coordination surfaces:
 Active development queue:
 
 - `plans/PLAN_2026-06-19_loop_first_pivot.md` (D-APP-28 full loop-first pivot). Tranche spine
-  28a -> 28b -> 28c -> 28d -> 28e; 28a LANDED 2026-06-19 and 28b is next.
+  28a -> 28b -> 28c -> 28d -> 28e; 28a and 28b LANDED 2026-06-19 and 28c is next.
   Routing/layout change only — public UIEvent contract + permission plane untouched.
 - `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (active design: Agent-Orchestration UI &
   Information Architecture redesign; Phases 1-5 COMPLETE).

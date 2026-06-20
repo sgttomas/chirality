@@ -6,6 +6,42 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-19 - Loop-first pivot AppShell sidebar-right geometry landed (`28b`)
+
+Flipped `AppShell` route surfaces to the right-sidebar geometry: the rendered
+order is now main surface, chat resize handle, chat pane, workspace resize
+handle, workspace sidebar. The shell grid template moved into
+`layout-state.ts`, `AppShell` consumes that shared template, and the rendered
+panes/handles now carry stable `data-shell-slot` markers for browser-verifiable
+geometry. The workspace resize direction was inverted for the right-edge
+placement while preserving the two-pane clamp model and `chirality.layout.v1`
+persistence.
+
+Added a geometry guard in `frontend/src/__tests__/lib/layout-state.test.ts`
+covering the AppShell slot order, grid-template constant, and drag-sign
+invariants. The public `UIEvent` contract and permission plane were untouched,
+and no route or tertiary screen was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 68 files, 492 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Local browser checks against `http://localhost:3000/`, `/workbench`, and
+  `/pipeline` passed: measured slot order was main -> chat handle -> chat ->
+  workspace handle -> workspace sidebar, with grid columns `553px 12px 320px
+  12px 280px` at the default viewport.
+- Browser interaction checks on `/pipeline` passed: workspace collapse produced
+  a 56px right rail with the `Workspace` collapsed label centered; dragging the
+  workspace handle 80px left increased workspace width from 280px to 360px and
+  reduced the main pane by 80px; browser console warnings/errors were empty.
+
+Residual handoff: `28c` is next. It makes portal `/` a loop-first home and
+implements the ruled in-place Type-0/Type-1 matrix launch behavior. D-APP-18
+remains separately awaiting ruling and still blocks default-provider cutover
+only.
+
 ## 2026-06-19 - Loop-first pivot reusable sidebar-right primitive landed (`28a`)
 
 Extracted the `/chat` sidebar-right loop layout into
