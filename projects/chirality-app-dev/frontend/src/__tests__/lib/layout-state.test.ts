@@ -1,11 +1,15 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  APP_SHELL_DRAG_DIRECTION,
+  APP_SHELL_GRID_ORDER,
+  APP_SHELL_GRID_TEMPLATE_COLUMNS,
   COLLAPSED_PANE_WIDTH_PX,
   LAYOUT_STORAGE_KEY,
   clampPaneWidthForLayout,
   createDefaultLayoutState,
   readLayoutStateFromStorage,
-  resolvePaneWidth
+  resolvePaneWidth,
+  resolvePointerDragDelta
 } from '../../lib/shell/layout-state';
 
 describe('shell layout state helpers', () => {
@@ -101,6 +105,26 @@ describe('shell layout state helpers', () => {
 
     // The toolkit pane resolves to zero width in this mode and never renders.
     expect(resolvePaneWidth(state, 'toolkit', false)).toBe(0);
+  });
+
+  it('guards the AppShell right-sidebar grid order and drag signs', () => {
+    expect(APP_SHELL_GRID_ORDER).toEqual([
+      'main',
+      'chatResizeHandle',
+      'chat',
+      'workspaceResizeHandle',
+      'workspaceSidebar'
+    ]);
+    expect(APP_SHELL_GRID_TEMPLATE_COLUMNS).toBe(
+      'minmax(0, 1fr) var(--pane-handle-width) minmax(56px, var(--pane-chat-width)) var(--pane-handle-width) minmax(56px, var(--pane-file-tree-width))'
+    );
+    expect(APP_SHELL_DRAG_DIRECTION).toMatchObject({
+      fileTree: -1,
+      chat: -1
+    });
+    expect(resolvePointerDragDelta('fileTree', -40)).toBe(40);
+    expect(resolvePointerDragDelta('fileTree', 40)).toBe(-40);
+    expect(resolvePointerDragDelta('chat', -40)).toBe(40);
   });
 
   it('falls back to simple min/max clamping when layout width is invalid', () => {

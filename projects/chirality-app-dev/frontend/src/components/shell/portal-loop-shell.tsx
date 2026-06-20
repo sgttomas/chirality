@@ -1,7 +1,8 @@
 'use client';
 
 import { Suspense } from 'react';
-import { CHAT_SECTION } from '../../lib/shell/loop-first';
+import { buildPortalPersonaHref } from '../../lib/shell/loop-first';
+import { useHarnessStreaming } from '../workspace/harness-events-provider';
 import { ChatPanel } from './chat-panel';
 import { PersonaPicker } from './persona-picker';
 import { ShellFrame } from './shell-frame';
@@ -9,24 +10,29 @@ import { SidebarRightLoopLayout } from './sidebar-right-loop-layout';
 import { createTertiarySidebarTabs } from './tertiary-sidebar-tabs';
 
 /**
- * The loop-first / direct-chat surface (`/chat`, D-APP-23 hybrid). The live loop
- * (ChatPanel) is the primary pane and the multi-view sidebar sits on the
- * **right**. The sidebar collapses without unmounting the chat, so an in-flight
- * turn survives the relayout (D-APP-23 constraint). The persona picker
- * (Type-0/Type-1, D-APP-24) drives the loop via `?agent=`.
+ * Loop-first portal (`/`, D-APP-28/30). The live loop is the primary surface;
+ * the matrix is demoted into the right sidebar's Portal tab. Matrix and picker
+ * launches change only `?agent=` on the mounted loop, guarded mid-turn by the
+ * shared streaming flag.
  */
-export function LoopShell(): JSX.Element {
+export function PortalLoopShell(): JSX.Element {
+  const streaming = useHarnessStreaming();
   const tertiaryTabs = createTertiarySidebarTabs();
 
   return (
     <ShellFrame
-      section={CHAT_SECTION}
-      title="Direct Chat"
-      subtitle="Run a live session with a Type-0/Type-1 persona; the multi-view sidebar is on the right."
+      section="PORTAL"
+      title="Live Loop Portal"
+      subtitle="Run the live harness loop first; use the right sidebar to reach matrix and workspace surfaces."
     >
-      <SidebarRightLoopLayout defaultSidebarTab="tools" {...tertiaryTabs}>
+      <SidebarRightLoopLayout defaultSidebarTab="portal" {...tertiaryTabs}>
         <div className="loop-persona-bar">
-          <PersonaPicker />
+          <PersonaPicker buildHref={buildPortalPersonaHref} disabled={streaming} />
+          {streaming ? (
+            <p className="portal-launch-notice" role="status">
+              Persona changes pause while the current turn is running.
+            </p>
+          ) : null}
         </div>
         <div className="loop-chat-host">
           <Suspense

@@ -28,7 +28,7 @@ export const DEFAULT_PERSONA = 'WORKING_ITEMS';
  * Type-1 REVIEW persona — AGGREGATION is a Type-2 TASK agent), and
  * `RECONCILING → RECONCILIATION` (the EVALUATIVE/REVIEWING cell is now the
  * Type-1 RESEARCH persona). Both RESEARCH and REVIEW resolve directly, no
- * alias. The `agent-matrix-cells.test.ts` guard enforces that every `/workbench`
+ * alias. The `agent-matrix-cells.test.ts` guard enforces that every loop-persona
  * matrix target resolves to a Type-0/Type-1 persona.
  */
 export const PERSONA_ALIASES: Record<string, string> = {

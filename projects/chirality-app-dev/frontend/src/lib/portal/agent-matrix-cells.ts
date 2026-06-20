@@ -3,13 +3,14 @@
  * is importable in the node-env test runner without pulling in the client
  * component. The matrix convention (rendered in the component header):
  *
- *   NORMATIVE / EVALUATIVE cells  → `/workbench?agent=…`  (Type-0/Type-1 personas)
- *   OPERATIVE cells (marked `*`)  → `/pipeline?category=…` (Type-2 task work)
+ *   NORMATIVE / EVALUATIVE cells  → `/?agent=…`             (mounted loop persona intent)
+ *   OPERATIVE cells (marked `*`)  → `/pipeline?category=…`  (Type-2 task intent)
  *
  * A mechanical guard (`agent-matrix-cells.test.ts`) asserts every
- * `/workbench?agent=` target resolves (through `resolvePersona`) to a roster
+ * loop-persona target resolves (through `resolvePersona`) to a roster
  * entry whose type is 0 or 1, so a Type-2 task agent can never again be wired to
- * boot as a direct `/workbench` persona session.
+ * boot as a top-level loop persona session. The client component folds these
+ * targets into the currently mounted loop shell route.
  */
 
 export type MatrixCell = {
@@ -18,6 +19,25 @@ export type MatrixCell = {
   label: string;
   target: string;
 };
+
+export type MatrixCellLaunchKind = 'loop-persona' | 'route';
+
+function buildLoopPersonaTarget(
+  agent: string,
+  row: MatrixCell['row'],
+  column: MatrixCell['column']
+): string {
+  const params = new URLSearchParams({ agent, row, column });
+  return `/?${params.toString()}`;
+}
+
+export function matrixCellLaunchKind(cell: MatrixCell): MatrixCellLaunchKind {
+  return cell.row === 'OPERATIVE' ? 'route' : 'loop-persona';
+}
+
+export function isMatrixLaunchBlockedByStreaming(streaming: boolean): boolean {
+  return streaming;
+}
 
 export const MATRIX_ROWS: Array<{
   rowLabel: MatrixCell['row'];
@@ -30,28 +50,28 @@ export const MATRIX_ROWS: Array<{
         row: 'NORMATIVE',
         column: 'GUIDING',
         label: 'HELP',
-        target: '/workbench?agent=HELP&row=NORMATIVE&column=GUIDING'
+        target: buildLoopPersonaTarget('HELP', 'NORMATIVE', 'GUIDING')
       },
       {
         row: 'NORMATIVE',
         column: 'APPLYING',
         label: 'ORCHESTRATE',
-        target: '/workbench?agent=ORCHESTRATE&row=NORMATIVE&column=APPLYING'
+        target: buildLoopPersonaTarget('ORCHESTRATE', 'NORMATIVE', 'APPLYING')
       },
       {
         row: 'NORMATIVE',
         column: 'JUDGING',
         label: 'WORKING_ITEMS',
-        target: '/workbench?agent=WORKING_ITEMS&row=NORMATIVE&column=JUDGING'
+        target: buildLoopPersonaTarget('WORKING_ITEMS', 'NORMATIVE', 'JUDGING')
       },
       {
-        // Re-pointed from the Type-2 TASK agent AGGREGATION to the Type-1 REVIEW
-        // persona: NORMATIVE cells boot `/workbench` persona sessions, and
-        // Type-2 task agents run only via the orchestrated path (D-APP-24).
+        // Re-pointed from the Type-2 TASK agent AGGREGATION to the Type-1
+        // REVIEW persona: NORMATIVE cells boot top-level loop persona sessions,
+        // and Type-2 task agents run only via the orchestrated path (D-APP-24).
         row: 'NORMATIVE',
         column: 'REVIEWING',
         label: 'REVIEW',
-        target: '/workbench?agent=REVIEW&row=NORMATIVE&column=REVIEWING'
+        target: buildLoopPersonaTarget('REVIEW', 'NORMATIVE', 'REVIEWING')
       }
     ]
   },
@@ -91,25 +111,25 @@ export const MATRIX_ROWS: Array<{
         row: 'EVALUATIVE',
         column: 'GUIDING',
         label: 'AGENTS',
-        target: '/workbench?agent=AGENTS&row=EVALUATIVE&column=GUIDING'
+        target: buildLoopPersonaTarget('AGENTS', 'EVALUATIVE', 'GUIDING')
       },
       {
         row: 'EVALUATIVE',
         column: 'APPLYING',
         label: 'DEPENDENCIES',
-        target: '/workbench?agent=DEPENDENCIES&row=EVALUATIVE&column=APPLYING'
+        target: buildLoopPersonaTarget('DEPENDENCIES', 'EVALUATIVE', 'APPLYING')
       },
       {
         row: 'EVALUATIVE',
         column: 'JUDGING',
         label: 'CHANGE',
-        target: '/workbench?agent=CHANGE&row=EVALUATIVE&column=JUDGING'
+        target: buildLoopPersonaTarget('CHANGE', 'EVALUATIVE', 'JUDGING')
       },
       {
         row: 'EVALUATIVE',
         column: 'REVIEWING',
         label: 'RESEARCH',
-        target: '/workbench?agent=RESEARCH&row=EVALUATIVE&column=REVIEWING'
+        target: buildLoopPersonaTarget('RESEARCH', 'EVALUATIVE', 'REVIEWING')
       }
     ]
   }

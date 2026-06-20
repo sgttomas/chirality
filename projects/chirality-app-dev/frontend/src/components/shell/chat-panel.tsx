@@ -601,6 +601,7 @@ export function ChatPanel(): JSX.Element {
       >
         <input
           aria-label="Chat input"
+          data-chat-input="primary"
           value={draft}
           disabled={!projectRoot || isRunning}
           onChange={(event) => {

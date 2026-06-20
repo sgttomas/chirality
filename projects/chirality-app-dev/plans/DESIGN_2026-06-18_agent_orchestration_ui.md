@@ -108,7 +108,7 @@ Contract/test impact (all expected, all updated): add `harness:event` to `PUBLIC
 1. **Event bridge (keystone, DONE — commit `64940ad65`).** `harness:event` passthrough → lights up the live loop + Subagents + Tools views under `agentSdk`. Additive, low-risk.
 2. **Shell refactor (DONE).** Fixed 3-pane shell → event-loop + collapsible multi-view sidebar; fold the live file tree in as the "Files" tab; mount bridge-fed Subagents/Tools tabs.
    - **What shipped:** `WorkspaceSidebar` (`components/shell/workspace-sidebar.tsx`) — one collapsible, tabbed pane: Files (existing tree) · Tools · Subagents · Document (placeholder) · Workflow (placeholder) · Tool Kit. The Tool Kit folded from its former dedicated pane + "Show Tool Kit" checkbox into a tab (nothing deleted). A shared `HarnessEventsProvider` (`components/workspace/harness-events-provider.tsx`) buffers the live `harness:event` stream; the chat panel (producer) appends/clears it and the Tools/Subagents views (consumers) read it. Pure, DOM-free derivations (`lib/shell/harness-event-views.ts`) collapse the `tool.*` / `subagent.*` lifecycle into rows — so live and replay render identically.
-   - **Transitional placement decision:** the sidebar evolves *in place from the current left file-tree pane* (lowest churn, keeps all three routes working with `children` still the main execution surface and Chat the live loop on the right). The design's eventual "sidebar on the right of the primary screen" assumes the later routing phase where main = the loop; that is the open decision in §6 (portal launch model) and is intentionally not forced here.
+   - **Placement closeout (D-APP-28 DONE):** the earlier left-file-tree evolution was transitional. The loop-first pivot closed it: the live loop is primary app-wide, the multi-view sidebar is on the right app-wide, and Portal/Workbench/Pipeline are sidebar-reachable tertiary forms while their routes remain as entry points.
 3. **Control: the permission pause + live mode switcher (DONE).** Make `ask` mode pause-and-approve and surface the operator mode selector.
    - **Decisions (owner):** live mode switcher (mode sent per-turn via `opts.mode`, no re-create) + inline approval cards in the live loop.
    - **What shipped:** the operator-mode selector lives in the chat panel and sends `opts.mode` (`readOnly`/`ask`/`workspaceWrite`/`bypass`) per turn — `opts.mode` is the single operator-mode lever (permission overlay + tool pool + persona posture + SDK `permissionMode`), resolved per turn (falls back to `session.mode`). When `canUseTool` resolves to `ask`, it suspends on a process-singleton **`PermissionBroker`** (keyed `sessionId+toolUseId`, 5-min auto-deny) and is released by `POST /api/harness/permission`; interrupt clears pending. Path/shell policy and hard-denies still evaluate **before** `ask`, so an operator can never approve a hard-denied tool.
@@ -123,6 +123,15 @@ Contract/test impact (all expected, all updated): add `harness:event` to `PUBLIC
    - **Tranche 5c — session list + hydrate-on-open (DONE).** Per D-APP-22 Option B: a **Sessions** sidebar tab (`session-list-view.tsx`) lists the Working Root's sessions (`listHarnessSessions` → `GET /api/harness/session/list`); "Open" replays a session's persisted events (`replaySessionEvents` → new `GET /api/harness/session/[id]/events`, reusing `replayHarnessEvents` — no forked parser; the id is path-traversal-guarded) and **hydrates** the live buffer via a new `hydrateEvents` action that **replaces** it (bounded by the shared pure `boundHarnessEventBuffer`, so same-turn live events are never double-counted), surfacing `malformedLineCount` honestly. No continuous tailing. A shared `streaming` flag (set by the chat panel around a turn, exposed via `useHarnessStreaming`) disables "Open" mid-turn so a hydrate cannot clobber live events; an in-flight open bails if the Working Root switches (ref identity guard); the open-result notice clears on a root change. Reviewed (18 agents; 3 confirmed findings — stale notice, late-hydrate identity guard, mid-turn guard — all applied). `next build` green. Typecheck clean, **491 tests**. **Phase 5 complete.**
 
 The Workflow view stays a thin peek throughout; the full task-management surface is the deferred secondary phase.
+
+6. **Loop-first pivot (D-APP-28, DONE).** Tranches 28a-28e completed the
+   post-hybrid pivot: reusable sidebar-right loop primitive; right-sidebar
+   app geometry; portal `/` as loop-first home with in-place Type-0/Type-1
+   matrix launch; `/workbench` and `/pipeline` demoted into right-sidebar
+   tertiary forms with deep-link routes preserved; OPERATIVE and deliverable
+   rows opening Pipeline in-place; and closeout of the transitional sidebar-left
+   note. The public UIEvent contract and permission plane were untouched, and
+   no route or tertiary screen was deleted.
 
 ---
 

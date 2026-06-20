@@ -15,10 +15,13 @@ import {
 import {
   DEFAULT_PANE_WIDTH_PX,
   MIN_PANE_WIDTH_PX,
+  APP_SHELL_GRID_ORDER,
+  APP_SHELL_GRID_TEMPLATE_COLUMNS,
   clampPaneWidthForLayout,
   createDefaultLayoutState,
   readLayoutStateFromStorage,
   resolvePaneWidth,
+  resolvePointerDragDelta,
   writeLayoutStateToStorage,
   type LayoutStorageState,
   type ResizablePaneKey
@@ -45,15 +48,19 @@ const PANE_TITLE: Record<ResizablePaneKey, string> = {
   chat: 'Chat Panel'
 };
 
-const DRAG_DIRECTION: Record<ResizablePaneKey, 1 | -1> = {
-  fileTree: 1,
-  toolkit: -1,
-  chat: -1
-};
-
 // The dedicated Tool Kit pane is gone (it is now a sidebar tab); the layout
 // geometry therefore always computes for the two-pane sidebar + chat shell.
 const TOOLKIT_PANE_VISIBLE = false;
+
+type AppShellRenderedPaneKey = Extract<ResizablePaneKey, 'fileTree' | 'chat'>;
+
+const APP_SHELL_RESIZE_HANDLE_SLOT: Record<
+  AppShellRenderedPaneKey,
+  (typeof APP_SHELL_GRID_ORDER)[number]
+> = {
+  chat: APP_SHELL_GRID_ORDER[1],
+  fileTree: APP_SHELL_GRID_ORDER[3]
+};
 
 export function AppShell({ section, title, subtitle, children }: AppShellProps): JSX.Element {
   const [layoutState, setLayoutState] = useState<LayoutStorageState>(() =>
@@ -108,6 +115,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
   const gridStyle = useMemo(
     () =>
       ({
+        '--shell-grid-template-columns': APP_SHELL_GRID_TEMPLATE_COLUMNS,
         '--pane-file-tree-width': `${resolvePaneWidth(layoutState, 'fileTree', TOOLKIT_PANE_VISIBLE)}px`,
         '--pane-chat-width': `${resolvePaneWidth(layoutState, 'chat', TOOLKIT_PANE_VISIBLE)}px`
       }) as CSSProperties,
@@ -180,7 +188,10 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
         return;
       }
 
-      const delta = (event.clientX - dragState.startX) * DRAG_DIRECTION[dragState.pane];
+      const delta = resolvePointerDragDelta(
+        dragState.pane,
+        event.clientX - dragState.startX
+      );
       const requestedWidth = dragState.startWidth + delta;
 
       setLayoutState((current) => {
@@ -276,13 +287,14 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
     }
   }
 
-  function renderResizeHandle(pane: ResizablePaneKey): JSX.Element {
+  function renderResizeHandle(pane: AppShellRenderedPaneKey): JSX.Element {
     const widthNow = resolvePaneWidth(layoutState, pane, TOOLKIT_PANE_VISIBLE);
     const isActive = resizingPane === pane;
 
     return (
       <div
         key={`handle-${pane}`}
+        data-shell-slot={APP_SHELL_RESIZE_HANDLE_SLOT[pane]}
         className={isActive ? 'shell-resize-handle shell-resize-handle--active' : 'shell-resize-handle'}
         role="separator"
         aria-label={`Resize ${PANE_TITLE[pane]}`}
@@ -307,32 +319,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
         className="shell-grid shell-grid--resizable"
         style={gridStyle}
       >
-        <div
-          className={
-            layoutState.collapsed.fileTree
-              ? 'shell-pane shell-pane--sidebar shell-pane--collapsed'
-              : 'shell-pane shell-pane--sidebar'
-          }
-        >
-          <button
-            type="button"
-            className="shell-pane-toggle button-muted"
-            onClick={() => {
-              togglePaneCollapse('fileTree');
-            }}
-          >
-            {layoutState.collapsed.fileTree ? 'Expand' : 'Collapse'}
-          </button>
-          {layoutState.collapsed.fileTree ? (
-            <span className="shell-pane-collapsed-label">Workspace</span>
-          ) : (
-            <WorkspaceSidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
-          )}
-        </div>
-
-        {renderResizeHandle('fileTree')}
-
-        <section className="panel panel--main">
+        <section className="panel panel--main" data-shell-slot={APP_SHELL_GRID_ORDER[0]}>
           <header className="panel-header">
             <h2>Execution Surface</h2>
           </header>
@@ -342,6 +329,7 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
         {renderResizeHandle('chat')}
 
         <div
+          data-shell-slot={APP_SHELL_GRID_ORDER[2]}
           className={layoutState.collapsed.chat ? 'shell-pane shell-pane--chat shell-pane--collapsed' : 'shell-pane shell-pane--chat'}
         >
           <button
@@ -368,6 +356,32 @@ export function AppShell({ section, title, subtitle, children }: AppShellProps):
           >
             <ChatPanel />
           </Suspense>
+        </div>
+
+        {renderResizeHandle('fileTree')}
+
+        <div
+          data-shell-slot={APP_SHELL_GRID_ORDER[4]}
+          className={
+            layoutState.collapsed.fileTree
+              ? 'shell-pane shell-pane--sidebar shell-pane--collapsed'
+              : 'shell-pane shell-pane--sidebar'
+          }
+        >
+          <button
+            type="button"
+            className="shell-pane-toggle button-muted"
+            onClick={() => {
+              togglePaneCollapse('fileTree');
+            }}
+          >
+            {layoutState.collapsed.fileTree ? 'Expand' : 'Collapse'}
+          </button>
+          {layoutState.collapsed.fileTree ? (
+            <span className="shell-pane-collapsed-label">Workspace</span>
+          ) : (
+            <WorkspaceSidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
+          )}
         </div>
       </section>
     </ShellFrame>

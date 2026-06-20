@@ -1,7 +1,12 @@
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { MATRIX_ROWS, type MatrixCell } from '../../lib/portal/agent-matrix-cells';
+import {
+  MATRIX_ROWS,
+  isMatrixLaunchBlockedByStreaming,
+  matrixCellLaunchKind,
+  type MatrixCell
+} from '../../lib/portal/agent-matrix-cells';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { listAgentRoster } from '../../lib/harness/agent-roster';
 
@@ -13,8 +18,8 @@ const REPO_ROOT = path.resolve(HERE, '..', '..', '..', '..', '..', '..');
 
 const ALL_CELLS: MatrixCell[] = MATRIX_ROWS.flatMap((row) => row.cells);
 
-function workbenchAgentParam(target: string): string | null {
-  if (!target.startsWith('/workbench')) {
+function loopAgentParam(target: string): string | null {
+  if (!target.startsWith('/?')) {
     return null;
   }
   const query = target.includes('?') ? target.slice(target.indexOf('?') + 1) : '';
@@ -22,27 +27,29 @@ function workbenchAgentParam(target: string): string | null {
 }
 
 describe('agent matrix cell wiring', () => {
-  it('routes NORMATIVE/EVALUATIVE cells to /workbench and OPERATIVE cells to /pipeline', () => {
+  it('encodes NORMATIVE/EVALUATIVE persona intent and OPERATIVE Pipeline intent', () => {
     for (const cell of ALL_CELLS) {
       if (cell.row === 'OPERATIVE') {
         expect(cell.target.startsWith('/pipeline')).toBe(true);
+        expect(matrixCellLaunchKind(cell)).toBe('route');
       } else {
-        expect(cell.target.startsWith('/workbench?agent=')).toBe(true);
+        expect(cell.target.startsWith('/?agent=')).toBe(true);
+        expect(matrixCellLaunchKind(cell)).toBe('loop-persona');
       }
     }
   });
 
-  it('GUARD: every /workbench matrix target resolves to a Type-0/Type-1 persona on disk', async () => {
+  it('GUARD: every loop-persona matrix target resolves to a Type-0/Type-1 persona on disk', async () => {
     const roster = await listAgentRoster(REPO_ROOT);
     expect(roster.length).toBeGreaterThan(0);
     const typeByName = new Map(roster.map((entry) => [entry.name, entry.type]));
 
-    const workbenchCells = ALL_CELLS.filter((cell) => cell.target.startsWith('/workbench'));
-    // Sanity: there really are workbench cells to check (NORMATIVE + EVALUATIVE).
-    expect(workbenchCells.length).toBeGreaterThanOrEqual(8);
+    const loopPersonaCells = ALL_CELLS.filter((cell) => matrixCellLaunchKind(cell) === 'loop-persona');
+    // Sanity: there really are loop-persona cells to check (NORMATIVE + EVALUATIVE).
+    expect(loopPersonaCells.length).toBeGreaterThanOrEqual(8);
 
-    for (const cell of workbenchCells) {
-      const rawAgent = workbenchAgentParam(cell.target);
+    for (const cell of loopPersonaCells) {
+      const rawAgent = loopAgentParam(cell.target);
       expect(rawAgent, `cell ${cell.row}/${cell.column} missing ?agent=`).toBeTruthy();
 
       const persona = resolvePersona(rawAgent);
@@ -55,10 +62,10 @@ describe('agent matrix cell wiring', () => {
       ).toBe(true);
 
       // ...and must be Type-0 or Type-1 (never a Type-2 task agent booted as a
-      // /workbench persona session — D-APP-24 / the AGGREGATE regression class).
+      // top-level loop persona session — D-APP-24 / the AGGREGATE regression class).
       expect(
         type === 0 || type === 1,
-        `cell ${cell.row}/${cell.column} (label ${cell.label}) resolves to ${persona} of type ${String(type)}; /workbench cells must be Type-0/Type-1`
+        `cell ${cell.row}/${cell.column} (label ${cell.label}) resolves to ${persona} of type ${String(type)}; loop persona cells must be Type-0/Type-1`
       ).toBe(true);
     }
   });
@@ -66,6 +73,11 @@ describe('agent matrix cell wiring', () => {
   it('re-points the NORMATIVE/REVIEWING cell at the REVIEW persona (was the Type-2 AGGREGATION)', () => {
     const cell = ALL_CELLS.find((c) => c.row === 'NORMATIVE' && c.column === 'REVIEWING');
     expect(cell?.label).toBe('REVIEW');
-    expect(workbenchAgentParam(cell?.target ?? '')).toBe('REVIEW');
+    expect(loopAgentParam(cell?.target ?? '')).toBe('REVIEW');
+  });
+
+  it('blocks all matrix launches while the mounted loop is streaming', () => {
+    expect(isMatrixLaunchBlockedByStreaming(false)).toBe(false);
+    expect(isMatrixLaunchBlockedByStreaming(true)).toBe(true);
   });
 });

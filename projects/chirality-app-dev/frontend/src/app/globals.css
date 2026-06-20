@@ -234,13 +234,9 @@ button:disabled {
   --pane-file-tree-width: 280px;
   --pane-chat-width: 320px;
   --pane-handle-width: 12px;
+  --shell-grid-template-columns: minmax(0, 1fr) var(--pane-handle-width) minmax(56px, var(--pane-chat-width)) var(--pane-handle-width) minmax(56px, var(--pane-file-tree-width));
   display: grid;
-  grid-template-columns:
-    minmax(56px, var(--pane-file-tree-width))
-    var(--pane-handle-width)
-    minmax(0, 1fr)
-    var(--pane-handle-width)
-    minmax(56px, var(--pane-chat-width));
+  grid-template-columns: var(--shell-grid-template-columns);
   gap: 0.75rem;
   min-height: 66vh;
   align-items: stretch;
@@ -387,6 +383,12 @@ button:disabled {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-soft);
+}
+
+.portal-launch-notice {
+  margin: 0;
+  color: var(--text-subtle);
+  font-size: 0.78rem;
 }
 
 /* Session list (Sessions sidebar tab, D-APP-22 hydrate-on-open). */
@@ -1100,10 +1102,67 @@ button:disabled {
   background: linear-gradient(180deg, #f7faff, #edf3ff);
   color: #163269;
   min-height: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+}
+
+.matrix-cell small {
+  color: #526794;
+  font-size: 0.68rem;
 }
 
 .matrix-cell:hover {
   transform: translateY(-1px);
+}
+
+.matrix-cell:disabled,
+.portal-start-session:disabled,
+.portal-deliverable-row:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}
+
+.portal-matrix--sidebar .portal-matrix-header {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.portal-matrix--sidebar .portal-start-session {
+  width: 100%;
+}
+
+.portal-matrix--sidebar .matrix-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.portal-matrix--sidebar .matrix-header-cell {
+  display: none;
+}
+
+.portal-matrix--sidebar .matrix-row-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.portal-matrix--sidebar .matrix-row-label {
+  grid-column: 1 / -1;
+  text-align: left;
+}
+
+.portal-matrix--sidebar .matrix-cell {
+  min-height: 52px;
+  padding: 0.45rem 0.35rem;
+}
+
+.portal-matrix--sidebar .portal-deliverable-grid {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .portal-deliverables {
@@ -1507,6 +1566,30 @@ button:disabled {
     display: none;
   }
 
+  .loop-grid,
+  .loop-grid--sidebar-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .loop-main,
+  .loop-sidebar {
+    min-width: 0;
+  }
+
+  .loop-persona-bar,
+  .chat-input-row,
+  .chat-attachment-header {
+    flex-wrap: wrap;
+  }
+
+  .persona-picker,
+  .persona-picker select,
+  .chat-input-row input,
+  .working-root-controls input {
+    min-width: 0;
+    width: 100%;
+  }
+
   .pipeline-grid {
     grid-template-columns: 1fr;
   }
@@ -1645,6 +1728,21 @@ button:disabled {
     flex-direction: column;
   }
 
+  .working-root-fields,
+  .working-root-controls {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .working-root-controls input {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .working-root-current {
+    overflow-wrap: anywhere;
+  }
+
   .working-root-settings {
     border-left: none;
     border-top: 1px solid var(--border);
@@ -1707,6 +1805,28 @@ button:disabled {
 
 .workspace-sidebar-body > .panel {
   width: 100%;
+}
+
+.workspace-sidebar-body > .pipeline-layout,
+.workspace-sidebar-body > .workbench-layout {
+  width: 100%;
+  min-width: 0;
+  overflow: auto;
+  padding: 0.65rem;
+}
+
+.workspace-sidebar-body .pipeline-grid,
+.workspace-sidebar-body .pipeline-contract-metrics,
+.workspace-sidebar-body .pipeline-transition-grid,
+.workspace-sidebar-body .workbench-card dl {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.workspace-sidebar-body .pipeline-card,
+.workspace-sidebar-body .pipeline-summary,
+.workspace-sidebar-body .pipeline-contracts,
+.workspace-sidebar-body .workbench-card {
+  border-radius: 8px;
 }
 
 /* Bridge-fed Tools / Subagents stream views */

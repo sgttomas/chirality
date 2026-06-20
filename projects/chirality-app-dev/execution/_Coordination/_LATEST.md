@@ -10,11 +10,17 @@ Active coordination surfaces:
 
 Active development queue:
 
-- `plans/PLAN_2026-06-19_loop_first_pivot.md` (D-APP-28 full loop-first pivot). Tranche spine
-  28a -> 28b -> 28c -> 28d -> 28e; no tranche started. Routing/layout change only — public
-  UIEvent contract + permission plane untouched.
+- No remaining unstarted tranche in `plans/PLAN_2026-06-19_loop_first_pivot.md`
+  (D-APP-28 full loop-first pivot). Tranche spine 28a -> 28b -> 28c -> 28d -> 28e
+  has LANDED. Routing/layout change only — public UIEvent contract + permission plane
+  untouched.
 - `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (active design: Agent-Orchestration UI &
   Information Architecture redesign; Phases 1-5 COMPLETE).
+
+Open validation-loop follow-up:
+
+- `plans/PLAN_2026-06-19_validation_server_build_isolation.md` (stop local dev server before
+  build/package/premerge validation unless the command owns server lifecycle).
 
 Completed planning and history surfaces:
 

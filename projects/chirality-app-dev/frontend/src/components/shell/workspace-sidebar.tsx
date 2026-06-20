@@ -1,6 +1,13 @@
 'use client';
 
-import { useRef, type KeyboardEvent } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useRef,
+  type KeyboardEvent,
+  type ReactNode
+} from 'react';
 import { DocumentView } from './document-view';
 import { FileTreePanel } from './file-tree-panel';
 import { OperatorToolkitPanel } from './operator-toolkit-panel';
@@ -9,6 +16,9 @@ import { SubagentStreamView } from './subagent-stream-view';
 import { ToolStreamView } from './tool-stream-view';
 
 export type SidebarTabId =
+  | 'portal'
+  | 'workbench'
+  | 'pipeline'
   | 'files'
   | 'sessions'
   | 'tools'
@@ -32,7 +42,21 @@ const SIDEBAR_TABS: readonly SidebarTab[] = [
   { id: 'toolkit', label: 'Tool Kit' }
 ];
 
+const PORTAL_TAB: SidebarTab = { id: 'portal', label: 'Portal' };
+const WORKBENCH_TAB: SidebarTab = { id: 'workbench', label: 'Workbench' };
+const PIPELINE_TAB: SidebarTab = { id: 'pipeline', label: 'Pipeline' };
+
 const TAB_PANEL_ID = 'workspace-sidebar-panel';
+
+type WorkspaceSidebarActions = {
+  openTab: (tab: SidebarTabId) => void;
+};
+
+const WorkspaceSidebarActionsContext = createContext<WorkspaceSidebarActions | null>(null);
+
+export function useWorkspaceSidebarActions(): WorkspaceSidebarActions | null {
+  return useContext(WorkspaceSidebarActionsContext);
+}
 
 function tabButtonId(id: SidebarTabId): string {
   return `workspace-sidebar-tab-${id}`;
@@ -54,6 +78,9 @@ function SidebarPlaceholder({ title, note }: { title: string; note: string }): J
 type WorkspaceSidebarProps = {
   activeTab: SidebarTabId;
   onTabChange: (tab: SidebarTabId) => void;
+  pipelineTab?: ReactNode;
+  portalTab?: ReactNode;
+  workbenchTab?: ReactNode;
 };
 
 /**
@@ -66,8 +93,27 @@ type WorkspaceSidebarProps = {
  * unmounted on collapse. Implements the WAI-ARIA tabs pattern: roving tabindex,
  * arrow/Home/End navigation, and a labelled tabpanel.
  */
-export function WorkspaceSidebar({ activeTab, onTabChange }: WorkspaceSidebarProps): JSX.Element {
+export function WorkspaceSidebar({
+  activeTab,
+  onTabChange,
+  pipelineTab,
+  portalTab,
+  workbenchTab
+}: WorkspaceSidebarProps): JSX.Element {
   const tabRefs = useRef<Partial<Record<SidebarTabId, HTMLButtonElement | null>>>({});
+  const tabs = [
+    ...(portalTab ? [PORTAL_TAB] : []),
+    ...(workbenchTab ? [WORKBENCH_TAB] : []),
+    ...(pipelineTab ? [PIPELINE_TAB] : []),
+    ...SIDEBAR_TABS
+  ];
+  const visibleActiveTab = tabs.some((tab) => tab.id === activeTab) ? activeTab : tabs[0].id;
+  const sidebarActions = useMemo<WorkspaceSidebarActions>(
+    () => ({
+      openTab: onTabChange
+    }),
+    [onTabChange]
+  );
 
   function focusTab(id: SidebarTabId): void {
     onTabChange(id);
@@ -75,88 +121,93 @@ export function WorkspaceSidebar({ activeTab, onTabChange }: WorkspaceSidebarPro
   }
 
   function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>): void {
-    const index = SIDEBAR_TABS.findIndex((tab) => tab.id === activeTab);
+    const index = tabs.findIndex((tab) => tab.id === visibleActiveTab);
     if (index < 0) {
       return;
     }
 
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
-      focusTab(SIDEBAR_TABS[(index + 1) % SIDEBAR_TABS.length].id);
+      focusTab(tabs[(index + 1) % tabs.length].id);
       return;
     }
 
     if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       event.preventDefault();
-      focusTab(SIDEBAR_TABS[(index - 1 + SIDEBAR_TABS.length) % SIDEBAR_TABS.length].id);
+      focusTab(tabs[(index - 1 + tabs.length) % tabs.length].id);
       return;
     }
 
     if (event.key === 'Home') {
       event.preventDefault();
-      focusTab(SIDEBAR_TABS[0].id);
+      focusTab(tabs[0].id);
       return;
     }
 
     if (event.key === 'End') {
       event.preventDefault();
-      focusTab(SIDEBAR_TABS[SIDEBAR_TABS.length - 1].id);
+      focusTab(tabs[tabs.length - 1].id);
     }
   }
 
   return (
-    <div className="workspace-sidebar">
-      <div className="workspace-sidebar-tabs" role="tablist" aria-label="Workspace views">
-        {SIDEBAR_TABS.map((tab) => {
-          const isActive = tab.id === activeTab;
-          return (
-            <button
-              key={tab.id}
-              ref={(node) => {
-                tabRefs.current[tab.id] = node;
-              }}
-              type="button"
-              role="tab"
-              id={tabButtonId(tab.id)}
-              aria-selected={isActive}
-              aria-controls={TAB_PANEL_ID}
-              tabIndex={isActive ? 0 : -1}
-              className={
-                isActive
-                  ? 'workspace-sidebar-tab workspace-sidebar-tab--active'
-                  : 'workspace-sidebar-tab'
-              }
-              onClick={() => {
-                onTabChange(tab.id);
-              }}
-              onKeyDown={handleTabKeyDown}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
+    <WorkspaceSidebarActionsContext.Provider value={sidebarActions}>
+      <div className="workspace-sidebar">
+        <div className="workspace-sidebar-tabs" role="tablist" aria-label="Workspace views">
+          {tabs.map((tab) => {
+            const isActive = tab.id === visibleActiveTab;
+            return (
+              <button
+                key={tab.id}
+                ref={(node) => {
+                  tabRefs.current[tab.id] = node;
+                }}
+                type="button"
+                role="tab"
+                id={tabButtonId(tab.id)}
+                aria-selected={isActive}
+                aria-controls={TAB_PANEL_ID}
+                tabIndex={isActive ? 0 : -1}
+                className={
+                  isActive
+                    ? 'workspace-sidebar-tab workspace-sidebar-tab--active'
+                    : 'workspace-sidebar-tab'
+                }
+                onClick={() => {
+                  onTabChange(tab.id);
+                }}
+                onKeyDown={handleTabKeyDown}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
 
-      <div
-        className="workspace-sidebar-body"
-        role="tabpanel"
-        id={TAB_PANEL_ID}
-        aria-labelledby={tabButtonId(activeTab)}
-        tabIndex={0}
-      >
-        {activeTab === 'files' ? <FileTreePanel /> : null}
-        {activeTab === 'sessions' ? <SessionListView /> : null}
-        {activeTab === 'tools' ? <ToolStreamView /> : null}
-        {activeTab === 'subagents' ? <SubagentStreamView /> : null}
-        {activeTab === 'document' ? <DocumentView /> : null}
-        {activeTab === 'workflow' ? (
-          <SidebarPlaceholder
-            title="Workflow"
-            note="Workflow design is a thin peek now; the full surface is the deferred secondary phase."
-          />
-        ) : null}
-        {activeTab === 'toolkit' ? <OperatorToolkitPanel /> : null}
+        <div
+          className="workspace-sidebar-body"
+          role="tabpanel"
+          id={TAB_PANEL_ID}
+          aria-labelledby={tabButtonId(visibleActiveTab)}
+          tabIndex={0}
+        >
+          {visibleActiveTab === 'portal' && portalTab ? portalTab : null}
+          {visibleActiveTab === 'workbench' && workbenchTab ? workbenchTab : null}
+          {visibleActiveTab === 'pipeline' && pipelineTab ? pipelineTab : null}
+          {visibleActiveTab === 'files' ? <FileTreePanel /> : null}
+          {visibleActiveTab === 'sessions' ? <SessionListView /> : null}
+          {visibleActiveTab === 'tools' ? <ToolStreamView /> : null}
+          {visibleActiveTab === 'subagents' ? <SubagentStreamView /> : null}
+          {visibleActiveTab === 'document' ? <DocumentView /> : null}
+          {visibleActiveTab === 'workflow' ? (
+            <SidebarPlaceholder
+              title="Workflow"
+              note="Workflow design is a thin peek now; the full surface is the deferred secondary phase."
+            />
+          ) : null}
+          {visibleActiveTab === 'toolkit' ? <OperatorToolkitPanel /> : null}
+        </div>
       </div>
-    </div>
+    </WorkspaceSidebarActionsContext.Provider>
   );
 }

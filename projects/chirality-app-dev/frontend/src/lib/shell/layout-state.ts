@@ -20,6 +20,23 @@ export const DEFAULT_PANE_WIDTH_PX: Record<ResizablePaneKey, number> = {
   chat: 320
 };
 
+export const APP_SHELL_GRID_TEMPLATE_COLUMNS =
+  'minmax(0, 1fr) var(--pane-handle-width) minmax(56px, var(--pane-chat-width)) var(--pane-handle-width) minmax(56px, var(--pane-file-tree-width))';
+
+export const APP_SHELL_GRID_ORDER = [
+  'main',
+  'chatResizeHandle',
+  'chat',
+  'workspaceResizeHandle',
+  'workspaceSidebar'
+] as const;
+
+export const APP_SHELL_DRAG_DIRECTION: Record<ResizablePaneKey, 1 | -1> = {
+  fileTree: -1,
+  toolkit: -1,
+  chat: -1
+};
+
 const RESIZABLE_PANES: readonly ResizablePaneKey[] = ['fileTree', 'toolkit', 'chat'];
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -182,4 +199,8 @@ export function clampPaneWidthForLayout(input: {
   const maximum = layoutWidth - otherWidthTotal - handleWidthTotal - MAIN_PANE_MIN_WIDTH_PX;
 
   return clamp(requestedWidth, minimum, maximum);
+}
+
+export function resolvePointerDragDelta(pane: ResizablePaneKey, pointerDelta: number): number {
+  return pointerDelta * APP_SHELL_DRAG_DIRECTION[pane];
 }

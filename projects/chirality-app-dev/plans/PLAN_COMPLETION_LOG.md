@@ -6,6 +6,175 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Loop-first pivot closeout landed (`28e`)
+
+Closed the D-APP-28 loop-first pivot plan. DESIGN §5 now records that the
+earlier left-file-tree/sidebar-left placement was transitional and is closed:
+the live loop is primary app-wide, the multi-view sidebar is right-side
+app-wide, and Portal/Workbench/Pipeline are sidebar-reachable tertiary forms
+with their routes preserved. The D-APP-28 decision-register row now records
+that 28a-28e landed.
+
+Updated the loop-first pivot plan, `_COORDINATION.md`, `_LATEST.md`, and
+`NEXT_INSTANCE_PROMPT.md` to state that the loop-first pivot queue has no
+remaining unstarted tranche. D-APP-18 remains separately awaiting ruling and
+continues to block default-provider cutover only.
+
+Validation:
+
+- Governance diff hygiene passed with `git diff --check`.
+- Stale-handoff scan passed for obsolete next-tranche wording.
+- Runtime commands were not rerun in 28e because this tranche changed docs and
+  coordination only after the validated 28d source tranche.
+
+## 2026-06-20 - Loop-first pivot tertiary route demotion landed (`28d`)
+
+Demoted `/workbench` and `/pipeline` into sidebar-reachable tertiary forms while
+keeping both routes as thin deep-link entry points. `WorkbenchSurface` and
+`PipelineSurface` now render in the right sidebar beside the mounted live loop;
+Portal, Workbench, and Pipeline are available as `WorkspaceSidebar` tabs when a
+loop shell supplies those surfaces. Top navigation now exposes only `PORTAL` as
+primary navigation.
+
+Implemented the D-APP-31 in-place Pipeline behavior. OPERATIVE matrix cells and
+deliverable rows open the Pipeline tab without routing away from the mounted
+loop, and a pure launch helper folds Pipeline/persona intent into the current
+URL query while clearing stale Pipeline scope params. The public `UIEvent`
+contract and permission plane were untouched, and no route or tertiary screen
+was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- Focused tests passed: `agent-matrix-panel`, `workspace-sidebar`,
+  `agent-matrix-cells`, `agent-matrix-launch`, and `loop-first` (13 tests).
+- `npm test` passed: 71 files, 499 tests.
+- Browser checks against `http://localhost:3000/` passed: Portal/Workbench/
+  Pipeline tabs were sidebar-reachable, live chat remained mounted while tabs
+  switched, OPERATIVE AUDIT opened Pipeline in-place at `/?category=AUDIT`,
+  and a deliverable row opened `TASK` Pipeline intent in-place with
+  `taskScopeMode=DELIVERABLES` and the selected `scopeKey`.
+- Direct route browser checks passed for `/workbench?agent=CHANGE` and
+  `/pipeline?category=AUDIT`: both kept the live loop primary, opened the
+  correct sidebar tab, and exposed only `PORTAL` in primary navigation.
+- Mobile browser check at 390px passed: Portal/Workbench/Pipeline tabs remained
+  reachable and no horizontal overflow was detected.
+- `npm run harness:validate:premerge` passed against an isolated short-lived
+  dev server: Section 8 8/8 and Section 9 report-only 13/13.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- `npm run desktop:pack` passed, including instruction-root integrity.
+- `git diff --check` passed.
+
+Residual handoff: `28e` is next. It records the realized end-state in DESIGN
+§5, closes the transitional sidebar-left note, annotates D-APP-28 in the
+decision register, and performs final coordination closeout. D-APP-18 remains
+separately awaiting ruling and still blocks default-provider cutover only.
+
+## 2026-06-19 - Loop-first pivot portal home and matrix launch landed (`28c`)
+
+Converted `/` into a loop-first portal home. `PortalLoopShell` renders the live
+loop as the primary pane and opens the right sidebar on a new Portal tab that
+hosts the Agent Matrix. Type-0/Type-1 matrix cells now change `?agent=` on the
+mounted `/` loop instead of routing to `/workbench`; when the chat prompt is
+enabled, launches focus the mounted prompt. The mid-turn launch guard reuses the
+existing shared streaming flag. OPERATIVE cells and deliverable rows retain the
+interim `/pipeline` route hop until 28d lands the ruled tertiary-form behavior.
+
+Added portal/matrix guard coverage for loop-persona targets, streaming launch
+blocking, portal href construction, and sidebar Agent Matrix rendering. The
+public `UIEvent` contract and permission plane were untouched, and no route or
+tertiary screen was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 69 files, 496 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Browser checks against `http://localhost:3000/` passed: desktop layout showed
+  live loop primary with the Portal tab selected in the right sidebar; Type-0/1
+  matrix launch stayed on `/` and selected the resolved persona; with a Working
+  Root selected, Type-1 launch focused the mounted chat input; OPERATIVE DECOMP
+  retained the staged `/pipeline?category=DECOMP` route hop.
+- Mobile browser check at 390px passed after responsive tightening: the loop
+  main and sidebar stack at full width and no horizontal overflow was detected.
+- `npm run harness:validate:premerge` passed on rerun: Section 8 8/8 and
+  Section 9 report-only 13/13. The first attempt failed while the dev server was
+  racing a build rewrite of `.next` and was not retained as the final evidence.
+- `npm run desktop:pack` passed, including instruction-root integrity.
+
+Residual handoff: `28d` is next. It demotes `/workbench` and `/pipeline` into
+sidebar-reachable tertiary forms using the ruled D-APP-31/D-APP-32 decisions.
+D-APP-18 remains separately awaiting ruling and still blocks default-provider
+cutover only.
+
+## 2026-06-19 - Loop-first pivot AppShell sidebar-right geometry landed (`28b`)
+
+Flipped `AppShell` route surfaces to the right-sidebar geometry: the rendered
+order is now main surface, chat resize handle, chat pane, workspace resize
+handle, workspace sidebar. The shell grid template moved into
+`layout-state.ts`, `AppShell` consumes that shared template, and the rendered
+panes/handles now carry stable `data-shell-slot` markers for browser-verifiable
+geometry. The workspace resize direction was inverted for the right-edge
+placement while preserving the two-pane clamp model and `chirality.layout.v1`
+persistence.
+
+Added a geometry guard in `frontend/src/__tests__/lib/layout-state.test.ts`
+covering the AppShell slot order, grid-template constant, and drag-sign
+invariants. The public `UIEvent` contract and permission plane were untouched,
+and no route or tertiary screen was deleted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 68 files, 492 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Local browser checks against `http://localhost:3000/`, `/workbench`, and
+  `/pipeline` passed: measured slot order was main -> chat handle -> chat ->
+  workspace handle -> workspace sidebar, with grid columns `553px 12px 320px
+  12px 280px` at the default viewport.
+- Browser interaction checks on `/pipeline` passed: workspace collapse produced
+  a 56px right rail with the `Workspace` collapsed label centered; dragging the
+  workspace handle 80px left increased workspace width from 280px to 360px and
+  reduced the main pane by 80px; browser console warnings/errors were empty.
+
+Residual handoff: `28c` is next. It makes portal `/` a loop-first home and
+implements the ruled in-place Type-0/Type-1 matrix launch behavior. D-APP-18
+remains separately awaiting ruling and still blocks default-provider cutover
+only.
+
+## 2026-06-19 - Loop-first pivot reusable sidebar-right primitive landed (`28a`)
+
+Extracted the `/chat` sidebar-right loop layout into
+`frontend/src/components/shell/sidebar-right-loop-layout.tsx` and rewired
+`LoopShell` to consume it. The primitive owns the `loop-grid` / `loop-main`
+structure plus right-sidebar collapse and active-tab state; `LoopShell` still
+passes through the same persona picker and Suspense-wrapped `ChatPanel`.
+
+No route behavior changed. `AppShell`, `layout-state.ts`, the public `UIEvent`
+contract, and the permission plane were untouched. No test files were edited.
+The collapse-without-unmount property was preserved: the browser check showed
+`/chat` with the main loop left and the Tools sidebar tab right, then collapse
+changed the grid from `853px 360px` to `1157px 56px` while `Chat Panel`
+remained mounted.
+
+Validation:
+
+- `npm run typecheck` passed.
+- `npx vitest run` passed: 68 files, 491 tests.
+- `npm run build` passed; `next build` prerendered `/`, `/chat`, `/pipeline`,
+  and `/workbench`, then `build:electron` passed.
+- Local browser check against `http://localhost:3000/chat` passed for right-side
+  sidebar placement, default Tools tab, collapsed Workspace label, and mounted
+  chat panel.
+
+Residual handoff: `28b` is next. It flips `AppShell` to sidebar-right, inverts
+the resize drag direction, and adds geometry guard tests in the same tranche.
+D-APP-18 remains separately awaiting ruling and still blocks default-provider
+cutover only.
+
 ## 2026-06-18 - Live packaged agentSdk proof passed and D-APP-18 prepared (`LP-04`)
 
 Recorded D-APP-16 and D-APP-17 rulings after the initial LP-03 model blocker. The
