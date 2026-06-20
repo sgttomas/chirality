@@ -6,6 +6,27 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Loop-first pivot closeout landed (`28e`)
+
+Closed the D-APP-28 loop-first pivot plan. DESIGN §5 now records that the
+earlier left-file-tree/sidebar-left placement was transitional and is closed:
+the live loop is primary app-wide, the multi-view sidebar is right-side
+app-wide, and Portal/Workbench/Pipeline are sidebar-reachable tertiary forms
+with their routes preserved. The D-APP-28 decision-register row now records
+that 28a-28e landed.
+
+Updated the loop-first pivot plan, `_COORDINATION.md`, `_LATEST.md`, and
+`NEXT_INSTANCE_PROMPT.md` to state that the loop-first pivot queue has no
+remaining unstarted tranche. D-APP-18 remains separately awaiting ruling and
+continues to block default-provider cutover only.
+
+Validation:
+
+- Governance diff hygiene passed with `git diff --check`.
+- Stale-handoff scan passed for obsolete next-tranche wording.
+- Runtime commands were not rerun in 28e because this tranche changed docs and
+  coordination only after the validated 28d source tranche.
+
 ## 2026-06-20 - Loop-first pivot tertiary route demotion landed (`28d`)
 
 Demoted `/workbench` and `/pipeline` into sidebar-reachable tertiary forms while

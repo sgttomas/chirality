@@ -1,7 +1,7 @@
 # Loop-First Pivot (D-APP-28) Plan
 
 **Date:** 2026-06-19
-**Status:** ACTIVE (28a, 28b, 28c, and 28d landed; 28e next; SD-1/2/3 ruled — D-APP-30/31/32)
+**Status:** COMPLETE (28a, 28b, 28c, 28d, and 28e landed; SD-1/2/3 ruled — D-APP-30/31/32)
 **Governing ruling:** `execution/_Coordination/_DECISIONS/D-APP-28_RULING_2026-06-19.md` (Option B — full loop-first pivot)
 **Packet:** `execution/_Coordination/_DECISIONS/D-APP-28_PACKET_2026-06-19.md`
 **Active design:** `plans/DESIGN_2026-06-18_agent_orchestration_ui.md` (§3.1 primary loop, §3.2 sidebar, §3.3 tertiary screens, §5 build sequence; the D-APP-28 ruling/packet name the §5 "Transitional placement decision" bullet — DESIGN line 111 — as "§5.2", the transitional sidebar-left note)
@@ -45,7 +45,7 @@ The shipped D-APP-23 Option C hybrid this pivot reworks (all paths under `fronte
 | `28b` | **LANDED 2026-06-19.** Flip the sidebar to the RIGHT app-wide + update geometry tests in the SAME tranche | Re-ordered `AppShell` grid (CSS `.shell-grid` + JSX children) to sidebar-right; moved drag-direction/grid-order constants into `layout-state.ts`; added stable `data-shell-slot` markers and layout-geometry assertions | Passed `npm run typecheck`; `npx vitest run` (492 green); `npm run build` prerendered `/`, `/chat`, `/workbench`, `/pipeline`; browser `/`, `/workbench`, `/pipeline` geometry/collapse/drag checks passed |
 | `28c` | **LANDED 2026-06-19.** Portal `/` becomes a loop-first home with in-place matrix launch | `page.tsx` renders `PortalLoopShell`; `AgentMatrix` Type-0/Type-1 cells swap `?agent=` on the mounted loop and focus the prompt when idle; OPERATIVE cells/deliverables retain the staged `/pipeline` route hop until 28d | Passed `npm run typecheck`; `npx vitest run` (496 green); `npm run build`; browser desktop/mobile portal checks plus Type-1 focus and OPERATIVE `/pipeline` route-hop checks passed; `npm run harness:validate:premerge`; `npm run desktop:pack` |
 | `28d` | **LANDED 2026-06-20.** Demote `/workbench` + `/pipeline` to sidebar-reachable tertiary forms (kept, not deleted) | `WorkbenchClient`/`PipelineClient` reachable as tertiary forms from the sidebar; routes remain and still render; nav reflects tertiary status; OPERATIVE/deliverable matrix launches open Pipeline in-place | Passed `npm run typecheck`; focused tests (13); `npm test` (499); browser desktop/mobile route and sidebar checks; `npm run harness:validate:premerge`; `npm run build`; `npm run desktop:pack` |
-| `28e` | Closeout | DESIGN §5 + line-111 "§5.2" note update (loop-primary end-state; close the transitional sidebar-left note), resume prompt, `_REGISTER.md` annotation, plan completion record | Governance gate; runtime commands re-run if any source changed in this tranche |
+| `28e` | **LANDED 2026-06-20.** Closeout | DESIGN §5 + line-111 "§5.2" note update (loop-primary end-state; close the transitional sidebar-left note), resume prompt, `_REGISTER.md` annotation, plan completion record | Governance-only diff hygiene; runtime commands not rerun because no source changed after validated 28d |
 
 Each tranche is independently typecheck- and test-green and leaves all three working routes operational.
 
@@ -139,19 +139,30 @@ Section 9 report-only 13/13); `npm run build`; `npm run desktop:pack`.
 
 ### 28e — Closeout
 
+**Status: LANDED 2026-06-20.** DESIGN §5 now records that the earlier
+sidebar-left placement was transitional and closed by D-APP-28: the live loop is
+primary app-wide, the multi-view sidebar is right-side app-wide, and
+Portal/Workbench/Pipeline are sidebar-reachable tertiary forms with routes
+preserved. The D-APP-28 register row records that 28a-28e landed. Resume and
+coordination surfaces now state that the active loop-first pivot queue has no
+remaining unstarted tranche, while D-APP-18 remains separately awaiting ruling
+for any default-provider cutover. Validation: governance diff hygiene and stale
+handoff scan; runtime commands were not rerun because 28e changed docs and
+coordination only after the validated 28d source tranche.
+
 - **Scope.** Update DESIGN §5 and its line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to record the loop-as-primary app-wide end-state and **close the transitional sidebar-left note** — sidebar is now right app-wide. Annotate `execution/_Coordination/_DECISIONS/_REGISTER.md` D-APP-28 row with the landed-tranche summary, write the resume/next-instance prompt, and add a plan completion record. No source change expected; if any is made, re-run the runtime gates.
 - **What stays / nothing deleted / contract untouched.** Documentation-and-coordination only; no code, no route, no contract, no permission change.
 - **Acceptance:** governance gate (diff hygiene, path checks); the line-111 transitional note closed; register + resume updated.
 
 ## 6. Sequencing
 
-`28a LANDED → 28b LANDED → 28c LANDED → 28d LANDED → 28e NEXT`.
+`28a LANDED → 28b LANDED → 28c LANDED → 28d LANDED → 28e LANDED`.
 
 - `28a` landed the sidebar-right primitive, so `28b` (AppShell flip) and `28c` (portal) can consume a proven structure rather than each forking layout.
 - `28b` landed the AppShell sidebar-right flip, so `28c`/`28d` start from an app-wide right-sidebar geometry.
 - `28c` landed the portal loop-first home and in-place Type-0/Type-1 matrix launch.
 - `28d` consumed D-APP-31/D-APP-32, demoting `/workbench` and `/pipeline` into sidebar-reachable tertiary forms and opening OPERATIVE/deliverable Pipeline intent in-place.
-- `28e` is strictly last (records the realized end-state).
+- `28e` recorded the realized end-state and closed the transitional DESIGN note.
 
 ## 7. Boundaries — Explicit Out of Scope (human-gated)
 
@@ -178,7 +189,7 @@ Per-tranche gates (binding):
 
 ## 10. Acceptance Criteria
 
-End-state checks (all must hold at 28e):
+End-state checks (all hold after 28e):
 
 1. The multi-view sidebar is on the **RIGHT** on every surface (`/`, `/chat`, `/workbench`, `/pipeline`); the DESIGN line-111 transitional sidebar-left note (named "§5.2" by the D-APP-28 ruling/packet) is closed.
 2. The live loop is the **primary** surface on every route, not a side panel.
@@ -201,4 +212,4 @@ End-state checks (all must hold at 28e):
 
 ## 12. Finalization Rule
 
-The source/layout implementation is complete now that `28a`–`28d` have landed, each typecheck- + vitest-green (current 499 baseline after 28d) with `next build` prerendering the affected routes, and the §10 source/runtime acceptance checks hold. Closeout remains in `28e`: update DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) to declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; annotate the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` with the landed-tranche summary; write the resume / next-instance prompt; and add a plan completion record. SD-1/SD-2/SD-3 were ruled 2026-06-19 (D-APP-30/31/32); any further sub-decision that arises is packeted under `execution/_Coordination/_DECISIONS/` and ruled before the dependent tranche finalizes — none is assumed approved by D-APP-28.
+This plan is complete: `28a`–`28e` have landed, source/layout tranches were typecheck- + vitest-green (current 499 baseline after 28d) with `next build` prerendering the affected routes, and the §10 acceptance checks hold. DESIGN §5 and the line-111 "Transitional placement decision" bullet (named "§5.2" by the D-APP-28 ruling/packet) now declare the loop-primary, sidebar-right app-wide end-state and close the transitional sidebar-left note; the D-APP-28 row in `execution/_Coordination/_DECISIONS/_REGISTER.md` records that 28a-28e landed; resume / next-instance prompts and the plan completion record are updated. SD-1/SD-2/SD-3 were ruled 2026-06-19 (D-APP-30/31/32). D-APP-18 remains separately awaiting ruling and continues to block only default-provider cutover.
