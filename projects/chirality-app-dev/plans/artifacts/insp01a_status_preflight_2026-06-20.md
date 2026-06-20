@@ -90,3 +90,7 @@ a substantive history-loss risk under the `INSP-01a` preflight gate.
 Prepared decision packet:
 
 - `execution/_Coordination/_DECISIONS/D-APP-33_PACKET_2026-06-20.md`
+
+Optional decision-support preview for D-APP-33 Option B:
+
+- `plans/artifacts/insp01a_option_b_canonicalization_preview_2026-06-20.md`
