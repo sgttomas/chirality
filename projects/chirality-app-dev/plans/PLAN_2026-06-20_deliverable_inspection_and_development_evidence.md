@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20 and found a status-history preservation blocker. `INSP-01` is blocked pending D-APP-33 ruling and a clean rerun of `INSP-01a`.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling. `INSP-01` is blocked pending the owner-blessed `approvalSha`.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -85,8 +85,8 @@ development roadmap.
 |---|---|---|---|
 | `INSP-00` Open phase **(DONE 2026-06-20)** | Record D-APP-19 Option D ruling; author this plan; supersede prior plans. | Governance only. | Ruling recorded; plan exists; `git diff --check`. |
 | `INSP-00b` Repoint coordination **(DONE 2026-06-20)** | Make this the single active queue; orient the dev loop. | `_COORDINATION` / `_LATEST` / `NEXT_INSTANCE_PROMPT` / `_REGISTER`. | All surfaces name this plan; no surface asserts loop-first active. |
-| `INSP-01a` Normalize preflight | **EXECUTED 2026-06-20 - BLOCKER FOUND.** Dry-run the 53 `_STATUS.md` rewrites in memory; prove zero substantive prose loss. | Read-only preflight evidence at `plans/artifacts/insp01a_status_preflight_2026-06-20.md`; no deliverable status files changed. | Failed: 52 files contain one noncanonical history bullet each that would be dropped by the current writer. D-APP-33 prepared. |
-| `INSP-01` Move 53 -> CHECKING | Apply `IN_PROGRESS -> CHECKING` to all 53 with the owner-blessed SHA. | Lifecycle transitions via the HTTP API. | **BLOCKED** pending D-APP-33 ruling, clean `INSP-01a` rerun, and owner-blessed `approvalSha`; then `53 CHECKING` / 0 `IN_PROGRESS`; 53 `**Checking Approval SHA:**`; one `_STATUS.md` diffed clean. |
+| `INSP-01a` Normalize preflight | **RERUN 2026-06-20 - PASSED under D-APP-33 acceptance basis.** Dry-run the 53 `_STATUS.md` rewrites in memory; prove zero unaccepted prose loss. | Read-only preflight evidence at `plans/artifacts/insp01a_status_preflight_2026-06-20.md` and rerun evidence at `plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md`; no deliverable status files changed. | Passed after D-APP-33 accepted normalization loss for the 52 semantic/provisional history bullets; zero unaccepted drops. |
+| `INSP-01` Move 53 -> CHECKING | Apply `IN_PROGRESS -> CHECKING` to all 53 with the owner-blessed SHA. | Lifecycle transitions via the HTTP API. | **BLOCKED** pending owner-blessed `approvalSha`; then `53 CHECKING` / 0 `IN_PROGRESS`; 53 `**Checking Approval SHA:**`; one `_STATUS.md` diffed clean. |
 | `INSP-02` Control-plane truth-fix | Repoint PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`. | `analyze_dep_closure.py execution` -> SCC 0; control doc acyclic. |
 | `INSP-03` Inspection sweep | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. | 53/53 Assessments; CRITIC pass; cited `vitest run <file>` green. |
 | `INSP-04` Gate-process evaluation | Recommend keep/modify/replace the per-deliverable approvalSha gate. | Memo + any new packets. | Explicit recommendation; packets registered AWAITING. |
@@ -102,12 +102,16 @@ Current State, Last Updated, `**field:**` lines, normalized `## History`). Dry-r
 diff predicted vs current. Gate INSP-01 on a clean preflight (any file with extra structure that
 would be dropped is surfaced and handled before live mutation).
 
-**2026-06-20 result:** blocker found. The read-only preflight parsed all 53 status files and
-confirmed all are `IN_PROGRESS`; the transition would add the required fields in all files. However,
-52 files contain one noncanonical history bullet each that the current parser/writer would ignore
-and drop. Evidence: `plans/artifacts/insp01a_status_preflight_2026-06-20.md`. Decision packet:
-`execution/_Coordination/_DECISIONS/D-APP-33_PACKET_2026-06-20.md`. `INSP-01` must not run until
-D-APP-33 is ruled and `INSP-01a` reruns clean.
+**2026-06-20 result:** blocker found, then cleared under D-APP-33. The first read-only preflight
+parsed all 53 status files and confirmed all are `IN_PROGRESS`; the transition would add the
+required fields in all files, but 52 files contain one noncanonical semantic/provisional history
+bullet each that the current parser/writer would ignore and drop. Evidence:
+`plans/artifacts/insp01a_status_preflight_2026-06-20.md`. D-APP-33 ruled that those
+semantic/provisional history bullets do not need preservation for this project:
+`execution/_Coordination/_DECISIONS/D-APP-33_RULING_2026-06-20.md`. The rerun evidence
+`plans/artifacts/insp01a_rerun_after_dapp33_2026-06-20.md` records 53 parsed, 53 `IN_PROGRESS`, 52
+D-APP-33-accepted semantic/provisional drops, and zero unaccepted drops. `INSP-01` must not run
+until the owner confirms one blessed `approvalSha`.
 
 ### INSP-01 — Move all 53 `IN_PROGRESS -> CHECKING`
 Owner confirms the blessed SHA (`git rev-parse HEAD`). With the dev server up on `:3000`, drive the
@@ -172,7 +176,7 @@ convention:
 
 ## 9. Sequencing
 
-`INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (executed, blocked on D-APP-33 remediation) ->
+`INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
 `INSP-01` -> (`INSP-02` ∥ `INSP-03`) -> `INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-02 and
 INSP-03 overlap (the control-plane truth-fix is independent of the per-deliverable sweep). INSP-04
 and INSP-05 consume the completed sweep.
@@ -192,7 +196,7 @@ and INSP-05 consume the completed sweep.
 ## 11. Required Human Rulings
 
 - **D-APP-19** — RULED (Option D custom; this plan). Owner confirms the blessed `approvalSha` before INSP-01.
-- **D-APP-33** — AWAITING_RULING. Decide how to preserve 52 noncanonical `_STATUS.md` history bullets found by `INSP-01a`; `INSP-01` is blocked until ruled, remediated, and rerun clean.
+- **D-APP-33** — RULED (custom semantic/provisional-history normalization acceptance). `INSP-01a` reran clean under this acceptance basis; `INSP-01` is still blocked pending the owner-blessed `approvalSha`.
 - **REF-006** (PRD-hash), **AMD-01** (UI render-test bar), **PKG-10 doc-only basis** — separate later rulings, informed by the inspection; not pre-decided here.
 - Any issuance (`CHECKING -> ISSUED`) — a future, separate, per-deliverable human gate; out of scope for this plan.
 - New forks surfaced by INSP-03/04/05 — raised as PROPOSAL D-APP packets.
@@ -231,7 +235,8 @@ PKG-00 control-doc grep), plus the transposed RESEARCHER fan-out evidence captur
 
 `INSP-00`/`INSP-00b` updated `_COORDINATION.md`, `_LATEST.md`, `NEXT_INSTANCE_PROMPT.md`, and the
 register to make this the active queue; prior plans are marked superseded-as-active with pointers
-here. Landed tranche narrative moves to `plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next
-step requires a human ruling (the blessed SHA, REF-006, AMD-01, PKG-10 basis, any issuance gate, or a
-new fork). Issuance is reconsidered only after the inspection and the gate-process evaluation
-conclude.
+here. D-APP-33 cleared the `INSP-01a` semantic-history blocker, and the rerun passed under that
+acceptance basis. Landed tranche narrative moves to `plans/PLAN_COMPLETION_LOG.md`. Work stops
+whenever the next step requires a human ruling (the blessed SHA, REF-006, AMD-01, PKG-10 basis, any
+issuance gate, or a new fork). Issuance is reconsidered only after the inspection and the
+gate-process evaluation conclude.
