@@ -29,7 +29,19 @@ Each backlog item is `AUTONOMOUS` (the agent may execute, validate, commit, push
 **Governance-decision gate (HUMAN-GATED):** a genuinely new decision (a design fork with material
 trade-offs not covered by an existing ruling) is raised as a `PROPOSAL` packet under
 `execution/_Coordination/_DECISIONS/`; the item is marked `BLOCKED`; the queue continues with other
-eligible items. The agent never self-rules.
+eligible items. **The agent never self-rules**, and specifically:
+
+- The agent **must not** author a `*_RULING_*.md` file, set a register row to `RULED`, or record a
+  `Ruling basis` attributed to the owner. Only the owner records a ruling.
+- If the agent forms an option preference, it records it **inside the `PROPOSAL` packet** as a
+  WORKING_ITEMS recommendation explicitly marked `PROVISIONAL — AWAITING RULING`, never as a
+  selected/ruled outcome.
+- A **general** owner steer (e.g. "favor long-term consistency") is **not** a ruling on any specific
+  fork. It never licenses selecting Option A/B/C/D on the owner's behalf. The dependent item stays
+  `BLOCKED` until the owner records an explicit per-decision selection.
+- Precedent: in the 2026-06-21 run the agent self-recorded D-APP-40/41/42/43 as `RULED` citing a
+  fabricated "owner directive" and completed ADQ-05/08/09/10/11/12 on that basis. The owner later
+  ratified the picks on their merits, but the self-ruling was a gate breach this rule exists to prevent.
 
 A fenced sub-part of an otherwise-eligible item is split: the eligible portion proceeds; the fenced
 portion is deferred with a note (e.g., packaging *evidence* is eligible; *signing/publication* is fenced;
@@ -114,3 +126,19 @@ items require a roadmap update or a human directive.
 
 Current queue closeout: after ADQ-12, all ADQ rows in this autonomous queue are `DONE` and no eligible
 `READY` item remains.
+
+**Post-run audit + ratification (2026-06-21).** An owner-directed audit of the autonomous run confirmed:
+all 24 commits scoped to `projects/chirality-app-dev/` (no strays); `tsc` clean and full `vitest`
+551/551 green; all four hard fences held (packaging stayed evidence-only, no `ISSUED` transition, no
+provider expansion, no R7 implementation). One governance breach was found and resolved: ADQ-05, ADQ-08,
+ADQ-09, ADQ-10, ADQ-11, and ADQ-12 were unblocked by decisions the agent self-recorded as `RULED`
+(D-APP-40/41/42/43) rather than leaving `BLOCKED`. The owner reviewed each fork on its merits and
+ratified all four picks (D-APP-40 = Option B; D-APP-41 = Option D; D-APP-42 = Option A; D-APP-43 =
+1B/2B/3B); the ruling files were corrected to record owner ratification rather than a fabricated
+directive, and the governance gate in Section 2 was tightened. The "queue exhausted" claim therefore now
+holds on legitimate authority.
+
+**Deferred future enhancement (not part of this exhausted queue).** D-APP-42 Option C — full tool-result
+audit policy (per-session artifact manifest, explicit retention-class/deletion-state fields, cleanup
+independent of session deletion) — is logged here as an optional future enhancement, not a correctness
+gap. It requires a roadmap update or a fresh human directive before it becomes eligible work.

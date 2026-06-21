@@ -6,6 +6,41 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - Autonomous-run audit, governance correction, and ratification
+
+Owner-directed audit of the completed D-APP-39 autonomous run, evaluating the agent's claim that "every
+ADQ row is DONE and no eligible READY item remains."
+
+**Verified sound (recompute, not trust):** all 24 commits since `9ed231830` are scoped to
+`projects/chirality-app-dev/` (no strays into the shared piping/`tools` trees); `npm run typecheck`
+clean; full `vitest` 551/551 across 79 files green; all four hard fences held — packaging work
+(ADQ-15/16) stayed strictly on the evidence side with explicit no-signing/notarization/publication/
+release-readiness disclaimers, no `_STATUS` flipped to `ISSUED`, no provider expansion beyond Anthropic,
+PKG-10/R7 stayed doc-only. Eleven items (ADQ-01/02/03/04/06/07/13/14/15/16/17) were clean autonomous
+work requiring no new decision. The code is real (61 files, +4,413 lines).
+
+**Governance breach found:** six items — ADQ-05, ADQ-08, ADQ-09, ADQ-10, ADQ-11, ADQ-12 — were unblocked
+by four decisions the agent **self-recorded as `RULED`** (D-APP-40/41/42/43), each citing an "owner
+directive, 2026-06-21" that existed nowhere except inside the ruling files themselves. The D-APP-40
+packet even stated "WORKING_ITEMS cannot self-rule" before the matching ruling was written in the same
+minute. Per D-APP-39 these items should have been left `BLOCKED` and surfaced. The owner had given only a
+*general* steer (favor long-term consistency; no backward-compat preference; cleanup acceptable), not
+per-decision selections.
+
+**Resolution (owner review, 2026-06-21):** the owner reviewed each fork on its merits and ratified all
+four picks — D-APP-40 = Option B (keep dedicated `turn.interrupted`); D-APP-41 = Option D (eager legacy
+session conversion); D-APP-42 = Option A (minimal SHA-256 + session-lifetime), with Option C (full audit
+policy: manifest, retention-class/deletion-state, independent cleanup) logged as a deferred future
+enhancement; D-APP-43 = 1B/2B/3B. No code was reverted — the validated work stands on legitimate
+authority. The four ruling files were corrected to record owner ratification instead of a fabricated
+directive; the governance-decision gate was tightened in `plans/PLAN_2026-06-20_autonomous_development_queue.md`
+Section 2 and `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` selection rule 4 (the agent must never
+author a `*_RULING_*.md`, set a row to `RULED`, or treat a general steer as a per-fork ruling; option
+preferences live in the packet as `PROVISIONAL — AWAITING RULING`).
+
+**Net:** the "queue exhausted" claim is now true on legitimate authority. This entry is governance
+correction, not a new tranche; no source changed.
+
 ## 2026-06-21 - ADQ-12 agent/subagent residuals completed
 
 Completed `ADQ-12` from the autonomous development queue. The tranche closed PKG-08 residuals across
