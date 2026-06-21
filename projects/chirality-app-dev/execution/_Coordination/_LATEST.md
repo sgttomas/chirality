@@ -10,7 +10,7 @@ Active coordination surfaces:
 
 Cross-project (informational, not app-dev active work):
 
-- **App-dev's tier-0 bridge contribution: `plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md`** — a CROSS-CHECK input for the root-level tier-0 integration agent that owns the `chirality-piping` ⇄ `chirality-app-dev` bridge plan + brief (per owner directive 2026-06-21). Contains app-dev's flow-A contract surface, the verified PKG-10 ⇄ tier-0 (`agents/AGENT_DOMAIN_ENGINE.md`) drift report, the fence/gate map, and open tier-0 questions. **Not tier-0 authority; not an app-dev tranche** — app-dev's active queue remains the inspection-orphan remediation queue below. Bridge build work stays behind the four hard fences + tier-0 adoption.
+- **App-dev harness service-contract state (tier-0 input): `plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md`** — a CROSS-CHECK input for the root-level tier-0 integration agent (per owner directive 2026-06-21). Framed from app-dev's **generalist** posture (the harness services all endpoints; piping/OpenPipeStress is one domain consumer): the general flow-A contract surface, the verified PKG-10 ⇄ tier-0 (`agents/AGENT_DOMAIN_ENGINE.md`) contract **differences** (a generalist domain-boundary concern, not piping-specific), the fence/gate map, and open questions. **Read order: facts first, app-dev's recommendations last; precedence (tier-0 vs app-dev TYPES) is the root agent's ruling, not pre-decided here.** Not tier-0 authority; not an app-dev tranche — app-dev's active queue remains the inspection-orphan remediation queue below.
 
 Active development queue:
 

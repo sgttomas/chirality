@@ -1,19 +1,39 @@
-# App-Dev Contribution to the Tier-0 Bridge Brief
+# App-Dev Harness — Service-Contract State & Domain-Boundary Reconciliation
 
 **Date:** 2026-06-21
-**From:** chirality-app-dev (`WORKING_ITEMS`)
-**For:** the root-level tier-0 integration agent that owns the `chirality-piping` ⇄ `chirality-app-dev`
-bridge plan + brief.
-**Status:** CROSS-CHECK INPUT — **not tier-0 authority.** App-dev does not author tier-0.
+**From:** chirality-app-dev (`WORKING_ITEMS`) — the **generalist agent harness** (governance/UI/audit/
+lifecycle/adapter layer over provider harness mechanics, K-ENGINE-6) that services *all* endpoints of the
+chirality app: governed tools, MCP read/mutating tools, the permission plane, subagent governance, the
+session/audit/event model, lifecycle, and the domain-engine boundary.
+**For:** the root-level tier-0 integration agent.
+**Role note (read this):** This is **not** "app-dev's half of the piping bridge." The piping/OpenPipeStress
+domain engine is **one consumer** of the harness — the first concrete domain consumer. App-dev's standing
+job is to maintain the general service contract and reconcile its own domain-engine boundary (PKG-10) to the
+framework canon — a **generalist concern that affects every domain consumer, not just piping.** App-dev does
+not co-author "the bridge"; it maintains the contract the bridge (and future endpoints) conform to.
+**Status:** CROSS-CHECK INPUT — **not tier-0 authority.** App-dev does not author tier-0 and does **not
+pre-rule precedence** (see §0).
 
-## 0. How to read this dossier (deference notice)
+## 0. How to read this — read order & deference
 
-Read tier-0 (`/Users/ryan/ai-env/projects/chirality/agents/AGENT_DOMAIN_ENGINE.md` operative core +
-the OpenPipeStress Example Binding, `:709`) and **both repos COLD first**, then use this dossier to
-**cross-check your own reading**. Do not read the bridge through app-dev's framing — two project loops
-converging is exactly how a blind spot hardens (we proved that twice this week). Where this dossier and
-tier-0 disagree, **tier-0 wins**. App-dev's contract drafts (PKG-10) were derived from in-repo
-`docs/TYPES.md §11` without citing tier-0, so several app-dev shapes are known-divergent (§2).
+The point of an independent root agent is that it is **not** inside the piping↔app-dev consensus, so the
+read order matters:
+
+1. **Read tier-0 and both repos COLD, form your own view first.** Tier-0 operative core:
+   `agents/AGENT_DOMAIN_ENGINE.md` PROTOCOL Fn 1–8, SPEC (Human Agency Map `:406`, Valid Operation Proposal
+   `:393`, Invalid States `:443`), STRUCTURE (Permission Map `:503`, Minimal Profile Shape `:669`,
+   **OpenPipeStress Example Binding `:709`**); the Type-0 parent `AGENT_HELPS_HUMANS.md`; and
+   `AGENT_EQUATION_AUDIT.md` (DEC-043's system of record). **Neither project loop has read this core.**
+2. **Then** read §1 (verifiable facts — contract surface, machinery, fences, all cited) and the §2 *left
+   columns* (the factual PKG-10-vs-tier-0 differences).
+3. **Last, and labeled as such:** app-dev's *recommendations* — the §2 "suggested direction" column and the
+   interpretive calls in §3/§4. **These are app-dev's view, to challenge, not adopt.**
+
+**App-dev does not pre-rule precedence.** Whether the canonical domain-engine contract is tier-0
+`AGENT_DOMAIN_ENGINE.md` or app-dev's `docs/TYPES.md §11`/PKG-10 is **your ruling** (open question 1).
+§2 states the differences as facts; the "suggested direction" assumes tier-0-canonical *only as app-dev's
+default*, not as a settled answer — and tier-0 itself is not internally clean (it carries the
+`INVALID`/`UNKNOWN` self-inconsistency in §2), so this is not a glib "tier-0 wins."
 
 All paths under `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/` unless noted.
 
@@ -73,7 +93,11 @@ protected paths write-quarantined), `K-DOMAIN-3` (`:137`, ops need `OperationPro
 governance/UI/audit/lifecycle/adapter layer — not a standalone harness; keep the extraction an adapter),
 `K-ENGINE-3` (`:54`, Anthropic Agent SDK key-aware default; provider expansion human-gated).
 
-## 2. PKG-10 ⇄ tier-0 drift report (TIER-0 CANONICAL)
+## 2. PKG-10 ⇄ tier-0 contract differences (precedence is the root agent's ruling — §0)
+
+> The **"Reconcile to"** column below is **app-dev's suggested direction *if* tier-0 is ruled canonical** —
+> a recommendation to challenge, not a settled instruction. The left columns (app-dev / tier-0, with
+> file:line) are the verifiable facts; read those first.
 
 **Root cause (confirmed):** the corpora were never cross-referenced. `AGENT_DOMAIN_ENGINE.md` is **absent
 from both** DEL-10-01/03 `_REFERENCES.md` (they list only `docs/*.md` REF-001..006 + `AGENT_SOFTWARE_DECOMP.md`
@@ -81,9 +105,9 @@ REF-007); grep across both `1_Working` folders finds zero references to it. The 
 predictable artifact of deriving from `docs/TYPES.md §11`; several app-dev "TBD" gaps are **false** gaps
 tier-0 already resolves.
 
-**Recommended fix:** add `AGENT_DOMAIN_ENGINE.md` (SHA-pinned) to both `_REFERENCES.md` as the tier-0
-authoritative source, then re-run the drafts with tier-0 canonical and `docs/TYPES.md §11` as the in-repo
-target to reconcile.
+**App-dev's suggested fix (pending your precedence ruling):** if tier-0 is ruled canonical, add
+`AGENT_DOMAIN_ENGINE.md` (SHA-pinned) to both `_REFERENCES.md` as the authoritative source, then re-run the
+drafts with tier-0 canonical and `docs/TYPES.md §11` as the in-repo target to reconcile.
 
 ### DomainEngineProfile (DEL-10-01)
 
@@ -148,6 +172,11 @@ decided + executed autonomously; actions 2-6 are PROPOSAL packets, never self-ru
 - **Truthful attribution** (K-AUTH) across all of the above.
 
 ## 5. Open tier-0 questions app-dev needs the root agent to resolve
+
+Two are **generalist / app-dev-contract** questions (1 precedence, 5 contract-versioning) — they govern how
+app-dev maintains its domain boundary for *all* consumers and are app-dev's to flag. Three are
+**bridge-specific** (2 `INTEGRATION_LEVEL`, 3 data-residency, 4 fence-3 sequencing) — those belong to you +
+the piping consumer; app-dev only supplies its fence constraints on them, it does not drive them.
 
 1. **Profile-drift reconciliation direction.** Confirm tier-0 (`AGENT_DOMAIN_ENGINE.md`) is canonical for
    `DomainEngineProfile`/`OperationProposal` and `docs/TYPES.md §11` is the in-repo target; authorize adding
