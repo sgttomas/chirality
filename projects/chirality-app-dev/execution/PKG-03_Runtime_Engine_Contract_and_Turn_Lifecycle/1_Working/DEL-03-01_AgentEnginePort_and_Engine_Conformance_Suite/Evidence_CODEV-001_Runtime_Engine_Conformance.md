@@ -2,6 +2,29 @@
 
 Date: 2026-05-24
 
+## ADQ-04 Superseding Note - 2026-06-21
+
+This CODEV-001 record remains historical evidence for the first runtime-boundary tranche.
+It is superseded for current default-provider, Section 9 validation, `harness:event`, and
+REF-006 source-state posture by `docs/harness/runtime_evidence_reconciliation.md` and the
+refreshed `frontend/docs/harness/runtime_engine_contract.md`.
+
+Current posture:
+
+- D-APP-18 Option A made the Claude Agent SDK / Anthropic first adapter the key-aware
+  default: `agentSdk` when an Anthropic key is configured, otherwise `stub`.
+- `PUBLIC_UI_EVENT_NAMES` now includes `harness:event` as a provider-neutral redacted
+  `HarnessEvent` passthrough, not an SDK/provider event namespace.
+- Section 9 runtime validation uses the current deterministic IDs
+  `section9.runtime_engine_contract`, `section9.adapter_turn_engine_event_log`, and
+  `section9.adapter_message_mapper`.
+- D-APP-38 authority corpus `v1` resolves the earlier REF-006 hash-mismatch caveat for
+  this evidence refresh; no authority document is edited by ADQ-04.
+
+This note does not satisfy dependency rows, advance lifecycle state, authorize provider
+expansion, or make release, professional, certification, sealing, authentication, or
+code-compliance claims.
+
 ## Scope
 
 This evidence record covers the first CODEV-001 implementation tranche for DEL-03-01.
@@ -37,9 +60,10 @@ stub and opt-in Claude Agent SDK probe adapter.
 
 ## Source-State Caveat
 
-REF-006 `docs/PRD.md` remains `HASH_MISMATCH` in `_REFERENCES.md`. This evidence uses the
-accessible PRD and corroborating SPEC/CONTRACT/TYPES material as implementation guidance, but
-acceptance closure still requires source-state confirmation or a human ruling.
+Historical note: this section recorded the 2026-05-24 REF-006 `HASH_MISMATCH` state.
+D-APP-38 later established authority corpus `v1`, and current reconciliation status reports
+REF-006 as `MATCH`. This historical caveat no longer describes current ADQ-04 evidence
+posture, but it is retained to preserve the original run record.
 
 ## Dependency Closure Note
 

@@ -6,6 +6,31 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-04 runtime evidence reconciled
+
+Completed `ADQ-04` from the autonomous development queue. The tranche added
+`docs/harness/runtime_evidence_reconciliation.md` as the PKG-03/PKG-04 crosswalk from current
+implementation truth to evidence records, including D-APP-18 key-aware default-provider posture,
+current `harness:event` ownership, active `section9.adapter_*` validation IDs, D-APP-38 corpus `v1`
+source-state handling, and residuals deferred to ADQ-05 or later runtime/session evidence work.
+
+`frontend/docs/harness/runtime_engine_contract.md` now describes the D-APP-18 key-aware default
+instead of the old D-APP-12 hold, includes `harness:event` in the public UIEvent list, and records
+that D-APP-17 supports the bounded key-aware default while broader packaged workflow, release, and
+professional-boundary claims remain out of scope. The historical CODEV-001 runtime and SDK-probe
+evidence records now have ADQ-04 superseding notes, and DEL-04-03 active spec/procedure text now uses
+`section9.adapter_message_mapper`.
+
+No `_STATUS.md` files changed. No authority documents changed, so no D-APP-38 corpus bump was needed.
+No dependency row was satisfied or retired. No runtime source, package manifest, lockfile, provider
+expansion, release artifact, lifecycle issuance, professional approval, certification, sealing,
+authentication, code-compliance acceptance, or release-readiness claim changed.
+
+Validation: `git diff --check` over affected docs, frontend docs, execution evidence, and plans; docs
+manifest JSON parse; D-APP-38 reference reconciliation `status`; targeted stale-wording scan showing
+only intentional superseded-wording notes; `npm run harness:validate:section9` from `frontend/`
+passed all 13 checks with summary generated at `2026-06-21T06:31:30.839Z`.
+
 ## 2026-06-21 - ADQ-03 boundary review checklists normalized
 
 Completed `ADQ-03` from the autonomous development queue. The tranche materialized

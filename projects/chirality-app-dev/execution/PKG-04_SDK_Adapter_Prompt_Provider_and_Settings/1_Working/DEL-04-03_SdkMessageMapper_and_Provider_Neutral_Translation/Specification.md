@@ -49,7 +49,7 @@ Out of scope:
 | `HarnessEvent` target type | Runtime mapping must emit versioned, canonical Chirality events. | REF-004 Section 7.3; REF-003 Section 10 |
 | SDK adapter vocabulary boundary | SDK terms remain adapter-boundary metadata. | REF-004 Section 9 |
 | PRD FR-074 / FR-116 / FR-083 | Event separation, deterministic Provider/SDK message mapping, and SDK model/tool loop mirroring. | REF-006 Section 8.12 and 8.13, HASH_MISMATCH warning applies |
-| Section 9 validation IDs | Runtime validation should include `section9.sdk_message_mapper`. | REF-003 Section 19.3 |
+| Section 9 validation IDs | Runtime validation includes the active ID `section9.adapter_message_mapper`; older `section9.sdk_message_mapper` wording is superseded by ADQ-04 reconciliation. | REF-003 Section 19.3; `frontend/scripts/validate-harness-section9.mjs`; `docs/harness/runtime_evidence_reconciliation.md` |
 
 ## Verification
 
@@ -73,4 +73,4 @@ Required documentation and artifacts:
 - Mapper tests covering UI output and runtime event output.
 - Provider-neutral leakage tests.
 - A `TBD` or open-issue list for any SDK message category not yet confirmed by DEL-04-01.
-- Section 9 validation coverage entry for `section9.sdk_message_mapper` when validation IDs are implemented.
+- Section 9 validation coverage entry for `section9.adapter_message_mapper`, the current implemented mapper validation ID.

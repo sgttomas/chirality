@@ -7,9 +7,10 @@ It applies to the deterministic stub adapter, the existing direct Anthropic Mess
 and the Claude Agent SDK / Anthropic first-adapter path.
 
 SCA-APP-001 establishes a provider-adapter-general runtime strategy. The Claude Agent SDK
-/ Anthropic path remains the first concrete adapter and opt-in `agentSdk` probe path;
-D-APP-12 Option B holds the default-provider cutover. Concrete non-Anthropic providers
-require bounded future implementation scope.
+/ Anthropic path remains the first concrete adapter and, per D-APP-18 Option A, the
+key-aware default provider: the real `agentSdk` path is selected when an Anthropic API key
+is configured and no explicit provider override is set; otherwise the runtime falls back to
+`stub`. Concrete non-Anthropic providers require bounded future implementation scope.
 
 The browser-facing event stream remains the stable public contract. Provider and SDK message
 names, transcript paths, session IDs, tool names, and permission modes are adapter metadata
@@ -23,11 +24,13 @@ Required behavior:
 
 - `startTurn(input)` yields only the existing `UIEvent` stream names:
   `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`,
-  `turn:error`, and `process:exit`.
+  `turn:error`, `process:exit`, and `harness:event`.
 - `interrupt(sessionId)` attempts to interrupt the active turn and emits terminal process
   evidence through the adapter.
 - SDK/provider identifiers may be stored as metadata fields such as `sdkSessionId` or
   `sdkClaudeCodeVersion`; they do not rename public UI events.
+- `harness:event` is a provider-neutral passthrough for redacted `HarnessEvent` records;
+  it does not expose SDK/provider event names as product-owned public names.
 
 ## TurnEngine
 
@@ -257,18 +260,21 @@ only when it resolves to the same descriptor.
 Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names. The future
 `mcp__chirality__domain_*` namespace is reserved for a governed domain-profile amendment
 and is not implemented by R6. Remote MCP, plugins, broad tool search, remote execution,
-provider/network expansion, concrete non-Anthropic providers, default-provider cutover,
-and release/professional-boundary changes remain out of scope until a future human ruling
-authorizes them.
+provider/network expansion, concrete non-Anthropic providers, further default/provider
+semantics changes, and release/professional-boundary changes remain out of scope until a
+future human ruling authorizes them.
 
 The R6-04 module split was deferred at closeout because it was optional organization work
 and the acceptance criteria were satisfied by the collision invariant, generated catalog,
 contributor guide, and this contract refresh without changing MCP exposure or behavior.
 
-## First Adapter Probe Posture
+## First Adapter Current Posture
 
-`CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the opt-in Claude Agent SDK probe adapter.
-The default provider remains unchanged unless a later bounded runtime tranche changes it.
+`CHIRALITY_HARNESS_PROVIDER=agentSdk` explicitly selects the Claude Agent SDK adapter.
+With no explicit provider selection, D-APP-18 Option A applies the key-aware default:
+`agentSdk` is selected when an Anthropic API key is configured through the environment or
+UI Settings store; otherwise the runtime selects `stub`. Explicit `stub`, `anthropic`, and
+`agentSdk` overrides still win over the key-aware default.
 
 Probe posture:
 
@@ -280,7 +286,7 @@ Probe posture:
 - Requested read built-ins, requested Chirality MCP read tools, requested
   `Write` / `Edit` built-ins, requested `Bash` in `workspaceWrite` mode, and requested
   mutating Chirality MCP tools in `workspaceWrite` mode are exposed
-  for the opt-in `agentSdk` path after descriptor, permission, handler-wrapper, and hook-policy
+  for the `agentSdk` path after descriptor, permission, handler-wrapper, and hook-policy
   resolution. Denied or unrequested built-ins and MCP tools remain in descriptor-derived
   `disallowedTools`.
 
@@ -289,7 +295,9 @@ package import, Node 22 sidecar, runtime-floor migration, or spike.
 
 ## Conformance Gates
 
-An adapter cannot become the default production runtime until it passes:
+The current key-aware default remains bounded to the first Anthropic / Claude Agent SDK
+adapter and ongoing conformance evidence. Future adapter or default semantics changes
+cannot proceed until they pass:
 
 - stable UI event name checks,
 - provider-neutral public type checks,
@@ -305,4 +313,7 @@ conformance evaluator. Companion fixtures use deterministic scripted provider st
 success, failure, and interruption behavior can be checked without live provider calls or
 new backend adapter dependencies.
 
-Packaging remains `BLOCKED_TBD` until a packaged Electron SDK subprocess run is performed.
+The app-directory packaged live read-tool proof recorded under D-APP-17 supports the
+D-APP-18 key-aware default. Mounted-DMG live parity, broad packaged workflow evidence,
+signing, notarization, publication, distribution, release-readiness claims, and
+professional-boundary claims remain outside this contract unless separately ruled.

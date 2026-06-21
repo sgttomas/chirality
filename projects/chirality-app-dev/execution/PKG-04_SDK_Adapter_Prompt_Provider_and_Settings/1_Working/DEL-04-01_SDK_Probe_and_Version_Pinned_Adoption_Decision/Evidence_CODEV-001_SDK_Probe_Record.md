@@ -2,11 +2,38 @@
 
 Date: 2026-05-24
 
+## ADQ-04 Superseding Note - 2026-06-21
+
+This CODEV-001 probe record remains historical evidence for first-adapter package pins and
+initial SDK isolation. It is superseded for current default-provider/adoption posture,
+Section 9 validation naming, packaged live proof status, and REF-006 source-state posture
+by `docs/harness/runtime_evidence_reconciliation.md` and the refreshed
+`frontend/docs/harness/runtime_engine_contract.md`.
+
+Current posture:
+
+- The package pins remain `@anthropic-ai/claude-agent-sdk@0.3.150` and
+  `@anthropic-ai/sdk@0.93.0`.
+- D-APP-17 recorded a bounded packaged live `agentSdk` read-tool proof; D-APP-18 Option A
+  approved the bounded key-aware default-provider implementation.
+- The default is now key-aware: `agentSdk` when an Anthropic key is configured and no
+  explicit provider override is set, otherwise `stub`. Explicit `stub`, `anthropic`, and
+  `agentSdk` provider selections still win.
+- The active Section 9 mapper ID is `section9.adapter_message_mapper`, not the older
+  `section9.sdk_message_mapper` wording.
+- D-APP-38 authority corpus `v1` resolves the earlier REF-006 hash-mismatch caveat for
+  this evidence refresh.
+
+This note does not authorize provider expansion, remote MCP/plugins/tool search, release or
+distribution posture, lifecycle issuance, dependency-row closure, professional approval,
+certification, sealing, authentication, or code-compliance acceptance.
+
 ## Probe Posture
 
 This record covers the first CODEV-001 SDK probe implementation for DEL-04-01.
-The SDK-backed runtime path is present only behind explicit provider selection:
-`CHIRALITY_HARNESS_PROVIDER=agentSdk`.
+Historical posture at the time of this record: the SDK-backed runtime path was present only
+behind explicit provider selection: `CHIRALITY_HARNESS_PROVIDER=agentSdk`. D-APP-18 later
+superseded that default-selection posture with the key-aware default described above.
 
 No new user-visible read, write, bash, MCP, remote, plugin, or subagent tool capability is
 enabled by this tranche.
@@ -39,8 +66,10 @@ enabled by this tranche.
 
 ## Source-State Caveat
 
-REF-006 `docs/PRD.md` remains `HASH_MISMATCH` in `_REFERENCES.md`. PRD-derived runtime
-direction remains visible but closure requires source-state confirmation or a human ruling.
+Historical note: this section recorded the 2026-05-24 REF-006 `HASH_MISMATCH` state.
+D-APP-38 later established authority corpus `v1`, and current reconciliation status reports
+REF-006 as `MATCH`. This historical caveat no longer describes current ADQ-04 evidence
+posture, but it is retained to preserve the original run record.
 
 ## Dependency Closure Note
 

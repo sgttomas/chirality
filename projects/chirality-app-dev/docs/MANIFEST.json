@@ -61,6 +61,10 @@
       "role": "DEL-01-02 reliance-boundary register, enforcement matrix, and test index"
     },
     {
+      "path": "harness/runtime_evidence_reconciliation.md",
+      "role": "ADQ-04 PKG-03/PKG-04 runtime evidence reconciliation and implementation crosswalk"
+    },
+    {
       "path": "README.md",
       "role": "docs package index"
     },

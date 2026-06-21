@@ -63,7 +63,7 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
    - Assert SDK session IDs, transcript paths, SDK tool names, and provider names appear only in approved adapter metadata locations.
 
 9. Integrate with validation.
-   - Add or prepare coverage for `section9.sdk_message_mapper` when Section 9 runtime validation IDs are implemented.
+   - Use `section9.adapter_message_mapper` as the active Section 9 runtime validation ID for mapper coverage.
    - Ensure mapper tests are part of local premerge validation once the runtime validation suite lands.
 
 10. Reconcile with first-adapter probe updates.
@@ -91,7 +91,7 @@ Expected records and evidence from implementation:
 - Provider-neutral leakage tests.
 - Fixture files or inline fixtures derived from DEL-04-01 first-adapter probe outputs.
 - `TBD` list for SDK message categories or payload fields not yet confirmed.
-- Section 9 validation entry or follow-up for `section9.sdk_message_mapper`.
+- Section 9 validation entry or follow-up for `section9.adapter_message_mapper`.
 - Notes on any fallback or reliance-boundary concerns if SDK behavior cannot be mapped without weakening Chirality-owned contracts.
 - Implementation path record naming the accepted mapper module, UI/HarnessEvent type import paths, mapper unit-test path, and provider-neutral leakage-test path.
 - Dependency closure note confirming whether ACTIVE upstream dependencies remain `TBD`, blocked, or satisfied at implementation closeout.

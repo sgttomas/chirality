@@ -26,6 +26,7 @@ This docs package defines why the app exists, what must remain true, how the run
 | `AGENTIC_DEVELOPMENT_WORKFLOW.md` | Agentic workflow | Authority map, current loop, tranche selection, TASK discipline, validation routing, and closeout expectations. |
 | `BOUNDARY_REVIEW_CHECKLISTS.md` | Boundary review checklists | Product/professional-boundary and scope-boundary checklist package for DEL-01-03 and DEL-01-04. |
 | `harness/reliance_boundary_register.md` | Reliance-boundary register | DEL-01-02 boundary rows, enforcement matrix, Section 9 test index, and residual-risk notes. |
+| `harness/runtime_evidence_reconciliation.md` | Runtime evidence reconciliation | ADQ-04 PKG-03/PKG-04 evidence refresh, implementation crosswalk, current Section 9 IDs, and deferred residuals. |
 | `MANIFEST.json` | Docs manifest | Machine-readable index of the docs package and key linked control-plane surfaces. |
 
 ## Coordination Pointers

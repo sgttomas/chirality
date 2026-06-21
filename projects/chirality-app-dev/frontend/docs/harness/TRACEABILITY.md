@@ -22,6 +22,7 @@
 | REQ-16 Deliverable Acceptance Criteria | `harness:validate:premerge` gate + docs + traceability mapping |
 | REQ-17 Section 9 Runtime IDs | `frontend/scripts/validate-harness-section9.mjs` current deterministic ID set (`section9.runtime_engine_contract`, `section9.adapter_turn_engine_event_log`, `section9.adapter_message_mapper`, `section9.session_event_replay`, `section9.settingsources_isolation`, `section9.permission_overlay_hard_deny_precedence`, `section9.tool_runtime_read_file`, `section9.chirality_mcp_status_dependencies`, `section9.path_containment_hook`, `section9.instruction_root_protection_hook`, `section9.tool_result_budget`, `section9.context_compaction_boundary`, `section9.subagent_governance_hook`) |
 | REQ-18 DEL-01-02 Reliance Boundary Register | `docs/harness/reliance_boundary_register.md` maps reliance boundaries to current Section 9 IDs, enforcement surfaces, and future/TBD validation IDs. |
+| REQ-19 ADQ-04 Runtime Evidence Reconciliation | `docs/harness/runtime_evidence_reconciliation.md` maps PKG-03 and PKG-04 evidence to current implementation truth, D-APP-18 key-aware default posture, current `harness:event` ownership, D-APP-38 source-state handling, and active Section 9 IDs. |
 
 ## Notes
 
