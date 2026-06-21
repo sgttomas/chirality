@@ -3,19 +3,19 @@
 Date: 2026-06-21
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `210b5b7427471fc307ecbf6eecaab78ebf08398b`
+Reviewed SHA: `d92ef1253b37cd29423672acb146a9e9c91087d5`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 008.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 009.
 
 - Deliverables expected: 53
-- Assessments complete: 37
-- Assessments pending: 16
+- Assessments complete: 42
+- Assessments pending: 11
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables; PKG-08 agent suite / pipeline dispatch / subagent governance deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `210b5b7427471fc307ecbf6eecaab78ebf08398b` recorded for wave 008 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `d92ef1253b37cd29423672acb146a9e9c91087d5` recorded for wave 009 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -119,6 +119,25 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 - PKG-07 static validation observed 53 deliverables, 37 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-07 assessment files.
 
+- PKG-08 wave validation observed 42 `Assessment_INSP-03_*.md` files after wave 009.
+- PKG-08 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/scripts/verify-instruction-root-integrity.test.ts src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/lib/agent-roster.test.ts src/__tests__/lib/persona-resolution.test.ts src/__tests__/lib/agent-matrix-cells.test.ts src/__tests__/lib/agent-matrix-launch.test.ts src/__tests__/components/agent-matrix-panel.test.ts src/__tests__/lib/task-scope-selection.test.ts src/__tests__/api/project/deliverables-route.test.ts src/__tests__/lib/harness-options.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/turn-engine.test.ts src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/subagent-bridge.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/agent-runtime-contract.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/harness-event-views.test.ts src/__tests__/components/harness-stream-views.test.ts
+```
+
+Observed result: 24 test files passed, 175 tests passed.
+
+- PKG-08 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg08_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
+- PKG-08 static validation observed 53 deliverables, 42 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-08 assessment files.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -172,11 +191,11 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-07-04 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Assessment_INSP-03_DEL-07-04.md` | COMPLETE | Status API/MCP assessment; lifecycle mechanics pass, with schema-fixture and content-change recheck residuals. |
 | DEL-07-05 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Assessment_INSP-03_DEL-07-05.md` | COMPLETE | Dependency CSV assessment; reader/writer/linter mostly pass, with direct API symlink-leaf and delete-vs-retire discipline residuals. |
 | DEL-07-06 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/Assessment_INSP-03_DEL-07-06.md` | COMPLETE | Reference-hash/snapshot convention assessment; docs are largely complete, with REF-006 and exact tool registry evidence still open. |
-| DEL-08-01 | - | PENDING | PKG-08 wave pending. |
-| DEL-08-02 | - | PENDING | PKG-08 wave pending. |
-| DEL-08-03 | - | PENDING | PKG-08 wave pending. |
-| DEL-08-04 | - | PENDING | PKG-08 wave pending. |
-| DEL-08-05 | - | PENDING | PKG-08 wave pending; known G5 candidate. |
+| DEL-08-01 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Assessment_INSP-03_DEL-08-01.md` | COMPLETE | Instruction-root packaging/conformance assessment; runtime protections pass but full agent conformance fixtures remain G6. |
+| DEL-08-02 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Assessment_INSP-03_DEL-08-02.md` | COMPLETE | Persona alias/matrix assessment; spec is stale against loop-first Type 0/1 persona guard and removed aliases. |
+| DEL-08-03 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Assessment_INSP-03_DEL-08-03.md` | COMPLETE | Pipeline dispatch assessment; controls and scope helpers pass, with component-level Pipeline tests still partial. |
+| DEL-08-04 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Assessment_INSP-03_DEL-08-04.md` | COMPLETE | Type 2 subagent governance assessment; fail-closed bridge is mostly landed, pending child-run interface reconciliation. |
+| DEL-08-05 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Assessment_INSP-03_DEL-08-05.md` | COMPLETE | Child-run records assessment; G5 confirmed for `HarnessSubagentRun/runId` vs `ChildRunRecord/childRunId`, plus event/artifact taxonomy residuals. |
 | DEL-09-01 | - | PENDING | PKG-09 wave pending. |
 | DEL-09-02 | - | PENDING | PKG-09 wave pending. |
 | DEL-09-03 | - | PENDING | PKG-09 wave pending. |
@@ -191,4 +210,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-08 subagent/child-run deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-09 validation / packaging / security / release deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.

@@ -29,15 +29,15 @@ development roadmap -> INSP-FINAL. INSP-01a reran clean under D-APP-33; INSP-01 
 deliverables in `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`; INSP-02 aligned PKG-00 control-plane
 documents with accepted acyclic DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
 
-INSP-03 waves 001-008 are recorded: PKG-00 through PKG-07 assessments are complete (37/53), 16
+INSP-03 waves 001-009 are recorded: PKG-00 through PKG-08 assessments are complete (42/53), 11
 assessments remain pending, 0 deliverables are issued, reviewed SHA
-`210b5b7427471fc307ecbf6eecaab78ebf08398b` is recorded for wave 008 as inspected source-state
+`d92ef1253b37cd29423672acb146a9e9c91087d5` is recorded for wave 009 as inspected source-state
 evidence, and the coverage index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`.
 `CHECKING` means "admitted to inspection," not approved-for-issue, so 53xCHECKING is not 53 issuance
 approvals; `CHECKING` is one-way in code (reverting needs a manual `_STATUS.md` amend). No code
 development in this plan (the G1-G6 gaps are roadmap outputs); no `CHECKING -> ISSUED`; REF-006 /
 AMD-01 / PKG-10 doc-only basis remain separate later rulings. Next selected work: continue
-`INSP-03` with the PKG-08 wave.
+`INSP-03` with the PKG-09 wave.
 
 D-APP-20 through D-APP-33 are ALL RULED (`execution/_Coordination/_DECISIONS/_REGISTER.md`). Key rulings: D-APP-28 -> Option B (full loop-first pivot); D-APP-30 -> B (guard-mid-turn in-place launch); D-APP-31 -> B (in-place `/pipeline` tertiary form, staged with 28d); D-APP-32 -> A (new sidebar tabs); D-APP-33 -> custom semantic/provisional-history normalization accepted for `INSP-01a`. Chat history stays on the RIGHT as the existing Sessions tab — no left rail (owner directive 2026-06-19). The Phase rulings D-APP-20..25 are ruled AND implemented.
 
@@ -55,7 +55,7 @@ Current stabilized runtime posture:
 
 ## Selection Rules
 
-The active queue is the deliverable-inspection program (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`). **Next action is continuing `INSP-03` with the PKG-08 wave**: D-APP-33 ruled the INSP-01a semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, and `INSP-03` waves 001-008 completed PKG-00 through PKG-07 assessments (37/53) with reviewed SHA `210b5b7427471fc307ecbf6eecaab78ebf08398b` recorded for wave 008 as inspected source-state evidence. The Agent-Orchestration redesign / loop-first pivot is complete history; do not select from it, from the completed live-proof / R6 / Runtime Stabilization / SCC / retired runtime-completion plans, or from the superseded issuance proposal (`plans/PLAN_2026-06-18_...`, its materials already transposed).
+The active queue is the deliverable-inspection program (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`). **Next action is continuing `INSP-03` with the PKG-09 wave**: D-APP-33 ruled the INSP-01a semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, and `INSP-03` waves 001-009 completed PKG-00 through PKG-08 assessments (42/53) with reviewed SHA `d92ef1253b37cd29423672acb146a9e9c91087d5` recorded for wave 009 as inspected source-state evidence. The Agent-Orchestration redesign / loop-first pivot is complete history; do not select from it, from the completed live-proof / R6 / Runtime Stabilization / SCC / retired runtime-completion plans, or from the superseded issuance proposal (`plans/PLAN_2026-06-18_...`, its materials already transposed).
 
 Default priority:
 
@@ -70,7 +70,7 @@ Default priority:
 
 ## Execution Rules
 
-- The active queue is the deliverable-inspection program (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D); D-APP-33 ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, INSP-01 moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, INSP-02 aligned PKG-00 to the accepted acyclic DepClosure snapshot, and INSP-03 waves 001-008 completed PKG-00 through PKG-07 assessments (37/53; reviewed SHA `210b5b7427471fc307ecbf6eecaab78ebf08398b` recorded for wave 008 as inspected source-state evidence) with coverage index `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Continue INSP-03 at the PKG-08 wave. The completed loop-first pivot, live-proof, R6, and Runtime Stabilization plans and the superseded issuance proposal no longer grant pre-approval for new work. `D-APP-13`..`D-APP-17` and D-APP-18 + D-APP-19 + D-APP-20..D-APP-33 are ruled; D-APP-18 (Option A) landed the key-aware default-provider cutover; D-APP-19 (Option D) opened the inspection phase with issuance deferred. Provider expansion beyond the Anthropic path and release posture remain separately gated.
+- The active queue is the deliverable-inspection program (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D); D-APP-33 ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, INSP-01 moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, INSP-02 aligned PKG-00 to the accepted acyclic DepClosure snapshot, and INSP-03 waves 001-009 completed PKG-00 through PKG-08 assessments (42/53; reviewed SHA `d92ef1253b37cd29423672acb146a9e9c91087d5` recorded for wave 009 as inspected source-state evidence) with coverage index `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Continue INSP-03 at the PKG-09 wave. The completed loop-first pivot, live-proof, R6, and Runtime Stabilization plans and the superseded issuance proposal no longer grant pre-approval for new work. `D-APP-13`..`D-APP-17` and D-APP-18 + D-APP-19 + D-APP-20..D-APP-33 are ruled; D-APP-18 (Option A) landed the key-aware default-provider cutover; D-APP-19 (Option D) opened the inspection phase with issuance deferred. Provider expansion beyond the Anthropic path and release posture remain separately gated.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
@@ -99,4 +99,4 @@ End the session summary with:
 - validation performed;
 - files changed;
 - human rulings pending or blocking from `_DECISIONS/_REGISTER.md`;
-- next selected work from the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`; continue `INSP-03` with the PKG-08 wave), and the state of open rulings (D-APP-19 ruled Option D, issuance deferred; D-APP-33 ruled; REF-006 / AMD-01 / PKG-10 doc-only basis still open).
+- next selected work from the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`; continue `INSP-03` with the PKG-09 wave), and the state of open rulings (D-APP-19 ruled Option D, issuance deferred; D-APP-33 ruled; REF-006 / AMD-01 / PKG-10 doc-only basis still open).

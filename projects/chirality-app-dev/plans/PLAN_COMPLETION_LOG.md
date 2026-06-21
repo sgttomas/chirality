@@ -6,6 +6,29 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - PKG-08 inspection assessments recorded (`INSP-03` wave 009)
+
+Recorded the PKG-08 agent suite / pipeline dispatch / subagent governance assessment wave for
+D-APP-19's inspection-only program. Added `Assessment_INSP-03_*.md` artifacts for DEL-08-01 through
+DEL-08-05 and updated the INSP-03 assessment index, active plan, and coordination pointers. Coverage is
+now 42/53 assessments complete, 11 pending, and 0 deliverables issued. Reviewed SHA
+`d92ef1253b37cd29423672acb146a9e9c91087d5` is recorded as inspected source-state evidence only, not
+lifecycle issuance.
+
+Findings preserved for roadmap synthesis: DEL-08-01 has strong runtime instruction-root protections but
+still needs full agent-conformance fixtures; DEL-08-02 confirms the spec is stale against the loop-first
+Type 0/1 persona guard and removed aliases; DEL-08-03 has working Pipeline category/scope mechanics but
+needs component-level Pipeline coverage; DEL-08-04's fail-closed Type 2 governance bridge is mostly
+landed; DEL-08-05 confirms the G5 child-run contract mismatch (`HarnessSubagentRun/runId` vs
+`ChildRunRecord/childRunId`) plus event taxonomy and child-output artifact residuals. No semantic files
+were used or produced.
+
+Validation: focused PKG-08 vitest set passed (24 files, 175 tests); exact deliverable enumeration
+returned 53; assessment count returned 42; status count returned 53 `CHECKING`, 0 `IN_PROGRESS`, 0
+`ISSUED`; `git diff --check -- execution plans` passed; PKG-08 assessment semantic-marker search
+returned no matches; dependency-closure analysis returned 51 valid dependency files, 554 rows, graph
+46 nodes / 97 edges, 0 SCCs, and 0 bidirectional pairs.
+
 ## 2026-06-21 - PKG-07 inspection assessments recorded (`INSP-03` wave 008)
 
 Recorded the PKG-07 filesystem execution / lifecycle / dependencies assessment wave for D-APP-19's
