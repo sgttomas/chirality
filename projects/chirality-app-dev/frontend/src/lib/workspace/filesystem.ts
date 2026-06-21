@@ -68,6 +68,52 @@ export type ProjectDeliverable = {
   path: string;
 };
 
+export type DeliverableContractFindingSeverity = 'info' | 'warning' | 'error';
+
+export type DeliverableContractFindingCategory =
+  | 'required_metadata'
+  | 'preparation_baseline'
+  | 'document_kit'
+  | 'canonical_memory'
+  | 'optional_file'
+  | 'prohibited_file'
+  | 'source_hash_warning'
+  | 'unknown_unsupported_condition';
+
+export type DeliverableContractFileState = {
+  fileName: string;
+  path: string;
+  present: boolean;
+};
+
+export type DeliverableContractFinding = {
+  deliverableId: string;
+  path: string;
+  category: DeliverableContractFindingCategory;
+  condition: string;
+  lifecycleState: string;
+  severity: DeliverableContractFindingSeverity;
+  sourceRef: string;
+  evidence: string;
+  message: string;
+};
+
+export type DeliverableContractScanResult = {
+  deliverableId: string;
+  path: string;
+  lifecycleState: string;
+  valid: boolean;
+  errorCount: number;
+  warningCount: number;
+  infoCount: number;
+  requiredMetadata: DeliverableContractFileState[];
+  preparationBaseline: DeliverableContractFileState[];
+  documentKit: DeliverableContractFileState[];
+  canonicalMemory: DeliverableContractFileState;
+  optionalFiles: DeliverableContractFileState[];
+  findings: DeliverableContractFinding[];
+};
+
 export type KnowledgeTypeOption = {
   id: string;
   label: string;
@@ -76,6 +122,7 @@ export type KnowledgeTypeOption = {
 
 export type ProjectDeliverablesScanResult = {
   deliverables: ProjectDeliverable[];
+  deliverableContracts: DeliverableContractScanResult[];
   knowledgeDecomposition: {
     enabled: boolean;
     markerFile: string | null;
@@ -90,6 +137,31 @@ const KNOWLEDGE_MARKER_PATTERNS = [
   /\bdomain[_\s-]*decomp/i,
   /\bdomain\s+decomposition\b/i
 ];
+
+const REQUIRED_METADATA_FILES = [
+  '_STATUS.md',
+  '_CONTEXT.md',
+  '_DEPENDENCIES.md',
+  '_REFERENCES.md'
+] as const;
+
+const PREPARATION_BASELINE_FILES = ['_SEMANTIC.md'] as const;
+
+const DOCUMENT_KIT_FILES = [
+  'Datasheet.md',
+  'Specification.md',
+  'Guidance.md',
+  'Procedure.md'
+] as const;
+
+const OPTIONAL_DELIVERABLE_FILES = [
+  'Dependencies.csv',
+  '_SEMANTIC_LENSING.md',
+  'HASH_VERIFICATION_BYPASS.jsonl'
+] as const;
+
+const CANONICAL_MEMORY_FILE = 'MEMORY.md';
+const PROHIBITED_MEMORY_FILE = '_MEMORY.md';
 
 const KNOWLEDGE_TYPE_BUCKETS: Array<{
   id: string;
@@ -333,6 +405,340 @@ async function readDirectoryFileSet(directoryPath: string): Promise<Set<string>>
   return fileNames;
 }
 
+function buildFileStates(
+  deliverablePath: string,
+  fileNames: readonly string[],
+  presentFileNames: Set<string>
+): DeliverableContractFileState[] {
+  return fileNames.map((fileName) => ({
+    fileName,
+    path: path.join(deliverablePath, fileName),
+    present: presentFileNames.has(fileName)
+  }));
+}
+
+function countFindings(
+  findings: DeliverableContractFinding[],
+  severity: DeliverableContractFindingSeverity
+): number {
+  return findings.filter((finding) => finding.severity === severity).length;
+}
+
+function buildFinding(input: {
+  deliverableId: string;
+  deliverablePath: string;
+  fileName?: string;
+  category: DeliverableContractFindingCategory;
+  condition: string;
+  lifecycleState: string;
+  severity: DeliverableContractFindingSeverity;
+  sourceRef: string;
+  evidence: string;
+  message: string;
+}): DeliverableContractFinding {
+  return {
+    deliverableId: input.deliverableId,
+    path: path.join(input.deliverablePath, input.fileName ?? ''),
+    category: input.category,
+    condition: input.condition,
+    lifecycleState: input.lifecycleState,
+    severity: input.severity,
+    sourceRef: input.sourceRef,
+    evidence: input.evidence,
+    message: input.message
+  };
+}
+
+async function readDeliverableLifecycleState(
+  deliverablePath: string,
+  deliverableId: string
+): Promise<{ lifecycleState: string; parseFinding?: DeliverableContractFinding }> {
+  const statusPath = path.join(deliverablePath, '_STATUS.md');
+
+  try {
+    const content = await readFile(statusPath, 'utf8');
+    return {
+      lifecycleState: parseStatusDocument(content).currentState
+    };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unable to parse _STATUS.md';
+    return {
+      lifecycleState: 'UNKNOWN',
+      parseFinding: buildFinding({
+        deliverableId,
+        deliverablePath,
+        fileName: '_STATUS.md',
+        category: 'unknown_unsupported_condition',
+        condition: 'status_unparseable',
+        lifecycleState: 'UNKNOWN',
+        severity: 'warning',
+        sourceRef: 'docs/TYPES.md#lifecycle-state-table',
+        evidence: message,
+        message: '_STATUS.md is present but its lifecycle state could not be parsed.'
+      })
+    };
+  }
+}
+
+function addReferenceWarnings(input: {
+  deliverableId: string;
+  deliverablePath: string;
+  lifecycleState: string;
+  referencesContent: string;
+  findings: DeliverableContractFinding[];
+}): void {
+  const lines = input.referencesContent.split(/\r?\n/);
+
+  for (const line of lines) {
+    const normalized = line.toUpperCase();
+    const trimmed = line.trim();
+    if (!trimmed) {
+      continue;
+    }
+
+    if (normalized.includes('HASH_MISMATCH') || normalized.includes('SOURCE_HASH_MISMATCH')) {
+      input.findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: '_REFERENCES.md',
+          category: 'source_hash_warning',
+          condition: 'reference_hash_warning',
+          lifecycleState: input.lifecycleState,
+          severity: 'warning',
+          sourceRef: '_REFERENCES.md#Authoritative Source Corpus',
+          evidence: trimmed,
+          message: '_REFERENCES.md records a source hash warning that must stay visible.'
+        })
+      );
+      continue;
+    }
+
+    if (normalized.includes('UNKNOWN') || normalized.includes('UNSUPPORTED')) {
+      input.findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: '_REFERENCES.md',
+          category: 'unknown_unsupported_condition',
+          condition: 'reference_unknown_condition',
+          lifecycleState: input.lifecycleState,
+          severity: 'warning',
+          sourceRef: '_REFERENCES.md#Authoritative Source Corpus',
+          evidence: trimmed,
+          message: '_REFERENCES.md records an unknown or unsupported source condition.'
+        })
+      );
+    }
+  }
+}
+
+export async function scanDeliverableDocumentKitContract(input: {
+  deliverableId: string;
+  deliverablePath: string;
+}): Promise<DeliverableContractScanResult> {
+  const fileNames = await readDirectoryFileSet(input.deliverablePath);
+  const findings: DeliverableContractFinding[] = [];
+  const lifecycle = await readDeliverableLifecycleState(input.deliverablePath, input.deliverableId);
+  const lifecycleState = lifecycle.lifecycleState;
+
+  if (lifecycle.parseFinding) {
+    findings.push(lifecycle.parseFinding);
+  }
+
+  const requiredMetadata = buildFileStates(
+    input.deliverablePath,
+    REQUIRED_METADATA_FILES,
+    fileNames
+  );
+  const preparationBaseline = buildFileStates(
+    input.deliverablePath,
+    PREPARATION_BASELINE_FILES,
+    fileNames
+  );
+  const documentKit = buildFileStates(input.deliverablePath, DOCUMENT_KIT_FILES, fileNames);
+  const optionalFiles = buildFileStates(input.deliverablePath, OPTIONAL_DELIVERABLE_FILES, fileNames);
+  const canonicalMemory = buildFileStates(input.deliverablePath, [CANONICAL_MEMORY_FILE], fileNames)[0];
+
+  for (const file of requiredMetadata) {
+    if (!file.present) {
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: file.fileName,
+          category: 'required_metadata',
+          condition: 'missing_required_metadata',
+          lifecycleState,
+          severity: 'error',
+          sourceRef: 'docs/SPEC.md#section-3.1; docs/PRD.md#section-10.8',
+          evidence: `${file.fileName} not found in deliverable directory listing`,
+          message: `${file.fileName} is required deliverable metadata.`
+        })
+      );
+    }
+  }
+
+  for (const file of preparationBaseline) {
+    if (!file.present) {
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: file.fileName,
+          category: 'preparation_baseline',
+          condition: 'missing_preparation_baseline',
+          lifecycleState,
+          severity: 'warning',
+          sourceRef: 'docs/SPEC.md#section-3.1; docs/PRD.md#section-10.8',
+          evidence: `${file.fileName} not found in deliverable directory listing`,
+          message: `${file.fileName} is part of the PREPARATION baseline fileset.`
+        })
+      );
+    }
+  }
+
+  for (const file of documentKit) {
+    if (!file.present) {
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: file.fileName,
+          category: 'document_kit',
+          condition: 'missing_document_kit_file',
+          lifecycleState,
+          severity: 'warning',
+          sourceRef: 'docs/SPEC.md#section-3.1; docs/PRD.md#FR-049',
+          evidence: `${file.fileName} not found in deliverable directory listing`,
+          message: `${file.fileName} is absent from the four-document kit.`
+        })
+      );
+    }
+  }
+
+  findings.push(
+    buildFinding({
+      deliverableId: input.deliverableId,
+      deliverablePath: input.deliverablePath,
+      fileName: CANONICAL_MEMORY_FILE,
+      category: 'canonical_memory',
+      condition: canonicalMemory.present ? 'canonical_memory_present' : 'canonical_memory_absent',
+      lifecycleState,
+      severity: 'info',
+      sourceRef: 'docs/SPEC.md#section-5.4; docs/PRD.md#section-10.8',
+      evidence: canonicalMemory.present
+        ? `${CANONICAL_MEMORY_FILE} found in deliverable directory listing`
+        : `${CANONICAL_MEMORY_FILE} not found in deliverable directory listing`,
+      message: canonicalMemory.present
+        ? 'MEMORY.md is present as the canonical deliverable-local working memory file.'
+        : 'MEMORY.md is not present; requiredness remains visible without invalidating the folder.'
+    })
+  );
+
+  if (fileNames.has(PROHIBITED_MEMORY_FILE)) {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: PROHIBITED_MEMORY_FILE,
+        category: 'prohibited_file',
+        condition: 'prohibited_memory_file',
+        lifecycleState,
+        severity: 'error',
+        sourceRef: 'docs/SPEC.md#section-3.1; docs/SPEC.md#section-5.4',
+        evidence: `${PROHIBITED_MEMORY_FILE} found in deliverable directory listing`,
+        message: '_MEMORY.md is prohibited for this project profile; use MEMORY.md.'
+      })
+    );
+  }
+
+  for (const file of optionalFiles) {
+    if (file.present) {
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: file.fileName,
+          category: 'optional_file',
+          condition: 'optional_file_present',
+          lifecycleState,
+          severity: 'info',
+          sourceRef: 'docs/SPEC.md#section-3.1; docs/PRD.md#section-10.8',
+          evidence: `${file.fileName} found in deliverable directory listing`,
+          message: `${file.fileName} is recognized as an optional deliverable-local file.`
+        })
+      );
+    }
+  }
+
+  if (fileNames.has('HASH_VERIFICATION_BYPASS.jsonl')) {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: 'HASH_VERIFICATION_BYPASS.jsonl',
+        category: 'source_hash_warning',
+        condition: 'hash_verification_bypass_present',
+        lifecycleState,
+        severity: 'warning',
+        sourceRef: 'docs/SPEC.md#section-3.1',
+        evidence: 'HASH_VERIFICATION_BYPASS.jsonl found in deliverable directory listing',
+        message: 'A durable hash-verification bypass record is present and must remain visible.'
+      })
+    );
+  }
+
+  if (fileNames.has('_REFERENCES.md')) {
+    try {
+      const referencesContent = await readFile(path.join(input.deliverablePath, '_REFERENCES.md'), 'utf8');
+      addReferenceWarnings({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        lifecycleState,
+        referencesContent,
+        findings
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unable to read _REFERENCES.md';
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: '_REFERENCES.md',
+          category: 'unknown_unsupported_condition',
+          condition: 'reference_read_failed',
+          lifecycleState,
+          severity: 'warning',
+          sourceRef: '_REFERENCES.md',
+          evidence: message,
+          message: '_REFERENCES.md is present but could not be scanned for source-state warnings.'
+        })
+      );
+    }
+  }
+
+  const errorCount = countFindings(findings, 'error');
+  const warningCount = countFindings(findings, 'warning');
+  const infoCount = countFindings(findings, 'info');
+
+  return {
+    deliverableId: input.deliverableId,
+    path: input.deliverablePath,
+    lifecycleState,
+    valid: errorCount === 0,
+    errorCount,
+    warningCount,
+    infoCount,
+    requiredMetadata,
+    preparationBaseline,
+    documentKit,
+    canonicalMemory,
+    optionalFiles,
+    findings
+  };
+}
+
 function buildKnowledgeTypeOptions(
   rows: Array<{ key: string; fileNames: Set<string> }>
 ): KnowledgeTypeOption[] {
@@ -549,10 +955,19 @@ export async function scanProjectDeliverables(
       fileNames: await readDirectoryFileSet(deliverable.path)
     }))
   );
+  const deliverableContracts = await Promise.all(
+    deliverables.map((deliverable) =>
+      scanDeliverableDocumentKitContract({
+        deliverableId: deliverable.id,
+        deliverablePath: deliverable.path
+      })
+    )
+  );
   const knowledgeMarkerFile = await detectKnowledgeMarkerFile(projectRoot);
 
   return {
     deliverables,
+    deliverableContracts,
     knowledgeDecomposition: {
       enabled: knowledgeMarkerFile !== null,
       markerFile: knowledgeMarkerFile

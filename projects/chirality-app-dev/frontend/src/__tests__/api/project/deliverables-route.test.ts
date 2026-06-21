@@ -14,6 +14,19 @@ type RouteBody = {
     status: string;
     path: string;
   }>;
+  deliverableContracts?: Array<{
+    deliverableId: string;
+    path: string;
+    valid: boolean;
+    errorCount: number;
+    warningCount: number;
+    findings: Array<{
+      category: string;
+      condition: string;
+      path: string;
+      severity: string;
+    }>;
+  }>;
   knowledgeDecomposition?: {
     enabled: boolean;
     markerFile: string | null;
@@ -168,6 +181,90 @@ describe('GET /api/project/deliverables', () => {
       enabled: false,
       markerFile: null
     });
+  });
+
+  it('returns additive deliverable contract findings for incomplete document kits', async () => {
+    const deliverablePath = await createDeliverable(
+      'PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies',
+      'DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts',
+      'INITIALIZED',
+      ['_DEPENDENCIES.md', '_REFERENCES.md', 'Datasheet.md', 'MEMORY.md', '_MEMORY.md']
+    );
+    await writeFile(
+      path.join(deliverablePath, '_REFERENCES.md'),
+      [
+        '# References',
+        '',
+        '| RefID | Path | ExpectedSHA256 | ActualSHA256 | Status |',
+        '|---|---|---|---|---|',
+        '| REF-006 | `docs/PRD.md` | `expected` | `actual` | HASH_MISMATCH |'
+      ].join('\n'),
+      'utf8'
+    );
+
+    const noStatusPath = path.join(
+      projectRoot,
+      'PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies',
+      '1_Working',
+      'DEL-07-99_No_Status'
+    );
+    await mkdir(noStatusPath, { recursive: true });
+
+    const invalidFolderPath = path.join(
+      projectRoot,
+      'PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies',
+      '1_Working',
+      'D07-03_Invalid_Folder'
+    );
+    await mkdir(invalidFolderPath, { recursive: true });
+    await writeFile(path.join(invalidFolderPath, '_STATUS.md'), statusDocument('INITIALIZED'), 'utf8');
+
+    const response = await requestDeliverables(projectRoot);
+
+    expect(response.status).toBe(200);
+    expect(response.body.deliverables?.map((deliverable) => deliverable.id)).toEqual(['DEL-07-03']);
+
+    const contract = response.body.deliverableContracts?.[0];
+    expect(contract).toMatchObject({
+      deliverableId: 'DEL-07-03',
+      path: deliverablePath,
+      valid: false,
+      errorCount: 2
+    });
+    expect(contract?.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          category: 'required_metadata',
+          condition: 'missing_required_metadata',
+          path: path.join(deliverablePath, '_CONTEXT.md'),
+          severity: 'error'
+        }),
+        expect.objectContaining({
+          category: 'preparation_baseline',
+          condition: 'missing_preparation_baseline',
+          path: path.join(deliverablePath, '_SEMANTIC.md'),
+          severity: 'warning'
+        }),
+        expect.objectContaining({
+          category: 'document_kit',
+          condition: 'missing_document_kit_file',
+          path: path.join(deliverablePath, 'Specification.md'),
+          severity: 'warning'
+        }),
+        expect.objectContaining({
+          category: 'prohibited_file',
+          condition: 'prohibited_memory_file',
+          path: path.join(deliverablePath, '_MEMORY.md'),
+          severity: 'error'
+        }),
+        expect.objectContaining({
+          category: 'source_hash_warning',
+          condition: 'reference_hash_warning',
+          path: path.join(deliverablePath, '_REFERENCES.md'),
+          severity: 'warning'
+        })
+      ])
+    );
   });
 
   it('returns typed accessibility failures for missing project roots', async () => {

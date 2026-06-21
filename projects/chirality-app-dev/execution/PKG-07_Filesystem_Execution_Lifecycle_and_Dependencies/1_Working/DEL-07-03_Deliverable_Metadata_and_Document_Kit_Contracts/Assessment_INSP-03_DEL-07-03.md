@@ -12,6 +12,17 @@
 | Reviewed SHA | `210b5b7427471fc307ecbf6eecaab78ebf08398b` |
 | Spec source | `Specification.md` lines 1-101 |
 
+## ADQ-07 Superseding Note - 2026-06-21
+
+ADQ-07 implements the G2 scanner gap recorded below. Current evidence is
+`Evidence_ADQ-07_Document_Kit_Metadata_Scanner.md`: `scanDeliverableDocumentKitContract` now emits
+read-only findings for required metadata, `_SEMANTIC.md` PREPARATION baseline absence, four-document
+kit absence, canonical `MEMORY.md` visibility, prohibited `_MEMORY.md`, optional deliverable-local
+files, `_REFERENCES.md` hash/source-state warnings, and unknown/unsupported reference states. The
+project deliverables API exposes these results as additive `deliverableContracts` output while
+preserving the existing deliverable roster shape. This note does not change lifecycle state, satisfy
+dependency rows, or make issuance/release/professional claims.
+
 ## Scope
 
 DEL-07-03 covers deliverable-local metadata and document-kit contract scanning: identifying deliverable folders, required metadata files, four-document kit buckets, canonical memory, warning output, and API-consumable scanner results.

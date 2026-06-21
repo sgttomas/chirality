@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-07 document-kit metadata scanner landed
+
+Completed `ADQ-07` from the autonomous development queue. The project deliverables scan now includes
+read-only `deliverableContracts` output for each discovered deliverable while preserving the existing
+`deliverables` roster shape. The scanner reports required metadata errors, `_SEMANTIC.md`
+PREPARATION baseline warnings, four-document kit warnings, canonical `MEMORY.md` visibility,
+prohibited `_MEMORY.md` errors, optional deliverable-local file states, `_REFERENCES.md` source hash
+warnings, hash-bypass visibility, and unknown/unsupported reference states.
+
+Recorded DEL-07-03 evidence in
+`execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Evidence_ADQ-07_Document_Kit_Metadata_Scanner.md`.
+
+No `_STATUS.md` files in the repository were changed. No authority documents changed, so no D-APP-38
+corpus bump was needed. No dependency row was satisfied or retired. No provider policy, package
+manifest, lockfile, release artifact, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or release-readiness claim changed.
+
+Validation: `npm run test -- src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts
+src/__tests__/api/project/deliverables-route.test.ts` passed 6 tests; `npm run test` passed 72
+test files / 507 tests; `npm run typecheck` passed; `git diff --check` passed; D-APP-38
+reference reconciliation `status` reported no drift.
+
 ## 2026-06-21 - ADQ-06 scaffold baseline seeding landed
 
 Completed `ADQ-06` from the autonomous development queue. The scaffold service now seeds the minimum

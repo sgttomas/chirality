@@ -84,7 +84,7 @@ behind a hard fence; `DONE`.
 | ADQ-04 | Refresh runtime evidence + spec-to-implementation reconciliations (PKG-03, PKG-04) | docs/test | M | AUTONOMOUS | — | DONE |
 | ADQ-05 | Reconcile G5 naming/taxonomy (`runTurn`/`startTurn`, event ownership, interruption taxonomy, child-run IDs) | docs/code/test | M | AUTONOMOUS | may surface a naming decision -> packet | BLOCKED (D-APP-40 awaiting ruling) |
 | ADQ-06 | G1 execution-root scaffolding baseline seeding | code/test | M | AUTONOMOUS | filesystem profile/lifecycle fixture | DONE |
-| ADQ-07 | G2 document-kit/metadata scanner with missing-state warnings | code/test | M | AUTONOMOUS | ADQ-06 or explicit scaffold-contract boundary | READY |
+| ADQ-07 | G2 document-kit/metadata scanner with missing-state warnings | code/test | M | AUTONOMOUS | ADQ-06 or explicit scaffold-contract boundary | DONE |
 | ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | may surface a session/storage-contract decision -> packet | READY |
 | ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 storage decision or stable compat adapter | BLOCKED (after ADQ-08) |
 | ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | session/artifact contract | READY |
