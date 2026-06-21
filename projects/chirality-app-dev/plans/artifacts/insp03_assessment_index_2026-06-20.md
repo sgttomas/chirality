@@ -2,20 +2,20 @@
 
 Date: 2026-06-21
 Persona: WORKING_ITEMS
-Status: IN_PROGRESS
-Reviewed SHA: `d0766e0f24b923f7925c711fe05e0cf5d28fd1fb`
+Status: COMPLETE
+Reviewed SHA: `0aea715f573cfd7759d7fe3f13ca03285b53ef98`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 010.
+INSP-03 is the per-deliverable inspection sweep. This index records the completed coverage state after wave 011.
 
 - Deliverables expected: 53
-- Assessments complete: 48
-- Assessments pending: 5
+- Assessments complete: 53
+- Assessments pending: 0
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables; PKG-08 agent suite / pipeline dispatch / subagent governance deliverables; PKG-09 validation / packaging / security / release deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables; PKG-08 agent suite / pipeline dispatch / subagent governance deliverables; PKG-09 validation / packaging / security / release deliverables; PKG-10 domain-engine future-boundary deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `d0766e0f24b923f7925c711fe05e0cf5d28fd1fb` recorded for wave 010 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -165,6 +165,17 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 - PKG-09 static validation observed 53 deliverables, 48 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-09 assessment files. `npm run desktop:dist`, `npm run harness:validate:premerge`, and full release packaging checks were not run; the PKG-09 assessments record the missing current package/premerge artifacts as evidence gaps.
 
+- PKG-10 wave validation observed 53 `Assessment_INSP-03_*.md` files after wave 011. Static source scans found no frontend domain-engine implementation path under `frontend/src`, no `/api/domain` path under `frontend/src/app/api`, and no `DomainEngineProfile`, `OperationProposal`, `OpenPipeStress`, `/api/domain`, `domain-engine`, or `domain engine` token under the selected frontend source/docs/scripts surfaces. The PKG-10 assessments record the doc-only acceptance-basis gap, false status-history wording, open dependency rows, and future R7 amendment requirements as findings.
+- PKG-10 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg10_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
+- PKG-10 static validation observed 53 deliverables, 53 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-10 assessment files. Frontend runtime tests were skipped for this assessment-only/doc-only wave because no runtime source, package, lockfile, or build artifact changed.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -229,12 +240,12 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-09-04 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Assessment_INSP-03_DEL-09-04.md` | COMPLETE | macOS DMG/instruction-root assessment; packaging policy passes, but current DMG/app, integrity summary, and packaged SDK proof artifacts are missing G6 evidence. |
 | DEL-09-05 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Assessment_INSP-03_DEL-09-05.md` | COMPLETE | CI/release workflow assessment; CI premerge exists but omits full local checks, has a summary-path conflict, and lacks current release artifact evidence. |
 | DEL-09-06 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Assessment_INSP-03_DEL-09-06.md` | COMPLETE | Security checks assessment; source controls are strong, with whole-product secret scan, sanitized renderer URL logging, and current network-proof artifacts still needed. |
-| DEL-10-01 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
-| DEL-10-02 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
-| DEL-10-03 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
-| DEL-10-04 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
-| DEL-10-05 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
+| DEL-10-01 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/Assessment_INSP-03_DEL-10-01.md` | COMPLETE | DomainEngineProfile draft assessment; conservative future-boundary docs, with doc-only basis, status-truth, validator/profile-instance, and dependency closure gaps. |
+| DEL-10-02 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Assessment_INSP-03_DEL-10-02.md` | COMPLETE | Protected/proposal path policy assessment; policy is fenced, while runtime enforcement, path syntax, human-gate evidence, and doc-only basis remain open. |
+| DEL-10-03 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Assessment_INSP-03_DEL-10-03.md` | COMPLETE | OperationProposal assessment; source vocabulary is grounded, but acceptance evidence, deterministic-check payloads, record store/workflow, and doc-only basis remain unresolved. |
+| DEL-10-04 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Assessment_INSP-03_DEL-10-04.md` | COMPLETE | Domain profile validation/OpenPipeStress fixture assessment; R7 fence is preserved, with no validator/fixture implementation and open doc-only/status-source gaps. |
+| DEL-10-05 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/Assessment_INSP-03_DEL-10-05.md` | COMPLETE | Boundary-notice/solver-truth assessment; conservative copy posture, with future surface inventory, human-gate evidence, status-truth, and doc-only basis still open. |
 
 ## Next Wave
 
-Continue INSP-03 with PKG-10 domain-engine future-boundary deliverables, then proceed to INSP-04 / INSP-05 unless a dependency or validation failure makes a narrower wave more appropriate.
+Proceed to INSP-04 gate-process evaluation, then INSP-05 roadmap synthesis unless a validation failure makes a narrower repair tranche more appropriate.
