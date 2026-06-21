@@ -3,19 +3,19 @@
 Date: 2026-06-20
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `18511e933233b90ff2a84dd41f5b40041719c300`
+Reviewed SHA: `09c840be20ee22de6bae99cf0fe3ec226d2ad3ae`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 006.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 007.
 
 - Deliverables expected: 53
-- Assessments complete: 25
-- Assessments pending: 28
+- Assessments complete: 31
+- Assessments pending: 22
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `18511e933233b90ff2a84dd41f5b40041719c300` recorded for wave 006 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `09c840be20ee22de6bae99cf0fe3ec226d2ad3ae` recorded for wave 007 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -81,6 +81,25 @@ python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_d
 
 Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
 
+- PKG-06 wave validation observed 31 `Assessment_INSP-03_*.md` files after wave 007.
+- PKG-06 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/tool-descriptor.test.ts src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/chirality-mutating-mcp.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/permission-event-channel.test.ts src/__tests__/lib/permission-broker.test.ts src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts
+```
+
+Observed result: 13 test files passed, 85 tests passed.
+
+- PKG-06 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg06_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
+- PKG-06 static validation observed 53 deliverables, 31 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no `_SEMANTIC` / `SEMANTIC_LENSING` markers in the PKG-06 assessment files.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -122,12 +141,12 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-05-03 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/Assessment_INSP-03_DEL-05-03.md` | COMPLETE | Redaction assessment; API-key redaction paths pass, while all-runtime-path proof and broader secret schema remain open. |
 | DEL-05-04 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/Assessment_INSP-03_DEL-05-04.md` | COMPLETE | Runtime replay/transcript assessment; event replay route passes, but the product transcript view remains the G4 code gap. |
 | DEL-05-05 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Assessment_INSP-03_DEL-05-05.md` | COMPLETE | ToolResultStore assessment; artifact mechanics pass, with metadata, concurrency replay, checksum, and retention residuals. |
-| DEL-06-01 | - | PENDING | PKG-06 wave pending. |
-| DEL-06-02 | - | PENDING | PKG-06 wave pending. |
-| DEL-06-03 | - | PENDING | PKG-06 wave pending. |
-| DEL-06-04 | - | PENDING | PKG-06 wave pending. |
-| DEL-06-05 | - | PENDING | PKG-06 wave pending. |
-| DEL-06-06 | - | PENDING | PKG-06 wave pending. |
+| DEL-06-01 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/Assessment_INSP-03_DEL-06-01.md` | COMPLETE | Permission overlay assessment; strong mode/deny/ask/bypass evidence with wiring and REF-006 warning residuals. |
+| DEL-06-02 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Assessment_INSP-03_DEL-06-02.md` | COMPLETE | SDK tool-surface assessment; deterministic descriptor exposure passes, with boot/version fingerprint residual. |
+| DEL-06-03 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/Assessment_INSP-03_DEL-06-03.md` | COMPLETE | Read MCP assessment; status/deps/scope/scaffold preview pass, with missing-register fallback still partial. |
+| DEL-06-04 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Assessment_INSP-03_DEL-06-04.md` | COMPLETE | Write/Edit hook assessment; path/instruction/symlink controls pass, with exact-edit precondition ownership and atomicity residuals. |
+| DEL-06-05 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Assessment_INSP-03_DEL-06-05.md` | COMPLETE | Bash governance assessment; no-spawn deny, timeout, network/path, and stream metadata pass, with real interruption and metadata residuals. |
+| DEL-06-06 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Assessment_INSP-03_DEL-06-06.md` | COMPLETE | Hook/compaction assessment; hook lifecycle and compaction mirror pass, with dedicated PreCompact/Stop semantics partial. |
 | DEL-07-01 | - | PENDING | PKG-07 wave pending. |
 | DEL-07-02 | - | PENDING | PKG-07 wave pending; known G1 candidate. |
 | DEL-07-03 | - | PENDING | PKG-07 wave pending; known G2 candidate. |
@@ -153,4 +172,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-06 permissioned tools / MCP / hooks deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-07 filesystem/dependency/document-kit deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.

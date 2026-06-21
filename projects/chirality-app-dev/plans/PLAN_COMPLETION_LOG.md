@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - PKG-06 inspection assessments recorded (`INSP-03` wave 007)
+
+Recorded the PKG-06 permissioned tools / MCP / hooks assessment wave for D-APP-19's
+inspection-only program. Added `Assessment_INSP-03_*.md` artifacts for DEL-06-01 through DEL-06-06
+and updated the INSP-03 assessment index, active plan, and coordination pointers. Coverage is now
+31/53 assessments complete, 22 pending, and 0 deliverables issued. Reviewed SHA
+`09c840be20ee22de6bae99cf0fe3ec226d2ad3ae` is recorded as inspected source-state evidence only,
+not lifecycle issuance.
+
+Findings preserved for roadmap synthesis: permission overlay, read-first tool resolution, initial
+read MCP tools, write/path hooks, Bash governance, and hook/compaction event mapping all have focused
+source/test evidence. Residuals remain for boot/version fingerprinting, dependency-reader absent
+register fallback, exact-edit precondition ownership, controlled-write atomicity evidence, real Bash
+interruption proof, artifact metadata fields, dedicated PreCompact/Stop semantics, and REF-006 source
+warning closure. No semantic files were used or produced.
+
+Validation: focused PKG-06 vitest set passed (13 files, 85 tests); exact deliverable enumeration
+returned 53; assessment count returned 31; status count returned 53 `CHECKING`, 0 `IN_PROGRESS`, 0
+`ISSUED`; `git diff --check -- execution plans` passed; PKG-06 assessment `_SEMANTIC` /
+`SEMANTIC_LENSING` marker search returned no matches; dependency-closure analysis returned 51 valid
+dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, and 0 bidirectional pairs.
+
 ## 2026-06-21 - PKG-05 inspection assessments recorded (`INSP-03` wave 006)
 
 Recorded the PKG-05 session audit / replay / tool-result assessment wave for D-APP-19's
