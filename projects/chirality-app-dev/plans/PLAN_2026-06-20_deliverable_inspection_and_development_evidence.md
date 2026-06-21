@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. `INSP-03` is complete: waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) and recorded `plans/artifacts/insp03_assessment_index_2026-06-20.md`; current reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` was recorded for wave 011 as inspected source-state evidence. `INSP-04` is complete: gate-process evaluation recommends modifying, not replacing, the SHA-bound human gate and prepared D-APP-34. Next tranche: INSP-05 development roadmap.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. `INSP-03` is complete: waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) and recorded `plans/artifacts/insp03_assessment_index_2026-06-20.md`; current reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` was recorded for wave 011 as inspected source-state evidence. `INSP-04` is complete: gate-process evaluation recommends modifying, not replacing, the SHA-bound human gate and prepared D-APP-34. `INSP-05` is complete: roadmap synthesis produced `plans/artifacts/insp05_development_roadmap_2026-06-21.md` and prepared D-APP-35 through D-APP-37. Next tranche: INSP-FINAL closeout.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -90,7 +90,7 @@ development roadmap.
 | `INSP-02` Control-plane truth-fix **(DONE 2026-06-20)** | Repointed PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`; evidence at `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. | `analyze_dep_closure.py execution` -> SCC 0; control docs acyclic. |
 | `INSP-03` Inspection sweep **(DONE 2026-06-21; waves 001-011 complete)** | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. Waves 001-011 wrote PKG-00 through PKG-10 assessments plus `plans/artifacts/insp03_assessment_index_2026-06-20.md`; no semantic files were produced. | Completion gate met: 53/53 Assessments, 0 issued. Wave 011 recorded reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98`; PKG-10 validation used static source scans, direct enumeration, status counts, `git diff --check -- execution plans`, and DepClosure analyzer SCC 0. |
 | `INSP-04` Gate-process evaluation **(DONE 2026-06-21)** | Recommended modifying, not replacing, the per-deliverable approvalSha gate. | Memo at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 packet at `execution/_Coordination/_DECISIONS/D-APP-34_PACKET_2026-06-21.md`. | D-APP-34 registered `AWAITING_RULING`; no issuance or gate change was approved by this tranche. |
-| `INSP-05` Development roadmap | Synthesize 53 Assessments into a prioritized, dependency-ordered roadmap. | Roadmap artifact; new packets. | Covers all 53 + G1-G6; cross-checked vs the dep DAG. |
+| `INSP-05` Development roadmap **(DONE 2026-06-21)** | Synthesized 53 Assessments into a prioritized, dependency-ordered roadmap. | Roadmap artifact at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35, D-APP-36, and D-APP-37 proposal packets. | Covers all 53 + G1-G6; records D-APP-34 through D-APP-37 as awaiting human rulings; no issuance. |
 | `INSP-FINAL` Closeout | Confirm 53 still CHECKING (0 ISSUED); record completion; set next queue. | Control-plane + completion log. | 0 ISSUED; SHA re-confirmed; completion logged. |
 
 ## 7. Tranche Detail
@@ -290,6 +290,13 @@ harness mechanics — drop or flag-for-ruling any item that builds a standalone 
 Claude Code / Pi / Codex feature parity, or reimplements a generic primitive the adapter provides
 well. Surface new decisions as packets.
 
+**2026-06-21 result:** complete. The roadmap artifact
+`plans/artifacts/insp05_development_roadmap_2026-06-21.md` covers all 53 deliverables and G1-G6,
+prioritizes ruling-first work, then stale documentation/status truth, then genuine code/evidence gaps,
+then release/security proof and future-boundary domain work. D-APP-35, D-APP-36, and D-APP-37 were
+prepared as `PROPOSAL` packets and registered `AWAITING_RULING`. No semantic files were used or
+produced.
+
 ### INSP-FINAL — Closeout
 Confirm 53 still `CHECKING`, 0 `ISSUED`; re-confirm the blessed SHA still names the substantive
 content reviewed (only Assessment records were added — no code dev); record completion in
@@ -314,8 +321,9 @@ convention:
 
 `INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
 `INSP-01` (done) -> `INSP-02` (done) -> `INSP-03` (done; PKG-00 wave 001, PKG-01 wave 002, PKG-02 wave 003, PKG-03 wave 004, PKG-04 wave 005, PKG-05 wave 006, PKG-06 wave 007, PKG-07 wave 008, PKG-08 wave 009, PKG-09 wave 010, and PKG-10 wave 011 complete) ->
-`INSP-04` (done; D-APP-34 awaiting ruling) -> `INSP-05` -> `INSP-FINAL`. INSP-05 consumes the
-completed sweep and the INSP-04 recommendation without treating D-APP-34 as ruled.
+`INSP-04` (done; D-APP-34 awaiting ruling) -> `INSP-05` (done; D-APP-35 through D-APP-37 awaiting
+ruling) -> `INSP-FINAL`. INSP-FINAL consumes the completed sweep, gate-process evaluation, roadmap,
+and open packet set without treating any awaiting packet as ruled.
 
 ## 10. Validation Policy
 
@@ -339,6 +347,10 @@ completed sweep and the INSP-04 recommendation without treating D-APP-34 as rule
 - **D-APP-34** — AWAITING_RULING (whether to keep, modify, or replace the per-deliverable issuance
   gate after INSP-03). INSP-04 recommends Option B, modification with evidence profiles, but only the
   human may rule.
+- **D-APP-35** — AWAITING_RULING (REF-006 PRD hash/source-state treatment).
+- **D-APP-36** — AWAITING_RULING (AMD-01 UI render-test acceptance bar).
+- **D-APP-37** — AWAITING_RULING (PKG-10 doc-only acceptance basis and false active-implementation
+  status-history repair).
 - **REF-006** (PRD-hash), **AMD-01** (UI render-test bar), **PKG-10 doc-only basis** — separate later rulings, informed by the inspection; not pre-decided here.
 - Any issuance (`CHECKING -> ISSUED`) — a future, separate, per-deliverable human gate; out of scope for this plan.
 - New forks surfaced by INSP-03/04/05 — raised as PROPOSAL D-APP packets.
@@ -383,7 +395,9 @@ acceptance basis, and `INSP-01` moved all 53 deliverables to `CHECKING` with own
 DepClosure snapshot. `INSP-03` waves 001-011 recorded PKG-00 through PKG-10 assessment coverage at
 `plans/artifacts/insp03_assessment_index_2026-06-20.md`; INSP-03 is complete at 53/53 assessments with
 reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011. `INSP-04` produced the
-gate-process evaluation memo and D-APP-34 proposal packet. Landed tranche narrative moves to
+gate-process evaluation memo and D-APP-34 proposal packet. `INSP-05` produced the development roadmap
+and D-APP-35 through D-APP-37 proposal packets. Landed tranche narrative moves to
 `plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next step requires a human ruling (REF-006,
-AMD-01, PKG-10 basis, D-APP-34, any issuance gate, or a new fork). Issuance is reconsidered only after
-the inspection, gate-process evaluation, roadmap synthesis, and required human rulings conclude.
+AMD-01, PKG-10 basis, D-APP-34, D-APP-35, D-APP-36, D-APP-37, any issuance gate, or a new fork).
+Issuance is reconsidered only after the inspection, gate-process evaluation, roadmap synthesis, final
+closeout, and required human rulings conclude.

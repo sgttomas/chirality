@@ -19,8 +19,10 @@ INSP-03 waves 001-011 are recorded: PKG-00 through PKG-10 assessments are comple
 index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`, reviewed SHA
 `0aea715f573cfd7759d7fe3f13ca03285b53ef98` is recorded for wave 011 as inspected source-state
 evidence, 0 assessments remain pending, and 0 deliverables are issued. Next selected work:
-`INSP-05` development roadmap synthesis. `INSP-04` gate-process evaluation is complete and recommends
-modifying, not replacing, the SHA-bound human gate; D-APP-34 is registered `AWAITING_RULING`.
+`INSP-FINAL` closeout. `INSP-04` gate-process evaluation is complete and recommends modifying, not
+replacing, the SHA-bound human gate; D-APP-34 is registered `AWAITING_RULING`. `INSP-05` roadmap
+synthesis is complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
+D-APP-37 are registered `AWAITING_RULING`.
 `CHECKING` here means "admitted to inspection," not
 approved-for-issue; `CHECKING -> ISSUED` is a separate, deferred, per-deliverable gate.
 
@@ -33,7 +35,8 @@ issuance spine retained as eventual follow-on); the live packaged `agentSdk` rea
 (STAB-00..06); and the six-node SCC plan. D-APP-18 + D-APP-19 + D-APP-20..D-APP-33 are all ruled
 (see `_DECISIONS/_REGISTER.md`); D-APP-18 landed the key-aware default-provider cutover; provider
 expansion beyond the Anthropic path and release/distribution posture remain separately gated. D-APP-34
-is newly registered `AWAITING_RULING` for the post-INSP-03 issuance-gate model.
+through D-APP-37 are newly registered `AWAITING_RULING` for the post-INSP-03 gate/source/UI/PKG-10
+decision set.
 
 ## Active Surface
 
@@ -155,7 +158,7 @@ Default ordering:
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work first if such a regression is found.
 2. Do not rerun the live proof; D-APP-17 passed with `sonnet`.
 3. D-APP-18 (default-provider cutover) is ruled Option A and its key-aware default has landed: with no explicit `CHIRALITY_HARNESS_PROVIDER`, the harness uses the real `agentSdk` path when an Anthropic key is configured (env or UI Settings) and `stub` otherwise; `stub` stays an explicit opt-in. What remains gated is provider expansion beyond the Anthropic path and release/distribution posture (signing/notarization/publication) — do not declare those without a fresh ruling.
-4. Advance the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D): D-APP-33 has ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, `INSP-03` waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) with index `plans/artifacts/insp03_assessment_index_2026-06-20.md` and reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011, and `INSP-04` produced `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md` plus D-APP-34 (`AWAITING_RULING`). Next selected work is `INSP-05` development roadmap synthesis. Issuance (`CHECKING -> ISSUED`) is deferred; do not issue any deliverable. The completed loop-first pivot is closed history.
+4. Advance the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D): D-APP-33 has ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, `INSP-03` waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) with index `plans/artifacts/insp03_assessment_index_2026-06-20.md` and reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011, `INSP-04` produced `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md` plus D-APP-34 (`AWAITING_RULING`), and `INSP-05` produced `plans/artifacts/insp05_development_roadmap_2026-06-21.md` plus D-APP-35 through D-APP-37 (`AWAITING_RULING`). Next selected work is `INSP-FINAL` closeout. Issuance (`CHECKING -> ISSUED`) is deferred; do not issue any deliverable. The completed loop-first pivot is closed history.
 5. For browser-verified tranches, stop the local Next dev server before running `npm run build`, `npm run desktop:pack`, or `npm run harness:validate:premerge` unless the command explicitly owns the server lifecycle; see `plans/PLAN_2026-06-19_validation_server_build_isolation.md`.
 6. If any work requires remote MCP, plugins, broad tool search, domain tools, provider/network expansion beyond the bounded Anthropic path, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling. (The default-provider cutover itself is ruled and landed under D-APP-18.)
 7. Do not revive a completed/closed/retired plan or invent a replacement queue.

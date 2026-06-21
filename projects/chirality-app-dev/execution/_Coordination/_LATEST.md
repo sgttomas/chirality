@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-33 RULED; D-APP-34 AWAITING_RULING; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-33 RULED; D-APP-34..D-APP-37 AWAITING_RULING; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
 
 Active development queue:
 
@@ -39,8 +39,9 @@ Active development queue:
 	  inspected source-state evidence, and the coverage index is
 	  `plans/artifacts/insp03_assessment_index_2026-06-20.md`. `INSP-04` gate-process evaluation is
 	  complete at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 is registered
-	  `AWAITING_RULING` for the post-INSP-03 issuance-gate model. Next selected work: `INSP-05`
-	  development roadmap synthesis.
+	  `AWAITING_RULING` for the post-INSP-03 issuance-gate model. `INSP-05` roadmap synthesis is
+	  complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
+	  D-APP-37 are registered `AWAITING_RULING`. Next selected work: `INSP-FINAL` closeout.
 
 Completed / superseded queues (history, non-governing):
 

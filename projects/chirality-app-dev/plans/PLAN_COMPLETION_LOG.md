@@ -6,6 +6,25 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - Development roadmap synthesized (`INSP-05`)
+
+Recorded the INSP-05 roadmap synthesis for D-APP-19's inspection-only program. The roadmap at
+`plans/artifacts/insp05_development_roadmap_2026-06-21.md` covers all 53 assessed deliverables and
+G1-G6, orders work ruling-first, then stale documentation/status truth, then genuine code/evidence
+gaps, then validation/release/security proof, then future-boundary domain work. It preserves the
+CONTRACT K-ENGINE-6 strategy: Chirality remains a governance / UI / audit / lifecycle / adapter layer
+over provider harness mechanics, not a standalone general agent harness or provider-parity project.
+
+D-APP-35, D-APP-36, and D-APP-37 were prepared as `PROPOSAL` packets and registered
+`AWAITING_RULING` for REF-006 PRD source-state treatment, AMD-01 UI render-test evidence, and PKG-10
+doc-only/status-truth handling. D-APP-34 remains awaiting ruling. No deliverable was issued, no runtime
+source changed, and no semantic files were used or produced.
+
+Validation: static governance checks only. `git diff --check -- execution plans` passed; D-APP-35
+through D-APP-37 packet and register references resolve; INSP-05 handoff text points to INSP-FINAL.
+Frontend runtime tests were skipped because this tranche changed only planning, coordination, and
+decision-proposal artifacts.
+
 ## 2026-06-21 - Gate-process evaluation recorded (`INSP-04`)
 
 Recorded the INSP-04 evaluation for D-APP-19's inspection-only program. The memo at
