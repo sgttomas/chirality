@@ -87,7 +87,7 @@ behind a hard fence; `DONE`.
 | ADQ-07 | G2 document-kit/metadata scanner with missing-state warnings | code/test | M | AUTONOMOUS | ADQ-06 or explicit scaffold-contract boundary | DONE |
 | ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | may surface a session/storage-contract decision -> packet | BLOCKED (D-APP-41 awaiting ruling) |
 | ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 storage decision or stable compat adapter | BLOCKED (after ADQ-08) |
-| ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | session/artifact contract | READY |
+| ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | session/artifact contract | BLOCKED (D-APP-42 awaiting ruling) |
 | ADQ-11 | PKG-06 permission/tool residuals (boot/version fingerprint, missing-register fallback, exact-edit preconditions, atomicity, Bash interruption, PreCompact/Stop) | code/test/docs | M | AUTONOMOUS | — | READY |
 | ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 child-run decision | READY |
 | ADQ-13 | PKG-02 UI specs reconcile + AMD-01 render tests | docs/UI/test | M | AUTONOMOUS | AMD-01 (resolved, D-APP-36) | READY |

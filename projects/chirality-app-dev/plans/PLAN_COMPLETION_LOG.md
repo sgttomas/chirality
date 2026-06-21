@@ -6,6 +6,21 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-10 blocked on tool-result artifact policy ruling
+
+Selected `ADQ-10` from the autonomous development queue and confirmed that the requested
+checksum/retention residuals require a material artifact-policy ruling before implementation. Current
+source already stores over-inline tool results as redacted session artifacts and references artifact
+metadata, but DEL-05-05 `Specification.md`, `Guidance.md`, and `Procedure.md` explicitly keep checksum
+policy, retention/deletion behavior, threshold/preview/naming policy, and some returned metadata fields
+as `TBD` governed deferrals.
+
+Prepared `execution/_Coordination/_DECISIONS/D-APP-42_PACKET_TOOL_RESULT_ARTIFACT_POLICY_2026-06-21.md`,
+added it to the decision register as `AWAITING_RULING`, and marked `ADQ-10` `BLOCKED`. No source,
+tests, authority documents, `_STATUS.md`, dependency rows, provider policy, lifecycle issuance,
+release/distribution posture, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-08 blocked on session folder duplicate-shape ruling
 
 Selected `ADQ-08` from the autonomous development queue and confirmed that canonical
