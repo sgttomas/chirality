@@ -9,7 +9,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context exists at `_CONTEXT.md`. | Available. |
-| Authoritative source pointers exist at `_REFERENCES.md`. | Available; `docs/PRD.md` hash mismatch warning applies. |
+| Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under D-APP-38 corpus `v1`. |
 | Decomposition entry exists for DEL-01-04. | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
 | Human-declared upstream dependencies. | TBD; `_DEPENDENCIES.md` declares none extracted yet. |
 | ResponsibleParty assignment. | TBD; must remain TBD until human assignment. |
@@ -26,7 +26,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 3. Read source authority.
    - Read `_REFERENCES.md`.
    - Read accessible source slices from `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/PRD.md`, `docs/PLAN.md`, `docs/TYPES.md`, and the decomposition entry.
-   - Treat the PRD hash mismatch as a warning for this run, not a blocker, because the dispatch explicitly says so.
+   - Confirm REF-006 `docs/PRD.md` matches the current D-APP-38 corpus version.
 
 4. Build the out-of-scope register content.
    - Materialize the concrete register-row artifact in `Datasheet.md` under `Boundary Register Rows` unless a governed publication step moves the rows to a dedicated register file.
@@ -72,7 +72,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Boundary-row artifact | `Datasheet.md` includes concrete `Boundary Register Rows` with source reference, amendment trigger, current status, and human ruling fields. |
 | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
 | Status | `_STATUS.md` moves from `OPEN` to `INITIALIZED` only after four non-empty docs exist. |
-| Conflicts | Path mismatch and PRD hash mismatch are surfaced for human ruling rather than hidden. |
+| Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by D-APP-38 corpus `v1`. |
 
 ## Records
 

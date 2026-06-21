@@ -81,4 +81,6 @@ Avoid examples:
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | CT-001 | Dispatch path used `PKG-01_Governance_and_Product_Boundaries`, but the matching folder on disk is `PKG-01_Product_Governance_and_Reliance_Boundaries`. | User dispatch path | `_CONTEXT.md` PackageName and actual folder path | Run record; final report | Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID. | TBD |
-| CT-002 | `docs/PRD.md` hash differs from `_REFERENCES.md` expected hash. | `_REFERENCES.md` REF-006 expected/actual hash | User dispatch override says mismatch is source warning, not blocker | All PRD-sourced requirements | Use PRD as accessible source with warning; do not treat mismatch as blocker. | TBD |
+
+Closed historical conflict: `CT-002` is superseded by D-APP-38 corpus `v1`; current `_REFERENCES.md`
+records REF-006 `docs/PRD.md` as `MATCH`.

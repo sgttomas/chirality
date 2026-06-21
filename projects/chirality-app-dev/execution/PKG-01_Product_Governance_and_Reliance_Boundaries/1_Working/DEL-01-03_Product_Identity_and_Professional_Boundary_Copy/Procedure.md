@@ -15,7 +15,7 @@ This procedure describes how to produce and use product-identity and professiona
   - `docs/SPEC.md`
   - `docs/TYPES.md`
   - `docs/PLAN.md`
-  - `docs/PRD.md` with hash mismatch warning
+  - `docs/PRD.md` under D-APP-38 corpus `v1`
   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 
 ## Steps
@@ -27,7 +27,7 @@ This procedure describes how to produce and use product-identity and professiona
 2. Establish source authority.
    - Use `docs/DIRECTIVE.md` for intent, product identity, professional responsibility, evidence posture, and source hierarchy.
    - Use `docs/CONTRACT.md` for binding invariants.
-   - Use `docs/PRD.md` for accepted vNext product requirements, while preserving the recorded hash-mismatch warning.
+   - Use `docs/PRD.md` for accepted vNext product requirements under the current D-APP-38 corpus `v1` reference state.
 
 3. Draft or review product identity copy.
    - Confirm the surface names Chirality as the product.
@@ -58,7 +58,7 @@ This procedure describes how to produce and use product-identity and professiona
    - Record source sections used.
    - Record any `TBD`, `ASSUMPTION`, or human-ruling-needed item.
    - Record reviewer name or role, review date, pass/fail result, findings, proposed copy, and human ruling status.
-   - Include PRD hash-mismatch handling and Conflict Table status as explicit evidence checkpoints.
+   - Include authority-corpus status and Conflict Table status as explicit evidence checkpoints.
 
 9. Route authority-sensitive wording.
    - If copy uses approve, certify, sign, seal, issue, transmit, release, externally validate, code-compliant, solver truth, or safe for reliance, record the exact phrase and route it to the accountable human or human review body.
@@ -76,7 +76,7 @@ This procedure describes how to produce and use product-identity and professiona
 | Reliance-boundary check | Product-critical boundaries are not described as prompt-only or SDK-default-only. | Boundary; enforcement surface if known; unsupported claims marked `TBD` |
 | Domain-boundary check | Domain-engine notices preserve human acceptance and do not assign solver truth or professional approval to Chirality. | Domain surface; notice text; human-gate statement; pass/fail |
 | Uncertainty check | Unsupported facts remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. | Item; label used; owner/ruling field; closure status |
-| Source-status check | PRD hash mismatch and Conflict Table status are visible in review evidence. | REF-006 warning status; CT-001 status; CT-002 status; human ruling status |
+| Source-status check | D-APP-38 corpus status and active Conflict Table status are visible in review evidence. | REF-006 corpus status; CT-001 status; human ruling status |
 
 ## Records
 
@@ -99,8 +99,8 @@ Create or maintain these records as applicable:
 | Release or surface set | TBD |
 | Surfaces checked | TBD |
 | Source sections used | TBD |
-| PRD hash-mismatch treatment | REF-006 warning acknowledged; human ruling TBD |
-| Conflict Table status | CT-001 TBD; CT-002 TBD |
+| Authority-corpus treatment | REF-006 matches under D-APP-38 corpus `v1`; rerun reconciliation if authority docs change |
+| Conflict Table status | CT-001 TBD; historical CT-002 closed by D-APP-38 corpus `v1` |
 | Overall result | TBD |
 
 ### Review Note Record Template

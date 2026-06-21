@@ -11,11 +11,13 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for the derivative dependency-extract register. No dependency row is satisfied
+by this documentation reconciliation.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for downstream `ENABLES` rows. They remain derivative dependency evidence, not
+closure approval.
 
 ## Run Notes
 
@@ -27,7 +29,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped. `_SEMANTIC.md` is invalid evidence and was not read or consumed for dependency extraction.
 - Human ruling applied: read set limited to `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the decomposition authority. `_STATUS.md` was not read for this extraction run.
 - Objective traceability (`OBJ-002`, `OBJ-005`, `OBJ-009`) was preserved in notes but not emitted as dependency rows because the v3.1 schema has no objective target type and the conservative row rules avoid coercing objective IDs into requirement rows.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived rows remain active but final acceptance requires source/hash reconciliation.
+- `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. PRD-derived rows remain active until dependency/evidence disposition, but they are no longer blocked by a PRD hash mismatch.
 - `[WARNING] OPEN_BLOCKERS`: exact implementation surfaces, SDK transcript placement, and final Section 9 validation file/test names remain `TBD` in the source documents.
 - `[WARNING] ID_FORMAT_VALIDATOR_PATTERN_MISMATCH`: `tools/validation/validate_id_format.sh` rejects accepted v3.2 IDs such as `PKG-01`, `DEL-01-02`, and `SOW-037` because its patterns expect three-digit package/deliverable and four-digit SOW formats. Authoritative IDs were preserved from the decomposition instead of rewritten to match the helper.
 
@@ -85,4 +87,4 @@ Structured register: `Dependencies.csv` (`v3.1`)
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | Active Rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (found) | SOURCE_HASH_MISMATCH; OPEN_BLOCKERS; ID_FORMAT_VALIDATOR_PATTERN_MISMATCH | 24 |
+| 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (found) | SOURCE_HASH_MISMATCH at extraction time; later reconciled by D-APP-38 corpus `v1`; OPEN_BLOCKERS; ID_FORMAT_VALIDATOR_PATTERN_MISMATCH | 24 |

@@ -11,11 +11,12 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for the derivative dependency-extract register. No downstream product edge is
+accepted by this reconciliation.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream deliverable edge is accepted in the derivative register.
 
 ## Extracted Dependency Register
 
@@ -58,7 +59,7 @@ Structured register: `Dependencies.csv` v3.1
 - Anchor doc selection: `Datasheet.md` with `_CONTEXT.md` and decomposition cross-checks.
 - Execution doc order: `Guidance.md`, `Procedure.md`, `Specification.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Conservative extraction emitted no downstream deliverable edges because the approved local documents state upstream and downstream dependencies are `TBD` and do not identify accepted downstream consumers.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-01-01-010 preserves this as a source warning with `Confidence=MEDIUM`.
+- `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. Row `DEP-01-01-010` remains an active prerequisite until dependency/evidence disposition, but it is no longer blocked by a PRD hash mismatch.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 
@@ -66,7 +67,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition status | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:24:23-0600 | UPDATE | CONSERVATIVE | Located and read | SOURCE_HASH_MISMATCH for REF-006 | 12 |
+| 2026-05-20T19:24:23-0600 | UPDATE | CONSERVATIVE | Located and read | SOURCE_HASH_MISMATCH for REF-006 at extraction time; later reconciled by D-APP-38 corpus `v1` | 12 |
 
 ## Lifecycle Summary
 

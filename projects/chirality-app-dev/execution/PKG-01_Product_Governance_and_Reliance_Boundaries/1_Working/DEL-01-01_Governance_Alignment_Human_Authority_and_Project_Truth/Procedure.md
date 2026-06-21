@@ -9,10 +9,10 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md` | Present at P3 enrichment. |
-| Current lifecycle state permits four-document enrichment | `INITIALIZED`; P3 may enrich the four-document kit but does not transition `_STATUS.md` under the local status policy. |
-| Authoritative references are locally accessible | Accessible; PRD has known hash mismatch warning. |
-| Upstream dependencies | TBD; no accepted dependency edges extracted yet. |
-| Downstream dependencies | TBD; no accepted dependency edges extracted yet. |
+| Current lifecycle state permits documentation reconciliation | `CHECKING`; this procedure does not perform lifecycle issuance or status regression. |
+| Authoritative references are locally accessible | Accessible; D-APP-38 corpus `v1` records REF-006 `docs/PRD.md` as `MATCH`. |
+| Upstream dependencies | See derivative `Dependencies.csv`; rows remain pending unless separately disposed. |
+| Downstream dependencies | No downstream deliverable edges are accepted in this reconciliation. |
 | Human owner | `ResponsibleParty: TBD`. |
 
 ## Steps
@@ -24,8 +24,8 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 2. Check source status.
    - Read `_REFERENCES.md`.
    - Confirm hash status for each source.
-   - Treat the REF-006 PRD hash mismatch as a warning for this run, not a blocker.
-   - Do not treat the source warning as clean reliance until the exact reference row, accepted hash update, or explicit human bypass decision is recorded.
+   - Confirm REF-006 `docs/PRD.md` is reconciled to the current D-APP-38 corpus version before issue-readiness reliance is claimed.
+   - Treat older PRD hash-mismatch prose as historical if `_REFERENCES.md` records `MATCH`.
    - Mark any inaccessible or unsupported source-dependent content as `TBD`.
 
 3. Build governance consistency notes.
@@ -55,22 +55,22 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 8. Build the acceptance checklist.
    - Confirm every P0 reliance boundary referenced by this deliverable has a documented enforcement surface or open gap.
    - Confirm unknowns are marked `TBD`, `ASSUMPTION`, `PROPOSAL`, source warning, or human-ruling-needed.
-   - Confirm dependency extraction remains deferred unless a later task explicitly authorizes it.
+   - Confirm dependency rows are not satisfied, retired, or otherwise mutated unless a later task explicitly authorizes dependency/evidence disposition.
 
 9. Record results.
    - Write outputs to authorized deliverable-local artifacts only.
-   - Do not create `Dependencies.csv` in this P1/P2 run.
-   - For P3 enrichment, preserve `_STATUS.md` unless an explicit governed status policy authorizes a transition.
+   - Do not mark dependency rows satisfied or mutate `Dependencies.csv` during this documentation reconciliation.
+   - Preserve `_STATUS.md` unless an explicit governed status policy authorizes a transition.
 
 ## Verification
 
 | Check | Pass condition |
 |---|---|
 | Four-doc kit | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
-| Lifecycle | `_STATUS.md` reads `Current State: INITIALIZED` only after the four-doc kit exists. |
-| Source warnings | PRD hash mismatch and dispatch path mismatch are visible for human ruling. |
+| Lifecycle | `_STATUS.md` remains `Current State: CHECKING`; no issuance or regression is performed. |
+| Reference integrity | REF-006 `docs/PRD.md` is `MATCH` in `_REFERENCES.md`; historical PRD hash-warning prose is not carried forward as an active blocker. |
 | Responsible party | `ResponsibleParty` remains `TBD`. |
-| Dependency deferral | `Dependencies.csv` is not created. |
+| Dependency-register handling | Existing `Dependencies.csv` rows are not satisfied, retired, or otherwise mutated. |
 | No invention | Unsupported facts are `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, source warning, or human-ruling-needed. |
 | Boundary posture | Human authority, project truth, and runtime-audit boundaries are not weakened by the drafted artifacts. |
 | Immutable acceptance evidence | Governance notes or checklist outputs used as acceptance evidence are bound to a git SHA or equivalent immutable evidence, and a separate accountable human approval record exists. |
@@ -79,11 +79,11 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 
 | Record | Status |
 |---|---|
-| `Datasheet.md` | Produced by this P1/P2 run. |
-| `Specification.md` | Produced by this P1/P2 run. |
-| `Guidance.md` | Produced by this P1/P2 run. |
-| `Procedure.md` | Produced by this P1/P2 run. |
-| `_STATUS.md` | Updated to `INITIALIZED` only after non-empty four-doc kit verification. |
+| `Datasheet.md` | Active local-kit artifact; reconciled to current lifecycle/reference posture. |
+| `Specification.md` | Active local-kit artifact; reconciled to current lifecycle/reference posture. |
+| `Guidance.md` | Active local-kit artifact; preserves any unresolved conflicts as current only when still true. |
+| `Procedure.md` | Active local-kit artifact; reconciled to current lifecycle/reference posture. |
+| `_STATUS.md` | Not changed by this documentation reconciliation; current state remains `CHECKING`. |
 | `_run_records/TASK_RUN_2026-05-20_1610.md` | Durable run record for this task. |
 | P3 run record | Records semantic-lensing dispositions, source rereads, validation results, and status policy outcome. |
 | Dependency records | Not created or updated by this P3 run. |

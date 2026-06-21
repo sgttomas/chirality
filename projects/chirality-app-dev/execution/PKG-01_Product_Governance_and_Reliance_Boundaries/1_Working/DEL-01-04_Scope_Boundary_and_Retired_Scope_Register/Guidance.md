@@ -60,4 +60,6 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | CF-001 | Dispatch path names `PKG-01_Governance_and_Product_Boundaries`, but the only matching deliverable folder on disk is under `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch | Filesystem path and `_CONTEXT.md` PackageName | Run record, final report | Use the located deliverable folder for this run and surface the stale path as a warning. | TBD |
-| CF-002 | `docs/PRD.md` hash mismatches `_REFERENCES.md`; dispatch says to treat mismatch as source warning, not blocker. | `_REFERENCES.md` REF-006 | TASK dispatch override | All PRD-cited requirements | Proceed with PRD as accessible source while preserving warning in run record. | TBD |
+
+Closed historical conflict: `CF-002` is superseded by D-APP-38 corpus `v1`; current `_REFERENCES.md`
+records REF-006 `docs/PRD.md` as `MATCH`.

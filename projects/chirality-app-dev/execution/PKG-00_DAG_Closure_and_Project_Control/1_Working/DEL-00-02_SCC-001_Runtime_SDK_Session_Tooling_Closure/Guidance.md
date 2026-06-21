@@ -40,19 +40,21 @@ Sources: `Evidence/scc_summary.csv`, `Evidence/bidirectional_pairs.csv`, `Depend
 - If a pair represents true hard sequencing in both directions, the ruling should remain `CONFLICT` or `TBD` until a human or RECONCILIATION resolves the model.
 - If evidence shows a dependency is co-development-only and not a strict execution blocker, the ruling must still use existing schema fields and cite the source for that interpretation.
 
-## Conflict Table (for human ruling)
+## Closed-History And Current Boundary Notes
 
-| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-|---|---|---|---|---|---|---|
-| CONFLICT-DEL-00-02-001 | `DAG_CLOSURE_CONTROL.md` current queue labels DEL-00-02 as `SEMANTIC_READY`, but `_STATUS.md` was reset to `OPEN` before TASK regeneration because the prior semantic-ready state was provisional. | `DAG_CLOSURE_CONTROL.md` (Current Queue) | `_STATUS.md` (History) | Datasheet Identification; status handoff | Treat `_STATUS.md` as current lifecycle authority: P1/P2 evidence restored `INITIALIZED`, and successful Pass 3 may advance document-kit state to `SEMANTIC_READY`. | TBD |
-| CONFLICT-DEL-00-02-002 | After Pass 3, `_STATUS.md` may be advanced to `SEMANTIC_READY`, but the owner for accepting SCC-001 rulings and the source location for existing dependency schema actions remain unresolved. | `_STATUS.md` (Current State after Pass 3) | `Datasheet.md` (ResponsibleParty); `Specification.md` (Standards) | Handoff state; future SCC-001 ruling workflow | Treat `SEMANTIC_READY` as document-kit readiness only; row rulings remain TBD until the owner and schema-action authority are resolved. | TBD |
+The old `OPEN`/`SEMANTIC_READY` lifecycle conflict is historical. `_STATUS.md` is the lifecycle
+authority and currently records `CHECKING` under the D-APP-19 inspection program. The accepted
+safe-moves DepClosure snapshot closes SCC-001 for dependency-closure discovery with strict
+`scc_count = 0`; it does not create lifecycle issuance, product acceptance, release readiness,
+professional approval, certification, sealing, authentication, or code-compliance acceptance.
 
-## Pass 3 Disposition
+Earlier triage categories remain useful evidence history. A future row change still must use existing
+dependency schema semantics, cite the owning product dependency row, and run through the governed
+workflow for that product package. No active SCC-001 row-decision workbook remains pending from this
+PKG-00 control deliverable.
 
-| ItemID | Disposition | Evidence |
-|---|---|---|
-| C-001 | Surfaced as conflict. | Conflict table now distinguishes document-kit lifecycle readiness from unresolved ruling authority, using `_STATUS.md`, `DAG_CLOSURE_CONTROL.md`, Datasheet Identification, and Specification Standards. |
-| E-002 | Incorporated. | Considerations now state that triage categories must be normalized into existing dependency-schema actions or left `TBD` / `NEEDS_HUMAN_RULING`; supported by `SCC_Triage_Workbook.csv`, `SCC_Triage_Notes.md`, and Specification requirements. |
+`ResponsibleParty` remains `TBD` as a governance/issue-readiness concern, not as a blocker to the
+accepted dependency-closure discovery posture.
 
 ## References
 

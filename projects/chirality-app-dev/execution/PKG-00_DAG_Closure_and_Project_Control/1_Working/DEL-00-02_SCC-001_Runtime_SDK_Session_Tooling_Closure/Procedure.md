@@ -46,6 +46,6 @@ Sources: `_REFERENCES.md`, `_DEPENDENCIES.md`, `DAG_CLOSURE_CONTROL.md` (Workflo
 
 | ItemID | Disposition | Evidence |
 |---|---|---|
-| F-002 | Converted to TBD / HumanRuling. | Prerequisites now state that access owner/acquisition path for product registers and cited evidence remains unresolved; `_CONTEXT.md` has ResponsibleParty TBD. |
-| D-001 | Incorporated with TBD authority boundary. | Steps and Records now define a proposed workbook name and minimum columns while preserving the authoritative output path/name as TBD. |
-| E-001 | Incorporated. | Verification and Records now require recording the follow-up DepClosure snapshot path and strict FULL_GRAPH result; supported by `DAG_CLOSURE_CONTROL.md` Acceptance Condition and `Dependency_Closure_Report.md` Ruling. |
+| F-002 | Historical. | Product-register access ownership is not decided by this PKG-00 control deliverable. Any future product row mutation must be routed through the owning package and governed workflow. |
+| D-001 | Historical. | No active SCC-001 workbook output path remains pending after the accepted safe-moves snapshot; older workbook material is retained as evidence history. |
+| E-001 | Closed for dependency-closure discovery. | `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` records strict FULL_GRAPH acyclic posture with `scc_count = 0`; lifecycle issuance and release/professional claims remain out of scope. |

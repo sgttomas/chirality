@@ -11,11 +11,12 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for the derivative dependency-extract register. No dependency row is satisfied
+by this documentation reconciliation.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream deliverable edge is accepted in the derivative register.
 
 ## Run Notes
 
@@ -27,7 +28,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Source document defaults: `SOURCE_DOCS=AUTO`, `DOC_ROLE_MAP=DEFAULT`, `ANCHOR_DOC=Datasheet.md`, `EXECUTION_DOC_ORDER=Procedure.md, Guidance.md, Specification.md, Datasheet.md`.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; existing `_SEMANTIC.md` output is invalid evidence and was not read or consumed.
 - Conservative extraction emitted only explicit anchors and explicit upstream information-flow prerequisites. No inferred cross-deliverable execution edges were emitted.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `_REFERENCES.md` records `REF-006` / `docs/PRD.md` as `HASH_MISMATCH`; retained as an active prerequisite because `Procedure.md` says to use PRD with the hash mismatch warning.
+- `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. Row `DEP-01-03-011` remains an active prerequisite until dependency/evidence disposition, but it is no longer blocked by a PRD hash mismatch.
 
 ## Extracted Dependency Register
 
@@ -60,7 +61,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE counts |
 |---|---|---|---|---|---|
-| 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | `SOURCE_HASH_MISMATCH` for REF-006; `_SEMANTIC.md` ignored by ruling | ANCHOR 5; EXECUTION 7; TOTAL 12 |
+| 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | `SOURCE_HASH_MISMATCH` for REF-006 at extraction time; later reconciled by D-APP-38 corpus `v1`; `_SEMANTIC.md` ignored by ruling | ANCHOR 5; EXECUTION 7; TOTAL 12 |
 
 ## Lifecycle Summary
 

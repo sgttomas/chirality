@@ -33,7 +33,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Source hash warning | `docs/PRD.md` has a PRD hash mismatch in `_REFERENCES.md`; this run treats it as a source warning, not a blocker, per dispatch. | `_REFERENCES.md` REF-006; TASK dispatch override |
+| Reference integrity | `docs/PRD.md` is REF-006 and matches the current D-APP-38 corpus `v1` in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
 | Dependency extraction | Deferred. `Dependencies.csv` is not created by this deliverable run. | `_DEPENDENCIES.md`; TASK dispatch |
 | Human authority | Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance. | `docs/TYPES.md` §3.3; `docs/DIRECTIVE.md` §3 |
 | Unknown values | Unknown values remain `TBD`; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | `docs/CONTRACT.md` §1.7 K-INVENT-1 |
@@ -70,5 +70,5 @@ For this four-document kit, the concrete register-row artifact is this `Datashee
 | REF-003 | `docs/SPEC.md` | Runtime mechanics and boundary surfaces; used only where source slices were relevant. |
 | REF-004 | `docs/TYPES.md` | Authority model and vocabulary. |
 | REF-005 | `docs/PLAN.md` | Roadmap sequencing, PKG-08 retirement notes, and future-amendment exclusions. |
-| REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; hash mismatch warning applies. |
+| REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; D-APP-38 corpus `v1` records a matching authority-doc hash. |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method reference; no deliverable-specific requirements extracted. |

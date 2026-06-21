@@ -11,11 +11,13 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for the derivative dependency-extract register. No dependency row is satisfied
+by this documentation reconciliation.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See `Dependencies.csv` for downstream `CONSTRAINT` rows. They remain derivative dependency evidence,
+not closure approval.
 
 ## Run Notes
 
@@ -28,7 +30,7 @@ TBD - no accepted dependency edges have been extracted yet.
   - `ANCHOR_DOC=AUTO` resolved to `Datasheet.md`; execution docs were read as `Procedure.md`, `Specification.md`, `Guidance.md`, `_CONTEXT.md`, `_REFERENCES.md`.
   - Human ruling applied: semantic lensing and P3 enrichment skipped; `_SEMANTIC.md` was not read or consumed as evidence.
   - Existing declared dependency lists remain `TBD`; no declared edges were promoted without evidence.
-  - `[WARNING] SOURCE_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` REF-006 as `HASH_MISMATCH`; this run preserved the warning and used only the allowed local derivative documents plus decomposition authority.
+  - `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. This does not satisfy dependency rows.
   - `[WARNING] HUMAN_RULING_TBD`: `Guidance.md` contains conflict-table rulings with `Human ruling (TBD)`; no dependency edge depends on those unresolved rulings.
 
 ## Extracted Dependency Register
@@ -71,4 +73,4 @@ Closure state: dependency register schema is present and all extracted rows are 
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
-| 2026-05-20T19:24:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH; HUMAN_RULING_TBD | ANCHOR=6; EXECUTION=7; TOTAL=13 |
+| 2026-05-20T19:24:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH at extraction time, later reconciled by D-APP-38 corpus `v1`; HUMAN_RULING_TBD | ANCHOR=6; EXECUTION=7; TOTAL=13 |

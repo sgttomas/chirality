@@ -36,9 +36,13 @@ If a module, validation ID, SDK behavior, transcript location, or release check 
 
 ### Source-State Handling
 
-`docs/PRD.md` is accessible and contains detailed runtime requirements and known gaps, but `_REFERENCES.md` records a HASH_MISMATCH. Treat PRD content as a current accessible source for drafting while preserving a visible source-state warning. Final acceptance should reconcile the hash or confirm the changed PRD as accepted project truth.
+`docs/PRD.md` is accessible and contains detailed runtime requirements and known gaps. D-APP-38 corpus
+`v1` reconciled the authority-doc reference corpus, and current `_REFERENCES.md` records REF-006
+`docs/PRD.md` as `MATCH`.
 
-This warning is a closure blocker, not just a drafting note. A row that depends on PRD content may remain in the register as proposed or warning-limited evidence, but it should not be treated as final accepted truth until the expected hash is reconciled or a human/source owner accepts the current PRD content.
+Rows that depend on PRD content should cite REF-006 and the current corpus version. Future
+authority-doc edits must rerun the D-APP-38 reconciliation flow before issue-readiness reliance is
+claimed.
 
 ### Boundary Granularity
 
@@ -77,7 +81,7 @@ Track these explicitly until closed:
 - SDK permission semantics being necessary but insufficient.
 - SDK subagents inheriting powerful parent permissions.
 - Thin-wrapper drift where product identity becomes SDK-shaped.
-- PRD source hash mismatch.
+- Authority-doc corpus drift if a future edit changes `docs/PRD.md` or another corpus source without rerunning D-APP-38 reconciliation.
 - Section 9 validation IDs or test file names still being candidate labels rather than implemented checks.
 
 ## Trade-offs
@@ -99,7 +103,7 @@ Track these explicitly until closed:
 | BoundaryID | RB-SETTINGS |
 | BoundaryCategory | settings |
 | ProductSemantic | Shipped builds must not load ambient user/global or local Claude Code settings. |
-| SourceRefs | `docs/SPEC.md` §12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117, with PRD hash warning |
+| SourceRefs | `docs/SPEC.md` §12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117 under D-APP-38 corpus `v1` |
 | EnforcementOwner | Chirality code + SDK option + release validation |
 | EnforcementSurface | `SdkOptionsBuilder` sets `settingSources: []`; settings isolation test; release verification |
 | PromptOnlyAllowed | NO |
@@ -116,11 +120,11 @@ Track these explicitly until closed:
 | Incomplete signal | Enforcement surface says only "tell subagents not to write outside scope." |
 | Required correction | Add `evaluateSubagentGovernance`, restricted child tools/cwd, hook evidence, and child run record validation. |
 
-## Conflict Table (for human ruling)
+## Closed Source-State Note
 
-| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-|---|---|---|---|---|---|---|
-| CONF-RBR-001 | `docs/PRD.md` content is accessible and needed for runtime requirements, but `_REFERENCES.md` reports a hash mismatch against the expected PRD SHA. | `_REFERENCES.md` REF-006 hash row | `docs/PRD.md` current accessible content | All PRD-cited register rows; final acceptance posture | PROPOSAL: Continue drafting with visible source-state warning; require human/source-hash reconciliation before treating PRD-derived content as final accepted truth. | TBD |
+Historical conflict `CONF-RBR-001` is superseded by D-APP-38 corpus `v1`: `_REFERENCES.md` now records
+REF-006 `docs/PRD.md` as `MATCH`. This does not generate the missing reliance-boundary register or
+satisfy dependency rows; it only removes the stale PRD hash blocker from the local-kit wording.
 
 ## Assumptions and TBDs
 

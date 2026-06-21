@@ -29,7 +29,7 @@
 | REF-003 | `docs/SPEC.md` | MATCH | Runtime structures, API/file contracts, hooks, settings, validation IDs |
 | REF-004 | `docs/TYPES.md` | MATCH | Vocabulary and type targets |
 | REF-005 | `docs/PLAN.md` | MATCH | Runtime roadmap and R0 reliance-boundary deliverable expectations |
-| REF-006 | `docs/PRD.md` | HASH_MISMATCH | Source-state warning only; content used as current accessible source, not as hash-verified accepted truth |
+| REF-006 | `docs/PRD.md` | MATCH | Current product requirements and approved vNext scope under D-APP-38 corpus `v1` |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH | Decomposition discipline and no-invention constraints |
 
 ### Decomposition Traceability
@@ -69,8 +69,8 @@
 | Permission condition | Permission decisions are recorded as `allow`, `deny`, or application-level `ask`; deny rules override allow decisions. |
 | Transcript condition | SDK transcripts may support resume/debugging but `.chirality/sessions/<sessionId>/events.jsonl` remains canonical unless imported into `HarnessEvent` form. |
 | Human-gate condition | Reliance-affecting approval remains human-only and evidence-bound. |
-| PRD source-state warning | `docs/PRD.md` is accessible but hash-mismatched against `_REFERENCES.md`; any PRD-derived content should be rechecked before final acceptance. |
-| Source trace acceptance condition | Register rows that cite `docs/PRD.md` must remain warning-limited until a human/source owner reconciles the REF-006 hash or accepts the current PRD content as project truth. |
+| Authority-corpus condition | Authority-doc references, including REF-006 `docs/PRD.md`, are reconciled to D-APP-38 corpus `v1` at this source state. |
+| Source trace acceptance condition | Register rows that cite `docs/PRD.md` must cite REF-006 and should be rechecked if a later authority-corpus audit reports drift. |
 | Implementation-surface completion condition | Exact module paths, hook/check names, and validation file names remain `TBD` until downstream runtime and Section 9 deliverables produce inspectable artifacts. |
 
 ## Construction
@@ -98,7 +98,7 @@
 | ResponsibleParty | `TBD` by scaffold policy until human assignment. | Human-maintained ownership update in deliverable status/context or accepted downstream ownership record. |
 | Exact enforcement file paths | `TBD` where runtime modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
 | Exact validation file/test names | Candidate Section 9 IDs are listed; implementation IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
-| PRD-derived rows | May be drafted from accessible `docs/PRD.md` with visible HASH_MISMATCH warning. | Human/source-owner reconciliation of REF-006 expected hash or accepted current PRD content. |
+| PRD-derived rows | May be drafted from REF-006 under D-APP-38 corpus `v1` with current `MATCH` status. | Re-run D-APP-38 reconciliation if an authority document changes before issue-readiness reliance. |
 | SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted first-adapter probe result naming transcript placement or mirroring policy. |
 
 ### Candidate Validation Index
@@ -128,5 +128,5 @@
 - REF-003: `docs/SPEC.md`, especially §§8.4, 9, 10, 12, 14, 15, and 19.3.
 - REF-004: `docs/TYPES.md`, especially runtime, permission, hook, SDK, subagent, and validation terms.
 - REF-005: `docs/PLAN.md`, especially R0/R1 reliance-boundary deliverables and acceptance.
-- REF-006: `docs/PRD.md`, especially §§8.12-8.16 and §15, with HASH_MISMATCH warning.
+- REF-006: `docs/PRD.md`, especially §§8.12-8.16 and §15, under D-APP-38 corpus `v1` MATCH status.
 - REF-007: `AGENT_SOFTWARE_DECOMP.md`, especially no-invention and scope-boundary protocol.

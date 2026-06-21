@@ -46,10 +46,14 @@ Sources: PKG-10 `Dependencies.csv` rows `DEP-10-02-004` and `DEP-10-03-006`.
 
 The decision authority for product-register edits remains unresolved. `E-001` is carried as a HumanRuling item: approval may belong to the human operator, RECONCILIATION, or both, and no PKG-10 row edit should proceed until that authority is explicit.
 
-## Conflict Table (for human ruling)
+## Closed-History Note
 
-| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-|---|---|---|---|---|---|---|
-| CONFLICT-DEL-00-01-001 | `DAG_CLOSURE_CONTROL.md` still labels `DEL-00-01` as `SEMANTIC_READY`, while `_STATUS.md` was reset to `OPEN` for TASK regeneration. | `DAG_CLOSURE_CONTROL.md` section `Current Queue` | `_STATUS.md` section `History` | Datasheet Identification; Procedure Records | Treat `_STATUS.md` as lifecycle authority for this run and update to `INITIALIZED` after successful P1/P2. | TBD |
+The earlier lifecycle-label conflict is closed as historical context. `_STATUS.md` is the lifecycle
+authority for this deliverable and currently records `CHECKING` under the D-APP-19 inspection program.
+`DAG_CLOSURE_CONTROL.md` and the accepted DepClosure snapshot
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` are dependency-closure discovery evidence only; they do
+not authorize lifecycle issuance, release readiness, professional approval, certification, sealing,
+authentication, or code-compliance acceptance.
 
-`E-002` disposition: the lifecycle-state conflict remains a HumanRuling item for downstream reporting. This Pass 3 run may advance `_STATUS.md` to `SEMANTIC_READY` after successful enrichment, but it does not retroactively validate the earlier provisional `DAG_CLOSURE_CONTROL.md` queue label.
+Future edits should not restore the old `OPEN`/`SEMANTIC_READY` conflict framing unless a new
+dependency snapshot or lifecycle record actually creates a fresh conflict.

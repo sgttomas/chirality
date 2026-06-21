@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-01 control/governance local-kit wording reconciled
+
+Completed `ADQ-01` from the autonomous development queue. The tranche reconciled stale PKG-00 and
+PKG-01 local-kit wording against the accepted post-inspection state:
+
+- PKG-00 DEL-00-01/DEL-00-02 now treat old `OPEN`/`SEMANTIC_READY` conflict tables and Pass 3
+  dispositions as closed-history context, while citing the accepted acyclic DepClosure snapshot
+  `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` as dependency-closure discovery evidence only.
+- PKG-01 DEL-01-01 through DEL-01-04 now describe current lifecycle state as `CHECKING`, preserve
+  derivative dependency registers without satisfying rows, and align REF-006 `docs/PRD.md` wording to
+  D-APP-38 corpus `v1` (`MATCH`) instead of the old PRD hash-mismatch blocker.
+- Deliverable `MEMORY.md` files were updated to record that this was a docs reconciliation pass, not
+  lifecycle issuance, dependency satisfaction, release posture, or professional acceptance.
+
+No `_STATUS.md` files changed. No authority documents changed, so no D-APP-38 corpus bump was needed.
+No runtime source, package manifest, lockfile, provider policy, release artifact, lifecycle issuance,
+or professional/release claim changed.
+
+Validation: targeted active-local-kit stale-text scan; Ruby CSV parse for the four touched PKG-01
+`Dependencies.csv` files; D-APP-38 reference reconciliation `status` reported corpus `v1` with no
+drift; `git diff --check` over affected execution/plans paths. Frontend runtime tests were skipped
+because this tranche changed only governance/control-plane documentation and derivative dependency
+wording.
+
 ## 2026-06-20 - Autonomous development queue released (D-APP-39)
 
 Released an autonomous development queue per owner directive (D-APP-39): the loop now pulls the

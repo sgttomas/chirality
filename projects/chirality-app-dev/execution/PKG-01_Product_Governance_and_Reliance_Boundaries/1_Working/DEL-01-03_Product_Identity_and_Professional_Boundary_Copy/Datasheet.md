@@ -13,7 +13,7 @@
 | ResponsibleParty | TBD |
 | Type | DOC_UPDATE |
 | ContextEnvelope | S |
-| Current lifecycle state at drafting | OPEN |
+| Current lifecycle state | CHECKING (drafted earlier at `OPEN`; inspection transition recorded in `_STATUS.md`) |
 
 ## Attributes
 
@@ -63,5 +63,5 @@ ASSUMPTION: These artifacts may be implemented as sections or downstream documen
 | REF-003 | `docs/SPEC.md` | Physical structures, persona composer professional-boundary reminders, domain future boundary |
 | REF-004 | `docs/TYPES.md` | Stable identifiers, project truth, artifact vocabulary, human approval authority |
 | REF-005 | `docs/PLAN.md` | Product identity and release/local-check posture |
-| REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; hash mismatch treated as source warning per dispatch |
+| REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; D-APP-38 corpus `v1` records a matching authority-doc hash |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no copy requirements extracted |

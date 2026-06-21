@@ -19,7 +19,7 @@ This specification covers the content and verification expectations for `docs/ha
 
 - Implementing `AgentEnginePort`, `TurnEngine`, `SdkOptionsBuilder`, permission overlay, MCP tools, hooks, event store, or subagent bridge.
 - Claiming acceptance of unresolved first-adapter probe items.
-- Treating `docs/PRD.md` as hash-verified accepted truth while its `_REFERENCES.md` status is `HASH_MISMATCH`.
+- Treating authority-doc references as current after a future authority-doc edit without rerunning the D-APP-38 reconciliation flow.
 - Issuing professional approval or external validation.
 
 ## Requirements
@@ -46,8 +46,8 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-018 | No agent, SDK, tool, runtime event, validator, or domain adapter shall claim to approve, certify, sign, seal, issue, transmit, or externally validate professional work. | REF-001 §3; REF-002 K-AUTH-1/K-PROF-1 | UI/docs copy review; human-gate checklist. |
 | RBR-019 | Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants. | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 | Redaction tests; run logger tests; artifact inspection. |
 | RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 first-adapter probe review; fallback criteria row in register. |
-| RBR-021 | The register shall record the `docs/PRD.md` hash mismatch as source-state warning until the reference hash is reconciled. | `_REFERENCES.md`; user brief | Register metadata includes warning; final acceptance requires human/source hash reconciliation. |
-| RBR-022 | The register shall distinguish hash-verified source support from warning-limited REF-006 PRD support in row-level source traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows preserve the HASH_MISMATCH warning or cite reconciliation evidence. |
+| RBR-021 | The register shall record the current D-APP-38 corpus version for authority-doc references, including REF-006 `docs/PRD.md`. | `_REFERENCES.md`; D-APP-38 | Register metadata cites corpus `v1` and current `MATCH` status. |
+| RBR-022 | The register shall distinguish current corpus-matched source support from any future drift or warning-limited source support in row-level traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows cite REF-006 and the current corpus version, or preserve a drift warning if reconciliation later reports one. |
 | RBR-023 | Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125 | Generated register review includes explicit `PromptOnlyAllowed=NO`, `SDKDefaultOnlyAllowed=NO`, and non-empty enforcement-surface evidence for every P0 row. |
 | RBR-024 | Exact implementation file paths, hook names, check names, and validation files shall remain `TBD` until downstream deliverables produce inspectable artifacts. | REF-002 K-INVENT-1; REF-003 §19.3; decomposition DEL-03/DEL-04/DEL-06/DEL-09 rows | Open item review confirms each `TBD` has a downstream closure path or accepted conflict entry. |
 | RBR-025 | After `docs/harness/reliance_boundary_register.md` is generated, each register row shall be cross-checked against this specification, the datasheet field schema, and the test index. | REF-003 §19.3; REF-005 R0/R1 acceptance notes | Review record shows all rows map to requirements, source references, validation IDs or `TBD`, and residual risks. |
@@ -61,7 +61,7 @@ This specification covers the content and verification expectations for `docs/ha
 | `docs/SPEC.md` | Runtime structures, settings, hooks, MCP, validation IDs, and API/file contracts. |
 | `docs/TYPES.md` | Terms and target type names used in the register. |
 | `docs/PLAN.md` | Runtime roadmap and R0/R1 reliance-boundary acceptance expectations. |
-| `docs/PRD.md` | Product requirements and risk register, with HASH_MISMATCH source-state warning. |
+| `docs/PRD.md` | Product requirements and risk register, reconciled as REF-006 under D-APP-38 corpus `v1`. |
 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition discipline; no-invention and scope-boundary rules. |
 
 ## Verification
@@ -73,9 +73,9 @@ This specification covers the content and verification expectations for `docs/ha
 | Source traceability | Each row cites at least one governance/source reference and uses `location TBD` where exact implementation files are unavailable. |
 | P0 enforcement posture | P0 rows have `PromptOnlyAllowed=NO` and `SDKDefaultOnlyAllowed=NO`. |
 | Prompt/SDK-default exclusion evidence | Acceptance evidence proves the row has a Chirality-owned, verified SDK callback/hook, MCP wrapper, release check, or human gate beyond prompt-only or opaque SDK-default behavior. |
-| PRD source-state trace | Rows using REF-006 distinguish warning-limited PRD evidence from hash-verified sources until reconciliation. |
+| PRD source-state trace | Rows using REF-006 cite the current corpus-matched source state or explicitly preserve any future drift warning. |
 | Validation mapping | Rows map to Section 9 validation IDs where listed in `docs/SPEC.md`; missing IDs remain `TBD`. |
-| Residual-risk surfacing | PRD hash mismatch, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved. |
+| Residual-risk surfacing | Authority-corpus drift, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved. |
 | Cross-document consistency | Datasheet boundary IDs, Specification requirement IDs, Guidance principles, and Procedure verification steps use the same terminology. |
 
 ## Documentation
@@ -86,14 +86,14 @@ The final work package should include:
 - enforcement matrix
 - test index keyed to Section 9 validation IDs and other implementation checks
 - residual-risk notes for unresolved first-adapter probe findings
-- source-state warning for `docs/PRD.md` until the hash mismatch is reconciled
+- authority-corpus version note for `docs/PRD.md` and any future drift warning
 
 ## Open Items
 
 | ID | Item | Status |
 |---|---|---|
-| OI-RBR-001 | Confirm whether the accessible `docs/PRD.md` content is the accepted current PRD despite the hash mismatch. | NEEDS_HUMAN_RULING |
+| OI-RBR-001 | Closed by D-APP-38 corpus `v1`; REF-006 currently matches. Reopen only if a future corpus audit reports drift. | CLOSED |
 | OI-RBR-002 | Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist. | TBD |
 | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
 | OI-RBR-004 | Confirm exact Section 9 validation implementation IDs as runtime phases land. | TBD |
-| OI-RBR-005 | Confirm generated register rows distinguish hash-verified source evidence from REF-006 warning-limited PRD evidence. | TBD |
+| OI-RBR-005 | Confirm generated register rows cite D-APP-38 corpus version and distinguish current corpus-matched evidence from any future drift warning. | TBD |

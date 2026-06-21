@@ -42,7 +42,7 @@ Excluded:
 | `docs/SPEC.md` | Accessible | Governs runtime/document structures and future domain specification boundary |
 | `docs/TYPES.md` | Accessible | Governs vocabulary for project truth, artifacts, stable IDs, and authority |
 | `docs/PLAN.md` | Accessible | Governs roadmap/release copy checks |
-| `docs/PRD.md` | Accessible with hash mismatch warning | Governs product requirements and accepted vNext direction; dispatch says mismatch is warning, not blocker |
+| `docs/PRD.md` | Accessible; D-APP-38 corpus `v1` records matching REF-006 authority-doc hashes | Governs product requirements and accepted vNext direction |
 
 ## Verification
 
@@ -60,7 +60,7 @@ Closure evidence before downstream production copy updates:
 - `ResponsibleParty` assigned by an accountable human: TBD.
 - Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: TBD.
 - `Dependencies.csv` satisfaction and any project-level FULL_GRAPH/cycle checks closed or explicitly deferred by a human: TBD.
-- Conflict Table CT-001 and CT-002 human rulings recorded: TBD.
+- Conflict Table CT-001 path-label ruling recorded or explicitly deferred: TBD. Historical CT-002 PRD hash warning is closed by D-APP-38 corpus `v1`.
 - Release review evidence record completed for the checked surfaces and source sections: TBD.
 
 ## Documentation

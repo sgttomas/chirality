@@ -60,8 +60,8 @@ Verification is documentary and review-based for this phase:
 | Source fidelity | Confirm non-trivial requirements cite source files and sections. |
 | Conservative drafting | Confirm unsupported facts are marked `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. |
 | Boundary-row inspection | Confirm the concrete register rows are present in `Datasheet.md` under `Boundary Register Rows` and include source reference, amendment trigger, current status, and human ruling fields. |
-| Scope containment | Confirm this run did not create `Dependencies.csv` and did not modify files outside the deliverable folder. |
-| Status transition | Confirm `_STATUS.md` is `INITIALIZED` only after all four required documents are written and non-empty. |
+| Scope containment | Confirm this run does not satisfy or mutate dependency rows and does not modify files outside the authorized tranche scope. |
+| Status transition | Confirm `_STATUS.md` remains `CHECKING`; any future `ISSUED` transition requires a fresh human approval SHA. |
 
 ## Documentation
 
