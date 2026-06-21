@@ -6,6 +6,22 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-05 blocked on G5 runtime taxonomy ruling
+
+Selected `ADQ-05` from the autonomous development queue and confirmed that it requires a material
+human ruling rather than autonomous reconciliation. Current source uses `TurnEngine.runTurn`,
+`AgentEnginePort.startTurn`, public `harness:event`, interruption as
+`interruption.requested` / `interruption.completed` plus terminal `turn.cancelled`, and
+`ChildRunRecord.childRunId`. Older SPEC/local-kit text still carries incompatible names or explicit
+human-ruling slots, especially `DEL-03-04-CONFLICT-001` for interruption terminal taxonomy and
+DEL-08-05 denied child-run allocation semantics.
+
+Prepared `execution/_Coordination/_DECISIONS/D-APP-40_PACKET_G5_RUNTIME_TAXONOMY_2026-06-21.md`,
+added it to the decision register as `AWAITING_RULING`, and marked `ADQ-05` `BLOCKED`. No source,
+tests, authority documents, `_STATUS.md`, dependency rows, provider policy, lifecycle issuance,
+release/distribution posture, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-04 runtime evidence reconciled
 
 Completed `ADQ-04` from the autonomous development queue. The tranche added
