@@ -1,0 +1,30 @@
+{
+  "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
+  "current_version": "v1",
+  "refs": [
+    "docs/DIRECTIVE.md",
+    "docs/CONTRACT.md",
+    "docs/SPEC.md",
+    "docs/TYPES.md",
+    "docs/PLAN.md",
+    "docs/PRD.md",
+    "AGENT_SOFTWARE_DECOMP.md"
+  ],
+  "versions": [
+    {
+      "version": "v1",
+      "date": "2026-06-20",
+      "binding_commit": "8da930ae09bac2a63893684ab041710b71848c23",
+      "reason": "Initial corpus snapshot; D-APP-38 reference-integrity baseline.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
+        "docs/CONTRACT.md": "87955a7510b6bd2e3c0697b0b28c07a411eaadd5db6b5c7c35dacde8b31bcbde",
+        "docs/SPEC.md": "b011675b5213e04e8cad20f3a9a88c4a5f0cff18129634587bb55aff58ca6d55",
+        "docs/TYPES.md": "7d037b448c160d766cbac9a4cd92dbb783c05f758eb190b05c0d25f7cc054d3b",
+        "docs/PLAN.md": "86cb8a6982b49b121414ea87db9fa4824a729ad8c7bb93e6953e30acae478311",
+        "docs/PRD.md": "33e00c822c85191d11a68b0220fabad5e7538f9babdcb67597f05a10f4e255e4",
+        "AGENT_SOFTWARE_DECOMP.md": "4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab"
+      }
+    }
+  ]
+}

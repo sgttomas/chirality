@@ -7,7 +7,7 @@
 
 ## 1. Purpose
 
-This checklist routes app-dev changes through release-quality evidence gates. It complements `docs/VALIDATION_STRATEGY.md`, `docs/BUILD_AND_RELEASE.md`, and the invariants in `docs/CONTRACT.md`.
+This checklist routes app-dev changes through release-quality evidence gates. It complements `docs/VALIDATION_STRATEGY.md`, `docs/BUILD_AND_RELEASE.md`, `docs/ISSUE_READINESS_PROFILES.md` (per-deliverable `CHECKING -> ISSUED` evidence), and the invariants in `docs/CONTRACT.md`.
 
 These gates define evidence to collect or explicitly waive before a release-significant change is accepted. They do not publish a release, approve lifecycle issuance, certify professional work, seal or authenticate work product, declare code compliance, or authorize external distribution.
 
@@ -27,6 +27,8 @@ Run every release-significant change through all applicable gate families.
 | Future domain-engine profiles, adapters, operation proposals | Domain-adapter gate | protected paths, proposal records, human gates, solver/domain truth boundaries |
 
 Mixed changes run the union of applicable gates unless a human project authority records an explicit waiver and risk disposition.
+
+Authority-document edits (`docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, `docs/PRD.md`) additionally run the D-APP-38 reference reconciliation under the Governance gate: `execution/_Reconciliation/References/reconcile_authority_corpus.py status`, then `bump` and `apply` to mint a new corpus version and re-reconcile deliverable `_REFERENCES.md` records (see `docs/ISSUE_READINESS_PROFILES.md` §6).
 
 ## 3. Common Required Evidence
 

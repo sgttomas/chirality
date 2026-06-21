@@ -41,6 +41,10 @@
       "role": "release-quality gate routing"
     },
     {
+      "path": "ISSUE_READINESS_PROFILES.md",
+      "role": "issue-readiness evidence profiles"
+    },
+    {
       "path": "BUILD_AND_RELEASE.md",
       "role": "build and release evidence guide"
     },
