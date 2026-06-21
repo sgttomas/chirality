@@ -6,6 +6,23 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - D-APP-34 through D-APP-37 rulings recorded
+
+Recorded the owner-approved recommendation set for the four open post-inspection decision packets:
+D-APP-34 Option B, D-APP-35 Option A, D-APP-36 Option B, and D-APP-37 Option A. The decision register
+now marks D-APP-34 through D-APP-37 as `RULED`, with ruling records under
+`execution/_Coordination/_DECISIONS/`.
+
+The rulings approve the evidence-profile issuance model, current PRD source-state refresh path,
+component/render UI evidence bar, and PKG-10 doc-only/status-truth basis. They do not issue any
+deliverable, activate R7/domain-engine implementation, change provider/release posture, or select a
+new autonomous implementation tranche. No semantic files were used or produced.
+
+Validation: static governance checks only. `git diff --check -- execution plans` passed; D-APP-34
+through D-APP-37 ruling files exist and are referenced from the decision register; active handoff text
+no longer treats D-APP-34 through D-APP-37 as awaiting ruling. Frontend runtime tests were skipped
+because this tranche changed only governance, planning, and coordination artifacts.
+
 ## 2026-06-21 - Inspection program final closeout recorded (`INSP-FINAL`)
 
 Closed the D-APP-19 deliverable-inspection and development-evidence program. The closeout artifact at

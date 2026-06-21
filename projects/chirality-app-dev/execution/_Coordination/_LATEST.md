@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-33 RULED; D-APP-34..D-APP-37 AWAITING_RULING; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-37 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
 
 Active development queue:
 
@@ -38,13 +38,13 @@ Active development queue:
 	  pending, reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` is recorded for wave 011 as
 	  inspected source-state evidence, and the coverage index is
 	  `plans/artifacts/insp03_assessment_index_2026-06-20.md`. `INSP-04` gate-process evaluation is
-	  complete at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 is registered
-	  `AWAITING_RULING` for the post-INSP-03 issuance-gate model. `INSP-05` roadmap synthesis is
+	  complete at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 is now ruled
+	  Option B for the post-INSP-03 issuance-gate model. `INSP-05` roadmap synthesis is
 	  complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
-	  D-APP-37 are registered `AWAITING_RULING`. `INSP-FINAL` closeout is recorded at
-	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. No next autonomous implementation tranche is
-	  selected; next work requires human rulings D-APP-34 through D-APP-37 or explicit roadmap-item
-	  selection.
+	  D-APP-37 were prepared and are now ruled. `INSP-FINAL` closeout is recorded at
+	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. D-APP-34 through D-APP-37 are ruled by
+	  owner directive on 2026-06-21. No next autonomous implementation tranche is selected; next work
+	  requires explicit roadmap-item selection or a new human directive.
 
 Completed / superseded queues (history, non-governing):
 

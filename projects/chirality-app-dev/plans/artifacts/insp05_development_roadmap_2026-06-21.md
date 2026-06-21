@@ -18,21 +18,21 @@ No semantic files were used or produced.
 
 | ID | Topic | Why it blocks roadmap execution |
 |---|---|---|
-| D-APP-34 | Post-INSP-03 issuance gate model | Determines whether future issue-readiness uses evidence profiles. |
-| D-APP-35 | REF-006 PRD hash/source-state treatment | Many assessments are warning-limited by the same PRD hash mismatch. |
-| D-APP-36 | AMD-01 UI render-test acceptance bar | PKG-02 and parts of PKG-08 cannot know the UI evidence bar without it. |
-| D-APP-37 | PKG-10 doc-only acceptance basis and status-truth repair | PKG-10 should not be judged as runtime implementation, but its status history is false. |
+| D-APP-34 | Post-INSP-03 issuance gate model | RULED Option B: future issue-readiness uses evidence profiles. |
+| D-APP-35 | REF-006 PRD hash/source-state treatment | RULED Option A: current PRD is accepted and downstream references may be refreshed. |
+| D-APP-36 | AMD-01 UI render-test acceptance bar | RULED Option B: component/render tests required; browser checks for high layout risk. |
+| D-APP-37 | PKG-10 doc-only acceptance basis and status-truth repair | RULED Option A: PKG-10 uses doc-only profile and bounded status-truth repair. |
 
-Packets for D-APP-35 through D-APP-37 are prepared with this roadmap. They are proposals only.
+Packets for D-APP-35 through D-APP-37 were prepared with this roadmap and subsequently ruled.
 
 ## Roadmap
 
 | Priority | Work Item | Type | Size | Prerequisites | Strategic fit |
 |---|---|---|---:|---|---|
-| P0 | Rule D-APP-34 and adopt or reject evidence-profiled issue readiness. | governance | S | INSP-04 memo | ON-STRATEGY |
-| P0 | Rule REF-006 PRD hash/source-state treatment. | governance | S | D-APP-35 | ON-STRATEGY |
-| P0 | Rule AMD-01 UI render-test bar. | governance/test policy | S | D-APP-36 | ON-STRATEGY |
-| P0 | Rule PKG-10 doc-only acceptance basis and status-truth repair. | governance/status policy | S | D-APP-37 | ON-STRATEGY |
+| P0 | Apply D-APP-34 evidence-profiled issue-readiness model to future issue attempts. | governance | S | D-APP-34 ruled Option B | ON-STRATEGY |
+| P0 | Refresh REF-006 PRD hash/source-state references. | governance | S | D-APP-35 ruled Option A | ON-STRATEGY |
+| P0 | Apply AMD-01 component/render UI evidence bar. | governance/test policy | S | D-APP-36 ruled Option B | ON-STRATEGY |
+| P0 | Repair PKG-10 status truth under doc-only profile. | governance/status policy | S | D-APP-37 ruled Option A | ON-STRATEGY |
 | P1 | Reconcile stale control/governance local-kit wording found in PKG-00 and PKG-01. | docs/reconcile | S | P0 source-state rulings where referenced | ON-STRATEGY |
 | P1 | Create the reliance-boundary register and enforcement/test index for DEL-01-02. | docs/governance | M | REF-006 treatment | ON-STRATEGY |
 | P1 | Normalize scope-boundary and professional-boundary review checklists. | docs/governance | S | REF-006 treatment | ON-STRATEGY |

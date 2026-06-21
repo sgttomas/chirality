@@ -37,16 +37,16 @@ No semantic files were used or produced.
 
 | ID | Topic | State |
 |---|---|---|
-| D-APP-34 | Keep, modify, or replace the per-deliverable issuance gate after INSP-03. | AWAITING_RULING |
-| D-APP-35 | REF-006 PRD hash/source-state treatment. | AWAITING_RULING |
-| D-APP-36 | AMD-01 UI render-test acceptance bar. | AWAITING_RULING |
-| D-APP-37 | PKG-10 doc-only acceptance basis and false active-implementation status-history repair. | AWAITING_RULING |
+| D-APP-34 | Keep, modify, or replace the per-deliverable issuance gate after INSP-03. | RULED Option B |
+| D-APP-35 | REF-006 PRD hash/source-state treatment. | RULED Option A |
+| D-APP-36 | AMD-01 UI render-test acceptance bar. | RULED Option B |
+| D-APP-37 | PKG-10 doc-only acceptance basis and false active-implementation status-history repair. | RULED Option A |
 
 ## Next State
 
-The D-APP-19 inspection program is complete. There is no autonomous next implementation tranche.
-Next work requires human action: rule D-APP-34 through D-APP-37 or explicitly select a roadmap item
-from `plans/artifacts/insp05_development_roadmap_2026-06-21.md`.
+The D-APP-19 inspection program is complete. D-APP-34 through D-APP-37 are now ruled. There is no
+autonomous next implementation tranche. Next work requires explicit selection of a roadmap item from
+`plans/artifacts/insp05_development_roadmap_2026-06-21.md` or a new human directive.
 
 ## Validation
 
@@ -55,6 +55,6 @@ Static closeout checks:
 - `find execution/PKG-* -mindepth 2 -maxdepth 2 -type d -path '*/1_Working/DEL-*' | wc -l` -> 53.
 - `find execution -path '*/1_Working/DEL-*/Assessment_INSP-03_*.md' -type f | wc -l` -> 53.
 - `_STATUS.md` state scan -> 53 `CHECKING`.
-- D-APP-34 through D-APP-37 registered `AWAITING_RULING`.
+- D-APP-34 through D-APP-37 registered and subsequently ruled.
 - Frontend/runtime tests skipped because final closeout changes only planning, coordination, and
   closeout artifacts.
