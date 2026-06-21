@@ -10,7 +10,7 @@ Active coordination surfaces:
 
 Active development queue:
 
-- `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
+- None. Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
   INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> INSP-02 -> INSP-03 -> INSP-04 ->
@@ -41,7 +41,10 @@ Active development queue:
 	  complete at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 is registered
 	  `AWAITING_RULING` for the post-INSP-03 issuance-gate model. `INSP-05` roadmap synthesis is
 	  complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
-	  D-APP-37 are registered `AWAITING_RULING`. Next selected work: `INSP-FINAL` closeout.
+	  D-APP-37 are registered `AWAITING_RULING`. `INSP-FINAL` closeout is recorded at
+	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. No next autonomous implementation tranche is
+	  selected; next work requires human rulings D-APP-34 through D-APP-37 or explicit roadmap-item
+	  selection.
 
 Completed / superseded queues (history, non-governing):
 
