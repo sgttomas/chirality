@@ -86,8 +86,10 @@ export function ProjectValidationPanel({
           Validation JSON
         </a>
         <span data-testid="project-validation-summary">
-          validation={packet.summary.validation_status}; version={packet.summary.version_check_status};
-          migration={packet.summary.migration_status}; round_trip={packet.summary.round_trip_status}
+          validation={packet.summary.validation_status}; version=
+          {packet.summary.version_check_status}; migration=
+          {packet.summary.migration_status}; round_trip=
+          {packet.summary.round_trip_status}
         </span>
       </div>
       <div className="report-list" data-testid="project-validation-body">
@@ -166,19 +168,13 @@ export function ProjectValidationPanel({
             packet.summary.pending_operation_count
           }; persisted editor intents=${packet.summary.persisted_editor_intent_count}; proposals=${
             packet.summary.proposal_operation_count
-          }; persisted proposals=${
-            packet.summary.persisted_proposal_count
-          }; persisted review targets=${
+          }; persisted proposals=${packet.summary.persisted_proposal_count}; persisted review targets=${
             packet.summary.persisted_selected_review_target_count
           }; persisted review target ref=${
             packet.summary.persisted_selected_review_target_ref
-          }; persisted mechanics results=${
-            packet.summary.persisted_mechanics_result_count
-          }; persisted analysis runs=${
+          }; persisted mechanics results=${packet.summary.persisted_mechanics_result_count}; persisted analysis runs=${
             packet.summary.persisted_analysis_run_count
-          }; persisted analysis run ref=${
-            packet.summary.persisted_analysis_run_ref
-          }`}
+          }; persisted analysis run ref=${packet.summary.persisted_analysis_run_ref}`}
           testId="project-validation-operations"
         />
         <ValidationLine
@@ -235,17 +231,28 @@ function buildProjectValidationPacket({
   modelDocumentMigration: ModelDocumentMigrationStatus | null;
   modelMigrationLedger: ModelMigrationLedgerRecord[];
 }) {
-  const modelHashStatus = modelHashEvidenceStatus({ modelHash, projectSummary, modelHashIntegrity });
+  const modelHashStatus = modelHashEvidenceStatus({
+    modelHash,
+    projectSummary,
+    modelHashIntegrity
+  });
   const envelopeHashStatus = projectEnvelopeHashEvidenceStatus({
     projectEnvelopeHash,
     projectSummary,
     projectEnvelopeHashIntegrity
   });
   const categories = buildRoundTripCategories(model, modelHashStatus);
-  const unitPolicyEvidence = buildProjectValidationUnitPolicyEvidence({ model, projectSummary });
+  const unitPolicyEvidence = buildProjectValidationUnitPolicyEvidence({
+    model,
+    projectSummary
+  });
   const migrationStatus = projectSummary?.migration_status ?? "not_persisted_this_session";
-  const storeMigration = buildStoreMigrationEvidence({ projectSummary, storageCapability });
-  const versionCheckStatus = model.schema_version === "0.1.0" ? "supported_current_schema" : "unsupported_schema_review_required";
+  const storeMigration = buildStoreMigrationEvidence({
+    projectSummary,
+    storageCapability
+  });
+  const versionCheckStatus =
+    model.schema_version === "0.1.0" ? "supported_current_schema" : "unsupported_schema_review_required";
   const validationStatus = projectSummary ? "preview_current" : "preview_not_persisted";
   const proposalCount = proposal ? 1 : 0;
   const pendingOperationCount = editorIntents.length + proposalCount;
@@ -311,7 +318,11 @@ function buildProjectValidationPacket({
       project_envelope_hash_scope: "persisted_envelope_payload_excluding_storage_summary_and_hash_carrier",
       physical_container_status: projectSummary ? projectSummary.storage_mode : "not_persisted_this_session",
       store_migration_framework_status: storeMigration.migration_framework,
-      model_document_migration_status: modelDocumentMigrationEvidence(model, modelDocumentMigration, modelMigrationLedger).status
+      model_document_migration_status: modelDocumentMigrationEvidence(
+        model,
+        modelDocumentMigration,
+        modelMigrationLedger
+      ).status
     },
     round_trip_manifest: {
       category_count: categories.length,
@@ -332,7 +343,12 @@ function buildProjectValidationPacket({
       comparison_basis: "deterministic_unit_metadata_signature_from_restored_local_project_envelope"
     },
     unit_policy_evidence: unitPolicyEvidence,
-    service_operations: buildServiceOperations({ projectSummary, projectOperation, validationStatus, versionCheckStatus }),
+    service_operations: buildServiceOperations({
+      projectSummary,
+      projectOperation,
+      validationStatus,
+      versionCheckStatus
+    }),
     store_migration: storeMigration,
     model_document_migration: modelDocumentMigrationEvidence(model, modelDocumentMigration, modelMigrationLedger),
     storage_capability: storageCapability,
@@ -542,9 +558,7 @@ function buildServiceOperations({
     },
     {
       operation: "migrate",
-      operation_status: projectSummary
-        ? projectSummary.migration_status
-        : "not_run_no_local_snapshot_this_session",
+      operation_status: projectSummary ? projectSummary.migration_status : "not_run_no_local_snapshot_this_session",
       result_available: Boolean(projectSummary)
     }
   ];
@@ -600,11 +614,7 @@ function buildStoreMigrationEvidence({
   };
 }
 
-function category(
-  categoryName: string,
-  semanticEqualityStatus: string,
-  checkedRefCount: number
-): RoundTripCategory {
+function category(categoryName: string, semanticEqualityStatus: string, checkedRefCount: number): RoundTripCategory {
   return {
     category: categoryName,
     semantic_equality_status: semanticEqualityStatus,
@@ -619,8 +629,14 @@ function unitMetadataPresent(model: PreviewModel): boolean {
   return (
     Object.values(model.project.units).every((unit) => unit.length > 0) &&
     countUnitBearingRecords(model) > 0 &&
-    model.pipe_segments.every((segment) => Object.values(segment.section).every((quantity) => hasUnit(quantity))) &&
-    (model.materials ?? []).every((material) => hasUnit(material.elastic_modulus) && hasUnit(material.shear_modulus))
+	    model.pipe_segments.every((segment) => Object.values(segment.section).every((quantity) => hasUnit(quantity))) &&
+	    (model.materials ?? []).every((material) => hasUnit(material.elastic_modulus) && hasUnit(material.shear_modulus)) &&
+	    model.supports.every((support) =>
+	      supportUnitQuantities(support).every((quantity) => !quantity || hasUnit(quantity))
+	    ) &&
+	    model.components.every((component) =>
+	      componentUnitQuantities(component).every((quantity) => !quantity || hasUnit(quantity))
+	    )
   );
 }
 
@@ -631,7 +647,9 @@ function loadPayloadsHaveUnits(model: PreviewModel): boolean {
 }
 
 function provenancePresent(model: PreviewModel): boolean {
-  return provenanceRecords(model).every((record) => typeof record.provenance === "string" && record.provenance.length > 0);
+  return provenanceRecords(model).every(
+    (record) => typeof record.provenance === "string" && record.provenance.length > 0
+  );
 }
 
 function countUnitBearingRecords(model: PreviewModel): number {
@@ -641,10 +659,55 @@ function countUnitBearingRecords(model: PreviewModel): number {
     material.shear_modulus,
     material.thermal_expansion_coefficient
   ]);
+  const supportQuantities = model.supports.flatMap(supportUnitQuantities);
+  const componentQuantities = model.components.flatMap(componentUnitQuantities);
   const loadQuantities = model.load_cases.flatMap((loadCase) =>
     (loadCase.primitive_loads ?? []).map((primitiveLoad) => primitiveLoad.magnitude)
   );
-  return [...pipeSectionQuantities, ...materialQuantities, ...loadQuantities].filter(hasUnit).length;
+  return [
+    ...pipeSectionQuantities,
+    ...materialQuantities,
+    ...supportQuantities,
+    ...componentQuantities,
+    ...loadQuantities
+  ].filter(hasUnit).length;
+}
+
+function supportUnitQuantities(support: PreviewModel["supports"][number]): unknown[] {
+  return [
+    support.stiffness?.value,
+    support.properties?.linear_stiffness,
+    support.hanger?.stiffness?.value,
+    support.hanger?.installed_load,
+    support.hanger?.cold_load,
+    support.hanger?.hot_load,
+    support.hanger?.constant_load,
+    support.hanger?.travel_range,
+    support.hanger?.movement_limit
+  ];
+}
+
+function componentUnitQuantities(component: PreviewModel["components"][number]): unknown[] {
+  return [
+    component.geometry?.bend_radius,
+    component.geometry?.bend_angle,
+    component.geometry?.branch_run_size,
+    component.geometry?.branch_header_size,
+    component.geometry?.branch_connection_angle,
+    component.geometry?.branch_reinforcement_area,
+    component.geometry?.rigid_body_length,
+    component.geometry?.end_a_size,
+    component.geometry?.end_b_size,
+    component.geometry?.weight,
+    component.geometry?.center_of_gravity,
+    component.modifiers?.sif_user_value,
+    component.modifiers?.branch_header_sif_user_value,
+    component.modifiers?.branch_branch_sif_user_value,
+    component.modifiers?.flexibility_factor_user_value,
+    component.modifiers?.stiffness_scaling_user_value,
+    component.modifiers?.linear_stiffness_user_value,
+    component.modifiers?.rotational_stiffness_user_value
+  ];
 }
 
 function countProvenanceRecords(model: PreviewModel): number {
@@ -716,17 +779,38 @@ function validationDiagnostics({
       "Validation preflight is local technical-preview evidence and does not create professional acceptance."
     ),
     modelHashDiagnostic({ modelHash, modelHashIntegrity }),
-    projectEnvelopeHashDiagnostic({ projectEnvelopeHash, projectEnvelopeHashIntegrity }),
+    projectEnvelopeHashDiagnostic({
+      projectEnvelopeHash,
+      projectEnvelopeHashIntegrity
+    }),
     storeMigrationDiagnostic({ projectSummary, storageCapability })
   ];
   if (!storageCapability) {
-    diagnostics.push(diagnostic("PROJECT-VALIDATION-STORAGE-CAPABILITY-PENDING", "warning", "Local storage capability has not loaded yet."));
+    diagnostics.push(
+      diagnostic(
+        "PROJECT-VALIDATION-STORAGE-CAPABILITY-PENDING",
+        "warning",
+        "Local storage capability has not loaded yet."
+      )
+    );
   }
   if (!projectSummary) {
-    diagnostics.push(diagnostic("PROJECT-VALIDATION-SNAPSHOT-NOT-WRITTEN", "warning", "No local project snapshot is available for persisted round-trip evidence."));
+    diagnostics.push(
+      diagnostic(
+        "PROJECT-VALIDATION-SNAPSHOT-NOT-WRITTEN",
+        "warning",
+        "No local project snapshot is available for persisted round-trip evidence."
+      )
+    );
   }
   if (versionCheckStatus !== "supported_current_schema") {
-    diagnostics.push(diagnostic("PROJECT-VALIDATION-UNSUPPORTED-SCHEMA", "blocking", "Project schema version is not supported by this technical-preview preflight."));
+    diagnostics.push(
+      diagnostic(
+        "PROJECT-VALIDATION-UNSUPPORTED-SCHEMA",
+        "blocking",
+        "Project schema version is not supported by this technical-preview preflight."
+      )
+    );
   }
   return diagnostics;
 }
@@ -832,14 +916,18 @@ function professionalBoundary() {
 }
 
 function categoryStatus(categories: RoundTripCategory[], categoryName: string): string {
-  return categories.find((categoryItem) => categoryItem.category === categoryName)?.semantic_equality_status ?? "missing";
+  return (
+    categories.find((categoryItem) => categoryItem.category === categoryName)?.semantic_equality_status ?? "missing"
+  );
 }
 
 function operationStatus(
   serviceOperations: Array<{ operation: string; operation_status: string }>,
   operation: string
 ): string {
-  return serviceOperations.find((operationItem) => operationItem.operation === operation)?.operation_status ?? "missing";
+  return (
+    serviceOperations.find((operationItem) => operationItem.operation === operation)?.operation_status ?? "missing"
+  );
 }
 
 function unique(values: string[]): string[] {
@@ -851,5 +939,8 @@ function jsonDataHref(payload: unknown): string {
 }
 
 function safeFileToken(value: string): string {
-  return value.replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").toLowerCase();
+  return value
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
 }

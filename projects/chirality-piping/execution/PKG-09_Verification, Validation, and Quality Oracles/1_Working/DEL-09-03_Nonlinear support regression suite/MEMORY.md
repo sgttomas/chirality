@@ -25,10 +25,107 @@ Implemented a bounded nonlinear support regression suite for DEV-001 revision
 
 ## Remaining TBDs
 
-- Production release tolerance policy remains `TBD`.
-- Release thresholds for nonlinear support regression evidence remain `TBD`.
+- Force/displacement residual thresholds, sparse live-path thresholds,
+  product-preview non-active-set threshold axes, and external validation
+  thresholds remain `TBD`.
+- The current assembled validation seed has an accepted active-set
+  changed-support-count policy under `DEC-046-CV-B-active-set-count-validation-v1`.
+- The current invented product-preview nonlinear path has an accepted
+  active-set changed-support-count policy under
+  `DEC-046-CV-B-product-preview-active-set-count-v1`.
 - External validation claims remain `TBD`; this suite is software verification
   evidence only.
+
+## 2026-06-21 - TP-R4-D9-PRODPOLICY-001
+
+- Promoted the current invented product-preview nonlinear dense-loop
+  active-set-count convergence surface to
+  `DEC-046-CV-B-product-preview-active-set-count-v1`.
+- `core/product_physics` now uses `ConvergencePolicyStatus::Accepted`,
+  tolerance `0.0`, absolute floor `0.0`, and max iteration cap `4` for this
+  preview active-set-count surface, and records deterministic support-class
+  coverage in iteration-count metadata.
+- Updated `fixtures/product_preview/invented_mechanics_result.json` and the
+  product-preview service regression so the checked-in preview fixture no
+  longer emits `TOLERANCE_POLICY_TBD` for the active-set-count surface.
+- Boundary preserved: force/displacement threshold promotion, sparse live-path
+  behavior, external validation thresholds, release thresholds, R4 exit
+  readiness, lifecycle transitions, and professional/code-compliance claims
+  remain out of scope.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-PRODPOLICY-001.md`.
+
+## 2026-06-21 - TP-R4-D9-GAPREFRESH-001
+
+- Refreshed the derivative R4 readiness/gap packet after D-17 packet
+  preparation and product-preview active-set policy promotion.
+- The packet now records both `D-15` and `D-17` as prepared and awaiting human
+  ruling, and no longer points to D-17 decision preparation as the next
+  unblocked plan item.
+- Boundary preserved: planning/evidence text only; no D-15/D-17 ruling, sparse
+  live-path adoption, threshold promotion, R4 closure, lifecycle transition, or
+  professional/code-compliance claim.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-GAPREFRESH-001.md`.
+
+## 2026-06-21 - TP-R4-D9-FORCEDISPRESID-001
+
+- Added final-iteration force/displacement residual observations to the dense
+  nonlinear integration loop: max translation/rotation deltas, max
+  force/moment reaction deltas, free-DOF force/moment residuals, and the
+  existing active-set changed-support count.
+- Carried the observation rows into product-preview nonlinear support results
+  as non-combined evidence rows with `observed_residual_only` basis text.
+- Exposed `ForceDisplacementResidualObservation` and
+  `assembled_force_displacement_residual_observations()` from the nonlinear
+  benchmark crate, and recorded current assembled-fixture residual observations
+  in the hand-calc convergence note.
+- Boundary preserved: no force/displacement threshold is promoted; the governed
+  convergence policy remains
+  `DEC-046-CV-B-active-set-count-validation-v1` for active-set
+  changed-support-count validation-seed evidence only. Product-preview,
+  sparse live-path, and external validation thresholds remain `TBD`; `D-15`
+  and `D-17` remain pending unless separately ruled.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-FORCEDISPRESID-001.md`.
+
+## 2026-06-21 - TP-R4-D9-EXITGAP-001
+
+- Added derivative R4 readiness/gap packet
+  `plans/VERIFICATION_2026-06-21_r4_exit_gap.md` for PRD 22.5.
+- Verdict recorded: R4 is **not ready** for human exit review. Component
+  provenance appears in the current rendered report path and current assembled
+  nonlinear validation seeds converge under
+  `DEC-046-CV-B-active-set-count-validation-v1`, but D5 spring-hanger scope
+  remains gated by `D-15` and non-seed convergence-policy surfaces remain
+  outside the accepted policy.
+- The packet is derivative planning/evidence only; it does not close D9, close
+  R4, change lifecycle state, advance the target stage, or make release,
+  professional, certification, sealing, authentication, or code-compliance
+  claims.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-EXITGAP-001.md`.
+
+## 2026-06-21 - TP-R4-D9-CONVPOLICY-001
+
+- Promoted the governed DEC-046 convergence policy for the current assembled
+  validation seed only: `DEC-046-CV-B-active-set-count-validation-v1`, residual
+  basis active-set changed-support count, relative tolerance `0.0`, absolute
+  residual floor `0.0`, and max iteration cap `4` across one-way, gap,
+  lift-off, and friction classes.
+- Added machine-readable policy evidence at
+  `validation/benchmarks/nonlinear/convergence_policy.dec046.json` and exposed
+  `governed_convergence_policy_entries()` from the nonlinear benchmark crate.
+- Updated assembled fixture notes and convergence observations to cite the
+  accepted policy; the six assembled validation fixtures now run with
+  `ConvergencePolicyStatus::Accepted` and no longer emit `TolerancePolicyTbd`
+  on the validation-seed surface.
+- Boundaries preserved: product-preview convergence remains `TBD`; sparse live
+  path remains gated by `D-17`; force/displacement residual thresholds,
+  external validation thresholds, lifecycle transitions, release-readiness
+  claims, and professional/code-compliance claims remain out of scope.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-CONVPOLICY-001.md`.
 
 ## 2026-05-11 TP-RECON-01 Reconciliation
 
@@ -118,6 +215,37 @@ Durable context preserved after PKG-02 grounded finding resolution:
 - No lifecycle, review-disposition, release, acceptance, protected-content,
   private-data, professional-approval, or code-compliance surface was changed.
 
+## 2026-06-21 - TP-R4-D6-FRICTIONNORMAL-001
+
+- Added `NL-ASSEMBLED-FRICTION-DERIVED-NORMAL-ORIGINAL` to the nonlinear
+  benchmark inventory with hand-calc evidence in
+  `validation/hand_calcs/nonlinear/assembled_friction_derived_normal.md`.
+- The fixture uses public invented data only: a friction support derives normal
+  evidence from a named restrained `UY` support DOF; it does not use protected
+  standards data, catalog/default normal-force values, private data, or release
+  thresholds.
+- Focused validation passed for the nonlinear benchmark crate and focused
+  pytest regression, and the full five-surface evidence sweep passed; details
+  are recorded in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D6-FRICTIONNORMAL-001.md`.
+
+## 2026-06-21 - TP-R4-D9-FRICTIONSLIDE-001 assembled sliding friction
+
+- Added `NL-ASSEMBLED-FRICTION-SLIDE-ORIGINAL` to the nonlinear benchmark
+  inventory with explicit invented normal-reaction input, final `Sliding`
+  state, zero released reaction, and visible `TOLERANCE_POLICY_TBD`.
+- Added `validation/hand_calcs/nonlinear/assembled_friction_sliding.md` and
+  wired the focused nonlinear pytest requirement to that note.
+- Product-preview evidence now includes invented support `support:NL-130-FRIC`
+  and result-envelope rows for sliding state code, displacement, released
+  reaction, and explicit normal reaction evidence.
+- Evidence is recorded in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-FRICTIONSLIDE-001.md`.
+- Residuals remain: derived friction normal-force modeling, measured governed
+  convergence values, sparse live-path adoption, broader live-solver coverage,
+  the PRD section 16.2 branch-assembly benchmark, and the R4 exit evidence
+  package.
+
 ## 2026-06-06 - TP-PKG09-READINESS-GATE Review
 
 - Appended a `SELF_CHECK` readiness-gate section to `_REVIEW.md` and recorded
@@ -133,3 +261,56 @@ Durable context preserved after PKG-02 grounded finding resolution:
 ## 2026-06-17 - Lifecycle Housekeeping
 
 - Housekeeping lifecycle reset: `_STATUS.md` current state set to `IN_PROGRESS` to reflect current code development in progress. This does not change review, issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance status.
+
+## 2026-06-21 - TP-R4-D9-ASSEMBLEDSEED-001
+
+- Added the first D9 assembled global-loop validation seed for nonlinear supports under `DEC-044` and `DEC-046`.
+- Extended `validation/benchmarks/nonlinear/` beyond classifier-only fixtures with three two-node dense frame cases that call `core/solver/nonlinear_integration::solve_active_set_frame`: one-way deactivation, positive gap closure, and lift-off release.
+- Added public-original hand-calculation notes for the assembled cases under `validation/hand_calcs/nonlinear/` and extended the focused pytest readiness checks to require those notes, source references, invented-data boundary wording, visible `TolerancePolicyTbd`, and the `DEC-046-CV-B-assembled-validation-seed-TBD` convergence-policy reference.
+- D9 remains partial: friction normal-force model integration, measured class-tiered convergence values, sparse live-path adoption, broader live-solver coverage, the PRD section 16.2 branch-assembly benchmark, component provenance in the rendered report path, and the R4 exit evidence package remain open.
+- Validation in this WORKING_ITEMS run: nonlinear benchmark `cargo fmt --check` passed; nonlinear benchmark `cargo test` passed; focused nonlinear pytest passed; `git diff --check` passed; the five-surface `DEC-025` evidence sweep passed and wrote `validation/evidence/sweeps/SWEEP_20260621T073226Z_4cb593a09376-dirty.json`.
+
+## 2026-06-21 - TP-R4-D9-FRICTIONSEED-001
+
+- Added an assembled friction sticking seed for the dense active-set loop:
+  `NL-ASSEMBLED-FRICTION-STICK-ORIGINAL` uses explicit invented normal-reaction
+  evidence and remains `Sticking`.
+- Added `validation/hand_calcs/nonlinear/assembled_friction_sticking.md` and
+  extended the focused nonlinear pytest note requirements to include it.
+- Updated `core/product_physics` to surface explicit friction normal-reaction
+  evidence in mechanics result envelopes as
+  `nonlinear_support_friction_normal_reaction_input` while excluding that input
+  evidence from load-case combination algebra.
+- D6/D9 remain partial: the derived friction normal-force model, sliding
+  friction assembled/product validation, measured class-tiered convergence
+  values, sparse live-path adoption, broader live-solver coverage, the PRD
+  section 16.2 branch-assembly benchmark, component provenance in the rendered
+  report path, and the R4 exit evidence package remain open.
+- Validation in this WORKING_ITEMS run: nonlinear benchmark `cargo fmt --check`
+  passed; product physics `cargo fmt --check` passed; nonlinear benchmark
+  `cargo test` passed; focused nonlinear pytest passed; product physics
+  `cargo test` passed; `git diff --check` passed; the five-surface `DEC-025`
+  evidence sweep passed and wrote
+  `validation/evidence/sweeps/SWEEP_20260621T074615Z_a83ced203fac-dirty.json`.
+
+## 2026-06-21 - TP-R4-D9-CONVOBS-001
+
+- Added a structured convergence-observation inventory for the current
+  assembled nonlinear validation fixture set:
+  `assembled_convergence_observations()` in
+  `validation/benchmarks/nonlinear/src/lib.rs`.
+- Added `validation/hand_calcs/nonlinear/convergence_observations.md`; the
+  note records observed iteration counts and final residuals for one-way
+  deactivation, gap closure, lift-off release, explicit-normal friction
+  sticking/sliding, and derived-normal friction sticking.
+- Every observation preserves
+  `DEC-046-CV-B-assembled-validation-seed-TBD` and visible
+  `TolerancePolicyTbd`; governed class-tier threshold promotion remains
+  unresolved.
+- Focused validation passed for nonlinear benchmark rustfmt, nonlinear
+  benchmark tests, focused nonlinear pytest, and `git diff --check`; the full
+  five-surface evidence sweep passed and wrote
+  `validation/evidence/sweeps/SWEEP_20260621T095800Z_4d3bae24de12-dirty.json`.
+- Residuals remain: sparse live-path adoption (`D-17`), broader live-solver
+  coverage, governed threshold promotion under `DEC-046`, and the R4 exit
+  evidence package.

@@ -118,3 +118,65 @@ Durable context preserved after PKG-02 grounded finding resolution:
 ## 2026-06-17 - Lifecycle Housekeeping
 
 - Housekeeping lifecycle reset: `_STATUS.md` current state set to `IN_PROGRESS` to reflect current code development in progress. This does not change review, issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance status.
+
+## 2026-06-21 - TP-R4-D6-LIVEBUNDLE-001
+
+- Added product-preview live dense-loop regression coverage for a mixed
+  invented support bundle: one-way deactivation, gap closure, and
+  explicit-normal friction sliding in one `core/product_physics` solve.
+- The active-set classifier remains the per-iteration state oracle and now has
+  product-level evidence that multiple support classes can be consumed together
+  by the integration loop without adding hidden normal-force defaults or
+  generated friction loads.
+- Validation passed in the tranche run record:
+  `../_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D6-LIVEBUNDLE-001.md`.
+  Boundaries preserved: no sparse live-path binding, governed threshold
+  promotion, lifecycle transition, release-readiness claim, professional
+  approval, certification, sealing, authentication, or code-compliance claim.
+
+## 2026-06-21 - TP-R4-D6-FRICTIONNORMAL-001
+
+- D6 integration tranche added derived friction normal-reaction support in
+  `core/solver/nonlinear_integration`: callers may name a restrained linear
+  support DOF and the dense active-set loop uses the absolute reaction at that
+  DOF as friction normal evidence.
+- The active-set classifier itself remains the per-iteration state oracle; no
+  protected normal-force value, catalog/default support value, sparse live path,
+  release convergence value, lifecycle transition, or professional/code-
+  compliance claim was introduced.
+- Validation passed in the tranche run record:
+  `../_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D6-FRICTIONNORMAL-001.md`,
+  including the full five-surface evidence sweep summary
+  `validation/evidence/sweeps/SWEEP_20260621T092312Z_53b592aee006-dirty.json`.
+
+## 2026-06-21 - TP-R4-D6-LOOPCORE-001 ownership re-point
+
+- `DEC-044` re-pointed assembled nonlinear loop ownership to the PKG-04
+  integration tranche `core/solver/nonlinear_integration`, bridging DEL-04-04
+  and DEL-04-01.
+- DEL-04-04 remains the per-iteration active-set classifier/state oracle:
+  one-way, gap, lift-off/contact, and friction classification plus
+  report-facing active-set records and diagnostics.
+- Updated this deliverable's context, datasheet, and specification to remove
+  stale ownership language that made DEL-04-04 the owner of the assembled loop.
+- Boundaries preserved: no lifecycle transition, release-readiness claim,
+  professional approval, certification, sealing, authentication,
+  code-compliance claim, protected standards content, public defaults, or
+  private data was introduced.
+
+## 2026-06-21 - TP-R4-D9-FRICTIONSLIDE-001 friction sliding anti-chatter
+
+- Added a deterministic active-set iteration rule for friction supports:
+  when a support was already `Sliding`, and the released DOF still has nonzero
+  trial displacement, the iteration keeps the support in `Sliding` rather than
+  chattering back to `Sticking` solely because the released reaction is zero.
+- Direct per-state classification remains unchanged; the persistence rule is
+  scoped to iteration evaluation and documented in report assumptions.
+- Added focused crate coverage in `core/solver/nonlinear_supports` and
+  assembled-loop coverage in `core/solver/nonlinear_integration`.
+- Evidence is recorded in the PKG-04 run record
+  `../_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D9-FRICTIONSLIDE-001.md`.
+- Boundaries preserved: explicit invented normal input only; no derived
+  normal-force model, sparse live-path binding, measured convergence values,
+  lifecycle transition, release-readiness claim, professional approval,
+  certification, sealing, authentication, or code-compliance claim.

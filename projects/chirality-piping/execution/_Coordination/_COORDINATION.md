@@ -77,8 +77,8 @@ Baseline intake for every new session:
 - `plans/PLAN_2026-06-17_prd_completion.md` — the current completion plan
   (non-governing `PROPOSAL`, supersedes the 2026-06-10 plan) — for phase
   ordering, the dependency spine, the FR completion map, and the human
-  decision register `D-01..D-21`. Update this pointer when a successor plan
-  is accepted.
+  decision register `D-01..D-23` (`D-23` ruled by `DEC-048`). Update this
+  pointer when a successor plan is accepted.
 - `execution/_Coordination/_DECISIONS/_REGISTER.md` for decision-packet
   preparation status and rulings pending with the human project authority.
 - `execution/_Coordination/_COORDINATION.md`,
@@ -212,18 +212,21 @@ changes. Do not create a session-steering coordination state file.
 ## Application Integration And Issuance Phase
 
 The project has moved out of ordinary deliverable-by-deliverable buildout.
-Current local status discovery reports all deliverables as either `CHECKING`
-or `ISSUED`; `DEL-01-01` is the sole currently `ISSUED` deliverable and
-remains the accepted governance baseline unless a human-approved change path
-opens it.
+Do not infer lifecycle state from this coordination prose; run the local
+status-discovery command and use deliverable-local `_STATUS.md` files as the
+authority. The latest discovery during 2026-06-21 closeout reported
+`CHECKING=8`, `IN_PROGRESS=92`, and `ISSUED=1`; `DEL-01-01` is the sole
+currently `ISSUED` deliverable and remains the accepted governance baseline
+unless a human-approved change path opens it.
 
 Until all deliverables are `ISSUED`, ordinary development is app-centric:
-produce a working desktop application while using `CHECKING` deliverables,
-the current approved DAG pointer, and the decomposition as mature design
-authority. As of 2026-06-16, that pointer is still `DAG-006` pending human
-approval of `DAG-007`. `CHECKING`
-means design authority is mature; it does not mean the application has
-absorbed that deliverable's scope. The completion plan's FR map tracks
+produce a working desktop application while using the current approved DAG
+pointer, the decomposition, and deliverable-local records according to their
+discovered lifecycle state. As of 2026-06-16, that pointer is still `DAG-006`
+pending human approval of `DAG-007`. `CHECKING` means design authority is
+mature; it does not mean the application has absorbed that deliverable's
+scope. `IN_PROGRESS` records remain current development surfaces and must not
+be described as issued or closed. The completion plan's FR map tracks
 absorption toward the PRD yardstick. Formal issuance remains a separate
 human-gated lifecycle workflow.
 
@@ -244,24 +247,65 @@ that:
 - shows the professional, release, protected-content, and private-data
   boundaries visibly.
 
-**Current target stage — PRD R3 exit criterion (advanced 2026-06-12 by
-`DEC-035`, superseding the `DEC-029` hold).** A user can define a private,
-non-code rule pack and run checks from the GUI, with pass/fail blocked on
-missing inputs (PRD §22.4), reached through the completion plan's Phase C
-items. C1-C4 implementation is landed; the next ordinary R3-stage program is
-Phase C5, which prepares guided-workbench usability closure and packaged
-human-journey evidence before any R3 exit review. R2-stage evidence was reviewed per
-`plans/VERIFICATION_2026-06-12_r2_exit_chain.md` and the human packaged-pass
-attempts recorded in `apps/desktop/SMOKE.md` TP-MAC-141 (attempt 3:
-steps 1–5 pass; remainder blocked on authoring-journey usability, not
-function). **Two named blocking residuals must close before any R3 exit
-review:** verification finding F-4 (a completed human GUI journey in the
-packaged webview) and the authoring-journey usability finding (completion
-plan A3 row). **Update 2026-06-18:** the C5.7 packaged human pass was attempted and FAILED on usability (a wall of telemetry strings, three competing navs, a postage-stamp model); the human-approved repair tranche is **C5.7R, the workspace redesign** (`plans/PLAN_2026-06-18_workspace_redesign_c5_7.md`). **Update 2026-06-19:** C5.7R Inc 0-7 landed under `TP-R3UX-WORKSPACEREDESIGN-001` / SMOKE TP-MAC-272, `TP-R3UX-GRIDMODE-001` / SMOKE TP-MAC-273, and `TP-R3UX-PACKAGEKIT-002` / SMOKE TP-MAC-274. The next C5 action is the human C5.7 packaged re-pass (target SMOKE TP-MAC-189); F-4/A3 remain open until that human record passes or records the next bounded repair. Interactive authoring of user-created local models — applying editor
-operations to a persisted local model document — is in scope at this stage
-and does not violate the technical-preview boundary. The boundary
-prohibitions concern claims, network surfaces, and data classes, not
-interactivity:
+**Current target stage — PRD R4 exit criterion (advanced 2026-06-20 by
+`DEC-048`, after the R3 target-stage advance in `DEC-035`).** Phase C/R3
+evidence was reviewed through `plans/VERIFICATION_2026-06-20_r3_exit_chain.md`
+(`TP-R3VERIFY-001`, SMOKE TP-MAC-190), and the human project authority accepted
+the R3 exit review and R3-to-R4 target-stage advancement by approving `D-23`
+Option O-A. The ordinary in-stage program is now Phase D: piping components and
+nonlinear supports. R4 exit criteria are PRD §22.5: nonlinear support
+validation cases converge, and component provenance appears in reports. D1
+bend-object app absorption landed for the invented preview path across
+visibility/provenance (`TP-R4-D1-BENDVIS-001`) and
+mechanics/stress-recovery/report evidence (`TP-R4-D1-BENDSTRESS-001`). D2
+branch-object app absorption landed for the invented preview path through
+`TP-R4-D2-BRANCHSTRESS-001`. D3 rigid/semi-rigid component app absorption
+landed for the invented preview path through `TP-R4-D3-RIGIDVIS-001`, with
+`mechanics_geometry_only` data/provenance/diagnostic evidence and no
+frame-stiffness behavior change. D4 expansion-joint app absorption landed for
+the invented preview path through `TP-R4-D4-EJSTIFF-001`, with user-stiffness
+macro-element review rows and no full assembled global solve or pressure-thrust
+load generation claim. D5 spring-hanger user-data model evidence landed through
+`TP-R4-D5-HANGERDATA-001` under `DEC-049`, covering invented variable spring
+and constant-effort support records without catalog sizing, protected defaults,
+hidden support values, or professional/code-compliance claims. The loop-core
+slice
+`TP-R4-D6-LOOPCORE-001` added
+`core/solver/nonlinear_integration` as the dense assembled active-set loop owner
+under `DEC-044`/`DEC-046`, and `TP-R4-D6-PHYSINTEG-001` bound that dense loop
+into the invented product/app/result-envelope preview path for one explicit
+nonlinear support. `TP-R4-D9-ASSEMBLEDSEED-001` added the first assembled
+global-loop validation seed for one-way deactivation, gap closure, and lift-off
+release; `TP-R4-D9-FRICTIONSEED-001` and
+`TP-R4-D9-FRICTIONSLIDE-001` added explicit-normal friction sticking/sliding
+assembled and product-preview evidence. `TP-R4-D6-FRICTIONNORMAL-001` added
+derived friction normal-reaction evidence from named restrained support DOFs
+in the dense loop, product adapter, nonlinear benchmark inventory, and
+invented preview fixture. `TP-R4-D8-COMPPROVREPORT-001` added component
+provenance and missing-provenance warnings to the hash-bound rendered report
+path. `TP-R4-D9-BRANCHASSEMBLY-001` added the PRD §16.2 public-original
+three-member branch-assembly mechanics benchmark.
+`TP-R4-D9-CONVOBS-001` records structured observed convergence values for the
+current assembled nonlinear fixture set. `TP-R4-D9-CONVPOLICY-001` promotes the
+governed `DEC-046-CV-B-active-set-count-validation-v1` policy for that current
+assembled validation seed only: active-set changed-support-count residual,
+relative tolerance `0.0`, absolute floor `0.0`, max iteration cap `4`, keyed to
+one-way/gap/lift-off/friction classes. `TP-R4-D6-LIVEBUNDLE-001` added mixed
+one-way/gap/friction product live-loop coverage in one invented dense solve.
+Sparse live-path adoption, non-seed convergence thresholds, deeper
+spring-hanger behavior, and the R4 exit evidence package remain open. D7
+sparse live-path timing is ruled by
+`DEC-050`: add a live sparse evidence lane while dense remains default and
+profile-direct assembly/default promotion follow on. The remaining spine
+continues with D7 sparse evidence-lane adoption and broader D9 R4 validation
+evidence.
+`DAG-007` remains pending human approval; `_DAG/_LATEST.md` stays on
+`DAG-006`.
+
+Interactive authoring of user-created local models — applying editor
+operations to a persisted local model document — remains in scope and does not
+violate the technical-preview boundary. The boundary prohibitions concern
+claims, network surfaces, and data classes, not interactivity:
 
 - no cloud, daemon, network, telemetry, or repository-default private-data
   writes;
@@ -272,11 +316,10 @@ interactivity:
 - no release-readiness claims, professional approval claims, certification,
   sealing, authentication, or code-compliance claims.
 
-**Later stages.** After R3-stage evidence is recorded and human-reviewed,
-subsequent target stages follow the completion plan: R4 (piping components
-and nonlinear supports), R5 (engineering beta). Agents propose stage
-advancement with evidence; only a human-approved coordination update
-advances the target stage recorded here.
+**Later stages.** After R4-stage evidence is recorded and human-reviewed,
+subsequent target stages follow the completion plan: R5 (engineering beta).
+Agents propose stage advancement with evidence; only a human-approved
+coordination update advances the target stage recorded here.
 
 This standard is not a release gate, legal clearance, professional reliance
 record, or final `ISSUED` lifecycle decision.
@@ -303,12 +346,34 @@ bounded tranche.
 3. **Default candidate selection.** For ordinary development, select the
    highest-leverage application-integration tranche in this order:
    1. the earliest unblocked item on the completion plan's dependency spine
-      for the current target stage (R3/Phase C per `DEC-035`). C1-C4 are
-      landed; select Phase C5 R3 exit readiness and authoring-usability
-      closure before any Phase D work unless the human explicitly overrides.
-      The Phase B unit-aware-I/O remainder may run alongside only when it does
-      not block or displace C5, and the A3 usability lane now feeds directly
-      into C5's packaged human-journey closure evidence;
+      for the current target stage (R4/Phase D per `DEC-048`). C1-C4 and C5
+      are landed, and the R3 exit evidence was accepted through `D-23`.
+      Select Phase D/R4 work in plan order. D1 bend-object app absorption
+      landed for the invented preview path through `TP-R4-D1-BENDVIS-001` and
+      `TP-R4-D1-BENDSTRESS-001`; D2 branch-object app absorption landed through
+      `TP-R4-D2-BRANCHSTRESS-001`; D3 rigid/semi-rigid component app
+      absorption landed through `TP-R4-D3-RIGIDVIS-001`; D4 expansion-joint
+      app absorption landed through `TP-R4-D4-EJSTIFF-001`. D5 spring-hanger
+      user-data model evidence landed through `TP-R4-D5-HANGERDATA-001` under
+      `DEC-049`, with deeper catalog sizing and full constant-effort solve
+      behavior left outside that slice. The D6/D9 residuals after
+      `TP-R4-D6-LOOPCORE-001`, `TP-R4-D6-PHYSINTEG-001`,
+      `TP-R4-D6-LIVECOVER-001`, `TP-R4-D9-FRICTIONSEED-001`,
+      `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`,
+      `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVPOLICY-001`,
+      `TP-R4-D6-LIVEBUNDLE-001`, and the D8 rendered report-provenance slice
+      `TP-R4-D8-COMPPROVREPORT-001`;
+      `TP-R4-D9-CONVOBS-001` records observed convergence values for the
+      current assembled fixtures and `TP-R4-D9-CONVPOLICY-001` promotes the
+      governed active-set-count policy for that validation seed only.
+      `TP-R4-D7-SPARSELIVE-001` binds `core/solver/sparse_direct` into the
+      assembled nonlinear integration and product-preview reduced solve paths
+      as the `DEC-050` sparse evidence lane, with dense remaining default:
+      non-seed convergence thresholds, profile-direct sparse/default
+      promotion, deeper spring-hanger behavior, and the R4 exit evidence
+      package remain open under `DEC-044`/`DEC-046`/`DEC-050`. `D-20`
+      remains a Phase E lead-up decision; held `D-21` does not authorize
+      v0.2/R6/R7 scope;
    2. regression repair: failed or insufficient app tests, build breaks, or
       smoke-evidence gaps in already-landed surfaces;
    3. residual hardening (missing app-to-core seams, preview workflow gaps,
@@ -318,7 +383,7 @@ bounded tranche.
    hardening work ahead of an unblocked current-stage plan item without
    recording why in the tranche proposal.
 4. **Decision escalation.** When the next plan item is blocked by a human
-   decision (`D-01..D-21` in the completion plan, or any newly discovered
+   decision (`D-01..D-23` in the completion plan, or any newly discovered
    human-gated TBD):
    - if no decision packet exists, the tranche is a decision-preparation
      tranche: assemble options, evidence, impacts, and a recommendation

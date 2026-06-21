@@ -1,5 +1,40 @@
 # MEMORY - DEL-03-03 Bend and elbow component model fields
 
+## 2026-06-21 - TP-R4-D1-BENDSTRESS-001 bend multiplier parsing evidence
+
+WORKING_ITEMS landed the component-data side of the D1 bend mechanics/report
+residual. `core/product_physics` now parses preview `components`, validates
+bend/elbow geometry and user-entered modifier units/provenance, accepts the
+existing `"none"` fixture spelling only as a dimensionless input synonym, and
+preserves `mechanics_geometry_only` as the bend solver-consumption posture.
+
+Evidence: `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D1-BENDSTRESS-001.md`.
+Validation passed: product-physics Rust tests, desktop Vitest, desktop build,
+and Playwright e2e. No protected standards values, default SIF/flexibility
+tables, proprietary catalog values, private payloads, lifecycle state changes,
+release-readiness claims, professional approval, certification, sealing,
+authentication, or code-compliance claims were introduced.
+
+## 2026-06-20 - TP-R4-D1-BENDVIS-001 app absorption evidence
+
+WORKING_ITEMS recorded the first R4/D1 partial app-absorption slice for
+bend/elbow component fields. The invented preview fixture and desktop app now
+surface user-entered bend geometry, user SIF/flexibility values, source
+references, completeness evidence, and `mechanics_geometry_only` labels for the
+invented `component:C-110` bend.
+
+This updates the downstream app evidence for the existing DEL-03-03 contract:
+the fields are visible in the viewport/model/inspector/grid/editor contract,
+review diagnostics, unit/provenance witnesses, and native package evidence.
+The detailed run record is
+`_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R4-D1-BENDVIS-001.md`.
+
+D1 remains partially open. This slice does not add protected standards values,
+code-derived SIF/flexibility factors, proprietary catalog values, private
+library data, solver/kernel behavior, lifecycle promotion, release-readiness,
+professional approval, certification, sealing, authentication, or
+code-compliance claims.
+
 ## Session 2026-05-01
 
 Human project authority authorized ORCHESTRATOR to choose one bounded item and

@@ -1,4 +1,7 @@
 import {
+  Bot,
+  ClipboardCheck,
+  Crosshair,
   Database,
   FileWarning,
   FilePlus,
@@ -6,8 +9,10 @@ import {
   HardDrive,
   List,
   LockKeyhole,
+  Play,
   Save,
-  ShieldCheck
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 import type React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -58,7 +63,7 @@ import { SolvePanel } from "./features/solve/SolvePanel";
 import { StressNeutralExportPanel } from "./features/stress-neutral/StressNeutralExportPanel";
 import { TelemetryBoundaryPanel } from "./features/telemetry/TelemetryBoundaryPanel";
 import { ValidationEvidencePanel } from "./features/validation-evidence/ValidationEvidencePanel";
-import { PipeViewport } from "./features/viewport/PipeViewport";
+import { PipeViewport, type CreationTool } from "./features/viewport/PipeViewport";
 import {
   buildAnalysisRunPreview,
   buildPreviewComparison,
@@ -301,11 +306,13 @@ export function App() {
   // sections are summoned from the View menu and dismissed back to the viewport.
   const [activeSection, setActiveSection] = useState<WorkspaceSectionId | null>(null);
   const [openMenu, setOpenMenu] = useState<MenuId | null>(null);
-  // Collapsible spatial-core rails. Both default expanded, so existing layout,
-  // unit, and e2e behavior are unchanged; collapsing a rail hands its column
-  // width to the 3D viewport so the spatial core can dominate the surface.
-  const [treeCollapsed, setTreeCollapsed] = useState(false);
-  const [inspectorCollapsed, setInspectorCollapsed] = useState(false);
+  const [armedCreationTool, setArmedCreationTool] = useState<CreationTool | null>(null);
+  // Viewport-first agent-mediated shell (TP-R3UX-AGENTSHELL-001): the detailed
+  // tree and property inspector start tucked away so the primary screen is the
+  // 3D model plus a local review-only agent workbench. The detailed rails remain
+  // available from View for targeted investigation.
+  const [treeCollapsed, setTreeCollapsed] = useState(true);
+  const [inspectorCollapsed, setInspectorCollapsed] = useState(true);
   const [r3JourneyState, setR3JourneyState] = useState<R3JourneyState>(() => ({
     ...INITIAL_R3_JOURNEY_STATE
   }));
@@ -837,20 +844,28 @@ export function App() {
     }
   }
 
-  // Selecting any entity (from the tree, the 3D viewport, or the load-case
-  // manager) reveals its properties: re-open the inspector rail if it was
-  // collapsed, so the spatial core behaves like a CAD "click a part to see its
-  // details" surface.
   function handleSelectEntity(entity: EntityRef) {
     setSelection(entity);
-    setInspectorCollapsed(false);
+  }
+
+  function handleArmCreationTool(tool: CreationTool | null) {
+    setArmedCreationTool(tool);
+    if (!tool) return;
+    if (tool === "load") {
+      setActiveSection("loads");
+      return;
+    }
+    setActiveSection(null);
+    if (tool === "support") {
+      setInspectorCollapsed(false);
+    }
   }
 
   // Single command sink for both the in-DOM menu bar (tested) and the native
   // macOS menu bar (Tauri shell only). View commands summon/dismiss workspace
   // sections and toggle the tree/inspector rails; the spatial core (tree |
-  // viewport | inspector) is always present, so Insert commands collapse the
-  // dock to surface the relevant authoring pane.
+  // viewport | inspector) is always present, so Insert commands arm the same
+  // creation tools exposed in the command bar instead of acting as navigation.
   function runMenuCommand(command: MenuCommandId) {
     setOpenMenu(null);
     switch (command) {
@@ -891,13 +906,19 @@ export function App() {
         setInspectorCollapsed((collapsed) => !collapsed);
         break;
       case "insert.load":
-        setActiveSection("loads");
+        handleArmCreationTool("load");
         break;
       case "insert.node":
+        handleArmCreationTool("node");
+        break;
       case "insert.pipe":
+        handleArmCreationTool("pipe");
+        break;
       case "insert.support":
+        handleArmCreationTool("support");
+        break;
       case "insert.component":
-        setActiveSection(null);
+        handleArmCreationTool("component");
         break;
       case "analyze.run":
         void handleRun();
@@ -1017,6 +1038,7 @@ export function App() {
           projectBusy={projectBusy}
           running={running}
           treeCollapsed={treeCollapsed}
+          armedCreationTool={armedCreationTool}
           onCommand={runMenuCommand}
           onOpenMenu={setOpenMenu}
         />
@@ -1049,12 +1071,31 @@ export function App() {
           </div>
           <div className="workspace-pane workspace-pane-viewport">
             <PipeViewport
+              armedCreationTool={armedCreationTool}
               model={model}
+              onArmCreationTool={handleArmCreationTool}
               onQueueIntent={handleQueueEditorIntent}
               onSelect={handleSelectEntity}
               queuedIntents={editorIntents}
               result={result}
               selection={selection}
+            />
+          </div>
+          <div className="workspace-pane workspace-pane-agent">
+            <AgentWorkbenchPanel
+              appliedOperationCount={appliedOperations.length}
+              mechanicsReady={Boolean(result)}
+              model={model}
+              proposal={proposal}
+              queuedIntentCount={editorIntents.length}
+              running={running}
+              selection={selection}
+              selectedReviewTarget={selectedReviewTarget}
+              statusText={r3ExitJourneyStatus({ result, ruleCheckAggregate, projectSummary })}
+              onGenerateProposal={handleProposal}
+              onOpenOperations={() => setActiveSection("operations")}
+              onOpenResults={() => setActiveSection("results")}
+              onRunMechanics={handleRun}
             />
           </div>
           <div className="workspace-pane workspace-pane-inspector">
@@ -1432,6 +1473,7 @@ function MenuBar({
   projectBusy,
   running,
   treeCollapsed,
+  armedCreationTool,
   onCommand,
   onOpenMenu
 }: {
@@ -1445,6 +1487,7 @@ function MenuBar({
   projectBusy: boolean;
   running: boolean;
   treeCollapsed: boolean;
+  armedCreationTool: CreationTool | null;
   onCommand: (command: MenuCommandId) => void;
   onOpenMenu: (menu: MenuId | null) => void;
 }) {
@@ -1496,12 +1539,12 @@ function MenuBar({
       id: "insert",
       label: "Insert",
       items: [
-        { kind: "command", id: "insert.node", label: "Node" },
-        { kind: "command", id: "insert.pipe", label: "Pipe Run" },
-        { kind: "command", id: "insert.support", label: "Support" },
-        { kind: "command", id: "insert.component", label: "Component" },
+        { kind: "command", id: "insert.node", label: "Node", active: armedCreationTool === "node" },
+        { kind: "command", id: "insert.pipe", label: "Pipe Run", active: armedCreationTool === "pipe" },
+        { kind: "command", id: "insert.support", label: "Support", active: armedCreationTool === "support" },
+        { kind: "command", id: "insert.component", label: "Component", active: armedCreationTool === "component" },
         { kind: "separator" },
-        { kind: "command", id: "insert.load", label: "Load Case" }
+        { kind: "command", id: "insert.load", label: "Load Case", active: armedCreationTool === "load" }
       ]
     },
     {
@@ -1560,6 +1603,112 @@ function MenuBar({
         ))}
       </nav>
     </>
+  );
+}
+
+function AgentWorkbenchPanel({
+  appliedOperationCount,
+  mechanicsReady,
+  model,
+  proposal,
+  queuedIntentCount,
+  running,
+  selection,
+  selectedReviewTarget,
+  statusText,
+  onGenerateProposal,
+  onOpenOperations,
+  onOpenResults,
+  onRunMechanics
+}: {
+  appliedOperationCount: number;
+  mechanicsReady: boolean;
+  model: PreviewModel;
+  proposal: AgentProposal | null;
+  queuedIntentCount: number;
+  running: boolean;
+  selection: EntityRef;
+  selectedReviewTarget: SelectedReviewTarget | null;
+  statusText: string;
+  onGenerateProposal: () => void;
+  onOpenOperations: () => void;
+  onOpenResults: () => void;
+  onRunMechanics: () => void;
+}) {
+  const selectedTarget = selectedReviewTarget ? `${selectedReviewTarget.target_type}: ${selectedReviewTarget.id}` : "model";
+  return (
+    <section className="panel agent-workbench-panel" aria-label="Design agent workbench" data-testid="agent-workbench-panel">
+      <div className="agent-workbench-title">
+        <span className="agent-workbench-icon" aria-hidden="true">
+          <Bot size={18} />
+        </span>
+        <div>
+          <div className="panel-title">Design Agent</div>
+          <p data-testid="agent-workbench-status">{statusText}</p>
+        </div>
+      </div>
+
+      <div className="agent-focus-grid" aria-label="Agent focus">
+        <AgentFocusFact label="Selection" value={`${selection.type}: ${selection.id}`} testId="agent-focus-selection" />
+        <AgentFocusFact label="Target" value={selectedTarget} testId="agent-focus-target" />
+        <AgentFocusFact label="Queue" value={`${queuedIntentCount} queued / ${appliedOperationCount} applied`} testId="agent-focus-queue" />
+        <AgentFocusFact
+          label="Boundary"
+          value={boundaryValue(model, "professional_boundary")}
+          testId="agent-focus-boundary"
+        />
+      </div>
+
+      <div className="agent-action-grid" aria-label="Agent actions">
+        <button type="button" data-testid="agent-run-mechanics" onClick={onRunMechanics} disabled={running}>
+          <Play size={15} aria-hidden="true" />
+          Run
+        </button>
+        <button
+          type="button"
+          data-testid="agent-generate-proposal"
+          onClick={onGenerateProposal}
+          disabled={!mechanicsReady}
+          title={mechanicsReady ? undefined : "Run mechanics before generating a review proposal."}
+        >
+          <Sparkles size={15} aria-hidden="true" />
+          Propose
+        </button>
+        <button type="button" data-testid="agent-open-operations" onClick={onOpenOperations}>
+          <ClipboardCheck size={15} aria-hidden="true" />
+          Review
+        </button>
+        <button type="button" data-testid="agent-open-results" onClick={onOpenResults}>
+          <Crosshair size={15} aria-hidden="true" />
+          Inspect
+        </button>
+      </div>
+
+      <div className="agent-proposal-summary" data-testid="agent-proposal-summary">
+        {proposal ? (
+          <>
+            <strong>{proposal.proposal_id}</strong>
+            <span>{proposal.validation.application_status ?? "not_applied"}</span>
+            <small>{proposal.audit_boundary.requires_user_acceptance ? "requires_user_acceptance=true" : "requires_user_acceptance=false"}</small>
+          </>
+        ) : (
+          <>
+            <strong>No active proposal</strong>
+            <span>review_only_local_preview</span>
+            <small>accepted_model_state_mutated=false</small>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function AgentFocusFact({ label, value, testId }: { label: string; value: string; testId: string }) {
+  return (
+    <div className="agent-focus-fact" data-testid={testId} title={value}>
+      <span>{label}</span>
+      <strong>{value}</strong>
+    </div>
   );
 }
 

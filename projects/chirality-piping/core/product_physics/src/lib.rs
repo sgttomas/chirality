@@ -17,9 +17,22 @@ use open_pipe_stress_load_case_algebra::{
     AlgebraOperand, AlgebraQuantity, AlgebraResult, AnalysisStatus as AlgebraAnalysisStatus,
     CombinationTerm, FindingCode, RangeMode,
 };
+use open_pipe_stress_nonlinear_integration::{
+    solve_active_set_frame, ConvergenceControl, ConvergencePolicyStatus,
+    DerivedFrictionNormalReaction, FrictionNormalReaction, NonlinearFrameSolveInput,
+    NonlinearIntegrationError, NonlinearResidualObservation,
+};
+use open_pipe_stress_nonlinear_supports::{
+    ActivationSense, ActiveSetState, GapDirection, NonlinearSupport, NonlinearSupportBehavior,
+    SupportStateRecord,
+};
 use open_pipe_stress_primitive_loads::{
     prepare_loads, LoadDimension, LoadDirection, LoadQuantity, PrimitiveLoad, PrimitiveLoadCategory,
 };
+use open_pipe_stress_solver_diagnostics::{
+    DiagnosticSeverity as SolverDiagnosticSeverity, SolverDiagnostic, SolverDiagnosticCode,
+};
+use open_pipe_stress_sparse_direct::solve_symmetric_system;
 use open_pipe_stress_straight_pipe::{StraightPipeElement, StraightPipeSectionProperties};
 use open_pipe_stress_stress_recovery::{
     recover_stresses, AnalysisStatus, ForceResultants, PressureBasis, StressComponents,
@@ -33,6 +46,12 @@ use std::f64::consts::PI;
 mod validation;
 use validation::validate_model_inputs;
 
+const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
+    "DEC-046-CV-B-product-preview-active-set-count-v1";
+const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_MAX_ITERATIONS: usize = 4;
+const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_RESIDUAL_TOLERANCE: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_ABSOLUTE_FLOOR: f64 = 0.0;
+
 #[derive(Debug, Clone, Deserialize)]
 pub struct PreviewModel {
     pub schema_version: String,
@@ -42,6 +61,8 @@ pub struct PreviewModel {
     pub nodes: Vec<PreviewNode>,
     pub pipe_segments: Vec<PreviewPipe>,
     pub supports: Vec<PreviewSupport>,
+    #[serde(default)]
+    pub components: Vec<PreviewComponent>,
     #[serde(default)]
     pub materials: Vec<MaterialInput>,
     #[serde(default)]
@@ -104,6 +125,132 @@ pub struct Quantity {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+pub struct VectorQuantity {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+    #[allow(dead_code)]
+    pub unit: String,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct PreviewComponent {
+    pub id: String,
+    #[serde(default)]
+    pub label: Option<String>,
+    pub kind: String,
+    pub node: String,
+    #[serde(default)]
+    pub geometry: Option<ComponentGeometryInput>,
+    #[serde(default)]
+    pub modifiers: Option<ComponentModifierInput>,
+    #[serde(default)]
+    pub mechanics_interface: Option<ComponentMechanicsInterfaceInput>,
+    #[serde(default)]
+    pub provenance: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct ComponentGeometryInput {
+    #[serde(default)]
+    pub bend_radius: Option<Quantity>,
+    #[serde(default)]
+    pub bend_angle: Option<Quantity>,
+    #[serde(default)]
+    pub bend_plane_orientation: Option<String>,
+    #[serde(default)]
+    pub bend_geometry_source_reference: Option<String>,
+    #[serde(default)]
+    pub branch_header_pipe_ref: Option<String>,
+    #[serde(default)]
+    pub branch_branch_pipe_ref: Option<String>,
+    #[serde(default)]
+    pub branch_run_size: Option<Quantity>,
+    #[serde(default)]
+    pub branch_header_size: Option<Quantity>,
+    #[serde(default)]
+    pub branch_connection_angle: Option<Quantity>,
+    #[serde(default)]
+    pub branch_connection_type: Option<String>,
+    #[serde(default)]
+    pub branch_reinforcement_area: Option<Quantity>,
+    #[serde(default)]
+    pub branch_reinforcement_reference: Option<String>,
+    #[serde(default)]
+    pub branch_geometry_source_reference: Option<String>,
+    #[serde(default)]
+    pub rigid_pipe_ref: Option<String>,
+    #[serde(default)]
+    pub rigid_body_length: Option<Quantity>,
+    #[serde(default)]
+    pub end_a_size: Option<Quantity>,
+    #[serde(default)]
+    pub end_b_size: Option<Quantity>,
+    #[serde(default)]
+    pub weight: Option<Quantity>,
+    #[serde(default)]
+    pub center_of_gravity: Option<VectorQuantity>,
+    #[serde(default)]
+    pub connection_end_a_reference: Option<String>,
+    #[serde(default)]
+    pub connection_end_b_reference: Option<String>,
+    #[serde(default)]
+    pub stiffness_behavior_reference: Option<String>,
+    #[serde(default)]
+    pub rigid_component_source_reference: Option<String>,
+    #[serde(default)]
+    pub expansion_joint_pipe_ref: Option<String>,
+    #[serde(default)]
+    pub effective_area: Option<Quantity>,
+    #[serde(default)]
+    pub movement_limit: Option<Quantity>,
+    #[serde(default)]
+    pub hardware_reference: Option<String>,
+    #[serde(default)]
+    pub manufacturer_reference: Option<String>,
+    #[serde(default)]
+    pub pressure_thrust_reference: Option<String>,
+    #[serde(default)]
+    pub expansion_joint_source_reference: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct ComponentModifierInput {
+    #[serde(default)]
+    pub sif_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub branch_header_sif_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub branch_branch_sif_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub flexibility_factor_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub stiffness_scaling_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub linear_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub rotational_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub axial_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub lateral_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub angular_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub torsional_stiffness_user_value: Option<Quantity>,
+    #[serde(default)]
+    pub source_reference: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct ComponentMechanicsInterfaceInput {
+    #[serde(default)]
+    pub solver_consumption: Option<String>,
+    #[serde(default)]
+    pub rule_check_consumption: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
 pub struct PreviewSupport {
     pub id: String,
     pub node: String,
@@ -113,6 +260,10 @@ pub struct PreviewSupport {
     #[serde(default)]
     pub stiffness: Option<SupportStiffnessInput>,
     #[serde(default)]
+    pub hanger: Option<SpringHangerInput>,
+    #[serde(default)]
+    pub nonlinear: Option<NonlinearSupportInput>,
+    #[serde(default)]
     pub provenance: Option<String>,
 }
 
@@ -120,6 +271,62 @@ pub struct PreviewSupport {
 pub struct SupportStiffnessInput {
     pub dof: String,
     pub value: Quantity,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct SpringHangerInput {
+    #[serde(default)]
+    pub hanger_type: Option<String>,
+    #[serde(default)]
+    pub stiffness: Option<SupportStiffnessInput>,
+    #[serde(default)]
+    pub installed_load: Option<Quantity>,
+    #[serde(default)]
+    pub cold_load: Option<Quantity>,
+    #[serde(default)]
+    pub hot_load: Option<Quantity>,
+    #[serde(default)]
+    pub constant_load: Option<Quantity>,
+    #[serde(default)]
+    pub travel_range: Option<Quantity>,
+    #[serde(default)]
+    pub movement_limit: Option<Quantity>,
+    #[serde(default)]
+    pub manufacturer_reference: Option<String>,
+    #[serde(default)]
+    pub source_reference: Option<String>,
+    #[serde(default)]
+    pub load_side_review_reference: Option<String>,
+    #[serde(default)]
+    pub mechanics_consumption: Option<String>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct NonlinearSupportInput {
+    pub behavior: String,
+    pub dof: String,
+    #[serde(default)]
+    pub initial_state: Option<String>,
+    #[serde(default)]
+    pub active_when: Option<String>,
+    #[serde(default)]
+    pub contact_when: Option<String>,
+    #[serde(default)]
+    pub closes_when: Option<String>,
+    #[serde(default)]
+    pub gap: Option<Quantity>,
+    #[serde(default)]
+    pub friction_coefficient: Option<Quantity>,
+    #[serde(default)]
+    pub normal_reaction: Option<Quantity>,
+    #[serde(default)]
+    pub normal_reaction_source: Option<FrictionNormalReactionSourceInput>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct FrictionNormalReactionSourceInput {
+    pub support_ref: String,
+    pub dof: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -219,6 +426,9 @@ pub struct Summary {
     pub segment_count: usize,
     pub support_count: usize,
     pub load_case_count: usize,
+    pub component_stress_modifier_count: usize,
+    pub component_user_stiffness_macro_element_count: usize,
+    pub spring_hanger_user_input_count: usize,
     pub max_displacement: Option<LocatedQuantity>,
     pub max_open_formula_stress: Option<LocatedQuantity>,
 }
@@ -288,6 +498,10 @@ struct BuiltModel {
     pipes: Vec<StraightPipeElement>,
     frame_elements: Vec<FrameElement>,
     supports: Vec<LinearSupport>,
+    nonlinear_supports: Vec<NonlinearSupport>,
+    nonlinear_initial_states: Vec<SupportStateRecord>,
+    nonlinear_friction_normal_reactions: Vec<FrictionNormalReaction>,
+    nonlinear_derived_friction_normal_reactions: Vec<DerivedFrictionNormalReaction>,
     sections: HashMap<String, DerivedSection>,
 }
 
@@ -297,6 +511,7 @@ struct LoadCaseSolve {
     results: Vec<ResultItem>,
     max_displacement: Option<LocatedQuantity>,
     max_stress: Option<LocatedQuantity>,
+    component_stress_modifier_count: usize,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -440,6 +655,10 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
     let max_stress = load_case_solves
         .first()
         .and_then(|solve| solve.max_stress.clone());
+    let component_stress_modifier_count = load_case_solves
+        .iter()
+        .map(|solve| solve.component_stress_modifier_count)
+        .sum();
     let mut results = Vec::new();
     let mut rows_by_base_id: HashMap<String, HashMap<String, ResultItem>> = HashMap::new();
     for (index, solve) in load_case_solves.into_iter().enumerate() {
@@ -462,6 +681,10 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
         }
     }
     append_combination_results(&model, &rows_by_base_id, &mut results, &mut diagnostics);
+    let component_user_stiffness_macro_element_count =
+        append_expansion_joint_user_stiffness_results(&model, &mut results);
+    let spring_hanger_user_input_count =
+        append_spring_hanger_user_input_results(&model, &mut results);
 
     if let Some(maximum) = &max_displacement {
         if maximum.value > 5.0 {
@@ -497,6 +720,9 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
             segment_count: model.pipe_segments.len(),
             support_count: model.supports.len(),
             load_case_count: model.load_cases.len(),
+            component_stress_modifier_count,
+            component_user_stiffness_macro_element_count,
+            spring_hanger_user_input_count,
             max_displacement,
             max_open_formula_stress: max_stress,
         },
@@ -533,6 +759,7 @@ fn solve_load_case(
             results: Vec::new(),
             max_displacement: None,
             max_stress: None,
+            component_stress_modifier_count: 0,
         });
     }
 
@@ -569,6 +796,14 @@ fn solve_load_case(
     }
 
     let mut results = Vec::new();
+    append_sparse_live_path_evidence(
+        &mut results,
+        diagnostics,
+        &load_case.id,
+        &reduced.stiffness,
+        &reduced.force,
+        &reduced_displacements,
+    );
     let mut max_displacement = None;
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
@@ -637,7 +872,17 @@ fn solve_load_case(
         }
     }
 
+    append_nonlinear_support_loop_results(
+        &mut results,
+        diagnostics,
+        built,
+        restrained_dofs,
+        &force,
+        load_case,
+    );
+
     let mut max_stress = None;
+    let mut component_stress_modifier_count = 0;
     for (pipe_index, pipe) in built.pipes.iter().enumerate() {
         let local = match pipe.recover_local_forces_from_global_model(&displacements) {
             Ok(local) => local,
@@ -792,6 +1037,15 @@ fn solve_load_case(
                 metadata: None,
             });
         }
+        component_stress_modifier_count += append_component_stress_multiplier_results(
+            &mut results,
+            diagnostics,
+            model,
+            &pipe.element_id,
+            &end_i_stress,
+            &end_j_stress,
+            include_pressure_longitudinal,
+        );
     }
 
     Ok(LoadCaseSolve {
@@ -799,7 +1053,883 @@ fn solve_load_case(
         results,
         max_displacement,
         max_stress,
+        component_stress_modifier_count,
     })
+}
+
+#[derive(Debug, Default)]
+struct NonlinearSupportBuild {
+    supports: Vec<NonlinearSupport>,
+    initial_states: Vec<SupportStateRecord>,
+    friction_normal_reactions: Vec<FrictionNormalReaction>,
+    derived_friction_normal_reactions: Vec<DerivedFrictionNormalReaction>,
+}
+
+fn append_nonlinear_support_loop_results(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    built: &BuiltModel,
+    restrained_dofs: &[usize],
+    force: &[f64],
+    load_case: &PreviewLoadCase,
+) {
+    if built.nonlinear_supports.is_empty() {
+        return;
+    }
+
+    let support_classes = product_preview_policy_support_classes(&built.nonlinear_supports);
+    let support_classes_basis = support_classes.join(",");
+    let convergence = match product_preview_convergence_control() {
+        Ok(convergence) => convergence,
+        Err(error) => {
+            diagnostics.push(nonlinear_loop_blocked_diag(&load_case.id, error));
+            return;
+        }
+    };
+
+    let input = NonlinearFrameSolveInput {
+        node_count: built.nodes.len(),
+        elements: built.frame_elements.clone(),
+        force: force.to_vec(),
+        base_restrained_dofs: restrained_dofs.to_vec(),
+        nonlinear_supports: built.nonlinear_supports.clone(),
+        initial_states: built.nonlinear_initial_states.clone(),
+        friction_normal_reactions: built.nonlinear_friction_normal_reactions.clone(),
+        derived_friction_normal_reactions: built
+            .nonlinear_derived_friction_normal_reactions
+            .clone(),
+        convergence,
+    };
+
+    match solve_active_set_frame(&input) {
+        Ok(solve) => {
+            for (index, solver_diagnostic) in solve.diagnostics.iter().enumerate() {
+                diagnostics.push(product_diag_from_solver_diag(
+                    solver_diagnostic,
+                    &load_case.id,
+                    index,
+                ));
+            }
+            let final_residual = solve
+                .iterations
+                .last()
+                .map(|iteration| iteration.active_set.residual_norm)
+                .unwrap_or(0.0);
+            append_nonlinear_scalar_result(
+                results,
+                "result:nonlinear-support:iteration-count",
+                "nonlinear_support_active_set_iteration_count",
+                solve.iterations.len() as f64,
+                "count",
+                "nonlinear_supports",
+                "active_set_iteration_count",
+                "load_case",
+                &format!(
+                    "dense_active_set_loop; policy_ref={}; policy_status=accepted; support_count={}; support_classes={}",
+                    solve.policy_ref,
+                    built.nonlinear_supports.len(),
+                    support_classes_basis
+                ),
+                "counts completed dense active-set linearization iterations",
+            );
+            append_nonlinear_scalar_result(
+                results,
+                "result:nonlinear-support:final-residual-count",
+                "nonlinear_support_active_set_final_residual_count",
+                final_residual,
+                "count",
+                "nonlinear_supports",
+                "active_set_final_residual_count",
+                "load_case",
+                &format!(
+                    "dense_active_set_loop; policy_ref={}; residual_is_changed_support_count",
+                    solve.policy_ref
+                ),
+                "zero means no nonlinear support state changed in the final iteration",
+            );
+            append_nonlinear_scalar_result(
+                results,
+                "result:nonlinear-support:converged-flag",
+                "nonlinear_support_active_set_converged_flag",
+                if solve.converged { 1.0 } else { 0.0 },
+                "boolean",
+                "nonlinear_supports",
+                "active_set_converged_flag",
+                "load_case",
+                &format!(
+                    "dense_active_set_loop; policy_ref={}; policy_status=accepted; residual_is_changed_support_count",
+                    solve.policy_ref
+                ),
+                "1 means the active-set state-change residual satisfied the supplied preview tolerance",
+            );
+            if let Some(final_iteration) = solve.iterations.last() {
+                append_nonlinear_residual_observation_results(
+                    results,
+                    &final_iteration.residuals,
+                    &solve.policy_ref,
+                );
+            }
+            append_nonlinear_friction_normal_evidence(
+                results,
+                &built.nonlinear_friction_normal_reactions,
+                &built.nonlinear_derived_friction_normal_reactions,
+                &solve.reactions,
+                &solve.policy_ref,
+            );
+
+            for state in &solve.final_states {
+                let Some(support) = built
+                    .nonlinear_supports
+                    .iter()
+                    .find(|candidate| candidate.support_id == state.support_id)
+                else {
+                    continue;
+                };
+                let global = support.node_index * DOF_PER_NODE + dof_index(support.dof);
+                let suffix = stable_suffix(&support.support_id);
+                let dof = support.dof.as_str();
+                append_nonlinear_scalar_result(
+                    results,
+                    &format!("result:nonlinear-support:{suffix}:state-code"),
+                    "nonlinear_support_active_set_state_code",
+                    active_set_state_code(state.state),
+                    "state_code",
+                    &support.support_id,
+                    "active_set_state_code",
+                    dof,
+                    &format!(
+                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        solve.policy_ref,
+                        state.state.as_str()
+                    ),
+                    "0=inactive, 1=active, 2=sticking, 3=sliding",
+                );
+                let displacement_scale = if support.dof.is_translational() {
+                    1000.0
+                } else {
+                    1.0
+                };
+                let displacement_unit = if support.dof.is_translational() {
+                    "mm"
+                } else {
+                    "rad"
+                };
+                append_nonlinear_scalar_result(
+                    results,
+                    &format!("result:nonlinear-support:{suffix}:{dof}-displacement"),
+                    "nonlinear_support_final_displacement",
+                    solve.displacements[global] * displacement_scale,
+                    displacement_unit,
+                    &support.support_id,
+                    "nonlinear_support_final_displacement",
+                    dof,
+                    &format!(
+                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        solve.policy_ref,
+                        state.state.as_str()
+                    ),
+                    "positive value follows the global frame DOF sign convention",
+                );
+                let reaction_unit = if support.dof.is_translational() {
+                    "N"
+                } else {
+                    "N*m"
+                };
+                append_nonlinear_scalar_result(
+                    results,
+                    &format!("result:nonlinear-support:{suffix}:{dof}-reaction"),
+                    "nonlinear_support_final_reaction",
+                    solve.reactions[global],
+                    reaction_unit,
+                    &support.support_id,
+                    "nonlinear_support_final_reaction",
+                    dof,
+                    &format!(
+                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        solve.policy_ref,
+                        state.state.as_str()
+                    ),
+                    "positive value follows the global frame DOF reaction sign convention",
+                );
+                diagnostics.push(diag(
+                    &format!(
+                        "diagnostic:nonlinear:{}:{}:state",
+                        stable_suffix(&load_case.id),
+                        suffix
+                    ),
+                    "NONLINEAR_SUPPORT_STATE_REVIEW",
+                    "info",
+                    format!(
+                        "nonlinear support {} ended in {} state for load case {}; dense preview loop evidence only",
+                        support.support_id,
+                        state.state.as_str(),
+                        load_case.id
+                    ),
+                    vec![support.support_id.clone(), load_case.id.clone()],
+                ));
+            }
+
+            diagnostics.push(diag(
+                &format!(
+                    "diagnostic:nonlinear:{}:loop",
+                    stable_suffix(&load_case.id)
+                ),
+                if solve.converged {
+                    "NONLINEAR_SUPPORT_LOOP_CONVERGED"
+                } else {
+                    "NONLINEAR_SUPPORT_LOOP_NOT_CONVERGED"
+                },
+                if solve.converged { "info" } else { "warning" },
+                format!(
+                    "dense nonlinear support active-set preview completed {} iteration(s); final residual count {}; accepted active-set-count policy_ref={}; force/displacement and release thresholds remain TBD",
+                    solve.iterations.len(),
+                    final_residual,
+                    solve.policy_ref
+                ),
+                vec![load_case.id.clone(), "DEC-046".to_string()],
+            ));
+        }
+        Err(error) => diagnostics.push(nonlinear_loop_blocked_diag(&load_case.id, error)),
+    }
+}
+
+fn product_preview_convergence_control() -> Result<ConvergenceControl, NonlinearIntegrationError> {
+    ConvergenceControl::new(
+        DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF,
+        ConvergencePolicyStatus::Accepted,
+        DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_RESIDUAL_TOLERANCE,
+        DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_ABSOLUTE_FLOOR,
+        DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_MAX_ITERATIONS,
+    )
+}
+
+fn product_preview_policy_support_classes(supports: &[NonlinearSupport]) -> Vec<&'static str> {
+    let mut classes = supports
+        .iter()
+        .map(|support| match support.behavior {
+            NonlinearSupportBehavior::OneWay { .. } => "one_way",
+            NonlinearSupportBehavior::Gap { .. } => "gap",
+            NonlinearSupportBehavior::LiftOff { .. } => "lift_off",
+            NonlinearSupportBehavior::Friction => "friction",
+        })
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect::<Vec<_>>();
+    classes.sort_unstable();
+    classes
+}
+
+fn append_sparse_live_path_evidence(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    load_case_id: &str,
+    reduced_stiffness: &[Vec<f64>],
+    reduced_force: &[f64],
+    dense_solution: &[f64],
+) {
+    let sparse = match solve_symmetric_system(reduced_stiffness, reduced_force) {
+        Ok(sparse) => sparse,
+        Err(error) => {
+            diagnostics.push(diag(
+                &format!("diagnostic:sparse-live:{}:unavailable", stable_suffix(load_case_id)),
+                "SPARSE_LIVE_PATH_EVIDENCE_UNAVAILABLE",
+                "warning",
+                format!(
+                    "DEC-050 sparse evidence lane could not observe load case {load_case_id}; dense solve remains the default product path and parity oracle: {error}"
+                ),
+                vec![load_case_id.to_string(), "DEC-050".to_string()],
+            ));
+            return;
+        }
+    };
+    let max_abs_dense_sparse_solution_delta = max_abs_delta(dense_solution, &sparse.solution);
+    let dense_scale = max_abs_value(dense_solution);
+    let relative_dense_sparse_solution_delta = if dense_scale > 0.0 {
+        max_abs_dense_sparse_solution_delta / dense_scale
+    } else {
+        max_abs_dense_sparse_solution_delta
+    };
+    let sparse_residual =
+        max_abs_linear_residual(reduced_stiffness, &sparse.solution, reduced_force);
+
+    results.push(ResultItem {
+        id: "result:sparse-live:dense-parity-relative-delta".to_string(),
+        kind: "sparse_live_path_dense_parity_relative_delta".to_string(),
+        value: round6(relative_dense_sparse_solution_delta),
+        unit: "unitless".to_string(),
+        entity_ref: "solver:sparse_direct".to_string(),
+        basis_ref: None,
+        source_result_refs: Vec::new(),
+        metadata: Some(ResultMetadata {
+            component: "sparse_live_path".to_string(),
+            coordinate_system: "reduced_system".to_string(),
+            location: "load_case".to_string(),
+            basis: format!(
+                "DEC-050 sparse_evidence_lane; dense_default=true; dense_parity_oracle=true; solver=core/solver/sparse_direct; ordering=reverse_cuthill_mckee; reduced_dofs={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; max_abs_dense_sparse_delta={}; max_abs_sparse_residual={}; nonpositive_pivots={}; profile_direct_assembly=follow_on; default_sparse_promotion=follow_on",
+                sparse.solution.len(),
+                sparse.original_profile_entry_count,
+                sparse.ordered_profile_entry_count,
+                sparse.original_max_half_bandwidth,
+                sparse.ordered_max_half_bandwidth,
+                round6(max_abs_dense_sparse_solution_delta),
+                round6(sparse_residual),
+                sparse.factorization.nonpositive_pivot_count
+            ),
+            sign_convention:
+                "unitless max absolute dense-sparse solution delta divided by max dense solution magnitude; no release threshold asserted"
+                    .to_string(),
+        }),
+    });
+}
+
+fn append_nonlinear_scalar_result(
+    results: &mut Vec<ResultItem>,
+    id: &str,
+    kind: &str,
+    value: f64,
+    unit: &str,
+    entity_ref: &str,
+    component: &str,
+    location: &str,
+    basis: &str,
+    sign_convention: &str,
+) {
+    results.push(ResultItem {
+        id: id.to_string(),
+        kind: kind.to_string(),
+        value: round6(value),
+        unit: unit.to_string(),
+        entity_ref: entity_ref.to_string(),
+        basis_ref: None,
+        source_result_refs: Vec::new(),
+        metadata: Some(ResultMetadata {
+            component: component.to_string(),
+            coordinate_system: "solver_iteration".to_string(),
+            location: location.to_string(),
+            basis: basis.to_string(),
+            sign_convention: sign_convention.to_string(),
+        }),
+    });
+}
+
+fn append_nonlinear_residual_observation_results(
+    results: &mut Vec<ResultItem>,
+    residuals: &NonlinearResidualObservation,
+    policy_ref: &str,
+) {
+    let basis = format!(
+        "dense_active_set_loop; policy_ref={policy_ref}; observed_residual_only; threshold=TBD"
+    );
+    if let Some(value) = residuals.max_abs_translation_delta_from_previous {
+        append_nonlinear_scalar_result(
+            results,
+            "result:nonlinear-support:max-translation-delta",
+            "nonlinear_support_observed_max_translation_delta",
+            value * 1000.0,
+            "mm",
+            "nonlinear_supports",
+            "observed_max_translation_delta",
+            "final_iteration",
+            &basis,
+            "nonnegative max absolute translational displacement change from the previous iteration",
+        );
+    }
+    if let Some(value) = residuals.max_abs_rotation_delta_from_previous {
+        append_nonlinear_scalar_result(
+            results,
+            "result:nonlinear-support:max-rotation-delta",
+            "nonlinear_support_observed_max_rotation_delta",
+            value,
+            "rad",
+            "nonlinear_supports",
+            "observed_max_rotation_delta",
+            "final_iteration",
+            &basis,
+            "nonnegative max absolute rotational displacement change from the previous iteration",
+        );
+    }
+    if let Some(value) = residuals.max_abs_force_reaction_delta_from_previous {
+        append_nonlinear_scalar_result(
+            results,
+            "result:nonlinear-support:max-force-reaction-delta",
+            "nonlinear_support_observed_max_force_reaction_delta",
+            value,
+            "N",
+            "nonlinear_supports",
+            "observed_max_force_reaction_delta",
+            "final_iteration",
+            &basis,
+            "nonnegative max absolute translational reaction change from the previous iteration",
+        );
+    }
+    if let Some(value) = residuals.max_abs_moment_reaction_delta_from_previous {
+        append_nonlinear_scalar_result(
+            results,
+            "result:nonlinear-support:max-moment-reaction-delta",
+            "nonlinear_support_observed_max_moment_reaction_delta",
+            value,
+            "N*m",
+            "nonlinear_supports",
+            "observed_max_moment_reaction_delta",
+            "final_iteration",
+            &basis,
+            "nonnegative max absolute rotational reaction change from the previous iteration",
+        );
+    }
+    append_nonlinear_scalar_result(
+        results,
+        "result:nonlinear-support:free-dof-force-residual",
+        "nonlinear_support_observed_free_dof_force_residual",
+        residuals.max_abs_free_dof_force_residual,
+        "N",
+        "nonlinear_supports",
+        "observed_free_dof_force_residual",
+        "final_iteration",
+        &basis,
+        "nonnegative max absolute translational free-DOF equilibrium residual in the final linearized solve",
+    );
+    append_nonlinear_scalar_result(
+        results,
+        "result:nonlinear-support:free-dof-moment-residual",
+        "nonlinear_support_observed_free_dof_moment_residual",
+        residuals.max_abs_free_dof_moment_residual,
+        "N*m",
+        "nonlinear_supports",
+        "observed_free_dof_moment_residual",
+        "final_iteration",
+        &basis,
+        "nonnegative max absolute rotational free-DOF equilibrium residual in the final linearized solve",
+    );
+}
+
+fn nonlinear_loop_blocked_diag(load_case_id: &str, error: NonlinearIntegrationError) -> Diagnostic {
+    diag(
+        &format!(
+            "diagnostic:nonlinear:{}:blocked",
+            stable_suffix(load_case_id)
+        ),
+        "NONLINEAR_SUPPORT_LOOP_BLOCKED",
+        "blocking",
+        format!("nonlinear support dense preview loop could not run: {error}"),
+        vec![load_case_id.to_string()],
+    )
+}
+
+fn product_diag_from_solver_diag(
+    diagnostic: &SolverDiagnostic,
+    load_case_id: &str,
+    index: usize,
+) -> Diagnostic {
+    let code = solver_diag_code(diagnostic.code);
+    let mut affected_refs = vec![load_case_id.to_string()];
+    if let Some(affected_ref) = &diagnostic.affected_ref {
+        affected_refs.push(affected_ref.clone());
+    }
+    diag(
+        &format!(
+            "diagnostic:nonlinear:{}:{}:{}",
+            stable_suffix(load_case_id),
+            index + 1,
+            stable_suffix(code)
+        ),
+        code,
+        solver_diag_severity(diagnostic.severity),
+        diagnostic.message.clone(),
+        affected_refs,
+    )
+}
+
+fn solver_diag_code(code: SolverDiagnosticCode) -> &'static str {
+    match code {
+        SolverDiagnosticCode::SingularSystem => "SOLVER_SINGULAR_SYSTEM",
+        SolverDiagnosticCode::IllConditionedSystem => "SOLVER_ILL_CONDITIONED_SYSTEM",
+        SolverDiagnosticCode::ConditioningFailure => "SOLVER_CONDITIONING_FAILURE",
+        SolverDiagnosticCode::InvalidRestraint => "SOLVER_INVALID_RESTRAINT",
+        SolverDiagnosticCode::InvalidModelTopology => "SOLVER_INVALID_MODEL_TOPOLOGY",
+        SolverDiagnosticCode::InvalidNumericInput => "SOLVER_INVALID_NUMERIC_INPUT",
+        SolverDiagnosticCode::NonConvergence => "NONLINEAR_SUPPORT_NONCONVERGENCE",
+        SolverDiagnosticCode::NonPositivePivot => "SOLVER_NONPOSITIVE_PIVOT",
+        SolverDiagnosticCode::SparseSolverTbd => "SPARSE_SOLVER_TBD",
+        SolverDiagnosticCode::TolerancePolicyTbd => "TOLERANCE_POLICY_TBD",
+    }
+}
+
+fn solver_diag_severity(severity: SolverDiagnosticSeverity) -> &'static str {
+    match severity {
+        SolverDiagnosticSeverity::Info => "info",
+        SolverDiagnosticSeverity::Warning => "warning",
+        SolverDiagnosticSeverity::Blocking | SolverDiagnosticSeverity::Failure => "blocking",
+    }
+}
+
+fn active_set_state_code(state: ActiveSetState) -> f64 {
+    match state {
+        ActiveSetState::Inactive => 0.0,
+        ActiveSetState::Active => 1.0,
+        ActiveSetState::Sticking => 2.0,
+        ActiveSetState::Sliding => 3.0,
+    }
+}
+
+fn derived_friction_normal_source(
+    friction_support_id: &str,
+    source: &FrictionNormalReactionSourceInput,
+    support_by_id: &HashMap<&str, &PreviewSupport>,
+    node_map: &HashMap<&str, usize>,
+) -> Result<DerivedFrictionNormalReaction, Diagnostic> {
+    let Some(source_support) = support_by_id.get(source.support_ref.as_str()) else {
+        return Err(diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_UNKNOWN",
+            "blocking",
+            "friction normal_reaction_source support_ref is not present in preview model",
+            vec![friction_support_id.to_string(), source.support_ref.clone()],
+        ));
+    };
+    if source_support.nonlinear.is_some() {
+        return Err(diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_INVALID",
+            "blocking",
+            "friction normal_reaction_source must reference a linear support restraint",
+            vec![friction_support_id.to_string(), source.support_ref.clone()],
+        ));
+    }
+    let source_dof = parse_dof(&source.dof).map_err(|message| {
+        diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source-dof",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_DOF_INVALID",
+            "blocking",
+            message,
+            vec![friction_support_id.to_string(), source.dof.clone()],
+        )
+    })?;
+    if !source_dof.is_translational() {
+        return Err(diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source-dof",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_DOF_INVALID",
+            "blocking",
+            "friction normal_reaction_source must reference a translational support DOF",
+            vec![friction_support_id.to_string(), source.dof.clone()],
+        ));
+    }
+    let source_has_restraint = source_support
+        .restraints
+        .iter()
+        .filter_map(|dof| parse_dof(dof).ok())
+        .any(|dof| dof == source_dof);
+    if !source_has_restraint {
+        return Err(diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source-dof",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_DOF_UNRESTRAINED",
+            "blocking",
+            "friction normal_reaction_source must reference a restrained support DOF",
+            vec![
+                friction_support_id.to_string(),
+                source.support_ref.clone(),
+                source.dof.clone(),
+            ],
+        ));
+    }
+    let Some(&source_node_index) = node_map.get(source_support.node.as_str()) else {
+        return Err(diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source-node",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_NODE_UNKNOWN",
+            "blocking",
+            "friction normal_reaction_source support node is not present in preview model",
+            vec![
+                friction_support_id.to_string(),
+                source.support_ref.clone(),
+                source_support.node.clone(),
+            ],
+        ));
+    };
+    DerivedFrictionNormalReaction::from_support_reaction(
+        friction_support_id,
+        source_node_index,
+        source_dof,
+        &source.support_ref,
+    )
+    .map_err(|error| {
+        diag(
+            &format!(
+                "diagnostic:nonlinear-support:{}:normal-source",
+                stable_suffix(friction_support_id)
+            ),
+            "NONLINEAR_FRICTION_NORMAL_SOURCE_INVALID",
+            "blocking",
+            error.to_string(),
+            vec![friction_support_id.to_string(), source.support_ref.clone()],
+        )
+    })
+}
+
+fn build_nonlinear_supports(
+    model: &PreviewModel,
+    node_map: &HashMap<&str, usize>,
+    diagnostics: &mut Vec<Diagnostic>,
+) -> NonlinearSupportBuild {
+    let mut build = NonlinearSupportBuild::default();
+    let support_by_id = model
+        .supports
+        .iter()
+        .map(|support| (support.id.as_str(), support))
+        .collect::<HashMap<_, _>>();
+    for support in &model.supports {
+        let Some(input) = &support.nonlinear else {
+            continue;
+        };
+        let Some(&node_index) = node_map.get(support.node.as_str()) else {
+            diagnostics.push(diag(
+                &format!("diagnostic:support:{}:node", stable_suffix(&support.id)),
+                "SUPPORT_NODE_UNKNOWN",
+                "blocking",
+                "nonlinear support node is not present in preview model",
+                vec![support.id.clone(), support.node.clone()],
+            ));
+            continue;
+        };
+        let dof = match parse_dof(&input.dof) {
+            Ok(dof) => dof,
+            Err(message) => {
+                diagnostics.push(diag(
+                    &format!(
+                        "diagnostic:nonlinear-support:{}:dof",
+                        stable_suffix(&support.id)
+                    ),
+                    "NONLINEAR_SUPPORT_DOF_INVALID",
+                    "blocking",
+                    message,
+                    vec![support.id.clone(), input.dof.clone()],
+                ));
+                continue;
+            }
+        };
+        let Some(initial_state_value) = input.initial_state.as_deref() else {
+            diagnostics.push(diag(
+                &format!(
+                    "diagnostic:nonlinear-support:{}:initial-state",
+                    stable_suffix(&support.id)
+                ),
+                "NONLINEAR_SUPPORT_INITIAL_STATE_MISSING",
+                "blocking",
+                "nonlinear support requires an explicit initial active-set state",
+                vec![support.id.clone()],
+            ));
+            continue;
+        };
+        let initial_state = match parse_active_set_state(initial_state_value) {
+            Ok(state) => state,
+            Err(message) => {
+                diagnostics.push(diag(
+                    &format!(
+                        "diagnostic:nonlinear-support:{}:initial-state",
+                        stable_suffix(&support.id)
+                    ),
+                    "NONLINEAR_SUPPORT_INITIAL_STATE_INVALID",
+                    "blocking",
+                    message,
+                    vec![support.id.clone(), initial_state_value.to_string()],
+                ));
+                continue;
+            }
+        };
+
+        let nonlinear_support = match input.behavior.as_str() {
+            "one_way" | "one-way" | "oneway" => {
+                let Some(active_when) = input.active_when.as_deref() else {
+                    diagnostics.push(missing_nonlinear_field_diag(&support.id, "active_when"));
+                    continue;
+                };
+                match parse_activation_sense(active_when) {
+                    Ok(sense) => NonlinearSupport::one_way(&support.id, node_index, dof, sense),
+                    Err(message) => {
+                        diagnostics.push(invalid_nonlinear_field_diag(
+                            &support.id,
+                            "active_when",
+                            active_when,
+                            message,
+                        ));
+                        continue;
+                    }
+                }
+            }
+            "gap" => {
+                let Some(closes_when) = input.closes_when.as_deref() else {
+                    diagnostics.push(missing_nonlinear_field_diag(&support.id, "closes_when"));
+                    continue;
+                };
+                let closes_when = match parse_gap_direction(closes_when) {
+                    Ok(direction) => direction,
+                    Err(message) => {
+                        diagnostics.push(invalid_nonlinear_field_diag(
+                            &support.id,
+                            "closes_when",
+                            closes_when,
+                            message,
+                        ));
+                        continue;
+                    }
+                };
+                let Some(gap) = input.gap.as_ref() else {
+                    diagnostics.push(missing_nonlinear_field_diag(&support.id, "gap"));
+                    continue;
+                };
+                match NonlinearSupport::gap(&support.id, node_index, dof, gap.value, closes_when) {
+                    Ok(support) => support,
+                    Err(error) => {
+                        diagnostics.push(diag(
+                            &format!(
+                                "diagnostic:nonlinear-support:{}:gap",
+                                stable_suffix(&support.id)
+                            ),
+                            "NONLINEAR_SUPPORT_INPUT_INVALID",
+                            "blocking",
+                            error.to_string(),
+                            vec![support.id.clone()],
+                        ));
+                        continue;
+                    }
+                }
+            }
+            "lift_off" | "lift-off" | "liftoff" => {
+                let Some(contact_when) = input.contact_when.as_deref() else {
+                    diagnostics.push(missing_nonlinear_field_diag(&support.id, "contact_when"));
+                    continue;
+                };
+                match parse_activation_sense(contact_when) {
+                    Ok(sense) => NonlinearSupport::lift_off(&support.id, node_index, dof, sense),
+                    Err(message) => {
+                        diagnostics.push(invalid_nonlinear_field_diag(
+                            &support.id,
+                            "contact_when",
+                            contact_when,
+                            message,
+                        ));
+                        continue;
+                    }
+                }
+            }
+            "friction" => {
+                let Some(coefficient) = input.friction_coefficient.as_ref() else {
+                    diagnostics.push(missing_nonlinear_field_diag(
+                        &support.id,
+                        "friction_coefficient",
+                    ));
+                    continue;
+                };
+                if input.normal_reaction.is_some() && input.normal_reaction_source.is_some() {
+                    diagnostics.push(diag(
+                        &format!(
+                            "diagnostic:nonlinear-support:{}:normal-reaction",
+                            stable_suffix(&support.id)
+                        ),
+                        "NONLINEAR_FRICTION_NORMAL_REACTION_AMBIGUOUS",
+                        "blocking",
+                        "friction nonlinear support must use either explicit normal_reaction or normal_reaction_source, not both",
+                        vec![support.id.clone()],
+                    ));
+                    continue;
+                }
+                if let Some(normal_reaction) = input.normal_reaction.as_ref() {
+                    match FrictionNormalReaction::new(&support.id, normal_reaction.value) {
+                        Ok(reaction) => build.friction_normal_reactions.push(reaction),
+                        Err(error) => {
+                            diagnostics.push(diag(
+                                &format!(
+                                    "diagnostic:nonlinear-support:{}:normal-reaction",
+                                    stable_suffix(&support.id)
+                                ),
+                                "NONLINEAR_FRICTION_NORMAL_REACTION_INVALID",
+                                "blocking",
+                                error.to_string(),
+                                vec![support.id.clone()],
+                            ));
+                            continue;
+                        }
+                    }
+                } else if let Some(source) = input.normal_reaction_source.as_ref() {
+                    match derived_friction_normal_source(
+                        &support.id,
+                        source,
+                        &support_by_id,
+                        node_map,
+                    ) {
+                        Ok(source) => build.derived_friction_normal_reactions.push(source),
+                        Err(diagnostic) => {
+                            diagnostics.push(diagnostic);
+                            continue;
+                        }
+                    }
+                } else {
+                    diagnostics.push(diag(
+                        &format!(
+                            "diagnostic:nonlinear-support:{}:normal-reaction",
+                            stable_suffix(&support.id)
+                        ),
+                        "NONLINEAR_FRICTION_NORMAL_REACTION_MISSING",
+                        "blocking",
+                        "friction nonlinear support requires explicit normal_reaction or a normal_reaction_source support DOF",
+                        vec![support.id.clone()],
+                    ));
+                    continue;
+                }
+                match NonlinearSupport::friction(&support.id, node_index, dof, coefficient.value) {
+                    Ok(support) => support,
+                    Err(error) => {
+                        diagnostics.push(diag(
+                            &format!(
+                                "diagnostic:nonlinear-support:{}:friction",
+                                stable_suffix(&support.id)
+                            ),
+                            "NONLINEAR_SUPPORT_INPUT_INVALID",
+                            "blocking",
+                            error.to_string(),
+                            vec![support.id.clone()],
+                        ));
+                        continue;
+                    }
+                }
+            }
+            _ => {
+                diagnostics.push(diag(
+                    &format!(
+                        "diagnostic:nonlinear-support:{}:behavior",
+                        stable_suffix(&support.id)
+                    ),
+                    "NONLINEAR_SUPPORT_BEHAVIOR_INVALID",
+                    "blocking",
+                    format!("unsupported nonlinear support behavior {}", input.behavior),
+                    vec![support.id.clone(), input.behavior.clone()],
+                ));
+                continue;
+            }
+        };
+
+        build
+            .initial_states
+            .push(SupportStateRecord::new(&support.id, initial_state));
+        build.supports.push(nonlinear_support);
+    }
+    build
 }
 
 fn build_model(
@@ -913,10 +2043,17 @@ fn build_model(
         pipes.push(element);
     }
 
+    let nonlinear = build_nonlinear_supports(model, &node_map, diagnostics);
     let supports = model
         .supports
         .iter()
         .filter_map(|support| {
+            if support.nonlinear.is_some() {
+                return None;
+            }
+            if is_constant_effort_support(support) {
+                return None;
+            }
             let Some(&node) = node_map.get(support.node.as_str()) else {
                 diagnostics.push(diag(
                     &format!("diagnostic:support:{}:node", stable_suffix(&support.id)),
@@ -944,8 +2081,8 @@ fn build_model(
                     }
                 })
                 .collect::<Vec<_>>();
-            if support.family.as_deref() == Some("spring") {
-                let stiffness = support.stiffness.as_ref().and_then(|input| {
+            if support.family.as_deref() == Some("spring") || is_variable_spring_hanger(support) {
+                let stiffness = support_stiffness_input(support).and_then(|input| {
                     let dimension = if parse_dof(&input.dof).ok()?.is_translational() {
                         QuantityDimension::TranslationalStiffness
                     } else {
@@ -956,7 +2093,10 @@ fn build_model(
                 Some(LinearSupport::spring(
                     &support.id,
                     node,
-                    dofs.first().copied().unwrap_or(FrameDof::Uz),
+                    support_stiffness_input(support)
+                        .and_then(|input| parse_dof(&input.dof).ok())
+                        .or_else(|| dofs.first().copied())
+                        .unwrap_or(FrameDof::Uz),
                     stiffness,
                 ))
             } else if dofs.len() == 6 {
@@ -979,6 +2119,10 @@ fn build_model(
         pipes,
         frame_elements,
         supports,
+        nonlinear_supports: nonlinear.supports,
+        nonlinear_initial_states: nonlinear.initial_states,
+        nonlinear_friction_normal_reactions: nonlinear.friction_normal_reactions,
+        nonlinear_derived_friction_normal_reactions: nonlinear.derived_friction_normal_reactions,
         sections,
     })
 }
@@ -1050,28 +2194,514 @@ fn normalize_model_units(
     }
 
     for support in &mut model.supports {
-        let Some(stiffness) = &mut support.stiffness else {
-            continue;
-        };
-        let Some(dimension) = parse_dof(&stiffness.dof).ok().map(|dof| {
-            if dof.is_translational() {
-                Dimension::LinearStiffness
-            } else {
-                Dimension::RotationalStiffness
+        if let Some(stiffness) = &mut support.stiffness {
+            let Some(dimension) = parse_dof(&stiffness.dof).ok().map(|dof| {
+                if dof.is_translational() {
+                    Dimension::LinearStiffness
+                } else {
+                    Dimension::RotationalStiffness
+                }
+            }) else {
+                continue;
+            };
+            normalize_quantity(
+                &mut stiffness.value,
+                dimension,
+                &format!(
+                    "diagnostic:unit-conversion:support:{}:stiffness",
+                    stable_suffix(&support.id)
+                ),
+                vec![support.id.clone(), "stiffness".to_string()],
+                diagnostics,
+            );
+        }
+        if let Some(hanger) = &mut support.hanger {
+            if let Some(stiffness) = &mut hanger.stiffness {
+                let Some(dimension) = parse_dof(&stiffness.dof).ok().map(|dof| {
+                    if dof.is_translational() {
+                        Dimension::LinearStiffness
+                    } else {
+                        Dimension::RotationalStiffness
+                    }
+                }) else {
+                    continue;
+                };
+                normalize_quantity(
+                    &mut stiffness.value,
+                    dimension,
+                    &format!(
+                        "diagnostic:unit-conversion:support:{}:hanger-stiffness",
+                        stable_suffix(&support.id)
+                    ),
+                    vec![support.id.clone(), "hanger.stiffness".to_string()],
+                    diagnostics,
+                );
             }
-        }) else {
-            continue;
-        };
-        normalize_quantity(
-            &mut stiffness.value,
-            dimension,
-            &format!(
-                "diagnostic:unit-conversion:support:{}:stiffness",
-                stable_suffix(&support.id)
-            ),
-            vec![support.id.clone(), "stiffness".to_string()],
-            diagnostics,
+            for (field, quantity) in [
+                ("hanger.installed_load", &mut hanger.installed_load),
+                ("hanger.cold_load", &mut hanger.cold_load),
+                ("hanger.hot_load", &mut hanger.hot_load),
+                ("hanger.constant_load", &mut hanger.constant_load),
+            ] {
+                if let Some(quantity) = quantity {
+                    normalize_quantity(
+                        quantity,
+                        Dimension::Force,
+                        &format!(
+                            "diagnostic:unit-conversion:support:{}:{}",
+                            stable_suffix(&support.id),
+                            stable_suffix(field)
+                        ),
+                        vec![support.id.clone(), field.to_string()],
+                        diagnostics,
+                    );
+                }
+            }
+            for (field, quantity) in [
+                ("hanger.travel_range", &mut hanger.travel_range),
+                ("hanger.movement_limit", &mut hanger.movement_limit),
+            ] {
+                if let Some(quantity) = quantity {
+                    normalize_quantity(
+                        quantity,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:support:{}:{}",
+                            stable_suffix(&support.id),
+                            stable_suffix(field)
+                        ),
+                        vec![support.id.clone(), field.to_string()],
+                        diagnostics,
+                    );
+                }
+            }
+        }
+        if let Some(nonlinear) = &mut support.nonlinear {
+            if let Some(gap) = &mut nonlinear.gap {
+                normalize_quantity(
+                    gap,
+                    Dimension::Length,
+                    &format!(
+                        "diagnostic:unit-conversion:support:{}:nonlinear-gap",
+                        stable_suffix(&support.id)
+                    ),
+                    vec![support.id.clone(), "nonlinear.gap".to_string()],
+                    diagnostics,
+                );
+            }
+            if let Some(coefficient) = &mut nonlinear.friction_coefficient {
+                normalize_dimensionless_quantity(
+                    coefficient,
+                    &format!(
+                        "diagnostic:unit-conversion:support:{}:friction-coefficient",
+                        stable_suffix(&support.id)
+                    ),
+                    vec![
+                        support.id.clone(),
+                        "nonlinear.friction_coefficient".to_string(),
+                    ],
+                    diagnostics,
+                );
+            }
+            if let Some(normal) = &mut nonlinear.normal_reaction {
+                normalize_quantity(
+                    normal,
+                    Dimension::Force,
+                    &format!(
+                        "diagnostic:unit-conversion:support:{}:normal-reaction",
+                        stable_suffix(&support.id)
+                    ),
+                    vec![support.id.clone(), "nonlinear.normal_reaction".to_string()],
+                    diagnostics,
+                );
+            }
+        }
+    }
+
+    for component in &mut model.components {
+        let is_bend = matches!(component.kind.as_str(), "bend" | "elbow");
+        let is_branch = matches!(
+            component.kind.as_str(),
+            "branch" | "tee" | "branch_connection"
         );
+        let is_rigid = matches!(
+            component.kind.as_str(),
+            "valve" | "flange" | "reducer" | "rigid" | "specialty"
+        );
+        let is_expansion_joint = component.kind == "expansion_joint";
+        if let Some(geometry) = &mut component.geometry {
+            if is_bend {
+                if let Some(radius) = &mut geometry.bend_radius {
+                    normalize_quantity(
+                        radius,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:bend-radius",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.bend_radius".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(angle) = &mut geometry.bend_angle {
+                    normalize_quantity(
+                        angle,
+                        Dimension::Angle,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:bend-angle",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.bend_angle".to_string()],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_branch {
+                if let Some(size) = &mut geometry.branch_run_size {
+                    normalize_quantity(
+                        size,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-run-size",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.branch_run_size".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(size) = &mut geometry.branch_header_size {
+                    normalize_quantity(
+                        size,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-header-size",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "geometry.branch_header_size".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(angle) = &mut geometry.branch_connection_angle {
+                    normalize_quantity(
+                        angle,
+                        Dimension::Angle,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-connection-angle",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "geometry.branch_connection_angle".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(area) = &mut geometry.branch_reinforcement_area {
+                    normalize_quantity(
+                        area,
+                        Dimension::Area,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-reinforcement-area",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "geometry.branch_reinforcement_area".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_rigid {
+                if let Some(length) = &mut geometry.rigid_body_length {
+                    normalize_quantity(
+                        length,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:rigid-body-length",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "geometry.rigid_body_length".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(size) = &mut geometry.end_a_size {
+                    normalize_quantity(
+                        size,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:end-a-size",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.end_a_size".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(size) = &mut geometry.end_b_size {
+                    normalize_quantity(
+                        size,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:end-b-size",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.end_b_size".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(weight) = &mut geometry.weight {
+                    normalize_quantity(
+                        weight,
+                        Dimension::Force,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:weight",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.weight".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(cog) = &mut geometry.center_of_gravity {
+                    normalize_vector_quantity(
+                        cog,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:center-of-gravity",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "geometry.center_of_gravity".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_expansion_joint {
+                if let Some(area) = &mut geometry.effective_area {
+                    normalize_quantity(
+                        area,
+                        Dimension::Area,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:effective-area",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.effective_area".to_string()],
+                        diagnostics,
+                    );
+                }
+                if let Some(limit) = &mut geometry.movement_limit {
+                    normalize_quantity(
+                        limit,
+                        Dimension::Length,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:movement-limit",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "geometry.movement_limit".to_string()],
+                        diagnostics,
+                    );
+                }
+            }
+        }
+        if let Some(modifiers) = &mut component.modifiers {
+            if is_bend {
+                if let Some(sif) = &mut modifiers.sif_user_value {
+                    normalize_dimensionless_quantity(
+                        sif,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:sif-user-value",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![component.id.clone(), "modifiers.sif_user_value".to_string()],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_branch {
+                if let Some(sif) = &mut modifiers.branch_header_sif_user_value {
+                    normalize_dimensionless_quantity(
+                        sif,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-header-sif",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.branch_header_sif_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(sif) = &mut modifiers.branch_branch_sif_user_value {
+                    normalize_dimensionless_quantity(
+                        sif,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:branch-branch-sif",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.branch_branch_sif_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_bend || is_branch {
+                if let Some(flexibility) = &mut modifiers.flexibility_factor_user_value {
+                    normalize_dimensionless_quantity(
+                        flexibility,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:flexibility-factor",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.flexibility_factor_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            } else if let Some(sif) = &mut modifiers.sif_user_value {
+                normalize_dimensionless_quantity(
+                    sif,
+                    &format!(
+                        "diagnostic:unit-conversion:component:{}:sif-user-value",
+                        stable_suffix(&component.id)
+                    ),
+                    vec![component.id.clone(), "modifiers.sif_user_value".to_string()],
+                    diagnostics,
+                );
+            } else if let Some(flexibility) = &mut modifiers.flexibility_factor_user_value {
+                normalize_dimensionless_quantity(
+                    flexibility,
+                    &format!(
+                        "diagnostic:unit-conversion:component:{}:flexibility-factor",
+                        stable_suffix(&component.id)
+                    ),
+                    vec![
+                        component.id.clone(),
+                        "modifiers.flexibility_factor_user_value".to_string(),
+                    ],
+                    diagnostics,
+                );
+            }
+            if is_rigid {
+                if let Some(scale) = &mut modifiers.stiffness_scaling_user_value {
+                    normalize_dimensionless_quantity(
+                        scale,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:stiffness-scaling",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.stiffness_scaling_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(stiffness) = &mut modifiers.linear_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::LinearStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:linear-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.linear_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(stiffness) = &mut modifiers.rotational_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::RotationalStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:rotational-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.rotational_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            }
+            if is_expansion_joint {
+                if let Some(stiffness) = &mut modifiers.axial_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::LinearStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:axial-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.axial_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(stiffness) = &mut modifiers.lateral_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::LinearStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:lateral-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.lateral_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(stiffness) = &mut modifiers.angular_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::RotationalStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:angular-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.angular_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+                if let Some(stiffness) = &mut modifiers.torsional_stiffness_user_value {
+                    normalize_quantity(
+                        stiffness,
+                        Dimension::RotationalStiffness,
+                        &format!(
+                            "diagnostic:unit-conversion:component:{}:torsional-stiffness",
+                            stable_suffix(&component.id)
+                        ),
+                        vec![
+                            component.id.clone(),
+                            "modifiers.torsional_stiffness_user_value".to_string(),
+                        ],
+                        diagnostics,
+                    );
+                }
+            }
+        }
     }
 
     for load in model
@@ -1092,6 +2722,25 @@ fn normalize_model_units(
             );
         }
     }
+}
+
+fn normalize_dimensionless_quantity(
+    quantity: &mut Quantity,
+    diagnostic_id: &str,
+    affected_refs: Vec<String>,
+    diagnostics: &mut Vec<Diagnostic>,
+) {
+    if quantity.unit == "none" {
+        quantity.unit = "1".to_string();
+        return;
+    }
+    normalize_quantity(
+        quantity,
+        Dimension::Dimensionless,
+        diagnostic_id,
+        affected_refs,
+        diagnostics,
+    );
 }
 
 fn normalize_quantity(
@@ -1134,6 +2783,47 @@ fn normalize_quantity(
             affected_refs,
         )),
     }
+}
+
+fn normalize_vector_quantity(
+    quantity: &mut VectorQuantity,
+    dimension: Dimension,
+    diagnostic_id: &str,
+    affected_refs: Vec<String>,
+    diagnostics: &mut Vec<Diagnostic>,
+) {
+    let original_unit = quantity.unit.clone();
+    let mut x = Quantity {
+        value: quantity.x,
+        unit: original_unit.clone(),
+    };
+    let mut y = Quantity {
+        value: quantity.y,
+        unit: original_unit.clone(),
+    };
+    let mut z = Quantity {
+        value: quantity.z,
+        unit: original_unit,
+    };
+    normalize_quantity(
+        &mut x,
+        dimension,
+        diagnostic_id,
+        affected_refs.clone(),
+        diagnostics,
+    );
+    normalize_quantity(
+        &mut y,
+        dimension,
+        diagnostic_id,
+        affected_refs.clone(),
+        diagnostics,
+    );
+    normalize_quantity(&mut z, dimension, diagnostic_id, affected_refs, diagnostics);
+    quantity.x = x.value;
+    quantity.y = y.value;
+    quantity.z = z.value;
+    quantity.unit = x.unit;
 }
 
 fn unit_conversion_diag(
@@ -1881,6 +3571,581 @@ fn open_formula_summary_mpa(
     )
 }
 
+fn append_component_stress_multiplier_results(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    model: &PreviewModel,
+    pipe_id: &str,
+    end_i_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
+    end_j_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
+    include_pressure_longitudinal: bool,
+) -> usize {
+    let Some(pipe) = model
+        .pipe_segments
+        .iter()
+        .find(|candidate| candidate.id == pipe_id)
+    else {
+        return 0;
+    };
+    let endpoint_stresses = [
+        ("end_i", pipe.from.as_str(), end_i_stress),
+        ("end_j", pipe.to.as_str(), end_j_stress),
+    ];
+    let mut appended = 0;
+    for (location, node_id, stress) in endpoint_stresses {
+        let Some(base_value_mpa) = open_formula_summary_mpa(stress, include_pressure_longitudinal)
+        else {
+            continue;
+        };
+        for component in model
+            .components
+            .iter()
+            .filter(|component| component.node == node_id)
+        {
+            let Some(modifier) = component_stress_modifier_for_pipe(component, pipe_id) else {
+                continue;
+            };
+            append_component_stress_multiplier_result(
+                results,
+                diagnostics,
+                component,
+                pipe_id,
+                location,
+                base_value_mpa,
+                modifier,
+            );
+            appended += 1;
+        }
+    }
+    appended
+}
+
+#[derive(Debug, Clone, Copy)]
+struct ComponentStressModifier<'a> {
+    family: &'a str,
+    side: &'a str,
+    sif: f64,
+    flexibility: f64,
+    source_reference: &'a str,
+    solver_consumption: &'a str,
+}
+
+fn component_stress_modifier_for_pipe<'a>(
+    component: &'a PreviewComponent,
+    pipe_id: &str,
+) -> Option<ComponentStressModifier<'a>> {
+    if is_bend_component(component) {
+        return bend_stress_modifier(component);
+    }
+    if is_branch_component(component) {
+        return branch_stress_modifier_for_pipe(component, pipe_id);
+    }
+    None
+}
+
+fn bend_stress_modifier(component: &PreviewComponent) -> Option<ComponentStressModifier<'_>> {
+    let solver_consumption = component
+        .mechanics_interface
+        .as_ref()
+        .and_then(|interface| interface.solver_consumption.as_deref())
+        .unwrap_or("mechanics_geometry_only");
+    if solver_consumption != "mechanics_geometry_only" {
+        return None;
+    }
+    let modifiers = component.modifiers.as_ref()?;
+    let sif = modifiers.sif_user_value.as_ref()?.value;
+    let flexibility = modifiers.flexibility_factor_user_value.as_ref()?.value;
+    if !positive_finite(sif) || !positive_finite(flexibility) {
+        return None;
+    }
+    let source_reference = modifiers
+        .source_reference
+        .as_deref()
+        .filter(|value| !value.trim().is_empty())
+        .unwrap_or("source_reference_missing");
+    Some(ComponentStressModifier {
+        family: "bend",
+        side: "through",
+        sif,
+        flexibility,
+        source_reference,
+        solver_consumption,
+    })
+}
+
+fn branch_stress_modifier_for_pipe<'a>(
+    component: &'a PreviewComponent,
+    pipe_id: &str,
+) -> Option<ComponentStressModifier<'a>> {
+    let solver_consumption = component
+        .mechanics_interface
+        .as_ref()
+        .and_then(|interface| interface.solver_consumption.as_deref())
+        .unwrap_or("mechanics_geometry_only");
+    if solver_consumption != "mechanics_geometry_only" {
+        return None;
+    }
+    let geometry = component.geometry.as_ref()?;
+    let modifiers = component.modifiers.as_ref()?;
+    let (side, sif) = if geometry
+        .branch_header_pipe_ref
+        .as_deref()
+        .filter(|value| *value == pipe_id)
+        .is_some()
+    {
+        (
+            "header",
+            modifiers.branch_header_sif_user_value.as_ref()?.value,
+        )
+    } else if geometry
+        .branch_branch_pipe_ref
+        .as_deref()
+        .filter(|value| *value == pipe_id)
+        .is_some()
+    {
+        (
+            "branch",
+            modifiers.branch_branch_sif_user_value.as_ref()?.value,
+        )
+    } else {
+        return None;
+    };
+    let flexibility = modifiers.flexibility_factor_user_value.as_ref()?.value;
+    if !positive_finite(sif) || !positive_finite(flexibility) {
+        return None;
+    }
+    let source_reference = modifiers
+        .source_reference
+        .as_deref()
+        .filter(|value| !value.trim().is_empty())
+        .unwrap_or("source_reference_missing");
+    Some(ComponentStressModifier {
+        family: "branch",
+        side,
+        sif,
+        flexibility,
+        source_reference,
+        solver_consumption,
+    })
+}
+
+fn append_component_stress_multiplier_result(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    component: &PreviewComponent,
+    pipe_id: &str,
+    location: &str,
+    base_value_mpa: f64,
+    modifier: ComponentStressModifier<'_>,
+) {
+    let component_suffix = stable_suffix(&component.id);
+    let pipe_suffix = stable_suffix(pipe_id);
+    let endpoint = endpoint_id_location(location);
+    let result_id =
+        format!("result:stress:{component_suffix}:{pipe_suffix}:{endpoint}:user-multiplier");
+    let multiplier = modifier.sif * modifier.flexibility;
+    let value = round6(base_value_mpa * multiplier);
+    results.push(ResultItem {
+        id: result_id.clone(),
+        kind: "component_user_stress_multiplier_review".to_string(),
+        value,
+        unit: "MPa".to_string(),
+        entity_ref: component.id.clone(),
+        basis_ref: None,
+        source_result_refs: endpoint_stress_source_refs(pipe_id, location),
+        metadata: Some(ResultMetadata {
+            component: "user_entered_component_stress_multiplier".to_string(),
+            coordinate_system: "component_review".to_string(),
+            location: format!("{pipe_id}:{location}"),
+            basis: format!(
+                "component_family={};component_side={};user_entered_sif={};user_entered_flexibility={};source={};solver_consumption={}",
+                modifier.family,
+                modifier.side,
+                rounded_scalar(modifier.sif),
+                rounded_scalar(modifier.flexibility),
+                modifier.source_reference,
+                modifier.solver_consumption
+            ),
+            sign_convention:
+                "positive value is base open-mechanics stress summary multiplied by user-entered component modifiers; base frame stiffness unchanged"
+                    .to_string(),
+        }),
+    });
+    diagnostics.push(diag(
+        &format!(
+            "diagnostic:component-stress-multiplier:{}:{}:{}",
+            component_suffix, pipe_suffix, endpoint
+        ),
+        "COMPONENT_STRESS_MULTIPLIER_APPLIED",
+        "info",
+        format!(
+            "{} component {} applies user-entered {} SIF {} and flexibility factor {} to {} {location} stress-recovery review; solver_consumption remains {}; no protected or default component factor is supplied",
+            modifier.family,
+            component.id,
+            modifier.side,
+            rounded_scalar(modifier.sif),
+            rounded_scalar(modifier.flexibility),
+            pipe_id,
+            modifier.solver_consumption
+        ),
+        vec![
+            component.id.clone(),
+            pipe_id.to_string(),
+            result_id,
+            modifier.source_reference.to_string(),
+        ],
+    ));
+}
+
+fn append_expansion_joint_user_stiffness_results(
+    model: &PreviewModel,
+    results: &mut Vec<ResultItem>,
+) -> usize {
+    let mut appended = 0;
+    for component in model
+        .components
+        .iter()
+        .filter(|component| is_expansion_joint_component(component))
+    {
+        let solver_consumption = component
+            .mechanics_interface
+            .as_ref()
+            .and_then(|interface| interface.solver_consumption.as_deref())
+            .unwrap_or("not_provided");
+        if solver_consumption != "mechanics_geometry_and_user_flexibility" {
+            continue;
+        }
+        let Some(geometry) = component.geometry.as_ref() else {
+            continue;
+        };
+        let Some(modifiers) = component.modifiers.as_ref() else {
+            continue;
+        };
+        let Some(pipe_ref) = geometry
+            .expansion_joint_pipe_ref
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+        else {
+            continue;
+        };
+        let source_reference = modifiers
+            .source_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("source_reference_missing");
+        let entries = [
+            (
+                "axial",
+                "axial_user_stiffness",
+                "N/m",
+                modifiers.axial_stiffness_user_value.as_ref(),
+            ),
+            (
+                "lateral",
+                "lateral_user_stiffness",
+                "N/m",
+                modifiers.lateral_stiffness_user_value.as_ref(),
+            ),
+            (
+                "angular",
+                "angular_user_stiffness",
+                "N*m/rad",
+                modifiers.angular_stiffness_user_value.as_ref(),
+            ),
+            (
+                "torsional",
+                "torsional_user_stiffness",
+                "N*m/rad",
+                modifiers.torsional_stiffness_user_value.as_ref(),
+            ),
+        ];
+        for (axis, metadata_component, unit, quantity) in entries {
+            let Some(quantity) = quantity else {
+                continue;
+            };
+            if !positive_finite(quantity.value) {
+                continue;
+            }
+            let component_suffix = stable_suffix(&component.id);
+            let result_id = format!("result:component-stiffness:{component_suffix}:{axis}");
+            results.push(ResultItem {
+                id: result_id,
+                kind: "component_user_stiffness_macro_element_review".to_string(),
+                value: round6(quantity.value),
+                unit: unit.to_string(),
+                entity_ref: component.id.clone(),
+                basis_ref: None,
+                source_result_refs: Vec::new(),
+                metadata: Some(ResultMetadata {
+                    component: metadata_component.to_string(),
+                    coordinate_system: "component_local_preview".to_string(),
+                    location: pipe_ref.to_string(),
+                    basis: format!(
+                        "component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};pressure_thrust={}",
+                        geometry
+                            .pressure_thrust_reference
+                            .as_deref()
+                            .unwrap_or("load_side_pressure_thrust_reference_missing")
+                    ),
+                    sign_convention:
+                        "positive value is user-entered expansion-joint stiffness input evidence; global macro-element solve is not claimed by this preview row"
+                            .to_string(),
+                }),
+            });
+            appended += 1;
+        }
+    }
+    appended
+}
+
+fn append_spring_hanger_user_input_results(
+    model: &PreviewModel,
+    results: &mut Vec<ResultItem>,
+) -> usize {
+    let mut appended = 0;
+    for support in model
+        .supports
+        .iter()
+        .filter(|support| is_variable_spring_hanger(support) || is_constant_effort_support(support))
+    {
+        let Some(hanger) = support.hanger.as_ref() else {
+            continue;
+        };
+        let source_reference = hanger
+            .source_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("source_reference_missing");
+        let manufacturer_reference = hanger
+            .manufacturer_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("manufacturer_reference_missing");
+        let load_side_review = hanger
+            .load_side_review_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("load_side_review_reference_missing");
+        let mechanics_consumption = hanger
+            .mechanics_consumption
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("review_only");
+        let suffix = stable_suffix(&support.id);
+
+        if is_variable_spring_hanger(support) {
+            if let Some(stiffness) = support_stiffness_input(support) {
+                append_hanger_quantity_result(
+                    results,
+                    &format!("result:spring-hanger:{suffix}:stiffness"),
+                    "spring_hanger_user_input_review",
+                    support,
+                    "variable_spring_hanger_stiffness",
+                    &format!("{} stiffness", stiffness.dof),
+                    &stiffness.value,
+                    &format!(
+                        "support_family=variable_spring_hanger;user_entered_dof={};source={source_reference};manufacturer={manufacturer_reference};mechanics_consumption={mechanics_consumption};dec_ref=DEC-049",
+                        stiffness.dof
+                    ),
+                    "positive value is user-entered variable spring hanger stiffness consumed by the preview linear spring primitive; no catalog/default value is supplied",
+                );
+                appended += 1;
+            }
+            for (field, component, quantity) in [
+                (
+                    "installed-load",
+                    "variable_spring_hanger_installed_load",
+                    hanger.installed_load.as_ref(),
+                ),
+                (
+                    "cold-load",
+                    "variable_spring_hanger_cold_load",
+                    hanger.cold_load.as_ref(),
+                ),
+                (
+                    "hot-load",
+                    "variable_spring_hanger_hot_load",
+                    hanger.hot_load.as_ref(),
+                ),
+                (
+                    "travel-range",
+                    "variable_spring_hanger_travel_range",
+                    hanger.travel_range.as_ref(),
+                ),
+                (
+                    "movement-limit",
+                    "variable_spring_hanger_movement_limit",
+                    hanger.movement_limit.as_ref(),
+                ),
+            ] {
+                let Some(quantity) = quantity else {
+                    continue;
+                };
+                append_hanger_quantity_result(
+                    results,
+                    &format!("result:spring-hanger:{suffix}:{field}"),
+                    "spring_hanger_user_input_review",
+                    support,
+                    component,
+                    field,
+                    quantity,
+                    &format!(
+                        "support_family=variable_spring_hanger;field={field};source={source_reference};manufacturer={manufacturer_reference};load_side_review={load_side_review};mechanics_consumption={mechanics_consumption};dec_ref=DEC-049"
+                    ),
+                    "positive value is user-entered variable spring hanger input evidence; load-side and travel review remain human-reviewed preview metadata",
+                );
+                appended += 1;
+            }
+        }
+
+        if is_constant_effort_support(support) {
+            for (field, component, quantity) in [
+                (
+                    "constant-load",
+                    "constant_effort_support_constant_load",
+                    hanger.constant_load.as_ref(),
+                ),
+                (
+                    "travel-range",
+                    "constant_effort_support_travel_range",
+                    hanger.travel_range.as_ref(),
+                ),
+                (
+                    "movement-limit",
+                    "constant_effort_support_movement_limit",
+                    hanger.movement_limit.as_ref(),
+                ),
+            ] {
+                let Some(quantity) = quantity else {
+                    continue;
+                };
+                append_hanger_quantity_result(
+                    results,
+                    &format!("result:constant-effort-support:{suffix}:{field}"),
+                    "constant_effort_user_input_review",
+                    support,
+                    component,
+                    field,
+                    quantity,
+                    &format!(
+                        "support_family=constant_effort_support;field={field};source={source_reference};manufacturer={manufacturer_reference};load_side_review={load_side_review};mechanics_consumption={mechanics_consumption};dec_ref=DEC-049"
+                    ),
+                    "positive value is user-entered constant-effort support input evidence; no global constant-effort load or nonlinear behavior is claimed by this preview row",
+                );
+                appended += 1;
+            }
+        }
+    }
+    appended
+}
+
+fn append_hanger_quantity_result(
+    results: &mut Vec<ResultItem>,
+    id: &str,
+    kind: &str,
+    support: &PreviewSupport,
+    metadata_component: &str,
+    location: &str,
+    quantity: &Quantity,
+    basis: &str,
+    sign_convention: &str,
+) {
+    if !positive_finite(quantity.value) {
+        return;
+    }
+    results.push(ResultItem {
+        id: id.to_string(),
+        kind: kind.to_string(),
+        value: round6(quantity.value),
+        unit: quantity.unit.clone(),
+        entity_ref: support.id.clone(),
+        basis_ref: None,
+        source_result_refs: Vec::new(),
+        metadata: Some(ResultMetadata {
+            component: metadata_component.to_string(),
+            coordinate_system: "support_local_preview".to_string(),
+            location: format!("{}:{location}", support.node),
+            basis: basis.to_string(),
+            sign_convention: sign_convention.to_string(),
+        }),
+    });
+}
+
+fn endpoint_stress_source_refs(pipe_id: &str, location: &str) -> Vec<String> {
+    let suffix = stable_suffix(pipe_id);
+    let endpoint = endpoint_id_location(location);
+    [
+        format!("result:stress:{suffix}:{endpoint}:axial-normal"),
+        format!("result:stress:{suffix}:{endpoint}:bending-normal-y"),
+        format!("result:stress:{suffix}:{endpoint}:bending-normal-z"),
+        format!("result:stress:{suffix}:{endpoint}:torsional-shear"),
+        format!("result:stress:{suffix}"),
+    ]
+    .into_iter()
+    .collect()
+}
+
+fn is_bend_component(component: &PreviewComponent) -> bool {
+    matches!(component.kind.as_str(), "bend" | "elbow")
+}
+
+fn is_branch_component(component: &PreviewComponent) -> bool {
+    matches!(
+        component.kind.as_str(),
+        "branch" | "tee" | "branch_connection"
+    )
+}
+
+fn is_expansion_joint_component(component: &PreviewComponent) -> bool {
+    component.kind == "expansion_joint"
+}
+
+pub(crate) fn support_hanger_type(support: &PreviewSupport) -> Option<&str> {
+    support
+        .hanger
+        .as_ref()
+        .and_then(|hanger| hanger.hanger_type.as_deref())
+        .map(str::trim)
+        .filter(|value| !value.is_empty())
+        .or_else(|| support.family.as_deref().map(str::trim))
+}
+
+pub(crate) fn is_variable_spring_hanger(support: &PreviewSupport) -> bool {
+    matches!(
+        support_hanger_type(support),
+        Some("variable_spring_hanger" | "spring_hanger")
+    )
+}
+
+pub(crate) fn is_constant_effort_support(support: &PreviewSupport) -> bool {
+    matches!(
+        support_hanger_type(support),
+        Some("constant_effort_support")
+    )
+}
+
+pub(crate) fn support_stiffness_input(support: &PreviewSupport) -> Option<&SupportStiffnessInput> {
+    support.stiffness.as_ref().or_else(|| {
+        support
+            .hanger
+            .as_ref()
+            .and_then(|hanger| hanger.stiffness.as_ref())
+    })
+}
+
+fn positive_finite(value: f64) -> bool {
+    value.is_finite() && value > 0.0
+}
+
+fn rounded_scalar(value: f64) -> String {
+    let rounded = round6(value);
+    if (rounded.fract()).abs() < 1.0e-9 {
+        format!("{rounded:.0}")
+    } else {
+        format!("{rounded}")
+    }
+}
+
 fn append_endpoint_stress_results(
     results: &mut Vec<ResultItem>,
     pipe_id: &str,
@@ -2307,6 +4572,9 @@ fn append_combination_results(
                 ));
                 continue;
             }
+            if is_combination_excluded_result_kind(&reference_row.kind) {
+                continue;
+            }
             let Some(dimension) = algebra_dimension(reference_row) else {
                 diagnostics.push(combination_diag(
                     combination,
@@ -2393,6 +4661,70 @@ fn append_combination_results(
             results.push(combined);
         }
     }
+}
+
+fn append_nonlinear_friction_normal_evidence(
+    results: &mut Vec<ResultItem>,
+    friction_normal_reactions: &[FrictionNormalReaction],
+    derived_friction_normal_reactions: &[DerivedFrictionNormalReaction],
+    reactions: &[f64],
+    policy_ref: &str,
+) {
+    for reaction in friction_normal_reactions {
+        let suffix = stable_suffix(&reaction.support_id);
+        append_nonlinear_scalar_result(
+            results,
+            &format!("result:nonlinear-support:{suffix}:friction-normal-reaction"),
+            "nonlinear_support_friction_normal_reaction_input",
+            reaction.normal_reaction,
+            "N",
+            &reaction.support_id,
+            "friction_normal_reaction_input",
+            "normal",
+            &format!(
+                "dense_active_set_loop; policy_ref={policy_ref}; explicit_user_entered_normal_reaction; no_catalog_or_default_normal_force"
+            ),
+            "positive value is an explicit contact normal reaction supplied by the user or caller",
+        );
+    }
+    for source in derived_friction_normal_reactions {
+        let suffix = stable_suffix(&source.support_id);
+        let global = source.source_node_index * DOF_PER_NODE + dof_index(source.source_dof);
+        let Some(reaction) = reactions.get(global) else {
+            continue;
+        };
+        append_nonlinear_scalar_result(
+            results,
+            &format!("result:nonlinear-support:{suffix}:friction-normal-reaction"),
+            "nonlinear_support_friction_normal_reaction_derived",
+            reaction.abs(),
+            "N",
+            &source.support_id,
+            "friction_normal_reaction_derived",
+            source.source_dof.as_str(),
+            &format!(
+                "dense_active_set_loop; policy_ref={policy_ref}; derived_support_reaction; source_ref={}; source_dof={}",
+                source.source_ref,
+                source.source_dof.as_str()
+            ),
+            "positive value is the absolute support reaction at the named normal-source DOF",
+        );
+    }
+}
+
+fn is_combination_excluded_result_kind(kind: &str) -> bool {
+    matches!(
+        kind,
+        "nonlinear_support_friction_normal_reaction_input"
+            | "nonlinear_support_friction_normal_reaction_derived"
+            | "nonlinear_support_observed_max_translation_delta"
+            | "nonlinear_support_observed_max_rotation_delta"
+            | "nonlinear_support_observed_max_force_reaction_delta"
+            | "nonlinear_support_observed_max_moment_reaction_delta"
+            | "nonlinear_support_observed_free_dof_force_residual"
+            | "nonlinear_support_observed_free_dof_moment_residual"
+            | "sparse_live_path_dense_parity_relative_delta"
+    )
 }
 
 fn combination_source_identity_matches(reference: &ResultItem, candidate: &ResultItem) -> bool {
@@ -2485,6 +4817,9 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
             segment_count: model.pipe_segments.len(),
             support_count: model.supports.len(),
             load_case_count: model.load_cases.len(),
+            component_stress_modifier_count: 0,
+            component_user_stiffness_macro_element_count: 0,
+            spring_hanger_user_input_count: 0,
             max_displacement: None,
             max_open_formula_stress: None,
         },
@@ -2620,6 +4955,32 @@ fn multiply_matrix_vector(matrix: &[Vec<f64>], vector: &[f64]) -> Vec<f64> {
         .collect()
 }
 
+fn max_abs_delta(left: &[f64], right: &[f64]) -> f64 {
+    left.iter()
+        .zip(right.iter())
+        .map(|(left, right)| (left - right).abs())
+        .fold(0.0, f64::max)
+}
+
+fn max_abs_value(values: &[f64]) -> f64 {
+    values.iter().copied().map(f64::abs).fold(0.0, f64::max)
+}
+
+fn max_abs_linear_residual(matrix: &[Vec<f64>], solution: &[f64], force: &[f64]) -> f64 {
+    matrix
+        .iter()
+        .zip(force.iter())
+        .map(|(row, force)| {
+            let applied = row
+                .iter()
+                .zip(solution.iter())
+                .map(|(stiffness, displacement)| stiffness * displacement)
+                .sum::<f64>();
+            (applied - force).abs()
+        })
+        .fold(0.0, f64::max)
+}
+
 fn node_index(model: &PreviewModel, id: &str) -> Option<usize> {
     model.nodes.iter().position(|node| node.id == id)
 }
@@ -2633,6 +4994,44 @@ fn parse_dof(value: &str) -> Result<FrameDof, String> {
         "RY" | "Ry" | "ry" => Ok(FrameDof::Ry),
         "RZ" | "Rz" | "rz" => Ok(FrameDof::Rz),
         _ => Err(format!("unsupported frame DOF {value}")),
+    }
+}
+
+fn parse_active_set_state(value: &str) -> Result<ActiveSetState, String> {
+    match value {
+        "active" | "ACTIVE" => Ok(ActiveSetState::Active),
+        "inactive" | "INACTIVE" => Ok(ActiveSetState::Inactive),
+        "sticking" | "STICKING" => Ok(ActiveSetState::Sticking),
+        "sliding" | "SLIDING" => Ok(ActiveSetState::Sliding),
+        _ => Err(format!(
+            "unsupported nonlinear support initial state {value}"
+        )),
+    }
+}
+
+fn parse_activation_sense(value: &str) -> Result<ActivationSense, String> {
+    match value {
+        "positive_reaction" | "positive" | "POSITIVE_REACTION" | "POSITIVE" => {
+            Ok(ActivationSense::PositiveReaction)
+        }
+        "negative_reaction" | "negative" | "NEGATIVE_REACTION" | "NEGATIVE" => {
+            Ok(ActivationSense::NegativeReaction)
+        }
+        _ => Err(format!(
+            "unsupported nonlinear support activation sense {value}"
+        )),
+    }
+}
+
+fn parse_gap_direction(value: &str) -> Result<GapDirection, String> {
+    match value {
+        "positive_displacement" | "positive" | "POSITIVE_DISPLACEMENT" | "POSITIVE" => {
+            Ok(GapDirection::PositiveDisplacement)
+        }
+        "negative_displacement" | "negative" | "NEGATIVE_DISPLACEMENT" | "NEGATIVE" => {
+            Ok(GapDirection::NegativeDisplacement)
+        }
+        _ => Err(format!("unsupported nonlinear gap direction {value}")),
     }
 }
 
@@ -2753,6 +5152,39 @@ fn diag(
         source: Some("core/product_physics".to_string()),
         affected_refs,
     }
+}
+
+fn missing_nonlinear_field_diag(support_id: &str, field: &str) -> Diagnostic {
+    diag(
+        &format!(
+            "diagnostic:nonlinear-support:{}:{}",
+            stable_suffix(support_id),
+            stable_suffix(field)
+        ),
+        "NONLINEAR_SUPPORT_INPUT_MISSING",
+        "blocking",
+        format!("nonlinear support requires explicit {field}"),
+        vec![support_id.to_string(), field.to_string()],
+    )
+}
+
+fn invalid_nonlinear_field_diag(
+    support_id: &str,
+    field: &str,
+    value: &str,
+    message: String,
+) -> Diagnostic {
+    diag(
+        &format!(
+            "diagnostic:nonlinear-support:{}:{}",
+            stable_suffix(support_id),
+            stable_suffix(field)
+        ),
+        "NONLINEAR_SUPPORT_INPUT_INVALID",
+        "blocking",
+        message,
+        vec![support_id.to_string(), field.to_string(), value.to_string()],
+    )
 }
 
 fn stable_suffix(id: &str) -> String {
@@ -2937,6 +5369,11 @@ mod tests {
     #[test]
     fn valid_invented_model_solves_deterministically() {
         let result = run_linear_static_preview(request());
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
 
         assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
         assert!(!result.results.is_empty());
@@ -2945,6 +5382,932 @@ mod tests {
             .results
             .iter()
             .any(|item| item.id == "result:disp:node-N-140"));
+        assert!(result_ids.contains("result:sparse-live:dense-parity-relative-delta"));
+        assert!(result_ids
+            .contains("result:loadcase:load-L-200:sparse-live:dense-parity-relative-delta"));
+        assert!(!result_ids.contains(
+            "result:combination:combination-C-OPER-ALT:sparse-live:dense-parity-relative-delta"
+        ));
+        let sparse_evidence = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:sparse-live:dense-parity-relative-delta")
+            .expect("default load case sparse evidence row is present");
+        assert_eq!(
+            sparse_evidence.kind,
+            "sparse_live_path_dense_parity_relative_delta"
+        );
+        assert!(sparse_evidence.value <= 1.0e-9);
+        let metadata = sparse_evidence.metadata.as_ref().unwrap();
+        assert_eq!(metadata.component, "sparse_live_path");
+        assert_eq!(metadata.coordinate_system, "reduced_system");
+        assert!(metadata.basis.contains("DEC-050 sparse_evidence_lane"));
+        assert!(metadata.basis.contains("dense_default=true"));
+        assert!(metadata.basis.contains("profile_direct_assembly=follow_on"));
+        assert!(metadata
+            .basis
+            .contains("default_sparse_promotion=follow_on"));
+    }
+
+    #[test]
+    fn valid_invented_model_exposes_nonlinear_support_loop_evidence() {
+        let result = run_linear_static_preview(request());
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+        let diagnostic_codes = result
+            .diagnostics
+            .iter()
+            .map(|item| item.code.as_str())
+            .collect::<HashSet<_>>();
+
+        assert!(result_ids.contains("result:nonlinear-support:iteration-count"));
+        assert!(result_ids.contains("result:nonlinear-support:final-residual-count"));
+        assert!(result_ids.contains("result:nonlinear-support:converged-flag"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-140:state-code"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-displacement"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-reaction"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:state-code"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-displacement"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-reaction"));
+        assert!(result_ids
+            .contains("result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"));
+        assert!(result_ids
+            .contains("result:loadcase:load-L-200:nonlinear-support:support-NL-140:uy-reaction"));
+        assert!(result_ids.contains(
+            "result:combination:combination-C-OPER-ALT:nonlinear-support:support-NL-140:uy-reaction"
+        ));
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:iteration-count"),
+            1.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:final-residual-count"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-140:state-code"
+            ),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-140:uy-displacement"
+            ),
+            0.0
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-140:uy-reaction"
+            ) < 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-130-FRIC:state-code"
+            ),
+            3.0
+        );
+        assert_ne!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-130-FRIC:uz-displacement"
+            ),
+            0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-130-FRIC:uz-reaction"
+            ),
+            0.0
+        );
+        let normal_evidence = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id == "result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
+            })
+            .expect("derived normal evidence row is present");
+        assert_eq!(
+            normal_evidence.kind,
+            "nonlinear_support_friction_normal_reaction_derived"
+        );
+        assert_eq!(normal_evidence.value, 158.102028);
+        let normal_metadata = normal_evidence.metadata.as_ref().unwrap();
+        assert!(normal_metadata.basis.contains("derived_support_reaction"));
+        assert!(normal_metadata.basis.contains("source_ref=support:S-130"));
+        assert!(normal_metadata.basis.contains("source_dof=uy"));
+        assert!(!normal_metadata
+            .basis
+            .contains("derived_normal_force_model=TBD"));
+        assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+    }
+
+    fn two_node_nonlinear_preview_request(
+        support_id: &str,
+        nonlinear: NonlinearSupportInput,
+        load_id: &str,
+        load_value: f64,
+        combination_id: &str,
+    ) -> LinearStaticPreviewRequest {
+        let mut request = request();
+        request.model.nodes.truncate(2);
+        request.model.nodes[0].id = "node:N-100".to_string();
+        request.model.nodes[0].position = Vec3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        request.model.nodes[1].id = "node:N-110".to_string();
+        request.model.nodes[1].position = Vec3 {
+            x: 1.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        request.model.pipe_segments.truncate(1);
+        request.model.pipe_segments[0].id = "pipe:P-100".to_string();
+        request.model.pipe_segments[0].from = "node:N-100".to_string();
+        request.model.pipe_segments[0].to = "node:N-110".to_string();
+        request.model.pipe_segments[0].y_reference = Some(Vec3 {
+            x: 0.0,
+            y: 1.0,
+            z: 0.0,
+        });
+        request.model.supports = vec![
+            PreviewSupport {
+                id: "support:S-100".to_string(),
+                node: "node:N-100".to_string(),
+                restraints: vec![
+                    "UX".to_string(),
+                    "UY".to_string(),
+                    "UZ".to_string(),
+                    "RX".to_string(),
+                    "RY".to_string(),
+                    "RZ".to_string(),
+                ],
+                family: Some("anchor".to_string()),
+                stiffness: None,
+                hanger: None,
+                nonlinear: None,
+                provenance: Some("invented_example".to_string()),
+            },
+            PreviewSupport {
+                id: support_id.to_string(),
+                node: "node:N-110".to_string(),
+                restraints: Vec::new(),
+                family: Some("nonlinear".to_string()),
+                stiffness: None,
+                hanger: None,
+                nonlinear: Some(nonlinear),
+                provenance: Some(
+                    "invented_example_user_entered_nonlinear_support_no_catalog".to_string(),
+                ),
+            },
+        ];
+        request.model.components.clear();
+        request.model.load_cases.truncate(1);
+        request.model.load_cases[0].id = load_id.to_string();
+        request.model.load_cases[0].primitive_loads = vec![PreviewPrimitiveLoad {
+            id: format!("{load_id}-X"),
+            category: "occasional".to_string(),
+            target: LoadTargetInput::Node {
+                node: "node:N-110".to_string(),
+            },
+            direction: "global_x".to_string(),
+            magnitude: Quantity {
+                value: load_value,
+                unit: "N".to_string(),
+            },
+            dimension: "force".to_string(),
+            provenance: Some("invented_example_user_input".to_string()),
+        }];
+        request.model.combinations = vec![PreviewCombination {
+            id: combination_id.to_string(),
+            label: None,
+            basis: "mechanics".to_string(),
+            terms: vec![PreviewCombinationTerm {
+                load_case: load_id.to_string(),
+                factor: 1.0,
+            }],
+            minuend_id: None,
+            subtrahend_id: None,
+            operand_ids: None,
+            mode: None,
+            provenance: Some("invented_example_no_code_combination".to_string()),
+        }];
+        request
+    }
+
+    fn friction_preview_request() -> LinearStaticPreviewRequest {
+        two_node_nonlinear_preview_request(
+            "support:NL-FRIC-110",
+            NonlinearSupportInput {
+                behavior: "friction".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("sticking".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: Some(Quantity {
+                    value: 0.50,
+                    unit: "none".to_string(),
+                }),
+                normal_reaction: Some(Quantity {
+                    value: 1000.0,
+                    unit: "N".to_string(),
+                }),
+                normal_reaction_source: None,
+            },
+            "load:L-FRICTION",
+            100.0,
+            "combination:C-FRICTION",
+        )
+    }
+
+    fn mixed_nonlinear_preview_request() -> LinearStaticPreviewRequest {
+        let mut request = two_node_nonlinear_preview_request(
+            "support:NL-MIX-ONEWAY-110",
+            NonlinearSupportInput {
+                behavior: "one_way".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("active".to_string()),
+                active_when: Some("positive_reaction".to_string()),
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: None,
+                normal_reaction: None,
+                normal_reaction_source: None,
+            },
+            "load:L-MIXED-NONLINEAR",
+            100.0,
+            "combination:C-MIXED-NONLINEAR",
+        );
+        request.model.supports.push(PreviewSupport {
+            id: "support:NL-MIX-GAP-110".to_string(),
+            node: "node:N-110".to_string(),
+            restraints: Vec::new(),
+            family: Some("nonlinear".to_string()),
+            stiffness: None,
+            hanger: None,
+            nonlinear: Some(NonlinearSupportInput {
+                behavior: "gap".to_string(),
+                dof: "UY".to_string(),
+                initial_state: Some("inactive".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: Some("positive_displacement".to_string()),
+                gap: Some(Quantity {
+                    value: 0.05,
+                    unit: "mm".to_string(),
+                }),
+                friction_coefficient: None,
+                normal_reaction: None,
+                normal_reaction_source: None,
+            }),
+            provenance: Some("invented_example_user_entered_nonlinear_gap_no_catalog".to_string()),
+        });
+        request.model.supports.push(PreviewSupport {
+            id: "support:NL-MIX-FRIC-110".to_string(),
+            node: "node:N-110".to_string(),
+            restraints: Vec::new(),
+            family: Some("nonlinear".to_string()),
+            stiffness: None,
+            hanger: None,
+            nonlinear: Some(NonlinearSupportInput {
+                behavior: "friction".to_string(),
+                dof: "UZ".to_string(),
+                initial_state: Some("sticking".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: Some(Quantity {
+                    value: 0.30,
+                    unit: "none".to_string(),
+                }),
+                normal_reaction: Some(Quantity {
+                    value: 10.0,
+                    unit: "N".to_string(),
+                }),
+                normal_reaction_source: None,
+            }),
+            provenance: Some(
+                "invented_example_user_entered_nonlinear_friction_no_catalog".to_string(),
+            ),
+        });
+        request.model.load_cases[0]
+            .primitive_loads
+            .push(PreviewPrimitiveLoad {
+                id: "load:L-MIXED-NONLINEAR-Y".to_string(),
+                category: "occasional".to_string(),
+                target: LoadTargetInput::Node {
+                    node: "node:N-110".to_string(),
+                },
+                direction: "global_y".to_string(),
+                magnitude: Quantity {
+                    value: 100_000.0,
+                    unit: "N".to_string(),
+                },
+                dimension: "force".to_string(),
+                provenance: Some("invented_example_user_input".to_string()),
+            });
+        request.model.load_cases[0]
+            .primitive_loads
+            .push(PreviewPrimitiveLoad {
+                id: "load:L-MIXED-NONLINEAR-Z".to_string(),
+                category: "occasional".to_string(),
+                target: LoadTargetInput::Node {
+                    node: "node:N-110".to_string(),
+                },
+                direction: "global_z".to_string(),
+                magnitude: Quantity {
+                    value: 100.0,
+                    unit: "N".to_string(),
+                },
+                dimension: "force".to_string(),
+                provenance: Some("invented_example_user_input".to_string()),
+            });
+        request
+    }
+
+    #[test]
+    fn mixed_nonlinear_preview_bundle_converges_and_emits_each_support_state() {
+        let result = run_linear_static_preview(mixed_nonlinear_preview_request());
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+        let diagnostic_codes = result
+            .diagnostics
+            .iter()
+            .map(|item| item.code.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(
+            result_ids.contains("result:nonlinear-support:support-NL-MIX-ONEWAY-110:state-code")
+        );
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-MIX-GAP-110:state-code"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-MIX-FRIC-110:state-code"));
+        assert!(result_ids
+            .contains("result:nonlinear-support:support-NL-MIX-FRIC-110:friction-normal-reaction"));
+        assert!(result_ids.contains("result:nonlinear-support:max-translation-delta"));
+        assert!(result_ids.contains("result:nonlinear-support:max-rotation-delta"));
+        assert!(result_ids.contains("result:nonlinear-support:max-force-reaction-delta"));
+        assert!(result_ids.contains("result:nonlinear-support:max-moment-reaction-delta"));
+        assert!(result_ids.contains("result:nonlinear-support:free-dof-force-residual"));
+        assert!(result_ids.contains("result:nonlinear-support:free-dof-moment-residual"));
+        assert!(!result_ids.contains(
+            "result:combination:combination-C-MIXED-NONLINEAR:nonlinear-support:support-NL-MIX-FRIC-110:friction-normal-reaction"
+        ));
+        assert!(!result_ids.contains(
+            "result:combination:combination-C-MIXED-NONLINEAR:nonlinear-support:max-translation-delta"
+        ));
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:iteration-count"),
+            2.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:final-residual-count"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-ONEWAY-110:state-code"
+            ),
+            0.0
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-ONEWAY-110:ux-displacement"
+            ) > 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-ONEWAY-110:ux-reaction"
+            ),
+            0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-GAP-110:state-code"
+            ),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-GAP-110:uy-displacement"
+            ),
+            0.05
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-GAP-110:uy-reaction"
+            ) < 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-FRIC-110:state-code"
+            ),
+            3.0
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-FRIC-110:uz-displacement"
+            ) > 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-MIX-FRIC-110:uz-reaction"
+            ),
+            0.0
+        );
+        assert!(result_value(&result, "result:nonlinear-support:max-translation-delta") > 0.0);
+        assert!(result_value(&result, "result:nonlinear-support:max-rotation-delta") >= 0.0);
+        assert!(result_value(&result, "result:nonlinear-support:max-force-reaction-delta") > 0.0);
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:max-moment-reaction-delta"
+            ) >= 0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:free-dof-force-residual"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:free-dof-moment-residual"),
+            0.0
+        );
+        let iteration_count = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:nonlinear-support:iteration-count")
+            .expect("iteration-count row exists");
+        assert!(iteration_count
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("support_count=3"));
+        assert!(iteration_count
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains(DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF));
+        assert!(iteration_count
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("policy_status=accepted"));
+        assert!(iteration_count
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("support_classes=friction,gap,one_way"));
+        let normal_evidence = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id
+                    == "result:nonlinear-support:support-NL-MIX-FRIC-110:friction-normal-reaction"
+            })
+            .expect("normal evidence row is present");
+        assert_eq!(
+            normal_evidence.kind,
+            "nonlinear_support_friction_normal_reaction_input"
+        );
+        assert_eq!(normal_evidence.value, 10.0);
+        assert!(normal_evidence
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("explicit_user_entered_normal_reaction"));
+        assert_eq!(
+            result
+                .diagnostics
+                .iter()
+                .filter(|item| item.code == "NONLINEAR_SUPPORT_STATE_REVIEW")
+                .count(),
+            3
+        );
+        assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+    }
+
+    #[test]
+    fn friction_preview_surfaces_explicit_normal_evidence_without_combining_it() {
+        let result = run_linear_static_preview(friction_preview_request());
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(result_ids
+            .contains("result:nonlinear-support:support-NL-FRIC-110:friction-normal-reaction"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-FRIC-110:state-code"));
+        assert!(result_ids.contains("result:nonlinear-support:support-NL-FRIC-110:ux-reaction"));
+        assert!(!result_ids.contains(
+            "result:combination:combination-C-FRICTION:nonlinear-support:support-NL-FRIC-110:friction-normal-reaction"
+        ));
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-110:state-code"
+            ),
+            2.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-110:friction-normal-reaction"
+            ),
+            1000.0
+        );
+        let normal_evidence = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id == "result:nonlinear-support:support-NL-FRIC-110:friction-normal-reaction"
+            })
+            .expect("normal evidence row is present");
+        assert_eq!(
+            normal_evidence.kind,
+            "nonlinear_support_friction_normal_reaction_input"
+        );
+        assert!(normal_evidence
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("explicit_user_entered_normal_reaction"));
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|item| item.code == "NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+    }
+
+    fn friction_derived_normal_preview_request() -> LinearStaticPreviewRequest {
+        let mut request = two_node_nonlinear_preview_request(
+            "support:NL-FRIC-DERIVED-110",
+            NonlinearSupportInput {
+                behavior: "friction".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("sticking".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: Some(Quantity {
+                    value: 0.30,
+                    unit: "none".to_string(),
+                }),
+                normal_reaction: None,
+                normal_reaction_source: Some(FrictionNormalReactionSourceInput {
+                    support_ref: "support:S-NORMAL-110".to_string(),
+                    dof: "UY".to_string(),
+                }),
+            },
+            "load:L-FRICTION-DERIVED",
+            10.0,
+            "combination:C-FRICTION-DERIVED",
+        );
+        request.model.supports.push(PreviewSupport {
+            id: "support:S-NORMAL-110".to_string(),
+            node: "node:N-110".to_string(),
+            restraints: vec!["UY".to_string()],
+            family: Some("guide".to_string()),
+            stiffness: None,
+            hanger: None,
+            nonlinear: None,
+            provenance: Some("invented_example_normal_reaction_source".to_string()),
+        });
+        request.model.load_cases[0]
+            .primitive_loads
+            .push(PreviewPrimitiveLoad {
+                id: "load:L-FRICTION-DERIVED-Y".to_string(),
+                category: "occasional".to_string(),
+                target: LoadTargetInput::Node {
+                    node: "node:N-110".to_string(),
+                },
+                direction: "global_y".to_string(),
+                magnitude: Quantity {
+                    value: -100.0,
+                    unit: "N".to_string(),
+                },
+                dimension: "force".to_string(),
+                provenance: Some("invented_example_user_input".to_string()),
+            });
+        request
+    }
+
+    #[test]
+    fn friction_preview_derives_normal_from_named_support_reaction() {
+        let result = run_linear_static_preview(friction_derived_normal_preview_request());
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(result_ids.contains(
+            "result:nonlinear-support:support-NL-FRIC-DERIVED-110:friction-normal-reaction"
+        ));
+        assert!(!result_ids.contains(
+            "result:combination:combination-C-FRICTION-DERIVED:nonlinear-support:support-NL-FRIC-DERIVED-110:friction-normal-reaction"
+        ));
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-DERIVED-110:state-code"
+            ),
+            2.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-DERIVED-110:friction-normal-reaction"
+            ),
+            100.0
+        );
+        let normal_evidence = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id
+                    == "result:nonlinear-support:support-NL-FRIC-DERIVED-110:friction-normal-reaction"
+            })
+            .expect("derived normal evidence row is present");
+        assert_eq!(
+            normal_evidence.kind,
+            "nonlinear_support_friction_normal_reaction_derived"
+        );
+        let metadata = normal_evidence.metadata.as_ref().unwrap();
+        assert!(metadata.basis.contains("derived_support_reaction"));
+        assert!(metadata.basis.contains("source_ref=support:S-NORMAL-110"));
+        assert!(metadata.basis.contains("source_dof=uy"));
+        assert!(!metadata.basis.contains("derived_normal_force_model=TBD"));
+    }
+
+    fn friction_sliding_preview_request() -> LinearStaticPreviewRequest {
+        two_node_nonlinear_preview_request(
+            "support:NL-FRIC-SLIDE-110",
+            NonlinearSupportInput {
+                behavior: "friction".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("sticking".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: Some(Quantity {
+                    value: 0.30,
+                    unit: "none".to_string(),
+                }),
+                normal_reaction: Some(Quantity {
+                    value: 10.0,
+                    unit: "N".to_string(),
+                }),
+                normal_reaction_source: None,
+            },
+            "load:L-FRICTION-SLIDE",
+            10.0,
+            "combination:C-FRICTION-SLIDE",
+        )
+    }
+
+    #[test]
+    fn friction_preview_slides_and_converges_with_explicit_normal_evidence() {
+        let result = run_linear_static_preview(friction_sliding_preview_request());
+        let diagnostic_codes = result
+            .diagnostics
+            .iter()
+            .map(|item| item.code.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:iteration-count"),
+            2.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:final-residual-count"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-SLIDE-110:state-code"
+            ),
+            3.0
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-SLIDE-110:ux-displacement"
+            ) > 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-SLIDE-110:ux-reaction"
+            ),
+            0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-FRIC-SLIDE-110:friction-normal-reaction"
+            ),
+            10.0
+        );
+        assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+    }
+
+    fn gap_closure_preview_request() -> LinearStaticPreviewRequest {
+        two_node_nonlinear_preview_request(
+            "support:NL-GAP-110",
+            NonlinearSupportInput {
+                behavior: "gap".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("inactive".to_string()),
+                active_when: None,
+                contact_when: None,
+                closes_when: Some("positive_displacement".to_string()),
+                gap: Some(Quantity {
+                    value: 0.05,
+                    unit: "mm".to_string(),
+                }),
+                friction_coefficient: None,
+                normal_reaction: None,
+                normal_reaction_source: None,
+            },
+            "load:L-GAP",
+            100_000.0,
+            "combination:C-GAP",
+        )
+    }
+
+    #[test]
+    fn gap_preview_closes_to_explicit_clearance_through_dense_loop() {
+        let result = run_linear_static_preview(gap_closure_preview_request());
+        let diagnostic_codes = result
+            .diagnostics
+            .iter()
+            .map(|item| item.code.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:iteration-count"),
+            2.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:final-residual-count"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-GAP-110:state-code"
+            ),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-GAP-110:ux-displacement"
+            ),
+            0.05
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-GAP-110:ux-reaction"
+            ) < 0.0
+        );
+        assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
+    }
+
+    fn lift_off_release_preview_request() -> LinearStaticPreviewRequest {
+        two_node_nonlinear_preview_request(
+            "support:NL-LIFT-110",
+            NonlinearSupportInput {
+                behavior: "lift_off".to_string(),
+                dof: "UX".to_string(),
+                initial_state: Some("active".to_string()),
+                active_when: None,
+                contact_when: Some("positive_reaction".to_string()),
+                closes_when: None,
+                gap: None,
+                friction_coefficient: None,
+                normal_reaction: None,
+                normal_reaction_source: None,
+            },
+            "load:L-LIFT",
+            100.0,
+            "combination:C-LIFT",
+        )
+    }
+
+    #[test]
+    fn lift_off_preview_releases_contact_through_dense_loop() {
+        let result = run_linear_static_preview(lift_off_release_preview_request());
+        let diagnostic_codes = result
+            .diagnostics
+            .iter()
+            .map(|item| item.code.as_str())
+            .collect::<HashSet<_>>();
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:iteration-count"),
+            2.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:final-residual-count"),
+            0.0
+        );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-LIFT-110:state-code"
+            ),
+            0.0
+        );
+        assert!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-LIFT-110:ux-displacement"
+            ) > 0.0
+        );
+        assert_eq!(
+            result_value(
+                &result,
+                "result:nonlinear-support:support-NL-LIFT-110:ux-reaction"
+            ),
+            0.0
+        );
+        assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
+        assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
     }
 
     #[test]
@@ -3419,6 +6782,282 @@ mod tests {
             .diagnostics
             .iter()
             .any(|item| item.code == "PRESSURE_LOAD_NOT_APPLIED_TO_FRAME_VECTOR"));
+    }
+
+    #[test]
+    fn bend_component_user_multipliers_emit_stress_review_rows() {
+        let result = run_linear_static_preview(request());
+        let default_row_id = "result:stress:component-C-110:pipe-P-100:end-j:user-multiplier";
+        let combination_row_id =
+            "result:combination:combination-C-OPER-ALT:stress:component-C-110:pipe-P-100:end-j:user-multiplier";
+        let default_row = result
+            .results
+            .iter()
+            .find(|item| item.id == default_row_id)
+            .expect("bend user multiplier row should be emitted for adjacent pipe endpoint");
+        let combination_row = result
+            .results
+            .iter()
+            .find(|item| item.id == combination_row_id)
+            .expect("bend user multiplier row should participate in explicit combinations");
+
+        assert_eq!(result.summary.component_stress_modifier_count, 8);
+        assert_eq!(default_row.kind, "component_user_stress_multiplier_review");
+        assert_eq!(default_row.entity_ref, "component:C-110");
+        assert!(default_row.value > 0.0);
+        assert!(default_row
+            .source_result_refs
+            .contains(&"result:stress:pipe-P-100:end-j:axial-normal".to_string()));
+        assert!(default_row
+            .source_result_refs
+            .contains(&"result:stress:pipe-P-100:end-j:bending-normal-y".to_string()));
+        assert!(default_row
+            .source_result_refs
+            .contains(&"result:stress:pipe-P-100".to_string()));
+        let metadata = default_row
+            .metadata
+            .as_ref()
+            .expect("component multiplier row carries recovery metadata");
+        assert_eq!(
+            metadata.component,
+            "user_entered_component_stress_multiplier"
+        );
+        assert_eq!(metadata.coordinate_system, "component_review");
+        assert_eq!(metadata.location, "pipe:P-100:end_j");
+        assert!(metadata.basis.contains("user_entered_sif=1.15"));
+        assert!(metadata.basis.contains("user_entered_flexibility=1.08"));
+        assert!(metadata
+            .basis
+            .contains("source=invented_user_entered_preview_no_code_table"));
+        assert!(metadata
+            .basis
+            .contains("solver_consumption=mechanics_geometry_only"));
+        assert!(metadata
+            .sign_convention
+            .contains("base frame stiffness unchanged"));
+
+        assert_eq!(
+            combination_row
+                .basis_ref
+                .as_ref()
+                .map(|basis| basis.ref_id.as_str()),
+            Some("combination:C-OPER-ALT")
+        );
+        assert!(
+            result
+                .diagnostics
+                .iter()
+                .filter(|diagnostic| diagnostic.code == "COMPONENT_STRESS_MULTIPLIER_APPLIED")
+                .count()
+                >= 4
+        );
+    }
+
+    #[test]
+    fn branch_component_user_multipliers_emit_side_specific_stress_review_rows() {
+        let result = run_linear_static_preview(request());
+        let branch_row_id = "result:stress:component-C-120:pipe-P-110:end-j:user-multiplier";
+        let header_row_id = "result:stress:component-C-120:pipe-P-120:end-i:user-multiplier";
+        let combination_row_id =
+            "result:combination:combination-C-OPER-ALT:stress:component-C-120:pipe-P-120:end-i:user-multiplier";
+        let branch_row = result
+            .results
+            .iter()
+            .find(|item| item.id == branch_row_id)
+            .expect(
+                "branch-side user multiplier row should be emitted for the branch pipe endpoint",
+            );
+        let header_row = result
+            .results
+            .iter()
+            .find(|item| item.id == header_row_id)
+            .expect(
+                "header-side user multiplier row should be emitted for the header pipe endpoint",
+            );
+        let combination_row = result
+            .results
+            .iter()
+            .find(|item| item.id == combination_row_id)
+            .expect("branch user multiplier row should participate in explicit combinations");
+
+        assert_eq!(branch_row.kind, "component_user_stress_multiplier_review");
+        assert_eq!(branch_row.entity_ref, "component:C-120");
+        assert_eq!(header_row.entity_ref, "component:C-120");
+        assert!(branch_row.value > 0.0);
+        assert!(header_row.value > 0.0);
+
+        let branch_metadata = branch_row
+            .metadata
+            .as_ref()
+            .expect("branch-side multiplier row carries recovery metadata");
+        assert_eq!(branch_metadata.coordinate_system, "component_review");
+        assert_eq!(branch_metadata.location, "pipe:P-110:end_j");
+        assert!(branch_metadata.basis.contains("component_family=branch"));
+        assert!(branch_metadata.basis.contains("component_side=branch"));
+        assert!(branch_metadata.basis.contains("user_entered_sif=1.31"));
+        assert!(branch_metadata
+            .basis
+            .contains("source=invented_user_entered_branch_modifiers_no_code_table"));
+
+        let header_metadata = header_row
+            .metadata
+            .as_ref()
+            .expect("header-side multiplier row carries recovery metadata");
+        assert_eq!(header_metadata.location, "pipe:P-120:end_i");
+        assert!(header_metadata.basis.contains("component_family=branch"));
+        assert!(header_metadata.basis.contains("component_side=header"));
+        assert!(header_metadata.basis.contains("user_entered_sif=1.22"));
+
+        assert_eq!(
+            combination_row
+                .basis_ref
+                .as_ref()
+                .map(|basis| basis.ref_id.as_str()),
+            Some("combination:C-OPER-ALT")
+        );
+    }
+
+    #[test]
+    fn expansion_joint_user_stiffness_emits_macro_element_review_rows() {
+        let result = run_linear_static_preview(request());
+        let axial = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:component-stiffness:component-C-150:axial")
+            .expect("expansion joint axial stiffness review row should be emitted");
+        let torsional = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:component-stiffness:component-C-150:torsional")
+            .expect("expansion joint torsional stiffness review row should be emitted");
+
+        assert_eq!(
+            result.summary.component_user_stiffness_macro_element_count,
+            4
+        );
+        assert_eq!(axial.kind, "component_user_stiffness_macro_element_review");
+        assert_eq!(axial.entity_ref, "component:C-150");
+        assert_eq!(axial.value, 3_200_000.0);
+        assert_eq!(axial.unit, "N/m");
+        let axial_metadata = axial
+            .metadata
+            .as_ref()
+            .expect("expansion joint row carries macro-element metadata");
+        assert_eq!(axial_metadata.component, "axial_user_stiffness");
+        assert_eq!(axial_metadata.coordinate_system, "component_local_preview");
+        assert_eq!(axial_metadata.location, "pipe:P-130");
+        assert!(axial_metadata
+            .basis
+            .contains("component_family=expansion_joint"));
+        assert!(axial_metadata
+            .basis
+            .contains("solver_consumption=mechanics_geometry_and_user_flexibility"));
+        assert!(axial_metadata
+            .basis
+            .contains("pressure_thrust=load_side_pressure_thrust_user_review_required"));
+        assert!(axial_metadata
+            .sign_convention
+            .contains("global macro-element solve is not claimed"));
+
+        assert_eq!(torsional.value, 620_000.0);
+        assert_eq!(torsional.unit, "N*m/rad");
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"));
+        assert!(
+            result
+                .diagnostics
+                .iter()
+                .all(|diagnostic| diagnostic.code
+                    != "EXPANSION_JOINT_MECHANICS_INTERFACE_UNSUPPORTED")
+        );
+    }
+
+    #[test]
+    fn spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults() {
+        let result = run_linear_static_preview(request());
+        let variable_stiffness = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:spring-hanger:support-SH-140:stiffness")
+            .expect("variable spring hanger stiffness review row should be emitted");
+        let constant_load = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:constant-effort-support:support-CE-120:constant-load")
+            .expect("constant-effort support load review row should be emitted");
+
+        assert_eq!(result.summary.spring_hanger_user_input_count, 7);
+        assert_eq!(variable_stiffness.kind, "spring_hanger_user_input_review");
+        assert_eq!(variable_stiffness.entity_ref, "support:SH-140");
+        assert_eq!(variable_stiffness.value, 42_000.0);
+        assert_eq!(variable_stiffness.unit, "N/m");
+        let variable_metadata = variable_stiffness
+            .metadata
+            .as_ref()
+            .expect("spring hanger row carries support metadata");
+        assert_eq!(
+            variable_metadata.component,
+            "variable_spring_hanger_stiffness"
+        );
+        assert_eq!(variable_metadata.coordinate_system, "support_local_preview");
+        assert!(variable_metadata
+            .basis
+            .contains("mechanics_consumption=linear_spring_primitive_user_stiffness"));
+        assert!(variable_metadata.basis.contains("dec_ref=DEC-049"));
+        assert!(variable_metadata
+            .sign_convention
+            .contains("no catalog/default value is supplied"));
+
+        assert_eq!(constant_load.kind, "constant_effort_user_input_review");
+        assert_eq!(constant_load.entity_ref, "support:CE-120");
+        assert_eq!(constant_load.value, 375.0);
+        assert_eq!(constant_load.unit, "N");
+        let constant_metadata = constant_load
+            .metadata
+            .as_ref()
+            .expect("constant-effort row carries review metadata");
+        assert!(constant_metadata
+            .basis
+            .contains("mechanics_consumption=load_side_review_only_no_global_solve_consumption"));
+        assert!(constant_metadata
+            .sign_convention
+            .contains("no global constant-effort load"));
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SPRING_HANGER_USER_DATA_REVIEWED"));
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "CONSTANT_EFFORT_USER_DATA_REVIEWED"));
+    }
+
+    #[test]
+    fn spring_hanger_missing_stiffness_blocks_without_defaulting() {
+        let mut request = request();
+        let support = request
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:SH-140")
+            .expect("fixture carries variable spring hanger");
+        support.stiffness = None;
+        support
+            .hanger
+            .as_mut()
+            .expect("fixture carries hanger data")
+            .stiffness = None;
+
+        let result = run_linear_static_preview(request);
+
+        assert_eq!(result.status.mechanics, "MODEL_INCOMPLETE");
+        assert_eq!(result.summary.spring_hanger_user_input_count, 0);
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SPRING_HANGER_STIFFNESS_MISSING"));
     }
 
     #[test]

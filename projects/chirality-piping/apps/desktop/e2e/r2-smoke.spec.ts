@@ -34,19 +34,62 @@ async function openWorkspaceSection(page: Page, sectionId: string): Promise<void
   await expect(section).toBeVisible();
 }
 
+async function ensureTreeExpanded(page: Page): Promise<void> {
+  const toggle = page.getByTestId("toggle-tree");
+  if ((await toggle.getAttribute("aria-expanded")) !== "true") {
+    await toggle.click();
+  }
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+}
+
+async function ensureInspectorExpanded(page: Page): Promise<void> {
+  const toggle = page.getByTestId("toggle-inspector");
+  if ((await toggle.getAttribute("aria-expanded")) !== "true") {
+    await toggle.click();
+  }
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+}
+
+async function ensureCreationToolArmed(page: Page, testId: "command-node" | "command-pipe", label: string): Promise<void> {
+  const button = page.getByTestId(testId);
+  if ((await button.getAttribute("aria-pressed")) !== "true") {
+    await button.click();
+  }
+  await expect(button).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByTestId("armed-creation-tool")).toContainText(label);
+  await expect(page.getByTestId("viewport-editor-intents")).toHaveClass(/active/);
+}
+
+async function ensurePipeEndpointPick(page: Page, testId: "viewport-pick-pipe-from" | "viewport-pick-pipe-to"): Promise<void> {
+  const button = page.getByTestId(testId);
+  if ((await button.getAttribute("aria-pressed")) !== "true") {
+    await button.click();
+  }
+  await expect(button).toHaveAttribute("aria-pressed", "true");
+}
+
 test("guided workbench shell keeps journey steps, details, and compact status reachable", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByTestId("desktop-preview-shell")).toBeVisible();
   await expect(page.getByTestId("app-menu-bar")).toBeVisible();
-  // The dock is collapsed by default so the 3D spatial core dominates.
+  // The dock and detailed rails are collapsed by default so the 3D model plus
+  // the local review-only agent rail dominate the primary screen.
   await expect(page.getByTestId("workspace-dock")).toHaveClass(/collapsed/);
+  await expect(page.getByTestId("toggle-tree")).toHaveAttribute("aria-expanded", "false");
+  await expect(page.getByTestId("toggle-inspector")).toHaveAttribute("aria-expanded", "false");
+  await expect(page.getByTestId("agent-workbench-panel")).toBeVisible();
+  await expect(page.getByTestId("agent-focus-selection")).toContainText("project:invented-loop-01");
+  await expect(page.getByTestId("agent-proposal-summary")).toContainText("review_only_local_preview");
   await expect(page.getByTestId("workspace-status-bar")).toBeVisible();
   await expect(page.getByTestId("status-pill-professional")).toContainText("HUMAN_REVIEW_REQUIRED");
+  await page.getByTestId("toggle-tree").click();
+  await expect(page.getByTestId("toggle-tree")).toHaveAttribute("aria-expanded", "true");
   await page.getByTestId("layout-mode-grid").click();
   await expect(page.getByTestId("entity-grid")).toBeVisible();
   await expect(page.getByTestId("entity-grid-table-nodes")).toBeVisible();
   await page.getByTestId("entity-grid-row-node:N-100").click();
+  await expect(page.getByTestId("agent-focus-selection")).toContainText("node:N-100");
   await expect(page.getByLabel("Property inspector")).toContainText("node:N-100");
   await page.getByTestId("entity-grid-input-node:N-100-x").fill("1.25");
   await page.getByTestId("entity-grid-input-node:N-100-y").fill("0.5");
@@ -102,6 +145,8 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   );
   await expect(page.getByTestId("property-unit-basis-summary")).toContainText("m, model metadata");
   await expect(page.getByTestId("property-unit-basis-summary")).toContainText("Pa, model metadata");
+  await ensureTreeExpanded(page);
+  await ensureInspectorExpanded(page);
   await page.getByTestId("tree-row-support:S-120").click();
   await expect(page.getByTestId("delete-support-intent-panel")).toContainText("delete_support");
   await expect(page.getByTestId("delete-support-intent-panel")).toContainText("not_required_dimensionless");
@@ -350,16 +395,14 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
 
   const canvas = page.locator(".viewport-canvas canvas");
   await expect(canvas).toBeVisible();
+  await expect(page.getByTestId("viewport-editor-intents")).toHaveClass(/collapsed/);
+  await ensureCreationToolArmed(page, "command-node", "Node tool armed");
   await expect(page.getByTestId("viewport-unit-catalog-status")).toContainText(
     "browser preview uses model metadata"
   );
   await expect(page.getByTestId("viewport-create-node-unit")).toHaveValue("m");
   await expect(page.getByTestId("viewport-create-node-unit-basis")).toContainText(
     "Coordinates: m, model metadata"
-  );
-  await expect(page.getByTestId("viewport-create-pipe-length-unit")).toHaveValue("m");
-  await expect(page.getByTestId("viewport-create-pipe-unit-basis")).toContainText(
-    "Pipe geometry: m, model metadata"
   );
   await canvas.click({ position: { x: 64, y: 64 } });
   await expect(page.getByTestId("viewport-create-node-id")).toHaveValue("node:V-001");
@@ -369,8 +412,13 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   await expect(page.getByTestId("viewport-create-node-z")).toHaveValue(/^-?\d/);
   await expect(page.getByTestId("queue-explicit-node-intent")).toBeEnabled();
 
-  await page.getByTestId("viewport-pick-pipe-from").click();
-  await expect(page.getByTestId("viewport-pick-pipe-from")).toHaveAttribute("aria-pressed", "true");
+  await ensureCreationToolArmed(page, "command-pipe", "Pipe tool armed");
+  await expect(page.getByTestId("viewport-create-pipe-length-unit")).toHaveValue("m");
+  await expect(page.getByTestId("viewport-create-pipe-unit-basis")).toContainText(
+    "Pipe geometry: m, model metadata"
+  );
+
+  await ensurePipeEndpointPick(page, "viewport-pick-pipe-from");
   await page.getByTestId("viewport-select-node:N-100").click();
   await expect(page.getByTestId("viewport-create-pipe-from")).toHaveValue("node:N-100");
   await expect(page.getByTestId("viewport-pick-pipe-to")).toHaveAttribute("aria-pressed", "true");
@@ -393,12 +441,12 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   await page.getByTestId("issues-home").getByRole("button", { name: /Close/i }).click();
   await page.getByTestId("run-mechanics-preview").click();
   await expect(page.getByTestId("solve-job-summary")).toContainText("state=completed");
-  await expect(page.getByTestId("solve-job-summary")).toContainText("result_rows=737");
+  await expect(page.getByTestId("solve-job-summary")).toContainText("result_rows=802");
   await expect(page.getByTestId("solve-job-unit-policy")).toContainText("model=angle=rad,force=N,length=m");
-  await expect(page.getByTestId("solve-job-unit-policy")).toContainText("results=MPa,N,N*m,mm,rad");
-  await expect(page.getByTestId("solve-job-unit-policy")).toContainText("rows=737");
+  await expect(page.getByTestId("solve-job-unit-policy")).toContainText("N*m/rad,N/m");
+  await expect(page.getByTestId("solve-job-unit-policy")).toContainText("rows=802");
   await expect(page.getByTestId("solve-job-unit-policy")).toContainText("conversion=false");
-  await expect(page.getByTestId("viewport-deformation-status")).toContainText("available; nodes=5; max=33.211157 mm");
+  await expect(page.getByTestId("viewport-deformation-status")).toContainText("available; nodes=5; max=11.667835 mm");
   await expect(page.getByTestId("viewport-deformation-boundary")).toContainText(
     "scale=normalized_display_offset_not_physical_length"
   );
@@ -417,8 +465,8 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   await expect(auditDrawer.getByTestId("secret-private-library-unit-policy")).toContainText("payload=false");
   await expect(auditDrawer.getByTestId("secret-private-library-unit-policy")).toContainText("conversion=false");
   await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("model=angle=rad,force=N,length=m");
-  await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("results=MPa,N,N*m,mm,rad");
-  await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("rows=737");
+  await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("N*m/rad,N/m");
+  await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("rows=802");
   await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("source=result_envelope");
   await expect(auditDrawer.getByTestId("run-audit-units")).toContainText("conversion=false");
   await auditDrawer.getByRole("button", { name: /Close/i }).click();
@@ -434,22 +482,22 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   await openWorkspaceSection(page, "results");
   await expect(page.getByTestId("results-panel")).toBeVisible();
   await expect(page.getByTestId("result-unit-policy")).toContainText("MPa, N, N*m, mm, rad");
-  await expect(page.getByTestId("result-unit-policy")).toContainText("737 rows");
+  await expect(page.getByTestId("result-unit-policy")).toContainText("802 rows");
   await expect(page.getByTestId("result-unit-policy")).toContainText("entered units preserved");
-  await expect(page.getByTestId("result-filter-summary")).toContainText("737 of 737 results match filter");
-  await expect(page.getByTestId("result-family-count-reaction")).toContainText("9");
+  await expect(page.getByTestId("result-filter-summary")).toContainText("802 of 802 results match filter");
+  await expect(page.getByTestId("result-family-count-reaction")).toContainText("29");
   await page.getByTestId("result-family-reaction").click();
-  await expect(page.getByTestId("result-filter-summary")).toContainText("9 of 737 results match filter");
+  await expect(page.getByTestId("result-filter-summary")).toContainText("29 of 802 results match filter");
   await expect(page.getByTestId("result-page-summary")).toContainText(
-    "Showing 1 to 9 of 9 matching results; page 1 of 1"
+    "Showing 1 to 29 of 29 matching results; page 1 of 1"
   );
   await expect(page.getByTestId("result-row-result:reaction:support-S-120")).toBeVisible();
   await page.getByTestId("result-family-all").click();
-  await expect(page.getByTestId("result-filter-summary")).toContainText("737 of 737 results match filter");
+  await expect(page.getByTestId("result-filter-summary")).toContainText("802 of 802 results match filter");
   await page.getByTestId("result-filter-input").fill("pipe-P-120");
-  await expect(page.getByTestId("result-filter-summary")).toContainText("167 of 737 results match filter");
+  await expect(page.getByTestId("result-filter-summary")).toContainText("170 of 802 results match filter");
   await expect(page.getByTestId("result-page-summary")).toContainText(
-    "Showing 1 to 50 of 167 matching results; page 1 of 4"
+    "Showing 1 to 50 of 170 matching results; page 1 of 4"
   );
   await page.getByTestId("result-row-result:force:pipe-P-120:axial").click();
   await expect(page.getByTestId("result-detail-panel")).toContainText("pipe:P-120");
@@ -457,7 +505,7 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   await expect(page.getByTestId("comparison-unit-policy")).toContainText("units=MPa,N,N*m,mm,rad");
   await expect(page.getByTestId("comparison-unit-policy")).toContainText("conversion=false");
   await expect(page.getByTestId("comparison-unit-policy")).toContainText("tolerance=not_tolerance_checked");
-  await expect(page.getByTestId("design-workspace-units")).toContainText("results=MPa,N,N*m,mm,rad");
+  await expect(page.getByTestId("design-workspace-units")).toContainText("N*m/rad,N/m");
   await expect(page.getByTestId("design-workspace-units")).toContainText("comparison=MPa,N,N*m,mm,rad");
   await expect(page.getByTestId("design-workspace-units")).toContainText("conversion=false");
 
@@ -485,7 +533,7 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
     "unit_system=unit-system:dec-018-si-dual-display"
   );
   await expect(page.getByTestId("rendered-report-unit-basis")).toContainText("model=angle=rad,force=N,length=m");
-  await expect(page.getByTestId("rendered-report-unit-basis")).toContainText("results=MPa,N,N*m,mm,rad");
+  await expect(page.getByTestId("rendered-report-unit-basis")).toContainText("N*m/rad,N/m");
   await expect(page.getByTestId("rendered-report-unit-basis")).toContainText("conversion=false");
   const reportLint = page.getByLabel("Report content lint");
   await expect(reportLint.getByTestId("report-lint-unit-policy")).toContainText("unit_targets=44");
@@ -617,7 +665,7 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
     "conversion=false"
   );
   const stressNeutralExport = page.getByLabel("Stress-neutral CSV JSON export");
-  await expect(stressNeutralExport.getByTestId("stress-neutral-unit-witnesses")).toContainText("count=737");
+  await expect(stressNeutralExport.getByTestId("stress-neutral-unit-witnesses")).toContainText("count=802");
   await expect(stressNeutralExport.getByTestId("stress-neutral-unit-witnesses")).toContainText(
     "conversion=false"
   );
@@ -626,15 +674,15 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
     "unit-system:dec-018-si-dual-display"
   );
   await expect(headlessRunner.getByTestId("headless-runner-units")).toContainText("conversion=false");
-  await expect(headlessRunner.getByTestId("headless-runner-unit-witnesses")).toContainText("count=737");
+  await expect(headlessRunner.getByTestId("headless-runner-unit-witnesses")).toContainText("count=802");
   await expect(headlessRunner.getByTestId("headless-runner-unit-witnesses")).toContainText(
     "conversion=false"
   );
   const handoffPackage = page.getByLabel("Handoff package");
-  await expect(handoffPackage.getByTestId("handoff-unit-witnesses")).toContainText("count=737");
+  await expect(handoffPackage.getByTestId("handoff-unit-witnesses")).toContainText("count=802");
   await expect(handoffPackage.getByTestId("handoff-unit-witnesses")).toContainText("conversion=false");
   const reviewGeometryExport = page.getByLabel("Review geometry export");
-  await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText("count=54");
+  await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText("count=75");
   await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText(
     "target=m"
   );
@@ -644,10 +692,10 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
     "project_units=6"
   );
   await expect(nativeJsonPackage.getByTestId("native-package-unit-witnesses")).toContainText(
-    "model_quantities=18"
+    "model_quantities=48"
   );
   await expect(nativeJsonPackage.getByTestId("native-package-unit-witnesses")).toContainText(
-    "result_quantities=739"
+    "result_quantities=804"
   );
   await expect(nativeJsonPackage.getByTestId("native-package-unit-witnesses")).toContainText(
     "conversion=false"
@@ -669,6 +717,7 @@ test("R2 desktop preview smoke covers solve, results, report, and viewport overl
   // node intent through the structured-operation seam in a real browser and
   // verify the honest wasm-engine route on the applied receipt. Runs last:
   // applying clears earlier solve results by design.
+  await ensureCreationToolArmed(page, "command-node", "Node tool armed");
   await page.getByTestId("queue-explicit-node-intent").click();
   await openWorkspaceSection(page, "operations");
   const applyPanel = page.getByTestId("operation-apply-panel");
@@ -730,10 +779,16 @@ test("viewport gesture placeholders record unit validation", async ({ page }) =>
 
   await expect(page.getByTestId("desktop-preview-shell")).toBeVisible();
   await expect(page.getByTestId("operation-engine-chip")).toContainText("Engine ready");
+  await expect(page.getByTestId("viewport-editor-intents")).toHaveClass(/collapsed/);
+  await ensureCreationToolArmed(page, "command-node", "Node tool armed");
   await expect(page.getByTestId("viewport-unit-catalog-status")).toContainText("browser preview uses model metadata");
-  await page.getByTestId("command-node").click();
-  await page.getByTestId("command-pipe").click();
+  await expect(page.getByTestId("local-project-review-context")).toContainText("0 pending operations");
+  await page.getByTestId("queue-armed-creation-intent").click();
+  await ensureCreationToolArmed(page, "command-pipe", "Pipe tool armed");
+  await page.getByTestId("queue-armed-creation-intent").click();
   await page.getByTestId("command-component").click();
+  await expect(page.getByTestId("armed-creation-tool")).toContainText("Component tool armed");
+  await page.getByTestId("queue-armed-creation-intent").click();
   await expect(page.getByTestId("viewport-intent-unit-validation-create_node")).toContainText(
     "unit_validation=length=model_metadata_unit_dimension_declared_catalog_unavailable_browser_preview"
   );
@@ -769,6 +824,7 @@ test("R2 from-blank GUI journey authors the A12 rehearsal script", async ({ page
   await expect(page.getByTestId("load-case-manager-summary")).toContainText(
     "0 load cases; 0 primitive loads; 0 combinations"
   );
+  await ensureInspectorExpanded(page);
 
   const startNode = stepPayload("create_node", "node:R2-100");
   await fillNodeDraft(page, startNode);
@@ -802,6 +858,7 @@ test("R2 from-blank GUI journey authors the A12 rehearsal script", async ({ page
   await applyQueuedIntent(page, 4, section.id);
 
   const pipe = stepPayload("connect_pipe_run", "pipe:R2-100");
+  await ensureCreationToolArmed(page, "command-pipe", "Pipe tool armed");
   await page.getByTestId("viewport-create-pipe-id").fill(pipe.id);
   await page.getByTestId("viewport-create-pipe-label").fill(pipe.label);
   await page.getByTestId("viewport-create-pipe-from").selectOption(pipe.from);
@@ -1476,6 +1533,7 @@ function stepPayload(changeKind: string, ref: string): any {
 }
 
 async function fillNodeDraft(page: Page, payload: any): Promise<void> {
+  await ensureCreationToolArmed(page, "command-node", "Node tool armed");
   await page.getByTestId("viewport-create-node-id").fill(payload.id);
   await page.getByTestId("viewport-create-node-label").fill(payload.label);
   await page.getByTestId("viewport-create-node-x").fill(String(payload.position.x));

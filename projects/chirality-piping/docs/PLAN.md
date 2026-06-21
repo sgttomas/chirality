@@ -68,19 +68,19 @@ DEL-08-06) as defined-but-unbuilt scope.
 
 ## 2. Current milestone position
 
-Position summary as of 2026-06-13. This table moves only at milestone
+Position summary as of 2026-06-21. This table moves only at milestone
 boundaries (human-ruled stage gates), not per tranche; per-tranche progress
 lives in the completion plan and `plans/PLAN_COMPLETION_LOG.md`. The
-**authoritative current target stage is R3** (`DEC-035`, recorded in
+**authoritative current target stage is R4** (`DEC-048`, recorded in
 `_COORDINATION.md`); this table is a position summary, not the stage authority.
 
 | Milestone | Status | Blocking residual |
 |---|---|---|
 | R0 Architecture Prototype | Met in substance | R0's deferred "Unit system" is pulled onto the critical path as Phase B (B1 units crate landed 2026-06-12; B2/B3 unit-aware I/O in progress) |
 | R1 Core Solver MVP | Substantially met (linear static, dense solve) | Tolerance thresholds **RULED** (`DEC-024`/`DEC-026`, D-04) |
-| R2 GUI MVP | Met in substance | Exit chain verified ([VERIFICATION_2026-06-12_r2_exit_chain.md](../plans/VERIFICATION_2026-06-12_r2_exit_chain.md)); stage advanced R2→R3 (`DEC-035`). Two named residuals carried to the R3 exit review: **F-4** (a completed human packaged-GUI journey, SMOKE TP-MAC-141) and the **A3 authoring-journey usability** finding |
-| R3 Rule packs + private libraries (current target) | In progress | C1-C4 landed: expression grammar, rule-pack editor, private-library GUI, and end-to-end rule checks are GUI-true. Remaining before any R3 exit review: C5 guided-workbench / packaged-journey closure for the two R2-carried residuals above |
-| R4 Components + nonlinear supports | Schema/data-model only; sparse-solver strategy decided (`DEC-023`, first slice landed) | No bend/branch/expansion-joint/hanger elements; no assembled nonlinear iterative solve (Phase D) |
+| R2 GUI MVP | Met in substance | Exit chain verified ([VERIFICATION_2026-06-12_r2_exit_chain.md](../plans/VERIFICATION_2026-06-12_r2_exit_chain.md)); stage advanced R2→R3 (`DEC-035`). The two R2-carried residuals were closed for C5 by the 2026-06-20 replacement-criterion ruling (`DEC-047`) |
+| R3 Rule packs + private libraries | Evidence accepted for target-stage advancement | C1-C4 landed; C5.8 assembled [VERIFICATION_2026-06-20_r3_exit_chain.md](../plans/VERIFICATION_2026-06-20_r3_exit_chain.md); `D-23` ruled O-A by `DEC-048` |
+| R4 Components + nonlinear supports (current target) | D1 bend, D2 branch, D3 rigid/semi-rigid, and D4 expansion-joint invented-preview paths landed across app visibility, user-entered evidence, diagnostics, native-package/report provenance, bend/branch stress-recovery review rows, and EJ user-stiffness macro-element review rows (`TP-R4-D1-BENDVIS-001`, `TP-R4-D1-BENDSTRESS-001`, `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`, `TP-R4-D4-EJSTIFF-001`); D5 spring-hanger user-data model evidence landed for variable spring and constant-effort supports (`TP-R4-D5-HANGERDATA-001`); D6 loop-core crate and invented product/result-envelope sidecar landed (`TP-R4-D6-LOOPCORE-001`, `TP-R4-D6-PHYSINTEG-001`), with product gap/lift-off live-loop coverage (`TP-R4-D6-LIVECOVER-001`), derived friction normal-source evidence (`TP-R4-D6-FRICTIONNORMAL-001`), mixed one-way/gap/friction product live-loop coverage (`TP-R4-D6-LIVEBUNDLE-001`), force/displacement residual observation rows (`TP-R4-D9-FORCEDISPRESID-001`), and product-preview active-set-count policy (`TP-R4-D9-PRODPOLICY-001`); assembled validation seeds landed through explicit/derived-normal friction evidence, the PRD §16.2 branch-assembly benchmark, structured convergence observations, force/displacement residual observations with no threshold policy, the governed active-set-count validation-seed policy, and product-preview active-set-count policy (`TP-R4-D9-ASSEMBLEDSEED-001`, `TP-R4-D9-FRICTIONSEED-001`, `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`, `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`, `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`, `TP-R4-D9-PRODPOLICY-001`); D7 sparse evidence lane landed in the nonlinear integration/product-preview paths (`TP-R4-D7-SPARSELIVE-001`) while dense remains default; D8 component provenance now flows into the hash-bound rendered report (`TP-R4-D8-COMPPROVREPORT-001`) | Profile-direct sparse assembly/default sparse promotion, force/displacement threshold promotion, non-active-set product-preview threshold axes, other non-seed convergence thresholds, deeper spring-hanger catalog/constant-effort solve behavior, and broader R4 validation/exit evidence remain (Phase D) |
 | R5 Engineering Beta | Distant | All release machinery TBD; validation manual; redaction workflow; signed releases (Phase E) |
 
 ## 3. How the strategic layers relate
@@ -135,23 +135,43 @@ project's adoption, rollout, and historical DAG re-derivation trigger notes are 
 
 ## 4. Current roadmap posture
 
-- **Target stage: R3 / Phase C** (`DEC-035`, superseding the `DEC-029` hold).
-  Ordinary development has completed the Phase C implementation spine:
-  **C1** expression grammar freeze, **C2** rule-pack editor GUI, **C3**
-  private-library management GUI, and **C4** end-to-end rule checks on authored
-  models are landed. The next in-stage program is **C5 R3 exit readiness and
-  authoring-usability closure**: guided-workbench redesign, packaged A12/R3
-  journey successor evidence, and an R3 exit evidence package. The Phase B
-  unit-aware-I/O remainder can still run alongside when it does not block C5.
-- **Two blocking residuals gate any R3 exit review:** F-4 (a completed human
-  packaged-GUI journey) and the A3 authoring-journey usability finding. C5 is
-  the ordinary-tranche program that must prepare and record their closure
-  evidence before any human R3 exit review can begin.
-- **Later stages** follow the completion plan: R4 (piping components and
-  nonlinear supports), R5 (engineering beta and release machinery).
+- **Target stage: R4 / Phase D** (`DEC-048`, after `DEC-035` advanced to R3).
+  Ordinary development completed the Phase C implementation spine, C5
+  exit-readiness program, and `TP-R3VERIFY-001` R3 exit-chain packet; the human
+  accepted `D-23` Option O-A for R3 exit evidence and target-stage advancement.
+- **D1 bend objects, D2 branch objects, D3 rigid/semi-rigid components, D4
+  expansion joints, the first D6 product-preview nonlinear sidecar, D6
+  mixed live nonlinear bundle, force/displacement residual observations, product-preview active-set-count policy, D8
+  rendered-report component provenance, and the D9 assembled validation seeds
+  through explicit/derived-normal friction plus the branch-assembly benchmark
+  and structured convergence observations
+  landed for the invented preview path**
+  through
+  `TP-R4-D1-BENDVIS-001`, `TP-R4-D1-BENDSTRESS-001`,
+  `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`, and
+  `TP-R4-D4-EJSTIFF-001`, `TP-R4-D6-PHYSINTEG-001`,
+  `TP-R4-D6-LIVECOVER-001`, `TP-R4-D6-LIVEBUNDLE-001`,
+  `TP-R4-D8-COMPPROVREPORT-001`,
+  `TP-R4-D9-ASSEMBLEDSEED-001`, and
+  `TP-R4-D9-FRICTIONSEED-001`, and
+  `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`,
+  `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`, and
+  `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`, and
+  `TP-R4-D9-PRODPOLICY-001`; D5 spring-hanger user-data model evidence landed
+  through `TP-R4-D5-HANGERDATA-001` under `DEC-049`; D7 sparse evidence-lane
+  adoption landed through `TP-R4-D7-SPARSELIVE-001` under `DEC-050`.
+- **The two R2-carried R3-exit residuals are closed for C5** by `DEC-047`.
+  The stale TP-MAC-189 path remains bypassed, not passed.
+- **Later stages** follow the completion plan: R5 (engineering beta and
+  release machinery).
 - Stage advancement is human-ruled: agents propose with evidence; only a
   human-approved coordination update advances the target stage recorded in
-  `_COORDINATION.md`.
+  `_COORDINATION.md`. The current Phase D D9 readiness packet is
+  [VERIFICATION_2026-06-21_r4_exit_gap.md](../plans/VERIFICATION_2026-06-21_r4_exit_gap.md),
+  which records **not ready** rather than R4 closure. `D-17` sparse live-path
+  adoption timing is ruled and implemented as `TP-R4-D7-SPARSELIVE-001` under
+  `DEC-050`: a live sparse evidence lane exists while dense remains default;
+  profile-direct assembly/default sparse promotion remain follow-on work.
 
 ## 5. Non-goals and boundary prohibitions
 

@@ -8,7 +8,7 @@
 - Read `{WORKING_ROOT}/AGENTS.md` for project-local agent posture and closeout discipline.
 - Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md` and follow the Application Integration And Issuance Loop directions.
 - Read `docs/PLAN.md` — the non-governing strategic roadmap — for the definition of "complete per the PRD", the current milestone position, the layer-relation map, and roadmap-level risks. It is strategic orientation that routes to the authorities; the completion plan below remains the tactical selection instrument.
-- Read `plans/PLAN_2026-06-17_prd_completion.md` — the current completion plan (non-governing `PROPOSAL`, supersedes the 2026-06-10 plan) — for phase ordering toward the PRD, the dependency spine, the FR completion map, and the human decision register `D-01..D-22` (with `DEC-041/042/043` recorded 2026-06-18: the embedded-agent substrate ruling, the D-21 held-with-prep disposition, and the piping-design equation-reliability constraint).
+- Read `plans/PLAN_2026-06-17_prd_completion.md` — the current completion plan (non-governing `PROPOSAL`, supersedes the 2026-06-10 plan) — for phase ordering toward the PRD, the dependency spine, the FR completion map, and the human decision register `D-01..D-23` (with `DEC-041/042/043` recorded 2026-06-18, `DEC-044/045/046` recorded for D-16/D-18/D-19, and `DEC-048` recording `D-23` Option O-A: R3 exit evidence accepted and current target stage advanced to R4).
 - Discover current state from authoritative surfaces named in `_COORDINATION.md`: `_DAG/_LATEST.md`, approved DAG artifacts, deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, dependency/review files, current app/build/test surfaces, `execution/_Coordination/_DECISIONS/_REGISTER.md`, and current aggregation or review artifacts as needed.
 - Treat `execution/_DAG/DAG-007/` as the validated canonical dependency type-system rectification successor pending human approval. Do not treat it as current authority or update `_DAG/_LATEST.md` unless the human approval record is completed.
 - Treat blockers or dirty git state outside this project/write scope as external-scope noise; record and bypass, do not fix.
@@ -29,13 +29,14 @@
    default, local-status discovery, DAG-guided context selection, bounded
    workers, fan-in, validation, evidence records, and project-local
    `AGENTS.md` closeout routing for completed validated tranches.
-6. Human decisions (`D-01..D-22` and any newly discovered human-gated `TBD`)
+6. Human decisions (`D-01..D-23` and any newly discovered human-gated `TBD`)
    are never resolved by agents. Prepare decision packets per the loop's
    decision-escalation step, surface pending rulings every session, and
    proceed only on unblocked work.
-7. Current lifecycle state is application-integration ready: all deliverables
-   are `CHECKING` or `ISSUED`; `DEL-01-01` is the sole currently `ISSUED`
-   deliverable and remains the accepted governance baseline unless a
+7. Current lifecycle state must be discovered from deliverable-local
+   `_STATUS.md` files. The 2026-06-21 discovery run reported `CHECKING=8`,
+   `IN_PROGRESS=92`, and `ISSUED=1`; `DEL-01-01` is the sole currently
+   `ISSUED` deliverable and remains the accepted governance baseline unless a
    human-approved change path opens it.
 
 ## Next Action
@@ -58,46 +59,48 @@
 3. If no active human-approved tranche exists, propose exactly one next bounded
    tranche:
    - select the earliest unblocked item on the completion plan's dependency
-     spine for the current target stage (R3/Phase C per `DEC-035`). C1-C4
-     are landed; continue **Phase C5 — R3 exit readiness and
-     authoring-usability closure** before any Phase D work unless the human
-     explicitly overrides. C5.1-C5.6 are landed. **The C5.7 human packaged
-     pass was run and FAILED on usability (2026-06-18): "a wall of
-     evidence/telemetry strings, three competing navigation systems, the model
-     a postage stamp" — F-4 and the A3 authoring-usability finding stay open.**
-     The human-approved repair tranche **C5.7R** has Inc 0-7 landed: Inc 0-5
-     are recorded under `TP-R3UX-WORKSPACEREDESIGN-001` / SMOKE TP-MAC-272 /
-     DEL-07-06 `WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-WORKSPACEREDESIGN-001.md`;
-     Inc 6 Grid mode is recorded under `TP-R3UX-GRIDMODE-001` / SMOKE
-     TP-MAC-273 / DEL-07-06
-     `WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-GRIDMODE-001.md`; Inc 7 packaged
-     kit is recorded under `TP-R3UX-PACKAGEKIT-002` / SMOKE TP-MAC-274 /
-     DEL-07-06
-     `WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-PACKAGEKIT-002.md`.
-     **Further human-directed "professional grade" CAD-shell increments
-     landed on top of Inc 0-7** (frontend + native-menu only, per
-     `plans/PLAN_2026-06-18_workspace_redesign_c5_7.md` §10): the CAD-grade
-     3D viewport (`TP-R3UX-VIEWPORT-001` / DEL-07-06
-     `WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-VIEWPORT-001.md`); Phase 2 tranche
-     2a, a native + in-DOM menu-bar IA with a collapsible viewport-dominant
-     dock (`TP-R3UX-CADSHELL-001` /
-     `WORKING_ITEMS_RUN_2026-06-19_TP-R3UX-CADSHELL-001.md`); and Phase 2
-     tranche 2b, collapsible tree/inspector rails with inspector auto-open on
-     selection (`TP-R3UX-CADSHELL-002` /
-     `WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-CADSHELL-002.md`). Each is
-     gates-green (tsc; vitest 406/406; e2e 18/18; cargo check; `.app`
-     rebuilt/boots clean) and committed to `main`.
-     **The remaining builder increment is tranche 2c — an object-creation
-     toolbar that makes Insert commands arm a creation tool rather than only
-     navigate.** After 2c, rebuild the `.app`; the packaged C5.7 human re-pass
-     (target SMOKE TP-MAC-189) remains the gate and must be performed by the
-     human and recorded before F-4/A3 can close or C5.8 can begin. Honor the
-     spec's scope boundaries:
-     agent-panel seam reserved-not-built (`D-21`); `DEC-037` (structured rule
-     composer, no writable text); dual units display-only; no new engine
-     contracts (Grid mode fans existing `EditorOperationIntent`s). The Phase B
-     unit-aware-I/O remainder is allowed alongside only when it does not block
-     or displace C5;
+     spine for the current target stage (R4/Phase D per `DEC-048`). C1-C4,
+     C5, and the R3 exit evidence packet are complete; `D-23` Option O-A is
+     ruled and Phase D/R4 work is now ordinary in-stage work. D1 bend-object
+     app absorption landed for the invented preview path through
+     `TP-R4-D1-BENDVIS-001` and `TP-R4-D1-BENDSTRESS-001`; D2 branch-object
+     app absorption landed through `TP-R4-D2-BRANCHSTRESS-001`; D3 rigid /
+     semi-rigid component app absorption landed through
+     `TP-R4-D3-RIGIDVIS-001` with `mechanics_geometry_only`
+     data/provenance/diagnostic evidence and no frame-stiffness behavior
+     change. D4 expansion-joint app absorption landed through
+     `TP-R4-D4-EJSTIFF-001` with user-stiffness macro-element review rows and
+     no full assembled global solve or pressure-thrust load generation claim.
+     D5 spring-hanger user-data model evidence landed through
+     `TP-R4-D5-HANGERDATA-001` under `DEC-049`, with invented variable spring
+     and constant-effort support records and no catalog sizing, protected
+     defaults, hidden support values, or professional/code-compliance claim.
+     D6/D9 residuals after `TP-R4-D6-LOOPCORE-001`,
+     `TP-R4-D6-PHYSINTEG-001`, `TP-R4-D9-ASSEMBLEDSEED-001`,
+     `TP-R4-D9-FRICTIONSEED-001`, `TP-R4-D9-FRICTIONSLIDE-001`,
+     `TP-R4-D6-FRICTIONNORMAL-001`, and
+     `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`,
+     `TP-R4-D9-CONVPOLICY-001`, and `TP-R4-D6-LIVEBUNDLE-001`: the loop-core crate
+     `core/solver/nonlinear_integration` exists under `DEC-044`/`DEC-046`, the
+     first invented product/app/result-envelope sidecar is landed, explicit
+     friction normal-reaction input evidence is visible without being combined
+     as a load effect for sticking and sliding fixtures, and derived normal
+     evidence is now sourced from named restrained support DOFs. The PRD §16.2
+     branch-assembly benchmark is landed as public-original mechanics evidence.
+     Structured observed convergence values are recorded for the current
+     assembled fixtures, and the governed active-set-count policy is promoted
+     for that assembled validation seed only. Mixed one-way/gap/friction
+     product live-loop coverage is landed for one invented dense solve.
+     `TP-R4-D7-SPARSELIVE-001` landed the `DEC-050` live sparse evidence lane
+     while dense remains default. Non-seed convergence thresholds,
+     profile-direct sparse/default promotion, deeper spring-hanger behavior,
+     and the remaining D9 validation package remain open. `D-20` is held for
+     Phase E; `D-21` remains held and does not authorize
+     v0.2/R6/R7 scope. Continue to honor the
+     R3/R4 boundaries: no protected standards content, no private-data default
+     writes, no network/telemetry feature, no live external SDK/harness or
+     `D-21` promotion, and no release-readiness/professional/code-compliance
+     claim;
    - if that item is blocked by a human decision, run the loop's
      decision-escalation step: prepare the decision packet if none exists;
      if a packet already awaits ruling, take the next unblocked
@@ -129,8 +132,8 @@
    to the repository; no protected standards content or private project data;
    and no release-readiness, professional approval, certification, sealing,
    authentication, or code-compliance claims. Interactive authoring of
-   user-created local models is in scope for the current R3 target stage and
-   does not violate these prohibitions.
+   user-created local models remains in scope for the current R4 target stage
+   and does not violate these prohibitions.
 7. End every session summary with the decision packets awaiting human ruling
    (from `execution/_Coordination/_DECISIONS/_REGISTER.md`) and the next
    unblocked plan item.

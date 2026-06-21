@@ -1,5 +1,63 @@
 # DEL-07-06 Memory
 
+Current C5 status: C5 is closed by the 2026-06-20 replacement-criterion human
+ruling (`DEC-047`) and the R3 exit-chain packet is assembled as
+`TP-R3VERIFY-001` / SMOKE TP-MAC-190. Older entries below that say F-4/A3
+remain open are historical pre-closure state.
+
+## 2026-06-20 - TP-R4-D1-BENDVIS-001 R4 bend visibility/provenance slice
+
+WORKING_ITEMS landed the first partial D1 bend-object app-absorption slice
+under `DEC-045`. The invented preview model now carries user-entered bend
+radius, bend angle, bend-plane orientation, geometry source, user SIF,
+user flexibility factor, modifier source, component completeness evidence, and
+`mechanics_geometry_only` / `user_rule_pack_inputs_only` interface labels for
+`component:C-110`.
+
+The desktop app now renders bend/elbow components as a curved viewport glyph
+and surfaces the bend fields in the model view, inspector/provenance rows, grid
+mode, editor contract, missing-data blockers, rule-check diagnostics,
+validation evidence, and native-package witnesses. Component `kind` is
+read-only in the component edit/grid path; bend-specific geometry and
+user-modifier edits remain review-only operation intents.
+
+Validation passed: focused App Vitest 57/57; full desktop Vitest 19 files /
+406 tests; desktop production build with the existing Vite large-chunk warning;
+desktop Playwright 18/18. Evidence is recorded in
+`_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R4-D1-BENDVIS-001.md` and
+`apps/desktop/SMOKE.md` TP-MAC-278.
+
+Residual: D1 is not closed. Mechanics/stress-recovery multiplier consumption
+and report-provenance closure remain for later D1/D8/D9 work. No lifecycle
+transition, release-readiness claim, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-20 - TP-R3UX-CREATIONTOOLS-001 object-creation toolbar
+
+WORKING_ITEMS completed the remaining C5.7R CAD-shell builder increment
+(tranche 2c). Insert menu commands now arm the same object-creation tools shown
+in the viewport command bar instead of only navigating/collapsing panels. The
+toolbar exposes Node, Pipe, Support, Component, and Load tools with visible
+active state; arming is separate from queueing. Node/Pipe/Component preview
+intents still queue ordinary review-only `EditorOperationIntent`s through the
+existing operation seam; explicit node/pipe forms, Inspector support creation,
+and Load Cases creation stay on their prior contract surfaces.
+
+Validation passed: focused App Vitest 57/57; full desktop Vitest 19 files /
+406 tests; desktop production build with the existing Vite large-chunk warning;
+desktop Playwright 18/18; dist Playwright 1/1; `cargo check --release`; Tauri
+`.app` build; and an 8-second packaged boot probe (`state=SN`,
+`stdout_bytes=0`, `stderr_bytes=0`). Evidence is recorded in
+`_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-CREATIONTOOLS-001.md` and
+`apps/desktop/SMOKE.md` TP-MAC-275.
+
+The freshly rebuilt bundle is
+`apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`
+(`12M`). F-4 and A3 remain open until the human TP-MAC-189 packaged re-pass is
+recorded. No lifecycle transition, release-readiness claim, professional
+approval, certification, sealing, authentication, or code-compliance claim
+changed.
+
 ## 2026-06-19 - TP-R3UX-PACKAGEKIT-002 C5.7R Inc 7 packaged re-pass kit
 
 WORKING_ITEMS rebuilt the packaged macOS `.app` after C5.7R Inc 0-6 and
@@ -411,3 +469,74 @@ successor journey evidence. Next unblocked C5 tranche is
   color-only signaling policy, lifecycle transition, release-readiness claim,
   professional approval, certification, sealing, authentication, or
   code-compliance claim changed.
+
+## 2026-06-20 - TP-R3UX-AGENTSHELL-001 C5.7 human bypass and agent-first viewport shell
+
+- Human bypassed the stale C5.7 packaged re-pass route instead of passing it.
+  The app should not continue toward a heavily user-laden workflow/data-entry
+  primary screen; the primary screen must be a 3D model and visual interaction
+  surface with an agent panel.
+- Implemented the replacement local shell direction: model tree and inspector
+  default collapsed; selection no longer forces inspector open; a persistent
+  local `Design Agent` workbench sits beside the viewport with selection,
+  target, queue counts, boundary, review-only proposal status, mechanics run,
+  proposal generation, and Operations/Results openers.
+- Evidence:
+  `_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-AGENTSHELL-001.md`;
+  `apps/desktop/SMOKE.md` TP-MAC-276; visual captures and probe under
+  `_run_records/assets/TP-R3UX-AGENTSHELL-001_*`.
+- Validation passed: full desktop Vitest 19 files / 406 tests; desktop build;
+  desktop Playwright 18/18; dist Playwright 1/1; `cargo check --release`;
+  Tauri `.app` build; 8-second packaged boot probe clean.
+- Boundary preserved: local deterministic review-only workbench only. No live
+  external agent SDK/harness, autonomous accepted-model mutation, schema,
+  solver, evaluator, persistence, protected content, private data,
+  network/telemetry, lifecycle, release-readiness, professional approval,
+  certification, sealing, authentication, or code-compliance claim changed.
+- Residual: F-4 and A3 remain open under `DEC-035` vocabulary until the human
+  accepts a replacement C5.7 closure criterion or records a new gate. TP-MAC-189
+  is bypassed, not passed.
+
+## 2026-06-20 - TP-R3UX-PRIMARYCANVAS-001 contextual authoring drawer
+
+- Followed the human screenshot feedback that the agent-first shell is a step
+  in the right direction but still carries old manual data-entry clutter.
+- The viewport editor-intents drawer is now visually collapsed by default; idle
+  primary screen shows the 3D canvas plus agent panel without Node/Pipe forms.
+  Arming Node reveals only the node geometry form. Arming Pipe reveals only the
+  pipe connectivity form. Existing review/apply operation contracts are
+  unchanged.
+- Evidence:
+  `_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-PRIMARYCANVAS-001.md`;
+  `apps/desktop/SMOKE.md` TP-MAC-277; visual captures and probe under
+  `_run_records/assets/TP-R3UX-PRIMARYCANVAS-001_*`.
+- Validation passed: focused App Vitest 57/57; focused Playwright 8/8; full
+  desktop Vitest 19 files / 406 tests; desktop build; desktop Playwright 18/18;
+  dist Playwright 1/1; Tauri `.app` build; 8-second packaged boot probe clean.
+- Boundary preserved: viewport presentation/contextual drawer/tests/evidence
+  only. No live agent runtime, external SDK/harness, autonomous mutation,
+  schema, solver, evaluator, persistence, protected content, private data,
+  network/telemetry, lifecycle, release-readiness, professional approval,
+  certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-20 - TP-R3VERIFY-001 C5 closure and R3 exit-chain packet
+
+- Human accepted that the replacement C5 conditions have been fulfilled and
+  authorized C5 closure. F-4/A3 are closed for the replacement C5 criterion;
+  TP-MAC-189 remains bypassed, not passed.
+- Assembled the derivative R3 exit-chain verification packet for human review:
+  `plans/VERIFICATION_2026-06-20_r3_exit_chain.md`.
+- Evidence:
+  `_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R3VERIFY-001.md`;
+  `apps/desktop/SMOKE.md` TP-MAC-190; `DEC-047` in
+  `execution/_Decomposition/SOFTWARE_DECOMP.md` §12.
+- Evidence basis: C1-C4 SMOKE TP-MAC-147..167 and TP-MAC-180; C5 SMOKE
+  TP-MAC-183..188 and TP-MAC-272..277; latest app-code validation/package
+  evidence at commit `3abf5d9bb`.
+- Boundary preserved: evidence/coordination only. No R3 exit review passed, no
+  R3-to-R4 stage advancement, and no app code, schema, solver, evaluator,
+  persistence, package artifact, live embedded-agent runtime, external
+  SDK/harness consumption, autonomous mutation, private-data write path,
+  protected-content source, network/telemetry feature, lifecycle,
+  release-readiness, professional approval, certification, sealing,
+  authentication, or code-compliance claim changed.

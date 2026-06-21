@@ -6210,6 +6210,28 @@ notes:
   no lifecycle, release-readiness, professional approval, certification,
   sealing, authentication, or code-compliance claim.
 
+## TP-MAC-190 R3 exit-chain verification packet - PREPARED (`TP-R3VERIFY-001`, 2026-06-20)
+
+- Scope: C5.8 evidence assembly after the human accepted the replacement C5
+  closure criterion. This packet prepares the R3 exit review evidence; it does
+  not pass the R3 exit review or advance the stage.
+- Human status: F-4/A3 are closed for the replacement C5 criterion by the
+  2026-06-20 human ruling. The stale TP-MAC-189 packaged re-pass path remains
+  bypassed, not retroactively passed.
+- Evidence package: `plans/VERIFICATION_2026-06-20_r3_exit_chain.md`.
+- Run record: DEL-07-06
+  `_run_records/WORKING_ITEMS_RUN_2026-06-20_TP-R3VERIFY-001.md`.
+- Evidence basis: C1-C4 SMOKE TP-MAC-147..167 and TP-MAC-180; C5 SMOKE
+  TP-MAC-183..188 and TP-MAC-272..277; latest app-code validation/package
+  evidence at commit `3abf5d9bb`, including DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260621T014041Z_9586deb6c15e.json`.
+- Boundary review: evidence and coordination only. No app code, schema, solver,
+  evaluator, persistence, package artifact, private-data behavior, network or
+  telemetry feature, live agent runtime, external SDK/harness consumption,
+  autonomous model mutation, lifecycle transition, release-readiness claim,
+  professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+
 ## TP-MAC-191 support linear-stiffness unit authoring - PASSED (`TP-UNITS-BTAIL-SUPPORTUNITS-001`, 2026-06-17)
 
 - Scope: bounded Phase B-tail support unit I/O slice while C5.7 remains
@@ -9252,3 +9274,456 @@ notes:
 - Boundary: package/evidence/handoff only. No lifecycle transition,
   release-readiness claim, professional approval, certification, sealing,
   authentication, or code-compliance claim changed.
+
+## TP-MAC-275 C5.7R object-creation toolbar and rebuilt app - PASSED (`TP-R3UX-CREATIONTOOLS-001`, 2026-06-20)
+
+- Scope: C5.7R tranche 2c. Insert commands now arm object-creation tools
+  instead of only navigating/collapsing panels. The viewport command bar exposes
+  Node, Pipe, Support, Component, and Load tools with active state and separates
+  arming from queueing.
+- App behavior: in-DOM and native Insert commands dispatch through the same
+  `runMenuCommand` sink. Node/Pipe/Component preview intents queue only after
+  `Queue preview`; explicit node/pipe forms, Inspector support creation, and
+  Load Cases creation continue through existing structured-operation surfaces.
+  Empty-canvas node coordinate capture now requires the Node tool to be armed;
+  Pipe arming starts endpoint-pick mode.
+- Validation:
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build --workspace apps/desktop` passed, retaining the existing
+    Vite chunk-size warning.
+  - `npm run test:e2e --workspace apps/desktop` passed 18/18 Playwright checks
+    across desktop and compact Chromium projects.
+  - `npm run test:e2e:dist --workspace apps/desktop` passed 1/1 production
+    dist smoke check.
+  - `cargo check --release` in `apps/desktop/src-tauri` passed.
+  - `cd apps/desktop && npm run tauri -- build --bundles app` passed,
+    regenerating the WASM operation engine and producing:
+    `apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`.
+    Bundle size: `12M`.
+- Boot probe: launched the bundled executable for 8 seconds, observed process
+  state `SN`, recorded `stdout_bytes=0` and `stderr_bytes=0`, and terminated
+  cleanly.
+- Evidence: DEL-07-06 run record
+  `WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-CREATIONTOOLS-001.md`.
+- Human execution pending: run TP-MAC-189 against the rebuilt bundle and record
+  pass/fail per step, performed-by, date, binary commit, bundle path, report
+  hash when generated, and notes. F-4 and A3 remain open until that human
+  record passes or records the next bounded repair.
+- Boundary: frontend/menu interaction, tests, and package evidence only. No
+  solver, schema, evaluator, persistence, backend API, unit storage,
+  protected-content, private-data, network/telemetry, lifecycle,
+  release-readiness, professional approval, certification, sealing,
+  authentication, or code-compliance claim changed.
+
+## TP-MAC-276 C5.7 human bypass and agent-first viewport shell - PASSED (`TP-R3UX-AGENTSHELL-001`, 2026-06-20)
+
+- Scope: human-directed bypass/redirect of the pending C5.7 packaged re-pass.
+  The prior criterion was not passed. The human ruled that the primary screen
+  must become a 3D model and visual-interaction surface, not a heavily
+  user-laden workflow/data-entry screen; the missing primary affordance is an
+  agent panel because the agent is expected to manage data, workflows, and
+  model redesign from user inputs.
+- App behavior: the model tree and inspector now default to collapsed rails,
+  entity selection no longer forces the inspector open, and the primary
+  workspace includes a persistent local `Design Agent` workbench. The agent
+  panel exposes selected target, queued/applied operation counts, professional
+  boundary, review-only proposal status, mechanics run, proposal generation
+  after mechanics results exist, and Operations/Results openers. It is a local
+  deterministic workbench over existing app state, not a live agent runtime.
+- Layout evidence: the dock-collapsed short-screen layout now preserves the
+  primary model/agent surface instead of shrinking the canvas below its fixed
+  frame. Visual probe assets are stored under DEL-07-06 `_run_records/assets/`:
+  `TP-R3UX-AGENTSHELL-001_1440x920.png`,
+  `TP-R3UX-AGENTSHELL-001_1280x800.png`,
+  `TP-R3UX-AGENTSHELL-001_1440x920_canvas.png`,
+  `TP-R3UX-AGENTSHELL-001_1280x800_canvas.png`, and
+  `TP-R3UX-AGENTSHELL-001_probe.json`. The probe recorded no horizontal
+  overflow, collapsed tree/inspector rails by default, visible agent panel,
+  contained canvas, and nonblank canvas pixel samples at 1440x920 and 1280x800.
+- Validation:
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build --workspace apps/desktop` passed, retaining the existing
+    Vite chunk-size warning.
+  - `PLAYWRIGHT_WORKERS=1 npm run test:e2e --workspace apps/desktop` passed
+    18/18 Playwright checks across desktop and compact Chromium projects.
+  - `npm run test:e2e:dist --workspace apps/desktop` passed 1/1 production
+    dist smoke check.
+  - `cargo check --release` in `apps/desktop/src-tauri` passed.
+  - `cd apps/desktop && npm run tauri -- build --bundles app` passed,
+    regenerating the WASM operation engine and producing:
+    `apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`.
+- Boot probe: launched the bundled executable for 8 seconds, observed it still
+  running, recorded `stdout_bytes=0` and `stderr_bytes=0`, and terminated it.
+- Evidence: DEL-07-06 run record
+  `WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-AGENTSHELL-001.md`.
+- Human status: TP-MAC-189 / the old C5.7 packaged pass criterion is bypassed
+  by human direction, not passed. F-4 and A3 remain open under the prior
+  `DEC-035` vocabulary until the human accepts a replacement C5.7 closure
+  criterion or records a new gate.
+- Boundary: local deterministic review-only UI workbench only. No live
+  embedded-agent runtime, external SDK/harness consumption, autonomous accepted
+  model-state mutation, solver change, schema change, evaluator grammar
+  change, persistence contract change, protected-content source, private-data
+  write path, network/telemetry feature, lifecycle transition, R3 exit review,
+  release-readiness claim, professional approval, certification, sealing,
+  authentication, or code-compliance claim changed.
+
+## TP-MAC-277 primary canvas contextual authoring drawer - PASSED (`TP-R3UX-PRIMARYCANVAS-001`, 2026-06-20)
+
+- Scope: follow-up to the 2026-06-20 human screenshot feedback that the
+  agent-first shell was a step in the right direction but still showed too
+  much manual data-entry chrome on the primary screen. This tranche removes
+  idle Node/Pipe forms from the viewport and makes them contextual to the
+  active creation tool.
+- App behavior: `Viewport editor intents` is visually collapsed by default when
+  no Node/Pipe tool is active and no viewport intents are queued. Arming Node
+  reveals only the explicit node geometry drawer. Arming Pipe reveals only the
+  straight-pipe connectivity drawer. Component preview, Support, and Load
+  continue through their existing review-only/structured surfaces.
+- Layout evidence: visual probe assets are stored under DEL-07-06
+  `_run_records/assets/`:
+  `TP-R3UX-PRIMARYCANVAS-001_2048x1200_idle.png`,
+  `TP-R3UX-PRIMARYCANVAS-001_2048x1200_node_armed.png`, and
+  `TP-R3UX-PRIMARYCANVAS-001_probe.json`. The probe recorded idle
+  `viewport-intents collapsed`, node/pipe forms hidden, no horizontal overflow,
+  and a 1592x854 canvas at 2048x1200; after arming Node, only the node form was
+  visible.
+- Validation:
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - Focused Playwright over shell, broad preview smoke, viewport gesture, and
+    from-blank journeys passed 8/8 after one stale endpoint-pick smoke
+    assumption was corrected.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build --workspace apps/desktop` passed, retaining the existing
+    Vite chunk-size warning.
+  - `PLAYWRIGHT_WORKERS=1 npm run test:e2e --workspace apps/desktop` passed
+    18/18 Playwright checks across desktop and compact Chromium projects.
+  - `npm run test:e2e:dist --workspace apps/desktop` passed 1/1 production
+    dist smoke check.
+  - `cd apps/desktop && npm run tauri -- build --bundles app` passed,
+    regenerating the WASM operation engine and producing:
+    `apps/desktop/src-tauri/target/release/bundle/macos/OpenPipeStress Technical Preview.app`.
+- Boot probe: launched the bundled executable for 8 seconds, observed it still
+  running, recorded `stdout_bytes=0` and `stderr_bytes=0`, and terminated it.
+- Evidence: DEL-07-06 run record
+  `WORKING_ITEMS_RUN_2026-06-20_TP-R3UX-PRIMARYCANVAS-001.md`.
+- Boundary: viewport presentation/contextual drawer/tests/evidence only. No
+  live embedded-agent runtime, external SDK/harness consumption, autonomous
+  accepted model-state mutation, backend operation kind, solver change, schema
+  change, evaluator grammar change, persistence contract change,
+  protected-content source, private-data write path, network/telemetry feature,
+  lifecycle transition, R3 exit review, release-readiness claim, professional
+  approval, certification, sealing, authentication, or code-compliance claim
+  changed.
+
+## TP-MAC-278 R4 D1 bend visibility/provenance slice - PASSED (`TP-R4-D1-BENDVIS-001`, 2026-06-20)
+
+- Scope: first partial R4/D1 app-absorption slice for bend objects under
+  `DEC-045`. This makes invented bend geometry and user-entered modifier values
+  visible and reviewable in the technical preview without closing D1 mechanics
+  or report-provenance work.
+- App behavior: `component:C-110` in the invented preview model now carries
+  user-entered bend radius, bend angle, bend-plane orientation, geometry source,
+  user SIF, user flexibility factor, modifier source, completeness evidence,
+  and `mechanics_geometry_only` / `user_rule_pack_inputs_only` labels. The
+  viewport renders bend/elbow components as a curved glyph. Model view,
+  inspector/provenance rows, grid mode, editor contract, missing-data blockers,
+  rule-check diagnostics, validation evidence, and native-package witnesses now
+  surface those bend fields.
+- Validation:
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build:desktop` passed, retaining the existing Vite chunk-size
+    warning.
+  - Full DEC-025 evidence sweep passed:
+    `validation/evidence/sweeps/SWEEP_20260621T202442Z_4829dea6c2e0-dirty.json`
+    (`overall_status=pass`, 5/5 surfaces).
+  - `npm run test:e2e:desktop` passed 18/18 Playwright checks.
+- Evidence: DEL-07-06 run record
+  `WORKING_ITEMS_RUN_2026-06-20_TP-R4-D1-BENDVIS-001.md`; DEL-03-03 run record
+  with the same tranche id; plan log entry in `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D1 remains partially open for any governed mechanics/stress-recovery
+  multiplier consumption and downstream report-provenance closure.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived component factor, proprietary catalog value, private data,
+  solver/kernel behavior, rule-engine grammar, persistence contract, network
+  path, telemetry feature, lifecycle transition, release-readiness claim,
+  professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+
+## TP-MAC-279 R4 D1 bend stress-recovery and report provenance slice - PASSED (`TP-R4-D1-BENDSTRESS-001`, 2026-06-21)
+
+- Scope: second R4/D1 bend-object app-absorption slice under `DEC-045`,
+  closing the D1 mechanics/stress-recovery and preview report-provenance
+  residual for the invented bend path. This remains multiplier-first
+  `mechanics_geometry_only` behavior: all component factors are user-entered
+  and no protected/default engineering factors are bundled.
+- App/core behavior: `core/product_physics` now parses preview `components`,
+  validates bend/elbow geometry and dimensionless user-entered SIF/flexibility
+  values, and emits `component_user_stress_multiplier_review` result rows for
+  adjacent bend endpoints. `component:C-110` produces rows for `pipe:P-100`
+  end-j and `pipe:P-110` end-i; the base pipe stress rows and frame stiffness
+  remain unchanged. The regenerated invented mechanics fixture now has 743
+  result rows and `COMPONENT_STRESS_MULTIPLIER_APPLIED` info diagnostics.
+- Report behavior: the report packet displays component provenance and
+  component stress modifier summaries, and the JSON export includes
+  `component_provenance`, `component_stress_modifier_evidence`, and
+  `component_stress_modifier_count` with no-private/no-protected/no-claim
+  boundary flags.
+- Validation:
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 32/32
+    unit tests.
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build:desktop` passed, retaining the existing Vite chunk-size
+    warning.
+  - `npm run test:e2e:desktop` passed 18/18 Playwright checks.
+- Evidence: DEL-03-03, DEL-05-03, and DEL-08-03 run records
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D1-BENDSTRESS-001.md`; plan log entry in
+  `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D1 bend-object app absorption is landed for the invented preview
+  path. D2 branch objects are the next ordinary unblocked Phase D component
+  item. Broader D8/D9 R4 report/validation evidence remains open.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived component factor, proprietary catalog value, private data,
+  frame-stiffness behavior change, network path, telemetry feature, lifecycle
+  transition, release-readiness claim, professional approval, certification,
+  sealing, authentication, or code-compliance claim changed.
+
+## TP-MAC-280 R4 D2 branch connection stress-recovery and report provenance slice - PASSED (`TP-R4-D2-BRANCHSTRESS-001`, 2026-06-21)
+
+- Scope: R4/D2 branch-object app-absorption slice under `DEC-045`, landing the
+  invented preview branch geometry/provenance path plus side-specific
+  user-entered stress modifier evidence. This remains multiplier-first
+  `mechanics_geometry_only` behavior: all branch factors are user-entered and
+  no protected/default engineering factors are bundled.
+- App/core behavior: `core/product_physics` now parses branch geometry fields,
+  branch header/branch pipe mappings, user-entered header and branch SIFs,
+  user-entered flexibility factor, and source references. The invented preview
+  model carries `component:C-120`; the viewport renders branch components as a
+  T-shaped marker. Model view, inspector/provenance rows, grid/search, editor
+  contract, missing-data blockers, rule-check diagnostics, validation evidence,
+  native-package witnesses, and report exports now surface the branch fields.
+- Mechanics/report behavior: `component:C-120` emits
+  `component_user_stress_multiplier_review` rows for `pipe:P-110` end-j
+  (branch side) and `pipe:P-120` end-i (header side), including both authored
+  load cases and combination rows. The regenerated mechanics fixture now has
+  749 result rows and 12 component multiplier evidence rows including
+  combinations. Report export records include branch geometry source and
+  user-entered header/branch SIF provenance.
+- Validation:
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 33/33
+    unit tests.
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build:desktop` passed, retaining the existing Vite chunk-size
+    warning.
+  - `npm run test:e2e:desktop` passed 18/18 Playwright checks.
+- Evidence: DEL-03-04, DEL-05-03, and DEL-08-03 run records
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D2-BRANCHSTRESS-001.md`; plan log entry
+  in `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D2 branch-object app absorption is landed for the invented preview
+  path. The PRD §16.2 branch-assembly benchmark remains D9 validation
+  evidence. D3 rigid/semi-rigid components are the next ordinary unblocked
+  Phase D component item.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived branch factor, proprietary catalog value, private data,
+  frame-stiffness behavior change, network path, telemetry feature, lifecycle
+  transition, release-readiness claim, professional approval, certification,
+  sealing, authentication, or code-compliance claim changed.
+
+## TP-MAC-281 R4 D3 rigid/semi-rigid component visibility and provenance slice - PASSED (`TP-R4-D3-RIGIDVIS-001`, 2026-06-21)
+
+- Scope: R4/D3 rigid/semi-rigid component app-absorption slice under
+  `DEC-045`, landing invented preview evidence for a valve-family rigid
+  component with pipe mapping, user-entered dimensions, weight, center of
+  gravity, stiffness/scaling values, and source notes. This is
+  `mechanics_geometry_only` evidence: no frame-stiffness or solve-result
+  behavior changed.
+- App/core behavior: `core/product_physics` now parses and validates D3 rigid
+  component geometry/modifier fields and emits `RIGID_COMPONENT_*` diagnostics.
+  The invented preview model carries `component:C-130`; the viewport renders
+  rigid/semi-rigid components with a distinct compact valve-like glyph. Model
+  view, inspector/provenance rows, grid/search, editor contract, missing-data
+  blockers, rule-check diagnostics, validation evidence, native-package
+  witnesses, and report exports now surface the D3 rigid fields.
+- Validation:
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 33/33
+    unit tests.
+  - `python3 -m pytest tests/product_preview/test_product_preview_service.py tests/test_results_schema.py tests/test_analysis_run_records.py`
+    passed 20/20 tests.
+  - `npm test --workspace apps/desktop -- App.test.tsx` passed 57/57 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 406/406
+    tests.
+  - `npm run build:desktop` passed, retaining the existing Vite chunk-size
+    warning.
+  - Focused Chromium R2 desktop preview smoke passed 1/1.
+  - `npm run test:e2e:desktop` passed 18/18 Playwright checks.
+- Evidence: DEL-03-05 and DEL-08-03 run records
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D3-RIGIDVIS-001.md`; plan log entry in
+  `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D3 rigid/semi-rigid component app absorption is landed for the
+  invented preview path. Full rigid macro-element solve behavior remains out of
+  scope for this slice; D4 expansion joints are the next ordinary unblocked
+  Phase D component item.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived rigid component factor, proprietary catalog value,
+  private data, frame-stiffness behavior change, network path, telemetry
+  feature, lifecycle transition, release-readiness claim, professional
+  approval, certification, sealing, authentication, or code-compliance claim
+  changed.
+
+## TP-MAC-282 R4 D4 expansion-joint user-stiffness preview slice - PASSED (`TP-R4-D4-EJSTIFF-001`, 2026-06-21)
+
+- Scope: R4/D4 expansion-joint app-absorption slice under `DEC-045`, landing
+  invented preview evidence for an expansion joint with pipe mapping,
+  user-entered effective pressure area, movement limit, hardware/manufacturer
+  provenance, pressure-thrust reference, and axial/lateral/angular/torsional
+  stiffness values. This is dedicated user-stiffness macro-element review
+  evidence; it does not claim a full assembled global macro-element solve or
+  pressure-thrust load generation.
+- App/core behavior: `core/product_physics` now parses and validates D4
+  expansion-joint geometry/modifier fields, normalizes area/movement/stiffness
+  units, emits `EXPANSION_JOINT_*` diagnostics, and appends four
+  `component_user_stiffness_macro_element_review` rows for `component:C-150`.
+  The regenerated mechanics fixture now has 753 result rows and
+  `summary.component_user_stiffness_macro_element_count = 4`.
+- UI/report behavior: the invented preview model carries `component:C-150`;
+  the viewport renders expansion joints with a distinct bellows-style marker.
+  Model view, inspector/provenance rows, grid/search, validation evidence,
+  native-package witnesses, and report exports now surface the D4
+  expansion-joint fields and user-stiffness review rows.
+- Validation:
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 34/34
+    unit tests.
+  - `python3 -m pytest tests/product_preview/test_product_preview_service.py tests/test_results_schema.py tests/test_analysis_run_records.py`
+    passed 20/20 tests.
+  - `npm --prefix apps/desktop test -- --run src/App.test.tsx` passed 57/57
+    tests.
+  - `npm --prefix apps/desktop test -- --run` passed 19/19 test files and
+    406/406 tests.
+  - `npm --prefix apps/desktop run build` passed, retaining the existing Vite
+    chunk-size warning.
+  - `npm --prefix apps/desktop run build:wasm` passed.
+  - From `apps/desktop`, `PLAYWRIGHT_WORKERS=1 npm exec playwright test e2e/r2-smoke.spec.ts --workers=1`
+    passed 18/18 Playwright checks.
+- Evidence: DEL-03-06 and DEL-08-03 run records
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D4-EJSTIFF-001.md`; plan log entry in
+  `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D4 expansion-joint app absorption is landed for the invented
+  preview path. Full assembled nonlinear solve behavior, pressure-thrust load
+  application, and R4 validation benchmarks remain out of scope for this
+  slice. The next Phase D item is D5, gated by `D-15`.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived expansion-joint factor, proprietary catalog value,
+  private data, pressure-thrust load generation, global nonlinear solve,
+  network path, telemetry feature, lifecycle transition, release-readiness
+  claim, professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+
+## TP-MAC-283 R4 D5 spring-hanger user-data preview slice - PASSED (`TP-R4-D5-HANGERDATA-001`, 2026-06-21)
+
+- Scope: R4/D5 spring-hanger app-absorption slice under `DEC-049`, landing
+  invented preview evidence for a variable spring hanger and a constant-effort
+  support with user-entered stiffness/load/travel fields, source/manufacturer
+  provenance, load-side review reference, and mechanics-consumption notes. This
+  is user-data/review evidence only; it does not claim catalog sizing, hidden
+  defaults, full constant-effort solve behavior, or professional acceptance.
+- App/core behavior: `schemas/model.schema.yaml` now includes hanger-specific
+  support slots; the invented preview model carries `support:SH-140` and
+  `support:CE-120`. `core/product_physics` validates hanger units and required
+  user data, consumes variable spring hanger stiffness through the existing
+  linear spring primitive, skips constant-effort supports as review/load-side
+  evidence, and emits `spring_hanger_user_input_review` plus
+  `constant_effort_user_input_review` result rows.
+- UI/report behavior: support family/hanger fields now appear in the model
+  tree/grid/search and selected-support properties. Project validation,
+  native-package unit preservation, report export packets, and rendered-report
+  input provenance include the spring-hanger user-data evidence.
+- Validation:
+  - `python3 -m json.tool fixtures/product_preview/invented_preview_model.json`
+    passed.
+  - `npm run generate:product-preview-mechanics` passed.
+  - `python3 -m json.tool fixtures/product_preview/invented_mechanics_result.json`
+    passed.
+  - `cargo fmt --manifest-path core/product_physics/Cargo.toml` passed.
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 43/43
+    unit tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 407/407
+    tests.
+  - From `apps/desktop`, `npm exec -- playwright test e2e/r2-smoke.spec.ts --workers=1`
+    passed 18/18 Playwright checks after updating fixture-count expectations
+    for the 800-row D5 mechanics result surface.
+  - `npm run build:desktop` passed, retaining the existing Vite chunk-size
+    warning.
+- Evidence: DEL-04-03 run record
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D5-HANGERDATA-001.md`; plan log entry in
+  `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D5 is landed for the minimal user-data path. Catalog sizing,
+  protected/default support values, hidden manufacturer data, full
+  constant-effort solve behavior, and R4 validation/exit evidence remain out of
+  scope for this slice. The next Phase D item is D7 sparse evidence-lane
+  adoption under `DEC-050`.
+- Boundary: invented/user-entered preview values only. No protected standards
+  table, code-derived spring-hanger factor, proprietary catalog value, private
+  data, constant-effort solve claim, network path, telemetry feature, lifecycle
+  transition, release-readiness claim, professional approval, certification,
+  sealing, authentication, or code-compliance claim changed.
+
+## TP-MAC-284 R4 D7 sparse evidence lane - PASSED (`TP-R4-D7-SPARSELIVE-001`, 2026-06-21)
+
+- Scope: R4/D7 sparse evidence-lane slice under `DEC-050`, binding the accepted
+  `core/solver/sparse_direct` solver as a live non-blocking evidence observer
+  while dense remains the default product solve path and parity oracle.
+- App/core behavior: `core/solver/nonlinear_integration` records sparse
+  sidecar evidence per iteration, and `core/product_physics` emits two unitless
+  `sparse_live_path_dense_parity_relative_delta` rows for the invented preview
+  load cases. Sparse evidence rows are not load effects and are excluded from
+  combination algebra.
+- UI/report behavior: generated mechanics results now contain 802 rows; result
+  filtering, unit policy surfaces, native package witnesses, headless/stress
+  neutral/handoff witnesses, and Playwright smoke expectations match the
+  updated result surface.
+- Validation:
+  - `cargo fmt --manifest-path core/solver/nonlinear_integration/Cargo.toml --check`
+    passed.
+  - `cargo test --manifest-path core/solver/nonlinear_integration/Cargo.toml`
+    passed 10/10 tests.
+  - `cargo fmt --manifest-path core/product_physics/Cargo.toml --check`
+    passed.
+  - `cargo test --manifest-path core/product_physics/Cargo.toml` passed 43/43
+    tests.
+  - `cargo fmt --manifest-path core/solver/diagnostics/Cargo.toml --check`
+    passed.
+  - `cargo test --manifest-path core/solver/diagnostics/Cargo.toml` passed
+    24/24 tests.
+  - `cargo fmt --manifest-path core/solver/performance_harness/Cargo.toml --check`
+    passed.
+  - `cargo test --manifest-path core/solver/performance_harness/Cargo.toml`
+    passed 18/18 tests.
+  - `npm test --workspace apps/desktop` passed 19/19 test files and 407/407
+    tests.
+  - From `apps/desktop`,
+    `npm exec -- playwright test e2e/r2-smoke.spec.ts --workers=1` passed 18/18
+    Playwright checks.
+  - Full DEC-025 evidence sweep passed:
+    `validation/evidence/sweeps/SWEEP_20260621T205711Z_c771567ed6a8-dirty.json`
+    (`overall_status=pass`, 5/5 surfaces).
+- Evidence: DEL-04-01 and DEL-04-05 run records
+  `WORKING_ITEMS_RUN_2026-06-21_TP-R4-D7-SPARSELIVE-001.md`; plan log entry in
+  `plans/PLAN_COMPLETION_LOG.md`.
+- Residual: D7 is landed for evidence-lane adoption only. Profile-direct sparse
+  assembly, sparse-default promotion, timing/memory thresholds, practical-size
+  bands, non-seed convergence thresholds, and the remaining D9 validation
+  package remain follow-on work.
+- Boundary: invented/local evidence only. No protected standards content,
+  proprietary benchmark model, private data, network path, telemetry feature,
+  lifecycle transition, release-readiness claim, professional approval,
+  certification, sealing, authentication, or code-compliance claim changed.

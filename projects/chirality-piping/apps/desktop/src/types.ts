@@ -1,5 +1,71 @@
 export type Vec3 = { x: number; y: number; z: number };
 
+export type QuantityValue = { value: number; unit: string };
+
+export type PreviewComponent = {
+  id: string;
+  label: string;
+  kind: string;
+  node: string;
+  provenance: string;
+  geometry?: {
+    bend_radius?: QuantityValue;
+    bend_angle?: QuantityValue;
+    bend_plane_orientation?: string;
+    bend_geometry_source_reference?: string;
+    branch_header_pipe_ref?: string;
+    branch_branch_pipe_ref?: string;
+    branch_run_size?: QuantityValue;
+    branch_header_size?: QuantityValue;
+    branch_connection_angle?: QuantityValue;
+    branch_connection_type?: string;
+    branch_reinforcement_area?: QuantityValue;
+    branch_reinforcement_reference?: string;
+    branch_geometry_source_reference?: string;
+    rigid_pipe_ref?: string;
+    rigid_body_length?: QuantityValue;
+    end_a_size?: QuantityValue;
+    end_b_size?: QuantityValue;
+    weight?: QuantityValue;
+    center_of_gravity?: { x: number; y: number; z: number; unit: string };
+    connection_end_a_reference?: string;
+    connection_end_b_reference?: string;
+    stiffness_behavior_reference?: string;
+    rigid_component_source_reference?: string;
+    expansion_joint_pipe_ref?: string;
+    effective_area?: QuantityValue;
+    movement_limit?: QuantityValue;
+    hardware_reference?: string;
+    manufacturer_reference?: string;
+    pressure_thrust_reference?: string;
+    expansion_joint_source_reference?: string;
+  };
+  modifiers?: {
+    sif_user_value?: QuantityValue;
+    branch_header_sif_user_value?: QuantityValue;
+    branch_branch_sif_user_value?: QuantityValue;
+    flexibility_factor_user_value?: QuantityValue;
+    stiffness_scaling_user_value?: QuantityValue;
+    linear_stiffness_user_value?: QuantityValue;
+    rotational_stiffness_user_value?: QuantityValue;
+    axial_stiffness_user_value?: QuantityValue;
+    lateral_stiffness_user_value?: QuantityValue;
+    angular_stiffness_user_value?: QuantityValue;
+    torsional_stiffness_user_value?: QuantityValue;
+    source_reference?: string;
+  };
+  mechanics_interface?: {
+    solver_consumption?: string;
+    rule_check_consumption?: string;
+  };
+  completeness?: Array<{
+    finding_id?: string;
+    status: string;
+    diagnostic_code: string;
+    missing_field_kinds?: string[];
+  }>;
+};
+
 export type PreviewModel = {
   schema_version: string;
   document_kind: string;
@@ -34,7 +100,12 @@ export type PreviewModel = {
     };
     provenance: string | Record<string, unknown>;
   }>;
-  nodes: Array<{ id: string; label: string; position: Vec3; provenance: string }>;
+  nodes: Array<{
+    id: string;
+    label: string;
+    position: Vec3;
+    provenance: string;
+  }>;
   pipe_segments: Array<{
     id: string;
     label: string;
@@ -49,14 +120,36 @@ export type PreviewModel = {
     id: string;
     label: string;
     node: string;
+    family?: string;
     restraints: string[];
+    stiffness?: {
+      dof: string;
+      value: QuantityValue;
+    };
+    hanger?: {
+      hanger_type?: string;
+      stiffness?: {
+        dof: string;
+        value: QuantityValue;
+      };
+      installed_load?: QuantityValue;
+      cold_load?: QuantityValue;
+      hot_load?: QuantityValue;
+      constant_load?: QuantityValue;
+      travel_range?: QuantityValue;
+      movement_limit?: QuantityValue;
+      manufacturer_reference?: string;
+      source_reference?: string;
+      load_side_review_reference?: string;
+      mechanics_consumption?: string;
+    };
     properties?: {
       linear_stiffness?: { value: number; unit: string };
       [key: string]: { value: number; unit: string } | undefined;
     };
     provenance: string;
   }>;
-  components: Array<{ id: string; label: string; kind: string; node: string; provenance: string }>;
+  components: PreviewComponent[];
   load_cases: Array<{
     id: string;
     label: string;
@@ -120,8 +213,18 @@ export type MechanicsResult = {
     professional_acceptance: string;
   };
   summary: Record<string, unknown> & {
-    max_displacement?: { value: number; unit: string; location_ref: string; result_ref: string } | null;
-    max_open_formula_stress?: { value: number; unit: string; location_ref: string; result_ref: string } | null;
+    max_displacement?: {
+      value: number;
+      unit: string;
+      location_ref: string;
+      result_ref: string;
+    } | null;
+    max_open_formula_stress?: {
+      value: number;
+      unit: string;
+      location_ref: string;
+      result_ref: string;
+    } | null;
   };
   results: Array<{
     id: string;
@@ -376,7 +479,13 @@ export type AgentProposal = {
     operation_kind: string;
     operation_status: string;
     affected_entity_ids: string[];
-    changes: Array<{ change_id: string; change_kind: string; target_ref: string; before: string; after: string }>;
+    changes: Array<{
+      change_id: string;
+      change_kind: string;
+      target_ref: string;
+      before: string;
+      after: string;
+    }>;
   };
   rationale: string;
   assumptions: string[];

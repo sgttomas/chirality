@@ -1,5 +1,57 @@
 # MEMORY - DEL-08-03 Warnings, Assumptions, and Provenance Report Section
 
+## 2026-06-21 - TP-R4-D8-COMPPROVREPORT-001 component provenance in rendered reports
+
+WORKING_ITEMS landed the DEL-08-03 report-section side of the R4 D8 component
+provenance path. The rendered-report adapter now converts preview components
+into report-section `user_supplied_values` rows required for reporting and
+human review, adds component provenance notes from component provenance plus
+geometry/modifier source references, and emits
+`COMPONENT_PROVENANCE_MISSING` warnings when component provenance is absent.
+
+Evidence: package run record
+`execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D8-COMPPROVREPORT-001.md`.
+Validation passed: report-renderer `cargo fmt --check`, report-renderer
+`cargo test` 8/8, focused desktop rendered-report Vitest 8/8, desktop
+production build, and `git diff --check`.
+
+Boundary preserved: missing provenance stays visible as a warning/finding and
+is not marked accepted input; no report clearance, legal review, redaction,
+professional-boundary semantics, lifecycle state, release-readiness claim,
+professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+## 2026-06-21 - TP-R4-D2-BRANCHSTRESS-001 branch provenance in report packet
+
+WORKING_ITEMS landed the report-provenance side of the D2 branch connection
+app-absorption slice. The preview report packet now displays branch component
+provenance and component stress modifier summaries, and the JSON export carries
+branch geometry source, user-entered header/branch SIF values, user-entered
+flexibility factor, modifier source, `component_provenance`,
+`component_stress_modifier_evidence`, and `component_stress_modifier_count`
+fields with no-private/no-protected/no-claim boundary flags.
+
+Evidence: `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D2-BRANCHSTRESS-001.md`.
+Validation passed: product-physics Rust tests, desktop Vitest, desktop build,
+and Playwright e2e. The report remains a technical preview artifact and makes
+no release, professional approval, certification, sealing, authentication, or
+code-compliance claim.
+
+## 2026-06-21 - TP-R4-D1-BENDSTRESS-001 bend provenance in report packet
+
+WORKING_ITEMS landed the report-provenance side of the D1 bend mechanics/report
+residual. The preview report packet now displays component provenance and
+component stress modifier summaries, and the JSON export carries structured
+`component_provenance`, `component_stress_modifier_evidence`, and
+`component_stress_modifier_count` fields with no-private/no-protected/no-claim
+boundary flags.
+
+Evidence: `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D1-BENDSTRESS-001.md`.
+Validation passed: product-physics Rust tests, desktop Vitest, desktop build,
+and Playwright e2e. The report remains a technical preview artifact and makes
+no release, professional approval, certification, sealing, authentication, or
+code-compliance claim.
+
 ## Current Implementation Pass - 2026-05-02
 
 Source basis:
@@ -157,6 +209,34 @@ Durable context preserved after reconciliation review:
 - Evidence:
   `_run_records/WORKING_ITEMS_RUN_2026-06-18_TP-UNITS-BTAIL-EXPORTREVIEWRULECOMPUNITS-001.md`;
   primary DEL-12-02 run record; `apps/desktop/SMOKE.md` TP-MAC-259.
+- Boundary preserved: no report clearance, legal review, redaction,
+  professional boundary semantics, lifecycle state, release-readiness claim,
+  professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+
+## 2026-06-21 - TP-R4-D3-RIGIDVIS-001 supporting rigid-component provenance evidence
+
+- Supporting role for DEL-03-05 app absorption: the preview report packet and
+  JSON export now preserve invented rigid/semi-rigid component mapping,
+  geometry, weight/COG, source, and user-entered stiffness/scaling evidence.
+- Evidence:
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D3-RIGIDVIS-001.md`;
+  primary DEL-03-05 run record; `apps/desktop/SMOKE.md` TP-MAC-281.
+- Boundary preserved: no report clearance, legal review, redaction,
+  professional boundary semantics, lifecycle state, release-readiness claim,
+  professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+
+## 2026-06-21 - TP-R4-D4-EJSTIFF-001 supporting expansion-joint provenance evidence
+
+- Supporting role for DEL-03-06 app absorption: the preview report packet and
+  JSON export now preserve invented expansion-joint pipe mapping, effective
+  pressure area, movement limit, hardware/manufacturer references,
+  pressure-thrust reference, user-entered stiffness values, and user-stiffness
+  macro-element review rows.
+- Evidence:
+  `_run_records/WORKING_ITEMS_RUN_2026-06-21_TP-R4-D4-EJSTIFF-001.md`;
+  primary DEL-03-06 run record; `apps/desktop/SMOKE.md` TP-MAC-282.
 - Boundary preserved: no report clearance, legal review, redaction,
   professional boundary semantics, lifecycle state, release-readiness claim,
   professional approval, certification, sealing, authentication, or

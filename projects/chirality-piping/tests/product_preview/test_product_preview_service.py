@@ -88,8 +88,47 @@ def test_mechanics_result_keeps_status_boundaries_separate():
     assert "result:stress:pipe-P-120:quarter-1:pressure-hoop" in result_ids
     assert "result:stress:pipe-P-120:quarter-1:pressure-longitudinal" not in result_ids
     assert "result:stress:pipe-P-120:quarter-1:shear-y" not in result_ids
+    assert "result:nonlinear-support:iteration-count" in result_ids
+    assert "result:nonlinear-support:final-residual-count" in result_ids
+    assert "result:nonlinear-support:converged-flag" in result_ids
+    assert "result:nonlinear-support:support-NL-140:state-code" in result_ids
+    assert "result:nonlinear-support:support-NL-140:uy-reaction" in result_ids
+    assert "result:nonlinear-support:support-NL-130-FRIC:state-code" in result_ids
+    assert "result:nonlinear-support:support-NL-130-FRIC:uz-displacement" in result_ids
+    assert "result:nonlinear-support:support-NL-130-FRIC:uz-reaction" in result_ids
+    assert "result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction" in result_ids
+    assert "TOLERANCE_POLICY_TBD" not in {item["code"] for item in result["diagnostics"]}
+    assert "NONLINEAR_SUPPORT_LOOP_CONVERGED" in {item["code"] for item in result["diagnostics"]}
     axial = next(item for item in result["results"] if item["id"] == "result:force:pipe-P-120:axial")
     axial_end_j = next(item for item in result["results"] if item["id"] == "result:force:pipe-P-120:axial:end-j")
+    nonlinear_iteration_count = next(
+        item for item in result["results"] if item["id"] == "result:nonlinear-support:iteration-count"
+    )
+    assert "DEC-046-CV-B-product-preview-active-set-count-v1" in nonlinear_iteration_count["metadata"]["basis"]
+    assert "policy_status=accepted" in nonlinear_iteration_count["metadata"]["basis"]
+    nonlinear_reaction = next(
+        item for item in result["results"] if item["id"] == "result:nonlinear-support:support-NL-140:uy-reaction"
+    )
+    nonlinear_friction_state = next(
+        item
+        for item in result["results"]
+        if item["id"] == "result:nonlinear-support:support-NL-130-FRIC:state-code"
+    )
+    nonlinear_friction_displacement = next(
+        item
+        for item in result["results"]
+        if item["id"] == "result:nonlinear-support:support-NL-130-FRIC:uz-displacement"
+    )
+    nonlinear_friction_reaction = next(
+        item
+        for item in result["results"]
+        if item["id"] == "result:nonlinear-support:support-NL-130-FRIC:uz-reaction"
+    )
+    nonlinear_friction_normal = next(
+        item
+        for item in result["results"]
+        if item["id"] == "result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
+    )
     shear_quarter = next(
         item
         for item in result["results"]
@@ -114,6 +153,21 @@ def test_mechanics_result_keeps_status_boundaries_separate():
     assert axial["metadata"]["location"] == "end_i"
     assert axial["metadata"]["component"] == "axial_force"
     assert axial["basis_ref"] == {"ref_type": "load_case", "ref_id": "load:L-100"}
+    assert nonlinear_iteration_count["kind"] == "nonlinear_support_active_set_iteration_count"
+    assert nonlinear_iteration_count["value"] == 1
+    assert nonlinear_reaction["kind"] == "nonlinear_support_final_reaction"
+    assert nonlinear_reaction["entity_ref"] == "support:NL-140"
+    assert nonlinear_reaction["value"] < 0
+    assert nonlinear_friction_state["value"] == 3
+    assert nonlinear_friction_state["metadata"]["basis"].endswith("final_state=sliding")
+    assert nonlinear_friction_displacement["value"] != 0
+    assert nonlinear_friction_reaction["value"] == 0
+    assert nonlinear_friction_normal["kind"] == "nonlinear_support_friction_normal_reaction_derived"
+    assert nonlinear_friction_normal["value"] == 158.102028
+    assert "derived_support_reaction" in nonlinear_friction_normal["metadata"]["basis"]
+    assert "source_ref=support:S-130" in nonlinear_friction_normal["metadata"]["basis"]
+    assert "source_dof=uy" in nonlinear_friction_normal["metadata"]["basis"]
+    assert "derived_normal_force_model=TBD" not in nonlinear_friction_normal["metadata"]["basis"]
     assert axial_end_j["metadata"]["coordinate_system"] == "element_local"
     assert axial_end_j["metadata"]["location"] == "end_j"
     assert axial_end_j["metadata"]["component"] == "axial_force"
