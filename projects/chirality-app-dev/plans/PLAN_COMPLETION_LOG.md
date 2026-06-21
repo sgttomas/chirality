@@ -6,6 +6,22 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-08 blocked on session folder duplicate-shape ruling
+
+Selected `ADQ-08` from the autonomous development queue and confirmed that canonical
+session-folder migration requires a material storage-contract ruling before implementation. Current
+source writes primary session records as flat `{sessionId}.json`, while event and tool-result
+writers already use folder-backed `<sessionId>/events.jsonl` and `<sessionId>/artifacts/...` paths.
+DEL-05-01 procedure/guidance explicitly leaves duplicate folder-versus-flat read/list/save
+precedence and delete semantics as `TBD`, and requires a human/design ruling before destructive
+duplicate behavior.
+
+Prepared `execution/_Coordination/_DECISIONS/D-APP-41_PACKET_SESSION_FOLDER_MIGRATION_2026-06-21.md`,
+added it to the decision register as `AWAITING_RULING`, and marked `ADQ-08` `BLOCKED`. No source,
+tests, authority documents, `_STATUS.md`, dependency rows, provider policy, lifecycle issuance,
+release/distribution posture, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-07 document-kit metadata scanner landed
 
 Completed `ADQ-07` from the autonomous development queue. The project deliverables scan now includes
