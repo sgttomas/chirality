@@ -6,6 +6,15 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-12 blocked on runtime taxonomy ruling
+
+Recomputed autonomous queue readiness after repairing the ADQ-11 validation stop. `ADQ-12` was recorded
+as `READY`, but its prerequisite is the ADQ-05 child-run decision, and D-APP-40 remains
+`AWAITING_RULING`. Updated the active queue to mark `ADQ-12` `BLOCKED (D-APP-40 awaiting ruling)`.
+No source, tests, authority documents, `_STATUS.md` files, dependency rows, provider policy, lifecycle
+issuance, release/distribution posture, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-11 validation timeout repaired
 
 Repaired the ADQ-11 validation stop by preloading `src/__tests__/api/harness/routes.test.ts` route
