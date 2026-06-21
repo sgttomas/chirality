@@ -91,6 +91,9 @@ export interface DeliverableDependenciesSnapshot {
   projectRoot: string;
   deliverablePath: string;
   dependenciesFilePath: string;
+  dependenciesSummaryPath?: string;
+  registerPresent: boolean;
+  secondarySummaryPresent: boolean;
   headers: string[];
   rows: DependencyRegisterRow[];
   warnings: string[];

@@ -18,6 +18,7 @@ import {
   type SessionPermissionChannel
 } from './permission-event-channel';
 import { getPermissionBroker } from './permission-broker';
+import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from './sdk-version';
 
 type SdkQuery = typeof query;
 
@@ -28,7 +29,6 @@ type ActiveTurnState = {
   permissionChannel?: SessionPermissionChannel;
 };
 
-const SDK_PACKAGE_VERSION = '0.3.150';
 const ANTHROPIC_API_KEY_ENV = 'ANTHROPIC_API_KEY';
 
 function asNonEmptyString(value: string | undefined): string | undefined {
@@ -205,7 +205,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         type: 'turn.accepted',
         data: {
           provider: 'claude-agent-sdk',
-          sdkPackageVersion: SDK_PACKAGE_VERSION,
+          sdkPackageVersion: CLAUDE_AGENT_SDK_PACKAGE_VERSION,
           persona: input.opts.persona,
           mode: input.opts.mode,
           personaPromptHash,
@@ -358,12 +358,12 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         'Claude Agent SDK turn failed';
       yield* emitAndBridge('turn.failed', {
         provider: 'claude-agent-sdk',
-        sdkPackageVersion: SDK_PACKAGE_VERSION,
+        sdkPackageVersion: CLAUDE_AGENT_SDK_PACKAGE_VERSION,
         error: messageText
       });
       throw new HarnessError('SDK_FAILURE', 500, messageText, {
         provider: 'claude-agent-sdk',
-        sdkPackageVersion: SDK_PACKAGE_VERSION
+        sdkPackageVersion: CLAUDE_AGENT_SDK_PACKAGE_VERSION
       });
     } finally {
       // Release any approval the turn is still suspended on (e.g. the SSE stream

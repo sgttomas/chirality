@@ -68,6 +68,26 @@ type FileDiffSummary = {
   diffOmittedReason?: string;
 };
 
+type ExactEditPreconditionResult =
+  | {
+      allowed: true;
+      metadata: {
+        preconditionClass: 'exact-edit';
+        oldStringByteLength: number;
+        oldStringMatchCount: number;
+      };
+    }
+  | {
+      allowed: false;
+      reason: string;
+      metadata: {
+        denyClass: 'exact-edit-precondition';
+        reason: string;
+        oldStringByteLength?: number;
+        beforeState?: FileStateSummary;
+      };
+    };
+
 export type ChiralityToolHookInput = {
   sessionId: string;
   projectRoot: string;
@@ -90,6 +110,10 @@ function isShellDescriptor(descriptor: HarnessToolDescriptor | undefined): boole
 
 function isSubagentDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
   return Boolean(descriptor?.permissions.includes('subagent'));
+}
+
+function isEditFileDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
+  return descriptor?.name === 'edit_file';
 }
 
 function isGovernedHookDescriptor(descriptor: HarnessToolDescriptor | undefined): boolean {
@@ -116,6 +140,20 @@ function readToolInput(input: HookInput): Record<string, unknown> {
   }
 
   return {};
+}
+
+function countOccurrences(value: string, searchValue: string): number {
+  let count = 0;
+  let offset = 0;
+  while (offset <= value.length) {
+    const index = value.indexOf(searchValue, offset);
+    if (index === -1) {
+      break;
+    }
+    count += 1;
+    offset = index + searchValue.length;
+  }
+  return count;
 }
 
 async function captureFileState(filePath: string | undefined): Promise<FileStateCapture | undefined> {
@@ -187,6 +225,61 @@ async function captureFileState(filePath: string | undefined): Promise<FileState
       }
     };
   }
+}
+
+function evaluateExactEditPrecondition(input: {
+  toolInput: Record<string, unknown>;
+  beforeCapture?: FileStateCapture;
+}): ExactEditPreconditionResult {
+  const oldString = input.toolInput.old_string;
+  if (typeof oldString !== 'string' || oldString.length === 0) {
+    return {
+      allowed: false,
+      reason: 'Edit old_string must be a non-empty string before Chirality can approve execution.',
+      metadata: {
+        denyClass: 'exact-edit-precondition',
+        reason: 'missing-or-empty-old-string',
+        beforeState: input.beforeCapture?.summary
+      }
+    };
+  }
+
+  if (typeof input.beforeCapture?.textForDiff !== 'string') {
+    return {
+      allowed: false,
+      reason:
+        'Edit old_string precondition could not be verified against the target file before execution.',
+      metadata: {
+        denyClass: 'exact-edit-precondition',
+        reason: 'before-text-unavailable',
+        oldStringByteLength: Buffer.byteLength(oldString, 'utf8'),
+        beforeState: input.beforeCapture?.summary
+      }
+    };
+  }
+
+  const oldStringMatchCount = countOccurrences(input.beforeCapture.textForDiff, oldString);
+  if (oldStringMatchCount === 0) {
+    return {
+      allowed: false,
+      reason: 'Edit old_string was not found in the target file before execution.',
+      metadata: {
+        denyClass: 'exact-edit-precondition',
+        reason: 'old-string-not-found',
+        oldStringByteLength: Buffer.byteLength(oldString, 'utf8'),
+        beforeState: input.beforeCapture.summary
+      }
+    };
+  }
+
+  return {
+    allowed: true,
+    metadata: {
+      preconditionClass: 'exact-edit',
+      oldStringByteLength: Buffer.byteLength(oldString, 'utf8'),
+      oldStringMatchCount
+    }
+  };
 }
 
 function splitLinesForSummary(value: string): string[] {
@@ -442,6 +535,28 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
       }
 
       const beforeCapture = await captureFileState(pathPolicy.metadata.resolvedPath);
+      const exactEditPrecondition = isEditFileDescriptor(descriptor)
+        ? evaluateExactEditPrecondition({
+            toolInput: readToolInput(preInput),
+            beforeCapture
+          })
+        : undefined;
+
+      if (exactEditPrecondition && !exactEditPrecondition.allowed) {
+        await appendHookEvent({
+          ...eventBase,
+          type: 'hook.completed',
+          data: {
+            decision: 'block',
+            reason: exactEditPrecondition.reason,
+            pathMetadata: pathPolicy.metadata,
+            beforeState: beforeCapture?.summary,
+            safeMetadata: exactEditPrecondition.metadata
+          }
+        });
+        return blockPreToolUse(exactEditPrecondition.reason);
+      }
+
       attempts.set(preInput.tool_use_id, {
         pathMetadata: pathPolicy.metadata,
         beforeState: beforeCapture?.summary,
@@ -455,6 +570,7 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
           decision: 'approve',
           pathMetadata: pathPolicy.metadata,
           beforeState: beforeCapture?.summary,
+          exactEditPrecondition: exactEditPrecondition?.metadata,
           recordsDiff: descriptor?.provenance.recordsDiff
         }
       });

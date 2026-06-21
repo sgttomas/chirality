@@ -1,4 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
+import { writeTextFileAtomically } from '../atomic-write';
 import { LifecycleState, LIFECYCLE_STATES, parseLifecycleState, parseStatusDocument } from './status-parser';
 import { updateStatusDocument } from './status-writer';
 
@@ -206,6 +207,6 @@ export async function transitionStatusFile(
     actorInput,
     options
   );
-  await writeFile(statusFilePath, result.content, 'utf8');
+  await writeTextFileAtomically(statusFilePath, result.content);
   return result;
 }

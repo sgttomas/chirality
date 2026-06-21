@@ -11,7 +11,15 @@ type SessionRecord = {
   createdAt: string;
   updatedAt: string;
   claudeSessionId?: string;
+  sdkPackageVersion?: string;
   bootFingerprint?: string;
+  runtimeFingerprint?: {
+    schemaVersion: string;
+    toolRegistryVersion: string;
+    sdkPackageVersion: string;
+    mcpServers: Array<{ name: string; version: string; toolNames: string[] }>;
+    fingerprintSha256: string;
+  };
   bootedAt?: string;
   model?: string;
 };
@@ -264,7 +272,12 @@ describe('Harness API baseline routes', () => {
     expect(bootResponse.status).toBe(200);
     const bootBody = (await bootResponse.json()) as {
       session: SessionRecord;
-      boot: { claudeSessionId: string; bootFingerprint: string; bootedAt: string };
+      boot: {
+        claudeSessionId: string;
+        bootFingerprint: string;
+        runtimeFingerprint: NonNullable<SessionRecord['runtimeFingerprint']>;
+        bootedAt: string;
+      };
     };
 
     expect(typeof bootBody.boot.claudeSessionId).toBe('string');
@@ -279,6 +292,21 @@ describe('Harness API baseline routes', () => {
     );
     expect(typeof bootBody.boot.bootedAt).toBe('string');
     expect(bootBody.session.bootFingerprint).toBe(bootBody.boot.bootFingerprint);
+    expect(bootBody.session.sdkPackageVersion).toBe('0.3.150');
+    expect(bootBody.session.runtimeFingerprint).toEqual(bootBody.boot.runtimeFingerprint);
+    expect(bootBody.boot.runtimeFingerprint).toMatchObject({
+      schemaVersion: 'harness-runtime-fingerprint.v1',
+      toolRegistryVersion: expect.stringMatching(/^harness-tools\./),
+      sdkPackageVersion: '0.3.150',
+      mcpServers: [
+        expect.objectContaining({
+          name: 'chirality',
+          version: '1.0.0',
+          toolNames: expect.arrayContaining(['status_read', 'deps_read'])
+        })
+      ],
+      fingerprintSha256: expect.stringMatching(/^[a-f0-9]{64}$/)
+    });
   });
 
   it('passes subagentGovernance through boot opts without consuming it in fallback resolution', async () => {

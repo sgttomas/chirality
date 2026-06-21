@@ -1,4 +1,5 @@
 export const CHIRALITY_MCP_SERVER_NAME = 'chirality';
+export const CHIRALITY_MCP_SERVER_VERSION = '1.0.0';
 
 export const CHIRALITY_MCP_READ_TOOL_NAMES = [
   'status_read',

@@ -1,6 +1,7 @@
 import { hasUiApiKey } from './api-key-store';
 import { asHarnessError, HarnessError } from './errors';
 import { resolveRuntimeOptions } from './options';
+import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from './sdk-version';
 import { evaluateSubagentGovernance } from './subagent-governance';
 import { resolveHarnessToolPool } from './tool-descriptor';
 import {
@@ -20,8 +21,6 @@ import {
 } from './types';
 
 const MAX_ATTACHMENT_WARNING_DETAILS = 3;
-const DEFAULT_SDK_PACKAGE_VERSION = '0.3.150';
-
 export type TurnEngineProviderMode = 'stub' | 'anthropic' | 'agentSdk';
 
 export type RunningHarnessTurn = {
@@ -177,7 +176,7 @@ export class TurnEngine {
     this.resolveProviderMode = dependencies.resolveProviderMode ?? (() => 'stub');
     this.hasUiApiKey = dependencies.hasUiApiKey ?? hasUiApiKey;
     this.env = dependencies.env ?? process.env;
-    this.sdkPackageVersion = dependencies.sdkPackageVersion ?? DEFAULT_SDK_PACKAGE_VERSION;
+    this.sdkPackageVersion = dependencies.sdkPackageVersion ?? CLAUDE_AGENT_SDK_PACKAGE_VERSION;
     this.resolveRuntimeOptions = dependencies.resolveRuntimeOptions ?? resolveRuntimeOptions;
     this.evaluateSubagentGovernance =
       dependencies.evaluateSubagentGovernance ?? evaluateSubagentGovernance;

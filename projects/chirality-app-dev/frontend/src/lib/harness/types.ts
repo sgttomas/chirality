@@ -37,6 +37,7 @@ export interface SessionRecord {
   sdkPackageVersion?: string;
   sdkClaudeCodeVersion?: string;
   bootFingerprint?: string;
+  runtimeFingerprint?: HarnessRuntimeFingerprint;
   bootedAt?: string;
   model?: string;
 }
@@ -117,12 +118,30 @@ export interface BootMetadata {
   engineSessionId?: string;
   claudeSessionId: string;
   bootFingerprint: string;
+  runtimeFingerprint: HarnessRuntimeFingerprint;
   bootedAt: string;
 }
 
 export interface SessionBootResponse {
   session: SessionRecord;
   boot: BootMetadata;
+}
+
+export interface HarnessRuntimeFingerprintMcpServer {
+  name: string;
+  version: string;
+  toolNames: string[];
+}
+
+export interface HarnessRuntimeFingerprint {
+  schemaVersion: string;
+  personaComposerVersion: string;
+  permissionPolicyVersion: string;
+  subagentPolicyVersion: string;
+  toolRegistryVersion: string;
+  sdkPackageVersion: string;
+  mcpServers: HarnessRuntimeFingerprintMcpServer[];
+  fingerprintSha256: string;
 }
 
 export interface TurnRequest {

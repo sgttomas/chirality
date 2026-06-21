@@ -249,6 +249,8 @@ describe('deliverable API helpers', () => {
         projectRoot: '/tmp/project',
         deliverablePath: '/tmp/project/PKG-05/1_Working/DEL-05-04_X',
         dependenciesFilePath: '/tmp/project/PKG-05/1_Working/DEL-05-04_X/Dependencies.csv',
+        registerPresent: true,
+        secondarySummaryPresent: false,
         headers: ['RegisterSchemaVersion', 'DependencyID'],
         rows: [makeRow()],
         warnings: []
@@ -261,6 +263,8 @@ describe('deliverable API helpers', () => {
     );
 
     expect(snapshot.rows).toHaveLength(1);
+    expect(snapshot.registerPresent).toBe(true);
+    expect(snapshot.secondarySummaryPresent).toBe(false);
     expect(snapshot.rows[0].DependencyID).toBe('DEP-05-04-001');
     expect(currentIsoDate(new Date('2026-02-22T12:34:56.000Z'))).toBe('2026-02-22');
   });

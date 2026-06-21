@@ -339,11 +339,52 @@ describe('working-root deliverable contract routes', () => {
     const body = (await response.json()) as {
       rows: DependencyRegisterRow[];
       headers: string[];
+      registerPresent: boolean;
+      secondarySummaryPresent: boolean;
     };
 
+    expect(body.registerPresent).toBe(true);
+    expect(body.secondarySummaryPresent).toBe(false);
     expect(body.rows).toHaveLength(1);
     expect(body.rows[0].DependencyID).toBe('DEP-05-03-001');
     expect(body.headers).toContain('RegisterSchemaVersion');
+  });
+
+  it('returns explicit dependency-register absence without inferring summary rows', async () => {
+    await rm(fixture.dependenciesFilePath, { force: true });
+    const summaryPath = path.join(fixture.deliverablePath, '_DEPENDENCIES.md');
+    await writeFile(
+      summaryPath,
+      '# Dependencies\n\nThis prose summary names dependency context but is not a structured register.\n',
+      'utf8'
+    );
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      deliverablePath: string;
+      rows: DependencyRegisterRow[];
+      headers: string[];
+      warnings: string[];
+      dependenciesSummaryPath?: string;
+      registerPresent: boolean;
+      secondarySummaryPresent: boolean;
+    };
+
+    expect(body.registerPresent).toBe(false);
+    expect(body.secondarySummaryPresent).toBe(true);
+    expect(body.dependenciesSummaryPath).toBe(path.join(body.deliverablePath, '_DEPENDENCIES.md'));
+    expect(body.rows).toEqual([]);
+    expect(body.headers).toEqual([]);
+    expect(body.warnings).toEqual([
+      'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; _DEPENDENCIES.md is present as a secondary summary, but no structured rows were inferred.'
+    ]);
   });
 
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {

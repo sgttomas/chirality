@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-11 permission/tool residuals advanced; lifecycle residuals blocked
+
+Selected `ADQ-11` from the autonomous development queue. Landed the eligible PKG-06 residuals:
+session boot now persists a safe runtime fingerprint covering tool registry, policy, SDK package, and
+Chirality MCP server/tool versions; dependency reads now return typed absent-register state when
+`Dependencies.csv` is missing instead of inferring rows from `_DEPENDENCIES.md`; the write hook now
+checks `Edit.old_string` against the target before SDK execution; and Chirality-owned controlled
+status/dependency writes now use same-directory atomic rename.
+
+Recorded evidence in
+`execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/Evidence_ADQ-11_Permission_Tool_Residuals.md`
+and updated PKG-06 deliverable memories. Marked `ADQ-11` `BLOCKED` for the residuals that still need
+existing upstream rulings/support: real Bash process interruption proof, dedicated PreCompact callback
+semantics, and Stop/finalization semantics. No authority documents, `_STATUS.md` files, dependency
+rows, provider policy, package manifest, lockfile, release artifact, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness
+claim changed.
+
+Validation: `npm run typecheck` passed; focused ADQ-11 suite passed 5 files / 73 tests; isolated
+route CRUD check passed. Full `npm run test` was attempted with 15000ms and 30000ms per-test timeouts;
+both runs left 72 files passing and failed only on `src/__tests__/api/harness/routes.test.ts`
+full-suite timeout cases, with 510 / 512 tests passing and no ADQ-11 assertion failure.
+`git diff --check` passed; D-APP-38 authority-corpus `status` reported no drift.
+
 ## 2026-06-21 - ADQ-10 blocked on tool-result artifact policy ruling
 
 Selected `ADQ-10` from the autonomous development queue and confirmed that the requested

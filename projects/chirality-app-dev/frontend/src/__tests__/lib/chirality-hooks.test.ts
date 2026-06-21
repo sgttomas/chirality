@@ -258,6 +258,96 @@ describe('Chirality write hooks', () => {
     });
   });
 
+  it('blocks Edit when old_string is missing from the target file before execution', async () => {
+    await writeFile(path.join(projectRoot, 'notes.md'), 'before\n', 'utf8');
+    const preToolUse = getHooks().PreToolUse?.[0]?.hooks[0];
+
+    const result = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Edit',
+        tool_input: {
+          file_path: 'notes.md',
+          old_string: 'not present',
+          new_string: 'after'
+        },
+        tool_use_id: 'tool_edit_stale'
+      } as never,
+      'tool_edit_stale',
+      { signal: new AbortController().signal }
+    );
+
+    expect(result).toMatchObject({
+      continue: false,
+      decision: 'block',
+      hookSpecificOutput: {
+        hookEventName: 'PreToolUse',
+        permissionDecision: 'deny'
+      }
+    });
+    expect(JSON.stringify(result)).toContain('old_string was not found');
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual(['hook.started', 'hook.completed']);
+    expect(replay.events[1].data).toMatchObject({
+      hookName: 'chirality.write.pre_tool_use',
+      decision: 'block',
+      descriptorName: 'edit_file',
+      safeMetadata: {
+        denyClass: 'exact-edit-precondition',
+        reason: 'old-string-not-found',
+        oldStringByteLength: 11
+      },
+      beforeState: {
+        exists: true,
+        kind: 'file',
+        byteLength: 7,
+        sha256: expect.any(String)
+      }
+    });
+  });
+
+  it('allows Edit when old_string is present and records exact-edit metadata', async () => {
+    await writeFile(path.join(projectRoot, 'notes.md'), 'before\n', 'utf8');
+    const preToolUse = getHooks().PreToolUse?.[0]?.hooks[0];
+
+    const result = await preToolUse?.(
+      {
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Edit',
+        tool_input: {
+          file_path: 'notes.md',
+          old_string: 'before',
+          new_string: 'after'
+        },
+        tool_use_id: 'tool_edit_exact'
+      } as never,
+      'tool_edit_exact',
+      { signal: new AbortController().signal }
+    );
+
+    expect(result).toMatchObject({
+      continue: true,
+      hookSpecificOutput: {
+        hookEventName: 'PreToolUse',
+        permissionDecision: 'allow'
+      }
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual(['hook.started', 'hook.completed']);
+    expect(replay.events[1].data).toMatchObject({
+      hookName: 'chirality.write.pre_tool_use',
+      decision: 'approve',
+      descriptorName: 'edit_file',
+      exactEditPrecondition: {
+        preconditionClass: 'exact-edit',
+        oldStringByteLength: 6,
+        oldStringMatchCount: 1
+      }
+    });
+  });
+
   it('allows governed Bash, injects timeout, and records redacted overflow artifact metadata', async () => {
     process.env.CHIRALITY_ANTHROPIC_API_KEY = 'sk-test-secret';
     const hooks = getHooks();

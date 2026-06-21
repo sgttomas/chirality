@@ -6,6 +6,7 @@ import {
   requireNonEmptyString
 } from '../../../../../lib/harness/http';
 import { resolveRuntimeOptions } from '../../../../../lib/harness/options';
+import { buildHarnessRuntimeFingerprint } from '../../../../../lib/harness/runtime-fingerprint';
 import { getHarnessRuntime } from '../../../../../lib/harness/runtime';
 import { assertProjectRootAccessible } from '../../../../../lib/harness/session-manager';
 import { SessionBootRequest } from '../../../../../lib/harness/types';
@@ -54,10 +55,13 @@ export async function POST(request: Request): Promise<Response> {
     }
 
     const bootedAt = new Date().toISOString();
+    const runtimeFingerprint = buildHarnessRuntimeFingerprint();
     const updatedSession = await runtime.sessionManager.save(sessionId, {
       engineSessionId,
       claudeSessionId,
+      sdkPackageVersion: runtimeFingerprint.sdkPackageVersion,
       bootFingerprint,
+      runtimeFingerprint,
       bootedAt,
       model: resolvedOpts.model
     });
@@ -69,6 +73,7 @@ export async function POST(request: Request): Promise<Response> {
           engineSessionId,
           claudeSessionId,
           bootFingerprint,
+          runtimeFingerprint,
           bootedAt
         }
       },

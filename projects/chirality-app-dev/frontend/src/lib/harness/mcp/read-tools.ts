@@ -39,6 +39,7 @@ import { getHarnessToolDescriptor } from '../tool-descriptor';
 import { evaluateToolPathPolicy } from '../tool-path-policy';
 import {
   CHIRALITY_MCP_SERVER_NAME,
+  CHIRALITY_MCP_SERVER_VERSION,
   isChiralityMcpAllowedToolName,
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
@@ -590,7 +591,7 @@ export function createChiralityReadMcpServer(
 ): McpSdkServerConfigWithInstance {
   return createSdkMcpServer({
     name: CHIRALITY_MCP_SERVER_NAME,
-    version: '1.0.0',
+    version: CHIRALITY_MCP_SERVER_VERSION,
     instructions:
       'Chirality read-only MCP tools expose project status, dependency, scope, and scaffold-preview data. They do not write files, run shell commands, or access networks.',
     tools: [
@@ -604,7 +605,7 @@ export function createChiralityReadMcpServer(
       ),
       tool(
         'deps_read',
-        'Read parsed dependency rows and warnings from a deliverable Dependencies.csv file.',
+        'Read parsed dependency rows and warnings from a deliverable Dependencies.csv file, or explicit absence status when only _DEPENDENCIES.md is available.',
         {
           deliverablePath: z.string().min(1)
         },
@@ -754,7 +755,7 @@ export function createChiralityMcpServers(input: {
   return {
     [CHIRALITY_MCP_SERVER_NAME]: createSdkMcpServer({
       name: CHIRALITY_MCP_SERVER_NAME,
-      version: '1.0.0',
+      version: CHIRALITY_MCP_SERVER_VERSION,
       instructions:
         'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands or access networks.',
       tools

@@ -1,5 +1,6 @@
-import { readFile, realpath, stat, writeFile } from 'node:fs/promises';
+import { readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { writeTextFileAtomically } from '../atomic-write';
 import { readDependencyRegister } from '../dependencies/register-reader';
 import { serializeDependencyRegister } from '../dependencies/register-writer';
 import {
@@ -121,6 +122,22 @@ function getErrnoCode(error: unknown): string | undefined {
 
   const code = (error as NodeJS.ErrnoException).code;
   return typeof code === 'string' ? code : undefined;
+}
+
+async function isRegularFilePresent(filePath: string): Promise<boolean> {
+  try {
+    const fileStat = await stat(filePath);
+    return fileStat.isFile();
+  } catch (error) {
+    const errnoCode = getErrnoCode(error);
+    if (errnoCode === 'ENOENT') {
+      return false;
+    }
+    throw new WorkspaceOperationError('WORKSPACE_FILE_READ_FAILED', 500, 'Unable to inspect file', {
+      filePath,
+      errnoCode
+    });
+  }
 }
 
 async function readRequiredFile(
@@ -373,6 +390,9 @@ export interface DeliverableDependenciesSnapshot {
   projectRoot: string;
   deliverablePath: string;
   dependenciesFilePath: string;
+  dependenciesSummaryPath?: string;
+  registerPresent: boolean;
+  secondarySummaryPresent: boolean;
   headers: string[];
   rows: DependencyRegisterRow[];
   warnings: string[];
@@ -390,17 +410,48 @@ export async function readDeliverableDependencies(
     deliverablePathInput
   );
   const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
-  const csv = await readRequiredFile(
-    dependenciesFilePath,
-    'DEPENDENCY_REGISTER_NOT_FOUND',
-    'Dependencies.csv is not accessible in deliverablePath'
-  );
+  const dependenciesSummaryPath = path.join(deliverablePath, '_DEPENDENCIES.md');
+  const secondarySummaryPresent = await isRegularFilePresent(dependenciesSummaryPath);
+  let csv: string;
+
+  try {
+    csv = await readFile(dependenciesFilePath, 'utf8');
+  } catch (error) {
+    const errnoCode = getErrnoCode(error);
+    if (errnoCode !== 'ENOENT') {
+      throw new WorkspaceOperationError(
+        'WORKSPACE_FILE_READ_FAILED',
+        500,
+        'Unable to read Dependencies.csv',
+        { dependenciesFilePath, errnoCode }
+      );
+    }
+
+    return {
+      projectRoot,
+      deliverablePath,
+      dependenciesFilePath,
+      dependenciesSummaryPath: secondarySummaryPresent ? dependenciesSummaryPath : undefined,
+      registerPresent: false,
+      secondarySummaryPresent,
+      headers: [],
+      rows: [],
+      warnings: [
+        secondarySummaryPresent
+          ? 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; _DEPENDENCIES.md is present as a secondary summary, but no structured rows were inferred.'
+          : 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent and _DEPENDENCIES.md is absent; no structured dependency rows are available.'
+      ]
+    };
+  }
 
   const parsed = readDependencyRegister(csv);
   return {
     projectRoot,
     deliverablePath,
     dependenciesFilePath,
+    dependenciesSummaryPath: secondarySummaryPresent ? dependenciesSummaryPath : undefined,
+    registerPresent: true,
+    secondarySummaryPresent,
     headers: parsed.headers,
     rows: parsed.rows,
     warnings: parsed.warnings
@@ -424,6 +475,8 @@ export async function writeDeliverableDependencies(
     input.deliverablePath
   );
   const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
+  const dependenciesSummaryPath = path.join(deliverablePath, '_DEPENDENCIES.md');
+  const secondarySummaryPresent = await isRegularFilePresent(dependenciesSummaryPath);
   const hostDeliverableId = getDeliverableIdFromPath(deliverablePath);
 
   let previousRows: DependencyRegisterRow[] | undefined;
@@ -451,13 +504,16 @@ export async function writeDeliverableDependencies(
       hostDeliverableId,
       previousRows
     });
-    await writeFile(dependenciesFilePath, serialized.csv, 'utf8');
+    await writeTextFileAtomically(dependenciesFilePath, serialized.csv);
 
     const parsed = readDependencyRegister(serialized.csv);
     return {
       projectRoot,
       deliverablePath,
       dependenciesFilePath,
+      dependenciesSummaryPath: secondarySummaryPresent ? dependenciesSummaryPath : undefined,
+      registerPresent: true,
+      secondarySummaryPresent,
       headers: parsed.headers,
       rows: parsed.rows,
       warnings: [...readWarnings, ...serialized.warnings, ...parsed.warnings]
