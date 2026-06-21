@@ -19,9 +19,9 @@
 
 | Attribute | Value | Source |
 |---|---|---|
-| Primary UI surfaces | WORKBENCH and PIPELINE selection controls, reached from matrix routing. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2; `docs/TYPES.md` Section 4 |
+| Primary UI surfaces | WORKBENCH contract/context review and PIPELINE selection controls as right-sidebar/deep-link tertiary forms in the loop-first shell. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2; `docs/TYPES.md` Section 4; D-APP-28/D-APP-31 |
 | Workbench context display | Selected agent, row, and column are shown from query params with sensible defaults. | `docs/PRD.md` Section 8.2 FR-009 |
-| Workbench deliverable contract behavior | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. | `docs/PRD.md` Section 8.2 FR-010 |
+| Workbench deliverable contract behavior | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents; human-gated targets require approval SHA. | `docs/PRD.md` Section 8.2 FR-010; ADQ-13 implementation evidence |
 | Pipeline categories | `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | `docs/PRD.md` Section 8.2 FR-011 |
 | Pipeline task scope selectors | `TASK` uses split selectors for task agent and scope. Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
 | Unsupported variants | Unsupported options remain visible and disabled as coming soon. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-011; `docs/TYPES.md` Section 4.4 |
@@ -40,8 +40,8 @@
 
 | Component / artifact | Required content | Source |
 |---|---|---|
-| Workbench context UI | Display selected agent context from row/column/agent query parameters with defaults. | `docs/PRD.md` Section 8.2 FR-009 |
-| Workbench deliverable checks | Read-only status/dependency summaries and disabled lifecycle controls for unsupported agents. | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2 |
+| Workbench context UI | Display selected agent context from row/column/agent query parameters with defaults in the Workbench sidebar/deep-link form. | `docs/PRD.md` Section 8.2 FR-009; D-APP-28 |
+| Workbench deliverable checks | Read-only status/dependency summaries, disabled lifecycle controls for unsupported agents, and approval-SHA enforcement for human-gated targets. | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; ADQ-13 implementation evidence |
 | Pipeline category selector | Visible controls for operative categories. | `docs/PRD.md` Section 8.2 FR-011 |
 | Pipeline TASK selector | Separate task-agent and scope selection; scope modes for deliverables and knowledge types. | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
 | Stale-selection tests | Tests covering root change, removed deliverables, disabled knowledge markers, and stale knowledge targets. | `docs/PRD.md` Section 8.2 FR-013; `_CONTEXT.md` Anticipated Artifacts |

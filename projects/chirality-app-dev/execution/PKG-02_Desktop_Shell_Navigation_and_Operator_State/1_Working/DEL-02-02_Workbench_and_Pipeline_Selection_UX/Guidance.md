@@ -8,7 +8,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 7.2, 7.5, 8.2, 
 
 ## Principles
 
-- Preserve context at route boundaries: when the matrix opens WORKBENCH, the selected agent, row, and column should remain visible and recoverable from query parameters. Source: `docs/PRD.md` Section 8.2 FR-009.
+- Preserve context at route boundaries: Workbench shall show selected agent, row, and column when opened as a sidebar/deep-link tertiary form; NORMATIVE/EVALUATIVE matrix cells now select live-loop persona context under the accepted loop-first pivot. Source: `docs/PRD.md` Section 8.2 FR-009; D-APP-28/D-APP-30.
 - Keep operative selection explicit: PIPELINE should expose `DECOMP`, `PREP`, `TASK`, and `AUDIT`, and `TASK` should separate agent choice from scope choice. Source: `docs/PRD.md` Section 8.2 FR-011 and FR-012.
 - Prefer disabled visibility over disappearance for unsupported options, so operators can see roadmap shape without being able to invoke unavailable behavior. Source: `docs/PRD.md` Section 7.2; `docs/TYPES.md` Section 4.4.
 - Reset stale selections rather than carrying invalid state across root or scan changes. Source: `docs/PRD.md` Section 8.2 FR-013 and Section 7.5.
@@ -20,7 +20,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 7.2, 7.5, 8.2, 
 - Workbench deliverable contract summaries depend on status and dependency APIs. This deliverable should verify UI behavior but not extract dependencies or create `Dependencies.csv`.
 - `KNOWLEDGE_TYPES` mode should not become selectable unless the source scan indicates a knowledge decomposition marker. Source: `docs/PRD.md` Section 7.5.
 - The PRD is usable for this run but has a recorded hash mismatch in `_REFERENCES.md`; source-backed content from the PRD should remain reviewable against the observed file.
-- ASSUMPTION: Existing implementation already has some PORTAL, WORKBENCH, PIPELINE, matrix navigation, toolkit, and file-tree surfaces because `docs/PLAN.md` Section 1 lists them as part of the current baseline. This run did not inspect frontend code and does not claim implementation conformance.
+- ADQ-13 inspected the current frontend surfaces for this deliverable and records implementation/test paths in `Evidence_ADQ-13_UI_Specs_Render_Tests.md`. Earlier source-warning and ownership conflicts remain visible; this does not assert dependency closure or lifecycle issuance.
 
 ## Trade-offs
 
@@ -35,7 +35,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 7.2, 7.5, 8.2, 
 
 | Scenario | Expected behavior | Source |
 |---|---|---|
-| User clicks a NORMATIVE matrix cell | App opens WORKBENCH and shows the selected agent context. | `docs/PRD.md` Sections 7.2 and 8.2 |
+| User clicks a NORMATIVE matrix cell | The mounted live loop receives the selected persona context; Workbench remains available for context/contract review. | `docs/PRD.md` Sections 7.2 and 8.2; D-APP-28/D-APP-30 |
 | User clicks an OPERATIVE matrix cell | App opens PIPELINE with the relevant category context. | `docs/PRD.md` Section 7.2 |
 | User opens PIPELINE TASK | UI shows split controls for task agent and scope; scope modes are deliverables or knowledge types. | `docs/PRD.md` Section 8.2 FR-012 |
 | Working root changes | Invalid deliverable or knowledge-type selections reset. | `docs/PRD.md` Section 8.2 FR-013 |

@@ -4,7 +4,7 @@
 
 This deliverable specifies the user-facing UX slice for Workbench active-agent context and Pipeline selection controls in PKG-02. It covers:
 
-- WORKBENCH presentation of selected agent, row, and column context.
+- WORKBENCH presentation of selected agent, row, and column context as a right-sidebar/deep-link tertiary form.
 - WORKBENCH read-only deliverable contract summaries and disabled lifecycle controls where the selected agent cannot perform transitions.
 - PIPELINE category controls for operative categories.
 - PIPELINE `TASK` split selectors for task agent and scope.
@@ -23,9 +23,9 @@ Sources: `_CONTEXT.md` Package Scope and Deliverable Scope; `docs/PRD.md` Sectio
 | ReqID | Requirement | Priority / Status | Source |
 |---|---|---|---|
 | DEL-02-02-REQ-001 | WORKBENCH shall show the selected agent, matrix row, and matrix column from query parameters, with sensible defaults when parameters are absent or incomplete. | P0 | `docs/PRD.md` Section 8.2 FR-009 |
-| DEL-02-02-REQ-002 | Matrix routing inputs to this UX shall preserve the rule that NORMATIVE and EVALUATIVE cells open WORKBENCH, while OPERATIVE cells open PIPELINE. | P0 | `docs/PRD.md` Sections 7.2 and 8.2 FR-008; `docs/TYPES.md` Section 4 |
+| DEL-02-02-REQ-002 | Matrix routing inputs to this UX shall preserve the loop-first rule that NORMATIVE and EVALUATIVE cells select live-loop persona context, while OPERATIVE cells open PIPELINE. WORKBENCH remains available as a sidebar/deep-link contract review form. | P0 | `docs/PRD.md` Sections 7.2 and 8.2 FR-008; `docs/TYPES.md` Section 4; D-APP-28/D-APP-30/D-APP-31 |
 | DEL-02-02-REQ-003 | WORKBENCH shall consume deliverable contract APIs for read-only status/dependency checks when a deliverable is selected. | P1 | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2 |
-| DEL-02-02-REQ-004 | WORKBENCH lifecycle transition controls shall be disabled for unsupported agents. The source of truth for unsupported controls is TBD until the UI control registry, workspace API response, or authorized actor/transition policy surface is named. | P1 | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/CONTRACT.md` Section 1.7 |
+| DEL-02-02-REQ-004 | WORKBENCH lifecycle transition controls shall be disabled for unsupported agents. Current implementation source is `frontend/src/lib/workspace/deliverable-api.ts` `canAgentTransitionLifecycle`; human-gated target states require approval SHA before submission. | P1 | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/CONTRACT.md` Section 1.7; ADQ-13 implementation evidence |
 | DEL-02-02-REQ-005 | PIPELINE shall expose category controls for `DECOMP`, `PREP`, `TASK`, and `AUDIT`. Unsupported options shall remain visible and disabled as coming soon. | P0 | `docs/PRD.md` Section 8.2 FR-011; `docs/PRD.md` Section 7.2; `docs/TYPES.md` Section 4.4 |
 | DEL-02-02-REQ-006 | PIPELINE `TASK` shall use split selectors for task agent and scope. | P0 | `docs/PRD.md` Section 8.2 FR-012 |
 | DEL-02-02-REQ-007 | `TASK` scope mode shall be `DELIVERABLES` or `KNOWLEDGE_TYPES`; a target deliverable is required for knowledge-type mode. | P0 | `docs/PRD.md` Section 8.2 FR-012; `docs/TYPES.md` Section 4.4 |
@@ -50,13 +50,13 @@ Sources: `_CONTEXT.md` Package Scope and Deliverable Scope; `docs/PRD.md` Sectio
 | DEL-02-02-REQ-001 | Route/query tests for missing, partial, and complete Workbench query params. | Workbench context UI tests |
 | DEL-02-02-REQ-002 | Matrix navigation tests asserting destination by row class. | Matrix routing tests owned with DEL-02-01/DEL-08-02 as applicable |
 | DEL-02-02-REQ-003 | UI/API integration tests or mocked API tests for status/dependency summary loading. | Workbench deliverable contract tests |
-| DEL-02-02-REQ-004 | UI tests confirming unsupported lifecycle controls are disabled and do not submit transitions; source-of-truth fixture or control registry remains TBD. | Workbench lifecycle-control tests, exact registry/fixture TBD |
-| DEL-02-02-REQ-005 | Pipeline selector tests for visible categories and disabled coming-soon variants. | Pipeline category selector tests |
-| DEL-02-02-REQ-006 | Pipeline TASK selector tests confirming task-agent and scope controls are independently represented. | Pipeline TASK selector tests |
+| DEL-02-02-REQ-004 | UI render tests confirm unsupported agents are read-only, human-gated targets require approval SHA, and non-human-gated targets keep SHA optional. | `frontend/src/__tests__/components/workbench-surface.test.ts`; `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts` |
+| DEL-02-02-REQ-005 | Pipeline selector render tests for visible categories and disabled coming-soon variants. | `frontend/src/__tests__/components/pipeline-surface.test.ts` |
+| DEL-02-02-REQ-006 | Pipeline TASK selector tests confirming task-agent and scope controls are independently represented. | `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts` |
 | DEL-02-02-REQ-007 | Scope-mode validation tests for deliverables, knowledge types, and required target deliverable. | Task-scope selector tests |
 | DEL-02-02-REQ-008 | Stale selection tests for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets. | Stale selection tests |
-| DEL-02-02-REQ-010 | Review that no UI state is treated as authoritative project truth. | Governance review checklist or tests, exact artifact TBD |
-| DEL-02-02-REQ-011 | Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when dependency extraction is deferred. | Workbench contract boundary fixture or tests, exact artifact TBD |
+| DEL-02-02-REQ-010 | Review that no UI state is treated as authoritative project truth. | ADQ-13 evidence note plus existing workspace deliverable API tests |
+| DEL-02-02-REQ-011 | Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when dependency extraction is deferred. | `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`; `frontend/src/__tests__/components/workbench-surface.test.ts` |
 
 ## Documentation
 
@@ -67,4 +67,5 @@ Required or anticipated artifacts:
 - Stale selection tests.
 - Workbench contract boundary evidence showing that status/dependency summaries are not derived from local UI convenience state.
 - Notes for disabled coming-soon variants if implementation uses a visible option registry.
+- ADQ-13 evidence: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md`.
 - Any human ruling needed for cross-package ownership of SOW-007 and matrix-routing overlap with PKG-08.

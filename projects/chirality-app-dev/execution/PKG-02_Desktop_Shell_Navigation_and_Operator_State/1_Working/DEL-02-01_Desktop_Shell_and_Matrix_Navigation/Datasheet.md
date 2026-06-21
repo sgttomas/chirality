@@ -19,16 +19,16 @@
 
 | Attribute | Value | Source |
 |---|---|---|
-| Primary surface | Desktop shell navigation for PORTAL, PIPELINE, and WORKBENCH | REF-006 `docs/PRD.md` Section 8.1 FR-001; decomposition DEL-02-01 |
+| Primary surface | Loop-first desktop shell navigation: PORTAL as the primary header entry, with WORKBENCH and PIPELINE reachable as right-sidebar tertiary forms and preserved deep links | REF-006 `docs/PRD.md` Section 8.1 FR-001; decomposition DEL-02-01; D-APP-28/D-APP-31/D-APP-32 |
 | Matrix shape | 3 rows by 4 columns | REF-006 Section 8.2 FR-007; REF-004 `docs/TYPES.md` Section 4.3 |
 | Matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` | REF-006 Section 8.2 FR-007; REF-004 Section 4.1 |
 | Matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` | REF-006 Section 8.2 FR-007; REF-004 Section 4.2 |
-| NORMATIVE destination | WORKBENCH | REF-004 Section 4.1; REF-006 Section 7.2 |
-| OPERATIVE destination | PIPELINE | REF-004 Section 4.1; REF-006 Section 7.2 |
-| EVALUATIVE destination | WORKBENCH | REF-004 Section 4.1; REF-006 Section 7.2 |
-| Shell routes | `/`, `/pipeline`, `/workbench` | REF-006 Section 8.1 FR-001 |
-| Active route indication | Required | REF-006 Section 8.1 FR-001 |
-| Anticipated artifacts | Navigation components; matrix UI tests; route query handling | `_CONTEXT.md`; decomposition DEL-02-01 |
+| NORMATIVE destination | Mounted live-loop persona context | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-30 |
+| OPERATIVE destination | PIPELINE sidebar/deep-link intent | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-31 |
+| EVALUATIVE destination | Mounted live-loop persona context | REF-004 Section 4.1; REF-006 Section 7.2; D-APP-28/D-APP-30 |
+| Shell routes | `/` is the primary header entry; `/pipeline` and `/workbench` are preserved deep-link route entries that open right-sidebar tertiary forms | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 |
+| Active route indication | Required for rendered primary header links; Workbench/Pipeline active context is sidebar-tab state | REF-006 Section 8.1 FR-001; D-APP-28 |
+| Anticipated artifacts | Navigation components; matrix UI tests; route query handling; AMD-01 render tests | `_CONTEXT.md`; decomposition DEL-02-01; D-APP-36 |
 
 ## Conditions
 
@@ -45,11 +45,11 @@
 
 | Item | Required Construction Detail | Source |
 |---|---|---|
-| Header navigation | Must route to PORTAL, PIPELINE, and WORKBENCH via `/`, `/pipeline`, and `/workbench` | REF-006 Section 8.1 FR-001 |
+| Header/navigation | Must expose PORTAL in primary header navigation and preserve `/pipeline` and `/workbench` as loop-first deep-link route entries | REF-006 Section 8.1 FR-001; D-APP-28/D-APP-31/D-APP-32 |
 | PORTAL matrix | Must render canonical rows and columns | REF-006 Section 8.2 FR-007; REF-004 Section 4 |
-| Matrix cell routing | Must route NORMATIVE and EVALUATIVE cells to WORKBENCH and OPERATIVE cells to PIPELINE | REF-006 Section 8.2 FR-008; REF-004 Section 4.1 |
-| Route state | Query handling is anticipated; exact query parameter names are TBD for this deliverable because source text does not define them here | `_CONTEXT.md`; unsupported detail marked TBD |
-| Tests | Matrix UI tests are anticipated; exact test framework and fixture names are TBD | `_CONTEXT.md`; unsupported detail marked TBD |
+| Matrix cell routing | Must route NORMATIVE and EVALUATIVE cells to mounted live-loop persona context and OPERATIVE cells to PIPELINE intent | REF-006 Section 8.2 FR-008; REF-004 Section 4.1; D-APP-28/D-APP-30/D-APP-31 |
+| Route state | Current implementation evidence uses `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` keys; older source text does not independently name all keys | `_CONTEXT.md`; ADQ-13 implementation evidence |
+| Tests | Matrix, route wrapper, sidebar, and disabled-state render tests are recorded under ADQ-13 | `_CONTEXT.md`; D-APP-36; ADQ-13 evidence |
 
 ## References
 

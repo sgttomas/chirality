@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { LoopTertiaryShell } from '../../components/shell/loop-tertiary-shell';
 
 export default function PipelineClient(): JSX.Element {

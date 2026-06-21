@@ -6,6 +6,33 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-13 PKG-02 UI specs reconciled and AMD-01 render tests added
+
+Completed `ADQ-13` from the autonomous development queue. DEL-02-01 local kit wording now reflects
+the accepted loop-first app state: PORTAL is the primary header entry, WORKBENCH and PIPELINE remain
+right-sidebar tertiary forms with preserved deep-link routes, and NORMATIVE/EVALUATIVE matrix cells
+focus mounted live-loop persona context while OPERATIVE cells open Pipeline intent. DEL-02-02 local
+kit wording now records Workbench as the sidebar/deep-link contract review form, Pipeline as the
+operative selection surface, and the current Workbench lifecycle-control implementation source plus
+approval-SHA render evidence.
+
+Added AMD-01 component render coverage for Workbench/Pipeline route wrappers, the sidebar-right
+loop layout, matrix streaming disabled state, stable `pkg::deliverable` launch rows, Workbench
+unsupported-agent read-only state, human-gated approval-SHA controls, Pipeline categories, TASK split
+selectors, and coming-soon disabled options. Browser screenshots were not run because this tranche
+did not change CSS geometry or browser-only interaction behavior; the D-APP-36 controls/state bar is
+covered by component render tests.
+
+Recorded evidence in
+`execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md`.
+No `_STATUS.md` files, dependency rows, authority documents, provider policy, release/distribution
+posture, lifecycle issuance, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
+Validation: focused component render tests passed 5 files / 11 tests; `npm run typecheck` passed;
+`npm run test -- --testTimeout=15000` passed 76 files / 520 tests; `npm run build` passed;
+`git diff --check` passed; D-APP-38 authority-corpus `status` reported no drift.
+
 ## 2026-06-21 - ADQ-12 blocked on runtime taxonomy ruling
 
 Recomputed autonomous queue readiness after repairing the ADQ-11 validation stop. `ADQ-12` was recorded

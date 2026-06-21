@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import React from 'react';
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useDeliverables } from '../workspace/deliverables-provider';
 import { useWorkspace } from '../workspace/workspace-provider';

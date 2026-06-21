@@ -1,0 +1,72 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+const mockState = vi.hoisted(() => ({
+  projectRoot: '/repo/projects/chirality-app-dev',
+  searchParams: new URLSearchParams(),
+  scan: {
+    projectRoot: '/repo/projects/chirality-app-dev',
+    scannedAt: '2026-06-21T00:00:00.000Z',
+    truncated: false,
+    deliverables: [
+      {
+        id: 'DEL-02-01',
+        name: 'Desktop Shell and Matrix Navigation',
+        pkg: 'PKG-02',
+        status: 'CHECKING',
+        path: '/repo/execution/PKG-02/DEL-02-01',
+        key: 'PKG-02::DEL-02-01'
+      }
+    ],
+    knowledgeDecomposition: {
+      enabled: false,
+      markerFile: null
+    },
+    knowledgeTypes: []
+  }
+}));
+
+vi.mock('next/navigation', () => ({
+  useSearchParams: () => mockState.searchParams
+}));
+
+vi.mock('../../components/workspace/workspace-provider', () => ({
+  useWorkspace: () => ({ projectRoot: mockState.projectRoot })
+}));
+
+vi.mock('../../components/workspace/deliverables-provider', () => ({
+  useDeliverables: () => ({
+    loading: false,
+    error: null,
+    scan: mockState.scan,
+    refresh: () => {}
+  })
+}));
+
+describe('PipelineSurface rendering', () => {
+  beforeEach(() => {
+    mockState.projectRoot = '/repo/projects/chirality-app-dev';
+    mockState.searchParams = new URLSearchParams();
+  });
+
+  it('renders operative category controls, TASK split selectors, and disabled coming-soon options', async () => {
+    const { PipelineSurface } = await import('../../components/pipeline/pipeline-surface');
+    const html = renderToStaticMarkup(createElement(PipelineSurface));
+
+    expect(html).toContain('DECOMP*');
+    expect(html).toContain('PREP*');
+    expect(html).toContain('TASK*');
+    expect(html).toContain('AUDIT*');
+    expect(html).toContain('Task agent');
+    expect(html).toContain('Scope Mode');
+    expect(html).toContain('Scope (dynamic)');
+    expect(html).toContain('PKG-02::DEL-02-01');
+    expect(html).toContain('`KNOWLEDGE_TYPES` scope mode is unavailable');
+    expect(html).toContain('BASE (create new) (coming soon)');
+    expect(html).toContain('ESTIMATING (coming soon)');
+    expect(html).toContain('SCHEDULING (coming soon)');
+    expect(html).toContain('SCHEDULES (coming soon)');
+    expect(html.match(/disabled=""/g)?.length ?? 0).toBeGreaterThanOrEqual(4);
+  });
+});

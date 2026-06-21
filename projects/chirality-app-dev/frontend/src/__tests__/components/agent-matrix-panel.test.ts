@@ -36,4 +36,34 @@ describe('AgentMatrixPanel rendering', () => {
     expect(html).toContain('Matrix launches are paused');
     expect(disabledAttributeCount(html)).toBeGreaterThan(0);
   });
+
+  it('renders deliverable launch rows with stable pkg::deliverable keys', () => {
+    const html = renderToStaticMarkup(
+      createElement(AgentMatrixPanel, {
+        ...baseProps,
+        scan: {
+          projectRoot: '/repo/projects/chirality-app-dev',
+          scannedAt: '2026-06-21T00:00:00.000Z',
+          truncated: false,
+          deliverables: [
+            {
+              id: 'DEL-02-01',
+              name: 'Desktop Shell and Matrix Navigation',
+              pkg: 'PKG-02',
+              status: 'CHECKING',
+              path: '/repo/execution/PKG-02/DEL-02-01',
+              key: 'PKG-02::DEL-02-01'
+            }
+          ],
+          knowledgeDecomposition: { enabled: false, markerFile: null },
+          knowledgeTypes: []
+        }
+      })
+    );
+
+    expect(html).toContain('OPERATIVE Deliverable Rows');
+    expect(html).toContain('PKG-02::DEL-02-01');
+    expect(html).toContain('Desktop Shell and Matrix Navigation');
+    expect(disabledAttributeCount(html)).toBe(0);
+  });
 });

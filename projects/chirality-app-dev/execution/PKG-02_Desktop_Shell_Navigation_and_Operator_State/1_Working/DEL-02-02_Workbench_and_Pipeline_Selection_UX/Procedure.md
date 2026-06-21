@@ -23,12 +23,14 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
    - Verify that selected agent, row, and column are read from query parameters.
    - Verify sensible defaults for incomplete or missing query parameters.
    - Verify the resolved active context is visible to the operator.
+   - Verify Workbench can operate as a loop-first right-sidebar/deep-link tertiary form rather than a replacement primary pane.
    - Source: `docs/PRD.md` Section 8.2 FR-009.
 
 3. Implement or inspect Workbench deliverable contract summaries.
    - Load selected-deliverable status/dependency summaries through workspace contract APIs where the UI supports deliverable context.
    - Keep lifecycle controls disabled for unsupported agents.
-   - Identify the source of truth for unsupported lifecycle controls, or record it as TBD if the registry/API response/policy surface is not yet named.
+   - Use `frontend/src/lib/workspace/deliverable-api.ts` `canAgentTransitionLifecycle` as the current implementation source of truth for lifecycle-control actor support.
+   - Verify human-gated transitions require approval SHA before submission.
    - Verify status/dependency summaries are not populated from local UI convenience state while dependency extraction remains deferred.
    - Do not treat UI state as authoritative lifecycle or dependency truth.
    - Sources: `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7.
@@ -61,8 +63,8 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 | Check | Expected result | Source |
 |---|---|---|
 | Workbench query context | Selected agent, row, and column are shown with sensible defaults. | `docs/PRD.md` Section 8.2 FR-009 |
-| Matrix routing boundary | NORMATIVE/EVALUATIVE route to WORKBENCH; OPERATIVE routes to PIPELINE. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-008 |
-| Workbench contract summaries | Status/dependency summaries load for selected deliverables; unsupported transition controls are disabled. | `docs/PRD.md` Section 8.2 FR-010 |
+| Matrix routing boundary | NORMATIVE/EVALUATIVE select live-loop persona context; OPERATIVE routes to PIPELINE; WORKBENCH remains a tertiary review form. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-008; D-APP-28/D-APP-30/D-APP-31 |
+| Workbench contract summaries | Status/dependency summaries load for selected deliverables; unsupported transition controls are disabled; approval SHA is required for human-gated target states. | `docs/PRD.md` Section 8.2 FR-010 |
 | Workbench contract boundary | Status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD; UI convenience state is not used as dependency truth. | `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
 | Pipeline categories | `DECOMP`, `PREP`, `TASK`, and `AUDIT` are represented; unsupported variants are disabled. | `docs/PRD.md` Section 8.2 FR-011 |
 | TASK split selectors | Task agent and scope selectors are distinct; scope mode behavior matches `DELIVERABLES` / `KNOWLEDGE_TYPES`. | `docs/PRD.md` Section 8.2 FR-012 |
@@ -71,12 +73,12 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 
 ## Records
 
-- Workbench context UI implementation or inspection notes: TBD.
-- Workbench context UI test evidence for query defaults: TBD.
-- Workbench lifecycle-control source-of-truth fixture or registry evidence: TBD.
-- Workbench contract boundary evidence for status/dependency summaries: TBD.
-- Pipeline selector behavior implementation or inspection notes: TBD.
-- Pipeline category and TASK split-selector test evidence: TBD.
-- Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: TBD.
+- Workbench context UI implementation or inspection notes: `frontend/src/components/workbench/workbench-surface.tsx`; ADQ-13 evidence note.
+- Workbench context UI test evidence for query defaults: `frontend/src/__tests__/components/workbench-surface.test.ts`.
+- Workbench lifecycle-control source-of-truth fixture or registry evidence: `frontend/src/lib/workspace/deliverable-api.ts`; `frontend/src/__tests__/components/workbench-surface.test.ts`; `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`.
+- Workbench contract boundary evidence for status/dependency summaries: `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`; ADQ-13 evidence note.
+- Pipeline selector behavior implementation or inspection notes: `frontend/src/components/pipeline/pipeline-surface.tsx`; ADQ-13 evidence note.
+- Pipeline category and TASK split-selector test evidence: `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
+- Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
 - Human rulings for conflict table entries in `Guidance.md`: TBD.
 - Dependency extraction remains deferred; `Dependencies.csv` is intentionally not produced by this run.
