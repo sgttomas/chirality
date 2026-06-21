@@ -43,9 +43,9 @@ Active development queue:
 	  Option B for the post-INSP-03 issuance-gate model. `INSP-05` roadmap synthesis is
 	  complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
 	  D-APP-37 were prepared and are now ruled. `INSP-FINAL` closeout is recorded at
-	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. D-APP-34 through D-APP-37 are ruled by
-	  owner directive on 2026-06-21. No next autonomous implementation tranche is selected; next work
-	  requires explicit roadmap-item selection or a new human directive.
+	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. D-APP-34 through D-APP-39 are ruled. The
+	  inspection program is complete; the active queue is now the autonomous development queue (above),
+	  whose backlog is sourced from the INSP-05 roadmap.
 
 Completed / superseded queues (history, non-governing):
 
