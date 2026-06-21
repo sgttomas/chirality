@@ -6,6 +6,26 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - PKG-05 inspection assessments recorded (`INSP-03` wave 006)
+
+Recorded the PKG-05 session audit / replay / tool-result assessment wave for D-APP-19's
+inspection-only program. Added `Assessment_INSP-03_*.md` artifacts for DEL-05-01 through DEL-05-05
+and updated the INSP-03 assessment index, active plan, and coordination pointers. Coverage is now
+25/53 assessments complete, 28 pending, and 0 deliverables issued. Reviewed SHA
+`18511e933233b90ff2a84dd41f5b40041719c300` is recorded as inspected source-state evidence only,
+not lifecycle issuance.
+
+Findings preserved for roadmap synthesis: DEL-05-01 still lacks canonical folder-backed
+`session.json` session records; DEL-05-04 still lacks the full product transcript view; event JSONL
+append/replay and tool-result artifact mechanics have focused test coverage; redaction remains a
+whole-runtime proof item before issuance. No semantic files were used or produced.
+
+Validation: focused PKG-05 vitest set passed (15 files, 201 tests); exact deliverable enumeration
+returned 53; assessment count returned 25; status count returned 53 `CHECKING`, 0 `IN_PROGRESS`, 0
+`ISSUED`; `git diff --check -- execution plans` passed; PKG-05 assessment semantic-marker search
+returned no matches; dependency-closure analysis returned 51 valid dependency files, 554 rows, graph
+46 nodes / 97 edges, 0 SCCs, and 0 bidirectional pairs.
+
 ## 2026-06-20 - PKG-00 control plane aligned to acyclic DepClosure (`INSP-02`)
 
 Landed the D-APP-19 inspection-program control-plane truth-fix. PKG-00 control surfaces now treat

@@ -3,19 +3,19 @@
 Date: 2026-06-20
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `ce0ab70933c6cc32f9eea62a563e512fc738a575`
+Reviewed SHA: `18511e933233b90ff2a84dd41f5b40041719c300`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 005.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 006.
 
 - Deliverables expected: 53
-- Assessments complete: 20
-- Assessments pending: 33
+- Assessments complete: 25
+- Assessments pending: 28
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `ce0ab70933c6cc32f9eea62a563e512fc738a575` recorded for wave 005 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `18511e933233b90ff2a84dd41f5b40041719c300` recorded for wave 006 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -64,6 +64,23 @@ python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_d
 
 Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
 
+- PKG-05 wave validation observed 25 `Assessment_INSP-03_*.md` files after wave 006.
+- PKG-05 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/api/harness/routes.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/engine-conformance.test.ts src/__tests__/lib/turn-engine.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/harness-ui-bridge.test.ts src/__tests__/lib/harness-event-views.test.ts src/__tests__/components/harness-stream-views.test.ts src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/permission-overlay.test.ts
+```
+
+Observed result: 15 test files passed, 201 tests passed.
+
+- PKG-05 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg05_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -100,11 +117,11 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-04-03 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Assessment_INSP-03_DEL-04-03.md` | COMPLETE | Mapper assessment; broad provider-neutral mapping coverage, with Section 9 `adapter_message_mapper` / `sdk_message_mapper` naming drift and probe-fixture provenance gaps. |
 | DEL-04-04 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Assessment_INSP-03_DEL-04-04.md` | COMPLETE | Persona composer assessment; strong instruction-root/prompt/fingerprint evidence, with alias and optional fingerprint input ownership carried as reconciliation items. |
 | DEL-04-05 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/Assessment_INSP-03_DEL-04-05.md` | COMPLETE | Provider key/base URL/network assessment; strong provider-boundary tests, with whole-product log/tool-artifact redaction and timeout traceability carried forward. |
-| DEL-05-01 | - | PENDING | PKG-05 wave pending. |
-| DEL-05-02 | - | PENDING | PKG-05 wave pending. |
-| DEL-05-03 | - | PENDING | PKG-05 wave pending. |
-| DEL-05-04 | - | PENDING | PKG-05 wave pending. |
-| DEL-05-05 | - | PENDING | PKG-05 wave pending. |
+| DEL-05-01 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Assessment_INSP-03_DEL-05-01.md` | COMPLETE | Canonical session folder/migration assessment; records flat session-record storage as the main G3 code gap while events/artifacts are folder-backed. |
+| DEL-05-02 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Assessment_INSP-03_DEL-05-02.md` | COMPLETE | HarnessEvent/JSONL assessment; strong event schema and append/replay evidence, with terminal taxonomy and version-fixture residuals. |
+| DEL-05-03 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/Assessment_INSP-03_DEL-05-03.md` | COMPLETE | Redaction assessment; API-key redaction paths pass, while all-runtime-path proof and broader secret schema remain open. |
+| DEL-05-04 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/Assessment_INSP-03_DEL-05-04.md` | COMPLETE | Runtime replay/transcript assessment; event replay route passes, but the product transcript view remains the G4 code gap. |
+| DEL-05-05 | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Assessment_INSP-03_DEL-05-05.md` | COMPLETE | ToolResultStore assessment; artifact mechanics pass, with metadata, concurrency replay, checksum, and retention residuals. |
 | DEL-06-01 | - | PENDING | PKG-06 wave pending. |
 | DEL-06-02 | - | PENDING | PKG-06 wave pending. |
 | DEL-06-03 | - | PENDING | PKG-06 wave pending. |
@@ -136,4 +153,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-05 session/audit deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-06 permissioned tools / MCP / hooks deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
