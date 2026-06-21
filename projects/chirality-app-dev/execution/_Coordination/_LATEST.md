@@ -6,11 +6,11 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-38 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-39 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model; D-APP-39 released the autonomous development queue).
 
 Active development queue:
 
-- None. The **P0 governance cluster** from the inspection roadmap was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`), and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via `execution/_Reconciliation/References/reconcile_authority_corpus.py`; 0 `HASH_MISMATCH`). Next work = roadmap P1 selection (`plans/artifacts/insp05_development_roadmap_2026-06-21.md`) or a new human directive.
+- **Active: `plans/PLAN_2026-06-20_autonomous_development_queue.md`** (D-APP-39 — autonomous pull-and-execute on everything except the four hard fences, with autonomous commit+push; backlog source `plans/artifacts/insp05_development_roadmap_2026-06-21.md`). The agent pulls the highest-priority eligible item, executes/validates/commits/pushes, and stops only at a hard fence, a new decision, a validation failure, or an empty eligible queue. The **P0 governance cluster** was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`), and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via `execution/_Reconciliation/References/reconcile_authority_corpus.py`; 0 `HASH_MISMATCH`).
 - Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->

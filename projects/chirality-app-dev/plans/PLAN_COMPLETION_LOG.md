@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - Autonomous development queue released (D-APP-39)
+
+Released an autonomous development queue per owner directive (D-APP-39): the loop now pulls the
+highest-priority eligible roadmap item, executes it, validates it, and commits+pushes the validated
+tranche autonomously — repeating until only blocked or fenced items remain. Scope is **everything
+except the four hard fences** (provider/network expansion beyond Anthropic; release/distribution
+posture incl. signing/notarization/publication/release-readiness claims; R7 domain-engine
+implementation; `CHECKING -> ISSUED` issuance). The standing governance-decision gate is unchanged:
+the agent never self-rules; a genuinely new decision is raised as a `PROPOSAL` packet and that item is
+marked `BLOCKED`.
+
+Artifacts: `D-APP-39_PACKET_2026-06-20.md` + `D-APP-39_RULING_2026-06-20.md` (register row added);
+governing plan `plans/PLAN_2026-06-20_autonomous_development_queue.md` (eligibility model, selection
+rule, validation gates, commit/push + shared-repo staging discipline, stop conditions, and the
+backlog transposed from the INSP-05 roadmap with per-item eligibility). Coordination flipped from
+decision-first to pull-and-execute: `NEXT_INSTANCE_PROMPT.md` (Entry Protocol active-queue pointer,
+Selection Rules 2-5, Execution Rules commit/push authority), `_COORDINATION.md`, and `_LATEST.md`.
+
+Guardrails recorded: per-tranche validation before commit (typecheck + tests + build/premerge + the
+D-APP-36 render bar for UI; `git diff --check` + reference checks + the D-APP-38 reconciliation tool for
+authority-doc edits); recompute-do-not-trust-recorded-metadata; stage only `projects/chirality-app-dev/`
+and abort on any out-of-`app-dev` staging stray (never commit `projects/chirality-piping/**` or
+repo-root `tools/**`); CONTRACT K-ENGINE-6 strategic lens. Arming the queue does not launch an
+unsupervised run; the run begins when the owner launches an agent session via the init prompt.
+
+This setup tranche changed only governance, decision records, the governing plan, and coordination
+docs. No runtime source, package, or deliverable lifecycle change.
+
 ## 2026-06-20 - P0 governance cluster applied + reference-integrity model (`a5ccfc591`)
 
 Applied the P0 roadmap cluster from the completed deliverable-inspection program, executing the
