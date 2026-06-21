@@ -6,6 +6,27 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-06 scaffold baseline seeding landed
+
+Completed `ADQ-06` from the autonomous development queue. The scaffold service now seeds the minimum
+PREPARATION fileset for each scaffolded deliverable: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`,
+`_REFERENCES.md`, and `_SEMANTIC.md`. The `_STATUS.md` template parses as canonical `OPEN`; the
+metadata templates preserve `TBD` rather than inventing assignments or dependency/source closure; the
+preview planner reports metadata files; missing metadata can be reseeded on rerun; and existing
+metadata content is not overwritten.
+
+Recorded DEL-07-02 evidence in
+`execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/Evidence_ADQ-06_Scaffold_Baseline_Seeding.md`.
+
+No `_STATUS.md` files in the repository were changed. No authority documents changed, so no D-APP-38
+corpus bump was needed. No dependency row was satisfied or retired. No provider policy, package
+manifest, lockfile, release artifact, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or release-readiness claim changed.
+
+Validation: `npm run test -- src/__tests__/lib/harness-scaffold.test.ts
+src/__tests__/api/harness/scaffold-route.test.ts` passed 10 tests; `npm run test --
+src/__tests__/lib/chirality-read-mcp.test.ts` passed 5 tests; `npm run typecheck` passed.
+
 ## 2026-06-21 - ADQ-05 blocked on G5 runtime taxonomy ruling
 
 Selected `ADQ-05` from the autonomous development queue and confirmed that it requires a material

@@ -12,6 +12,15 @@
 | Reviewed SHA | `210b5b7427471fc307ecbf6eecaab78ebf08398b` |
 | Spec source | `Specification.md` lines 1-105 |
 
+## ADQ-06 Superseding Note - 2026-06-21
+
+ADQ-06 implements the G1 scaffold baseline seeding gap recorded below. Current evidence is
+`Evidence_ADQ-06_Scaffold_Baseline_Seeding.md`: `scaffoldExecutionRoot` now seeds `_STATUS.md`,
+`_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `_SEMANTIC.md` for scaffolded deliverables;
+the generated `_STATUS.md` parses as `OPEN`; preview planning includes metadata files; and reruns
+preserve existing files while reseeding missing metadata. This note does not change lifecycle state,
+satisfy dependency rows, or make issuance/release/professional claims.
+
 ## Scope
 
 DEL-07-02 covers backend scaffolding from accepted decomposition markdown into a SPEC-shaped execution root, including package and deliverable folders, coordination seed files, idempotence, diagnostics, and preparation-readiness reporting.

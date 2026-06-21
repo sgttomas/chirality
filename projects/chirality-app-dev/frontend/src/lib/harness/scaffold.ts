@@ -64,10 +64,12 @@ type ParsedDecomposition = {
 
 type PackagePlan = {
   id: string;
+  name: string;
   path: string;
   expectedPaths: string[];
   deliverables: Array<{
     id: string;
+    name: string;
     path: string;
   }>;
 };
@@ -154,6 +156,7 @@ type ScaffoldFailureStage =
   | 'create_package'
   | 'create_package_subdir'
   | 'create_deliverable'
+  | 'seed_preparation_file'
   | 'validate_layout'
   | 'validate_preparation_compatibility';
 
@@ -387,6 +390,7 @@ function buildPackagePlans(executionRoot: string, parsed: ParsedDecomposition): 
 
     return {
       id: pkg.id,
+      name: pkg.name,
       path: packagePath,
       expectedPaths: expectedPackagePaths,
       deliverables: pkg.deliverables.map((deliverable) => {
@@ -396,6 +400,7 @@ function buildPackagePlans(executionRoot: string, parsed: ParsedDecomposition): 
         );
         return {
           id: deliverable.id,
+          name: deliverable.name,
           path: path.join(packagePath, '1_Working', `${deliverable.id}_${deliverableLabel}`)
         };
       })
@@ -412,6 +417,16 @@ function getPlannedDirectories(executionRoot: string, packagePlans: readonly Pac
       ...pkg.deliverables.map((deliverable) => deliverable.path)
     ])
   ];
+}
+
+function getPlannedPreparationFiles(packagePlans: readonly PackagePlan[]): string[] {
+  return packagePlans.flatMap((pkg) =>
+    pkg.deliverables.flatMap((deliverable) =>
+      PREPARATION_REQUIRED_METADATA_FILES.map((metadataFile) =>
+        path.join(deliverable.path, metadataFile)
+      )
+    )
+  );
 }
 
 async function ensureDirectory(targetPath: string, createdDirectories: string[]): Promise<void> {
@@ -521,7 +536,8 @@ export async function previewScaffoldExecutionRoot(
       files: [
         copiedDecompositionPath,
         path.join(executionRoot, 'INIT.md'),
-        path.join(executionRoot, '_Coordination', '_COORDINATION.md')
+        path.join(executionRoot, '_Coordination', '_COORDINATION.md'),
+        ...getPlannedPreparationFiles(packagePlans)
       ]
     },
     packages: packagePlans
@@ -565,6 +581,101 @@ function buildCoordinationTemplate(coordinationMode: CoordinationMode): string {
 - Full dependency graph remains audit truth.
 - Blocker subset may be used as execution sequencing truth per project policy.
 `;
+}
+
+function buildStatusTemplate(deliverable: PackagePlan['deliverables'][number], now: Date): string {
+  const date = now.toISOString().slice(0, 10);
+  return `# Status: ${deliverable.id} ${deliverable.name}
+
+**Current State:** OPEN
+**Last Updated:** ${date}
+
+## History
+
+- ${date} - State set to OPEN (PREPARATION) [Scaffold baseline created.]
+`;
+}
+
+function buildContextTemplate(
+  pkg: PackagePlan,
+  deliverable: PackagePlan['deliverables'][number],
+  decompositionReference: string
+): string {
+  return `# Context: ${deliverable.id} ${deliverable.name}
+
+## Identity
+
+| Field | Value |
+|---|---|
+| PackageID | ${pkg.id} |
+| PackageName | ${pkg.name} |
+| DeliverableID | ${deliverable.id} |
+| DeliverableName | ${deliverable.name} |
+| DecompositionReference | ${decompositionReference} |
+| ResponsibleParty | TBD |
+
+## Scaffold Notes
+
+This file was seeded by Chirality scaffold PREPARATION. Replace TBD fields only through the governed
+project workflow.
+`;
+}
+
+function buildDependenciesTemplate(deliverable: PackagePlan['deliverables'][number]): string {
+  return `# Dependencies: ${deliverable.id} ${deliverable.name}
+
+## Dependency Tracking
+
+No accepted upstream dependency edges are recorded by the scaffold baseline.
+
+## Scaffold Notes
+
+Populate this file through governed dependency-discovery or dependency-closure workflows. Do not infer
+dependency satisfaction from scaffold creation.
+`;
+}
+
+function buildReferencesTemplate(deliverable: PackagePlan['deliverables'][number]): string {
+  return `# References: ${deliverable.id} ${deliverable.name}
+
+## Authoritative Source Corpus
+
+TBD pending governed reference discovery.
+
+## Scaffold Notes
+
+This placeholder records that source references have not yet been accepted for this deliverable.
+`;
+}
+
+function buildSemanticTemplate(deliverable: PackagePlan['deliverables'][number]): string {
+  return `# Semantic Placeholder: ${deliverable.id} ${deliverable.name}
+
+## Status
+
+TBD pending semantic decomposition, lensed analysis, or an explicit deferral record.
+`;
+}
+
+function buildPreparationFileTemplate(
+  metadataFile: (typeof PREPARATION_REQUIRED_METADATA_FILES)[number],
+  pkg: PackagePlan,
+  deliverable: PackagePlan['deliverables'][number],
+  decompositionReference: string,
+  now: Date
+): string {
+  switch (metadataFile) {
+    case '_STATUS.md':
+      return buildStatusTemplate(deliverable, now);
+    case '_CONTEXT.md':
+      return buildContextTemplate(pkg, deliverable, decompositionReference);
+    case '_DEPENDENCIES.md':
+      return buildDependenciesTemplate(deliverable);
+    case '_REFERENCES.md':
+      return buildReferencesTemplate(deliverable);
+    case '_SEMANTIC.md':
+      return buildSemanticTemplate(deliverable);
+  }
 }
 
 async function validateLayout(
@@ -658,6 +769,7 @@ async function validatePreparationCompatibility(
           const metadataPath = path.join(deliverable.path, metadataFile);
 
           if (!(await pathExists(metadataPath))) {
+            issues.push(`Missing required PREPARATION metadata file '${metadataPath}'.`);
             continue;
           }
 
@@ -776,6 +888,9 @@ export async function scaffoldExecutionRoot(
     failurePath = path.join(executionRoot, '_Coordination', '_COORDINATION.md');
     await ensureFile(failurePath, buildCoordinationTemplate(coordinationMode), createdFiles);
 
+    const decompositionReference =
+      path.relative(executionRoot, copiedDecompositionPath) || path.basename(copiedDecompositionPath);
+
     for (const pkg of packagePlans) {
       failureStage = 'create_package';
       failurePath = pkg.path;
@@ -791,6 +906,17 @@ export async function scaffoldExecutionRoot(
         failureStage = 'create_deliverable';
         failurePath = deliverable.path;
         await ensureDirectory(deliverable.path, createdDirectories);
+
+        for (const metadataFile of PREPARATION_REQUIRED_METADATA_FILES) {
+          const metadataPath = path.join(deliverable.path, metadataFile);
+          failureStage = 'seed_preparation_file';
+          failurePath = metadataPath;
+          await ensureFile(
+            metadataPath,
+            buildPreparationFileTemplate(metadataFile, pkg, deliverable, decompositionReference, now),
+            createdFiles
+          );
+        }
       }
     }
 

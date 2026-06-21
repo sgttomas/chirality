@@ -2,6 +2,7 @@ import { mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import { parseStatusDocument } from '../../lib/lifecycle/status-parser';
 import { previewScaffoldExecutionRoot, scaffoldExecutionRoot } from '../../lib/harness/scaffold';
 
 const DECOMPOSITION_FIXTURE = `# Example System - Software Decomposition
@@ -58,6 +59,15 @@ describe('scaffoldExecutionRoot', () => {
       path.join(executionRoot, 'PKG-01_Build & Packaging', '1_Working')
     );
     expect(result.planned.files).toContain(path.join(executionRoot, 'INIT.md'));
+    expect(result.planned.files).toContain(
+      path.join(
+        executionRoot,
+        'PKG-01_Build & Packaging',
+        '1_Working',
+        'DEL-01-01_DMG Build- Baseline',
+        '_STATUS.md'
+      )
+    );
     await expect(stat(executionRoot)).rejects.toMatchObject({ code: 'ENOENT' });
   });
 
@@ -96,6 +106,29 @@ describe('scaffoldExecutionRoot', () => {
       stat(path.join(executionRoot, 'PKG-02_UI - Shell', '1_Working', 'DEL-02-01_Portal Layout'))
     ).resolves.toBeDefined();
 
+    const deliverablePath = path.join(
+      executionRoot,
+      'PKG-01_Build & Packaging',
+      '1_Working',
+      'DEL-01-01_DMG Build- Baseline'
+    );
+    for (const metadataFile of [
+      '_STATUS.md',
+      '_CONTEXT.md',
+      '_DEPENDENCIES.md',
+      '_REFERENCES.md',
+      '_SEMANTIC.md'
+    ]) {
+      await expect(stat(path.join(deliverablePath, metadataFile))).resolves.toBeDefined();
+    }
+
+    const status = parseStatusDocument(await readFile(path.join(deliverablePath, '_STATUS.md'), 'utf8'));
+    expect(status.currentState).toBe('OPEN');
+    expect(status.history[0]).toMatchObject({ state: 'OPEN', actor: 'PREPARATION' });
+    await expect(readFile(path.join(deliverablePath, '_CONTEXT.md'), 'utf8')).resolves.toContain(
+      '| ResponsibleParty | TBD |'
+    );
+
     const coordination = await readFile(path.join(executionRoot, '_Coordination', '_COORDINATION.md'), 'utf8');
     expect(coordination).toContain('**Representation:** HYBRID');
   });
@@ -119,9 +152,29 @@ describe('scaffoldExecutionRoot', () => {
       'DEL-01-01_DMG Build- Baseline',
       'custom.txt'
     );
+    const statusPath = path.join(
+      executionRoot,
+      'PKG-01_Build & Packaging',
+      '1_Working',
+      'DEL-01-01_DMG Build- Baseline',
+      '_STATUS.md'
+    );
 
     await writeFile(initPath, '# custom-init\n', 'utf8');
     await writeFile(customFile, 'custom-content\n', 'utf8');
+    await writeFile(
+      statusPath,
+      `# Status: custom
+
+**Current State:** INITIALIZED
+**Last Updated:** 2026-01-01
+
+## History
+
+- 2026-01-01 - State set to INITIALIZED (PREPARATION) [custom]
+`,
+      'utf8'
+    );
 
     const rerun = await scaffoldExecutionRoot({
       executionRoot,
@@ -133,10 +186,44 @@ describe('scaffoldExecutionRoot', () => {
 
     const initContent = await readFile(initPath, 'utf8');
     const customContent = await readFile(customFile, 'utf8');
+    const statusContent = await readFile(statusPath, 'utf8');
     expect(initContent).toBe('# custom-init\n');
     expect(customContent).toBe('custom-content\n');
+    expect(statusContent).toContain('**Current State:** INITIALIZED');
     expect(rerun.layoutValidation.valid).toBe(true);
     expect(rerun.preparationCompatibility.ready).toBe(true);
+  });
+
+  it('reseeds missing PREPARATION metadata files on rerun', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-scaffold-reseed-'));
+    const executionRoot = path.join(tmpDir, 'execution');
+    const decompositionPath = path.join(tmpDir, 'decomposition.md');
+    await writeFile(decompositionPath, DECOMPOSITION_FIXTURE, 'utf8');
+
+    await scaffoldExecutionRoot({
+      executionRoot,
+      decompositionPath
+    });
+
+    const referencesPath = path.join(
+      executionRoot,
+      'PKG-01_Build & Packaging',
+      '1_Working',
+      'DEL-01-01_DMG Build- Baseline',
+      '_REFERENCES.md'
+    );
+    await rm(referencesPath);
+
+    const rerun = await scaffoldExecutionRoot({
+      executionRoot,
+      decompositionPath
+    });
+
+    expect(rerun.created.files).toContain(referencesPath);
+    expect(rerun.preparationCompatibility.ready).toBe(true);
+    await expect(readFile(referencesPath, 'utf8')).resolves.toContain(
+      'TBD pending governed reference discovery.'
+    );
   });
 
   it('rejects malformed decomposition input without deliverable rows', async () => {
@@ -181,7 +268,8 @@ describe('scaffoldExecutionRoot', () => {
       '1_Working',
       'DEL-01-01_DMG Build- Baseline'
     );
-    await mkdir(path.join(deliverablePath, '_STATUS.md'), { recursive: true });
+    await rm(path.join(deliverablePath, '_SEMANTIC.md'));
+    await mkdir(path.join(deliverablePath, '_SEMANTIC.md'), { recursive: true });
 
     const rerun = await scaffoldExecutionRoot({
       executionRoot,
@@ -192,7 +280,7 @@ describe('scaffoldExecutionRoot', () => {
     expect(rerun.preparationCompatibility.issueCount).toBeGreaterThan(0);
     expect(
       rerun.preparationCompatibility.deliverables.find((item) => item.id === 'DEL-01-01')?.issues[0]
-    ).toContain('_STATUS.md');
+    ).toContain('_SEMANTIC.md');
   });
 
   it('fails fast with retry diagnostics when scaffolding hits a conflicting filesystem path', async () => {
