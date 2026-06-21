@@ -24,6 +24,7 @@ This docs package defines why the app exists, what must remain true, how the run
 | `ISSUE_READINESS_PROFILES.md` | Issue-readiness profiles | Per-class evidence required before a `CHECKING -> ISSUED` transition (D-APP-34/36/37). |
 | `BUILD_AND_RELEASE.md` | Build and release guide | Local command map, artifact locations, evidence profiles, packaging review, and future CI/release decisions. |
 | `AGENTIC_DEVELOPMENT_WORKFLOW.md` | Agentic workflow | Authority map, current loop, tranche selection, TASK discipline, validation routing, and closeout expectations. |
+| `harness/reliance_boundary_register.md` | Reliance-boundary register | DEL-01-02 boundary rows, enforcement matrix, Section 9 test index, and residual-risk notes. |
 | `MANIFEST.json` | Docs manifest | Machine-readable index of the docs package and key linked control-plane surfaces. |
 
 ## Coordination Pointers
@@ -36,19 +37,19 @@ Ordinary agentic work enters through:
 4. `execution/_Coordination/_LATEST.md`;
 5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 
-There is no active autonomous development queue. The D-APP-19 deliverable-inspection program
+The active autonomous development queue is `plans/PLAN_2026-06-20_autonomous_development_queue.md`,
+released by D-APP-39. The D-APP-19 deliverable-inspection program
 (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`) is complete, and the
 P0 governance cluster from its roadmap was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37
 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`),
 and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via
-`execution/_Reconciliation/References/reconcile_authority_corpus.py`). Next work is roadmap P1
-selection (`plans/artifacts/insp05_development_roadmap_2026-06-21.md`) or a new human directive. The
-loop-first pivot, live packaged `agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity,
-Runtime Stabilization, and SCC-resolution plans are completed closed history. `docs/PLAN.md` remains
-strategic roadmap context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime
-completion history. Current state is discovered from the authoritative surfaces named by
-`_COORDINATION.md`, including dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`;
-there is no active `NEXT_INSTANCE_STATE.md`.
+`execution/_Reconciliation/References/reconcile_authority_corpus.py`). The loop-first pivot, live
+packaged `agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity, Runtime Stabilization,
+and SCC-resolution plans are completed closed history. `docs/PLAN.md` remains strategic roadmap
+context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
+Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`, including
+dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`; there is no active
+`NEXT_INSTANCE_STATE.md`.
 
 ## How Agents Should Use This Package
 
@@ -61,12 +62,8 @@ there is no active `NEXT_INSTANCE_STATE.md`.
 
 ## Status
 
-The active development queue is
-`plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`;
-the completed R6 surface is `plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md`;
-the completed stabilization surface is `plans/PLAN_2026-06-16_runtime_stabilization.md`;
-the completed SCC-resolution surface is `plans/PLAN_2026-06-16_six_node_scc_resolution.md`.
-D-APP-15 is ruled Option A; LP-02 proof harness finalization is next. Current runtime
-implementation truth remains in source, tests, validation artifacts, and git history.
-Current coordination state is discovered rather than tracked in a separate next-instance
-state file.
+The active queue is `plans/PLAN_2026-06-20_autonomous_development_queue.md`. The live packaged
+`agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity, Runtime Stabilization, and
+SCC-resolution plans are completed history. Current runtime implementation truth remains in source,
+tests, validation artifacts, and git history. Current coordination state is discovered rather than
+tracked in a separate next-instance state file.

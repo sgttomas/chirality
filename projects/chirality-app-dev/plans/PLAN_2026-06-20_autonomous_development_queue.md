@@ -79,7 +79,7 @@ behind a hard fence; `DONE`.
 |---|---|---|---:|---|---|---|
 | ADQ-P0 | P0 governance cluster (D-APP-34/36/37 + D-APP-38 corpus v1) | governance | S | AUTONOMOUS | — | DONE (`a5ccfc591`) |
 | ADQ-01 | Reconcile stale control/governance local-kit wording (PKG-00, PKG-01) | docs/reconcile | S | AUTONOMOUS | — | DONE |
-| ADQ-02 | Reliance-boundary register + enforcement/test index (DEL-01-02) | docs/governance | M | AUTONOMOUS | REF-006 (resolved, D-APP-38) | READY |
+| ADQ-02 | Reliance-boundary register + enforcement/test index (DEL-01-02) | docs/governance | M | AUTONOMOUS | REF-006 (resolved, D-APP-38) | DONE |
 | ADQ-03 | Normalize scope-boundary + professional-boundary review checklists | docs/governance | S | AUTONOMOUS | — | READY |
 | ADQ-04 | Refresh runtime evidence + spec-to-implementation reconciliations (PKG-03, PKG-04) | docs/test | M | AUTONOMOUS | — | READY |
 | ADQ-05 | Reconcile G5 naming/taxonomy (`runTurn`/`startTurn`, event ownership, interruption taxonomy, child-run IDs) | docs/code/test | M | AUTONOMOUS | may surface a naming decision -> packet | READY |

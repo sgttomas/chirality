@@ -53,6 +53,10 @@
       "role": "agentic workflow guide"
     },
     {
+      "path": "harness/reliance_boundary_register.md",
+      "role": "DEL-01-02 reliance-boundary register, enforcement matrix, and test index"
+    },
+    {
       "path": "README.md",
       "role": "docs package index"
     },
@@ -77,6 +81,10 @@
     {
       "path": "execution/_Coordination/_DECISIONS/_REGISTER.md",
       "role": "human-gated decision tracking"
+    },
+    {
+      "path": "plans/PLAN_2026-06-20_autonomous_development_queue.md",
+      "role": "active D-APP-39 autonomous development queue"
     },
     {
       "path": "execution/_ScopeChange/_LATEST.md",
@@ -122,7 +130,7 @@
   "notes": [
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
-    "There is no active autonomous development queue; the D-APP-19 deliverable-inspection program is complete and its P0 governance cluster (D-APP-34/36/37 applied; D-APP-38 reference-integrity corpus v1 reconciled) landed in commit a5ccfc591. Next work is roadmap P1 selection (plans/artifacts/insp05_development_roadmap_2026-06-21.md) or a new human directive.",
+    "The active queue is plans/PLAN_2026-06-20_autonomous_development_queue.md, released by D-APP-39. The D-APP-19 deliverable-inspection program is complete and its P0 governance cluster (D-APP-34/36/37 applied; D-APP-38 reference-integrity corpus v1 reconciled) landed in commit a5ccfc591.",
     "Authority-doc edits trigger a D-APP-38 corpus version bump: run execution/_Reconciliation/References/reconcile_authority_corpus.py (status, bump, apply).",
     "plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md is completed live packaged agentSdk read-tool proof history.",
     "plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md is completed R6 Extensibility and MCP Boundary Maturity history; R6-04 was deferred as optional organization work.",

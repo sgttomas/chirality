@@ -123,8 +123,17 @@ Track these explicitly until closed:
 ## Closed Source-State Note
 
 Historical conflict `CONF-RBR-001` is superseded by D-APP-38 corpus `v1`: `_REFERENCES.md` now records
-REF-006 `docs/PRD.md` as `MATCH`. This does not generate the missing reliance-boundary register or
-satisfy dependency rows; it only removes the stale PRD hash blocker from the local-kit wording.
+REF-006 `docs/PRD.md` as `MATCH`. That source-state reconciliation did not by itself generate the
+reliance-boundary register or satisfy dependency rows; it only removed the stale PRD hash blocker from
+the local-kit wording.
+
+## Generated Artifact Note
+
+ADQ-02 generated `docs/harness/reliance_boundary_register.md` with the central row register, embedded
+enforcement matrix, current Section 9 test index, and future/TBD validation-ID notes. This is
+CHECKING-stage evidence only; it does not mutate `_STATUS.md`, satisfy dependency rows, or authorize
+issuance, release readiness, professional approval, certification, sealing, authentication, or
+code-compliance acceptance.
 
 ## Assumptions and TBDs
 
@@ -133,5 +142,5 @@ satisfy dependency rows; it only removes the stale PRD hash blocker from the loc
 | ASSUMPTION-RBR-001 | The decomposition-listed objectives OBJ-002, OBJ-005, and OBJ-009 are directionally relevant to DEL-01-02. | Supported by DEL-01-02 decomposition row; not an extra hard requirement beyond cited source requirements. |
 | TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | Leave `TBD` until downstream implementation deliverables exist. |
 | TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 first-adapter probe and session linkage work. |
-| TBD-RBR-003 | Final Section 9 validation file/test names. | Resolve as runtime validation suite is implemented. |
-| TBD-RBR-004 | Generated-register completion evidence. | Resolve after `docs/harness/reliance_boundary_register.md`, enforcement matrix, and test index are produced and cross-checked. |
+| TBD-RBR-003 | Final Section 9 validation file/test names. | Current implemented IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD. |
+| TBD-RBR-004 | Generated-register completion evidence. | ADQ-02 generated and cross-checked `docs/harness/reliance_boundary_register.md`; future validator automation remains downstream. |

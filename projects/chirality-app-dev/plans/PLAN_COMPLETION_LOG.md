@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-02 reliance-boundary register generated
+
+Completed `ADQ-02` from the autonomous development queue. The tranche generated
+`docs/harness/reliance_boundary_register.md` as the central DEL-01-02 artifact, including:
+
+- row-level P0 reliance-boundary mappings for engine, audit, permission, filesystem, lifecycle,
+  transcript, settings, subagent, human-gate, tool-surface, hook, redaction, and fallback boundaries;
+- an enforcement matrix that identifies non-prompt and non-opaque-SDK-default enforcement surfaces;
+- a test index keyed to the current `frontend/scripts/validate-harness-section9.mjs` ID set, with
+  `section9.reliance_boundary_register`, `section9.sdk_session_link_resume`, and
+  `section9.domain_profile_validation` explicitly preserved as future/TBD IDs.
+
+DEL-01-02 local kit files now point at the generated artifact, use current `section9.adapter_*`
+validation names, preserve D-APP-38 corpus `v1` source-state handling, and record the tranche in
+`MEMORY.md`. Harness traceability and the docs package index were updated so the new register and the
+active D-APP-39 autonomous queue are discoverable.
+
+No `_STATUS.md` files changed. No authority documents changed, so no D-APP-38 corpus bump was needed.
+No dependency row was satisfied or retired. No runtime source, package manifest, lockfile, provider
+policy, release artifact, lifecycle issuance, professional approval, certification, sealing,
+authentication, code-compliance acceptance, or release-readiness claim changed.
+
+Validation: docs manifest JSON parse; stale active-kit Section 9 ID scan; D-APP-38 reference
+reconciliation `status`; `git diff --check` over affected docs, frontend docs, DEL-01-02 kit, and
+plans. Section 9 runtime validation was selected as the implementation-truth check for the referenced
+test index; broader frontend/build checks were skipped because this tranche changed only governance
+documentation and indexes.
+
 ## 2026-06-21 - ADQ-01 control/governance local-kit wording reconciled
 
 Completed `ADQ-01` from the autonomous development queue. The tranche reconciled stale PKG-00 and

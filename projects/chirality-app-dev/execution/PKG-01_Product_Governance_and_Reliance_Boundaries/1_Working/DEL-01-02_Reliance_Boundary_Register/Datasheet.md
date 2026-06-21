@@ -16,7 +16,7 @@
 | Current lifecycle source | `_STATUS.md` |
 | Draft pass | P1/P2 |
 | Primary artifact | `docs/harness/reliance_boundary_register.md` |
-| Supporting artifacts | enforcement matrix; test index |
+| Supporting artifacts | enforcement matrix and test index embedded in `docs/harness/reliance_boundary_register.md` |
 
 ## Attributes
 
@@ -71,6 +71,7 @@
 | Human-gate condition | Reliance-affecting approval remains human-only and evidence-bound. |
 | Authority-corpus condition | Authority-doc references, including REF-006 `docs/PRD.md`, are reconciled to D-APP-38 corpus `v1` at this source state. |
 | Source trace acceptance condition | Register rows that cite `docs/PRD.md` must cite REF-006 and should be rechecked if a later authority-corpus audit reports drift. |
+| Register artifact condition | ADQ-02 generated `docs/harness/reliance_boundary_register.md` as CHECKING-stage evidence, not issuance or dependency closure. |
 | Implementation-surface completion condition | Exact module paths, hook/check names, and validation file names remain `TBD` until downstream runtime and Section 9 deliverables produce inspectable artifacts. |
 
 ## Construction
@@ -96,8 +97,8 @@
 | Deferred field | Current handling | Closure evidence required |
 |---|---|---|
 | ResponsibleParty | `TBD` by scaffold policy until human assignment. | Human-maintained ownership update in deliverable status/context or accepted downstream ownership record. |
-| Exact enforcement file paths | `TBD` where runtime modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
-| Exact validation file/test names | Candidate Section 9 IDs are listed; implementation IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
+| Exact enforcement file paths | ADQ-02 register rows name current inspectable runtime paths where present and preserve `TBD` where downstream modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
+| Exact validation file/test names | Current implemented Section 9 IDs are listed in the ADQ-02 register test index; future IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
 | PRD-derived rows | May be drafted from REF-006 under D-APP-38 corpus `v1` with current `MATCH` status. | Re-run D-APP-38 reconciliation if an authority document changes before issue-readiness reliance. |
 | SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted first-adapter probe result naming transcript placement or mirroring policy. |
 
@@ -106,12 +107,12 @@
 | Validation ID | Boundary coverage |
 |---|---|
 | `section9.runtime_engine_contract` | RB-ENGINE, RB-FALLBACK |
-| `section9.sdk_turn_engine_event_log` | RB-AUDIT, RB-TRANSCRIPT |
-| `section9.sdk_message_mapper` | RB-ENGINE, RB-AUDIT |
+| `section9.adapter_turn_engine_event_log` | RB-AUDIT, RB-TRANSCRIPT |
+| `section9.adapter_message_mapper` | RB-ENGINE, RB-AUDIT |
 | `section9.session_event_replay` | RB-AUDIT |
-| `section9.reliance_boundary_register` | All register rows |
+| `section9.reliance_boundary_register` | Future/TBD validator ID; ADQ-02 generated the document artifact and cross-check table but did not add this ID to the current Section 9 script. |
 | `section9.settingsources_isolation` | RB-SETTINGS |
-| `section9.sdk_session_link_resume` | RB-TRANSCRIPT |
+| `section9.sdk_session_link_resume` | Future/TBD session-linkage validator ID; not implemented in the current Section 9 script. |
 | `section9.permission_overlay_hard_deny_precedence` | RB-PERMISSION, RB-TOOL-SURFACE |
 | `section9.tool_runtime_read_file` | RB-TOOL-SURFACE, RB-FILESYSTEM |
 | `section9.chirality_mcp_status_dependencies` | RB-LIFECYCLE, RB-TOOL-SURFACE |

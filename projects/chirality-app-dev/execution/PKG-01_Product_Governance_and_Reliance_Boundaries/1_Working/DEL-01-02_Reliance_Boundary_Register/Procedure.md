@@ -11,7 +11,7 @@ This procedure describes how to produce, review, and maintain the Reliance Bound
 | Deliverable-local context | `_CONTEXT.md` read for identity, scope, anticipated artifacts, and traceability. |
 | Lifecycle state | `_STATUS.md` read; current state is `CHECKING`. |
 | References | `_REFERENCES.md` read; REF-001 through REF-007 available. |
-| Dependency declarations | `_DEPENDENCIES.md` read; upstream/downstream dependencies are TBD pending extraction. |
+| Dependency declarations | `_DEPENDENCIES.md` and `Dependencies.csv` read; extracted rows remain active/TBD dependency evidence. |
 | Decomposition entry | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-01-02 row read. |
 | Reference integrity | D-APP-38 corpus `v1` records REF-006 `docs/PRD.md` as `MATCH`. |
 | Required source review | Directive, Contract, Spec, Types, Plan, PRD, and Software Decomp source slices reviewed. |
@@ -83,12 +83,10 @@ For each boundary row:
 
 1. Map rows to existing Section 9 validation IDs where available:
    - `section9.runtime_engine_contract`
-   - `section9.sdk_turn_engine_event_log`
-   - `section9.sdk_message_mapper`
+   - `section9.adapter_turn_engine_event_log`
+   - `section9.adapter_message_mapper`
    - `section9.session_event_replay`
-   - `section9.reliance_boundary_register`
    - `section9.settingsources_isolation`
-   - `section9.sdk_session_link_resume`
    - `section9.permission_overlay_hard_deny_precedence`
    - `section9.tool_runtime_read_file`
    - `section9.chirality_mcp_status_dependencies`
@@ -97,8 +95,11 @@ For each boundary row:
    - `section9.tool_result_budget`
    - `section9.context_compaction_boundary`
    - `section9.subagent_governance_hook`
-2. Use `TBD` for validation IDs not yet implemented or not yet named.
-3. Add test index rows that connect each validation ID to one or more boundary IDs.
+2. Record SPEC/PRD-listed future validation IDs as `TBD` unless the current Section 9 script implements them:
+   - `section9.reliance_boundary_register`
+   - `section9.sdk_session_link_resume`
+3. Use `TBD` for validation IDs not yet implemented or not yet named.
+4. Add test index rows that connect each validation ID to one or more boundary IDs.
 
 ### 6. Cross-Check Against Specification
 
@@ -154,7 +155,7 @@ For each boundary row:
 | `Specification.md` | Normative requirements and verification expectations. |
 | `Guidance.md` | Drafting principles, trade-offs, examples, conflict/source-warning table. |
 | `Procedure.md` | Workflow for producing and maintaining the register. |
-| `docs/harness/reliance_boundary_register.md` | Final register artifact once produced by downstream work. |
+| `docs/harness/reliance_boundary_register.md` | ADQ-02 generated register artifact with embedded enforcement matrix and test index. |
 | Enforcement matrix | Reviewable mapping of boundaries to owners/surfaces. |
 | Test index | Validation ID to boundary coverage map. |
 | TASK run records | Evidence of bounded drafting and source-state history. |

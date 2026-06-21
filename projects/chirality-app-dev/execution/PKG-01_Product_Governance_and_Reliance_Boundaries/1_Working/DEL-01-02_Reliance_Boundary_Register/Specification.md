@@ -30,9 +30,9 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-002 | No P0 boundary shall be marked enforceable by prompt text alone. | REF-001 §2.9; REF-002 K-RELIANCE-2/K-PERM-2; REF-006 FR-124 | Check `PromptOnlyAllowed=NO` for every P0 row; flag exceptions as `CONFLICT`. |
 | RBR-003 | No P0 boundary shall rely on opaque SDK defaults alone. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-125 | Check enforcement owner/surface for Chirality code, verified SDK callback/hook, MCP wrapper, release check, or human gate. |
 | RBR-004 | Runtime engine boundaries shall preserve `AgentEnginePort` / `RuntimeEngineContract` as product-owned and provider-neutral. | REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123 | `section9.runtime_engine_contract`; engine conformance suite review. |
-| RBR-005 | Browser `UIEvent`s and persisted `HarnessEvent`s shall remain separate contracts and shall not become SDK-shaped except as adapter metadata. | REF-002 K-ENGINE-4; REF-003 §10.3; REF-006 FR-074/FR-116/FR-122 | Mapper tests; event-schema review; `section9.sdk_message_mapper`. |
-| RBR-006 | Accepted turns and terminal outcomes shall be persisted in an append-only Chirality audit mirror. | REF-001 §2.7-2.9; REF-002 K-EVENT-3/K-EVENT-4; REF-006 FR-072/FR-073 | `section9.sdk_turn_engine_event_log`; replay validation. |
-| RBR-007 | SDK transcripts shall be treated as secondary resume/debug artifacts unless explicitly imported into `HarnessEvent` form. | REF-001 §2.7-2.10; REF-002 K-SDK-3; REF-003 §8.4; REF-006 FR-121/KG-024 | Transcript-linkage tests; register residual risk where default SDK paths remain. |
+| RBR-005 | Browser `UIEvent`s and persisted `HarnessEvent`s shall remain separate contracts and shall not become SDK-shaped except as adapter metadata. | REF-002 K-ENGINE-4; REF-003 §10.3; REF-006 FR-074/FR-116/FR-122 | Mapper tests; event-schema review; `section9.adapter_message_mapper`. |
+| RBR-006 | Accepted turns and terminal outcomes shall be persisted in an append-only Chirality audit mirror. | REF-001 §2.7-2.9; REF-002 K-EVENT-3/K-EVENT-4; REF-006 FR-072/FR-073 | `section9.adapter_turn_engine_event_log`; replay validation. |
+| RBR-007 | SDK transcripts shall be treated as secondary resume/debug artifacts unless explicitly imported into `HarnessEvent` form. | REF-001 §2.7-2.10; REF-002 K-SDK-3; REF-003 §8.4; REF-006 FR-121/KG-024 | Transcript-linkage tests remain `TBD`; register residual risk where default SDK paths remain. |
 | RBR-008 | Shipped SDK options shall use `settingSources: []`; `user` and `local` setting sources shall not be used in shipped builds. | REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022 | `section9.settingsources_isolation`; release verification. |
 | RBR-009 | Permission decisions shall be structured, persisted, and recorded as `allow`, `deny`, or application-level `ask`. | REF-004 §8.2; REF-006 FR-087/FR-092; SOW-054 | `tool.permission` event tests; permission decision schema tests. |
 | RBR-010 | Deny rules shall override all allow decisions, including persona/session/operator allows and developer-local bypass. | REF-002 K-PERM-1; REF-006 FR-089 | `section9.permission_overlay_hard_deny_precedence`; targeted deny precedence tests. |
@@ -74,17 +74,17 @@ This specification covers the content and verification expectations for `docs/ha
 | P0 enforcement posture | P0 rows have `PromptOnlyAllowed=NO` and `SDKDefaultOnlyAllowed=NO`. |
 | Prompt/SDK-default exclusion evidence | Acceptance evidence proves the row has a Chirality-owned, verified SDK callback/hook, MCP wrapper, release check, or human gate beyond prompt-only or opaque SDK-default behavior. |
 | PRD source-state trace | Rows using REF-006 cite the current corpus-matched source state or explicitly preserve any future drift warning. |
-| Validation mapping | Rows map to Section 9 validation IDs where listed in `docs/SPEC.md`; missing IDs remain `TBD`. |
+| Validation mapping | Rows map to implemented Section 9 validation IDs where available; SPEC/PRD-listed future IDs remain `TBD` until the Section 9 script implements them. |
 | Residual-risk surfacing | Authority-corpus drift, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved. |
 | Cross-document consistency | Datasheet boundary IDs, Specification requirement IDs, Guidance principles, and Procedure verification steps use the same terminology. |
 
 ## Documentation
 
-The final work package should include:
+The ADQ-02 work package includes:
 
 - `docs/harness/reliance_boundary_register.md`
-- enforcement matrix
-- test index keyed to Section 9 validation IDs and other implementation checks
+- embedded enforcement matrix
+- test index keyed to current Section 9 validation IDs and future/TBD IDs
 - residual-risk notes for unresolved first-adapter probe findings
 - authority-corpus version note for `docs/PRD.md` and any future drift warning
 
@@ -95,5 +95,5 @@ The final work package should include:
 | OI-RBR-001 | Closed by D-APP-38 corpus `v1`; REF-006 currently matches. Reopen only if a future corpus audit reports drift. | CLOSED |
 | OI-RBR-002 | Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist. | TBD |
 | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
-| OI-RBR-004 | Confirm exact Section 9 validation implementation IDs as runtime phases land. | TBD |
-| OI-RBR-005 | Confirm generated register rows cite D-APP-38 corpus version and distinguish current corpus-matched evidence from any future drift warning. | TBD |
+| OI-RBR-004 | Current implemented Section 9 validation IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD until validator/session-linkage work lands. | PARTIAL |
+| OI-RBR-005 | Generated register rows cite D-APP-38 corpus `v1` and distinguish current corpus-matched evidence from future drift warnings. | CLOSED |
