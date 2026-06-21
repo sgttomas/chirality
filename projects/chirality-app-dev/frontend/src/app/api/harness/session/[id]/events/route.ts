@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { HarnessError } from '../../../../../../lib/harness/errors';
 import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harness/http';
+import { getHarnessRuntime } from '../../../../../../lib/harness/runtime';
 import { replayHarnessEvents } from '../../../../../../lib/harness/session-events';
+import { deriveTranscriptView } from '../../../../../../lib/harness/transcript-replay';
 
 type RouteContext = {
   params: {
@@ -24,8 +26,11 @@ export async function GET(_request: Request, context: RouteContext): Promise<Res
       throw new HarnessError('INVALID_REQUEST', 400, `Invalid session id '${sessionId}'`);
     }
 
+    const runtime = getHarnessRuntime();
+    const session = await runtime.sessionManager.getById(sessionId);
     const replay = await replayHarnessEvents(sessionId);
-    return NextResponse.json(replay, { status: 200 });
+    const transcript = deriveTranscriptView(replay.events, session);
+    return NextResponse.json({ ...replay, session, transcript }, { status: 200 });
   } catch (error) {
     return errorResponse(error);
   }

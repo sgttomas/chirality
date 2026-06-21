@@ -1965,6 +1965,11 @@ button:disabled {
   color: var(--text-primary);
 }
 
+.transcript-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .harness-stream-summary {
   color: var(--text-subtle);
 }

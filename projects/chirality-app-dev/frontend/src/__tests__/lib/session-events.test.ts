@@ -196,4 +196,38 @@ describe('session events', () => {
     expect(JSON.stringify(replay.events)).toContain('[REDACTED_API_KEY]');
     await expect(readFile(artifactPath, 'utf8')).resolves.toContain('"redacted":true');
   });
+
+  it('redacts raw imported JSONL records at replay time', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-session-events-'));
+    const sessionRoot = path.join(tmpDir, 'sessions');
+    process.env.CHIRALITY_SESSION_ROOT = sessionRoot;
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'sk-test-secret';
+
+    const sessionId = 'sess_imported';
+    const eventsDir = path.join(sessionRoot, sessionId);
+    await mkdir(eventsDir, { recursive: true });
+    await writeFile(
+      path.join(eventsDir, 'events.jsonl'),
+      `${JSON.stringify({
+        schemaVersion: 1,
+        eventId: 'evt_imported',
+        sessionId,
+        timestamp: '2026-06-21T00:00:00.000Z',
+        type: 'turn.accepted',
+        data: {
+          apiKey: 'sk-test-secret',
+          nested: {
+            Authorization: 'Bearer sk-test-secret'
+          }
+        }
+      })}\n`,
+      'utf8'
+    );
+
+    const replay = await replayHarnessEvents(sessionId);
+    const serialized = JSON.stringify(replay.events);
+
+    expect(serialized).not.toContain('sk-test-secret');
+    expect(serialized).toContain('[REDACTED_API_KEY]');
+  });
 });

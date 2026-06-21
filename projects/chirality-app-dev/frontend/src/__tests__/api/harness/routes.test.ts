@@ -1285,23 +1285,55 @@ describe('session events replay (D-APP-22)', () => {
 
     const eventsDir = path.join(process.env.CHIRALITY_SESSION_ROOT as string, sessionId);
     await mkdir(eventsDir, { recursive: true });
-    const line1 = JSON.stringify({
-      schemaVersion: 1,
-      eventId: 'e1',
-      sessionId,
-      timestamp: '2026-06-18T00:00:00.000Z',
-      type: 'tool.started',
-      data: { toolUseId: 't1', toolName: 'Read' }
-    });
-    const line2 = JSON.stringify({
-      schemaVersion: 1,
-      eventId: 'e2',
-      sessionId,
-      timestamp: '2026-06-18T00:00:01.000Z',
-      type: 'tool.completed',
-      data: { toolUseId: 't1', toolName: 'Read' }
-    });
-    await writeFile(path.join(eventsDir, 'events.jsonl'), `${line1}\n{ broken json\n${line2}\n`, 'utf8');
+    const lines = [
+      {
+        schemaVersion: 1,
+        eventId: 'e1',
+        sessionId,
+        turnId: 'turn_1',
+        timestamp: '2026-06-18T00:00:00.000Z',
+        type: 'message.completed',
+        data: { role: 'user', text: 'Show the file.' }
+      },
+      {
+        schemaVersion: 1,
+        eventId: 'e2',
+        sessionId,
+        turnId: 'turn_1',
+        timestamp: '2026-06-18T00:00:01.000Z',
+        type: 'message.completed',
+        data: { role: 'assistant', text: 'Here is the file.' }
+      },
+      {
+        schemaVersion: 1,
+        eventId: 'e3',
+        sessionId,
+        turnId: 'turn_1',
+        timestamp: '2026-06-18T00:00:02.000Z',
+        type: 'tool.completed',
+        data: {
+          toolUseId: 't1',
+          toolName: 'Read',
+          resultMetadata: { contentItemCount: 1, resultByteLength: 12 }
+        }
+      },
+      {
+        schemaVersion: 1,
+        eventId: 'e4',
+        sessionId,
+        turnId: 'turn_1',
+        timestamp: '2026-06-18T00:00:03.000Z',
+        type: 'turn.completed',
+        data: { stopReason: 'end_turn' }
+      }
+    ];
+    await writeFile(
+      path.join(eventsDir, 'events.jsonl'),
+      `${JSON.stringify(lines[0])}\n{ broken json\n${lines.slice(1)
+        .map((line) => JSON.stringify(line))
+        .join('\n')}\n`,
+      'utf8'
+    );
 
     const response = await routes.eventsRoute.GET(
       new Request(`http://localhost/api/harness/session/${sessionId}/events`),
@@ -1313,10 +1345,27 @@ describe('session events replay (D-APP-22)', () => {
       events: Array<{ eventId: string }>;
       malformedLineCount: number;
       summary: { eventCount: number };
+      session: { sessionId: string };
+      transcript: {
+        itemCount: number;
+        terminalStatus?: string;
+        items: Array<{ kind: string; text?: string; toolName?: string }>;
+      };
     };
-    expect(replay.events.map((entry) => entry.eventId)).toEqual(['e1', 'e2']);
+    expect(replay.events.map((entry) => entry.eventId)).toEqual(['e1', 'e2', 'e3', 'e4']);
     expect(replay.malformedLineCount).toBe(1);
-    expect(replay.summary.eventCount).toBe(2);
+    expect(replay.summary.eventCount).toBe(4);
+    expect(replay.session.sessionId).toBe(sessionId);
+    expect(replay.transcript).toMatchObject({
+      itemCount: 4,
+      terminalStatus: 'completed',
+      items: [
+        { kind: 'message', text: 'Show the file.' },
+        { kind: 'message', text: 'Here is the file.' },
+        { kind: 'tool', toolName: 'Read' },
+        { kind: 'terminal' }
+      ]
+    });
   });
 
   it('returns an empty replay for a session with no event log', async () => {
@@ -1333,9 +1382,14 @@ describe('session events replay (D-APP-22)', () => {
     );
 
     expect(response.status).toBe(200);
-    const replay = (await response.json()) as { events: unknown[]; malformedLineCount: number };
+    const replay = (await response.json()) as {
+      events: unknown[];
+      malformedLineCount: number;
+      transcript: { itemCount: number; items: unknown[] };
+    };
     expect(replay.events).toEqual([]);
     expect(replay.malformedLineCount).toBe(0);
+    expect(replay.transcript).toMatchObject({ itemCount: 0, items: [] });
   });
 
   it('rejects a session id containing path-traversal characters', async () => {

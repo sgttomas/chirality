@@ -9,6 +9,8 @@ import {
 import { SessionListPanel } from '../../components/shell/session-list-view';
 import { SubagentStreamList } from '../../components/shell/subagent-stream-view';
 import { ToolStreamList } from '../../components/shell/tool-stream-view';
+import { TranscriptStreamList } from '../../components/shell/transcript-stream-view';
+import { deriveTranscriptView } from '../../lib/harness/transcript-replay';
 import type { SessionRecord } from '../../lib/harness/types';
 
 let counter = 0;
@@ -79,6 +81,49 @@ describe('SubagentStreamList rendering', () => {
   });
 });
 
+describe('TranscriptStreamList rendering', () => {
+  it('shows an empty hint when no transcript events are loaded', () => {
+    const html = renderToStaticMarkup(createElement(TranscriptStreamList, { items: [] }));
+    expect(html).toContain('No transcript events loaded');
+  });
+
+  it('renders assistant messages, tool artifacts, and terminal status', () => {
+    const events = [
+      event('message.completed', {
+        role: 'assistant',
+        text: 'Created the patch.'
+      }),
+      event('tool.completed', {
+        toolName: 'Write',
+        resultMetadata: {
+          contentItemCount: 1,
+          contentTypes: ['text'],
+          resultByteLength: 42,
+          outputPersisted: true
+        },
+        artifactMetadata: {
+          artifactRelativePath: 'artifacts/tools/write.json',
+          artifactByteLength: 42,
+          truncated: false
+        }
+      }),
+      event('turn.interrupted', {
+        terminalReason: 'user interrupt'
+      })
+    ];
+
+    const html = renderToStaticMarkup(
+      createElement(TranscriptStreamList, { items: deriveTranscriptView(events).items })
+    );
+
+    expect(html).toContain('Created the patch.');
+    expect(html).toContain('Write');
+    expect(html).toContain('artifacts/tools/write.json');
+    expect(html).toContain('Turn interrupted');
+    expect(html).toContain('harness-status-badge--failed');
+  });
+});
+
 describe('SessionListPanel rendering', () => {
   const sampleSessions: SessionRecord[] = [
     {
@@ -131,9 +176,10 @@ describe('SessionListPanel rendering', () => {
     const html = renderToStaticMarkup(
       createElement(SessionListPanel, {
         ...baseProps,
-        notice: 'Loaded 3 events. View them in the Tools / Subagents tabs.'
+        notice: 'Loaded 3 events. View them in the Transcript / Tools / Subagents tabs.'
       })
     );
     expect(html).toContain('Loaded 3 events');
+    expect(html).toContain('Transcript / Tools / Subagents');
   });
 });

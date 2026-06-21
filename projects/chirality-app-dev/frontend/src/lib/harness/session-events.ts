@@ -71,7 +71,7 @@ export async function replayHarnessEvents(sessionId: string): Promise<{
       continue;
     }
     try {
-      events.push(JSON.parse(line) as HarnessEvent);
+      events.push(redactJsonLike(JSON.parse(line)) as HarnessEvent);
     } catch {
       malformedLineCount += 1;
     }

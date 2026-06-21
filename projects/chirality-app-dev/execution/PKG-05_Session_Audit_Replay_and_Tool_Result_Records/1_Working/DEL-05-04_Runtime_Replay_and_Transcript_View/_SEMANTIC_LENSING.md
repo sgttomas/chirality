@@ -5,7 +5,7 @@
 **Deliverable Folder:** /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View
 **StatusPolicy:** NO_STATUS_TOUCH
 **Validator:** PASS - validate_lens_register.py passed after generation
-**Warnings:** REF-006 docs/PRD.md HASH_MISMATCH recorded in source metadata; parser API, transcript route/component placement, dependency edges, fixture filenames, validation IDs, and redaction helper dependency remain TBD.
+**Warnings:** Historical register preserved. ADQ-09 overlay retires the REF-006 `HASH_MISMATCH` warning via D-APP-38 authority corpus v2, fills parser/model/API/component/fixture paths, adds Section 9 SDK link/resume validation, and satisfies the replay redaction helper dependency for the DEL-05-04 transcript/replay scope.
 
 **Inputs Read:**
 - _CONTEXT.md - /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_CONTEXT.md#identity
@@ -48,6 +48,7 @@
   - MatrixError: 0
 - Notable conflicts: 1
 - Matrix parse errors: 0
+- ADQ-09 open items: 0 for the transcript/replay implementation scope. Historical warranted rows remain below with updated dispositions.
 
 ## Matrix A - Orientation
 
@@ -75,7 +76,7 @@
 | B:[data]:[necessity] | data | necessity | essential fact | 0 | NO_ITEMS | B data/necessity lens (essential fact) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
 | B:[data]:[sufficiency] | data | sufficiency | adequate evidence | 0 | NO_ITEMS | B data/sufficiency lens (adequate evidence) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
 | B:[data]:[completeness] | data | completeness | comprehensive record | 0 | NO_ITEMS | B data/completeness lens (comprehensive record) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
-| B:[data]:[consistency] | data | consistency | reliable measurement | 1 | HAS_ITEMS | Carry REF-006 docs/PRD.md HASH_MISMATCH as a warning-qualified source-state blocker for PRD-derived replay and SDK transcript claims. |
+| B:[data]:[consistency] | data | consistency | reliable measurement | 1 | RETIRED_BY_ADQ-09 | D-APP-38 authority corpus v2 reports REF-006 `docs/PRD.md` as `MATCH`; replay and SDK transcript claims are no longer warning-qualified for this deliverable. |
 | B:[information]:[necessity] | information | necessity | essential signal | 0 | NO_ITEMS | B information/necessity lens (essential signal) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
 | B:[information]:[sufficiency] | information | sufficiency | adequate context | 0 | NO_ITEMS | B information/sufficiency lens (adequate context) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
 | B:[information]:[completeness] | information | completeness | comprehensive account | 0 | NO_ITEMS | B information/completeness lens (comprehensive account) was checked against replay parser, transcript, fixture, redaction, and SDK-linkage statements; cited content did not add a separate register item for this cell. |
@@ -92,7 +93,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| B-001 | B:[data]:[consistency] | Conflict | Multi | NA | Carry REF-006 docs/PRD.md HASH_MISMATCH as a warning-qualified source-state blocker for PRD-derived replay and SDK transcript claims. | The production documents cite PRD replay requirements while _REFERENCES.md records REF-006 as HASH_MISMATCH. The register surfaces that source-state tension without resolving source authority. | _REFERENCES.md; Datasheet.md; Specification.md; Guidance.md; Procedure.md | _REFERENCES.md#authoritative-source-corpus; Datasheet.md#references; Specification.md#documentation; Guidance.md#source-state-notes; Procedure.md#steps | _REFERENCES.md#authoritative-source-corpus; Guidance.md#source-state-notes | PROPOSAL | TBD |
+| B-001 | B:[data]:[consistency] | Conflict | Multi | NA | RETIRED: REF-006 source-state warning is resolved by D-APP-38 authority corpus v2. | `_REFERENCES.md` now records `docs/PRD.md` as `MATCH`; Specification, Guidance, Datasheet, and Assessment were updated to remove the stale warning. | _REFERENCES.md; Datasheet.md; Specification.md; Guidance.md; Procedure.md | _REFERENCES.md#authoritative-source-corpus; Datasheet.md#references; Specification.md#documentation; Guidance.md#source-state-notes; Procedure.md#steps | _REFERENCES.md#authoritative-source-corpus; Guidance.md#source-state-notes | ADQ-09_EVIDENCE_UPDATE | RESOLVED |
 
 ## Matrix C - Formulation
 
@@ -115,7 +116,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | C:[operative]:[sufficiency] | MissingSlot | Specification | Specification | Define the replay parser API, transcript view model shape, and UI/API route placement once implementation ownership is assigned. | Specification and Datasheet explicitly leave exact parser API, exported interfaces, and transcript route or component paths as TBD. Implementation threshold requires a bounded slot for those names instead of guessed code surfaces. | Specification.md; Datasheet.md; Guidance.md; Procedure.md | Specification.md#requirements; Specification.md#documentation; Datasheet.md#conditions; Guidance.md#considerations; Procedure.md#purpose |  | PROPOSAL | TBD |
+| C-001 | C:[operative]:[sufficiency] | MissingSlot | Specification | Specification | RESOLVED: ADQ-09 assigns replay parser API, transcript model shape, replay API route, and Transcript sidebar component paths. | `replayHarnessEvents`, `deriveTranscriptView`, the replay route, and Transcript sidebar component are implemented and recorded in Specification, Procedure, Datasheet, Assessment, and ADQ-09 evidence. | Specification.md; Datasheet.md; Guidance.md; Procedure.md | Specification.md#requirements; Specification.md#documentation; Datasheet.md#conditions; Guidance.md#considerations; Procedure.md#purpose |  | ADQ-09_EVIDENCE_UPDATE | RESOLVED |
 
 ## Matrix F - Requirements
 
@@ -138,7 +139,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| F-001 | F:[operative]:[completeness] | TBD_Question | Procedure | Procedure | Confirm whether accepted DEL-05-02, DEL-05-01, DEL-05-05, and redaction-policy dependency edges are prerequisites for implementation closure or later handoff state. | Procedure lists HarnessEvent schema/writer, legacy session records, SDK linkage metadata, dependency edges, and redaction helper or policy as required or TBD. Complete process coverage depends on a human-approved dependency closure position. | Procedure.md; Datasheet.md; Specification.md | Procedure.md#prerequisites; Procedure.md#records; Datasheet.md#conditions; Specification.md#scope |  | PROPOSAL | TBD |
+| F-001 | F:[operative]:[completeness] | TBD_Question | Procedure | Procedure | RESOLVED for ADQ-09: DEL-05-01, DEL-05-02, SDK linkage, redaction, and DEL-05-05 artifact-link dependencies are satisfied for transcript/replay closure. | Dependencies.csv and `_DEPENDENCIES.md` now record ADQ-09 evidence. ADQ-10 remains separate for DEL-05-05 checksum/retention policy and is not claimed here. | Procedure.md; Datasheet.md; Specification.md; Dependencies.csv; _DEPENDENCIES.md | Procedure.md#prerequisites; Procedure.md#records; Datasheet.md#conditions; Specification.md#scope |  | ADQ-09_EVIDENCE_UPDATE | RESOLVED |
 
 ## Matrix D - Objectives
 
@@ -161,7 +162,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| D-001 | D:[operative]:[guiding] | MissingSlot | Procedure | Procedure | Record the accepted replay parser module path, transcript reconstruction fixture path, malformed-tail fixture path, and SDK-linkage fixture path after code discovery. | Procedure defines the operational path but keeps exact code paths and expected records as TBD. A replay-orientation lens needs those concrete locations before execution can be audited. | Procedure.md; Datasheet.md; Specification.md | Procedure.md#purpose; Procedure.md#steps; Procedure.md#records; Datasheet.md#construction; Specification.md#documentation |  | PROPOSAL | TBD |
+| D-001 | D:[operative]:[guiding] | MissingSlot | Procedure | Procedure | RESOLVED: accepted parser/model/API/component paths and fixture paths are recorded. | ADQ-09 evidence records `session-events.ts`, `transcript-replay.ts`, the replay route, Transcript sidebar component, and focused lib/API/component fixtures. | Procedure.md; Datasheet.md; Specification.md; Evidence_ADQ-09_Runtime_Transcript_View.md | Procedure.md#purpose; Procedure.md#steps; Procedure.md#records; Datasheet.md#construction; Specification.md#documentation |  | ADQ-09_EVIDENCE_UPDATE | RESOLVED |
 
 ## Matrix X - Verification
 
@@ -188,7 +189,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| X-001 | X:[judging]:[completeness] | VerificationGap | Specification | Specification | Clarify test coverage for success, failure, cancellation, interruption, malformed-tail diagnostics, legacy reads, SDK linkage, and redaction fixtures. | Specification and Procedure name transcript reconstruction, malformed-tail, terminal outcome, SDK linkage, legacy session, and redaction checks, but implementation-specific validation IDs and fixture filenames remain TBD. Complete assessment record needs explicit fixture coverage before closure. | Specification.md; Procedure.md; Guidance.md | Specification.md#verification; Procedure.md#verification; Procedure.md#steps; Guidance.md#examples |  | PROPOSAL | TBD |
+| X-001 | X:[judging]:[completeness] | VerificationGap | Specification | Specification | RESOLVED: ADQ-09 fixture paths and validation IDs are explicit. | Focused fixtures cover transcript reconstruction, assistant deltas, terminal outcomes including interruption, malformed JSONL diagnostics, read-time redaction, SDK linkage, API replay, and sidebar rendering. Section 9 now includes `section9.session_event_replay` and `section9.sdk_session_link_resume`. | Specification.md; Procedure.md; Guidance.md; Evidence_ADQ-09_Runtime_Transcript_View.md | Specification.md#verification; Procedure.md#verification; Procedure.md#steps; Guidance.md#examples |  | ADQ-09_EVIDENCE_UPDATE | RESOLVED |
 
 ## Matrix E - Evaluation
 
@@ -215,5 +216,4 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E-001 | E:[reviewing]:[data] | RationaleGap | Guidance | Guidance | Explain why replay should expose compact tool summaries and artifact references rather than raw large payloads, including the redaction and audit-trace implications. | Datasheet and Procedure mark compact summaries plus artifact links as an ASSUMPTION while Guidance gives the trade-off. Audit fact review would benefit from a concise rationale that ties artifact traces, redaction, and replay usability together. | Guidance.md; Datasheet.md; Procedure.md; Specification.md | Guidance.md#trade-offs; Datasheet.md#conditions; Procedure.md#steps; Specification.md#requirements |  | PROPOSAL | TBD |
-
+| E-001 | E:[reviewing]:[data] | RationaleGap | Guidance | Guidance | RESOLVED: Guidance explains compact tool summaries plus artifact references, and ADQ-09 implements that projection. | Transcript replay exposes compact summaries and artifact paths/metadata instead of raw large payloads, preserving redaction and audit traceability. | Guidance.md; Datasheet.md; Procedure.md; Specification.md; Evidence_ADQ-09_Runtime_Transcript_View.md | Guidance.md#trade-offs; Datasheet.md#conditions; Procedure.md#steps; Specification.md#requirements |  | ADQ-09_EVIDENCE_UPDATE | RESOLVED |

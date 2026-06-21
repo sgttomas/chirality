@@ -37,7 +37,18 @@ const SECTION9_CHECKS = [
   },
   {
     id: 'section9.session_event_replay',
-    testFiles: ['src/__tests__/lib/session-events.test.ts']
+    testFiles: [
+      'src/__tests__/lib/session-events.test.ts',
+      'src/__tests__/lib/transcript-replay.test.ts'
+    ]
+  },
+  {
+    id: 'section9.sdk_session_link_resume',
+    testFiles: [
+      'src/__tests__/lib/sdk-options-builder.test.ts',
+      'src/__tests__/lib/session-manager.test.ts',
+      'src/__tests__/lib/transcript-replay.test.ts'
+    ]
   },
   {
     id: 'section9.settingsources_isolation',

@@ -1,6 +1,7 @@
 import type { AgentRosterEntry } from './agent-roster';
 import type { HarnessEvent } from './event-schema';
 import type { HarnessReplaySummary } from './session-events';
+import type { TranscriptView } from './transcript-replay';
 import type {
   CoordinationMode,
   HarnessErrorResponse,
@@ -17,6 +18,8 @@ export type SessionEventsReplay = {
   events: HarnessEvent[];
   malformedLineCount: number;
   summary: HarnessReplaySummary;
+  session?: SessionRecord;
+  transcript?: TranscriptView;
 };
 
 type JsonLike = Record<string, unknown>;

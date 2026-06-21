@@ -14,6 +14,7 @@ import { OperatorToolkitPanel } from './operator-toolkit-panel';
 import { SessionListView } from './session-list-view';
 import { SubagentStreamView } from './subagent-stream-view';
 import { ToolStreamView } from './tool-stream-view';
+import { TranscriptStreamView } from './transcript-stream-view';
 
 export type SidebarTabId =
   | 'portal'
@@ -21,6 +22,7 @@ export type SidebarTabId =
   | 'pipeline'
   | 'files'
   | 'sessions'
+  | 'transcript'
   | 'tools'
   | 'subagents'
   | 'document'
@@ -35,6 +37,7 @@ type SidebarTab = {
 const SIDEBAR_TABS: readonly SidebarTab[] = [
   { id: 'files', label: 'Files' },
   { id: 'sessions', label: 'Sessions' },
+  { id: 'transcript', label: 'Transcript' },
   { id: 'tools', label: 'Tools' },
   { id: 'subagents', label: 'Subagents' },
   { id: 'document', label: 'Document' },
@@ -196,6 +199,7 @@ export function WorkspaceSidebar({
           {visibleActiveTab === 'pipeline' && pipelineTab ? pipelineTab : null}
           {visibleActiveTab === 'files' ? <FileTreePanel /> : null}
           {visibleActiveTab === 'sessions' ? <SessionListView /> : null}
+          {visibleActiveTab === 'transcript' ? <TranscriptStreamView /> : null}
           {visibleActiveTab === 'tools' ? <ToolStreamView /> : null}
           {visibleActiveTab === 'subagents' ? <SubagentStreamView /> : null}
           {visibleActiveTab === 'document' ? <DocumentView /> : null}

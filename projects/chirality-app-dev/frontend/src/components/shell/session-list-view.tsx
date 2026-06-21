@@ -113,7 +113,7 @@ export function SessionListPanel({
 /**
  * Session-list sidebar view (D-APP-22). Lists the Working Root's sessions and,
  * on "Open", replays the session's persisted events and hydrates the live
- * buffer — so the Tools / Subagents views render that past session's history.
+ * buffer — so transcript, tool, and subagent views render that past session's history.
  * Hydrate REPLACES the buffer (bounded), so it never double-counts live events.
  */
 export function SessionListView(): JSX.Element {
@@ -200,7 +200,7 @@ export function SessionListView(): JSX.Element {
         setNotice(
           `Loaded ${replay.events.length} event${
             replay.events.length === 1 ? '' : 's'
-          }${malformed}. View them in the Tools / Subagents tabs.`
+          }${malformed}. View them in the Transcript / Tools / Subagents tabs.`
         );
       } catch (cause) {
         if (projectRootRef.current === rootAtOpen) {

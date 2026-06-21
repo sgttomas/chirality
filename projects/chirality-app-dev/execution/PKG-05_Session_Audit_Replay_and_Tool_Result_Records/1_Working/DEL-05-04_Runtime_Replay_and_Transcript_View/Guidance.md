@@ -19,8 +19,8 @@ Sources: `_CONTEXT.md`; `docs/DIRECTIVE.md` Sections 2.2-2.3; `docs/SPEC.md` Sec
 - The replay model should preserve stable identity fields: `sessionId`, `turnId`, and event identity. Stable identifiers persist across path and label changes. Source: `docs/TYPES.md` Sections 1.7-2.
 - Terminal outcomes matter as much as streamed text. Accepted turns must end with a durable success, failure, cancellation, or interruption event for reliable replay. Source: `docs/CONTRACT.md` K-EVENT-2 and K-EVENT-3.
 - Session metadata can provide SDK linkage (`sdkSessionId`, `sdkTranscriptPath`, `sdkSessionStoreKey`, `sdkResumeMode`) but replay should present it as linkage metadata, not as the transcript authority. Source: `docs/SPEC.md` Sections 8.3-8.4.
-- Legacy session records remain a compatibility concern until migration is accepted. Source: `docs/SPEC.md` Section 8.1.
-- The exact view model and API shape are not specified in the source corpus. Use `TBD` for module names, route paths, and component names until implementation ownership is assigned.
+- Legacy session records are handled through the D-APP-41 eager conversion path; replay should consume the canonical folder state after conversion. Source: `docs/SPEC.md` Section 8.1; `D-APP-41`.
+- ADQ-09 assigns the concrete view model and API shape: `TranscriptView`/`TranscriptItem` in `frontend/src/lib/harness/transcript-replay.ts`, the replay API in `frontend/src/app/api/harness/session/[id]/events/route.ts`, and the sidebar component in `frontend/src/components/shell/transcript-stream-view.tsx`.
 
 ## Trade-offs
 
@@ -29,7 +29,7 @@ Sources: `_CONTEXT.md`; `docs/DIRECTIVE.md` Sections 2.2-2.3; `docs/SPEC.md` Sec
 | Strict JSONL parsing vs. tolerant replay | Favor tolerant replay for a malformed final line, while surfacing diagnostics. | Protects audit recoverability after interruption or partial writes. |
 | Raw tool output vs. artifact links | Favor compact summaries plus artifact links for large or sensitive results. | Prevents replay views from flooding UI/model context and supports redaction policy. |
 | SDK transcript detail vs. Chirality canonicality | Show SDK transcript/store linkage as secondary metadata. | Maintains provider-neutral core and avoids SDK-shaped public contracts. |
-| Legacy compatibility vs. clean vNext layout | Keep legacy reads until migration is explicitly complete. | Preserves existing session usability during layout transition. |
+| Legacy compatibility vs. clean vNext layout | Use D-APP-41 eager conversion and canonical folder records for replay. | Gives deterministic long-term storage while keeping legacy reads usable through migration. |
 
 For tool results, compact summaries plus artifact references are the preferred replay shape because the audit view needs durable traceability without re-exposing large or sensitive payloads in transcript context. The artifact reference preserves where the full result was stored, while the summary supports review and redaction-aware replay. Sources reread: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7. Disposition: E-001 incorporated.
 
@@ -44,9 +44,9 @@ For tool results, compact summaries plus artifact references are the preferred r
 
 ## Source-State Notes
 
-`docs/PRD.md` is listed in `_REFERENCES.md` with `HASH_MISMATCH`. Per the task brief, this is treated as a source-state warning. PRD-derived replay requirements were used only when consistent with matched sources or clearly labeled with the warning.
+D-APP-38 authority corpus v2 reports DEL-05-04 references as `MATCH`, including `docs/PRD.md`. PRD-derived replay requirements are no longer warning-qualified for this deliverable.
 
-Disposition: B-001 is already covered by this warning-qualified source-state note and by the References table in `Datasheet.md`; the mismatch is not resolved here and remains a human/source-state issue rather than a content conflict.
+Disposition: B-001 is retired for the current source corpus; the previous PRD hash mismatch is resolved by D-APP-38 corpus v2 reconciliation.
 
 ## Conflict Table (for human ruling)
 

@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-09 runtime transcript view completed
+
+Completed `ADQ-09` from the autonomous development queue. Implemented a product-owned runtime
+transcript projection over canonical replay events in `frontend/src/lib/harness/transcript-replay.ts`
+and surfaced it through the replay API and right-sidebar Transcript tab. The replay API now resolves
+the canonical session record, returns session metadata plus a `TranscriptView`, and the Transcript tab
+renders user/assistant messages, accumulated assistant deltas, terminal outcomes including
+`turn.interrupted`, compact tool summaries, artifact metadata/path links, and diagnostics. SDK
+session/transcript/store fields remain adapter metadata under `sdkLinkage`.
+
+ADQ-09 also added read-time replay redaction for imported/manual JSONL records, extended Section 9
+with `section9.sdk_session_link_resume`, updated DEL-05-04 active Specification, Procedure, Guidance,
+Datasheet, assessment, dependency, memory, and semantic-overlay records, and added
+`execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/Evidence_ADQ-09_Runtime_Transcript_View.md`.
+`ADQ-10` remains the next ready item for D-APP-42 tool-result checksum/retention residuals.
+
+Validation: focused transcript/replay/API/component/client suite passed 5 files / 62 tests;
+`npm run typecheck` passed; `npm run harness:validate:section9` passed 14 checks including the new
+SDK link/resume ID; `npm run harness:validate:section8` passed with a local Next dev server; full
+`npm run test -- --testTimeout=30000` passed 78 files / 533 tests; D-APP-38 authority-corpus status
+reported corpus `v2` with no drift; `git diff --check` passed.
+
+No `_STATUS.md` files, authority documents, provider/network expansion, signing/notarization/
+publication/external distribution posture, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-08 canonical session migration completed
 
 Completed `ADQ-08` from the autonomous development queue. Implemented D-APP-41 Option D in
