@@ -15,11 +15,11 @@ D-APP-33. INSP-01 landed 2026-06-20 with owner-approved SHA
 `IN_PROGRESS`, 0 `ISSUED`. INSP-02 landed 2026-06-20 and aligned PKG-00 control-plane documents
 with accepted acyclic DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
 
-INSP-03 waves 001-007 are recorded: PKG-00 through PKG-06 assessments are complete (31/53), the
+INSP-03 waves 001-008 are recorded: PKG-00 through PKG-07 assessments are complete (37/53), the
 index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`, reviewed SHA
-`09c840be20ee22de6bae99cf0fe3ec226d2ad3ae` is recorded for wave 007 as inspected source-state
-evidence, 22 assessments remain pending, and 0 deliverables are issued. Next selected work:
-continue `INSP-03` with the PKG-07 wave. `CHECKING` here means "admitted to inspection," not
+`210b5b7427471fc307ecbf6eecaab78ebf08398b` is recorded for wave 008 as inspected source-state
+evidence, 16 assessments remain pending, and 0 deliverables are issued. Next selected work:
+continue `INSP-03` with the PKG-08 wave. `CHECKING` here means "admitted to inspection," not
 approved-for-issue; `CHECKING -> ISSUED` is a separate, deferred, per-deliverable gate.
 
 Completed/superseded history (non-governing): the D-APP-28 loop-first pivot
@@ -152,7 +152,7 @@ Default ordering:
 1. Repair failing validation or incomplete evidence for already-landed runtime/control-plane work first if such a regression is found.
 2. Do not rerun the live proof; D-APP-17 passed with `sonnet`.
 3. D-APP-18 (default-provider cutover) is ruled Option A and its key-aware default has landed: with no explicit `CHIRALITY_HARNESS_PROVIDER`, the harness uses the real `agentSdk` path when an Anthropic key is configured (env or UI Settings) and `stub` otherwise; `stub` stays an explicit opt-in. What remains gated is provider expansion beyond the Anthropic path and release/distribution posture (signing/notarization/publication) — do not declare those without a fresh ruling.
-4. Advance the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D): D-APP-33 has ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, and `INSP-03` waves 001-007 completed PKG-00 through PKG-06 assessments (31/53) with index `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Next selected work is continuing `INSP-03` with PKG-07. Issuance (`CHECKING -> ISSUED`) is deferred; do not issue any deliverable. The completed loop-first pivot is closed history.
+4. Advance the active inspection queue (`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`, D-APP-19 Option D): D-APP-33 has ruled the `INSP-01a` semantic-history blocker, `INSP-01a` reran clean under that acceptance basis, `INSP-01` moved all 53 deliverables to `CHECKING` with owner-approved SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`, `INSP-02` aligned PKG-00 to the accepted acyclic DepClosure snapshot, and `INSP-03` waves 001-008 completed PKG-00 through PKG-07 assessments (37/53) with index `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Next selected work is continuing `INSP-03` with PKG-08. Issuance (`CHECKING -> ISSUED`) is deferred; do not issue any deliverable. The completed loop-first pivot is closed history.
 5. For browser-verified tranches, stop the local Next dev server before running `npm run build`, `npm run desktop:pack`, or `npm run harness:validate:premerge` unless the command explicitly owns the server lifecycle; see `plans/PLAN_2026-06-19_validation_server_build_isolation.md`.
 6. If any work requires remote MCP, plugins, broad tool search, domain tools, provider/network expansion beyond the bounded Anthropic path, release posture changes, or a new runtime roadmap, stop and require a fresh human ruling. (The default-provider cutover itself is ruled and landed under D-APP-18.)
 7. Do not revive a completed/closed/retired plan or invent a replacement queue.

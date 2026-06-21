@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - PKG-07 inspection assessments recorded (`INSP-03` wave 008)
+
+Recorded the PKG-07 filesystem execution / lifecycle / dependencies assessment wave for D-APP-19's
+inspection-only program. Added `Assessment_INSP-03_*.md` artifacts for DEL-07-01 through DEL-07-06
+and updated the INSP-03 assessment index, active plan, and coordination pointers. Coverage is now
+37/53 assessments complete, 16 pending, and 0 deliverables issued. Reviewed SHA
+`210b5b7427471fc307ecbf6eecaab78ebf08398b` is recorded as inspected source-state evidence only,
+not lifecycle issuance.
+
+Findings preserved for roadmap synthesis: working-root containment and write-policy hooks are
+substantial but validate-route reuse remains partial; DEL-07-02 confirms G1 because scaffolding
+creates layout but does not seed the minimum metadata baseline or canonical `OPEN` status files;
+DEL-07-03 confirms G2 because present-file discovery exists but the metadata/document-kit validator
+and warning output remain missing; DEL-07-04 lifecycle mechanics are strong with schema-fixture
+residuals; DEL-07-05 dependency register mechanics are mostly implemented with direct API symlink
+and delete-vs-retire residuals; DEL-07-06 is documentation-complete apart from REF-006 and tool
+registry evidence. No semantic files were used or produced.
+
+Validation: focused PKG-07 vitest set passed (13 files, 93 tests); exact deliverable enumeration
+returned 53; assessment count returned 37; status count returned 53 `CHECKING`, 0 `IN_PROGRESS`, 0
+`ISSUED`; `git diff --check -- execution plans` passed; PKG-07 assessment semantic-marker search
+returned no matches; dependency-closure analysis returned 51 valid dependency files, 554 rows, graph
+46 nodes / 97 edges, 0 SCCs, and 0 bidirectional pairs.
+
 ## 2026-06-21 - PKG-06 inspection assessments recorded (`INSP-03` wave 007)
 
 Recorded the PKG-06 permissioned tools / MCP / hooks assessment wave for D-APP-19's

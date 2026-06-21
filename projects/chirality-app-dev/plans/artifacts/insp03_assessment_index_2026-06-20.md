@@ -1,21 +1,21 @@
 # INSP-03 Assessment Index
 
-Date: 2026-06-20
+Date: 2026-06-21
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `09c840be20ee22de6bae99cf0fe3ec226d2ad3ae`
+Reviewed SHA: `210b5b7427471fc307ecbf6eecaab78ebf08398b`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 007.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 008.
 
 - Deliverables expected: 53
-- Assessments complete: 31
-- Assessments pending: 22
+- Assessments complete: 37
+- Assessments pending: 16
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `09c840be20ee22de6bae99cf0fe3ec226d2ad3ae` recorded for wave 007 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `210b5b7427471fc307ecbf6eecaab78ebf08398b` recorded for wave 008 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -100,6 +100,25 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 - PKG-06 static validation observed 53 deliverables, 31 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no `_SEMANTIC` / `SEMANTIC_LENSING` markers in the PKG-06 assessment files.
 
+- PKG-07 wave validation observed 37 `Assessment_INSP-03_*.md` files after wave 008.
+- PKG-07 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/api/working-root/tree-route.test.ts src/__tests__/api/working-root/deliverable-contracts.test.ts src/__tests__/api/project/deliverables-route.test.ts src/__tests__/api/harness/scaffold-route.test.ts src/__tests__/lib/harness-scaffold.test.ts src/__tests__/lib/workspace-deliverable-api.test.ts src/__tests__/lib/dependencies-register-contract.test.ts src/__tests__/lib/lifecycle-status.test.ts src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/chirality-mutating-mcp.test.ts src/__tests__/lib/workspace-file-tree-refresh.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/chirality-hooks.test.ts
+```
+
+Observed result: 13 test files passed, 93 tests passed.
+
+- PKG-07 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg07_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
+- PKG-07 static validation observed 53 deliverables, 37 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-07 assessment files.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -147,12 +166,12 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-06-04 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Assessment_INSP-03_DEL-06-04.md` | COMPLETE | Write/Edit hook assessment; path/instruction/symlink controls pass, with exact-edit precondition ownership and atomicity residuals. |
 | DEL-06-05 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Assessment_INSP-03_DEL-06-05.md` | COMPLETE | Bash governance assessment; no-spawn deny, timeout, network/path, and stream metadata pass, with real interruption and metadata residuals. |
 | DEL-06-06 | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Assessment_INSP-03_DEL-06-06.md` | COMPLETE | Hook/compaction assessment; hook lifecycle and compaction mirror pass, with dedicated PreCompact/Stop semantics partial. |
-| DEL-07-01 | - | PENDING | PKG-07 wave pending. |
-| DEL-07-02 | - | PENDING | PKG-07 wave pending; known G1 candidate. |
-| DEL-07-03 | - | PENDING | PKG-07 wave pending; known G2 candidate. |
-| DEL-07-04 | - | PENDING | PKG-07 wave pending. |
-| DEL-07-05 | - | PENDING | PKG-07 wave pending. |
-| DEL-07-06 | - | PENDING | PKG-07 wave pending. |
+| DEL-07-01 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/Assessment_INSP-03_DEL-07-01.md` | COMPLETE | Root validation/protection assessment; strong path-policy evidence, with validate-route reuse and domain/subagent fixtures partial. |
+| DEL-07-02 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/Assessment_INSP-03_DEL-07-02.md` | COMPLETE | Scaffold assessment; G1 confirmed because layout creation works but baseline metadata seeding and OPEN status creation are missing. |
+| DEL-07-03 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Assessment_INSP-03_DEL-07-03.md` | COMPLETE | Metadata/document-kit assessment; G2 confirmed because present-file discovery exists but contract validation, missing-state fixtures, and warning output remain absent. |
+| DEL-07-04 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Assessment_INSP-03_DEL-07-04.md` | COMPLETE | Status API/MCP assessment; lifecycle mechanics pass, with schema-fixture and content-change recheck residuals. |
+| DEL-07-05 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Assessment_INSP-03_DEL-07-05.md` | COMPLETE | Dependency CSV assessment; reader/writer/linter mostly pass, with direct API symlink-leaf and delete-vs-retire discipline residuals. |
+| DEL-07-06 | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/Assessment_INSP-03_DEL-07-06.md` | COMPLETE | Reference-hash/snapshot convention assessment; docs are largely complete, with REF-006 and exact tool registry evidence still open. |
 | DEL-08-01 | - | PENDING | PKG-08 wave pending. |
 | DEL-08-02 | - | PENDING | PKG-08 wave pending. |
 | DEL-08-03 | - | PENDING | PKG-08 wave pending. |
@@ -172,4 +191,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-07 filesystem/dependency/document-kit deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-08 subagent/child-run deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
