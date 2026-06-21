@@ -85,14 +85,14 @@
 | B:[knowledge]:[completeness] | knowledge | completeness | thorough mastery | 0 | NO_ITEMS | Thorough mastery is not expected at document-draft stage; known implementation unknowns are tracked elsewhere. |
 | B:[knowledge]:[consistency] | knowledge | consistency | coherent understanding | 0 | NO_ITEMS | Coherent understanding is maintained across Datasheet construction, Specification requirements, and Guidance principles. |
 | B:[wisdom]:[necessity] | wisdom | necessity | essential discernment | 0 | NO_ITEMS | Essential discernment appears in the no-invention principle for aliases and persona names. |
-| B:[wisdom]:[sufficiency] | wisdom | sufficiency | adequate judgment | 0 | NO_ITEMS | Adequate judgment is documented by preserving the PRD hash mismatch as a warning rather than silently promoting it. |
+| B:[wisdom]:[sufficiency] | wisdom | sufficiency | adequate judgment | 0 | NO_ITEMS | Adequate judgment is documented by applying D-APP-38 for source state and ADQ-12 for the loop-first persona contract. |
 | B:[wisdom]:[completeness] | wisdom | completeness | holistic insight | 0 | NO_ITEMS | Holistic insight is covered by the deliverable's explicit boundary against SDK adapter and full pipeline dispatch work. |
 | B:[wisdom]:[consistency] | wisdom | consistency | principled reasoning | 0 | NO_ITEMS | Principled reasoning is visible in Guidance trade-offs for strict aliases, matrix fixtures, and pipeline distinction. |
 
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| B-001 | B:[data]:[consistency] | TBD_Question | Multi | TBD | Decide whether unknown UI aliases are rejected, passed through, or normalized by another governed path. | Specification asks for at least one missing/unknown alias behavior test, while Guidance lists unknown alias behavior as TBD; a deterministic alias resolver cannot close without a chosen behavior. | Specification.md; Guidance.md | Specification Verification; Guidance Examples |  | PROPOSAL | TBD |
+| B-001 | B:[data]:[consistency] | Resolved | Multi | TBD | Unknown non-empty personas pass through normalized and fail later at instruction-file lookup if absent. | ADQ-12 records the deterministic fallback behavior in Specification, Guidance, Procedure, Datasheet, and persona-resolution tests. | Specification.md; Guidance.md | Specification Verification; Guidance Examples |  | ADQ-12 | ADQ-12 accepted fallback semantics |
 
 ## Matrix C — Formulation
 
@@ -102,7 +102,7 @@
 | C:[normative]:[necessity] | normative | necessity | source mandate | 0 | NO_ITEMS | Source mandate is explicit for TYPES vocabulary, PRD routing, SPEC fallback, and CONTRACT no-invention rules. |
 | C:[normative]:[sufficiency] | normative | sufficiency | evidence threshold | 0 | NO_ITEMS | Evidence threshold is described through per-requirement source citations and standards applicability. |
 | C:[normative]:[completeness] | normative | completeness | coverage obligation | 0 | NO_ITEMS | Coverage obligation is represented by requirements for all sourced aliases, matrix rows, columns, route destinations, and persona lookup. |
-| C:[normative]:[consistency] | normative | consistency | rule coherence | 1 | HAS_ITEMS | Rule coherence surfaces a source-state conflict between PRD-derived requirements and the recorded PRD hash mismatch. |
+| C:[normative]:[consistency] | normative | consistency | rule coherence | 1 | HAS_ITEMS | Rule coherence recorded the former REF-006 source-state conflict; ADQ-12 marks it resolved by D-APP-38. |
 | C:[operative]:[necessity] | operative | necessity | route trigger | 0 | NO_ITEMS | Route trigger is captured by the row-based WORKBENCH and PIPELINE requirements. |
 | C:[operative]:[sufficiency] | operative | sufficiency | fixture adequacy | 0 | NO_ITEMS | Fixture adequacy gaps are better tracked under routing proof and fixture coverage lenses. |
 | C:[operative]:[completeness] | operative | completeness | workflow coverage | 0 | NO_ITEMS | Workflow coverage is described from source extraction through tests and fixtures in Procedure steps. |
@@ -115,7 +115,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | C:[normative]:[consistency] | Conflict | Multi | NA | Keep PRD-derived acceptance requirements warning-labeled until the REF-006 hash mismatch is resolved or accepted by human ruling. | The requirements rely on PRD sections and FRs while _REFERENCES.md records `docs/PRD.md` as `HASH_MISMATCH`; this is non-blocking for drafting but remains a source-state conflict for governed acceptance. | Specification.md; Guidance.md; _REFERENCES.md | Specification Requirements and Standards; Guidance Principles and Trade-offs; _REFERENCES.md REF-006 | Specification.md#Requirements; _REFERENCES.md#REF-006 | PROPOSAL | TBD |
+| C-001 | C:[normative]:[consistency] | Resolved | Multi | NA | Former PRD source-state warning is resolved under D-APP-38. | `_REFERENCES.md` now records REF-006 as `MATCH`; ADQ-12 keeps source-state proof separate from implementation proof. | Specification.md; Guidance.md; _REFERENCES.md | Specification Requirements and Standards; Guidance Principles and Trade-offs; _REFERENCES.md REF-006 | Specification.md#Requirements; _REFERENCES.md#REF-006 | D-APP-38 | D-APP-38 accepted current authority corpus |
 
 ## Matrix F — Requirements
 
@@ -125,7 +125,7 @@
 | F:[normative]:[necessity] | normative | necessity | authority basis | 0 | NO_ITEMS | Authority basis is stated for TYPES, PRD, SPEC, CONTRACT, and DIRECTIVE sources. |
 | F:[normative]:[sufficiency] | normative | sufficiency | proof standard | 0 | NO_ITEMS | Proof standard is expressed through unit, fixture, route-state, and runtime option tests. |
 | F:[normative]:[completeness] | normative | completeness | source coverage | 0 | NO_ITEMS | Source coverage spans aliases, matrix vocabulary, route destinations, workbench context, persona lookup, and fallback. |
-| F:[normative]:[consistency] | normative | consistency | trace coherence | 0 | NO_ITEMS | Trace coherence is mostly intact; the PRD hash mismatch is already captured under rule coherence. |
+| F:[normative]:[consistency] | normative | consistency | trace coherence | 0 | NO_ITEMS | Trace coherence is intact under D-APP-38 and ADQ-12 source-state updates. |
 | F:[operative]:[necessity] | operative | necessity | dispatch trigger | 0 | NO_ITEMS | Dispatch trigger is covered by OPERATIVE to PIPELINE and NORMATIVE/EVALUATIVE to WORKBENCH requirements. |
 | F:[operative]:[sufficiency] | operative | sufficiency | routing proof | 1 | HAS_ITEMS | Routing proof is underspecified until implementation-local module, fixture, and test paths are selected. |
 | F:[operative]:[completeness] | operative | completeness | fixture coverage | 0 | NO_ITEMS | Fixture coverage is listed across alias resolver, matrix mapping, route fixtures, and persona resolver tests. |
@@ -149,9 +149,9 @@
 | D:[normative]:[guiding] | normative | guiding | canonical direction | 0 | NO_ITEMS | Canonical direction is supplied by TYPES vocabulary and the no-invention rule for aliases and persona names. |
 | D:[normative]:[applying] | normative | applying | mandatory proof | 0 | NO_ITEMS | Mandatory proof is present as MUST requirements with verification methods. |
 | D:[normative]:[judging] | normative | judging | coverage ruling | 0 | NO_ITEMS | Coverage ruling is represented by enumerated alias and matrix vocabulary checks. |
-| D:[normative]:[reviewing] | normative | reviewing | trace audit | 0 | NO_ITEMS | Trace audit is supported by source citations and the PRD hash mismatch warning. |
+| D:[normative]:[reviewing] | normative | reviewing | trace audit | 0 | NO_ITEMS | Trace audit is supported by source citations and the D-APP-38 REF-006 MATCH state. |
 | D:[operative]:[guiding] | operative | guiding | dispatch direction | 0 | NO_ITEMS | Dispatch direction is clear for row-to-surface routing and pipeline distinction. |
-| D:[operative]:[applying] | operative | applying | fixture execution | 1 | HAS_ITEMS | Fixture execution still needs route-state or query-parameter key selection for workbench context tests. |
+| D:[operative]:[applying] | operative | applying | fixture execution | 1 | HAS_ITEMS | Fixture execution is supported by ADQ-12 route-state, matrix launch, and persona-resolution tests. |
 | D:[operative]:[judging] | operative | judging | routing assessment | 0 | NO_ITEMS | Routing assessment is defined by expected destinations and persona lookup outcomes. |
 | D:[operative]:[reviewing] | operative | reviewing | process review | 0 | NO_ITEMS | Process review is represented in the Procedure verification table and source-warning check. |
 | D:[evaluative]:[guiding] | evaluative | guiding | boundary orientation | 0 | NO_ITEMS | Boundary orientation is explicit in the in-scope and out-of-scope lists. |
@@ -209,11 +209,11 @@
 | E:[judging]:[knowledge] | judging | knowledge | judgment understanding | 0 | NO_ITEMS | Judgment understanding aligns with source-governed vocabulary and route-surface distinction. |
 | E:[judging]:[wisdom] | judging | wisdom | coverage judgment | 0 | NO_ITEMS | Coverage judgment is documented by complete alias and matrix enumeration. |
 | E:[reviewing]:[data] | reviewing | data | review record | 0 | NO_ITEMS | Review record includes current warnings and TBDs without requiring a new data item. |
-| E:[reviewing]:[information] | reviewing | information | review signal | 1 | HAS_ITEMS | Review signal needs a clearer transition from non-blocking PRD warning to acceptance-ready source state. |
+| E:[reviewing]:[information] | reviewing | information | review signal | 1 | HAS_ITEMS | Review signal recorded the former REF-006 transition question; ADQ-12 marks it resolved by D-APP-38. |
 | E:[reviewing]:[knowledge] | reviewing | knowledge | trace understanding | 0 | NO_ITEMS | Trace understanding is supported by reference metadata and warning labels. |
 | E:[reviewing]:[wisdom] | reviewing | wisdom | review judgment | 0 | NO_ITEMS | Review judgment remains with the human for PRD hash acceptance and unknown behavior rulings. |
 
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E-001 | E:[reviewing]:[information] | RationaleGap | Guidance | Guidance | State the acceptance transition for PRD-backed requirements after REF-006 is refreshed or human-accepted. | Guidance says the PRD hash mismatch is non-blocking and should be reviewed, but it does not state what later condition allows PRD-backed requirements to move from warning-labeled draft evidence to acceptance-ready evidence. | Guidance.md; _REFERENCES.md | Guidance Trade-offs and Conflict Table; _REFERENCES.md REF-006 |  | PROPOSAL | TBD |
+| E-001 | E:[reviewing]:[information] | Resolved | Guidance | Guidance | REF-006 transition path is resolved by D-APP-38. | Current guidance records PRD-backed checks as source-current while implementation proof remains separate. | Guidance.md; _REFERENCES.md | Guidance Trade-offs and Conflict Table; _REFERENCES.md REF-006 |  | D-APP-38 | D-APP-38 accepted current authority corpus |

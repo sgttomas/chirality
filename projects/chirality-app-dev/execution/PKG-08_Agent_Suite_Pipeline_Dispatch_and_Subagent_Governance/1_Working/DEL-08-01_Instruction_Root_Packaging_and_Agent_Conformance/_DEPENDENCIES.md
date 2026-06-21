@@ -29,7 +29,9 @@ TBD - no accepted dependency edges have been extracted yet.
 - Execution doc order: `Procedure.md`, `Guidance.md`, `Specification.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Conservative extraction emitted no downstream deliverable edges because local evidence names DEL-08-04 and DEL-08-05 only as out-of-scope/boundary owners, not accepted handoff targets.
 - Implementation details for validator path, test framework, fixture path, CI/local command, and output artifact location remain `TBD`; no dependency target was invented for those unresolved choices.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-08-01-012 preserves this as a source warning with `Confidence=MEDIUM`.
+- `[RESOLVED] SOURCE_STATE`: D-APP-38 authority corpus v2 supersedes the prior REF-006 source warning; `_REFERENCES.md` now records REF-006 as MATCH and row DEP-08-01-012 is updated accordingly.
+- `[RESOLVED] CONFORMANCE_VALIDATOR`: ADQ-12 adds machine validation coverage for agent instruction filename, document marker, agent type, class vocabulary, write-scope vocabulary, protocol/spec/structure/rationale markers, and allowed frontmatter keys.
+- `[RESOLVED] SOURCE_COMPLETENESS_CHECKLIST`: ADQ-12 adds `sourceCompleteness` summary rows for SOW-073/OI-004 and KG-001 candidate source assets to the instruction-root integrity script.
 - `[WARNING] UNRESOLVED_TARGET`: row DEP-08-01-015 records the explicitly required current instruction-root source tree, but the stable target location is unresolved and remains `UNKNOWN`/`TBD`.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
@@ -72,7 +74,8 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition status | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:54:20-0600 | UPDATE | CONSERVATIVE | Located and read | SOURCE_HASH_MISMATCH for REF-006; UNRESOLVED_TARGET for instruction-root source tree | 15 |
+| 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, conformance-validator residuals, and source-completeness checklist applied | UNRESOLVED_TARGET for instruction-root source tree | 15 |
+| 2026-05-20T19:54:20-0600 | UPDATE | CONSERVATIVE | Located and read | superseded SOURCE_HASH_MISMATCH for REF-006; UNRESOLVED_TARGET for instruction-root source tree | 15 |
 
 ## Lifecycle Summary
 

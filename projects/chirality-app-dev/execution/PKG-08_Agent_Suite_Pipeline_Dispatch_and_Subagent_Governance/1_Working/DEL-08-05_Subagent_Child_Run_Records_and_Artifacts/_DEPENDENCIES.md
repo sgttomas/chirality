@@ -60,12 +60,14 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor was found.
 - `[RESOLVED] SOURCE_STATE`: D-APP-38 current authority-corpus reconciliation supersedes the prior PRD source-state warning for this tranche.
 - `[RESOLVED] HUMAN_RULING_APPLIED`: D-APP-40 resolves denied child-run allocation semantics; denied `ChildRunRecord` evidence is required only after the runtime reaches the child-run record layer.
+- `[RESOLVED] CHILD_OUTPUT_ARTIFACT_EVIDENCE`: ADQ-12 persists over-inline child summaries under session child-output artifacts with parent-turn, task, child-run, tool-use, source-file, checksum, byte-count, truncation, and redaction evidence.
 - Schema validation passed: 29 required columns and 10 data rows.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Status | ACTIVE Rows | Warnings |
 |---|---|---|---|---:|---|
+| 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, D-APP-40 child-run taxonomy, and child-output artifact evidence applied | 10 | none |
 | 2026-06-21T03:00:20-0600 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 child-run taxonomy applied | 10 | none |
 | 2026-05-20T20:55:00-0600 | UPDATE | CONSERVATIVE | Found and used explicit path | 10 | superseded source-state warning; superseded denied-allocation ruling request |
 

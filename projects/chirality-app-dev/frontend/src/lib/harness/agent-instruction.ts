@@ -6,6 +6,33 @@ import { assertInstructionRootReadable } from './instruction-root';
 
 export type ParsedFrontmatter = Record<string, unknown>;
 export type AgentClass = 'PERSONA' | 'TASK';
+export type AgentInstructionSection = 'PROTOCOL' | 'SPEC' | 'STRUCTURE' | 'RATIONALE';
+
+export type AgentInstructionConformanceIssueCode =
+  | 'INVALID_AGENT_FILENAME'
+  | 'MISSING_DOC_MARKER'
+  | 'MISSING_TITLE'
+  | 'MISSING_AGENT_TYPE'
+  | 'MISSING_AGENT_TYPE_TABLE_ROW'
+  | 'INVALID_AGENT_CLASS'
+  | 'TYPE2_NON_TASK_CLASS'
+  | 'MISSING_SECTION_MARKER'
+  | 'MALFORMED_SECTION_MARKER_PAIR'
+  | 'MISSING_WRITE_SCOPE'
+  | 'UNKNOWN_WRITE_SCOPE'
+  | 'UNKNOWN_FRONTMATTER_KEY';
+
+export type AgentInstructionConformanceIssue = {
+  severity: 'error' | 'warning';
+  code: AgentInstructionConformanceIssueCode;
+  message: string;
+  field?: string;
+};
+
+export type AgentInstructionConformanceReport = {
+  passed: boolean;
+  issues: AgentInstructionConformanceIssue[];
+};
 
 export type AgentInstruction = {
   instructionRoot: string;
@@ -17,8 +44,48 @@ type ParseFrontmatterOptions = {
   warnPrefix?: string;
 };
 
+const REQUIRED_AGENT_TYPE_TABLE_FIELDS = [
+  'AGENT_TYPE',
+  'AGENT_CLASS',
+  'INTERACTION_SURFACE',
+  'WRITE_SCOPE',
+  'BLOCKING',
+  'PRIMARY_OUTPUTS'
+] as const;
+
+const REQUIRED_AGENT_INSTRUCTION_SECTIONS = [
+  'PROTOCOL',
+  'SPEC',
+  'STRUCTURE',
+  'RATIONALE'
+] as const satisfies readonly AgentInstructionSection[];
+
+const ALLOWED_AGENT_FRONTMATTER_KEYS = new Set([
+  'description',
+  'subagents',
+  'tools',
+  'model',
+  'max_turns',
+  'disallowed_tools',
+  'auto_approve_tools'
+]);
+
+const ALLOWED_WRITE_SCOPES = new Set([
+  'repo-wide',
+  'project-level',
+  'deliverable-local',
+  'tool-root-only',
+  'workspace-scaffold-only',
+  'repo-metadata-only',
+  'none'
+]);
+
 function normalizeAgentName(agentName: string): string {
   return agentName.trim().replace(/-/g, '_');
+}
+
+function normalizeMarkdown(markdown: string): string {
+  return markdown.replace(/\r\n/g, '\n');
 }
 
 function parseYamlScalar(raw: string): unknown {
@@ -65,7 +132,7 @@ export function parseFrontmatter(
   markdown: string,
   options?: ParseFrontmatterOptions
 ): ParsedFrontmatter {
-  const normalized = markdown.replace(/\r\n/g, '\n');
+  const normalized = normalizeMarkdown(markdown);
   if (!normalized.startsWith('---\n')) {
     return {};
   }
@@ -203,6 +270,167 @@ export function parseAgentClass(content: string): AgentClass | undefined {
   }
 
   return undefined;
+}
+
+function extractAgentTypeTableRows(content: string): Map<string, string> {
+  const rows = new Map<string, string>();
+  const normalized = normalizeMarkdown(content);
+  const rowPattern = /^\|\s*\*\*([A-Z_]+)\*\*\s*\|\s*([^|]*)\|/gm;
+  let match: RegExpExecArray | null;
+
+  while ((match = rowPattern.exec(normalized)) !== null) {
+    rows.set(match[1], match[2].trim());
+  }
+
+  return rows;
+}
+
+function addIssue(
+  issues: AgentInstructionConformanceIssue[],
+  issue: AgentInstructionConformanceIssue
+): void {
+  issues.push(issue);
+}
+
+function validateInstructionSections(
+  content: string,
+  requiredSections: readonly AgentInstructionSection[],
+  issues: AgentInstructionConformanceIssue[]
+): void {
+  for (const section of requiredSections) {
+    const begin = `[[BEGIN:${section}]]`;
+    const end = `[[END:${section}]]`;
+    const beginIndex = content.indexOf(begin);
+    const endIndex = content.indexOf(end);
+
+    if (beginIndex === -1 || endIndex === -1) {
+      addIssue(issues, {
+        severity: 'error',
+        code: 'MISSING_SECTION_MARKER',
+        field: section,
+        message: `Agent instruction is missing required ${section} marker pair.`
+      });
+      continue;
+    }
+
+    if (beginIndex > endIndex) {
+      addIssue(issues, {
+        severity: 'error',
+        code: 'MALFORMED_SECTION_MARKER_PAIR',
+        field: section,
+        message: `Agent instruction has ${section} end marker before begin marker.`
+      });
+    }
+  }
+}
+
+export function validateAgentInstructionConformance(input: {
+  content: string;
+  fileName?: string;
+  requiredSections?: readonly AgentInstructionSection[];
+}): AgentInstructionConformanceReport {
+  const content = normalizeMarkdown(input.content);
+  const issues: AgentInstructionConformanceIssue[] = [];
+  const requiredSections = input.requiredSections ?? REQUIRED_AGENT_INSTRUCTION_SECTIONS;
+
+  if (input.fileName && !/^AGENT_.+\.md$/.test(path.basename(input.fileName))) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'INVALID_AGENT_FILENAME',
+      message: 'Agent instruction files must use the AGENT_*.md naming convention.'
+    });
+  }
+
+  if (!content.includes('[[DOC:AGENT_INSTRUCTIONS]]')) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'MISSING_DOC_MARKER',
+      message: 'Agent instruction is missing [[DOC:AGENT_INSTRUCTIONS]].'
+    });
+  }
+
+  if (!/^#\s+AGENT INSTRUCTIONS\s+(?:-|\u2014)\s+\S+/m.test(content)) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'MISSING_TITLE',
+      message: 'Agent instruction is missing the required AGENT INSTRUCTIONS title.'
+    });
+  }
+
+  const agentType = parseAgentType(content);
+  if (agentType === undefined) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'MISSING_AGENT_TYPE',
+      field: 'AGENT_TYPE',
+      message: 'Agent instruction is missing a valid AGENT_TYPE declaration.'
+    });
+  }
+
+  const tableRows = extractAgentTypeTableRows(content);
+  for (const field of REQUIRED_AGENT_TYPE_TABLE_FIELDS) {
+    if (!tableRows.get(field)) {
+      addIssue(issues, {
+        severity: 'error',
+        code: 'MISSING_AGENT_TYPE_TABLE_ROW',
+        field,
+        message: `Agent Type table is missing required ${field} row.`
+      });
+    }
+  }
+
+  const agentClass = parseAgentClass(content);
+  if (!agentClass) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'INVALID_AGENT_CLASS',
+      field: 'AGENT_CLASS',
+      message: 'Agent instruction is missing a valid AGENT_CLASS value.'
+    });
+  } else if (agentType === 2 && agentClass !== 'TASK') {
+    addIssue(issues, {
+      severity: 'warning',
+      code: 'TYPE2_NON_TASK_CLASS',
+      field: 'AGENT_CLASS',
+      message: 'AGENT_TYPE 2 candidates should declare AGENT_CLASS TASK.'
+    });
+  }
+
+  const writeScope = tableRows.get('WRITE_SCOPE');
+  if (!writeScope) {
+    addIssue(issues, {
+      severity: 'error',
+      code: 'MISSING_WRITE_SCOPE',
+      field: 'WRITE_SCOPE',
+      message: 'Agent Type table is missing an explicit WRITE_SCOPE value.'
+    });
+  } else if (!ALLOWED_WRITE_SCOPES.has(writeScope)) {
+    addIssue(issues, {
+      severity: 'warning',
+      code: 'UNKNOWN_WRITE_SCOPE',
+      field: 'WRITE_SCOPE',
+      message: `WRITE_SCOPE '${writeScope}' is not in the canonical TYPES.md write-scope vocabulary.`
+    });
+  }
+
+  validateInstructionSections(content, requiredSections, issues);
+
+  const frontmatter = parseFrontmatter(content);
+  for (const key of Object.keys(frontmatter)) {
+    if (!ALLOWED_AGENT_FRONTMATTER_KEYS.has(key)) {
+      addIssue(issues, {
+        severity: 'warning',
+        code: 'UNKNOWN_FRONTMATTER_KEY',
+        field: key,
+        message: `Unknown agent frontmatter key '${key}' is ignored by runtime policy.`
+      });
+    }
+  }
+
+  return {
+    passed: !issues.some((issue) => issue.severity === 'error'),
+    issues
+  };
 }
 
 function getAgentInstructionPath(agentName: string, instructionRoot: string): string {

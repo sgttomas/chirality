@@ -64,12 +64,12 @@
 | A:[evaluative]:[guiding] | evaluative | guiding | value orientation | 0 | NO_ITEMS | Value orientation is clear: visible routes without expanding runtime authority. |
 | A:[evaluative]:[applying] | evaluative | applying | merit application | 0 | NO_ITEMS | Trade-off guidance supports applying reset, visibility, and vocabulary choices. |
 | A:[evaluative]:[judging] | evaluative | judging | worth determination | 0 | NO_ITEMS | Worth judgment is deferred to tests and review evidence, not a new register item. |
-| A:[evaluative]:[reviewing] | evaluative | reviewing | quality appraisal | 0 | NO_ITEMS | Quality appraisal is covered by later closure evidence and human source reconciliation. |
+| A:[evaluative]:[reviewing] | evaluative | reviewing | quality appraisal | 0 | NO_ITEMS | Quality appraisal is covered by ADQ-12 evidence and D-APP-38 source reconciliation. |
 
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A-001 | A:[normative]:[reviewing] | Conflict | Guidance | Guidance | Keep PRD hash mismatch visible as a closure warning for all PRD-derived selector requirements. | _REFERENCES marks REF-006 as HASH_MISMATCH while Specification and Guidance rely on PRD FR-011, FR-012, FR-013, and FR-049. The reviewing lens requires this to remain an audit-visible conflict until human reconciliation. | _REFERENCES.md; Specification.md; Guidance.md | _REFERENCES.md#Authoritative Source Corpus; Specification.md#Source Warnings; Guidance.md#Conflict Table (for human ruling) | _REFERENCES.md#Authoritative Source Corpus; Guidance.md#Conflict Table (for human ruling) | PROPOSAL | TBD |
+| A-001 | A:[normative]:[reviewing] | Resolved | Guidance | Guidance | Former PRD source-state warning is resolved under D-APP-38. | `_REFERENCES.md` now records REF-006 as `MATCH`; Specification and Guidance keep implementation proof separate from source-state proof. | _REFERENCES.md; Specification.md; Guidance.md | _REFERENCES.md#Authoritative Source Corpus; Specification.md#Source State; Guidance.md#Conflict Table (for human ruling) | _REFERENCES.md#Authoritative Source Corpus; Guidance.md#Conflict Table (for human ruling) | D-APP-38 | D-APP-38 accepted current authority corpus |
 
 ## Matrix B - Conceptualization
 
@@ -162,14 +162,14 @@
 | D:[operative]:[reviewing] | operative | reviewing | process assurance standard | 1 | HAS_ITEMS | Downstream closure needs the confirmed component and test path record. |
 | D:[evaluative]:[guiding] | evaluative | guiding | value closure frame | 0 | NO_ITEMS | Value closure frame remains operator clarity without runtime authority. |
 | D:[evaluative]:[applying] | evaluative | applying | merit closure method | 0 | NO_ITEMS | Merit closure method preserves roadmap visibility while preventing execution. |
-| D:[evaluative]:[judging] | evaluative | judging | worth verdict basis | 0 | NO_ITEMS | Worth verdict can be judged once tests and source warning handling are recorded. |
+| D:[evaluative]:[judging] | evaluative | judging | worth verdict basis | 0 | NO_ITEMS | Worth verdict can be judged from tests, D-APP-38 source state, and ADQ-12 selector evidence. |
 | D:[evaluative]:[reviewing] | evaluative | reviewing | quality assurance standard | 0 | NO_ITEMS | Quality assurance standard is bounded to selector behavior and knowledge discovery. |
 
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| D-001 | D:[normative]:[guiding] | TBD_Question | Multi | Guidance | Who reconciles or accepts the PRD REF-006 hash mismatch before final closure? | Guidance says to preserve the mismatch until a human reconciles it, but no owner or ruling path is named. The policy-closure lens requires human decision routing. | Guidance.md; _STATUS.md; _REFERENCES.md | Guidance.md#Conflict Table (for human ruling); _STATUS.md#History; _REFERENCES.md#Authoritative Source Corpus |  | PROPOSAL | TBD |
-| D-002 | D:[operative]:[reviewing] | TBD_Question | Procedure | Procedure | Which implementation worker records the final UI component paths and test file paths required by Records? | Procedure requires implementation notes identifying confirmed UI component and test file paths, while Datasheet still records those locations as TBD. The process-assurance lens surfaces the handoff question. | Datasheet.md; Procedure.md | Datasheet.md#Construction; Procedure.md#Records |  | PROPOSAL | TBD |
+| D-001 | D:[normative]:[guiding] | Resolved | Multi | Guidance | REF-006 source state is reconciled by D-APP-38. | Guidance and `_REFERENCES.md` now record current REF-006 MATCH state for this tranche. | Guidance.md; _REFERENCES.md | Guidance.md#Conflict Table (for human ruling); _REFERENCES.md#Authoritative Source Corpus |  | D-APP-38 | D-APP-38 accepted current authority corpus |
+| D-002 | D:[operative]:[reviewing] | Resolved | Procedure | Procedure | ADQ-12 records final UI component paths and test file paths. | Datasheet now records `pipeline-surface.tsx`, Pipeline surface tests, task-scope tests, and deliverables route tests. | Datasheet.md; Procedure.md | Datasheet.md#Construction; Procedure.md#Records |  | ADQ-12 | ADQ-12 accepted component/test evidence |
 
 ## Matrix X - Verification
 
@@ -217,8 +217,8 @@
 | E:[judging]:[information] | judging | information | typed message context | 0 | NO_ITEMS | Typed feedback context is sufficient at register stage. |
 | E:[judging]:[knowledge] | judging | knowledge | acceptance understanding map | 0 | NO_ITEMS | Acceptance understanding is distributed across verification and records sections. |
 | E:[judging]:[wisdom] | judging | wisdom | principled verdict judgment | 0 | NO_ITEMS | Verdict judgment remains tied to human source reconciliation and test evidence. |
-| E:[reviewing]:[data] | reviewing | data | audit fact basis | 0 | NO_ITEMS | Audit facts include status history and source warning metadata. |
-| E:[reviewing]:[information] | reviewing | information | source warning context | 1 | HAS_ITEMS | Source warning context needs closure treatment that does not overstate PRD authority. |
+| E:[reviewing]:[data] | reviewing | data | audit fact basis | 0 | NO_ITEMS | Audit facts include status history and D-APP-38 source-state metadata. |
+| E:[reviewing]:[information] | reviewing | information | source-state context | 1 | HAS_ITEMS | Source-state context is resolved by D-APP-38 while implementation proof remains separate. |
 | E:[reviewing]:[knowledge] | reviewing | knowledge | coverage understanding map | 0 | NO_ITEMS | Coverage understanding names what is in and out of scope. |
 | E:[reviewing]:[wisdom] | reviewing | wisdom | closure judgment frame | 0 | NO_ITEMS | Closure judgment can proceed only after derivative evidence and human rulings are current. |
 
@@ -226,4 +226,4 @@
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-001 | E:[guiding]:[wisdom] | RationaleGap | Guidance | Guidance | Explain that UI dispatch expresses operator intent and route selection but runtime authority remains with TASK and Type 2 governance checks. | Guidance states this principle, but the later enrichment pass should make the boundary rationale durable for implementers who may wire selectors to execution surfaces. The principled-boundary lens warrants a rationale entry. | Guidance.md; Specification.md | Guidance.md#Purpose; Guidance.md#Principles; Specification.md#Scope |  | PROPOSAL | TBD |
-| E-002 | E:[reviewing]:[information] | TBD_Question | Multi | Guidance | What closure language should distinguish conservative PRD use under HASH_MISMATCH from accepted source truth? | Specification treats the PRD mismatch as a warning, and Guidance proposes conservative use until reconciliation. The source-warning lens requires a human-approved closure phrasing before final acceptance. | Specification.md; Guidance.md; _REFERENCES.md | Specification.md#Source Warnings; Guidance.md#Considerations; _REFERENCES.md#Authoritative Source Corpus |  | PROPOSAL | TBD |
+| E-002 | E:[reviewing]:[information] | Resolved | Multi | Guidance | D-APP-38 distinguishes source-state proof from implementation proof. | Specification and Guidance now state REF-006 is current while selector behavior remains proven by code/tests. | Specification.md; Guidance.md; _REFERENCES.md | Specification.md#Source State; Guidance.md#Considerations; _REFERENCES.md#Authoritative Source Corpus |  | D-APP-38 | D-APP-38 accepted current authority corpus |

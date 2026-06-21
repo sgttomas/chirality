@@ -18,11 +18,11 @@ Define the operational procedure to produce and verify the DEL-08-01 test-suite 
 1. Establish the accepted source basis.
    - Read `_REFERENCES.md`.
    - Record matching sources and source warnings.
-   - Mark `docs/PRD.md` as `HASH_MISMATCH` warning context until reconciled.
+   - Record `docs/PRD.md` REF-006 as MATCH under the D-APP-38 authority corpus.
 
 2. Build the instruction-root asset manifest.
    - Start from `docs/SPEC.md` section 1.1 required entries.
-   - Add PRD FR-058 and KG-001 entries as warning-labeled candidates because REF-006 is hash-mismatched.
+   - Add PRD FR-058 and KG-001 entries under the current D-APP-38 source basis.
    - Record each asset as present, missing, not required by active policy, or TBD.
 
 3. Define agent-instruction conformance checks.
@@ -51,12 +51,12 @@ Define the operational procedure to produce and verify the DEL-08-01 test-suite 
    - Execute the local validator/test command when available.
    - Confirm positive fixtures pass.
    - Confirm negative fixtures fail with actionable messages.
-   - Confirm PRD-only checks are warning-labeled while the PRD hash mismatch remains unresolved.
+   - Confirm PRD-backed checks cite the D-APP-38 source basis and remain separate from implementation proof.
    - Capture pass/fail evidence with the command, working tree or commit identifier when available, fixture summary, warning/failure counts, and output artifact location.
 
 7. Record results.
    - Store validator output, source-completeness checklist, and fixture summary in the appropriate test artifact location: TBD.
-   - Record unresolved source warnings and human-ruling needs.
+   - Record unresolved source warnings and human-ruling needs, if any remain.
 
 ## Verification
 
@@ -66,7 +66,7 @@ Completion checks:
 - Required SPEC section 1.1 instruction-root assets are checked.
 - Agent instruction conformance covers SPEC sections 7.1, 7.2, and 7.3.
 - Type 2/subagent fixture expectations reflect TYPES and CONTRACT.
-- PRD-derived checks carry the `HASH_MISMATCH` warning.
+- PRD-derived checks cite D-APP-38 / REF-006 MATCH source state.
 - No procedure step requires ordinary project execution to mutate the instruction root.
 - `TBD` remains on implementation path, fixture path, command, upstream dependencies, and other items not established by source evidence.
 
@@ -78,6 +78,6 @@ Required records after implementation:
 - Agent conformance validator output.
 - Instruction-root integrity fixture summary.
 - Source-completeness checklist.
-- PRD hash mismatch warning record or human ruling.
+- D-APP-38 source-state ruling and any future authority-corpus bump/apply evidence.
 - Local test command and result log.
 - Any human-approved changes to required asset policy.

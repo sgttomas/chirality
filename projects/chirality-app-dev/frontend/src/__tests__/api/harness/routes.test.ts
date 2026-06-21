@@ -700,6 +700,69 @@ AGENT_TYPE: 2
     });
   });
 
+  it('does not treat Pipeline TASK selector state as Type 2 governance approval', async () => {
+    const routes = await importRouteModules();
+    process.env.CHIRALITY_ENABLE_SUBAGENTS = 'true';
+    await writeFile(
+      path.join(context.instructionRoot, 'agents', 'AGENT_WORKING_ITEMS.md'),
+      `---
+description: persona fixture
+subagents: TASK
+---
+# persona
+AGENT_TYPE: 1
+`,
+      'utf8'
+    );
+    await writeFile(
+      path.join(context.instructionRoot, 'agents', 'AGENT_TASK.md'),
+      `---
+description: task fixture
+---
+# task
+AGENT_TYPE: 2
+
+| Property | Value |
+|---|---|
+| **AGENT_CLASS** | TASK |
+`,
+      'utf8'
+    );
+
+    const runtime = routes.runtimeModule.getHarnessRuntime();
+    const startTurnSpy = vi.spyOn(runtime.agentSdkManager, 'startTurn');
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const { body } = await createSession(routes, context.projectRoot);
+
+    const turnResponse = await routes.turnRoute.POST(
+      new Request('http://localhost/api/harness/turn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId: body.session.sessionId,
+          message: 'pipeline selector intent is not delegation approval',
+          opts: {
+            pipelineIntent: {
+              category: 'TASK',
+              taskAgent: 'TASK',
+              taskScopeMode: 'DELIVERABLES',
+              scopeKey: 'PKG-08::DEL-08-03'
+            }
+          }
+        })
+      })
+    );
+
+    expect(turnResponse.status).toBe(200);
+    expect(startTurnSpy).toHaveBeenCalled();
+    expect(startTurnSpy.mock.calls[0]?.[2]).toMatchObject({
+      delegatedSubagents: []
+    });
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[harness/options] Ignoring unknown opts field(s): pipelineIntent'
+    );
+  });
+
   it('passes delegated subagents when governance gates are satisfied', async () => {
     const routes = await importRouteModules();
     process.env.CHIRALITY_ENABLE_SUBAGENTS = 'true';

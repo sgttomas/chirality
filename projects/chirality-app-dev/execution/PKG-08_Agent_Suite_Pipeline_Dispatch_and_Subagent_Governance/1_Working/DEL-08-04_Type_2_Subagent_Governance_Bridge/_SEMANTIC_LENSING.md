@@ -20,7 +20,7 @@
 
 **Warnings:**
 - [RESOLVED] SOURCE_STATE: D-APP-38 current authority-corpus reconciliation supersedes the prior REF-006 source-state warning; PRD-derived delegation behavior is accepted for this tranche.
-- [WARNING] TBD_IMPLEMENTATION_CONTRACTS: module/file targets, governance decision shape, approval reference format, SDK probe readiness, and DEL-08-05 handoff boundary remain TBD in local production documents.
+- [RESOLVED] IMPLEMENTATION_CONTRACTS: ADQ-05 and ADQ-12 evidence record the module/test targets, child-run naming, and DEL-08-05 artifact handoff boundary for the inspected scope. Governance decision replay independent of logs/options remains an optional future audit enhancement.
 - [WARNING] DEPENDENCY_STATE: `_DEPENDENCIES.md` contains extracted ACTIVE dependency rows while Procedure still says declared upstream dependencies are TBD and dependency extraction remains deferred.
 
 ## Summary
@@ -183,7 +183,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| D-001 | `D:[operative]:[applying]` | VerificationGap | Procedure.md | Procedure.md | Provide concrete implementation paths and final test commands for bridge invocation, hook fail-closed behavior, Type 2 eligibility, context sealing, approval reference, and child tool/cwd restriction. | Procedure lists expected artifacts and tests but does not name implementation files or commands; restricted capability execution cannot close without runnable evidence. | Procedure.md; Specification.md | Steps 1-12; Records; Verification | NA | PROPOSAL | TBD |
+| D-001 | `D:[operative]:[applying]` | Resolved | Procedure.md | Procedure.md | ADQ-05 and ADQ-12 provide concrete implementation paths and final test commands for the inspected bridge and handoff scope. | Runtime evidence now covers bridge invocation, hook fail-closed behavior, Type 2 eligibility, context sealing, approval reference, child tool/cwd restriction, child-run naming, and child-output artifact handling. | Procedure.md; Specification.md | Steps 1-12; Records; Verification | NA | ADQ-12 | ADQ-12 accepted inspected-scope evidence |
 | D-002 | `D:[operative]:[reviewing]` | TBD_Question | Procedure.md | Procedure.md | Reconcile Procedure prerequisite text that declared upstream dependencies are TBD with _DEPENDENCIES.md active extracted prerequisites for source corpus, governance contract, hook infrastructure, SDK probe, and DEL-08-05 handoff. | Procedure still says dependency extraction is deferred and declared upstream dependencies are TBD, while _DEPENDENCIES.md now records six active rows; workflow audit needs a current-state ruling without treating extracted rows as accepted declarations. | Procedure.md; _DEPENDENCIES.md | Prerequisites; Records; Declared Upstream; Extracted Dependency Register | NA | PROPOSAL | TBD |
 
 ## Matrix X

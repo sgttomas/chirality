@@ -97,7 +97,7 @@
 | C:[normative]:[necessity] | normative | necessity | binding source rationale | 0 | NO_ITEMS | binding source rationale lens checked against DEL-08-01 production text; normative/necessity role is represented without an added register item. |
 | C:[normative]:[sufficiency] | normative | sufficiency | warranted compliance basis | 0 | NO_ITEMS | warranted compliance basis lens checked against DEL-08-01 production text; normative/sufficiency role is represented without an added register item. |
 | C:[normative]:[completeness] | normative | completeness | complete governance record | 0 | NO_ITEMS | complete governance record lens checked against DEL-08-01 production text; normative/completeness role is represented without an added register item. |
-| C:[normative]:[consistency] | normative | consistency | coherent rule structure | 1 | HAS_ITEMS | coherent rule structure lens surfaces 1 tracked enrichment input for normative/consistency evidence. |
+| C:[normative]:[consistency] | normative | consistency | coherent rule structure | 1 | HAS_ITEMS | coherent rule structure lens recorded the former REF-006 source-state issue; ADQ-12 marks it resolved by D-APP-38. |
 | C:[operative]:[necessity] | operative | necessity | executable baseline need | 0 | NO_ITEMS | executable baseline need lens checked against DEL-08-01 production text; operative/necessity role is represented without an added register item. |
 | C:[operative]:[sufficiency] | operative | sufficiency | adequate implementation evidence | 0 | NO_ITEMS | adequate implementation evidence lens checked against DEL-08-01 production text; operative/sufficiency role is represented without an added register item. |
 | C:[operative]:[completeness] | operative | completeness | complete process account | 0 | NO_ITEMS | complete process account lens checked against DEL-08-01 production text; operative/completeness role is represented without an added register item. |
@@ -110,7 +110,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | C:[normative]:[consistency] | Conflict | Multi | NA | PRD-only packaging requirements should remain warning-labeled until REF-006 is reconciled. | Guidance records CT-001 and Specification R-004/R-005/R-012/R-013 rely on docs/PRD.md while _REFERENCES.md reports a HASH_MISMATCH, so authority placement needs a human ruling rather than silent acceptance. | Guidance.md; Specification.md; _REFERENCES.md | Guidance Conflict Table CT-001; Specification Requirements; _REFERENCES.md REF-006 | Guidance.md#Conflict Table CT-001; Specification.md#Requirements; _REFERENCES.md#REF-006 | PROPOSAL | TBD |
+| C-001 | C:[normative]:[consistency] | Resolved | Multi | NA | Former PRD source-state warning is resolved under D-APP-38. | Guidance, Specification, and `_REFERENCES.md` now treat REF-006 as current source-state evidence while keeping implementation proof separate. | Guidance.md; Specification.md; _REFERENCES.md | Guidance Conflict Table CT-001; Specification Requirements; _REFERENCES.md REF-006 | Guidance.md#Conflict Table CT-001; Specification.md#Requirements; _REFERENCES.md#REF-006 | D-APP-38 | D-APP-38 accepted current authority corpus |
 
 ## Matrix F — Requirements
 
@@ -204,11 +204,11 @@
 | E:[judging]:[knowledge] | judging | knowledge | mastery verdict basis | 0 | NO_ITEMS | mastery verdict basis lens checked against DEL-08-01 production text; judging/knowledge role is represented without an added register item. |
 | E:[judging]:[wisdom] | judging | wisdom | principled verdict rationale | 0 | NO_ITEMS | principled verdict rationale lens checked against DEL-08-01 production text; judging/wisdom role is represented without an added register item. |
 | E:[reviewing]:[data] | reviewing | data | factual audit signal | 0 | NO_ITEMS | factual audit signal lens checked against DEL-08-01 production text; reviewing/data role is represented without an added register item. |
-| E:[reviewing]:[information] | reviewing | information | contextual audit proof | 1 | HAS_ITEMS | contextual audit proof lens surfaces 1 tracked enrichment input for reviewing/information evidence. |
+| E:[reviewing]:[information] | reviewing | information | contextual audit proof | 1 | HAS_ITEMS | contextual audit proof lens recorded the former REF-006 transition question; ADQ-12 marks it resolved by D-APP-38. |
 | E:[reviewing]:[knowledge] | reviewing | knowledge | expertise audit basis | 0 | NO_ITEMS | expertise audit basis lens checked against DEL-08-01 production text; reviewing/knowledge role is represented without an added register item. |
 | E:[reviewing]:[wisdom] | reviewing | wisdom | judgment audit rationale | 0 | NO_ITEMS | judgment audit rationale lens checked against DEL-08-01 production text; reviewing/wisdom role is represented without an added register item. |
 
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E-001 | E:[reviewing]:[information] | RationaleGap | Guidance | Guidance | Document the human ruling path for REF-006 before PRD-only checks become failures instead of warnings. | Guidance recommends warning treatment for PRD-only items, but the transition condition from warning context to governing requirement still depends on a human or source-reconciliation ruling. | Guidance.md; Specification.md | Guidance Trade-offs; Specification Documentation |  | PROPOSAL | TBD |
+| E-001 | E:[reviewing]:[information] | Resolved | Guidance | Guidance | REF-006 transition path is resolved by D-APP-38. | Current guidance records PRD-backed checks as source-current while implementation proof remains separate. | Guidance.md; Specification.md | Guidance Trade-offs; Specification Documentation |  | D-APP-38 | D-APP-38 accepted current authority corpus |

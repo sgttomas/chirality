@@ -43,6 +43,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` is invalid evidence and was not read or consumed.
 - Decomposition authority located and used for DEL-08-04, SOW-063, DEL-04-01, and DEL-08-05 resolution.
 - [RESOLVED] SOURCE_STATE: D-APP-38 current authority-corpus reconciliation supersedes the prior REF-006 source-state warning for this tranche.
+- [RESOLVED] CHILD_OUTPUT_ARTIFACT_EVIDENCE: ADQ-12 closes the package-level DEL-08-05 child-output artifact proof residual without changing the Type 2 governance gate or exposing new child capabilities.
 - [WARNING] TARGET_UNRESOLVED: `evaluateSubagentGovernance` implementation/target contract remains `TBD` in the source.
 - [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure are explicit prerequisites, but no single stable target deliverable is named in the local source; the row preserves `TargetType=UNKNOWN`.
 - [WARNING] TARGET_INFERRED: SDK probe prerequisite was resolved to DEL-04-01 from decomposition because the local source names SDK/R0/R1 probes rather than a deliverable ID.
@@ -50,6 +51,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 ## Run History
 
+- 2026-06-21T05:00: ADQ-12 recorded child-output artifact evidence closure for the DEL-08-04 downstream handoff; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
 - 2026-06-21T03:00: ADQ-05 applied D-APP-38 source-state reconciliation and D-APP-40 child-run handoff naming; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
 - 2026-05-20T20:54: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, decomposition located, warnings: superseded source-state warning, TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
 

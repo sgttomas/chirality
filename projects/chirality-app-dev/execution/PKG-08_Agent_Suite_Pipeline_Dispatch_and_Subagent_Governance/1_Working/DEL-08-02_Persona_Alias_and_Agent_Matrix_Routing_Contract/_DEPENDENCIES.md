@@ -53,8 +53,9 @@ TBD - no declared dependency edges have been accepted by a human.
 - Source documents used: `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the decomposition authority.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` is invalid evidence and was not read or consumed.
 - Defaults applied: `SOURCE_DOCS=AUTO`, `DOC_ROLE_MAP=DEFAULT`, `ANCHOR_DOC=Datasheet.md`, `EXECUTION_DOC_ORDER=Specification.md -> Guidance.md -> Procedure.md -> _REFERENCES.md`.
-- `[WARNING] PRD_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Rows using REF-006 preserve this warning.
-- `[WARNING] TBD_IMPLEMENTATION_PATHS`: exact implementation module paths, fixture filenames, route-state keys, and unknown-alias behavior remain TBD in source documents.
+- `[RESOLVED] SOURCE_STATE`: D-APP-38 authority corpus v2 supersedes the prior PRD hash warning; `_REFERENCES.md` now records REF-006 as MATCH.
+- `[RESOLVED] LOOP_FIRST_CONTRACT`: ADQ-12 records the current Type 0/1 loop-persona alias and matrix contract; old `AGGREGATE`/`RECONCILING` alias requirements are not preserved as compatibility behavior.
+- `[RESOLVED] IMPLEMENTATION_PATHS`: ADQ-12 evidence records the persona-resolution, matrix-cell, matrix-launch, and Pipeline component/test paths used for this tranche.
 - Non-emitted edge note: shared SOW ownership with DEL-02-01 and DEL-02-02 was not converted into execution edges because the allowed source documents do not state a concrete handoff or interface contract to those deliverables.
 - Non-emitted edge note: REF-005 `docs/PLAN.md` and REF-007 `AGENT_SOFTWARE_DECOMP.md` were not emitted as dependency rows because evidence only identifies them as context/method references, not execution prerequisites for this deliverable.
 
@@ -62,7 +63,8 @@ TBD - no declared dependency edges have been accepted by a human.
 
 | Timestamp | Mode | Strictness | Decomposition | Validator | ACTIVE Rows | Warnings |
 |---|---|---|---|---|---:|---|
-| 2026-05-20T20:54:44-0600 | UPDATE | CONSERVATIVE | v3.2 found | PASS: 29 columns, 13 rows | 13 | PRD_HASH_MISMATCH; TBD_IMPLEMENTATION_PATHS |
+| 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, loop-first alias contract, and implementation-path evidence applied | PASS: focused PKG-08 tests | 13 | none |
+| 2026-05-20T20:54:44-0600 | UPDATE | CONSERVATIVE | v3.2 found | PASS: 29 columns, 13 rows | 13 | superseded PRD_HASH_MISMATCH; superseded implementation-path TBDs |
 
 ## Lifecycle Summary
 

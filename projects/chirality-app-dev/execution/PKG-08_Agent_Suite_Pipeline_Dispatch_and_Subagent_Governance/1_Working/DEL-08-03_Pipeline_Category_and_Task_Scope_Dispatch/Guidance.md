@@ -23,7 +23,7 @@ The practical outcome is a user experience where operators can see the available
 - Scope scan behavior should be resilient to working-root changes. A selected deliverable or knowledge bucket that is no longer present should be cleared instead of retained as stale UI state.
 - Knowledge-type discovery should account for the four-document kit first. Metadata buckets should be exposed only when the UI can use canonical `KnowledgeTypeOption` labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.
 - The deliverable's anticipated artifacts are tests and discovery behavior, not new authority for runtime subagent execution.
-- PRD hash mismatch is a warning. Use PRD content conservatively and preserve the mismatch in closure materials until a human reconciles the reference hash.
+- REF-006 is current under D-APP-38 and `_REFERENCES.md` records `docs/PRD.md` as `MATCH`. Preserve implementation proof separately from source-state proof.
 
 ## Boundary Rationale
 
@@ -33,8 +33,8 @@ PIPELINE dispatch expresses operator intent and selects a proposed route through
 
 | Topic | Required Ruling | Current Treatment |
 |---|---|---|
-| REF-006 PRD hash mismatch | Source owner or human reviewer must reconcile the expected and observed PRD hash, or explicitly accept continued conservative PRD use for this deliverable. | Keep PRD-derived requirements warning-qualified and do not treat the mismatched PRD hash as final closure evidence. |
-| Closure language for PRD-derived controls | Human reviewer must approve wording that distinguishes PRD-derived source-warning content from accepted source truth before final issue. | State that PRD content is used under recorded `HASH_MISMATCH` warning until reconciled; do not upgrade the warning by implication. |
+| REF-006 source state | Resolved by D-APP-38. | Use PRD-derived selector requirements under the current authority corpus; keep implementation proof separate. |
+| PRD-derived control wording | Resolved by D-APP-38 and ADQ-12 evidence update. | State that PRD content is current for source-state purposes while selector behavior remains proven by code/tests. |
 
 ## Trade-offs
 
@@ -58,7 +58,7 @@ PIPELINE dispatch expresses operator intent and selects a proposed route through
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CONFLICT-001 | PRD reference hash does not match expected hash in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 expected hash | `_REFERENCES.md` REF-006 actual hash | All PRD-derived requirements | Continue using PRD as directed source warning for this P1/P2 run; reconcile hash before final closure. | TBD |
+| CONFLICT-001 | Former PRD source-state warning resolved by D-APP-38. | `_REFERENCES.md` REF-006 | D-APP-38 current authority corpus | All PRD-derived requirements | Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof. | D-APP-38 accepted current authority corpus |
 
 ## Assumptions
 
@@ -69,8 +69,8 @@ PIPELINE dispatch expresses operator intent and selects a proposed route through
 
 | ItemID | Disposition |
 |---|---|
-| A-001 | Surfaced as conflict; the PRD hash mismatch remains in the Conflict Table and Human Ruling Path. |
+| A-001 | Resolved by D-APP-38; the former PRD source-state warning is retained as historical context only. |
 | C-001 | Incorporated as rationale for exposing metadata buckets only with canonical `KnowledgeTypeOption` labels or explicit mapping. |
-| D-001 | Converted to a human ruling path for REF-006 reconciliation before final closure. |
+| D-001 | Resolved by D-APP-38; no further source-state ruling is required for this tranche. |
 | E-001 | Incorporated as boundary rationale distinguishing UI intent from TASK and Type 2 runtime authority. |
-| E-002 | Converted to human-approved closure-language requirement for PRD-derived controls under `HASH_MISMATCH`. |
+| E-002 | Resolved by D-APP-38 and ADQ-12 wording updates; PRD-derived controls are current while implementation proof stays separate. |

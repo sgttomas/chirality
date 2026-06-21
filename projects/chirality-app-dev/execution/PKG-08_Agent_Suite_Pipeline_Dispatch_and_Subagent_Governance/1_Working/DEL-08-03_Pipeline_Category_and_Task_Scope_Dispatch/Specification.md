@@ -76,11 +76,11 @@ Required or expected artifacts:
 - Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.
 - ASSUMPTION: implementation notes may be needed once actual frontend component/module paths are selected.
 
-## Source Warnings
+## Source State
 
-| Warning ID | Statement | Impact |
+| State ID | Statement | Impact |
 |---|---|---|
-| WARN-001 | `docs/PRD.md` has expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` but observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as a source warning per dispatch, not a blocker. Human may need to reconcile the reference hash before closure. |
+| STATE-001 | `docs/PRD.md` is current under the D-APP-38 authority corpus; `_REFERENCES.md` records REF-006 as `MATCH`. | Former PRD source-state warning is resolved for this tranche. Implementation proof remains separate from source-state proof. |
 
 ## Pass 3 Disposition Notes
 

@@ -142,6 +142,14 @@ describe('verify-instruction-root-integrity script', () => {
       missingInBundle: string[];
       mismatchedFiles: Array<{ path: string }>;
       unexpectedBundleAgentFiles: string[];
+      sourceCompleteness: {
+        status: string;
+        rows: Array<{
+          id: string;
+          status: string;
+          remediationStatus: string;
+        }>;
+      };
       sdkBundle: {
         missingFiles: string[];
         selectedPlatformPackageRoot: string | null;
@@ -153,6 +161,26 @@ describe('verify-instruction-root-integrity script', () => {
     expect(summary.missingInBundle).toHaveLength(0);
     expect(summary.mismatchedFiles).toHaveLength(0);
     expect(summary.unexpectedBundleAgentFiles).toHaveLength(0);
+    expect(summary.sourceCompleteness.status).toBe('needs_remediation');
+    expect(summary.sourceCompleteness.rows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'SOW-073-OI-004-required-instruction-root-assets',
+          status: 'satisfied',
+          remediationStatus: 'not_required'
+        }),
+        expect.objectContaining({
+          id: 'KG-001-tools-registry',
+          status: 'remediation_required',
+          remediationStatus: 'required'
+        }),
+        expect.objectContaining({
+          id: 'KG-001-examples',
+          status: 'remediation_required',
+          remediationStatus: 'required'
+        })
+      ])
+    );
     expect(summary.sdkBundle.missingFiles).toHaveLength(0);
     if (SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`]) {
       expect(summary.sdkBundle.selectedPlatformPackageRoot).toContain(
@@ -195,6 +223,64 @@ describe('verify-instruction-root-integrity script', () => {
       expect.arrayContaining([
         expect.objectContaining({
           path: 'agents/AGENT_TASK.md'
+        })
+      ])
+    );
+  });
+
+  it('reports source-completeness remediation state for SOW-073 and OI-004 candidates', async () => {
+    const sourceRoot = path.join(tmpRoot, 'source-root');
+    const bundleRoot = path.join(tmpRoot, 'bundle-root');
+    const outputRoot = path.join(tmpRoot, 'output');
+
+    await writeFixture(sourceRoot, {
+      'tools/REGISTRY.md': '# registry\n',
+      'examples/README.md': '# examples\n'
+    });
+    await writeFixture(bundleRoot);
+    await writeSdkBundleFixture(bundleRoot);
+
+    const result = await runIntegrityScript([
+      '--source-root',
+      sourceRoot,
+      '--bundle-root',
+      bundleRoot,
+      '--output-root',
+      outputRoot
+    ]);
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toContain('source completeness status: pass');
+
+    const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
+    const summary = JSON.parse(summaryRaw) as {
+      sourceCompleteness: {
+        status: string;
+        rows: Array<{
+          id: string;
+          status: string;
+          remediationStatus: string;
+        }>;
+      };
+    };
+
+    expect(summary.sourceCompleteness.status).toBe('pass');
+    expect(summary.sourceCompleteness.rows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'SOW-073-OI-004-required-instruction-root-assets',
+          status: 'satisfied',
+          remediationStatus: 'not_required'
+        }),
+        expect.objectContaining({
+          id: 'KG-001-tools-registry',
+          status: 'satisfied',
+          remediationStatus: 'not_required'
+        }),
+        expect.objectContaining({
+          id: 'KG-001-examples',
+          status: 'satisfied',
+          remediationStatus: 'not_required'
         })
       ])
     );

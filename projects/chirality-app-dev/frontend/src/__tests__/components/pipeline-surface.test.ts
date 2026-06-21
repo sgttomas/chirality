@@ -2,10 +2,8 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockState = vi.hoisted(() => ({
-  projectRoot: '/repo/projects/chirality-app-dev',
-  searchParams: new URLSearchParams(),
-  scan: {
+const mockState = vi.hoisted(() => {
+  const baseScan = {
     projectRoot: '/repo/projects/chirality-app-dev',
     scannedAt: '2026-06-21T00:00:00.000Z',
     truncated: false,
@@ -21,11 +19,22 @@ const mockState = vi.hoisted(() => ({
     ],
     knowledgeDecomposition: {
       enabled: false,
-      markerFile: null
+      markerFile: null as string | null
     },
-    knowledgeTypes: []
-  }
-}));
+    knowledgeTypes: [] as Array<{
+      id: string;
+      label: string;
+      matchingDeliverableKeys: string[];
+    }>
+  };
+
+  return {
+    projectRoot: '/repo/projects/chirality-app-dev',
+    searchParams: new URLSearchParams(),
+    baseScan,
+    scan: baseScan
+  };
+});
 
 vi.mock('next/navigation', () => ({
   useSearchParams: () => mockState.searchParams
@@ -48,6 +57,7 @@ describe('PipelineSurface rendering', () => {
   beforeEach(() => {
     mockState.projectRoot = '/repo/projects/chirality-app-dev';
     mockState.searchParams = new URLSearchParams();
+    mockState.scan = mockState.baseScan;
   });
 
   it('renders operative category controls, TASK split selectors, and disabled coming-soon options', async () => {
@@ -68,5 +78,68 @@ describe('PipelineSurface rendering', () => {
     expect(html).toContain('SCHEDULING (coming soon)');
     expect(html).toContain('SCHEDULES (coming soon)');
     expect(html.match(/disabled=""/g)?.length ?? 0).toBeGreaterThanOrEqual(4);
+  });
+
+  it('renders valid TASK knowledge-type deep links with required target deliverables', async () => {
+    mockState.searchParams = new URLSearchParams({
+      category: 'TASK',
+      taskScopeMode: 'KNOWLEDGE_TYPES',
+      scopeKey: 'Specification',
+      targetDeliverableKey: 'PKG-02::DEL-02-01'
+    });
+    mockState.scan = {
+      ...mockState.baseScan,
+      knowledgeDecomposition: {
+        enabled: true,
+        markerFile: '/repo/projects/chirality-app-dev/_Decomposition/source.md'
+      },
+      knowledgeTypes: [
+        {
+          id: 'Specification',
+          label: 'Specification',
+          matchingDeliverableKeys: ['PKG-02::DEL-02-01']
+        }
+      ]
+    };
+
+    const { PipelineSurface } = await import('../../components/pipeline/pipeline-surface');
+    const html = renderToStaticMarkup(createElement(PipelineSurface));
+
+    expect(html).toContain('Selected category: <strong>TASK</strong>');
+    expect(html).toContain('Knowledge decomposition marker detected');
+    expect(html).toContain('Specification (1)');
+    expect(html).toContain('Target Deliverable (required)');
+    expect(html).toContain('Selected knowledge type: <code>Specification</code>');
+    expect(html).toContain('target <code>PKG-02::DEL-02-01</code>');
+  });
+
+  it('resets stale TASK knowledge-target deep links during initial render', async () => {
+    mockState.searchParams = new URLSearchParams({
+      category: 'TASK',
+      taskScopeMode: 'KNOWLEDGE_TYPES',
+      scopeKey: 'Specification',
+      targetDeliverableKey: 'PKG-99::DEL-99-99'
+    });
+    mockState.scan = {
+      ...mockState.baseScan,
+      knowledgeDecomposition: {
+        enabled: true,
+        markerFile: '/repo/projects/chirality-app-dev/_Decomposition/source.md'
+      },
+      knowledgeTypes: [
+        {
+          id: 'Specification',
+          label: 'Specification',
+          matchingDeliverableKeys: ['PKG-02::DEL-02-01']
+        }
+      ]
+    };
+
+    const { PipelineSurface } = await import('../../components/pipeline/pipeline-surface');
+    const html = renderToStaticMarkup(createElement(PipelineSurface));
+
+    expect(html).toContain('Selected knowledge type: <code>Specification</code>');
+    expect(html).not.toContain('PKG-99::DEL-99-99');
+    expect(html).not.toContain('target <code>');
   });
 });

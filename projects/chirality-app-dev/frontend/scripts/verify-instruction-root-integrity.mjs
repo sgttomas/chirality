@@ -27,6 +27,19 @@ const REQUIRED_UNPACKED_SDK_FILES = [
   'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json'
 ];
 
+const SOURCE_COMPLETENESS_CANDIDATE_PATHS = [
+  {
+    id: 'KG-001-tools-registry',
+    path: 'tools/REGISTRY.md',
+    description: 'PRD KG-001 candidate source registry asset'
+  },
+  {
+    id: 'KG-001-examples',
+    path: 'examples',
+    description: 'PRD KG-001 candidate examples source asset'
+  }
+];
+
 const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
   ['darwin:arm64', '@anthropic-ai/claude-agent-sdk-darwin-arm64'],
   ['darwin:x64', '@anthropic-ai/claude-agent-sdk-darwin-x64'],
@@ -447,6 +460,52 @@ async function verifyUnpackedSdkBundle({ bundleRoot }) {
   };
 }
 
+function buildSourceCompletenessChecklist({ sourceRoots, manifestEntries, verification }) {
+  const bundleIssueCount =
+    verification.missingInBundle.length +
+    verification.mismatchedFiles.length +
+    verification.unexpectedBundleAgentFiles.length;
+
+  const rows = [
+    {
+      id: 'SOW-073-OI-004-required-instruction-root-assets',
+      source: 'SOW-073; OI-004; docs/PRD.md KG-001 under D-APP-38',
+      description:
+        'Required instruction-root source assets are complete enough for source-to-bundle comparison.',
+      status: bundleIssueCount === 0 ? 'satisfied' : 'remediation_required',
+      remediationStatus: bundleIssueCount === 0 ? 'not_required' : 'required',
+      evidence: {
+        checkedFileCount: manifestEntries.length,
+        missingInBundle: verification.missingInBundle,
+        mismatchedFiles: verification.mismatchedFiles.map((entry) => entry.path),
+        unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles
+      }
+    }
+  ];
+
+  for (const candidate of SOURCE_COMPLETENESS_CANDIDATE_PATHS) {
+    const absolutePath = path.join(sourceRoots.rootFilesRoot, candidate.path);
+    const present = existsSync(absolutePath);
+    rows.push({
+      id: candidate.id,
+      source: 'docs/PRD.md KG-001 under D-APP-38',
+      description: candidate.description,
+      path: candidate.path,
+      absolutePath,
+      status: present ? 'satisfied' : 'remediation_required',
+      remediationStatus: present ? 'not_required' : 'required',
+      evidence: {
+        present
+      }
+    });
+  }
+
+  return {
+    status: rows.some((row) => row.remediationStatus === 'required') ? 'needs_remediation' : 'pass',
+    rows
+  };
+}
+
 async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
@@ -475,6 +534,11 @@ async function main() {
     bundleRoot
   });
   const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot });
+  const sourceCompleteness = buildSourceCompletenessChecklist({
+    sourceRoots,
+    manifestEntries,
+    verification
+  });
 
   const status =
     verification.missingInBundle.length === 0 &&
@@ -515,6 +579,7 @@ async function main() {
     mismatchedFiles: verification.mismatchedFiles,
     unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles,
     comparisons: verification.comparisons,
+    sourceCompleteness,
     sdkBundle: {
       platformPackageName: sdkBundleVerification.platformPackageName,
       selectedPlatformPackageRoot: sdkBundleVerification.selectedPlatformPackageRoot,
@@ -529,6 +594,7 @@ async function main() {
 
   console.log(`instruction-root integrity status: ${status}`);
   console.log(`checked files: ${manifestEntries.length}`);
+  console.log(`source completeness status: ${sourceCompleteness.status}`);
   if (gitSha) {
     console.log(`git sha: ${gitSha}`);
   } else {

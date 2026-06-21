@@ -25,7 +25,10 @@ import {
   summarizeToolResult,
   withToolResultPersistence
 } from './tool-evidence';
-import { persistToolResultArtifact } from './tool-result-artifacts';
+import {
+  persistChildOutputArtifact,
+  persistToolResultArtifact
+} from './tool-result-artifacts';
 import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
 import { UIEvent } from './types';
 
@@ -77,6 +80,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function readString(value: unknown): string | undefined {
   return typeof value === 'string' && value.length > 0 ? value : undefined;
+}
+
+function readOptionalString(value: unknown): string | undefined {
+  return typeof value === 'string' ? value : undefined;
 }
 
 function readSessionId(message: SDKMessage): string | undefined {
@@ -1186,5 +1193,81 @@ export async function mapSdkMessageToHarnessWithArtifacts(
     return mapSdkUserMessageWithArtifacts(sessionId, message, state);
   }
 
-  return mapSdkMessageToHarness(sessionId, message, state);
+  const mapped = mapSdkMessageToHarness(sessionId, message, state);
+  if (message.type !== 'system') {
+    return mapped;
+  }
+
+  if (message.subtype === 'task_notification') {
+    const event = mapped.harnessEvents[0];
+    if (!event) {
+      return mapped;
+    }
+
+    const childRunId = readString(event.data.childRunId);
+    const agentName = readString(event.data.agentName) ?? readString(event.data.subagentType);
+    const artifactMetadata = await persistChildOutputArtifact({
+      sessionId,
+      turnId: state?.childRunContext?.parentTurnId,
+      taskId: message.task_id,
+      childRunId,
+      toolUseId: message.tool_use_id,
+      agentName,
+      status: message.status,
+      outputFile: message.output_file,
+      summary: message.summary,
+      usage: message.usage,
+      skipTranscript: message.skip_transcript
+    });
+
+    if (artifactMetadata) {
+      event.data = {
+        ...event.data,
+        summary: '[stored in child output artifact]',
+        outputArtifactPath: artifactMetadata.artifactRelativePath,
+        childOutputArtifactMetadata: artifactMetadata
+      };
+    }
+    return mapped;
+  }
+
+  if (message.subtype === 'task_updated') {
+    const event = mapped.harnessEvents[0];
+    const patchRecord = isRecord(message.patch)
+      ? (message.patch as Record<string, unknown>)
+      : undefined;
+    if (!event || !patchRecord) {
+      return mapped;
+    }
+
+    const summary = readOptionalString(patchRecord.summary);
+    if (summary === undefined) {
+      return mapped;
+    }
+
+    const artifactMetadata = await persistChildOutputArtifact({
+      sessionId,
+      turnId: state?.childRunContext?.parentTurnId,
+      taskId: message.task_id,
+      childRunId: readString(event.data.childRunId),
+      toolUseId: readString(event.data.toolUseId),
+      agentName: readString(event.data.agentName),
+      status: readString(patchRecord.status),
+      outputFile: readString(patchRecord.output_file),
+      summary,
+      usage: patchRecord.usage
+    });
+
+    if (artifactMetadata) {
+      event.data = {
+        ...event.data,
+        summary: '[stored in child output artifact]',
+        outputArtifactPath: artifactMetadata.artifactRelativePath,
+        childOutputArtifactMetadata: artifactMetadata
+      };
+    }
+    return mapped;
+  }
+
+  return mapped;
 }

@@ -6,6 +6,33 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-12 agent/subagent residuals completed
+
+Completed `ADQ-12` from the autonomous development queue. The tranche closed PKG-08 residuals across
+agent instruction conformance, persona/matrix routing, Pipeline TASK coverage, Type 2 governance
+linkage, and child-output artifact handling.
+
+Implemented a deterministic agent-instruction conformance validator and fixtures; added
+source-completeness checklist rows to the instruction-root integrity summary; reconciled DEL-08-02 to
+the stable loop-first persona contract with removed Type 2 top-level aliases; added Pipeline surface
+render coverage and a route regression proving Pipeline TASK selector state cannot bypass Type 2
+governance; persisted over-inline child summaries as child-output artifacts with redaction, checksum,
+byte-count, truncation, parent-turn, task, child-run, tool-use, and source-output metadata. Updated
+PKG-08 assessments, dependency summaries, memory notes, semantic-lensing notes, and evidence at
+`execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/Evidence_ADQ-12_Agent_Subagent_Residuals.md`.
+
+Validation: focused ADQ-12 suite passed 14 files / 116 tests; `npm run typecheck` passed; full
+`npm run test -- --testTimeout=60000` passed 79 files / 551 tests after one 30s whole-suite timeout was
+isolated and retried; `npm run harness:validate:section9` passed 14 checks; `npm run desktop:pack`
+passed and refreshed the ignored local app bundle; `npm run instruction-root:integrity` passed with 47
+checked files and explicit `sourceCompleteness.status=needs_remediation`; `npm run
+harness:validate:premerge` passed with a local Next dev server after an initial no-server reachability
+failure; D-APP-38 authority-corpus status reported corpus `v2` with no drift; `git diff --check`
+passed.
+
+The active autonomous development queue is now exhausted: all ADQ rows are `DONE`, and no eligible
+`READY` item remains.
+
 ## 2026-06-21 - ADQ-11 permission/tool residuals completed
 
 Completed `ADQ-11` from the autonomous development queue under D-APP-43. The final ruling selected

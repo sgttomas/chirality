@@ -18,6 +18,26 @@ export type ToolResultArtifactMetadata = {
   truncated: boolean;
 };
 
+export type ChildOutputArtifactMetadata = {
+  artifactPath: string;
+  artifactRelativePath: string;
+  artifactByteLength: number;
+  originalByteLength: number;
+  sha256: string;
+  toolName: 'Agent';
+  turnId?: string;
+  taskId?: string;
+  childRunId?: string;
+  toolUseId?: string;
+  sourceOutputFile?: string;
+  retentionPolicy: 'session-lifetime';
+  redacted: true;
+  truncated: boolean;
+};
+
+const CHILD_OUTPUT_INLINE_BYTE_LIMIT = 16 * 1024;
+const CHILD_OUTPUT_ARTIFACT_BYTE_LIMIT = 512 * 1024;
+
 function getSessionRootDirectory(): string {
   return process.env.CHIRALITY_SESSION_ROOT ?? path.join(process.cwd(), '.chirality', 'sessions');
 }
@@ -112,6 +132,103 @@ export async function persistToolResultArtifact(input: {
     sha256: sha256Hex(content),
     toolName,
     turnId: input.turnId,
+    retentionPolicy: 'session-lifetime',
+    redacted: true,
+    truncated
+  };
+}
+
+export async function persistChildOutputArtifact(input: {
+  sessionId: string;
+  turnId?: string;
+  taskId?: string;
+  childRunId?: string;
+  toolUseId?: string;
+  agentName?: string;
+  status?: string;
+  outputFile?: string;
+  summary?: string;
+  usage?: unknown;
+  skipTranscript?: boolean;
+}): Promise<ChildOutputArtifactMetadata | undefined> {
+  const serialized = `${JSON.stringify(
+    {
+      schemaVersion: 1,
+      artifactKind: 'subagent-output',
+      toolName: 'Agent',
+      turnId: input.turnId,
+      taskId: input.taskId,
+      childRunId: input.childRunId,
+      toolUseId: input.toolUseId,
+      agentName: input.agentName,
+      status: input.status,
+      sourceOutputFile: input.outputFile,
+      skipTranscript: input.skipTranscript,
+      redacted: true,
+      output: redactJsonLike({
+        summary: input.summary,
+        usage: input.usage
+      })
+    },
+    null,
+    2
+  )}\n`;
+  const originalByteLength = byteLength(serialized);
+  if (originalByteLength <= CHILD_OUTPUT_INLINE_BYTE_LIMIT) {
+    return undefined;
+  }
+
+  const truncated = originalByteLength > CHILD_OUTPUT_ARTIFACT_BYTE_LIMIT;
+  const content = truncated
+    ? `${JSON.stringify(
+        {
+          schemaVersion: 1,
+          artifactKind: 'subagent-output',
+          toolName: 'Agent',
+          turnId: input.turnId,
+          taskId: input.taskId,
+          childRunId: input.childRunId,
+          toolUseId: input.toolUseId,
+          agentName: input.agentName,
+          status: input.status,
+          sourceOutputFile: input.outputFile,
+          skipTranscript: input.skipTranscript,
+          redacted: true,
+          truncated: true,
+          originalByteLength,
+          preview: serialized.slice(0, CHILD_OUTPUT_INLINE_BYTE_LIMIT)
+        },
+        null,
+        2
+      )}\n`
+    : serialized;
+
+  const artifactRelativePath = path.join(
+    input.sessionId,
+    'artifacts',
+    'subagents',
+    `${safePathSegment(
+      input.taskId ?? input.childRunId ?? input.toolUseId,
+      'child-output'
+    )}-${safePathSegment(input.agentName ?? 'Agent', 'subagent')}.json`
+  );
+  const artifactPath = path.join(getSessionRootDirectory(), artifactRelativePath);
+  await mkdir(path.dirname(artifactPath), { recursive: true });
+  await writeFile(artifactPath, content, 'utf8');
+  const artifactByteLength = byteLength(content);
+
+  return {
+    artifactPath,
+    artifactRelativePath,
+    artifactByteLength,
+    originalByteLength,
+    sha256: sha256Hex(content),
+    toolName: 'Agent',
+    turnId: input.turnId,
+    taskId: input.taskId,
+    childRunId: input.childRunId,
+    toolUseId: input.toolUseId,
+    sourceOutputFile: input.outputFile,
     retentionPolicy: 'session-lifetime',
     redacted: true,
     truncated

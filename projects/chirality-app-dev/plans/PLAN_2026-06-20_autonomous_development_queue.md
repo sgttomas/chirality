@@ -89,7 +89,7 @@ behind a hard fence; `DONE`.
 | ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 | DONE |
 | ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | D-APP-42 ruled Option A | DONE |
 | ADQ-11 | PKG-06 permission/tool residuals (boot/version fingerprint, missing-register fallback, exact-edit preconditions, atomicity, Bash interruption, PreCompact/Stop) | code/test/docs | M | AUTONOMOUS | D-APP-43 ruled 1B/2B/3B; validated closeout complete | DONE |
-| ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 | READY |
+| ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 | DONE |
 | ADQ-13 | PKG-02 UI specs reconcile + AMD-01 render tests | docs/UI/test | M | AUTONOMOUS | AMD-01 (resolved, D-APP-36) | DONE |
 | ADQ-14 | PKG-09 release-quality validation wrapper/runbook (full test, premerge, Section 9 policy, summary consistency) | validation/docs | M | AUTONOMOUS | D-APP-34 profiles (resolved) | DONE |
 | ADQ-15 | Packaging + instruction-root **evidence** refresh (incl. packaged SDK subprocess proof) | validation/package | M | AUTONOMOUS (signing/notarization/publication FENCED) | ADQ-14 | DONE |
@@ -111,3 +111,6 @@ K-ENGINE-6 applies to every item.
 When the eligible queue is empty (all items DONE, BLOCKED on decisions, or FENCED), record closeout in
 `plans/PLAN_COMPLETION_LOG.md`, leave the decision/blocker queue for the owner, and stop. New roadmap
 items require a roadmap update or a human directive.
+
+Current queue closeout: after ADQ-12, all ADQ rows in this autonomous queue are `DONE` and no eligible
+`READY` item remains.

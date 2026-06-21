@@ -7,6 +7,7 @@ import {
   mapSdkMessageToHarness,
   mapSdkMessageToHarnessWithArtifacts
 } from '../../lib/harness/sdk-message-mapper';
+import { deriveSubagentActivity } from '../../lib/shell/harness-event-views';
 
 let tmpDir = '';
 
@@ -875,6 +876,120 @@ describe('mapSdkMessageToHarness', () => {
       adapter: {
         adapterTaskId: 'task_1'
       }
+    });
+  });
+
+  it('materializes over-inline child output summaries as redacted session artifacts', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-child-output-artifacts-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'sk-test-secret';
+
+    const state = createSdkToolEvidenceState({
+      parentPersona: 'WORKING_ITEMS',
+      projectRoot: '/tmp/chirality-project',
+      mode: 'workspaceWrite',
+      parentTurnId: 'turn_1'
+    });
+    const started = await mapSdkMessageToHarnessWithArtifacts(
+      'sess_parent',
+      {
+        type: 'system',
+        subtype: 'task_started',
+        task_id: 'task_1',
+        tool_use_id: 'toolu_agent',
+        description: 'Run bounded task',
+        subagent_type: 'TASK',
+        task_type: 'agent',
+        workflow_name: 'bounded-task',
+        skip_transcript: true,
+        uuid: '00000000-0000-0000-0000-000000000040',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+    const completed = await mapSdkMessageToHarnessWithArtifacts(
+      'sess_parent',
+      {
+        type: 'system',
+        subtype: 'task_notification',
+        task_id: 'task_1',
+        tool_use_id: 'toolu_agent',
+        status: 'completed',
+        output_file: '/tmp/chirality-child-output.json',
+        summary: `${'child output '.repeat(1800)} sk-test-secret`,
+        usage: {
+          total_tokens: 25,
+          tool_uses: 2,
+          duration_ms: 50
+        },
+        skip_transcript: true,
+        uuid: '00000000-0000-0000-0000-000000000041',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const completedEvent = completed.harnessEvents[0];
+    expect(completedEvent.data).toMatchObject({
+      childRunId: started.harnessEvents[0].data.childRunId,
+      status: 'completed',
+      outputArtifactPath: path.join(
+        'sess_parent',
+        'artifacts',
+        'subagents',
+        'task_1-TASK.json'
+      ),
+      childOutputArtifactMetadata: {
+        artifactPath: expect.any(String),
+        artifactRelativePath: path.join(
+          'sess_parent',
+          'artifacts',
+          'subagents',
+          'task_1-TASK.json'
+        ),
+        artifactByteLength: expect.any(Number),
+        originalByteLength: expect.any(Number),
+        sha256: expect.stringMatching(/^[a-f0-9]{64}$/),
+        toolName: 'Agent',
+        turnId: 'turn_1',
+        taskId: 'task_1',
+        childRunId: started.harnessEvents[0].data.childRunId,
+        toolUseId: 'toolu_agent',
+        sourceOutputFile: '/tmp/chirality-child-output.json',
+        redacted: true,
+        truncated: false,
+        retentionPolicy: 'session-lifetime'
+      }
+    });
+
+    expect(JSON.stringify(completedEvent.data)).not.toContain('sk-test-secret');
+    const artifactPath = (
+      completedEvent.data.childOutputArtifactMetadata as {
+        artifactPath: string;
+      }
+    ).artifactPath;
+    const artifact = await readFile(artifactPath, 'utf8');
+    expect(artifact).not.toContain('sk-test-secret');
+    expect(artifact).toContain('[REDACTED_API_KEY]');
+    expect(artifact).toContain('"toolName": "Agent"');
+    expect(artifact).toContain('"turnId": "turn_1"');
+
+    const rows = deriveSubagentActivity([
+      started.harnessEvents[0],
+      completed.harnessEvents[0]
+    ]);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({
+      key: 'task_1',
+      agentName: 'TASK',
+      status: 'completed',
+      outputArtifactPath: path.join(
+        'sess_parent',
+        'artifacts',
+        'subagents',
+        'task_1-TASK.json'
+      ),
+      eventCount: 2
     });
   });
 });

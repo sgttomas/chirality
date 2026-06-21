@@ -136,6 +136,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     };
     this.activeTurns.set(input.session.sessionId, activeTurn);
     let restoreSdkApiKey: (() => void) | undefined;
+    const turnId = `turn_${randomUUID()}`;
 
     // D-APP-25 manager-lifecycle bridging. `turn.accepted` / `turn.started` are
     // emitted before the SDK reports session:init, so we hold their bridged
@@ -156,7 +157,15 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       type: HarnessEvent['type'],
       data: Record<string, unknown>
     ): AsyncGenerator<UIEvent> {
-      const event = createHarnessEvent({ sessionId: input.session.sessionId, type, data });
+      const event = createHarnessEvent({
+        sessionId: input.session.sessionId,
+        turnId,
+        type,
+        data: {
+          turnId,
+          ...data
+        }
+      });
       await appendHarnessEvent(event);
       const bridged = harnessEventToUiEvent(event);
       if (bridged) {
@@ -202,8 +211,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       restoreSdkApiKey = installAnthropicApiKeyForSdkTurn();
       const turnAcceptedEvent = createHarnessEvent({
         sessionId: input.session.sessionId,
+        turnId,
         type: 'turn.accepted',
         data: {
+          turnId,
           provider: 'claude-agent-sdk',
           sdkPackageVersion: CLAUDE_AGENT_SDK_PACKAGE_VERSION,
           persona: input.opts.persona,
@@ -222,8 +233,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       activeTurn.query = sdkStream;
       const turnStartedEvent = createHarnessEvent({
         sessionId: input.session.sessionId,
+        turnId,
         type: 'turn.started',
         data: {
+          turnId,
           provider: 'claude-agent-sdk'
         }
       });
@@ -234,7 +247,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       const mapperState = createSdkToolEvidenceState({
         parentPersona: input.opts.persona,
         projectRoot: input.session.projectRoot,
-        mode: input.opts.mode
+        mode: input.opts.mode,
+        parentTurnId: turnId
       });
 
       // Merge the SDK message stream with the out-of-band permission-event
@@ -295,6 +309,11 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           mapperState
         );
         for (const event of mapped.harnessEvents) {
+          event.turnId = event.turnId ?? turnId;
+          event.data = {
+            turnId,
+            ...event.data
+          };
           await appendHarnessEvent(event);
           const bridged = harnessEventToUiEvent(event);
           if (bridged) {

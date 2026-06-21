@@ -11,7 +11,7 @@ Define an operational procedure for producing and verifying the DEL-08-03 implem
 | Accepted decomposition entry for DEL-08-03 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 | Deliverable metadata files | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_SEMANTIC.md`, `_STATUS.md` present |
 | Authoritative vocabulary | `docs/TYPES.md` Section 4.4 |
-| Product requirements | `docs/PRD.md` Section 8.2; PRD hash mismatch recorded as source warning |
+| Product requirements | `docs/PRD.md` Section 8.2; current under D-APP-38 with REF-006 `MATCH` |
 | Workspace scope API contract | `docs/SPEC.md` Section 17.2 |
 | Declared upstream dependencies | Extracted active rows exist in `_DEPENDENCIES.md` for accepted anchors, vocabulary, scope API, governance invariants, and PRD requirements; satisfaction remains TBD pending dependency closure. |
 | Declared downstream dependencies | `_DEPENDENCIES.md` records downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests; consumer target remains TBD. |
@@ -89,7 +89,7 @@ Maintain or produce these records during implementation:
 - Governance boundary review evidence for selector-only intent versus runtime authority.
 - Any implementation note identifying confirmed UI component and test file paths.
 - Any implementation worker note naming the final component path and test file path owner; owner remains TBD until assigned.
-- Any human ruling on the PRD hash mismatch before closure.
+- Any future authority-corpus update if `docs/PRD.md` changes.
 
 ## Pass 3 Disposition Notes
 

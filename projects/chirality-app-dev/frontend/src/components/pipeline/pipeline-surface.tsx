@@ -111,15 +111,43 @@ export function PipelineSurface(): JSX.Element {
   const { loading: scopeLoading, error: scopeError, scan: scopeData, refresh: refreshScopeData } =
     useDeliverables();
   const searchParams = useSearchParams();
+  const deliverableOptions = scopeData?.deliverables ?? [];
+  const knowledgeTypeOptions = scopeData?.knowledgeTypes ?? [];
+  const hasKnowledgeDecomposition = scopeData?.knowledgeDecomposition.enabled ?? false;
+  const initialTaskScopeMode = normalizeTaskScopeMode(
+    searchParams.get('taskScopeMode'),
+    hasKnowledgeDecomposition
+  );
+  const initialTaskSelection = sanitizeTaskSelection(
+    {
+      scopeMode: initialTaskScopeMode,
+      scopeKey: (searchParams.get('scopeKey') ?? '').trim(),
+      targetDeliverableKey:
+        initialTaskScopeMode === 'KNOWLEDGE_TYPES'
+          ? (searchParams.get('targetDeliverableKey') ?? '').trim()
+          : ''
+    },
+    {
+      knowledgeDecompositionEnabled: hasKnowledgeDecomposition,
+      deliverableKeys: deliverableOptions.map((item) => item.key),
+      knowledgeTypes: knowledgeTypeOptions
+    }
+  );
 
-  const [selectedCategory, setSelectedCategory] = useState<OperativeCategory>('DECOMP');
+  const [selectedCategory, setSelectedCategory] = useState<OperativeCategory>(() =>
+    normalizeCategory(searchParams.get('category'))
+  );
   const [selectedDecomp, setSelectedDecomp] = useState('SOFTWARE');
   const [selectedPrep, setSelectedPrep] = useState('PREPARATION');
   const [selectedAudit, setSelectedAudit] = useState('AGENTS');
   const [selectedTaskAgent, setSelectedTaskAgent] = useState('SCOPE_CHANGE');
-  const [taskScopeMode, setTaskScopeMode] = useState<TaskScopeMode>('DELIVERABLES');
-  const [selectedScopeKey, setSelectedScopeKey] = useState('');
-  const [selectedTargetDeliverableKey, setSelectedTargetDeliverableKey] = useState('');
+  const [taskScopeMode, setTaskScopeMode] = useState<TaskScopeMode>(
+    initialTaskSelection.scopeMode
+  );
+  const [selectedScopeKey, setSelectedScopeKey] = useState(initialTaskSelection.scopeKey);
+  const [selectedTargetDeliverableKey, setSelectedTargetDeliverableKey] = useState(
+    initialTaskSelection.targetDeliverableKey
+  );
 
   const [contractsRefreshToken, setContractsRefreshToken] = useState(0);
   const [contractsLoading, setContractsLoading] = useState(false);
@@ -157,13 +185,10 @@ export function PipelineSurface(): JSX.Element {
     setSelectedTargetDeliverableKey('');
   }, [projectRoot]);
 
-  const deliverableOptions = scopeData?.deliverables ?? [];
-  const knowledgeTypeOptions = scopeData?.knowledgeTypes ?? [];
   const deliverableByKey = useMemo(
     () => new Map(deliverableOptions.map((item) => [item.key, item])),
     [deliverableOptions]
   );
-  const hasKnowledgeDecomposition = scopeData?.knowledgeDecomposition.enabled ?? false;
 
   useEffect(() => {
     const requestedScopeMode = normalizeTaskScopeMode(

@@ -47,32 +47,32 @@
 
 | Component / Surface | Expected Role | Status |
 |---|---|---|
-| Pipeline category selector | Selects operative lane for `DECOMP`, `PREP`, `TASK`, or `AUDIT`. | TBD implementation location |
-| Category option list | Shows documented options for selected lane; unsupported variants are disabled. | TBD implementation location |
-| TASK agent selector | Selects the bounded task agent or skill route. | TBD implementation location |
-| TASK scope mode selector | Switches between deliverable scope and knowledge-type scope. | TBD implementation location |
-| Dynamic deliverable scan | Provides valid deliverable targets from the active working root. | Source identifies API contract; implementation location TBD |
-| Knowledge-type discovery | Detects document-kit and metadata buckets from deliverable content. | Source identifies file types; implementation location TBD |
-| Invalid-selection reset | Clears stale or disabled selections after root or scope changes. | Source requires behavior; implementation location TBD |
-| Tests | Cover pipeline selector behavior, knowledge-type discovery, and disabled option handling. | Anticipated artifacts |
+| Pipeline category selector | Selects operative lane for `DECOMP`, `PREP`, `TASK`, or `AUDIT`. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
+| Category option list | Shows documented options for selected lane; unsupported variants are disabled. | `frontend/src/components/pipeline/pipeline-surface.tsx`; `frontend/src/__tests__/components/pipeline-surface.test.ts` |
+| TASK agent selector | Selects the bounded task agent or skill route. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
+| TASK scope mode selector | Switches between deliverable scope and knowledge-type scope. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
+| Dynamic deliverable scan | Provides valid deliverable targets from the active working root. | `frontend/src/components/pipeline/pipeline-surface.tsx`; `frontend/src/lib/workspace/filesystem.ts` |
+| Knowledge-type discovery | Detects document-kit and metadata buckets from deliverable content. | `frontend/src/lib/workspace/filesystem.ts`; `frontend/src/__tests__/api/project/deliverables-route.test.ts` |
+| Invalid-selection reset | Clears stale or disabled selections after root or scope changes. | `frontend/src/components/pipeline/pipeline-surface.tsx`; `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts` |
+| Tests | Cover pipeline selector behavior, knowledge-type discovery, and disabled option handling. | `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts` |
 
 ## Implementation Slots
 
 | Slot | Required Record | Current Disposition |
 |---|---|---|
-| Category selector component path | Confirmed frontend component or module path for PIPELINE `DECOMP`, `PREP`, `TASK`, and `AUDIT` controls. | TBD - implementation worker must record before closure. |
-| Category option source | Confirmed data source or fixture for category-specific option lists. | TBD - must distinguish documented executable options from visible disabled options. |
-| TASK selector component path | Confirmed component or state module for task-agent selector and scope selector. | TBD - implementation worker must record before closure. |
-| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/working-root/scope`. | TBD - must prove active-root scanning, not hard-coded project assumptions. |
-| Knowledge discovery fixture path | Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets. | TBD - must use `KnowledgeTypeOption` labels when metadata buckets are exposed. |
-| Reset test fixture path | Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases. | TBD - implementation worker must record before closure. |
+| Category selector component path | Confirmed frontend component or module path for PIPELINE `DECOMP`, `PREP`, `TASK`, and `AUDIT` controls. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
+| Category option source | Confirmed data source or fixture for category-specific option lists. | Local option arrays in `pipeline-surface.tsx`, tested by `frontend/src/__tests__/components/pipeline-surface.test.ts`. |
+| TASK selector component path | Confirmed component or state module for task-agent selector and scope selector. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
+| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/working-root/scope`. | `pipeline-surface.tsx` consumes scan data; API mapping is covered by `frontend/src/__tests__/api/project/deliverables-route.test.ts`. |
+| Knowledge discovery fixture path | Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets. | `frontend/src/__tests__/api/project/deliverables-route.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`. |
+| Reset test fixture path | Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases. | `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`. |
 
 ## Dependency Edge Snapshot
 
 | Edge Type | Current Evidence | Disposition |
 |---|---|---|
 | Accepted upstream anchors | `_DEPENDENCIES.md` lists active anchors for DEL-08-03, SOW-007, SOW-026, OBJ-001, and OBJ-007. | Use as context; satisfaction remains TBD until dependency closure accepts the register. |
-| Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence with PRD hash warning preserved. |
+| Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence under D-APP-38 and REF-006 `MATCH`. |
 | Downstream handoff | `_DEPENDENCIES.md` lists a downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests, with consumer target unresolved. | Consumer deliverable remains TBD. |
 
 ## References
@@ -84,7 +84,7 @@
 | REF-003 | `docs/SPEC.md` | Scope API and file contract surfaces |
 | REF-004 | `docs/TYPES.md` | Pipeline category, task scope, knowledge-type, and disabled-option vocabulary |
 | REF-005 | `docs/PLAN.md` | Runtime roadmap and retired-scope boundaries |
-| REF-006 | `docs/PRD.md` | Product requirements for matrix, pipeline, scope, and knowledge buckets; hash mismatch recorded as warning |
+| REF-006 | `docs/PRD.md` | Product requirements for matrix, pipeline, scope, and knowledge buckets; current under D-APP-38 authority corpus |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP method and deliverable sizing context |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted deliverable entry and objective/scope mapping |
 

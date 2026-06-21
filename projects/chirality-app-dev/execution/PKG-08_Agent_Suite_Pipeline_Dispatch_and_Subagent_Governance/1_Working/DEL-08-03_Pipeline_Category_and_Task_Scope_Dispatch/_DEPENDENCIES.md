@@ -58,14 +58,17 @@ Register: `Dependencies.csv` v3.1
 - Execution docs scanned: `Specification.md`, `Guidance.md`, `Procedure.md`, `_REFERENCES.md`, existing `_DEPENDENCIES.md`.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` was not read and was not consumed as evidence.
 - No existing `Dependencies.csv` was present, so all extracted rows were newly created.
-- `[WARNING] PRD_HASH_MISMATCH`: `_REFERENCES.md` records REF-006 expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and actual SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; PRD-derived edge confidence is capped at `MEDIUM`.
+- `[RESOLVED] SOURCE_STATE`: D-APP-38 authority corpus v2 supersedes the prior REF-006 source warning; `_REFERENCES.md` now records REF-006 as MATCH and row DEP-08-03-009 is updated accordingly.
+- `[RESOLVED] PIPELINE_COMPONENT_COVERAGE`: ADQ-12 records Pipeline surface render coverage for category controls, disabled options, valid TASK deep links, and stale knowledge-target reset.
+- `[RESOLVED] TASK_GOVERNANCE_LINKAGE`: ADQ-12 route-state regression proves Pipeline TASK selector state is ignored as unknown runtime options rather than converted into delegated subagents.
 - `[WARNING] UNKNOWN_DOWNSTREAM_TARGET`: downstream test/record handoff is explicit, but the consumer deliverable is not identified in the allowed evidence set; target remains `UNKNOWN`/`TBD`.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Status | Warnings | ACTIVE Count |
 |---|---|---|---|---|---:|
-| 2026-05-20 20:54 | UPDATE | CONSERVATIVE | found | PRD_HASH_MISMATCH; UNKNOWN_DOWNSTREAM_TARGET | 10 |
+| 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, Pipeline component coverage, and TASK governance linkage applied | UNKNOWN_DOWNSTREAM_TARGET | 10 |
+| 2026-05-20 20:54 | UPDATE | CONSERVATIVE | found | superseded PRD_HASH_MISMATCH; UNKNOWN_DOWNSTREAM_TARGET | 10 |
 
 ## Lifecycle Summary
 

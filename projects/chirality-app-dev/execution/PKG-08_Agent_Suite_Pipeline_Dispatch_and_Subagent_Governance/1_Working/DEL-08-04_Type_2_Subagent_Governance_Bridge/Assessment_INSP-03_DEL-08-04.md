@@ -36,8 +36,8 @@ DEL-08-04 covers the fail-closed Type 2 subagent governance gate, the allowlist 
 
 | Gap | Severity | Evidence | Recommendation |
 |---|---:|---|---|
-| Child-output artifact proof remains separate. | Medium | DEL-08-05 resolves `ChildRunRecord.childRunId` naming and denied-allocation semantics, but still needs child-output artifact evidence before package closure. | Keep artifact metadata and storage proof in the DEL-08-05 residual path. |
-| Governance metadata has no persisted decision artifact beyond logs/options. | Low | `evaluateSubagentGovernance` logs decisions and passes delegated names; child-run records are separate. | If issuance requires auditable governance decisions per denied/allowed attempt, add event emission or record linkage. |
+| Child-output artifact proof remained separate. | Closed by ADQ-12 | DEL-08-05 now persists over-inline child summaries as child-output artifacts with parent-turn, task, child-run, tool-use, redaction, checksum, byte, and truncation metadata. | Keep the ADQ-12 artifact fixtures in the PKG-08 regression suite. |
+| Governance metadata has no persisted decision artifact beyond logs/options. | Low | `evaluateSubagentGovernance` logs decisions and passes delegated names; child-run records are separate. | If later audit policy requires decision replay per denied/allowed attempt, add event emission or record linkage. |
 | REF-006 source state is governed by D-APP-38. | Low | D-APP-38 accepts the current authority corpus for PRD-derived subagent governance text. | Keep implementation proof separate from source-state proof. |
 
 ## Source-State Caveat
@@ -52,10 +52,9 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-08-04
 
 | Step | Type | Size | Strategic fit | Prerequisite |
 |---|---|---:|---|---|
-| Keep DEL-08-05 child-output artifact evidence moving to closure. | evidence | S | FIT | `ChildRunRecord.childRunId` and D-APP-40 denied-allocation boundary are authoritative. |
 | Add event/record linkage for governance decisions if audit needs allowed/denied decision replay independent of console logs. | code/test | M | FIT | Child-run contract decision. |
 | Keep SDK Agent exposure limited to delegated, requested Agent tool usage. | test | S | FIT | Existing `sdk-options-builder` guard. |
 
-## Issuance-Gate-Process Observations
+## Lifecycle-Gate-Process Observations
 
-DEL-08-04 has strong fail-closed runtime evidence. The issuance gate should require DEL-08-05 artifact evidence at the package level, not additional executable subagent capability.
+DEL-08-04 has strong fail-closed runtime evidence, and ADQ-12 closes the package-level child-output artifact evidence residual through DEL-08-05. No additional executable subagent capability is introduced.
