@@ -24,14 +24,15 @@ Active development queue:
   `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`. `INSP-02` landed 2026-06-20
   and aligned PKG-00 control-plane documents with accepted acyclic DepClosure snapshot
   `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`; evidence:
-  `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. `INSP-03` waves 001-004 are
+  `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. `INSP-03` waves 001-005 are
   recorded: PKG-00 control-plane assessments DEL-00-01 and DEL-00-02, PKG-01 governance/reliance
   assessments DEL-01-01 through DEL-01-04, PKG-02 baseline UI assessments DEL-02-01 through
-  DEL-02-05, and PKG-03 runtime engine assessments DEL-03-01 through DEL-03-04 are complete
-  (15/53), 38 assessments remain pending, reviewed SHA
-  `0e1ba9a1eef03f1b9e2daa33d3d6c0c5b0f42f7c` is recorded for wave 004 as inspected source-state
-  evidence, and the coverage index is `plans/artifacts/insp03_assessment_index_2026-06-20.md`.
-  Next selected work: continue `INSP-03` with the PKG-04 wave.
+  DEL-02-05, PKG-03 runtime engine assessments DEL-03-01 through DEL-03-04, and PKG-04 SDK adapter
+  / prompt / provider / settings assessments DEL-04-01 through DEL-04-05 are complete (20/53), 33
+  assessments remain pending, reviewed SHA `ce0ab70933c6cc32f9eea62a563e512fc738a575` is recorded
+  for wave 005 as inspected source-state evidence, and the coverage index is
+  `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Next selected work: continue `INSP-03`
+  with the PKG-05 wave.
 
 Completed / superseded queues (history, non-governing):
 

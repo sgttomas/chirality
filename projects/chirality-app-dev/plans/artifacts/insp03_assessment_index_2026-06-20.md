@@ -3,19 +3,19 @@
 Date: 2026-06-20
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `0e1ba9a1eef03f1b9e2daa33d3d6c0c5b0f42f7c`
+Reviewed SHA: `ce0ab70933c6cc32f9eea62a563e512fc738a575`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 004.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 005.
 
 - Deliverables expected: 53
-- Assessments complete: 15
-- Assessments pending: 38
+- Assessments complete: 20
+- Assessments pending: 33
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `0e1ba9a1eef03f1b9e2daa33d3d6c0c5b0f42f7c` recorded for wave 004 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `ce0ab70933c6cc32f9eea62a563e512fc738a575` recorded for wave 005 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -46,6 +46,23 @@ npm run test -- src/__tests__/lib/agent-engine-port.test.ts src/__tests__/lib/en
 ```
 
 Observed result: 11 test files passed, 167 tests passed.
+
+- PKG-04 wave validation observed 20 `Assessment_INSP-03_*.md` files after wave 005.
+- PKG-04 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/lib/harness-runtime.test.ts src/__tests__/lib/harness-options.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts src/__tests__/lib/persona-manager.test.ts src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/lib/persona-resolution.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts src/__tests__/electron/api-key-storage.test.ts src/__tests__/electron/api-key-ipc.test.ts src/__tests__/scripts/build-network-policy.test.ts src/__tests__/scripts/verify-packaged-agent-sdk-runtime.test.ts src/__tests__/scripts/run-live-packaged-agent-sdk-read-tool-proof.test.ts
+```
+
+Observed result: 15 test files passed, 160 tests passed.
+
+- PKG-04 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg04_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
 
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
@@ -78,11 +95,11 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-03-02 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Assessment_INSP-03_DEL-03-02.md` | COMPLETE | TurnEngine/session-locking assessment; strong lifecycle/lock evidence with adapter-interface and event-persistence ownership gaps. |
 | DEL-03-03 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Assessment_INSP-03_DEL-03-03.md` | COMPLETE | Route/SSE compatibility assessment; route tests pass, but route-fixture index/docs and additive `harness:event` reconciliation remain. |
 | DEL-03-04 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Assessment_INSP-03_DEL-03-04.md` | COMPLETE | Interrupt/terminal-outcome assessment; interrupt tests pass, with terminal taxonomy and client-disconnect cancellation persistence still open. |
-| DEL-04-01 | - | PENDING | PKG-04 wave pending. |
-| DEL-04-02 | - | PENDING | PKG-04 wave pending. |
-| DEL-04-03 | - | PENDING | PKG-04 wave pending. |
-| DEL-04-04 | - | PENDING | PKG-04 wave pending. |
-| DEL-04-05 | - | PENDING | PKG-04 wave pending. |
+| DEL-04-01 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Assessment_INSP-03_DEL-04-01.md` | COMPLETE | First-adapter probe/adoption assessment; package pin/settings/message mapping pass, but subprocess version, packaging record, adoption verdict, and refreshed residual-risk evidence remain partial. |
+| DEL-04-02 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/Assessment_INSP-03_DEL-04-02.md` | COMPLETE | SDK options/settings assessment; strong deterministic options coverage with split ownership for unknown-tool structured errors and transcript/store metadata. |
+| DEL-04-03 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Assessment_INSP-03_DEL-04-03.md` | COMPLETE | Mapper assessment; broad provider-neutral mapping coverage, with Section 9 `adapter_message_mapper` / `sdk_message_mapper` naming drift and probe-fixture provenance gaps. |
+| DEL-04-04 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Assessment_INSP-03_DEL-04-04.md` | COMPLETE | Persona composer assessment; strong instruction-root/prompt/fingerprint evidence, with alias and optional fingerprint input ownership carried as reconciliation items. |
+| DEL-04-05 | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/Assessment_INSP-03_DEL-04-05.md` | COMPLETE | Provider key/base URL/network assessment; strong provider-boundary tests, with whole-product log/tool-artifact redaction and timeout traceability carried forward. |
 | DEL-05-01 | - | PENDING | PKG-05 wave pending. |
 | DEL-05-02 | - | PENDING | PKG-05 wave pending. |
 | DEL-05-03 | - | PENDING | PKG-05 wave pending. |
@@ -119,4 +136,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-04 first-adapter deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-05 session/audit deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
