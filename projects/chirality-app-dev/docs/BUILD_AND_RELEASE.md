@@ -95,6 +95,8 @@ Current known artifact locations include:
 - release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
+- mounted-DMG instruction-root and packaged SDK proof summaries may be written under dated
+  subdirectories of those artifact roots for package-content evidence;
 - live harness validation output under `${TMPDIR:-/tmp}/chirality-harness-validation/latest/`.
 
 Generated build and packaging outputs are evidence artifacts, not project truth. They do not create release publication authorization, lifecycle issuance, professional approval, certification, sealing, authentication, or code-compliance acceptance.

@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-15 packaging and instruction-root evidence refreshed
+
+Completed `ADQ-15` from the autonomous development queue. The tranche produced fresh local packaging
+evidence from `frontend/`: `npm run desktop:dist` passed, creating the unsigned local macOS arm64 app
+bundle and DMG with publication disabled, then `npm run instruction-root:integrity` passed. The DMG
+was mounted read-only and both instruction-root integrity and scripted no-live packaged Agent SDK
+subprocess proof were rerun against the mounted app resources, then the volume was detached.
+
+Recorded evidence in
+`execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/Evidence_ADQ-15_Packaging_Instruction_Root_Refresh.md`
+and updated DEL-09-04, DEL-09-05, and DEL-08-01 memories. The generated `frontend/dist/` and
+`frontend/artifacts/` outputs remain ignored evidence artifacts and are not committed as project truth.
+
+Key artifact evidence: `frontend/dist/Chirality-0.1.0-arm64.dmg` existed with SHA-256
+`3bc5985b1f6665edb2c9f363a5808a5aeb6a40486a53bbacaabf50ed461f75c8`; the app executable was arm64;
+`LSMinimumSystemVersion` was `15.0.0`; `codesign` reported adhoc/local-builder posture with no team
+identifier; instruction-root integrity reported `status=pass` and `checkedFileCount=47`; packaged SDK
+proof reported `status=pass`, `proofMode=scripted-no-live-provider`, and a resolver under
+`app.asar.unpacked/node_modules`.
+
+Skipped checks: `npm run desktop:pack` was not run separately because `desktop:dist` produced the app
+directory and DMG and ran instruction-root integrity. `npm run proof:network-policy` is reserved for
+ADQ-16. Live packaged SDK read-tool proof was not run; ADQ-15 used the scripted no-live packaged SDK
+proof only. No `_STATUS.md` files, dependency rows, authority documents, provider/network expansion,
+signing/notarization/publication/external distribution posture, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness
+claim changed.
+
 ## 2026-06-21 - ADQ-14 release-quality validation wrapper and runbook added
 
 Completed `ADQ-14` from the autonomous development queue. Added

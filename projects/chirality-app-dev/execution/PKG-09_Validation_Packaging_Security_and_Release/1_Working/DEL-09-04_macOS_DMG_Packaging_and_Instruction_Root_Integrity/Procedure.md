@@ -23,7 +23,7 @@ Define the operational steps to produce the macOS arm64 unsigned DMG and assembl
    - `npm run typecheck`
    - `npm run harness:validate:premerge`
    - `npm run instruction-root:integrity`
-3. If `instruction-root:integrity` reports missing required assets, stop release readiness and record the missing assets as P0 blockers.
+3. If `instruction-root:integrity` reports missing required assets, stop packaging-evidence acceptance and record the missing assets as P0 blockers.
 4. From `frontend/`, run `npm run desktop:dist`.
 5. Confirm expected packaging outputs:
    - `frontend/dist/Chirality-0.1.0-arm64.dmg`
@@ -39,7 +39,7 @@ Define the operational steps to produce the macOS arm64 unsigned DMG and assembl
    - verify the SDK subprocess/bundled binary can be found from package layout;
    - verify it is not trapped inside `app.asar` without execution access;
    - verify execution does not require secret leakage or broader network policy.
-9. Confirm packaged app preserves release-relevant runtime guardrails:
+9. Confirm packaged app preserves packaging-relevant runtime guardrails:
    - working-root selector is available;
    - current shipped Anthropic network guardrails remain in force;
    - `TBD`: human/source ruling must decide whether SDK-backed turn start after R1 blocks DEL-09-04 closure or is deferred to a broader packaged-app validation workflow.
@@ -70,6 +70,6 @@ Required records:
 | App bundle artifact identity | `frontend/dist/mac-arm64/Chirality.app` listing and inspected release posture. |
 | Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with pass verdict or blocker list. |
 | SDK subprocess packaging probe | Probe command, package path, expected result, observed result, output path, and blocker state if failed. |
-| Manual release verification notes | Architecture, minimum OS, signing posture, resource inclusion, working-root selector, network policy, and SDK packaged execution scope. |
+| Manual package verification notes | Architecture, minimum OS, signing posture, resource inclusion, working-root selector, network policy, and SDK packaged execution scope. |
 | Evidence bundle custody | ResponsibleParty or routing placeholder; currently `TBD` until human assignment. |
 | Blocker list | All `TBD` or failed items, including missing instruction-root assets, dependency rows with `SatisfactionStatus=TBD`, PRD hash mismatch disposition, and unresolved SDK-backed turn-start scope. |

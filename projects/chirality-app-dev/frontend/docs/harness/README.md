@@ -23,6 +23,8 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
   - Imports the packaged SDK module from `app.asar.unpacked`.
   - Runs a scripted no-live `query()` turn to record the resolved native subprocess command.
   - Verifies controlled `CLAUDE_CONFIG_DIR` and `HOME` propagation for transcript/config posture.
+  - Defaults to `frontend/dist/mac-arm64/Chirality.app/Contents/Resources`; use `--bundle-root` and
+    `--output-root` for mounted-DMG package-content evidence.
 - `npm run validate:release-quality`
   - Runs the runtime-premerge evidence wrapper: full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.
   - Writes `frontend/artifacts/harness/release-quality/latest/summary.json`.
