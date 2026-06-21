@@ -41,8 +41,8 @@ certification, sealing, authentication, release-readiness, or code-compliance cl
 | `npm run typecheck` | PASS |
 | `npm run test -- src/__tests__/lib/atomic-write.test.ts src/__tests__/api/working-root/deliverable-contracts.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/workspace-deliverable-api.test.ts --testTimeout=15000` | PASS: 5 files / 73 tests |
 | `npm run test -- src/__tests__/api/harness/routes.test.ts -t "supports session create/list/get/delete happy path" --testTimeout=20000` | PASS: isolated route timeout check |
-| `npm run test -- --testTimeout=15000` | FAIL: full-suite concurrency timeout in `src/__tests__/api/harness/routes.test.ts`; 72 files passed, 1 file failed, 510 tests passed / 512 total |
-| `npm run test -- --testTimeout=30000` | FAIL: same route-test full-suite timeout class; 72 files passed, 1 file failed, 510 tests passed / 512 total |
+| `npm run test -- src/__tests__/api/harness/routes.test.ts --testTimeout=15000` | PASS: 35 route tests after deterministic route-module preload |
+| `npm run test -- --testTimeout=15000` | PASS: 73 files / 512 tests after deterministic route-module preload |
 | `git diff --check` | PASS |
 | `python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status` | PASS: no drift |
 
@@ -56,6 +56,3 @@ certification, sealing, authentication, release-readiness, or code-compliance cl
   the adapter-message compaction mirror and terminal status mapping, but does not add a new SDK hook
   callback path or declare the mirror sufficient. That acceptance needs the D-APP-40 terminal taxonomy
   ruling or explicit SDK lifecycle support.
-- Full-suite route tests remain timing-sensitive under whole-suite concurrency. The ADQ-focused suite
-  and isolated route check pass; the full suite failures above are timeouts in `routes.test.ts`, not
-  assertion failures in the ADQ-11 surfaces.

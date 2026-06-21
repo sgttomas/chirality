@@ -1,7 +1,7 @@
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 type SessionRecord = {
   sessionId: string;
@@ -42,31 +42,17 @@ type TestContext = {
 };
 
 let context: TestContext;
+let cachedRouteModules: RouteModules | undefined;
 
-async function importRouteModules(): Promise<RouteModules> {
-  vi.resetModules();
-
-  const [
-    createRoute,
-    listRoute,
-    idRoute,
-    eventsRoute,
-    bootRoute,
-    turnRoute,
-    interruptRoute,
-    runtimeModule
-  ] = await Promise.all([
-    import('../../../app/api/harness/session/create/route'),
-    import('../../../app/api/harness/session/list/route'),
-    import('../../../app/api/harness/session/[id]/route'),
-    import('../../../app/api/harness/session/[id]/events/route'),
-    import('../../../app/api/harness/session/boot/route'),
-    import('../../../app/api/harness/turn/route'),
-    import('../../../app/api/harness/interrupt/route'),
-    import('../../../lib/harness/runtime')
-  ]);
-
-  runtimeModule.resetHarnessRuntimeForTests();
+async function loadRouteModules(): Promise<RouteModules> {
+  const createRoute = await import('../../../app/api/harness/session/create/route');
+  const listRoute = await import('../../../app/api/harness/session/list/route');
+  const idRoute = await import('../../../app/api/harness/session/[id]/route');
+  const eventsRoute = await import('../../../app/api/harness/session/[id]/events/route');
+  const bootRoute = await import('../../../app/api/harness/session/boot/route');
+  const turnRoute = await import('../../../app/api/harness/turn/route');
+  const interruptRoute = await import('../../../app/api/harness/interrupt/route');
+  const runtimeModule = await import('../../../lib/harness/runtime');
 
   return {
     createRoute,
@@ -78,6 +64,14 @@ async function importRouteModules(): Promise<RouteModules> {
     interruptRoute,
     runtimeModule
   };
+}
+
+async function importRouteModules(): Promise<RouteModules> {
+  if (!cachedRouteModules) {
+    throw new Error('Route modules were not loaded before the test started');
+  }
+  cachedRouteModules.runtimeModule.resetHarnessRuntimeForTests();
+  return cachedRouteModules;
 }
 
 async function createSession(
@@ -113,6 +107,12 @@ function expectOrdered(text: string, fragments: string[]): void {
   }
 }
 
+// Preload the route modules once so cold transform/import time is not charged to
+// the first route assertion; reset the runtime singleton per test for isolation.
+beforeAll(async () => {
+  cachedRouteModules = await loadRouteModules();
+}, 30000);
+
 beforeEach(async () => {
   const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-harness-routes-'));
   const projectRoot = path.join(tmpRoot, 'project-root');
@@ -147,6 +147,8 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
+  vi.restoreAllMocks();
+  cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
   delete process.env.CHIRALITY_SESSION_ROOT;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
   delete process.env.CHIRALITY_ENABLE_SUBAGENTS;
@@ -154,6 +156,10 @@ afterEach(async () => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
   await rm(context.tmpRoot, { recursive: true, force: true });
+});
+
+afterAll(() => {
+  cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
 });
 
 describe('Harness API baseline routes', () => {
@@ -447,12 +453,9 @@ describe('Harness API baseline routes', () => {
   });
 
   it('preserves INSTRUCTION_ROOT_INVALID taxonomy across boot route bundle boundaries', async () => {
-    vi.resetModules();
-
-    const [createRouteBundleA, runtimeBundleA] = await Promise.all([
-      import('../../../app/api/harness/session/create/route'),
-      import('../../../lib/harness/runtime')
-    ]);
+    const routes = await importRouteModules();
+    const createRouteBundleA = routes.createRoute;
+    const runtimeBundleA = routes.runtimeModule;
     runtimeBundleA.resetHarnessRuntimeForTests();
 
     const createResponse = await createRouteBundleA.POST(
@@ -1116,13 +1119,10 @@ AGENT_TYPE: 2
   });
 
   it('keeps turn and interrupt routes coherent across module-bundle boundaries', async () => {
-    vi.resetModules();
-
-    const [createRouteBundleA, turnRouteBundleA, runtimeBundleA] = await Promise.all([
-      import('../../../app/api/harness/session/create/route'),
-      import('../../../app/api/harness/turn/route'),
-      import('../../../lib/harness/runtime')
-    ]);
+    const routes = await importRouteModules();
+    const createRouteBundleA = routes.createRoute;
+    const turnRouteBundleA = routes.turnRoute;
+    const runtimeBundleA = routes.runtimeModule;
     runtimeBundleA.resetHarnessRuntimeForTests();
 
     const createResponse = await createRouteBundleA.POST(

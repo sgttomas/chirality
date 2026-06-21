@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-11 validation timeout repaired
+
+Repaired the ADQ-11 validation stop by preloading `src/__tests__/api/harness/routes.test.ts` route
+modules once per file and resetting the runtime singleton between tests. This preserves route coverage
+while keeping cold transform/import time out of individual route assertion budgets.
+
+Validation: `npm run test -- src/__tests__/api/harness/routes.test.ts --testTimeout=15000` passed
+35 tests; `npm run test -- --testTimeout=15000` passed 73 files / 512 tests; `npm run typecheck`
+passed; `git diff --check` passed; D-APP-38 authority-corpus `status` reported no drift.
+
 ## 2026-06-21 - ADQ-11 permission/tool residuals advanced; lifecycle residuals blocked
 
 Selected `ADQ-11` from the autonomous development queue. Landed the eligible PKG-06 residuals:
@@ -28,7 +38,8 @@ Validation: `npm run typecheck` passed; focused ADQ-11 suite passed 5 files / 73
 route CRUD check passed. Full `npm run test` was attempted with 15000ms and 30000ms per-test timeouts;
 both runs left 72 files passing and failed only on `src/__tests__/api/harness/routes.test.ts`
 full-suite timeout cases, with 510 / 512 tests passing and no ADQ-11 assertion failure.
-`git diff --check` passed; D-APP-38 authority-corpus `status` reported no drift.
+`git diff --check` passed; D-APP-38 authority-corpus `status` reported no drift. This timeout
+residual was repaired later on 2026-06-21 and recorded above.
 
 ## 2026-06-21 - ADQ-10 blocked on tool-result artifact policy ruling
 
