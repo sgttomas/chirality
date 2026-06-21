@@ -6,11 +6,12 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-37 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-38 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model).
 
 Active development queue:
 
-- None. Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
+- None. The **P0 governance cluster** from the inspection roadmap was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`), and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via `execution/_Reconciliation/References/reconcile_authority_corpus.py`; 0 `HASH_MISMATCH`). Next work = roadmap P1 selection (`plans/artifacts/insp05_development_roadmap_2026-06-21.md`) or a new human directive.
+- Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
   INSP-00b (both landed 2026-06-20) -> INSP-01a -> INSP-01 -> INSP-02 -> INSP-03 -> INSP-04 ->

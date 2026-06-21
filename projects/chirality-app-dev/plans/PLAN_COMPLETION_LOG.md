@@ -6,6 +6,40 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-20 - P0 governance cluster applied + reference-integrity model (`a5ccfc591`)
+
+Applied the P0 roadmap cluster from the completed deliverable-inspection program, executing the
+ruled post-inspection decisions:
+
+- **D-APP-37 (PKG-10 status truth):** repaired the false "active code implementation underway"
+  history wording in five PKG-10 `_STATUS.md` files to "future-boundary contract/documentation
+  drafting; no R7 domain-engine implementation." Lifecycle unchanged (all stay `CHECKING`).
+- **D-APP-34 + D-APP-36 (issue-readiness profiles + AMD-01 UI bar):** codified the five issuance
+  evidence profiles and the UI component/render-test acceptance bar in
+  `docs/ISSUE_READINESS_PROFILES.md`; wired it into `docs/MANIFEST.json`, `docs/README.md`, and a
+  cross-reference from `docs/RELEASE_QUALITY_GATES.md`.
+- **D-APP-38 (reference-integrity model, RULED Option D hybrid):** a post-inspection audit found the
+  authority-doc reference tracking broadly stale (six of seven references stale across the corpus;
+  only REF-006 flagged) because the docs are living documents and reconciliation had not been re-run.
+  D-APP-35 (REF-006-only refresh) was escalated to D-APP-38 and ruled Option D: a reconciliation tool
+  feeding versioned corpus snapshots. Built `execution/_Reconciliation/References/reconcile_authority_corpus.py`
+  and `AUTHORITY_CORPUS.json`; established corpus `v1` and reconciled 306 authority-doc reference rows
+  across 51 deliverables (0 `HASH_MISMATCH`). This executed the D-APP-35 PRD refresh as a special case.
+  Authority-doc edits now trigger a corpus version bump (`bump` + `apply`), recorded as a Governance-gate
+  step. The two PKG-00 control deliverables use a control-reference table without authority-doc hash
+  pins and were intentionally out of scope.
+
+This tranche changed no runtime source, package manifest, lockfile, provider policy, release artifact,
+or deliverable lifecycle state. The PKG-09 packaging-assessment false-absence finding (DEL-09-04/05;
+gitignored artifacts exist but are stale) was reviewed and, per owner directive, left as-is
+(over-pessimistic, does not affect next-work selection).
+
+Validation: `git diff --check` clean; no `frontend/src`/package/electron staged; `AUTHORITY_CORPUS.json`
+and `docs/MANIFEST.json` parse; reconciliation tool idempotent (`status` no drift, `audit` all
+reconciled); five PKG-10 `_STATUS.md` retain `CHECKING` with annotation-only history edits. Frontend
+runtime tests were skipped because this tranche changed only docs, governance, decision records,
+deliverable reference/status metadata, and a reconciliation tool.
+
 ## 2026-06-21 - D-APP-34 through D-APP-37 rulings recorded
 
 Recorded the owner-approved recommendation set for the four open post-inspection decision packets:

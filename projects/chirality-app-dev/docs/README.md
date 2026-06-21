@@ -36,17 +36,19 @@ Ordinary agentic work enters through:
 4. `execution/_Coordination/_LATEST.md`;
 5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 
-The active development queue is
-`plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md`. Its live proof is
-approved by D-APP-15 Option A for one bounded run, but LP-02 must finalize the command,
-package path, key supply method, artifact directory, stop conditions, and redaction checks
-before LP-03 executes. The R6 Extensibility & MCP Boundary Maturity plan,
-Runtime Stabilization plan, and SCC-resolution plan are completed closed history.
-`docs/PLAN.md` remains strategic roadmap context, and
-`plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
-Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`,
-including dependency/SCC snapshots under
-`execution/_Reconciliation/DepClosure/**`; there is no active `NEXT_INSTANCE_STATE.md`.
+There is no active autonomous development queue. The D-APP-19 deliverable-inspection program
+(`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`) is complete, and the
+P0 governance cluster from its roadmap was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37
+PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`),
+and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via
+`execution/_Reconciliation/References/reconcile_authority_corpus.py`). Next work is roadmap P1
+selection (`plans/artifacts/insp05_development_roadmap_2026-06-21.md`) or a new human directive. The
+loop-first pivot, live packaged `agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity,
+Runtime Stabilization, and SCC-resolution plans are completed closed history. `docs/PLAN.md` remains
+strategic roadmap context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime
+completion history. Current state is discovered from the authoritative surfaces named by
+`_COORDINATION.md`, including dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`;
+there is no active `NEXT_INSTANCE_STATE.md`.
 
 ## How Agents Should Use This Package
 

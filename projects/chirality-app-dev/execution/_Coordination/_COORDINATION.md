@@ -3,7 +3,7 @@
 **Recorded:** 2026-06-13
 **Active persona:** `WORKING_ITEMS`
 **Default work mode:** bounded app-integration tranches
-**Current strategic focus:** D-APP-19 deliverable INSPECTION & development evidence is complete. The program moved all 53 deliverables `IN_PROGRESS -> CHECKING`, inspected all 53 at issuance-gate rigor, evaluated the gate process, produced a development roadmap, and deferred issuance (`CHECKING -> ISSUED`). D-APP-34 through D-APP-37 are now ruled; next work requires explicit roadmap-item selection or a new human directive. The preceding Agent-Orchestration UI redesign (`plans/DESIGN_2026-06-18_agent_orchestration_ui.md`; Phases 1-5 + the D-APP-28 loop-first pivot) is complete. The underlying runtime posture is unchanged: Chirality-owned provider-adapter runtime, with Claude Agent SDK / Anthropic as the first concrete adapter, now the key-aware default provider per D-APP-18 (real `agentSdk` when an Anthropic key is configured, else `stub`). Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
+**Current strategic focus:** D-APP-19 deliverable INSPECTION & development evidence is complete, and the **P0 roadmap governance cluster has been applied** (commit `a5ccfc591`, 2026-06-20): PKG-10 status-truth repaired (D-APP-37), issue-readiness evidence profiles + AMD-01 UI render-test bar codified (D-APP-34/36, `docs/ISSUE_READINESS_PROFILES.md`), and the **D-APP-38 reference-integrity model (Option D hybrid)** established authority-doc corpus `v1` with all deliverable references reconciled (0 `HASH_MISMATCH`; a post-inspection audit had found 6 of 7 authority refs stale, only REF-006 flagged). The inspection program moved all 53 deliverables `IN_PROGRESS -> CHECKING`, inspected all 53 at issuance-gate rigor, evaluated the gate process, produced a development roadmap, and deferred issuance (`CHECKING -> ISSUED`). D-APP-34 through D-APP-38 are now ruled; next work requires explicit roadmap-item selection (roadmap P1, `plans/artifacts/insp05_development_roadmap_2026-06-21.md`) or a new human directive. The preceding Agent-Orchestration UI redesign (`plans/DESIGN_2026-06-18_agent_orchestration_ui.md`; Phases 1-5 + the D-APP-28 loop-first pivot) is complete. The underlying runtime posture is unchanged: Chirality-owned provider-adapter runtime, with Claude Agent SDK / Anthropic as the first concrete adapter, now the key-aware default provider per D-APP-18 (real `agentSdk` when an Anthropic key is configured, else `stub`). Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
 **Current active queue:** None. Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`
 (D-APP-19 Option D custom: deliverable-inspection phase, issuance deferred). Completed tranche spine:
 INSP-00 -> INSP-00b -> INSP-01a -> INSP-01 -> INSP-02 -> INSP-03 -> INSP-04 -> INSP-05 ->
@@ -36,7 +36,12 @@ issuance spine retained as eventual follow-on); the live packaged `agentSdk` rea
 (STAB-00..06); and the six-node SCC plan. D-APP-18 + D-APP-19 + D-APP-20..D-APP-33 are all ruled
 (see `_DECISIONS/_REGISTER.md`); D-APP-18 landed the key-aware default-provider cutover; provider
 expansion beyond the Anthropic path and release/distribution posture remain separately gated. D-APP-34
-through D-APP-37 are now ruled for the post-INSP-03 gate/source/UI/PKG-10 decision set.
+through D-APP-37 are ruled for the post-INSP-03 gate/source/UI/PKG-10 decision set, and the P0 cluster
+applying them landed in `a5ccfc591`. D-APP-38 is ruled Option D (hybrid reference-integrity model:
+the reconciliation tool `execution/_Reconciliation/References/reconcile_authority_corpus.py` feeds
+versioned corpus snapshots in `AUTHORITY_CORPUS.json`; authority-doc edits trigger a corpus version
+`bump` + `apply` re-reconciliation — see the Governance gate in `docs/RELEASE_QUALITY_GATES.md` and
+`docs/ISSUE_READINESS_PROFILES.md` §6).
 
 ## Active Surface
 
