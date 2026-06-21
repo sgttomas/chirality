@@ -3,19 +3,19 @@
 Date: 2026-06-21
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `d92ef1253b37cd29423672acb146a9e9c91087d5`
+Reviewed SHA: `d0766e0f24b923f7925c711fe05e0cf5d28fd1fb`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 009.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 010.
 
 - Deliverables expected: 53
-- Assessments complete: 42
-- Assessments pending: 11
+- Assessments complete: 48
+- Assessments pending: 5
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables; PKG-08 agent suite / pipeline dispatch / subagent governance deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables; PKG-04 SDK adapter / prompt / provider / settings deliverables; PKG-05 session audit / replay / tool-result deliverables; PKG-06 permissioned tools / MCP / hooks deliverables; PKG-07 filesystem execution / lifecycle / dependencies deliverables; PKG-08 agent suite / pipeline dispatch / subagent governance deliverables; PKG-09 validation / packaging / security / release deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Reviewed source-state note: current reviewed SHA `d92ef1253b37cd29423672acb146a9e9c91087d5` recorded for wave 009 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `d0766e0f24b923f7925c711fe05e0cf5d28fd1fb` recorded for wave 010 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -138,6 +138,33 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 - PKG-08 static validation observed 53 deliverables, 42 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`/`ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-08 assessment files.
 
+- PKG-09 wave validation observed 48 `Assessment_INSP-03_*.md` files after wave 010.
+- PKG-09 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/scripts/verify-instruction-root-integrity.test.ts src/__tests__/scripts/verify-packaged-agent-sdk-runtime.test.ts src/__tests__/scripts/run-live-packaged-agent-sdk-read-tool-proof.test.ts src/__tests__/scripts/build-network-policy.test.ts src/__tests__/scripts/dmg-packaging-policy.test.ts src/__tests__/lib/engine-conformance.test.ts src/__tests__/lib/turn-engine.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/permission-overlay.test.ts src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts src/__tests__/lib/harness-attachment-resolver.test.ts src/__tests__/electron/api-key-storage.test.ts src/__tests__/electron/api-key-ipc.test.ts src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts src/__tests__/lib/harness-chat-draft.test.ts src/__tests__/lib/harness-ui-attachments.test.ts src/__tests__/lib/dependencies-register-contract.test.ts src/__tests__/api/working-root/deliverable-contracts.test.ts
+```
+
+Observed result: 26 test files passed, 271 tests passed.
+
+- PKG-09 Section 9 harness validation reran:
+
+```sh
+npm run harness:validate:section9
+```
+
+Observed result: `HARNESS_SECTION9_STATUS=pass`, `HARNESS_SECTION9_TEST_COUNT=13`, stable summary at `frontend/artifacts/harness/section9/latest/summary.json`.
+
+- PKG-09 wave dependency-closure validation reran:
+
+```sh
+python3 /Users/ryan/.codex/worktrees/e48c/chirality/tools/coordination/analyze_dep_closure.py /Users/ryan/.codex/worktrees/e48c/chirality/projects/chirality-app-dev/execution --output-dir /tmp/chirality_insp03_pkg09_depclosure_validate
+```
+
+Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges, 0 SCCs, 0 bidirectional pairs, 0 ID normalizations.
+
+- PKG-09 static validation observed 53 deliverables, 48 assessments, 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`, `git diff --check -- execution plans` clean, and no semantic-file markers in the PKG-09 assessment files. `npm run desktop:dist`, `npm run harness:validate:premerge`, and full release packaging checks were not run; the PKG-09 assessments record the missing current package/premerge artifacts as evidence gaps.
+
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
 - Direct file check confirmed `docs/harness/reliance_boundary_register.md` is absent, matching the DEL-01-02 assessment finding.
@@ -196,12 +223,12 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-08-03 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Assessment_INSP-03_DEL-08-03.md` | COMPLETE | Pipeline dispatch assessment; controls and scope helpers pass, with component-level Pipeline tests still partial. |
 | DEL-08-04 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Assessment_INSP-03_DEL-08-04.md` | COMPLETE | Type 2 subagent governance assessment; fail-closed bridge is mostly landed, pending child-run interface reconciliation. |
 | DEL-08-05 | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Assessment_INSP-03_DEL-08-05.md` | COMPLETE | Child-run records assessment; G5 confirmed for `HarnessSubagentRun/runId` vs `ChildRunRecord/childRunId`, plus event/artifact taxonomy residuals. |
-| DEL-09-01 | - | PENDING | PKG-09 wave pending. |
-| DEL-09-02 | - | PENDING | PKG-09 wave pending. |
-| DEL-09-03 | - | PENDING | PKG-09 wave pending. |
-| DEL-09-04 | - | PENDING | PKG-09 wave pending; known G6 candidate. |
-| DEL-09-05 | - | PENDING | PKG-09 wave pending; known G6 candidate. |
-| DEL-09-06 | - | PENDING | PKG-09 wave pending. |
+| DEL-09-01 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/Assessment_INSP-03_DEL-09-01.md` | COMPLETE | Section 8 validation preservation assessment; wrapper mechanics pass, with current premerge artifact and full CI command-sequence gaps. |
+| DEL-09-02 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/Assessment_INSP-03_DEL-09-02.md` | COMPLETE | Section 9 runtime validation assessment; runner passes, with report-only posture and manifest/schema maturity residuals. |
+| DEL-09-03 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Assessment_INSP-03_DEL-09-03.md` | COMPLETE | Unit/integration test expansion assessment; broad runtime/security focused tests pass, with full-suite freshness recommended before issuance. |
+| DEL-09-04 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Assessment_INSP-03_DEL-09-04.md` | COMPLETE | macOS DMG/instruction-root assessment; packaging policy passes, but current DMG/app, integrity summary, and packaged SDK proof artifacts are missing G6 evidence. |
+| DEL-09-05 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Assessment_INSP-03_DEL-09-05.md` | COMPLETE | CI/release workflow assessment; CI premerge exists but omits full local checks, has a summary-path conflict, and lacks current release artifact evidence. |
+| DEL-09-06 | `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Assessment_INSP-03_DEL-09-06.md` | COMPLETE | Security checks assessment; source controls are strong, with whole-product secret scan, sanitized renderer URL logging, and current network-proof artifacts still needed. |
 | DEL-10-01 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
 | DEL-10-02 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
 | DEL-10-03 | - | PENDING | PKG-10 wave pending; doc-only basis unresolved. |
@@ -210,4 +237,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-09 validation / packaging / security / release deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-10 domain-engine future-boundary deliverables, then proceed to INSP-04 / INSP-05 unless a dependency or validation failure makes a narrower wave more appropriate.
