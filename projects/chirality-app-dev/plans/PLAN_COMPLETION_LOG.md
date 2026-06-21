@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - Inspection-orphan remediation queue authorized and opened
+
+The owner directed that the inspection-orphan addendum be incorporated into the coordination and
+development-loop documents and handed to the implementation agent. Actions taken (governance/coordination,
+no source changed):
+
+- Transposed the authorized addendum (`plans/artifacts/insp05_roadmap_addendum_2026-06-21_inspection_orphans.md`,
+  `ORN-01`..`ORN-13`) into a new **active** governing queue,
+  `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`, running under the D-APP-39 autonomous
+  pull-and-execute + commit+push discipline and the tightened no-self-rule gate. Selection rule bakes in a
+  verify-pass over the REPORTED items (drop already-closed), `ORN-01`..`ORN-04` confirmed-open, `ORN-01`
+  (CI enforcement) executed first.
+- Flipped the addendum status to AUTHORIZED and pointed it at the active PLAN.
+- Marked the predecessor `plans/PLAN_2026-06-20_autonomous_development_queue.md` exhausted/closed with a
+  follow-on pointer.
+- Repointed the coordination/dev-loop surfaces to the new active queue: `_COORDINATION.md` (strategic
+  focus, current-active-queue, entry-protocol read order, default-ordering), `_LATEST.md`, and
+  `NEXT_INSTANCE_PROMPT.md` (entry step 8, operating mode, selection rules, execution rules, closeout).
+
+No `ORN` item is started in this turn; the active queue is armed for the implementation agent, which
+enters via `init/init-prompt.md` -> `NEXT_INSTANCE_PROMPT.md`.
+
 ## 2026-06-21 - Autonomous-run audit, governance correction, and ratification
 
 Owner-directed audit of the completed D-APP-39 autonomous run, evaluating the agent's claim that "every

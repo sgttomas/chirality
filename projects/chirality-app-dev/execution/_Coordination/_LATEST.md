@@ -10,8 +10,8 @@ Active coordination surfaces:
 
 Active development queue:
 
-- **Active but exhausted: `plans/PLAN_2026-06-20_autonomous_development_queue.md`** (D-APP-39 — autonomous pull-and-execute on everything except the four hard fences, with autonomous commit+push; backlog source `plans/artifacts/insp05_development_roadmap_2026-06-21.md`). The agent pulls the highest-priority eligible item, executes/validates/commits/pushes, and stops only at a hard fence, a new decision, a validation failure, or an empty eligible queue. The **P0 governance cluster** was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`), and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via `execution/_Reconciliation/References/reconcile_authority_corpus.py`; 0 `HASH_MISMATCH`). ADQ-05 later bumped the authority corpus to `v2` after D-APP-40 PRD/SPEC/TYPES edits and reconciled 153 deliverable reference rows. ADQ-05, ADQ-08, ADQ-09, ADQ-10, ADQ-11, and ADQ-12 are done; all rows in the autonomous queue are now `DONE`, and no eligible `READY` item remains.
-- **Proposed (not authorized): `plans/artifacts/insp05_roadmap_addendum_2026-06-21_inspection_orphans.md`** — a post-run audit found in-scope, non-fenced gaps the INSP-05 synthesis compressed out and the exhausted queue never scheduled (ORN-01..ORN-13, pre-issuance hardening; CI enforcement first). PROPOSED only; schedules nothing until an explicit owner directive opens it as a tranche. Does not change the at-rest autonomous-queue state.
+- **Exhausted/closed (predecessor to the active remediation queue): `plans/PLAN_2026-06-20_autonomous_development_queue.md`** (D-APP-39 — autonomous pull-and-execute on everything except the four hard fences, with autonomous commit+push; backlog source `plans/artifacts/insp05_development_roadmap_2026-06-21.md`). The agent pulls the highest-priority eligible item, executes/validates/commits/pushes, and stops only at a hard fence, a new decision, a validation failure, or an empty eligible queue. The **P0 governance cluster** was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37 PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`), and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via `execution/_Reconciliation/References/reconcile_authority_corpus.py`; 0 `HASH_MISMATCH`). ADQ-05 later bumped the authority corpus to `v2` after D-APP-40 PRD/SPEC/TYPES edits and reconciled 153 deliverable reference rows. ADQ-05, ADQ-08, ADQ-09, ADQ-10, ADQ-11, and ADQ-12 are done; all rows in the autonomous queue are now `DONE`, and no eligible `READY` item remains.
+- **ACTIVE queue: `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`** (authorized by owner directive 2026-06-21; runs under D-APP-39 autonomous discipline + the tightened no-self-rule gate). Backlog source: `plans/artifacts/insp05_roadmap_addendum_2026-06-21_inspection_orphans.md` (`ORN-01`..`ORN-13`, pre-issuance hardening). A post-run audit found these in-scope, non-fenced gaps that the INSP-05 synthesis compressed out and the prior autonomous queue never scheduled. **First step: a verify-pass over the REPORTED items (`ORN-05`..`ORN-13`), drop already-closed cases, then execute `ORN-01` (CI enforcement) first.** The prior autonomous queue (`PLAN_2026-06-20_autonomous_development_queue.md`) stays exhausted/closed.
 - Completed queue: `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (D-APP-19 Option D).
   Deliverable-INSPECTION phase: move all 53 deliverables `IN_PROGRESS -> CHECKING` and inspect each
   to form development evidence; issuance (`CHECKING -> ISSUED`) deferred. Tranche spine INSP-00 ->
@@ -45,8 +45,9 @@ Active development queue:
 	  complete at `plans/artifacts/insp05_development_roadmap_2026-06-21.md`; D-APP-35 through
 	  D-APP-37 were prepared and are now ruled. `INSP-FINAL` closeout is recorded at
 	  `plans/artifacts/insp_final_closeout_2026-06-21.md`. D-APP-34 through D-APP-39 are ruled. The
-	  inspection program is complete; the active queue is now the autonomous development queue (above),
-	  whose backlog is sourced from the INSP-05 roadmap.
+	  inspection program is complete; the autonomous development queue that followed it is now
+	  exhausted/closed, and the active queue is the inspection-orphan remediation queue (above),
+	  whose backlog is the INSP-05 roadmap addendum.
 
 Completed / superseded queues (history, non-governing):
 

@@ -2,8 +2,9 @@
 
 **Date:** 2026-06-21
 **Persona:** WORKING_ITEMS
-**Status:** PROPOSED — awaiting owner authorization to open as a development tranche. **This addendum
-schedules nothing by itself; it is not an active queue.**
+**Status:** AUTHORIZED 2026-06-21 (owner directive) and transposed into the active queue
+`plans/PLAN_2026-06-21_inspection_orphan_remediation.md`. This artifact remains the backlog *source* of
+record; the active governing queue is the PLAN file.
 **Provenance:** post-run reconciliation audit of the completed D-APP-39 autonomous run (workflow
 `remaining-work-reconcile`: 7 agents over all 53 INSP-03 assessments, 177 raw gaps), plus overseer
 source-verification on 2026-06-21.
@@ -105,5 +106,9 @@ Should the owner open this as a tranche:
 
 ## 8. Authorization
 
-This addendum is `PROPOSED`. It becomes eligible work only on an explicit owner directive to open it. No
-item here is started, ruled, or scheduled by its presence in this document.
+**AUTHORIZED by owner directive on 2026-06-21** to be incorporated into the coordination/development-loop
+documents and handed to the implementation agent. The backlog is now the active governing queue
+`plans/PLAN_2026-06-21_inspection_orphan_remediation.md`, which runs under the D-APP-39 autonomous
+discipline and the tightened no-self-rule gate. Per §7, the implementation agent's first step is a
+verification pass over the REPORTED items (`ORN-05`..`ORN-13`) — re-confirm each is still open and drop
+already-closed cases — then execute `ORN-01` first.
