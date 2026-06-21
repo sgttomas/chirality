@@ -546,6 +546,7 @@ type HarnessEvent = {
 - `turn.completed`
 - `turn.failed`
 - `turn.cancelled`
+- `turn.interrupted`
 
 ### 9.4 Later Event Categories
 
@@ -586,12 +587,12 @@ Target responsibilities:
 
 ```ts
 interface AgentEnginePort {
-  runTurn(input: TurnInput): AsyncIterable<UIEvent>;
+  startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
   interrupt?(sessionId: string): Promise<void>;
 }
 ```
 
-`TurnInput` MUST include the active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.
+`AgentEngineRunInput` MUST include the active session, normalized project root, persona, mode, resolved runtime options, and content blocks or attachment summaries where applicable. `TurnEngine.runTurn(request)` remains the route-independent product lifecycle method above this adapter port.
 
 ### 10.3 Engine Adapter Rules
 
@@ -601,8 +602,10 @@ interface AgentEnginePort {
 - `EngineAdapter` MUST translate external message names, external session IDs, external tool names, external permission modes, external transcript paths, and external hook names into Chirality-owned contracts.
 - Provider-specific values MAY be retained under explicit adapter metadata fields.
 - Any provider/SDK-backed adapter MUST pass engine conformance tests before production default use.
-- The Claude Agent SDK / Anthropic adapter is the first concrete adapter and opt-in
-  `agentSdk` probe path; default-provider cutover remains gated by D-APP-12.
+- The Claude Agent SDK / Anthropic adapter is the first concrete adapter and the key-aware
+  default provider per D-APP-18: `agentSdk` is selected when an Anthropic API key is
+  configured and no explicit provider override is set; `stub` remains available as an
+  explicit/keyless fallback.
 - Stub adapter remains available for deterministic tests.
 
 ### 10.4 Thin Route Rule
@@ -622,6 +625,7 @@ Turn streams emit named SSE events with JSON payloads:
 - `session:complete`
 - `turn:error`
 - `process:exit`
+- `harness:event`
 
 Rules:
 

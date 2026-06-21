@@ -11,11 +11,11 @@ This procedure is for implementation and verification planning. It does not appr
 Required source context:
 
 - `_CONTEXT.md` for deliverable identity, scope, and anticipated artifacts.
-- `_REFERENCES.md` for authoritative source corpus and PRD hash warning.
+- `_REFERENCES.md` for authoritative source corpus.
 - `docs/CONTRACT.md` Section 1.4 and 1.5.
 - `docs/SPEC.md` Sections 9, 10, 11, 17.1, 19.2, and 19.3.
 - `docs/TYPES.md` Sections 7.1 through 7.4.
-- `docs/PRD.md` Sections 7.4, 7.10, 8.3, and 8.12, with source-state warning from `_REFERENCES.md`.
+- `docs/PRD.md` Sections 7.4, 7.10, 8.3, and 8.12.
 - Decomposition row for DEL-03-04 and SOW-012/SOW-015.
 
 Declared upstream dependencies:
@@ -40,7 +40,7 @@ Implementation prerequisites:
    - List triggers: successful completion, user interrupt, client disconnect, runtime/provider failure, cancellation signal.
    - For each trigger, define required lock release, browser event behavior, and persisted runtime event behavior.
    - Use one evidence artifact for the trigger matrix so every terminal path is tied to lock-release proof, terminal outcome persistence, and replay expectations.
-   - Mark interruption event taxonomy as TBD until DEL-03-04-CONFLICT-001 is resolved.
+   - Apply D-APP-40: explicit user interruption persists terminal `turn.interrupted`; non-user cancellation uses `turn.cancelled`.
 
 3. Implement or update interrupt handling.
    - Route: preserve `/api/harness/interrupt`.
@@ -78,7 +78,7 @@ Implementation prerequisites:
    - Exact fixture/module path: TBD.
 
 9. Add terminal event mapper tests.
-   - Cover fixture cases for completion, failure, cancellation, and interruption-adjacent signals.
+   - Cover fixture cases for completion, failure, non-user cancellation, and explicit user interruption.
    - Assert `UIEvent` names remain compatible.
    - Assert `HarnessEvent` output uses Chirality-owned event types and redacted data.
    - Exact fixture/module path: TBD.
@@ -97,10 +97,10 @@ Minimum checks before this deliverable is considered implementation-ready:
 | Terminal trigger matrix | One evidence artifact covers completion, interrupt, disconnect, runtime/provider failure, and cancellation signal; each row records lock-release proof, browser-event expectation, persisted runtime outcome expectation, and source reference. | `docs/PRD.md` Section 8.3, FR-018 and FR-019; `docs/SPEC.md` Section 10.1 |
 | Disconnect cleanup test | SSE client disconnect releases active-turn state and records cancellation once event log exists; proof does not depend on delivering a final SSE event to the disconnected browser. | `docs/SPEC.md` Section 11 |
 | Failure after acceptance test | `turn.accepted` remains replayable and a terminal failure/cancellation status is present. | `docs/PRD.md` Section 7.10 |
-| Terminal mapper test | Completion, failure, cancellation, and interruption-adjacent fixtures map to Chirality `UIEvent` and `HarnessEvent` contracts, not SDK-shaped public semantics. | `docs/SPEC.md` Section 10.3 |
+| Terminal mapper test | Completion, failure, cancellation, and explicit interruption fixtures map to Chirality `UIEvent` and `HarnessEvent` contracts, not SDK-shaped public semantics. | `docs/SPEC.md` Section 10.3; D-APP-40 |
 | JSONL append/replay test | Terminal records append newline-delimited events; malformed trailing writes after a valid terminal record do not break replay of accepted input or terminal outcome evidence. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
 | Redaction test | API keys and configured secret variants do not appear in terminal events, runtime logs, provider errors, or tool artifacts. | `docs/CONTRACT.md` K-EVENT-6 |
-| SSE compatibility test | Existing event names remain compatible: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`. | `docs/SPEC.md` Section 11 |
+| SSE compatibility test | Existing event names remain compatible: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and `harness:event`. | `docs/SPEC.md` Section 11 |
 
 ## Records
 
@@ -111,5 +111,5 @@ Produce or update these records as part of implementation closure:
 - Terminal event mapper and mapper tests.
 - Evidence that active-turn locks release after interrupt, disconnect, failure, and cancellation.
 - Evidence that terminal outcomes persist in append-only `HarnessEvent` JSONL.
-- Note or decision resolving DEL-03-04-CONFLICT-001 before final schema closure.
+- D-APP-40 ruling record resolving DEL-03-04-CONFLICT-001.
 - Any Section 9 validation updates for runtime engine event log, session replay, and runtime contract validation.

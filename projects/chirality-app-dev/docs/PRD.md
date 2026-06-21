@@ -56,8 +56,10 @@ Current implementation assessment:
 historical R0/R1 intake text. Runtime Stabilization landed the product-owned TurnEngine
 spine, append-only Chirality event log, permission overlay, tool descriptors, read/write/
 Bash tool surfaces, governed subagent bridge, Section 9 validation, persona composer, and
-no-live packaged `agentSdk` resolver/HOME proof. `agentSdk` remains opt-in after D-APP-12
-Option B; live packaged provider behavior and default-provider cutover remain unapproved.
+no-live packaged `agentSdk` resolver/HOME proof. D-APP-18 has since approved and landed the
+key-aware default: `agentSdk` is selected when an Anthropic API key is configured and no
+explicit provider override is set, while `stub` remains an explicit/keyless fallback.
+Provider expansion beyond Anthropic and release/distribution posture remain unapproved.
 
 Revised product direction:
 
@@ -509,7 +511,7 @@ Priority:
 | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
 | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
 | FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> ORCHESTRATOR`, `AGGREGATE -> AGGREGATION`, `RECONCILING -> RECONCILIATION`, `AGENTS -> HELPS_HUMANS`. |
-| FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | `CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the SDK-backed opt-in probe path; `anthropic` remains the direct Anthropic adapter path and stub mode remains testable until a later D-APP-12 ruling approves default cutover. |
+| FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | With no explicit `CHIRALITY_HARNESS_PROVIDER`, the runtime selects `agentSdk` when an Anthropic API key is configured and falls back to `stub` when no key is configured; explicit `stub`, `anthropic`, and `agentSdk` overrides remain available within the approved Anthropic/stub scope. |
 | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
 | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
 
@@ -617,6 +619,7 @@ Initial persisted event categories:
 - `turn.completed`
 - `turn.failed`
 - `turn.cancelled`
+- `turn.interrupted`
 
 Later categories:
 
@@ -770,6 +773,7 @@ The browser-facing turn stream shall emit named SSE events with JSON payloads:
 - `session:complete`
 - `turn:error`
 - `process:exit`
+- `harness:event`
 
 Additional tool progress events may be introduced only with UI compatibility handling.
 
@@ -1516,7 +1520,7 @@ Acceptance:
 | KG-022 | SDK settings leakage | Enabling `project`, `local`, or `user` settings could silently import `.claude` or `CLAUDE.md` behavior outside Chirality governance. | Shipped builds use `settingSources: []`; any project settings are explicit dev-only or governed future scope. |
 | KG-023 | `allowedTools` misconception | SDK `allowedTools` auto-approves tools but does not by itself restrict tool availability. | PRD and implementation require `dontAsk`, `disallowedTools`, hooks, and `canUseTool` for restriction. |
 | KG-024 | SDK transcript location | SDK default transcripts live under `~/.claude/projects/<encoded-cwd>`, which conflicts with the preference for project-local runtime records. | Prefer project-controlled `CLAUDE_CONFIG_DIR` and/or local `SessionStore` mirror; otherwise cross-reference default path and keep Chirality JSONL canonical. |
-| KG-025 | Electron packaging | Superseded 2026-06-17 for non-live readiness: SDK `asarUnpack`, package layout, mounted-DMG SDK presence, and no-live packaged resolver/HOME proof have landed. | Live packaged provider behavior, signing/notarization, and default-provider cutover remain unapproved. |
+| KG-025 | Electron packaging | Superseded 2026-06-17 for non-live evidence: SDK `asarUnpack`, package layout, mounted-DMG SDK presence, and no-live packaged resolver/HOME proof have landed; D-APP-18 later landed key-aware default selection. | Signing, notarization, publication, external distribution, and release-readiness claims remain unapproved. |
 | KG-026 | Provider/SDK security boundary | Provider/SDK permissions are necessary but not sufficient as a professional-work safety boundary. | Maintain Chirality path containment, instruction-root protection, redaction, and human gates as product-owned overlays. |
 | KG-027 | Subagent inherited permissions | SDK subagents may inherit powerful parent modes such as bypass/accept edits. | Developer-only bypass remains out of shipped mode; subagent tool restrictions and governance hooks fail closed. |
 | KG-028 | SDK session mirror reliability | `SessionStore` mirror failures may not stop the SDK turn because local transcript writes are primary. | Monitor mirror errors, persist `runtime.mirror.error` with SDK adapter metadata, and rely on Chirality JSONL for product audit. |

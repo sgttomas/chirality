@@ -22,20 +22,20 @@ Source: `_CONTEXT.md` Identity and Traceability; `execution/_Decomposition/Chira
 |---|---|---|
 | Runtime owner | `TurnEngine` owns a single harness turn lifecycle and invokes the engine through the product-owned boundary. | `docs/TYPES.md` Section 7.1; `docs/PRD.md` FR-070 |
 | Engine boundary | `AgentEnginePort` / `RuntimeEngineContract` is separate from SDK APIs. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-ENGINE-1 |
-| Target type | `AgentEnginePort.runTurn(input: TurnInput): AsyncIterable<UIEvent>` with optional `interrupt(sessionId)`. | `docs/SPEC.md` Section 10.2 |
+| Target adapter type | `AgentEnginePort.startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>` with optional `interrupt(sessionId)`. `TurnEngine.runTurn(request)` remains the route-independent lifecycle method above the adapter. | `docs/SPEC.md` Section 10.2; D-APP-40 |
 | Turn input content | Active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` Section 10.2 |
 | HTTP route role | `/api/harness/turn` remains a transport adapter that validates request shape, obtains session lock, forwards input to `TurnEngine`, writes SSE, and handles cleanup. | `docs/SPEC.md` Section 10.4 |
 | Session locking | Only one active turn may run per session; concurrent turn attempts return `TURN_IN_PROGRESS`. | `docs/PRD.md` FR-018 |
 | Browser stream contract | Browser-facing SSE event names remain compatible during SDK adoption. | `docs/SPEC.md` Section 11; `docs/PRD.md` FR-017, FR-071 |
 | Accepted-turn persistence | Accepted user input persists before model/provider/SDK execution. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021 |
-| Terminal outcomes | Success, failure, and cancellation persist as terminal runtime events. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022 |
+| Terminal outcomes | Success, failure, cancellation, and explicit user interruption persist as terminal runtime events; explicit user interruption uses `turn.interrupted`. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022; D-APP-40 |
 | SDK isolation | SDK-specific messages, IDs, tool names, permission modes, transcript paths, and hook names are adapter metadata, not public Chirality contracts. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4 |
 
 ## Conditions
 
 | Condition | Value | Source |
 |---|---|---|
-| Source state warning | `docs/PRD.md` is accessible but recorded as `HASH_MISMATCH` in `_REFERENCES.md`; PRD-derived details are used as current source content with this warning. | `_REFERENCES.md` REF-006 |
+| Source state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived runtime details are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
 | Route compatibility constraint | Existing `/api/harness/*` route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 17.1 |
 | Event separation constraint | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts. | `docs/SPEC.md` Sections 9 and 11; `docs/CONTRACT.md` K-EVENT-1 |
 | Session storage context | Legacy session records remain readable; vNext session layout is `.chirality/sessions/<sessionId>/` with `session.json`, `events.jsonl`, `turns/`, `artifacts/`, and `sdk/`. | `docs/SPEC.md` Sections 8.1 and 8.2 |
@@ -51,7 +51,7 @@ Source: `_CONTEXT.md` Identity and Traceability; `execution/_Decomposition/Chira
 | Boot/session binding | Turn input carries active session and previously bound `projectRoot`, persona, mode, and resolved runtime options. | Source-supported behavior; exact session manager API TBD. |
 | SSE adapter | Route writes existing browser-facing event names and does not expose SDK messages as browser contract. | Source-supported behavior; exact adapter function names TBD. |
 | Accepted-turn event | `turn.accepted` is persisted before SDK/model execution begins. | Source-supported behavior; exact event-writer API TBD. |
-| Terminal event handling | Terminal success, failure, and cancellation outcomes are persisted. | Source-supported behavior; interruption-specific mapping overlaps DEL-03-04 and remains TBD for this slice. |
+| Terminal event handling | Terminal success, failure, cancellation, and explicit user-interruption outcomes are persisted; explicit user interruption uses `turn.interrupted` per D-APP-40. | Source-supported behavior; implementation-specific cleanup coverage remains coordinated with DEL-03-04. |
 | Lock cleanup tests | Tests cover concurrent turn rejection and lock release on normal completion, error, and cancellation cleanup. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
 | Session lifecycle tests | Tests cover session binding, boot metadata forwarding, and stable route/SSE behavior through `TurnEngine`. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
 
@@ -73,5 +73,5 @@ Current implementation pointers observed during Pass 3:
 | REF-003 | `docs/SPEC.md` | 8-12, 17.1, 19.2-19.3 | MATCH |
 | REF-004 | `docs/TYPES.md` | 7.1-7.4 | MATCH |
 | REF-005 | `docs/PLAN.md` | R1 | MATCH |
-| REF-006 | `docs/PRD.md` | FR-014-FR-022, FR-070-FR-077, FR-116, FR-122-FR-128, R1, validation additions | HASH_MISMATCH source-state warning |
+| REF-006 | `docs/PRD.md` | FR-014-FR-022, FR-070-FR-077, FR-116, FR-122-FR-128, R1, validation additions | MATCH under the current D-APP-38 authority corpus |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Not directly used for implementation requirements in this draft. | MATCH |

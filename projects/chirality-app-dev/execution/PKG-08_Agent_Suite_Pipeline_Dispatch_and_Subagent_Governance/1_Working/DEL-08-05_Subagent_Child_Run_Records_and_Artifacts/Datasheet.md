@@ -21,7 +21,7 @@
 | Attribute | Value | Source |
 |---|---|---|
 | Scope | Persist parent-child runtime records, status, timestamps, SDK agent metadata, and output artifact paths. | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-08-05 |
-| Primary record target | `HarnessSubagentRun` | `docs/TYPES.md` Section 10 |
+| Primary record target | `ChildRunRecord` | `docs/TYPES.md` Section 10; D-APP-40 |
 | Parent audit event target | `HarnessEvent` | `docs/TYPES.md` Section 7.3; `docs/SPEC.md` Section 9 |
 | Canonical event store | `.chirality/sessions/<id>/events.jsonl` | `docs/CONTRACT.md` K-EVENT-4; `docs/TYPES.md` Section 7.2 |
 | Artifact folder | `.chirality/sessions/<sessionId>/artifacts/` | `docs/TYPES.md` Section 7.2; `docs/PRD.md` Section 10.5 |
@@ -40,24 +40,22 @@
 | JSONL replay must tolerate malformed trailing records. | Required for the event store. | `docs/CONTRACT.md` K-EVENT-5; `docs/SPEC.md` Section 9.2 |
 | SDK transcripts are secondary unless imported into `HarnessEvent` form. | Required. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 8 |
 | Unified pipeline run records remain retired scope. | Required boundary. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 |
-| PRD source hash | Source warning: expected hash differs from observed hash; content used only as accessible source with mismatch noted. | `_REFERENCES.md`; runtime assignment |
+| PRD source status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived subagent and artifact details are accepted for this tranche. | `_REFERENCES.md`; D-APP-38 |
 
 ## Construction
 
-### Target `HarnessSubagentRun` Fields
+### Target `ChildRunRecord` Fields
 
 | Field | Type / Allowed Value | Requirement Status | Source |
 |---|---|---|---|
-| `runId` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `childRunId` | string | Required by type target. | `docs/TYPES.md` Section 10; D-APP-40 |
 | `parentSessionId` | string | Required by type target. | `docs/TYPES.md` Section 10 |
 | `parentTurnId` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
-| `persona` | string | Required by type target. | `docs/TYPES.md` Section 10 |
+| `parentPersona` | string | Required by type target. | `docs/TYPES.md` Section 10 |
 | `agentName` | string | Required by type target. | `docs/TYPES.md` Section 10 |
-| `sdkAgentId` | string | Optional by type target; available when SDK exposes it. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
-| `model` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
+| `adapter.adapterAgentId` | string | Optional adapter metadata when available. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
 | `projectRoot` | string | Required by type target. | `docs/TYPES.md` Section 10 |
 | `status` | `queued`, `running`, `completed`, `failed`, `cancelled`, `denied` | Required by type target. | `docs/TYPES.md` Section 10 |
-| `startedAt` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
 | `completedAt` | string | Optional by type target. | `docs/TYPES.md` Section 10 |
 | `outputArtifactPath` | string | Optional by type target; required when child output is stored externally. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
 
@@ -79,7 +77,7 @@
 - `docs/DIRECTIVE.md` - runtime audit mirror and subagent governance direction.
 - `docs/CONTRACT.md` - event, hook, and subagent invariants.
 - `docs/SPEC.md` - event schema, artifact policy, and runtime engine contract.
-- `docs/TYPES.md` - `HarnessEvent`, session artifact, and `HarnessSubagentRun` type targets.
+- `docs/TYPES.md` - `HarnessEvent`, session artifact, and `ChildRunRecord` type targets.
 - `docs/PLAN.md` - R5 governed subagent runtime sequencing and retired-scope boundary.
-- `docs/PRD.md` - runtime event, artifact, and subagent requirements. Source warning: hash mismatch recorded in `_REFERENCES.md`.
+- `docs/PRD.md` - runtime event, artifact, and subagent requirements. Current under the D-APP-38 authority corpus.
 - `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` - decomposition method reference.

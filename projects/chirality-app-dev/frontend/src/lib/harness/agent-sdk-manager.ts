@@ -1,5 +1,7 @@
 import { randomUUID } from 'node:crypto';
+import { createHarnessEvent, type HarnessEventType } from './event-schema';
 import { HarnessError } from './errors';
+import { harnessEventToUiEvent } from './harness-ui-bridge';
 import { IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
 
 type ActiveTurnState = {
@@ -18,6 +20,34 @@ function chunkText(text: string, size = 24): string[] {
     chunks.push(text.slice(index, index + size));
   }
   return chunks.length > 0 ? chunks : ['ok'];
+}
+
+function bridgeHarnessEvent(sessionId: string, type: HarnessEventType): UIEvent | null {
+  return harnessEventToUiEvent(
+    createHarnessEvent({
+      sessionId,
+      type,
+      data: { provider: 'stub-agent-sdk' }
+    })
+  );
+}
+
+function interruptedEvents(sessionId: string): UIEvent[] {
+  const bridgedEvents = [
+    bridgeHarnessEvent(sessionId, 'interruption.completed'),
+    bridgeHarnessEvent(sessionId, 'turn.interrupted')
+  ].filter((event): event is UIEvent => event !== null);
+
+  return [
+    ...bridgedEvents,
+    {
+      type: 'process:exit',
+      data: {
+        exitCode: 130,
+        interrupted: true
+      }
+    }
+  ];
 }
 
 const PERMISSION_DENY_MARKER = 'UNAPPROVED_DENY_TEST';
@@ -132,13 +162,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
 
       for (const chunk of chunks) {
         if (turnState.interrupted) {
-          yield {
-            type: 'process:exit',
-            data: {
-              exitCode: 130,
-              interrupted: true
-            }
-          };
+          yield* interruptedEvents(session.sessionId);
           return;
         }
 
@@ -154,13 +178,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
       }
 
       if (turnState.interrupted) {
-        yield {
-          type: 'process:exit',
-          data: {
-            exitCode: 130,
-            interrupted: true
-          }
-        };
+        yield* interruptedEvents(session.sessionId);
         return;
       }
 

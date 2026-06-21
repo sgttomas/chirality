@@ -25,7 +25,7 @@ Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` 
 - Make the conformance suite adapter-agnostic. Tests should assert Chirality outcomes: accepted-turn persistence, stable UI events, canonical event records, terminal outcomes, permission denial, redaction, and absence of SDK-shaped leakage.
 - Expect some tests to be staged. SDK message categories, resume behavior, `SessionStore`, `CLAUDE_CONFIG_DIR`, and interrupt behavior depend on DEL-04-01 probe findings, so mark unsupported cases as `TBD` rather than hard-coding assumptions.
 - Preserve the stub adapter. It is the deterministic baseline for contract tests and fallback analysis.
-- Keep PRD-derived details visible but caveated. `_REFERENCES.md` reports a HASH_MISMATCH for `docs/PRD.md`; human acceptance should confirm that the accessible PRD state is the intended one.
+- Keep PRD-derived details visible and source-bound. D-APP-38 confirms the current authority corpus for `docs/PRD.md`; implementation proof still needs deliverable-local evidence.
 
 ## Trade-offs
 
@@ -43,7 +43,7 @@ Illustrative interface shape from `docs/SPEC.md` section 10.2:
 
 ```ts
 interface AgentEnginePort {
-  runTurn(input: TurnInput): AsyncIterable<UIEvent>;
+  startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
   interrupt?(sessionId: string): Promise<void>;
 }
 ```
@@ -52,11 +52,11 @@ Example conformance assertions:
 
 - A stub adapter yields only stable browser `UIEvent` names and does not expose provider-specific fields in public stream payloads.
 - An SDK-backed adapter persists `turn.accepted` before invoking SDK/model execution.
-- An SDK-backed adapter maps SDK result/failure/interruption outcomes into product-owned terminal `HarnessEvent` records.
+- An SDK-backed adapter maps SDK result/failure/interruption outcomes into product-owned terminal `HarnessEvent` records; explicit user interruption terminates as `turn.interrupted` per D-APP-40.
 - A leakage test fails if public APIs or canonical `HarnessEvent` fields expose SDK message names, permission modes, transcript paths, tool names, or session IDs outside explicit adapter metadata.
 
 ## Conflict Table (for human ruling)
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CT-001 | `docs/PRD.md` is accessible and used, but `_REFERENCES.md` reports REF-006 HASH_MISMATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.16, 9, 12, 13 | Datasheet Conditions/References; Specification Requirements/Verification; Procedure Prerequisites | Treat as a source-state warning, not a semantic conflict; require human confirmation before acceptance closure. | TBD |
+| CT-001 | Resolved by D-APP-38: REF-006 now matches the authority corpus. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.16, 9, 12, 13 | Datasheet Conditions/References; Specification Requirements/Verification; Procedure Prerequisites | Apply D-APP-38 corpus workflow for future authority edits. | Ruled 2026-06-20 |

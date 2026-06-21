@@ -36,7 +36,7 @@
 
 | Condition | Required Handling | Source |
 |---|---|---|
-| User interrupt | `POST /api/harness/interrupt` aborts the active provider request and yields interrupted `process:exit`; terminal persistence taxonomy is TBD pending conflict resolution. | `docs/PRD.md` Section 8.3, FR-019; `docs/PRD.md` Section 7.4 |
+| User interrupt | `POST /api/harness/interrupt` aborts the active provider request, yields interrupted `process:exit`, and persists `turn.interrupted` for explicit user interruption. | `docs/PRD.md` Section 8.3, FR-019; `docs/PRD.md` Section 7.4; D-APP-40 |
 | Client disconnect | Stream cleanup must occur; once the event log exists, client disconnect cleanup must record cancellation. | `docs/SPEC.md` Section 11 |
 | Runtime/provider failure after input acceptance | Accepted input remains recoverable and replay shows terminal failure/cancellation status. | `docs/PRD.md` Section 7.10 |
 | Concurrent turn attempt | Must not create a second active turn for the same session; return `TURN_IN_PROGRESS`. | `docs/PRD.md` Section 8.3, FR-018 |
@@ -49,7 +49,7 @@
 |---|---|---|
 | Interrupt tests | Cover active-turn interrupt route, provider abort propagation, SSE `process:exit`, lock release, and durable terminal outcome. | ASSUMPTION: exact test file path TBD |
 | Cancel cleanup tests | Cover client disconnect and cancellation-signal cleanup, lock release, and durable cancellation record once event log exists. | ASSUMPTION: exact test file path TBD |
-| Terminal event mapper | Map completion, failure, cancellation, and interruption handling into browser `UIEvent`s and persisted `HarnessEvent`s without SDK-shaped public semantics. | ASSUMPTION: exact module path TBD |
+| Terminal event mapper | Map completion, failure, cancellation, and interruption handling into browser `UIEvent`s and persisted `HarnessEvent`s without SDK-shaped public semantics; explicit interruption uses `turn.interrupted`. | `frontend/src/lib/harness/claude-agent-sdk-manager.ts`; `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`; D-APP-40 |
 | Lock cleanup verification | Confirm interrupt, disconnect, failure, and cancellation all release session active-turn state. | Supported by DEL-03-04 scope and PRD FR-018/FR-019/FR-022 |
 | Event log verification | Confirm terminal records append as newline-delimited JSONL with unique event IDs and no secrets. | `docs/SPEC.md` Section 9.2 |
 
@@ -58,5 +58,5 @@
 - `docs/CONTRACT.md` Section 1.4 and 1.5, especially K-ENGINE-1 through K-ENGINE-4 and K-EVENT-2 through K-EVENT-6.
 - `docs/SPEC.md` Sections 8.4, 9, 10, 11, 17.1, 19.2, and 19.3.
 - `docs/TYPES.md` Sections 7.1 through 7.4.
-- `docs/PRD.md` Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12. Source-state warning: REF-006 is HASH_MISMATCH in `_REFERENCES.md`.
+- `docs/PRD.md` Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12. REF-006 is reconciled under the current D-APP-38 authority corpus.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-03 / DEL-03-04 and SOW-012 / SOW-015 rows.

@@ -5,7 +5,7 @@
 **Deliverable Folder:** /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking
 **StatusPolicy:** NO_STATUS_TOUCH
 **Validator:** PASS - validate_lens_register.py passed after generation
-**Warnings:** REF-006 HASH_MISMATCH recorded in source metadata; exact lock storage, code paths, dependency closure, and DEL-03-04 cancel/interrupt boundary remain TBD.
+**Warnings:** D-APP-38 authority-corpus reconciliation is current for REF-006; exact lock storage, code paths, dependency closure, and DEL-03-04 cleanup coverage remain TBD.
 
 **Inputs Read:**
 - _CONTEXT.md - /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_CONTEXT.md#identity
@@ -75,7 +75,7 @@
 | B:[data]:[necessity] | data | necessity | essential fact | 0 | NO_ITEMS | B data/necessity lens (essential fact) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
 | B:[data]:[sufficiency] | data | sufficiency | adequate evidence | 0 | NO_ITEMS | B data/sufficiency lens (adequate evidence) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
 | B:[data]:[completeness] | data | completeness | comprehensive record | 0 | NO_ITEMS | B data/completeness lens (comprehensive record) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
-| B:[data]:[consistency] | data | consistency | reliable measurement | 1 | HAS_ITEMS | Carry REF-006 PRD hash mismatch as a closure blocker until source hash reconciliation is accepted. |
+| B:[data]:[consistency] | data | consistency | reliable measurement | 1 | HAS_ITEMS | Record that the former REF-006 PRD source-state blocker is resolved by D-APP-38. |
 | B:[information]:[necessity] | information | necessity | essential signal | 0 | NO_ITEMS | B information/necessity lens (essential signal) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
 | B:[information]:[sufficiency] | information | sufficiency | adequate context | 0 | NO_ITEMS | B information/sufficiency lens (adequate context) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
 | B:[information]:[completeness] | information | completeness | comprehensive account | 0 | NO_ITEMS | B information/completeness lens (comprehensive account) was checked against the four production documents; cited scope text did not surface an extra register item for this cell. |
@@ -92,7 +92,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| B-001 | B:[data]:[consistency] | Conflict | Multi | NA | Carry REF-006 PRD hash mismatch as a closure blocker until source hash reconciliation is accepted. | The production kit cites PRD-derived runtime requirements while _REFERENCES.md records REF-006 as HASH_MISMATCH. This is source-state tension that the register can surface but not resolve. | _REFERENCES.md; Datasheet.md; Specification.md; Guidance.md; Procedure.md | _REFERENCES.md#authoritative-source-corpus; Datasheet.md#conditions; Specification.md#documentation; Guidance.md#conflict-table-for-human-ruling; Procedure.md#prerequisites | _REFERENCES.md#authoritative-source-corpus; Guidance.md#conflict-table-for-human-ruling | PROPOSAL | TBD |
+| B-001 | B:[data]:[consistency] | Conflict | Multi | NA | Record the former REF-006 source-state blocker as resolved by D-APP-38 authority-corpus reconciliation. | The production kit cites PRD-derived runtime requirements under the current D-APP-38 authority corpus; this former source-state tension is no longer a closure blocker for this tranche. | _REFERENCES.md; Datasheet.md; Specification.md; Guidance.md; Procedure.md | _REFERENCES.md#authoritative-source-corpus; Datasheet.md#conditions; Specification.md#documentation; Guidance.md#conflict-table-for-human-ruling; Procedure.md#prerequisites | _REFERENCES.md#authoritative-source-corpus; Guidance.md#conflict-table-for-human-ruling | PROPOSAL | D-APP-38 accepted current authority corpus |
 
 ## Matrix C - Formulation
 

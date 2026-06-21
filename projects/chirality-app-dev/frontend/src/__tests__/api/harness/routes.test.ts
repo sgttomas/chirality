@@ -1116,6 +1116,7 @@ AGENT_TYPE: 2
 
     expect(streamText).toContain('event: process:exit');
     expect(streamText).toContain('"interrupted":true');
+    expect(streamText).toContain('"type":"turn.interrupted"');
   });
 
   it('keeps turn and interrupt routes coherent across module-bundle boundaries', async () => {
@@ -1188,6 +1189,7 @@ AGENT_TYPE: 2
 
     expect(streamText).toContain('event: process:exit');
     expect(streamText).toContain('"interrupted":true');
+    expect(streamText).toContain('"type":"turn.interrupted"');
   });
 
   it('returns typed failure for interrupt on unknown session', async () => {

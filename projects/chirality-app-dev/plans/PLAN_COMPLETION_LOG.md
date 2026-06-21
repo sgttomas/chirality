@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-05 runtime taxonomy reconciliation completed
+
+Completed `ADQ-05` from the autonomous development queue. Applied D-APP-40 Option B across runtime
+code, tests, authority docs, and active PKG-03/PKG-08 evidence: `AgentEnginePort.startTurn(input)` is
+the canonical adapter stream method; `TurnEngine.runTurn(request)` remains the route-independent
+lifecycle method; `harness:event` remains the redacted public bridge for rich `HarnessEvent` records;
+explicit user interruption now uses `turn.interrupted`; `turn.cancelled` remains for non-user
+cancellation; `ChildRunRecord.childRunId` is canonical; and denied child-run records are required
+only after the child-run record layer is reached. The stub route interrupt path now bridges
+`interruption.completed` and `turn.interrupted` before the interrupted `process:exit`.
+
+Because `docs/PRD.md`, `docs/SPEC.md`, and `docs/TYPES.md` changed, D-APP-38 authority reconciliation
+was run: corpus `v2` was minted and 153 reference rows across 51 deliverable `_REFERENCES.md` files
+were reconciled. `ADQ-12` is now unblocked and marked `READY`.
+
+Validation: focused ADQ-05 suite passed 7 files / 144 tests with `--testTimeout=15000`; `npm run
+typecheck` passed; `npm run harness:validate:section9` passed 13 checks; full `npm run test --
+--testTimeout=15000` passed 76 files / 521 tests; D-APP-38 `audit` passed and final `status` reported
+no drift; targeted stale-term scan found no active-current ADQ-05 hits outside historical
+`_run_records`, parser tests, and intended `TurnEngine.runTurn` lifecycle references; `git diff
+--check` passed.
+
+No `_STATUS.md` files, provider/network expansion, signing/notarization/publication/external
+distribution posture, lifecycle issuance, professional approval, certification, sealing,
+authentication, code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - D-APP-40 through D-APP-42 ruled
 
 Recorded owner rulings for the pending autonomous-queue blockers:

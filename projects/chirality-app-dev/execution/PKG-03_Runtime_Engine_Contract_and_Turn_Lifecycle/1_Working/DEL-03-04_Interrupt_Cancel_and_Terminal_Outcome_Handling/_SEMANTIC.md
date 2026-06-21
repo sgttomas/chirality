@@ -2,7 +2,7 @@
 
 **Generated:** 2026-05-20
 **DECOMP_VARIANT:** SOFTWARE
-**Perspective:** This deliverable frames turn termination as a runtime lifecycle contract that keeps interruption, cancellation, failure, and disconnect outcomes observable without making provider behavior public authority. Its knowledge must carry lifecycle cleanup, terminal persistence, browser compatibility, adapter mapping, redaction, and source-state caveats, including unresolved taxonomy alignment and PRD hash mismatch, at a category level.
+**Perspective:** This deliverable frames turn termination as a runtime lifecycle contract that keeps interruption, cancellation, failure, and disconnect outcomes observable without making provider behavior public authority. Its knowledge must carry lifecycle cleanup, terminal persistence, browser compatibility, adapter mapping, redaction, D-APP-40 interruption taxonomy, and D-APP-38 source-state reconciliation at a category level.
 **Framework:** Chirality Semantic Algebra
 **Audit:** PASS
 **Phase 2.3 Ruling:** Current lifecycle state preserved by `STATUS_POLICY=PRESERVE_CURRENT`; `_STATUS.md` was read but not modified.

@@ -44,7 +44,7 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 | DEP-08-05-007 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Runtime redaction policy | ACTIVE |
 | DEP-08-05-008 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | SDK transcript metadata boundary | ACTIVE |
 | DEP-08-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Retired unified pipeline run record boundary | ACTIVE |
-| DEP-08-05-010 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN | Human ruling for denied child-run allocation | ACTIVE |
+| DEP-08-05-010 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | D-APP-40 denied child-run allocation boundary | ACTIVE |
 
 ## Run Notes
 
@@ -58,15 +58,16 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 - `EXECUTION_DOC_ORDER=AUTO` used `Procedure.md`, `Specification.md`, `Guidance.md`, and `Datasheet.md` for execution prerequisites and constraints.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE parent anchor was found.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor was found.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `_REFERENCES.md` reports REF-006 `docs/PRD.md` hash mismatch; PRD-derived rows retain the source warning in notes and are not treated as closure proof by themselves.
-- `[WARNING] HUMAN_RULING_TBD`: denied child-run allocation semantics remain unresolved; dependency row DEP-08-05-010 preserves the target as `UNKNOWN` with `TBD` closure.
+- `[RESOLVED] SOURCE_STATE`: D-APP-38 current authority-corpus reconciliation supersedes the prior PRD source-state warning for this tranche.
+- `[RESOLVED] HUMAN_RULING_APPLIED`: D-APP-40 resolves denied child-run allocation semantics; denied `ChildRunRecord` evidence is required only after the runtime reaches the child-run record layer.
 - Schema validation passed: 29 required columns and 10 data rows.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Status | ACTIVE Rows | Warnings |
 |---|---|---|---|---:|---|
-| 2026-05-20T20:55:00-0600 | UPDATE | CONSERVATIVE | Found and used explicit path | 10 | SOURCE_HASH_MISMATCH; HUMAN_RULING_TBD |
+| 2026-06-21T03:00:20-0600 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 child-run taxonomy applied | 10 | none |
+| 2026-05-20T20:55:00-0600 | UPDATE | CONSERVATIVE | Found and used explicit path | 10 | superseded source-state warning; superseded denied-allocation ruling request |
 
 ## Lifecycle Summary
 
@@ -78,5 +79,5 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 3 |
-| TBD | 7 |
+| SATISFIED | 4 |
+| TBD | 6 |

@@ -407,7 +407,7 @@ describe('engine conformance fixtures', () => {
     ]);
   });
 
-  it('requires interrupted adapter turns to emit cancellation terminal evidence', async () => {
+  it('requires interrupted adapter turns to emit interruption terminal evidence', async () => {
     await useTempSessionRoot();
     const manager = new ClaudeAgentSdkManager(
       createInterruptibleQuery([sdkInit('sdk_interrupt')]) as never,
@@ -420,7 +420,7 @@ describe('engine conformance fixtures', () => {
 
     expect(report.passed).toBe(true);
     // session:init, the buffered turn.accepted / turn.started, then the bridged
-    // interruption.completed / turn.cancelled cancellation pair, then terminal exit.
+    // interruption.completed / turn.interrupted terminal pair, then terminal exit.
     expect(report.eventTypes).toEqual([
       'session:init',
       'harness:event',
@@ -444,7 +444,7 @@ describe('engine conformance fixtures', () => {
       'adapter.initialized',
       'interruption.requested',
       'interruption.completed',
-      'turn.cancelled'
+      'turn.interrupted'
     ]);
   });
 

@@ -5,7 +5,7 @@
 **Deliverable Folder:** /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling
 **StatusPolicy:** NO_STATUS_TOUCH
 **Validator:** PASS - validate_lens_register.py completed successfully after generation.
-**Warnings:** REF-006 PRD HASH_MISMATCH remains unresolved; interruption taxonomy and exact implementation paths remain TBD.
+**Warnings:** D-APP-38 authority-corpus reconciliation is current for REF-006; D-APP-40 resolves interruption taxonomy; exact implementation paths and remaining cleanup evidence remain TBD.
 
 **Inputs Read:**
 - _CONTEXT.md - _CONTEXT.md#Context:-DEL-03-04-Interrupt-Cancel-and-Terminal-Outcome-Handling
@@ -70,7 +70,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A-001 | A:[normative]:[reviewing] | Conflict | Multi | NA | Carry unresolved interruption taxonomy conflict into later enrichment. | Guidance records a human-ruling conflict because interruption is required as a durable terminal outcome while SPEC/TYPES initial categories omit turn.interrupted. | Guidance.md; Specification.md | Guidance.md#Conflict-Table-(for-human-ruling); Specification.md#Requirements | Guidance.md#Conflict-Table-(for-human-ruling); Specification.md#Documentation | PROPOSAL | TBD |
+| A-001 | A:[normative]:[reviewing] | Conflict | Multi | NA | Record interruption taxonomy as resolved by D-APP-40. | Guidance formerly recorded a human-ruling conflict; D-APP-40 Option B selects `turn.interrupted` for explicit user interruption while reserving `turn.cancelled` for non-user cancellation. | Guidance.md; Specification.md | Guidance.md#Conflict-Table-(for-human-ruling); Specification.md#Requirements | Guidance.md#Conflict-Table-(for-human-ruling); Specification.md#Documentation | PROPOSAL | D-APP-40 Option B applied |
 
 ## Matrix B - Conceptualization (4x4) - Canonical
 
@@ -121,7 +121,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | C:[normative]:[consistency] | Normalization | Multi | Guidance | Normalize interruption vocabulary across terminal outcome, cancellation reason, and process:exit usage. | Documents use interruption as terminal outcome while also allowing turn.cancelled with reason=interrupted; later enrichment needs consistent terms before schema closure. | Datasheet.md; Guidance.md; Procedure.md | Datasheet.md#Conditions; Guidance.md#Trade-offs; Procedure.md#Steps |  | PROPOSAL | TBD |
+| C-001 | C:[normative]:[consistency] | Normalization | Multi | Guidance | Normalize interruption vocabulary around D-APP-40 Option B. | Documents now use `turn.interrupted` for explicit user interruption and retain `turn.cancelled` for non-user cancellation; remaining enrichment should preserve that distinction while keeping `process:exit` interrupted evidence stable. | Datasheet.md; Guidance.md; Procedure.md | Datasheet.md#Conditions; Guidance.md#Trade-offs; Procedure.md#Steps |  | PROPOSAL | D-APP-40 Option B applied |
 
 ## Matrix F - Requirements (3x4)
 
@@ -225,5 +225,5 @@
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-001 | E:[applying]:[knowledge] | MissingSlot | Procedure | Procedure | Record terminal mapper fixture cases for completion, failure, cancellation, and interruption-adjacent signals. | Procedure calls for mapper tests across terminal signals, but exact fixture cases and module path remain TBD. | Procedure.md; Specification.md | Procedure.md#Steps; Specification.md#Verification |  | PROPOSAL | TBD |
-| E-002 | E:[judging]:[wisdom] | TBD_Question | Guidance | NA | Human ruling required: add turn.interrupted or encode interruption as turn.cancelled with reason metadata? | Guidance presents both taxonomy options and explicitly leaves terminal interruption event type pending conflict resolution. | Guidance.md | Guidance.md#Trade-offs; Guidance.md#Conflict-Table-(for-human-ruling) |  | PROPOSAL | TBD |
+| E-002 | E:[judging]:[wisdom] | TBD_Question | Guidance | NA | D-APP-40 ruling selected `turn.interrupted` for explicit user interruption. | Guidance presented both taxonomy options; D-APP-40 Option B resolves the terminal interruption event type and rejects encoding explicit user interruption as `turn.cancelled` reason metadata. | Guidance.md | Guidance.md#Trade-offs; Guidance.md#Conflict-Table-(for-human-ruling) |  | PROPOSAL | D-APP-40 Option B applied |
 | E-003 | E:[reviewing]:[data] | VerificationGap | Specification | Specification | Tie malformed trailing JSONL replay tolerance to terminal outcome persistence evidence. | Specification covers terminal outcome replay and malformed trailing lines, but later validation should prove these together for failure or cancellation after turn.accepted. | Specification.md; Procedure.md | Specification.md#Verification; Procedure.md#Verification |  | PROPOSAL | TBD |

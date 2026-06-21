@@ -320,6 +320,7 @@ Initial event categories:
 - `turn.completed`
 - `turn.failed`
 - `turn.cancelled`
+- `turn.interrupted`
 
 Later event categories:
 
@@ -349,6 +350,7 @@ SSE event names:
 - `session:complete`
 - `turn:error`
 - `process:exit`
+- `harness:event`
 
 ---
 

@@ -89,4 +89,4 @@ Required artifacts for this deliverable:
 
 | Conflict ID | Source A | Source B | Issue | Proposed handling |
 |---|---|---|---|---|
-| C-001 | `_REFERENCES.md` expected PRD SHA | `_REFERENCES.md` actual PRD SHA | PRD hash mismatch exists. Dispatch explicitly says to treat it as a source warning, not a blocker. | Proceeded with REF-006 as warning; human may later decide whether to refresh the accepted snapshot/hash. |
+| C-001 | `_REFERENCES.md` REF-006 | D-APP-38 authority corpus | Former PRD source-state warning is resolved for this tranche. | Use PRD-derived subagent governance text under D-APP-38; keep implementation proof separate from source-state proof. |

@@ -142,7 +142,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     // UIEvents and flush them immediately after session:init keeps the public
     // contract (session:init present, process:exit terminal) intact even if the
     // turn is interrupted before the adapter initializes. Terminal lifecycle
-    // events (interruption.completed / turn.cancelled / turn.failed) bridge in
+    // events (interruption.completed / turn.interrupted / turn.failed) bridge in
     // place via emitAndBridge.
     const pendingLifecycleUiEvents: UIEvent[] = [];
     let lifecycleBridgeFlushed = false;
@@ -278,7 +278,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
 
         if (activeTurn.interrupted) {
           yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
-          yield* emitAndBridge('turn.cancelled', { provider: 'claude-agent-sdk' });
+          yield* emitAndBridge('turn.interrupted', { provider: 'claude-agent-sdk' });
           yield {
             type: 'process:exit',
             data: {
@@ -342,7 +342,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     } catch (error) {
       if (activeTurn.interrupted || abortController.signal.aborted) {
         yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
-        yield* emitAndBridge('turn.cancelled', { provider: 'claude-agent-sdk' });
+        yield* emitAndBridge('turn.interrupted', { provider: 'claude-agent-sdk' });
         yield {
           type: 'process:exit',
           data: {

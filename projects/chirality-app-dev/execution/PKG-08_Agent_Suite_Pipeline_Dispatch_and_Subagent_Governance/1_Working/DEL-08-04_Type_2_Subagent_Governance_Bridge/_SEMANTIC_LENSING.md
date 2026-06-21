@@ -19,7 +19,7 @@
 - `_DEPENDENCIES.md` - read only local dependency context
 
 **Warnings:**
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` records REF-006 `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived delegation behavior remains warning-qualified.
+- [RESOLVED] SOURCE_STATE: D-APP-38 current authority-corpus reconciliation supersedes the prior REF-006 source-state warning; PRD-derived delegation behavior is accepted for this tranche.
 - [WARNING] TBD_IMPLEMENTATION_CONTRACTS: module/file targets, governance decision shape, approval reference format, SDK probe readiness, and DEL-08-05 handoff boundary remain TBD in local production documents.
 - [WARNING] DEPENDENCY_STATE: `_DEPENDENCIES.md` contains extracted ACTIVE dependency rows while Procedure still says declared upstream dependencies are TBD and dependency extraction remains deferred.
 
@@ -117,7 +117,7 @@ By document:
 | `C:[normative]:[necessity]` | normative | necessity | Binding Gate Premise | 0 | NO_ITEMS | Binding Gate Premise is supported by source-cited governance bridge framing without adding authority beyond the local evidence. |
 | `C:[normative]:[sufficiency]` | normative | sufficiency | Sufficient Control Warrant | 0 | NO_ITEMS | Sufficient Control Warrant is supported by source-cited governance bridge framing without adding authority beyond the local evidence. |
 | `C:[normative]:[completeness]` | normative | completeness | Complete Control Frame | 0 | NO_ITEMS | Complete Control Frame is supported by source-cited governance bridge framing without adding authority beyond the local evidence. |
-| `C:[normative]:[consistency]` | normative | consistency | Consistent Gate Logic | 1 | HAS_ITEMS | Consistent gate logic remains warning-qualified by the REF-006 PRD hash mismatch. |
+| `C:[normative]:[consistency]` | normative | consistency | Consistent Gate Logic | 1 | HAS_ITEMS | Consistent gate logic records the former REF-006 source-state warning as resolved by D-APP-38. |
 | `C:[operative]:[necessity]` | operative | necessity | Required Execution Basis | 0 | NO_ITEMS | Required Execution Basis is supported by source-cited governance bridge framing without adding authority beyond the local evidence. |
 | `C:[operative]:[sufficiency]` | operative | sufficiency | Adequate Runtime Basis | 1 | HAS_ITEMS | Adequate runtime basis is weakened by TBD SDK probe readiness evidence. |
 | `C:[operative]:[completeness]` | operative | completeness | Complete Runtime Frame | 0 | NO_ITEMS | Complete Runtime Frame is supported by source-cited governance bridge framing without adding authority beyond the local evidence. |
@@ -131,7 +131,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | `C:[normative]:[consistency]` | RationaleGap | Guidance.md | Guidance.md | Carry REF-006 PRD hash mismatch as an explicit warning until a human refreshes or waives the accepted PRD snapshot. | The production set cites PRD Section 8.15 for multiple requirements while _REFERENCES.md and local conflict tables record REF-006 as HASH_MISMATCH; proceeding is justified only as warning-qualified. | _REFERENCES.md; Specification.md; Guidance.md; Datasheet.md | Authoritative Source Corpus REF-006; Conflict Table; Conditions | NA | PROPOSAL | TBD |
+| C-001 | `C:[normative]:[consistency]` | RationaleGap | Guidance.md | Guidance.md | Record REF-006 PRD-derived subagent governance text as current under D-APP-38. | The production set cites PRD Section 8.15 for multiple requirements under the current D-APP-38 authority corpus; implementation sufficiency remains separate from source-state sufficiency. | _REFERENCES.md; Specification.md; Guidance.md; Datasheet.md | Authoritative Source Corpus REF-006; Conflict Table; Conditions | NA | PROPOSAL | D-APP-38 accepted current authority corpus |
 | C-002 | `C:[operative]:[sufficiency]` | WeakStatement | Procedure.md | Procedure.md | Replace current SDK probe readiness TBD with a concrete accepted probe reference or a blocking prerequisite before claiming executable runtime sufficiency. | Procedure says SDK agents capability verified by R0/R1 probes is required but current probe status is TBD; operative sufficiency cannot be assessed from an unspecified probe state. | Procedure.md; _DEPENDENCIES.md | Prerequisites; Extracted Dependency Register DEP-08-04-005 | NA | PROPOSAL | TBD |
 
 ## Matrix F
@@ -244,4 +244,3 @@ By document:
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-001 | `E:[reviewing]:[data]` | VerificationGap | Procedure.md | Procedure.md | Verify the DEL-08-05 handoff interface carries child lifecycle metadata and output artifact-path hooks without DEL-08-04 owning persistence. | Datasheet, Specification, Guidance, and Procedure all reserve full child-record persistence for DEL-08-05, but the exact interface boundary remains TBD and needs reviewable evidence. | Datasheet.md; Specification.md; Guidance.md; Procedure.md; _DEPENDENCIES.md | Conditions; Requirements DEL-08-04-R11; Trade-offs; Verification; DEP-08-04-006 | NA | PROPOSAL | TBD |
-

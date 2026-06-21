@@ -13,7 +13,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 | Accepted source basis for runtime engine boundary and route rule | Available in `docs/SPEC.md` Sections 10 and 17.1. |
 | Runtime vocabulary | Available in `docs/TYPES.md` Section 7. |
 | Product/runtime invariants | Available in `docs/CONTRACT.md` K-CORE, K-ENGINE, K-EVENT. |
-| PRD runtime requirements | Available in `docs/PRD.md`, but `_REFERENCES.md` records `HASH_MISMATCH`; revalidate before closure. |
+| PRD runtime requirements | Available in `docs/PRD.md` under the current D-APP-38 authority corpus. |
 | Declared upstream dependencies | `_DEPENDENCIES.md` / `Dependencies.csv` now list ACTIVE extracted upstream edges for PKG-03, SOW-009, SOW-010, SOW-011, SOW-038, DEL-03-01, and DEL-05-02; all remain `SatisfactionStatus=PENDING`. |
 | Current route/session implementation path | Current route path is `frontend/src/app/api/harness/turn/route.ts`; current route-level active-turn storage is the in-module `activeSessionTurns` set. Current session manager access is through `getHarnessRuntime().sessionManager` in the route. |
 | Existing test conventions | Current route and interrupt tests live in `frontend/src/__tests__/api/harness/routes.test.ts`; Section 8 harness validation lives in `frontend/scripts/validate-harness-section8.mjs`. |
@@ -34,7 +34,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 
 3. Implement `TurnEngine.runTurn()` as the lifecycle owner outside HTTP.
 
-   `TurnEngine` should invoke `AgentEnginePort.runTurn(input)` or equivalent product-owned engine boundary and yield browser-facing `UIEvent`s.  
+   `TurnEngine` should invoke `AgentEnginePort.startTurn(input)` or equivalent product-owned adapter boundary and yield browser-facing `UIEvent`s.
    Source: `docs/PRD.md` FR-070; `docs/SPEC.md` Section 10.1.  
    Verification: unit test runs `TurnEngine.runTurn()` with a stub adapter and no route invocation.
 
@@ -70,7 +70,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 
 9. Preserve browser-facing SSE event names.
 
-   Existing event names include `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit`.  
+   Existing event names include `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and `harness:event`.
    Source: `docs/SPEC.md` Section 11.  
    Verification: compatibility fixture asserts event names do not regress.
 
@@ -94,7 +94,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 | Session lock rejects concurrent turn | Passing concurrency test asserting `TURN_IN_PROGRESS`. |
 | Lock cleanup works | Passing tests for completion, failure, cancellation/abort cleanup, and subsequent turn start. |
 | Accepted-turn ordering | Event sequence or spy proves `turn.accepted` precedes engine invocation. |
-| Terminal outcomes | Success, failure, and cancellation each produce one durable terminal event. |
+| Terminal outcomes | Success, failure, cancellation, and explicit user interruption each produce one durable terminal event where the path accepts a turn. |
 | SSE compatibility | Route fixture confirms existing browser event names and stream behavior. |
 | Session lifecycle | Test confirms session binding and runtime option forwarding into `TurnInput`. |
 | Provider-neutral boundary | Test/review confirms SDK-specific fields are adapter metadata only. |
@@ -105,7 +105,7 @@ Records to preserve for implementation closure:
 
 - Code paths changed for `TurnEngine`, route adapter, session lock, and event writer integration.
 - Test files and commands proving the verification items above.
-- Any source-state note resolving or carrying forward the `docs/PRD.md` hash mismatch.
+- Any source-state note applying D-APP-38 authority-corpus reconciliation.
 - Residual `TBD` decisions for final lock storage and interrupt/cancel ownership with DEL-03-04.
 - Handoff note carrying ACTIVE dependency edges from `Dependencies.csv`, including pending upstream DEL-03-01 and DEL-05-02 edges and downstream DEL-03-03, DEL-03-04, and DEL-09-03 edges.
-- REF-006 source-state warning until the `docs/PRD.md` hash mismatch is reconciled or accepted for closure.
+- REF-006 source-state status under the D-APP-38 authority corpus.

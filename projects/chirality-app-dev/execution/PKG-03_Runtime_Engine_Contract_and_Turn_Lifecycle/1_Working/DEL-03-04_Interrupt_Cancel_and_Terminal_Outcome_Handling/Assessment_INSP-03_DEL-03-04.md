@@ -33,34 +33,31 @@ DEL-03-04 covers public interrupt handling, client disconnect cleanup, runtime f
 | DEL-03-04-REQ-011 | PASS | `frontend/src/lib/harness/turn-engine.ts` lines 206-223 and 374-376; `frontend/src/__tests__/api/harness/routes.test.ts` lines 992-1036; `frontend/src/__tests__/lib/turn-engine.test.ts` lines 207-231. Focused validation passed. | Interrupt/cancel paths release active-turn state sufficiently for subsequent turns. |
 | DEL-03-04-REQ-012 | PASS | `frontend/src/lib/harness/session-events.ts` lines 14-21; `frontend/src/lib/harness/harness-ui-bridge.ts` lines 15-33; `frontend/src/lib/harness/claude-agent-sdk-manager.ts` lines 356-367; `frontend/src/__tests__/lib/session-events.test.ts` lines 77-197. Focused validation passed. | Runtime events and bridged events use redaction helpers and tests cover configured key redaction. |
 | DEL-03-04-REQ-013 | PASS | `frontend/src/lib/harness/sdk-message-mapper.ts` lines 750-836; `frontend/src/__tests__/lib/engine-conformance.test.ts` lines 371-449; `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` lines 66-110. Focused validation passed. | Provider terminal result/failure paths map to Chirality-owned UI/Harness outputs. |
-| DEL-03-04-REQ-014 | PARTIAL | `frontend/src/lib/harness/turn-engine.ts` lines 206-223 and 307-309; `frontend/src/__tests__/api/harness/routes.test.ts` lines 980-1088; `Guidance.md` lines 85-89. Focused validation passed. | Observable recovery proves lock release, but exact cleanup hook/state API and terminal taxonomy remain `TBD`. |
+| DEL-03-04-REQ-014 | PARTIAL | `frontend/src/lib/harness/turn-engine.ts` lines 206-223 and 307-309; `frontend/src/__tests__/api/harness/routes.test.ts` lines 980-1088; D-APP-40. Focused validation passed. | Observable recovery proves lock release, and D-APP-40 resolves terminal taxonomy. Exact cleanup hook/state API remains residual. |
 
 ## Gap Inventory
 
 | Gap | Severity | Evidence | Recommendation |
 |---|---:|---|---|
-| Interruption taxonomy is still unresolved. | High | `Guidance.md` lines 36, 45-50, and 85-89; `Dependencies.csv` line 11. | Prepare a human-ruling packet or resolve in INSP-04/05 whether interruption remains `turn.cancelled` with metadata or gains a new terminal event type. |
 | Client-disconnect durable cancellation is not fully proved. | Medium | `frontend/src/app/api/harness/turn/route.ts` lines 30-32; `Specification.md` lines 31 and 58. | Add a disconnect/cancel terminal persistence test once event ownership is settled. |
 | Accepted raw user input recovery is weaker than accepted-turn metadata recovery. | Medium | `frontend/src/lib/harness/claude-agent-sdk-manager.ts` lines 203-218; `rg` found no `message.accepted` writer beyond schema availability. | Decide whether raw/summary input belongs in `HarnessEvent`, session records, or another redacted artifact. |
 | Stub terminal outcomes are UI-visible but not persisted as `HarnessEvent`s. | Low | `frontend/src/lib/harness/agent-sdk-manager.ts` lines 57-188. | Either add stub event persistence for parity or document stub as deterministic UI-only test adapter. |
-| REF-006 PRD hash mismatch remains open. | Low | `_REFERENCES.md` line 12. | Retain warning-limited source status until project-wide ruling. |
 
 ## Source-State Caveat
 
-`docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. No semantic files were used or produced.
+D-APP-38 established the authority-corpus reference model. Current `_REFERENCES.md` records REF-006 as `MATCH`; future authority-document edits require a corpus bump/apply before acceptance. No semantic files were used or produced.
 
 ## Dependency Closure Note
 
-This assessment does not satisfy or mutate any `Dependencies.csv` row. Active rows remain for DEL-03-01/DEL-03-02 prerequisites, PKG-05 append-only JSONL ownership, and DEL-03-04-CONFLICT-001 terminal taxonomy.
+ADQ-05 satisfies the D-APP-40 terminal-taxonomy decision row. Active rows still remain for DEL-03-01/DEL-03-02 prerequisites and PKG-05 append-only JSONL ownership.
 
 ## Forward Development Recommendation
 
 | Step | Type | Size | Strategic fit | Prerequisite |
 |---|---|---:|---|---|
-| Resolve DEL-03-04-CONFLICT-001 interruption taxonomy. | governance/reconcile | M | FIT | INSP-04 gate-process and roadmap synthesis. |
 | Add explicit client-disconnect cancellation persistence coverage. | test | M | FIT | Event ownership decision with PKG-05. |
 | Decide and document accepted-input recovery semantics for failed/interrupted turns. | architecture/doc | M | FIT | PKG-05 session-event assessment. |
 
 ## Issuance-Gate-Process Observations
 
-DEL-03-04 has strong interrupt and terminal SSE evidence, but the gate should not treat interruption taxonomy, client-disconnect cancellation persistence, or accepted-input recovery as closed until a human ruling or a focused runtime-event tranche resolves them.
+DEL-03-04 has strong interrupt and terminal SSE evidence, and D-APP-40/ADQ-05 resolves interruption taxonomy. The gate should not treat client-disconnect cancellation persistence or accepted-input recovery as closed until a focused runtime-event tranche resolves them.

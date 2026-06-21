@@ -27,7 +27,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 |---|---|---|
 | DEL-03-01-REQ-001 | Chirality SHALL define `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs. | `docs/SPEC.md` section 10.1; `docs/PRD.md` FR-122 |
 | DEL-03-01-REQ-002 | Public harness semantics SHALL remain Chirality-owned; SDK APIs, message names, transcript shape, and tool names SHALL NOT define public semantics. | `docs/DIRECTIVE.md` sections 2.8 and 2.10; `docs/CONTRACT.md` K-ENGINE-1 and K-ENGINE-4 |
-| DEL-03-01-REQ-003 | `AgentEnginePort` SHALL expose `runTurn(input: TurnInput): AsyncIterable<UIEvent>`. | `docs/SPEC.md` section 10.2 |
+| DEL-03-01-REQ-003 | `AgentEnginePort` SHALL expose `startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>`. | `docs/SPEC.md` section 10.2; D-APP-40 |
 | DEL-03-01-REQ-004 | `AgentEnginePort` MAY expose `interrupt?(sessionId: string): Promise<void>` when the adapter can support interruption. | `docs/SPEC.md` section 10.2 |
 | DEL-03-01-REQ-005 | `TurnInput` SHALL include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` section 10.2 |
 | DEL-03-01-REQ-006 | The contract SHALL cover accepted turn input, browser `UIEvent` yield, canonical `HarnessEvent` persistence, permission enforcement or invocation, permitted tool exposure, SDK session metadata linkage, interrupt/cancel behavior, and terminal outcomes. | `docs/SPEC.md` section 10.1; `docs/TYPES.md` section 7.1 |
@@ -35,11 +35,11 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-03-01-REQ-008 | The SDK-backed adapter SHALL pass the engine conformance suite before becoming the default production path. | `docs/CONTRACT.md` K-ENGINE-2; `docs/SPEC.md` section 10.3; `docs/PRD.md` FR-123 |
 | DEL-03-01-REQ-009 | A deterministic stub adapter SHALL remain available for tests. | `docs/SPEC.md` section 10.3 |
 | DEL-03-01-REQ-010 | Engine conformance tests SHALL cover accepted-turn persistence before SDK/model execution, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction. | `docs/PRD.md` FR-123; `docs/PRD.md` section 12.5 |
-| DEL-03-01-REQ-011 | The contract and tests SHALL preserve the stable browser SSE names: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit`. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4 |
+| DEL-03-01-REQ-011 | The contract and tests SHALL preserve the stable browser SSE names: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and the additive redacted `harness:event` bridge. | `docs/SPEC.md` section 11; `docs/TYPES.md` section 7.4; D-APP-40 |
 | DEL-03-01-REQ-012 | `/api/harness/turn` SHALL remain a transport adapter; runtime policy belongs behind the contract and `TurnEngine`, not in the route. | `docs/SPEC.md` section 10.4; `docs/PRD.md` section 9.1 |
 | DEL-03-01-REQ-013 | The conformance suite SHALL reject provider-shaped leakage in public APIs and canonical `HarnessEvent` fields except as explicit adapter metadata. | `docs/PRD.md` section 12.5; `docs/CONTRACT.md` K-ENGINE-4 |
 | DEL-03-01-REQ-014 | The contract documentation SHALL record fallback criteria when SDK behavior cannot satisfy or verify a product-critical boundary. | `docs/CONTRACT.md` K-ENGINE-5; `docs/PLAN.md` R0 acceptance; `docs/PRD.md` FR-126 |
-| DEL-03-01-REQ-015 | Requirements derived from `docs/PRD.md` SHALL carry the source-state warning that REF-006 is accessible but hash-mismatched in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 |
+| DEL-03-01-REQ-015 | Requirements derived from `docs/PRD.md` SHALL use the current D-APP-38 authority-corpus reference state. | `_REFERENCES.md` REF-006; D-APP-38 |
 
 ## Standards
 
@@ -50,7 +50,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | `docs/SPEC.md` sections 9-13 | Event schema, runtime engine contract, SSE names, SDK settings posture, runtime options/persona composition. |
 | `docs/TYPES.md` section 7 | Canonical runtime vocabulary and type targets. |
 | `docs/PLAN.md` R0/R1 | Roadmap and sequencing constraints for engine contract and conformance. |
-| `docs/PRD.md` sections 8.16, 9, 12, and 13 | Product requirements and validation expectations; REF-006 HASH_MISMATCH warning applies. |
+| `docs/PRD.md` sections 8.16, 9, 12, and 13 | Product requirements and validation expectations; REF-006 is reconciled under D-APP-38. |
 
 ## Verification
 
@@ -61,7 +61,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | REQ-008, REQ-009, REQ-010 | Engine conformance suite runs against stub and SDK-backed adapters before production-default enablement. |
 | REQ-011, REQ-012 | Integration or compatibility tests proving `/api/harness/turn` shape and browser SSE event names are unchanged. |
 | REQ-014 | Runtime contract documentation includes fallback criteria and cross-reference to reliance-boundary register. |
-| REQ-015 | Human review confirms whether the current `docs/PRD.md` hash mismatch is accepted before closing the deliverable. |
+| REQ-015 | D-APP-38 confirms the current `docs/PRD.md` authority-corpus state before closing the deliverable. |
 
 ## Documentation
 
@@ -84,9 +84,9 @@ TBD:
 - Final implementation path if not `frontend/src/lib/harness/agent-engine-port.ts`.
 - Exact SDK-backed adapter fixture shape until DEL-04-01 confirms SDK probe details.
 - Exact session-link metadata fields accepted by the conformance suite until DEL-04-01/DEL-05 work confirms transcript/store placement.
-- Accepting party for staged SDK-dependent `BLOCKED_TBD` conformance cases.
-- `section9.runtime_engine_contract` validation linkage until DEL-09-02 implements the Section 9 runtime validation surface.
+- Accepting party for staged SDK-dependent conformance cases beyond the current scripted adapter coverage.
+- Section 9 runtime validation linkage remains through the current `section9.adapter_*` validation IDs until a later governed rename.
 
 ## Source-State Warning
 
-`docs/PRD.md` is listed as REF-006 with `HASH_MISMATCH` in `_REFERENCES.md`. This draft uses accessible PRD sections because they are part of the authoritative corpus, but requirements relying on PRD-only details should be reconfirmed before acceptance.
+D-APP-38 established the authority-corpus reference model. Current `_REFERENCES.md` records REF-006 as `MATCH`; future authority-document edits require a corpus bump/apply before acceptance.

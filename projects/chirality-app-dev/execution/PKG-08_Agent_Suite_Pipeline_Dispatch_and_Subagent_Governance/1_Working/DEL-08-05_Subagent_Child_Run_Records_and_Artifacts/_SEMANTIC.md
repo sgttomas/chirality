@@ -2,7 +2,7 @@
 
 **Generated:** 2026-05-20
 **DECOMP_VARIANT:** SOFTWARE
-**Perspective:** This deliverable frames governed subagent child runs as auditable runtime evidence linking parent sessions, child lifecycle state, SDK-adjacent metadata, and output artifact references. Its lens must carry record-shape, lifecycle, artifact-reference, replay, redaction, and boundary knowledge while preserving source-state caveats for the PRD hash mismatch and denied-run allocation ruling.
+**Perspective:** This deliverable frames governed subagent child runs as auditable runtime evidence linking parent sessions, child lifecycle state, SDK-adjacent metadata, and output artifact references. Its lens must carry record-shape, lifecycle, artifact-reference, replay, redaction, and boundary knowledge while applying D-APP-38 source-state reconciliation and D-APP-40 denied-run allocation semantics.
 **Framework:** Chirality Semantic Algebra
 **Audit:** PASS
 **Phase 2.3 Ruling:** STATUS_POLICY=PRESERVE_CURRENT; semantic matrix generated and validated, but lifecycle state remains INITIALIZED by runtime instruction; SEMANTIC_READY is not set in Phase 2.3.

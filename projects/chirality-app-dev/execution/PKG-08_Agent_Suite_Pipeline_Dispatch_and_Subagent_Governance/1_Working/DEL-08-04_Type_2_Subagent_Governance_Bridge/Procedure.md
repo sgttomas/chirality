@@ -8,7 +8,7 @@ Define the operational steps to produce and verify the Type 2 subagent governanc
 
 | Prerequisite | Status |
 |---|---|
-| Accepted source corpus for DEL-08-04 | Available; REF-006 has hash mismatch warning per dispatch. |
+| Accepted source corpus for DEL-08-04 | Available under the current D-APP-38 authority corpus. |
 | Current deliverable status permits authoring | INITIALIZED; P3 enrichment is allowed by the four-documents skill, and `_STATUS.md` remains read-only under `NO_STATUS_TOUCH`. |
 | Existing `evaluateSubagentGovernance` behavior or target contract | TBD at implementation time; source docs identify it as authoritative but do not provide the code shape. |
 | Permission overlay and hook infrastructure | Required by source sequencing; implementation readiness TBD. |

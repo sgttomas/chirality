@@ -17,6 +17,7 @@ export const HARNESS_EVENT_TYPES = [
   'turn.completed',
   'turn.failed',
   'turn.cancelled',
+  'turn.interrupted',
   'tool.queued',
   'tool.permission',
   'tool.started',

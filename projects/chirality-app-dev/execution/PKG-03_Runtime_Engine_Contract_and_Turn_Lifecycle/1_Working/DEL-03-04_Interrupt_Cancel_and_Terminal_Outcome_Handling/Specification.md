@@ -31,6 +31,7 @@ Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` 
 | DEL-03-04-REQ-004 | Client disconnect cleanup shall release runtime turn resources and record cancellation once the event log exists. | `docs/SPEC.md` Section 11 |
 | DEL-03-04-REQ-005 | Runtime failure after `turn.accepted` shall leave accepted user input recoverable and shall persist a terminal failure or cancellation status. | `docs/PRD.md` Section 7.10; `docs/CONTRACT.md` Section 1.5, K-EVENT-2 and K-EVENT-3 |
 | DEL-03-04-REQ-006 | Every accepted turn shall terminate durably with a success, failure, cancellation, or interruption outcome. | `docs/CONTRACT.md` Section 1.5, K-EVENT-3; decomposition SOW-015 |
+| DEL-03-04-REQ-006A | Explicit user interruption shall persist terminal `turn.interrupted`; `turn.cancelled` is reserved for non-user cancellation such as disconnect or system cancellation. | D-APP-40; `docs/SPEC.md` Section 9.3; `docs/TYPES.md` Section 7.3 |
 | DEL-03-04-REQ-007 | Terminal outcome persistence shall use Chirality-owned `HarnessEvent` semantics, not SDK message names as public or canonical contracts. | `docs/CONTRACT.md` Section 1.4, K-ENGINE-4; `docs/SPEC.md` Section 10.3 |
 | DEL-03-04-REQ-008 | Terminal event records shall follow the versioned `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
 | DEL-03-04-REQ-009 | Terminal event writes shall append newline-delimited JSONL, use unique event IDs, avoid secrets, and remain replayable when a malformed trailing line exists. | `docs/SPEC.md` Section 9.2 |
@@ -48,7 +49,7 @@ Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` 
 | Runtime event and audit mirror contract | Terminal outcomes are persisted as Chirality `HarnessEvent`s in append-only JSONL. | `docs/CONTRACT.md` Section 1.5; `docs/SPEC.md` Section 9 |
 | Browser SSE compatibility contract | Existing browser event names remain compatible during SDK adoption. | `docs/SPEC.md` Section 11 |
 | Route adapter rule | `/api/harness/turn` validates, locks, forwards to `TurnEngine`, writes SSE, and handles cleanup without owning runtime policy. | `docs/SPEC.md` Section 10.4 |
-| Source-state warning | `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived requirements remain source-grounded but should be reconfirmed before final implementation closure. | `_REFERENCES.md` REF-006 |
+| Source-state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived terminal-outcome requirements are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
 
 ## Verification
 
@@ -57,7 +58,7 @@ Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` 
 | DEL-03-04-REQ-001, DEL-03-04-REQ-002, DEL-03-04-REQ-003, DEL-03-04-REQ-007 | API/integration test for `/api/harness/interrupt` during an active turn; assert provider/model abort through the product-owned runtime boundary, interrupted `process:exit` SSE behavior, and absence of SDK-shaped names in public API or event assertions. |
 | DEL-03-04-REQ-004, DEL-03-04-REQ-011, DEL-03-04-REQ-014 | Terminal trigger matrix test covering successful completion, user interrupt, client disconnect, runtime/provider failure, and cancellation signal; assert each terminal path releases active-turn state through the selected observable hook/state API. |
 | DEL-03-04-REQ-005, DEL-03-04-REQ-006, DEL-03-04-REQ-008, DEL-03-04-REQ-009 | Event-log replay test that simulates failure/cancellation after `turn.accepted`, appends or simulates a malformed trailing JSONL line after valid records, then confirms accepted input plus terminal outcome remain recoverable and diagnostics surface. |
-| DEL-03-04-REQ-007, DEL-03-04-REQ-013 | Mapper unit tests using fixture cases for completion, failure, cancellation, and interruption-adjacent provider/runtime signals; assert Chirality-owned `UIEvent` / `HarnessEvent` outputs and keep provider-specific values only as adapter metadata where needed. |
+| DEL-03-04-REQ-006A, DEL-03-04-REQ-007, DEL-03-04-REQ-013 | Mapper/unit tests using fixture cases for completion, failure, cancellation, and explicit interruption provider/runtime signals; assert Chirality-owned `UIEvent` / `HarnessEvent` outputs and keep provider-specific values only as adapter metadata where needed. |
 | DEL-03-04-REQ-010 | SSE compatibility fixture asserting current event names remain stable: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`. |
 | DEL-03-04-REQ-012 | Redaction test for terminal failure/error payloads, including provider error surfaces, runtime events, run logs, and tool artifacts; assert no API keys or configured secret variants are persisted. |
 | DEL-03-04-REQ-014 | Unit or integration tests around `TurnEngine`/route cleanup observability; exact hook or state API is TBD and must be resolved before implementation closure. |
@@ -69,7 +70,7 @@ Required artifacts for this deliverable:
 - Interrupt tests.
 - Cancel cleanup tests.
 - Terminal event mapper.
-- ASSUMPTION: Any mapper-facing terminal outcome documentation should note the unresolved interruption taxonomy until the conflict in `Guidance.md` is resolved.
+- Mapper-facing terminal outcome documentation should cite D-APP-40 for explicit user interruption as `turn.interrupted`.
 
 Records to update or cross-link when implementation lands:
 

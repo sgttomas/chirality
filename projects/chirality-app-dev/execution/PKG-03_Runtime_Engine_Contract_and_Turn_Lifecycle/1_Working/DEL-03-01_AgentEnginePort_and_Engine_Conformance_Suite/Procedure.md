@@ -12,7 +12,7 @@ Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 
 |---|---|
 | Deliverable state allows drafting | Current `_STATUS.md` state was `OPEN` before this P1/P2 run. |
 | Authoritative sources available | REF-001 through REF-007 are locally accessible. |
-| PRD source-state warning acknowledged | REF-006 has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details require human confirmation before acceptance closure. |
+| PRD source state acknowledged | REF-006 is MATCH under the current D-APP-38 authority corpus. |
 | Declared upstream dependencies | `_DEPENDENCIES.md` lists declared upstream as TBD; no accepted dependency edges have been extracted yet. |
 | SDK probe details | TBD; exact SDK message categories, session store behavior, and interrupt behavior depend on DEL-04-01. |
 | Acceptance authority for staged SDK cases | TBD; human acceptance is required for any `BLOCKED_TBD` SDK-backed conformance case until DEL-04-01 supplies the missing probe detail. |
@@ -25,7 +25,7 @@ Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 
 
 2. Draft the runtime contract.
    - Define `AgentEnginePort` / `RuntimeEngineContract` as product-owned.
-   - Include `runTurn(input: TurnInput): AsyncIterable<UIEvent>`.
+   - Include `startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>`.
    - Include optional `interrupt?(sessionId: string): Promise<void>` when adapter support exists.
    - Define `TurnInput` with active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.
 
@@ -45,12 +45,12 @@ Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 
 
 5. Align with route and event contracts.
    - Confirm `/api/harness/turn` remains a transport adapter.
-   - Confirm browser-facing event names remain `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit`.
+   - Confirm browser-facing event names remain `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and the additive redacted `harness:event` bridge.
    - Confirm canonical runtime records use `HarnessEvent` shape and product-owned event categories.
 
 6. Record fallback and source-state caveats.
    - Document fallback criteria if SDK behavior cannot satisfy a product-critical boundary.
-   - Record the REF-006 HASH_MISMATCH warning wherever PRD-only details affect acceptance.
+   - If future authority documents change, run the D-APP-38 corpus bump/apply before acceptance.
 
 7. Prepare deliverable records.
    - Produce or update runtime contract docs.
@@ -62,14 +62,14 @@ Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 
 
 | Check | Expected Result |
 |---|---|
-| Contract shape check | `AgentEnginePort` exposes `runTurn` and optional `interrupt` with inputs/outputs matching `docs/SPEC.md` section 10.2. |
+| Contract shape check | `AgentEnginePort` exposes `startTurn` and optional `interrupt` with inputs/outputs matching `docs/SPEC.md` section 10.2. |
 | Provider-neutrality check | Public APIs and canonical `HarnessEvent` fields do not contain SDK-shaped names except explicit adapter metadata. |
 | Stub conformance | Stub adapter passes the same conformance suite used for SDK-backed adapter where applicable. |
 | SDK-backed conformance | SDK-backed adapter passes before default production enablement; cases blocked by SDK probe details remain `TBD` until DEL-04-01 closes. |
 | SSE compatibility | Browser event names and `/api/harness/turn` route shape remain stable. |
 | Event persistence | Accepted turn and terminal outcomes are persisted in Chirality-owned event form. |
 | Redaction | Provider/SDK errors and runtime records do not store API keys or secrets. |
-| Source warning | PRD hash mismatch is visible in deliverable records and acceptance review. |
+| Authority-corpus check | REF-006 is reconciled under D-APP-38; future authority-doc edits trigger corpus bump/apply. |
 
 ## Records
 
@@ -80,6 +80,5 @@ Required records for closure:
 - Engine conformance test file or suite.
 - Test output showing stub adapter pass.
 - Test output showing SDK-backed adapter pass, or a `BLOCKED_TBD` record naming the DEL-04-01 blocker, affected conformance case, fallback/risk note, and accepting party status.
-- Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or `TBD`, fallback/risk note, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status.
-- Human ruling or acceptance note for REF-006 `docs/PRD.md` HASH_MISMATCH.
+- Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or `TBD`, fallback/risk note, D-APP-38 authority-corpus status, and Section 9 linkage status.
 - Section 9 validation linkage when `section9.runtime_engine_contract` exists, or a `TBD` linkage record naming DEL-09-02 as the unavailable validation surface.

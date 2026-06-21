@@ -9,9 +9,11 @@ change runtime code, provider/network scope, release/distribution posture, lifec
 dependency rows, professional approval, certification, sealing, authentication, or
 code-compliance acceptance.
 
-G5 naming and taxonomy questions remain queued for ADQ-05: `runTurn` / `startTurn`
-terminology, public event ownership wording, interruption terminal taxonomy, and child-run
-ID alignment.
+ADQ-05 later resolved the G5 naming and taxonomy questions through D-APP-40 Option B:
+`AgentEnginePort.startTurn(input)` is the adapter stream method, `TurnEngine.runTurn(request)`
+is the route-independent lifecycle method, `harness:event` is the public bridge for redacted
+`HarnessEvent` records, explicit user interruption terminates as `turn.interrupted`, and
+child-run records use `ChildRunRecord.childRunId`.
 
 ## Current Implementation Snapshot
 
@@ -19,7 +21,7 @@ ID alignment.
 |---|---|---|
 | First adapter / provider default | Claude Agent SDK / Anthropic is the first concrete adapter. With no explicit `CHIRALITY_HARNESS_PROVIDER`, `resolveHarnessProviderMode` selects `agentSdk` when an Anthropic API key is configured by environment or UI Settings; otherwise it selects `stub`. Explicit `stub`, `anthropic`, and `agentSdk` still win. | D-APP-18 ruling; `frontend/src/lib/harness/runtime.ts`; `frontend/src/__tests__/lib/harness-runtime.test.ts` |
 | Package pins | `@anthropic-ai/claude-agent-sdk@0.3.150` and `@anthropic-ai/sdk@0.93.0` remain the first-adapter package pins. | `frontend/package.json`; `frontend/package-lock.json` |
-| Product-owned adapter boundary | `AgentEnginePort.startTurn(input)` is the adapter port method; `TurnEngine.runTurn(request)` is the route-independent lifecycle method. The older `runTurn` wording for the adapter boundary is a naming residual, not a code gap. | `frontend/src/lib/harness/agent-engine-port.ts`; `frontend/src/lib/harness/turn-engine.ts` |
+| Product-owned adapter boundary | `AgentEnginePort.startTurn(input)` is the adapter port method; `TurnEngine.runTurn(request)` is the route-independent lifecycle method. | `frontend/src/lib/harness/agent-engine-port.ts`; `frontend/src/lib/harness/turn-engine.ts`; D-APP-40 ruling |
 | Public browser event names | `PUBLIC_UI_EVENT_NAMES` includes `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and `harness:event`. `harness:event` carries redacted provider-neutral `HarnessEvent` records and does not rename product events to SDK/provider names. | `frontend/src/lib/harness/agent-engine-port.ts`; `frontend/src/lib/harness/types.ts`; `frontend/src/lib/harness/harness-ui-bridge.ts` |
 | Persisted runtime evidence | Browser `UIEvent` and persisted `HarnessEvent` remain separate contracts. `HARNESS_EVENT_TYPES` is the versioned persisted runtime vocabulary. | `frontend/src/lib/harness/event-schema.ts`; `frontend/src/lib/harness/session-events.ts`; `frontend/docs/harness/runtime_engine_contract.md` |
 | Section 9 validation IDs | Current deterministic IDs use `section9.adapter_*` naming, including `section9.adapter_turn_engine_event_log` and `section9.adapter_message_mapper`. Legacy `section9.sdk_*` names are not the active IDs. | `frontend/scripts/validate-harness-section9.mjs`; `frontend/docs/harness/TRACEABILITY.md` |
@@ -29,10 +31,10 @@ ID alignment.
 
 | Deliverable | Reconciled posture | Residual |
 |---|---|---|
-| DEL-03-01 AgentEnginePort and conformance | The May CODEV-001 evidence remains historical. It is superseded for current default-provider, Section 9, and REF-006 posture by this ADQ-04 record and by the refreshed runtime contract. `harness:event` is part of the current public event list. | Adapter method naming (`startTurn` vs older `runTurn`) is deferred to ADQ-05. |
+| DEL-03-01 AgentEnginePort and conformance | The May CODEV-001 evidence remains historical. It is superseded for current default-provider, Section 9, REF-006 posture, and D-APP-40 taxonomy by this record, ADQ-05 evidence, and the refreshed runtime contract. `harness:event` is part of the current public event list and `AgentEnginePort.startTurn` is canonical. | Fallback criteria and full packaged/live evidence remain separate release-significant or later validation concerns. |
 | DEL-03-02 TurnEngine and locking | `TurnEngine.runTurn` owns route-independent lifecycle, same-session locking, preflight, option resolution, attachment shaping, persona validation, subagent governance, adapter streaming, and mid-stream error mapping. It currently depends on `IAgentSdkManager`; a broader port-name refactor is not part of ADQ-04. | Accepted-event persistence ownership and durable disconnect/cancel evidence remain downstream runtime/session residuals. |
 | DEL-03-03 API and SSE adapter | The route remains a transport adapter over `TurnEngine`; the public SSE stream uses stable `UIEvent` names, including the current redacted `harness:event` passthrough. | Route/SSE fixture capture and disconnect persistence strengthening remain future evidence work. |
-| DEL-03-04 interrupt/cancel/terminal outcomes | Current source exposes adapter interruption and terminal UI evidence; Section 9 exercises runtime event-log and engine-conformance paths. | Interruption terminal taxonomy and client-disconnect durable cancellation remain ADQ-05 / downstream residuals. |
+| DEL-03-04 interrupt/cancel/terminal outcomes | Current source exposes adapter interruption, terminal UI evidence, and D-APP-40 `turn.interrupted` persisted evidence for explicit user interruption; Section 9 exercises runtime event-log and engine-conformance paths. | Client-disconnect durable cancellation and accepted-input recovery remain downstream residuals. |
 
 ## PKG-04 Crosswalk
 

@@ -19,7 +19,7 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
 ## Steps
 
 1. Confirm source state.
-   - Read `_REFERENCES.md` and record that `docs/PRD.md` is a `HASH_MISMATCH` source-state warning.
+   - Read `_REFERENCES.md` and record that `docs/PRD.md` is current under the D-APP-38 authority corpus.
    - Use PRD-derived details with traceability and keep unsupported details as `TBD`.
 
 2. Build the compatibility inventory.
@@ -61,7 +61,7 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
 | SSE event names stable | Fixtures include the stable event-name set or document why a path cannot emit a given event. | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
 | Turn route is an adapter | `/api/harness/turn` delegates runtime lifecycle policy behind `TurnEngine`; route remains transport/SSE boundary. | `docs/SPEC.md` Section 10.4 |
 | UI/runtime separation preserved | Browser `UIEvent` payloads remain compact and distinct from persisted `HarnessEvent` records. | `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` FR-074 |
-| PRD warning preserved | Traceability records REF-006 `HASH_MISMATCH` and unsupported payload/schema details remain `TBD`. | `_REFERENCES.md` |
+| Authority-corpus state preserved | Traceability records REF-006 under the current D-APP-38 corpus and unsupported payload/schema details remain `TBD`. | `_REFERENCES.md`; D-APP-38 |
 
 ## Route Adapter Test Index Template
 

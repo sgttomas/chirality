@@ -33,6 +33,7 @@ describe('session events', () => {
         'branch.summarized',
         'interruption.requested',
         'interruption.completed',
+        'turn.interrupted',
         'context.compaction.started',
         'context.compacted',
         'subagent.started',

@@ -245,7 +245,7 @@ describe('AnthropicAgentSdkManager', () => {
     });
   });
 
-  it('bridges and persists cancellation lifecycle when interrupted mid-stream', async () => {
+  it('bridges and persists interruption lifecycle when interrupted mid-stream', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const manager = new AnthropicAgentSdkManager(
       (() => ({
@@ -278,7 +278,7 @@ describe('AnthropicAgentSdkManager', () => {
       'turn.accepted',
       'turn.started',
       'interruption.completed',
-      'turn.cancelled'
+      'turn.interrupted'
     ]);
 
     // interruption.requested is persisted (operator action) but not bridged live.
@@ -288,7 +288,7 @@ describe('AnthropicAgentSdkManager', () => {
       'turn.started',
       'interruption.requested',
       'interruption.completed',
-      'turn.cancelled'
+      'turn.interrupted'
     ]);
   });
 

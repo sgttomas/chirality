@@ -38,11 +38,11 @@ Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` 
 |---|---|---|
 | Lock storage | Keep the lock associated with session identity and observable turn state. Current code uses an in-module `Set<string>` named `activeSessionTurns` in `frontend/src/app/api/harness/turn/route.ts`; treat this as observed implementation context, not an authoritative final storage mechanism. | `docs/PRD.md` FR-018; `docs/SPEC.md` Section 10.4; current code slice `frontend/src/app/api/harness/turn/route.ts` |
 | Cleanup ownership | The route handles cleanup, but terminal lifecycle persistence belongs behind the runtime boundary. Split responsibilities so both are testable. | `docs/SPEC.md` Sections 10.1 and 10.4 |
-| Cancellation signal | Include cancellation signal in `TurnInput` where applicable; full interrupt behavior should remain coordinated with DEL-03-04. | `docs/SPEC.md` Section 10.2; decomposition DEL-03-04 |
+| Cancellation signal | Include cancellation signal in `AgentEngineRunInput` where applicable; full interrupt behavior remains coordinated with DEL-03-04, with explicit user interruption persisted as `turn.interrupted` per D-APP-40. | `docs/SPEC.md` Section 10.2; decomposition DEL-03-04; D-APP-40 |
 | Boot metadata | Forward active session and resolved runtime options into `TurnInput`; boot fingerprint composition belongs to adjacent prompt/options work and should not be invented here. | `docs/SPEC.md` Sections 10.2 and 13.2; `docs/PRD.md` FR-016, FR-029 |
 | Legacy sessions | Do not break legacy session readability while extracting the lifecycle. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 |
 | Event persistence | Keep accepted-turn and terminal events durable. Exact writer API is TBD until implementation reads current code. | `docs/SPEC.md` Sections 9 and 10.1; `docs/CONTRACT.md` K-EVENT-2, K-EVENT-3 |
-| PRD hash mismatch | Treat PRD-derived rows as source-state-warning content until hash reconciliation. Do not escalate them into unsupported implementation details beyond cited requirement text. | `_REFERENCES.md` REF-006 |
+| PRD authority corpus | Treat PRD-derived rows as accepted under the current D-APP-38 authority corpus. Do not escalate them into unsupported implementation details beyond cited requirement text. | `_REFERENCES.md` REF-006; D-APP-38 |
 
 ## Trade-offs
 
@@ -75,5 +75,5 @@ This is a conceptual flow only. Exact function names, file paths, and call order
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| TBD | No direct content conflict found during Pass 1/2. `docs/PRD.md` has a hash mismatch in `_REFERENCES.md`, which is a source-state warning rather than a source-content conflict. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | All PRD-derived requirements | Revalidate PRD hash before closure; keep PRD-derived details conservative. | TBD |
-| B-001 | REF-006 source-state mismatch must remain a closure blocker until source hash reconciliation is accepted or explicitly carried forward. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | Datasheet Conditions; Specification Documentation; Guidance Conflict Table; Procedure Prerequisites and Records | Revalidate PRD hash before closure; use PRD-derived content only with source-state warning. | TBD |
+| TBD | No direct content conflict found during Pass 1/2. D-APP-38 now provides the current authority-corpus reconciliation for `docs/PRD.md`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | All PRD-derived requirements | Use PRD-derived details conservatively within cited requirement text. | D-APP-38 accepted current authority corpus |
+| B-001 | Former REF-006 source-state mismatch is resolved by D-APP-38 and is no longer a closure blocker for this tranche. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | Datasheet Conditions; Specification Documentation; Guidance Conflict Table; Procedure Prerequisites and Records | Use PRD-derived content under the current D-APP-38 authority corpus. | D-APP-38 accepted current authority corpus |

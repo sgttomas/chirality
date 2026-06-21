@@ -33,7 +33,7 @@
 
 | Condition | Value |
 |---|---|
-| PRD source status | Source warning: REF-006 has expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; dispatch instructed this is not a blocker. |
+| PRD source status | `docs/PRD.md` is current under the D-APP-38 authority corpus; PRD-derived subagent governance details are accepted for this tranche. |
 | Sequencing | PLAN R5 places governed subagent runtime after earlier runtime, permission, hook, and tool-governance work. |
 | Scope boundary | This deliverable covers the governance bridge, SDK agent definitions, and `Agent` hook tests. Persistent parent-child run records are primarily DEL-08-05. |
 | Authority boundary | SDK subagent mechanics are an implementation substrate; Chirality-owned governance, permission, audit, and runtime contracts control product semantics. |
@@ -59,5 +59,5 @@
 | REF-003 | `docs/SPEC.md` | MATCH |
 | REF-004 | `docs/TYPES.md` | MATCH |
 | REF-005 | `docs/PLAN.md` | MATCH |
-| REF-006 | `docs/PRD.md` | HASH_MISMATCH warning per dispatch |
+| REF-006 | `docs/PRD.md` | MATCH under the current D-APP-38 authority corpus |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | MATCH |

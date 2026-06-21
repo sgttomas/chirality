@@ -42,7 +42,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - Source selection: `SOURCE_DOCS=AUTO`; `DOC_ROLE_MAP=DEFAULT`; `ANCHOR_DOC=Datasheet.md` with `_CONTEXT.md` traceability cross-check; `EXECUTION_DOC_ORDER=Procedure.md, Specification.md, Guidance.md, Datasheet.md, _REFERENCES.md`.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` is invalid evidence and was not read or consumed.
 - Decomposition authority located and used for DEL-08-04, SOW-063, DEL-04-01, and DEL-08-05 resolution.
-- [WARNING] SOURCE_HASH_MISMATCH: `_REFERENCES.md` reports REF-006 expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and actual SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; source documents state this is a warning, not a blocker.
+- [RESOLVED] SOURCE_STATE: D-APP-38 current authority-corpus reconciliation supersedes the prior REF-006 source-state warning for this tranche.
 - [WARNING] TARGET_UNRESOLVED: `evaluateSubagentGovernance` implementation/target contract remains `TBD` in the source.
 - [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure are explicit prerequisites, but no single stable target deliverable is named in the local source; the row preserves `TargetType=UNKNOWN`.
 - [WARNING] TARGET_INFERRED: SDK probe prerequisite was resolved to DEL-04-01 from decomposition because the local source names SDK/R0/R1 probes rather than a deliverable ID.
@@ -50,7 +50,8 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 ## Run History
 
-- 2026-05-20T20:54: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, decomposition located, warnings: SOURCE_HASH_MISMATCH, TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
+- 2026-06-21T03:00: ADQ-05 applied D-APP-38 source-state reconciliation and D-APP-40 child-run handoff naming; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
+- 2026-05-20T20:54: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, decomposition located, warnings: superseded source-state warning, TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
 
 ## Lifecycle Summary
 
@@ -61,8 +62,9 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | SatisfactionStatus | Count |
 |---|---:|
+| SATISFIED | 1 |
 | PENDING | 1 |
-| TBD | 5 |
+| TBD | 4 |
 
 ## Downstream Handoff Notes
 

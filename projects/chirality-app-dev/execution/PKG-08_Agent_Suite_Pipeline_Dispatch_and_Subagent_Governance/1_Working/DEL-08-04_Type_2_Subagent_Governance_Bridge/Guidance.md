@@ -23,7 +23,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 - The candidate resolver should prefer explicit `AGENT_TYPE: 2` and task-agent metadata. If an instruction file is ambiguous, classify it as ineligible until a human or conformance validator resolves it.
 - Child cwd should be the approved bounded working root for the task, not the instruction root and not a broad ambient workspace.
 - The bridge should produce denial reasons suitable for audit and tests without leaking sensitive prompt or environment data.
-- REF-006 remains warning-qualified because `_REFERENCES.md` records a PRD hash mismatch. PRD-derived delegation behavior should remain traceable to the mismatch warning until a human refreshes or waives the accepted PRD snapshot.
+- REF-006 is current under the D-APP-38 authority corpus. PRD-derived delegation behavior remains traceable to PRD text, while implementation proof remains separate.
 
 ## Trade-offs
 
@@ -50,7 +50,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 
 | Conflict ID | Conflict | Impact | Human ruling needed |
 |---|---|---|---|
-| C-001 | REF-006 PRD hash mismatch is present but dispatch says it is a warning, not a blocker. | Source acceptance state should be refreshed or waived in a later governance pass. | Confirm whether to update the expected PRD hash or preserve the warning for downstream review. |
+| C-001 | Former REF-006 PRD source-state warning resolved by D-APP-38. | PRD-derived delegation behavior is accepted for this tranche. | No additional ruling required for source-state status. |
 
 ## Open Items
 

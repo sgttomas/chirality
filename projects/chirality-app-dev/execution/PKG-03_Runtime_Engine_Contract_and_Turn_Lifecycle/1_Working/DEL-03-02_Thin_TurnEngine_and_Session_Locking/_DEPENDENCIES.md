@@ -27,7 +27,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Source docs intentionally not consumed: `_SEMANTIC.md` (invalid evidence per human ruling) and `_STATUS.md` (outside the human-authorized evidence set for this run).
 - Anchor doc selected by AUTO: `Datasheet.md`.
 - Execution doc order selected by AUTO: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived dependency evidence was used only where already represented in the permitted deliverable docs and/or decomposition.
+- [RESOLVED] SOURCE_STATE: D-APP-38 current authority-corpus reconciliation supersedes the prior PRD source-state warning; PRD-derived dependency evidence is accepted for this tranche.
 - [WARNING] TBD_IMPLEMENTATION_PATHS: current route/session implementation paths, lock storage mechanism, event writer API, exact test file locations, and full interrupt/cancel mapping remain TBD and were not converted into invented dependency targets.
 - [WARNING] ID_FORMAT_TOOL_MISMATCH: `tools/validation/validate_id_format.sh` expects `DEL-NNN-NN` and `PKG-NNN`, but the accepted decomposition uses `DEL-03-02` and `PKG-03`; authoritative decomposition IDs were preserved.
 
@@ -76,4 +76,5 @@ No `[WARNING] AMBIGUOUS_ANCHOR` condition: exactly one ACTIVE `ANCHOR` / `IMPLEM
 
 | Timestamp | Mode | Strictness | Decomposition Status | ACTIVE Rows | Warnings |
 |---|---|---|---|---:|---|
-| 2026-05-20 19:30 | UPDATE | CONSERVATIVE | available: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | 10 | SOURCE_STATE; TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
+| 2026-06-21 03:00 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | 10 | TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
+| 2026-05-20 19:30 | UPDATE | CONSERVATIVE | available: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | 10 | superseded source-state warning; TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |

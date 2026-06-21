@@ -34,7 +34,7 @@ Sources: `_CONTEXT.md` Deliverable Scope and Package Scope; `docs/SPEC.md` Secti
 | DEL-03-02-REQ-006 | Bind turn input to active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` Section 10.2; `docs/PRD.md` FR-015-FR-016 | Session lifecycle tests assert `TurnInput` construction and option forwarding. |
 | DEL-03-02-REQ-007 | Preserve existing browser-facing SSE event names during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 11 and 17.1; `docs/PRD.md` FR-017, FR-071 | Route/SSE compatibility fixtures verify event names and stream media type. |
 | DEL-03-02-REQ-008 | Persist `turn.accepted` before SDK/model/provider execution begins. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021 | Unit/integration test asserts event write precedes engine adapter invocation. |
-| DEL-03-02-REQ-009 | Persist durable terminal outcome events for success, failure, and cancellation. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022 | Tests assert one terminal outcome for each accepted turn path. |
+| DEL-03-02-REQ-009 | Persist durable terminal outcome events for success, failure, cancellation, and explicit user interruption; explicit user interruption uses `turn.interrupted` per D-APP-40. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022; D-APP-40 | Tests assert one terminal outcome for each accepted turn path. |
 | DEL-03-02-REQ-010 | Keep browser `UIEvent`s separate from persisted `HarnessEvent`s; SDK messages are not the browser contract and not the canonical persisted event contract. | `docs/SPEC.md` Sections 9, 10.3, 11; `docs/CONTRACT.md` K-EVENT-1 | Event schema and mapper tests verify separation. |
 | DEL-03-02-REQ-011 | Preserve legacy session readability while this slice interacts with active sessions. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 | Session lifecycle tests include legacy-readable session metadata where current code supports it. |
 | DEL-03-02-REQ-012 | Do not enable new user-visible local tool capability as part of this slice. | `docs/PLAN.md` R1 Acceptance; `docs/PRD.md` R1 Acceptance | Regression check confirms no new write/bash/subagent/domain capability is exposed by route refactor. |
@@ -50,7 +50,7 @@ Sources: `_CONTEXT.md` Deliverable Scope and Package Scope; `docs/SPEC.md` Secti
 | `docs/SPEC.md` Section 17.1 | Harness API route shape stability. |
 | `docs/CONTRACT.md` K-CORE, K-ENGINE, K-EVENT | Product-owned runtime semantics, SDK isolation, accepted-turn persistence, terminal outcomes, and UI/runtime event separation. |
 | `docs/TYPES.md` Section 7 | Canonical vocabulary for `TurnEngine`, `AgentEnginePort`, `UIEvent`, `HarnessEvent`, session IDs, and SDK metadata. |
-| `docs/PRD.md` | Product requirements used with source-state warning because `_REFERENCES.md` records `HASH_MISMATCH`. |
+| `docs/PRD.md` | Product requirements accepted under the current D-APP-38 authority corpus. |
 
 ## Verification
 
@@ -62,7 +62,7 @@ Minimum verification set:
 - Acceptance evidence for route abort/cancellation cleanup is limited in this slice to lock release and subsequent turn acceptance. Full interrupt/cancel terminal mapping remains a DEL-03-04 dependency and must not be claimed closed by DEL-03-02 alone.
 - Session lifecycle tests cover session binding, boot metadata forwarding, runtime option forwarding, and normalized project root preservation.
 - Event ordering test proves `turn.accepted` is persisted before engine adapter execution.
-- Terminal outcome tests prove success, failure, and cancellation each produce exactly one durable terminal event.
+- Terminal outcome tests prove success, failure, cancellation, and explicit user interruption each produce exactly one durable terminal event where the path accepts a turn.
 - Route/SSE compatibility tests preserve `/api/harness/turn` shape, `text/event-stream`, and existing event names.
 - Provider-neutral leakage test proves SDK-specific identifiers/names remain adapter metadata and do not define public APIs, `UIEvent`s, or canonical `HarnessEvent`s.
 
@@ -78,7 +78,7 @@ Required documentation/artifacts for this deliverable:
 - Notes or inline docs identifying route responsibilities that remain in `/api/harness/turn` versus lifecycle responsibilities moved to `TurnEngine`.
 - Any residual `TBD` decisions around lock storage, interrupt/cancel ownership, and exact session manager API.
 
-Source-state warning:
+Source-state status:
 
-- `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD requirements are used as accessible current source content but should be revalidated before closure.
-- Closure blocker: PRD-derived requirements remain source-state-warning content until REF-006 hash reconciliation is accepted or the mismatch is explicitly carried forward by a human ruling.
+- D-APP-38 confirms the current authority corpus for `docs/PRD.md`; PRD requirements are accepted source content for this tranche.
+- Implementation closure still requires deliverable-local evidence for the runtime, locking, and persistence requirements.

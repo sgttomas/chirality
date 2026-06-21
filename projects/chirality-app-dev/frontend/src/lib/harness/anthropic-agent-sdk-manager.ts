@@ -863,7 +863,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       for await (const event of stream) {
         if (turnState.interrupted) {
           yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
-          yield* this.emitLifecycle(session.sessionId, 'turn.cancelled');
+          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted');
           yield {
             type: 'process:exit',
             data: {
@@ -918,7 +918,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       if (turnState.interrupted) {
         if (lifecycleOpened) {
           yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
-          yield* this.emitLifecycle(session.sessionId, 'turn.cancelled');
+          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted');
         }
         yield {
           type: 'process:exit',

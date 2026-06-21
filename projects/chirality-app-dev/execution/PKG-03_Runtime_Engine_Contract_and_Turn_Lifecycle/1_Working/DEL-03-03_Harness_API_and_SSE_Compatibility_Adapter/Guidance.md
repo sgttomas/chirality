@@ -18,8 +18,8 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.4, 11, 17.1
 
 ## Considerations
 
-- `docs/PRD.md` is a useful local source for the runtime pivot but is recorded as `HASH_MISMATCH`; keep PRD-derived details traceable and avoid treating unsupported details as immutable accepted truth.
-- The stable event-name list is source-backed across SPEC, TYPES, and PRD: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`.
+- `docs/PRD.md` is a current D-APP-38 authority-corpus source for the runtime pivot; keep PRD-derived details traceable and avoid treating unsupported details as implementation proof.
+- The stable event-name list is source-backed across SPEC, TYPES, and PRD: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and the additive redacted `harness:event` bridge.
 - Compatibility should be tested from the browser-facing side: route shapes, status codes, SSE names, payload fields, and terminal/error behavior observable by existing UI consumers.
 - New internal `HarnessEvent` categories or SDK metadata should not force UI payload churn unless an explicit compatibility layer is documented and tested.
 - Some behavior belongs to sibling deliverables: active-turn locking and `TurnEngine` internals primarily belong to DEL-03-02; interrupt/cancel cleanup and terminal outcome persistence primarily belong to DEL-03-04 and PKG-05.
@@ -62,4 +62,4 @@ TBD examples:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CONFLICT-001 | `docs/PRD.md` content is accessible but REF-006 records `HASH_MISMATCH`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.3, 8.12, 9.1, 9.3 | All PRD-derived requirements and verification notes | Treat PRD details as source-state-warning context until the reference hash is reconciled; do not invent missing details. | TBD |
+| CONFLICT-001 | Resolved by D-APP-38: REF-006 now matches the authority corpus. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.3, 8.12, 9.1, 9.3 | All PRD-derived requirements and verification notes | Apply D-APP-38 corpus workflow for future authority edits; do not invent unsupported payload/schema details. | Ruled 2026-06-20 |

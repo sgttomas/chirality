@@ -41,11 +41,11 @@ DEL-03-02 moves harness turn lifecycle, session binding, boot metadata forwardin
 | Accepted-turn and terminal persistence are adapter-owned rather than clearly TurnEngine-owned. | Medium | `frontend/src/lib/harness/claude-agent-sdk-manager.ts` lines 203-218 and 342-367; `frontend/src/lib/harness/turn-engine.ts` lines 321-376. | Decide whether this is acceptable adapter responsibility or should move into `TurnEngine`. |
 | Client-disconnect durable cancellation remains weaker than lock-release evidence. | Medium | `frontend/src/app/api/harness/turn/route.ts` lines 30-32; `Specification.md` lines 61-62. | Add explicit disconnect/cancel persistence tests with DEL-03-04/PKG-05. |
 | Legacy session readability and canonical folder migration remain out of scope here. | Low | `Specification.md` lines 20 and 39; `frontend/src/lib/harness/types.ts` lines 23-42. | Carry this into PKG-05 assessment and roadmap synthesis. |
-| REF-006 PRD hash mismatch remains open. | Low | `_REFERENCES.md` line 12. | Retain warning-limited source status until project-wide ruling. |
+| REF-006 source state is governed by D-APP-38. | Low | D-APP-38 authority corpus. | Keep implementation proof separate from source-state proof. |
 
 ## Source-State Caveat
 
-`docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. No semantic files were used or produced.
+`docs/PRD.md` is current under the D-APP-38 authority corpus for this deliverable. No semantic files were used or produced.
 
 ## Dependency Closure Note
 

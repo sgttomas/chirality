@@ -33,7 +33,7 @@ Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7
 - The terminal mapper should be small and deterministic. It should map completion, failure, cancellation, and interruption-adjacent provider signals into stable browser and runtime event outputs.
 - The interrupt path should be tested while an active turn is streaming, because the required browser symptom is an interrupted `process:exit` event and an updated UI state.
 - Client disconnect is not necessarily user intent to interrupt, but SPEC says disconnect cleanup must record cancellation once the event log exists. The implementation should avoid overstating disconnect as an explicit user cancellation unless the data model supports a reason field.
-- Use "interruption" for the user-visible active-turn interrupt path and "cancellation" for the schema-compatible terminal category unless a human ruling amends SPEC/TYPES to add `turn.interrupted`. If interruption is encoded as `turn.cancelled`, reason metadata must preserve the distinction without changing public SSE event names.
+- Use "interruption" for the user-visible active-turn interrupt path and "cancellation" for non-user cancellation paths. D-APP-40 amends the runtime taxonomy so explicit user interruption persists `turn.interrupted`; `turn.cancelled` remains available for non-user cancellation such as disconnect/system cancellation.
 - Terminal records must not store API keys, provider secrets, or raw error data that violates redaction policy.
 - Replay tolerance matters for failure paths: malformed trailing JSONL should not hide valid prior events or the accepted input that preceded failure.
 - `docs/PRD.md` is hash-mismatched in `_REFERENCES.md`. Use PRD content as an accessible source-state warning and reconfirm before closure of implementation work.
@@ -42,8 +42,8 @@ Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7
 
 | Topic | Option | Benefit | Risk / Constraint |
 |---|---|---|---|
-| Interruption taxonomy | Separate `turn.interrupted` event type | Directly matches decomposition and CONTRACT wording about interruption. | SPEC/TYPES initial event categories do not currently list `turn.interrupted`; adding it may require schema amendment. |
-| Interruption taxonomy | Represent interruption as `turn.cancelled` with a reason such as `interrupted` | Aligns with SPEC/TYPES initial categories and client-disconnect cancellation wording. | May blur user interrupt versus transport/client cancellation unless reason semantics are explicit. |
+| Interruption taxonomy | Separate `turn.interrupted` event type | D-APP-40 selected this option; it directly matches decomposition and CONTRACT wording about interruption. | Requires schema/docs/tests to retain `turn.cancelled` only for non-user cancellation. |
+| Interruption taxonomy | Represent interruption as `turn.cancelled` with a reason such as `interrupted` | Rejected by D-APP-40 for explicit user interruption. | May blur user interrupt versus transport/client cancellation unless reason semantics are explicit. |
 | Cleanup ownership | Centralize terminal cleanup in `TurnEngine` | Keeps route thin and makes lifecycle behavior unit-testable. | Requires route adapter to reliably forward cancellation/disconnect signals. |
 | Route-level fallback cleanup | Keep defensive cleanup in route adapter | Protects against transport errors and stream failures. | Can duplicate policy if terminal mapping is not centralized behind the runtime contract. |
 | Event log write strictness | Fail closed on terminal event write failure | Avoids claiming terminal durability when no event exists. | Could make user-visible failures noisier; exact retry/fallback behavior is TBD. |
@@ -58,7 +58,7 @@ Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7
 3. The active provider/model request is aborted.
 4. The browser stream receives interrupted `process:exit`.
 5. The active-turn lock is released.
-6. A terminal runtime outcome is persisted. Exact event type for interruption is TBD pending conflict resolution.
+6. A terminal runtime outcome is persisted as `turn.interrupted`.
 
 Sources: `docs/PRD.md` Section 7.4 and Section 8.3; `docs/CONTRACT.md` Section 1.5.
 
@@ -86,9 +86,9 @@ Sources: `docs/PRD.md` Section 7.10; `docs/SPEC.md` Section 9.
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| DEL-03-04-CONFLICT-001 | Terminal taxonomy for interruption is not fully aligned: some sources describe interruption as a durable terminal outcome, while SPEC/TYPES initial event categories list `turn.completed`, `turn.failed`, and `turn.cancelled` but not `turn.interrupted`. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3; decomposition SOW-012/SOW-015; `docs/PRD.md` Section 7.4 and FR-019 | `docs/SPEC.md` Section 9.3; `docs/TYPES.md` Section 7.3; `docs/PRD.md` Section 8.3 FR-022 | `Datasheet.md` Conditions; `Specification.md` Requirements and Verification; `Procedure.md` Steps and Verification | Treat interruption as a terminal outcome requirement, but implement event schema as either `turn.cancelled` with explicit reason metadata or amend SPEC/TYPES to add `turn.interrupted` before final implementation closure. | TBD |
+| DEL-03-04-CONFLICT-001 | Resolved by D-APP-40: explicit user interruption is a durable `turn.interrupted` terminal outcome; `turn.cancelled` is reserved for non-user cancellation. | `execution/_Coordination/_DECISIONS/D-APP-40_RULING_2026-06-21.md` | `docs/SPEC.md` Section 9.3; `docs/TYPES.md` Section 7.3; `docs/PRD.md` Section 8.3 FR-022 after ADQ-05 reconciliation | `Datasheet.md` Conditions; `Specification.md` Requirements and Verification; `Procedure.md` Steps and Verification | Apply D-APP-40 Option B. | Ruled 2026-06-21 |
 
 ## Source-State Notes
 
-- `docs/PRD.md` is accessible but has `HASH_MISMATCH` in `_REFERENCES.md`; this draft uses it because the task explicitly directed treating that mismatch as a source-state warning.
+- `docs/PRD.md` is current under the D-APP-38 authority corpus; this draft uses it as PRD-derived source text while keeping implementation proof separate.
 - Exact code/module paths for interrupt tests, cancel cleanup tests, terminal event mapper, and lock-observability helpers are TBD because the authoritative source slices specify behavior and artifacts but not final file locations.

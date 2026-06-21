@@ -51,7 +51,7 @@ Source register: `Dependencies.csv` v3.1
 - Defaults used: `SOURCE_DOCS=AUTO`, `DOC_ROLE_MAP=DEFAULT`, `ANCHOR_DOC=AUTO` resolved to `Datasheet.md`, `EXECUTION_DOC_ORDER=AUTO` resolved to `Specification.md`, `Guidance.md`, `Procedure.md`, `_CONTEXT.md`, `_REFERENCES.md`, and existing `_DEPENDENCIES.md`.
 - Decomposition authority used: `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
 - Human ruling applied: semantic lensing and P3 enrichment skipped; `_SEMANTIC.md` is invalid evidence and was not read or consumed.
-- `[WARNING] REF-006_HASH_MISMATCH`: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived details remain source-state-warning context.
+- `[RESOLVED] SOURCE_STATE`: D-APP-38 current authority-corpus reconciliation supersedes the prior REF-006 source-state warning; PRD-derived route/SSE details are accepted for this tranche.
 - `[WARNING] TBD_FIXTURE_CAPTURE`: current implementation fixture capture is an explicit prerequisite but its target location and baseline SHA remain `TBD`.
 - Parent anchor check passed: one ACTIVE `IMPLEMENTS_NODE` row is present.
 - 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-03-03-006` from a coarse deliverable edge into document-scoped TurnEngine boundary evidence; the row remains active and in objective.
@@ -60,7 +60,8 @@ Source register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:30:40-06:00 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located and used | REF-006_HASH_MISMATCH; TBD_FIXTURE_CAPTURE | 10 |
+| 2026-06-21T03:00:20-06:00 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | TBD_FIXTURE_CAPTURE | 10 |
+| 2026-05-20T19:30:40-06:00 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located and used | superseded source-state warning; TBD_FIXTURE_CAPTURE | 10 |
 
 ## Lifecycle Summary
 

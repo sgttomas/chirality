@@ -5,7 +5,7 @@
 **Deliverable Folder:** /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter
 **StatusPolicy:** NO_STATUS_TOUCH
 **Validator:** PASS - validate_lens_register.py completed successfully after generation.
-**Warnings:** REF-006 PRD HASH_MISMATCH remains unresolved; current implementation fixture capture remains TBD.
+**Warnings:** D-APP-38 authority-corpus reconciliation is current for REF-006; current implementation fixture capture remains TBD.
 
 **Inputs Read:**
 - _CONTEXT.md - _CONTEXT.md#Context:-DEL-03-03-Harness-API-and-SSE-Compatibility-Adapter
@@ -70,7 +70,7 @@
 ### Warranted Items
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A-001 | A:[normative]:[reviewing] | Conflict | Multi | NA | Carry REF-006 PRD hash mismatch as unresolved source-state warning. | The local documents cite PRD-derived runtime details while _REFERENCES.md records HASH_MISMATCH, so later enrichment needs the conflict visible rather than resolved here. | _REFERENCES.md; Guidance.md | _REFERENCES.md#Authoritative-Source-Corpus; Guidance.md#Conflict-Table-(for-human-ruling) | _REFERENCES.md#REF-006; Guidance.md#CONFLICT-001 | PROPOSAL | TBD |
+| A-001 | A:[normative]:[reviewing] | Conflict | Multi | NA | Record the former REF-006 PRD source-state warning as resolved by D-APP-38. | The local documents cite PRD-derived runtime details under the current D-APP-38 authority corpus, so this source-state item is no longer a closure blocker for this tranche. | _REFERENCES.md; Guidance.md | _REFERENCES.md#Authoritative-Source-Corpus; Guidance.md#Conflict-Table-(for-human-ruling) | _REFERENCES.md#REF-006; Guidance.md#CONFLICT-001 | PROPOSAL | D-APP-38 accepted current authority corpus |
 
 ## Matrix B - Conceptualization (4x4) - Canonical
 
