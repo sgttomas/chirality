@@ -17,6 +17,13 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 does not add a PRD-only dependency target for this deliverable, but it retires the
+active source-state warning for PKG-06 review: `_REFERENCES.md` records REF-006 `docs/PRD.md` as
+`MATCH` under the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings remain extraction
+history and no longer describe the active source-state posture.
+
 ## Run Notes
 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
@@ -25,7 +32,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Source selection: `Datasheet.md` was used as the primary anchor document; execution evidence came from `Specification.md`, `Guidance.md`, and `Procedure.md`; `_CONTEXT.md`, `_REFERENCES.md`, and this file were read for identity, reference resolution, and existing dependency state.
 - Decomposition authority: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` was available and used to validate `PKG-06`, `DEL-06-05`, `SOW-062`, and target deliverable labels.
 - Human ruling applied: semantic lensing and P3 enrichment skipped; `_SEMANTIC.md` was not read or consumed as evidence.
-- `[WARNING] SOURCE_STATE_PRD_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` as HASH_MISMATCH. PRD-derived details in the source artifacts remain warning-qualified; no dependency target was created solely from PRD evidence.
+- `[HISTORICAL WARNING] SOURCE_STATE_PRD_HASH_MISMATCH`: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2. No dependency target was created solely from PRD evidence.
 - Conservative extraction preserved unknown closure fields as `TBD`; no inferred downstream consumers were added.
 
 ## Extracted Dependency Register
@@ -72,4 +79,4 @@ Closure state: dependency register initialized, but dependency satisfaction rema
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE counts |
 |---|---|---|---|---|---|
-| 2026-05-20T19:47:22-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | SOURCE_STATE_PRD_HASH_MISMATCH | ANCHOR=1; EXECUTION=7; TOTAL=8 |
+| 2026-05-20T19:47:22-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | Historical SOURCE_STATE_PRD_HASH_MISMATCH, later reconciled by D-APP-38 corpus v2 | ANCHOR=1; EXECUTION=7; TOTAL=8 |

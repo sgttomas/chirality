@@ -19,6 +19,16 @@
 
 **Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
 
+## Current ADQ-11 Note (2026-06-21)
+
+This generated 2026-05-20 lens is not regenerated here, but ADQ-11/D-APP-43 retires the active
+source-state, output-metadata, and interruption findings for current review. REF-006 `docs/PRD.md` is
+`MATCH` under the D-APP-38 authority corpus v2; D-APP-42 records the accepted tool-result artifact
+metadata/checksum/retention policy; and D-APP-43 treats `interrupted: true` tool results as
+non-success outcomes validated by deterministic adapter fixtures. This satisfies the ADQ-11 portions
+of `X-001`, `E-001`, and `E-002`; remaining external validation handovers stay with their owning
+deliverables.
+
 ## Summary
 
 - Total warranted items: 9

@@ -34,32 +34,39 @@ DEL-06-03 covers initial in-process Chirality MCP read tools for status, depende
 | DEL-06-03-REQ012 | PASS | `frontend/src/lib/harness/mcp/read-tools.ts` lines 447-457; `frontend/src/lib/workspace/deliverable-contracts.ts` lines 381-408; `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` lines 132-160. | Dependency reads use `Dependencies.csv` and the dependency-register reader. |
 | DEL-06-03-REQ013 | PASS | `frontend/src/lib/harness/mcp/read-tools.ts` lines 460-477; `frontend/src/lib/workspace/filesystem.ts` lines 110-146; `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` lines 193-207. | Scope scan is bounded to the normalized project root and scans scope metadata without document bodies. |
 | DEL-06-03-REQ014 | PASS | `frontend/src/lib/harness/tool-descriptor.ts` lines 1005-1022; `frontend/src/__tests__/lib/tool-descriptor.test.ts` lines 317-357. | Unknown MCP names fail descriptor validation with structured issues before model exposure. |
-| DEL-06-03-REQ015 | PARTIAL | `frontend/src/lib/workspace/deliverable-contracts.ts` lines 381-408; `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` lines 132-160. | Current reader requires `Dependencies.csv`; it does not yet expose an explicit absence/secondary summary when only `_DEPENDENCIES.md` exists. |
+| DEL-06-03-REQ015 | PASS | `frontend/src/lib/workspace/deliverable-contracts.ts` lines 401-459; `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts` lines 372-385. | Missing `Dependencies.csv` now returns `registerPresent: false`, optional `_DEPENDENCIES.md` secondary-summary metadata, empty rows/headers, and a typed warning without inferring structured rows from prose. |
 
 ## Gap Inventory
 
 | Gap | Severity | Evidence | Recommendation |
 |---|---:|---|---|
-| Missing-`Dependencies.csv` fallback behavior is not implemented. | Medium | `frontend/src/lib/workspace/deliverable-contracts.ts` lines 392-397. | Add a typed absent-register result that can cite secondary dependency summary status without inferring rows. |
+| Missing-`Dependencies.csv` fallback residual is closed by ADQ-11. | Low | `frontend/src/lib/workspace/deliverable-contracts.ts` lines 430-444; `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts` lines 380-385. | Preserve non-inferential behavior if DEL-07-05 later expands dependency APIs. |
 | MCP read output schemas exist in descriptors, but parser-level schema assertions are thin. | Low | `frontend/src/lib/harness/tool-descriptor.ts` lines 425-490. | Add lightweight output-shape tests for status/deps/scope/scaffold results. |
-| REF-006 remains warning-limited. | Low | `_REFERENCES.md` REF-006 hash mismatch. | Close or waive PRD hash before issuance. |
+| Historical REF-006 warning text in older run records is retired for active review. | Low | `_REFERENCES.md` REF-006 is `MATCH` under the D-APP-38 authority corpus v2. | Keep the D-APP-38 reference status check in closeout validation. |
 
 ## Source-State Caveat
 
-`docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. No semantic files were used or produced.
+`docs/PRD.md` is no longer warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as
+`MATCH` under the D-APP-38 authority corpus v2. Historical HASH_MISMATCH notes in `_run_records`
+remain archival only.
 
 ## Dependency Closure Note
 
-This assessment does not satisfy or mutate any `Dependencies.csv` row. Active rows remain pending on source-contract warning closure, DEL-06-01 permission overlay, DEL-07-05 dependency-reader semantics, status lifecycle API ownership, and runtime event path ownership.
+ADQ-11 satisfies the missing-register fallback and REF-006 source-state residuals for this deliverable.
+Other active rows remain pending on DEL-06-01 permission overlay, DEL-07-05 dependency-reader
+semantics, status lifecycle API ownership, and runtime event path ownership unless separately closed by
+their owning deliverables.
 
 ## Forward Development Recommendation
 
 | Step | Type | Size | Strategic fit | Prerequisite |
 |---|---|---:|---|---|
-| Implement absent-register handling for `deps_read` when `Dependencies.csv` is missing but a secondary dependency summary exists. | code/test | S | FIT | DEL-07-05 dependency-reader schema decision. |
+| Preserve absent-register handling as an explicit, non-inferential result if DEL-07-05 later expands dependency APIs. | code/test | S | FIT | Future dependency API change. |
 | Add output-shape assertions for all four read MCP tools. | test | S | FIT | Current MCP handlers stable. |
-| Close REF-006 before issuance. | governance | S | FIT | Human source-state decision. |
+| Keep D-APP-38 authority-corpus status clean during future authority-document edits. | governance | S | FIT | Authority-document edits occur. |
 
 ## Issuance-Gate-Process Observations
 
-DEL-06-03 is strong for the primary read tools and event evidence. The issuance gate should not treat the missing dependency-register fallback as solved; it is a bounded code/test follow-up.
+DEL-06-03 is strong for the primary read tools and event evidence. ADQ-11 closes the missing
+dependency-register fallback targeted by the autonomous queue. This does not advance lifecycle state or
+make an issuance claim.

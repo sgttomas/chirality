@@ -18,6 +18,16 @@
 
 **Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
 
+## Current ADQ-11 Note (2026-06-21)
+
+This generated 2026-05-20 lens is not regenerated here, but ADQ-11/D-APP-43 retires the active
+source-state and runtime-fingerprint findings for current review. REF-006 `docs/PRD.md` is `MATCH`
+under the D-APP-38 authority corpus v2, satisfying the source-state portions of `A-001`, `D-002`, and
+`E-002`; `frontend/src/lib/harness/runtime-fingerprint.ts`,
+`frontend/src/app/api/harness/session/boot/route.ts`, and the route tests satisfy `E-001` for the
+runtime fingerprint path. Historical `HASH_MISMATCH` and path-`TBD` text below remains generation
+provenance unless separately listed as still open in the active assessment.
+
 ## Summary
 
 - Total warranted items: 12

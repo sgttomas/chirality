@@ -17,6 +17,14 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 updates the active structured register. `DEP-06-06-008` is now
+`SATISFIED` because `_REFERENCES.md` records REF-006 `docs/PRD.md` as `MATCH` under
+the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings remain extraction
+history and no longer describe the active source-state posture. External lifecycle and
+handover rows remain pending unless separately closed by their owning deliverables.
+
 ## Prior Notes
 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
@@ -43,7 +51,7 @@ Run timestamp: 2026-05-20T19:47:33-0600
 | DEP-06-06-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md` |
 | DEP-06-06-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling | ACTIVE | `Guidance.md` |
 | DEP-06-06-007 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | `Procedure.md` |
-| DEP-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` HASH_MISMATCH | ACTIVE | `Specification.md` |
+| DEP-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` source-state reconciliation | ACTIVE | `Specification.md` |
 
 ## Run Notes
 
@@ -59,14 +67,14 @@ Run timestamp: 2026-05-20T19:47:33-0600
 - Anchor document selection: `Datasheet.md` plus `_CONTEXT.md` traceability fields; decomposition used to validate PKG-06, DEL-06-06, SOW-057, and SOW-061.
 - Execution document order: `Specification.md`, `Guidance.md`, `Procedure.md`.
 - Parent anchor check: PASS; one ACTIVE `IMPLEMENTS_NODE` anchor is present.
-- [WARNING] SOURCE_HASH_MISMATCH_REF-006: `_REFERENCES.md` marks `docs/PRD.md` as HASH_MISMATCH; PRD-only compaction payload specifics remain warning-qualified.
+- [HISTORICAL WARNING] SOURCE_HASH_MISMATCH_REF-006: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2, and `DEP-06-06-008` is now `SATISFIED`.
 - Exact implementation module paths, test fixture paths, payload fields, event writer API path, and parent/child event relation remain `TBD`.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition status | Warnings | ACTIVE ANCHOR | ACTIVE EXECUTION |
 |---|---|---|---|---|---:|---:|
-| 2026-05-20T19:47:33-0600 | UPDATE | CONSERVATIVE | Provided and used: `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH_REF-006 | 3 | 5 |
+| 2026-05-20T19:47:33-0600 | UPDATE | CONSERVATIVE | Provided and used: `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Historical SOURCE_HASH_MISMATCH_REF-006, later reconciled by D-APP-38 corpus v2 | 3 | 5 |
 
 ## Lifecycle Summary
 
@@ -78,4 +86,5 @@ Run timestamp: 2026-05-20T19:47:33-0600
 | SatisfactionStatus | Count |
 |---|---:|
 | NOT_APPLICABLE | 3 |
-| PENDING | 5 |
+| PENDING | 4 |
+| SATISFIED | 1 |

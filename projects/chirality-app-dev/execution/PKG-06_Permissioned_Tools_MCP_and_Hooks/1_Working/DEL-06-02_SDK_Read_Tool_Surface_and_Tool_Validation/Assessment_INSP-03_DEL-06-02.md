@@ -31,33 +31,39 @@ DEL-06-02 covers read-first SDK tool surface construction, descriptor-backed too
 | DEL-06-02-REQ009 | PASS | `frontend/src/lib/harness/sdk-options-builder.ts` lines 87-116; `frontend/src/__tests__/lib/sdk-options-builder.test.ts` lines 57-87. | `allowedTools` is accompanied by disallowed names, permission callback, and hooks; it is not treated as the restriction boundary. |
 | DEL-06-02-REQ010 | PASS | `frontend/src/lib/harness/sdk-options-builder.ts` lines 87-146; `frontend/src/__tests__/lib/sdk-options-builder.test.ts` lines 147-192 and 290-319. | Denied/unrequested tools are omitted where possible and also remain in `disallowedTools`. |
 | DEL-06-02-REQ011 | PASS | `frontend/src/__tests__/lib/tool-descriptor.test.ts` lines 242-277; `frontend/src/__tests__/lib/sdk-options-builder.test.ts` lines 57-114. | Read-only exposure allows only explicitly requested read tools and disallows write, bash, network, subagent, and mutating MCP tools. |
-| DEL-06-02-REQ012 | PARTIAL | `frontend/src/lib/harness/tool-descriptor.ts` lines 13-14; `frontend/src/lib/harness/sdk-options-builder.ts` lines 147-157; `frontend/src/__tests__/lib/sdk-options-builder.test.ts` lines 57-87. | Registry version and option fields are available, but an explicit boot fingerprint containing SDK/MCP versions remains thin and overlaps DEL-04-01/DEL-04-02. |
+| DEL-06-02-REQ012 | PASS | `frontend/src/lib/harness/runtime-fingerprint.ts` lines 20-40; `frontend/src/app/api/harness/session/boot/route.ts` lines 57-78; `frontend/src/__tests__/api/harness/routes.test.ts` lines 301-315. | Session boot persists a safe runtime fingerprint containing tool registry, permission/subagent policy, SDK package version, MCP server version/tool names, and SHA-256 digest. |
 | DEL-06-02-REQ013 | PASS | `frontend/src/__tests__/lib/tool-descriptor.test.ts` lines 317-398; `frontend/src/__tests__/lib/sdk-options-builder.test.ts` lines 89-145 and 290-319. | Tests cover unknown tools, deterministic ordering, read-only exposure, and read-before-write/bash policy. |
 
 ## Gap Inventory
 
 | Gap | Severity | Evidence | Recommendation |
 |---|---:|---|---|
-| Runtime boot/version fingerprint is not yet a first-class artifact for the tool surface. | Medium | `frontend/src/lib/harness/tool-descriptor.ts` lines 13-14; DEL-04-01 residual evidence. | Add a compact runtime fingerprint that records tool registry version, SDK package version, and MCP server version in session metadata or startup evidence. |
+| Runtime boot/version fingerprint residual is closed by ADQ-11. | Low | `frontend/src/lib/harness/runtime-fingerprint.ts` lines 20-40; `frontend/src/__tests__/api/harness/routes.test.ts` lines 301-315. | Keep the fingerprint schema versioned when tool, policy, SDK, or MCP version fields change. |
 | Read surface is descriptor-driven, but public docs should keep SDK names adapter-local. | Low | `frontend/src/lib/harness/tool-descriptor.ts` lines 97-101. | Document Chirality descriptor names as the product contract and SDK names as adapter metadata. |
-| REF-006 warning still applies to PRD-derived tool-surface assumptions. | Low | `_REFERENCES.md` REF-006 hash mismatch. | Refresh or explicitly waive the PRD hash before issuance. |
+| Historical REF-006 warning text in older run records is retired for active review. | Low | `_REFERENCES.md` REF-006 is `MATCH` under the D-APP-38 authority corpus v2. | Keep the D-APP-38 reference status check in closeout validation. |
 
 ## Source-State Caveat
 
-`docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. No semantic files were used or produced.
+`docs/PRD.md` is no longer warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as
+`MATCH` under the D-APP-38 authority corpus v2. Historical HASH_MISMATCH notes in `_run_records`
+remain archival only.
 
 ## Dependency Closure Note
 
-This assessment does not satisfy or mutate any `Dependencies.csv` row. Active rows remain pending on DEL-06-01 permission overlay, DEL-06-03 MCP tool interface, runtime/version evidence, and REF-006 source-state closure.
+ADQ-11 satisfies the runtime/version fingerprint and REF-006 source-state residuals for this
+deliverable. Other active rows remain pending on DEL-06-01 permission overlay and DEL-06-03 MCP tool
+interface posture unless separately closed by their owning deliverables.
 
 ## Forward Development Recommendation
 
 | Step | Type | Size | Strategic fit | Prerequisite |
 |---|---|---:|---|---|
-| Add a startup/tool-surface fingerprint artifact covering registry version, SDK version, and MCP server version. | code/test | S | FIT | DEL-04-01 version evidence location accepted. |
+| Keep the startup/tool-surface fingerprint schema versioned as registry, SDK, MCP, or permission-policy fields change. | code/test | S | FIT | Future fingerprint field change. |
 | Keep descriptor order as the canonical ordering contract and add a short docs note for public/product names. | docs | S | FIT | Tool descriptor registry stable. |
-| Close REF-006 before issuance. | governance | S | FIT | Human source-state decision. |
+| Keep D-APP-38 authority-corpus status clean during future authority-document edits. | governance | S | FIT | Authority-document edits occur. |
 
 ## Issuance-Gate-Process Observations
 
-DEL-06-02 has strong implementation and test evidence for deterministic read-first exposure. The issuance gate should require a small boot/version fingerprint addition or an explicit deferral, plus PRD hash closure.
+DEL-06-02 has strong implementation and test evidence for deterministic read-first exposure. ADQ-11
+closes the boot/version fingerprint and PRD source-state residuals. This does not advance lifecycle
+state or make an issuance claim.

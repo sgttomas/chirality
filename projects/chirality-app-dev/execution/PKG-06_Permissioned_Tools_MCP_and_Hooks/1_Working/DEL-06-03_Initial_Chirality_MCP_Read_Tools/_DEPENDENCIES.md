@@ -17,6 +17,13 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 updates the active structured register. `DEP-06-03-005` is now
+`SATISFIED` because REF-002/REF-003 remain `MATCH` and REF-006 `docs/PRD.md` is
+`MATCH` under the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings
+remain extraction history and no longer describe the active source-state posture.
+
 ## Run Notes
 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
@@ -26,7 +33,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition authority used: `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
 - Human ruling applied: semantic lensing and P3 enrichment skipped; `_SEMANTIC.md` was not read or consumed.
 - Existing `Dependencies.csv`: absent before this run; no rows were retired.
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` reports `docs/PRD.md` HASH_MISMATCH. Rows relying on the PRD preserve that warning in `Notes`.
+- [HISTORICAL WARNING] SOURCE_STATE: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2, and `DEP-06-03-005` is now `SATISFIED`.
 - [WARNING] TARGET_UNRESOLVED: status lifecycle API owner is explicit in source text but not resolved to a deliverable/API identifier in accessible evidence.
 - [WARNING] TARGET_UNRESOLVED: Chirality runtime event path is explicit in source text but final active implementation owner is conditional/TBD in accessible evidence.
 
@@ -68,7 +75,7 @@ Counts:
 
 Open dependency closure items:
 
-- `DEP-06-03-005`: source contracts remain active with `docs/PRD.md` hash mismatch warning.
+- `DEP-06-03-005`: source contracts remain active and are source-state satisfied under D-APP-38 corpus v2.
 - `DEP-06-03-006`: permission overlay integration target is known (`DEL-06-01`), but satisfaction remains `TBD`.
 - `DEP-06-03-007`: dependency reader behavior must align with `DEL-07-05`; satisfaction remains `TBD`.
 - `DEP-06-03-008`: status lifecycle API owner remains `UNKNOWN/TBD`.
@@ -76,4 +83,4 @@ Open dependency closure items:
 
 ## Run History
 
-- 2026-05-20 19:47 - `TASK + dependency-extract`; mode `UPDATE`; strictness `CONSERVATIVE`; decomposition available; created `Dependencies.csv` with 9 ACTIVE rows. Warnings: PRD hash mismatch, unresolved status lifecycle API owner, unresolved/conditional runtime event path.
+- 2026-05-20 19:47 - `TASK + dependency-extract`; mode `UPDATE`; strictness `CONSERVATIVE`; decomposition available; created `Dependencies.csv` with 9 ACTIVE rows. Historical warnings: PRD hash mismatch later reconciled by D-APP-38 corpus v2, unresolved status lifecycle API owner, unresolved/conditional runtime event path.

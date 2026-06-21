@@ -17,6 +17,14 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 updates the active structured register. `DEP-06-04-010` is now
+`SATISFIED` because `_REFERENCES.md` records REF-006 `docs/PRD.md` as `MATCH` under
+the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings remain extraction
+history and no longer describe the active source-state posture. External upstream edges
+remain pending unless separately closed by their owning deliverables.
+
 ## Run Notes
 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
@@ -27,7 +35,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Anchor document selection: `Datasheet.md` and `Specification.md` traceability sections.
 - Execution document order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
 - Decomposition validation: available and used for package, deliverable, SOW, and objective target resolution.
-- `[WARNING] PRD_HASH_MISMATCH`: REF-006 `docs/PRD.md` is source-accessible but hash-mismatched in `_REFERENCES.md`; PRD-derived controlled-write details remain warning-qualified until reconciled.
+- `[HISTORICAL WARNING] PRD_HASH_MISMATCH`: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2, and `DEP-06-04-010` is now `SATISFIED`.
 - `[WARNING] HUMAN_RULING_SEMANTIC_SKIPPED`: inherited `SatisfactionThreshold=SEMANTIC_READY` is not used as evidence in this extraction because semantic lensing was explicitly skipped.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor is present.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor is present.
@@ -39,8 +47,8 @@ Structured register: `Dependencies.csv` v3.1
 | Metric | Count |
 |---|---:|
 | Total rows | 10 |
-| ACTIVE rows | 10 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 9 |
+| RETIRED rows | 1 |
 | ANCHOR rows | 6 |
 | EXECUTION rows | 4 |
 | IMPLEMENTS_NODE anchors | 1 |
@@ -56,25 +64,28 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-06-04-006 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | NOT_APPLICABLE |
 | DEP-06-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-06-01 | ACTIVE | PENDING |
 | DEP-06-04-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 | ACTIVE | PENDING |
-| DEP-06-04-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 | ACTIVE | PENDING |
-| DEP-06-04-010 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | PENDING |
+| DEP-06-04-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 | RETIRED | NOT_APPLICABLE |
+| DEP-06-04-010 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition path/status | Warnings | ACTIVE counts |
 |---|---|---|---|---|---|
-| 2026-05-20T19:47:30-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | PRD_HASH_MISMATCH; HUMAN_RULING_SEMANTIC_SKIPPED | ANCHOR=6; EXECUTION=4; TOTAL=10 |
+| 2026-05-20T19:47:30-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | Historical PRD_HASH_MISMATCH, later reconciled by D-APP-38 corpus v2; HUMAN_RULING_SEMANTIC_SKIPPED | ANCHOR=6; EXECUTION=4; TOTAL=10 |
 
 ## Lifecycle Summary
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 10 |
-| RETIRED | 0 |
+| ACTIVE | 9 |
+| RETIRED | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
-| NOT_APPLICABLE | 6 |
-| PENDING | 4 |
+| NOT_APPLICABLE | 7 |
+| PENDING | 2 |
+| SATISFIED | 1 |
 
-Closure state: dependency register initialized, but execution edges remain `PENDING` because upstream maturity and PRD hash reconciliation are not yet accepted in this local evidence set.
+Closure state: dependency register initialized. ADQ-11 closes the REF-006 source-state row and records
+exact-edit/atomic evidence, but external execution edges remain `PENDING` unless separately closed by
+their owning deliverables.

@@ -4,17 +4,27 @@ Date: 2026-06-21
 
 ## Scope
 
-This evidence records the ADQ-11 implementation work for bounded PKG-06 residuals from the
+This evidence records ADQ-11 implementation and closure work for bounded PKG-06 residuals from the
 autonomous development queue:
 
 - boot/version fingerprint for the runtime tool surface;
 - explicit missing-register fallback for dependency reads;
 - hook-side exact-edit stale-precondition checks;
-- same-directory atomic-rename writes for Chirality-owned controlled status/dependency mutations.
+- same-directory atomic-rename writes for Chirality-owned controlled status/dependency mutations;
+- interrupted Bash/tool result classification;
+- PreCompact/Stop lifecycle closure through adapter message/status/result mapping.
 
-This evidence does not perform lifecycle transitions, satisfy dependency rows, issue deliverables,
-change provider policy, expand provider/network scope, implement R7, or make release, professional,
-certification, sealing, authentication, release-readiness, or code-compliance claims.
+This evidence does not perform lifecycle transitions, issue deliverables, change provider policy,
+expand provider/network scope, implement R7, or make release, professional, certification, sealing,
+authentication, release-readiness, or code-compliance claims.
+
+## Ruling Basis
+
+| Decision | Effect |
+|---|---|
+| D-APP-40 Option B | Explicit user interruption terminates as `turn.interrupted`; `turn.cancelled` remains reserved for non-user cancellation. |
+| D-APP-42 Option A | Tool-result artifacts include SHA-256 for exact stored bytes, `toolName`, optional `turnId`, and `session-lifetime` retention. |
+| D-APP-43 1B/2B/3B | `interrupted: true` tool results are non-success outcomes; PreCompact/Stop closure is satisfied by adapter lifecycle mapping; strict workspace/tool behavior is preferred over compatibility inference. |
 
 ## Implemented Evidence
 
@@ -33,26 +43,49 @@ certification, sealing, authentication, release-readiness, or code-compliance cl
 | Exact-edit hook evidence tests | `frontend/src/__tests__/lib/chirality-hooks.test.ts` |
 | Atomic controlled text writes | `frontend/src/lib/atomic-write.ts`; `frontend/src/lib/lifecycle/transition.ts`; `frontend/src/lib/workspace/deliverable-contracts.ts` |
 | Atomic-write coverage | `frontend/src/__tests__/lib/atomic-write.test.ts` |
+| Interrupted tool-result classification | `frontend/src/lib/harness/tool-evidence.ts` |
+| Interrupted Bash adapter fixture | `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` |
+| PreCompact/Stop adapter lifecycle fixture | `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` |
+
+## Closure Semantics
+
+ADQ-11 treats interrupted SDK Bash/tool results as non-success tool outcomes. Deterministic
+adapter-level proof is the default validation bar: a `Bash` tool result with `interrupted: true` maps
+to `tool.failed`, preserves safe stdout/stderr byte metadata, and does not store raw stdout/stderr in
+event data.
+
+ADQ-11 does not add synthetic SDK hook callbacks for PreCompact or Stop. Closure is based on the
+accepted adapter lifecycle surface:
+
+- `context.compaction.started` from adapter status `compacting`;
+- `context.compacted` from compact-boundary or compact-success messages;
+- `context.compaction.failed` from compact-failure messages;
+- `turn.completed` and `turn.failed` from terminal SDK result messages;
+- `turn.interrupted` from the D-APP-40 interruption paths.
+
+Missing dependency-register state remains explicit and non-inferential. `_DEPENDENCIES.md` may be
+reported as a secondary summary when present, but structured dependency rows are not synthesized from
+prose. Exact-edit hooks deny missing, unreadable, or stale `old_string` preconditions before SDK
+execution. Chirality-owned controlled status/dependency writers use same-directory temp-file rename and
+clean up temp files on failed rename.
 
 ## Validation
 
 | Command | Result |
 |---|---|
+| `npm run test -- src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/sdk-message-mapper.test.ts --testTimeout=30000` | PASS: 2 files / 18 tests |
+| `npm run test -- src/__tests__/lib/atomic-write.test.ts src/__tests__/api/working-root/deliverable-contracts.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/workspace-deliverable-api.test.ts src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/sdk-message-mapper.test.ts --testTimeout=30000` | PASS: 7 files / 91 tests |
 | `npm run typecheck` | PASS |
-| `npm run test -- src/__tests__/lib/atomic-write.test.ts src/__tests__/api/working-root/deliverable-contracts.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/workspace-deliverable-api.test.ts --testTimeout=15000` | PASS: 5 files / 73 tests |
-| `npm run test -- src/__tests__/api/harness/routes.test.ts -t "supports session create/list/get/delete happy path" --testTimeout=20000` | PASS: isolated route timeout check |
-| `npm run test -- src/__tests__/api/harness/routes.test.ts --testTimeout=15000` | PASS: 35 route tests after deterministic route-module preload |
-| `npm run test -- --testTimeout=15000` | PASS: 73 files / 512 tests after deterministic route-module preload |
-| `git diff --check` | PASS |
-| `python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status` | PASS: no drift |
+| `npm run test -- --testTimeout=30000` | PASS: 78 files / 537 tests |
+| `npm run harness:validate:section9` | PASS: 14 checks |
+| `npm run build` | PASS |
+| `npm run harness:validate:premerge` | PASS after starting local Next dev server: Section 8 8 checks; Section 9 report-only 14 checks |
+| Modified PKG-06 dependency CSV parse check | PASS |
+| `python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status` | PASS: corpus `v2`, no drift |
+| `git diff --check -- projects/chirality-app-dev` | PASS |
 
 ## Residuals
 
-- Real Bash process interruption proof remains blocked/deferred. Current implementation has timeout,
-  denial, metadata, artifact, and hook-failure evidence, but no end-to-end real-process cancellation
-  fixture. The remaining work depends on the runtime terminal/interruption taxonomy boundary tracked
-  by D-APP-40 and shared tool-result metadata policy tracked by D-APP-42.
-- Dedicated PreCompact/Stop callback semantics remain blocked/deferred. Current implementation keeps
-  the adapter-message compaction mirror and terminal status mapping, but does not add a new SDK hook
-  callback path or declare the mirror sufficient. That acceptance needs the D-APP-40 terminal taxonomy
-  ruling or explicit SDK lifecycle support.
+No ADQ-11 code/test/docs residual remains open under D-APP-43. Historical run records may still mention
+earlier HASH_MISMATCH or blocked/deferred states; those records are archival. Active assessment,
+memory, dependency, and queue surfaces are updated by the ADQ-11 closeout tranche.

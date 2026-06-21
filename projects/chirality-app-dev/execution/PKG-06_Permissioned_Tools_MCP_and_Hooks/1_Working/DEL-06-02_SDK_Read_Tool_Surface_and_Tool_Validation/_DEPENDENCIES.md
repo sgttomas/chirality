@@ -17,6 +17,13 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 updates the active structured register. `DEP-06-02-011` is now
+`SATISFIED` because `_REFERENCES.md` records REF-006 `docs/PRD.md` as `MATCH` under
+the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings remain extraction
+history and no longer describe the active source-state posture.
+
 ## Run Notes
 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
@@ -27,7 +34,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition authority was available and used for anchor validation and canonical target labels.
 - Anchor document selected by AUTO/default heuristic: `Datasheet.md` with confirmation from `_CONTEXT.md` and decomposition authority.
 - Execution document order selected by AUTO/default heuristic: `Procedure.md`, `Guidance.md`, `Specification.md`, `Datasheet.md`.
-- [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` reports `docs/PRD.md` REF-006 as `HASH_MISMATCH`; PRD-derived details remain warning-qualified until source-state reconciliation.
+- [HISTORICAL WARNING] PRD_HASH_MISMATCH: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2, and `DEP-06-02-011` is now `SATISFIED`.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor is present.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: only one ACTIVE `IMPLEMENTS_NODE` parent anchor is present.
 
@@ -61,7 +68,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:47:21-06:00 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | PRD_HASH_MISMATCH | 11 |
+| 2026-05-20T19:47:21-06:00 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | Historical PRD_HASH_MISMATCH, later reconciled by D-APP-38 corpus v2 | 11 |
 
 ## Lifecycle Summary
 
@@ -72,6 +79,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 11 |
+| SATISFIED | 1 |
+| TBD | 10 |
 
 Closure state: dependency register populated but not closed at project FULL_GRAPH level until aggregation/cycle checks are run.

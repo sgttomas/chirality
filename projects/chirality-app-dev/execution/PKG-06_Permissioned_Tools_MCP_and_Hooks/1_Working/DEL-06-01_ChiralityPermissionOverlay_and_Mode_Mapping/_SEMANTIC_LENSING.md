@@ -19,6 +19,14 @@
 
 **Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
 
+## Current ADQ-11 Note (2026-06-21)
+
+This generated 2026-05-20 lens is not regenerated here, but its active source-state warning is retired
+for current review. ADQ-11/D-APP-43 records REF-006 `docs/PRD.md` as `MATCH` under the D-APP-38
+authority corpus v2, so item `X-001` is satisfied by the current `_REFERENCES.md`, `_DEPENDENCIES.md`,
+`Dependencies.csv`, assessment, and evidence records. Historical `HASH_MISMATCH` text below remains
+generation provenance, not an active blocker.
+
 ## Summary
 
 - Total warranted items: 8

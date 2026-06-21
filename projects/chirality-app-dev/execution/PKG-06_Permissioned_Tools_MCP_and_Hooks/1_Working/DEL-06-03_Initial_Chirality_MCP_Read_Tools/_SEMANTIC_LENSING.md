@@ -20,6 +20,15 @@
 
 **Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
 
+## Current ADQ-11 Note (2026-06-21)
+
+This generated 2026-05-21 lens is not regenerated here, but ADQ-11/D-APP-43 retires the active
+source-state and missing-register fallback findings for current review. REF-006 `docs/PRD.md` is
+`MATCH` under the D-APP-38 authority corpus v2, and the workspace deliverable API now reports missing
+`Dependencies.csv` state explicitly without synthesizing structured rows from `_DEPENDENCIES.md`.
+This satisfies `C-001` and the REF-006 source-state portion of `X-001`; unresolved external ownership
+items remain governed by the active assessment and dependency rows.
+
 ## Summary
 
 - Total warranted items: 9

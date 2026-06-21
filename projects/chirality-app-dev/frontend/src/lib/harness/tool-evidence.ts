@@ -238,5 +238,5 @@ export function isToolResultFailure(result: unknown): boolean {
   if (!isRecord(result)) {
     return false;
   }
-  return result.is_error === true || result.isError === true;
+  return result.is_error === true || result.isError === true || result.interrupted === true;
 }

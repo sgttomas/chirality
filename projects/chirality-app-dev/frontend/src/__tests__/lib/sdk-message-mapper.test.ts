@@ -406,6 +406,75 @@ describe('mapSdkMessageToHarness', () => {
     expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('test output');
   });
 
+  it('maps interrupted SDK Bash results to failed evidence with stream metadata', () => {
+    const state = createSdkToolEvidenceState();
+    mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'assistant',
+        message: {
+          role: 'assistant',
+          content: [
+            {
+              type: 'tool_use',
+              id: 'toolu_bash_interrupted',
+              name: 'Bash',
+              input: { command: 'sleep 60', timeout: 120000 }
+            }
+          ]
+        },
+        parent_tool_use_id: null,
+        uuid: '00000000-0000-0000-0000-000000000033',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    const userResult = mapSdkMessageToHarness(
+      'sess_1',
+      {
+        type: 'user',
+        message: {
+          role: 'user',
+          content: []
+        },
+        parent_tool_use_id: 'toolu_bash_interrupted',
+        tool_use_result: {
+          type: 'tool_result',
+          tool_use_id: 'toolu_bash_interrupted',
+          stdout: 'partial output',
+          stderr: 'Interrupted',
+          interrupted: true
+        },
+        uuid: '00000000-0000-0000-0000-000000000034',
+        session_id: 'sdk_1'
+      } as never,
+      state
+    );
+
+    expect(userResult.harnessEvents.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.failed',
+      'message.completed'
+    ]);
+    expect(userResult.harnessEvents[1].data).toMatchObject({
+      source: 'adapter',
+      toolUseId: 'toolu_bash_interrupted',
+      toolName: 'Bash',
+      descriptorName: 'shell',
+      failureSource: 'tool_use_result',
+      shellResultMetadata: {
+        stdoutPresent: true,
+        stderrPresent: true,
+        stdoutByteLength: 14,
+        stderrByteLength: 11,
+        interrupted: true
+      }
+    });
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('partial output');
+    expect(JSON.stringify(userResult.harnessEvents[1].data)).not.toContain('Interrupted');
+  });
+
   it('persists SDK built-in overflow results through the async mapper path', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-mapper-'));
     process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
@@ -643,6 +712,93 @@ describe('mapSdkMessageToHarness', () => {
       toolUseId: 'toolu_2',
       outputFile: '/tmp/chirality-child-output.json',
       summary: 'child done'
+    });
+  });
+
+  it('maps compaction and terminal result messages as lifecycle boundary evidence', () => {
+    const compacting = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'status',
+      status: 'compacting',
+      permissionMode: 'default',
+      uuid: '00000000-0000-0000-0000-000000000035',
+      session_id: 'sdk_1'
+    } as never);
+    const compacted = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'status',
+      status: 'ready',
+      compact_result: 'success',
+      uuid: '00000000-0000-0000-0000-000000000036',
+      session_id: 'sdk_1'
+    } as never);
+    const compactFailed = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'status',
+      status: 'ready',
+      compact_result: 'failed',
+      compact_error: 'compaction failed',
+      uuid: '00000000-0000-0000-0000-000000000037',
+      session_id: 'sdk_1'
+    } as never);
+    const completed = mapSdkMessageToHarness('sess_1', {
+      type: 'result',
+      subtype: 'success',
+      duration_ms: 10,
+      duration_api_ms: 9,
+      is_error: false,
+      num_turns: 1,
+      result: 'done',
+      stop_reason: 'end_turn',
+      total_cost_usd: 0,
+      usage: {} as never,
+      modelUsage: {},
+      permission_denials: [],
+      uuid: '00000000-0000-0000-0000-000000000038',
+      session_id: 'sdk_1'
+    });
+    const failed = mapSdkMessageToHarness('sess_1', {
+      type: 'result',
+      subtype: 'error',
+      duration_ms: 10,
+      duration_api_ms: 9,
+      is_error: true,
+      num_turns: 1,
+      result: '',
+      stop_reason: 'error',
+      terminal_reason: 'adapter_error',
+      total_cost_usd: 0,
+      usage: {} as never,
+      modelUsage: {},
+      permission_denials: [],
+      errors: ['adapter failed'],
+      uuid: '00000000-0000-0000-0000-000000000039',
+      session_id: 'sdk_1'
+    } as never);
+
+    expect(compacting.harnessEvents.map((event) => event.type)).toEqual([
+      'context.compaction.started'
+    ]);
+    expect(compacted.harnessEvents.map((event) => event.type)).toEqual(['context.compacted']);
+    expect(compacted.harnessEvents[0].data).toMatchObject({
+      compactResult: 'success',
+      replayImplication: 'sdk_transcript_linkage_required'
+    });
+    expect(compactFailed.harnessEvents.map((event) => event.type)).toEqual([
+      'context.compaction.failed'
+    ]);
+    expect(compactFailed.harnessEvents[0].data).toMatchObject({
+      compactResult: 'failed',
+      compactError: 'compaction failed'
+    });
+    expect(completed.harnessEvents.map((event) => event.type)).toEqual([
+      'model.completed',
+      'turn.completed'
+    ]);
+    expect(failed.harnessEvents.map((event) => event.type)).toEqual(['turn.failed']);
+    expect(failed.harnessEvents[0].data).toMatchObject({
+      subtype: 'error',
+      terminalReason: 'adapter_error'
     });
   });
 

@@ -19,6 +19,16 @@
 
 **Purpose:** Apply semantic-matrix-build Result-table cells as lenses over production documents, capturing warranted enrichment inputs for a later enrichment pass.
 
+## Current ADQ-11 Note (2026-06-21)
+
+This generated 2026-05-20 lens is not regenerated here, but ADQ-11/D-APP-43 retires the active
+source-state and PreCompact/Stop lifecycle findings for current review. REF-006 `docs/PRD.md` is
+`MATCH` under the D-APP-38 authority corpus v2, and adapter message/status/result mapping is the
+accepted implementation surface for `context.compaction.started`, `context.compacted`,
+`context.compaction.failed`, `turn.completed`, `turn.failed`, and D-APP-40 `turn.interrupted`. This
+satisfies the ADQ-11 portions of `X-001` and `X-002`; DEL-09-02 section-validation handover remains a
+separate downstream dependency.
+
 ## Summary
 
 - Total warranted items: 10

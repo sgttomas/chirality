@@ -42,15 +42,19 @@ DEL-06-01 covers the product-owned permission overlay over SDK tool callbacks, C
 |---|---:|---|---|
 | Permission overlay is strong, but mode naming remains split across product modes and SDK adapter values. | Low | `frontend/src/lib/harness/sdk-options-builder.ts` lines 39-54. | Keep public docs on Chirality mode names and treat SDK mode names as adapter implementation details. |
 | Workspace-write correctness depends on DEL-06-04 hook/path policy remaining attached in every adapter execution path. | Medium | `frontend/src/lib/harness/sdk-options-builder.ts` lines 116-138. | Add a release gate assertion that SDK options always include both `canUseTool` and hooks when write/shell tools can be exposed. |
-| PRD-derived policy wording remains warning-limited. | Low | `_REFERENCES.md` REF-006 hash mismatch. | Refresh or rule the PRD hash before issuance. |
+| Historical PRD warning text in older run records is retired for active review. | Low | `_REFERENCES.md` REF-006 is `MATCH` under the D-APP-38 authority corpus v2. | Keep the D-APP-38 reference status check in closeout validation. |
 
 ## Source-State Caveat
 
-`docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. No semantic files were used or produced.
+`docs/PRD.md` is no longer warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as
+`MATCH` under the D-APP-38 authority corpus v2. Historical HASH_MISMATCH notes in `_run_records`
+remain archival only.
 
 ## Dependency Closure Note
 
-This assessment does not satisfy or mutate any `Dependencies.csv` row. Active dependency posture remains anchored on event writer/session JSONL ownership, downstream path/write hooks, read MCP tool exposure, and REF-006 warning closure.
+ADQ-11 retires the active REF-006 source-state warning for this deliverable. Other active dependency
+posture remains anchored on event writer/session JSONL ownership, downstream path/write hooks, and read
+MCP tool exposure.
 
 ## Forward Development Recommendation
 
@@ -58,8 +62,10 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. Active de
 |---|---|---:|---|---|
 | Add an SDK-options invariant test proving every exposed write/shell surface has both callback and hook enforcement attached. | test | S | FIT | Current permission and hook tests remain green. |
 | Keep bypass mode behind the explicit development environment gate and document it as non-release posture. | docs | S | FIT | Release policy review. |
-| Close REF-006 by refreshing the accepted PRD hash or recording an explicit warning waiver. | governance | S | FIT | Human source-state decision. |
+| Keep D-APP-38 authority-corpus status clean during future authority-document edits. | governance | S | FIT | Authority-document edits occur. |
 
 ## Issuance-Gate-Process Observations
 
-DEL-06-01 is substantially issuance-ready on code and test evidence. The remaining gate should focus on source-state warning closure and proving the overlay remains wired into every runtime options path, not on redesigning the permission model.
+DEL-06-01 is substantially issue-readiness-aligned on code and test evidence. The remaining gate should
+focus on proving the overlay remains wired into every runtime options path, not on redesigning the
+permission model. This does not advance lifecycle state or make an issuance claim.

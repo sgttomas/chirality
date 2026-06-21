@@ -17,6 +17,13 @@ TBD - no accepted dependency edges have been extracted yet.
 
 TBD - no accepted dependency edges have been extracted yet.
 
+## Current ADQ-11 Reconciliation Note
+
+ADQ-11/D-APP-43 updates the active structured register. `DEP-06-01-010` is now
+`SATISFIED` because `_REFERENCES.md` records REF-006 `docs/PRD.md` as `MATCH` under
+the D-APP-38 authority corpus v2. Historical 2026-05-20 run warnings remain extraction
+history and no longer describe the active source-state posture.
+
 ## Extracted Dependency Register
 
 Register: `Dependencies.csv` v3.1
@@ -24,8 +31,8 @@ Register: `Dependencies.csv` v3.1
 | Metric | Count |
 |---|---:|
 | Total rows | 14 |
-| ACTIVE rows | 14 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 11 |
+| RETIRED rows | 3 |
 | ANCHOR rows | 5 |
 | EXECUTION rows | 9 |
 
@@ -34,7 +41,8 @@ Register: `Dependencies.csv` v3.1
 | ANCHOR | OTHER | ACTIVE | 5 |
 | EXECUTION | PREREQUISITE | ACTIVE | 4 |
 | EXECUTION | CONSTRAINT | ACTIVE | 1 |
-| EXECUTION | INTERFACE | ACTIVE | 4 |
+| EXECUTION | INTERFACE | ACTIVE | 1 |
+| EXECUTION | INTERFACE | RETIRED | 3 |
 
 | DependencyID | Class | Type | Direction | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
@@ -63,23 +71,24 @@ Register: `Dependencies.csv` v3.1
 - Execution doc order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
 - Decomposition validation status: available; parent anchor resolves to `PKG-06`; SOW trace anchors resolve to SOW-054, SOW-055, SOW-056, and SOW-058.
 - Parent anchor check: PASS. One ACTIVE `IMPLEMENTS_NODE` anchor exists.
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` reports `docs/PRD.md` REF-006 as `HASH_MISMATCH`; PRD-derived details remain warning-qualified until reconciled.
+- [HISTORICAL WARNING] SOURCE_STATE: the 2026-05-20 extraction saw REF-006 as `HASH_MISMATCH`; ADQ-11 records the current REF-006 state as `MATCH` under D-APP-38 corpus v2, and `DEP-06-01-010` is now `SATISFIED`.
 - [WARNING] TARGET_TBD: Event writer/session JSONL append API dependency is explicit in `Procedure.md` as an assumption, but exact target deliverable and call path remain `TBD`; row DEP-06-01-014 preserves `TargetType=UNKNOWN`.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition path/status | ACTIVE counts | Warnings |
 |---|---|---|---|---|---|
-| 2026-05-20T19:41:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | 14 total: 5 ANCHOR, 9 EXECUTION | SOURCE_STATE REF-006 HASH_MISMATCH; TARGET_TBD DEP-06-01-014 |
+| 2026-05-20T19:41:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | 14 total: 5 ANCHOR, 9 EXECUTION | Historical SOURCE_STATE REF-006 HASH_MISMATCH, later reconciled by D-APP-38 corpus v2; TARGET_TBD DEP-06-01-014 |
 
 ## Lifecycle Summary
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 14 |
-| RETIRED | 0 |
+| ACTIVE | 11 |
+| RETIRED | 3 |
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 5 |
-| PENDING | 9 |
+| SATISFIED | 6 |
+| PENDING | 5 |
+| NOT_APPLICABLE | 3 |

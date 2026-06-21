@@ -6,6 +6,32 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-11 permission/tool residuals completed
+
+Completed `ADQ-11` from the autonomous development queue under D-APP-43. The final ruling selected
+strict long-term semantics: interrupted tool results are non-success outcomes; PreCompact/Stop closure
+uses adapter message/status/result lifecycle mapping rather than synthetic SDK hooks; missing
+dependency-register state remains explicit and non-inferential; exact-edit preconditions deny stale or
+unverifiable edits; and Chirality-owned controlled writers use same-directory atomic rename.
+
+Implemented interrupted tool-result failure classification and deterministic adapter fixtures for
+interrupted Bash output metadata plus compaction and terminal lifecycle mapping. Updated the active
+PKG-06 assessments, memories, dependency/source-state summaries, semantic current notes, and
+`execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/Evidence_ADQ-11_Permission_Tool_Residuals.md`.
+`ADQ-12` is now the next ready item.
+
+Validation: focused ADQ-11 suite passed 7 files / 91 tests; `npm run typecheck` passed; full
+`npm run test -- --testTimeout=30000` passed 78 files / 537 tests; `npm run harness:validate:section9`
+passed 14 checks; `npm run build` passed; `npm run harness:validate:premerge` passed with a local
+Next dev server (Section 8 8 checks, Section 9 report-only 14 checks); modified PKG-06 dependency CSV
+files parsed; D-APP-38 authority-corpus status reported corpus `v2` with no drift; `git diff --check`
+passed.
+
+No `_STATUS.md` files, authority documents, provider/network expansion, signing/notarization/
+publication/external distribution posture, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, R7 implementation, or release-readiness claim
+changed.
+
 ## 2026-06-21 - ADQ-10 tool-result artifact metadata completed
 
 Completed `ADQ-10` from the autonomous development queue. Implemented D-APP-42 Option A for

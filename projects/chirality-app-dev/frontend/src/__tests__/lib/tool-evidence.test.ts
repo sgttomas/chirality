@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import {
+  isToolResultFailure,
   summarizeShellResultStreams,
   summarizeToolInput,
   summarizeToolResult,
@@ -94,5 +95,12 @@ describe('tool evidence summaries', () => {
       rawOutputPathPresent: true,
       dangerouslyDisableSandbox: false
     });
+  });
+
+  it('treats interrupted tool results as non-success outcomes', () => {
+    expect(isToolResultFailure({ type: 'tool_result', interrupted: true })).toBe(true);
+    expect(isToolResultFailure({ type: 'tool_result', interrupted: false })).toBe(false);
+    expect(isToolResultFailure({ type: 'tool_result', is_error: true })).toBe(true);
+    expect(isToolResultFailure({ type: 'tool_result', isError: true })).toBe(true);
   });
 });
