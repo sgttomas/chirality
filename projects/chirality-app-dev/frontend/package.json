@@ -23,6 +23,7 @@
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
     "validate:release-quality": "node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
+    "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
     "desktop:pack": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run instruction-root:integrity",
     "desktop:dist": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run instruction-root:integrity"

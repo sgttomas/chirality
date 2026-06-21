@@ -40,6 +40,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run harness:validate:agentsdk-packaged-proof` | STAB-02(d) no-live packaged SDK proof. Imports the SDK module from `app.asar.unpacked`, runs a scripted `query()` turn, records the resolved native subprocess command, and verifies controlled `CLAUDE_CONFIG_DIR`/`HOME` propagation. |
 | `npm run validate:release-quality` | Runtime-premerge evidence wrapper. Runs full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason; writes `frontend/artifacts/harness/release-quality/latest/summary.json`. See `docs/RELEASE_QUALITY_RUNBOOK.md`. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
+| `npm run proof:secret-scan` | Secret-scan evidence for tracked app-dev files and generated harness artifacts. Writes `frontend/artifacts/harness/security/latest/secret-scan-summary.json` without raw secret values. |
 | `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. Use `-- --provider agentSdk --scripted-agent-sdk` for the STAB-02(c) dev proof, which runs the opt-in SDK adapter with an offline SDK subprocess and does not replace packaged subprocess evidence. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
 | `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
@@ -57,7 +58,7 @@ Build, packaging, artifact, and release-evidence command details are recorded in
 | Runtime engine contract, adapter, turn lifecycle, session events, or event schema | Focused Vitest coverage for touched runtime modules; `npm run typecheck`; broader `npm run test` when shared contracts move. |
 | SDK options, permission overlay, tool descriptors, tool exposure, MCP wrappers, or hooks | Focused tests for options, permissions, descriptors, denied tools, unknown tools, and `npm run harness:validate:agentsdk-mcp-probe` when in-process SDK MCP behavior is load-bearing; `npm run typecheck`; broader tests when exposure semantics change. |
 | Harness API, running workflow, session boot, SSE, interrupt, attachment, or validation behavior | Relevant unit/API tests; `npm run harness:validate:premerge` against a reachable local app; summary artifact review. |
-| Network, API key, redaction, or provider policy | Relevant unit tests; `npm run proof:network-policy`; redaction or key-storage tests where touched. |
+| Network, API key, redaction, or provider policy | Relevant unit tests; `npm run proof:secret-scan`; `npm run proof:network-policy`; redaction or key-storage tests where touched. |
 | UI workflow, professional-boundary copy, product identity, or navigation | Relevant component/library tests; targeted manual or browser review when layout/copy behavior changes; no prohibited professional/release claims. |
 | Instruction-root, bundled resources, Electron packaging, release scripts, or distribution metadata | `npm run instruction-root:integrity`; `npm run build`; `npm run desktop:pack` or `npm run desktop:dist` when packaging behavior changes; `npm run harness:validate:agentsdk-packaged-proof` when packaged SDK resolver or transcript/HOME posture is in scope. |
 | Future domain-engine adapters or operation proposals | Runtime tests plus explicit human-gate and professional-boundary review; no direct protected-domain writes unless a governed adapter workflow authorizes them. |
@@ -71,6 +72,8 @@ Machine-readable artifacts are preferred when available:
 - runtime-premerge release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
+- secret-scan summary: `frontend/artifacts/harness/security/latest/secret-scan-summary.json`;
+- network-policy proof summaries under `frontend/artifacts/harness/network-policy/`;
 - test command output captured in terminal or run records when required by a tranche;
 - plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.
 

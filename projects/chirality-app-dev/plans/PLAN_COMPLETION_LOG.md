@@ -6,6 +6,42 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-16 secret scan and network proof evidence added
+
+Completed `ADQ-16` from the autonomous development queue. Added
+`frontend/scripts/scan-secret-evidence.mjs` and the `npm run proof:secret-scan` entrypoint. The scanner
+covers git-tracked app-dev files plus generated `frontend/artifacts/harness/` evidence, detects exact
+environment-secret values, Anthropic-key-shaped tokens, and URL credentials, and writes only redacted
+hash/length finding metadata.
+
+Ran the secret scan, corrected one test-fixture classifier for a credential-bearing URL used by base
+URL fail-closed tests, then reran successfully. Ran
+`npm run proof:network-policy -- --runs 1 --idle-seconds 5 --idle-sample-seconds 5 --provider agentSdk --scripted-agent-sdk --output-dir artifacts/harness/network-policy/adq16-2026-06-21`,
+then reran the secret scan over the generated network-proof artifacts. Recorded evidence in
+`execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/Evidence_ADQ-16_Secret_Network_Proof.md`
+and updated DEL-09-06, DEL-09-05, and harness evidence crosswalks.
+
+Final secret scan: `status=pass`, 1734 scanned files, 14 skipped files, 1722 git-tracked candidates,
+26 generated artifact candidates, no `ANTHROPIC_API_KEY`/`CHIRALITY_ANTHROPIC_API_KEY` present in the
+scanner environment, 0 blocked findings, and 10 allowed test fixtures. Network proof: aggregate
+`PASS`, 1 scripted `agentSdk` run, 0 failed runs, scenario completed, 1 blocked renderer diagnostic,
+1 network probe payload, and 0 non-allowlisted endpoints.
+
+Validation: focused script-policy test passed 1 file / 5 tests; `npm run typecheck` passed;
+`npm run test -- --testTimeout=15000` passed 76 files / 521 tests. `npm run proof:secret-scan` passed
+before and after network-proof artifacts. `npm run proof:network-policy` passed with the bounded
+ADQ-16 arguments above.
+
+Skipped checks: the network proof used one scripted run with a 5-second idle window rather than the
+script defaults of three 600-second runs; this is bounded current evidence, not a release-readiness
+claim. `npm run harness:validate:premerge`, `npm run build`, `npm run desktop:dist`, and live packaged
+SDK read-tool proof were not rerun in ADQ-16 because ADQ-14 and ADQ-15 own the current runtime-wrapper
+and packaging evidence, and ADQ-16 did not change app runtime, Electron wrapper, or packaged resources.
+No `_STATUS.md` files, dependency rows, authority documents, provider/network expansion,
+signing/notarization/publication/external distribution posture, lifecycle issuance, professional
+approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness
+claim changed.
+
 ## 2026-06-21 - ADQ-15 packaging and instruction-root evidence refreshed
 
 Completed `ADQ-15` from the autonomous development queue. The tranche produced fresh local packaging

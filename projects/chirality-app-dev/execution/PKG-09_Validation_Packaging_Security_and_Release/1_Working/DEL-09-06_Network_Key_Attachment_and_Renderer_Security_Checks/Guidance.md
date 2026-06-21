@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This deliverable exists to keep validation, packaging, release, network, key, and instruction-root checks explicit and repeatable for PKG-09 release readiness. Its security checks should demonstrate that key material remains outside project truth, renderer/network access is bounded, provider endpoint selection is constrained, and attachment handling does not rely on client-supplied metadata.
+This deliverable exists to keep validation, packaging, network, key, and instruction-root checks explicit and repeatable for PKG-09 security evidence. Its security checks should demonstrate that key material remains outside project truth, renderer/network access is bounded, provider endpoint selection is constrained, and attachment handling does not rely on client-supplied metadata.
 
 Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` OBJ-008 and DEL-09-06.
 
@@ -11,7 +11,7 @@ Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNe
 1. Runtime code is the security boundary. Prompts and documentation can reinforce policy, but tests should target runtime behavior such as path containment, permission policy, hooks, redaction, and network controls.
    Source: `docs/PRD.md` Section 4, principles 18-19.
 
-2. API keys are convenience state, not project truth. Treat any write of key material to working root, runtime events, logs, git-tracked execution files, SDK transcripts if avoidable, or tool artifacts as a release-blocking failure.
+2. API keys are convenience state, not project truth. Treat any write of key material to working root, runtime events, logs, git-tracked execution files, SDK transcripts if avoidable, or tool artifacts as a security-evidence blocker.
    Source: `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` FR-031 and NFR-002.
 
 3. Renderer and provider network checks should be allowlist-oriented. The current shipped network posture is loopback plus Anthropic API path, with broader network access reserved for governed future scope.

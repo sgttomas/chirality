@@ -93,7 +93,7 @@ behind a hard fence; `DONE`.
 | ADQ-13 | PKG-02 UI specs reconcile + AMD-01 render tests | docs/UI/test | M | AUTONOMOUS | AMD-01 (resolved, D-APP-36) | DONE |
 | ADQ-14 | PKG-09 release-quality validation wrapper/runbook (full test, premerge, Section 9 policy, summary consistency) | validation/docs | M | AUTONOMOUS | D-APP-34 profiles (resolved) | DONE |
 | ADQ-15 | Packaging + instruction-root **evidence** refresh (incl. packaged SDK subprocess proof) | validation/package | M | AUTONOMOUS (signing/notarization/publication FENCED) | ADQ-14 | DONE |
-| ADQ-16 | Whole-product secret scan + network-proof **evidence** | security/validation | M | AUTONOMOUS (release-readiness claim FENCED) | ADQ-14 | READY |
+| ADQ-16 | Whole-product secret scan + network-proof **evidence** | security/validation | M | AUTONOMOUS (release-readiness claim FENCED) | ADQ-14 | DONE |
 | ADQ-17 | Prepare future R7 amendment **brief** (doc only) | future governance | L | AUTONOMOUS (R7 implementation FENCED) | — | READY |
 
 The agent re-derives prerequisite readiness at selection time (recompute, do not trust this table's

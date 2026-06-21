@@ -100,6 +100,7 @@ Use this gate for API keys, network policy, provider scope, redaction, stored lo
 Required evidence:
 
 - relevant key-storage, redaction, and network-policy tests;
+- `npm run proof:secret-scan` when secret hygiene, generated evidence, or release-quality records are in scope;
 - `npm run proof:network-policy` when network or provider behavior changes;
 - confirmation that API keys are not written to project files, runtime events, logs, tool artifacts, or SDK transcript imports;
 - confirmation that outbound network remains loopback plus the current shipped Anthropic path unless a bounded future implementation tranche and recorded decision evidence broaden it.

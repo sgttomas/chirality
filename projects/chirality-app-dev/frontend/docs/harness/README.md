@@ -29,6 +29,12 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
   - Runs the runtime-premerge evidence wrapper: full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.
   - Writes `frontend/artifacts/harness/release-quality/latest/summary.json`.
   - Records Section 9 as standalone-blocking for the wrapper while preserving premerge Section 9 as report-only.
+- `npm run proof:secret-scan`
+  - Scans tracked app-dev files and generated harness evidence for high-confidence secret material.
+  - Writes `frontend/artifacts/harness/security/latest/secret-scan-summary.json` without raw secret values.
+- `npm run proof:network-policy`
+  - Runs the current network-policy proof for loopback plus Anthropic outbound posture.
+  - Use `-- --provider agentSdk --scripted-agent-sdk` for the offline scripted Agent SDK proof path.
 
 ## Prerequisites
 
@@ -47,6 +53,8 @@ npm run harness:validate:section8
 npm run harness:validate:section9
 npm run harness:validate:premerge
 npm run validate:release-quality
+npm run proof:secret-scan
+npm run proof:network-policy
 ```
 
 Optional environment overrides:
@@ -80,6 +88,8 @@ Fail the pipeline when command exit code is non-zero.
 - Release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`
 - Integrity summary (instruction-root): `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 - Packaged SDK proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`
+- Secret-scan summary: `frontend/artifacts/harness/security/latest/secret-scan-summary.json`
+- Network-policy proof summaries: `frontend/artifacts/harness/network-policy/`
 
 ## Repeatability Check
 

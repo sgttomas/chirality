@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 const PACKAGE_JSON_PATH = path.resolve(process.cwd(), 'package.json');
 const ELECTRON_MAIN_PATH = path.resolve(process.cwd(), 'electron', 'main.ts');
 const NETWORK_POLICY_PROOF_PATH = path.resolve(process.cwd(), 'scripts', 'run-network-policy-proof.mjs');
+const SECRET_SCAN_PROOF_PATH = path.resolve(process.cwd(), 'scripts', 'scan-secret-evidence.mjs');
 
 type FrontendPackageJson = {
   scripts?: Record<string, string>;
@@ -57,5 +58,16 @@ describe('build network policy hardening', () => {
     expect(proofSource).toContain('CHIRALITY_AGENTSDK_SCRIPTED_PROOF');
     expect(proofSource).toContain("endpoint.class !== 'loopback' && endpoint.class !== 'allowlisted'");
     expect(proofSource).toContain("'api.anthropic.com'");
+  });
+
+  it('exposes a redacted secret-scan proof command', async () => {
+    const pkg = await readPackageJson();
+    const proofSource = await readFile(SECRET_SCAN_PROOF_PATH, 'utf8');
+
+    expect(pkg.scripts?.['proof:secret-scan']).toBe('node ./scripts/scan-secret-evidence.mjs');
+    expect(proofSource).toContain('valueSha256');
+    expect(proofSource).toContain('rawSecretValuesWritten');
+    expect(proofSource).toContain('actual_environment_secret_value');
+    expect(proofSource).toContain('environmentSecretInputs: envSecrets.map(({ variants: _variants, ...entry }) => entry)');
   });
 });
