@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-39 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model; D-APP-39 released the autonomous development queue).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-42 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model; D-APP-39 released the autonomous development queue; D-APP-40/41/42 unblock ADQ-05/08/10 follow-through).
 
 Active development queue:
 

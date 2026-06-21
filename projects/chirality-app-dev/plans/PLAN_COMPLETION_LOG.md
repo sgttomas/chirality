@@ -6,6 +6,18 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - D-APP-40 through D-APP-42 ruled
+
+Recorded owner rulings for the pending autonomous-queue blockers:
+
+- `D-APP-40` ruled Option B: add `turn.interrupted` for explicit user interruption while retaining
+  current method names, public `harness:event`, and `ChildRunRecord.childRunId`.
+- `D-APP-41` ruled Option D: eagerly convert legacy flat session records to canonical session folders.
+- `D-APP-42` ruled Option A: add SHA-256 persisted-artifact metadata with session-lifetime retention.
+
+Updated the active queue so `ADQ-05`, `ADQ-08`, `ADQ-10`, and `ADQ-11` are eligible for recomputed
+selection, while `ADQ-09` remains after `ADQ-08` and `ADQ-12` remains after `ADQ-05`.
+
 ## 2026-06-21 - ADQ-17 future R7 amendment brief prepared
 
 Completed `ADQ-17` from the autonomous development queue. Added the doc-only future amendment brief

@@ -82,14 +82,14 @@ behind a hard fence; `DONE`.
 | ADQ-02 | Reliance-boundary register + enforcement/test index (DEL-01-02) | docs/governance | M | AUTONOMOUS | REF-006 (resolved, D-APP-38) | DONE |
 | ADQ-03 | Normalize scope-boundary + professional-boundary review checklists | docs/governance | S | AUTONOMOUS | — | DONE |
 | ADQ-04 | Refresh runtime evidence + spec-to-implementation reconciliations (PKG-03, PKG-04) | docs/test | M | AUTONOMOUS | — | DONE |
-| ADQ-05 | Reconcile G5 naming/taxonomy (`runTurn`/`startTurn`, event ownership, interruption taxonomy, child-run IDs) | docs/code/test | M | AUTONOMOUS | may surface a naming decision -> packet | BLOCKED (D-APP-40 awaiting ruling) |
+| ADQ-05 | Reconcile G5 naming/taxonomy (`runTurn`/`startTurn`, event ownership, interruption taxonomy, child-run IDs) | docs/code/test | M | AUTONOMOUS | D-APP-40 ruled Option B | READY |
 | ADQ-06 | G1 execution-root scaffolding baseline seeding | code/test | M | AUTONOMOUS | filesystem profile/lifecycle fixture | DONE |
 | ADQ-07 | G2 document-kit/metadata scanner with missing-state warnings | code/test | M | AUTONOMOUS | ADQ-06 or explicit scaffold-contract boundary | DONE |
-| ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | may surface a session/storage-contract decision -> packet | BLOCKED (D-APP-41 awaiting ruling) |
+| ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | D-APP-41 ruled Option D | READY |
 | ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 storage decision or stable compat adapter | BLOCKED (after ADQ-08) |
-| ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | session/artifact contract | BLOCKED (D-APP-42 awaiting ruling) |
-| ADQ-11 | PKG-06 permission/tool residuals (boot/version fingerprint, missing-register fallback, exact-edit preconditions, atomicity, Bash interruption, PreCompact/Stop) | code/test/docs | M | AUTONOMOUS | — | BLOCKED (eligible residuals landed; Bash interruption and PreCompact/Stop await D-APP-40/D-APP-42/lifecycle support) |
-| ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 child-run decision | BLOCKED (D-APP-40 awaiting ruling) |
+| ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | D-APP-42 ruled Option A | READY |
+| ADQ-11 | PKG-06 permission/tool residuals (boot/version fingerprint, missing-register fallback, exact-edit preconditions, atomicity, Bash interruption, PreCompact/Stop) | code/test/docs | M | AUTONOMOUS | D-APP-40 and D-APP-42 ruled; recompute lifecycle support at selection | READY |
+| ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 | BLOCKED (after ADQ-05) |
 | ADQ-13 | PKG-02 UI specs reconcile + AMD-01 render tests | docs/UI/test | M | AUTONOMOUS | AMD-01 (resolved, D-APP-36) | DONE |
 | ADQ-14 | PKG-09 release-quality validation wrapper/runbook (full test, premerge, Section 9 policy, summary consistency) | validation/docs | M | AUTONOMOUS | D-APP-34 profiles (resolved) | DONE |
 | ADQ-15 | Packaging + instruction-root **evidence** refresh (incl. packaged SDK subprocess proof) | validation/package | M | AUTONOMOUS (signing/notarization/publication FENCED) | ADQ-14 | DONE |
