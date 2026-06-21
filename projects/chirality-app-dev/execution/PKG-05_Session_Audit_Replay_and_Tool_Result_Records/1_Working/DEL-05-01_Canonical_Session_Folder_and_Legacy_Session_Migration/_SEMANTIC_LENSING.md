@@ -18,9 +18,21 @@
 - `_REFERENCES.md` - metadata only; external paths not followed
 
 **Warnings:**
-- `[WARNING] SOURCE_STATE`: `_REFERENCES.md` marks `docs/PRD.md` as `HASH_MISMATCH`; PRD-only implementation details remain provisional.
+- `[SATISFIED] SOURCE_STATE`: D-APP-38 corpus v2 refreshed the authority corpus; `_REFERENCES.md` now reports `docs/PRD.md` as `MATCH`.
 - `[WARNING] OPEN_DECISION`: R1/OI-002 transcript placement remains unresolved.
-- `[WARNING] TBD_IMPLEMENTATION_PATHS`: current implementation paths, helper names, and command names are not accepted in the production kit.
+- `[SATISFIED] IMPLEMENTATION_PATHS`: ADQ-08 identified `frontend/src/lib/harness/session-manager.ts` and `frontend/src/__tests__/lib/session-manager.test.ts`.
+
+## ADQ-08 Resolution Overlay
+
+ADQ-08 did not regenerate this lensing register. It updates the active warranted
+items as follows:
+
+- A-001: resolved for ADQ-08 by treating `FileSessionManager.save` as an internal persistence operation and adding no separate public save route.
+- B-001: resolved for ADQ-08 by preserving legacy `claudeSessionId` separately from `sdkSessionId`.
+- C-001: satisfied by recorded implementation paths and focused validation commands.
+- D-001 and F-001: satisfied by D-APP-41 and duplicate folder/flat fixtures.
+- E-001: satisfied by D-APP-38 corpus v2 MATCH status.
+- E-002 and X-001 remain open because final SDK transcript placement remains R1/OI-002 / downstream replay scope.
 
 ## Summary
 
@@ -74,7 +86,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A-001 | `A:[normative]:[judging]` | Conflict | Guidance.md | Specification.md | Save/update semantics need a human or implementation ruling before coding session CRUD behavior. | SOW/PRD list save as an operation, while the locally summarized SPEC endpoint set does not name a separate save endpoint; the deliverable already records this as a conflict. | Guidance.md | Conflict Table (for human ruling) | Guidance.md#Conflict Table (for human ruling); Specification.md#Verification | PROPOSAL | TBD |
+| A-001 | `A:[normative]:[judging]` | Conflict | Guidance.md | Specification.md | Save/update semantics need a human or implementation ruling before coding session CRUD behavior. | SOW/PRD list save as an operation, while the locally summarized SPEC endpoint set does not name a separate save endpoint; the deliverable already records this as a conflict. | Guidance.md | Conflict Table (for human ruling) | Guidance.md#Conflict Table (for human ruling); Specification.md#Verification | PROPOSAL | ADQ-08: internal `FileSessionManager.save`; no public save route added. |
 
 ## Matrix B
 
@@ -103,7 +115,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| B-001 | `B:[knowledge]:[sufficiency]` | TBD_Question | Procedure.md | Specification.md | Confirm whether legacy claudeSessionId maps directly to sdkSessionId or remains a separate legacy field. | Resume compatibility depends on competent mapping knowledge, and Procedure Step 6 states the mapping is TBD unless implementation evidence accepts it. | Procedure.md | Steps, step 6 | NA | PROPOSAL | TBD |
+| B-001 | `B:[knowledge]:[sufficiency]` | TBD_Question | Procedure.md | Specification.md | Confirm whether legacy claudeSessionId maps directly to sdkSessionId or remains a separate legacy field. | Resume compatibility depends on competent mapping knowledge, and Procedure Step 6 states the mapping is TBD unless implementation evidence accepts it. | Procedure.md | Steps, step 6 | NA | PROPOSAL | ADQ-08: preserve as separate legacy field; do not remap. |
 
 ## Matrix C
 
@@ -128,7 +140,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| C-001 | `C:[operative]:[completeness]` | MissingSlot | Procedure.md | Procedure.md | Implementation worker must identify current session storage source files and focused test commands. | The procedure requires locating current implementation and rerunning relevant tests, but exact paths and command names are still TBD. | Procedure.md | Prerequisites; Steps, steps 1 and 10 | NA | PROPOSAL | TBD |
+| C-001 | `C:[operative]:[completeness]` | MissingSlot | Procedure.md | Procedure.md | Implementation worker must identify current session storage source files and focused test commands. | The procedure requires locating current implementation and rerunning relevant tests, but exact paths and command names are still TBD. | Procedure.md | Prerequisites; Steps, steps 1 and 10 | NA | PROPOSAL | SATISFIED by ADQ-08 evidence. |
 
 ## Matrix F
 
@@ -153,7 +165,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| F-001 | `F:[operative]:[consistency]` | TBD_Question | Procedure.md | Specification.md | Define duplicate folder-versus-flat record behavior before destructive delete logic is implemented. | Stable session discipline requires repeatable behavior, but Procedure Steps 5 and 7 mark duplicate-resolution and delete semantics as TBD. | Procedure.md | Steps, steps 5 and 7 | NA | PROPOSAL | TBD |
+| F-001 | `F:[operative]:[consistency]` | TBD_Question | Procedure.md | Specification.md | Define duplicate folder-versus-flat record behavior before destructive delete logic is implemented. | Stable session discipline requires repeatable behavior; D-APP-41 now resolves duplicate-resolution and delete semantics. | Procedure.md | Steps, steps 5 and 7 | NA | PROPOSAL | SATISFIED by D-APP-41 and ADQ-08 duplicate/delete fixtures. |
 
 ## Matrix D
 
@@ -178,7 +190,7 @@ By document:
 
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| D-001 | `D:[operative]:[reviewing]` | VerificationGap | Procedure.md | Procedure.md | Add an explicit verification record for duplicate-shape behavior after the policy is accepted. | Procedure Step 9 includes duplicate-shape testing only once policy is accepted, so closure lacks a present acceptance check for this branch. | Procedure.md | Steps, step 9; Verification | NA | PROPOSAL | TBD |
+| D-001 | `D:[operative]:[reviewing]` | VerificationGap | Procedure.md | Procedure.md | Add an explicit verification record for duplicate-shape behavior after the policy is accepted. | Procedure Step 9 includes duplicate-shape testing only once policy is accepted, so closure lacks a present acceptance check for this branch. | Procedure.md | Steps, step 9; Verification | NA | PROPOSAL | SATISFIED by D-APP-41 and `session-manager.test.ts`. |
 
 ## Matrix X
 
@@ -237,4 +249,4 @@ By document:
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-002 | `E:[applying]:[wisdom]` | RationaleGap | Specification.md | Guidance.md | Record residual reliance-boundary rationale when SDK transcripts remain outside project-controlled storage. | Specification R009 requires recording residual reliance risk, while Guidance allows cross-reference only with explicit metadata and residual-risk record. | Specification.md | Requirements; Guidance.md Trade-offs | NA | PROPOSAL | TBD |
-| E-001 | `E:[reviewing]:[data]` | VerificationGap | Datasheet.md | Procedure.md | Recheck PRD-derived behavior affected by REF-006 HASH_MISMATCH before implementation closure. | Reliable closure evidence is incomplete while PRD-only details remain provisional and Procedure verification explicitly requires source-state recheck. | Datasheet.md | Conditions; References; Procedure.md Verification | NA | PROPOSAL | TBD |
+| E-001 | `E:[reviewing]:[data]` | VerificationGap | Datasheet.md | Procedure.md | Recheck PRD-derived behavior against REF-006 before implementation closure. | Reliable closure evidence requires the PRD-derived behavior recheck recorded by the D-APP-38 corpus v2 MATCH state. | Datasheet.md | Conditions; References; Procedure.md Verification | NA | PROPOSAL | SATISFIED by D-APP-38 corpus v2 MATCH status. |

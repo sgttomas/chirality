@@ -6,6 +6,33 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-08 canonical session migration completed
+
+Completed `ADQ-08` from the autonomous development queue. Implemented D-APP-41 Option D in
+`frontend/src/lib/harness/session-manager.ts`: new sessions now write only
+`{sessionRoot}/{sessionId}/session.json`; legacy flat `{sessionId}.json` records canonicalize on
+`getById`, `resume`, `save`, `list`, and `delete`; duplicate folder/flat records merge with defined
+canonical values taking precedence while preserving legacy-only fields; and the legacy flat file is
+removed after resolution. Legacy `claudeSessionId` remains readable as legacy adapter metadata and is
+not silently remapped to `sdkSessionId`.
+
+Added focused storage coverage in `frontend/src/__tests__/lib/session-manager.test.ts` for canonical
+create, legacy resume conversion, duplicate merge/no field loss, list conversion, save conversion, and
+delete cleanup. Updated DEL-05-01 active Specification, Procedure, Guidance, Datasheet, assessment,
+dependency, memory, and semantic overlay records, and added
+`execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/Evidence_ADQ-08_Canonical_Session_Migration.md`.
+`ADQ-09` is now unblocked and marked `READY`.
+
+Validation: focused storage suite passed 1 file / 6 tests; focused route/event/turn suite passed 3
+files / 41 tests; `npm run typecheck` passed; `npm run harness:validate:section8` passed 8 checks with
+a local Next dev server; `npm run harness:validate:section9` passed 13 checks; full `npm run test --
+--testTimeout=15000` passed 77 files / 527 tests; D-APP-38 authority-corpus status reported corpus
+`v2` with no drift; `git diff --check` passed.
+
+No `_STATUS.md` files, authority documents, provider/network expansion, signing/notarization/
+publication/external distribution posture, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or release-readiness claim changed.
+
 ## 2026-06-21 - ADQ-05 runtime taxonomy reconciliation completed
 
 Completed `ADQ-05` from the autonomous development queue. Applied D-APP-40 Option B across runtime

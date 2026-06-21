@@ -85,8 +85,8 @@ behind a hard fence; `DONE`.
 | ADQ-05 | Reconcile G5 naming/taxonomy (`runTurn`/`startTurn`, event ownership, interruption taxonomy, child-run IDs) | docs/code/test | M | AUTONOMOUS | D-APP-40 ruled Option B | DONE |
 | ADQ-06 | G1 execution-root scaffolding baseline seeding | code/test | M | AUTONOMOUS | filesystem profile/lifecycle fixture | DONE |
 | ADQ-07 | G2 document-kit/metadata scanner with missing-state warnings | code/test | M | AUTONOMOUS | ADQ-06 or explicit scaffold-contract boundary | DONE |
-| ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | D-APP-41 ruled Option D | READY |
-| ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 storage decision or stable compat adapter | BLOCKED (after ADQ-08) |
+| ADQ-08 | G3 canonical session folder + legacy-flat migration | code/test | L | AUTONOMOUS | D-APP-41 ruled Option D | DONE |
+| ADQ-09 | G4 transcript view (existing replay/event data) | code/UI/test | M | AUTONOMOUS | ADQ-08 | READY |
 | ADQ-10 | DEL-05-05 tool-result residuals (metadata, checksum/retention, concurrency replay test) | code/test | M | AUTONOMOUS | D-APP-42 ruled Option A | READY |
 | ADQ-11 | PKG-06 permission/tool residuals (boot/version fingerprint, missing-register fallback, exact-edit preconditions, atomicity, Bash interruption, PreCompact/Stop) | code/test/docs | M | AUTONOMOUS | D-APP-40 and D-APP-42 ruled; recompute lifecycle support at selection | READY |
 | ADQ-12 | PKG-08 agent/subagent residuals (conformance fixtures, persona spec, Pipeline coverage, child-run alignment) | code/test/docs | M | AUTONOMOUS | ADQ-05 | READY |

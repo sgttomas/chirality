@@ -29,9 +29,9 @@ Source: `_CONTEXT.md` `Identity`, `Traceability`; `execution/_Decomposition/Chir
 | Canonical artifact folder | `artifacts/` | `docs/SPEC.md` Section 8.2; `docs/TYPES.md` Section 7.2 |
 | Canonical SDK metadata/transcript folder | `sdk/` | `docs/SPEC.md` Section 8.2 |
 | Legacy record shape | `{sessionRoot}/{sessionId}.json` | `docs/SPEC.md` Section 8.1 |
-| Legacy readability requirement | Legacy records must remain readable during migration | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 |
+| Legacy conversion requirement | Legacy records must remain readable by converting to canonical folders on first touch | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077; D-APP-41 |
 | Supported session operations in scope | create, list, resume, retrieve, save, delete | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-009; `docs/PRD.md` FR-014 |
-| Legacy migration behavior in scope | Existing `.chirality/sessions/*.json` records list/resume while folder layout is introduced | `docs/PRD.md` FR-077 |
+| Legacy migration behavior in scope | Existing `.chirality/sessions/*.json` records are canonicalized during list/resume/retrieve/save/delete and removed after conversion | `docs/PRD.md` FR-077; D-APP-41 |
 | SDK transcript authority | SDK transcripts are secondary runtime state unless imported into `HarnessEvent` form | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 |
 
 ## Conditions
@@ -43,14 +43,14 @@ Source: `_CONTEXT.md` `Identity`, `Traceability`; `execution/_Decomposition/Chir
 | Stable identity | Session, turn, and runtime event identifiers are stable IDs assigned once | `docs/TYPES.md` Section 2 |
 | SDK linkage | `sdkSessionId`, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode are future metadata candidates | `docs/SPEC.md` Section 8.3 |
 | Transcript placement | TBD: R1 must empirically decide the least surprising SDK transcript/storage pattern | `docs/SPEC.md` Section 8.4; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-046/OI-002 |
-| Source-state warning | `docs/PRD.md` is locally accessible but has a hash mismatch in `_REFERENCES.md`; PRD-only implementation detail remains provisional unless corroborated | `_REFERENCES.md` REF-006 |
+| Authority corpus state | D-APP-38 corpus v2 is applied for this deliverable; `_REFERENCES.md` reports MATCH for PRD/SPEC/TYPES/CONTRACT/PLAN | `_REFERENCES.md`; D-APP-38 |
 
 ## Pass 3 Lensing Status
 
 | ItemID | Status | Datasheet impact |
 |---|---|---|
 | X-001 | unresolved TBD | Transcript placement remains an R1/OI-002 decision; this datasheet does not treat SDK transcript storage as stable review closure. |
-| E-001 | closure warning | PRD-derived behavior must be rechecked against REF-006 source state before implementation closure. |
+| E-001 | satisfied | PRD-derived behavior was rechecked against the D-APP-38 corpus v2 MATCH state before ADQ-08 closure. |
 
 ## Construction
 
@@ -74,6 +74,12 @@ Legacy session record:
 {sessionRoot}/{sessionId}.json
 ```
 
+Legacy flat records are migration inputs only. On first read, list, resume, save,
+or delete access, the runtime writes `{sessionRoot}/{sessionId}/session.json`
+and removes the flat record. If both shapes exist, defined canonical values win,
+legacy-only fields are preserved, and the merged canonical record replaces the
+duplicate pair.
+
 Known legacy fields:
 
 - `sessionId`
@@ -86,6 +92,15 @@ Known legacy fields:
 - `bootFingerprint`
 - `bootedAt`
 - `model`
+- `engineSessionId`
+- `sdkSessionId`
+- `sdkTranscriptPath`
+- `sdkSessionStoreKey`
+- `sdkConfigDir`
+- `sdkSettingSources`
+- `sdkPackageVersion`
+- `sdkClaudeCodeVersion`
+- `runtimeFingerprint`
 
 Source: `docs/SPEC.md` Section 8.1.
 
@@ -119,4 +134,6 @@ Source: `docs/SPEC.md` Section 8.3.
 - `docs/TYPES.md` Sections 1.7, 1.8, 2, and 7
 - `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-FS-1, K-SDK-3, K-EVENT-4, K-EVENT-5, K-EVENT-6
 - `docs/PLAN.md` R1/R2 implementation notes
-- `docs/PRD.md` session storage, FR-014, FR-077, FR-118, FR-121, FR-122, FR-123; source-state warning applies because REF-006 has `HASH_MISMATCH`
+- `docs/PRD.md` session storage, FR-014, FR-077, FR-118, FR-121, FR-122, FR-123
+- D-APP-38 authority corpus v2
+- D-APP-41 canonical session storage ruling

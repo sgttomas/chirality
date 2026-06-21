@@ -8,6 +8,9 @@ import { ISessionManager, SessionCreateRequest, SessionRecord } from './types';
 
 const DEFAULT_PERSONA = 'WORKING_ITEMS';
 const DEFAULT_MODE = 'direct';
+const CANONICAL_SESSION_FILE = 'session.json';
+
+type RawSessionRecord = SessionRecord & Record<string, unknown>;
 
 function getSessionStoreDirectory(): string {
   return process.env.CHIRALITY_SESSION_ROOT ?? path.join(process.cwd(), '.chirality', 'sessions');
@@ -64,21 +67,105 @@ export async function assertProjectRootAccessible(projectRoot: string): Promise<
   return normalizedProjectRoot;
 }
 
-function getSessionFilePath(sessionId: string): string {
-  return path.join(getSessionStoreDirectory(), `${sessionId}.json`);
-}
-
-async function readSessionFromDisk(sessionId: string): Promise<SessionRecord> {
-  const filePath = getSessionFilePath(sessionId);
-
-  try {
-    const raw = await readFile(filePath, 'utf8');
-    return JSON.parse(raw) as SessionRecord;
-  } catch {
+function assertSafeSessionId(sessionId: string): void {
+  if (
+    sessionId.trim().length === 0 ||
+    sessionId === '.' ||
+    sessionId === '..' ||
+    sessionId.includes('/') ||
+    sessionId.includes('\\')
+  ) {
     throw new HarnessError('SESSION_NOT_FOUND', 404, `Session '${sessionId}' does not exist`, {
       sessionId
     });
   }
+}
+
+function getCanonicalSessionDirectoryPath(sessionId: string): string {
+  assertSafeSessionId(sessionId);
+  return path.join(getSessionStoreDirectory(), sessionId);
+}
+
+function getCanonicalSessionFilePath(sessionId: string): string {
+  return path.join(getCanonicalSessionDirectoryPath(sessionId), CANONICAL_SESSION_FILE);
+}
+
+function getLegacySessionFilePath(sessionId: string): string {
+  assertSafeSessionId(sessionId);
+  return path.join(getSessionStoreDirectory(), `${sessionId}.json`);
+}
+
+async function readOptionalSessionFile(filePath: string): Promise<RawSessionRecord | undefined> {
+  try {
+    const raw = await readFile(filePath, 'utf8');
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return undefined;
+    }
+    return parsed as RawSessionRecord;
+  } catch {
+    return undefined;
+  }
+}
+
+function mergeSessionRecords(
+  sessionId: string,
+  legacyRecord: RawSessionRecord | undefined,
+  canonicalRecord: RawSessionRecord | undefined
+): RawSessionRecord | undefined {
+  if (!legacyRecord && !canonicalRecord) {
+    return undefined;
+  }
+
+  const merged: Record<string, unknown> = legacyRecord ? { ...legacyRecord } : {};
+  if (canonicalRecord) {
+    for (const [key, value] of Object.entries(canonicalRecord)) {
+      if (value !== undefined) {
+        merged[key] = value;
+      }
+    }
+  }
+  merged.sessionId = sessionId;
+
+  return merged as RawSessionRecord;
+}
+
+async function writeCanonicalSession(
+  sessionId: string,
+  session: SessionRecord | RawSessionRecord
+): Promise<void> {
+  const sessionDirectory = getCanonicalSessionDirectoryPath(sessionId);
+  await ensureDirectoryExists(sessionDirectory);
+  await writeFile(
+    getCanonicalSessionFilePath(sessionId),
+    `${JSON.stringify(session, null, 2)}\n`,
+    'utf8'
+  );
+}
+
+async function canonicalizeSessionRecord(sessionId: string): Promise<RawSessionRecord> {
+  const legacyFilePath = getLegacySessionFilePath(sessionId);
+  const canonicalFilePath = getCanonicalSessionFilePath(sessionId);
+  const [legacyRecord, canonicalRecord] = await Promise.all([
+    readOptionalSessionFile(legacyFilePath),
+    readOptionalSessionFile(canonicalFilePath)
+  ]);
+
+  const merged = mergeSessionRecords(sessionId, legacyRecord, canonicalRecord);
+  if (!merged) {
+    throw new HarnessError('SESSION_NOT_FOUND', 404, `Session '${sessionId}' does not exist`, {
+      sessionId
+    });
+  }
+
+  if (legacyRecord || !canonicalRecord) {
+    await writeCanonicalSession(sessionId, merged);
+  }
+  if (legacyRecord) {
+    await rm(legacyFilePath, { force: true });
+  }
+
+  return merged;
 }
 
 export class FileSessionManager implements ISessionManager {
@@ -96,7 +183,7 @@ export class FileSessionManager implements ISessionManager {
       updatedAt: now
     };
 
-    await writeFile(getSessionFilePath(session.sessionId), `${JSON.stringify(session, null, 2)}\n`, 'utf8');
+    await writeCanonicalSession(session.sessionId, session);
     return session;
   }
 
@@ -106,12 +193,12 @@ export class FileSessionManager implements ISessionManager {
 
   async getById(sessionId: string): Promise<SessionRecord> {
     await ensureDirectoryExists(getSessionStoreDirectory());
-    return readSessionFromDisk(sessionId);
+    return canonicalizeSessionRecord(sessionId);
   }
 
   async save(sessionId: string, updates: Partial<SessionRecord>): Promise<SessionRecord> {
     await ensureDirectoryExists(getSessionStoreDirectory());
-    const existing = await readSessionFromDisk(sessionId);
+    const existing = await canonicalizeSessionRecord(sessionId);
     const updated: SessionRecord = {
       ...existing,
       ...updates,
@@ -120,7 +207,7 @@ export class FileSessionManager implements ISessionManager {
       updatedAt: new Date().toISOString()
     };
 
-    await writeFile(getSessionFilePath(sessionId), `${JSON.stringify(updated, null, 2)}\n`, 'utf8');
+    await writeCanonicalSession(sessionId, updated);
     return updated;
   }
 
@@ -128,17 +215,21 @@ export class FileSessionManager implements ISessionManager {
     const normalizedProjectRoot = await assertProjectRootAccessible(projectRoot);
     await ensureDirectoryExists(getSessionStoreDirectory());
 
-    const entries = await readdir(getSessionStoreDirectory());
+    const entries = await readdir(getSessionStoreDirectory(), { withFileTypes: true });
+    const candidateSessionIds = new Set<string>();
     const sessions: SessionRecord[] = [];
 
     for (const entry of entries) {
-      if (!entry.endsWith('.json')) {
-        continue;
+      if (entry.isDirectory()) {
+        candidateSessionIds.add(entry.name);
+      } else if (entry.isFile() && entry.name.endsWith('.json')) {
+        candidateSessionIds.add(entry.name.replace(/\.json$/, ''));
       }
+    }
 
-      const sessionId = entry.replace(/\.json$/, '');
+    for (const sessionId of [...candidateSessionIds].sort()) {
       try {
-        const session = await readSessionFromDisk(sessionId);
+        const session = await canonicalizeSessionRecord(sessionId);
         if (path.resolve(session.projectRoot) === normalizedProjectRoot) {
           sessions.push(session);
         }
@@ -154,12 +245,8 @@ export class FileSessionManager implements ISessionManager {
   async delete(sessionId: string): Promise<void> {
     await ensureDirectoryExists(getSessionStoreDirectory());
 
-    try {
-      await rm(getSessionFilePath(sessionId));
-    } catch {
-      throw new HarnessError('SESSION_NOT_FOUND', 404, `Session '${sessionId}' does not exist`, {
-        sessionId
-      });
-    }
+    await canonicalizeSessionRecord(sessionId);
+    await rm(getCanonicalSessionDirectoryPath(sessionId), { recursive: true, force: true });
+    await rm(getLegacySessionFilePath(sessionId), { force: true });
   }
 }
