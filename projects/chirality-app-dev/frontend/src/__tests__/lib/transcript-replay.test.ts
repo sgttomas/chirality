@@ -40,6 +40,10 @@ describe('deriveTranscriptView', () => {
         artifactMetadata: {
           artifactRelativePath: 'artifacts/tools/read.json',
           artifactByteLength: 128,
+          sha256: 'a'.repeat(64),
+          toolName: 'Read',
+          turnId: 'turn_1',
+          retentionPolicy: 'session-lifetime',
           redacted: true,
           truncated: false
         }
@@ -74,6 +78,10 @@ describe('deriveTranscriptView', () => {
       artifact: {
         artifactRelativePath: 'artifacts/tools/read.json',
         artifactByteLength: 128,
+        sha256: 'a'.repeat(64),
+        toolName: 'Read',
+        turnId: 'turn_1',
+        retentionPolicy: 'session-lifetime',
         redacted: true,
         truncated: false
       }

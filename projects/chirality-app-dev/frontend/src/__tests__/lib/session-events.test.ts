@@ -230,4 +230,97 @@ describe('session events', () => {
     expect(serialized).not.toContain('sk-test-secret');
     expect(serialized).toContain('[REDACTED_API_KEY]');
   });
+
+  it('replays interleaved tool artifact events in append order with checksum metadata', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-session-events-'));
+    const sessionRoot = path.join(tmpDir, 'sessions');
+    process.env.CHIRALITY_SESSION_ROOT = sessionRoot;
+
+    const sessionId = 'sess_interleaved';
+    const events = [
+      createHarnessEvent({
+        sessionId,
+        turnId: 'turn_1',
+        type: 'tool.started',
+        data: { toolUseId: 'tool_a', toolName: 'Read' }
+      }),
+      createHarnessEvent({
+        sessionId,
+        turnId: 'turn_1',
+        type: 'tool.started',
+        data: { toolUseId: 'tool_b', toolName: 'Write' }
+      }),
+      createHarnessEvent({
+        sessionId,
+        turnId: 'turn_1',
+        type: 'tool.completed',
+        data: {
+          toolUseId: 'tool_b',
+          toolName: 'Write',
+          artifactMetadata: {
+            artifactRelativePath: path.join(sessionId, 'artifacts', 'tools', 'tool_b-Write.json'),
+            toolName: 'Write',
+            turnId: 'turn_1',
+            sha256: 'b'.repeat(64),
+            retentionPolicy: 'session-lifetime',
+            redacted: true,
+            truncated: false
+          }
+        }
+      }),
+      createHarnessEvent({
+        sessionId,
+        turnId: 'turn_1',
+        type: 'tool.completed',
+        data: {
+          toolUseId: 'tool_a',
+          toolName: 'Read',
+          artifactMetadata: {
+            artifactRelativePath: path.join(sessionId, 'artifacts', 'tools', 'tool_a-Read.json'),
+            toolName: 'Read',
+            turnId: 'turn_1',
+            sha256: 'a'.repeat(64),
+            retentionPolicy: 'session-lifetime',
+            redacted: true,
+            truncated: false
+          }
+        }
+      }),
+      createHarnessEvent({
+        sessionId,
+        turnId: 'turn_1',
+        type: 'turn.completed',
+        data: { stopReason: 'end_turn' }
+      })
+    ];
+
+    for (const event of events) {
+      await appendHarnessEvent(event);
+    }
+
+    const replay = await replayHarnessEvents(sessionId);
+
+    expect(replay.events.map((event) => event.eventId)).toEqual(
+      events.map((event) => event.eventId)
+    );
+    expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.started',
+      'tool.started',
+      'tool.completed',
+      'tool.completed',
+      'turn.completed'
+    ]);
+    expect(replay.events[2].data.artifactMetadata).toMatchObject({
+      toolName: 'Write',
+      turnId: 'turn_1',
+      sha256: 'b'.repeat(64),
+      retentionPolicy: 'session-lifetime'
+    });
+    expect(replay.events[3].data.artifactMetadata).toMatchObject({
+      toolName: 'Read',
+      turnId: 'turn_1',
+      sha256: 'a'.repeat(64),
+      retentionPolicy: 'session-lifetime'
+    });
+  });
 });

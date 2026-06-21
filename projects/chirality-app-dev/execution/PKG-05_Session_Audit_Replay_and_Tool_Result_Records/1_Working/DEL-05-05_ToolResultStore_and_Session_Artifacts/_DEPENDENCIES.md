@@ -11,11 +11,14 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+- `docs/SPEC.md` Sections 8-9 for session layout, `HarnessEvent`, and JSONL append/replay behavior.
+- `docs/CONTRACT.md` K-EVENT and K-KEY invariants for audit, replay, redaction, and artifact constraints.
+- `docs/PRD.md` Sections 10.4-10.5 and NFR-017 from the D-APP-38 authority corpus v2 (`REF-006` = `MATCH`).
+- D-APP-42 for SHA-256 artifact checksums and session-lifetime retention policy.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream dependency row is active in this DEL-05-05-local register. DEL-05-04 consumes artifact-link projections separately.
 
 ## Run Notes
 
@@ -26,9 +29,9 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human ruling applied: semantic lensing and P3 enrichment were skipped; `_SEMANTIC.md` was not read or consumed as evidence.
 - Anchor doc selection: `Datasheet.md` and `_CONTEXT.md` for deliverable identity/traceability, validated against the decomposition authority.
 - Execution doc order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` marks `docs/PRD.md` / REF-006 as `HASH_MISMATCH`; rows using PRD-derived inputs keep conservative notes and do not invent unsupported values.
+- [RETIRED] SOURCE_STATE_PRD_HASH_MISMATCH: D-APP-38 authority corpus v2 and `_REFERENCES.md` now report `docs/PRD.md` REF-006 as `MATCH`.
 - [WARNING] UNKNOWN_TARGETS: Objective IDs are anchored with `TargetType=UNKNOWN` because the v3.1 schema has no `OBJECTIVE` target enum.
-- [WARNING] TBD_POLICY_INPUTS: `ToolResultStore` implementation location and output budget policy parameters remain `TBD`.
+- [RETIRED] TBD_POLICY_INPUTS: ADQ-10 records the `ToolResultStore` artifact implementation path and D-APP-42 checksum/retention policy. Thresholds, preview length, and artifact naming remain the existing descriptor/artifact-writer policy and are unchanged by D-APP-42.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` anchor exists.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` anchor exists.
 
@@ -53,9 +56,9 @@ Structured register: `Dependencies.csv` v3.1.
 | DEP-05-05-005 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-005 Tool governance objective | ACTIVE | SATISFIED |
 | DEP-05-05-006 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
 | DEP-05-05-007 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
-| DEP-05-05-008 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-05-05-009 | EXECUTION | PREREQUISITE | ToolResultStore implementation location | ACTIVE | TBD |
-| DEP-05-05-010 | EXECUTION | CONSTRAINT | Output budget policy parameters | ACTIVE | TBD |
+| DEP-05-05-008 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | SATISFIED |
+| DEP-05-05-009 | EXECUTION | PREREQUISITE | ToolResultStore implementation location | ACTIVE | SATISFIED |
+| DEP-05-05-010 | EXECUTION | CONSTRAINT | Output budget policy parameters | ACTIVE | SATISFIED |
 
 ## Lifecycle Summary
 
@@ -67,12 +70,11 @@ Structured register: `Dependencies.csv` v3.1.
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 7 |
-| PENDING | 1 |
-| TBD | 2 |
+| SATISFIED | 10 |
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
 | 2026-05-20 19:41 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` validated | SOURCE_STATE, UNKNOWN_TARGETS, TBD_POLICY_INPUTS | 10 |
+| 2026-06-21 ADQ-10 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` unchanged | SOURCE_STATE retired; TBD_POLICY_INPUTS retired for ADQ-10; UNKNOWN_TARGETS retained by schema | 10 |

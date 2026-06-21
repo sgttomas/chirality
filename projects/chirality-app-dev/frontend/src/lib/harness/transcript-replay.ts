@@ -18,6 +18,10 @@ export type TranscriptItemStatus =
 export type TranscriptArtifactLink = {
   artifactPath?: string;
   artifactRelativePath?: string;
+  sha256?: string;
+  toolName?: string;
+  turnId?: string;
+  retentionPolicy?: string;
   redacted?: boolean;
   truncated?: boolean;
   artifactByteLength?: number;
@@ -137,6 +141,10 @@ function artifactLink(data: JsonRecord): TranscriptArtifactLink | undefined {
   const artifact: TranscriptArtifactLink = {
     artifactPath: readString(artifactMetadata.artifactPath),
     artifactRelativePath: readString(artifactMetadata.artifactRelativePath),
+    sha256: readString(artifactMetadata.sha256),
+    toolName: readString(artifactMetadata.toolName),
+    turnId: readString(artifactMetadata.turnId),
+    retentionPolicy: readString(artifactMetadata.retentionPolicy),
     redacted: readBoolean(artifactMetadata.redacted),
     truncated: readBoolean(artifactMetadata.truncated),
     artifactByteLength: readNumber(artifactMetadata.artifactByteLength)

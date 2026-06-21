@@ -37,6 +37,8 @@ function artifactEntries(artifact: TranscriptArtifactLink | undefined): Array<[s
         ? undefined
         : `${artifact.artifactByteLength} bytes`
     ],
+    ['sha256', artifact.sha256],
+    ['retention', artifact.retentionPolicy],
     ['truncated', artifact.truncated === undefined ? undefined : String(artifact.truncated)]
   ].filter((entry): entry is [string, string] => typeof entry[1] === 'string' && entry[1].length > 0);
 }

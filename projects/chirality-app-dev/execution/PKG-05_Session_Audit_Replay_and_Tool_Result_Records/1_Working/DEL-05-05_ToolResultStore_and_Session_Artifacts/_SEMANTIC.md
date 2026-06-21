@@ -6,6 +6,7 @@
 **Perspective:** This deliverable frames session tool-result custody as a product-owned evidence boundary for storing, previewing, and replaying medium or large runtime outputs. Its knowledge must carry artifact custody, output budgeting, event linkage, replayability, redaction posture, and source-state caveats without converting implementation gaps into accepted policy.
 **Framework:** Chirality Semantic Algebra
 **Audit:** PASS
+**ADQ-10 Overlay:** Historical semantic source-state caveats are preserved as generated history. For current ADQ-10 follow-through, D-APP-38 authority corpus v2 reconciles REF-006 `docs/PRD.md` as `MATCH`; D-APP-42 accepts SHA-256 checksums over exact stored artifact bytes after redaction/truncation and session-lifetime retention; implementation and fixture paths are recorded in the DEL-05-05 production documents and ADQ-10 evidence. Thresholds, preview length, and artifact naming remain the existing descriptor/artifact-writer policy and are unchanged by D-APP-42.
 **Phase 2.3 Ruling:** STATUS_POLICY=PRESERVE_CURRENT; lifecycle state was not changed and _STATUS.md remains INITIALIZED.
 **Inputs Read:**
 - _CONTEXT.md — /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_CONTEXT.md#identity

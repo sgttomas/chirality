@@ -6,6 +6,33 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-10 tool-result artifact metadata completed
+
+Completed `ADQ-10` from the autonomous development queue. Implemented D-APP-42 Option A for
+DEL-05-05: persisted tool-result artifact metadata now includes SHA-256 for the exact stored bytes
+after redaction/truncation, `toolName`, optional `turnId` where available, original/stored byte
+counts, redaction/truncation flags, relative artifact path, and `session-lifetime` retention.
+Transcript projection and display now carry checksum and retention metadata when present.
+
+Added deterministic interleaved replay coverage asserting JSONL append order for overlapping tool
+artifact events and preserving checksum/retention metadata. Updated DEL-05-05 active Specification,
+Procedure, Guidance, Datasheet, assessment, dependency, memory, and semantic-overlay records, and
+added
+`execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/Evidence_ADQ-10_Tool_Result_Artifacts.md`.
+`ADQ-11` is now the next ready item.
+
+Validation: focused ADQ-10 suite passed 7 files / 38 tests; `npm run typecheck` passed;
+`npm run harness:validate:section9` passed 14 checks; full `npm run test -- --testTimeout=30000`
+passed 78 files / 534 tests; `npm run harness:validate:section8` passed against a local Next dev
+server; D-APP-38 authority-corpus status reported corpus `v2` with no drift; `git diff --check`
+passed.
+
+No `_STATUS.md` files, authority documents, provider/network expansion, signing/notarization/
+publication/external distribution posture, lifecycle issuance, professional approval, certification,
+sealing, authentication, code-compliance acceptance, or release-readiness claim changed. D-APP-42 does
+not authorize TTL, quota, cleanup daemon, or release-retention claims; thresholds, preview length, and
+artifact naming remain unchanged.
+
 ## 2026-06-21 - ADQ-09 runtime transcript view completed
 
 Completed `ADQ-09` from the autonomous development queue. Implemented a product-owned runtime
@@ -20,7 +47,8 @@ ADQ-09 also added read-time replay redaction for imported/manual JSONL records, 
 with `section9.sdk_session_link_resume`, updated DEL-05-04 active Specification, Procedure, Guidance,
 Datasheet, assessment, dependency, memory, and semantic-overlay records, and added
 `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/Evidence_ADQ-09_Runtime_Transcript_View.md`.
-`ADQ-10` remains the next ready item for D-APP-42 tool-result checksum/retention residuals.
+ADQ-10 later completed the D-APP-42 tool-result checksum/retention residuals; see the ADQ-10 entry
+above.
 
 Validation: focused transcript/replay/API/component/client suite passed 5 files / 62 tests;
 `npm run typecheck` passed; `npm run harness:validate:section9` passed 14 checks including the new

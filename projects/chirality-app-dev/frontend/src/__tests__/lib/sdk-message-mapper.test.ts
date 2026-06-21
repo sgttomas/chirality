@@ -461,6 +461,9 @@ describe('mapSdkMessageToHarness', () => {
       },
       artifactMetadata: {
         artifactPath: expect.any(String),
+        sha256: expect.stringMatching(/^[a-f0-9]{64}$/),
+        toolName: 'Read',
+        retentionPolicy: 'session-lifetime',
         redacted: true,
         truncated: false
       }

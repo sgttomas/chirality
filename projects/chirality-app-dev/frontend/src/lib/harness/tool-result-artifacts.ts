@@ -1,4 +1,5 @@
 import { Buffer } from 'node:buffer';
+import { createHash } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { redactJsonLike } from './run-logger';
@@ -9,6 +10,10 @@ export type ToolResultArtifactMetadata = {
   artifactRelativePath: string;
   artifactByteLength: number;
   originalByteLength: number;
+  sha256: string;
+  toolName?: string;
+  turnId?: string;
+  retentionPolicy: 'session-lifetime';
   redacted: true;
   truncated: boolean;
 };
@@ -26,8 +31,13 @@ function byteLength(value: string): number {
   return Buffer.byteLength(value, 'utf8');
 }
 
+function sha256Hex(value: string): string {
+  return createHash('sha256').update(value, 'utf8').digest('hex');
+}
+
 export async function persistToolResultArtifact(input: {
   sessionId: string;
+  turnId?: string;
   toolUseId?: string;
   toolName?: string;
   descriptor?: HarnessToolDescriptor;
@@ -39,10 +49,14 @@ export async function persistToolResultArtifact(input: {
   }
 
   const redactedResult = redactJsonLike(input.result);
+  const toolName =
+    input.toolName ?? input.descriptor?.name ?? input.descriptor?.adapter.claudeAgentSdk?.toolName;
   const serialized = `${JSON.stringify(
     {
       schemaVersion: 1,
-      toolName: input.toolName,
+      toolName,
+      toolUseId: input.toolUseId,
+      turnId: input.turnId,
       descriptorName: input.descriptor?.name,
       adapterToolName: input.descriptor?.adapter.claudeAgentSdk?.toolName,
       redacted: true,
@@ -61,7 +75,9 @@ export async function persistToolResultArtifact(input: {
     ? `${JSON.stringify(
         {
           schemaVersion: 1,
-          toolName: input.toolName,
+          toolName,
+          toolUseId: input.toolUseId,
+          turnId: input.turnId,
           descriptorName: input.descriptor?.name,
           adapterToolName: input.descriptor?.adapter.claudeAgentSdk?.toolName,
           redacted: true,
@@ -86,12 +102,17 @@ export async function persistToolResultArtifact(input: {
   const artifactPath = path.join(getSessionRootDirectory(), artifactRelativePath);
   await mkdir(path.dirname(artifactPath), { recursive: true });
   await writeFile(artifactPath, content, 'utf8');
+  const artifactByteLength = byteLength(content);
 
   return {
     artifactPath,
     artifactRelativePath,
-    artifactByteLength: byteLength(content),
+    artifactByteLength,
     originalByteLength,
+    sha256: sha256Hex(content),
+    toolName,
+    turnId: input.turnId,
+    retentionPolicy: 'session-lifetime',
     redacted: true,
     truncated
   };

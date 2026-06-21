@@ -5,7 +5,7 @@
 **Deliverable Folder:** /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts
 **StatusPolicy:** NO_STATUS_TOUCH
 **Validator:** PASS - validate_lens_register.py returned VALID after generation
-**Warnings:** REF-006 HASH_MISMATCH is carried as a source-state warning; output thresholds, preview length, artifact naming, checksum policy, retention/deletion behavior, implementation path, and fixture paths remain TBD.
+**Warnings:** Historical register preserved. ADQ-10 overlay retires the REF-006 `HASH_MISMATCH` warning via D-APP-38 authority corpus v2, records accepted implementation and fixture paths, accepts D-APP-42 SHA-256 plus session-lifetime retention, and satisfies the interleaved replay fixture for the DEL-05-05 metadata/checksum/retention scope. Thresholds, preview length, and artifact naming remain the existing descriptor/artifact-writer policy and are unchanged by D-APP-42.
 
 **Inputs Read:**
 - _CONTEXT.md - /Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_CONTEXT.md#identity
@@ -216,4 +216,3 @@
 | ItemID | LensKey | Type | AppliesToDoc | SuggestedEditDoc | CandidateInfo | WhyWarranted | SourcePath | SectionRef | Contenders | ProposedAuthority (PROPOSAL) | HumanRuling |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-001 | E:[applying]:[wisdom] | RationaleGap | Guidance | Guidance | Explain the balancing rationale for retention/deletion, checksum, and redaction-status metadata once those policies are chosen. | Guidance identifies leakage risk and missing policy, while Procedure leaves retention, checksum, and optional redaction-status metadata as residual decisions. Balanced retention judgment needs a concise rationale rather than hidden implementation policy. | Guidance.md; Procedure.md; Specification.md | Guidance.md#trade-offs; Guidance.md#redaction-posture; Procedure.md#records; Specification.md#documentation |  | PROPOSAL | TBD |
-

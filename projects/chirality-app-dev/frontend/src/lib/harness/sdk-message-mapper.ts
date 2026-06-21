@@ -454,6 +454,7 @@ async function mapSdkUserToolResultEventsWithArtifacts(
 
   const artifactMetadata = await persistToolResultArtifact({
     sessionId,
+    turnId: state?.childRunContext?.parentTurnId,
     toolUseId,
     toolName,
     descriptor,
