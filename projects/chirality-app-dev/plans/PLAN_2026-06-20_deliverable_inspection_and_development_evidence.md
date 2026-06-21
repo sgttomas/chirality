@@ -1,7 +1,7 @@
 # Deliverable Inspection & Development-Evidence Program Plan
 
 **Date:** 2026-06-20
-**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. `INSP-03` is complete: waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) and recorded `plans/artifacts/insp03_assessment_index_2026-06-20.md`; current reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` was recorded for wave 011 as inspected source-state evidence. Next tranche: INSP-04 gate-process evaluation.
+**Status:** ACTIVE GOVERNING DEVELOPMENT QUEUE (D-APP-19 Option D custom). `INSP-00`/`INSP-00b` landed 2026-06-20; `INSP-01a` executed 2026-06-20, found a status-history preservation blocker, and reran clean under the D-APP-33 semantic-history acceptance ruling; `INSP-01` landed 2026-06-20 with owner-blessed approvalSha `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`; `INSP-02` landed 2026-06-20 and aligned PKG-00 with the accepted acyclic DepClosure snapshot. `INSP-03` is complete: waves 001-011 completed PKG-00 through PKG-10 assessments (53/53) and recorded `plans/artifacts/insp03_assessment_index_2026-06-20.md`; current reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` was recorded for wave 011 as inspected source-state evidence. `INSP-04` is complete: gate-process evaluation recommends modifying, not replacing, the SHA-bound human gate and prepared D-APP-34. Next tranche: INSP-05 development roadmap.
 **Product:** Chirality desktop harness and bundled agent operating system
 **Working root:** `projects/chirality-app-dev/`
 **Prepared by:** WORKING_ITEMS
@@ -89,7 +89,7 @@ development roadmap.
 | `INSP-01` Move 53 -> CHECKING **(DONE 2026-06-20)** | Applied `IN_PROGRESS -> CHECKING` to all 53 with owner-blessed SHA `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. | 53 deliverable `_STATUS.md` files; evidence at `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`, `plans/artifacts/insp01_status_transition_evidence_2026-06-20.md`, and `plans/artifacts/insp01_status_transition_log_2026-06-20.json`. | `53 CHECKING` / 0 `IN_PROGRESS` / 0 `ISSUED`; 53 `**Checking Approval SHA:**`; no transition failures. HTTP route unavailable because `frontend/node_modules/` is absent, so the transition used mirrored lifecycle semantics. |
 | `INSP-02` Control-plane truth-fix **(DONE 2026-06-20)** | Repointed PKG-00 stale `CYCLIC` -> acyclic (P2). | PKG-00 control docs + `_Reconciliation`; evidence at `plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md`. | `analyze_dep_closure.py execution` -> SCC 0; control docs acyclic. |
 | `INSP-03` Inspection sweep **(DONE 2026-06-21; waves 001-011 complete)** | Per-deliverable Assessment (true state vs spec + forward dev recommendation), multi-agent. | One Assessment per deliverable folder. Waves 001-011 wrote PKG-00 through PKG-10 assessments plus `plans/artifacts/insp03_assessment_index_2026-06-20.md`; no semantic files were produced. | Completion gate met: 53/53 Assessments, 0 issued. Wave 011 recorded reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98`; PKG-10 validation used static source scans, direct enumeration, status counts, `git diff --check -- execution plans`, and DepClosure analyzer SCC 0. |
-| `INSP-04` Gate-process evaluation | Recommend keep/modify/replace the per-deliverable approvalSha gate. | Memo + any new packets. | Explicit recommendation; packets registered AWAITING. |
+| `INSP-04` Gate-process evaluation **(DONE 2026-06-21)** | Recommended modifying, not replacing, the per-deliverable approvalSha gate. | Memo at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 packet at `execution/_Coordination/_DECISIONS/D-APP-34_PACKET_2026-06-21.md`. | D-APP-34 registered `AWAITING_RULING`; no issuance or gate change was approved by this tranche. |
 | `INSP-05` Development roadmap | Synthesize 53 Assessments into a prioritized, dependency-ordered roadmap. | Roadmap artifact; new packets. | Covers all 53 + G1-G6; cross-checked vs the dep DAG. |
 | `INSP-FINAL` Closeout | Confirm 53 still CHECKING (0 ISSUED); record completion; set next queue. | Control-plane + completion log. | 0 ISSUED; SHA re-confirmed; completion logged. |
 
@@ -273,6 +273,14 @@ binding is meaningful, whether `CHECKING`-as-review fits, and what evidence bar 
 require — feeding (not deciding) AMD-01 and the PKG-10 doc-only basis. New decisions become PROPOSAL
 D-APP packets (present, don't self-rule).
 
+**2026-06-21 result:** complete. The evaluation memo
+`plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md` recommends modifying the gate: keep
+`CHECKING`, `ISSUED`, non-delegable human approval, and SHA binding, but add issue-readiness evidence
+profiles for runtime/source, UI/product, governance/control, validation/release, and
+future-boundary/doc-only deliverables. D-APP-34 was prepared as a `PROPOSAL` packet and registered
+`AWAITING_RULING`; it does not approve issuance, release readiness, or a gate change. No semantic files
+were used or produced.
+
 ### INSP-05 — Synthesis -> development roadmap
 Consolidate the 53 Assessments into a prioritized, dependency-ordered roadmap ("how to proceed
 developing the application"), absorbing G1-G6 + inspection findings (incl. the PKG-10 P4 wording fix
@@ -306,7 +314,8 @@ convention:
 
 `INSP-00` (done) -> `INSP-00b` (done) -> `INSP-01a` (rerun passed under D-APP-33) ->
 `INSP-01` (done) -> `INSP-02` (done) -> `INSP-03` (done; PKG-00 wave 001, PKG-01 wave 002, PKG-02 wave 003, PKG-03 wave 004, PKG-04 wave 005, PKG-05 wave 006, PKG-06 wave 007, PKG-07 wave 008, PKG-08 wave 009, PKG-09 wave 010, and PKG-10 wave 011 complete) ->
-`INSP-04` -> `INSP-05` -> `INSP-FINAL`. INSP-04 and INSP-05 consume the completed sweep.
+`INSP-04` (done; D-APP-34 awaiting ruling) -> `INSP-05` -> `INSP-FINAL`. INSP-05 consumes the
+completed sweep and the INSP-04 recommendation without treating D-APP-34 as ruled.
 
 ## 10. Validation Policy
 
@@ -327,6 +336,9 @@ convention:
   `plans/artifacts/insp01_owner_approval_sha_2026-06-20.md`.
 - **D-APP-33** — RULED (custom semantic/provisional-history normalization acceptance). `INSP-01a`
   reran clean under this acceptance basis before `INSP-01`.
+- **D-APP-34** — AWAITING_RULING (whether to keep, modify, or replace the per-deliverable issuance
+  gate after INSP-03). INSP-04 recommends Option B, modification with evidence profiles, but only the
+  human may rule.
 - **REF-006** (PRD-hash), **AMD-01** (UI render-test bar), **PKG-10 doc-only basis** — separate later rulings, informed by the inspection; not pre-decided here.
 - Any issuance (`CHECKING -> ISSUED`) — a future, separate, per-deliverable human gate; out of scope for this plan.
 - New forks surfaced by INSP-03/04/05 — raised as PROPOSAL D-APP packets.
@@ -370,7 +382,8 @@ acceptance basis, and `INSP-01` moved all 53 deliverables to `CHECKING` with own
 `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec`. `INSP-02` aligned PKG-00 with the accepted acyclic
 DepClosure snapshot. `INSP-03` waves 001-011 recorded PKG-00 through PKG-10 assessment coverage at
 `plans/artifacts/insp03_assessment_index_2026-06-20.md`; INSP-03 is complete at 53/53 assessments with
-reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011. Landed tranche narrative moves to
+reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` recorded for wave 011. `INSP-04` produced the
+gate-process evaluation memo and D-APP-34 proposal packet. Landed tranche narrative moves to
 `plans/PLAN_COMPLETION_LOG.md`. Work stops whenever the next step requires a human ruling (REF-006,
-AMD-01, PKG-10 basis, any issuance gate, or a new fork). Issuance is reconsidered only after the
-inspection and the gate-process evaluation conclude.
+AMD-01, PKG-10 basis, D-APP-34, any issuance gate, or a new fork). Issuance is reconsidered only after
+the inspection, gate-process evaluation, roadmap synthesis, and required human rulings conclude.

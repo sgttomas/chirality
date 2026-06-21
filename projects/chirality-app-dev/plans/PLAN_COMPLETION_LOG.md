@@ -6,6 +6,24 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - Gate-process evaluation recorded (`INSP-04`)
+
+Recorded the INSP-04 evaluation for D-APP-19's inspection-only program. The memo at
+`plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md` recommends modifying, not replacing,
+the per-deliverable SHA-bound human gate: keep `CHECKING`, `ISSUED`, human actor evidence, and SHA
+binding, but add issue-readiness evidence profiles for runtime/source, UI/product, governance/control,
+validation/release, and future-boundary/doc-only deliverables.
+
+D-APP-34 was prepared as a `PROPOSAL` packet and registered `AWAITING_RULING`; no ruling, issuance,
+release-readiness claim, professional approval, certification, sealing, authentication, code-compliance
+acceptance, or gate change was made by this tranche. Open rulings remain REF-006, AMD-01, PKG-10
+doc-only basis/status-truth handling, D-APP-34, any future issuance, and any new fork surfaced by
+INSP-05. No semantic files were used or produced.
+
+Validation: static governance checks only. `git diff --check -- execution plans` passed; D-APP-34 packet
+and register references resolve; INSP-04 handoff text points to INSP-05. Frontend runtime tests were
+skipped because this tranche changed only planning, coordination, and decision-proposal artifacts.
+
 ## 2026-06-21 - PKG-10 inspection assessments completed (`INSP-03` wave 011)
 
 Recorded the final PKG-10 domain-engine future-boundary assessment wave for D-APP-19's

@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-33 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-33 RULED; D-APP-34 AWAITING_RULING; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred).
 
 Active development queue:
 
@@ -37,8 +37,10 @@ Active development queue:
 	  assessments DEL-10-01 through DEL-10-05 are complete (53/53), 0 assessments remain
 	  pending, reviewed SHA `0aea715f573cfd7759d7fe3f13ca03285b53ef98` is recorded for wave 011 as
 	  inspected source-state evidence, and the coverage index is
-	  `plans/artifacts/insp03_assessment_index_2026-06-20.md`. Next selected work: advance to `INSP-04`
-	  gate-process evaluation.
+	  `plans/artifacts/insp03_assessment_index_2026-06-20.md`. `INSP-04` gate-process evaluation is
+	  complete at `plans/artifacts/insp04_gate_process_evaluation_2026-06-21.md`; D-APP-34 is registered
+	  `AWAITING_RULING` for the post-INSP-03 issuance-gate model. Next selected work: `INSP-05`
+	  development roadmap synthesis.
 
 Completed / superseded queues (history, non-governing):
 
