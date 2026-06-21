@@ -6,6 +6,24 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-17 future R7 amendment brief prepared
+
+Completed `ADQ-17` from the autonomous development queue. Added the doc-only future amendment brief
+`plans/artifacts/adq17_future_r7_amendment_brief_2026-06-21.md` and memory pointers for all five
+PKG-10 future-boundary deliverables.
+
+The brief summarizes the current PKG-10 posture, authority basis, required human rulings, suggested
+future amendment shape, non-implementation future work packages, validation bar, stop conditions, and
+handoff state. It explicitly preserves the R7 implementation fence: no domain-engine endpoint, MCP
+tool, protected-path hook, operation store, fixture implementation, runtime dependency, protected
+domain mutation, lifecycle issuance, professional approval, certification, sealing, authentication,
+code-compliance acceptance, release-readiness, publication, or distribution claim changed.
+
+Validation: docs/governance static checks only. Frontend tests, typecheck, build, packaging, secret
+scan, and network proof were skipped because ADQ-17 changed only future-governance docs and PKG-10
+memory notes, with no runtime source, package manifest, script, wrapper, validation command, or
+authority document changes.
+
 ## 2026-06-21 - ADQ-16 secret scan and network proof evidence added
 
 Completed `ADQ-16` from the autonomous development queue. Added

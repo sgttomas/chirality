@@ -94,7 +94,7 @@ behind a hard fence; `DONE`.
 | ADQ-14 | PKG-09 release-quality validation wrapper/runbook (full test, premerge, Section 9 policy, summary consistency) | validation/docs | M | AUTONOMOUS | D-APP-34 profiles (resolved) | DONE |
 | ADQ-15 | Packaging + instruction-root **evidence** refresh (incl. packaged SDK subprocess proof) | validation/package | M | AUTONOMOUS (signing/notarization/publication FENCED) | ADQ-14 | DONE |
 | ADQ-16 | Whole-product secret scan + network-proof **evidence** | security/validation | M | AUTONOMOUS (release-readiness claim FENCED) | ADQ-14 | DONE |
-| ADQ-17 | Prepare future R7 amendment **brief** (doc only) | future governance | L | AUTONOMOUS (R7 implementation FENCED) | — | READY |
+| ADQ-17 | Prepare future R7 amendment **brief** (doc only) | future governance | L | AUTONOMOUS (R7 implementation FENCED) | — | DONE |
 
 The agent re-derives prerequisite readiness at selection time (recompute, do not trust this table's
 status if the filesystem disagrees).
