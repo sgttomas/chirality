@@ -29,12 +29,22 @@ and gate are identical to the autonomous-queue plan §2 (as tightened 2026-06-21
 3. R7 domain-engine implementation; PKG-10 stays future-boundary/doc-only.
 4. Any `CHECKING -> ISSUED` deliverable issuance.
 
-**Governance-decision gate (HUMAN-GATED, no self-ruling):** a genuinely new design fork with material
-trade-offs not covered by an existing ruling is raised as a `PROPOSAL` packet under
-`execution/_Coordination/_DECISIONS/`; the item is marked `BLOCKED`; the queue continues with other
-eligible items. The agent **must not** author a `*_RULING_*.md`, set a register row to `RULED`, or record
-an owner-attributed ruling. Any option preference stays inside the packet marked
-`PROVISIONAL — AWAITING RULING`. A general owner steer is never a per-fork ruling.
+**Decision latitude (initiative expected).** Within the hard fences, resolve design forks yourself under
+the owner's standing steer — favor the most stable, consistent long-term outcome; no
+backward-compatibility preference; cleanup is acceptable. Make the call, proceed, and note it in the
+tranche closeout as a WORKING_ITEMS decision with its rationale; do not stop to ask. Default to deciding,
+not escalating — the owner would rather ratify a sound call after the fact than rule on a trivial fork up
+front. Two limits hold:
+
+1. **Truthful attribution.** Record agent decisions as the agent's own. Never attribute a choice to the
+   owner that the owner did not make, never write a `*_RULING_*.md` or a `RULED` register row asserting an
+   owner ruling that did not occur, and never claim a human approval or approval-SHA you do not hold
+   (K-AUTH). `*_RULING_*` files and `RULED` rows remain the owner's instrument; agent decisions are
+   recorded in the closeout, not there.
+2. **Escalate only the genuinely material or hard-to-reverse:** a hard-fence question; a strategy-level
+   (K-ENGINE-6) fork; a costly or irreversible public-contract or data-migration change; or a fork you
+   cannot confidently resolve under the standing steer. Raise those as a `PROPOSAL` packet, mark the item
+   `BLOCKED` for an owner ruling, and keep the queue moving on everything else.
 
 A fenced sub-part of an otherwise-eligible item is split: the eligible portion proceeds; the fenced
 portion is deferred with a note. (`ORN-01` CI plumbing runs existing checks and makes no release-readiness
@@ -52,7 +62,7 @@ claim — it does not cross fence #2.)
    enforceable on a PR.
 4. Otherwise pick the highest-priority `READY`, `AUTONOMOUS` item whose prerequisites are met; execute,
    validate, commit+push.
-5. Hard fences and the governance-decision gate (§2) stand. Never revive a completed/closed/superseded
+5. The hard fences and the §2 decision-latitude limits stand. Never revive a completed/closed/superseded
    plan; never invent work outside this backlog and the addendum.
 
 ## 4. Validation Gates (must pass before commit)

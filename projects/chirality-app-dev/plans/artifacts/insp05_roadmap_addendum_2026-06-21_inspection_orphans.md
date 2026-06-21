@@ -96,8 +96,9 @@ Should the owner open this as a tranche:
    like §6.
 2. Transpose the surviving items into the active queue — either a new
    `plans/PLAN_2026-06-21_*.md` or revived rows — and execute under the existing D-APP-39 autonomous
-   discipline **and the tightened no-self-rule gate** (option preferences stay `PROVISIONAL` in a packet;
-   the agent never records `RULED`).
+   discipline **and the decision-latitude model** (decide design forks within the fences and record the
+   call as an agent decision in the closeout; never record an *owner* `RULED` ruling the owner did not
+   make; escalate only the genuinely material or hard-to-reverse).
 3. **Validation gates** mirror the queue plan §4: `tsc`; `vitest`; `next build` / `desktop:pack` /
    `harness:validate:premerge` where warranted; the D-APP-36 render bar for UI items; the D-APP-38
    authority-corpus `status`/`bump`/`apply` if any authority document is edited; `git diff --check` and
@@ -109,6 +110,6 @@ Should the owner open this as a tranche:
 **AUTHORIZED by owner directive on 2026-06-21** to be incorporated into the coordination/development-loop
 documents and handed to the implementation agent. The backlog is now the active governing queue
 `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`, which runs under the D-APP-39 autonomous
-discipline and the tightened no-self-rule gate. Per §7, the implementation agent's first step is a
+discipline and the decision-latitude model. Per §7, the implementation agent's first step is a
 verification pass over the REPORTED items (`ORN-05`..`ORN-13`) — re-confirm each is still open and drop
 already-closed cases — then execute `ORN-01` first.
