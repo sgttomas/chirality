@@ -35,6 +35,7 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 | Retired PKG-08 items | Keep retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling out of current commitments. | `docs/PLAN.md` §9; `docs/PRD.md` KG-012 |
 | Release targets | Treat macOS 15+ Apple Silicon DMG as the current release target; Windows/Linux packaging needs amendment. | `docs/CONTRACT.md` §1.9 K-RELEASE-1; `docs/PRD.md` §6.4 |
 | Domain operations | Keep domain operation execution behind future profile, proposal, deterministic checks, and human acceptance. | `docs/CONTRACT.md` §1.10; `docs/PRD.md` R7 |
+| Boundary review checklist | Use `docs/BOUNDARY_REVIEW_CHECKLISTS.md` for repeatable scope-boundary and professional-boundary review evidence. Checklist completion is not a human ruling, dependency closure, lifecycle issuance, or release/professional approval. | ADQ-03 |
 
 ## Trade-offs
 
@@ -63,3 +64,10 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 
 Closed historical conflict: `CF-002` is superseded by D-APP-38 corpus `v1`; current `_REFERENCES.md`
 records REF-006 `docs/PRD.md` as `MATCH`.
+
+## Normalized Checklist Artifact
+
+ADQ-03 materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the shared review checklist package. For
+DEL-01-04, it supplies the scope-boundary checklist, amendment-trigger prompts, and finding template.
+The boundary-row human ruling fields remain `TBD` until an accountable human records rulings or
+explicit deferrals.

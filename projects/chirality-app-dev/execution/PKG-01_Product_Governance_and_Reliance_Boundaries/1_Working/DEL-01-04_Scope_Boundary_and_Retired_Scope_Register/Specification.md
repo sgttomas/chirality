@@ -60,6 +60,7 @@ Verification is documentary and review-based for this phase:
 | Source fidelity | Confirm non-trivial requirements cite source files and sections. |
 | Conservative drafting | Confirm unsupported facts are marked `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. |
 | Boundary-row inspection | Confirm the concrete register rows are present in `Datasheet.md` under `Boundary Register Rows` and include source reference, amendment trigger, current status, and human ruling fields. |
+| Boundary review checklist | Confirm `docs/BOUNDARY_REVIEW_CHECKLISTS.md` covers scope-boundary and professional-boundary review without treating checklist completion as approval. |
 | Scope containment | Confirm this run does not satisfy or mutate dependency rows and does not modify files outside the authorized tranche scope. |
 | Status transition | Confirm `_STATUS.md` remains `CHECKING`; any future `ISSUED` transition requires a fresh human approval SHA. |
 
@@ -74,6 +75,7 @@ Required artifacts for this deliverable:
 - `_STATUS.md`
 - `_run_records/TASK_RUN_*.md`
 - `Datasheet.md` `Boundary Register Rows` section as the concrete inspection surface for this kit
+- `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized review checklist and evidence template
 
 Existing derivative artifact:
 

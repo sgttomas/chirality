@@ -6,6 +6,35 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-03 boundary review checklists normalized
+
+Completed `ADQ-03` from the autonomous development queue. The tranche materialized
+`docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the shared review surface for DEL-01-03 and DEL-01-04,
+including:
+
+- professional-boundary checks for product identity, SDK/provider framing, draft/non-binding posture,
+  human-only approval, reliance-boundary copy, future domain notices, release wording, and source
+  uncertainty;
+- scope-boundary checks for remote MCP/plugins/network expansion, ambient settings, shipped bypass,
+  retired PKG-08 scope, non-macOS packaging, domain operations/protected paths, boundary-row human
+  rulings, dependency/lifecycle non-claims, and amendment triggers;
+- boundary notice examples, a review evidence template, and a finding template.
+
+DEL-01-03 now points its UI copy guidelines, release review checklist, boundary notice examples, and
+review-note template to the normalized checklist artifact. DEL-01-04 now points scope-boundary review
+to the same artifact and replaces stale OPEN-to-INITIALIZED procedure wording with the current
+`CHECKING` / no-transition posture.
+
+No `_STATUS.md` files changed. No authority documents changed, so no D-APP-38 corpus bump was needed.
+No dependency row was satisfied or retired. No runtime source, package manifest, lockfile, provider
+policy, release artifact, lifecycle issuance, professional approval, certification, sealing,
+authentication, code-compliance acceptance, or release-readiness claim changed.
+
+Validation: docs manifest JSON parse; D-APP-38 reference reconciliation `status`; targeted stale-text
+scan for checklist TBD destinations and stale status-transition wording; `git diff --check` over
+affected docs, DEL-01-03/DEL-01-04 kits, and plans. Frontend runtime tests were skipped because this
+tranche changed only governance documentation and indexes.
+
 ## 2026-06-21 - ADQ-02 reliance-boundary register generated
 
 Completed `ADQ-02` from the autonomous development queue. The tranche generated

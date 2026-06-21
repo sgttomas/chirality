@@ -53,6 +53,10 @@
       "role": "agentic workflow guide"
     },
     {
+      "path": "BOUNDARY_REVIEW_CHECKLISTS.md",
+      "role": "DEL-01-03 and DEL-01-04 professional/scope-boundary checklist package"
+    },
+    {
       "path": "harness/reliance_boundary_register.md",
       "role": "DEL-01-02 reliance-boundary register, enforcement matrix, and test index"
     },

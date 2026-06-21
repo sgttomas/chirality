@@ -58,7 +58,7 @@ Excluded:
 Closure evidence before downstream production copy updates:
 
 - `ResponsibleParty` assigned by an accountable human: TBD.
-- Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: TBD.
+- Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: `docs/BOUNDARY_REVIEW_CHECKLISTS.md` (ADQ-03 review evidence only).
 - `Dependencies.csv` satisfaction and any project-level FULL_GRAPH/cycle checks closed or explicitly deferred by a human: TBD.
 - Conflict Table CT-001 path-label ruling recorded or explicitly deferred: TBD. Historical CT-002 PRD hash warning is closed by D-APP-38 corpus `v1`.
 - Release review evidence record completed for the checked surfaces and source sections: TBD.
@@ -67,15 +67,12 @@ Closure evidence before downstream production copy updates:
 
 Required or anticipated artifacts:
 
-- UI copy guidelines.
-- Release review checklist.
-- Boundary notice examples.
+- UI copy guidelines: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Release review checklist: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Boundary notice examples: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Review notes template: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
 
 TBD:
 
-- Final destination path for UI copy guidelines.
-- Final destination path for release review checklist.
-- Final destination path for boundary notice examples.
-- Final destination path for review notes.
 - Human assignment of `ResponsibleParty`.
 - Human closure decision for `Dependencies.csv` rows whose `SatisfactionStatus` remains `TBD`.

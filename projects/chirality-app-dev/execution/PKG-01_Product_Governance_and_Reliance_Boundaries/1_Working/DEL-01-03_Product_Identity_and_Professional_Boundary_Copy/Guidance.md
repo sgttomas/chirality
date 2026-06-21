@@ -84,3 +84,11 @@ Avoid examples:
 
 Closed historical conflict: `CT-002` is superseded by D-APP-38 corpus `v1`; current `_REFERENCES.md`
 records REF-006 `docs/PRD.md` as `MATCH`.
+
+## Normalized Checklist Artifact
+
+ADQ-03 materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the shared professional-boundary and
+scope-boundary checklist package. For DEL-01-03, that file supplies the UI copy review checklist,
+release review evidence template, boundary notice examples, and finding template. It is CHECKING-stage
+review evidence only; it does not assign `ResponsibleParty`, satisfy dependencies, issue this
+deliverable, or approve release/professional reliance.

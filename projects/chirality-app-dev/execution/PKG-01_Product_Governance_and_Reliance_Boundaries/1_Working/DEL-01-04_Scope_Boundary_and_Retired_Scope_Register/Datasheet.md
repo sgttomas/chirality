@@ -34,10 +34,11 @@
 | Condition | Value | Source |
 |---|---|---|
 | Reference integrity | `docs/PRD.md` is REF-006 and matches the current D-APP-38 corpus `v1` in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
-| Dependency extraction | Deferred. `Dependencies.csv` is not created by this deliverable run. | `_DEPENDENCIES.md`; TASK dispatch |
+| Dependency extraction | Existing derivative `Dependencies.csv` is owned by the separate dependency-extract workflow; this checklist normalization does not create, edit, satisfy, or retire rows. | `_DEPENDENCIES.md`; `Dependencies.csv` |
 | Human authority | Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance. | `docs/TYPES.md` §3.3; `docs/DIRECTIVE.md` §3 |
 | Unknown values | Unknown values remain `TBD`; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | `docs/CONTRACT.md` §1.7 K-INVENT-1 |
 | Scope conflicts | Source conflicts must be surfaced rather than silently resolved. | `docs/CONTRACT.md` §1.7 K-CONFLICT-1 |
+| Review checklist | Scope-boundary and professional-boundary review uses `docs/BOUNDARY_REVIEW_CHECKLISTS.md`; completion is evidence only, not issuance or release/professional approval. | ADQ-03 |
 
 ## Construction
 
@@ -52,6 +53,10 @@ The register should be constructed as a documentary control surface with at leas
 ### Boundary Register Rows
 
 For this four-document kit, the concrete register-row artifact is this `Datasheet.md` section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.
+
+ADQ-03 also materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized review checklist for
+scope-boundary and professional-boundary checks. The human ruling fields below remain `TBD` until an
+accountable human records rulings or explicit deferrals.
 
 | RowID | Boundary Item | Boundary Statement | Source Reference | Amendment Trigger | Current Status | Human Ruling |
 |---|---|---|---|---|---|---|

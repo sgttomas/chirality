@@ -82,10 +82,10 @@ This procedure describes how to produce and use product-identity and professiona
 
 Create or maintain these records as applicable:
 
-- UI copy guidelines: target path TBD.
-- Release review checklist: target path TBD.
-- Boundary notice examples: target path TBD.
-- Review notes with checked surfaces and source sections: target path TBD.
+- UI copy guidelines: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Release review checklist: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Boundary notice examples: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+- Review notes with checked surfaces and source sections: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
 - Human rulings for Conflict Table entries: TBD.
 - `Dependencies.csv` satisfaction closure notes: TBD.
 

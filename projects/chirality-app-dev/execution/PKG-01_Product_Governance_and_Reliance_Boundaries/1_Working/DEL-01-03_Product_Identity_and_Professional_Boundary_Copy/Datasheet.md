@@ -45,14 +45,16 @@ The deliverable is a documentation and copy-boundary package. Anticipated artifa
 - Release review checklist.
 - Boundary notice examples.
 
-ASSUMPTION: These artifacts may be implemented as sections or downstream documents, but no final target file paths are specified in the available sources. Target file paths remain TBD until a human or later deliverable assigns them.
+ADQ-03 materialized the shared checklist and example package at `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+That file is review evidence only; it does not assign `ResponsibleParty`, satisfy dependencies, issue
+this deliverable, or approve release/professional reliance.
 
 | Artifact | Current location in this deliverable | Final destination path | Source |
 |---|---|---|---|
-| UI copy guidelines | `Guidance.md` Principles, Considerations, Trade-offs, and Examples | TBD | `_CONTEXT.md` Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts |
-| Release review checklist | `Procedure.md` Verification and Release Review Evidence Template | TBD | `_CONTEXT.md` Anticipated Artifacts; `docs/DIRECTIVE.md` Sections 2.4 and 3.2 |
-| Boundary notice examples | `Guidance.md` Examples | TBD | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-AUTH-1 and K-DOMAIN-4 |
-| Review notes | `Procedure.md` Review Note Record Template | TBD | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
+| UI copy guidelines | `Guidance.md` Principles, Considerations, Trade-offs, and Examples | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Professional Boundary Checklist and Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts |
+| Release review checklist | `Procedure.md` Verification and Release Review Evidence Template | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Review Evidence Template | `_CONTEXT.md` Anticipated Artifacts; `docs/DIRECTIVE.md` Sections 2.4 and 3.2 |
+| Boundary notice examples | `Guidance.md` Examples | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-AUTH-1 and K-DOMAIN-4 |
+| Review notes | `Procedure.md` Review Note Record Template | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Finding Template | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
 
 ## References
 

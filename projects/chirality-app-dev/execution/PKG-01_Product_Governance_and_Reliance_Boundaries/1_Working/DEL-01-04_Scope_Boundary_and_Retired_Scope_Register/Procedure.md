@@ -52,10 +52,12 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 8. Cross-check the four documents.
    - Confirm the same boundary items and terminology appear consistently in `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`.
    - Confirm requirements in `Specification.md` have corresponding production and verification hooks here.
+   - Use `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized scope-boundary/professional-boundary review checklist.
 
-9. Update status only when safe.
-   - If all four required documents are written and non-empty and the current state is `OPEN`, update `_STATUS.md` to `INITIALIZED`.
+9. Preserve current lifecycle state.
+   - Current lifecycle state is `CHECKING`.
    - Do not perform a state regression or human-gate transition.
+   - Any future `CHECKING -> ISSUED` transition requires the governed status workflow and human approval evidence.
 
 10. Defer dependency extraction.
    - Do not create or edit `Dependencies.csv` during this four-documents run.
@@ -70,8 +72,9 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Source grounding | Non-trivial boundary statements cite source files and sections. |
 | ResponsibleParty | Remains `TBD`. |
 | Boundary-row artifact | `Datasheet.md` includes concrete `Boundary Register Rows` with source reference, amendment trigger, current status, and human ruling fields. |
+| Boundary review checklist | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` exists and preserves checklist completion as evidence only. |
 | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
-| Status | `_STATUS.md` moves from `OPEN` to `INITIALIZED` only after four non-empty docs exist. |
+| Status | `_STATUS.md` remains `CHECKING`; no `CHECKING -> ISSUED` transition occurs in this checklist normalization. |
 | Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by D-APP-38 corpus `v1`. |
 
 ## Records
@@ -82,7 +85,8 @@ Records produced or updated by this procedure:
 - `Specification.md`
 - `Guidance.md`
 - `Procedure.md`
-- `_STATUS.md`
+- `_STATUS.md` (read-only lifecycle evidence for this checklist normalization)
+- `docs/BOUNDARY_REVIEW_CHECKLISTS.md`
 - `_run_records/TASK_RUN_*.md`
 
 Related derivative record owned by a separate workflow:

@@ -24,6 +24,7 @@ This docs package defines why the app exists, what must remain true, how the run
 | `ISSUE_READINESS_PROFILES.md` | Issue-readiness profiles | Per-class evidence required before a `CHECKING -> ISSUED` transition (D-APP-34/36/37). |
 | `BUILD_AND_RELEASE.md` | Build and release guide | Local command map, artifact locations, evidence profiles, packaging review, and future CI/release decisions. |
 | `AGENTIC_DEVELOPMENT_WORKFLOW.md` | Agentic workflow | Authority map, current loop, tranche selection, TASK discipline, validation routing, and closeout expectations. |
+| `BOUNDARY_REVIEW_CHECKLISTS.md` | Boundary review checklists | Product/professional-boundary and scope-boundary checklist package for DEL-01-03 and DEL-01-04. |
 | `harness/reliance_boundary_register.md` | Reliance-boundary register | DEL-01-02 boundary rows, enforcement matrix, Section 9 test index, and residual-risk notes. |
 | `MANIFEST.json` | Docs manifest | Machine-readable index of the docs package and key linked control-plane surfaces. |
 
