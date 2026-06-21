@@ -3,19 +3,19 @@
 Date: 2026-06-20
 Persona: WORKING_ITEMS
 Status: IN_PROGRESS
-Reviewed SHA: `50b063f3ec4d9df900b4f2c465cf2f9ac79e91a0`
+Reviewed SHA: `0e1ba9a1eef03f1b9e2daa33d3d6c0c5b0f42f7c`
 
 ## Summary
 
-INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 003.
+INSP-03 is the per-deliverable inspection sweep. This index records the current coverage state after wave 004.
 
 - Deliverables expected: 53
-- Assessments complete: 11
-- Assessments pending: 42
+- Assessments complete: 15
+- Assessments pending: 38
 - Deliverables issued: 0
-- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables
+- Current completed waves: PKG-00 control-plane deliverables; PKG-01 governance/reliance deliverables; PKG-02 baseline UI deliverables; PKG-03 runtime engine deliverables
 - Artifact mode: Assessment files only; no semantic files produced for these waves.
-- Owner approval note: current reviewed SHA `50b063f3ec4d9df900b4f2c465cf2f9ac79e91a0` recorded for wave 003 per 2026-06-20 instruction. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
+- Reviewed source-state note: current reviewed SHA `0e1ba9a1eef03f1b9e2daa33d3d6c0c5b0f42f7c` recorded for wave 004 as inspection evidence. This is an inspection-record SHA, not a `CHECKING -> ISSUED` lifecycle approval.
 
 ## Validation Evidence
 
@@ -37,6 +37,15 @@ npm run test -- src/__tests__/lib/agent-matrix-cells.test.ts src/__tests__/lib/a
 ```
 
 Observed result: 22 test files passed, 203 tests passed.
+
+- PKG-03 wave validation observed 15 `Assessment_INSP-03_*.md` files after wave 004.
+- PKG-03 focused frontend validation reran:
+
+```sh
+npm run test -- src/__tests__/lib/agent-engine-port.test.ts src/__tests__/lib/engine-conformance.test.ts src/__tests__/lib/turn-engine.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/lib/session-events.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts src/__tests__/lib/harness-client.test.ts src/__tests__/lib/harness-ui-bridge.test.ts src/__tests__/lib/harness-runtime.test.ts
+```
+
+Observed result: 11 test files passed, 167 tests passed.
 
 - PKG-01 wave validation observed 6 `Assessment_INSP-03_*.md` files after wave 002.
 - `_STATUS.md` scan observed 53 `CHECKING`, 0 `IN_PROGRESS`, 0 `ISSUED`.
@@ -65,10 +74,10 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 | DEL-02-03 | `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Assessment_INSP-03_DEL-02-03.md` | COMPLETE | Working-root/tree/scope assessment; strong API/helper evidence, with exact skipped/inaccessible response-shape docs still recommended. |
 | DEL-02-04 | `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Assessment_INSP-03_DEL-02-04.md` | COMPLETE | Toolkit/local-state assessment; records Toolkit-sidebar drift, missing mode/persona Toolkit controls, and AMD-01/polish evidence gap. |
 | DEL-02-05 | `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Assessment_INSP-03_DEL-02-05.md` | COMPLETE | API-key/runtime-feedback assessment; strong key precedence/redaction/SSE evidence, with runtime taxonomy ownership still partial. |
-| DEL-03-01 | - | PENDING | PKG-03 wave pending. |
-| DEL-03-02 | - | PENDING | PKG-03 wave pending. |
-| DEL-03-03 | - | PENDING | PKG-03 wave pending. |
-| DEL-03-04 | - | PENDING | PKG-03 wave pending. |
+| DEL-03-01 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Assessment_INSP-03_DEL-03-01.md` | COMPLETE | Runtime boundary/conformance assessment; strong source/test evidence with `runTurn`/`startTurn`, `harness:event`, stale CODEV evidence, and D-APP-18 doc drift gaps. |
+| DEL-03-02 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Assessment_INSP-03_DEL-03-02.md` | COMPLETE | TurnEngine/session-locking assessment; strong lifecycle/lock evidence with adapter-interface and event-persistence ownership gaps. |
+| DEL-03-03 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Assessment_INSP-03_DEL-03-03.md` | COMPLETE | Route/SSE compatibility assessment; route tests pass, but route-fixture index/docs and additive `harness:event` reconciliation remain. |
+| DEL-03-04 | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Assessment_INSP-03_DEL-03-04.md` | COMPLETE | Interrupt/terminal-outcome assessment; interrupt tests pass, with terminal taxonomy and client-disconnect cancellation persistence still open. |
 | DEL-04-01 | - | PENDING | PKG-04 wave pending. |
 | DEL-04-02 | - | PENDING | PKG-04 wave pending. |
 | DEL-04-03 | - | PENDING | PKG-04 wave pending. |
@@ -110,4 +119,4 @@ Observed result: 51 valid dependency files, 554 rows, graph 46 nodes / 97 edges,
 
 ## Next Wave
 
-Continue INSP-03 with PKG-03 runtime engine deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
+Continue INSP-03 with PKG-04 first-adapter deliverables, then proceed package-by-package unless a dependency or validation failure makes a narrower wave more appropriate.
