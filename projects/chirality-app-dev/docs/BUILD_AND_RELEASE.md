@@ -54,6 +54,7 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run harness:validate:premerge` | Runs the premerge harness validator and writes the stable summary artifact. |
 | `npm run harness:validate:agentsdk-dev-turn` | Runs route-level opt-in `agentSdk` scripted dev-turn validation through the real SDK `query()` path with an offline scripted subprocess. |
 | `npm run harness:validate:agentsdk-packaged-proof` | Runs a no-live packaged SDK proof from `app.asar.unpacked`, records the resolved native subprocess command, and verifies controlled `CLAUDE_CONFIG_DIR`/`HOME` propagation. |
+| `npm run validate:release-quality` | Runs the runtime-premerge evidence wrapper and writes `frontend/artifacts/harness/release-quality/latest/summary.json`; see `docs/RELEASE_QUALITY_RUNBOOK.md`. |
 | `npm run instruction-root:integrity` | Verifies required instruction-root resources and writes the integrity summary artifact. |
 | `npm run proof:network-policy` | Runs the current network-policy proof. Add `-- --provider agentSdk --scripted-agent-sdk` for the non-packaged STAB-02(c) opt-in SDK network proof. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
@@ -91,6 +92,7 @@ Current known artifact locations include:
 - Electron-builder output: `frontend/dist/`;
 - harness validation summary: `frontend/artifacts/harness/section8/latest/summary.json`;
 - harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
+- release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
 - live harness validation output under `${TMPDIR:-/tmp}/chirality-harness-validation/latest/`.
@@ -104,7 +106,7 @@ These profiles are documentation labels, not new scripts.
 | Profile | Commands | Intended use |
 |---|---|---|
 | Governance-only | Static checks over docs, plans, and coordination files; no frontend commands unless the tranche changes executable behavior. | Control-plane documentation tranches. |
-| Runtime premerge | `npm run test`; `npm run typecheck`; `npm run harness:validate:section9`; `npm run harness:validate:premerge`; `npm run instruction-root:integrity`. | Shared runtime, API, SDK, event, permission, or harness workflow changes. |
+| Runtime premerge | `npm run validate:release-quality`; include premerge unless explicitly skipped with reason. | Shared runtime, API, SDK, event, permission, or harness workflow changes. |
 | Network/security | Runtime premerge plus `npm run proof:network-policy`. | Network, provider, API-key, redaction, or outbound-policy changes. |
 | Packaging review | `npm run build`; `npm run instruction-root:integrity`; `npm run desktop:pack` or `npm run desktop:dist` as applicable; `npm run harness:validate:agentsdk-packaged-proof` when SDK subprocess resolver or transcript/HOME posture is in scope. | Instruction-root, packaging, app metadata, SDK resolver posture, or distribution artifact changes. |
 | Release-candidate dry run | Runtime premerge plus packaging review, with known limitations and human-gate state recorded. | Future release-candidate evidence only after human authorization. |

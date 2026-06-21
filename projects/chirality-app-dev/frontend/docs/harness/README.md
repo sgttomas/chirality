@@ -23,6 +23,10 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
   - Imports the packaged SDK module from `app.asar.unpacked`.
   - Runs a scripted no-live `query()` turn to record the resolved native subprocess command.
   - Verifies controlled `CLAUDE_CONFIG_DIR` and `HOME` propagation for transcript/config posture.
+- `npm run validate:release-quality`
+  - Runs the runtime-premerge evidence wrapper: full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.
+  - Writes `frontend/artifacts/harness/release-quality/latest/summary.json`.
+  - Records Section 9 as standalone-blocking for the wrapper while preserving premerge Section 9 as report-only.
 
 ## Prerequisites
 
@@ -40,6 +44,7 @@ From `frontend/`:
 npm run harness:validate:section8
 npm run harness:validate:section9
 npm run harness:validate:premerge
+npm run validate:release-quality
 ```
 
 Optional environment overrides:
@@ -70,6 +75,7 @@ Fail the pipeline when command exit code is non-zero.
 - Section 9 live run outputs: `${TMPDIR:-/tmp}/chirality-harness-section9-validation/latest/`
 - Stable premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`
 - Stable Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`
+- Release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`
 - Integrity summary (instruction-root): `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 - Packaged SDK proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`
 

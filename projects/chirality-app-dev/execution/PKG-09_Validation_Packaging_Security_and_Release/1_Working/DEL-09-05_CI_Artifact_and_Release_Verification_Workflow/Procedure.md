@@ -29,12 +29,16 @@ This procedure is grounded in `docs/PRD.md` Sections 12.2, 12.7, and 12.8; `docs
    - Keep `ResponsibleParty` as `TBD` unless a human assignment exists.
 
 2. Define or review the local command sequence.
-   - From `frontend/`, include:
+   - From `frontend/`, use the runtime-premerge wrapper for the non-packaging evidence family:
 
 ```bash
-npm run test
-npm run typecheck
-npm run harness:validate:premerge
+npm run validate:release-quality
+```
+
+   - The wrapper expands to full test, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.
+   - For packaging/instruction-root evidence, include the source-defined packaging commands separately:
+
+```bash
 npm run instruction-root:integrity
 npm run desktop:dist
 ```
@@ -48,15 +52,15 @@ npm run desktop:dist
    - Start the Next server.
    - Poll readiness.
    - Run `npm run harness:validate:premerge`.
-   - Verify `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`.
-   - Upload the summary artifact.
+   - Verify `frontend/artifacts/harness/section8/latest/summary.json`.
+   - Upload the Section 8 premerge summary artifact.
    - Record the exact workflow file path, CI upload artifact name, and retention period; keep each value `TBD` until source-defined or human-approved.
 
 4. Verify stable artifact handling.
-   - Confirm the workflow checks for the stable summary artifact path.
+   - Confirm the workflow checks for the stable Section 8 premerge summary artifact path.
    - Confirm artifact upload uses a stable, reviewable name.
    - Mark artifact upload name and retention as `TBD` until source-defined or human-approved.
-   - Distinguish the stable summary artifact path from the CI-provider upload artifact name.
+   - Distinguish runtime premerge, release-quality wrapper, and packaging/instruction-root summary paths from the CI-provider upload artifact name.
 
 5. Execute or document packaging verification.
    - Run or require `npm run desktop:dist` from `frontend/`.
@@ -97,9 +101,9 @@ npm run desktop:dist
 
 | Check | Pass Condition |
 |---|---|
-| Local command sequence | Procedure or runbook includes all source-defined local commands. |
+| Local command sequence | Procedure or runbook includes the runtime-premerge wrapper plus separate packaging/instruction-root commands. |
 | CI workflow | Workflow includes all ten PRD Section 12.7 steps. |
-| Stable artifact | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` is verified and uploaded. |
+| Stable artifact | Section 8 premerge summary is verified/uploaded for CI; instruction-root summary is verified for packaging evidence; release-quality wrapper summary records command outcomes and skips. |
 | Packaging outputs | DMG, app bundle, and instruction-root integrity summary paths are checked. |
 | Manual release checklist | Each macOS DMG item is recorded as pass/fail/TBD. |
 | Security | Release evidence contains no API keys or secret material and does not broaden network posture. |
@@ -112,6 +116,7 @@ Required records:
 - CI workflow or workflow change.
 - Stable artifact upload evidence.
 - Local command sequence/runbook.
+- Release-quality wrapper summary evidence.
 - Manual release verification checklist with pass/fail/TBD entries.
 - Release evidence summary with artifact paths and unresolved rulings.
 - Requirement-to-evidence matrix covering each `REQ-09-05-*` item.

@@ -38,6 +38,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run harness:validate:agentsdk-dev-turn` | Route-level opt-in `agentSdk` scripted dev-turn validation using the real SDK `query()` path and an offline scripted subprocess. |
 | `npm run harness:validate:agentsdk-mcp-probe` | STAB-04 SDK/MCP behavior probe proving raw in-process MCP `mcp_message` calls, explicit `canUseTool`, and explicit hook callbacks remain distinct evidence paths. |
 | `npm run harness:validate:agentsdk-packaged-proof` | STAB-02(d) no-live packaged SDK proof. Imports the SDK module from `app.asar.unpacked`, runs a scripted `query()` turn, records the resolved native subprocess command, and verifies controlled `CLAUDE_CONFIG_DIR`/`HOME` propagation. |
+| `npm run validate:release-quality` | Runtime-premerge evidence wrapper. Runs full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason; writes `frontend/artifacts/harness/release-quality/latest/summary.json`. See `docs/RELEASE_QUALITY_RUNBOOK.md`. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
 | `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. Use `-- --provider agentSdk --scripted-agent-sdk` for the STAB-02(c) dev proof, which runs the opt-in SDK adapter with an offline SDK subprocess and does not replace packaged subprocess evidence. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
@@ -67,6 +68,7 @@ Machine-readable artifacts are preferred when available:
 
 - harness premerge summary: `frontend/artifacts/harness/section8/latest/summary.json`;
 - harness Section 9 summary: `frontend/artifacts/harness/section9/latest/summary.json`;
+- runtime-premerge release-quality wrapper summary: `frontend/artifacts/harness/release-quality/latest/summary.json`;
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
 - test command output captured in terminal or run records when required by a tranche;

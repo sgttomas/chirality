@@ -21,6 +21,7 @@
     "harness:validate:agentsdk-packaged-proof": "node ./scripts/verify-packaged-agent-sdk-runtime.mjs",
     "harness:validate:agentsdk-packaged-live-read-tool": "node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs",
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
+    "validate:release-quality": "node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
     "desktop:pack": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run instruction-root:integrity",

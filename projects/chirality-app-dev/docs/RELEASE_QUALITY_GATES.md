@@ -88,6 +88,7 @@ Use this gate for session boot, turn execution, SSE streaming, interrupt/cancel 
 Required evidence:
 
 - relevant API and library tests;
+- `npm run validate:release-quality` for runtime-premerge evidence when the tranche needs a full local validation wrapper;
 - `npm run harness:validate:premerge` against a reachable local harness API;
 - review of `frontend/artifacts/harness/section8/latest/summary.json` when generated;
 - preservation of stable browser-facing SSE event names unless a governed compatibility change authorizes them.
@@ -144,6 +145,8 @@ Required evidence:
 ## 12. Waivers And Open Decisions
 
 A waiver must be explicit and must name the waived gate item, reason, affected scope, compensating evidence, known risk, and human decision record. No waiver may authorize hidden project truth, protected instruction-root writes, private-data exposure, broad network access, unapproved bash/tool exposure, professional-approval claims, or release-publication claims.
+
+Environment skips inside `npm run validate:release-quality`, such as a missing local harness API for premerge, are evidence skips, not waivers. They require a concrete reason and produce `pass_with_skips`; they do not satisfy a gate item that explicitly requires a current premerge run.
 
 Open release-quality decisions:
 

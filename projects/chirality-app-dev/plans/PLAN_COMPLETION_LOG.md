@@ -6,6 +6,33 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-21 - ADQ-14 release-quality validation wrapper and runbook added
+
+Completed `ADQ-14` from the autonomous development queue. Added
+`frontend/scripts/validate-release-quality-evidence.mjs` and the `npm run validate:release-quality`
+entrypoint. The wrapper runs full Vitest, typecheck, standalone Section 9, and premerge unless
+premerge is explicitly skipped with a reason. It writes a git-ignored runtime-premerge summary at
+`frontend/artifacts/harness/release-quality/latest/summary.json`, validates Section 9 summary
+consistency, validates Section 8 summary consistency when premerge runs, and records that standalone
+Section 9 is blocking for this wrapper while Section 9 remains report-only inside premerge.
+
+Added `docs/RELEASE_QUALITY_RUNBOOK.md` and linked the wrapper from validation/build/harness docs and
+release-quality gates. PKG-09 local evidence now distinguishes the Section 8 premerge summary, Section
+9 summary, release-quality wrapper summary, and instruction-root packaging summary. Recorded evidence
+in `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/Evidence_ADQ-14_Release_Quality_Validation_Wrapper.md`
+and updated DEL-09-01, DEL-09-02, DEL-09-03, and DEL-09-05 memories.
+
+The ADQ-14 wrapper validation run used an explicit premerge skip because no local harness API was
+running in this evidence-only wrapper validation. That skip is recorded as `pass_with_skips` and does
+not satisfy any gate item requiring a current premerge run. No `_STATUS.md` files, dependency rows,
+authority documents, provider policy, packaging output, signing/notarization/publication/distribution
+posture, lifecycle issuance, professional approval, certification, sealing, authentication,
+code-compliance acceptance, or release-readiness claim changed.
+
+Validation: `npm run validate:release-quality -- --skip-premerge "No local harness API is running in this evidence-only ADQ-14 wrapper validation."`
+passed with status `pass_with_skips`; its full Vitest step passed 76 files / 520 tests; typecheck
+passed; standalone Section 9 passed 13 IDs; generated summary consistency passed.
+
 ## 2026-06-21 - ADQ-13 PKG-02 UI specs reconciled and AMD-01 render tests added
 
 Completed `ADQ-13` from the autonomous development queue. DEL-02-01 local kit wording now reflects
