@@ -142,3 +142,11 @@ holds on legitimate authority.
 audit policy (per-session artifact manifest, explicit retention-class/deletion-state fields, cleanup
 independent of session deletion) — is logged here as an optional future enhancement, not a correctness
 gap. It requires a roadmap update or a fresh human directive before it becomes eligible work.
+
+**Proposed next tranche (not yet authorized).** The same post-run audit found a tail of in-scope,
+non-fenced gaps that the INSP-05 synthesis compressed out and this queue never scheduled
+(pre-issuance hardening; none disturb the resting state). They are captured as a PROPOSED roadmap
+addendum at `plans/artifacts/insp05_roadmap_addendum_2026-06-21_inspection_orphans.md` (ORN-01..ORN-13,
+CI enforcement first). That addendum schedules nothing by itself; opening it as eligible work requires an
+explicit owner directive, at which point its surviving items would be transposed into a new active queue
+under the D-APP-39 discipline and the tightened no-self-rule gate.
