@@ -46,6 +46,8 @@ CORPUS_REFS = [
     {"path": "docs/PRD.md", "fs": os.path.join(WORKING_ROOT, "docs", "PRD.md")},
     {"path": "AGENT_SOFTWARE_DECOMP.md",
      "fs": os.path.join(REPO_ROOT, "agents", "AGENT_SOFTWARE_DECOMP.md")},
+    {"path": "AGENT_DOMAIN_ENGINE.md",
+     "fs": os.path.join(REPO_ROOT, "agents", "AGENT_DOMAIN_ENGINE.md")},
 ]
 BASENAMES = {os.path.basename(r["path"]): r["path"] for r in CORPUS_REFS}
 

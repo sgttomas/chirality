@@ -498,49 +498,78 @@ type ChildRunRecord = {
 
 ## 11. Domain Engine Vocabulary — Future Scope
 
+This section is an app-dev vocabulary target that conforms to framework-root
+`agents/AGENT_DOMAIN_ENGINE.md` at commit `77a327727605f05da5f304288f1ddd87dc09659d`.
+It is documentation only. It does not stand up source types, domain MCP tools, protected-path hooks,
+domain runtime, or operation-application behavior.
+
 ### 11.1 `DomainEngineProfile`
 
-```ts
-interface DomainEngineProfile {
-  profileId: string;
-  engineName: string;
-  engineVersion?: string;
-  protectedPaths: string[];
-  proposalPaths: string[];
-  artifactTypes: string[];
-  operations: DomainEngineOperationDescriptor[];
-  manifestRules: unknown;
-  boundaryNotice: string;
-}
-```
+`DomainEngineProfile` is the profile record that defines a domain engine boundary before any governed
+read-only or tool-integrated workflow is claimed. App-dev may expose camelCase documentation views, but
+the canonical framework shape is the snake_case profile form below.
+
+| Field | Meaning |
+|---|---|
+| `schema_version` | Profile schema version. |
+| `id` | Stable domain engine profile ID. |
+| `name` | Human-readable domain engine name. |
+| `engine_type` | Domain classification, generic across engines. |
+| `profile_version` | Version of this profile record; distinct from the engine executable version. |
+| `profile_status` | One of `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`. Integrated workflows require `ADOPTED`; `MANUAL_BRIDGE` may explicitly record a missing profile. |
+| `integration_level` | One of `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE`; do not skip levels. |
+| `domain_root_patterns` | Domain-engine-owned roots or globs. |
+| `authoritative_artifacts` | Engine-owned artifacts that define domain truth. |
+| `chirality_readable_artifacts` | Manifests, summaries, warnings, assumptions, reports, or other artifacts safe for agents to read and cite. |
+| `protected_write_paths` | Paths or globs agents must not directly write. |
+| `agent_writable_paths` | Profile-approved proposal, review, checklist, TBD, or reconciliation paths where agents may write under explicit scope. |
+| `deterministic_tools` | Declared tool contracts, each with `id`, `mode`, `requires_human_confirmation`, `validate_result_schema`, and `apply_result_schema`. Schema refs may be explicit `TBD`; they are not inferred from chat. |
+| `operation_proposal_contract` | Contract for proposal lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements. |
+| `professional_boundary` | Structured boundary language, including claims agents must not make without a cited human authoritative record. |
+| `open_issues` | `TBD` items and blockers that prevent stronger closure. |
 
 ### 11.2 `OperationProposal`
 
-```ts
-interface OperationProposal {
-  proposalId: string;
-  profileId: string;
-  operationName: string;
-  createdAt: string;
-  createdBy: string;
-  inputRefs: string[];
-  intendedChanges: string[];
-  deterministicChecks: string[];
-  expectedOutputRefs: string[];
-  risks: string[];
-  requiredHumanGate: string;
-  status: 'draft' | 'ready_for_review' | 'accepted' | 'rejected' | 'applied';
-}
-```
+`OperationProposal` is a structured proposed model/domain change. It remains non-binding project evidence
+until deterministic checks, required human gates, and domain-engine-controlled apply or external terminal
+acceptance records exist.
+
+| Field | Requirement |
+|---|---|
+| `proposal_id` | Stable proposal ID. |
+| `profile_id` | Stable ID of the active domain engine profile. |
+| `base_state` | Base model state or domain state, if applicable; otherwise explicit `TBD`. |
+| `operation_name` | Declared operation name from the active profile or deterministic tool contract. |
+| `status` | Constant proposal-only classification; lifecycle carries review and application progression. |
+| `lifecycle` | One of `draft | ready_for_review | accepted | rejected | applied`. `accepted` and `applied` require a human approval record bound to a git SHA per K-AUTH-2 and, where the engine has a terminal human-accepted lifecycle state, that external record. |
+| `created_at` | Creation timestamp. |
+| `created_by` | Actor that created the proposal. |
+| `input_refs` | Evidence references such as manifests, warnings, run IDs, comparison IDs, schema refs, or file paths. |
+| `intended_changes` | Proposed domain changes, each bounded to the profile and operation. |
+| `deterministic_checks` | Declared checks to run before review or application, with result schema refs or explicit `TBD`. |
+| `expected_output_refs` | Expected artifacts, IDs, summaries, validation records, or export refs. |
+| `risks` | Known risks, including whether the operation can be fully checked by the engine. |
+| `assumptions` | Unresolved assumptions, distinct from risks. |
+| `blockers` | Unresolved blockers preventing acceptance or application. |
+| `boundary_notice` | Professional-boundary language preventing claims of approval, certification, sealing, code compliance, ready-for-construction status, or external validation absent a cited human authoritative record. |
+| `required_human_gate` | Gate token for the human-owned accept/reject decision; accepted/applied transitions bind to a git SHA per K-AUTH-2. |
+| `operation_risk_class` | One of `engine_checkable | engine_silent`. Use `engine_silent` when correctness depends on judgment values or premises the engine cannot independently verify. |
+| `provenance_on_judgment_values` | Required provenance for `engine_silent` values or explicit `TBD`. |
+| `storage_path` | Path under a profile-approved `agent_writable_paths` entry. |
+
+The active profile identifies `validate_result_schema`, `apply_result_schema`, and
+`operation_proposal_contract.deterministic_check_result_schema` for declared deterministic tools. Missing
+schemas stay explicit `TBD`; they do not block the canonical field obligation, but they do block accepted
+or applied proposal semantics.
 
 ### 11.3 Domain Terms
 
 | Term | Meaning |
 |---|---|
 | Protected path | Authoritative domain-engine artifact path not directly writable by agents. |
-| Proposal path | Agent-writable folder for proposed changes, summaries, or review aids. |
-| Deterministic adapter | Tool/bridge that validates or applies domain operations under profile rules. |
-| Boundary notice | Required copy explaining that Chirality does not approve, validate, or own solver truth. |
+| Agent-writable path | Profile-approved folder for proposed changes, summaries, review aids, checklists, TBD registers, or reconciliation notes. |
+| Deterministic tool | Declared CLI/API adapter with bounded inputs, outputs, modes, side effects, failure behavior, and result schemas. |
+| Boundary notice | Required copy explaining that Chirality does not approve, certify, seal, code-validate, externally validate, or own solver truth. |
 | OpenPipeStress fixture | Potential first domain profile fixture, not Chirality core. |
 
 ---

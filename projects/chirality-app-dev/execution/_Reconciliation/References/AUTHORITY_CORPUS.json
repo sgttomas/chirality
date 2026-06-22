@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v3",
+  "current_version": "v4",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -8,7 +8,8 @@
     "docs/TYPES.md",
     "docs/PLAN.md",
     "docs/PRD.md",
-    "AGENT_SOFTWARE_DECOMP.md"
+    "AGENT_SOFTWARE_DECOMP.md",
+    "AGENT_DOMAIN_ENGINE.md"
   ],
   "versions": [
     {
@@ -54,6 +55,22 @@
         "docs/PLAN.md": "6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98",
         "docs/PRD.md": "ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd",
         "AGENT_SOFTWARE_DECOMP.md": "4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab"
+      }
+    },
+    {
+      "version": "v4",
+      "date": "2026-06-22",
+      "binding_commit": "3ab4c8f221260c651250315598c2e65f38ab237e",
+      "reason": "PKG-10 domain-engine canon conformance: docs/CONTRACT and docs/TYPES updated to framework AGENT_DOMAIN_ENGINE@77a327727; AGENT_DOMAIN_ENGINE added to corpus.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
+        "docs/CONTRACT.md": "2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4",
+        "docs/SPEC.md": "2a63277adade281c0540e18c001bf607978e89e8b6876f50d00a2ea139701913",
+        "docs/TYPES.md": "5462abbce63b9abfc7295256c7a3d8d53d7f12d087af497f6a4d211262557769",
+        "docs/PLAN.md": "6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98",
+        "docs/PRD.md": "ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd",
+        "AGENT_SOFTWARE_DECOMP.md": "4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab",
+        "AGENT_DOMAIN_ENGINE.md": "ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95"
       }
     }
   ]

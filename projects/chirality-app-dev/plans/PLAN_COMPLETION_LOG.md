@@ -6,6 +6,31 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-22 - PKG-10 domain-engine canon conformance completed
+
+Completed a doc-only PKG-10 governance-conformance tranche under D-APP-45. Added framework
+`agents/AGENT_DOMAIN_ENGINE.md` as REF-008 for DEL-10-01 and DEL-10-03, pinned at
+`77a327727` with SHA-256 `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95`.
+App-dev `docs/CONTRACT.md` K-DOMAIN-1..4 now explicitly specialize framework K-DOMAIN at
+`77a327727` and must not weaken it. `docs/TYPES.md` Section 11 and the active DEL-10-01/03
+draft documents now conform to the canonical `DomainEngineProfile` / `OperationProposal` shape,
+including proposal-only status, lifecycle, K-AUTH-2-bound accepted/applied gates, and result-schema
+hooks. Flow-A versioning is recorded only as a D-APP-45 PROPOSAL for owner/tier-0 confirmation; no
+settled cross-repo Flow-A version is asserted.
+
+Agent decisions recorded in D-APP-45: corpus `v3` was already live, so this tranche minted `v4`; the
+older compact PKG-10 draft blockers were treated as superseded by framework canon; concrete profile
+instances, concrete schema refs, adapters, stores, protected-path hooks, apply tooling, and live binding
+remain future/gated. Historical assessments and `_run_records` were left immutable.
+
+Validation: D-APP-38 `status` detected expected drift, `bump` minted corpus `v4`, `apply` reconciled
+102 reference rows across 51 deliverable files, `audit` passed, and final `status` reported no drift.
+No deliverable `_REFERENCES.md` rows report `HASH_MISMATCH`. Canon object existence and SHA-256 checks
+for `77a327727:agents/AGENT_DOMAIN_ENGINE.md` passed. `git diff --check -- projects/chirality-app-dev`
+passed; the unscoped `git diff --check` is blocked by pre-existing unrelated trailing whitespace in root
+`init/init-prompt.md`, which this tranche did not touch. Frontend tests/typecheck were skipped because
+the tranche changed only governance/docs/reference metadata, not runtime/source files.
+
 ## 2026-06-21 - Governance clarified toward a decision-latitude model
 
 Owner feedback: the prior run's defect was false attribution, not initiative — the owner had deliberately

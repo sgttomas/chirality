@@ -6,7 +6,7 @@ Active coordination surfaces:
 
 - `execution/_Coordination/_COORDINATION.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-43 RULED; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model; D-APP-39 released the autonomous development queue; D-APP-40/41/42/43 unblocked ADQ-05/08/10/11 follow-through; ADQ-05 consumed D-APP-40; ADQ-08 consumed D-APP-41; ADQ-09 completed the DEL-05-04 transcript/replay follow-through; ADQ-10 completed the DEL-05-05 D-APP-42 metadata/checksum/retention follow-through; ADQ-11 completed the PKG-06 permission/tool D-APP-43 closure follow-through; ADQ-12 completed the PKG-08 agent/subagent residuals).
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` (D-APP-18..D-APP-44 RULED; D-APP-45 AWAITING_RULING for Flow-A versioning wiring; D-APP-19 ruled Option D custom — deliverable-inspection phase, issuance deferred; D-APP-38 ruled Option D — hybrid reference-integrity model; D-APP-39 released the autonomous development queue; D-APP-40/41/42/43 unblocked ADQ-05/08/10/11 follow-through; ADQ-05 consumed D-APP-40; ADQ-08 consumed D-APP-41; ADQ-09 completed the DEL-05-04 transcript/replay follow-through; ADQ-10 completed the DEL-05-05 D-APP-42 metadata/checksum/retention follow-through; ADQ-11 completed the PKG-06 permission/tool D-APP-43 closure follow-through; ADQ-12 completed the PKG-08 agent/subagent residuals).
 
 Cross-project (informational, not app-dev active work):
 

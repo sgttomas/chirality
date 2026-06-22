@@ -8,7 +8,8 @@ not a breakage.
 
 Each deliverable's `_REFERENCES.md` pins the `sha256` of the authority-doc corpus
 (`docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`,
-`docs/PRD.md`, and `agents/AGENT_SOFTWARE_DECOMP.md`). The authority docs are living documents, so the
+`docs/PRD.md`, `agents/AGENT_SOFTWARE_DECOMP.md`, and `agents/AGENT_DOMAIN_ENGINE.md`). The authority
+docs are living documents, so the
 per-deliverable `Status` column drifts silently as they are edited. On 2026-06-20 a live recompute found
 six of the seven references stale across the corpus while only REF-006 was flagged (D-APP-38 packet).
 This tool makes drift detectable and reconciliation reproducible.
@@ -48,6 +49,7 @@ per-deliverable content-binding while keeping the corpus honest.
 
 This tool reconciles reference records only. It does not edit authority documents, change any deliverable
 lifecycle state, or authorize any `CHECKING -> ISSUED` transition. Corpus `v1` was established
-2026-06-20 and all authority-doc references were reconciled to it (0 `HASH_MISMATCH`). The PKG-00 control
-deliverables (`DEL-00-01`, `DEL-00-02`) use a control-reference table without authority-doc hash pins and
-are intentionally out of scope.
+2026-06-20 and all authority-doc references were reconciled to it (0 `HASH_MISMATCH`). Corpus `v4` adds
+the framework-root domain-engine persona as a tracked authority source for PKG-10 conformance. The PKG-00
+control deliverables (`DEL-00-01`, `DEL-00-02`) use a control-reference table without authority-doc hash
+pins and are intentionally out of scope.

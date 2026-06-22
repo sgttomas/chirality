@@ -130,12 +130,15 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 
 ### 1.10 Domain Engine Future Scope
 
+App-dev K-DOMAIN-1..4 specialize framework `docs/CONTRACT.md` §1.12 `K-DOMAIN-*` at commit
+`77a327727605f05da5f304288f1ddd87dc09659d` and MUST NOT weaken the framework invariants.
+
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-DOMAIN-1** | Domain engines own authoritative domain truth. Chirality governs interaction, proposals, records, and human gates; it does not become the solver. | Domain profile spec; adapter policy; UI copy. |
-| **K-DOMAIN-2** | Protected domain paths are write-quarantined. Agents may write proposals and summaries, not protected domain-engine model truth. | Domain profile policy; path hooks; operation workflow. |
-| **K-DOMAIN-3** | Domain operations require `OperationProposal` records and explicit human acceptance before application. | Future domain APIs; human gate; audit events. |
-| **K-DOMAIN-4** | Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | UI/documentation review; boundary notices. |
+| **K-DOMAIN-1** | Domain engines own authoritative domain truth. Chirality governs interaction, profiles, manifests, proposals, review notes, records, and human gates; it does not become the solver or accepted engineering truth. Specializes framework `K-DOMAIN-1`; MUST NOT weaken. | Domain profile spec; adapter policy; UI copy; DOMAIN_ENGINE persona. |
+| **K-DOMAIN-2** | Protected domain paths are write-quarantined. Agents may write proposals and summaries only in profile-approved agent-writable paths; protected domain-engine model truth is not directly writable by agents. Specializes framework `K-DOMAIN-2`; MUST NOT weaken. | Domain profile policy; path hooks; operation workflow; DOMAIN_ENGINE persona. |
+| **K-DOMAIN-3** | Domain operations require `OperationProposal` records and explicit human acceptance before application; accepted/applied transitions bind to human approval evidence per K-AUTH-2 and domain-engine-controlled apply or external terminal acceptance records. Specializes framework `K-DOMAIN-3`; MUST NOT weaken. | Future domain APIs; human gate; audit events; DOMAIN_ENGINE persona. |
+| **K-DOMAIN-4** | Domain-engine outputs must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or solver truth owned by Chirality absent a cited human authoritative record. Specializes framework `K-DOMAIN-4`; MUST NOT weaken. | UI/documentation review; boundary notices; DOMAIN_ENGINE persona. |
 
 ---
 

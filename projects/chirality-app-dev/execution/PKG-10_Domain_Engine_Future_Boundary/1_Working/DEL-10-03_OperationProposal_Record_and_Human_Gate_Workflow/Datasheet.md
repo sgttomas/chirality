@@ -15,27 +15,33 @@
 | ScopeItem | SOW-069 |
 | SupportedObjective | OBJ-010 |
 | ContextEnvelope | M |
+| Current posture | Future-boundary workflow contract, not current implementation |
 
 ## Attributes
 
 | Attribute | Value | Source |
 |---|---|---|
-| Boundary posture | Future platform compatibility; not current-release domain operation execution. | `_CONTEXT.md` Package Scope; `docs/PRD.md` Section 8.17 |
-| Record type | `OperationProposal` future domain operation record. | `docs/TYPES.md` Section 11.2 |
-| Required fields | `proposalId`, `profileId`, `operationName`, `createdAt`, `createdBy`, `inputRefs`, `intendedChanges`, `deterministicChecks`, `expectedOutputRefs`, `risks`, `requiredHumanGate`, `status`. | `docs/TYPES.md` Section 11.2 |
-| Status enum | `draft`, `ready_for_review`, `accepted`, `rejected`, `applied`. | `docs/TYPES.md` Section 11.2 |
-| Gate requirement | Applying a domain operation requires explicit human acceptance. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 |
-| Domain-truth ownership | Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. | `docs/CONTRACT.md` Section 1.10 |
-| Protected path relationship | Agents write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17 |
-| Professional boundary | Domain-engine output must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 |
+| Boundary posture | Future platform compatibility; not current-release domain operation execution. | `_CONTEXT.md`; `docs/PRD.md` Section 8.17 |
+| Record type | `OperationProposal` future domain operation proposal record. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Required identity/control fields | `proposal_id`, `profile_id`, `base_state`, `operation_name`, `status`, `lifecycle`, `created_at`, `created_by`, `storage_path`. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Required review fields | `input_refs`, `intended_changes`, `deterministic_checks`, `expected_output_refs`, `risks`, `assumptions`, `blockers`, `boundary_notice`, `required_human_gate`, `operation_risk_class`, `provenance_on_judgment_values`. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Proposal-only status | `status` is `proposal_only`. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Lifecycle enum | `draft`, `ready_for_review`, `accepted`, `rejected`, `applied`. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Gate requirement | Accepted/applied lifecycle states require explicit human approval bound to git SHA per K-AUTH-2. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
+| Apply requirement | Applied lifecycle state also requires domain-engine-controlled apply or external terminal acceptance record. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
+| Result schema hooks | Proposal checks route through profile-declared `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema hooks. | REF-008; `docs/TYPES.md` Section 11.1 |
+| Domain-truth ownership | Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-1 |
+| Protected path relationship | Agents write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 |
+| Professional boundary | Domain-engine output must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
 
 ## Conditions
 
 | Condition | Value | Source |
 |---|---|---|
-| Activation condition | Future amendment required before domain-engine operation execution is active. | `docs/PRD.md` Section 8.17; `_CONTEXT.md` Package Scope |
-| Current implementation state | Domain-engine implementation is not activated by this deliverable. | Assignment instruction; `docs/PRD.md` Section 8.17 |
-| PRD source status | Source warning: `_REFERENCES.md` records PRD hash mismatch; invocation directs treating it as warning only. | `_REFERENCES.md`; assignment instruction |
+| Activation condition | Future amendment required before domain-engine operation execution is active. | `docs/PLAN.md` R7; `_CONTEXT.md` Package Scope |
+| Current implementation state | Domain-engine implementation is not activated by this deliverable. | D-APP-39 F3; `docs/SPEC.md` Section 18 |
+| Upstream precedence | Framework-root `AGENT_DOMAIN_ENGINE.md` at `77a327727` is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. | D-T0-01; REF-008 |
+| Resolved former blockers | Required-human-gate semantics and result-schema hooks are resolved by canon; concrete evidence/schema artifacts remain implementation `TBD`. | REF-008; D-T0-01 |
 | Upstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
 | Downstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
 
@@ -43,20 +49,22 @@
 
 | Component | Description | Source |
 |---|---|---|
-| Proposal record shape | TypeScript-shaped future interface for proposed domain operations. | `docs/TYPES.md` Section 11.2 |
-| Deterministic checks | Proposal field listing checks expected before application. Specific check schema is TBD. | `docs/TYPES.md` Section 11.2; `docs/PRD.md` Section 8.17 |
-| Human gate workflow | Proposal must reach an explicit human acceptance point before any operation is applied. Specific actor/approval artifact format is TBD. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 |
-| Review checklist | Must verify inputs, intended changes, deterministic checks, outputs, risks, required human gate, protected path posture, and professional-boundary language. | `docs/TYPES.md` Section 11.2; `docs/PRD.md` Section 8.17 |
+| Proposal record shape | Future `OperationProposal` table with canonical fields and proposal-only status. | REF-008; `docs/TYPES.md` Section 11.2 |
+| Base state | Identifies the accepted state or artifact baseline against which a proposal is made. | REF-008 |
+| Deterministic checks | Proposal field listing checks expected before review; concrete check result payload and profile schema refs remain implementation `TBD`. | REF-008; `docs/PRD.md` Section 8.17 |
+| Human gate workflow | Proposal cannot reach accepted/applied lifecycle states without K-AUTH-2-bound human approval. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
+| Review checklist | Must verify field completeness, base state, deterministic checks, outputs, risks, assumptions, blockers, required human gate, protected-path posture, and professional-boundary language. | REF-008; `docs/PRD.md` Section 8.17 |
 
 ## References
 
 - `_CONTEXT.md`
 - `_DEPENDENCIES.md`
 - `_REFERENCES.md`
+- `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `docs/CONTRACT.md` Section 1.10
 - `docs/DIRECTIVE.md` professional and domain-boundary principles
 - `docs/PLAN.md` future domain-engine items
-- `docs/PRD.md` Section 8.17, with hash mismatch warning noted
+- `docs/PRD.md` Section 8.17
 - `docs/SPEC.md` domain endpoint list and future profile note
 - `docs/TYPES.md` Sections 11.1-11.3

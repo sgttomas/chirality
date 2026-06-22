@@ -2,17 +2,17 @@
 
 ## Purpose
 
-Define the bounded procedure for producing and later maintaining the future `DomainEngineProfile` contract draft without activating domain-engine implementation.
+Define the bounded procedure for maintaining the future `DomainEngineProfile` contract draft while preserving the F3 domain-engine implementation fence.
 
 ## Prerequisites
 
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context is present. | Satisfied: `_CONTEXT.md` exists. |
-| Authoritative references are accessible. | Satisfied with warning: `_REFERENCES.md` lists accessible sources; PRD has recorded hash mismatch and is treated as source warning only. |
-| Declared upstream dependencies are accepted. | TBD: `_DEPENDENCIES.md` records no accepted execution edges and lists anchor satisfaction as TBD. |
-| Current state permits P1/P2 authoring. | Historical P1/P2 only: `_STATUS.md` was set to `INITIALIZED` after initial authoring. Phase 2.5 P3_ONLY uses NO_STATUS_TOUCH. |
-| Current scope remains future-boundary. | Required by `docs/SPEC.md` §18 and dispatch instruction. |
+| Authoritative references are accessible. | Satisfied: `_REFERENCES.md` includes REF-008 for framework `AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. |
+| Framework precedence is known. | Satisfied: D-T0-01 makes framework-root `AGENT_DOMAIN_ENGINE.md` canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. |
+| Current status posture is preserved. | Required: `_STATUS.md` remains `CHECKING`; this tranche does not perform issuance or release readiness. |
+| Current scope remains future-boundary. | Required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and D-APP-39 F3. |
 
 ## Steps
 
@@ -20,59 +20,64 @@ Define the bounded procedure for producing and later maintaining the future `Dom
    - DeliverableID: DEL-10-01.
    - ResponsibleParty: TBD.
    - Type: API_CONTRACT.
-   - Scope: future profile contract for engine identity, protected paths, proposal paths, operations, manifests, and boundary notices.
+   - Scope: future profile contract for engine identity, integration level, path/artifact roles, deterministic tools, operation-proposal contract, and professional boundary.
 
 2. Confirm source posture from `_REFERENCES.md`.
-   - Use matching source hashes as normal source evidence.
-   - Treat PRD hash mismatch as source warning only, per dispatch instruction.
-   - Before downstream reliance on PRD-dependent assertions, require either refreshed matching PRD reference metadata or an explicit human ruling accepting the recorded mismatch.
+   - Use REF-008 as the canonical persona/profile source.
+   - Use app-dev `docs/TYPES.md` Section 11 only as the local vocabulary target conforming to REF-008.
    - Do not create `Dependencies.csv`.
 
-3. Read source slices for domain-engine future boundary.
-   - `docs/CONTRACT.md` §1.10 for K-DOMAIN invariants.
-   - `docs/SPEC.md` §18 for provisional future endpoint/tool boundary.
-   - `docs/TYPES.md` §11 for `DomainEngineProfile` and related vocabulary.
-   - `docs/PLAN.md` §R7 for future-amendment sequencing.
-   - `docs/PRD.md` §8.17 for FR-106 through FR-115, with source warning.
+3. Read source slices for the domain-engine future boundary.
+   - `agents/AGENT_DOMAIN_ENGINE.md` at `77a327727` for Minimal Profile Shape, valid operation proposal table, lifecycle, and `operation_proposal_contract`.
+   - `docs/CONTRACT.md` Section 1.10 for app-dev K-DOMAIN invariants, which specialize framework `docs/CONTRACT.md` Section 1.12 without weakening it.
+   - `docs/SPEC.md` Section 18 for provisional future endpoint/tool boundary.
+   - `docs/TYPES.md` Section 11 for app-dev vocabulary.
+   - `docs/PLAN.md` R7 for future-amendment sequencing.
+   - `docs/PRD.md` Section 8.17 for FR-106 through FR-115.
    - Decomposition PKG-10 / DEL-10-01 entry for local scope.
 
 4. Draft or maintain the profile contract.
-   - Preserve the `DomainEngineProfile` fields defined in `docs/TYPES.md` §11.1.
-   - Keep `DomainEngineOperationDescriptor` as TBD until an authoritative descriptor schema exists.
-   - Keep `manifestRules` schema as TBD until an authoritative manifest-rule schema exists.
-   - Include validation notes for deterministic validation and future runtime exposure checks.
-   - If dependency satisfaction remains TBD, proceed only as a draft-maintenance action and do not claim closure or downstream readiness without a recorded human acceptance of the dependency posture.
+   - Preserve canonical identity fields: `schema_version`, `id`, `name`, `engine_type`, and `profile_version`.
+   - Preserve canonical `ProfileStatus`: `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`.
+   - Preserve canonical `IntegrationLevel`: `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE`.
+   - Preserve path/artifact role fields: `domain_root_patterns`, `authoritative_artifacts`, `chirality_readable_artifacts`, `protected_write_paths`, and `agent_writable_paths`.
+   - Preserve deterministic tool fields, including `validate_result_schema` and `apply_result_schema`.
+   - Preserve `operation_proposal_contract`, including lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements.
+   - Preserve structured `professional_boundary`.
 
-5. Preserve future-boundary constraints.
+5. Mark only true future implementation details as `TBD`.
+   - Concrete profile instances.
+   - Concrete schema refs for validation/apply/deterministic-check results.
+   - Adapters, MCP tools, stores, endpoint handlers, protected-path hooks, and apply tooling.
+   - Concrete boundary notice copy for each accepted profile instance.
+
+6. Preserve future-boundary constraints.
    - Do not implement candidate endpoints.
    - Do not define executable tool behavior.
    - Do not authorize direct protected-path writes.
-   - Do not represent domain output as professional approval, code compliance, external validation, or Chirality-owned solver truth.
+   - Do not represent domain output as professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth.
 
-6. Cross-check documents.
-   - Confirm the four documents use consistent terms: `DomainEngineProfile`, protected path, proposal path, deterministic adapter, OperationProposal, boundary notice.
-   - Confirm requirements in `Specification.md` have verification hooks in this procedure.
-   - Confirm unresolved schema details appear as TBD or conflict-table entries.
+7. Cross-check documents.
+   - Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` use consistent canonical terms.
+   - Confirm DEL-10-03 uses the same lifecycle and proposal contract fields.
+   - Confirm old compact-draft blockers are not reintroduced as unresolved human-ruling blockers.
 
-7. Close or record the run according to phase policy.
-   - Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` are all present and non-empty.
-   - For P1/P2 only: if all four are non-empty and current state is `OPEN`, update `_STATUS.md` to `INITIALIZED`.
-   - For Phase 2.5 P3_ONLY with NO_STATUS_TOUCH: do not modify `_STATUS.md`; record P3 dispositions and validation results in the run record.
-   - If accepted upstream dependency status remains unresolved, leave closure/downstream readiness as TBD unless a human ruling authorizes proceeding. Disposition: C-001 incorporated for status-policy normalization; F-001 incorporated for dependency-gate handling. Source reread: `_STATUS.md` Current State; `_DEPENDENCIES.md` Declared Upstream and SatisfactionStatus.
-   - Record this TASK run in `_run_records/`.
+8. Record the run without lifecycle transition.
+   - Keep `_STATUS.md` unchanged.
+   - Record conformance notes in `MEMORY.md` and coordination closeout.
+   - Let D-APP-38 reconciliation update authority-corpus hashes after authority-doc edits.
 
 ## Verification
 
 | Check | Expected result |
 |---|---|
 | Four document files | Present and non-empty. |
-| Status state | `INITIALIZED` only after eligible P1/P2 authoring; unchanged during Phase 2.5 P3_ONLY NO_STATUS_TOUCH runs. |
+| Status state | `_STATUS.md` remains `CHECKING`; no `ISSUED` transition is claimed. |
 | Responsible party | Remains `TBD`. |
-| Future-boundary language | Present in all documents where scope or implementation posture is discussed. |
-| Schema gaps | `DomainEngineOperationDescriptor` and `manifestRules` details remain TBD or conflict-listed. |
+| Canon conformance | Profile vocabulary includes REF-008 identity, status, integration, path role, deterministic-tool, operation-proposal, and professional-boundary fields. |
+| True TBD posture | Concrete profiles, concrete schema refs, adapters, stores, path hooks, and apply tooling remain `TBD`. |
 | Dependency register | `Dependencies.csv` is not created by this run. |
-| Dependency gate | If dependency satisfaction remains TBD, run records must say whether work is draft-only, human-accepted for continuation, or blocked for closure. |
-| Implementation activation | No domain-engine endpoint, tool, adapter, or protected-path write implementation is activated. |
+| Implementation activation | No domain-engine source type, endpoint, MCP tool, adapter, operation store, apply workflow, or protected-path write implementation is activated. |
 
 ## Records
 
@@ -80,5 +85,6 @@ Define the bounded procedure for producing and later maintaining the future `Dom
 - `Specification.md`
 - `Guidance.md`
 - `Procedure.md`
+- `MEMORY.md`
 - `_STATUS.md`
-- `_run_records/TASK_RUN_2026-05-20_1623.md`
+- D-APP-45 closeout packet

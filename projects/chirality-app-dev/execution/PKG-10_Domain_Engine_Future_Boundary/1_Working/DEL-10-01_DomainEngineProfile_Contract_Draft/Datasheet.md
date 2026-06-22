@@ -19,52 +19,78 @@
 
 | Attribute | Value | Source |
 |---|---|---|
-| Contract subject | Future `DomainEngineProfile` profile contract | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-10; `docs/TYPES.md` §11.1 |
-| Required profile identity fields | `profileId`, `engineName`, optional `engineVersion` | `docs/TYPES.md` §11.1 |
-| Required boundary/path fields | `protectedPaths`, `proposalPaths` | `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108, FR-110, FR-111 |
-| Required artifact and operation fields | `artifactTypes`, `operations` | `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108 |
-| Required manifest and notice fields | `manifestRules`, `boundaryNotice` | `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108, FR-115 |
-| Operation descriptor schema | TBD. `DomainEngineOperationDescriptor[]` is referenced, but no descriptor interface is defined in accessible sources. | `docs/TYPES.md` §11.1 |
-| Manifest rule schema | TBD. `manifestRules` is typed as `unknown` in the accessible vocabulary source. | `docs/TYPES.md` §11.1 |
+| Contract subject | Future `DomainEngineProfile` profile contract conforming to framework-root canon at `77a327727`. | `_CONTEXT.md`; `_REFERENCES.md` REF-008; `docs/TYPES.md` §11.1 |
+| Canonical identity fields | `schema_version`, `id`, `name`, `engine_type`, `profile_version`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
+| Profile lifecycle fields | `profile_status` using `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`; `integration_level` using `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
+| Path and artifact role fields | `domain_root_patterns`, `authoritative_artifacts`, `chirality_readable_artifacts`, `protected_write_paths`, `agent_writable_paths`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/CONTRACT.md` §1.10 |
+| Tool contract fields | `deterministic_tools[].id`, `mode`, `requires_human_confirmation`, `validate_result_schema`, and `apply_result_schema`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
+| Proposal contract field | `operation_proposal_contract` with lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
+| Professional boundary field | Structured `professional_boundary.agent_must_not_claim` list. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/CONTRACT.md` §1.10 K-DOMAIN-4 |
+| True future TBDs | Concrete profile instances, concrete schema refs, adapter implementations, tool stores, operation stores, and apply tooling remain TBD until governed amendment. | `docs/PLAN.md` §R7; `docs/SPEC.md` §18 |
 
 ## Conditions
 
 | Condition | Value | Source |
 |---|---|---|
-| Release scope | Domain-engine endpoints and tools are provisional future platform interfaces and must not be implemented as current-release scope. | `docs/SPEC.md` §18 |
-| Sequencing | Domain Engine Profiles and operation-proposal workflows are introduced after core harness stability. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
+| Release scope | Domain-engine endpoints, source types, MCP tools, path hooks, and runtime domain execution are provisional future platform interfaces and must not be implemented as current-release scope. | `docs/SPEC.md` §18; D-APP-39 F3 |
+| Sequencing | Domain Engine Profiles and operation-proposal workflows are introduced only through a future governed amendment. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
 | Engine-specific integration | A generic `DomainEngineProfile` contract precedes any engine-specific integration. | `docs/PRD.md` §8.17 FR-107 |
-| Protected path posture | Protected domain paths are write-quarantined; agents write proposals, summaries, and review aids, not protected model truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110, FR-111 |
-| Human gate posture | Applying a domain operation requires explicit human acceptance. | `docs/SPEC.md` §18; `docs/PRD.md` §8.17 FR-113 |
-| Professional boundary | Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/PRD.md` §8.17 FR-115 |
-| PRD source status | Source warning: `_REFERENCES.md` records a PRD hash mismatch. This draft treats PRD content as available source with warning, per dispatch instruction. | `_REFERENCES.md`; dispatch instruction |
+| Protected path posture | Protected domain paths are write-quarantined; agents write proposals, summaries, and review aids only under profile-approved `agent_writable_paths`. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; REF-008 |
+| Human gate posture | Accepted/applied proposal transitions require human approval bound to git SHA per K-AUTH-2 and domain-engine-controlled apply or external terminal acceptance records. | `docs/CONTRACT.md` §1.10 K-DOMAIN-3; REF-008 |
+| Professional boundary | Domain-engine outputs must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality. | `docs/CONTRACT.md` §1.10 K-DOMAIN-4; REF-008 |
 
 ## Construction
 
-### Draft TypeScript Shape
+### Canonical Profile Shape
 
-```ts
-interface DomainEngineProfile {
-  profileId: string;
-  engineName: string;
-  engineVersion?: string;
-  protectedPaths: string[];
-  proposalPaths: string[];
-  artifactTypes: string[];
-  operations: DomainEngineOperationDescriptor[];
-  manifestRules: unknown;
-  boundaryNotice: string;
-}
+```yaml
+domain_profile:
+  schema_version: "1.0"
+  id: "<domain_engine_id>"
+  name: "<Domain Engine Name>"
+  engine_type: "<domain classification>"
+  profile_version: "0.1"
+  profile_status: "DRAFT"
+  integration_level: "MANUAL_BRIDGE"
+  domain_root_patterns:
+    - "<path or glob>"
+  authoritative_artifacts:
+    - "<engine-owned path or glob>"
+  chirality_readable_artifacts:
+    - "<manifest/summary/report path or glob>"
+  protected_write_paths:
+    - "<agent-prohibited path or glob>"
+  agent_writable_paths:
+    - "<proposal/review/checklist path or glob>"
+  deterministic_tools:
+    - id: "<tool.id>"
+      mode: "read_only"
+      requires_human_confirmation: false
+      validate_result_schema: "<schema ref or TBD>"
+      apply_result_schema: "<schema ref or TBD>"
+  operation_proposal_contract:
+    lifecycle: ["draft", "ready_for_review", "accepted", "rejected", "applied"]
+    risk_classes: ["engine_checkable", "engine_silent"]
+    deterministic_check_result_schema: "<schema ref or TBD>"
+    accepted_or_applied_requires:
+      - "human approval bound to git SHA per K-AUTH-2"
+      - "domain-engine-controlled apply or external terminal acceptance record"
+  professional_boundary:
+    agent_must_not_claim:
+      - "code compliant for reliance"
+      - "professionally approved"
+      - "externally validated"
 ```
 
-Source: `docs/TYPES.md` §11.1.
+Source: `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727` and reflected in `docs/TYPES.md` §11.1.
 
 ### Validation Notes
 
 | Check | Draft rule | Source |
 |---|---|---|
-| Required fields present | A future validator should reject profiles missing identity, path, artifact, operation, manifest, or boundary-notice fields. | `docs/PRD.md` §8.17 FR-108, FR-109 |
-| Deterministic validation | Profile validation must be deterministic before runtime exposure. | `docs/PRD.md` §8.17 FR-109 |
+| Required fields present | A future validator should reject profiles missing identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, or professional-boundary fields. | REF-008; `docs/PRD.md` §8.17 FR-108, FR-109 |
+| Deterministic validation | Profile validation must be deterministic before runtime exposure. | `docs/PRD.md` §8.17 FR-109; D-T0-06 |
+| Result schema refs | Missing `validate_result_schema`, `apply_result_schema`, or deterministic-check result schemas remain explicit `TBD`; chat must not infer them. | REF-008 |
 | Future-only exposure | Candidate domain endpoints/tools must remain provisional until governed future amendment. | `docs/SPEC.md` §18 |
 | Solver separation | Profile contract must preserve that domain engines own authoritative domain truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-1 |
 
@@ -74,8 +100,9 @@ Source: `docs/TYPES.md` §11.1.
 - `_REFERENCES.md`
 - `_DEPENDENCIES.md`
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-10, SOW-066, SOW-067, DEC-006
+- `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`
 - `docs/CONTRACT.md` §1.10
 - `docs/SPEC.md` §18
 - `docs/TYPES.md` §11
 - `docs/PLAN.md` §R7
-- `docs/PRD.md` §8.17, §10.10, §R7, KG-016 through KG-020; source warning: hash mismatch recorded in `_REFERENCES.md`
+- `docs/PRD.md` §8.17, §10.10, §R7, KG-016 through KG-020

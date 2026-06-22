@@ -2,48 +2,50 @@
 
 ## Scope
 
-This deliverable defines a future-boundary data model and review workflow for `OperationProposal` records. It covers the proposal record shape, required human-gate posture, and review checklist for future domain-engine operations.
+This deliverable defines a future-boundary data model and review workflow for `OperationProposal` records. It covers the proposal record shape, proposal-only status, lifecycle, K-AUTH-2-bound human gate, deterministic result-schema hooks, and review checklist for future domain-engine operations.
 
-This deliverable excludes current-release domain operation execution, domain adapter implementation, protected-path enforcement implementation, and any claim that Chirality owns solver truth. Those items remain future amendment or sibling-deliverable scope.
+This deliverable excludes current-release domain operation execution, source types, domain MCP tools, domain adapter implementation, protected-path enforcement implementation, operation stores, apply tooling, and any claim that Chirality owns solver truth. Those items remain future amendment or sibling-deliverable scope.
+
+Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
 
 ## Requirements
 
 | ID | Requirement | Source | Verification |
 |---|---|---|---|
-| REQ-10-03-001 | The future operation proposal record MUST include the fields defined for `OperationProposal`: `proposalId`, `profileId`, `operationName`, `createdAt`, `createdBy`, `inputRefs`, `intendedChanges`, `deterministicChecks`, `expectedOutputRefs`, `risks`, `requiredHumanGate`, and `status`. | `docs/TYPES.md` Section 11.2 | Compare proposed schema/checklist against the field list. |
-| REQ-10-03-002 | The future operation proposal status values MUST remain `draft`, `ready_for_review`, `accepted`, `rejected`, and `applied` unless amended through governed change. | `docs/TYPES.md` Section 11.2 | Confirm status enum values in proposal record documentation. |
+| REQ-10-03-001 | The future `OperationProposal` record MUST include the canonical fields: `proposal_id`, `profile_id`, `base_state`, `operation_name`, `status`, `lifecycle`, `created_at`, `created_by`, `input_refs`, `intended_changes`, `deterministic_checks`, `expected_output_refs`, `risks`, `assumptions`, `blockers`, `boundary_notice`, `required_human_gate`, `operation_risk_class`, `provenance_on_judgment_values`, and `storage_path`. | REF-008; `docs/TYPES.md` Section 11.2 | Compare proposed schema/checklist against the field table. |
+| REQ-10-03-002 | `status` MUST be `proposal_only`; lifecycle MUST use `draft | ready_for_review | accepted | rejected | applied`. | REF-008; `docs/TYPES.md` Section 11.2 | Confirm proposal records distinguish status from lifecycle. |
 | REQ-10-03-003 | Domain operations MUST be represented as `OperationProposal` records before application. | `docs/PRD.md` Section 8.17 FR-112; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 | Review workflow has a proposal-record step before any apply step. |
-| REQ-10-03-004 | Applying a domain operation MUST require explicit human acceptance. | `docs/PRD.md` Section 8.17 FR-113; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 | Review checklist requires a human gate before application. |
-| REQ-10-03-005 | Proposal records MUST identify inputs, intended changes, deterministic checks, expected outputs, risks, and required human gates. | `docs/PRD.md` Section 8.17 FR-112; `docs/TYPES.md` Section 11.2 | Required fields are present and non-empty or marked `TBD` before review. |
-| REQ-10-03-006 | Agents MUST write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17 FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Review checklist confirms proposed outputs target proposal/review paths, not protected paths. |
-| REQ-10-03-007 | Domain-engine outputs MUST NOT be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 | Review checklist includes professional-boundary copy check. |
-| REQ-10-03-008 | ASSUMPTION: A proposal should not reach `applied` status without a successful deterministic adapter/application workflow and recorded human acceptance. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` future domain endpoints note | Human ruling required before treating this as accepted lifecycle semantics. |
-| REQ-10-03-009 | Human acceptance evidence MUST remain a named `TBD` implementation blocker until the accepted artifact format, actor/authority field, timestamp rule, and proposal identifier binding are defined. | `docs/PRD.md` Section 8.17 FR-113; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3; `_SEMANTIC_LENSING.md` A-001/X-001 | Review checklist blocks application when the acceptance evidence artifact or `requiredHumanGate` value is unresolved. |
-| REQ-10-03-010 | Deterministic check evidence MUST remain a named `TBD` implementation blocker until the result payload, pass/fail semantics, adapter/profile reference, and provenance location are defined. | `docs/PRD.md` Section 8.17 FR-112; `docs/TYPES.md` Section 11.2; `_SEMANTIC_LENSING.md` F-001/D-001 | Review checklist blocks review closure when deterministic check result records or adapter apply results are unresolved. |
-| REQ-10-03-011 | Review sufficiency evidence MUST identify a future review-checklist artifact that records schema completeness, boundary-language review, protected-path posture, human-gate status, and unresolved `TBD` blockers. | `docs/PRD.md` Section 8.17 FR-110 through FR-115; `docs/CONTRACT.md` Section 1.10; `_SEMANTIC_LENSING.md` X-002 | Review closure requires a checklist result artifact or explicit `TBD` blocker. |
+| REQ-10-03-004 | Accepted/applied lifecycle states MUST require explicit human approval bound to git SHA per K-AUTH-2. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 | Review checklist requires K-AUTH-2 evidence before accepted/applied states. |
+| REQ-10-03-005 | Applied lifecycle state MUST also require domain-engine-controlled apply or an external terminal acceptance record. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 | Future apply workflow records an engine-controlled or external terminal result; absent implementation remains `TBD`. |
+| REQ-10-03-006 | Proposal records MUST identify inputs, intended changes, deterministic checks, expected outputs, risks, assumptions, blockers, boundary notice, required gate, risk class, judgment-value provenance, and storage path. | REF-008; `docs/TYPES.md` Section 11.2 | Required fields are present and non-empty or explicitly `TBD` before review. |
+| REQ-10-03-007 | Deterministic checks MUST resolve against profile-declared schema hooks: `validate_result_schema`, `apply_result_schema`, and `deterministic_check_result_schema`. | REF-008; `docs/TYPES.md` Section 11.1 | Review checklist blocks implementation readiness when concrete schema refs are missing. |
+| REQ-10-03-008 | Agents MUST write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17 FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Review checklist confirms proposed outputs target proposal/review paths, not protected paths. |
+| REQ-10-03-009 | Domain-engine outputs MUST NOT be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 | Review checklist includes professional-boundary copy check. |
+| REQ-10-03-010 | Concrete evidence artifacts remain future implementation TBDs until accepted: profile instances, concrete schema refs, adapters, operation store, apply tooling, and review-checklist artifact path/schema. | `docs/PLAN.md` R7; `docs/SPEC.md` Section 18; REF-008 | Documentation preserves TBDs for concrete implementation artifacts without weakening canonical lifecycle semantics. |
 
 ## Standards
 
 | Standard or Source | Applicability |
 |---|---|
-| `docs/TYPES.md` Section 11.2 | Authoritative local vocabulary and target shape for `OperationProposal`. |
-| `docs/PRD.md` Section 8.17 | Product requirements for future domain-engine compatibility. Source warning: hash mismatch recorded in `_REFERENCES.md`; invocation permits use as warning-only. |
-| `docs/CONTRACT.md` Section 1.10 | Binding invariants for domain-engine future scope. |
-| `docs/SPEC.md` domain endpoint list and future profile note | Future API surface context; endpoint behavior details are TBD. |
+| `agents/AGENT_DOMAIN_ENGINE.md` at `77a327727` | Canonical operation-proposal field table, lifecycle, human gate, result-schema hooks, and boundary posture. |
+| `docs/TYPES.md` Section 11.2 | App-dev vocabulary target conforming to framework canon. |
+| `docs/PRD.md` Section 8.17 | Product requirements for future domain-engine compatibility. |
+| `docs/CONTRACT.md` Section 1.10 | Binding app-dev invariants specializing framework K-DOMAIN without weakening it. |
+| `docs/SPEC.md` Section 18 | Future API surface context; endpoint behavior details remain gated. |
 
 ## Verification
 
 | Check | Method | Result Target |
 |---|---|---|
-| Schema completeness | Verify every `OperationProposal` field from `docs/TYPES.md` Section 11.2 appears in the record shape or checklist. | PASS/TBD |
-| Status integrity | Verify status values match the enum in `docs/TYPES.md`. | PASS/TBD |
-| Human gate | Verify every apply path requires explicit human acceptance. | PASS/TBD |
+| Schema completeness | Verify every canonical `OperationProposal` field appears in the record shape or checklist. | PASS/TBD |
+| Status/lifecycle integrity | Verify `status = proposal_only` and lifecycle values match REF-008. | PASS/TBD |
+| Human gate | Verify accepted/applied states require K-AUTH-2-bound human approval. | PASS/TBD |
+| Apply result posture | Verify applied state also requires domain-engine-controlled apply or external terminal acceptance record, or remains blocked as implementation `TBD`. | PASS/TBD |
+| Result schema hooks | Verify future deterministic checks reference profile-level validation/apply/check result schema hooks. | PASS/TBD |
 | Protected path posture | Verify proposal outputs do not directly modify protected domain-engine paths. | PASS/TBD |
-| Boundary language | Verify no text claims Chirality approves, validates, or owns solver truth. | PASS/TBD |
+| Boundary language | Verify no text claims Chirality approves, certifies, code-validates, externally validates, seals, authenticates, or owns solver truth. | PASS/TBD |
 | Future-boundary constraint | Verify implementation activation is excluded until governed amendment. | PASS/TBD |
-| Acceptance evidence | Verify the acceptance/rejection artifact format, actor/authority, timestamp, and proposal binding are defined or explicitly blocked as `TBD`. | PASS/TBD |
-| Deterministic result evidence | Verify deterministic check result payload and adapter validation/apply result schema are defined or explicitly blocked as `TBD`. | PASS/TBD |
-| Review sufficiency evidence | Verify a review-checklist result artifact records boundary-language, protected-path, human-gate, and unresolved-blocker findings. | PASS/TBD |
+| Review sufficiency evidence | Verify a future review-checklist result artifact is identified as a true implementation `TBD`, not as an unresolved framework blocker. | PASS/TBD |
 
 ## Documentation
 
@@ -56,9 +58,9 @@ Required artifacts for this deliverable:
 Additional documentation needed before implementation:
 
 - TBD: exact proposal ID generation semantics.
-- TBD: human acceptance evidence format, including actor/authority field, timestamp rule, proposal identifier binding, and accepted/rejected value pattern.
-- TBD: exact `requiredHumanGate` value vocabulary and relationship to the human acceptance evidence artifact.
-- TBD: deterministic check result schema, including check name, adapter/profile reference, pass/fail result, evidence path, and failure reason field.
-- TBD: adapter validation/apply result schema, including operation identifier, accepted proposal reference, output references, and failure/rollback note.
-- TBD: review checklist result artifact that substantiates protected-path posture, boundary-language review, human-gate readiness, deterministic check readiness, and unresolved blockers.
-- TBD: relationship between `requiredHumanGate` and broader lifecycle approval SHA semantics.
+- TBD: concrete `DomainEngineProfile` instance for the target engine.
+- TBD: concrete `validate_result_schema`, `apply_result_schema`, and `deterministic_check_result_schema` refs.
+- TBD: operation store and `storage_path` convention.
+- TBD: adapter validation/apply tooling and result-record location.
+- TBD: review checklist result artifact path/schema.
+- TBD: concrete proposal instances and profile-specific boundary notice copy.
