@@ -31,7 +31,7 @@
 
 ## Gate and Non-Claims
 
-These edits are not ratified governance until the human approves and CHANGE publishes the commit. This note does not claim professional approval, external validation, profile adoption, or an accepted engineering state. `K-AUTH-1` and `K-AUTH-2` still apply; approval binds to the eventual published SHA, not to this draft note.
+These edits are **published** at `77a327727` but are **not yet ratified governance** — root `docs/CONTRACT.md` is DRAFT-pending-ratification per its own header, and its K-DOMAIN additions ride that broader ratification. This note does not claim professional approval, external validation, profile adoption, or an accepted engineering state. `K-AUTH-1` and `K-AUTH-2` apply; approval binds to the published SHA `77a327727`.
 
 ## Follow-Ons Deferred to App-Dev Loop
 
