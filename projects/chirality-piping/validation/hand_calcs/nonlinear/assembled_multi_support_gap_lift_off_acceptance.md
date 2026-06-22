@@ -1,12 +1,11 @@
-# Assembled Multi-Support Multi-DOF Acceptance Fixture
+# Assembled Multi-Support Gap/Lift-Off Acceptance Fixture
 
 ## Purpose
 
-This note documents `NL-ASSEMBLED-MULTI-DOF-MULTI-SUPPORT-ACCEPTED-ORIGINAL`,
-an invented assembled nonlinear validation fixture that exercises two nonlinear
-supports on two translational tip DOFs in one frame solve. It is a narrow
-non-seed acceptance companion to the observation-only multi-support depth
-fixture and part of the accepted multi-support validation fixture set.
+This note documents `NL-ASSEMBLED-MULTI-DOF-GAP-LIFT-OFF-ACCEPTED-ORIGINAL`,
+an invented assembled nonlinear validation fixture that exercises lift-off
+release on `Ux` and gap closure on `Uy` in one frame solve. It is a narrow
+non-seed acceptance companion in the multi-support validation fixture set.
 
 ## Provenance
 
@@ -22,10 +21,10 @@ fixture and part of the accepted multi-support validation fixture set.
 |---|---:|---|---|
 | Tip axial force | 10.0 | N | force |
 | Tip transverse force | 1.0 | N | force |
-| One-way support DOF | Ux | label | dimensionless |
+| Lift-off support DOF | Ux | label | dimensionless |
 | Gap support DOF | Uy | label | dimensionless |
 | Gap clearance | 0.0002 | mm | length |
-| Initial one-way state | active | label | dimensionless |
+| Initial lift-off state | active | label | dimensionless |
 | Initial gap state | inactive | label | dimensionless |
 | Active-set policy reference | DEC-046-CV-B-multisupport-active-set-count-validation-v1 | label | dimensionless |
 | Free-DOF force/moment policy reference | DEC-046-CV-B-multisupport-free-dof-force-moment-residual-validation-v1 | label | dimensionless |
@@ -41,16 +40,16 @@ fixture and part of the accepted multi-support validation fixture set.
 | Free-DOF force residual | 0.0 | N | force |
 | Free-DOF moment residual | 0.0 | N-m | moment |
 | Final free-DOF work residual | 0.0 | N-m | moment |
-| Final one-way state | inactive | label | dimensionless |
+| Final lift-off state | inactive | label | dimensionless |
 | Final gap state | active | label | dimensionless |
 | Expected convergence flag | true | label | dimensionless |
 | Expected diagnostic | none | label | dimensionless |
 
-This fixture demonstrates a narrow accepted multi-support / multi-DOF
-validation policy under `DEC-046`, including final-iteration free-DOF residual
-work products. It does not promote displacement-delta, reaction-delta, general
-energy, sparse default, product-preview, release, external validation, or CI
-thresholds.
+This fixture broadens the accepted multi-support / multi-DOF evidence set under
+`DEC-046` from the one-way/gap companion to a lift-off/gap companion while
+preserving the same narrow threshold scope. It does not promote
+displacement-delta, reaction-delta, general energy, sparse default,
+product-preview, release, external validation, or CI thresholds.
 
 Tolerance policy: `DEC-046-CV-B-multisupport-active-set-count-validation-v1`.
 Free-DOF force/moment residual policy: `DEC-046-CV-B-multisupport-free-dof-force-moment-residual-validation-v1`.
