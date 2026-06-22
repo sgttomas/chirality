@@ -23,13 +23,14 @@ The owner ruled all 8 tier-0 decisions in-session on 2026-06-21. This file is th
 
 **Tier-2 (piping loop):** DEC-042-sanctioned prep only (validate-only trust-probe, surface-reconciliation, headless CLI entrypoint). **D-21 still held.**
 
-## `RES-RECONCILE` — required follow-on from D-T0-04 (other loops own these)
+## `RES-RECONCILE` — RESOLVED 2026-06-21 (both halves published + tier-0-verified)
 
-The open-residency ruling **supersedes**, but tier-0 **cannot edit**, two working-root fences. Their loops must reconcile them to the ruling:
-- **app-dev fence F1** (provider/network beyond Anthropic; PRD `FR-089`/`FR-125` P0 deny) → app-dev loop amends/repositions F1.
-- **piping `OPS-K-PRIV-1` + no-required-network + `IP_AND_DATA_BOUNDARY`** → piping loop reconciles its privacy posture.
+The open-residency ruling required two working-root fences to be reconciled by their own loops (tier-0 cannot edit them). Both are now done, published, and verified cold against their committed diffs:
 
-Until reconciled, those fences and this ruling **conflict on record** (surfaced, not silently resolved — K-CONFLICT-1). Live binding must not proceed against an unreconciled fence.
+- **app-dev fence F1** → **`D-APP-44` @ `d83e63b95`**: F1 amended from a categorical hard-deny to an **owner-permitted, default-closed** provider/residency configuration (egress only under explicit owner config; harness never auto-egresses). F2/F3/F4 + K-AUTH intact; scope clean.
+- **piping `OPS-K-PRIV-1` / SPEC §4.4 / `IP_AND_DATA_BOUNDARY`** → **`DEC-051` @ `9db0eef27`**: provider-channel residency relaxed; **`OPS-K-IP-1/2/3` + `IP_AND_DATA_BOUNDARY` + telemetry-off preserved** (verified: IP rows untouched, boundary doc additions-only, `PROFESSIONAL_BOUNDARY.md` not touched).
+
+**Net posture (owner-confirmed 2026-06-21): keep default-closed.** OPEN residency; the harness (which owns the egress layer) is default-closed and egresses only under an explicit owner provider/residency config; the engine adds no independent guard or indicator; telemetry stays off. The two repos' wordings differ but are complementary — the harness config is the single control point. The K-CONFLICT-1 conflict-on-record is **cleared**; residency is no longer a live-build blocker.
 
 ## Still gating the LIVE build (unchanged by these rulings)
 

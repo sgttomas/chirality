@@ -17,7 +17,11 @@ domain_profile:
   profile_version: "0.1-DRAFT"
   profile_status: "DRAFT"        # NONE|DRAFT|VALIDATED|ADOPTED|STALE|INVALID|UNKNOWN (see D-T0-02 / FM-01)
   integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
-  data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked. See RES-RECONCILE in open_issues.
+  data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked.
+  data_residency_reconciliation:        # RES-RECONCILE RESOLVED 2026-06-21 (net posture confirmed by owner: keep default-closed)
+    net_posture: "OPEN; harness default-closed — egress only under an explicit owner provider/residency config; engine adds no independent guard; telemetry off"
+    app_dev: "D-APP-44 @ d83e63b95 — F1 amended to owner-permitted, default-closed; never auto-egresses (F2/F3/F4 + K-AUTH intact)"
+    piping: "DEC-051 @ 9db0eef27 — OPS-K-PRIV-1 relaxed for the provider channel only; OPS-K-IP-1/2/3 + IP_AND_DATA_BOUNDARY + telemetry-off preserved"
 
   domain_root_patterns:
     - "projects/chirality-piping/**"
@@ -107,4 +111,4 @@ domain_profile:
     - "Readable run/state/comparison instances are TBD (schemas exist; artifacts produced on demand)."
     - "operation_risk_class is proposed (engine-checkable vs engine-silent; D-T0-03), not yet implemented in the engine."
     - "Live binding (L2-L3) gated x4: tier-0 adoption, app-dev F3, piping D-21, DEC-041 automation condition (residency is NOT a blocker post D-T0-04)."
-    - "RES-RECONCILE (from D-T0-04 open-residency ruling): app-dev fence F1 + piping OPS-K-PRIV-1/no-required-network/IP_AND_DATA_BOUNDARY must be reconciled to the ruling by their OWN loops; tier-0 cannot edit them. They conflict with the ruling on record until then."
+    - "RES-RECONCILE: RESOLVED 2026-06-21 (both halves published) — app-dev F1 via D-APP-44 @ d83e63b95; piping OPS-K-PRIV-1/SPEC §4.4/IP_AND_DATA_BOUNDARY via DEC-051 @ 9db0eef27. Net posture default-closed (see data_residency_reconciliation). No longer an open issue."
