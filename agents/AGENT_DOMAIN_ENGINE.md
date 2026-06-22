@@ -194,7 +194,7 @@ Actions:
    - `BOUNDARY_AUDIT`
    - `FRAMEWORK_EXTENSION`
 3. Identify whether the work is project-runtime work or framework-maintenance work.
-4. State known profile status: `NONE | DRAFT | VALIDATED | ADOPTED | STALE | UNKNOWN`.
+4. State known profile status: `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`.
 5. Surface missing prerequisites as `TBD`.
 
 Gate 1 question:
@@ -375,7 +375,10 @@ A profile is valid for governed use when it declares:
 | `deterministic_tools` | Declared tool IDs, modes, schemas, and human confirmation requirements |
 | `professional_boundary` | Prohibited claims and required notices |
 
-If any required field is missing, the profile status is `DRAFT` or `INVALID`, not `ADOPTED`.
+If any required field is missing, the profile status is `DRAFT` (incomplete but well-formed)
+or `INVALID` (present but malformed or non-conforming), not `ADOPTED`. Use `UNKNOWN`
+only at intake before the profile has been discovered or scanned; use `NONE` when no
+profile exists.
 
 ### Valid Domain Tool Invocation
 
@@ -394,14 +397,35 @@ A domain tool invocation is valid when:
 
 An operation proposal is valid for review when:
 
-1. It has a stable proposal ID.
-2. It names its base model state or domain state, if applicable.
-3. It states `status: proposal_only`.
-4. It cites evidence such as manifests, warnings, run IDs, comparison IDs, or file paths.
-5. It lists unresolved assumptions and blockers.
-6. It contains professional-boundary language.
-7. It lives under a profile-approved agent-writable path.
-8. It has not been represented as accepted domain truth.
+| Field | Requirement |
+|---|---|
+| `proposal_id` | Stable proposal ID. |
+| `profile_id` | Stable ID of the active domain engine profile. |
+| `base_state` | Base model state or domain state, if applicable; otherwise explicit `TBD`. |
+| `operation_name` | Declared operation name from the active profile or deterministic tool contract. |
+| `status` | `proposal_only` until validated by declared deterministic checks and human-accepted. |
+| `lifecycle` | One of `draft | ready_for_review | accepted | rejected | applied`. `proposal_only` covers `draft` and `ready_for_review`; `accepted` and `applied` require a human approval record bound to a git SHA per K-AUTH-2 and, where the engine has a terminal human-accepted lifecycle state, that external record. |
+| `created_at` | Creation timestamp. |
+| `created_by` | Actor that created the proposal. |
+| `input_refs` | Evidence references such as manifests, warnings, run IDs, comparison IDs, schema refs, or file paths. |
+| `intended_changes` | Proposed domain changes, each bounded to the profile and operation. |
+| `deterministic_checks` | Declared checks to run before review or application, with result schema refs or explicit `TBD`. |
+| `expected_output_refs` | Expected artifacts, IDs, summaries, validation records, or export refs. |
+| `risks` | Known risks, including whether the operation can be fully checked by the engine. |
+| `assumptions` | Unresolved assumptions, distinct from risks. |
+| `blockers` | Unresolved blockers preventing acceptance or application. |
+| `boundary_notice` | Professional-boundary language preventing claims of approval, certification, sealing, code compliance, ready-for-construction status, or external validation absent a cited human authoritative record. |
+| `required_human_gate` | Gate token for the human-owned accept/reject decision; accepted/applied transitions bind to a git SHA per K-AUTH-2. |
+| `operation_risk_class` | One of `engine_checkable | engine_silent`. Use `engine_silent` when correctness depends on judgment values or premises the engine cannot independently verify. |
+| `provenance_on_judgment_values` | Required provenance for `engine_silent` values or explicit `TBD`. |
+| `storage_path` | Path under a profile-approved `agent_writable_paths` entry. |
+
+The active profile should identify the validate/apply result schema and deterministic-check
+result schema used by its tool adapters. If those schemas are not yet declared, record them as
+`TBD`; do not infer acceptance or application semantics from chat.
+
+An operation proposal is invalid if it is represented as accepted domain truth before the
+required human gate and domain-engine-controlled apply record exist.
 
 ### Human Agency Map
 
@@ -654,7 +678,7 @@ A domain integration record should include:
 |---|---|
 | `DomainEngineID` | Stable profile ID |
 | `ProfilePath` | Path to active profile |
-| `ProfileStatus` | `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID` |
+| `ProfileStatus` | `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN` |
 | `IntegrationLevel` | Current approved level |
 | `DomainEngineRoot` | Engine-owned root or project file |
 | `AuthoritativeArtifacts` | Paths/patterns owned by the engine |
@@ -695,6 +719,23 @@ domain_profile:
     - id: "<tool.id>"
       mode: "read_only"
       requires_human_confirmation: false
+      validate_result_schema: "<schema ref or TBD>"
+      apply_result_schema: "<schema ref or TBD>"
+
+  operation_proposal_contract:
+    lifecycle:
+      - "draft"
+      - "ready_for_review"
+      - "accepted"
+      - "rejected"
+      - "applied"
+    risk_classes:
+      - "engine_checkable"
+      - "engine_silent"
+    deterministic_check_result_schema: "<schema ref or TBD>"
+    accepted_or_applied_requires:
+      - "human approval bound to git SHA per K-AUTH-2"
+      - "domain-engine-controlled apply or external terminal acceptance record"
 
   professional_boundary:
     agent_must_not_claim:
@@ -708,14 +749,20 @@ domain_profile:
 
 ### OpenPipeStress Example Binding
 
-For OpenPipeStress profiles, the expected generic binding is:
+For OpenPipeStress profiles, the verified 2026-06-21 binding is:
 
-| Class | Example paths/artifacts |
+| Class | Real paths/artifacts |
 |---|---|
-| Authoritative domain artifacts | `OpenPipeStress/project.ops.yaml`, `OpenPipeStress/states/**`, `OpenPipeStress/runs/**`, `OpenPipeStress/comparisons/**`, `OpenPipeStress/handoff/**` |
-| Chirality-readable artifacts | `Model_Manifest.md`, `Model_Manifest.yaml`, `RUN-*_summary.md`, `CMP-*_summary.md`, `CMP-*_delta_table.csv`, `Handoff_Manifest.md`, warnings, assumptions, TBD registers |
-| Protected write paths | canonical model files, accepted model states, analysis result records, comparison records, handoff internals, solver outputs, professional acceptance records |
-| Agent-writable artifacts | operation proposals, review notes, TBD registers, scope notes, handoff checklists, draft report sections, dependency notes, reconciliation notes |
+| Authoritative domain artifacts | `projects/chirality-piping/core/**` (engine, solver, and model operations); `projects/chirality-piping/schemas/**` (contracts); the engine project store per `projects/chirality-piping/schemas/project_persistence.schema.yaml` (model states, analysis runs, and comparisons; SQLite-backed, not a static directory tree); `projects/chirality-piping/core/handoff/**` |
+| Chirality-readable artifacts | Records conforming to `projects/chirality-piping/schemas/{analysis_run,model_state,comparison_mapping,handoff_package}.schema.*` when produced; on-demand exports under `projects/chirality-piping/core/handoff/*` (`native_json`, `stress_neutral`, `review_geometry`); professional-boundary notices emitted by declared operation and rule-check tooling |
+| Protected write paths | `projects/chirality-piping/core/**`, `projects/chirality-piping/schemas/**`, the engine project store, `projects/chirality-piping/core/handoff/**`, solver outputs, accepted model states |
+| Agent-writable artifacts | `_DomainEngines/proposals/open_pipe_stress/**` for OperationProposals; `_DomainEngines/bridge/**` for review notes, TBD registers, checklists, and framework-maintenance records |
+
+OpenPipeStress persists model, state, run, and comparison records in an engine-owned store
+(SQLite-backed per `project_persistence.schema.yaml`) and emits readable artifacts on demand.
+There is no `project.ops.yaml` file or static `states/`, `runs/`, or `comparisons/`
+directory tree in the verified binding. The instance engineering lifecycle is its
+`AnalysisStatus` vocabulary in `projects/chirality-piping/schemas/model.schema.yaml`.
 
 ### INIT-TASK Brief Example - Read-Only Domain Artifact Review
 
@@ -827,7 +874,7 @@ Each closure/handoff state should include:
 |---|---|
 | `RunStatus` | `SUCCESS | FAILED | BLOCKED | PARTIAL` |
 | `DomainEngineID` | Active domain engine |
-| `ProfileStatus` | Active profile state |
+| `ProfileStatus` | Active profile state - one of `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN` |
 | `IntegrationLevel` | Active approved level |
 | `AcceptedUpstreamSnapshots` | Any accepted Chirality/domain snapshots consumed |
 | `DomainArtifactsRead` | Files/IDs read |

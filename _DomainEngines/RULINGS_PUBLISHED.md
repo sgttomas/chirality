@@ -38,4 +38,18 @@ The 4 asymmetric conditions still hold: **tier-0 adoption** (in progress) · **a
 
 ## Next
 
-DOMAIN_ENGINE: update the DRAFT profile, hand FM-01..04 + the two TOOLMAKER briefs to the owner-chosen workflows, and hand the `_DomainEngines/` file list to CHANGE (commit-note proposal in `bridge/.../Handoff_State.md`). Profile remains **DRAFT** (not VALIDATED — validator not built; D-T0-06) and **not ADOPTED**.
+HELPS_HUMANS framework-maintenance pass has applied FM-01..04 in the draft working tree:
+`agents/AGENT_DOMAIN_ENGINE.md`, root `docs/CONTRACT.md`, and
+`bridge/.../framework_maintenance/RELEASE_NOTE_FM-01-04_framework_maintenance.md`.
+The canon edits are **not ratified** until the human approves and CHANGE publishes them;
+applying SHA remains `TBD` until that commit exists.
+
+CHANGE: after human approval, stage only the framework-maintenance file set identified by
+the HELPS_HUMANS closeout (canon files, FM records, this ruling pointer, and release note).
+Do not stage `projects/**` or unrelated dirty working-tree entries.
+
+App-dev loop, after CHANGE publishes the approved canon: annotate app-dev K-DOMAIN-1..4 as
+specializing framework `docs/CONTRACT.md` §1.12 without weakening it, and SHA-pin the ruled
+`agents/AGENT_DOMAIN_ENGINE.md` revision into DEL-10-01/03 `_REFERENCES.md`.
+
+Profile remains **DRAFT** (not VALIDATED — validator not built; D-T0-06) and **not ADOPTED**.

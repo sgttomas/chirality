@@ -1,9 +1,10 @@
-# FM-04 — Merge app-dev's richer OperationProposal into the canonical contract (reviewable diff; NOT applied)
+# FM-04 — Merge app-dev's richer OperationProposal into the canonical contract (APPLIED draft; pending approval)
 
 **Targets (canonical):** `agents/AGENT_DOMAIN_ENGINE.md` SPEC "Valid Operation Proposal" (`:393-404`) + Minimal Profile Shape; the merged result is the spec app-dev `docs/TYPES.md §11.2` conforms to.
-**Resolves:** D-T0-01 flow (iii). **Gate:** framework-maintenance (human-gated). **Status: PROPOSAL — not applied.**
+**Resolves:** D-T0-01 flow (iii). **Gate:** framework-maintenance (human-gated). **Status: APPLIED in draft working tree — pending human approval and CHANGE publish.**
+**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `TBD` until CHANGE publishes the approved commit. Draft base HEAD observed: `16e723f45813`.
 
-**Why:** The persona states 8 prose validity criteria; app-dev formalized a richer typed record + lifecycle. The working-root work is **better** on field/provenance shape — absorb it UP into the canon (precedence-canonical does not discard good downstream work). Add the generic trust fields from piping §6.
+**Why:** Before application, the persona stated 8 prose validity criteria; app-dev formalized a richer typed record + lifecycle. The working-root work is **better** on field/provenance shape — absorb it UP into the canon (precedence-canonical does not discard good downstream work). Add the generic trust fields from piping §6.
 
 > **Genericness + citation prerequisites.** Before promotion, app-dev's `OperationProposal` shape is verified piping-free (see CONTRACT_DIRECTION §4 "Genericness verification"). Tier-0's citation of persona line numbers here is lawful (framework-root authoring); the `_REFERENCES.md` SHA-pin of `AGENT_DOMAIN_ENGINE.md` into DEL-10-03 is the app-dev-side prerequisite recommended in `D-T0-01`, gating app-dev's conformance edits, not this draft.
 

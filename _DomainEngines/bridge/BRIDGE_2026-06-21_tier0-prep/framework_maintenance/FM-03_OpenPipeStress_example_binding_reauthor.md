@@ -1,9 +1,10 @@
-# FM-03 — Re-author the OpenPipeStress Example Binding (reviewable diff; NOT applied)
+# FM-03 — Re-author the OpenPipeStress Example Binding (APPLIED draft; pending approval)
 
 **Target (canonical):** `agents/AGENT_DOMAIN_ENGINE.md`, "OpenPipeStress Example Binding" (≈ lines 709-718).
-**Gate:** framework-maintenance (human-gated). **Status: PROPOSAL — not applied.**
+**Gate:** framework-maintenance (human-gated). **Status: APPLIED in draft working tree — pending human approval and CHANGE publish.**
+**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `TBD` until CHANGE publishes the approved commit. Draft base HEAD observed: `16e723f45813`.
 
-**Why:** The current example binding is **aspirational and diverges from the verified piping layout** (no `project.ops.yaml`; no top-level `states/`/`runs/`/`comparisons/` directory tree; no `Model_Manifest`/`RUN-*`/`CMP-*` artifacts). `core/handoff/**` *does* exist — but as engine handoff/export adapters, not as the analysis-result storage tree the persona's `handoff/**` implied. Piping is schema-driven + persistence-abstracted. Since OpenPipeStress is the *example*, not the ontology, the binding should reflect reality so the example does not mislead future profile authors.
+**Why:** Before application, the example binding was **aspirational and diverged from the verified piping layout** (no `project.ops.yaml`; no top-level `states/`/`runs/`/`comparisons/` directory tree; no `Model_Manifest`/`RUN-*`/`CMP-*` artifacts). `core/handoff/**` *does* exist — but as engine handoff/export adapters, not as the analysis-result storage tree the persona's `handoff/**` implied. Piping is schema-driven + persistence-abstracted. Since OpenPipeStress is the *example*, not the ontology, the binding should reflect reality so the example does not mislead future profile authors.
 
 ---
 

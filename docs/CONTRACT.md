@@ -1,6 +1,6 @@
 # CONTRACT — Invariant Catalog
 
-> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/CONTRACT.md`), reproducing the 21 established invariants verbatim, and adds two: **K-WRITE-2** (ScopePath containment) and **K-AGENTS-1** (the Chirality `AGENTS.md` contract). Not accepted governance until a human ratifies it (per K-AUTH-1).
+> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/CONTRACT.md`), reproducing the 21 established invariants verbatim, and adds six: **K-WRITE-2** (ScopePath containment), **K-AGENTS-1** (the Chirality `AGENTS.md` contract), and **K-DOMAIN-1..4** (domain engine integration). Not accepted governance until a human ratifies it (per K-AUTH-1).
 
 This document is the authoritative catalog of binding invariants for the Chirality agent operating system.
 
@@ -14,7 +14,7 @@ Invariant IDs (`K-*`) are **stable and never reused**. Retired invariants are mo
 
 ### K-* Invariant Index
 
-All K-* identifiers defined in this section are listed below with their definition locations. There are **23 stable invariants** across 11 subsections.
+All K-* identifiers defined in this section are listed below with their definition locations. There are **27 stable invariants** across 12 subsections.
 
 | K-* ID | Subsection | Topic |
 |---|---|---|
@@ -41,6 +41,10 @@ All K-* identifiers defined in this section are listed below with their definiti
 | K-WRITE-2 | 1.10 | Write Scope and Snapshots |
 | K-SNAP-1 | 1.10 | Write Scope and Snapshots |
 | K-AGENTS-1 | 1.11 | Agent Index and Governance Surface |
+| K-DOMAIN-1 | 1.12 | Domain Engine Integration |
+| K-DOMAIN-2 | 1.12 | Domain Engine Integration |
+| K-DOMAIN-3 | 1.12 | Domain Engine Integration |
+| K-DOMAIN-4 | 1.12 | Domain Engine Integration |
 
 ---
 
@@ -122,17 +126,27 @@ All K-* identifiers defined in this section are listed below with their definiti
 |---|---|---|
 | **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. The framework-root `AGENTS.md` MUST carry the agent matrix and index, the governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), and the canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken the framework governance integration rules. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md` (rule statements); AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
 
+### 1.12 Domain Engine Integration
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-DOMAIN-1** | **Domain engines own authoritative domain truth.** Canonical model files, model states, analysis runs, comparisons, solver outputs, and handoff internals are owned by the domain engine. Chirality governs the work around it (profiles, manifests, proposals, review notes, gates); it is not the solver and is never the source of accepted engineering truth. | DOMAIN_ENGINE persona; profile `protected_write_paths`; human review |
+| **K-DOMAIN-2** | **Protected domain paths are write-quarantined.** Agents must not directly write protected domain artifacts. Domain-controlled writes occur only through declared deterministic tools under the active profile. | DOMAIN_ENGINE; TASK ScopePath/AllowedWriteTargets; profile; human review |
+| **K-DOMAIN-3** | **Domain operations require an OperationProposal record and explicit human acceptance.** A proposal is `proposal_only` until validated by a declared deterministic tool and accepted by a human; application occurs only through a domain-engine-controlled apply. | DOMAIN_ENGINE Gate 5; profile; K-AUTH-1/K-AUTH-2; human review |
+| **K-DOMAIN-4** | **Domain-engine outputs must not be represented as professional approval.** A green validation/PASS is structural evidence only - never code-compliance, certification, sealing, authentication, or external-prover validation absent a cited human authoritative record. Validation-passed is necessary, not sufficient, for engineering correctness. | DOMAIN_ENGINE professional_boundary; K-CLAIM-1; K-AUTH-1; AUDIT_GOVERNANCE; human review |
+
 ---
 
 ## 2. Enforcement Map Summary
 
 | Enforcement Point | Invariants Checked |
 |---|---|
-| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1 |
+| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
+| **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **ORCHESTRATOR** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
-| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1 |
-| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1 |
+| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
+| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
 | **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
 
