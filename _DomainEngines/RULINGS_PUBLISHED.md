@@ -38,18 +38,19 @@ The 4 asymmetric conditions still hold: **tier-0 adoption** (in progress) · **a
 
 ## Next
 
-HELPS_HUMANS framework-maintenance pass has applied FM-01..04 in the draft working tree:
-`agents/AGENT_DOMAIN_ENGINE.md`, root `docs/CONTRACT.md`, and
-`bridge/.../framework_maintenance/RELEASE_NOTE_FM-01-04_framework_maintenance.md`.
-The canon edits are **not ratified** until the human approves and CHANGE publishes them;
-applying SHA remains `TBD` until that commit exists.
+HELPS_HUMANS framework-maintenance pass applied FM-01..04 and **published them at commit
+`77a327727`** (committed + pushed to origin/main, owner-directed 2026-06-21): canon
+`agents/AGENT_DOMAIN_ENGINE.md` + root `docs/CONTRACT.md`, the FM records, and the release
+note. Tier-0 cold-verified the live canon against all four diffs (clean). Root
+`docs/CONTRACT.md` remains DRAFT-pending-ratification per its own header; the K-DOMAIN
+family rides that broader ratification.
 
-CHANGE: after human approval, stage only the framework-maintenance file set identified by
-the HELPS_HUMANS closeout (canon files, FM records, this ruling pointer, and release note).
-Do not stage `projects/**` or unrelated dirty working-tree entries.
+The active next handoff is the **profile-schema validator** (TOOLMAKER) at
+`execution/_Coordination/NEXT_INSTANCE_PROMPT.md` (commit `bd163e7a2`) — it gates
+ProfileStatus `DRAFT → VALIDATED` (D-T0-06).
 
-App-dev loop, after CHANGE publishes the approved canon: annotate app-dev K-DOMAIN-1..4 as
+App-dev loop (now actionable — canon is published): annotate app-dev K-DOMAIN-1..4 as
 specializing framework `docs/CONTRACT.md` §1.12 without weakening it, and SHA-pin the ruled
-`agents/AGENT_DOMAIN_ENGINE.md` revision into DEL-10-01/03 `_REFERENCES.md`.
+`agents/AGENT_DOMAIN_ENGINE.md` revision (`77a327727`) into DEL-10-01/03 `_REFERENCES.md`.
 
 Profile remains **DRAFT** (not VALIDATED — validator not built; D-T0-06) and **not ADOPTED**.

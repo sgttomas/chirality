@@ -1,7 +1,7 @@
 # FM-02 — Promote a K-DOMAIN-* family to root `docs/CONTRACT.md` (APPLIED draft; pending approval)
 
-**Target (canonical):** `docs/CONTRACT.md` (root). **Resolves:** D-T0-01 flow (ii). **Gate:** framework-maintenance (human-gated). **Status: APPLIED in draft working tree — pending human approval and CHANGE publish.**
-**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `TBD` until CHANGE publishes the approved commit. Draft base HEAD observed: `16e723f45813`.
+**Target (canonical):** `docs/CONTRACT.md` (root). **Resolves:** D-T0-01 flow (ii). **Gate:** framework-maintenance (human-gated). **Status: APPLIED and PUBLISHED at `77a327727` (committed + pushed to origin/main; owner-directed 2026-06-21).**
+**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `77a327727`. Draft base HEAD observed: `16e723f45813`.
 
 **Why:** Before application, root `docs/CONTRACT.md` had **23 K-*** and **no K-DOMAIN family**; the domain-engine invariants lived only as persona prose (`AGENT_DOMAIN_ENGINE.md:80-95`) and as a working-root specialization in app-dev (`projects/chirality-app-dev/docs/CONTRACT.md:131-138`, K-DOMAIN-1..4). Per the two-layer rule a working root may *extend but not weaken*; an invariant that governs **all** domain engines belongs at the framework altitude. Promote it; app-dev's K-DOMAIN-1..4 then conform to (cite) the root family rather than being its only home. K-* IDs are stable and never-reused **within a catalog**: these are **new to the framework-root catalog** — app-dev's existing K-DOMAIN-1..4 stay stable within the app-dev working root and will cite (not duplicate) the root definitions per the two-layer rule. (This is flow (ii) of D-T0-01; see also the counter-position recorded there and in `D-T0-01_precedence.md`.)
 

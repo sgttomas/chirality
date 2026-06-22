@@ -1,8 +1,8 @@
 # FM-01 — `ProfileStatus` enum reconciliation (APPLIED draft; pending approval)
 
 **Target (canonical):** `agents/AGENT_DOMAIN_ENGINE.md`
-**Resolves:** D-T0-02. **Gate:** framework-maintenance (human-gated; CHANGE publishes). **Status: APPLIED in draft working tree — pending human approval and CHANGE publish.**
-**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `TBD` until CHANGE publishes the approved commit. Draft base HEAD observed: `16e723f45813`.
+**Resolves:** D-T0-02. **Gate:** framework-maintenance (human-gated; CHANGE publishes). **Status: APPLIED and PUBLISHED at `77a327727` (committed + pushed to origin/main; owner-directed 2026-06-21).**
+**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `77a327727`. Draft base HEAD observed: `16e723f45813`.
 **Recommendation:** keep BOTH `INVALID` and `UNKNOWN` as distinct tokens (7-value enum). Rationale in CONTRACT_DIRECTION §2. **Warrant note:** `docs/TYPES.md` §10 defines *Gap* and a resolved negative as distinct epistemic primitives but does **not** prescribe a profile-status enum mapping; mapping `UNKNOWN`≈Gap and `INVALID`≈resolved-negative is *this proposal's interpretation*, offered for the D-T0-02 ruling — not an existing definition extracted from TYPES.md.
 
 Canonical enum: `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`

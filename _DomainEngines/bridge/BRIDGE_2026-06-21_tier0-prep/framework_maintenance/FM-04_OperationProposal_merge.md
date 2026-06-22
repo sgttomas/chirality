@@ -1,8 +1,8 @@
 # FM-04 — Merge app-dev's richer OperationProposal into the canonical contract (APPLIED draft; pending approval)
 
 **Targets (canonical):** `agents/AGENT_DOMAIN_ENGINE.md` SPEC "Valid Operation Proposal" (`:393-404`) + Minimal Profile Shape; the merged result is the spec app-dev `docs/TYPES.md §11.2` conforms to.
-**Resolves:** D-T0-01 flow (iii). **Gate:** framework-maintenance (human-gated). **Status: APPLIED in draft working tree — pending human approval and CHANGE publish.**
-**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `TBD` until CHANGE publishes the approved commit. Draft base HEAD observed: `16e723f45813`.
+**Resolves:** D-T0-01 flow (iii). **Gate:** framework-maintenance (human-gated). **Status: APPLIED and PUBLISHED at `77a327727` (committed + pushed to origin/main; owner-directed 2026-06-21).**
+**Application record:** Applied by HELPS_HUMANS framework-maintenance pass on 2026-06-22. Applying SHA: `77a327727`. Draft base HEAD observed: `16e723f45813`.
 
 **Why:** Before application, the persona stated 8 prose validity criteria; app-dev formalized a richer typed record + lifecycle. The working-root work is **better** on field/provenance shape — absorb it UP into the canon (precedence-canonical does not discard good downstream work). Add the generic trust fields from piping §6.
 

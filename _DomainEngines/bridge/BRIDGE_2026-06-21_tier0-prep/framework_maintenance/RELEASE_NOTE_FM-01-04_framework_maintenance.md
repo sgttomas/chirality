@@ -1,7 +1,7 @@
 # Release Note - FM-01..04 Framework-Maintenance Draft Application
 
-**Status:** APPLIED in draft working tree; pending human approval and CHANGE publish.
-**Applying SHA:** TBD until CHANGE publishes the human-approved commit.
+**Status:** APPLIED and PUBLISHED at `77a327727` (committed + pushed to origin/main; owner-directed 2026-06-21).
+**Applying SHA:** `77a327727`.
 **Drafted:** 2026-06-22 by HELPS_HUMANS framework-maintenance pass.
 **Draft base HEAD observed:** `16e723f45813`.
 
