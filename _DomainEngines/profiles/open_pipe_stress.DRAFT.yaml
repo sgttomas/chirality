@@ -1,0 +1,110 @@
+# OpenPipeStress Domain Engine Profile — DRAFT (NOT validated, NOT adopted)
+#
+# Status: DRAFT. This is an INSTANCE binding of the generic DomainEngineProfile
+# contract to the OpenPipeStress engine. It is authored from the VERIFIED piping
+# layout (schema-driven + persistence-abstracted), NOT from the persona's
+# OpenPipeStress Example Binding (AGENT_DOMAIN_ENGINE.md:709-718), which is
+# aspirational and diverges from reality (see FM-03 and ARTIFACT_INVENTORY.md).
+#
+# Nothing here is adopted. No deterministic profile-schema validator exists yet
+# (TOOLMAKER handoff). No tool is invoked. No professional status is claimed.
+
+domain_profile:
+  schema_version: "1.0"          # contract schema version (generic)
+  id: "open_pipe_stress"
+  name: "OpenPipeStress Piping-Stress Engine"
+  engine_type: "structural/piping-stress-analysis"
+  profile_version: "0.1-DRAFT"
+  profile_status: "DRAFT"        # NONE|DRAFT|VALIDATED|ADOPTED|STALE|INVALID|UNKNOWN (see D-T0-02 / FM-01)
+  integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
+  data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked. See RES-RECONCILE in open_issues.
+
+  domain_root_patterns:
+    - "projects/chirality-piping/**"
+
+  # Engine-owned domain truth. Canonical model state is the project persistence
+  # store (project_persistence.schema.yaml), NOT a `project.ops.yaml` file.
+  authoritative_artifacts:
+    - "projects/chirality-piping/core/**"                         # engine + solver + model operations (truth/computation)
+    - "projects/chirality-piping/schemas/**"                      # contract schemas owned by the engine
+    - "<engine project store per project_persistence.schema.yaml>"# model states / analysis runs / comparisons (SQLite-backed; not a static dir)
+    - "projects/chirality-piping/core/handoff/**"                 # handoff package internals + export adapters
+
+  # Bounded artifacts an agent may READ and cite. Several are schema-defined but
+  # not yet materialized as instances (marked TBD) — they are produced on demand.
+  chirality_readable_artifacts:
+    - "<analysis_run record per analysis_run.schema.json>"        # RUN summaries — schema present; instances TBD
+    - "<model_state record per model_state.schema.json>"         # STATE manifests — schema present; instances TBD
+    - "<comparison record per comparison_mapping.schema.json>"   # CMP summaries — schema present; instances TBD
+    - "<handoff_package per handoff_package.schema.json>"        # handoff manifest (no private payload)
+    - "<native_json / stress_neutral / review_geometry exports>" # on-demand exports under core/handoff/*
+    - "professional_boundary notices emitted by operation_applier / rule_check_runner"
+
+  # Agents must NOT directly write protected domain truth.
+  protected_write_paths:
+    - "projects/chirality-piping/core/**"
+    - "projects/chirality-piping/schemas/**"
+    - "<engine project store (model states, analysis runs, comparisons)>"
+    - "projects/chirality-piping/core/handoff/**"   # handoff internals
+    - "<solver outputs and accepted model states>"
+
+  # Agent-writable proposal/review surfaces live under the tier-0 control root,
+  # never inside the piping subtree.
+  agent_writable_paths:
+    - "_DomainEngines/proposals/open_pipe_stress/**"   # OperationProposals (proposal_only)
+    - "_DomainEngines/bridge/**"                       # review notes, TBD registers, checklists
+
+  # Declared deterministic adapters (VERIFIED to exist in piping core/). Any CLI
+  # adapter / profile validator that is missing is a TOOLMAKER handoff, not an
+  # inline implementation.
+  deterministic_tools:
+    - id: "operation_applier.validate"
+      impl: "projects/chirality-piping/core/model_operations/operation_applier (Rust; JSON-in/JSON-out)"
+      mode: "proposal_validate"
+      requires_human_confirmation: false
+      guards: ["values are not invented (lib.rs:1306)", "no ungoverned unit conversion / geometry defaults (lib.rs:9-15)", "dangling-reference OP-REFERENCE-NOT-FOUND (lib.rs:9144)"]
+    - id: "operation_applier.apply"
+      mode: "proposal_apply"
+      requires_human_confirmation: true     # K-DOMAIN-3: human acceptance required before any apply
+      note: "L3 only; gated. Emits professional_boundary with five false claim-flags (compliance/certification/sealing/approval/authentication) + human_review_required:true (lib.rs:1134-1141)."
+    - id: "completeness_checker"
+      impl: "projects/chirality-piping/core/rules/completeness_checker (Rust)"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "Tracks missing vs private_reviewed required inputs; provides NO code-specific defaults (lib.rs:1-6)."
+    - id: "rule_check_runner"
+      impl: "projects/chirality-piping/core/rules/rule_check_runner (Rust)"
+      mode: "read_only"
+      requires_human_confirmation: false
+      boundary_notice_const: "PROFESSIONAL_BOUNDARY_NOTICE (lib.rs:78-80)"
+    - id: "headless_runner"
+      impl: "projects/chirality-piping/core/runner/headless (Rust; lib-only — needs a thin CLI entrypoint, lib.rs:655)"
+      mode: "read_only"          # validated-kernel runs (L2 candidate)
+      requires_human_confirmation: false
+      status: "TOOLMAKER handoff — entrypoint not yet built"
+
+  # Risk class is a PROPOSED generic field (see CONTRACT_DIRECTION §D.3 / piping §2).
+  # It is NOT yet implemented in the engine (model_operation.schema.json has no
+  # risk_class field; professional_boundary is uniform). Generic axis:
+  #   engine_checkable  = structural validity covers most risk (topology/scaffolding)
+  #   engine_silent     = engine validates form, never correctness (judgment values)
+  operation_risk_class_axis: ["engine_checkable", "engine_silent"]   # PROPOSED — not in engine today
+
+  professional_boundary:
+    agent_must_not_claim:
+      - "code compliant for reliance"
+      - "professionally approved"
+      - "certified"
+      - "sealed"
+      - "ready for construction"
+      - "external prover validated unless supplied as external human record"
+      - "validation-passed implies engineering correctness"   # piping §1 keystone
+    bound_to_engine_lifecycle: "AnalysisStatus (schemas/model.schema.yaml:22-32)"
+    reserved_human_act: "HUMAN_APPROVED_FOR_PROJECT (external, SHA-bound; K-AUTH-2)"
+
+  open_issues:
+    - "Profile stays DRAFT: no deterministic profile-schema validator exists yet (TOOLMAKER brief emitted; VALIDATED gated on it per D-T0-06)."
+    - "Readable run/state/comparison instances are TBD (schemas exist; artifacts produced on demand)."
+    - "operation_risk_class is proposed (engine-checkable vs engine-silent; D-T0-03), not yet implemented in the engine."
+    - "Live binding (L2-L3) gated x4: tier-0 adoption, app-dev F3, piping D-21, DEC-041 automation condition (residency is NOT a blocker post D-T0-04)."
+    - "RES-RECONCILE (from D-T0-04 open-residency ruling): app-dev fence F1 + piping OPS-K-PRIV-1/no-required-network/IP_AND_DATA_BOUNDARY must be reconciled to the ruling by their OWN loops; tier-0 cannot edit them. They conflict with the ruling on record until then."
