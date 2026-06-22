@@ -23,7 +23,10 @@ Each item is `AUTONOMOUS` unless it crosses a **hard fence** or requires a **new
 and gate are identical to the autonomous-queue plan §2 (as tightened 2026-06-21):
 
 **Hard fences (always HUMAN-GATED):**
-1. Provider/network expansion beyond the Anthropic path.
+1. Provider/network expansion beyond the Anthropic path. *(Reconciled by D-APP-44, ruled 2026-06-21: now
+   an owner-permitted, default-closed provider/residency configuration per tier-0 D-T0-04 — not a
+   categorical deny; absent an explicit owner config the Anthropic loopback default stands and the harness
+   never auto-egresses. See `execution/_Coordination/_DECISIONS/D-APP-44_RULING_2026-06-21.md`.)*
 2. Release/distribution posture — signing, notarization, publication, external distribution, or any
    release-readiness / professional / certification / sealing / authentication / code-compliance claim.
 3. R7 domain-engine implementation; PKG-10 stays future-boundary/doc-only.

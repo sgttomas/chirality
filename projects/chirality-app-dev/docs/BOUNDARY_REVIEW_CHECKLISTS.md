@@ -22,7 +22,7 @@ review process, not a substitute for the accountable human decision or any requi
 | Human gates | Route authority-sensitive wording and boundary crossings to the accountable human or governing decision process. |
 | Source state | Record D-APP-38 corpus status when PRD-backed claims are used; rerun reconciliation if authority docs change. |
 | Unknowns | Preserve `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed labels where support is incomplete. |
-| Scope | Keep provider/network expansion, release/distribution posture, R7 domain-engine implementation, and `CHECKING -> ISSUED` issuance behind their hard fences. |
+| Scope | Keep release/distribution posture, R7 domain-engine implementation, and `CHECKING -> ISSUED` issuance behind their hard fences. Provider/network expansion is an **owner-configured** capability per D-T0-04 / D-APP-44 (OPEN RESIDENCY): not a categorical deny, but it must not auto-egress — it occurs only under an explicit owner provider/residency configuration; absent that, the Anthropic key-aware loopback default stands. |
 
 ## Professional Boundary Checklist
 

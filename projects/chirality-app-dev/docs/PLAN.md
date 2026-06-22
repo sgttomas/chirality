@@ -348,7 +348,7 @@ Required categories:
 
 - API keys never enter project files or runtime event payloads.
 - Redaction applies across provider, SDK, tool, and run logs.
-- Current shipped renderer network guardrails remain loopback + Anthropic API.
+- Current shipped renderer network guardrails default to loopback + Anthropic API. Per D-T0-04 / D-APP-44 (OPEN RESIDENCY), the owner may configure additional providers/residency (local / Anthropic / other); the renderer must not egress beyond loopback + the configured provider(s), and absent an explicit owner provider/residency configuration the loopback + Anthropic default stands. The app does not itself enforce privacy/residency, but it also does not auto-egress (default-closed).
 - Provider/SDK stderr/debug logs pass through redaction.
 - Provider/SDK settings load is explicit and isolated.
 
@@ -454,7 +454,7 @@ Create the R0/R1 implementation plan before code changes:
 - Shipped `bypassPermissions` ordinary workflow.
 - Ambient user/global Claude Code settings.
 - Pi adapter, fork, direct import, Node 22 sidecar, runtime-floor migration, or immediate spike.
-- Concrete non-Anthropic provider implementation without bounded future implementation scope.
+- Concrete non-Anthropic provider *implementation* without an explicit owner provider/residency configuration and its own governed implementation tranche (per D-T0-04 / D-APP-44, OPEN RESIDENCY: provider/residency is owner-configurable, but actually building non-Anthropic routing or private-data egress remains net-new work that must still pass the engine-conformance gate (K-ENGINE-2) and respect the release fence; absent owner configuration the Anthropic default stands and the app does not auto-egress).
 
 ---
 
