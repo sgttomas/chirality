@@ -45,11 +45,9 @@ note. Tier-0 cold-verified the live canon against all four diffs (clean). Root
 `docs/CONTRACT.md` remains DRAFT-pending-ratification per its own header; the K-DOMAIN
 family rides that broader ratification.
 
-The profile-schema validator (TOOLMAKER) is **built** (`tools/validation/validate_domain_engine_profile.py`,
-8/8 tests, scope-guarded) and the profile **passed** → ProfileStatus is now **VALIDATED** (D-T0-06;
-report `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json`). The remaining
-tier-0-adoption step is **human Gate 2 (`VALIDATED → ADOPTED`)** — the owner's to rule; once adopted,
-tier-0 adoption (1 of the 4 live-build conditions) is complete.
+The profile-schema validator (TOOLMAKER) is **built** and the profile **passed** → `VALIDATED`; the owner
+then **ruled Gate 2 (`VALIDATED → ADOPTED`) on 2026-06-21** → ProfileStatus **ADOPTED**. **Tier-0 adoption
+is complete** — 1 of the 4 live-build conditions cleared; remaining: **app-dev F3 · piping D-21 · DEC-041**.
 
 App-dev loop (now actionable — canon is published): annotate app-dev K-DOMAIN-1..4 as
 specializing framework `docs/CONTRACT.md` §1.12 without weakening it, and SHA-pin the ruled

@@ -3,7 +3,7 @@
   "findings": [],
   "profile_id": "open_pipe_stress",
   "profile_path": "/Users/ryan/ai-env/projects/chirality/_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml",
-  "profile_status": "DRAFT",
+  "profile_status": "ADOPTED",
   "result": "VALID",
   "schema": "domain-engine-profile-validation/v1",
   "summary": {

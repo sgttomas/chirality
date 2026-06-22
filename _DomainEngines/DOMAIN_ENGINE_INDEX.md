@@ -12,7 +12,7 @@
 
 | DOMAIN_ENGINE_ID | Engine | Profile | ProfileStatus | Integration level (today) |
 |---|---|---|---|---|
-| `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.DRAFT.yaml` | **DRAFT** (not validated, not adopted) | `MANUAL_BRIDGE` (L0) |
+| `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.DRAFT.yaml` | **ADOPTED** (validated + Gate-2 adopted 2026-06-21) | `MANUAL_BRIDGE` (L0) |
 
 ## Layout
 
