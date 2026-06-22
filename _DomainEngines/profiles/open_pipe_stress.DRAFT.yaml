@@ -15,7 +15,7 @@ domain_profile:
   name: "OpenPipeStress Piping-Stress Engine"
   engine_type: "structural/piping-stress-analysis"
   profile_version: "0.1-DRAFT"
-  profile_status: "DRAFT"        # NONE|DRAFT|VALIDATED|ADOPTED|STALE|INVALID|UNKNOWN (see D-T0-02 / FM-01)
+  profile_status: "VALIDATED"    # passed tools/validation/validate_domain_engine_profile.py 2026-06-21 (report: _validation/open_pipe_stress.validation.json). NOT ADOPTED — human Gate 2 pending (D-T0-06). Filename retains ".DRAFT" historically; status is authoritative here. (see D-T0-02 / FM-01 / D-T0-06)
   integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
   data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked.
   data_residency_reconciliation:        # RES-RECONCILE RESOLVED 2026-06-21 (net posture confirmed by owner: keep default-closed)
@@ -61,31 +61,54 @@ domain_profile:
   # Declared deterministic adapters (VERIFIED to exist in piping core/). Any CLI
   # adapter / profile validator that is missing is a TOOLMAKER handoff, not an
   # inline implementation.
+  # FM-04 (canon) requires validate_result_schema + apply_result_schema on each tool.
+  # Recorded TBD pending the piping DEL-10-03 result-schema declaration (operation_applier /
+  # rule_check_runner result shapes exist in Rust but are not yet published as standalone
+  # schemas); for read_only tools, validate/apply are n/a (recorded TBD).
   deterministic_tools:
     - id: "operation_applier.validate"
       impl: "projects/chirality-piping/core/model_operations/operation_applier (Rust; JSON-in/JSON-out)"
       mode: "proposal_validate"
       requires_human_confirmation: false
       guards: ["values are not invented (lib.rs:1306)", "no ungoverned unit conversion / geometry defaults (lib.rs:9-15)", "dangling-reference OP-REFERENCE-NOT-FOUND (lib.rs:9144)"]
+      validate_result_schema: "TBD"   # DEL-10-03 (operation_applier OperationOutcome)
+      apply_result_schema: "TBD"      # n/a for validate mode
     - id: "operation_applier.apply"
       mode: "proposal_apply"
       requires_human_confirmation: true     # K-DOMAIN-3: human acceptance required before any apply
       note: "L3 only; gated. Emits professional_boundary with five false claim-flags (compliance/certification/sealing/approval/authentication) + human_review_required:true (lib.rs:1134-1141)."
+      validate_result_schema: "TBD"   # n/a for apply mode
+      apply_result_schema: "TBD"      # DEL-10-03 (operation_applier apply OperationOutcome)
     - id: "completeness_checker"
       impl: "projects/chirality-piping/core/rules/completeness_checker (Rust)"
       mode: "read_only"
       requires_human_confirmation: false
       note: "Tracks missing vs private_reviewed required inputs; provides NO code-specific defaults (lib.rs:1-6)."
+      validate_result_schema: "TBD"   # n/a (read_only)
+      apply_result_schema: "TBD"      # n/a (read_only)
     - id: "rule_check_runner"
       impl: "projects/chirality-piping/core/rules/rule_check_runner (Rust)"
       mode: "read_only"
       requires_human_confirmation: false
       boundary_notice_const: "PROFESSIONAL_BOUNDARY_NOTICE (lib.rs:78-80)"
+      validate_result_schema: "TBD"   # n/a (read_only); rule-check result is DEL-10-03
+      apply_result_schema: "TBD"      # n/a (read_only)
     - id: "headless_runner"
       impl: "projects/chirality-piping/core/runner/headless (Rust; lib-only — needs a thin CLI entrypoint, lib.rs:655)"
       mode: "read_only"          # validated-kernel runs (L2 candidate)
       requires_human_confirmation: false
       status: "TOOLMAKER handoff — entrypoint not yet built"
+      validate_result_schema: "TBD"   # n/a (read_only)
+      apply_result_schema: "TBD"      # n/a (read_only)
+
+  # operation_proposal_contract — required by canon (FM-04 / agents/AGENT_DOMAIN_ENGINE.md).
+  operation_proposal_contract:
+    lifecycle: ["draft", "ready_for_review", "accepted", "rejected", "applied"]
+    risk_classes: ["engine_checkable", "engine_silent"]   # generic; not implemented in engine yet (PROPOSED)
+    deterministic_check_result_schema: "TBD"   # DEL-10-03 (rule_check_runner result shape)
+    accepted_or_applied_requires:
+      - "human approval bound to git SHA per K-AUTH-2"
+      - "domain-engine-controlled apply or external terminal acceptance record (instance: HUMAN_APPROVED_FOR_PROJECT)"
 
   # Risk class is a PROPOSED generic field (see CONTRACT_DIRECTION §D.3 / piping §2).
   # It is NOT yet implemented in the engine (model_operation.schema.json has no

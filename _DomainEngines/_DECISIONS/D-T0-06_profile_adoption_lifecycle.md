@@ -12,3 +12,5 @@
 
 ---
 **HumanRuling:** **Persona cadence** `DRAFT→VALIDATED→ADOPTED`; `VALIDATED` gated on the **TOOLMAKER profile-schema validator** (briefed, not built — see `TOOLMAKER_BRIEF-profile_schema_validator.md`). Profile stays DRAFT until the validator exists.   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+
+**Progress (2026-06-21):** validator built (`tools/validation/validate_domain_engine_profile.py`, 8/8 tests) and the profile **passed** (report `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json`) → ProfileStatus advanced `DRAFT → VALIDATED`. Remaining lifecycle step: **human Gate 2 (`VALIDATED → ADOPTED`)** — not yet ruled.

@@ -3,11 +3,11 @@
 | Field | Value |
 |---|---|
 | Active profile | `_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml` |
-| ProfileStatus | **DRAFT** (not validated; not adopted) |
+| ProfileStatus | **VALIDATED** (passed the schema validator 2026-06-21; **not** adopted — human Gate 2 pending) |
 | Integration level (current, not yet ruled) | MANUAL_BRIDGE (L0) |
-| Validator | none — deterministic profile-schema validator is a TOOLMAKER handoff (not built) |
+| Validator | `tools/validation/validate_domain_engine_profile.py` (built, 8/8 tests pass) — report: `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json` (VALID) |
 
-## Boundary summary (DRAFT — pending Gate 2 adoption)
+## Boundary summary (VALIDATED — pending Gate 2 adoption)
 
 - **Authoritative (engine-owned, protected):** `core/**`, `schemas/**`, the engine project store (model states / analysis runs / comparisons per `project_persistence.schema.yaml`), `core/handoff/**`, solver outputs.
 - **Chirality-readable:** analysis-run / model-state / comparison records (schema-defined; instances TBD), handoff package manifest (no private payload), on-demand exports, engine professional-boundary notices.
@@ -20,7 +20,7 @@ profile adoption · protected-write policy · mutating tool calls (`operation_ap
 
 ## Open profile issues
 
-1. Not validated (no validator tool).
+1. ~~Not validated~~ → **VALIDATED** 2026-06-21 (validator built + passed). Now gated only on human Gate 2 (ADOPTED).
 2. Readable run/state/comparison **instances** are TBD (schemas exist; produced on demand).
 3. `operation_risk_class` is proposed, not implemented in the engine.
 4. The persona's example binding diverges from this verified binding (FM-03).
