@@ -14,6 +14,1473 @@ certification, or code-compliance claim.
 
 ---
 
+## 2026-06-23 - R4 exit-chain verification refresh (`TP-R4-D9-EXITCHAINREFRESH-001`)
+
+Prepared the refreshed R4 exit-chain verification packet after `DEC-053`:
+`plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md`.
+
+The refresh supersedes the historical
+`plans/VERIFICATION_2026-06-22_r4_exit_chain.md` packet for the current human
+R4 exit review. It includes `TP-R4-D7-SPARSEDEFAULTPROMOTE-001`, treats the
+named `D-26` sparse default-promotion residual as closed for R4 by bounded
+local evidence, and keeps release/external sparse thresholds, hosted-CI
+activation, and hardware-normalized pass/fail gates outside the R4 packet.
+
+Validation: `python3 -m pytest -q
+tests/test_sparse_default_promotion_observation.py
+tests/test_nonlinear_support_regression.py` passed; `git diff --check` passed.
+The carried `DEC-053` repair evidence is the passing local `DEC-025` sweep
+`validation/evidence/sweeps/SWEEP_20260623T020002Z_3194bd29f417-dirty.json`.
+
+Boundary: this is a derivative verification package for human R4 review only.
+It does not approve R4 exit, advance to R5, issue deliverables, create
+release-readiness, professional approval, certification, sealing,
+authentication, or code-compliance acceptance.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-23_TP-R4-D9-EXITCHAINREFRESH-001.md`.
+
+## 2026-06-23 - R4 sparse default-promotion residual closure (`TP-R4-D7-SPARSEDEFAULTPROMOTE-001`)
+
+Recorded the human `D-26` ruling as `DEC-053`: Option O-B holds R4 pending the
+named sparse default-promotion residual evidence/repair. The repair promotes
+sparse interactive as the default preview/render/live-model-change path and
+keeps dense scrutiny explicitly selectable for detailed review.
+
+Changed surfaces:
+
+- `core/solver/nonlinear_integration` now exposes `LinearSolveMode`, defaults to
+  sparse interactive, preserves dense scrutiny, and records explicit sparse
+  metadata or dense-fallback basis.
+- `core/product_physics` and the desktop bridge expose sparse interactive /
+  dense scrutiny solve modes and emit result metadata naming solver mode,
+  solution basis, sparse profile stats, pivot-ratio proxy, residual, and any
+  dense fallback.
+- `validation/benchmarks/sparse_default_promotion_observation.dec053.json`
+  records 9 bounded local observations across chain, generated-grid, and
+  product/nonlinear proxy fixtures with timing/RSS/hardware/practical-size-band,
+  dense/sparse parity, residual, repeat determinism, pivot-ratio proxy, and true
+  condition-number fields.
+- `validation/benchmarks/sparse_default_promotion_policy.dec053.json` records
+  closure statuses for sparse default, timing/RSS observation, hardware
+  metadata, practical size band, conditioning, and local DEC-025 evidence
+  coverage, without release thresholds or hosted-CI activation.
+- `execution/_Decomposition/SOFTWARE_DECOMP.md`, the decision register,
+  `D-26_r4_exit_review_stage_advancement.md`, coordination, roadmap, completion
+  plan, and next-instance surfaces now route R4 to a refreshed final exit-chain
+  verification packet instead of R5 advancement.
+
+Validation: focused Rust checks for nonlinear integration, product physics,
+solver diagnostics, performance harness, and the Tauri bridge passed; Python
+sparse/product/schema guards passed; desktop Vitest passed 407 tests; desktop
+build passed; `git diff --check` passed; status discovery passed with
+`CHECKING=8`, `IN_PROGRESS=92`, `ISSUED=1`. Full DEC-025 dirty-tree local
+evidence sweep passed all five surfaces:
+`validation/evidence/sweeps/SWEEP_20260623T020002Z_3194bd29f417-dirty.json`
+(`overall_status=pass`, commit
+`3194bd29f417b8ca5489a5a524b16a460fb63260`, `working_tree_dirty=true`).
+
+Boundary: this is R4 local evidence and interaction-mode policy only. It does
+not create release-readiness, professional approval, certification, sealing,
+authentication, code-compliance acceptance, hosted-CI activation,
+hardware-normalized pass/fail gates, or release performance thresholds.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-23_TP-R4-D7-SPARSEDEFAULTPROMOTE-001.md`.
+
+## 2026-06-23 - R4 exit review decision packet (`TP-DECIDE-D26-R4EXIT-001`)
+
+Prepared the human-gated R4 exit review / R4-to-R5 target-stage advancement
+decision packet:
+`execution/_Coordination/_DECISIONS/D-26_r4_exit_review_stage_advancement.md`.
+
+Changed surfaces:
+
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` now tracks `D-26` as
+  `AWAITING_RULING`.
+- Coordination, roadmap, completion-plan, and next-instance surfaces now stop
+  at the D-26 human gate instead of treating R4 exit review as an unnamed
+  approval.
+- The packet recommends Option O-A if the human accepts
+  `plans/VERIFICATION_2026-06-22_r4_exit_chain.md`: accept the R4 evidence and
+  advance the current target stage to R5. The recommendation is not a ruling.
+
+Validation: `git diff --check` passed;
+`python3 tools/coordination/list_deliverable_status.py --dag DAG-007 --format
+table --summary` passed with status counts `CHECKING=8`, `IN_PROGRESS=92`,
+`ISSUED=1`; targeted `rg` checks confirmed `D-26` routing and no stale
+pre-D-26 decision-range references remain. Clean-head DEC-025 evidence sweep
+passed:
+`validation/evidence/sweeps/SWEEP_20260623T003028Z_21f3cdcf0eb3.json`, bound
+to commit `21f3cdcf0eb325d9108be51635cfdb63f0a6bb6d` with
+`working_tree_dirty=false` and `overall_status=pass`.
+
+Boundary: no implementation, schema, solver, UI, fixture, report, release,
+lifecycle, target-stage behavior, protected-content boundary, professional
+approval, certification, sealing, authentication, or code-compliance status
+changed.
+
+Evidence:
+`execution/_Coordination/_DECISIONS/_run_records/WORKING_ITEMS_RUN_2026-06-23_D26_r4_exit_review_stage_advancement.md`.
+
+## 2026-06-22 - R4 exit-chain verification packet (`TP-R4-D9-EXITCHAIN-001`)
+
+Recorded the human `D-25` ruling as `DEC-052` and prepared the final R4
+exit-chain verification packet for human review:
+`plans/VERIFICATION_2026-06-22_r4_exit_chain.md`.
+
+Changed surfaces:
+
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` records `DEC-052`: Option O-B
+  accepts that the current bounded seed/product/thirteen-fixture nonlinear
+  evidence and current invented component-provenance evidence may proceed to a
+  final R4 exit-chain packet.
+- `execution/_Coordination/_DECISIONS/_REGISTER.md` marks `D-25` as `RULED`;
+  `D-25_r4_exit_scope.md` carries the ruling/disposition section.
+- `plans/VERIFICATION_2026-06-21_r4_exit_gap.md` remains the historical gap
+  packet and now points to the successor exit-chain packet.
+- Coordination, roadmap, completion-plan, next-instance, and DEL-09-03 memory
+  surfaces now route the next human-gated step to R4 exit review rather than
+  further D-25 decision escalation.
+
+Validation before packet commit: `git diff --check` passed;
+`python3 -m pytest -q tests/test_nonlinear_support_regression.py` passed
+8 tests.
+Clean-head DEC-025 evidence sweep passed:
+`validation/evidence/sweeps/SWEEP_20260623T001842Z_bf2e089aa97b.json`, bound
+to committed head `bf2e089aa97bf315d4c3cd202680211ee1920abe` with
+`working_tree_dirty=false` and `overall_status=pass`.
+
+Residuals remain explicit under `DEC-052`: sparse default/timing/memory/CI/
+hardware/default-promotion work, sparse conditioning beyond the bounded
+generated-grid pivot-ratio proxy, broader nonlinear thresholds, deeper
+spring-hanger behavior, external validation thresholds, release-quality gates,
+and R5 engineering-beta evidence. This packet does not approve R4 exit, advance
+to R5, issue deliverables, create release readiness, professional approval,
+certification, sealing, authentication, or code-compliance acceptance.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-EXITCHAIN-001.md`.
+
+## 2026-06-22 - R4 D7 sparse pivot-conditioning policy (`TP-R4-D7-SPARSECONDITIONPOLICY-001`)
+
+Added a bounded `DEC-050` sparse generated-grid pivot-ratio conditioning policy
+for the existing sparse suitability observation set.
+
+Changed surfaces:
+
+- `core/solver/performance_harness` now emits
+  `DEC-050-SPARSE-GENERATED-GRID-PIVOT-CONDITIONING-POLICY-v1`,
+  `sparse_pivot_condition_ratio_estimate`, policy status, and the generated-grid
+  pivot-ratio limit `1.0e16` with sparse suitability observations.
+- `validation/benchmarks/sparse_conditioning_threshold_policy.dec050.json`
+  records the governed bounded policy, and the sparse suitability observation
+  record cites it while preserving dense as default.
+- `validation/benchmarks/sparse_suitability_threshold_policy.dec050.json`,
+  `tests/test_sparse_suitability_observation.py`, and the performance-harness
+  README now distinguish the accepted generated-grid pivot-ratio proxy from
+  remaining sparse timing, memory, CI, hardware-normalized, and true
+  condition-number threshold work.
+
+Validation passed: performance harness formatting, performance harness Rust
+tests 19/19, focused sparse-suitability pytest 1/1, JSON syntax checks for the
+sparse suitability, sparse threshold, and sparse conditioning policy records,
+`git diff --check`, and full DEC-025 sweep
+`validation/evidence/sweeps/SWEEP_20260622T163532Z_3068ec39ed5e-dirty.json`.
+
+Residuals remain explicit: dense remains default; default sparse promotion,
+timing thresholds, allocator/RSS memory thresholds, practical-size bands, CI
+gates, hardware-normalized methodology, true condition-number thresholds,
+release/external thresholds, and professional/code-compliance acceptance remain
+outside this policy.
+
+Boundary: no protected standards content, proprietary benchmark output, private
+project data, lifecycle transition, release-readiness claim, professional
+approval, certification, sealing, authentication, or code-compliance claim
+changed.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-SPARSECONDITIONPOLICY-001.md`.
+
+## 2026-06-22 - R4 D9 two-span multi-support companion (`TP-R4-D9-MULTISUPPORTSPAN-001`)
+
+Added a bounded multi-node / two-span companion to the accepted `DEC-046`
+multi-support validation set.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added
+  `NL-ASSEMBLED-MULTI-DOF-TWO-SPAN-ACCEPTED-ORIGINAL`, an invented assembled
+  frame fixture with two frame spans and nonlinear supports on separate
+  downstream nodes.
+- The multi-support active-set-count, free-DOF force/moment, free-DOF work,
+  general-energy, displacement/reaction-delta observation, and
+  displacement/reaction-delta policy records now name the accepted
+  twelve-fixture public-original companion set.
+- Benchmark README text, hand-calculation notes, nonlinear regression guards,
+  coordination, active R4 planning, the R4 gap packet, and DEL-09-03 memory now
+  record the multi-node / two-span companion and preserved policy boundary.
+
+Focused validation: nonlinear benchmark formatting passed; nonlinear benchmark
+Rust tests passed 18/18; focused nonlinear pytest passed 8/8; JSON syntax
+checks passed for the six modified multi-support records; `git diff --check`
+passed before the full sweep. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T150957Z_cc492e9d7eb9-dirty.json`.
+
+Residuals: R4 is still not ready for exit. Remaining D6/D9 gaps include
+non-seed force/displacement thresholds beyond the accepted twelve-fixture set,
+broader displacement/reaction-delta thresholds beyond accepted
+current/product/fixture surfaces, broader energy thresholds outside accepted
+current/product/fixture surfaces, default sparse promotion plus sparse
+timing/memory/conditioning/CI/hardware-normalized thresholds, deeper
+spring-hanger behavior, external validation thresholds, broader R4 validation
+package work, and final R4 exit-chain evidence.
+
+Boundary: no protected standards content, proprietary benchmark output, private
+project data, hidden support defaults, lifecycle transition, release-readiness
+claim, professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTSPAN-001.md`.
+
+## 2026-06-22 - R4 D9 opposing-gaps multi-support companion (`TP-R4-D9-MULTISUPPORTOPPGAP-001`)
+
+Added a bounded gap-only opposing-direction companion to the accepted
+`DEC-046` multi-support validation set.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added
+  `NL-ASSEMBLED-MULTI-DOF-OPPOSING-GAPS-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture that closes a positive-direction `Ux` gap and a
+  negative-direction `Uy` gap in one multi-support solve.
+- The multi-support active-set-count, free-DOF force/moment, free-DOF work,
+  general-energy, displacement/reaction-delta observation, and
+  displacement/reaction-delta policy records now name the accepted
+  eleven-fixture public-original companion set.
+- Benchmark README text, hand-calculation notes, nonlinear regression guards,
+  coordination, active R4 planning, the R4 gap packet, and DEL-09-03 memory now
+  record the gap-only opposing-direction companion and preserved policy
+  boundary.
+
+Focused validation: nonlinear benchmark formatting passed; nonlinear benchmark
+Rust tests passed 18/18; focused nonlinear pytest passed 8/8; JSON syntax
+checks passed for the six modified multi-support records; `git diff --check`
+passed before the full sweep. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T143831Z_7f73b463bd54-dirty.json`.
+
+Residuals: R4 is still not ready for exit. Remaining D6/D9 gaps include
+non-seed force/displacement thresholds beyond the accepted eleven-fixture set,
+broader displacement/reaction-delta thresholds beyond accepted
+current/product/fixture surfaces, broader energy thresholds outside accepted
+current/product/fixture surfaces, default sparse promotion plus sparse
+timing/memory/conditioning/CI/hardware-normalized thresholds, deeper
+spring-hanger behavior, external validation thresholds, broader R4 validation
+package work, and final R4 exit-chain evidence.
+
+Boundary: no protected standards content, proprietary benchmark output, private
+project data, hidden support defaults, lifecycle transition, release-readiness
+claim, professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTOPPGAP-001.md`.
+
+## 2026-06-22 - R4 D9 general-energy residual policies (`TP-R4-D9-GENERALENERGYPOLICY-001`)
+
+Promoted bounded `DEC-046` general-energy residual policies for the current
+public-original assembled validation seed, the current invented product-preview
+nonlinear surface, and the accepted ten-fixture multi-support companion set.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added
+  `general_energy_policy.dec046.json` and
+  `multisupport_general_energy_policy.dec046.json`, plus Rust policy helpers
+  and tests that bind the current seed and ten-fixture companion set to
+  `0.0 N-m` accepted residual-energy envelopes.
+- `core/product_physics`: promoted the invented product-preview residual row
+  metadata to `DEC-046-CV-B-product-preview-general-energy-residual-v1` and
+  regenerated `fixtures/product_preview/invented_mechanics_result.json`.
+- Hand-calculation notes, benchmark READMEs, product-preview tests, nonlinear
+  regression guards, coordination, R4 planning, the R4 gap packet, and DEL-09-03
+  memory now record that general-energy residual policy is accepted only for
+  the governed current/product/ten-fixture surfaces.
+
+Focused validation: Rust formatting checks passed for nonlinear benchmarks,
+product physics, and nonlinear integration; focused Rust tests passed 18/18,
+44/44, and 11/11 respectively; focused pytest passed 28/28; JSON syntax checks
+passed for the two new policy records and regenerated product-preview fixture;
+`git diff --check` passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T142119Z_1b32c80965d5-dirty.json`.
+
+Residuals: R4 is still not ready for exit. Remaining D6/D9 gaps include
+non-seed force/displacement thresholds beyond the accepted ten-fixture set,
+broader displacement/reaction-delta thresholds beyond accepted
+current/product/fixture surfaces, broader non-seed/release/external/sparse
+default/total/modal/CI energy threshold axes, deeper spring-hanger behavior,
+default sparse promotion plus sparse timing/memory/conditioning/CI and
+hardware-normalized thresholds, external validation thresholds, broader R4
+validation packaging, and final R4 exit-chain evidence.
+
+Boundary: no protected standards content, proprietary benchmark output, private
+project data, hidden support defaults, lifecycle transition, release-readiness
+claim, professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-GENERALENERGYPOLICY-001.md`.
+
+## 2026-06-22 - DAG-007 approved as current dependency graph authority (`TP-DAG007-APPROVAL-001`)
+
+Human approval promoted `execution/_DAG/DAG-007/` from validated canonical
+dependency type-system rectification successor to current graph authority.
+`execution/_DAG/_LATEST.md`, the DAG-007 approval package, coordination entry
+protocol, project-local agent posture, current-facing docs, the active
+completion plan, generated `_DEPENDENCIES.md` graph-authority summaries,
+PKG-00 current kit references, governance/contribution templates, the tool
+registry, and the dependency-type rectification plan now route to approved
+`DAG-007`.
+
+Graph facts at approval: 101 deliverable nodes, 1,480 edge rows, 1,395 active
+register rows, 85 retired rows, zero candidate rows, 972 unique directed active
+graph edges, zero active SCCs, zero duplicate active directed edges, zero
+bidirectional active pairs, and 15 topological waves.
+
+Validation: dependency schema validation passed for
+`execution/_DAG/DAG-007/DependencyEdges.csv`; canonical strict DAG audit passed
+via the repo-root `tools/coordination/audit_dag.py`; `dag.json` and `DAG_Audit.json`
+passed JSON syntax checks; `list_deliverable_status.py --dag DAG-007` reported
+101 rows (`CHECKING=8`, `IN_PROGRESS=92`, `ISSUED=1`); focused
+`tests/test_release_readiness_script.py` passed after updating its latest-DAG
+expectations; full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T135307Z_95d0a6b5e0c0-dirty.json`.
+
+Boundary: `DAG-001` through `DAG-006` remain immutable historical snapshots.
+This approval does not change lifecycle state, dispatch Type 2 work, promote
+candidate rows, create release-readiness claims, or create professional,
+certification, sealing, authentication, or code-compliance claims.
+
+## 2026-06-22 - R4 D9 two-span opposing-gap companion (`TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001`)
+
+Landed a thirteenth public-original accepted multi-support validation companion
+inside the narrow `DEC-046` multi-support policy envelope.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added
+  `NL-ASSEMBLED-MULTI-DOF-TWO-SPAN-OPPOSING-GAPS-ACCEPTED-ORIGINAL`, an
+  invented two-span frame fixture with a positive-direction Ux gap at the
+  intermediate node and a negative-direction Uy gap at the tip node.
+- Multi-support policy/observation records now name the thirteen-fixture
+  public-original set for active-set-count, free-DOF force/moment, free-DOF
+  work, general-energy, and displacement/reaction-delta evidence.
+- Nonlinear regression guards, benchmark README text, hand-calculation notes,
+  DEL-09-03 memory, current coordination surfaces, the R4 exit-scope decision
+  packet, and the R4 exit-gap packet were updated to reflect the thirteen-fixture
+  envelope while preserving `TBD` residuals.
+
+Validation: nonlinear benchmark Rust tests passed 18/18; focused Python
+regression passed 8/8; JSON syntax validation passed for the six modified
+multi-support policy/observation records; `git diff --check` passed. Full
+DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T165533Z_25634e332118-dirty.json`.
+A committed-head follow-up sweep also passed 5/5 surfaces with
+`working_tree_dirty=false`:
+`validation/evidence/sweeps/SWEEP_20260622T170222Z_f69e970d3347.json`.
+
+Residuals: no non-seed force/displacement threshold beyond the accepted
+thirteen-fixture set, broader displacement/reaction-delta threshold, broader
+general-energy threshold, sparse-default behavior, release/external threshold,
+or R4 exit decision was added. `D-25` remains the human ruling gate for whether
+the residuals block R4 or defer to post-R4/R5.
+
+Run record:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001.md`.
+
+## 2026-06-22 - R4 D7 sparse storage-footprint observations (`TP-R4-D7-SPARSESTORAGEOBS-001`)
+
+Added deterministic storage-footprint observations to the DEC-050 sparse
+performance harness evidence without promoting sparse as default or setting
+memory thresholds.
+
+Changed surfaces:
+
+- `core/solver/performance_harness`: added f64 value-storage byte counts for
+  reduced dense matrices and original/ordered sparse profile entries on
+  `HarnessRunRecord`, `HarnessSuiteSummary`, `SparseSolveObservation`, and
+  `SparseSuitabilityObservationRecord`.
+- `validation/benchmarks/sparse_suitability_observation.dec050.json`: records
+  the new deterministic storage-footprint metric names and marks memory
+  observations as `deterministic_value_storage_observed_threshold_tbd`.
+- `tests/test_sparse_suitability_observation.py` and performance-harness Rust
+  tests guard the storage metrics and dense-default boundary.
+- Coordination, plan, gap-packet, memory, and run-record surfaces document that
+  allocator/RSS memory thresholds, timing thresholds, conditioning/CI thresholds,
+  hardware-normalized methodology, and default sparse promotion remain open.
+
+Focused validation: performance harness Rust tests passed 19/19; focused
+sparse-suitability pytest passed 1/1; JSON syntax validation passed;
+`git diff --check` passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T132612Z_052c8cb5e277-dirty.json`.
+
+Residuals: dense remains default; default sparse promotion, allocator/RSS memory
+thresholds, timing thresholds, practical-size bands, conditioning/CI thresholds,
+hardware-normalized scale methodology, D6/D9 nonlinear threshold residuals,
+deeper spring-hanger behavior, external validation thresholds, broader R4
+validation package work, and final R4 exit evidence remain open.
+
+Boundary: deterministic f64 value-storage observation evidence only. No
+protected standards content, proprietary benchmark output, private project
+data, lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-SPARSESTORAGEOBS-001.md`.
+
+## 2026-06-22 - R4 D9 displacement/reaction observation ledger refresh (`TP-R4-D9-DISPREACTIONOBSLEDGER-001`)
+
+Refreshed the standalone multi-support displacement/reaction-delta observation
+ledger so its evidence fixture IDs match the accepted ten-fixture
+multi-support policy set.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear/multisupport_displacement_reaction_delta_observation.dec046.json`
+  now names the negative-direction gap/one-way and four-class fixtures in
+  addition to the prior eight accepted multi-support companions.
+- `tests/test_nonlinear_support_regression.py` now compares the observation
+  ledger fixture IDs against the accepted displacement/reaction-delta policy
+  fixture IDs and the expected ten-fixture inventory.
+- DEL-09-03 memory and run records document the metadata refresh and preserved
+  boundary.
+
+Focused validation: focused nonlinear pytest passed 8/8; JSON syntax
+validation passed for the refreshed observation ledger; `git diff --check`
+passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T131130Z_d4165f4fa5fe-dirty.json`.
+
+Residuals: this refresh does not alter the remaining D6/D9 gaps: non-seed
+force/displacement thresholds beyond the accepted ten-fixture set, broader
+displacement/reaction-delta thresholds beyond the accepted current-seed,
+ten-fixture, and product-preview surfaces, general energy thresholds, default
+sparse promotion plus sparse timing/memory/conditioning/CI/hardware-normalized
+thresholds, deeper spring-hanger behavior, external validation thresholds,
+broader R4 validation package work, and final R4 exit evidence remain open.
+
+Boundary: metadata parity only. No protected standards content, proprietary
+benchmark output, private project data, lifecycle transition, release-readiness
+claim, professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONOBSLEDGER-001.md`.
+
+## 2026-06-22 - R4 D9 four-class multi-support companion (`TP-R4-D9-MULTISUPPORT4CLASS-001`)
+
+Broadened the accepted `DEC-046` multi-support companion set with a
+four-class fixture that combines friction sliding, gap closure, one-way
+release, and rotational lift-off release in one invented assembled solve,
+without widening the accepted thresholds.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear` now includes
+  `NL-ASSEMBLED-MULTI-DOF-FOUR-CLASS-ACCEPTED-ORIGINAL`, an invented frame
+  fixture with four first-iteration support-state changes under the existing
+  multi-support active-set cap.
+- Multi-support active-set-count, free-DOF force/moment, free-DOF work, and
+  displacement/reaction-delta policy records now name the ten-fixture
+  public-original accepted set.
+- The benchmark README, hand-calc index, new hand-calc note, focused Python
+  guard, DEL-09-03 memory, coordination file, and R4 gap packet now describe
+  the ten-fixture accepted companion set.
+
+Focused validation: nonlinear benchmark Rust tests passed 17/17; focused
+nonlinear pytest passed 8/8; JSON syntax validation passed for the four
+multi-support policy records. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T130443Z_2ead1626d231-dirty.json`.
+
+Residuals: non-seed force/displacement thresholds beyond the accepted
+ten-fixture set, broader displacement/reaction-delta thresholds beyond the
+accepted current-seed, ten-fixture, and product-preview surfaces, general
+energy thresholds, default sparse promotion plus sparse timing/memory/
+conditioning/CI/hardware-normalized thresholds, deeper spring-hanger behavior,
+external validation thresholds, broader R4 validation package work, and final
+R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORT4CLASS-001.md`.
+
+## 2026-06-22 - R4 D9 negative-gap multi-support companion (`TP-R4-D9-MULTISUPPORTNEGAP-001`)
+
+Broadened the accepted `DEC-046` multi-support companion set with a
+negative-direction gap branch paired with one-way release, while keeping the
+policy scope narrow and R4 exit blockers open.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear` now includes
+  `NL-ASSEMBLED-MULTI-DOF-NEGATIVE-GAP-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture where a negative-direction Uy gap closes and a Ux
+  one-way support releases in the accepted active-set loop.
+- Multi-support active-set-count, free-DOF force/moment, free-DOF work, and
+  displacement/reaction-delta policy records now name the nine-fixture
+  public-original accepted set.
+- The benchmark README, hand-calc index, new hand-calc note, focused Python
+  guard, DEL-09-03 memory, coordination file, and R4 gap packet now describe
+  the nine-fixture accepted companion set.
+
+Focused validation: nonlinear benchmark Rust tests passed 17/17; focused
+nonlinear pytest passed 8/8; JSON syntax validation passed for the four
+multi-support policy records. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T123917Z_315cb4c609bd-dirty.json`.
+
+Residuals: non-seed force/displacement thresholds beyond the accepted
+nine-fixture set, broader displacement/reaction-delta thresholds beyond the
+accepted current-seed, nine-fixture, and product-preview surfaces, general
+energy thresholds, default sparse promotion plus sparse timing/memory/
+conditioning/CI/hardware-normalized thresholds, deeper spring-hanger behavior,
+external validation thresholds, broader R4 validation package work, and final
+R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTNEGAP-001.md`.
+
+## 2026-06-22 - R4 D7 sparse suitability threshold policy (`TP-R4-D7-SPARSETHRESHOLDPOLICY-001`)
+
+Promoted a bounded `DEC-050` sparse suitability threshold policy for the
+generated-grid observation set while keeping dense as the product/default solve
+path.
+
+Changed surfaces:
+
+- `core/solver/performance_harness`: added
+  `DEC-050-SPARSE-SUITABILITY-GENERATED-GRID-THRESHOLD-POLICY-v1` and explicit
+  generated-grid sparse suitability limits for dense-vs-sparse relative delta
+  (`1.0e-9`), sparse residual (`1.0e-6`), repeat sparse-solution delta (`0.0`),
+  and nonpositive pivots (`0`).
+- `validation/benchmarks/sparse_suitability_threshold_policy.dec050.json` records
+  the governed policy and names the two generated-grid evidence fixtures.
+- `validation/benchmarks/sparse_suitability_observation.dec050.json` now cites
+  the accepted threshold policy while preserving the observation record and
+  dense-default boundary.
+- `tests/test_sparse_suitability_observation.py` guards the policy record,
+  observation linkage, numeric limits, and the remaining dense-default boundary.
+
+Focused validation: performance harness Rust tests passed 19/19; focused
+sparse-suitability pytest passed 1/1; JSON syntax validation passed. Full
+DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T122628Z_2fb363448820-dirty.json`.
+
+Residuals: dense remains default; default sparse promotion,
+timing/memory/conditioning/CI thresholds, hardware-normalized scale methodology,
+D6/D9 nonlinear threshold residuals, deeper spring-hanger behavior, external
+validation thresholds, broader R4 validation package work, and final R4 exit
+evidence remain open.
+
+Boundary: invented/public-original generated-grid evidence only. No protected
+standards content, proprietary benchmark output, private project data, lifecycle
+transition, release-readiness claim, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-SPARSETHRESHOLDPOLICY-001.md`.
+
+## 2026-06-22 - R4 D9 product-preview displacement/reaction delta policy (`TP-R4-D9-PRODDISPREACTIONPOLICY-001`)
+
+Landed an accepted product-preview-only `DEC-046` displacement/reaction delta
+threshold policy for emitted rows from the invented mixed one-way/gap/friction
+preview surface.
+
+Changed surfaces:
+
+- `core/product_physics`: added
+  `DEC-046-CV-B-product-preview-displacement-reaction-delta-threshold-v1` and
+  explicit product-preview delta limits of `50.0 mm`, `0.05 rad`,
+  `110000.0 N`, and `110000.0 N*m`.
+- Product-preview residual-row metadata now carries both the existing
+  observation ref and the accepted threshold-policy ref; the regression proves
+  the deterministic mixed preview deltas remain inside that product-only
+  envelope.
+- `fixtures/product_preview/invented_mechanics_result.json` was regenerated so
+  the canned product-preview diagnostics surface the accepted product delta
+  policy for emitted delta rows. The one-iteration fixture cases still do not
+  synthesize displacement/reaction delta rows.
+- `tests/product_preview/test_product_preview_service.py` now guards the
+  diagnostic policy ref surfaced through the fixture-backed service.
+
+Focused validation: product physics Rust tests passed 44/44; product-preview,
+result-schema, and analysis-run pytest slice passed 20/20; JSON validation
+passed for the regenerated product-preview mechanics fixture. Full DEC-025
+sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T121215Z_3bc51d2b2eed-dirty.json`.
+
+Residuals: broader non-seed force/displacement thresholds beyond the accepted
+eight-fixture set, broader displacement/reaction-delta thresholds beyond the
+accepted current-seed, eight-fixture, and product-preview surfaces, general
+energy thresholds, default sparse promotion / sparse threshold policy, deeper
+spring-hanger behavior, external validation thresholds, broader R4 validation
+package work, and final R4 exit evidence remain open.
+
+Boundary: invented product-preview evidence only. No protected standards
+content, proprietary benchmark output, private project data, lifecycle
+transition, release-readiness claim, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-PRODDISPREACTIONPOLICY-001.md`.
+
+## 2026-06-22 - R4 D9 displacement/reaction delta policy (`TP-R4-D9-DISPREACTIONPOLICY-001`)
+
+Landed governed fixture-evidence-envelope displacement/reaction delta threshold
+policies for the current assembled validation seed and the accepted
+eight-fixture multi-support validation set under `DEC-046`.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added
+  `DEC-046-CV-B-displacement-reaction-delta-threshold-validation-v1` and
+  `DEC-046-CV-B-multisupport-displacement-reaction-delta-threshold-validation-v1`
+  policy records, plus Rust policy-entry APIs and predicates.
+- Current assembled validation seed limits are class-tiered from current
+  deterministic fixture evidence: one-way/lift-off/friction `100.0 mm`,
+  `0.0 rad`, `10.0 N`, `0.0 N-m`; gap `50.0 mm`, `0.0 rad`, `5.0 N`,
+  `0.0 N-m`.
+- Accepted multi-support set limits are `100.0 mm`, `0.005 rad`, `10.0 N`,
+  and `3.0 N-m` across the accepted eight-fixture set.
+- `validation/hand_calcs/nonlinear`, benchmark README, and
+  `tests/test_nonlinear_support_regression.py` now cite and guard the accepted
+  delta policies while preserving the observation-only depth fixture and
+  product-preview `TBD` delta boundary.
+
+Focused validation: nonlinear benchmark Rust tests passed 17/17; focused
+nonlinear pytest passed 8/8. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T115411Z_b7426f628f24-dirty.json`.
+
+Residuals: product-preview displacement/reaction delta thresholds, broader
+non-seed force/displacement thresholds beyond the accepted eight-fixture set,
+general energy thresholds, default sparse promotion / sparse threshold policy,
+deeper spring-hanger behavior, external validation thresholds, broader R4
+validation package work, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONPOLICY-001.md`.
+
+## 2026-06-22 - R4 D7 sparse suitability observations (`TP-R4-D7-SPARSESUITABILITYOBS-001`)
+
+Landed observation-only `DEC-050` sparse suitability records over generated
+invented planar grid bands `invented-grid-frame-4x3` and
+`invented-grid-frame-6x8`.
+
+Changed surfaces:
+
+- `core/solver/performance_harness`: added
+  `SparseSuitabilityObservationRecord` and
+  `run_sparse_suitability_observation_suite` for dense-vs-sparse parity,
+  sparse residual, repeatability, profile/bandwidth, pivot, and elapsed-time
+  observations on generated grid fixtures.
+- `validation/benchmarks/sparse_suitability_observation.dec050.json`: added the
+  governed observation record for the two generated-grid fixture bands.
+- `tests/test_sparse_suitability_observation.py`: added a guard for the DEC-050
+  observation record, fixture IDs, dense-default boundary, and harness surface.
+
+Focused validation: performance harness Rust tests passed 19/19; focused
+sparse-suitability pytest passed 1/1; JSON syntax validation passed. Full
+DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T113515Z_521fdfe1e613-dirty.json`.
+
+Residuals: dense remains default; default sparse promotion,
+timing/memory/conditioning/CI thresholds, hardware-normalized scale methodology,
+D6/D9 nonlinear threshold residuals, deeper spring-hanger behavior, external
+validation thresholds, broader R4 validation package work, and final R4 exit
+evidence remain open.
+
+Boundary: invented/public-original generated observation evidence only. No
+protected standards content, proprietary benchmark output, private project
+data, lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 sequential cascade multi-support companion (`TP-R4-D9-MULTISUPPORTCASCADE-001`)
+
+Landed an eighth public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-CASCADE-GAP-LIFT-OFF-ACCEPTED-ORIGINAL`, an invented
+two-node frame case with a measured sequential active-set cascade. The fixture
+first releases an Rz lift-off support, then closes a Uy gap support, then
+converges with active-set residual sequence `1 -> 1 -> 0`. The accepted
+multi-support policy records now cover an eight-fixture set: one-way/gap,
+lift-off/gap, friction/gap, three-support/three-translation,
+mixed translation/rotation, derived-normal friction/gap,
+derived-normal friction/rotational lift-off, and sequential gap/lift-off
+cascade.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the sequential gap/lift-off cascade
+  acceptance fixture and eight-fixture acceptance inventory/observation coverage
+  under the existing narrow `DEC-046` multi-support active-set, free-DOF
+  force/moment, and free-DOF work policies.
+- `validation/hand_calcs/nonlinear`: added the public-original sequential
+  cascade acceptance note and updated the multi-support evidence index.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the eight-fixture public-original set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording now
+  records the accepted eight-fixture multi-support set while keeping general
+  non-seed thresholds and R4 exit evidence open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTCASCADE-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed; JSON validation
+passed for the four updated multi-support records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T111513Z_7ab178763ccc-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+eight-fixture set, general energy threshold promotion,
+displacement/reaction-delta thresholds, default sparse promotion, large-model
+sparse suitability thresholds, deeper spring-hanger behavior, external
+validation thresholds, broader R4 validation package work, and final R4 exit
+evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 derived-normal rotational multi-support companion (`TP-R4-D9-MULTISUPPORTDERIVEDROT-001`)
+
+Landed a seventh public-original accepted multi-support validation companion
+in the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-DERIVED-NORMAL-ROTATIONAL-ACCEPTED-ORIGINAL`, an
+invented two-node frame case with derived-normal friction sliding on Ux and
+rotational lift-off release on Rz. The accepted multi-support policy records
+now cover a seven-fixture set: one-way/gap, lift-off/gap, friction/gap,
+three-support/three-translation, mixed translation/rotation, derived-normal
+friction/gap, and derived-normal friction/rotational lift-off.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the derived-normal
+  friction/rotational lift-off acceptance fixture and seven-fixture acceptance
+  inventory/observation coverage under the existing narrow `DEC-046`
+  multi-support active-set, free-DOF force/moment, and free-DOF work policies.
+- `validation/hand_calcs/nonlinear`: added the public-original derived-normal
+  friction/rotational lift-off acceptance note and updated the multi-support
+  evidence index.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the seven-fixture public-original set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording now
+  records the accepted seven-fixture multi-support set while keeping general
+  non-seed thresholds and R4 exit evidence open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTDERIVEDROT-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed; JSON validation
+passed for the four updated multi-support records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T105454Z_d7d8ecc8cab7-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+seven-fixture set, general energy threshold promotion,
+displacement/reaction-delta thresholds, default sparse promotion, large-model
+sparse suitability thresholds, deeper spring-hanger behavior, external
+validation thresholds, broader R4 validation package work, and final R4 exit
+evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 derived-normal multi-support companion (`TP-R4-D9-MULTISUPPORTDERIVED-001`)
+
+Landed a sixth public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-DERIVED-NORMAL-GAP-ACCEPTED-ORIGINAL`, an invented
+two-node frame case with derived-normal friction sliding on Ux and gap closure
+on Uz. The accepted multi-support policy records now cover a six-fixture set:
+one-way/gap, lift-off/gap, friction/gap, three-support/three-translation,
+mixed translation/rotation, and derived-normal friction/gap.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the derived-normal friction/gap
+  acceptance fixture and six-fixture acceptance inventory/observation coverage
+  under the existing narrow `DEC-046` multi-support active-set, free-DOF
+  force/moment, and free-DOF work policies.
+- `validation/hand_calcs/nonlinear`: added the public-original derived-normal
+  friction/gap acceptance note and updated the multi-support evidence index.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the six-fixture public-original set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording now
+  records the accepted six-fixture multi-support set while keeping general
+  non-seed thresholds and R4 exit evidence open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTDERIVED-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed; JSON validation
+passed for the four updated multi-support records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T103936Z_5058ec872d37-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+six-fixture set, general energy threshold promotion,
+displacement/reaction-delta thresholds, default sparse promotion, large-model
+sparse suitability thresholds, deeper spring-hanger behavior, external
+validation thresholds, broader R4 validation package work, and final R4 exit
+evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D7 nonlinear direct-profile sparse evidence (`TP-R4-D7-NONLINEARPROFILE-001`)
+
+Landed the nonlinear/core half of the `DEC-050` direct-profile sparse evidence
+follow-on. The assembled nonlinear integration loop now observes sparse parity
+through direct reduced profile entries assembled from the active free-DOF map,
+while dense remains the active solve path and parity oracle.
+
+Changed surfaces:
+
+- `core/solver/nonlinear_integration`: added `assembly_basis` to
+  `SparseLinearSolveEvidence`, set it to `direct_reduced_profile_entries`,
+  assembled sparse entries from the global stiffness/free-DOF map, and called
+  `solve_symmetric_system_from_entries`.
+- Sparse residual evidence is now computed from the direct entry system, with
+  the existing non-blocking unavailable-evidence posture preserved.
+- Regression coverage now asserts the direct-profile evidence basis and covers
+  non-contiguous free-DOF mapping.
+- Coordination, roadmap, type-boundary, and completion-plan surfaces now record
+  nonlinear/core direct-profile evidence as landed; remaining sparse work is
+  default sparse promotion plus large-model suitability thresholds.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-04_Nonlinear support active-set solver/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-NONLINEARPROFILE-001.md`
+and
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-NONLINEARPROFILE-001.md`.
+
+Focused validation: nonlinear integration Rust tests passed 11/11; product
+physics Rust tests passed 44/44; nonlinear benchmark Rust tests passed 16/16;
+crate fmt check passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T102208Z_479c6fd7d97a-dirty.json`.
+
+Residuals: dense remains default; default sparse promotion, timing/memory
+thresholds, practical-size bands, conditioning/CI thresholds, large-model
+sparse suitability, external validation thresholds, and remaining R4/D9 exit
+evidence remain open. No release, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 rotational multi-support companion (`TP-R4-D9-MULTISUPPORTROT-001`)
+
+Landed a fifth public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-ROTATIONAL-ACCEPTED-ORIGINAL`, an invented two-node
+frame case with simultaneous Ux one-way release and Rz lift-off release. The
+accepted multi-support policy records now cover a five-fixture set:
+one-way/gap, lift-off/gap, friction/gap, three-support/three-translation, and
+mixed translation/rotation.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the rotational acceptance fixture,
+  a mixed Ux/Rz fixture helper, and five-fixture acceptance
+  inventory/observation coverage under the existing narrow `DEC-046`
+  multi-support active-set, free-DOF force/moment, and free-DOF work policies.
+- `validation/hand_calcs/nonlinear`: added the public-original rotational
+  acceptance note and updated the multi-support evidence index.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the five-fixture public-original set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording now
+  records the accepted five-fixture multi-support set while keeping general
+  non-seed thresholds and R4 exit evidence open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTROT-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed; JSON validation
+passed for the four updated multi-support records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T100438Z_f0f0ddd44e5b-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+five-fixture set, general energy threshold promotion,
+displacement/reaction-delta thresholds, default sparse promotion,
+nonlinear/core profile-direct sparse promotion, deeper spring-hanger behavior,
+external validation thresholds, broader R4 validation package work, and final
+R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 three-support multi-support companion (`TP-R4-D9-MULTISUPPORT3DOF-001`)
+
+Landed a fourth public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-THREE-SUPPORT-ACCEPTED-ORIGINAL`, an invented two-node
+frame case with simultaneous Ux one-way release, Uy gap closure, and Uz
+friction sliding. The accepted multi-support policy records now cover a
+four-fixture set: one-way/gap, lift-off/gap, friction/gap, and
+three-support/three-translation.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the three-support acceptance
+  fixture, a three-translation fixture helper, and four-fixture acceptance
+  inventory/observation coverage under the existing narrow `DEC-046`
+  multi-support active-set, free-DOF force/moment, and free-DOF work policies.
+- `validation/hand_calcs/nonlinear`: added the public-original three-support
+  acceptance note and updated the multi-support evidence index.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the four-fixture public-original set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording now
+  records the accepted four-fixture multi-support set while keeping general
+  non-seed thresholds and R4 exit evidence open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORT3DOF-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed; JSON validation
+passed for the four updated multi-support records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T094835Z_68f720407e61-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+four-fixture set, general energy threshold promotion,
+displacement/reaction-delta thresholds, default sparse promotion,
+nonlinear/core profile-direct sparse promotion, deeper spring-hanger behavior,
+external validation thresholds, broader R4 validation package work, and final
+R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 displacement/reaction delta observation ledger (`TP-R4-D9-DISPREACTIONOBS-001`)
+
+Landed an observation-only `DEC-046` displacement/reaction-delta ledger for the
+current assembled validation seed and accepted three-fixture multi-support
+companion set. The tranche records the axes and product-preview metadata while
+leaving accepted displacement/reaction-delta thresholds `TBD`.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added typed observation-ledger entries,
+  seed and multi-support observation references, and Rust tests proving the
+  axes are dimensioned observations with no accepted threshold policy.
+- Added machine-readable records:
+  `validation/benchmarks/nonlinear/displacement_reaction_delta_observation.dec046.json`
+  and
+  `validation/benchmarks/nonlinear/multisupport_displacement_reaction_delta_observation.dec046.json`.
+- `core/product_physics`: product-preview displacement/reaction delta result
+  rows now carry an observation reference and `threshold_policy_status=tbd`
+  instead of the older generic `threshold=TBD` basis.
+- Coordination and planning surfaces: current-state and residual wording now
+  distinguish landed observation ledgers from still-open accepted delta
+  thresholds.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONOBS-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 16/16; product
+physics Rust tests passed 44/44; focused nonlinear pytest passed 8/8; JSON
+validation passed for both new observation records. Full DEC-025 sweep passed
+5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T093149Z_c1f9fe81811d-dirty.json`.
+
+Residuals: accepted displacement/reaction-delta thresholds remain open, as do
+non-seed force/displacement threshold promotion beyond the accepted
+three-fixture set, general energy threshold promotion, default sparse
+promotion, nonlinear/core profile-direct sparse promotion, deeper spring-hanger
+behavior, external validation thresholds, broader R4 validation package work,
+and final R4 exit evidence.
+
+Boundary: invented/public-original validation observation evidence only. No
+protected standards content, proprietary benchmark output, private project
+data, lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 multi-support friction/gap companion (`TP-R4-D9-MULTISUPPORTFRICTION-001`)
+
+Landed a third public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-FRICTION-GAP-ACCEPTED-ORIGINAL`, an invented two-node
+frame case with simultaneous Ux friction sliding and Uy gap closure. The
+accepted multi-support policy records now cover a three-fixture set:
+one-way/gap, lift-off/gap, and friction/gap.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the friction/gap acceptance fixture,
+  wired it into `assembled_multisupport_acceptance_inventory()`, and updated
+  active-set, free-DOF force/moment, and free-DOF work policy evidence fixture
+  IDs to the three-fixture set.
+- `validation/hand_calcs/nonlinear`: added the public-original friction/gap
+  acceptance note and updated the multi-support evidence index.
+- `tests/test_nonlinear_support_regression.py`: expanded guardrails so the
+  source, hand-calc note, and JSON policy records must all carry the accepted
+  fixture set.
+- Coordination and planning surfaces: R4/D6/D9 current-state wording updated
+  so the project records broader accepted multi-support coverage without
+  closing general non-seed thresholds or R4 exit evidence.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTFRICTION-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 15/15; focused
+nonlinear pytest passed 8/8; `cargo fmt --check` passed after formatting. Full
+DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T090832Z_9b32ef0b35d0-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+three-fixture set, general energy threshold promotion, displacement/reaction-delta
+thresholds, default sparse promotion, nonlinear/core profile-direct sparse
+promotion, deeper spring-hanger behavior, external validation thresholds,
+broader R4 validation package work, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D7 product direct-profile sparse evidence (`TP-R4-D7-SPARSEPROFILE-001`)
+
+Landed a bounded follow-on to the `DEC-050` sparse evidence lane: product
+preview sparse evidence rows now assemble their reduced profile entries
+directly from frame elements, expansion-joint user-stiffness elements, and
+spring support entries, then solve through `core/solver/sparse_direct`. Dense
+remains the product solve path and parity oracle.
+
+Changed surfaces:
+
+- `core/solver/sparse_direct`: added explicit symmetric-entry profile storage
+  and solve APIs, with duplicate-entry summation and invented-frame parity
+  tests against the existing dense-derived sparse path.
+- `core/product_physics`: changed sparse live evidence to use direct reduced
+  profile entries and record `assembly=direct_reduced_profile_entries`,
+  `profile_direct_assembly=observed`, and `default_sparse_promotion=follow_on`.
+- `fixtures/product_preview/invented_mechanics_result.json`: regenerated the
+  invented mechanics result fixture so both sparse evidence rows carry the new
+  direct-profile assembly metadata.
+- `core/solver/diagnostics`: mapped the new sparse entry-index error and
+  updated the sparse status diagnostic to say product direct profile assembly is
+  observed while default sparse promotion remains `TBD`.
+- Coordination and planning surfaces: narrowed the sparse residual to default
+  sparse promotion plus nonlinear/core profile-direct promotion, without
+  closing R4/D9 exit evidence.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-SPARSEPROFILE-001.md`
+and
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D7-SPARSEPROFILE-001.md`.
+
+Focused validation: sparse direct Rust tests passed 20/20; diagnostics Rust
+tests passed 24/24; product physics Rust tests passed 44/44 after regenerating
+the fixture. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T085210Z_799ebcc0dee5-dirty.json`.
+
+Residuals: dense remains default; default sparse promotion, nonlinear/core
+profile-direct sparse promotion, timing/memory thresholds, external validation
+thresholds, and the remaining R4/D9 exit evidence remain open. No release,
+professional approval, certification, sealing, authentication, or
+code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 multi-support acceptance breadth (`TP-R4-D9-MULTISUPPORTBREADTH-001`)
+
+Landed a second public-original accepted multi-support validation companion in
+the nonlinear benchmark crate:
+`NL-ASSEMBLED-MULTI-DOF-GAP-LIFT-OFF-ACCEPTED-ORIGINAL`, an invented two-node
+frame case with simultaneous Ux lift-off release and Uy gap closure. The
+accepted multi-support policy records now cover a two-fixture set: the earlier
+one-way/gap companion plus this lift-off/gap companion.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: added the lift-off/gap acceptance fixture,
+  wired it into `assembled_multisupport_acceptance_inventory()`, and updated
+  active-set, free-DOF force/moment, and free-DOF work policy evidence fixture
+  IDs to the two-fixture set.
+- `validation/hand_calcs/nonlinear`: added the public-original
+  lift-off/gap acceptance note and updated the multi-support evidence index.
+- `tests/test_nonlinear_support_regression.py`: expanded guardrails so the
+  source, hand-calc note, and JSON policy records must all carry the accepted
+  fixture set.
+- Coordination and planning surfaces: R4/D6/D9 residual wording updated so the
+  project records broader accepted multi-support coverage without closing
+  general non-seed thresholds or R4 exit evidence.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTBREADTH-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 15/15; focused
+nonlinear pytest passed 8/8; JSON validation, `cargo fmt --check`, and
+`git diff --check` passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T083239Z_5a955e5e84b1-dirty.json`.
+
+Residuals: non-seed force/displacement threshold promotion beyond the accepted
+two-fixture set, general energy threshold promotion, displacement/reaction-delta
+thresholds, profile-direct sparse assembly/default sparse promotion, deeper
+spring-hanger behavior, external validation thresholds, broader R4 validation
+package work, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 free-DOF work residual policy (`TP-R4-D9-WORKPOLICY-001`)
+
+Landed a bounded `DEC-046` threshold-promotion slice for final-iteration
+free-DOF work residual products. The current assembled validation seed now
+carries `DEC-046-CV-B-free-dof-work-residual-validation-v1`; the accepted
+Ux/Uy multi-support companion now carries
+`DEC-046-CV-B-multisupport-free-dof-work-residual-validation-v1`; and the
+invented product-preview nonlinear surface now carries
+`DEC-046-CV-B-product-preview-free-dof-work-residual-v1`. Each accepted work
+residual limit is `0.0 N-m` for the measured final-iteration surface.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: work-policy records, policy helpers,
+  accepted-observation guards, and Rust tests proving current-seed plus
+  multi-support companion coverage.
+- `core/product_physics` and `fixtures/product_preview`: product-preview work
+  residual result metadata now records accepted policy status while preserving
+  `general_energy_threshold=TBD`.
+- Desktop and product-preview tests: expected result counts and unit-witness
+  counts updated for the two accepted work residual result rows.
+- `validation/hand_calcs/nonlinear`, benchmark README content, coordination
+  surfaces, R4 gap planning, and DEL-09-03 memory: bounded work-policy status
+  recorded without closing general energy, displacement/reaction-delta, sparse,
+  external, release, or broader multi-support gaps.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-WORKPOLICY-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 15/15; product
+physics Rust tests passed 44/44; focused pytest passed 28/28; desktop Vitest
+passed 407/407; Playwright desktop dev lane passed 18/18; JSON validation and
+`git diff --check` passed. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T081626Z_719254ef37f8-dirty.json`.
+
+Residuals: profile-direct sparse assembly/default sparse promotion, non-seed
+force/displacement threshold promotion beyond the accepted companion, general
+energy threshold promotion, displacement/reaction-delta thresholds, deeper
+spring-hanger behavior, external validation thresholds, broader multi-support
+acceptance coverage, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 multi-support accepted companion (`TP-R4-D9-MULTISUPPORTPOLICY-001`)
+
+Landed a bounded `DEC-046` threshold-promotion companion for the assembled
+nonlinear validation crate. The crate now exposes
+`assembled_multisupport_acceptance_inventory()`,
+`assembled_multisupport_acceptance_convergence_observations()`, and
+`assembled_multisupport_acceptance_residual_observations()` for
+`NL-ASSEMBLED-MULTI-DOF-MULTI-SUPPORT-ACCEPTED-ORIGINAL`, an invented
+two-node frame case with simultaneous Ux one-way release and Uy gap closure.
+
+The companion is accepted under narrow multi-support policy records:
+`DEC-046-CV-B-multisupport-active-set-count-validation-v1` for changed-support
+count and `DEC-046-CV-B-multisupport-free-dof-force-moment-residual-validation-v1`
+for final free-DOF force/moment residuals. The earlier
+`NL-ASSEMBLED-MULTI-DOF-MULTI-SUPPORT-OBS-ORIGINAL` fixture remains
+observation-only, and free-DOF work/energy plus displacement/reaction-delta
+axes remain `TBD`.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: accepted multi-support companion fixture,
+  policy helpers, policy records, and Rust tests proving the narrow `DEC-046`
+  coverage.
+- `validation/hand_calcs/nonlinear`: new public-original acceptance note and
+  README index entries for the multi-support policy records.
+- `tests/test_nonlinear_support_regression.py`: source/doc guardrails for the
+  accepted companion and remaining observation-only boundaries.
+- Coordination and planning surfaces: R4/D9 residual wording updated so this
+  companion is recorded without closing broader multi-support acceptance,
+  work/energy, sparse, external, or release threshold gaps.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTPOLICY-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 14/14; focused
+nonlinear pytest passed 8/8. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T074318Z_c2e41707f1d5-dirty.json`.
+
+Residuals: profile-direct sparse assembly/default sparse promotion, non-seed
+force/displacement and free-DOF work/energy threshold promotion beyond this
+companion, displacement/reaction-delta thresholds, deeper spring-hanger
+behavior, external validation thresholds, broader multi-support acceptance
+coverage, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data,
+lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 free-DOF work residual observations (`TP-R4-D9-ENERGYOBS-001`)
+
+Landed a bounded D9 observation slice for the assembled nonlinear residual
+surface. The dense active-set loop now records
+`max_abs_free_dof_work_residual` as the max absolute free-DOF
+`reaction * displacement` residual product in `N-m` for the final linearized
+solve. The nonlinear benchmark crate exposes the value through
+`ForceDisplacementResidualObservation`, and the product-preview surface emits a
+`nonlinear_support_observed_free_dof_work_residual` result row that is excluded
+from load-case combination algebra.
+
+The free-DOF work residual axis is deliberately observation-only:
+`free_dof_work_threshold_policy = None` in validation, product-preview metadata
+uses `threshold=TBD`, and the accepted `DEC-046` force/moment residual policy
+remains limited to current-seed free-DOF force and moment equilibrium residuals.
+
+Changed surfaces:
+
+- `core/solver/nonlinear_integration`: per-iteration work residual observation
+  computed from reactions and displacements at free DOFs.
+- `validation/benchmarks/nonlinear`: work residual fields, unit metadata, and
+  tests preserving the observation-only threshold boundary.
+- `core/product_physics`: product-preview work residual result row, diagnostic
+  wording, algebra exclusion, and regression coverage.
+- `validation/hand_calcs/nonlinear` and policy JSON/readme notes: evidence
+  wording updated to distinguish work/energy observations from threshold
+  promotion.
+- Coordination and planning surfaces: R4/D9 residual wording updated so
+  free-DOF work is observed but energy/work thresholds remain open.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-ENERGYOBS-001.md`.
+
+Focused validation: nonlinear integration Rust tests passed 10/10; nonlinear
+benchmark Rust tests passed 12/12; product-physics Rust tests passed 44/44;
+focused nonlinear pytest passed 8/8. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T072805Z_be55844f721d-dirty.json`.
+
+Residuals: non-seed force/displacement and free-DOF work/energy threshold
+promotion, displacement/reaction-delta thresholds, release/external thresholds,
+profile-direct/default sparse promotion, deeper spring-hanger behavior, broader
+multi-support acceptance coverage, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation and product-preview evidence
+only. No protected standards content, proprietary benchmark output, private
+project data, lifecycle transition, release-readiness claim, professional
+approval, certification, sealing, authentication, or code-compliance claim
+changed.
+
+## 2026-06-22 - R4 D9 multi-support observation fixture (`TP-R4-D9-MULTISUPPORTOBS-001`)
+
+Landed a bounded D9 validation-depth slice for the assembled nonlinear
+benchmark crate. The crate now exposes
+`assembled_multisupport_depth_inventory()`,
+`assembled_multisupport_depth_convergence_observations()`, and
+`assembled_multisupport_depth_residual_observations()` for
+`NL-ASSEMBLED-MULTI-DOF-MULTI-SUPPORT-OBS-ORIGINAL`, an invented two-node frame
+case with simultaneous Ux one-way release and Uy gap closure.
+
+The fixture is deliberately outside `assembled_fixture_inventory()` and uses
+`TP-R4-D9-MULTISUPPORT-OBS-TBD` with `ConvergencePolicyStatus::Tbd`. It records
+mechanical convergence, first-iteration changed-support count `2`, final
+active-set residual `0`, and force/displacement residual observations without
+attaching the accepted free-DOF force/moment threshold policy. This reduces the
+multi-DOF / multi-support fixture-depth gap but does not promote a non-seed
+threshold.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: separate multi-support depth inventory,
+  observation-only residual helper, and Rust tests proving the fixture is not
+  part of the accepted seed inventory.
+- `validation/hand_calcs/nonlinear`: new public-original fixture note and
+  README index entry.
+- `tests/test_nonlinear_support_regression.py`: source/doc guardrails for the
+  observation-only boundary.
+- Coordination and planning surfaces: R4/D9 residual wording updated to treat
+  multi-support depth as partially evidenced but not accepted-policy coverage.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTOBS-001.md`.
+
+Focused validation: nonlinear benchmark Rust tests passed 12/12; focused
+nonlinear pytest passed 8/8. Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T071252Z_00effc54b1ad-dirty.json`.
+
+Residuals: non-seed force/displacement/energy thresholds,
+displacement/reaction-delta thresholds, release/external thresholds,
+profile-direct/default sparse promotion, deeper spring-hanger behavior, broader
+multi-support acceptance coverage, and final R4 exit evidence remain open.
+
+Boundary: invented/public-original validation evidence only. No protected
+standards content, proprietary benchmark output, private project data, lifecycle
+transition, release-readiness claim, professional approval, certification,
+sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D9 free-DOF force/moment residual policy (`TP-R4-D9-FREEDOFRESIDPOLICY-001`)
+
+Landed a bounded `DEC-046` threshold-promotion slice for the current invented
+nonlinear validation/product-preview surfaces. The nonlinear benchmark crate
+now carries a separate machine-readable policy record,
+`validation/benchmarks/nonlinear/free_dof_force_moment_policy.dec046.json`,
+for `DEC-046-CV-B-free-dof-force-moment-residual-validation-v1`. The accepted
+validation-seed limits are `0.0 N` for final-iteration free-DOF force residuals
+and `0.0 N-m` for final-iteration free-DOF moment residuals across the current
+one-way, gap, lift-off, and friction assembled seed classes.
+
+Product preview now emits free-DOF force/moment residual rows with
+`DEC-046-CV-B-product-preview-free-dof-force-moment-residual-v1` metadata and
+`threshold_policy_status=accepted` for the invented dense-loop preview surface.
+Displacement and reaction deltas remain observation-only with `threshold=TBD`.
+
+Changed surfaces:
+
+- `validation/benchmarks/nonlinear`: distinct free-DOF force/moment residual
+  policy entries, source tests, and JSON policy evidence.
+- `validation/hand_calcs/nonlinear`: convergence observation note and index
+  updated to cite the accepted force/moment residual policy and remaining TBD
+  axes.
+- `core/product_physics`: product-preview free-DOF residual result metadata and
+  nonlinear-loop diagnostic text updated; generated preview fixture refreshed.
+- `tests/product_preview` and `tests/test_nonlinear_support_regression.py`:
+  regression coverage for the promoted policy and remaining observation-only
+  boundary.
+
+Evidence:
+`execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-FREEDOFRESIDPOLICY-001.md`.
+
+Focused validation before DEC-025 closeout: nonlinear benchmark Rust tests
+passed 11/11; product-physics Rust tests passed 44/44; focused nonlinear
+pytest passed 8/8; product-preview/results/run-record pytest passed 20/20;
+regenerated fixture JSON parsed cleanly.
+Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T065649Z_150b107259dd-dirty.json`.
+
+Residuals: non-seed force/displacement/energy thresholds, displacement and
+reaction-delta threshold axes, external validation thresholds, multi-DOF /
+multi-support nonlinear fixture depth, deeper spring-hanger behavior,
+profile-direct/default sparse promotion, and final R4 exit evidence remain
+open.
+
+Boundary: invented/current-seed validation and product-preview evidence only.
+No lifecycle transition, release-readiness claim, professional approval,
+certification, sealing, authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D4 EJ pressure-thrust load generation (`TP-R4-D4-EJTHRUST-001`)
+
+Landed the bounded D4 load-side follow-on under `DEC-045`: expansion-joint
+pressure-thrust rows are now generated from explicit user-entered effective
+area and explicit pressure load-case inputs for the invented preview path.
+For `component:C-150` on `pipe:P-130`, the preview mechanics result now emits
+load-case pressure-thrust evidence for `L-100` and `L-200` and a combination
+row for `C-OPER-ALT`; those rows carry source load ids, component/pipe refs,
+effective-area provenance, load-case refs, and the no-code-table/no-protected-
+formula boundary.
+
+Changed surfaces:
+
+- `core/product_physics`: pressure-thrust construction now prefers the
+  mapped expansion-joint effective area when the component declares
+  `mechanics_geometry_and_user_flexibility`; otherwise the existing
+  pipe-internal-area behavior remains unchanged.
+- `fixtures/product_preview`: the invented model now has explicit EJ-mapped
+  pressure primitives for `L-100` and `L-200`, and the generated mechanics
+  result includes three EJ pressure-thrust evidence rows.
+- `apps/desktop`: the report packet now includes component pressure-thrust
+  evidence, selected result refs, provenance refs, and an exported count.
+- `tests/product_preview`, desktop Vitest, and desktop Playwright expectations
+  were refreshed for the regenerated 820-row mechanics result.
+
+Evidence:
+`execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-06_Expansion joint component model/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D4-EJTHRUST-001.md`.
+
+Validation recorded before DEC-025 closeout: product-physics Rust tests
+passed 44/44; `tests/product_preview/test_product_preview_service.py` passed
+9/9; desktop Vitest passed 407/407; regenerated fixture JSON parsed cleanly.
+Full DEC-025 sweep passed 5/5 surfaces:
+`validation/evidence/sweeps/SWEEP_20260622T063558Z_d3f658288543-dirty.json`.
+
+Residuals: D4 pressure-thrust is landed for the invented preview path only.
+R4 still needs force/displacement or energy threshold promotion beyond the
+active-set-count policies, product-preview non-active-set threshold axes,
+deeper multi-DOF / multi-support validation fixtures, spring-hanger solve
+behavior, profile-direct/default sparse promotion, and final R4 exit-chain
+evidence.
+
+Boundary: invented/user-entered preview values only. No protected standards
+content, code-derived pressure-thrust coefficient, proprietary catalog value,
+private project data, network path, telemetry feature, lifecycle transition,
+release-readiness claim, professional approval, certification, sealing,
+authentication, or code-compliance claim changed.
+
+## 2026-06-22 - R4 D4 EJ assembled user-stiffness macro-element (`TP-R4-D4-EJMACRO-001`)
+
+Landed the bounded D4 mechanics slice selected by `DEC-045`: the frame kernel
+now has an explicit `UserStiffnessElement` that consumes user-entered axial,
+lateral, angular, and torsional stiffness values and assembles them into the
+global stiffness matrix. The assembled nonlinear integration input carries the
+same user-stiffness elements, and the product-preview adapter builds the
+invented expansion-joint element for `component:C-150` mapped to
+`pipe:P-130`.
+
+Changed surfaces:
+
+- `core/solver/frame_kernel`: user-stiffness element primitive, assembly API,
+  and solve participation tests;
+- `core/solver/nonlinear_integration`: `NonlinearFrameSolveInput` carries
+  user-stiffness elements into the active-set loop;
+- `core/product_physics`: builds the EJ macro-element from the existing
+  `mechanics_geometry_and_user_flexibility` fields and regenerated the public
+  invented mechanics fixture;
+- desktop/Python/Tauri/smoke expectations: updated to the regenerated fixture,
+  including lower invented displacements, changed friction-normal evidence, and
+  replacement diagnostics after the high-displacement warning no longer fires.
+
+Evidence:
+`execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D4-EJMACRO-001.md`.
+
+Residuals: pressure-thrust load generation remains follow-on load-side work;
+R4 still needs force/displacement or energy threshold promotion beyond
+active-set-count policy, product-preview non-active-set threshold axes, deeper
+multi-DOF / multi-support validation fixtures, spring-hanger solve behavior,
+and profile-direct/default sparse promotion.
+
 ## 2026-06-21 - R4 D7 sparse live evidence lane (`TP-R4-D7-SPARSELIVE-001`)
 
 Landed the bounded D7 implementation authorized by `DEC-050`: the accepted

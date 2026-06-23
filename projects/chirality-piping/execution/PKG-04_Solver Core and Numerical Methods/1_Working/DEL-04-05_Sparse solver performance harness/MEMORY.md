@@ -38,11 +38,24 @@
 ## Open TBDs
 
 - Accepted sparse numerical strategy is `DEC-023`
-  (`core/solver/sparse_direct`); live solve-path adoption remains `TBD` pending
-  D-17 ruling and follow-on implementation.
-- Release timing, memory, practical-size bands, conditioning, and CI threshold
-  policies remain `TBD`.
-- Hardware-normalized performance methodology remains `TBD`.
+  (`core/solver/sparse_direct`); `DEC-050` binds a live sparse evidence lane
+  while dense remained the default solve path and parity oracle at that
+  historical step. `DEC-053` now promotes sparse interactive as the default
+  preview/render path and keeps dense scrutiny explicitly selectable.
+- Sparse suitability observations now exist for generated invented grid bands
+  under `TP-R4-D7-SPARSESUITABILITYOBS-001`.
+- Bounded generated-grid sparse suitability thresholds, deterministic
+  sparse-value storage observations, and a bounded generated-grid sparse
+  pivot-ratio conditioning policy now exist under `DEC-050`.
+- `TP-R4-D7-SPARSEDEFAULTPROMOTE-001` closes the named R4 sparse residual
+  observationally: 9 local records cover sparse default promotion, practical
+  size bands, dense/sparse timing observations, value-storage and RSS
+  observations, hardware metadata, dense/sparse parity, residual, repeat
+  determinism, pivot-ratio proxy, and true condition number.
+- Release timing thresholds, release allocator/RSS thresholds, hosted CI gates,
+  cross-machine hardware-normalized pass/fail methodology, external validation,
+  release conditioning thresholds, and professional/code-compliance acceptance
+  remain out of scope.
 - Future sparse-adapter integration remains downstream work.
 
 ## Boundaries Preserved
@@ -152,6 +165,23 @@ Durable context preserved after PKG-02 grounded finding resolution:
 
 - Housekeeping lifecycle reset: `_STATUS.md` current state set to `IN_PROGRESS` to reflect current code development in progress. This does not change review, issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance status.
 
+## 2026-06-23 - TP-R4-D7-SPARSEDEFAULTPROMOTE-001
+
+- Recorded `DEC-053`: `D-26` Option O-B holds R4 pending named sparse
+  default-promotion evidence/repair.
+- Landed sparse interactive as the default preview/render/live-model-change
+  solve mode, with dense scrutiny explicitly selectable and sparse-to-dense
+  fallback visible in diagnostic/result-basis metadata.
+- Added `validation/benchmarks/sparse_default_promotion_observation.dec053.json`
+  and `validation/benchmarks/sparse_default_promotion_policy.dec053.json`.
+- Observation packet covers 9 local invented records with practical size bands,
+  dense/sparse timing observations, value-storage and RSS observations, hardware
+  metadata, dense/sparse parity, residual, repeat determinism, pivot-ratio proxy,
+  and true condition number computed from the reduced dense symmetric matrix.
+- Boundary preserved: no release threshold, hosted-CI activation,
+  hardware-normalized pass/fail gate, professional approval, certification,
+  sealing, authentication, or code-compliance acceptance is created.
+
 ## 2026-06-21 - TP-R4-D17-PACKET-001
 
 - WORKING_ITEMS prepared the D-17 sparse live-path adoption decision packet:
@@ -194,3 +224,122 @@ Durable context preserved after PKG-02 grounded finding resolution:
   release-readiness, professional approval, certification, sealing,
   authentication, code-compliance claim, protected standards content, private
   data, network path, or telemetry feature changed.
+
+## 2026-06-22 - TP-R4-D7-SPARSEPROFILE-001 product direct-profile sparse evidence
+
+- Added explicit-entry profile assembly and solve APIs to
+  `core/solver/sparse_direct`; duplicate lower-triangle entries are summed and
+  invalid entry indices map to sparse numeric diagnostics.
+- Product-preview sparse evidence now uses direct reduced profile entries
+  assembled from frame elements, user-stiffness elements, and spring entries.
+- Diagnostics now record that product direct profile assembly is observed while
+  default sparse promotion remains `TBD`.
+- Validation passed, including full DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260622T085210Z_799ebcc0dee5-dirty.json`.
+- Residuals remain explicit: default sparse promotion, nonlinear/core
+  profile-direct promotion, timing/memory thresholds, practical-size bands,
+  conditioning/CI thresholds, and hardware-normalized methodology remain future
+  work.
+
+## 2026-06-22 - TP-R4-D7-NONLINEARPROFILE-001 nonlinear direct-profile sparse evidence
+
+- `core/solver/nonlinear_integration` now observes the `DEC-050` sparse lane
+  through direct reduced profile entries assembled from the active free-DOF
+  map, matching the explicit-entry sparse solver surface landed for product
+  evidence.
+- `SparseLinearSolveEvidence` now carries
+  `assembly_basis=direct_reduced_profile_entries`; dense remains default and
+  the sparse lane remains parity evidence.
+- Validation passed, including nonlinear integration tests 11/11, product
+  physics tests 44/44, nonlinear benchmark tests 16/16, crate fmt check, and
+  full DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260622T102208Z_479c6fd7d97a-dirty.json`.
+- Residuals remain explicit: default sparse promotion, timing/memory
+  thresholds, practical-size bands, conditioning/CI thresholds, large-model
+  sparse suitability, and hardware-normalized methodology remain future work.
+
+## 2026-06-22 - TP-R4-D7-SPARSESUITABILITYOBS-001 sparse suitability observations
+
+- `core/solver/performance_harness` now exposes
+  `SparseSuitabilityObservationRecord` and
+  `run_sparse_suitability_observation_suite` for generated invented planar grid
+  frames.
+- The governed observation record
+  `validation/benchmarks/sparse_suitability_observation.dec050.json` names
+  `invented-grid-frame-4x3` and `invented-grid-frame-6x8` evidence fixtures and
+  records DEC-050 sparse/dense parity, sparse residual, repeatability, profile,
+  bandwidth, pivot, and elapsed-time observation fields.
+- Dense remains the default solver and parity oracle. No default sparse
+  promotion, timing/memory threshold, practical-size band, conditioning/CI
+  threshold, hardware-normalized methodology, release-readiness claim,
+  professional approval, certification, sealing, authentication, or
+  code-compliance claim changed.
+- Validation passed: performance harness Rust tests 19/19, focused
+  sparse-suitability pytest, JSON syntax check, and full DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260622T113515Z_521fdfe1e613-dirty.json`.
+
+## 2026-06-22 - TP-R4-D7-SPARSETHRESHOLDPOLICY-001 sparse suitability threshold policy
+
+- `core/solver/performance_harness` now emits
+  `DEC-050-SPARSE-SUITABILITY-GENERATED-GRID-THRESHOLD-POLICY-v1` with each
+  generated-grid sparse suitability observation.
+- The accepted generated-grid limits are dense-vs-sparse relative delta
+  `1.0e-9`, sparse residual `1.0e-6`, repeat sparse-solution delta `0.0`, and
+  nonpositive pivots `0`.
+- `validation/benchmarks/sparse_suitability_threshold_policy.dec050.json` records
+  the governed bounded policy, and the source observation record now cites the
+  accepted policy while keeping dense as default.
+- Validation passed: performance harness fmt check, performance harness Rust
+  tests 19/19, focused sparse-suitability pytest 1/1, JSON syntax check,
+  `git diff --check`, and full DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260622T122628Z_2fb363448820-dirty.json`.
+- Residuals remain explicit: default sparse promotion, timing/memory thresholds,
+  practical-size bands, conditioning/CI thresholds, hardware-normalized
+  methodology, release/external thresholds, and professional/code-compliance
+  acceptance remain outside this policy.
+
+## 2026-06-22 - TP-R4-D7-SPARSESTORAGEOBS-001 sparse storage-footprint observations
+
+- `core/solver/performance_harness` now records deterministic f64
+  value-storage observations for reduced dense matrices and sparse profile
+  entries on harness run records, suite summaries, and generated-grid sparse
+  suitability observations.
+- `validation/benchmarks/sparse_suitability_observation.dec050.json` now lists
+  the storage-footprint metrics and marks them as
+  `deterministic_value_storage_observed_threshold_tbd`; the accepted generated
+  grid threshold policy remains limited to dense-vs-sparse relative delta,
+  sparse residual, repeatability, and nonpositive pivots.
+- Validation passed: performance harness Rust tests 19/19, focused
+  sparse-suitability pytest 1/1, JSON syntax check, `git diff --check`, and
+  full DEC-025 sweep
+  `validation/evidence/sweeps/SWEEP_20260622T132612Z_052c8cb5e277-dirty.json`.
+- Residuals remain explicit: dense remains default; default sparse promotion,
+  allocator/RSS memory thresholds, timing thresholds, practical-size bands,
+  CI gates, hardware-normalized methodology, true condition-number thresholds,
+  conditioning evidence beyond the generated-grid pivot-ratio proxy,
+  release/external thresholds, and professional/code-compliance acceptance
+  remain outside this observation slice.
+
+## 2026-06-22 - TP-R4-D7-SPARSECONDITIONPOLICY-001 sparse pivot-conditioning policy
+
+- `core/solver/performance_harness` now emits
+  `DEC-050-SPARSE-GENERATED-GRID-PIVOT-CONDITIONING-POLICY-v1` for generated
+  grid sparse suitability observations.
+- The accepted generated-grid limit is
+  `sparse_pivot_condition_ratio_estimate <= 1.0e16`, where the metric is the
+  sparse factorization pivot proxy `max(abs(accepted_pivots)) /
+  min(abs(accepted_pivots))`, not a true matrix condition number.
+- `validation/benchmarks/sparse_conditioning_threshold_policy.dec050.json`
+  records the governed bounded policy, and
+  `validation/benchmarks/sparse_suitability_observation.dec050.json` cites the
+  policy while preserving dense as the default solve path and parity oracle.
+- Focused validation passed: performance harness fmt check, performance
+  harness Rust tests 19/19, focused sparse-suitability pytest 1/1, and JSON
+  syntax checks for the sparse suitability, sparse threshold, and sparse
+  conditioning policy records. Full DEC-025 sweep passed 5/5 surfaces:
+  `validation/evidence/sweeps/SWEEP_20260622T163532Z_3068ec39ed5e-dirty.json`.
+- Residuals remain explicit: default sparse promotion, timing thresholds,
+  allocator/RSS memory thresholds, practical-size bands, CI gates,
+  hardware-normalized methodology, true condition-number thresholds,
+  release/external thresholds, and professional/code-compliance acceptance
+  remain outside this policy.

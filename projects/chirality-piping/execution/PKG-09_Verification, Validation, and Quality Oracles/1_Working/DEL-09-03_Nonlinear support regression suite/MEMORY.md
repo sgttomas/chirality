@@ -12,6 +12,20 @@ Implemented a bounded nonlinear support regression suite for DEV-001 revision
   stick/slide behavior, and unresolved non-convergence at the iteration limit.
 - Added `tests/test_nonlinear_support_regression.py` as the focused repo-level
   regression entry point for the nonlinear benchmark crate.
+- `D-25` is ruled by `DEC-052` Option O-B (2026-06-22): the current bounded
+  seed/product/thirteen-fixture nonlinear evidence can proceed to the final R4
+  exit-chain verification packet, with broader residuals carried as explicit
+  post-R4/R5 or non-blocking hardening work unless a later human gate selects
+  one as blocking.
+- Prepared `plans/VERIFICATION_2026-06-22_r4_exit_chain.md` as
+  `TP-R4-D9-EXITCHAIN-001` for human R4 exit review. This is not R4 exit
+  approval, target-stage advancement, release readiness, professional approval,
+  certification, sealing, authentication, or code-compliance acceptance.
+- Refreshed the R4 packet after `DEC-053` as
+  `plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md`
+  (`TP-R4-D9-EXITCHAINREFRESH-001`). The refresh includes
+  `TP-R4-D7-SPARSEDEFAULTPROMOTE-001` and is now the current human R4 exit
+  review artifact.
 
 ## Validation
 
@@ -20,21 +34,472 @@ Implemented a bounded nonlinear support regression suite for DEV-001 revision
 - Existing `cargo test --quiet` in `core/solver/nonlinear_supports`: passed, 8 tests.
 - Existing `cargo test --quiet` in `core/solver/diagnostics`: passed, 10 tests.
 - `git diff --check`: passed.
+- `python3 -m pytest -q tests/test_sparse_default_promotion_observation.py
+  tests/test_nonlinear_support_regression.py`: passed for the packet refresh.
 - Protected-content, private-data, credential, and professional-claim scans over the
   DEL-09-03 changed files: passed.
 
 ## Remaining TBDs
 
-- Force/displacement residual thresholds, sparse live-path thresholds,
-  product-preview non-active-set threshold axes, and external validation
-  thresholds remain `TBD`.
+- Under `DEC-052`, the following are no longer blockers to preparing the R4
+  exit-chain packet, but remain explicit post-R4/R5 or non-blocking hardening
+  residuals unless a later human gate selects one as blocking.
+- Non-seed force/displacement thresholds beyond the accepted thirteen-fixture
+  multi-support companion set, broader general-energy residual thresholds
+  beyond the current seed, accepted thirteen-fixture set, and invented
+  product-preview surface, displacement/reaction-delta thresholds beyond the
+  current seed, accepted thirteen-fixture set, and invented product-preview mixed
+  surface, sparse default/promotion thresholds, release thresholds, total
+  strain-energy or modal-energy thresholds, CI thresholds, and external
+  validation thresholds remain `TBD`.
 - The current assembled validation seed has an accepted active-set
   changed-support-count policy under `DEC-046-CV-B-active-set-count-validation-v1`.
+- The current assembled validation seed has an accepted free-DOF force/moment
+  residual policy under
+  `DEC-046-CV-B-free-dof-force-moment-residual-validation-v1`.
+- The current assembled validation seed has an accepted final-iteration
+  free-DOF work residual policy under
+  `DEC-046-CV-B-free-dof-work-residual-validation-v1`.
+- The current assembled validation seed has an accepted general-energy
+  residual policy under `DEC-046-CV-B-general-energy-residual-validation-v1`.
+- The current assembled validation seed has accepted fixture-evidence-envelope
+  displacement/reaction delta threshold policies under
+  `DEC-046-CV-B-displacement-reaction-delta-threshold-validation-v1`.
 - The current invented product-preview nonlinear path has an accepted
   active-set changed-support-count policy under
   `DEC-046-CV-B-product-preview-active-set-count-v1`.
+- The current invented product-preview nonlinear path has an accepted free-DOF
+  force/moment residual policy under
+  `DEC-046-CV-B-product-preview-free-dof-force-moment-residual-v1`.
+- The current invented product-preview nonlinear path has an accepted free-DOF
+  work residual policy under
+  `DEC-046-CV-B-product-preview-free-dof-work-residual-v1`.
+- The current invented product-preview nonlinear path has an accepted
+  general-energy residual policy under
+  `DEC-046-CV-B-product-preview-general-energy-residual-v1`.
+- The invented mixed product-preview nonlinear path has an accepted
+  displacement/reaction delta threshold policy under
+  `DEC-046-CV-B-product-preview-displacement-reaction-delta-threshold-v1`.
+- `TP-R4-D9-MULTISUPPORTPOLICY-001`,
+  `TP-R4-D9-MULTISUPPORTBREADTH-001`,
+  `TP-R4-D9-MULTISUPPORTFRICTION-001`,
+  `TP-R4-D9-MULTISUPPORT3DOF-001`,
+  `TP-R4-D9-MULTISUPPORTROT-001`,
+  `TP-R4-D9-MULTISUPPORTDERIVED-001`,
+  `TP-R4-D9-MULTISUPPORTDERIVEDROT-001`, and
+  `TP-R4-D9-MULTISUPPORTCASCADE-001`, and
+  `TP-R4-D9-MULTISUPPORTNEGAP-001`, and
+  `TP-R4-D9-MULTISUPPORT4CLASS-001`, and
+  `TP-R4-D9-MULTISUPPORTOPPGAP-001`, and
+  `TP-R4-D9-MULTISUPPORTSPAN-001`, and
+  `TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001` add thirteen accepted multi-DOF /
+  multi-support companion fixtures under narrow active-set, free-DOF
+  force/moment, free-DOF work residual, general-energy residual, and
+  displacement/reaction delta threshold policies (`TP-R4-D9-WORKPOLICY-001`,
+  `TP-R4-D9-GENERALENERGYPOLICY-001`, and
+  `TP-R4-D9-DISPREACTIONPOLICY-001`).
+- `TP-R4-D9-MULTISUPPORTOBS-001` adds one observation-only multi-DOF /
+  multi-support assembled fixture under `TP-R4-D9-MULTISUPPORT-OBS-TBD`; it is
+  not part of the accepted current assembled validation seed policy.
+- `TP-R4-D9-DISPREACTIONOBS-001` adds observation-only
+  displacement/reaction-delta ledgers for the current assembled validation
+  seed and accepted multi-support fixture set, plus product-preview metadata
+  that was promoted in `TP-R4-D9-PRODDISPREACTIONPOLICY-001`.
+- `TP-R4-D9-DISPREACTIONPOLICY-001` promotes fixture-evidence-envelope
+  displacement/reaction delta threshold policies for the current assembled
+  seed and accepted thirteen-fixture multi-support set only.
+- `TP-R4-D9-PRODDISPREACTIONPOLICY-001` promotes the invented mixed
+  product-preview displacement/reaction delta rows to an accepted product-only
+  threshold policy; broader non-seed, release, external, sparse-default, total
+  strain-energy, modal-energy, and CI thresholds remain `TBD`.
 - External validation claims remain `TBD`; this suite is software verification
   evidence only.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001
+
+- Added
+  `NL-ASSEMBLED-MULTI-DOF-TWO-SPAN-OPPOSING-GAPS-ACCEPTED-ORIGINAL`, an
+  invented assembled two-span frame fixture with a positive-direction Ux gap
+  on the intermediate node and a negative-direction Uy gap on the tip node.
+- Broadened the accepted multi-support validation fixture set from twelve
+  companions to thirteen companions by adding a two-span opposing-gap fixture
+  inside the existing active-set, free-DOF force/moment, free-DOF work,
+  general-energy, and displacement/reaction-delta policy envelopes.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, general-energy, displacement/reaction-delta observation, and
+  displacement/reaction-delta policy records so their evidence fixture IDs name
+  the thirteen-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted thirteen-fixture set, broader displacement-delta or reaction-delta
+  threshold, broader general-energy threshold, sparse-default, external
+  validation, release-readiness, lifecycle, professional, or code-compliance
+  claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTSPAN-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-TWO-SPAN-ACCEPTED-ORIGINAL`, an invented
+  assembled two-span frame fixture that places active one-way and gap supports
+  on separate downstream nodes.
+- Broadened the accepted multi-support validation fixture set from eleven
+  companions to twelve companions by adding a multi-node / two-span fixture
+  inside the existing active-set, free-DOF force/moment, free-DOF work,
+  general-energy, and displacement/reaction-delta policy envelopes.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, general-energy, displacement/reaction-delta observation, and
+  displacement/reaction-delta policy records so their evidence fixture IDs name
+  the twelve-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted twelve-fixture set, broader displacement-delta or reaction-delta
+  threshold, broader general-energy threshold, sparse-default, external
+  validation, release-readiness, lifecycle, professional, or code-compliance
+  claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTSPAN-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTOPPGAP-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-OPPOSING-GAPS-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture that closes positive-direction `Ux` and
+  negative-direction `Uy` gaps in one multi-support solve.
+- Broadened the accepted multi-support validation fixture set from ten
+  companions to eleven companions by adding a gap-only opposing-direction
+  fixture inside the existing active-set, free-DOF force/moment, free-DOF work,
+  general-energy, and displacement/reaction-delta policy envelopes.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, general-energy, displacement/reaction-delta observation, and
+  displacement/reaction-delta policy records so their evidence fixture IDs name
+  the eleven-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted eleven-fixture set, broader displacement-delta or reaction-delta
+  threshold, broader general-energy threshold, sparse-default, external
+  validation, release-readiness, lifecycle, professional, or code-compliance
+  claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTOPPGAP-001.md`.
+
+## 2026-06-22 - TP-R4-D9-GENERALENERGYPOLICY-001
+
+- Promoted bounded `DEC-046` general-energy residual policies for the current
+  public-original assembled validation seed, the current invented
+  product-preview nonlinear surface, and the accepted ten-fixture
+  multi-support companion set.
+- Added machine-readable policy evidence at
+  `validation/benchmarks/nonlinear/general_energy_policy.dec046.json` and
+  `validation/benchmarks/nonlinear/multisupport_general_energy_policy.dec046.json`.
+- Updated nonlinear benchmark observations, product-preview metadata,
+  hand-calculation notes, regression guards, coordination text, and R4 planning
+  surfaces so the accepted general-energy residual envelope carries `0.0 N-m`
+  limits for the governed surfaces.
+- Boundary preserved: no broader non-seed force/displacement threshold,
+  broader displacement/reaction-delta threshold, sparse default, release,
+  external validation, total strain-energy, modal-energy, CI, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-GENERALENERGYPOLICY-001.md`.
+
+## 2026-06-22 - TP-R4-D9-DISPREACTIONOBSLEDGER-001
+
+- Refreshed
+  `validation/benchmarks/nonlinear/multisupport_displacement_reaction_delta_observation.dec046.json`
+  so the source observation ledger names the same ten accepted multi-support
+  fixture IDs as the accepted displacement/reaction-delta policy record.
+- Added focused Python regression coverage that compares the multi-support
+  displacement/reaction observation ledger fixture IDs against the accepted
+  policy fixture IDs and the expected ten-fixture inventory.
+- Boundary preserved: the observation record remains an observation ledger with
+  threshold policy semantics recorded separately; no new displacement/reaction
+  threshold, general energy threshold, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONOBSLEDGER-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORT4CLASS-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-FOUR-CLASS-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture that combines friction sliding, gap closure, one-way
+  release, and rotational lift-off release in one accepted multi-support solve.
+- Broadened the accepted multi-support validation fixture set from nine
+  companions to ten companions by adding a single four-class fixture inside the
+  existing active-set, free-DOF force/moment, free-DOF work, and
+  displacement/reaction-delta envelopes.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta policy records so their
+  evidence fixture IDs name the ten-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted ten-fixture set, broader displacement-delta or reaction-delta
+  threshold, general energy threshold, sparse-default, external validation,
+  release-readiness, lifecycle, professional, or code-compliance claim was
+  added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORT4CLASS-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTNEGAP-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-NEGATIVE-GAP-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture that pairs negative-direction Uy gap closure with Ux
+  one-way release.
+- Broadened the accepted multi-support validation fixture set from eight
+  companions to nine companions: one-way/gap, lift-off/gap, friction/gap,
+  three-support/three-translation, mixed translation/rotation,
+  derived-normal friction/gap, derived-normal friction/rotational lift-off,
+  sequential gap/lift-off cascade, and negative-direction gap/one-way.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta policy records so their
+  evidence fixture IDs name the nine-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted nine-fixture set, broader displacement-delta or reaction-delta
+  threshold, general energy threshold, sparse-default, external validation,
+  release-readiness, lifecycle, professional, or code-compliance claim was
+  added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTNEGAP-001.md`.
+
+## 2026-06-22 - TP-R4-D9-PRODDISPREACTIONPOLICY-001
+
+- Added `DEC-046-CV-B-product-preview-displacement-reaction-delta-threshold-v1`
+  to `core/product_physics` as the product-preview-only policy for emitted
+  displacement/reaction delta rows.
+- Bound the mixed one-way/gap/friction product preview regression to explicit
+  limits: `50.0 mm`, `0.05 rad`, `110000.0 N`, and `110000.0 N*m`.
+- Regenerated `fixtures/product_preview/invented_mechanics_result.json` so the
+  canned preview diagnostics surface the policy ref for emitted delta rows,
+  while one-iteration fixture cases still emit no synthetic delta rows.
+- Boundary preserved: no broader non-seed validation threshold, release
+  threshold, external validation threshold, sparse-default threshold, general
+  energy threshold, lifecycle, professional, or code-compliance claim was
+  added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-PRODDISPREACTIONPOLICY-001.md`.
+
+## 2026-06-22 - TP-R4-D9-DISPREACTIONPOLICY-001
+
+- Added governed `DEC-046` displacement/reaction delta threshold policy records:
+  `validation/benchmarks/nonlinear/displacement_reaction_delta_policy.dec046.json`
+  and
+  `validation/benchmarks/nonlinear/multisupport_displacement_reaction_delta_policy.dec046.json`.
+- Promoted the current assembled validation seed to accepted class-tiered
+  fixture-evidence-envelope limits: one-way/lift-off/friction `100.0 mm`,
+  `0.0 rad`, `10.0 N`, `0.0 N-m`; gap `50.0 mm`, `0.0 rad`, `5.0 N`,
+  `0.0 N-m`.
+- Promoted the accepted eight-fixture multi-support set to fixture-evidence
+  envelope limits: `100.0 mm`, `0.005 rad`, `10.0 N`, and `3.0 N-m`.
+- Updated Rust policy predicates, focused Python guards, benchmark README, and
+  hand-calc notes so accepted seed and accepted multi-support residual
+  observations cite the policy while the separate multi-support depth fixture
+  and product-preview metadata remain observation-only / `TBD`.
+- Boundary preserved: no product-preview delta threshold, broader non-seed
+  force/displacement threshold, general energy threshold, sparse-default,
+  external validation, release-readiness, lifecycle, professional, or
+  code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONPOLICY-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTCASCADE-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-CASCADE-GAP-LIFT-OFF-ACCEPTED-ORIGINAL`, an
+  invented assembled frame fixture with a measured sequential active-set
+  cascade: first Rz lift-off release, then Uy gap closure, then final
+  convergence.
+- Broadened the accepted multi-support validation fixture set from seven
+  companions to eight companions: one-way/gap, lift-off/gap, friction/gap,
+  three-support/three-translation, mixed translation/rotation,
+  derived-normal friction/gap, derived-normal friction/rotational lift-off, and
+  sequential gap/lift-off cascade.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the eight-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted eight-fixture set, displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTCASCADE-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTDERIVEDROT-001
+
+- Added
+  `NL-ASSEMBLED-MULTI-DOF-DERIVED-NORMAL-ROTATIONAL-ACCEPTED-ORIGINAL`, an
+  invented assembled frame fixture with derived-normal friction sliding on Ux
+  and rotational lift-off release on Rz in the first iteration.
+- Broadened the accepted multi-support validation fixture set from six
+  companions to seven companions: one-way/gap, lift-off/gap, friction/gap,
+  three-support/three-translation, mixed translation/rotation,
+  derived-normal friction/gap, and derived-normal friction/rotational lift-off.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the seven-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted seven-fixture set, displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTDERIVEDROT-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTDERIVED-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-DERIVED-NORMAL-GAP-ACCEPTED-ORIGINAL`, an
+  invented assembled frame fixture with derived-normal friction sliding on Ux
+  and gap closure on Uz in the first iteration.
+- Broadened the accepted multi-support validation fixture set from five
+  companions to six companions: one-way/gap, lift-off/gap, friction/gap,
+  three-support/three-translation, mixed translation/rotation, and
+  derived-normal friction/gap.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the six-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted six-fixture set, displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTDERIVED-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTROT-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-ROTATIONAL-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture with simultaneous Ux one-way release and Rz lift-off
+  release in the first iteration.
+- Broadened the accepted multi-support validation fixture set from four
+  companions to five companions: one-way/gap, lift-off/gap, friction/gap,
+  three-support/three-translation, and mixed translation/rotation.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the five-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted five-fixture set, displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTROT-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORT3DOF-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-THREE-SUPPORT-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture with simultaneous Ux one-way release, Uy gap closure,
+  and Uz friction sliding in the first iteration.
+- Broadened the accepted multi-support validation fixture set from three
+  companions to four companions: one-way/gap, lift-off/gap, friction/gap, and
+  three-support/three-translation.
+- Updated the multi-support active-set-count, free-DOF force/moment,
+  free-DOF work, and displacement/reaction-delta observation records so their
+  evidence fixture IDs name the four-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted four-fixture set, displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORT3DOF-001.md`.
+
+## 2026-06-22 - TP-R4-D9-DISPREACTIONOBS-001
+
+- Added machine-readable observation-only displacement/reaction-delta records:
+  `validation/benchmarks/nonlinear/displacement_reaction_delta_observation.dec046.json`
+  and
+  `validation/benchmarks/nonlinear/multisupport_displacement_reaction_delta_observation.dec046.json`.
+- Added typed nonlinear benchmark ledger entries and tests proving those axes
+  are dimensioned observations with `ConvergencePolicyStatus::Tbd`, not
+  accepted threshold policies.
+- Updated product-preview nonlinear residual metadata so translation/reaction
+  delta rows name the product observation reference and carry
+  `threshold_policy_status=tbd`.
+- Boundary preserved: no accepted displacement-delta, reaction-delta, general
+  energy, sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-DISPREACTIONOBS-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTFRICTION-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-FRICTION-GAP-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture with simultaneous Ux friction sliding and Uy gap
+  closure in the first iteration.
+- Broadened the accepted multi-support validation fixture set from two
+  companions to three companions: one-way/gap, lift-off/gap, and friction/gap.
+- Updated the multi-support active-set-count, free-DOF force/moment, and
+  free-DOF work policy records so their evidence fixture IDs name the
+  three-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted fixture set, displacement-delta, reaction-delta, general energy,
+  sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTFRICTION-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTBREADTH-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-GAP-LIFT-OFF-ACCEPTED-ORIGINAL`, an invented
+  assembled frame fixture with simultaneous Ux lift-off release and Uy gap
+  closure in the first iteration.
+- Broadened the accepted multi-support validation fixture set from one
+  one-way/gap companion to two companions: one-way/gap plus lift-off/gap.
+- Updated the multi-support active-set-count, free-DOF force/moment, and
+  free-DOF work policy records so their evidence fixture IDs name the
+  two-fixture public-original set.
+- Boundary preserved: no non-seed force/displacement threshold beyond the
+  accepted fixture set, displacement-delta, reaction-delta, general energy,
+  sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTBREADTH-001.md`.
+
+## 2026-06-22 - TP-R4-D9-WORKPOLICY-001
+
+- Promoted bounded `DEC-046` final-iteration free-DOF work residual policies
+  for the current public-original assembled validation seed, the current
+  invented product-preview nonlinear surface, and the accepted Ux/Uy
+  multi-support companion fixture.
+- Added machine-readable policy evidence at
+  `validation/benchmarks/nonlinear/free_dof_work_policy.dec046.json` and
+  `validation/benchmarks/nonlinear/multisupport_free_dof_work_policy.dec046.json`.
+- Updated nonlinear benchmark observations, hand-calculation notes,
+  product-preview metadata, and regression guards so accepted work residual
+  products carry `0.0 N-m` limits while general energy,
+  displacement/reaction-delta, sparse-default, external validation, release,
+  and broader non-seed threshold axes remain open.
+- Boundary preserved: no general energy, displacement-delta, reaction-delta,
+  sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-WORKPOLICY-001.md`.
+
+## 2026-06-22 - TP-R4-D9-MULTISUPPORTOBS-001
+
+- Added `NL-ASSEMBLED-MULTI-DOF-MULTI-SUPPORT-OBS-ORIGINAL`, an invented
+  assembled frame fixture with simultaneous Ux one-way release and Uy gap
+  closure in the first iteration.
+- Exposed separate multi-support depth inventories and observations so the
+  fixture remains outside `assembled_fixture_inventory()` and outside the
+  accepted `DEC-046` current-seed threshold policies.
+- Added the hand-calc/provenance note
+  `validation/hand_calcs/nonlinear/assembled_multi_support_multi_dof.md` and
+  focused Python guardrails for the observation-only boundary.
+- Boundary preserved: no non-seed threshold promotion, R4 exit readiness,
+  lifecycle, professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-MULTISUPPORTOBS-001.md`.
+
+## 2026-06-22 - TP-R4-D9-FREEDOFRESIDPOLICY-001
+
+- Promoted a bounded `DEC-046` free-DOF force/moment residual policy for the
+  current public-original assembled validation seed:
+  `DEC-046-CV-B-free-dof-force-moment-residual-validation-v1`, with limits of
+  `0.0 N` and `0.0 N-m` for final-iteration residuals across the current
+  one-way, gap, lift-off, and friction seed classes.
+- Added machine-readable policy evidence at
+  `validation/benchmarks/nonlinear/free_dof_force_moment_policy.dec046.json`
+  and updated `convergence_observations.md` to cite the policy while preserving
+  displacement/reaction deltas as observation-only.
+- Updated product-preview residual metadata to cite
+  `DEC-046-CV-B-product-preview-free-dof-force-moment-residual-v1` for the
+  invented dense-loop preview surface; displacement/reaction delta rows still
+  carry `threshold=TBD`.
+- Boundary preserved: no non-seed, displacement-delta, reaction-delta, energy,
+  sparse-default, external validation, release-readiness, lifecycle,
+  professional, or code-compliance claim was added.
+- Validation evidence is in
+  `_run_records/WORKING_ITEMS_RUN_2026-06-22_TP-R4-D9-FREEDOFRESIDPOLICY-001.md`.
 
 ## 2026-06-21 - TP-R4-D9-PRODPOLICY-001
 

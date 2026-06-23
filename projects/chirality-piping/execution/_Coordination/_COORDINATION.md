@@ -38,12 +38,12 @@ Primary pointers:
 - `fixtures/product_preview/**`
 - `execution/_Decomposition/SOFTWARE_DECOMP.md`
 - `execution/_DAG/_LATEST.md`
-- `execution/_DAG/DAG-006/APPROVAL_RECORD.md`
-- `execution/_DAG/DAG-006/DAG_Audit.md`
-- `execution/_DAG/DAG-006/DependencyEdges.csv`
-- `execution/_DAG/DAG-006/DeliverableNodes.csv`
-- `execution/_DAG/DAG-007/` - canonical dependency type-system rectification
-  package, pending human approval before pointer promotion
+- `execution/_DAG/DAG-007/APPROVAL_RECORD.md`
+- `execution/_DAG/DAG-007/DAG_Audit.md`
+- `execution/_DAG/DAG-007/DependencyEdges.csv`
+- `execution/_DAG/DAG-007/DeliverableNodes.csv`
+- `execution/_DAG/DAG-007/` - current approved canonical dependency
+  type-system rectification package
 - `execution/PKG-*/1_Working/DEL-*/MEMORY.md`
 - `execution/PKG-*/1_Working/DEL-*/_STATUS.md`
 - `tools/coordination/list_deliverable_status.py`
@@ -77,7 +77,9 @@ Baseline intake for every new session:
 - `plans/PLAN_2026-06-17_prd_completion.md` — the current completion plan
   (non-governing `PROPOSAL`, supersedes the 2026-06-10 plan) — for phase
   ordering, the dependency spine, the FR completion map, and the human
-  decision register `D-01..D-23` (`D-23` ruled by `DEC-048`). Update this
+  decision register `D-01..D-26` (`D-26` ruled by `DEC-053`; refreshed final R4
+  exit-chain packet prepared as
+  `plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md`). Update this
   pointer when a successor plan is accepted.
 - `execution/_Coordination/_DECISIONS/_REGISTER.md` for decision-packet
   preparation status and rulings pending with the human project authority.
@@ -134,9 +136,9 @@ slice:
 Read deliverable-local packets only when the selected app slice needs their
 authority, acceptance criteria, unresolved TBDs, review findings, or
 dependency context. Use the current approved DAG pointer to discover those
-related deliverables, then inspect local artifacts directly. As of 2026-06-16,
-`DAG-006` remains the approved pointer; `DAG-007` is the validated canonical
-rectification successor pending human approval.
+related deliverables, then inspect local artifacts directly. As of 2026-06-22,
+`DAG-007` is the approved canonical dependency type-system rectification
+pointer.
 
 ## State Tracking Rules
 
@@ -146,12 +148,13 @@ Authoritative state:
 
 1. `execution/_Decomposition/SOFTWARE_DECOMP.md` says what must be built and why.
 2. `execution/_DAG/_LATEST.md` names the approved DAG pointer. As of
-   2026-06-16 it still points to `DAG-006`, an immutable historical snapshot
-   with legacy dependency enum values. `execution/_DAG/DAG-007/` is the
-   canonical type-system rectification successor: it preserves the approved
-   `DAG-006` active topology, excludes candidate rows from `DependencyEdges.csv`,
-   and remains pending human approval before pointer promotion. Current and
-   future dependency writes must use canonical v3.1 enum values only;
+   2026-06-22 it points to `DAG-007`, the approved canonical type-system
+   rectification successor. `DAG-007` is built from refreshed
+   deliverable-local dependency registers, uses canonical v3.1 enum values in
+   the current edge register, and excludes candidate rows from
+   `DependencyEdges.csv`. `DAG-001` through `DAG-006` remain immutable
+   historical snapshots with legacy dependency enum values. Current and future
+   dependency writes must use canonical v3.1 enum values only;
    legacy-readable values are migration inputs, not emit-able current values.
    Candidate rows remain non-gating worklist items unless explicitly promoted by
    a later human gate and graph revalidation. SCCs are the primary diagnostic of
@@ -222,8 +225,8 @@ unless a human-approved change path opens it.
 Until all deliverables are `ISSUED`, ordinary development is app-centric:
 produce a working desktop application while using the current approved DAG
 pointer, the decomposition, and deliverable-local records according to their
-discovered lifecycle state. As of 2026-06-16, that pointer is still `DAG-006`
-pending human approval of `DAG-007`. `CHECKING` means design authority is
+discovered lifecycle state. As of 2026-06-22, that pointer is `DAG-007`.
+`CHECKING` means design authority is
 mature; it does not mean the application has absorbed that deliverable's
 scope. `IN_PROGRESS` records remain current development surfaces and must not
 be described as issued or closed. The completion plan's FR map tracks
@@ -263,16 +266,18 @@ branch-object app absorption landed for the invented preview path through
 landed for the invented preview path through `TP-R4-D3-RIGIDVIS-001`, with
 `mechanics_geometry_only` data/provenance/diagnostic evidence and no
 frame-stiffness behavior change. D4 expansion-joint app absorption landed for
-the invented preview path through `TP-R4-D4-EJSTIFF-001`, with user-stiffness
-review rows; the `DEC-045` EJ solver macro-element and pressure-thrust load
-generation remain open. D5 spring-hanger user-data model evidence landed through
+the invented preview path through `TP-R4-D4-EJSTIFF-001`,
+`TP-R4-D4-EJMACRO-001`, and `TP-R4-D4-EJTHRUST-001`, with user-stiffness
+review rows, the `DEC-045` EJ solver macro-element, and explicit load-side
+pressure-thrust evidence from user effective area plus named pressure loads.
+D5 spring-hanger user-data model evidence landed through
 `TP-R4-D5-HANGERDATA-001` under `DEC-049`, covering invented variable spring
 and constant-effort support records without catalog sizing, protected defaults,
 hidden support values, or professional/code-compliance claims. The loop-core
 slice
 `TP-R4-D6-LOOPCORE-001` added
-`core/solver/nonlinear_integration` as the dense assembled active-set loop owner
-under `DEC-044`/`DEC-046`, and `TP-R4-D6-PHYSINTEG-001` bound that dense loop
+`core/solver/nonlinear_integration` as the assembled active-set loop owner
+under `DEC-044`/`DEC-046`, and `TP-R4-D6-PHYSINTEG-001` bound that loop
 into the invented product/app/result-envelope preview path for one explicit
 nonlinear support. `TP-R4-D9-ASSEMBLEDSEED-001` added the first assembled
 global-loop validation seed for one-way deactivation, gap closure, and lift-off
@@ -280,7 +285,7 @@ release; `TP-R4-D9-FRICTIONSEED-001` and
 `TP-R4-D9-FRICTIONSLIDE-001` added explicit-normal friction sticking/sliding
 assembled and product-preview evidence. `TP-R4-D6-FRICTIONNORMAL-001` added
 derived friction normal-reaction evidence from named restrained support DOFs
-in the dense loop, product adapter, nonlinear benchmark inventory, and
+in the active-set loop, product adapter, nonlinear benchmark inventory, and
 invented preview fixture. `TP-R4-D8-COMPPROVREPORT-001` added component
 provenance and missing-provenance warnings to the hash-bound rendered report
 path. `TP-R4-D9-BRANCHASSEMBLY-001` added the PRD §16.2 public-original
@@ -290,17 +295,140 @@ current assembled nonlinear fixture set. `TP-R4-D9-CONVPOLICY-001` promotes the
 governed `DEC-046-CV-B-active-set-count-validation-v1` policy for that current
 assembled validation seed only: active-set changed-support-count residual,
 relative tolerance `0.0`, absolute floor `0.0`, max iteration cap `4`, keyed to
-one-way/gap/lift-off/friction classes. `TP-R4-D6-LIVEBUNDLE-001` added mixed
-one-way/gap/friction product live-loop coverage in one invented dense solve.
-`TP-R4-D7-SPARSELIVE-001` landed the `DEC-050` sparse evidence lane while dense
-remains default and profile-direct assembly/default promotion follow on.
-`TP-R4-D9-EXITGAP-001` records the current R4 exit verdict as not ready:
-non-seed force/displacement/energy threshold promotion, multi-DOF /
-multi-support nonlinear fixture depth, EJ assembled macro-element mechanics,
-deeper spring-hanger behavior, and the remaining D9 validation evidence remain
-open.
-`DAG-007` remains pending human approval; `_DAG/_LATEST.md` stays on
-`DAG-006`.
+one-way/gap/lift-off/friction classes. `TP-R4-D9-FREEDOFRESIDPOLICY-001`
+promotes free-DOF force/moment residual threshold policies for the current
+assembled validation seed and invented product-preview surface only, leaving
+release, sparse-default, external, and broader non-seed threshold axes open.
+`TP-R4-D9-MULTISUPPORTOBS-001` adds an observation-only
+multi-DOF / multi-support assembled validation-depth fixture, with a two-support
+Ux/Uy state-change case kept outside the accepted seed policy and marked
+`TolerancePolicyTbd`. `TP-R4-D9-MULTISUPPORTPOLICY-001` adds a separate
+public-original Ux/Uy multi-support validation fixture with accepted
+`DEC-046` active-set-count and free-DOF force/moment policies for that
+non-seed fixture only. `TP-R4-D9-MULTISUPPORTBREADTH-001` broadens that
+accepted multi-support fixture set with a second public-original lift-off/gap
+companion under the same narrow active-set, free-DOF force/moment, and
+free-DOF work policies. `TP-R4-D9-MULTISUPPORTFRICTION-001` adds a third
+public-original friction/gap companion with explicit invented normal-reaction
+evidence under those same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORT3DOF-001` adds a fourth public-original accepted
+companion that changes three nonlinear supports across three translational
+DOFs under the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORTROT-001` adds a fifth public-original accepted
+companion that changes supports across translation and rotation groups under
+the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORTDERIVED-001` adds a sixth public-original accepted
+companion that combines derived-normal friction sliding with gap closure under
+the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORTDERIVEDROT-001` adds a seventh public-original accepted
+companion that combines derived-normal friction sliding with rotational lift-off
+under the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORTCASCADE-001` adds an eighth public-original accepted
+companion that records a sequential active-set cascade: Rz lift-off release
+followed by Uy gap closure before final convergence under the same narrow
+multi-support policies.
+`TP-R4-D9-MULTISUPPORTNEGAP-001` adds a ninth public-original accepted
+companion that pairs negative-direction Uy gap closure with Ux one-way release
+under the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORT4CLASS-001` adds a tenth public-original accepted
+companion that combines friction sliding, gap closure, one-way release, and
+rotational lift-off release in one fixture under the same narrow multi-support
+policies.
+`TP-R4-D9-MULTISUPPORTOPPGAP-001` adds an eleventh public-original accepted
+companion that closes positive-direction Ux and negative-direction Uy gaps in
+one gap-only opposing-direction fixture under the same narrow multi-support
+policies.
+`TP-R4-D9-MULTISUPPORTSPAN-001` adds a twelfth public-original accepted
+companion that exercises nonlinear supports on separate nodes in a two-span
+frame topology under the same narrow multi-support policies.
+`TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001` adds a thirteenth public-original
+accepted companion that combines the two-span topology with opposing gap
+directions on separate nodes under the same narrow multi-support policies.
+`TP-R4-D9-DISPREACTIONOBS-001` adds observation-only displacement/reaction-delta
+axis ledgers for the current assembled validation seed and accepted
+multi-support fixture set, plus product-preview metadata that initially marked
+those axes `threshold_policy_status=tbd`.
+`TP-R4-D9-DISPREACTIONPOLICY-001` promotes fixture-evidence-envelope
+displacement/reaction delta threshold policies for the current assembled
+validation seed and accepted thirteen-fixture multi-support set only; product
+preview, broader non-seed, sparse-default, release, and external delta
+thresholds remain open.
+`TP-R4-D9-PRODDISPREACTIONPOLICY-001` promotes an accepted product-preview-only
+displacement/reaction delta policy for emitted rows from the invented mixed
+one-way/gap/friction surface; broader non-seed, sparse-default, release, and
+external delta thresholds remain open.
+`TP-R4-D9-ENERGYOBS-001` records final-iteration
+free-DOF work residual observations in the active-set loop, nonlinear validation
+inventory, and invented product-preview surface. `TP-R4-D9-WORKPOLICY-001`
+promotes a bounded final-iteration free-DOF work residual policy for the current
+assembled validation seed, invented product-preview surface, and accepted
+multi-support fixture set only. `TP-R4-D9-GENERALENERGYPOLICY-001` promotes
+bounded general-energy residual policies for the current assembled validation
+seed, invented product-preview surface, and accepted thirteen-fixture
+multi-support set only. Accepted displacement/reaction-delta thresholds beyond
+the current seed, accepted thirteen-fixture set, and product-preview surface,
+non-seed force/displacement beyond the accepted thirteen-fixture set, broader non-seed
+general-energy residual thresholds, release, sparse-default, external, total
+strain-energy, modal-energy, and CI threshold axes remain open.
+`TP-R4-D6-LIVEBUNDLE-001` added mixed one-way/gap/friction product live-loop
+coverage in one invented solve. `TP-R4-D7-SPARSELIVE-001`
+landed the `DEC-050` sparse evidence lane while dense remained the default at
+that historical step.
+`TP-R4-D7-SPARSEPROFILE-001` adds direct reduced profile-entry assembly for
+product-preview sparse evidence rows. `TP-R4-D7-NONLINEARPROFILE-001` moves
+the nonlinear integration sparse evidence lane to direct reduced profile
+entries from the active free-DOF map. `TP-R4-D7-SPARSESUITABILITYOBS-001`
+adds generated-grid sparse suitability observations from the performance
+harness. `TP-R4-D7-SPARSETHRESHOLDPOLICY-001` promotes bounded DEC-050
+generated-grid sparse suitability thresholds for dense-vs-sparse relative delta,
+sparse residual, repeatability, and nonpositive pivots as historical DEC-050
+evidence.
+`TP-R4-D7-SPARSESTORAGEOBS-001` adds deterministic f64 value-storage
+observations for reduced dense matrices and sparse profile entries in the
+performance harness.
+`TP-R4-D7-SPARSECONDITIONPOLICY-001` promotes a bounded DEC-050
+generated-grid sparse pivot-ratio conditioning policy for the same observation
+set. `D-26` was ruled by `DEC-053` as O-B, selecting sparse default promotion
+as the named residual repair before R4 exit acceptance. The repair tranche
+`TP-R4-D7-SPARSEDEFAULTPROMOTE-001` promotes sparse interactive as the default
+preview/render/live-model-change path, keeps dense scrutiny explicitly
+selectable, requires sparse-to-dense fallback to be diagnostic/result-basis
+visible, and records a bounded 9-record local sparse-promotion observation
+packet with practical size bands, dense/sparse timing observations,
+value-storage and RSS observations, hardware metadata, dense/sparse parity,
+residual, repeat determinism, pivot-ratio proxy, and true condition number from
+the reduced dense symmetric matrix. Timing/RSS/hardware/CI evidence is
+observed, not threshold-gated, and no hosted-CI, hardware-normalized pass/fail,
+release-performance, professional, certification, sealing, authentication, or
+code-compliance claim is created.
+`TP-R4-D9-EXITGAP-001` recorded the pre-`D-25` R4 exit verdict as not ready:
+non-seed force/displacement threshold promotion beyond the accepted thirteen-fixture set,
+broader displacement/reaction-delta threshold promotion beyond the accepted
+current-seed, thirteen-fixture, and product-preview
+surfaces, broader multi-DOF /
+multi-support nonlinear acceptance thresholds beyond the accepted thirteen-fixture set,
+default sparse promotion plus sparse timing/memory/CI/hardware-normalized
+threshold promotion and conditioning evidence beyond the generated-grid
+pivot-ratio policy,
+deeper spring-hanger behavior, and
+the remaining D9 validation evidence remain open. Broader non-seed, release,
+external, sparse-default, total strain-energy, modal-energy, and CI
+general-energy threshold axes remain outside the accepted
+`TP-R4-D9-GENERALENERGYPOLICY-001` policy envelope.
+`D-25` is ruled by `DEC-052` Option O-B: those residuals are explicit
+post-R4/R5 or non-blocking hardening residuals for this R4 packet unless a
+later human gate selects one as blocking. `DEC-053` selected the sparse
+default-promotion residual as a blocking R4 repair and that repair tranche has
+landed. `TP-R4-D9-EXITCHAIN-001` and
+`plans/VERIFICATION_2026-06-22_r4_exit_chain.md` remain the historical R4 exit
+packet. The current refreshed packet is
+`plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md`
+(`TP-R4-D9-EXITCHAINREFRESH-001`) and includes
+`TP-R4-D7-SPARSEDEFAULTPROMOTE-001`. R4 remains the current target stage, and no
+R5 target-stage advancement is authorized until a future human ruling accepts
+the refreshed R4 exit-chain verification packet.
+`DAG-007` is the current approved dependency graph pointer; `DAG-001` through
+`DAG-006` remain historical snapshots.
 
 Interactive authoring of user-created local models — applying editor
 operations to a persisted local model document — remains in scope and does not
@@ -336,13 +464,12 @@ bounded tranche.
    `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`, `{WORKING_ROOT}/AGENTS.md`,
    the baseline governance documents above, current app intake surfaces needed
    for the selected slice, `SOFTWARE_DECOMP`, and the current approved DAG
-   pointer. As of 2026-06-16, `_DAG/_LATEST.md` still points to `DAG-006`;
-   `DAG-007` is pending human approval.
+   pointer. As of 2026-06-22, `_DAG/_LATEST.md` points to `DAG-007`.
 2. **Status and git discovery.** Run
-   `python3 tools/coordination/list_deliverable_status.py --dag DAG-006 --format table --summary`
+   `python3 tools/coordination/list_deliverable_status.py --dag DAG-007 --format table --summary`
    or the same command with `--format csv` when machine-readable output is
-   needed, until `_DAG/_LATEST.md` is human-approved to point elsewhere. Record
-   `git status --short` before coordination-sensitive planning or execution.
+   needed. Record `git status --short` before coordination-sensitive planning
+   or execution.
 3. **Default candidate selection.** For ordinary development, select the
    highest-leverage application-integration tranche in this order:
    1. the earliest unblocked item on the completion plan's dependency spine
@@ -353,7 +480,8 @@ bounded tranche.
       `TP-R4-D1-BENDSTRESS-001`; D2 branch-object app absorption landed through
       `TP-R4-D2-BRANCHSTRESS-001`; D3 rigid/semi-rigid component app
       absorption landed through `TP-R4-D3-RIGIDVIS-001`; D4 expansion-joint
-      app absorption landed through `TP-R4-D4-EJSTIFF-001`. D5 spring-hanger
+      app absorption landed through `TP-R4-D4-EJSTIFF-001`,
+      `TP-R4-D4-EJMACRO-001`, and `TP-R4-D4-EJTHRUST-001`. D5 spring-hanger
       user-data model evidence landed through `TP-R4-D5-HANGERDATA-001` under
       `DEC-049`, with deeper catalog sizing and full constant-effort solve
       behavior left outside that slice. The D6/D9 residuals after
@@ -361,19 +489,125 @@ bounded tranche.
       `TP-R4-D6-LIVECOVER-001`, `TP-R4-D9-FRICTIONSEED-001`,
       `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`,
       `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVPOLICY-001`,
-      `TP-R4-D6-LIVEBUNDLE-001`, and the D8 rendered report-provenance slice
+      `TP-R4-D6-LIVEBUNDLE-001`, `TP-R4-D9-FREEDOFRESIDPOLICY-001`,
+      `TP-R4-D9-MULTISUPPORTOBS-001`, `TP-R4-D9-ENERGYOBS-001`,
+      `TP-R4-D9-MULTISUPPORTPOLICY-001`, `TP-R4-D9-WORKPOLICY-001`,
+      `TP-R4-D9-MULTISUPPORTBREADTH-001`,
+      `TP-R4-D9-MULTISUPPORTFRICTION-001`,
+      `TP-R4-D9-MULTISUPPORT3DOF-001`,
+      `TP-R4-D9-MULTISUPPORTROT-001`,
+      `TP-R4-D9-MULTISUPPORTDERIVED-001`,
+      `TP-R4-D9-MULTISUPPORTDERIVEDROT-001`,
+      `TP-R4-D9-DISPREACTIONPOLICY-001`,
+      and the D8 rendered report-provenance slice
       `TP-R4-D8-COMPPROVREPORT-001`;
       `TP-R4-D9-CONVOBS-001` records observed convergence values for the
       current assembled fixtures and `TP-R4-D9-CONVPOLICY-001` promotes the
       governed active-set-count policy for that validation seed only.
+      `TP-R4-D9-FREEDOFRESIDPOLICY-001` promotes free-DOF force/moment
+      residual threshold policies for the current assembled validation seed and
+      invented product-preview surface only.
+      `TP-R4-D9-MULTISUPPORTOBS-001` adds one observation-only multi-DOF /
+      multi-support validation-depth fixture outside those accepted threshold
+      policies. `TP-R4-D9-MULTISUPPORTPOLICY-001` adds one accepted non-seed
+      multi-support validation companion under narrow `DEC-046` active-set and
+      free-DOF force/moment policies. `TP-R4-D9-MULTISUPPORTBREADTH-001`
+      adds a second accepted non-seed lift-off/gap companion under the same
+      narrow multi-support active-set, free-DOF force/moment, and free-DOF
+      work policies. `TP-R4-D9-MULTISUPPORTFRICTION-001` adds a third
+      accepted non-seed friction/gap companion under those same narrow
+      multi-support policies. `TP-R4-D9-MULTISUPPORT3DOF-001` adds a fourth
+      accepted non-seed three-support / three-translation companion under the
+      same narrow multi-support policies. `TP-R4-D9-MULTISUPPORTROT-001`
+      adds a fifth accepted non-seed mixed translation/rotation companion
+      under the same narrow multi-support policies.
+      `TP-R4-D9-MULTISUPPORTDERIVED-001` adds a sixth accepted non-seed
+      derived-normal friction/gap companion under the same narrow multi-support
+      policies. `TP-R4-D9-MULTISUPPORTDERIVEDROT-001` adds a seventh accepted
+      non-seed derived-normal friction/rotational lift-off companion under the
+      same narrow multi-support policies. `TP-R4-D9-MULTISUPPORTCASCADE-001`
+      adds an eighth accepted non-seed sequential gap/lift-off cascade companion
+      under the same narrow multi-support policies.
+      `TP-R4-D9-MULTISUPPORTNEGAP-001` adds a ninth accepted non-seed
+      negative-direction gap/one-way companion under the same narrow
+      multi-support policies.
+      `TP-R4-D9-MULTISUPPORT4CLASS-001` adds a tenth accepted non-seed
+      four-class companion under the same narrow multi-support policies.
+      `TP-R4-D9-MULTISUPPORTOPPGAP-001` adds an eleventh accepted non-seed
+      gap-only opposing-direction companion under the same narrow
+      multi-support policies.
+      `TP-R4-D9-MULTISUPPORTSPAN-001` adds a twelfth accepted non-seed
+      multi-node / two-span companion under the same narrow multi-support
+      policies.
+      `TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001` adds a thirteenth accepted
+      non-seed two-span opposing-gap companion under the same narrow
+      multi-support policies.
+      `TP-R4-D9-DISPREACTIONOBS-001` records
+      displacement/reaction-delta observation axes for the current seed,
+      accepted multi-support fixture set, and product-preview metadata.
+      `TP-R4-D9-DISPREACTIONPOLICY-001` promotes accepted
+      displacement/reaction delta threshold envelopes for the current seed and
+      accepted thirteen-fixture multi-support set only.
+      `TP-R4-D9-PRODDISPREACTIONPOLICY-001` promotes accepted
+      displacement/reaction delta threshold metadata for emitted rows from the
+      invented mixed product-preview surface only. `TP-R4-D9-ENERGYOBS-001` adds
+      final-iteration free-DOF work residual rows. `TP-R4-D9-WORKPOLICY-001`
+      promotes bounded free-DOF work residual policies for the current
+      assembled validation seed, invented product-preview surface, and accepted
+      multi-support fixture set only. `TP-R4-D9-GENERALENERGYPOLICY-001`
+      promotes bounded general-energy residual policies for the current
+      assembled validation seed, invented product-preview surface, and accepted
+      thirteen-fixture multi-support set only; broader non-seed, release, external,
+      sparse-default, total strain-energy, modal-energy, and CI energy
+      threshold axes remain `TBD`.
       `TP-R4-D7-SPARSELIVE-001` binds `core/solver/sparse_direct` into the
       assembled nonlinear integration and product-preview reduced solve paths
       as the `DEC-050` sparse evidence lane, with dense remaining default.
-      `TP-R4-D9-EXITGAP-001` records the current R4 exit verdict as not ready:
-      non-seed force/displacement/energy thresholds, multi-DOF / multi-support
-      nonlinear fixture depth, profile-direct sparse/default promotion, EJ
-      assembled macro-element mechanics, deeper spring-hanger behavior, and the
-      R4 exit evidence package remain open under `DEC-044`/`DEC-046`/`DEC-050`.
+      `TP-R4-D7-SPARSEPROFILE-001` adds direct reduced profile-entry assembly
+      for product-preview sparse evidence rows while dense remains the product
+      solve path and parity oracle.
+      `TP-R4-D7-NONLINEARPROFILE-001` moves nonlinear integration sparse
+      evidence to direct reduced profile entries from the active free-DOF map.
+      `TP-R4-D7-SPARSESUITABILITYOBS-001` records generated-grid sparse
+      suitability observations. `TP-R4-D7-SPARSETHRESHOLDPOLICY-001`
+      promotes bounded generated-grid sparse suitability thresholds while dense
+      remains default and timing/memory/CI/hardware/default promotion stays
+      `TBD`.
+      `TP-R4-D7-SPARSESTORAGEOBS-001` records deterministic f64 value-storage
+      observations for reduced dense matrices and sparse profile entries while
+      allocator/RSS memory, timing, conditioning, CI, hardware-normalized, and
+      default-promotion thresholds remain `TBD`.
+      `TP-R4-D7-SPARSECONDITIONPOLICY-001` promotes a bounded generated-grid
+      sparse pivot-ratio conditioning policy while true condition-number, CI,
+      hardware-normalized, timing, allocator/RSS memory, and default-promotion
+      thresholds remain `TBD`.
+      `TP-R4-D9-EXITGAP-001` recorded the pre-`D-25` R4 exit verdict as not ready:
+      non-seed force/displacement threshold promotion beyond the accepted
+      thirteen-fixture set, broader displacement/reaction-delta thresholds beyond
+      the accepted current-seed, thirteen-fixture, and product-preview surfaces,
+      broader multi-DOF /
+      multi-support nonlinear acceptance thresholds beyond the accepted
+      thirteen-fixture set,
+      default sparse promotion plus sparse timing/memory/CI/hardware-normalized
+      thresholds and conditioning evidence beyond the generated-grid
+      pivot-ratio policy, deeper
+      spring-hanger behavior, and the R4 exit evidence
+      package remain open
+      under `DEC-044`/`DEC-046`/`DEC-050`. Broader non-seed, release,
+      external, sparse-default, total strain-energy, modal-energy, and CI
+      general-energy threshold axes remain outside the accepted
+      `TP-R4-D9-GENERALENERGYPOLICY-001` policy envelope.
+      `D-25` is ruled by `DEC-052` Option O-B: those residuals are explicit
+      post-R4/R5 or non-blocking hardening residuals for this R4 packet unless
+      a later human gate selects one as blocking. `D-26` is ruled by
+      `DEC-053` Option O-B: R4 held pending the named sparse default-promotion
+      repair, which landed as `TP-R4-D7-SPARSEDEFAULTPROMOTE-001`.
+      `TP-R4-D9-EXITCHAIN-001` prepared the historical
+      `plans/VERIFICATION_2026-06-22_r4_exit_chain.md` packet; the current
+      packet for human R4 exit review is
+      `plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md`
+      (`TP-R4-D9-EXITCHAINREFRESH-001`). No R4-to-R5 target-stage advancement
+      is authorized until a future human ruling accepts the refreshed packet.
       `D-20`
       remains a Phase E lead-up decision; held `D-21` does not authorize
       v0.2/R6/R7 scope;
@@ -386,7 +620,7 @@ bounded tranche.
    hardening work ahead of an unblocked current-stage plan item without
    recording why in the tranche proposal.
 4. **Decision escalation.** When the next plan item is blocked by a human
-   decision (`D-01..D-23` in the completion plan, or any newly discovered
+   decision (`D-01..D-26` in the completion plan, or any newly discovered
    human-gated TBD):
    - if no decision packet exists, the tranche is a decision-preparation
      tranche: assemble options, evidence, impacts, and a recommendation
@@ -412,8 +646,8 @@ bounded tranche.
 6. **Context selection.** Start from the app/code/test surfaces for app
    integration work. Use the current approved DAG pointer only to discover
    related deliverables whose local artifacts need inspection. As of
-   2026-06-16, that pointer is `DAG-006`; `DAG-007` is pending human approval.
-   DAG rows do not replace local artifact inspection.
+   2026-06-22, that pointer is `DAG-007`. DAG rows do not replace local
+   artifact inspection.
 7. **Bounded execution.** After approval, dispatch canonical `TASK` workers or
    work locally inside a sealed tranche. Several workers may run concurrently
    only when file sets are disjoint and write scopes are explicit. App

@@ -22,6 +22,31 @@ use std::time::Instant;
 /// path (see `core/solver/sparse_direct` README for its determinism
 /// properties).
 pub const SPARSE_ORDERING_ALGORITHM_ID: &str = "reverse-cuthill-mckee-deterministic";
+pub const DEC_050_SPARSE_SUITABILITY_OBSERVATION_ID: &str =
+    "DEC-050-SPARSE-SUITABILITY-OBSERVATION-v1";
+pub const DEC_050_SPARSE_SUITABILITY_THRESHOLD_POLICY_REF: &str =
+    "DEC-050-SPARSE-SUITABILITY-GENERATED-GRID-THRESHOLD-POLICY-v1";
+pub const DEC_050_SPARSE_CONDITIONING_THRESHOLD_POLICY_REF: &str =
+    "DEC-050-SPARSE-GENERATED-GRID-PIVOT-CONDITIONING-POLICY-v1";
+pub const DEC_053_SPARSE_DEFAULT_PROMOTION_OBSERVATION_ID: &str =
+    "DEC-053-SPARSE-DEFAULT-PROMOTION-OBSERVATION-v1";
+pub const DEC_053_SPARSE_DEFAULT_PROMOTION_POLICY_REF: &str =
+    "DEC-053-SPARSE-INTERACTIVE-DEFAULT-DENSE-SCRUTINY-POLICY-v1";
+pub const SPARSE_SUITABILITY_THRESHOLD_POLICY_STATUS: &str =
+    "accepted_for_generated_grid_observation_set";
+pub const SPARSE_CONDITIONING_THRESHOLD_POLICY_STATUS: &str =
+    "accepted_for_generated_grid_pivot_ratio_observation_set";
+pub const SPARSE_DEFAULT_PROMOTION_STATUS: &str = "not_promoted_dense_default";
+pub const DEC_053_SPARSE_DEFAULT_PROMOTION_STATUS: &str =
+    "promoted_sparse_interactive_default_dense_scrutiny_available";
+pub const SPARSE_SUITABILITY_GRID_BANDS: [(usize, usize); 2] = [(4, 3), (6, 8)];
+pub const SPARSE_DEFAULT_PROMOTION_OBSERVATION_COUNT: usize = 9;
+pub const SPARSE_SUITABILITY_RELATIVE_DELTA_LIMIT: f64 = 1.0e-9;
+pub const SPARSE_SUITABILITY_RESIDUAL_ABSOLUTE_LIMIT: f64 = 1.0e-6;
+pub const SPARSE_SUITABILITY_REPEAT_DELTA_ABSOLUTE_LIMIT: f64 = 0.0;
+pub const SPARSE_SUITABILITY_NONPOSITIVE_PIVOT_COUNT_LIMIT: usize = 0;
+pub const SPARSE_SUITABILITY_PIVOT_CONDITION_RATIO_LIMIT: f64 = 1.0e16;
+pub const F64_VALUE_STORAGE_BYTES: usize = std::mem::size_of::<f64>();
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum FixtureProvenanceStatus {
@@ -77,9 +102,8 @@ pub struct ConditioningObservation {
 }
 
 /// Sparse-path (DEC-023 in-repo skyline LDL^T solver) observations recorded
-/// alongside the dense path for the same fixture. All fields are
-/// measurements; no thresholds are asserted (thresholds remain governed by
-/// D-04).
+/// alongside the dense path for the same fixture. All fields are measurements;
+/// governed threshold status is carried by higher-level observation records.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SparseSolveObservation {
     pub ordering_algorithm: String,
@@ -88,6 +112,8 @@ pub struct SparseSolveObservation {
     pub ordered_max_half_bandwidth: usize,
     pub original_profile_entry_count: usize,
     pub ordered_profile_entry_count: usize,
+    pub original_profile_value_storage_bytes: usize,
+    pub ordered_profile_value_storage_bytes: usize,
     pub min_abs_pivot: Option<f64>,
     pub max_abs_pivot: Option<f64>,
     /// Pivot-ratio conditioning proxy from the factorization report
@@ -118,6 +144,10 @@ pub struct HarnessRunRecord {
     pub reduced_dofs: usize,
     pub stiffness_nonzero_count: usize,
     pub reduced_stiffness_nonzero_count: usize,
+    /// Deterministic value-storage footprint for the reduced dense matrix:
+    /// `reduced_dofs * reduced_dofs * size_of::<f64>()`. This excludes
+    /// allocator/container overhead and is observation evidence only.
+    pub reduced_dense_matrix_value_storage_bytes: usize,
     pub force_nonzero_count: usize,
     pub repeat_count: usize,
     pub max_abs_solution_delta: f64,
@@ -169,8 +199,84 @@ pub struct HarnessSuiteSummary {
     pub records_with_sparse_observation_count: usize,
     pub total_original_profile_entry_count: usize,
     pub total_ordered_profile_entry_count: usize,
+    pub total_reduced_dense_matrix_value_storage_bytes: usize,
+    pub total_ordered_profile_value_storage_bytes: usize,
     pub max_abs_sparse_dense_solution_delta: f64,
     pub max_abs_sparse_residual: f64,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct SparseSuitabilityObservationRecord {
+    pub observation_id: String,
+    pub fixture_id: String,
+    pub grid_x_count: usize,
+    pub grid_y_count: usize,
+    pub node_count: usize,
+    pub element_count: usize,
+    pub total_dofs: usize,
+    pub reduced_dofs: usize,
+    pub original_max_half_bandwidth: usize,
+    pub ordered_max_half_bandwidth: usize,
+    pub original_profile_entry_count: usize,
+    pub ordered_profile_entry_count: usize,
+    pub dense_reduced_matrix_value_storage_bytes: usize,
+    pub sparse_original_profile_value_storage_bytes: usize,
+    pub sparse_ordered_profile_value_storage_bytes: usize,
+    pub sparse_ordered_vs_dense_value_storage_ratio: f64,
+    pub dense_solution_scale: f64,
+    pub max_abs_sparse_dense_solution_delta: f64,
+    pub sparse_dense_relative_delta: f64,
+    pub max_abs_sparse_residual: f64,
+    pub max_abs_sparse_repeat_solution_delta: f64,
+    pub nonpositive_pivot_count: usize,
+    pub dense_first_solve_elapsed_nanos: u128,
+    pub sparse_first_solve_elapsed_nanos: u128,
+    pub sparse_pivot_condition_ratio_estimate: Option<f64>,
+    pub threshold_policy_ref: String,
+    pub threshold_policy_status: String,
+    pub conditioning_threshold_policy_ref: String,
+    pub conditioning_threshold_policy_status: String,
+    pub sparse_dense_relative_delta_limit: f64,
+    pub sparse_residual_absolute_limit: f64,
+    pub sparse_repeat_solution_delta_absolute_limit: f64,
+    pub nonpositive_pivot_count_limit: usize,
+    pub sparse_pivot_condition_ratio_limit: f64,
+    pub default_sparse_promotion_status: String,
+    pub suitability_basis: String,
+    pub limitations: Vec<String>,
+    pub provenance_notes: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct SparseDefaultPromotionObservationRecord {
+    pub observation_id: String,
+    pub fixture_id: String,
+    pub practical_size_band: String,
+    pub fixture_family: String,
+    pub node_count: usize,
+    pub element_count: usize,
+    pub total_dofs: usize,
+    pub reduced_dofs: usize,
+    pub dense_first_solve_elapsed_nanos: u128,
+    pub sparse_first_solve_elapsed_nanos: u128,
+    pub dense_reduced_matrix_value_storage_bytes: usize,
+    pub sparse_ordered_profile_value_storage_bytes: usize,
+    pub allocator_rss_observation_status: String,
+    pub hardware_normalization_status: String,
+    pub true_condition_number_2norm: f64,
+    pub true_condition_number_method: String,
+    pub sparse_pivot_condition_ratio_estimate: Option<f64>,
+    pub max_abs_sparse_dense_solution_delta: f64,
+    pub sparse_dense_relative_delta: f64,
+    pub max_abs_sparse_residual: f64,
+    pub max_abs_sparse_repeat_solution_delta: f64,
+    pub nonpositive_pivot_count: usize,
+    pub default_sparse_promotion_status: String,
+    pub dense_path_role: String,
+    pub sparse_path_role: String,
+    pub ci_gate_status: String,
+    pub limitations: Vec<String>,
+    pub provenance_notes: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -391,6 +497,260 @@ pub fn run_invented_fixture_suite(
     ))
 }
 
+pub fn run_sparse_suitability_observation_suite(
+    settings: &HarnessSettings,
+) -> Result<Vec<SparseSuitabilityObservationRecord>, HarnessError> {
+    SPARSE_SUITABILITY_GRID_BANDS
+        .iter()
+        .map(|(x_count, y_count)| run_sparse_suitability_observation(*x_count, *y_count, settings))
+        .collect()
+}
+
+pub fn run_sparse_suitability_observation(
+    x_count: usize,
+    y_count: usize,
+    settings: &HarnessSettings,
+) -> Result<SparseSuitabilityObservationRecord, HarnessError> {
+    let fixture = invented_grid_frame_fixture(x_count, y_count)?;
+    let run_record = run_fixture_repeat(&fixture, settings)?;
+    let sparse = run_record
+        .sparse_observation
+        .as_ref()
+        .ok_or(HarnessError::InvalidSetting {
+            name: "sparse_observation",
+            detail: "sparse suitability observations require a completed sparse solve",
+        })?;
+    let dense_solution_scale = dense_solution_scale_for_fixture(&fixture)?;
+    let sparse_dense_delta =
+        sparse
+            .max_abs_sparse_dense_solution_delta
+            .ok_or(HarnessError::InvalidSetting {
+                name: "sparse_dense_delta",
+                detail: "sparse suitability observations require dense parity",
+            })?;
+    let sparse_dense_relative_delta = if dense_solution_scale > 0.0 {
+        sparse_dense_delta / dense_solution_scale
+    } else {
+        0.0
+    };
+
+    Ok(SparseSuitabilityObservationRecord {
+        observation_id: DEC_050_SPARSE_SUITABILITY_OBSERVATION_ID.to_string(),
+        fixture_id: fixture.fixture_id,
+        grid_x_count: x_count,
+        grid_y_count: y_count,
+        node_count: run_record.node_count,
+        element_count: run_record.element_count,
+        total_dofs: run_record.total_dofs,
+        reduced_dofs: run_record.reduced_dofs,
+        original_max_half_bandwidth: sparse.original_max_half_bandwidth,
+        ordered_max_half_bandwidth: sparse.ordered_max_half_bandwidth,
+        original_profile_entry_count: sparse.original_profile_entry_count,
+        ordered_profile_entry_count: sparse.ordered_profile_entry_count,
+        dense_reduced_matrix_value_storage_bytes: run_record
+            .reduced_dense_matrix_value_storage_bytes,
+        sparse_original_profile_value_storage_bytes: sparse
+            .original_profile_value_storage_bytes,
+        sparse_ordered_profile_value_storage_bytes: sparse.ordered_profile_value_storage_bytes,
+        sparse_ordered_vs_dense_value_storage_ratio: storage_ratio(
+            sparse.ordered_profile_value_storage_bytes,
+            run_record.reduced_dense_matrix_value_storage_bytes,
+        ),
+        dense_solution_scale,
+        max_abs_sparse_dense_solution_delta: sparse_dense_delta,
+        sparse_dense_relative_delta,
+        max_abs_sparse_residual: sparse.max_abs_residual,
+        max_abs_sparse_repeat_solution_delta: sparse.max_abs_repeat_solution_delta,
+        nonpositive_pivot_count: sparse.nonpositive_pivot_count,
+        dense_first_solve_elapsed_nanos: run_record.dense_first_solve_elapsed_nanos,
+        sparse_first_solve_elapsed_nanos: sparse.first_solve_elapsed_nanos,
+        sparse_pivot_condition_ratio_estimate: sparse.pivot_condition_ratio_estimate,
+        threshold_policy_ref: DEC_050_SPARSE_SUITABILITY_THRESHOLD_POLICY_REF.to_string(),
+        threshold_policy_status: SPARSE_SUITABILITY_THRESHOLD_POLICY_STATUS.to_string(),
+        conditioning_threshold_policy_ref: DEC_050_SPARSE_CONDITIONING_THRESHOLD_POLICY_REF
+            .to_string(),
+        conditioning_threshold_policy_status: SPARSE_CONDITIONING_THRESHOLD_POLICY_STATUS
+            .to_string(),
+        sparse_dense_relative_delta_limit: SPARSE_SUITABILITY_RELATIVE_DELTA_LIMIT,
+        sparse_residual_absolute_limit: SPARSE_SUITABILITY_RESIDUAL_ABSOLUTE_LIMIT,
+        sparse_repeat_solution_delta_absolute_limit: SPARSE_SUITABILITY_REPEAT_DELTA_ABSOLUTE_LIMIT,
+        nonpositive_pivot_count_limit: SPARSE_SUITABILITY_NONPOSITIVE_PIVOT_COUNT_LIMIT,
+        sparse_pivot_condition_ratio_limit: SPARSE_SUITABILITY_PIVOT_CONDITION_RATIO_LIMIT,
+        default_sparse_promotion_status: SPARSE_DEFAULT_PROMOTION_STATUS.to_string(),
+        suitability_basis:
+            "DEC-050 generated-grid threshold policies; dense remains default and parity oracle"
+                .to_string(),
+        limitations: vec![
+            "accepted thresholds apply only to the generated-grid observation set; not practical-size or release thresholds"
+                .to_string(),
+            "elapsed-time fields are environment-dependent and deterministic value-storage fields exclude allocator overhead; neither defines timing or memory thresholds"
+                .to_string(),
+            "pivot-condition threshold uses the sparse factorization pivot-ratio proxy only; no true condition-number, CI, or hardware-normalized threshold is claimed"
+                .to_string(),
+            "default sparse promotion remains not promoted; dense remains the product/default solve path"
+                .to_string(),
+        ],
+        provenance_notes: run_record.provenance_notes,
+    })
+}
+
+pub fn run_sparse_default_promotion_observation_suite(
+    settings: &HarnessSettings,
+) -> Result<Vec<SparseDefaultPromotionObservationRecord>, HarnessError> {
+    let specs = sparse_default_promotion_fixture_specs();
+    specs
+        .iter()
+        .map(|spec| run_sparse_default_promotion_observation(spec, settings))
+        .collect()
+}
+
+fn run_sparse_default_promotion_observation(
+    spec: &SparsePromotionFixtureSpec,
+    settings: &HarnessSettings,
+) -> Result<SparseDefaultPromotionObservationRecord, HarnessError> {
+    let fixture = spec.fixture()?;
+    let run_record = run_fixture_repeat(&fixture, settings)?;
+    let sparse = run_record
+        .sparse_observation
+        .as_ref()
+        .ok_or(HarnessError::InvalidSetting {
+            name: "sparse_observation",
+            detail: "DEC-053 promotion observations require a completed sparse solve",
+        })?;
+    let dense_solution_scale = dense_solution_scale_for_fixture(&fixture)?;
+    let sparse_dense_delta =
+        sparse
+            .max_abs_sparse_dense_solution_delta
+            .ok_or(HarnessError::InvalidSetting {
+                name: "sparse_dense_delta",
+                detail: "DEC-053 promotion observations require dense scrutiny parity",
+            })?;
+    let sparse_dense_relative_delta = if dense_solution_scale > 0.0 {
+        sparse_dense_delta / dense_solution_scale
+    } else {
+        0.0
+    };
+    let true_condition_number_2norm = true_condition_number_for_fixture(&fixture)?;
+
+    Ok(SparseDefaultPromotionObservationRecord {
+        observation_id: DEC_053_SPARSE_DEFAULT_PROMOTION_OBSERVATION_ID.to_string(),
+        fixture_id: fixture.fixture_id,
+        practical_size_band: spec.practical_size_band.to_string(),
+        fixture_family: spec.fixture_family.to_string(),
+        node_count: run_record.node_count,
+        element_count: run_record.element_count,
+        total_dofs: run_record.total_dofs,
+        reduced_dofs: run_record.reduced_dofs,
+        dense_first_solve_elapsed_nanos: run_record.dense_first_solve_elapsed_nanos,
+        sparse_first_solve_elapsed_nanos: sparse.first_solve_elapsed_nanos,
+        dense_reduced_matrix_value_storage_bytes: run_record
+            .reduced_dense_matrix_value_storage_bytes,
+        sparse_ordered_profile_value_storage_bytes: sparse.ordered_profile_value_storage_bytes,
+        allocator_rss_observation_status:
+            "observed_in_dec053_packet_by_local_runner_not_threshold_gated".to_string(),
+        hardware_normalization_status:
+            "hardware_metadata_recorded_no_cross_machine_threshold".to_string(),
+        true_condition_number_2norm,
+        true_condition_number_method:
+            "deterministic_jacobi_symmetric_eigen_extrema_on_reduced_dense_matrix".to_string(),
+        sparse_pivot_condition_ratio_estimate: sparse.pivot_condition_ratio_estimate,
+        max_abs_sparse_dense_solution_delta: sparse_dense_delta,
+        sparse_dense_relative_delta,
+        max_abs_sparse_residual: sparse.max_abs_residual,
+        max_abs_sparse_repeat_solution_delta: sparse.max_abs_repeat_solution_delta,
+        nonpositive_pivot_count: sparse.nonpositive_pivot_count,
+        default_sparse_promotion_status: DEC_053_SPARSE_DEFAULT_PROMOTION_STATUS.to_string(),
+        dense_path_role: "explicit_dense_scrutiny_and_parity_review".to_string(),
+        sparse_path_role: "default_interactive_preview_and_render_iteration".to_string(),
+        ci_gate_status: "covered_by_local_dec025_cargo_pytest_surfaces_no_hosted_ci".to_string(),
+        limitations: vec![
+            "timing and allocator/RSS memory are observations only; no release threshold is asserted"
+                .to_string(),
+            "hardware metadata labels the local machine; no cross-machine normalized pass/fail bar is asserted"
+                .to_string(),
+            "true condition number is computed for the bounded DEC-053 observation set only and does not replace release validation"
+                .to_string(),
+        ],
+        provenance_notes: run_record.provenance_notes,
+    })
+}
+
+#[derive(Debug, Clone, Copy)]
+enum PromotionFixtureKind {
+    Chain(usize),
+    Grid(usize, usize),
+}
+
+#[derive(Debug, Clone, Copy)]
+struct SparsePromotionFixtureSpec {
+    fixture_family: &'static str,
+    practical_size_band: &'static str,
+    kind: PromotionFixtureKind,
+}
+
+impl SparsePromotionFixtureSpec {
+    fn fixture(self) -> Result<BenchmarkFixture, HarnessError> {
+        match self.kind {
+            PromotionFixtureKind::Chain(element_count) => {
+                invented_cantilever_chain_fixture(element_count)
+            }
+            PromotionFixtureKind::Grid(x_count, y_count) => {
+                invented_grid_frame_fixture(x_count, y_count)
+            }
+        }
+    }
+}
+
+fn sparse_default_promotion_fixture_specs() -> [SparsePromotionFixtureSpec; 9] {
+    [
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_line_chain",
+            practical_size_band: "chain_small",
+            kind: PromotionFixtureKind::Chain(8),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_line_chain",
+            practical_size_band: "chain_medium",
+            kind: PromotionFixtureKind::Chain(24),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_line_chain",
+            practical_size_band: "chain_larger_local",
+            kind: PromotionFixtureKind::Chain(48),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_planar_grid_frame",
+            practical_size_band: "grid_small",
+            kind: PromotionFixtureKind::Grid(4, 3),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_planar_grid_frame",
+            practical_size_band: "grid_medium",
+            kind: PromotionFixtureKind::Grid(6, 8),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_planar_grid_frame",
+            practical_size_band: "grid_larger_local",
+            kind: PromotionFixtureKind::Grid(7, 8),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_product_preview_topology_proxy",
+            practical_size_band: "product_preview_default_proxy",
+            kind: PromotionFixtureKind::Grid(5, 5),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_mixed_nonlinear_topology_proxy",
+            practical_size_band: "mixed_nonlinear_preview_proxy",
+            kind: PromotionFixtureKind::Chain(32),
+        },
+        SparsePromotionFixtureSpec {
+            fixture_family: "invented_two_span_opposing_gap_topology_proxy",
+            practical_size_band: "two_span_opposing_gap_proxy",
+            kind: PromotionFixtureKind::Grid(5, 6),
+        },
+    ]
+}
+
 /// Runs the dense path and the DEC-023 sparse skyline path on the same
 /// reduced system and records both. Diagnostic ordering in the record is
 /// fixed and deterministic:
@@ -559,6 +919,12 @@ fn observe_sparse_path(
         ordered_max_half_bandwidth: first.ordered_max_half_bandwidth,
         original_profile_entry_count: first.original_profile_entry_count,
         ordered_profile_entry_count: first.ordered_profile_entry_count,
+        original_profile_value_storage_bytes: profile_value_storage_bytes(
+            first.original_profile_entry_count,
+        ),
+        ordered_profile_value_storage_bytes: profile_value_storage_bytes(
+            first.ordered_profile_entry_count,
+        ),
         min_abs_pivot: first.factorization.min_abs_pivot,
         max_abs_pivot: first.factorization.max_abs_pivot,
         pivot_condition_ratio_estimate: first.factorization.pivot_condition_ratio_estimate,
@@ -572,6 +938,127 @@ fn observe_sparse_path(
     };
 
     Ok((Some(observation), diagnostics))
+}
+
+fn dense_solution_scale_for_fixture(fixture: &BenchmarkFixture) -> Result<f64, HarnessError> {
+    let stiffness = assemble_global_stiffness(fixture.node_count, &fixture.elements)?;
+    let reduced = reduce_system(&stiffness, &fixture.force, &fixture.restrained_dofs)?;
+    let solution = solve_dense(&reduced.stiffness, &reduced.force)?;
+    Ok(solution.iter().map(|value| value.abs()).fold(0.0, f64::max))
+}
+
+fn true_condition_number_for_fixture(fixture: &BenchmarkFixture) -> Result<f64, HarnessError> {
+    let stiffness = assemble_global_stiffness(fixture.node_count, &fixture.elements)?;
+    let reduced = reduce_system(&stiffness, &fixture.force, &fixture.restrained_dofs)?;
+    true_symmetric_condition_number_2norm(&reduced.stiffness)
+}
+
+fn true_symmetric_condition_number_2norm(matrix: &DenseMatrix) -> Result<f64, HarnessError> {
+    let eigenvalues = jacobi_symmetric_eigenvalues(matrix)?;
+    let mut min_positive = f64::INFINITY;
+    let mut max_abs = 0.0;
+    for value in eigenvalues {
+        let magnitude = value.abs();
+        if magnitude > max_abs {
+            max_abs = magnitude;
+        }
+        if value > SPARSE_SOLVE_TRUE_CONDITION_EIGEN_FLOOR && value < min_positive {
+            min_positive = value;
+        }
+    }
+    if !min_positive.is_finite() || max_abs == 0.0 {
+        return Err(HarnessError::InvalidSetting {
+            name: "true_condition_number_2norm",
+            detail: "reduced matrix did not expose a positive eigenvalue spectrum",
+        });
+    }
+    Ok(max_abs / min_positive)
+}
+
+const SPARSE_SOLVE_TRUE_CONDITION_EIGEN_FLOOR: f64 = 1.0e-9;
+
+fn jacobi_symmetric_eigenvalues(matrix: &DenseMatrix) -> Result<Vec<f64>, HarnessError> {
+    let dimension = matrix.len();
+    if dimension == 0 {
+        return Err(HarnessError::InvalidSetting {
+            name: "true_condition_matrix",
+            detail: "matrix must be non-empty",
+        });
+    }
+    let mut values = vec![vec![0.0; dimension]; dimension];
+    for (row_index, row) in matrix.iter().enumerate() {
+        if row.len() != dimension {
+            return Err(HarnessError::InvalidSetting {
+                name: "true_condition_matrix",
+                detail: "matrix must be square",
+            });
+        }
+        for (col_index, &value) in row.iter().enumerate() {
+            if !value.is_finite() {
+                return Err(HarnessError::InvalidSetting {
+                    name: "true_condition_matrix",
+                    detail: "matrix entries must be finite",
+                });
+            }
+            values[row_index][col_index] = value;
+        }
+    }
+
+    let tolerance = 1.0e-8;
+    let max_sweeps = dimension.saturating_mul(12).max(24);
+    for _ in 0..max_sweeps {
+        let mut pivot_row = 0usize;
+        let mut pivot_col = 1usize.min(dimension - 1);
+        let mut max_off_diagonal = 0.0;
+        for row in 0..dimension {
+            for col in (row + 1)..dimension {
+                let candidate = values[row][col].abs();
+                if candidate > max_off_diagonal {
+                    max_off_diagonal = candidate;
+                    pivot_row = row;
+                    pivot_col = col;
+                }
+            }
+        }
+        if max_off_diagonal <= tolerance {
+            break;
+        }
+
+        let app = values[pivot_row][pivot_row];
+        let aqq = values[pivot_col][pivot_col];
+        let apq = values[pivot_row][pivot_col];
+        if apq == 0.0 {
+            continue;
+        }
+        let tau = (aqq - app) / (2.0 * apq);
+        let t = if tau >= 0.0 {
+            1.0 / (tau + (1.0 + tau * tau).sqrt())
+        } else {
+            -1.0 / (-tau + (1.0 + tau * tau).sqrt())
+        };
+        let c = 1.0 / (1.0 + t * t).sqrt();
+        let s = t * c;
+
+        for index in 0..dimension {
+            if index != pivot_row && index != pivot_col {
+                let aip = values[index][pivot_row];
+                let aiq = values[index][pivot_col];
+                let next_ip = c * aip - s * aiq;
+                let next_iq = s * aip + c * aiq;
+                values[index][pivot_row] = next_ip;
+                values[pivot_row][index] = next_ip;
+                values[index][pivot_col] = next_iq;
+                values[pivot_col][index] = next_iq;
+            }
+        }
+
+        values[pivot_row][pivot_row] = c * c * app - 2.0 * s * c * apq + s * s * aqq;
+        values[pivot_col][pivot_col] = s * s * app + 2.0 * s * c * apq + c * c * aqq;
+        values[pivot_row][pivot_col] = 0.0;
+        values[pivot_col][pivot_row] = 0.0;
+    }
+
+    Ok((0..dimension).map(|index| values[index][index]).collect())
 }
 
 fn suite_record(
@@ -605,10 +1092,10 @@ fn suite_record(
                 .to_string(),
         ],
         limitations: vec![
-            "fixture sizes are explicit invented coverage points, not approved practical-size bands"
+            "fixture sizes are explicit invented coverage points; DEC-053 records the bounded R4 practical-size observation set separately"
                 .to_string(),
-            "DEC-023 selects the sparse skyline solver and DEC-050 binds it as a live evidence lane; profile-direct assembly and default sparse promotion remain follow-on work".to_string(),
-            "release timing, memory, conditioning, and CI thresholds remain TBD".to_string(),
+            "DEC-023 selects the sparse skyline solver, DEC-050 binds it as a live evidence lane, and DEC-053 promotes sparse interactive default use while preserving dense scrutiny".to_string(),
+            "timing, allocator/RSS, hardware, conditioning, CI, and release claims are observed or bounded only as stated by the active decision packet; no release threshold is asserted".to_string(),
         ],
         provenance_notes,
     }
@@ -686,6 +1173,15 @@ fn suite_summary(
             .filter_map(|record| record.sparse_observation.as_ref())
             .map(|observation| observation.ordered_profile_entry_count)
             .sum(),
+        total_reduced_dense_matrix_value_storage_bytes: fixture_records
+            .iter()
+            .map(|record| record.reduced_dense_matrix_value_storage_bytes)
+            .sum(),
+        total_ordered_profile_value_storage_bytes: fixture_records
+            .iter()
+            .filter_map(|record| record.sparse_observation.as_ref())
+            .map(|observation| observation.ordered_profile_value_storage_bytes)
+            .sum(),
         max_abs_sparse_dense_solution_delta: fixture_records
             .iter()
             .filter_map(|record| record.sparse_observation.as_ref())
@@ -725,6 +1221,9 @@ fn run_record(
         reduced_dofs: reduced_stiffness.len(),
         stiffness_nonzero_count: nonzero_count(stiffness),
         reduced_stiffness_nonzero_count: nonzero_count(reduced_stiffness),
+        reduced_dense_matrix_value_storage_bytes: dense_matrix_value_storage_bytes(
+            reduced_stiffness.len(),
+        ),
         force_nonzero_count,
         repeat_count: settings.repeat_count,
         max_abs_solution_delta,
@@ -745,9 +1244,11 @@ fn run_record(
                 .to_string(),
         ],
         limitations: vec![
-            "DEC-023 selects the sparse skyline solver and DEC-050 binds it as a live evidence lane; profile-direct assembly and default sparse promotion remain follow-on work".to_string(),
-            "release timing, memory, and conditioning thresholds remain TBD".to_string(),
+            "DEC-023 selects the sparse skyline solver, DEC-050 binds it as a live evidence lane, and DEC-053 promotes sparse interactive default use while preserving dense scrutiny".to_string(),
+            "timing, allocator/RSS, hardware, conditioning, CI, and release claims are observed or bounded only as stated by the active decision packet; no release threshold is asserted".to_string(),
             "elapsed-time observations are environment-dependent measurements, not asserted thresholds"
+                .to_string(),
+            "deterministic value-storage observations exclude allocator/container overhead and are not memory thresholds"
                 .to_string(),
             "hardware-normalized performance gates are not claimed".to_string(),
         ],
@@ -873,6 +1374,24 @@ fn nonzero_count(matrix: &DenseMatrix) -> usize {
         .count()
 }
 
+fn dense_matrix_value_storage_bytes(dimension: usize) -> usize {
+    dimension
+        .saturating_mul(dimension)
+        .saturating_mul(F64_VALUE_STORAGE_BYTES)
+}
+
+fn profile_value_storage_bytes(entry_count: usize) -> usize {
+    entry_count.saturating_mul(F64_VALUE_STORAGE_BYTES)
+}
+
+fn storage_ratio(numerator_bytes: usize, denominator_bytes: usize) -> f64 {
+    if denominator_bytes == 0 {
+        0.0
+    } else {
+        numerator_bytes as f64 / denominator_bytes as f64
+    }
+}
+
 fn max_abs_delta(left: &[f64], right: &[f64]) -> f64 {
     left.iter()
         .zip(right.iter())
@@ -919,6 +1438,10 @@ mod tests {
         assert_eq!(record.node_count, 5);
         assert_eq!(record.element_count, 4);
         assert_eq!(record.repeat_count, 3);
+        assert_eq!(
+            record.reduced_dense_matrix_value_storage_bytes,
+            record.reduced_dofs * record.reduced_dofs * F64_VALUE_STORAGE_BYTES
+        );
         assert_eq!(record.repeat_observations.len(), 3);
         assert_eq!(record.repeat_observations[0].repeat_index, 0);
         assert_eq!(record.repeat_observations[1].repeat_index, 1);
@@ -1023,6 +1546,10 @@ mod tests {
             assert_eq!(record.element_count, expected_element_count);
             assert_eq!(record.repeat_observations.len(), 3);
             assert!(record.reduced_stiffness_nonzero_count > 0);
+            assert_eq!(
+                record.reduced_dense_matrix_value_storage_bytes,
+                record.reduced_dofs * record.reduced_dofs * F64_VALUE_STORAGE_BYTES
+            );
             assert_eq!(
                 record.conditioning_observation.matrix_dimension,
                 record.reduced_dofs
@@ -1143,7 +1670,7 @@ mod tests {
         assert!(record
             .limitations
             .iter()
-            .any(|limitation| limitation.contains("thresholds remain TBD")));
+            .any(|limitation| limitation.contains("no release threshold is asserted")));
     }
 
     #[test]
@@ -1256,6 +1783,19 @@ mod tests {
         assert_eq!(record.reduced_dofs, 8 * DOF_PER_NODE);
         assert_eq!(observation.reduced_dofs, record.reduced_dofs);
         assert!(observation.ordered_profile_entry_count > 0);
+        assert_eq!(
+            observation.original_profile_value_storage_bytes,
+            observation.original_profile_entry_count * F64_VALUE_STORAGE_BYTES
+        );
+        assert_eq!(
+            observation.ordered_profile_value_storage_bytes,
+            observation.ordered_profile_entry_count * F64_VALUE_STORAGE_BYTES
+        );
+        assert!(observation.ordered_profile_value_storage_bytes > 0);
+        assert!(
+            observation.ordered_profile_value_storage_bytes
+                <= record.reduced_dense_matrix_value_storage_bytes
+        );
         assert!(observation.max_abs_sparse_dense_solution_delta.is_some());
         assert_eq!(observation.nonpositive_pivot_count, 0);
         assert!(record
@@ -1296,6 +1836,165 @@ mod tests {
     }
 
     #[test]
+    fn sparse_suitability_observations_emit_accepted_threshold_policy() {
+        let settings = HarnessSettings {
+            solver_version: "sparse-suitability-threshold-policy-test".to_string(),
+            repeat_count: 2,
+            ..HarnessSettings::default()
+        };
+
+        let observations = run_sparse_suitability_observation_suite(&settings).unwrap();
+
+        assert_eq!(observations.len(), SPARSE_SUITABILITY_GRID_BANDS.len());
+        assert_eq!(
+            observations
+                .iter()
+                .map(|observation| observation.fixture_id.as_str())
+                .collect::<Vec<_>>(),
+            vec!["invented-grid-frame-4x3", "invented-grid-frame-6x8"]
+        );
+        assert!(observations
+            .iter()
+            .any(|observation| observation.reduced_dofs >= 252));
+        for observation in observations {
+            assert_eq!(
+                observation.observation_id,
+                DEC_050_SPARSE_SUITABILITY_OBSERVATION_ID
+            );
+            assert_eq!(
+                observation.threshold_policy_ref,
+                DEC_050_SPARSE_SUITABILITY_THRESHOLD_POLICY_REF
+            );
+            assert_eq!(
+                observation.threshold_policy_status,
+                SPARSE_SUITABILITY_THRESHOLD_POLICY_STATUS
+            );
+            assert_eq!(
+                observation.conditioning_threshold_policy_ref,
+                DEC_050_SPARSE_CONDITIONING_THRESHOLD_POLICY_REF
+            );
+            assert_eq!(
+                observation.conditioning_threshold_policy_status,
+                SPARSE_CONDITIONING_THRESHOLD_POLICY_STATUS
+            );
+            assert_eq!(
+                observation.default_sparse_promotion_status,
+                SPARSE_DEFAULT_PROMOTION_STATUS
+            );
+            assert!(observation.dense_solution_scale > 0.0);
+            assert_eq!(
+                observation.sparse_dense_relative_delta_limit,
+                SPARSE_SUITABILITY_RELATIVE_DELTA_LIMIT
+            );
+            assert_eq!(
+                observation.sparse_residual_absolute_limit,
+                SPARSE_SUITABILITY_RESIDUAL_ABSOLUTE_LIMIT
+            );
+            assert_eq!(
+                observation.sparse_repeat_solution_delta_absolute_limit,
+                SPARSE_SUITABILITY_REPEAT_DELTA_ABSOLUTE_LIMIT
+            );
+            assert_eq!(
+                observation.nonpositive_pivot_count_limit,
+                SPARSE_SUITABILITY_NONPOSITIVE_PIVOT_COUNT_LIMIT
+            );
+            assert!(
+                observation.sparse_dense_relative_delta
+                    <= observation.sparse_dense_relative_delta_limit
+            );
+            assert!(
+                observation.max_abs_sparse_residual <= observation.sparse_residual_absolute_limit
+            );
+            assert!(
+                observation.max_abs_sparse_repeat_solution_delta
+                    <= observation.sparse_repeat_solution_delta_absolute_limit
+            );
+            assert!(
+                observation.nonpositive_pivot_count <= observation.nonpositive_pivot_count_limit
+            );
+            assert!(
+                observation
+                    .sparse_pivot_condition_ratio_estimate
+                    .expect("generated-grid sparse observation must record pivot conditioning")
+                    <= observation.sparse_pivot_condition_ratio_limit
+            );
+            assert_eq!(
+                observation.sparse_pivot_condition_ratio_limit,
+                SPARSE_SUITABILITY_PIVOT_CONDITION_RATIO_LIMIT
+            );
+            assert!(observation.ordered_profile_entry_count > 0);
+            assert_eq!(
+                observation.dense_reduced_matrix_value_storage_bytes,
+                observation.reduced_dofs * observation.reduced_dofs * F64_VALUE_STORAGE_BYTES
+            );
+            assert_eq!(
+                observation.sparse_original_profile_value_storage_bytes,
+                observation.original_profile_entry_count * F64_VALUE_STORAGE_BYTES
+            );
+            assert_eq!(
+                observation.sparse_ordered_profile_value_storage_bytes,
+                observation.ordered_profile_entry_count * F64_VALUE_STORAGE_BYTES
+            );
+            assert!(observation.sparse_ordered_vs_dense_value_storage_ratio > 0.0);
+            assert!(observation.sparse_ordered_vs_dense_value_storage_ratio <= 1.0);
+            assert!(observation
+                .limitations
+                .iter()
+                .any(|limitation| limitation
+                    .contains("default sparse promotion remains not promoted")));
+        }
+    }
+
+    #[test]
+    fn sparse_default_promotion_observations_cover_nine_practical_records() {
+        let settings = HarnessSettings {
+            solver_version: "sparse-default-promotion-test".to_string(),
+            repeat_count: 2,
+            ..HarnessSettings::default()
+        };
+
+        let observations = run_sparse_default_promotion_observation_suite(&settings).unwrap();
+
+        assert_eq!(
+            observations.len(),
+            SPARSE_DEFAULT_PROMOTION_OBSERVATION_COUNT
+        );
+        assert!(observations
+            .iter()
+            .any(|observation| observation.fixture_id == "invented-grid-frame-4x3"));
+        assert!(observations
+            .iter()
+            .any(|observation| observation.fixture_id == "invented-grid-frame-6x8"));
+        assert!(observations
+            .iter()
+            .any(|observation| observation.fixture_family.contains("product_preview")));
+        for observation in observations {
+            assert_eq!(
+                observation.observation_id,
+                DEC_053_SPARSE_DEFAULT_PROMOTION_OBSERVATION_ID
+            );
+            assert_eq!(
+                observation.default_sparse_promotion_status,
+                DEC_053_SPARSE_DEFAULT_PROMOTION_STATUS
+            );
+            assert!(observation.reduced_dofs > 0);
+            assert!(observation.true_condition_number_2norm.is_finite());
+            assert!(observation.true_condition_number_2norm >= 1.0);
+            assert!(observation.sparse_dense_relative_delta <= 1.0e-9);
+            assert!(observation.max_abs_sparse_residual <= 1.0e-6);
+            assert_eq!(observation.max_abs_sparse_repeat_solution_delta, 0.0);
+            assert_eq!(observation.nonpositive_pivot_count, 0);
+            assert_eq!(
+                observation.dense_path_role,
+                "explicit_dense_scrutiny_and_parity_review"
+            );
+            assert!(observation
+                .ci_gate_status
+                .contains("local_dec025_cargo_pytest"));
+        }
+    }
+
+    #[test]
     fn grid_fixture_rejects_degenerate_dimensions() {
         let error = invented_grid_frame_fixture(1, 5).unwrap_err();
 
@@ -1319,6 +2018,27 @@ mod tests {
                 <= suite.summary.total_original_profile_entry_count
         );
         assert!(suite.summary.max_abs_sparse_residual < 1.0e-6);
+        assert_eq!(
+            suite.summary.total_reduced_dense_matrix_value_storage_bytes,
+            suite
+                .fixture_records
+                .iter()
+                .map(|record| record.reduced_dense_matrix_value_storage_bytes)
+                .sum::<usize>()
+        );
+        assert_eq!(
+            suite.summary.total_ordered_profile_value_storage_bytes,
+            suite
+                .fixture_records
+                .iter()
+                .filter_map(|record| record.sparse_observation.as_ref())
+                .map(|observation| observation.ordered_profile_value_storage_bytes)
+                .sum::<usize>()
+        );
+        assert!(
+            suite.summary.total_ordered_profile_value_storage_bytes
+                <= suite.summary.total_reduced_dense_matrix_value_storage_bytes
+        );
         for record in &suite.fixture_records {
             let observation = record.sparse_observation.as_ref().unwrap();
             assert_eq!(observation.repeat_count, record.repeat_count);

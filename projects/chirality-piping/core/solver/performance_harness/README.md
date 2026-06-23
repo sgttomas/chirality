@@ -10,8 +10,20 @@ This crate is the bounded implementation slice for `DEL-04-05`. It provides a de
   quantities.
 - Repeat-run regression records for the same fixture, solver version, and harness settings, including per-repeat residual and solution-delta observations.
 - Matrix size, nonzero-count, residual, repeatability, diagonal conditioning observations, and condition-ratio estimates for the dense path.
-- Sparse-path observations per record (`SparseSolveObservation`): deterministic RCM ordering identity, original/ordered profile entry counts and half-bandwidths, accepted-pivot extrema, the pivot-ratio conditioning proxy, nonpositive-pivot count, sparse-vs-dense parity delta, sparse residual, repeat determinism delta, and elapsed-time measurement.
-- Elapsed-time measurements for the first dense solve and the first sparse order+factor+solve. These are environment-dependent observations recorded for measurement only; no timing thresholds are asserted (thresholds remain governed by D-04).
+- Sparse-path observations per record (`SparseSolveObservation`): deterministic RCM ordering identity, original/ordered profile entry counts and half-bandwidths, deterministic f64 value-storage byte counts, accepted-pivot extrema, the pivot-ratio conditioning proxy, nonpositive-pivot count, sparse-vs-dense parity delta, sparse residual, repeat determinism delta, and elapsed-time measurement.
+- Sparse-suitability observation records over explicit invented planar-grid
+  size bands (`SparseSuitabilityObservationRecord`) for the `DEC-050` evidence
+  lane. These records preserve dense as default and carry bounded generated-grid
+  threshold status for sparse-vs-dense parity, sparse residual, repeatability,
+  nonpositive pivots, and the sparse factorization pivot-ratio conditioning
+  proxy.
+- Sparse default-promotion observation records (`SparseDefaultPromotionObservationRecord`)
+  for `DEC-053`: 9 bounded chain/grid/product-proxy observations with practical
+  size-band labels, dense/sparse timing observations, deterministic value-storage
+  observations, hardware metadata binding, dense/sparse parity, residual,
+  repeat determinism, pivot-ratio proxy, and true condition number computed from
+  the reduced dense symmetric matrix for the observation set only.
+- Elapsed-time measurements for the first dense solve and the first sparse order+factor+solve, plus deterministic reduced-dense and sparse-profile f64 value-storage byte counts. Timing observations are environment-dependent; storage observations exclude allocator/container overhead. No timing or memory thresholds are asserted (thresholds remain governed by D-04).
 - Deterministic suite runs over explicit invented cantilever-chain fixture
   sizes with per-fixture records and suite-level summary counts, including
   sparse-observation aggregates.
@@ -19,9 +31,23 @@ This crate is the bounded implementation slice for `DEL-04-05`. It provides a de
 
 ## Boundary
 
-This crate does not set release-quality timing thresholds, alter the frame kernel or the sparse solver, define code-specific checks, encode protected standards examples, or make professional/code-compliance claims.
+This crate does not set release-quality timing, allocator/RSS memory, CI, or
+hardware-normalized thresholds, alter the frame kernel or the sparse solver,
+define code-specific checks, encode protected standards examples, or make
+professional/code-compliance claims.
 
-The live product solve path still uses the dense verification interface from `core/solver/frame_kernel`; per `DEC-023` the dense path additionally serves as the parity oracle for the in-repo sparse skyline path measured here. Live solve-path adoption of the sparse solver remains `TBD` and is recorded as such in every run record.
+Per `DEC-023` the dense path serves as the parity oracle for the in-repo sparse skyline path measured here. Per `DEC-050`, sparse is present as a live evidence lane in product/nonlinear paths. Per `DEC-053`, sparse interactive is promoted as the default preview/render iteration path and dense scrutiny remains explicitly selectable for review/parity. Timing/RSS/hardware observations are recorded for the bounded local evidence packet; no timing, memory, cross-machine, hosted-CI, release, professional, or code-compliance threshold is asserted.
+
+The bounded generated-grid pivot-conditioning policy uses the sparse
+factorization pivot-ratio proxy (`max |d| / min |d|`) only. It is not a true
+matrix condition-number policy, does not set a CI gate, and does not promote the
+sparse path beyond the named generated-grid observation set.
+
+The `DEC-053` promotion packet records a true 2-norm condition number for each
+bounded observation by running a deterministic dense symmetric eigenvalue
+routine on the reduced dense matrix. That true-condition evidence closes the R4
+residual for the named observation set only; it does not replace future release
+conditioning policy.
 
 Fixture unit metadata declares the calculation basis for reproducibility only. The harness does not define a project conversion catalog, convert units, supply protected benchmark values, or promote fixture results to release-quality performance evidence.
 
@@ -29,4 +55,4 @@ Sparse-vs-dense parity assertions in the tests cite the `DEC-026` analytic-class
 
 ## Verification
 
-The unit tests cover deterministic repeat-run records, per-repeat observation rows, invented suite-runner records, suite summary counts (including sparse aggregates), provenance rejection, invalid settings, nonzero-count metrics, conditioning observations, conditioning diagnostics, dense and sparse solve-failure diagnostic recording (including located sparse singular pivots), sparse-vs-dense parity on chain and grid fixtures (small and larger generated banded models), sparse repeat determinism, grid fixture validation, and residual calculation.
+The unit tests cover deterministic repeat-run records, per-repeat observation rows, invented suite-runner records, suite summary counts (including sparse and value-storage aggregates), provenance rejection, invalid settings, nonzero-count metrics, conditioning observations, conditioning diagnostics, dense and sparse solve-failure diagnostic recording (including located sparse singular pivots), sparse-vs-dense parity on chain and grid fixtures (small and larger generated banded models), sparse repeat determinism, grid fixture validation, and residual calculation.

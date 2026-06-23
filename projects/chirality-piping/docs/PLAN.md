@@ -32,7 +32,7 @@ This document does not restate the authorities below; it routes to them.
 | What must be built; the release yardstick | [PRD.md](PRD.md) §10 (functional requirements), §22 (release milestones) |
 | Binding invariants | [CONTRACT.md](CONTRACT.md) |
 | Public/private data and protected-content boundary | [IP_AND_DATA_BOUNDARY.md](IP_AND_DATA_BOUNDARY.md), [PROFESSIONAL_BOUNDARY.md](PROFESSIONAL_BOUNDARY.md) |
-| What depends on what | [execution/_Decomposition/SOFTWARE_DECOMP.md](../execution/_Decomposition/SOFTWARE_DECOMP.md), approved [DAG-006](../execution/_DAG/DAG-006/) until the canonical [DAG-007](../execution/_DAG/DAG-007/) rectification package receives human approval |
+| What depends on what | [execution/_Decomposition/SOFTWARE_DECOMP.md](../execution/_Decomposition/SOFTWARE_DECOMP.md), approved canonical [DAG-007](../execution/_DAG/DAG-007/) graph authority |
 | How work executes; the current target-stage standard | [execution/_Coordination/_COORDINATION.md](../execution/_Coordination/_COORDINATION.md) ("Working Desktop Application Standard") — **authoritative for the stage gate** |
 | Tactical tranche selection | the active [plans/PLAN_2026-06-17_prd_completion.md](../plans/PLAN_2026-06-17_prd_completion.md) |
 | Human decision preparation and rulings | [execution/_Coordination/_DECISIONS/_REGISTER.md](../execution/_Coordination/_DECISIONS/_REGISTER.md) |
@@ -68,7 +68,7 @@ DEL-08-06) as defined-but-unbuilt scope.
 
 ## 2. Current milestone position
 
-Position summary as of 2026-06-21. This table moves only at milestone
+Position summary as of 2026-06-22. This table moves only at milestone
 boundaries (human-ruled stage gates), not per tranche; per-tranche progress
 lives in the completion plan and `plans/PLAN_COMPLETION_LOG.md`. The
 **authoritative current target stage is R4** (`DEC-048`, recorded in
@@ -80,8 +80,20 @@ lives in the completion plan and `plans/PLAN_COMPLETION_LOG.md`. The
 | R1 Core Solver MVP | Substantially met (linear static, dense solve) | Tolerance thresholds **RULED** (`DEC-024`/`DEC-026`, D-04) |
 | R2 GUI MVP | Met in substance | Exit chain verified ([VERIFICATION_2026-06-12_r2_exit_chain.md](../plans/VERIFICATION_2026-06-12_r2_exit_chain.md)); stage advanced R2→R3 (`DEC-035`). The two R2-carried residuals were closed for C5 by the 2026-06-20 replacement-criterion ruling (`DEC-047`) |
 | R3 Rule packs + private libraries | Evidence accepted for target-stage advancement | C1-C4 landed; C5.8 assembled [VERIFICATION_2026-06-20_r3_exit_chain.md](../plans/VERIFICATION_2026-06-20_r3_exit_chain.md); `D-23` ruled O-A by `DEC-048` |
-| R4 Components + nonlinear supports (current target) | D1 bend, D2 branch, D3 rigid/semi-rigid, and D4 expansion-joint invented-preview paths landed across app visibility, user-entered evidence, diagnostics, native-package/report provenance, bend/branch stress-recovery review rows, and EJ user-stiffness review rows (`TP-R4-D1-BENDVIS-001`, `TP-R4-D1-BENDSTRESS-001`, `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`, `TP-R4-D4-EJSTIFF-001`); D5 spring-hanger user-data model evidence landed for variable spring and constant-effort supports (`TP-R4-D5-HANGERDATA-001`); D6 loop-core crate and invented product/result-envelope sidecar landed (`TP-R4-D6-LOOPCORE-001`, `TP-R4-D6-PHYSINTEG-001`), with product gap/lift-off live-loop coverage (`TP-R4-D6-LIVECOVER-001`), derived friction normal-source evidence (`TP-R4-D6-FRICTIONNORMAL-001`), mixed one-way/gap/friction product live-loop coverage (`TP-R4-D6-LIVEBUNDLE-001`), force/displacement residual observation rows (`TP-R4-D9-FORCEDISPRESID-001`), and product-preview active-set-count policy (`TP-R4-D9-PRODPOLICY-001`); assembled validation seeds landed through explicit/derived-normal friction evidence, the PRD §16.2 branch-assembly benchmark, structured convergence observations, force/displacement residual observations with no threshold policy, the governed active-set-count validation-seed policy, and product-preview active-set-count policy (`TP-R4-D9-ASSEMBLEDSEED-001`, `TP-R4-D9-FRICTIONSEED-001`, `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`, `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`, `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`, `TP-R4-D9-PRODPOLICY-001`); D7 sparse evidence lane landed in the nonlinear integration/product-preview paths (`TP-R4-D7-SPARSELIVE-001`) while dense remains default; D8 component provenance now flows into the hash-bound rendered report (`TP-R4-D8-COMPPROVREPORT-001`) | R4 is not close to exit: the current convergence policies are active-set-count policies, not force/displacement/energy equilibrium acceptance; the assembled nonlinear fixtures are seed-scale; the EJ stiffness macro-element is not implemented as solver mechanics; profile-direct sparse assembly/default sparse promotion, force/displacement threshold promotion, non-active-set product-preview threshold axes, other non-seed convergence thresholds, deeper spring-hanger catalog/constant-effort solve behavior, and broader R4 validation/exit evidence remain (Phase D) |
+| R4 Components + nonlinear supports (current target) | D1 bend, D2 branch, D3 rigid/semi-rigid, and D4 expansion-joint invented-preview paths landed across app visibility, user-entered evidence, diagnostics, native-package/report provenance, bend/branch stress-recovery review rows, EJ user-stiffness review rows, the assembled EJ user-stiffness macro-element, and load-side EJ pressure-thrust evidence (`TP-R4-D1-BENDVIS-001`, `TP-R4-D1-BENDSTRESS-001`, `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`, `TP-R4-D4-EJSTIFF-001`, `TP-R4-D4-EJMACRO-001`, `TP-R4-D4-EJTHRUST-001`); D5 spring-hanger user-data model evidence landed for variable spring and constant-effort supports (`TP-R4-D5-HANGERDATA-001`); D6 loop-core crate and invented product/result-envelope sidecar landed (`TP-R4-D6-LOOPCORE-001`, `TP-R4-D6-PHYSINTEG-001`), with product gap/lift-off live-loop coverage (`TP-R4-D6-LIVECOVER-001`), derived friction normal-source evidence (`TP-R4-D6-FRICTIONNORMAL-001`), mixed one-way/gap/friction product live-loop coverage (`TP-R4-D6-LIVEBUNDLE-001`), force/displacement residual observation rows (`TP-R4-D9-FORCEDISPRESID-001`), product-preview active-set-count policy (`TP-R4-D9-PRODPOLICY-001`), current-surface free-DOF force/moment residual policy (`TP-R4-D9-FREEDOFRESIDPOLICY-001`), bounded product-preview free-DOF work and general-energy residual policies (`TP-R4-D9-ENERGYOBS-001`, `TP-R4-D9-WORKPOLICY-001`, `TP-R4-D9-GENERALENERGYPOLICY-001`), and product-preview displacement/reaction-delta observation metadata (`TP-R4-D9-DISPREACTIONOBS-001`); assembled validation seeds landed through explicit/derived-normal friction evidence, the PRD §16.2 branch-assembly benchmark, structured convergence observations, force/displacement/work residual observations, observation-only displacement/reaction-delta ledgers, the governed active-set-count validation-seed policy, the current-seed free-DOF force/moment residual policy, the current-seed free-DOF work residual policy, one observation-only multi-support depth fixture, and thirteen accepted non-seed multi-support validation companion fixtures with active-set, free-DOF force/moment, free-DOF work, general-energy, and displacement/reaction-delta policies (`TP-R4-D9-ASSEMBLEDSEED-001`, `TP-R4-D9-FRICTIONSEED-001`, `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`, `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`, `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`, `TP-R4-D9-FREEDOFRESIDPOLICY-001`, `TP-R4-D9-MULTISUPPORTOBS-001`, `TP-R4-D9-ENERGYOBS-001`, `TP-R4-D9-MULTISUPPORTPOLICY-001`, `TP-R4-D9-WORKPOLICY-001`, `TP-R4-D9-GENERALENERGYPOLICY-001`, `TP-R4-D9-MULTISUPPORTBREADTH-001`, `TP-R4-D9-MULTISUPPORTFRICTION-001`, `TP-R4-D9-MULTISUPPORT3DOF-001`, `TP-R4-D9-MULTISUPPORTROT-001`, `TP-R4-D9-MULTISUPPORTDERIVED-001`, `TP-R4-D9-MULTISUPPORTDERIVEDROT-001`, `TP-R4-D9-MULTISUPPORTCASCADE-001`, `TP-R4-D9-MULTISUPPORTNEGAP-001`, `TP-R4-D9-MULTISUPPORT4CLASS-001`, `TP-R4-D9-MULTISUPPORTOPPGAP-001`, `TP-R4-D9-MULTISUPPORTSPAN-001`, `TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001`, `TP-R4-D9-DISPREACTIONOBS-001`, `TP-R4-D9-DISPREACTIONPOLICY-001`, `TP-R4-D9-PRODDISPREACTIONPOLICY-001`); D7 sparse evidence lane landed in the nonlinear integration/product-preview paths (`TP-R4-D7-SPARSELIVE-001`) while dense remains default, product sparse rows now use direct reduced profile-entry assembly (`TP-R4-D7-SPARSEPROFILE-001`), nonlinear/core sparse evidence now observes direct reduced profile entries from the active free-DOF map (`TP-R4-D7-NONLINEARPROFILE-001`), and generated-grid sparse suitability observations, bounded generated-grid sparse thresholds, deterministic sparse storage-footprint observations, and a bounded generated-grid pivot-ratio conditioning policy landed (`TP-R4-D7-SPARSESUITABILITYOBS-001`, `TP-R4-D7-SPARSETHRESHOLDPOLICY-001`, `TP-R4-D7-SPARSESTORAGEOBS-001`, `TP-R4-D7-SPARSECONDITIONPOLICY-001`) while dense remains default; D8 component provenance now flows into the hash-bound rendered report (`TP-R4-D8-COMPPROVREPORT-001`) | R4 final exit-chain packet is prepared under `DEC-052` Option O-B: the listed sparse-default, broader nonlinear-threshold, deeper spring-hanger, external-validation, and release-quality residuals are explicit post-R4/R5 or non-blocking hardening items for this packet unless a later human gate selects one as blocking. `D-26` is prepared and awaiting human ruling for R4 exit review and any target-stage advancement to R5 (Phase D) |
 | R5 Engineering Beta | Distant and unaudited | Release machinery is largely unbuilt: headless CLI, validation manual, full report package/PDF, redaction workflow, signed releases, public issue templates, protected-content release scan, and release-quality gates remain Phase E work |
+
+**2026-06-23 correction to the R4 row above:** `D-26` is ruled by `DEC-053`
+as O-B. R4 remains current; no R5 advancement is authorized. The named sparse
+default-promotion residual repair landed as `TP-R4-D7-SPARSEDEFAULTPROMOTE-001`:
+sparse interactive is now the default preview/render path, dense scrutiny
+remains explicit, sparse-to-dense fallback must be diagnostic/result-basis
+visible, and the 9-record local observation packet covers timing/RSS/hardware,
+practical size bands, pivot-ratio proxy, and true condition numbers without
+creating release thresholds.
+[VERIFICATION_2026-06-23_r4_exit_chain_refresh.md](../plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md)
+is the refreshed final R4 exit-chain verification packet for human review
+before any future R4-to-R5 ruling.
 
 ## 3. How the strategic layers relate
 
@@ -91,8 +103,8 @@ tranches through a fixed chain of surfaces:
 - **Intent → Requirements.** `INTENT.md` (why / what must remain true) and the
   `PRD.md` (what must be built, §10 FRs and §22 milestones) define the target.
 - **Requirements → Structure.** `SOFTWARE_DECOMP.md` decomposes the PRD into a
-  flat package/deliverable set; approved `DAG-006` records what depends on what
-  until the canonical `DAG-007` rectification package is human-approved.
+  flat package/deliverable set; approved `DAG-007` records what depends on
+  what.
 - **Structure → Execution.** `_COORDINATION.md` is the operational control
   plane: the Application Integration And Issuance Loop, the staged Working
   Desktop Application Standard (the current target stage lives here), bounded
@@ -123,8 +135,8 @@ edges non-gating until resolved. This localizes the subjective calls to
 cycle-closing edges and keeps them auditable. `DAG-007` was generated for the
 2026-06-16 dependency type-system rectification, preserving the approved
 `DAG-006` active topology while moving current write-form registers to the
-canonical enum model; `_DAG/_LATEST.md` stays on `DAG-006` until human
-approval. Later DAG versions remain event-driven by a decomposition revision /
+canonical enum model; it was approved as the current graph authority on
+2026-06-22. Later DAG versions remain event-driven by a decomposition revision /
 SCA or another explicit governance rectification, not periodic. The canonical
 doctrine is the shared repo-root
 [CYCLE_DRIVEN_RESOLUTION.md](../../../docs/CYCLE_DRIVEN_RESOLUTION.md); the
@@ -141,37 +153,75 @@ project's adoption, rollout, and historical DAG re-derivation trigger notes are 
   accepted `D-23` Option O-A for R3 exit evidence and target-stage advancement.
 - **D1 bend objects, D2 branch objects, D3 rigid/semi-rigid components, D4
   expansion joints, the first D6 product-preview nonlinear sidecar, D6
-  mixed live nonlinear bundle, force/displacement residual observations, product-preview active-set-count policy, D8
+  mixed live nonlinear bundle, force/displacement/work residual observations,
+  product-preview active-set-count policy, current-surface free-DOF
+  force/moment residual policy, bounded free-DOF work residual policy,
+  thirteen accepted multi-support validation companion fixtures, D8
   rendered-report component provenance, and the D9 assembled validation seeds
   through explicit/derived-normal friction plus the branch-assembly benchmark
   and structured convergence observations
   landed for the invented preview path**
   through
   `TP-R4-D1-BENDVIS-001`, `TP-R4-D1-BENDSTRESS-001`,
-  `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`, and
-  `TP-R4-D4-EJSTIFF-001`, `TP-R4-D6-PHYSINTEG-001`,
+  `TP-R4-D2-BRANCHSTRESS-001`, `TP-R4-D3-RIGIDVIS-001`,
+  `TP-R4-D4-EJSTIFF-001`, and `TP-R4-D4-EJMACRO-001`,
+  `TP-R4-D6-PHYSINTEG-001`,
   `TP-R4-D6-LIVECOVER-001`, `TP-R4-D6-LIVEBUNDLE-001`,
   `TP-R4-D8-COMPPROVREPORT-001`,
   `TP-R4-D9-ASSEMBLEDSEED-001`, and
   `TP-R4-D9-FRICTIONSEED-001`, and
   `TP-R4-D9-FRICTIONSLIDE-001`, `TP-R4-D6-FRICTIONNORMAL-001`,
   `TP-R4-D9-BRANCHASSEMBLY-001`, `TP-R4-D9-CONVOBS-001`, and
-  `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`, and
-  `TP-R4-D9-PRODPOLICY-001`; D5 spring-hanger user-data model evidence landed
+  `TP-R4-D9-CONVPOLICY-001`, `TP-R4-D9-FORCEDISPRESID-001`,
+  `TP-R4-D9-PRODPOLICY-001`, `TP-R4-D9-FREEDOFRESIDPOLICY-001`,
+  `TP-R4-D9-MULTISUPPORTOBS-001`, `TP-R4-D9-ENERGYOBS-001`, and
+  `TP-R4-D9-MULTISUPPORTPOLICY-001`, `TP-R4-D9-WORKPOLICY-001`, `TP-R4-D9-GENERALENERGYPOLICY-001`,
+  `TP-R4-D9-MULTISUPPORTBREADTH-001`,
+  `TP-R4-D9-MULTISUPPORTFRICTION-001`, and
+  `TP-R4-D9-MULTISUPPORT3DOF-001`,
+  `TP-R4-D9-MULTISUPPORTROT-001`,
+  `TP-R4-D9-MULTISUPPORTDERIVED-001`,
+  `TP-R4-D9-MULTISUPPORTDERIVEDROT-001`,
+  `TP-R4-D9-MULTISUPPORTCASCADE-001`,
+  `TP-R4-D9-MULTISUPPORTNEGAP-001`,
+  `TP-R4-D9-MULTISUPPORT4CLASS-001`,
+  `TP-R4-D9-MULTISUPPORTOPPGAP-001`,
+  `TP-R4-D9-MULTISUPPORTSPAN-001`,
+  `TP-R4-D9-MULTISUPPORTTWOSPANGAPS-001`, and
+  `TP-R4-D9-DISPREACTIONOBS-001`; D5 spring-hanger user-data model evidence landed
   through `TP-R4-D5-HANGERDATA-001` under `DEC-049`; D7 sparse evidence-lane
-  adoption landed through `TP-R4-D7-SPARSELIVE-001` under `DEC-050`.
+  adoption landed through `TP-R4-D7-SPARSELIVE-001` under `DEC-050`, with
+  product direct-profile sparse evidence added by `TP-R4-D7-SPARSEPROFILE-001`,
+  nonlinear/core direct reduced-profile sparse evidence added by
+  `TP-R4-D7-NONLINEARPROFILE-001`, generated-grid sparse suitability
+  observations added by `TP-R4-D7-SPARSESUITABILITYOBS-001`, bounded
+  generated-grid sparse thresholds added by
+  `TP-R4-D7-SPARSETHRESHOLDPOLICY-001`, deterministic sparse storage-footprint
+  observations added by `TP-R4-D7-SPARSESTORAGEOBS-001`, and a bounded
+  generated-grid pivot-ratio conditioning policy added by
+  `TP-R4-D7-SPARSECONDITIONPOLICY-001`; sparse interactive default promotion
+  with dense scrutiny explicit and a 9-record local observation packet landed
+  under `DEC-053` / `TP-R4-D7-SPARSEDEFAULTPROMOTE-001`.
 - **The two R2-carried R3-exit residuals are closed for C5** by `DEC-047`.
   The stale TP-MAC-189 path remains bypassed, not passed.
 - **Later stages** follow the completion plan: R5 (engineering beta and
   release machinery).
 - Stage advancement is human-ruled: agents propose with evidence; only a
   human-approved coordination update advances the target stage recorded in
-  `_COORDINATION.md`. The current Phase D D9 readiness packet is
+  `_COORDINATION.md`. The pre-ruling Phase D D9 readiness packet is
   [VERIFICATION_2026-06-21_r4_exit_gap.md](../plans/VERIFICATION_2026-06-21_r4_exit_gap.md),
-  which records **not ready** rather than R4 closure. `D-17` sparse live-path
-  adoption timing is ruled and implemented as `TP-R4-D7-SPARSELIVE-001` under
-  `DEC-050`: a live sparse evidence lane exists while dense remains default;
-  profile-direct assembly/default sparse promotion remain follow-on work.
+  which remains the historical gap packet. `D-25` is ruled by `DEC-052`
+  Option O-B, and the successor R4 review packet is
+  [VERIFICATION_2026-06-22_r4_exit_chain.md](../plans/VERIFICATION_2026-06-22_r4_exit_chain.md),
+  now historical after `D-26` was ruled O-B by `DEC-053`. R4 remains current;
+  `TP-R4-D7-SPARSEDEFAULTPROMOTE-001` landed the named sparse repair, and
+  [VERIFICATION_2026-06-23_r4_exit_chain_refresh.md](../plans/VERIFICATION_2026-06-23_r4_exit_chain_refresh.md)
+  is the refreshed final R4 exit-chain verification packet for human review
+  before any R5 advancement. `D-17` sparse live-path adoption timing is ruled and implemented
+  as `TP-R4-D7-SPARSELIVE-001` under `DEC-050`, with the later `DEC-053`
+  promotion making sparse interactive the default preview/render path and dense
+  scrutiny explicit while keeping timing/RSS/hardware/CI evidence observational,
+  not release-threshold-gated.
 
 ## 5. Non-goals and boundary prohibitions
 

@@ -6,11 +6,13 @@
 //! professional acceptance.
 
 use open_pipe_stress_frame_kernel::{
-    assemble_global_stiffness, reduce_system, solve_dense, FrameElement, FrameKernelError,
-    FrameNode, DOF_PER_NODE, RX, RY, RZ, UX, UY, UZ,
+    assemble_global_stiffness_with_user_elements, element_dof_map, reduce_system, solve_dense,
+    FrameElement, FrameKernelError, FrameNode, Matrix12, UserStiffnessElement, DOF_PER_NODE,
+    ELEMENT_DOF, RX, RY, RZ, UX, UY, UZ,
 };
 use open_pipe_stress_linear_supports::{
-    prepare_boundary, FrameDof, LinearSupport, QuantityDimension, SupportFamily, SupportQuantity,
+    prepare_boundary, FrameDof, LinearSupport, QuantityDimension, SpringEntry, SupportFamily,
+    SupportQuantity,
 };
 use open_pipe_stress_load_case_algebra::{
     evaluate_linear_combination, evaluate_range_envelope, evaluate_result_state_subtraction,
@@ -18,9 +20,9 @@ use open_pipe_stress_load_case_algebra::{
     CombinationTerm, FindingCode, RangeMode,
 };
 use open_pipe_stress_nonlinear_integration::{
-    solve_active_set_frame, ConvergenceControl, ConvergencePolicyStatus,
-    DerivedFrictionNormalReaction, FrictionNormalReaction, NonlinearFrameSolveInput,
-    NonlinearIntegrationError, NonlinearResidualObservation,
+    solve_active_set_frame_with_mode, ConvergenceControl, ConvergencePolicyStatus,
+    DerivedFrictionNormalReaction, FrictionNormalReaction, LinearSolveMode,
+    NonlinearFrameSolveInput, NonlinearIntegrationError, NonlinearResidualObservation,
 };
 use open_pipe_stress_nonlinear_supports::{
     ActivationSense, ActiveSetState, GapDirection, NonlinearSupport, NonlinearSupportBehavior,
@@ -32,7 +34,7 @@ use open_pipe_stress_primitive_loads::{
 use open_pipe_stress_solver_diagnostics::{
     DiagnosticSeverity as SolverDiagnosticSeverity, SolverDiagnostic, SolverDiagnosticCode,
 };
-use open_pipe_stress_sparse_direct::solve_symmetric_system;
+use open_pipe_stress_sparse_direct::{solve_symmetric_system_from_entries, SymmetricMatrixEntry};
 use open_pipe_stress_straight_pipe::{StraightPipeElement, StraightPipeSectionProperties};
 use open_pipe_stress_stress_recovery::{
     recover_stresses, AnalysisStatus, ForceResultants, PressureBasis, StressComponents,
@@ -40,7 +42,7 @@ use open_pipe_stress_stress_recovery::{
 };
 use open_pipe_stress_units::{canonical_unit, convert_for_dimension, unit_by_symbol, Dimension};
 use serde::{Deserialize, Serialize};
-use std::collections::{HashMap, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::f64::consts::PI;
 
 mod validation;
@@ -51,6 +53,24 @@ const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_MAX_ITERATIONS: usize = 4;
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_RESIDUAL_TOLERANCE: f64 = 0.0;
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_ABSOLUTE_FLOOR: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF: &str =
+    "DEC-046-CV-B-product-preview-free-dof-force-moment-residual-v1";
+const DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_ABSOLUTE_LIMIT: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_FREE_DOF_MOMENT_ABSOLUTE_LIMIT: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF: &str =
+    "DEC-046-CV-B-product-preview-free-dof-work-residual-v1";
+const DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_ABSOLUTE_LIMIT: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF: &str =
+    "DEC-046-CV-B-product-preview-general-energy-residual-v1";
+const DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_ABSOLUTE_LIMIT: f64 = 0.0;
+const DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_OBSERVATION_REF: &str =
+    "DEC-046-CV-B-product-preview-displacement-reaction-delta-observation-v1";
+const DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_POLICY_REF: &str =
+    "DEC-046-CV-B-product-preview-displacement-reaction-delta-threshold-v1";
+const DEC_046_PRODUCT_PREVIEW_TRANSLATION_DELTA_ABSOLUTE_LIMIT_MM: f64 = 50.0;
+const DEC_046_PRODUCT_PREVIEW_ROTATION_DELTA_ABSOLUTE_LIMIT_RAD: f64 = 0.05;
+const DEC_046_PRODUCT_PREVIEW_FORCE_REACTION_DELTA_ABSOLUTE_LIMIT_N: f64 = 110_000.0;
+const DEC_046_PRODUCT_PREVIEW_MOMENT_REACTION_DELTA_ABSOLUTE_LIMIT_N_M: f64 = 110_000.0;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct PreviewModel {
@@ -406,6 +426,49 @@ pub struct LinearStaticPreviewRequest {
     pub materials: Vec<MaterialInput>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum PreviewSolverMode {
+    SparseInteractive,
+    DenseScrutiny,
+}
+
+impl PreviewSolverMode {
+    pub fn from_wire(value: &str) -> Option<Self> {
+        match value {
+            "sparse_interactive" => Some(Self::SparseInteractive),
+            "dense_scrutiny" => Some(Self::DenseScrutiny),
+            _ => None,
+        }
+    }
+
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::SparseInteractive => "sparse_interactive",
+            Self::DenseScrutiny => "dense_scrutiny",
+        }
+    }
+
+    fn nonlinear_mode(self) -> LinearSolveMode {
+        match self {
+            Self::SparseInteractive => LinearSolveMode::SparseInteractive,
+            Self::DenseScrutiny => LinearSolveMode::DenseScrutiny,
+        }
+    }
+
+    fn mode_code(self) -> f64 {
+        match self {
+            Self::SparseInteractive => 1.0,
+            Self::DenseScrutiny => 2.0,
+        }
+    }
+}
+
+impl Default for PreviewSolverMode {
+    fn default() -> Self {
+        Self::SparseInteractive
+    }
+}
+
 #[derive(Debug, Clone, Serialize)]
 pub struct MechanicsEnvelope {
     pub schema_version: String,
@@ -428,6 +491,7 @@ pub struct Summary {
     pub load_case_count: usize,
     pub component_stress_modifier_count: usize,
     pub component_user_stiffness_macro_element_count: usize,
+    pub component_pressure_thrust_load_count: usize,
     pub spring_hanger_user_input_count: usize,
     pub max_displacement: Option<LocatedQuantity>,
     pub max_open_formula_stress: Option<LocatedQuantity>,
@@ -497,6 +561,7 @@ struct BuiltModel {
     nodes: Vec<FrameNode>,
     pipes: Vec<StraightPipeElement>,
     frame_elements: Vec<FrameElement>,
+    user_stiffness_elements: Vec<UserStiffnessElement>,
     supports: Vec<LinearSupport>,
     nonlinear_supports: Vec<NonlinearSupport>,
     nonlinear_initial_states: Vec<SupportStateRecord>,
@@ -512,6 +577,7 @@ struct LoadCaseSolve {
     max_displacement: Option<LocatedQuantity>,
     max_stress: Option<LocatedQuantity>,
     component_stress_modifier_count: usize,
+    component_pressure_thrust_load_count: usize,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -520,10 +586,28 @@ struct ThermalElementLoad {
     axial_load: f64,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 struct PressureThrustLoad {
     element_index: usize,
     axial_load: f64,
+    source_load_id: String,
+    source: PressureThrustSource,
+}
+
+#[derive(Debug, Clone)]
+enum PressureThrustSource {
+    PipeInternalArea,
+    ExpansionJointEffectiveArea(ExpansionJointPressureThrustInput),
+}
+
+#[derive(Debug, Clone)]
+struct ExpansionJointPressureThrustInput {
+    component_id: String,
+    pipe_id: String,
+    effective_area: f64,
+    pressure_thrust_reference: String,
+    source_reference: String,
+    solver_consumption: String,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -539,6 +623,13 @@ struct DerivedSection {
 }
 
 pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> MechanicsEnvelope {
+    run_linear_static_preview_with_mode(request, PreviewSolverMode::default())
+}
+
+pub fn run_linear_static_preview_with_mode(
+    request: LinearStaticPreviewRequest,
+    solver_mode: PreviewSolverMode,
+) -> MechanicsEnvelope {
     let mut model = request.model;
     let mut materials = if request.materials.is_empty() {
         model.materials.clone()
@@ -621,7 +712,11 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
         return blocked_envelope(model, diagnostics);
     }
 
-    let mut stiffness = match assemble_global_stiffness(built.nodes.len(), &built.frame_elements) {
+    let mut stiffness = match assemble_global_stiffness_with_user_elements(
+        built.nodes.len(),
+        &built.frame_elements,
+        &built.user_stiffness_elements,
+    ) {
         Ok(stiffness) => stiffness,
         Err(error) => return solver_blocked(model, diagnostics, error),
     };
@@ -638,7 +733,9 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
             &materials,
             &stiffness,
             &boundary.restrained_dofs,
+            &boundary.springs,
             load_case,
+            solver_mode,
             &mut diagnostics,
         ) {
             Ok(solve) => load_case_solves.push(solve),
@@ -658,6 +755,10 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
+        .sum();
+    let component_pressure_thrust_load_count = load_case_solves
+        .iter()
+        .map(|solve| solve.component_pressure_thrust_load_count)
         .sum();
     let mut results = Vec::new();
     let mut rows_by_base_id: HashMap<String, HashMap<String, ResultItem>> = HashMap::new();
@@ -722,6 +823,7 @@ pub fn run_linear_static_preview(request: LinearStaticPreviewRequest) -> Mechani
             load_case_count: model.load_cases.len(),
             component_stress_modifier_count,
             component_user_stiffness_macro_element_count,
+            component_pressure_thrust_load_count,
             spring_hanger_user_input_count,
             max_displacement,
             max_open_formula_stress: max_stress,
@@ -739,7 +841,9 @@ fn solve_load_case(
     materials: &[MaterialInput],
     stiffness: &[Vec<f64>],
     restrained_dofs: &[usize],
+    spring_entries: &[SpringEntry],
     load_case: &PreviewLoadCase,
+    solver_mode: PreviewSolverMode,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<LoadCaseSolve, FrameKernelError> {
     let loads = build_load_case_primitive_loads(model, load_case, diagnostics);
@@ -760,6 +864,7 @@ fn solve_load_case(
             max_displacement: None,
             max_stress: None,
             component_stress_modifier_count: 0,
+            component_pressure_thrust_load_count: 0,
         });
     }
 
@@ -775,7 +880,8 @@ fn solve_load_case(
         .collect::<HashMap<_, _>>();
     let thermal_loads =
         build_thermal_element_loads(model, load_case, &material_map, &pipe_map, &built.sections);
-    let pressure_thrust_loads = build_pressure_thrust_loads(load_case, &pipe_map, &built.sections);
+    let pressure_thrust_loads =
+        build_pressure_thrust_loads(model, load_case, &pipe_map, &built.sections);
 
     let mut force = load_application.global_load_vector(built.nodes.len());
     add_uniform_element_loads(
@@ -788,7 +894,18 @@ fn solve_load_case(
     add_thermal_equivalent_loads(&mut force, &thermal_loads, &built.pipes);
 
     let reduced = reduce_system(stiffness, &force, restrained_dofs)?;
-    let reduced_displacements = solve_dense(&reduced.stiffness, &reduced.force)?;
+    let linear_solve = solve_preview_reduced_system(
+        solver_mode,
+        &reduced.stiffness,
+        &reduced.force,
+        built,
+        spring_entries,
+        &force,
+        restrained_dofs,
+        load_case,
+        diagnostics,
+    )?;
+    let reduced_displacements = linear_solve.solution.clone();
 
     let mut displacements = vec![0.0; built.nodes.len() * DOF_PER_NODE];
     for (index, dof) in reduced.free_dofs.iter().enumerate() {
@@ -796,13 +913,24 @@ fn solve_load_case(
     }
 
     let mut results = Vec::new();
-    append_sparse_live_path_evidence(
+    append_linear_solver_mode_evidence(&mut results, &load_case.id, solver_mode, &linear_solve);
+    if solver_mode == PreviewSolverMode::DenseScrutiny {
+        append_sparse_live_path_evidence(
+            &mut results,
+            diagnostics,
+            &load_case.id,
+            built,
+            spring_entries,
+            &force,
+            restrained_dofs,
+            &reduced_displacements,
+        );
+    }
+    let component_pressure_thrust_load_count = append_expansion_joint_pressure_thrust_results(
         &mut results,
         diagnostics,
-        &load_case.id,
-        &reduced.stiffness,
-        &reduced.force,
-        &reduced_displacements,
+        load_case,
+        &pressure_thrust_loads,
     );
     let mut max_displacement = None;
     for node in &model.nodes {
@@ -879,6 +1007,7 @@ fn solve_load_case(
         restrained_dofs,
         &force,
         load_case,
+        solver_mode,
     );
 
     let mut max_stress = None;
@@ -1054,6 +1183,7 @@ fn solve_load_case(
         max_displacement,
         max_stress,
         component_stress_modifier_count,
+        component_pressure_thrust_load_count,
     })
 }
 
@@ -1072,6 +1202,7 @@ fn append_nonlinear_support_loop_results(
     restrained_dofs: &[usize],
     force: &[f64],
     load_case: &PreviewLoadCase,
+    solver_mode: PreviewSolverMode,
 ) {
     if built.nonlinear_supports.is_empty() {
         return;
@@ -1090,6 +1221,7 @@ fn append_nonlinear_support_loop_results(
     let input = NonlinearFrameSolveInput {
         node_count: built.nodes.len(),
         elements: built.frame_elements.clone(),
+        user_stiffness_elements: built.user_stiffness_elements.clone(),
         force: force.to_vec(),
         base_restrained_dofs: restrained_dofs.to_vec(),
         nonlinear_supports: built.nonlinear_supports.clone(),
@@ -1101,7 +1233,7 @@ fn append_nonlinear_support_loop_results(
         convergence,
     };
 
-    match solve_active_set_frame(&input) {
+    match solve_active_set_frame_with_mode(&input, solver_mode.nonlinear_mode()) {
         Ok(solve) => {
             for (index, solver_diagnostic) in solve.diagnostics.iter().enumerate() {
                 diagnostics.push(product_diag_from_solver_diag(
@@ -1125,7 +1257,8 @@ fn append_nonlinear_support_loop_results(
                 "active_set_iteration_count",
                 "load_case",
                 &format!(
-                    "dense_active_set_loop; policy_ref={}; policy_status=accepted; support_count={}; support_classes={}",
+                    "{}_active_set_loop; policy_ref={}; policy_status=accepted; support_count={}; support_classes={}",
+                    solver_mode.as_str(),
                     solve.policy_ref,
                     built.nonlinear_supports.len(),
                     support_classes_basis
@@ -1142,7 +1275,8 @@ fn append_nonlinear_support_loop_results(
                 "active_set_final_residual_count",
                 "load_case",
                 &format!(
-                    "dense_active_set_loop; policy_ref={}; residual_is_changed_support_count",
+                    "{}_active_set_loop; policy_ref={}; residual_is_changed_support_count",
+                    solver_mode.as_str(),
                     solve.policy_ref
                 ),
                 "zero means no nonlinear support state changed in the final iteration",
@@ -1157,7 +1291,8 @@ fn append_nonlinear_support_loop_results(
                 "active_set_converged_flag",
                 "load_case",
                 &format!(
-                    "dense_active_set_loop; policy_ref={}; policy_status=accepted; residual_is_changed_support_count",
+                    "{}_active_set_loop; policy_ref={}; policy_status=accepted; residual_is_changed_support_count",
+                    solver_mode.as_str(),
                     solve.policy_ref
                 ),
                 "1 means the active-set state-change residual satisfied the supplied preview tolerance",
@@ -1167,6 +1302,7 @@ fn append_nonlinear_support_loop_results(
                     results,
                     &final_iteration.residuals,
                     &solve.policy_ref,
+                    solver_mode,
                 );
             }
             append_nonlinear_friction_normal_evidence(
@@ -1175,6 +1311,7 @@ fn append_nonlinear_support_loop_results(
                 &built.nonlinear_derived_friction_normal_reactions,
                 &solve.reactions,
                 &solve.policy_ref,
+                solver_mode,
             );
 
             for state in &solve.final_states {
@@ -1198,7 +1335,8 @@ fn append_nonlinear_support_loop_results(
                     "active_set_state_code",
                     dof,
                     &format!(
-                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        "{}_active_set_loop; policy_ref={}; final_state={}",
+                        solver_mode.as_str(),
                         solve.policy_ref,
                         state.state.as_str()
                     ),
@@ -1224,7 +1362,8 @@ fn append_nonlinear_support_loop_results(
                     "nonlinear_support_final_displacement",
                     dof,
                     &format!(
-                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        "{}_active_set_loop; policy_ref={}; final_state={}",
+                        solver_mode.as_str(),
                         solve.policy_ref,
                         state.state.as_str()
                     ),
@@ -1245,7 +1384,8 @@ fn append_nonlinear_support_loop_results(
                     "nonlinear_support_final_reaction",
                     dof,
                     &format!(
-                        "dense_active_set_loop; policy_ref={}; final_state={}",
+                        "{}_active_set_loop; policy_ref={}; final_state={}",
+                        solver_mode.as_str(),
                         solve.policy_ref,
                         state.state.as_str()
                     ),
@@ -1260,10 +1400,11 @@ fn append_nonlinear_support_loop_results(
                     "NONLINEAR_SUPPORT_STATE_REVIEW",
                     "info",
                     format!(
-                        "nonlinear support {} ended in {} state for load case {}; dense preview loop evidence only",
+                        "nonlinear support {} ended in {} state for load case {}; {} preview loop evidence only",
                         support.support_id,
                         state.state.as_str(),
-                        load_case.id
+                        load_case.id,
+                        solver_mode.as_str()
                     ),
                     vec![support.support_id.clone(), load_case.id.clone()],
                 ));
@@ -1281,10 +1422,15 @@ fn append_nonlinear_support_loop_results(
                 },
                 if solve.converged { "info" } else { "warning" },
                 format!(
-                    "dense nonlinear support active-set preview completed {} iteration(s); final residual count {}; accepted active-set-count policy_ref={}; force/displacement and release thresholds remain TBD",
+                    "{} nonlinear support active-set preview completed {} iteration(s); final residual count {}; accepted active-set-count policy_ref={}; accepted free-DOF force/moment residual policy_ref={}; accepted free-DOF work residual policy_ref={}; accepted general-energy residual policy_ref={}; accepted displacement/reaction-delta policy_ref={} for emitted product-preview delta rows; timing/RSS/hardware sparse evidence remains observational, not thresholded",
+                    solver_mode.as_str(),
                     solve.iterations.len(),
                     final_residual,
-                    solve.policy_ref
+                    solve.policy_ref,
+                    DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF,
+                    DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF,
+                    DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF,
+                    DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_POLICY_REF
                 ),
                 vec![load_case.id.clone(), "DEC-046".to_string()],
             ));
@@ -1319,15 +1465,250 @@ fn product_preview_policy_support_classes(supports: &[NonlinearSupport]) -> Vec<
     classes
 }
 
+#[derive(Debug, Clone)]
+struct PreviewLinearSolve {
+    solution: Vec<f64>,
+    solution_basis: &'static str,
+    sparse_entry_count: Option<usize>,
+    original_profile_entry_count: Option<usize>,
+    ordered_profile_entry_count: Option<usize>,
+    original_max_half_bandwidth: Option<usize>,
+    ordered_max_half_bandwidth: Option<usize>,
+    nonpositive_pivot_count: Option<usize>,
+    pivot_condition_ratio_estimate: Option<f64>,
+    sparse_residual: Option<f64>,
+    dense_fallback_message: Option<String>,
+}
+
+fn solve_preview_reduced_system(
+    solver_mode: PreviewSolverMode,
+    reduced_stiffness: &[Vec<f64>],
+    reduced_force: &[f64],
+    built: &BuiltModel,
+    spring_entries: &[SpringEntry],
+    global_force: &[f64],
+    restrained_dofs: &[usize],
+    load_case: &PreviewLoadCase,
+    diagnostics: &mut Vec<Diagnostic>,
+) -> Result<PreviewLinearSolve, FrameKernelError> {
+    match solver_mode {
+        PreviewSolverMode::SparseInteractive => {
+            let direct_system = match assemble_reduced_sparse_entry_system(
+                built.nodes.len(),
+                &built.frame_elements,
+                &built.user_stiffness_elements,
+                spring_entries,
+                global_force,
+                restrained_dofs,
+            ) {
+                Ok(system) => system,
+                Err(error) => {
+                    let message = error.to_string();
+                    diagnostics.push(sparse_interactive_fallback_diag(&load_case.id, &message));
+                    let solution = solve_dense(reduced_stiffness, reduced_force)?;
+                    return Ok(PreviewLinearSolve {
+                        solution,
+                        solution_basis: "dense_fallback_after_sparse_failure",
+                        sparse_entry_count: None,
+                        original_profile_entry_count: None,
+                        ordered_profile_entry_count: None,
+                        original_max_half_bandwidth: None,
+                        ordered_max_half_bandwidth: None,
+                        nonpositive_pivot_count: None,
+                        pivot_condition_ratio_estimate: None,
+                        sparse_residual: None,
+                        dense_fallback_message: Some(message),
+                    });
+                }
+            };
+            match solve_symmetric_system_from_entries(
+                direct_system.dimension,
+                &direct_system.entries,
+                &direct_system.force,
+            ) {
+                Ok(sparse) => {
+                    let sparse_residual = max_abs_entry_residual(
+                        direct_system.dimension,
+                        &direct_system.entries,
+                        &sparse.solution,
+                        &direct_system.force,
+                    );
+                    Ok(PreviewLinearSolve {
+                        solution: sparse.solution,
+                        solution_basis: "sparse_profile_direct_primary",
+                        sparse_entry_count: Some(direct_system.entries.len()),
+                        original_profile_entry_count: Some(sparse.original_profile_entry_count),
+                        ordered_profile_entry_count: Some(sparse.ordered_profile_entry_count),
+                        original_max_half_bandwidth: Some(sparse.original_max_half_bandwidth),
+                        ordered_max_half_bandwidth: Some(sparse.ordered_max_half_bandwidth),
+                        nonpositive_pivot_count: Some(sparse.factorization.nonpositive_pivot_count),
+                        pivot_condition_ratio_estimate: sparse
+                            .factorization
+                            .pivot_condition_ratio_estimate,
+                        sparse_residual: Some(sparse_residual),
+                        dense_fallback_message: None,
+                    })
+                }
+                Err(error) => {
+                    let message = error.to_string();
+                    diagnostics.push(sparse_interactive_fallback_diag(&load_case.id, &message));
+                    Ok(PreviewLinearSolve {
+                        solution: solve_dense(reduced_stiffness, reduced_force)?,
+                        solution_basis: "dense_fallback_after_sparse_failure",
+                        sparse_entry_count: Some(direct_system.entries.len()),
+                        original_profile_entry_count: None,
+                        ordered_profile_entry_count: None,
+                        original_max_half_bandwidth: None,
+                        ordered_max_half_bandwidth: None,
+                        nonpositive_pivot_count: None,
+                        pivot_condition_ratio_estimate: None,
+                        sparse_residual: None,
+                        dense_fallback_message: Some(message),
+                    })
+                }
+            }
+        }
+        PreviewSolverMode::DenseScrutiny => Ok(PreviewLinearSolve {
+            solution: solve_dense(reduced_stiffness, reduced_force)?,
+            solution_basis: "dense_scrutiny_primary",
+            sparse_entry_count: None,
+            original_profile_entry_count: None,
+            ordered_profile_entry_count: None,
+            original_max_half_bandwidth: None,
+            ordered_max_half_bandwidth: None,
+            nonpositive_pivot_count: None,
+            pivot_condition_ratio_estimate: None,
+            sparse_residual: None,
+            dense_fallback_message: None,
+        }),
+    }
+}
+
+fn append_linear_solver_mode_evidence(
+    results: &mut Vec<ResultItem>,
+    load_case_id: &str,
+    solver_mode: PreviewSolverMode,
+    linear_solve: &PreviewLinearSolve,
+) {
+    let fallback = linear_solve.dense_fallback_message.is_some();
+    let basis = format!(
+        "DEC-053 sparse_default_promotion; solver_mode={}; solution_basis={}; default_sparse_promotion=interactive_default; dense_scrutiny_available=true; sparse_entry_count={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; nonpositive_pivots={}; pivot_condition_ratio_proxy={}; max_abs_sparse_residual={}; dense_fallback={}; dense_fallback_message={}",
+        solver_mode.as_str(),
+        linear_solve.solution_basis,
+        optional_usize(linear_solve.sparse_entry_count),
+        optional_usize(linear_solve.original_profile_entry_count),
+        optional_usize(linear_solve.ordered_profile_entry_count),
+        optional_usize(linear_solve.original_max_half_bandwidth),
+        optional_usize(linear_solve.ordered_max_half_bandwidth),
+        optional_usize(linear_solve.nonpositive_pivot_count),
+        optional_f64(linear_solve.pivot_condition_ratio_estimate),
+        optional_f64(linear_solve.sparse_residual),
+        fallback,
+        linear_solve
+            .dense_fallback_message
+            .as_deref()
+            .unwrap_or("none")
+    );
+
+    results.push(ResultItem {
+        id: "result:solver-mode:linear-solve-basis".to_string(),
+        kind: "linear_solver_mode_basis".to_string(),
+        value: if fallback { 3.0 } else { solver_mode.mode_code() },
+        unit: "mode_code".to_string(),
+        entity_ref: "solver:linear_static_preview".to_string(),
+        basis_ref: None,
+        source_result_refs: Vec::new(),
+        metadata: Some(ResultMetadata {
+            component: "linear_solver_mode".to_string(),
+            coordinate_system: "reduced_system".to_string(),
+            location: load_case_id.to_string(),
+            basis,
+            sign_convention:
+                "mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure"
+                    .to_string(),
+        }),
+    });
+}
+
+fn sparse_interactive_fallback_diag(load_case_id: &str, message: &str) -> Diagnostic {
+    diag(
+        &format!(
+            "diagnostic:sparse-interactive:{}:dense-fallback",
+            stable_suffix(load_case_id)
+        ),
+        "SPARSE_INTERACTIVE_DENSE_FALLBACK",
+        "warning",
+        format!(
+            "DEC-053 sparse interactive solve could not complete for load case {load_case_id}; dense fallback was used and the result basis is explicit: {message}"
+        ),
+        vec![load_case_id.to_string(), "DEC-053".to_string()],
+    )
+}
+
+fn optional_usize(value: Option<usize>) -> String {
+    value
+        .map(|value| value.to_string())
+        .unwrap_or_else(|| "not_observed".to_string())
+}
+
+fn optional_f64(value: Option<f64>) -> String {
+    value
+        .map(|value| round6(value).to_string())
+        .unwrap_or_else(|| "not_observed".to_string())
+}
+
 fn append_sparse_live_path_evidence(
     results: &mut Vec<ResultItem>,
     diagnostics: &mut Vec<Diagnostic>,
     load_case_id: &str,
-    reduced_stiffness: &[Vec<f64>],
-    reduced_force: &[f64],
+    built: &BuiltModel,
+    spring_entries: &[SpringEntry],
+    force: &[f64],
+    restrained_dofs: &[usize],
     dense_solution: &[f64],
 ) {
-    let sparse = match solve_symmetric_system(reduced_stiffness, reduced_force) {
+    let direct_system = match assemble_reduced_sparse_entry_system(
+        built.nodes.len(),
+        &built.frame_elements,
+        &built.user_stiffness_elements,
+        spring_entries,
+        force,
+        restrained_dofs,
+    ) {
+        Ok(system) => system,
+        Err(error) => {
+            diagnostics.push(diag(
+                &format!("diagnostic:sparse-live:{}:unavailable", stable_suffix(load_case_id)),
+                "SPARSE_LIVE_PATH_EVIDENCE_UNAVAILABLE",
+                "warning",
+                format!(
+                    "DEC-050 direct profile sparse evidence lane could not assemble load case {load_case_id}; dense solve remains the default product path and parity oracle: {error}"
+                ),
+                vec![load_case_id.to_string(), "DEC-050".to_string()],
+            ));
+            return;
+        }
+    };
+    if direct_system.dimension != dense_solution.len() {
+        diagnostics.push(diag(
+            &format!("diagnostic:sparse-live:{}:unavailable", stable_suffix(load_case_id)),
+            "SPARSE_LIVE_PATH_EVIDENCE_UNAVAILABLE",
+            "warning",
+            format!(
+                "DEC-050 direct profile sparse evidence lane dimension {} did not match dense solution length {}; dense solve remains the default product path and parity oracle",
+                direct_system.dimension,
+                dense_solution.len()
+            ),
+            vec![load_case_id.to_string(), "DEC-050".to_string()],
+        ));
+        return;
+    }
+
+    let sparse = match solve_symmetric_system_from_entries(
+        direct_system.dimension,
+        &direct_system.entries,
+        &direct_system.force,
+    ) {
         Ok(sparse) => sparse,
         Err(error) => {
             diagnostics.push(diag(
@@ -1335,7 +1716,7 @@ fn append_sparse_live_path_evidence(
                 "SPARSE_LIVE_PATH_EVIDENCE_UNAVAILABLE",
                 "warning",
                 format!(
-                    "DEC-050 sparse evidence lane could not observe load case {load_case_id}; dense solve remains the default product path and parity oracle: {error}"
+                    "DEC-050 direct profile sparse evidence lane could not observe load case {load_case_id}; dense solve remains the default product path and parity oracle: {error}"
                 ),
                 vec![load_case_id.to_string(), "DEC-050".to_string()],
             ));
@@ -1349,8 +1730,12 @@ fn append_sparse_live_path_evidence(
     } else {
         max_abs_dense_sparse_solution_delta
     };
-    let sparse_residual =
-        max_abs_linear_residual(reduced_stiffness, &sparse.solution, reduced_force);
+    let sparse_residual = max_abs_entry_residual(
+        direct_system.dimension,
+        &direct_system.entries,
+        &sparse.solution,
+        &direct_system.force,
+    );
 
     results.push(ResultItem {
         id: "result:sparse-live:dense-parity-relative-delta".to_string(),
@@ -1365,8 +1750,9 @@ fn append_sparse_live_path_evidence(
             coordinate_system: "reduced_system".to_string(),
             location: "load_case".to_string(),
             basis: format!(
-                "DEC-050 sparse_evidence_lane; dense_default=true; dense_parity_oracle=true; solver=core/solver/sparse_direct; ordering=reverse_cuthill_mckee; reduced_dofs={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; max_abs_dense_sparse_delta={}; max_abs_sparse_residual={}; nonpositive_pivots={}; profile_direct_assembly=follow_on; default_sparse_promotion=follow_on",
+                "DEC-053 dense_scrutiny_sparse_parity; solver_mode=dense_scrutiny; sparse_interactive_default=true; dense_parity_oracle=true; solver=core/solver/sparse_direct; assembly=direct_reduced_profile_entries; ordering=reverse_cuthill_mckee; reduced_dofs={}; sparse_entry_count={}; original_profile_entries={}; ordered_profile_entries={}; original_half_bandwidth={}; ordered_half_bandwidth={}; max_abs_dense_sparse_delta={}; max_abs_sparse_residual={}; nonpositive_pivots={}; profile_direct_assembly=observed; default_sparse_promotion=interactive_default",
                 sparse.solution.len(),
+                direct_system.entries.len(),
                 sparse.original_profile_entry_count,
                 sparse.ordered_profile_entry_count,
                 sparse.original_max_half_bandwidth,
@@ -1380,6 +1766,184 @@ fn append_sparse_live_path_evidence(
                     .to_string(),
         }),
     });
+}
+
+#[derive(Debug, Clone)]
+struct ReducedSparseEntrySystem {
+    dimension: usize,
+    entries: Vec<SymmetricMatrixEntry>,
+    force: Vec<f64>,
+}
+
+fn assemble_reduced_sparse_entry_system(
+    node_count: usize,
+    frame_elements: &[FrameElement],
+    user_stiffness_elements: &[UserStiffnessElement],
+    spring_entries: &[SpringEntry],
+    force: &[f64],
+    restrained_dofs: &[usize],
+) -> Result<ReducedSparseEntrySystem, FrameKernelError> {
+    let total_dofs = node_count * DOF_PER_NODE;
+    if force.len() != total_dofs {
+        return Err(FrameKernelError::InvalidVectorLength {
+            expected: total_dofs,
+            actual: force.len(),
+        });
+    }
+    for &value in force {
+        if !value.is_finite() {
+            return Err(FrameKernelError::NonFiniteInput {
+                name: "force entry",
+                value,
+            });
+        }
+    }
+
+    let mut constrained = vec![false; total_dofs];
+    for &dof in restrained_dofs {
+        if dof >= total_dofs {
+            return Err(FrameKernelError::RestrainedDofOutOfRange { dof, total_dofs });
+        }
+        if constrained[dof] {
+            return Err(FrameKernelError::RepeatedRestrainedDof { dof });
+        }
+        constrained[dof] = true;
+    }
+
+    let mut global_to_reduced = vec![None; total_dofs];
+    let mut reduced_force = Vec::new();
+    for global_dof in 0..total_dofs {
+        if constrained[global_dof] {
+            continue;
+        }
+        global_to_reduced[global_dof] = Some(reduced_force.len());
+        reduced_force.push(force[global_dof]);
+    }
+
+    let mut entries = Vec::new();
+    for element in frame_elements {
+        validate_element_nodes(element.node_i.index, element.node_j.index, node_count)?;
+        let element_stiffness = element.global_stiffness()?;
+        append_reduced_element_entries(
+            &mut entries,
+            &global_to_reduced,
+            element.node_i.index,
+            element.node_j.index,
+            &element_stiffness,
+        )?;
+    }
+    for element in user_stiffness_elements {
+        validate_element_nodes(element.node_i.index, element.node_j.index, node_count)?;
+        let element_stiffness = element.global_stiffness()?;
+        append_reduced_element_entries(
+            &mut entries,
+            &global_to_reduced,
+            element.node_i.index,
+            element.node_j.index,
+            &element_stiffness,
+        )?;
+    }
+    for spring in spring_entries {
+        if spring.node_dof.node_index >= node_count {
+            return Err(FrameKernelError::InvalidNodeIndex {
+                node_index: spring.node_dof.node_index,
+                node_count,
+            });
+        }
+        let global_dof = spring.node_dof.global_index();
+        if let Some(reduced_dof) = global_to_reduced[global_dof] {
+            entries.push(SymmetricMatrixEntry {
+                row: reduced_dof,
+                col: reduced_dof,
+                value: spring.stiffness.value,
+            });
+        }
+    }
+
+    Ok(ReducedSparseEntrySystem {
+        dimension: reduced_force.len(),
+        entries,
+        force: reduced_force,
+    })
+}
+
+fn validate_element_nodes(
+    node_i: usize,
+    node_j: usize,
+    node_count: usize,
+) -> Result<(), FrameKernelError> {
+    if node_i >= node_count {
+        return Err(FrameKernelError::InvalidNodeIndex {
+            node_index: node_i,
+            node_count,
+        });
+    }
+    if node_j >= node_count {
+        return Err(FrameKernelError::InvalidNodeIndex {
+            node_index: node_j,
+            node_count,
+        });
+    }
+    Ok(())
+}
+
+fn append_reduced_element_entries(
+    entries: &mut Vec<SymmetricMatrixEntry>,
+    global_to_reduced: &[Option<usize>],
+    node_i: usize,
+    node_j: usize,
+    element_stiffness: &Matrix12,
+) -> Result<(), FrameKernelError> {
+    let dof_map = element_dof_map(node_i, node_j);
+    for local_row in 0..ELEMENT_DOF {
+        let global_row = dof_map[local_row];
+        let Some(reduced_row) = global_to_reduced[global_row] else {
+            continue;
+        };
+        for local_col in 0..=local_row {
+            let global_col = dof_map[local_col];
+            let Some(reduced_col) = global_to_reduced[global_col] else {
+                continue;
+            };
+            let value = element_stiffness[local_row][local_col];
+            if !value.is_finite() {
+                return Err(FrameKernelError::NonFiniteInput {
+                    name: "matrix entry",
+                    value,
+                });
+            }
+            if value == 0.0 {
+                continue;
+            }
+            let (row, col) = if reduced_row >= reduced_col {
+                (reduced_row, reduced_col)
+            } else {
+                (reduced_col, reduced_row)
+            };
+            entries.push(SymmetricMatrixEntry { row, col, value });
+        }
+    }
+    Ok(())
+}
+
+fn max_abs_entry_residual(
+    dimension: usize,
+    entries: &[SymmetricMatrixEntry],
+    solution: &[f64],
+    force: &[f64],
+) -> f64 {
+    let mut internal = vec![0.0; dimension];
+    for entry in entries {
+        internal[entry.row] += entry.value * solution[entry.col];
+        if entry.row != entry.col {
+            internal[entry.col] += entry.value * solution[entry.row];
+        }
+    }
+    internal
+        .iter()
+        .zip(force.iter())
+        .map(|(internal, applied)| (internal - applied).abs())
+        .fold(0.0, f64::max)
 }
 
 fn append_nonlinear_scalar_result(
@@ -1416,9 +1980,32 @@ fn append_nonlinear_residual_observation_results(
     results: &mut Vec<ResultItem>,
     residuals: &NonlinearResidualObservation,
     policy_ref: &str,
+    solver_mode: PreviewSolverMode,
 ) {
-    let basis = format!(
-        "dense_active_set_loop; policy_ref={policy_ref}; observed_residual_only; threshold=TBD"
+    let displacement_reaction_delta_threshold_basis = format!(
+        "{}_active_set_loop; policy_ref={policy_ref}; observation_ref={}; threshold_policy_ref={}; threshold_policy_status=accepted; residual_basis=displacement_reaction_delta_from_previous_iteration; threshold_axes=displacement_and_reaction_delta; translation_delta_threshold={} mm; rotation_delta_threshold={} rad; force_reaction_delta_threshold={} N; moment_reaction_delta_threshold={} N*m; product_preview_only",
+        solver_mode.as_str(),
+        DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_OBSERVATION_REF,
+        DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_POLICY_REF,
+        DEC_046_PRODUCT_PREVIEW_TRANSLATION_DELTA_ABSOLUTE_LIMIT_MM,
+        DEC_046_PRODUCT_PREVIEW_ROTATION_DELTA_ABSOLUTE_LIMIT_RAD,
+        DEC_046_PRODUCT_PREVIEW_FORCE_REACTION_DELTA_ABSOLUTE_LIMIT_N,
+        DEC_046_PRODUCT_PREVIEW_MOMENT_REACTION_DELTA_ABSOLUTE_LIMIT_N_M
+    );
+    let free_dof_work_threshold_basis = format!(
+        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; residual_basis=free_dof_work_residual; work_threshold={} N*m; general_energy_threshold_policy_ref={}; general_energy_threshold_policy_status=accepted; general_energy_threshold={} N*m; product_preview_only",
+        solver_mode.as_str(),
+        DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF,
+        DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_ABSOLUTE_LIMIT,
+        DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF,
+        DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_ABSOLUTE_LIMIT
+    );
+    let force_moment_threshold_basis = format!(
+        "{}_active_set_loop; policy_ref={policy_ref}; threshold_policy_ref={}; threshold_policy_status=accepted; residual_basis=free_dof_force_moment_equilibrium; force_threshold={} N; moment_threshold={} N*m; product_preview_only",
+        solver_mode.as_str(),
+        DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF,
+        DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_ABSOLUTE_LIMIT,
+        DEC_046_PRODUCT_PREVIEW_FREE_DOF_MOMENT_ABSOLUTE_LIMIT
     );
     if let Some(value) = residuals.max_abs_translation_delta_from_previous {
         append_nonlinear_scalar_result(
@@ -1430,7 +2017,7 @@ fn append_nonlinear_residual_observation_results(
             "nonlinear_supports",
             "observed_max_translation_delta",
             "final_iteration",
-            &basis,
+            &displacement_reaction_delta_threshold_basis,
             "nonnegative max absolute translational displacement change from the previous iteration",
         );
     }
@@ -1444,7 +2031,7 @@ fn append_nonlinear_residual_observation_results(
             "nonlinear_supports",
             "observed_max_rotation_delta",
             "final_iteration",
-            &basis,
+            &displacement_reaction_delta_threshold_basis,
             "nonnegative max absolute rotational displacement change from the previous iteration",
         );
     }
@@ -1458,7 +2045,7 @@ fn append_nonlinear_residual_observation_results(
             "nonlinear_supports",
             "observed_max_force_reaction_delta",
             "final_iteration",
-            &basis,
+            &displacement_reaction_delta_threshold_basis,
             "nonnegative max absolute translational reaction change from the previous iteration",
         );
     }
@@ -1472,7 +2059,7 @@ fn append_nonlinear_residual_observation_results(
             "nonlinear_supports",
             "observed_max_moment_reaction_delta",
             "final_iteration",
-            &basis,
+            &displacement_reaction_delta_threshold_basis,
             "nonnegative max absolute rotational reaction change from the previous iteration",
         );
     }
@@ -1485,7 +2072,7 @@ fn append_nonlinear_residual_observation_results(
         "nonlinear_supports",
         "observed_free_dof_force_residual",
         "final_iteration",
-        &basis,
+        &force_moment_threshold_basis,
         "nonnegative max absolute translational free-DOF equilibrium residual in the final linearized solve",
     );
     append_nonlinear_scalar_result(
@@ -1497,8 +2084,20 @@ fn append_nonlinear_residual_observation_results(
         "nonlinear_supports",
         "observed_free_dof_moment_residual",
         "final_iteration",
-        &basis,
+        &force_moment_threshold_basis,
         "nonnegative max absolute rotational free-DOF equilibrium residual in the final linearized solve",
+    );
+    append_nonlinear_scalar_result(
+        results,
+        "result:nonlinear-support:free-dof-work-residual",
+        "nonlinear_support_free_dof_work_residual",
+        residuals.max_abs_free_dof_work_residual,
+        "N*m",
+        "nonlinear_supports",
+        "free_dof_work_residual",
+        "final_iteration",
+        &free_dof_work_threshold_basis,
+        "nonnegative max absolute free-DOF residual work product in the final linearized solve",
     );
 }
 
@@ -2043,6 +2642,8 @@ fn build_model(
         pipes.push(element);
     }
 
+    let user_stiffness_elements =
+        build_expansion_joint_user_stiffness_elements(model, &nodes, &node_map, diagnostics);
     let nonlinear = build_nonlinear_supports(model, &node_map, diagnostics);
     let supports = model
         .supports
@@ -2118,6 +2719,7 @@ fn build_model(
         nodes,
         pipes,
         frame_elements,
+        user_stiffness_elements,
         supports,
         nonlinear_supports: nonlinear.supports,
         nonlinear_initial_states: nonlinear.initial_states,
@@ -2125,6 +2727,119 @@ fn build_model(
         nonlinear_derived_friction_normal_reactions: nonlinear.derived_friction_normal_reactions,
         sections,
     })
+}
+
+fn build_expansion_joint_user_stiffness_elements(
+    model: &PreviewModel,
+    nodes: &[FrameNode],
+    node_map: &HashMap<&str, usize>,
+    diagnostics: &mut Vec<Diagnostic>,
+) -> Vec<UserStiffnessElement> {
+    let pipe_map = model
+        .pipe_segments
+        .iter()
+        .map(|pipe| (pipe.id.as_str(), pipe))
+        .collect::<HashMap<_, _>>();
+    let mut elements = Vec::new();
+
+    for component in model
+        .components
+        .iter()
+        .filter(|component| is_expansion_joint_component(component))
+    {
+        let solver_consumption = component
+            .mechanics_interface
+            .as_ref()
+            .and_then(|interface| interface.solver_consumption.as_deref())
+            .unwrap_or("not_provided");
+        if solver_consumption != "mechanics_geometry_and_user_flexibility" {
+            continue;
+        }
+
+        let Some(geometry) = component.geometry.as_ref() else {
+            continue;
+        };
+        let Some(modifiers) = component.modifiers.as_ref() else {
+            continue;
+        };
+        let Some(pipe_ref) = geometry
+            .expansion_joint_pipe_ref
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+        else {
+            continue;
+        };
+        let Some(pipe) = pipe_map.get(pipe_ref) else {
+            continue;
+        };
+        let Some(&component_node_index) = node_map.get(component.node.as_str()) else {
+            continue;
+        };
+        let Some(&from_index) = node_map.get(pipe.from.as_str()) else {
+            continue;
+        };
+        let Some(&to_index) = node_map.get(pipe.to.as_str()) else {
+            continue;
+        };
+        let other_node_index = if component_node_index == from_index {
+            to_index
+        } else if component_node_index == to_index {
+            from_index
+        } else {
+            continue;
+        };
+        let Some(y_reference) = pipe.y_reference else {
+            continue;
+        };
+        let Some(axial) = modifiers.axial_stiffness_user_value.as_ref() else {
+            continue;
+        };
+        let Some(lateral) = modifiers.lateral_stiffness_user_value.as_ref() else {
+            continue;
+        };
+        let Some(angular) = modifiers.angular_stiffness_user_value.as_ref() else {
+            continue;
+        };
+        let Some(torsional) = modifiers.torsional_stiffness_user_value.as_ref() else {
+            continue;
+        };
+
+        match UserStiffnessElement::new(
+            nodes[other_node_index],
+            nodes[component_node_index],
+            [y_reference.x, y_reference.y, y_reference.z],
+            axial.value,
+            lateral.value,
+            angular.value,
+            torsional.value,
+        ) {
+            Ok(element) => elements.push(element),
+            Err(error) => diagnostics.push(expansion_joint_macro_element_diag(
+                component,
+                pipe_ref,
+                &error.to_string(),
+            )),
+        }
+    }
+
+    elements
+}
+
+fn expansion_joint_macro_element_diag(
+    component: &PreviewComponent,
+    pipe_ref: &str,
+    message: &str,
+) -> Diagnostic {
+    diag(
+        &format!(
+            "diagnostic:component:{}:macro-element",
+            stable_suffix(&component.id)
+        ),
+        "EXPANSION_JOINT_MACRO_ELEMENT_INPUT_INVALID",
+        "blocking",
+        message,
+        vec![component.id.clone(), pipe_ref.to_string()],
+    )
 }
 
 fn normalize_model_units(
@@ -3050,11 +3765,13 @@ fn build_thermal_element_loads(
 }
 
 fn build_pressure_thrust_loads(
+    model: &PreviewModel,
     load_case: &PreviewLoadCase,
     pipe_map: &HashMap<&str, usize>,
     sections: &HashMap<String, DerivedSection>,
 ) -> Vec<PressureThrustLoad> {
     let mut loads = Vec::new();
+    let expansion_joint_inputs = expansion_joint_pressure_thrust_inputs_by_pipe(model);
     for load in &load_case.primitive_loads {
         if load.category != "pressure" || load.dimension != "pressure" {
             continue;
@@ -3065,15 +3782,90 @@ fn build_pressure_thrust_loads(
         let Some(&element_index) = pipe_map.get(pipe.as_str()) else {
             continue;
         };
+        if let Some(inputs) = expansion_joint_inputs.get(pipe.as_str()) {
+            for input in inputs {
+                loads.push(PressureThrustLoad {
+                    element_index,
+                    axial_load: load.magnitude.value * input.effective_area,
+                    source_load_id: load.id.clone(),
+                    source: PressureThrustSource::ExpansionJointEffectiveArea(input.clone()),
+                });
+            }
+            continue;
+        }
         let Some(section) = sections.get(pipe) else {
             continue;
         };
         loads.push(PressureThrustLoad {
             element_index,
             axial_load: load.magnitude.value * section.internal_area,
+            source_load_id: load.id.clone(),
+            source: PressureThrustSource::PipeInternalArea,
         });
     }
     loads
+}
+
+fn expansion_joint_pressure_thrust_inputs_by_pipe(
+    model: &PreviewModel,
+) -> HashMap<String, Vec<ExpansionJointPressureThrustInput>> {
+    let mut inputs_by_pipe: HashMap<String, Vec<ExpansionJointPressureThrustInput>> =
+        HashMap::new();
+    for component in model
+        .components
+        .iter()
+        .filter(|component| is_expansion_joint_component(component))
+    {
+        let solver_consumption = component
+            .mechanics_interface
+            .as_ref()
+            .and_then(|interface| interface.solver_consumption.as_deref())
+            .unwrap_or("not_provided");
+        if solver_consumption != "mechanics_geometry_and_user_flexibility" {
+            continue;
+        }
+        let Some(geometry) = component.geometry.as_ref() else {
+            continue;
+        };
+        let Some(pipe_id) = geometry
+            .expansion_joint_pipe_ref
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+        else {
+            continue;
+        };
+        let Some(effective_area) = geometry
+            .effective_area
+            .as_ref()
+            .map(|quantity| quantity.value)
+            .filter(|value| positive_finite(*value))
+        else {
+            continue;
+        };
+        let pressure_thrust_reference = geometry
+            .pressure_thrust_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("load_side_pressure_thrust_reference_missing")
+            .to_string();
+        let source_reference = geometry
+            .expansion_joint_source_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("expansion_joint_source_reference_missing")
+            .to_string();
+        inputs_by_pipe.entry(pipe_id.to_string()).or_default().push(
+            ExpansionJointPressureThrustInput {
+                component_id: component.id.clone(),
+                pipe_id: pipe_id.to_string(),
+                effective_area,
+                pressure_thrust_reference,
+                source_reference,
+                solver_consumption: solver_consumption.to_string(),
+            },
+        );
+    }
+    inputs_by_pipe
 }
 
 fn add_pressure_thrust_loads(
@@ -3153,6 +3945,98 @@ fn pressure_thrust_for_pipe(element_index: usize, pressure_loads: &[PressureThru
         .filter(|load| load.element_index == element_index)
         .map(|load| load.axial_load)
         .sum::<f64>()
+}
+
+#[derive(Debug, Clone)]
+struct ExpansionJointPressureThrustAggregate {
+    input: ExpansionJointPressureThrustInput,
+    axial_load: f64,
+    source_load_ids: Vec<String>,
+}
+
+fn append_expansion_joint_pressure_thrust_results(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    load_case: &PreviewLoadCase,
+    pressure_loads: &[PressureThrustLoad],
+) -> usize {
+    let mut aggregates: BTreeMap<String, ExpansionJointPressureThrustAggregate> = BTreeMap::new();
+    for load in pressure_loads {
+        let PressureThrustSource::ExpansionJointEffectiveArea(input) = &load.source else {
+            continue;
+        };
+        let entry = aggregates
+            .entry(input.component_id.clone())
+            .or_insert_with(|| ExpansionJointPressureThrustAggregate {
+                input: input.clone(),
+                axial_load: 0.0,
+                source_load_ids: Vec::new(),
+            });
+        entry.axial_load += load.axial_load;
+        entry.source_load_ids.push(load.source_load_id.clone());
+    }
+
+    let mut appended = 0;
+    for (_, mut aggregate) in aggregates {
+        if aggregate.axial_load == 0.0 {
+            continue;
+        }
+        aggregate.source_load_ids.sort();
+        aggregate.source_load_ids.dedup();
+        let component_suffix = stable_suffix(&aggregate.input.component_id);
+        let result_id = format!("result:pressure-thrust:{component_suffix}");
+        results.push(ResultItem {
+            id: result_id.clone(),
+            kind: "expansion_joint_pressure_thrust_load_review".to_string(),
+            value: round6(aggregate.axial_load),
+            unit: "N".to_string(),
+            entity_ref: aggregate.input.component_id.clone(),
+            basis_ref: None,
+            source_result_refs: aggregate.source_load_ids.clone(),
+            metadata: Some(ResultMetadata {
+                component: "expansion_joint_pressure_thrust".to_string(),
+                coordinate_system: "element_local".to_string(),
+                location: aggregate.input.pipe_id.clone(),
+                basis: format!(
+                    "component_family=expansion_joint;pressure_thrust_generation=load_side_user_effective_area;effective_area={};source={};pressure_thrust={};solver_consumption={}",
+                    rounded_scalar(aggregate.input.effective_area),
+                    aggregate.input.source_reference,
+                    aggregate.input.pressure_thrust_reference,
+                    aggregate.input.solver_consumption
+                ),
+                sign_convention:
+                    "positive value is explicit pressure multiplied by user-entered effective pressure area and applied as equal/opposite axial load along the mapped pipe; no compliance claim is made"
+                        .to_string(),
+            }),
+        });
+        let mut affected_refs = vec![
+            aggregate.input.component_id.clone(),
+            aggregate.input.pipe_id.clone(),
+            load_case.id.clone(),
+            result_id,
+            aggregate.input.pressure_thrust_reference.clone(),
+        ];
+        affected_refs.extend(aggregate.source_load_ids.clone());
+        diagnostics.push(diag(
+            &format!(
+                "diagnostic:pressure-thrust:{}:{}",
+                stable_suffix(&load_case.id),
+                component_suffix
+            ),
+            "EXPANSION_JOINT_PRESSURE_THRUST_APPLIED",
+            "info",
+            format!(
+                "expansion joint {} pressure thrust uses explicit effective area {} m^2 and pressure primitive(s) from load case {}; applied on load side along {}; no protected/default manufacturer value is supplied",
+                aggregate.input.component_id,
+                rounded_scalar(aggregate.input.effective_area),
+                load_case.id,
+                aggregate.input.pipe_id
+            ),
+            affected_refs,
+        ));
+        appended += 1;
+    }
+    appended
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -3881,14 +4765,14 @@ fn append_expansion_joint_user_stiffness_results(
                     coordinate_system: "component_local_preview".to_string(),
                     location: pipe_ref.to_string(),
                     basis: format!(
-                        "component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};pressure_thrust={}",
+                        "component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=load_side_user_effective_area;pressure_thrust={}",
                         geometry
                             .pressure_thrust_reference
                             .as_deref()
                             .unwrap_or("load_side_pressure_thrust_reference_missing")
                     ),
                     sign_convention:
-                        "positive value is user-entered expansion-joint stiffness input evidence; global macro-element solve is not claimed by this preview row"
+                        "positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; pressure-thrust generation is load-side effective-area evidence and no compliance claim is made"
                             .to_string(),
                 }),
             });
@@ -4669,6 +5553,7 @@ fn append_nonlinear_friction_normal_evidence(
     derived_friction_normal_reactions: &[DerivedFrictionNormalReaction],
     reactions: &[f64],
     policy_ref: &str,
+    solver_mode: PreviewSolverMode,
 ) {
     for reaction in friction_normal_reactions {
         let suffix = stable_suffix(&reaction.support_id);
@@ -4682,7 +5567,8 @@ fn append_nonlinear_friction_normal_evidence(
             "friction_normal_reaction_input",
             "normal",
             &format!(
-                "dense_active_set_loop; policy_ref={policy_ref}; explicit_user_entered_normal_reaction; no_catalog_or_default_normal_force"
+                "{}_active_set_loop; policy_ref={policy_ref}; explicit_user_entered_normal_reaction; no_catalog_or_default_normal_force",
+                solver_mode.as_str()
             ),
             "positive value is an explicit contact normal reaction supplied by the user or caller",
         );
@@ -4703,7 +5589,8 @@ fn append_nonlinear_friction_normal_evidence(
             "friction_normal_reaction_derived",
             source.source_dof.as_str(),
             &format!(
-                "dense_active_set_loop; policy_ref={policy_ref}; derived_support_reaction; source_ref={}; source_dof={}",
+                "{}_active_set_loop; policy_ref={policy_ref}; derived_support_reaction; source_ref={}; source_dof={}",
+                solver_mode.as_str(),
                 source.source_ref,
                 source.source_dof.as_str()
             ),
@@ -4723,6 +5610,8 @@ fn is_combination_excluded_result_kind(kind: &str) -> bool {
             | "nonlinear_support_observed_max_moment_reaction_delta"
             | "nonlinear_support_observed_free_dof_force_residual"
             | "nonlinear_support_observed_free_dof_moment_residual"
+            | "nonlinear_support_free_dof_work_residual"
+            | "linear_solver_mode_basis"
             | "sparse_live_path_dense_parity_relative_delta"
     )
 }
@@ -4819,6 +5708,7 @@ fn blocked_envelope(model: PreviewModel, diagnostics: Vec<Diagnostic>) -> Mechan
             load_case_count: model.load_cases.len(),
             component_stress_modifier_count: 0,
             component_user_stiffness_macro_element_count: 0,
+            component_pressure_thrust_load_count: 0,
             spring_hanger_user_input_count: 0,
             max_displacement: None,
             max_open_formula_stress: None,
@@ -4964,21 +5854,6 @@ fn max_abs_delta(left: &[f64], right: &[f64]) -> f64 {
 
 fn max_abs_value(values: &[f64]) -> f64 {
     values.iter().copied().map(f64::abs).fold(0.0, f64::max)
-}
-
-fn max_abs_linear_residual(matrix: &[Vec<f64>], solution: &[f64], force: &[f64]) -> f64 {
-    matrix
-        .iter()
-        .zip(force.iter())
-        .map(|(row, force)| {
-            let applied = row
-                .iter()
-                .zip(solution.iter())
-                .map(|(stiffness, displacement)| stiffness * displacement)
-                .sum::<f64>();
-            (applied - force).abs()
-        })
-        .fold(0.0, f64::max)
 }
 
 fn node_index(model: &PreviewModel, id: &str) -> Option<usize> {
@@ -5382,17 +6257,53 @@ mod tests {
             .results
             .iter()
             .any(|item| item.id == "result:disp:node-N-140"));
-        assert!(result_ids.contains("result:sparse-live:dense-parity-relative-delta"));
-        assert!(result_ids
-            .contains("result:loadcase:load-L-200:sparse-live:dense-parity-relative-delta"));
-        assert!(!result_ids.contains(
-            "result:combination:combination-C-OPER-ALT:sparse-live:dense-parity-relative-delta"
-        ));
+        assert!(result_ids.contains("result:solver-mode:linear-solve-basis"));
+        assert!(result_ids.contains("result:loadcase:load-L-200:solver-mode:linear-solve-basis"));
+        assert!(!result_ids
+            .contains("result:combination:combination-C-OPER-ALT:solver-mode:linear-solve-basis"));
+        let solver_mode_evidence = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:solver-mode:linear-solve-basis")
+            .expect("default load case solver-mode evidence row is present");
+        assert_eq!(solver_mode_evidence.kind, "linear_solver_mode_basis");
+        assert_eq!(solver_mode_evidence.value, 1.0);
+        let metadata = solver_mode_evidence.metadata.as_ref().unwrap();
+        assert_eq!(metadata.component, "linear_solver_mode");
+        assert_eq!(metadata.coordinate_system, "reduced_system");
+        assert!(metadata.basis.contains("DEC-053 sparse_default_promotion"));
+        assert!(metadata.basis.contains("solver_mode=sparse_interactive"));
+        assert!(metadata
+            .basis
+            .contains("solution_basis=sparse_profile_direct_primary"));
+        assert!(metadata
+            .basis
+            .contains("default_sparse_promotion=interactive_default"));
+        assert!(metadata.basis.contains("dense_scrutiny_available=true"));
+    }
+
+    #[test]
+    fn dense_scrutiny_mode_keeps_sparse_parity_row() {
+        let result =
+            run_linear_static_preview_with_mode(request(), PreviewSolverMode::DenseScrutiny);
         let sparse_evidence = result
             .results
             .iter()
             .find(|item| item.id == "result:sparse-live:dense-parity-relative-delta")
-            .expect("default load case sparse evidence row is present");
+            .expect("dense scrutiny sparse parity row is present");
+        let mode_evidence = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:solver-mode:linear-solve-basis")
+            .expect("dense scrutiny solver-mode row is present");
+
+        assert_eq!(mode_evidence.value, 2.0);
+        assert!(mode_evidence
+            .metadata
+            .as_ref()
+            .unwrap()
+            .basis
+            .contains("solver_mode=dense_scrutiny"));
         assert_eq!(
             sparse_evidence.kind,
             "sparse_live_path_dense_parity_relative_delta"
@@ -5400,13 +6311,11 @@ mod tests {
         assert!(sparse_evidence.value <= 1.0e-9);
         let metadata = sparse_evidence.metadata.as_ref().unwrap();
         assert_eq!(metadata.component, "sparse_live_path");
-        assert_eq!(metadata.coordinate_system, "reduced_system");
-        assert!(metadata.basis.contains("DEC-050 sparse_evidence_lane"));
-        assert!(metadata.basis.contains("dense_default=true"));
-        assert!(metadata.basis.contains("profile_direct_assembly=follow_on"));
         assert!(metadata
             .basis
-            .contains("default_sparse_promotion=follow_on"));
+            .contains("DEC-053 dense_scrutiny_sparse_parity"));
+        assert!(metadata.basis.contains("solver_mode=dense_scrutiny"));
+        assert!(metadata.basis.contains("sparse_interactive_default=true"));
     }
 
     #[test]
@@ -5503,7 +6412,7 @@ mod tests {
             normal_evidence.kind,
             "nonlinear_support_friction_normal_reaction_derived"
         );
-        assert_eq!(normal_evidence.value, 158.102028);
+        assert_eq!(normal_evidence.value, 49.010116);
         let normal_metadata = normal_evidence.metadata.as_ref().unwrap();
         assert!(normal_metadata.basis.contains("derived_support_reaction"));
         assert!(normal_metadata.basis.contains("source_ref=support:S-130"));
@@ -5852,14 +6761,37 @@ mod tests {
             ),
             0.0
         );
-        assert!(result_value(&result, "result:nonlinear-support:max-translation-delta") > 0.0);
-        assert!(result_value(&result, "result:nonlinear-support:max-rotation-delta") >= 0.0);
-        assert!(result_value(&result, "result:nonlinear-support:max-force-reaction-delta") > 0.0);
+        let max_translation_delta =
+            result_value(&result, "result:nonlinear-support:max-translation-delta");
+        let max_rotation_delta =
+            result_value(&result, "result:nonlinear-support:max-rotation-delta");
+        let max_force_reaction_delta =
+            result_value(&result, "result:nonlinear-support:max-force-reaction-delta");
+        let max_moment_reaction_delta = result_value(
+            &result,
+            "result:nonlinear-support:max-moment-reaction-delta",
+        );
+        assert!(max_translation_delta > 0.0);
         assert!(
-            result_value(
-                &result,
-                "result:nonlinear-support:max-moment-reaction-delta"
-            ) >= 0.0
+            max_translation_delta <= DEC_046_PRODUCT_PREVIEW_TRANSLATION_DELTA_ABSOLUTE_LIMIT_MM,
+            "max translation delta {max_translation_delta}"
+        );
+        assert!(max_rotation_delta >= 0.0);
+        assert!(
+            max_rotation_delta <= DEC_046_PRODUCT_PREVIEW_ROTATION_DELTA_ABSOLUTE_LIMIT_RAD,
+            "max rotation delta {max_rotation_delta}"
+        );
+        assert!(max_force_reaction_delta > 0.0);
+        assert!(
+            max_force_reaction_delta
+                <= DEC_046_PRODUCT_PREVIEW_FORCE_REACTION_DELTA_ABSOLUTE_LIMIT_N,
+            "max force reaction delta {max_force_reaction_delta}"
+        );
+        assert!(max_moment_reaction_delta >= 0.0);
+        assert!(
+            max_moment_reaction_delta
+                <= DEC_046_PRODUCT_PREVIEW_MOMENT_REACTION_DELTA_ABSOLUTE_LIMIT_N_M,
+            "max moment reaction delta {max_moment_reaction_delta}"
         );
         assert_eq!(
             result_value(&result, "result:nonlinear-support:free-dof-force-residual"),
@@ -5869,6 +6801,59 @@ mod tests {
             result_value(&result, "result:nonlinear-support:free-dof-moment-residual"),
             0.0
         );
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:free-dof-work-residual"),
+            0.0
+        );
+        let translation_delta = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:nonlinear-support:max-translation-delta")
+            .expect("translation delta row exists");
+        let translation_delta_basis = &translation_delta.metadata.as_ref().unwrap().basis;
+        assert!(translation_delta_basis
+            .contains(DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_OBSERVATION_REF));
+        assert!(translation_delta_basis
+            .contains(DEC_046_PRODUCT_PREVIEW_DISPLACEMENT_REACTION_DELTA_POLICY_REF));
+        assert!(translation_delta_basis.contains("threshold_policy_status=accepted"));
+        assert!(translation_delta_basis.contains("residual_basis=displacement_reaction_delta"));
+        assert!(translation_delta_basis.contains("translation_delta_threshold=50 mm"));
+        assert!(translation_delta_basis.contains("rotation_delta_threshold=0.05 rad"));
+        assert!(translation_delta_basis.contains("force_reaction_delta_threshold=110000 N"));
+        assert!(translation_delta_basis.contains("moment_reaction_delta_threshold=110000 N*m"));
+        assert!(!translation_delta_basis.contains("threshold_policy_status=tbd"));
+        assert!(!translation_delta_basis.contains("threshold_policy_ref=TBD"));
+        assert!(!translation_delta_basis.contains("observed_delta_only"));
+        let force_residual = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:nonlinear-support:free-dof-force-residual")
+            .expect("force residual row exists");
+        let moment_residual = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:nonlinear-support:free-dof-moment-residual")
+            .expect("moment residual row exists");
+        let work_residual = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:nonlinear-support:free-dof-work-residual")
+            .expect("work residual row exists");
+        for residual in [force_residual, moment_residual] {
+            let basis = &residual.metadata.as_ref().unwrap().basis;
+            assert!(basis.contains(DEC_046_PRODUCT_PREVIEW_FREE_DOF_FORCE_MOMENT_POLICY_REF));
+            assert!(basis.contains("threshold_policy_status=accepted"));
+            assert!(basis.contains("residual_basis=free_dof_force_moment_equilibrium"));
+            assert!(!basis.contains("threshold=TBD"));
+        }
+        let work_basis = &work_residual.metadata.as_ref().unwrap().basis;
+        assert!(work_basis.contains(DEC_046_PRODUCT_PREVIEW_FREE_DOF_WORK_POLICY_REF));
+        assert!(work_basis.contains(DEC_046_PRODUCT_PREVIEW_GENERAL_ENERGY_POLICY_REF));
+        assert!(work_basis.contains("threshold_policy_status=accepted"));
+        assert!(work_basis.contains("residual_basis=free_dof_work_residual"));
+        assert!(work_basis.contains("general_energy_threshold_policy_status=accepted"));
+        assert!(work_basis.contains("general_energy_threshold=0 N*m"));
+        assert!(!work_basis.contains("observed_residual_only"));
         let iteration_count = result
             .results
             .iter()
@@ -6954,10 +7939,16 @@ mod tests {
             .contains("solver_consumption=mechanics_geometry_and_user_flexibility"));
         assert!(axial_metadata
             .basis
+            .contains("macro_element_solve=assembled_user_stiffness"));
+        assert!(axial_metadata
+            .basis
+            .contains("pressure_thrust_generation=load_side_user_effective_area"));
+        assert!(axial_metadata
+            .basis
             .contains("pressure_thrust=load_side_pressure_thrust_user_review_required"));
         assert!(axial_metadata
             .sign_convention
-            .contains("global macro-element solve is not claimed"));
+            .contains("consumed by the assembled user-stiffness macro-element"));
 
         assert_eq!(torsional.value, 620_000.0);
         assert_eq!(torsional.unit, "N*m/rad");
@@ -6972,6 +7963,83 @@ mod tests {
                 .all(|diagnostic| diagnostic.code
                     != "EXPANSION_JOINT_MECHANICS_INTERFACE_UNSUPPORTED")
         );
+    }
+
+    #[test]
+    fn expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence() {
+        let result = run_linear_static_preview(request());
+        let default_row = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:pressure-thrust:component-C-150")
+            .expect("default load case expansion joint pressure-thrust row should be emitted");
+        let alternate_row = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:loadcase:load-L-200:pressure-thrust:component-C-150")
+            .expect("alternate load case expansion joint pressure-thrust row should be emitted");
+        let combination_row = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id
+                    == "result:combination:combination-C-OPER-ALT:pressure-thrust:component-C-150"
+            })
+            .expect(
+                "expansion joint pressure-thrust row should participate in explicit combinations",
+            );
+
+        assert_eq!(result.summary.component_pressure_thrust_load_count, 2);
+        assert_eq!(
+            default_row.kind,
+            "expansion_joint_pressure_thrust_load_review"
+        );
+        assert_eq!(default_row.entity_ref, "component:C-150");
+        assert_eq!(default_row.value, 21_600.0);
+        assert_eq!(default_row.unit, "N");
+        assert_eq!(default_row.source_result_refs, vec!["load:L-100-P-EJ"]);
+        let metadata = default_row
+            .metadata
+            .as_ref()
+            .expect("pressure-thrust row carries load-side evidence metadata");
+        assert_eq!(metadata.component, "expansion_joint_pressure_thrust");
+        assert_eq!(metadata.coordinate_system, "element_local");
+        assert_eq!(metadata.location, "pipe:P-130");
+        assert!(metadata
+            .basis
+            .contains("pressure_thrust_generation=load_side_user_effective_area"));
+        assert!(metadata.basis.contains("effective_area=0.018"));
+        assert!(metadata
+            .basis
+            .contains("source=invented_user_entered_expansion_joint_preview_geometry"));
+        assert!(metadata
+            .sign_convention
+            .contains("user-entered effective pressure area"));
+
+        assert_eq!(alternate_row.value, 10_800.0);
+        assert_eq!(alternate_row.source_result_refs, vec!["load:L-200-P-EJ"]);
+        assert_eq!(combination_row.value, 27_000.0);
+        assert_eq!(
+            combination_row.source_result_refs,
+            vec![
+                "result:pressure-thrust:component-C-150".to_string(),
+                "result:loadcase:load-L-200:pressure-thrust:component-C-150".to_string(),
+            ]
+        );
+        assert!(result
+            .results
+            .iter()
+            .any(|item| item.id == "result:stress:pipe-P-130:end-i:pressure-hoop"));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.id == "result:stress:pipe-P-130:end-i:pressure-longitudinal"));
+        assert!(result.diagnostics.iter().any(|diagnostic| {
+            diagnostic.code == "EXPANSION_JOINT_PRESSURE_THRUST_APPLIED"
+                && diagnostic
+                    .affected_refs
+                    .contains(&"load:L-100-P-EJ".to_string())
+        }));
     }
 
     #[test]
