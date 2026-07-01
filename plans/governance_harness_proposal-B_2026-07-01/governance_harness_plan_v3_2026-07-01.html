@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Governance Harness Plan v3 — Merged Plan of Record Candidate</title>
+  <style>
+    :root {
+      --ink: #17202a; --muted: #536172; --paper: #f7f7f4; --panel: #ffffff;
+      --line: #d8ded8; --blue: #255f85; --teal: #1f7a72; --green: #4f7f39;
+      --red: #aa4c3f; --gold: #b47a20; --violet: #6a557d;
+      --shadow: 0 14px 30px rgba(23, 32, 42, 0.08); --radius: 8px;
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef2ed 0%, var(--paper) 340px), var(--paper);
+      line-height: 1.58;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em; background: #eef1ef; padding: 0.12rem 0.28rem;
+      border: 1px solid #dce2dd; border-radius: 4px;
+    }
+    pre {
+      margin: 14px 0 0; padding: 14px 16px; overflow-x: auto; border-radius: var(--radius);
+      background: #20313a; color: #e7f0ee;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.84rem; line-height: 1.55;
+    }
+    pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+    .page { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    header.hero { padding: 54px 0 24px; }
+    .kicker {
+      display: inline-block; margin-bottom: 12px; padding: 4px 9px;
+      border: 1px solid #c9d5cf; border-radius: 999px; background: rgba(255,255,255,0.78);
+      color: var(--muted); font-size: 0.78rem; font-weight: 750; text-transform: uppercase;
+    }
+    h1 { max-width: 940px; margin: 0; font-size: clamp(2.25rem, 5vw, 4.4rem); line-height: 0.99; font-weight: 830; }
+    .subtitle { max-width: 880px; margin: 22px 0 0; color: var(--muted); font-size: 1.12rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: end; margin-top: 32px; }
+    .verdict {
+      padding: 20px 22px; border: 1px solid var(--line); border-left: 6px solid var(--teal);
+      border-radius: var(--radius); background: var(--panel); box-shadow: var(--shadow);
+    }
+    .brief-card { padding: 20px; border-radius: var(--radius); background: #20313a; color: #f6fbfa; box-shadow: var(--shadow); }
+    .verdict h2, .brief-card h2 { margin: 0 0 8px; font-size: 1.08rem; }
+    .verdict p, .brief-card p { margin: 0; color: var(--muted); }
+    .brief-card p, .brief-card code { color: #dbe9e6; }
+    .brief-card code { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); }
+    nav.toc {
+      position: sticky; top: 0; z-index: 10; margin: 20px 0 32px; padding: 10px;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(23,32,42,0.06);
+    }
+    nav.toc ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    nav.toc a { display: block; padding: 7px 10px; border-radius: 6px; color: var(--ink); font-size: 0.88rem; font-weight: 650; }
+    nav.toc a:hover { background: #edf2ef; text-decoration: none; }
+    section { margin: 34px 0; }
+    h2.section-title { margin: 0 0 14px; font-size: clamp(1.55rem, 2.5vw, 2.18rem); line-height: 1.1; }
+    h3 { margin: 22px 0 10px; font-size: 1.08rem; }
+    .lead { max-width: 900px; color: var(--muted); font-size: 1.03rem; }
+    .grid { display: grid; gap: 16px; }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .card {
+      padding: 18px; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--panel); box-shadow: 0 8px 20px rgba(23,32,42,0.04);
+    }
+    .card h3 { margin-top: 0; }
+    .callout { padding: 16px 18px; border: 1px solid #d7e4df; border-radius: var(--radius); background: #eef7f4; }
+    .callout.warning { background: #fff6e7; border-color: #ead2a9; }
+    .callout.danger { background: #fff0ee; border-color: #efc3bd; }
+    .callout h3 { margin-top: 0; }
+    table {
+      width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid var(--line);
+      border-radius: var(--radius); background: var(--panel); box-shadow: 0 8px 20px rgba(23,32,42,0.04);
+    }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #e4e8e5; text-align: left; vertical-align: top; font-size: 0.94rem; }
+    th { background: #eef2ef; color: #42505c; font-size: 0.78rem; font-weight: 750; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .tag { display: inline-block; padding: 3px 7px; border: 1px solid transparent; border-radius: 999px; font-size: 0.76rem; font-weight: 750; white-space: nowrap; }
+    .tag.keep { color: #164a2d; background: #e5f4ea; border-color: #c6e3cf; }
+    .tag.cut { color: #7a2f28; background: #ffe8e4; border-color: #edc0b9; }
+    .tag.later { color: #6d4410; background: #fff0d1; border-color: #eed39a; }
+    .tag.view { color: #274c73; background: #e8f1f8; border-color: #c7dbe9; }
+    .roadmap { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    .phase { min-height: 176px; padding: 15px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+    .phase strong { display: block; margin-bottom: 8px; color: var(--blue); }
+    .phase p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+    .phase .stamp {
+      display: inline-grid; width: 28px; height: 28px; place-items: center; margin-bottom: 12px;
+      border-radius: 50%; color: white; background: var(--blue); font-size: 0.86rem; font-weight: 800;
+    }
+    .footer { margin: 48px 0 60px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
+    @media (max-width: 900px) {
+      .hero-grid, .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
+      .roadmap { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      nav.toc { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <span class="kicker">Chirality governance harness · v3 · merged</span>
+      <h1>Governance Harness Plan v3</h1>
+      <p class="subtitle">
+        The merged plan of record candidate, produced 2026-07-01 by reconciling
+        the two independent v2 revisions after mutual cross-review. Both reviews
+        converged on the same feature set and accepted each other's corrections;
+        the remaining open items are rulings, not ideas. This is the terminal
+        planning artifact: from here, design changes ride decision records or
+        pull-request review — never a new plan document.
+      </p>
+      <div class="hero-grid">
+        <div class="verdict">
+          <h2>Standing Verdict</h2>
+          <p>
+            Practitioner bench tool, not control plane. Tranche, not task
+            database. Tool-generated evidence, not agent attestation. Drift
+            audit, not narrative reconciliation. Human ruling, not machine
+            approval. Framed for closure by D-GOV-01; formally open until the
+            owner rules it.
+          </p>
+        </div>
+        <div class="brief-card">
+          <h2>Artifact</h2>
+          <p><strong>Status:</strong> merged plan of record candidate · PROPOSAL, pending D-GOV-01</p>
+          <p><strong>Version:</strong> v3 · 2026-07-01 · terminal planning artifact</p>
+          <p><strong>Merges:</strong> revisions A + B (2026-07-01) per <code>PLAN_INDEX.md</code></p>
+          <p><strong>Scope:</strong> <code>chirality-app-dev</code>, <code>chirality-piping</code>, <code>_DomainEngines/</code> (read + report)</p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Table of contents">
+      <ul>
+        <li><a href="#convergence">Convergence Record</a></li>
+        <li><a href="#rulings">Rulings Requested</a></li>
+        <li><a href="#authority">Authority Classes</a></li>
+        <li><a href="#posture">Write Posture</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#tranche">Tranche &amp; Adoption</a></li>
+        <li><a href="#domain">Domain Engines</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#cuts">Cuts &amp; Deferrals</a></li>
+        <li><a href="#risks">Risks</a></li>
+        <li><a href="#pr">First PR</a></li>
+      </ul>
+    </nav>
+
+    <section id="convergence">
+      <h2 class="section-title">Convergence Record — Why This Is v3 And Not v4-Bait</h2>
+      <p class="lead">
+        Two independent revisions of the same bench-tool plan were produced on
+        2026-07-01 and cross-reviewed. Each review endorsed the other's core and
+        each caught real defects in the other. The corrections are recorded here
+        so the merge is auditable, and the settled positions are asserted so the
+        debate does not reopen as prose.
+      </p>
+
+      <table>
+        <thead><tr><th>Cross-Review Correction</th><th>Caught In</th><th>Resolution In v3</th></tr></thead>
+        <tbody>
+          <tr><td>Missing <code>write_status.sh</code> guard (the one verified write-path hole left unpatched)</td><td>Revision B</td><td>Guard in the first PR, landed in the canonical file and the export source/pipeline (the staging copy is a gitignored, regenerable export artifact); conceptually outside the harness.</td></tr>
+          <tr><td>Unconditional BLOCK on <code>Ruling SHA: TBD</code> would false-positive the repo's lawful bind-at-publish flow</td><td>Revision B</td><td>Conditional rule in D-GOV-02: REVIEW when self-declared pending-publish; BLOCK only when relied on as bound authority.</td></tr>
+          <tr><td>Evidence model attestation-shaped (checks presence of agent-left artifacts)</td><td>Revision B</td><td><code>run-validations</code> adopted: the harness executes declared commands and captures outputs; evidence has a provenance ladder.</td></tr>
+          <tr><td>No quantitative success measure</td><td>Revision B</td><td>92/154 drift baseline (initially reported as 101/154 by the June inspection; corrected to 92/154 by the 2026-07-01 live verification) with run-over-run trend, alongside the qualitative failure criterion ("a cleaner-looking second source of truth").</td></tr>
+          <tr><td>Unqualified "read-only harness" language contradicted by report/brief/evidence writes</td><td>Revision A</td><td>Three-category write posture (§Write Posture); the phrase "read-only" is retired except for the inspection category.</td></tr>
+          <tr><td>Self-exclusion rule as written would forbid <code>evidence-check</code> reading <code>run-validations</code> records</td><td>Revision A</td><td>Two-class rule: narrative projections are never read back; evidence records are readable as facts for their tranche and never promote to state.</td></tr>
+          <tr><td>"Substrate question is closed — pending one ruling" overstates a PROPOSAL</td><td>Revision A</td><td>"Framed for closure by D-GOV-01; formally open until ruled" — used consistently, including in this document's verdict.</td></tr>
+          <tr><td>"Only sanctioned database use" unscoped — would contradict the ADOPTED OpenPipeStress profile, whose engine-owned SQLite store is sanctioned domain truth under K-DOMAIN-1</td><td>Revision A</td><td>Cache rule scoped to Chirality governance state and harness projections; engine stores governed by the K-DOMAIN family (D-GOV-01 scope note).</td></tr>
+          <tr><td>"Adapters are data, not code" slogan overstated; parsing still needs code</td><td>Revision A</td><td>"Governed configuration + versioned parser plugins; configuration first, parser code only for a genuinely new dialect."</td></tr>
+          <tr><td>Scope-check could BLOCK against a fence no human adopted — an agent-authored authority surface</td><td>Revision B's design, adopted</td><td>Tranche adoption lifecycle: BLOCK-capable checks run only against a HUMAN_ADOPTED, committed brief (D-GOV-04).</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Live-Repo Verification Corrections (2026-07-01)</h3>
+      <p class="lead">
+        A live-repo verification pass on 2026-07-01, run with full repo
+        access, corrected several figures and claims both v2 revisions had
+        inherited from the June inspections. The corrections are recorded
+        here for auditability and applied inline throughout v3.
+      </p>
+      <table>
+        <thead><tr><th>Inherited Claim</th><th>Verified Correction In v3</th></tr></thead>
+        <tbody>
+          <tr><td>Drift baseline 101/154</td><td>92/154 — and one-sided: app-dev is 0/53 clean; all 92 sit in piping and share a single frontmatter-not-updated signature (history records a human-approved advance to CHECKING while the Current State line was never updated).</td></tr>
+          <tr><td>Uniform guard precondition (committed ruling path + approval SHA)</td><td>Adapter-aware per root: piping's <code>_STATUS.md</code> schema carries no approval-SHA fields, so the SHA precondition applies only to roots declaring it (app-dev); piping keeps the committed-ruling-path precondition, with the absent SHA surfaced as REVIEW.</td></tr>
+          <tr><td>Guard patched in "canonical and vendored copies"</td><td>The staging copy is a gitignored, regenerable export artifact; the guard lands in the canonical file and the export source/pipeline so regenerated copies inherit it. Byte-identity stays the acceptance check.</td></tr>
+          <tr><td><code>write_status.sh</code> as the status-write path</td><td>app-dev's <code>transition.ts</code> guard (transition-rules state machine, actor enforcement, approval-SHA checks; DEL-07-04) is prior art the first PR must reconcile with.</td></tr>
+          <tr><td>"The repo's existing uniform 0/1/2 exit convention"</td><td>Overstated: only the newest validator class uses 0/1/2; other tools document 0/1 or use 3. The harness <em>adopts</em> 0/1/2, aligned with the newest validator class.</td></tr>
+          <tr><td>Lineage artifact paths</td><td>The prior artifacts live under <code>plans/.archive/</code> (gitignored) and in the proposal-A directory; no <code>*_v2.html</code> revision file exists. Both proposal directories are currently untracked — until committed and CHANGE-published, this corpus fails the system's own "not in a versioned file, doesn't exist" test.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Asserted Closures</h3>
+      <p class="lead">
+        The following positions are the positions of record in v3. They are
+        asserted, not offered: reopening any of them requires superseding the
+        named decision record or arguing against this section in PR review.
+      </p>
+      <div class="grid cols-3">
+        <div class="card"><h3>Substrate</h3><p>Git-tracked authored files are authority; databases are rebuildable projections for governance state; guards may refuse, never write. (D-GOV-01)</p></div>
+        <div class="card"><h3>Base document</h3><p>The A-vs-B base debate is dissolved: v3 is the single candidate; both v2 revisions are superseded-by-merge per <code>PLAN_INDEX.md</code>. No further plan documents.</p></div>
+        <div class="card"><h3>Decision namespace</h3><p>One family: D-GOV-01..07. The parallel D-GH-* numbering is retired; the mapping is recorded in each stub's FramedBy line.</p></div>
+        <div class="card"><h3>Evidence</h3><p><code>run-validations</code> with the mutation-control contract is the preferred evidence path; the provenance ladder governs everything else. Attestations never pass silently.</p></div>
+        <div class="card"><h3>Blocking</h3><p>Five severities with exit codes; BLOCK means "mechanically blocked within the declared observation boundary." SHA-TBD is conditional. (D-GOV-02)</p></div>
+        <div class="card"><h3>Adoption</h3><p>A brief becomes a fence only as a committed, human-adopted record. Enforcement against unadopted candidates is capped at REVIEW. (D-GOV-04)</p></div>
+      </div>
+    </section>
+
+    <section id="rulings">
+      <h2 class="section-title">Rulings Requested — D-GOV-01 Through D-GOV-07</h2>
+      <p class="lead">
+        Seven decision stubs accompany this plan (see <code>_DECISIONS/</code>;
+        the published home is <code>docs/governance_harness/_DECISIONS/</code>,
+        matching the repo-wide underscore-uppercase decision-record convention),
+        each PROPOSAL with <code>HumanRuling: TBD</code>. Per K-AUTH-1 only the
+        owner rules; per K-AUTH-2 rulings bind to a git SHA at publish. Until
+        ruled, all harness findings are advisory except purely local technical
+        checks (path containment, source-file existence, generated-output
+        labeling), and every report labels the ratification status of each
+        invariant it checks.
+      </p>
+      <table>
+        <thead><tr><th>Record</th><th>Rules</th><th>Load-Bearing Because</th></tr></thead>
+        <tbody>
+          <tr><td><strong>D-GOV-01</strong> substrate authority</td><td>Files as sole governance authority; projection-only databases; guard-only write interventions. Scope note exempts engine-owned domain stores (K-DOMAIN-1).</td><td>The fork flipped three times across plan generations because rejections were prose, not records.</td></tr>
+          <tr><td><strong>D-GOV-02</strong> severity &amp; override</td><td>BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, exit codes (the harness adopts 0/1/2, aligned with the newest validator class), strict mode, override authority, the SHA-TBD conditional, the K-GATE-1 non-overridable-block prohibition.</td><td>Prevents both over-blocking judgment and under-reporting objective violations.</td></tr>
+          <tr><td><strong>D-GOV-03</strong> pilot scope</td><td>app-dev + piping + <code>_DomainEngines/</code> read/report only; <code>domains/*</code> deferred. <code>chirality-governance/</code> is out-of-scope by construction (no status corpus); <code>.archive/</code> trees are excluded from harness walks.</td><td>Keeps the first release narrow and testable.</td></tr>
+          <tr><td><strong>D-GOV-04</strong> human actor identity</td><td>Committed <code>human_actors</code> allowlist; identity checks refuse (exit 2) absent it; adopted briefs must be committed.</td><td>Prevents agent-authored prose from masquerading as approval or adoption.</td></tr>
+          <tr><td><strong>D-GOV-05</strong> minimal governance basis</td><td>Ratify the minimal harness basis now; full root ratification on its own track; History trailer grammar rides this or a narrow SPEC amendment.</td><td>The root constitution is DRAFT; the harness needs a ratified minimum before claiming enforcement.</td></tr>
+          <tr><td><strong>D-GOV-06</strong> profile current truth</td><td>Affirm <code>open_pipe_stress</code> ADOPTED per the 2026-06-21 Gate-2 ruling; direct CHANGE-published cleanup of the contradicting surfaces.</td><td>K-CONFLICT-1: the harness surfaces the contradiction; only a human resolves the fact.</td></tr>
+          <tr><td><strong>D-GOV-07</strong> domain gate SHA binding</td><td>Domain gate acceptances bind to content SHA-256 <em>and</em> a git SHA; existing acceptances grandfathered with WARN.</td><td>Closes the verified v2.1 K-AUTH-2 gap; prerequisite for the deferred domain-shape verifier.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="authority">
+      <h2 class="section-title">Authority Classes</h2>
+      <p class="lead">
+        One table resolves most wording tensions at once. Every artifact the
+        harness touches has exactly one authority class, and every generated
+        output states its class in its header.
+      </p>
+      <table>
+        <thead><tr><th>Artifact</th><th>Authority Class</th></tr></thead>
+        <tbody>
+          <tr><td>Project files: <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, decisions, dependency registers, DAG approvals, domain profiles</td><td><strong>Authority</strong>, subject to each artifact's own ratification/ruling status, which reports must label.</td></tr>
+          <tr><td>Engine-owned domain stores (e.g. the OpenPipeStress persistence store)</td><td><strong>Authoritative domain truth</strong> under K-DOMAIN-1 and the adopted profile; outside this plan's cache rule; read-quarantined per the profile.</td></tr>
+          <tr><td><code>_harness/adapter.yaml</code></td><td><strong>Harness configuration authority only</strong> — governed, committed, human-reviewed; never lifecycle or project truth.</td></tr>
+          <tr><td>Tranche brief (CANDIDATE)</td><td><strong>Generated projection</strong> — source-cited, rebuildable, non-authority footer; sources govern on disagreement.</td></tr>
+          <tr><td>Tranche brief (HUMAN_ADOPTED)</td><td><strong>Committed governed fence</strong> — adoption per D-GOV-04 makes it enforceable; an adoption existing only in a scratch directory does not exist.</td></tr>
+          <tr><td>Validation record from <code>run-validations</code></td><td><strong>Factual evidence artifact</strong> — readable as facts for its tranche; never approval, never lifecycle state.</td></tr>
+          <tr><td>Status / drift / closeout reports</td><td><strong>Generated view</strong> — never authority, never read back as input.</td></tr>
+          <tr><td>SQLite / local index cache</td><td><strong>Rebuildable projection</strong> — gitignored, one-command regeneration, safe to delete, never cited. (Governance scope only, per D-GOV-01.)</td></tr>
+          <tr><td><code>write_status.sh</code> guard</td><td><strong>Refusal mechanism</strong> — blocks objectively-broken transitions; never approval, never authorship.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="posture">
+      <h2 class="section-title">Write Posture — Three Categories, No Unqualified "Read-Only"</h2>
+      <p class="lead">
+        The harness never writes governed authority files. Beyond that, the
+        honest description has three categories; the word "read-only" applies
+        to the first category only.
+      </p>
+      <table>
+        <thead><tr><th>Category</th><th>Meaning</th><th>Commands</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Read-only inspection</strong></td><td>Reads governed files and git history; reports facts. Byte-identical guarantee over governed files.</td><td><code>status</code>, <code>drift</code>, <code>lifecycle-report</code>, <code>dag-context</code>, <code>self-check</code></td></tr>
+          <tr><td><strong>Generated-artifact output</strong></td><td>Writes only to declared generated paths: reports, candidate briefs, captured evidence records — each labeled with its authority class.</td><td><code>brief</code>, <code>run-validations</code>, <code>closeout-digest</code>, report emission of all commands</td></tr>
+          <tr><td><strong>Write-path guard</strong></td><td>Refuses objectively invalid lifecycle writes; authors nothing. Ships with the harness, lives outside it.</td><td><code>write_status.sh</code> precondition guard (canonical file + export source; regenerated staging copies inherit it)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="principles">
+      <h2 class="section-title">Design Principles (Merged)</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Files are the reliance boundary</h3>
+          <p>
+            The harness reads authored files and git history. Its outputs are
+            not authority unless a human separately adopts them into the
+            governed record. Every generated file carries the standard header:
+            generated view, not authority; sources cited; regenerate from
+            project files; structural checks are not approval, issue,
+            authentication, or acceptance of residual risk.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Status is multidimensional</h3>
+          <p>
+            No single green badge. Lifecycle state, evidence completeness,
+            reference/hash resolution, approval-SHA status, staleness/drift,
+            scope conformance, human-decision state, warrant state
+            (UNWARRANTED→CITED→REVIEWED→AUTHENTICATED), and domain-profile
+            status stay separate dimensions in every report. A deliverable can
+            be structurally complete and unauthenticated; evidence can be
+            present and insufficient.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Mechanical checks block; judgment surfaces</h3>
+          <p>
+            The harness may fail a command for objective defects within its
+            declared observation boundary — out-of-scope tracked writes,
+            missing required sources, malformed reports, missing disclaimers.
+            It must never approve, issue, seal, authenticate, decide
+            sufficiency, or accept risk. BLOCK never applies to the
+            CHECKING→ISSUED judgment itself (K-GATE-1).
+          </p>
+        </div>
+        <div class="card">
+          <h3>Historical record ≠ current truth</h3>
+          <p>
+            The corpus legitimately contains immutable history, current
+            authority, stale prose, drafts, and generated summaries. The
+            harness distinguishes them, labels parse confidence with caveat
+            classes (<code>PARSED</code> / <code>PARSED_WITH_ASSUMPTIONS</code> /
+            <code>UNPARSEABLE</code>), and surfaces current-truth conflicts
+            rather than picking the newest or most convenient claim.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Self-exclusion — two classes</h3>
+          <p>
+            <strong>Narrative projections</strong> (status, drift, closeout
+            reports) are never read back by any harness component as input,
+            period. <strong>Evidence records</strong> produced by
+            <code>run-validations</code> may be read as factual evidence for
+            the tranche that produced them — and never promote into lifecycle
+            state, approval state, plan state, or project status. This is what
+            lets <code>evidence-check</code> function without rebuilding the
+            drift loop one level up.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Scoped cache contract</h3>
+          <p>
+            For <em>Chirality governance state and harness projections</em>,
+            the only permitted database pattern is a rebuildable, gitignored
+            cache: regenerated from files by one command, safe to delete,
+            never cited as authority. This rule does not reach developer
+            tooling caches, and it explicitly does not reach engine-owned
+            domain stores, which are sanctioned authoritative domain truth
+            under K-DOMAIN-1 and the adopted profile.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <h3>The Evidence Problem This Plan Answers</h3>
+        <p>
+          The measured baseline: 92 of 154 <code>_STATUS.md</code> files
+          disagree with their own last parsed history entry — app-dev is 0/53
+          clean; all 92 sit in piping and share one mechanical signature, a
+          human-approved advance to CHECKING recorded in history while the
+          frontmatter Current State line was never updated — and the repo's
+          tier-0 control area contradicts itself about one fact across a
+          summary file's top and bottom, an index banner and its own table, a
+          YAML header comment and its field, and a filename. Every surface that
+          restates state is a drift surface. Those contradictions become the
+          adversarial fixtures for <code>drift</code> and <code>self-check</code>,
+          and the fact itself goes to the owner as D-GOV-06 — the harness
+          surfaces conflicts; it never resolves them.
+        </p>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2 class="section-title">Architecture</h2>
+      <p class="lead">
+        Five layers: human authority → authored files and git history →
+        adapters → harness commands and generated views → bounded work and
+        human review. Boring, local, inspectable.
+      </p>
+
+      <h3>Adapters: Governed Configuration Plus Versioned Parser Plugins</h3>
+      <p class="lead">
+        Each pilot root carries a small committed manifest
+        (<code>_harness/adapter.yaml</code>) locating its plan, coordination
+        file, status roots, decision register, DAG pointer, and validation
+        commands, and selecting a parser dialect. The manifest also
+        disambiguates the dependency register (<code>Dependencies.csv</code>
+        and <code>_DEPENDENCIES.md</code> coexist as distinct files per
+        deliverable) and declares the root's guard preconditions — piping's
+        status schema carries no approval-SHA fields, so the SHA precondition
+        applies only where a root declares it. Parsing behavior lives in
+        versioned plugins. A new project requires configuration first and
+        parser code only when it truly has a new dialect. Adapters emit sourced
+        facts, never unsourced summaries:
+      </p>
+      <pre><code>{
+  "fact_id": "domain.open_pipe_stress.profile_status",
+  "value": "ADOPTED",
+  "source_path": "_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml",
+  "source_hint": "domain_profile.profile_status",
+  "authority_status": "conflicted_current_truth",
+  "parse_status": "PARSED",
+  "caveat": "Header comment and filename say DRAFT while the field says ADOPTED. Ruling requested: D-GOV-06."
+}</code></pre>
+      <p class="lead">
+        The harness degrades gracefully: a surface that is absent or
+        unreadable is reported as such (<code>NOT_APPLICABLE</code> /
+        <code>UNPARSEABLE</code>), never invented. Figures (53, 101, 92/154)
+        were verified live against the repo on 2026-07-01; Phase 1 re-verifies
+        them at execution time.
+      </p>
+
+      <h3>Command Surface</h3>
+      <table>
+        <thead><tr><th>Command</th><th>Purpose</th><th>Writes</th><th>Authority Boundary</th></tr></thead>
+        <tbody>
+          <tr><td><code>status --project &lt;p&gt;</code> · <code>status --domain-engines</code></td><td>One-page current state: queue/plan posture, status distribution, decisions, DAG/profile pointers, validation surfaces, dirty git summary.</td><td>Generated view only.</td><td>Read-only inspection over governed files.</td></tr>
+          <tr><td><code>drift</code> / <code>self-check --root .</code></td><td>Consistency audit: status-vs-history; pointer files, banners vs. tables, header comments vs. fields, filenames vs. fields; stale open issues vs. later rulings; abs-path lint; missing disclaimers; unresolved source refs; draft-basis-used-as-binding; approval-SHA reachability (conditional per D-GOV-02).</td><td>Findings report only.</td><td>Detect, never rewrite; drift count vs. the 92/154 baseline, split by caveat class.</td></tr>
+          <tr><td><code>next</code> / <code>brief --tranche &lt;id&gt;</code></td><td>Candidate tranche brief from practitioner-selected active work: objective, source basis, read/write/prohibited scopes, validations, evidence targets, stop conditions, human decision points.</td><td>Candidate brief only.</td><td>CANDIDATE until human-adopted and committed (D-GOV-04).</td></tr>
+          <tr><td><code>run-validations --brief</code></td><td>Executes the adopted brief's declared validation commands and captures stdout/stderr, exit codes, duration, and tool versions as evidence records. Mutation-controlled (below).</td><td>Evidence records to declared paths only.</td><td>Facts, never approval; a green run is structural evidence only (K-DOMAIN-4 analogue).</td></tr>
+          <tr><td><code>scope-check --brief --diff</code></td><td>Compares changed paths to the adopted fence.</td><td>Findings report only.</td><td>BLOCK for objective tracked-path violations within the observation boundary; blind spots (untracked/out-of-repo/revert games) stated in every output; capped at REVIEW against unadopted candidates.</td></tr>
+          <tr><td><code>evidence-check --brief</code></td><td>Verifies required evidence per the provenance ladder: harness-captured records satisfy; timestamp-consistent external artifacts satisfy at REVIEW; bare attestations never pass silently. Evidence older than changed files is flagged.</td><td>Findings report only.</td><td>Completeness, never sufficiency.</td></tr>
+          <tr><td><code>closeout-digest --brief --diff</code></td><td>Summarizes changed files, captured evidence, skipped checks, caveats, and open human questions for CHANGE closeout.</td><td>Generated digest only.</td><td>Never a lifecycle transition.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The run-validations Mutation-Control Contract</h3>
+      <p class="lead">
+        Validation commands can mutate the working tree (caches, lockfiles,
+        formatter rewrites, regenerated snapshots). Without controls,
+        <code>run-validations</code> is a backdoor write tool. The contract:
+      </p>
+      <pre><code>1. record pre-run  `git status --porcelain`
+2. run only commands declared in the HUMAN_ADOPTED brief (or adapter manifest)
+3. capture stdout/stderr, exit code, duration, tool versions where cheap
+4. record post-run `git status --porcelain`
+5. classify changed paths: expected evidence output | ignored cache |
+   unexpected tracked change | review-required
+6. BLOCK if a validation command modified governed files outside the
+   declared evidence/output paths</code></pre>
+
+      <h3>Prior Art: The TypeScript Transition Guard</h3>
+      <div class="callout">
+        <p>
+          <code>write_status.sh</code> is not the only status-write path.
+          chirality-app-dev's frontend already implements the intended guard
+          semantics: <code>src/lib/lifecycle/transition.ts</code> carries a
+          from-to <code>TRANSITION_RULES</code> state machine with
+          backward-transition blocking, per-transition authorized-actor
+          enforcement (<code>UNAUTHORIZED_ACTOR</code>), and a mandatory
+          git-SHA-shaped <code>approvalSha</code> for CHECKING/ISSUED
+          (<code>APPROVAL_SHA_REQUIRED</code> / <code>INVALID_APPROVAL_SHA</code>),
+          exposed through the status-transition API route and named by
+          deliverable DEL-07-04. The first PR aligns the shell guard's
+          preconditions with <code>transition.ts</code> or records why they
+          diverge. Stated honestly: tool usage is guided operationally, not
+          enforced — hand edits bypass any guard — so the guard hardens the
+          sanctioned path only, and drift detection exists precisely because
+          hand edits happen.
+        </p>
+      </div>
+
+      <h3>Claim Language</h3>
+      <p class="lead">
+        No harness output may say approved, issued, professionally accepted,
+        certified, sealed, safe, ready for construction, or closed — unless it
+        is quoting a human-authored governed artifact and labels the quote as
+        such. It says narrower things: the validation artifact is present; the
+        approval SHA is missing/TBD-pending-publish/reachable/unreachable; the
+        diff is inside/outside the adopted fence; the source hash matches or
+        does not; two current-truth sources conflict; human review required.
+      </p>
+    </section>
+
+    <section id="tranche">
+      <h2 class="section-title">Tranche Model &amp; Adoption</h2>
+      <p class="lead">
+        The core object is the tranche: one bounded intervention against
+        project-local context, small enough for scope containment and evidence
+        review. The brief is its projection — and enforcement authority comes
+        only from adoption.
+      </p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>The brief is a projection</h3>
+          <p>
+            Every brief field cites the source it was derived from
+            (<code>_CONTEXT.md</code> section, plan or queue row, decision
+            register entry, adapter manifest field); the brief is regenerable
+            from those sources; a non-authority footer states that the sources
+            govern on disagreement. The brief narrows attention. It never
+            replaces the sealed basis.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Adoption makes the fence</h3>
+          <p>
+            Lifecycle: <code>CANDIDATE → HUMAN_ADOPTED → EXECUTED → CHECKED →
+            HUMAN_REVIEWED → CLOSED / SUPERSEDED</code>. Adoption follows the
+            D-GOV-04 identity rule and the adopted brief is <em>committed</em>
+            to the governed record — otherwise the adoption does not exist for
+            reliance. BLOCK-capable checks run only against adopted briefs;
+            against candidates, findings cap at REVIEW. This lifecycle is
+            metadata on harness artifacts; it adds no state to the deliverable
+            lifecycle.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="domain">
+      <h2 class="section-title">Domain Engines In MVP — Read And Report Only</h2>
+      <p class="lead">
+        The <code>_DomainEngines/</code> control area is in MVP scope because
+        its contradictions are the plan's own drift evidence. The
+        <code>domains/*</code> shape verifier stays deferred.
+      </p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>The harness may</h3>
+          <p>
+            Read the index, latest pointer, published rulings, decision stubs,
+            profiles, and validation reports; report profile status,
+            integration level, protected/proposal paths, and contradictions;
+            check that any OperationProposal artifacts sit in allowed proposal
+            paths; check that protected domain truth was not touched by an
+            unauthorized diff.
+          </p>
+        </div>
+        <div class="card">
+          <h3>The harness must not</h3>
+          <p>
+            Apply domain operations; mutate protected engine truth; advance
+            DRAFT → VALIDATED → ADOPTED; equate validation with professional
+            correctness; claim code compliance, certification, sealing, or
+            construction readiness. Validation-passed is necessary, never
+            sufficient (K-DOMAIN-4).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2 class="section-title">Roadmap</h2>
+      <div class="roadmap">
+        <div class="phase">
+          <span class="stamp">0</span>
+          <strong>Basis + Guard</strong>
+          <p>Publish <code>PLAN_INDEX.md</code>; submit D-GOV-01..07 for ruling; land the <code>write_status.sh</code> guard (canonical + export source); author adapter manifests.</p>
+        </div>
+        <div class="phase">
+          <span class="stamp">1</span>
+          <strong>Status + Drift</strong>
+          <p><code>status</code> for app-dev, piping, and <code>--domain-engines</code>; <code>drift</code>/<code>self-check</code> with the 92/154 baseline and caveat classes; disclaimer enforcement; re-verify figures live.</p>
+        </div>
+        <div class="phase">
+          <span class="stamp">2</span>
+          <strong>Fixtures</strong>
+          <p>Convert the archive contradictions into adversarial fixtures: profile status conflict, RULINGS_PUBLISHED head/tail, stale-open-issue, abs-path leak, unresolved refs, draft-basis-as-binding.</p>
+        </div>
+        <div class="phase">
+          <span class="stamp">3</span>
+          <strong>Brief + Adoption</strong>
+          <p><code>next</code>/<code>brief</code> with the v1 brief schema; CANDIDATE/HUMAN_ADOPTED handling per D-GOV-04; committed-adoption verification.</p>
+        </div>
+        <div class="phase">
+          <span class="stamp">4</span>
+          <strong>Checks</strong>
+          <p><code>run-validations</code> under the mutation contract; <code>scope-check</code> and <code>evidence-check</code> with the provenance ladder; <code>closeout-digest</code>; robust path-containment tests (abs, <code>..</code>, symlinks, case).</p>
+        </div>
+        <div class="phase">
+          <span class="stamp">5</span>
+          <strong>Cache + CI</strong>
+          <p>Only after query pain is real: rebuildable local index under the scoped cache contract; CI wrappers for objective BLOCK findings. Authority stays in authored files.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuts">
+      <h2 class="section-title">Cuts, Deferrals, And Parked Findings</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Disposition</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>SQLite governance store with write authority; coordinator; leases; event ledger; agent-dispatch scheduler</td><td><span class="tag cut">Closed by D-GOV-01 (once ruled)</span></td><td>Reopening requires superseding the record.</td></tr>
+          <tr><td>New RAIL / risk / change / interface registers; broad document-control model; dashboard UI; autonomous lifecycle transitions; MCP/domain write integration</td><td><span class="tag cut">Cut for MVP</span></td><td>Existing homes exist; compile views first; the guard is not a transition tool.</td></tr>
+          <tr><td>Domain-shape (<code>domains/*</code>) verifier</td><td><span class="tag later">Deferred, parked</span></td><td>No <code>_STATUS.md</code>; own variant after project-shape MVP; depends on D-GOV-07.</td></tr>
+          <tr><td>History trailer grammar (SPEC §3.1 amendment)</td><td><span class="tag later">Later — rides D-GOV-05</span></td><td>Caveat classes serve until then; never block the first PR on grammar.</td></tr>
+          <tr><td>Obligations / applicability register (codes, standards; IP-bounded)</td><td><span class="tag later">Deferred, parked</span></td><td>Revisit after the bench tool proves value on live tranches.</td></tr>
+          <tr><td>Piping <code>_STATUS.md</code> approval-SHA schema alignment</td><td><span class="tag later">Deferred, parked</span></td><td>Prerequisite for SHA-based guard preconditions on piping; until separately ruled, the guard surfaces the absent SHA as REVIEW.</td></tr>
+          <tr><td>Machine-absolute-path lint</td><td><span class="tag keep">Now</span></td><td>Folded into <code>self-check</code>; detect, never rewrite.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="risks">
+      <h2 class="section-title">Risks And Controls</h2>
+      <table>
+        <thead><tr><th>Risk</th><th>Control</th></tr></thead>
+        <tbody>
+          <tr><td>Plan resurrection — the control plane has been independently re-derived twice</td><td>D-GOV-01 ruled and published; <code>PLAN_INDEX.md</code> standing markers; terminal-artifact rule.</td></tr>
+          <tr><td>Performative governance — narrated control without control work</td><td>Tool-generated evidence via <code>run-validations</code>; provenance ladder; attestations never pass silently.</td></tr>
+          <tr><td>Harness output becomes authority — the drift loop rebuilt one level up</td><td>Two-class self-exclusion; mandatory generated headers; <code>generated_disclaimer_missing</code> is a BLOCK.</td></tr>
+          <tr><td>Hidden authority via unadopted fences — a tool enforcing agent-authored scope</td><td>BLOCK only against committed HUMAN_ADOPTED briefs (D-GOV-04); REVIEW cap otherwise.</td></tr>
+          <tr><td>Backdoor writes through validation commands</td><td>Mutation-control contract; BLOCK on governed-file mutation outside declared paths.</td></tr>
+          <tr><td>Over-blocking lawful flows — e.g. bind-at-publish SHA-TBD</td><td>Conditional severity per D-GOV-02; BLOCK confined to the declared observation boundary; K-GATE-1 prohibition on blocking the issuance judgment.</td></tr>
+          <tr><td>Status flattening and silent mis-parsing</td><td>Multidimensional reports; caveat classes; UNPARSEABLE labeled, never guessed.</td></tr>
+          <tr><td>Enforcing a DRAFT constitution</td><td>D-GOV-05 minimal basis; interim advisory rule; per-invariant ratification labels (K-CLAIM-1).</td></tr>
+          <tr><td>Planning outproducing execution — this archive's demonstrated failure mode</td><td>Terminal-artifact rule; success measured as drift trending down from 92/154 and tranches closing; failure named as "a cleaner-looking second source of truth."</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pr">
+      <h2 class="section-title">First Pull Request</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Scope</h3>
+          <ol>
+            <li><code>tools/practitioner_harness/README.md</code> — charter: authority classes, write posture, self-exclusion, cache contract, claim-language rules.</li>
+            <li><code>docs/governance_harness/PLAN_INDEX.md</code> + <code>_DECISIONS/D-GOV-01..07</code> stubs submitted for ruling.</li>
+            <li>Adapter manifests for app-dev and piping + manifest loader + <code>prose-bullet-v1</code> parser plugin with caveat classes; <code>domain_engines</code> and <code>git_state</code> adapters; sourced-fact schema.</li>
+            <li><code>status</code> (three targets) and <code>drift</code>/<code>self-check</code> emitting Markdown + JSON with source paths, severities, and exit codes.</li>
+            <li><code>write_status.sh</code> precondition guard — landed in the canonical file and the export source/pipeline (the staging copy is a gitignored, regenerable export artifact); canonical and regenerated export copies byte-identical.</li>
+            <li>Reconcile the guard with the <code>transition.ts</code> prior art — align the shell guard's preconditions with its transition rules, or record why they diverge.</li>
+            <li><code>brief</code> command with the v1 schema and CANDIDATE labeling.</li>
+            <li>Tests: read-only guarantee (byte-identical governed files), drift fixtures modeled on the <code>_DomainEngines/</code> contradictions, path-containment suite, exit-code contract.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Acceptance Criteria</h3>
+          <ol>
+            <li>Inspection commands leave every governed file byte-identical; all writes land under declared generated paths.</li>
+            <li>Every material finding cites source paths; every output carries the generated header and its authority class.</li>
+            <li>Drift reports a total against the 92/154 baseline, split by project as well as caveat class, covering status files and control-area surfaces; unparseable histories labeled, never guessed.</li>
+            <li>The profile-status, RULINGS_PUBLISHED head/tail, stale-decision, and abs-path fixtures are all detected; root DRAFT governance status is reported.</li>
+            <li>Briefs contain source basis, scopes, prohibited paths, validations, evidence targets, stop conditions, and human decision points — CANDIDATE-labeled, source-cited, non-authority footer.</li>
+            <li>The guard's preconditions are adapter-declared per root: it refuses CHECKING/ISSUED absent a committed human ruling path on every root; the git-verifiable approval-SHA precondition applies on roots whose schema declares SHA fields (app-dev), while roots without one (piping) surface the absent SHA as REVIEW, pending the separately-ruled piping schema alignment. Canonical and regenerated export copies byte-identical.</li>
+            <li>Objective BLOCK findings exit nonzero per D-GOV-02; SHA-TBD handled conditionally; no BLOCK fires against an unadopted candidate brief.</li>
+            <li>No output claims approval, issue, authentication, sufficiency, certification, or release readiness except when quoting a labeled human-authored source.</li>
+            <li>No new register, deliverable lifecycle state, approval, issue, release, or closeout claim is created.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="callout">
+        <h3>Terminal Declaration</h3>
+        <p>
+          v3 is the last planning document for this harness. The base-document
+          debate is dissolved by merge; the settled positions are asserted in
+          the Convergence Record; the open items are the seven rulings. Design
+          changes from here supersede a D-GOV-* record or arrive as PR review.
+          The next artifact is the pull request. Success: drift trends down
+          from 92/154 and tranches close. Failure: the harness becomes a
+          cleaner-looking second source of truth — or this document gets a v4.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        v3 prepared 2026-07-01 by merging the two independent 2026-07-01
+        revisions (A and B, per <code>PLAN_INDEX.md</code>) after mutual
+        cross-review; all cross-review corrections are recorded in the
+        Convergence Record with their resolutions. Lineage, superseded
+        artifacts, and standing markers live in <code>PLAN_INDEX.md</code>;
+        the seven decision stubs live in <code>_DECISIONS/</code>.
+      </p>
+      <p>
+        This document is planning material — a PROPOSAL in its entirety,
+        framed for closure by D-GOV-01 and formally open until the owner rules
+        it. Per K-AUTH-1 only the owner authors binding rulings; per K-AUTH-2
+        they bind to a git SHA at publish. Until then, nothing here supersedes
+        project instructions, active plans, deliverable records, DAG approvals,
+        decision registers, validation evidence, git history, or practitioner
+        judgment.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

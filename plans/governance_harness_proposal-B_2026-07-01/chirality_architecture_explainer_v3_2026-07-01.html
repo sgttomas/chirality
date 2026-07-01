@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirality — Architecture &amp; Workflows, Illustrated (v3 · 2026-07-01)</title>
+<style>
+  :root{
+    --ink:#19212e; --ink-soft:#51607a; --paper:#fbf9f5; --panel:#ffffff;
+    --line:#e6e2d8; --line-2:#d4cfc2; --mut:#7b8aa1;
+    --accent:#1f6f7e; --accent-2:#3a4f8c;
+    --good:#2f7d52; --good-bg:#eaf4ee;
+    --warn:#9c6f17; --warn-bg:#f8f0dc;
+    --bad:#b03636; --bad-bg:#f7e7e4;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px 130px}
+  header.hero{max-width:1060px;margin:0 auto;padding:52px 26px 8px}
+  h1{font-size:2.1rem;line-height:1.12;margin:.15em 0;letter-spacing:-.02em}
+  h1 .sub{display:block;font-size:1.04rem;font-weight:500;color:var(--accent);margin-top:.55em;letter-spacing:0}
+  h2{font-size:1.42rem;margin:2.4em 0 .35em;letter-spacing:-.01em;border-bottom:2px solid var(--line-2);padding-bottom:.2em}
+  h2 .num{font-family:var(--mono);font-size:.78em;color:var(--accent);margin-right:.5em}
+  p{margin:.6em 0}
+  .lead{font-size:1.1rem}
+  code{font-family:var(--mono);font-size:.85em;background:#f1efe8;padding:.06em .34em;border-radius:4px;color:#2a3445}
+  a{color:var(--accent)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{font-size:.76rem;font-family:var(--mono);background:var(--panel);border:1px solid var(--line-2);border-radius:999px;padding:4px 11px;color:var(--ink-soft)}
+  .how{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;margin:22px 0}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px 22px;margin:22px 0;columns:2;column-gap:34px}
+  @media(max-width:740px){.toc{columns:1}}
+  .toc a{display:block;text-decoration:none;color:var(--ink-soft);padding:3px 0;font-size:.92rem;break-inside:avoid}
+  .toc a:hover{color:var(--accent)}
+  .toc .n{font-family:var(--mono);color:var(--mut);font-size:.8em;margin-right:8px}
+  figure{margin:22px 0 8px}
+  figure svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  figcaption{font-size:.85rem;color:var(--mut);margin-top:8px;font-style:italic}
+  .key{list-style:none;padding:0;margin:14px 0 4px;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px}
+  @media(max-width:740px){.key{grid-template-columns:1fr}}
+  .key li{position:relative;padding-left:34px;font-size:.93rem;line-height:1.45}
+  .key .b{position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;display:flex;align-items:center;justify-content:center;font-family:var(--sans)}
+  .callout{border-radius:10px;padding:12px 16px;margin:14px 0;border:1px solid;font-size:.95rem}
+  .callout.good{background:var(--good-bg);border-color:#bfe0cd}
+  .callout.warn{background:var(--warn-bg);border-color:#ecd9a8}
+  .callout.bad{background:var(--bad-bg);border-color:#eccac4}
+  .callout.info{background:#e9f0f5;border-color:#cdd9e6}
+  .callout .lbl{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;display:block;margin-bottom:3px}
+  .callout.good .lbl{color:var(--good)} .callout.warn .lbl{color:var(--warn)} .callout.info .lbl{color:var(--accent-2)} .callout.bad .lbl{color:var(--bad)}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.9rem}
+  th,td{border:1px solid var(--line-2);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:#f2efe7;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft)}
+  tr:nth-child(even) td{background:#faf8f3}
+  .stepnum{font-family:var(--mono);font-weight:700;color:var(--accent)}
+  .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin:14px 0}
+  .gloss div{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:.88rem}
+  .gloss b{font-family:var(--mono);color:var(--accent-2);font-size:.88em}
+  hr.soft{border:none;border-top:1px solid var(--line);margin:30px 0}
+  .footnote{font-size:.85rem;color:var(--mut)}
+  .dg text{font-family:var(--sans)}
+  .dg .t{font-weight:700;font-size:14px;fill:var(--ink)}
+  .dg .l{font-weight:600;font-size:12.5px;fill:var(--ink)}
+  .dg .s{font-size:11px;fill:var(--ink-soft)}
+  .dg .m{font-family:var(--mono);font-size:11px;fill:#2a3445;font-weight:600}
+  .dg .mw{font-family:var(--mono);font-size:11px;fill:#fff;font-weight:600}
+  .dg .box{fill:#fff;stroke:var(--line-2);stroke-width:1.5}
+  .dg .teal{fill:#eef5f3;stroke:#bfe0cd;stroke-width:1.5}
+  .dg .amber{fill:#f8f0dc;stroke:#ecd9a8;stroke-width:1.5}
+  .dg .indigo{fill:#e7eef5;stroke:#cdd6ea;stroke-width:1.5}
+  .dg .red{fill:#f7e7e4;stroke:#eccac4;stroke-width:1.5}
+  .dg .gray{fill:#f4f2ec;stroke:#d9d4c7;stroke-width:1.5}
+  .dg .ink{fill:#2b3242;stroke:none}
+  .dg .edge{stroke:#9aa6b8;stroke-width:2;fill:none}
+  .dg .edgeBad{stroke:#b03636;stroke-width:2;fill:none;stroke-dasharray:5 4}
+  .dg .bn{fill:var(--accent)}
+  .dg .bt{fill:#fff;font-weight:700;font-size:12px}
+  .dg .hum{fill:#9c6f17}
+  .dg .bad-t{font-weight:700;font-size:12px;fill:#b03636}
+</style>
+</head>
+<body>
+
+<!-- shared arrow markers, usable by every figure -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arrowGray" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#9aa6b8"/></marker>
+  <marker id="arrowTeal" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#1f6f7e"/></marker>
+  <marker id="arrowIndigo" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#3a4f8c"/></marker>
+  <marker id="arrowAmber" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#9c6f17"/></marker>
+  <marker id="arrowBad" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#b03636"/></marker>
+</defs></svg>
+
+<header class="hero">
+  <div class="kicker">Chirality · a visual tour · v3</div>
+  <h1>Architecture &amp; Workflows, Illustrated
+    <span class="sub">What the system is, who is allowed to do what, how one piece of work travels from idea to issued — and where the practitioner bench harness fits</span>
+  </h1>
+  <div class="chips">
+    <span class="chip">orientation / explainer</span>
+    <span class="chip">2026-07-01</span>
+    <span class="chip">10 annotated diagrams</span>
+    <span class="chip">supersedes the 2026-06-23 explainer</span>
+    <span class="chip">companion to harness plan v3 + PLAN_INDEX</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="how">
+  <strong>How to read this.</strong> Each section is a labeled diagram followed by a numbered key — the circled numbers on the
+  picture match the list beneath it. Read top to bottom; each diagram builds on the one before. By the end you'll be able to
+  point at any file in the repo and say what it's for and who's allowed to change it.
+  <br><br>
+  <strong>What changed since 2026-06-23.</strong> This revision corrects specific errors in the previous explainer (listed in §11)
+  and replaces the old harness section with the bench harness as proposed in the v2 plan. Two new sections carry the honest part
+  of the story: §9 shows the drift problem the harness exists to fix, and §11 separates what is decided from what still awaits a
+  human ruling. Like everything else in the planning family, the harness itself is a PROPOSAL until ruled.
+  <br><br>
+  <strong>v3 alignment (2026-07-01).</strong> This copy is patched to the merged v3 plan after mutual cross-review of the two
+  independent revisions: the write posture is stated as three categories rather than "read-only"; self-exclusion is the
+  two-class rule; the cache rule is scoped to governance state; the substrate fork is <em>framed for closure</em> by D-GOV-01,
+  not closed; and the open-rulings table carries the full D-GOV-01..07 set. A 2026-07-01 live-repo verification pass (full
+  repo access) additionally corrected the inherited drift baseline — initially reported as 101/154 by the June inspection,
+  corrected to 92/154 by live verification, all concentrated in piping — and the write-path story (see the §6 and §10 notes
+  and the final row of §11's corrections table).
+</div>
+
+<div class="toc">
+  <a href="#map"><span class="n">1</span>The whole repository at a glance</a>
+  <a href="#rules"><span class="n">2</span>The five rules everything obeys</a>
+  <a href="#layers"><span class="n">3</span>Two layers: rules vs. work</a>
+  <a href="#actors"><span class="n">4</span>Who is allowed to act</a>
+  <a href="#anatomy"><span class="n">5</span>Anatomy of one deliverable</a>
+  <a href="#lifecycle"><span class="n">6</span>A deliverable's journey (the states)</a>
+  <a href="#loop"><span class="n">7</span>The workflow loop (how work flows)</a>
+  <a href="#shapes"><span class="n">8</span>Two kinds of working root</a>
+  <a href="#drift"><span class="n">9</span>The drift problem — why a harness at all</a>
+  <a href="#harness"><span class="n">10</span>The bench harness, integrated</a>
+  <a href="#delta"><span class="n">11</span>Corrections &amp; open rulings</a>
+  <a href="#glossary"><span class="n">★</span>Glossary of terms</a>
+</div>
+
+<!-- ===================== 1 MAP ===================== -->
+<h2 id="map"><span class="num">1</span>The whole repository at a glance</h2>
+<p class="lead">Chirality is one git repository. The top of it holds the <strong>rules</strong>; below it sit the
+<strong>places where work happens</strong>. Everything authoritative is plain text files — there is no hidden database
+holding project truth.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 460" role="img" aria-label="Map of the chirality repository">
+  <rect x="40" y="40" width="880" height="120" rx="12" class="teal"/>
+  <text x="64" y="70" class="t">REPO_ROOT — the framework root</text>
+  <text x="64" y="90" class="s">the release-managed rulebook every working root must obey · plus one shared control area</text>
+  <g class="m">
+    <rect x="64" y="106" width="112" height="34" rx="6" class="box"/><text x="120" y="127" text-anchor="middle">AGENTS.md</text>
+    <rect x="184" y="106" width="146" height="34" rx="6" class="box"/><text x="257" y="127" text-anchor="middle">docs/ (CONTRACT…)</text>
+    <rect x="338" y="106" width="140" height="34" rx="6" class="box"/><text x="408" y="127" text-anchor="middle">agents/ (roles)</text>
+    <rect x="486" y="106" width="86" height="34" rx="6" class="box"/><text x="529" y="127" text-anchor="middle">skills/</text>
+    <rect x="580" y="106" width="160" height="34" rx="6" class="box"/><text x="660" y="127" text-anchor="middle">tools/ (validators)</text>
+    <rect x="748" y="106" width="152" height="34" rx="6" class="box"/><text x="824" y="127" text-anchor="middle">_DomainEngines/</text>
+  </g>
+  <circle cx="58" cy="54" r="13" class="bn"/><text x="58" y="58" text-anchor="middle" class="bt">1</text>
+
+  <path d="M300 160 L300 214" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M660 160 L660 214" class="edge" marker-end="url(#arrowGray)"/>
+  <text x="480" y="196" text-anchor="middle" class="s">the rules apply downward</text>
+  <circle cx="480" cy="184" r="13" class="bn"/><text x="480" y="188" text-anchor="middle" class="bt">2</text>
+
+  <rect x="40" y="218" width="430" height="132" rx="12" class="gray"/>
+  <text x="64" y="246" class="t">projects/*  — software build roots</text>
+  <text x="64" y="265" class="s">where the actual application code is engineered</text>
+  <g class="m">
+    <rect x="64" y="280" width="180" height="32" rx="6" class="box"/><text x="154" y="300" text-anchor="middle">chirality-app-dev</text>
+    <rect x="256" y="280" width="180" height="32" rx="6" class="box"/><text x="346" y="300" text-anchor="middle">chirality-piping</text>
+  </g>
+  <text x="64" y="334" class="s">53 + 101 deliverables · mostly one agent at a time</text>
+  <circle cx="58" cy="232" r="13" class="bn"/><text x="58" y="236" text-anchor="middle" class="bt">3</text>
+
+  <rect x="490" y="218" width="430" height="132" rx="12" class="gray"/>
+  <text x="514" y="246" class="t">domains/*  — knowledge roots</text>
+  <text x="514" y="265" class="s">where source material is decomposed into structured knowledge</text>
+  <g class="m">
+    <rect x="514" y="280" width="120" height="32" rx="6" class="box"/><text x="574" y="300" text-anchor="middle">chirality</text>
+    <rect x="644" y="280" width="120" height="32" rx="6" class="box"/><text x="704" y="300" text-anchor="middle">piping-design</text>
+    <rect x="774" y="280" width="130" height="32" rx="6" class="box"/><text x="839" y="300" text-anchor="middle">…+ 2 more</text>
+  </g>
+  <text x="514" y="334" class="s">6-gate decomposition pipeline · feeds the projects</text>
+  <circle cx="508" cy="232" r="13" class="bn"/><text x="508" y="236" text-anchor="middle" class="bt">4</text>
+
+  <rect x="40" y="372" width="880" height="52" rx="10" class="indigo"/>
+  <text x="480" y="394" text-anchor="middle" class="l">Every box above is plain text tracked in git — readable, diff-able, recoverable offline. The files <tspan font-style="italic">are</tspan> the system.</text>
+  <text x="480" y="413" text-anchor="middle" class="s">This holds for authoritative project state. Ephemeral operator convenience (UI panel state, presets) may exist — it never overrides the files.</text>
+  <circle cx="58" cy="386" r="13" class="bn"/><text x="58" y="390" text-anchor="middle" class="bt">5</text>
+</svg>
+<figcaption>The repository is a single tree: rules on top, work below, all in git.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>Framework root</strong> = the rulebook: the constitution (<code>docs/</code>), the agent role definitions (<code>agents/</code>), reusable skills, deterministic tools — plus <code>_DomainEngines/</code>, the shared tier-0 control area for domain-engine integration (profiles, rulings, bridge snapshots). Release-managed — you don't casually edit it.</li>
+  <li><span class="b">2</span><strong>Rules flow downward.</strong> Everything below inherits the framework's invariants. A work area can add detail but can never weaken a framework rule (see §3).</li>
+  <li><span class="b">3</span><strong>Project roots</strong> build software. Each contains many <em>deliverables</em> moving through a lifecycle (§5–6).</li>
+  <li><span class="b">4</span><strong>Domain roots</strong> turn source documents (handbooks, standards, the app's own governance) into structured, indexed knowledge that the projects rely on.</li>
+  <li><span class="b">5</span><strong>Plain text in git is the single source of authoritative truth</strong> — corrected from the old absolute phrasing: DIRECTIVE §2.5 does permit non-authoritative convenience state (UI preferences, panel state), but it can never be treated as project truth or override a governed file.</li>
+</ul>
+
+<!-- ===================== 2 RULES ===================== -->
+<h2 id="rules"><span class="num">2</span>The five rules everything obeys</h2>
+<p>Before any diagram of <em>who</em> or <em>how</em>, here are the standing principles. They are the reason the system is
+auditable and safe to let agents work in. Every later diagram is just these rules made concrete.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 260" role="img" aria-label="The five governing principles">
+  <g>
+    <rect x="40" y="46" width="160" height="110" rx="10" class="teal"/>
+    <text x="120" y="78" text-anchor="middle" class="l">Files are the truth</text>
+    <text x="120" y="100" text-anchor="middle" class="s">state lives in readable</text>
+    <text x="120" y="115" text-anchor="middle" class="s">text you can diff</text>
+    <circle cx="60" cy="62" r="13" class="bn"/><text x="60" y="66" text-anchor="middle" class="bt">1</text>
+
+    <rect x="216" y="46" width="160" height="110" rx="10" class="amber"/>
+    <text x="296" y="78" text-anchor="middle" class="l">Agents propose;</text>
+    <text x="296" y="95" text-anchor="middle" class="l">humans decide</text>
+    <text x="296" y="117" text-anchor="middle" class="s">binding records are</text>
+    <text x="296" y="132" text-anchor="middle" class="s">human-authored (K-AUTH-1)</text>
+    <circle cx="236" cy="62" r="13" class="bn"/><text x="236" y="66" text-anchor="middle" class="bt">2</text>
+
+    <rect x="392" y="46" width="160" height="110" rx="10" class="indigo"/>
+    <text x="472" y="78" text-anchor="middle" class="l">Evidence first</text>
+    <text x="472" y="100" text-anchor="middle" class="s">a claim without a cited</text>
+    <text x="472" y="115" text-anchor="middle" class="s">source is a defect (K-PROV-1)</text>
+    <circle cx="412" cy="62" r="13" class="bn"/><text x="412" y="66" text-anchor="middle" class="bt">3</text>
+
+    <rect x="568" y="46" width="160" height="110" rx="10" class="indigo"/>
+    <text x="648" y="78" text-anchor="middle" class="l">No invention</text>
+    <text x="648" y="100" text-anchor="middle" class="s">unknowns become TBD,</text>
+    <text x="648" y="115" text-anchor="middle" class="s">never guesses (K-INVENT-1)</text>
+    <circle cx="588" cy="62" r="13" class="bn"/><text x="588" y="66" text-anchor="middle" class="bt">4</text>
+
+    <rect x="744" y="46" width="160" height="110" rx="10" class="indigo"/>
+    <text x="824" y="78" text-anchor="middle" class="l">Surface conflicts</text>
+    <text x="824" y="100" text-anchor="middle" class="s">disagreeing sources are</text>
+    <text x="824" y="115" text-anchor="middle" class="s">exposed, not resolved silently</text>
+    <circle cx="764" cy="62" r="13" class="bn"/><text x="764" y="66" text-anchor="middle" class="bt">5</text>
+  </g>
+  <rect x="40" y="180" width="864" height="46" rx="10" class="gray"/>
+  <text x="472" y="203" text-anchor="middle" class="l">Plus: finished work is frozen as an immutable snapshot (K-SNAP-1) — see §6.</text>
+  <text x="472" y="219" text-anchor="middle" class="s">Honest status: these rules are practiced and enforced by instruction today, but the written constitution is still DRAFT — see the note below.</text>
+</svg>
+<figcaption>The constitution in five ideas. Every later diagram is these rules made concrete.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>Files are the truth.</strong> State lives in readable text you can diff and review by eye. This is why a database is rejected for governance state — you can't review a binary blob at a gate. As of this revision that rejection is drafted as a formal ruling, D-GOV-01 (§10–11), so it stops being re-argued.</li>
+  <li><span class="b">2</span><strong>Agents propose; humans decide.</strong> An agent can draft, analyze, and recommend — but the moment something becomes binding (approved, issued), a human authors that record. A hard line, not a setting.</li>
+  <li><span class="b">3</span><strong>Evidence first.</strong> A claim without a cited source is a defect. This is what lets a reviewer trust the work.</li>
+  <li><span class="b">4</span><strong>No invention.</strong> When the answer isn't known, the agent writes <code>TBD</code> rather than fabricating one. Honest gaps beat confident guesses.</li>
+  <li><span class="b">5</span><strong>Surface conflicts.</strong> If two sources disagree, the agent points at both rather than silently picking one. (§9 shows what happens when this rule isn't backed by a mechanical check.)</li>
+</ul>
+
+<div class="callout warn"><span class="lbl">Correction — the constitution's own status</span>
+The previous explainer presented the K-* rules as settled canon. In fact <code>docs/CONTRACT.md</code> and
+<code>docs/DIRECTIVE.md</code> carry "DRAFT pending human ratification" banners — the rules are real and practiced, but the
+ratified record is still owed. Per K-CLAIM-1 (don't overstate warrant), this explainer and every harness report label that
+status rather than hide it. Ratification is one of the open rulings in §11.
+</div>
+
+<!-- ===================== 3 LAYERS ===================== -->
+<h2 id="layers"><span class="num">3</span>Two layers: the rules vs. the work</h2>
+<p>This is the single most important structural idea. The framework root defines invariants; the working roots do the work
+and may <em>specialize</em> — add their own detail — but may never <em>weaken</em> a framework rule.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 300" role="img" aria-label="Two-layer governance">
+  <rect x="40" y="196" width="880" height="64" rx="10" class="teal"/>
+  <text x="64" y="224" class="t">Framework floor — the K-* invariants</text>
+  <text x="64" y="244" class="s">K-AUTH-1 humans approve · K-STATUS-1 one canonical state file · K-PROV-1 cite everything · K-SNAP-1 snapshots are immutable · K-WRITE-2 writes stay inside the checkout …</text>
+  <circle cx="58" cy="210" r="13" class="bn"/><text x="58" y="214" text-anchor="middle" class="bt">1</text>
+
+  <rect x="80" y="52" width="380" height="112" rx="10" class="gray"/>
+  <text x="104" y="82" class="l">projects/chirality-piping</text>
+  <text x="104" y="102" class="s">adds: OPS-K-* invariant fork, an approved</text>
+  <text x="104" y="117" class="s">central DAG, IP/data boundary rules</text>
+  <text x="104" y="140" class="m">stricter is allowed</text>
+  <circle cx="98" cy="66" r="13" class="bn"/><text x="98" y="70" text-anchor="middle" class="bt">2</text>
+
+  <rect x="500" y="52" width="380" height="112" rx="10" class="gray"/>
+  <text x="524" y="82" class="l">projects/chirality-app-dev</text>
+  <text x="524" y="102" class="s">adds: runtime K-PATH-*/K-ROOT-* families,</text>
+  <text x="524" y="117" class="s">validation fences F1–F4</text>
+  <text x="524" y="140" class="m">weaker is forbidden</text>
+  <circle cx="518" cy="66" r="13" class="bn"/><text x="518" y="70" text-anchor="middle" class="bt">3</text>
+
+  <path d="M270 164 L270 196" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M690 164 L690 196" class="edge" marker-end="url(#arrowGray)"/>
+</svg>
+<figcaption>Specialization flows down; invariants are a floor no working root can dig beneath.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>The framework root sets invariants</strong> — the K-* rules. Think of them as the constitution; changing one is a deliberate, human-ratified act, not a routine edit.</li>
+  <li><span class="b">2</span><strong>A working root can be stricter or more detailed</strong> (its own decisions, registers, conventions, even its own invariant namespace) but can never relax a framework invariant. A child may add rules; it can't repeal the parent's.</li>
+  <li><span class="b">3</span><strong>The same ceiling applies everywhere.</strong> This is what lets many work areas coexist without the rules fragmenting — and it is why the harness reads each project through an adapter instead of forcing one abstract lifecycle onto both (§10).</li>
+</ul>
+
+<!-- ===================== 4 ACTORS ===================== -->
+<h2 id="actors"><span class="num">4</span>Who is allowed to act</h2>
+<p>Agents are not interchangeable workers — they have roles with explicit, limited authority. The key question the system
+always asks is not "how smart is the agent?" but <strong>"what is this role permitted to write?"</strong></p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 430" role="img" aria-label="Authority hierarchy">
+  <rect x="240" y="36" width="480" height="56" rx="10" class="amber"/>
+  <text x="480" y="60" text-anchor="middle" class="l">HUMAN — approvals, gates, rulings, issuance</text>
+  <text x="480" y="79" text-anchor="middle" class="s">the only author of binding records (K-AUTH-1)</text>
+  <circle cx="260" cy="50" r="13" class="bn"/><text x="260" y="54" text-anchor="middle" class="bt">1</text>
+
+  <path d="M480 92 L480 116" class="edge" marker-end="url(#arrowGray)"/>
+
+  <rect x="240" y="120" width="480" height="52" rx="10" class="teal"/>
+  <text x="480" y="142" text-anchor="middle" class="l">Type 0 · HELPS_HUMANS — maintains the rulebook, always paired with a person</text>
+  <text x="480" y="160" text-anchor="middle" class="s">architect layer</text>
+  <circle cx="260" cy="134" r="13" class="bn"/><text x="260" y="138" text-anchor="middle" class="bt">2</text>
+
+  <path d="M480 172 L480 196" class="edge" marker-end="url(#arrowGray)"/>
+
+  <rect x="110" y="200" width="740" height="86" rx="10" class="indigo"/>
+  <text x="480" y="224" text-anchor="middle" class="l">Type 1 personas — each owns one lane</text>
+  <g class="m">
+    <rect x="130" y="238" width="140" height="32" rx="6" class="box"/><text x="200" y="258" text-anchor="middle">DOMAIN_ENGINE</text>
+    <rect x="278" y="238" width="140" height="32" rx="6" class="box"/><text x="348" y="258" text-anchor="middle">WORKING_ITEMS</text>
+    <rect x="426" y="238" width="120" height="32" rx="6" class="box"/><text x="486" y="258" text-anchor="middle">TOOLMAKER</text>
+    <rect x="554" y="238" width="110" height="32" rx="6" class="box"/><text x="609" y="258" text-anchor="middle">CHANGE</text>
+    <rect x="672" y="238" width="160" height="32" rx="6" class="box"/><text x="752" y="258" text-anchor="middle">AUDIT_* / EVAL_*</text>
+  </g>
+  <circle cx="130" cy="214" r="13" class="bn"/><text x="130" y="218" text-anchor="middle" class="bt">3</text>
+
+  <path d="M480 286 L480 310" class="edge" marker-end="url(#arrowGray)"/>
+
+  <rect x="240" y="314" width="480" height="52" rx="10" class="gray"/>
+  <text x="480" y="336" text-anchor="middle" class="l">Type 2 · TASK — tightly bounded worker, sealed into one folder</text>
+  <text x="480" y="354" text-anchor="middle" class="s">writes only inside its declared scope (K-WRITE-1/2)</text>
+  <circle cx="260" cy="328" r="13" class="bn"/><text x="260" y="332" text-anchor="middle" class="bt">4</text>
+
+  <rect x="40" y="120" width="150" height="246" rx="10" class="box"/>
+  <text x="115" y="148" text-anchor="middle" class="l">Tools</text>
+  <text x="115" y="170" text-anchor="middle" class="s">deterministic,</text>
+  <text x="115" y="185" text-anchor="middle" class="s">read &amp; report,</text>
+  <text x="115" y="200" text-anchor="middle" class="s">never author state</text>
+  <text x="115" y="228" text-anchor="middle" class="m">the bench harness</text>
+  <text x="115" y="243" text-anchor="middle" class="m">lives here (§10)</text>
+  <rect x="54" y="286" width="122" height="60" rx="8" class="red"/>
+  <text x="115" y="308" text-anchor="middle" class="s">one exception class:</text>
+  <text x="115" y="323" text-anchor="middle" class="s">precondition guards</text>
+  <text x="115" y="338" text-anchor="middle" class="s">that refuse, never write</text>
+  <circle cx="60" cy="134" r="13" class="bn"/><text x="60" y="138" text-anchor="middle" class="bt">5</text>
+
+  <rect x="750" y="314" width="170" height="52" rx="10" class="box"/>
+  <text x="835" y="336" text-anchor="middle" class="s">authority decreases</text>
+  <text x="835" y="352" text-anchor="middle" class="s">downward; write scope narrows</text>
+</svg>
+<figcaption>Authority decreases as you go down; write scope narrows. Tools sit to the side — they can look but not touch the record.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>The human holds the top.</strong> Approvals, gates, and questions of "does this rule apply here?" are human acts. An agent never signs off binding work.</li>
+  <li><span class="b">2</span><strong>Type 0 (HELPS_HUMANS)</strong> is the generalist that helps maintain the rulebook itself, always paired with a person.</li>
+  <li><span class="b">3</span><strong>Type 1 personas each own one lane:</strong> DOMAIN_ENGINE orchestrates across roots, WORKING_ITEMS produces deliverable content, TOOLMAKER builds tools, CHANGE is the only one that commits to git, and the AUDIT_*/EVALUATION_* family checks and reviews.</li>
+  <li><span class="b">4</span><strong>Type 2 (TASK)</strong> is a tightly-bounded worker. It may write only within the folder it was sealed into — it cannot reach elsewhere.</li>
+  <li><span class="b">5</span><strong>Tools are advisors, not authorities</strong> — with one precisely-drawn exception the old explainer blurred: a <em>precondition guard</em> inside an existing write tool (the <code>write_status.sh</code> patch, §6) may <em>refuse</em> an objectively-broken transition. It still never authors state, never approves, and never edits the record. The read-only harness itself refuses nothing.</li>
+</ul>
+
+<!-- ===================== 5 ANATOMY ===================== -->
+<h2 id="anatomy"><span class="num">5</span>Anatomy of one deliverable</h2>
+<p>A "deliverable" is one unit of work, living in its own folder. Open one up and you'll find a small, predictable set of
+files — each with a single job. Learn these five and you can read any deliverable in the repo.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 380" role="img" aria-label="Deliverable folder anatomy">
+  <rect x="40" y="40" width="880" height="300" rx="12" class="gray"/>
+  <text x="64" y="72" class="t">DEL-07-02_Model tree and property inspector/</text>
+
+  <rect x="64" y="94" width="256" height="102" rx="8" class="teal"/>
+  <text x="84" y="120" class="m">_STATUS.md</text>
+  <text x="84" y="140" class="s">the single canonical state file;</text>
+  <text x="84" y="155" class="s">frontmatter carries the approval SHA (app-dev);</text>
+  <text x="84" y="170" class="s">History is a prose bullet list</text>
+  <circle cx="84" cy="108" r="13" class="bn"/><text x="84" y="112" text-anchor="middle" class="bt">1</text>
+
+  <rect x="336" y="94" width="256" height="102" rx="8" class="indigo"/>
+  <text x="356" y="120" class="m">_CONTEXT.md</text>
+  <text x="356" y="140" class="s">the sealed basis: the gate-approved</text>
+  <text x="356" y="155" class="s">set of inputs the agent may use —</text>
+  <text x="356" y="170" class="s">not "the whole repo"</text>
+  <circle cx="356" cy="108" r="13" class="bn"/><text x="356" y="112" text-anchor="middle" class="bt">2</text>
+
+  <rect x="608" y="94" width="288" height="102" rx="8" class="indigo"/>
+  <text x="628" y="120" class="m">_REFERENCES.md</text>
+  <text x="628" y="140" class="s">governing sources, each pinned by a</text>
+  <text x="628" y="155" class="s">content hash — if a source changes,</text>
+  <text x="628" y="170" class="s">the mismatch makes drift visible</text>
+  <circle cx="628" cy="108" r="13" class="bn"/><text x="628" y="112" text-anchor="middle" class="bt">3</text>
+
+  <rect x="64" y="216" width="400" height="102" rx="8" class="box"/>
+  <text x="84" y="242" class="m">Dependencies.csv</text>
+  <text x="84" y="262" class="s">this deliverable's edges (needs / feeds), each with cited</text>
+  <text x="84" y="277" class="s">evidence; authority is folder-local — no central graph</text>
+  <text x="84" y="292" class="s">(piping's approved DAG is the human-blessed exception)</text>
+  <circle cx="84" cy="230" r="13" class="bn"/><text x="84" y="234" text-anchor="middle" class="bt">4</text>
+
+  <rect x="480" y="216" width="416" height="102" rx="8" class="box"/>
+  <text x="500" y="242" class="m">_run_records/</text>
+  <text x="500" y="262" class="s">immutable snapshots of every run, kept forever,</text>
+  <text x="500" y="277" class="s">including failures — the audit trail (K-SNAP-1)</text>
+  <circle cx="500" cy="230" r="13" class="bn"/><text x="500" y="234" text-anchor="middle" class="bt">5</text>
+</svg>
+<figcaption>One deliverable folder, exploded. Each file answers exactly one question about the work.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong><code>_STATUS.md</code></strong> — the canonical state file <em>by rule</em> (K-STATUS-1). Its <code>Current State</code> line is the authority on where the work is; frontmatter records the approval SHA — true for all 53 app-dev files, but piping's 101 files carry no approval-SHA fields at all (their frontmatter is just <code>Current State</code> + <code>Last Updated</code>); this schema divergence is why adapters and per-root guard preconditions exist (§6, §10). §9 shows the honest caveat: in practice this file and its own history disagree in 92 of 154 deliverables (all in piping; app-dev is clean) — which is precisely the harness's first job.</li>
+  <li><span class="b">2</span><strong><code>_CONTEXT.md</code></strong> — the sealed basis: the precise, gate-approved set of inputs the agent is allowed to use. The agent works from this, not "the whole repo." The harness's tranche <em>brief</em> is a projection of this file plus a plan row — never a replacement for it (§10).</li>
+  <li><span class="b">3</span><strong><code>_REFERENCES.md</code></strong> — governing sources pinned by content hash. Known defect the harness lints: some reference rows and run-record frontmatter embed machine-absolute paths (<code>/Users/…</code>), a latent SPEC §0.2.4 violation.</li>
+  <li><span class="b">4</span><strong><code>Dependencies.csv</code></strong> — this deliverable's edges, each with cited evidence. Authority is local to the folder; there is no single central graph (the piping project keeps an approved overall DAG as a separate, human-approved exception).</li>
+  <li><span class="b">5</span><strong><code>_run_records/</code></strong> — immutable snapshots of every run, kept forever, including failures. This is the audit trail the harness's evidence records will sit beside.</li>
+</ul>
+
+<!-- ===================== 6 LIFECYCLE ===================== -->
+<h2 id="lifecycle"><span class="num">6</span>A deliverable's journey — the states</h2>
+<p>That <code>_STATUS.md</code> file moves through a fixed sequence. Two points on the track are the <em>constitutional
+minimum</em> human gates (K-GATE-1) — but they are not the only human acts on the track.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 330" role="img" aria-label="Deliverable lifecycle states">
+  <g class="m">
+    <rect x="40" y="110" width="100" height="44" rx="8" class="box"/><text x="90" y="137" text-anchor="middle">OPEN</text>
+    <rect x="170" y="110" width="126" height="44" rx="8" class="box"/><text x="233" y="137" text-anchor="middle">INITIALIZED</text>
+    <rect x="326" y="110" width="150" height="44" rx="8" class="box" stroke-dasharray="4 3"/><text x="401" y="137" text-anchor="middle">SEMANTIC_READY</text>
+    <rect x="506" y="110" width="130" height="44" rx="8" class="box"/><text x="571" y="137" text-anchor="middle">IN_PROGRESS</text>
+    <rect x="666" y="110" width="110" height="44" rx="8" class="amber"/><text x="721" y="137" text-anchor="middle">CHECKING</text>
+    <rect x="806" y="110" width="100" height="44" rx="8" class="teal"/><text x="856" y="137" text-anchor="middle">ISSUED</text>
+  </g>
+  <path d="M140 132 L170 132" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M296 132 L326 132" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M476 132 L506 132" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M636 132 L666 132" class="edge" marker-end="url(#arrowAmber)"/>
+  <path d="M776 132 L806 132" class="edge" marker-end="url(#arrowAmber)"/>
+
+  <line x1="233" y1="70" x2="233" y2="106" stroke="#9c6f17" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="233" y="58" text-anchor="middle" class="s">seal gate — human approves the basis before bounded work</text>
+  <circle cx="233" cy="88" r="13" class="bn"/><text x="233" y="92" text-anchor="middle" class="bt">1</text>
+
+  <line x1="791" y1="70" x2="791" y2="106" stroke="#9c6f17" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="758" y="58" text-anchor="middle" class="s">approval gate — human act, binds to a git SHA</text>
+  <circle cx="791" cy="88" r="13" class="bn"/><text x="791" y="92" text-anchor="middle" class="bt">2</text>
+
+  <text x="651" y="196" text-anchor="middle" class="s">IN_PROGRESS → CHECKING and CHECKING → ISSUED are both human transitions (SPEC §3.3)</text>
+  <circle cx="440" cy="192" r="13" class="bn"/><text x="440" y="196" text-anchor="middle" class="bt">3</text>
+
+  <rect x="40" y="222" width="880" height="84" rx="10" class="red"/>
+  <text x="64" y="250" class="bad-t">The verified hole — and its guard</text>
+  <text x="64" y="270" class="s">write_status.sh will write ISSUED for any free-text actor with no approval check. The plan patches it with a precondition</text>
+  <text x="64" y="285" class="s">guard whose checks are adapter-declared per root: approval SHA where the schema carries SHA fields (app-dev); committed</text>
+  <text x="64" y="300" class="s">ruling path + REVIEW on piping. Lands in the canonical tool + export source. A guard refuses; it never authorizes.</text>
+  <circle cx="900" cy="240" r="13" class="bn"/><text x="900" y="244" text-anchor="middle" class="bt">4</text>
+</svg>
+<figcaption>The track is fixed; the dashed crossings are the constitutional-minimum human gates. The piping project skips SEMANTIC_READY — it's optional per root.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>The seal gate.</strong> Before real work begins, a human approves the sealed basis (the <code>_CONTEXT.md</code> from §5). No bounded TASK runs until this is sealed (K-SEAL-1).</li>
+  <li><span class="b">2</span><strong>The approval gate (CHECKING → ISSUED).</strong> Moving to ISSUED is a human act and the approval binds to a specific git commit (K-AUTH-2). This is the line no tool must ever cross on its own.</li>
+  <li><span class="b">3</span><strong>Correction to the old framing.</strong> The previous explainer said "everything else can be machine-assisted." Per SPEC §3.3 the move <em>into</em> CHECKING is also a human transition. The two gates are the constitutional minimum (K-GATE-1), not the complete list of human acts. Machines verify readiness up to CHECKING — hashes, citations, evidence presence — which the system already names: warrants go <code>UNWARRANTED → CITED → REVIEWED → AUTHENTICATED</code>; REVIEWED is machine-checkable readiness, AUTHENTICATED is the human act.</li>
+  <li><span class="b">4</span><strong>The shell write-path fix.</strong> The verified <code>write_status.sh</code> hole is closed by an objective precondition guard, shipped in the harness's first PR but independent of the read-only harness itself. Live verification (2026-07-01) corrected two details: the guard's preconditions are <em>adapter-declared per root</em> — the git-verifiable approval SHA is required where the root's status schema carries SHA fields (all 53 app-dev files); piping's 101 files carry none, so piping gets the committed-human-ruling-path check only, with the missing SHA surfaced as a REVIEW finding until a piping schema alignment is ruled. And the "vendored copy" in staging is a gitignored, regenerated export artifact — the patch lands in the canonical <code>tools/scaffolding/write_status.sh</code> and the export source, with "both copies byte-identical" kept as the acceptance check. Prior art the PR must reconcile with: app-dev's frontend already implements these guard semantics in TypeScript (<code>transition.ts</code>: from-to transition rules, authorized-actor enforcement, required approval SHA for CHECKING/ISSUED, exposed via a status-transition API route — deliverable DEL-07-04), so the shell script is not the only status-write path; the shell guard aligns with that prior art or records why it diverges. And honestly: tool usage is guided, not enforced — a hand edit bypasses any guard; the guard hardens the sanctioned path, and <code>drift</code> detection covers the rest.</li>
+</ul>
+
+<!-- ===================== 7 LOOP ===================== -->
+<h2 id="loop"><span class="num">7</span>The workflow loop — how work actually flows</h2>
+<p>Zoom out from one deliverable to the whole cycle of doing work. A task is not "type a request and get code" — it is a
+controlled intervention that moves the project from one trusted state to the next, then folds the result back into the
+shared basis. Follow the numbers.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 240" role="img" aria-label="The controlled-execution loop">
+  <rect x="40" y="70" width="168" height="80" rx="10" class="teal"/>
+  <text x="124" y="102" text-anchor="middle" class="l">Basis &amp; Authority</text>
+  <text x="124" y="122" text-anchor="middle" class="s">sealed inputs · write scope</text>
+  <circle cx="60" cy="84" r="13" class="bn"/><text x="60" y="88" text-anchor="middle" class="bt">1</text>
+
+  <rect x="232" y="70" width="168" height="80" rx="10" class="gray"/>
+  <text x="316" y="102" text-anchor="middle" class="l">Execute &amp; Evidence</text>
+  <text x="316" y="122" text-anchor="middle" class="s">bounded TASK · _run_records</text>
+
+  <rect x="424" y="70" width="150" height="80" rx="10" class="indigo"/>
+  <text x="499" y="102" text-anchor="middle" class="l">Check</text>
+  <text x="499" y="122" text-anchor="middle" class="s">harness + reviewer</text>
+  <circle cx="444" cy="84" r="13" class="bn"/><text x="444" y="88" text-anchor="middle" class="bt">2</text>
+
+  <rect x="598" y="70" width="150" height="80" rx="10" class="amber"/>
+  <text x="673" y="102" text-anchor="middle" class="l">Approve</text>
+  <text x="673" y="122" text-anchor="middle" class="s">human · SHA-bound</text>
+  <circle cx="618" cy="84" r="13" class="bn"/><text x="618" y="88" text-anchor="middle" class="bt">3</text>
+
+  <rect x="772" y="70" width="148" height="80" rx="10" class="indigo"/>
+  <text x="846" y="96" text-anchor="middle" class="l">Propagate &amp;</text>
+  <text x="846" y="114" text-anchor="middle" class="l">Reconcile</text>
+  <text x="846" y="134" text-anchor="middle" class="s">edges · snapshots</text>
+  <circle cx="792" cy="84" r="13" class="bn"/><text x="792" y="88" text-anchor="middle" class="bt">4</text>
+
+  <path d="M208 110 L232 110" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M400 110 L424 110" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M574 110 L598 110" class="edge" marker-end="url(#arrowAmber)"/>
+  <path d="M748 110 L772 110" class="edge" marker-end="url(#arrowGray)"/>
+  <path d="M846 150 L846 186 L124 186 L124 150" class="edge" marker-end="url(#arrowTeal)"/>
+  <text x="480" y="178" text-anchor="middle" class="s">the result folds back into the shared basis — only then does the item close</text>
+</svg>
+<figcaption>The loop. The front (teal) is sealed before work starts; the human owns the amber approval; the back (indigo) makes the result coherent before closing.</figcaption>
+</figure>
+
+<table>
+  <thead><tr><th>Stage</th><th>What happens</th><th>Who / where</th></tr></thead>
+  <tbody>
+    <tr><td><span class="stepnum">①</span> Basis &amp; Authority</td>
+      <td>Assemble the controlled inputs and decide who may touch what, with which tools. If the basis is incomplete or contradictory, work pauses here.</td>
+      <td>sealed into <code>_CONTEXT.md</code>; human seal gate</td></tr>
+    <tr><td>Execute &amp; Evidence</td>
+      <td>A bounded agent does the work in isolation and records what it did, with cited evidence.</td>
+      <td>Type-2 TASK → <code>_run_records/</code></td></tr>
+    <tr><td><span class="stepnum">②</span> Check</td>
+      <td>An independent pass verifies the output against the basis and acceptance criteria. <em>Updated:</em> the bench harness runs the tranche's declared validation commands itself and captures the outputs (<code>run-validations</code>); scope and evidence checks read those tool-generated records, never agent attestations. Judgment on sufficiency stays with the reviewer.</td>
+      <td>bench harness (mechanical) + checker/reviewer (judgment)</td></tr>
+    <tr><td><span class="stepnum">③</span> Approve</td>
+      <td>A person authorizes the transition and the approval binds to a git commit. Verification ≠ approval — a green check is structural evidence, never acceptance.</td>
+      <td>human → <code>_STATUS.md</code> + ruling</td></tr>
+    <tr><td><span class="stepnum">④</span> Propagate &amp; Reconcile</td>
+      <td>Affected neighbors/interfaces are notified, superseded versions retired, and the result folded back into the shared basis — only then does the item close.</td>
+      <td>edges, <code>_LATEST</code> pointers, snapshots</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== 8 SHAPES ===================== -->
+<h2 id="shapes"><span class="num">8</span>Two kinds of working root</h2>
+<p>Projects and domains both do governed work, but their internals look different — because they do different jobs. This
+matters because a tool written for one shape won't fit the other, which is why the harness pilots on the project shape and
+defers a domain-shape variant (§11).</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 330" role="img" aria-label="Project shape versus domain shape">
+  <rect x="40" y="44" width="430" height="240" rx="12" class="gray"/>
+  <text x="64" y="74" class="t">Project shape</text>
+  <text x="64" y="94" class="s">organized around deliverables and their approval lifecycle</text>
+  <g class="m">
+    <rect x="64" y="110" width="180" height="32" rx="6" class="box"/><text x="154" y="130" text-anchor="middle">DEL-* folders (§5)</text>
+    <rect x="256" y="110" width="180" height="32" rx="6" class="box"/><text x="346" y="130" text-anchor="middle">_STATUS.md lifecycle</text>
+    <rect x="64" y="152" width="180" height="32" rx="6" class="box"/><text x="154" y="172" text-anchor="middle">_DECISIONS/ rulings</text>
+    <rect x="256" y="152" width="180" height="32" rx="6" class="box"/><text x="346" y="172" text-anchor="middle">Dependencies.csv</text>
+    <rect x="64" y="194" width="372" height="32" rx="6" class="box"/><text x="250" y="214" text-anchor="middle">piping only: approved central _DAG (human-blessed)</text>
+  </g>
+  <text x="64" y="262" class="s">the harness's MVP target: app-dev + piping via adapters</text>
+  <circle cx="60" cy="58" r="13" class="bn"/><text x="60" y="62" text-anchor="middle" class="bt">1</text>
+
+  <rect x="490" y="44" width="430" height="240" rx="12" class="gray"/>
+  <text x="514" y="74" class="t">Domain shape</text>
+  <text x="514" y="94" class="s">organized around a 6-gate decomposition pipeline — no _STATUS.md</text>
+  <g class="m">
+    <rect x="514" y="110" width="180" height="32" rx="6" class="box"/><text x="604" y="130" text-anchor="middle">sources + hashes</text>
+    <rect x="706" y="110" width="190" height="32" rx="6" class="box"/><text x="801" y="130" text-anchor="middle">gate acceptance records</text>
+    <rect x="514" y="152" width="180" height="32" rx="6" class="box"/><text x="604" y="172" text-anchor="middle">decomposition state</text>
+    <rect x="706" y="152" width="190" height="32" rx="6" class="teal"/><text x="801" y="172" text-anchor="middle">catalog.sqlite (index)</text>
+  </g>
+  <text x="514" y="212" class="s">catalog.sqlite is the sanctioned database pattern:</text>
+  <text x="514" y="228" class="s">gitignored, rebuildable, delete-and-regenerate, never the authority</text>
+  <text x="514" y="262" class="s">needs its own verify variant — deferred, not forgotten (§11)</text>
+  <circle cx="510" cy="58" r="13" class="bn"/><text x="510" y="62" text-anchor="middle" class="bt">2</text>
+
+  <rect x="40" y="296" width="880" height="18" rx="6" fill="none" stroke="none"/>
+</svg>
+<figcaption>Same governance spirit, different anatomy. Bottom-right: the right way to use a database in this system — a throwaway, rebuildable index.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>Project shape</strong> is organized around deliverables and their approval lifecycle — the files from §5, plus the human rulings in <code>_DECISIONS/</code>. The harness reads each project through a small adapter manifest, because even the two pilot projects encode the pattern differently.</li>
+  <li><span class="b">2</span><strong>Domain shape</strong> is organized around a 6-gate decomposition pipeline: sources are admitted (with hashes), checked, and accepted at each gate. The <code>catalog.sqlite</code> here is the pattern the proposed D-GOV-01 ruling formalizes for <em>Chirality governance state and harness projections</em>: a rebuildable, gitignored index you can delete and regenerate — never the authority. The scope matters: engine-owned domain stores (the OpenPipeStress SQLite-backed persistence store for model states and runs) are sanctioned authoritative <em>domain</em> truth under K-DOMAIN-1 and the adopted profile — governed by the K-DOMAIN family, not by this rule. One verified gap is parked in §11: domain gate acceptance binds by content SHA-256, not a git commit SHA.</li>
+</ul>
+
+<!-- ===================== 9 DRIFT ===================== -->
+<h2 id="drift"><span class="num">9</span>The drift problem — why a harness at all</h2>
+<p class="lead">New section. The rules in §2 are practiced, but nothing mechanically checks that the many places
+<em>restating</em> state still agree with the authority. They don't. This is the concrete, measured problem the bench
+harness exists to fix — shown here with the system's own files.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 430" role="img" aria-label="One fact restated across five drifting surfaces">
+  <rect x="330" y="176" width="300" height="66" rx="10" class="ink"/>
+  <text x="480" y="203" text-anchor="middle" class="mw">one fact: is the open_pipe_stress</text>
+  <text x="480" y="221" text-anchor="middle" class="mw">profile ADOPTED or DRAFT?</text>
+
+  <rect x="40" y="44" width="272" height="88" rx="10" class="box"/>
+  <text x="60" y="70" class="m">RULINGS_PUBLISHED.md · top</text>
+  <text x="60" y="90" class="s">"ProfileStatus: ADOPTED (Gate 2</text>
+  <text x="60" y="105" class="s">approved by owner 2026-06-21)"</text>
+  <circle cx="60" cy="58" r="13" class="bn"/><text x="60" y="62" text-anchor="middle" class="bt">1</text>
+
+  <rect x="344" y="44" width="272" height="88" rx="10" class="red"/>
+  <text x="364" y="70" class="m">same file · closing paragraph</text>
+  <text x="364" y="90" class="s">"Profile remains DRAFT (not</text>
+  <text x="364" y="105" class="s">VALIDATED …) and not ADOPTED"</text>
+  <circle cx="364" cy="58" r="13" class="bn"/><text x="364" y="62" text-anchor="middle" class="bt">2</text>
+
+  <rect x="648" y="44" width="272" height="88" rx="10" class="red"/>
+  <text x="668" y="70" class="m">DOMAIN_ENGINE_INDEX.md</text>
+  <text x="668" y="90" class="s">banner: "No profile is ADOPTED."</text>
+  <text x="668" y="105" class="s">its own table: "ADOPTED"</text>
+  <circle cx="668" cy="58" r="13" class="bn"/><text x="668" y="62" text-anchor="middle" class="bt">3</text>
+
+  <rect x="40" y="286" width="272" height="88" rx="10" class="red"/>
+  <text x="60" y="312" class="m">profile YAML · header vs field</text>
+  <text x="60" y="332" class="s">comment: "NOT validated, NOT adopted"</text>
+  <text x="60" y="347" class="s">field: profile_status: "ADOPTED"</text>
+  <circle cx="60" cy="300" r="13" class="bn"/><text x="60" y="304" text-anchor="middle" class="bt">4</text>
+
+  <rect x="344" y="286" width="272" height="88" rx="10" class="box"/>
+  <text x="364" y="312" class="m">the filename itself</text>
+  <text x="364" y="332" class="s">open_pipe_stress.DRAFT.yaml —</text>
+  <text x="364" y="347" class="s">"historical", says an inline comment</text>
+  <circle cx="364" cy="300" r="13" class="bn"/><text x="364" y="304" text-anchor="middle" class="bt">5</text>
+
+  <rect x="648" y="286" width="272" height="88" rx="10" class="amber"/>
+  <text x="668" y="312" class="m">the measured baseline</text>
+  <text x="668" y="334" class="t">92 / 154</text>
+  <text x="668" y="354" class="s">status files disagreeing with their own</text>
+  <text x="668" y="368" class="s">history — all 92 in piping; app-dev clean</text>
+  <circle cx="668" cy="300" r="13" class="bn"/><text x="668" y="304" text-anchor="middle" class="bt">6</text>
+
+  <path d="M176 132 L410 176" class="edgeBad"/>
+  <path d="M480 132 L480 176" class="edgeBad"/>
+  <path d="M784 132 L560 176" class="edgeBad"/>
+  <path d="M176 286 L410 242" class="edgeBad"/>
+  <path d="M480 286 L480 242" class="edgeBad"/>
+</svg>
+<figcaption>Real files from the repo's own tier-0 control area, all restating one fact — and disagreeing. Every surface that restates state is a drift surface.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>The authority statement</strong> — the owner did rule Gate 2 on 2026-06-21; the top of the summary file records it.</li>
+  <li><span class="b">2</span><strong>A stale paragraph in the very same file</strong> still says the opposite. Nothing flagged it, because nothing checks prose restatements against each other.</li>
+  <li><span class="b">3</span><strong>The index contradicts itself</strong> — a status banner written early, a table updated later.</li>
+  <li><span class="b">4</span><strong>Header comments drift from field values</strong> — resolved today only by another inline comment declaring which surface wins.</li>
+  <li><span class="b">5</span><strong>Even filenames restate state</strong> and go stale. None of this is carelessness; it is what mutable narrative surfaces do without a mechanical audit.</li>
+  <li><span class="b">6</span><strong>At project scale the same disease measures 92 of 154</strong> <code>_STATUS.md</code> files whose <code>Current State</code> disagrees with their own last parsed history entry — all 92 in piping (app-dev is 0/53), and all with a single mechanical signature: the history records a human-approved advance to CHECKING, but the frontmatter <code>Current State</code> line was never updated from IN_PROGRESS. That number is the harness's baseline metric: the tool succeeds if it trends down, and fails if it produces more planning instead.</li>
+</ul>
+
+<div class="callout info"><span class="lbl">The design consequence</span>
+The fix is <em>not</em> a database that owns status (that fork is closed by the proposed D-GOV-01 ruling — see §10–11), and
+<em>not</em> more registers restating state in new places. It is a checker with no governed writes that audits <em>every</em> restated-state
+surface — status files, pointer files, banners vs. tables, header comments vs. fields, filenames vs. fields — plus honest
+parsing: histories are prose, so every parse is labeled <code>PARSED</code>, <code>PARSED_WITH_ASSUMPTIONS</code>, or
+<code>UNPARSEABLE</code>, and the tool never silently guesses.
+</div>
+
+<!-- ===================== 10 HARNESS ===================== -->
+<h2 id="harness"><span class="num">10</span>The bench harness, integrated</h2>
+<p class="lead">Rewritten section. The previous explainer described an earlier design (a seven-check verify CLI). The
+harness as now proposed is a <strong>practitioner bench tool</strong> built around the <em>tranche</em> — one bounded piece
+of work against a project-local context. It reads, narrows, checks, and summarizes. It never writes a governed authority
+file — its writes fall into three honest categories: read-only inspection (<code>status</code>, <code>drift</code>),
+generated-artifact output (briefs, reports, captured evidence — all labeled), and the separate write-path guard that only
+refuses. It never approves, never transitions state, and never becomes the project.</p>
+
+<figure>
+<svg class="dg" viewBox="0 0 960 520" role="img" aria-label="The bench harness around the project">
+  <rect x="40" y="44" width="230" height="360" rx="12" class="gray"/>
+  <text x="64" y="74" class="t">Project files (authority)</text>
+  <g class="m">
+    <rect x="64" y="92" width="182" height="30" rx="6" class="box"/><text x="155" y="111" text-anchor="middle">active plan / queue</text>
+    <rect x="64" y="130" width="182" height="30" rx="6" class="box"/><text x="155" y="149" text-anchor="middle">_STATUS.md × N</text>
+    <rect x="64" y="168" width="182" height="30" rx="6" class="box"/><text x="155" y="187" text-anchor="middle">decision register</text>
+    <rect x="64" y="206" width="182" height="30" rx="6" class="box"/><text x="155" y="225" text-anchor="middle">DAG pointer (piping)</text>
+    <rect x="64" y="244" width="182" height="30" rx="6" class="box"/><text x="155" y="263" text-anchor="middle">validation commands</text>
+    <rect x="64" y="282" width="182" height="30" rx="6" class="box"/><text x="155" y="301" text-anchor="middle">git state</text>
+    <rect x="64" y="330" width="182" height="42" rx="6" class="teal"/>
+    <text x="155" y="348" text-anchor="middle">_harness/adapter.yaml</text>
+    <text x="155" y="363" text-anchor="middle" font-size="10">tiny, human-authored map</text>
+  </g>
+  <circle cx="60" cy="58" r="13" class="bn"/><text x="60" y="62" text-anchor="middle" class="bt">1</text>
+
+  <path d="M270 220 L320 220" class="edge" marker-end="url(#arrowTeal)"/>
+  <text x="295" y="208" text-anchor="middle" class="s">read</text>
+
+  <rect x="324" y="44" width="330" height="440" rx="12" class="indigo"/>
+  <text x="348" y="74" class="t">chirality-harness — no governed writes</text>
+  <g class="m">
+    <rect x="348" y="92" width="282" height="34" rx="6" class="box"/><text x="489" y="113" text-anchor="middle">status — one page, source-cited</text>
+    <rect x="348" y="134" width="282" height="34" rx="6" class="box"/><text x="489" y="155" text-anchor="middle">drift — consistency-check vs 92/154</text>
+    <rect x="348" y="176" width="282" height="34" rx="6" class="box"/><text x="489" y="197" text-anchor="middle">next / brief — cited projection</text>
+    <rect x="348" y="218" width="282" height="34" rx="6" class="box"/><text x="489" y="239" text-anchor="middle">run-validations — tool-run evidence</text>
+    <rect x="348" y="260" width="282" height="34" rx="6" class="box"/><text x="489" y="281" text-anchor="middle">scope-check — advisory git-diff fence</text>
+    <rect x="348" y="302" width="282" height="34" rx="6" class="box"/><text x="489" y="323" text-anchor="middle">evidence-check — completeness only</text>
+  </g>
+  <rect x="348" y="352" width="282" height="54" rx="8" class="amber"/>
+  <text x="489" y="374" text-anchor="middle" class="s">brief = projection of _CONTEXT.md + plan row</text>
+  <text x="489" y="391" text-anchor="middle" class="s">every field cites its source · non-authority footer</text>
+  <rect x="348" y="416" width="282" height="52" rx="8" class="box"/>
+  <text x="489" y="437" text-anchor="middle" class="s">optional SQLite cache: gitignored, rebuilt by one</text>
+  <text x="489" y="453" text-anchor="middle" class="s">command, safe to delete, never cited (D-GOV-01)</text>
+  <circle cx="344" cy="58" r="13" class="bn"/><text x="344" y="62" text-anchor="middle" class="bt">2</text>
+
+  <path d="M654 160 L710 160" class="edge" marker-end="url(#arrowGray)"/>
+  <text x="682" y="148" text-anchor="middle" class="s">write</text>
+
+  <rect x="714" y="120" width="206" height="122" rx="12" class="gray"/>
+  <text x="738" y="150" class="t">_harness/out/</text>
+  <text x="738" y="170" class="s">labeled generated · deletable</text>
+  <text x="738" y="185" class="s">safe to rebuild at any time</text>
+  <text x="738" y="212" class="bad-t">never read back as input</text>
+  <circle cx="734" cy="134" r="13" class="bn"/><text x="734" y="138" text-anchor="middle" class="bt">3</text>
+  <path d="M817 242 C 817 290, 700 300, 660 300" class="edgeBad" marker-end="url(#arrowBad)"/>
+  <text x="790" y="290" text-anchor="middle" class="bad-t">✕ no return path</text>
+
+  <rect x="714" y="330" width="206" height="88" rx="12" class="amber"/>
+  <text x="738" y="360" class="t">Practitioner</text>
+  <text x="738" y="380" class="s">selects the tranche · rules on</text>
+  <text x="738" y="395" class="s">sufficiency, priority, acceptance</text>
+  <circle cx="734" cy="344" r="13" class="bn"/><text x="734" y="348" text-anchor="middle" class="bt">4</text>
+  <path d="M654 380 L714 380" class="edge" marker-end="url(#arrowAmber)"/>
+
+  <rect x="40" y="428" width="230" height="56" rx="10" class="red"/>
+  <text x="64" y="452" class="s">separate, independent fix:</text>
+  <text x="64" y="468" class="m">write_status.sh guard (§6)</text>
+  <circle cx="60" cy="442" r="13" class="bn"/><text x="60" y="446" text-anchor="middle" class="bt">5</text>
+</svg>
+<figcaption>The bench tool around the project. It reads authority, generates disposable views, prepares practitioner decisions — and its outputs never feed back in.</figcaption>
+</figure>
+
+<ul class="key">
+  <li><span class="b">1</span><strong>Adapters are data, not code.</strong> Each project carries a tiny human-authored manifest telling the harness where its plan, coordination file, status roots, decision register, and validation commands live — because even the two pilot projects encode the pattern differently (§8). A third project is configuration, not a new parser. Verified addenda: the manifest also declares an explicit <code>.archive/</code> exclusion (app-dev's <code>.archive/</code> holds a full duplicate DEL tree that would otherwise be double-counted and linted), disambiguates <code>Dependencies.csv</code> vs <code>_DEPENDENCIES.md</code> as the dependency register, and declares the per-root guard preconditions from §6.</li>
+  <li><span class="b">2</span><strong>Six commands, one worldview-free posture.</strong> <code>status</code> and <code>drift</code> read the project; <code>next</code>/<code>brief</code> narrow work to one tranche; <code>run-validations</code> executes the brief's declared commands <em>itself</em> and captures the outputs — evidence is generated by the tool, never attested by the agent; <code>scope-check</code> and <code>evidence-check</code> report against the brief. The brief is a cited projection of the sealed context and plan — the sources govern wherever they disagree, and it becomes an enforceable fence only as a committed, human-adopted record (D-GOV-04); BLOCK-capable checks never fire against an unadopted candidate. <code>run-validations</code> runs under a mutation contract (pre/post <code>git status</code>, declared commands only, BLOCK on governed-file mutation outside declared output paths). A green check is structural evidence, never approval.</li>
+  <li><span class="b">3</span><strong>Self-exclusion — two classes.</strong> Every output lives under a labeled generated path, states its sources and generation time, and is safe to delete. <em>Narrative projections</em> (status, drift, closeout reports) are never read back by any harness component, period. <em>Evidence records</em> captured by <code>run-validations</code> may be read as facts for the tranche that produced them — and never promote into lifecycle, approval, or plan state. This is what lets <code>evidence-check</code> function without rebuilding the drift loop of §9 one level up.</li>
+  <li><span class="b">4</span><strong>The practitioner stays the deciding instrument.</strong> The tool narrows the question — it does not answer questions of priority, sufficiency, interpretation, risk appetite, or acceptance. Those were never information-retrieval problems.</li>
+  <li><span class="b">5</span><strong>The shell write-path fix travels alongside, not inside.</strong> The <code>write_status.sh</code> precondition guard (§6) — the shell path's counterpart to the guard logic app-dev's TypeScript <code>transition.ts</code> path already enforces — ships in the same first PR but is independent of the read-only harness — keeping the "harness refuses nothing" claim exactly true.</li>
+</ul>
+
+<div class="callout good"><span class="lbl">The substrate question is framed for closure — formally open until ruled</span>
+Earlier plan generations flipped three times on whether operational governance state may live in a database with write
+authority (a SQLite control plane with a coordinator and leases was proposed, rejected, re-proposed, and re-cut). The v3 plan
+drafts <strong>D-GOV-01</strong> to end the loop: git-tracked plain files are the sole authority for governance state; the
+harness writes no governed authority files; any governance/harness database is a rebuildable, gitignored projection (the
+<code>catalog.sqlite</code> pattern from §8); the only write-path interventions are precondition guards. Until the owner rules
+it, D-GOV-01 is a proposal and the fork remains formally open. Once ruled, re-opening it requires superseding a record — not
+just writing a new plan.
+</div>
+
+<!-- ===================== 11 DELTA ===================== -->
+<h2 id="delta"><span class="num">11</span>Corrections &amp; open rulings</h2>
+<p class="lead">Two honest lists. First: what this explainer corrects from the 2026-06-23 version, so the record of the fix
+is itself visible (K-CONFLICT-1 applied to our own documents). Second: what remains a PROPOSAL awaiting a human ruling —
+because per K-AUTH-1 this document can frame decisions but never make them.</p>
+
+<h3 style="margin-top:26px">Corrections to the previous explainer</h3>
+<table>
+  <thead><tr><th>Previous explainer said</th><th>Corrected to</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>§9 depicted the harness as a seven-check read-only verify CLI that "can even refuse an obviously-broken precondition."</td>
+      <td>§10 shows the tranche-centered bench tool from plan v2; the refuse behavior lives only in the <code>write_status.sh</code> guard, outside the harness's inspection surface.</td>
+      <td>Design superseded; and the old phrasing blurred the tools-never-block line that keeps the authority model clean.</td>
+    </tr>
+    <tr>
+      <td>The K-* constitution presented as settled canon.</td>
+      <td>§2 labels it honestly: practiced and enforced by instruction, but <code>docs/CONTRACT.md</code> / <code>DIRECTIVE.md</code> are DRAFT pending human ratification.</td>
+      <td>K-CLAIM-1 — don't overstate warrant, including about our own governance.</td>
+    </tr>
+    <tr>
+      <td><code>_STATUS.md</code> presented as the authority with no mention of practice.</td>
+      <td>§5 and §9 carry the measured reality: authority <em>by rule</em>, but 92/154 files disagree with their own histories, and control-area surfaces contradict themselves.</td>
+      <td>The drift problem is the harness's reason to exist; hiding it made the old §9 unmotivated.</td>
+    </tr>
+    <tr>
+      <td>"No hidden DB, no hidden memory. If it isn't a committed file, it isn't real." (absolute)</td>
+      <td>§1 key 5: true for <em>authoritative</em> state; DIRECTIVE §2.5 permits non-authoritative operator convenience state that never overrides files.</td>
+      <td>Precision — the absolute form contradicted the governing document.</td>
+    </tr>
+    <tr>
+      <td>§6: "Everything else [besides the two gates] can be machine-assisted."</td>
+      <td>§6 key 3: IN_PROGRESS → CHECKING is also a human transition per SPEC §3.3; the two gates are the constitutional <em>minimum</em> (K-GATE-1), not the complete set of human acts.</td>
+      <td>Transition table in SPEC is explicit; the old phrasing invited over-automation.</td>
+    </tr>
+    <tr>
+      <td>No mention of the <code>write_status.sh</code> hole.</td>
+      <td>§6 key 4 names the verified hole and its guard.</td>
+      <td>A known, verified defect on the most consequential transition belongs in any honest map.</td>
+    </tr>
+    <tr>
+      <td>Repo map omitted <code>_DomainEngines/</code>; companion pointer named a plan file whose filename and title disagree.</td>
+      <td>§1 includes the control area; footer points to plan v2 and names the filename/title mismatch as a lineage note.</td>
+      <td>Completeness; and the mismatch itself is a §9-class restated-state defect worth flagging.</td>
+    </tr>
+    <tr>
+      <td>Inherited June figures: the 101/154 drift baseline; a uniform frontmatter approval SHA; <code>write_status.sh</code> as the single status-write path; a tracked vendored copy.</td>
+      <td>92/154, all in piping (app-dev 0/53), one mechanical signature; approval-SHA fields exist only in app-dev's 53 files; app-dev's <code>transition.ts</code> is prior art on the same guard semantics; the staging copy is a gitignored, regenerated export artifact (§5, §6, §9, §10).</td>
+      <td>2026-07-01 live-repo verification with full access; K-CLAIM-1 applied to our own numbers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Open rulings and parked findings</h3>
+<table>
+  <thead><tr><th>Item</th><th>Status</th><th>What unblocks it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>D-GOV-01</strong> — substrate authority (git-as-truth for governance state; no governed writes by the harness; rebuildable caches only; guards may refuse)</td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules the stub shipped with plan v3; SHA binds at CHANGE publish (K-AUTH-2).</td></tr>
+    <tr><td><strong>D-GOV-02</strong> — severity taxonomy &amp; override (BLOCK/REVIEW/WARN/INFO/NOT_APPLICABLE; conditional SHA-TBD; no non-overridable block on issuance)</td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules; exit-code contract lands with the first PR.</td></tr>
+    <tr><td><strong>D-GOV-03</strong> — pilot scope (app-dev + piping + <code>_DomainEngines/</code> read/report; <code>domains/*</code> deferred)</td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules the boundary of the first release.</td></tr>
+    <tr><td><strong>D-GOV-04</strong> — human actor identity &amp; adoption binding (committed allowlist; adopted briefs committed; identity checks refuse absent it)</td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner curates the allowlist; prevents agent prose masquerading as approval.</td></tr>
+    <tr><td><strong>D-GOV-06</strong> — <code>open_pipe_stress</code> current truth (affirm ADOPTED per the 2026-06-21 Gate-2 ruling; direct cleanup of contradicting surfaces)</td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>The §9 contradiction is resolved by ruling, never by the tool.</td></tr>
+    <tr><td>Root constitution ratification — <strong>D-GOV-05</strong> proposes ratifying a minimal harness basis now, full root ratification on its own track</td>
+      <td>DRAFT pending · D-GOV-05 PROPOSAL</td><td>Human ratification; until then, harness reports label each checked invariant's status and stay advisory.</td></tr>
+    <tr><td>History trailer grammar (one normalized, append-only line per transition)</td>
+      <td>Gated SPEC §3.1 amendment</td><td>Rides constitution ratification; until then the parser uses caveat classes and never guesses.</td></tr>
+    <tr><td>Domain-shape verifier (<code>domains/*</code> have no <code>_STATUS.md</code>)</td>
+      <td>Deferred, parked</td><td>Own verify variant after the project-shape MVP proves out.</td></tr>
+    <tr><td>Domain K-AUTH-2 gap (gate acceptance binds content SHA-256, not a git SHA) — <strong>D-GOV-07</strong></td>
+      <td>PROPOSAL · HumanRuling: TBD</td><td>Bind to both content SHA-256 and a git SHA; existing acceptances grandfathered with WARN.</td></tr>
+    <tr><td>Obligations / applicability register (codes, standards; IP-bounded)</td>
+      <td>Deferred, parked</td><td>Revisit after the bench tool proves its value on live tranches.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn"><span class="lbl">The measure that matters</span>
+The archive already holds a thesis, an explainer, and four harness plan generations — while 92 of 101 piping deliverables sit
+IN_PROGRESS and all 53 app-dev deliverables sit in CHECKING. This document is a map, and the map is now current. The next
+artifact should be the first pull request: adapters, <code>status</code>, <code>drift</code> against the 92/154 baseline,
+the <code>brief</code> command, and the guard. Success is tranches closing and the drift count falling — not another diagram.
+</div>
+
+<hr class="soft">
+
+<!-- ===================== GLOSSARY ===================== -->
+<h2 id="glossary"><span class="num">★</span>Glossary — terms you'll keep seeing</h2>
+<div class="gloss">
+  <div><b>Working root</b> — a folder where governed work happens (<code>projects/*</code> or <code>domains/*</code>). There are six.</div>
+  <div><b>Deliverable</b> — one unit of work in its own folder (the DEL-* from §5).</div>
+  <div><b>Basis</b> — the controlled set of inputs an agent may rely on; sealed into <code>_CONTEXT.md</code>.</div>
+  <div><b>Sealed / seal gate</b> — a human freezing &amp; approving the basis before bounded work may start.</div>
+  <div><b>Issued</b> — the final state; a human has vouched for the work, bound to a git commit.</div>
+  <div><b>Snapshot</b> — an immutable frozen copy (e.g. a run record); never edited after the fact.</div>
+  <div><b>K-* invariant</b> — a numbered constitutional rule (e.g. K-AUTH-1 "only humans approve"). Practiced today; ratified record pending.</div>
+  <div><b>Approval SHA</b> — the git commit hash an approval is tied to; if content changes, the approval is voided.</div>
+  <div><b>Drift</b> — any restated-state surface no longer matching the authority: a stale banner, a mismatched history, a pinned hash that changed. §9's subject; the harness's baseline metric is 92/154.</div>
+  <div><b>Tranche</b> — one bounded piece of work against a project-local context; the harness's core object.</div>
+  <div><b>Brief</b> — a generated, source-cited projection of the sealed context plus a plan row for one tranche; carries a non-authority footer; sources govern on disagreement.</div>
+  <div><b>Adapter manifest</b> — a tiny per-project file (<code>_harness/adapter.yaml</code>) telling the harness where that project keeps its plan, statuses, decisions, and validation commands.</div>
+  <div><b>run-validations</b> — the harness command that executes an adopted brief's declared checks itself, under a mutation contract, and captures outputs; the top of the evidence provenance ladder (attestations never pass silently).</div>
+  <div><b>Caveat class</b> — the honesty label on every parsed history: PARSED, PARSED_WITH_ASSUMPTIONS, or UNPARSEABLE. The tool never silently guesses.</div>
+  <div><b>Guard</b> — a precondition check inside an existing write tool that refuses an objectively-broken transition (the <code>write_status.sh</code> patch). Refuses; never authors.</div>
+  <div><b>Rebuildable cache</b> — the only sanctioned database pattern <em>for governance state and harness projections</em>: gitignored, regenerated from files by one command, safe to delete, never cited. Engine-owned domain stores are governed by K-DOMAIN-1, not this rule.</div>
+  <div><b>Self-exclusion</b> — two classes: narrative reports are never read back by the harness; captured evidence records are readable as facts for their tranche and never promote into lifecycle, approval, or plan state.</div>
+  <div><b>D-GOV-01..07</b> — the seven proposed rulings shipped with plan v3: substrate, severity &amp; override, pilot scope, actor identity, minimal governance basis, profile current truth, domain SHA binding. All HumanRuling: TBD.</div>
+  <div><b>Persona</b> — an agent role with a defined lane and write scope (DOMAIN_ENGINE, WORKING_ITEMS, TOOLMAKER, CHANGE…).</div>
+  <div><b>Read-only inspection</b> — the harness's first write-posture category: a deterministic check that inspects files and reports, leaving every governed file byte-identical. The other two categories are labeled generated-artifact output and the refusal-only guard.</div>
+  <div><b>Reconciliation</b> — folding an approved result back into the shared basis so the project stays coherent.</div>
+</div>
+
+<hr class="soft">
+
+<p class="footnote">
+Chirality architecture &amp; workflows — visual explainer, revised 2026-07-01. Supersedes the 2026-06-23 explainer (corrections
+in §11); this v3 copy is patched to the merged plan after mutual cross-review. Companion to
+<code>governance_harness_plan_v3_2026-07-01.html</code> (the merged plan of record candidate, pending D-GOV-01) and
+<code>PLAN_INDEX.md</code>; lineage: the 2026-06-22 planning transcript, the 2026-06-22 v2.1 verified plan (filed under
+<code>plans/.archive/task_management_harness_plan_2026-06-22.html</code>, in the gitignored archive — note the filename/title mismatch), and the 2026-06-23 integration
+assessment (<code>plans/.archive/governance_harness_integration_assessment_2026-06-23.md</code>, also in the gitignored archive; superseded on substrate by the proposed D-GOV-01). All paths repo-relative. Diagrams are illustrative orientation,
+not a governance record; per K-AUTH-1 nothing here approves, adopts, or rules anything.
+</p>
+
+</div>
+</body>
+</html>
