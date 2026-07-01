@@ -121,11 +121,14 @@
   <br><br>
   <strong>v3 alignment (2026-07-01).</strong> This copy is patched to the merged v3 plan after mutual cross-review of the two
   independent revisions: the write posture is stated as three categories rather than "read-only"; self-exclusion is the
-  two-class rule; the cache rule is scoped to governance state; the substrate fork is <em>framed for closure</em> by D-GOV-01,
-  not closed; and the open-rulings table carries the full D-GOV-01..07 set. A 2026-07-01 live-repo verification pass (full
+  two-class rule; the cache rule is scoped to governance state; the substrate fork was at that point <em>framed for closure</em> by D-GOV-01
+  (since ruled — see the post-ruling refresh below); and the open-rulings table carries the full D-GOV-01..07 set. A 2026-07-01 live-repo verification pass (full
   repo access) additionally corrected the inherited drift baseline — initially reported as 101/154 by the June inspection,
   corrected to 92/154 by live verification, all concentrated in piping — and the write-path story (see the §6 and §10 notes
   and the final row of §11's corrections table).
+  <br><br>
+  <strong>Post-ruling refresh (2026-07-01).</strong> The rulings table, constitution status, and substrate callout are
+  updated to the ruled state: D-GOV-01..07 ruled by the owner 2026-07-01, SHA-bound at <code>82a35c545</code> (§2, §9–11).
 </div>
 
 <div class="toc">
@@ -247,13 +250,13 @@ auditable and safe to let agents work in. Every later diagram is just these rule
   </g>
   <rect x="40" y="180" width="864" height="46" rx="10" class="gray"/>
   <text x="472" y="203" text-anchor="middle" class="l">Plus: finished work is frozen as an immutable snapshot (K-SNAP-1) — see §6.</text>
-  <text x="472" y="219" text-anchor="middle" class="s">Honest status: these rules are practiced and enforced by instruction today, but the written constitution is still DRAFT — see the note below.</text>
+  <text x="472" y="219" text-anchor="middle" class="s">Honest status: a minimal harness basis was ratified 2026-07-01 (D-GOV-05); the rest of the constitution stays DRAFT — see the note below.</text>
 </svg>
 <figcaption>The constitution in five ideas. Every later diagram is these rules made concrete.</figcaption>
 </figure>
 
 <ul class="key">
-  <li><span class="b">1</span><strong>Files are the truth.</strong> State lives in readable text you can diff and review by eye. This is why a database is rejected for governance state — you can't review a binary blob at a gate. As of this revision that rejection is drafted as a formal ruling, D-GOV-01 (§10–11), so it stops being re-argued.</li>
+  <li><span class="b">1</span><strong>Files are the truth.</strong> State lives in readable text you can diff and review by eye. This is why a database is rejected for governance state — you can't review a binary blob at a gate. That rejection is now a formal ruling, D-GOV-01 (ruled 2026-07-01; §10–11), so it stops being re-argued.</li>
   <li><span class="b">2</span><strong>Agents propose; humans decide.</strong> An agent can draft, analyze, and recommend — but the moment something becomes binding (approved, issued), a human authors that record. A hard line, not a setting.</li>
   <li><span class="b">3</span><strong>Evidence first.</strong> A claim without a cited source is a defect. This is what lets a reviewer trust the work.</li>
   <li><span class="b">4</span><strong>No invention.</strong> When the answer isn't known, the agent writes <code>TBD</code> rather than fabricating one. Honest gaps beat confident guesses.</li>
@@ -264,7 +267,10 @@ auditable and safe to let agents work in. Every later diagram is just these rule
 The previous explainer presented the K-* rules as settled canon. In fact <code>docs/CONTRACT.md</code> and
 <code>docs/DIRECTIVE.md</code> carry "DRAFT pending human ratification" banners — the rules are real and practiced, but the
 ratified record is still owed. Per K-CLAIM-1 (don't overstate warrant), this explainer and every harness report label that
-status rather than hide it. Ratification is one of the open rulings in §11.
+status rather than hide it. Partially settled 2026-07-01: <strong>D-GOV-05</strong> ratified a minimal harness basis — the
+source-of-truth rule, human authority (K-AUTH-1/2), the generated-output rule, path containment (K-WRITE-2), provenance
+(K-PROV-1), status canonicity (K-STATUS-1), and the severity taxonomy. The remainder of the root docs stays DRAFT on its
+own ratification track (§11).
 </div>
 
 <!-- ===================== 3 LAYERS ===================== -->
@@ -582,7 +588,7 @@ defers a domain-shape variant (§11).</p>
 
 <ul class="key">
   <li><span class="b">1</span><strong>Project shape</strong> is organized around deliverables and their approval lifecycle — the files from §5, plus the human rulings in <code>_DECISIONS/</code>. The harness reads each project through a small adapter manifest, because even the two pilot projects encode the pattern differently.</li>
-  <li><span class="b">2</span><strong>Domain shape</strong> is organized around a 6-gate decomposition pipeline: sources are admitted (with hashes), checked, and accepted at each gate. The <code>catalog.sqlite</code> here is the pattern the proposed D-GOV-01 ruling formalizes for <em>Chirality governance state and harness projections</em>: a rebuildable, gitignored index you can delete and regenerate — never the authority. The scope matters: engine-owned domain stores (the OpenPipeStress SQLite-backed persistence store for model states and runs) are sanctioned authoritative <em>domain</em> truth under K-DOMAIN-1 and the adopted profile — governed by the K-DOMAIN family, not by this rule. One verified gap is parked in §11: domain gate acceptance binds by content SHA-256, not a git commit SHA.</li>
+  <li><span class="b">2</span><strong>Domain shape</strong> is organized around a 6-gate decomposition pipeline: sources are admitted (with hashes), checked, and accepted at each gate. The <code>catalog.sqlite</code> here is the pattern the D-GOV-01 ruling (2026-07-01) formalizes for <em>Chirality governance state and harness projections</em>: a rebuildable, gitignored index you can delete and regenerate — never the authority. The scope matters: engine-owned domain stores (the OpenPipeStress SQLite-backed persistence store for model states and runs) are sanctioned authoritative <em>domain</em> truth under K-DOMAIN-1 and the adopted profile — governed by the K-DOMAIN family, not by this rule. One verified gap is parked in §11: domain gate acceptance binds by content SHA-256, not a git commit SHA.</li>
 </ul>
 
 <!-- ===================== 9 DRIFT ===================== -->
@@ -652,8 +658,15 @@ harness exists to fix — shown here with the system's own files.</p>
   <li><span class="b">6</span><strong>At project scale the same disease measures 92 of 154</strong> <code>_STATUS.md</code> files whose <code>Current State</code> disagrees with their own last parsed history entry — all 92 in piping (app-dev is 0/53), and all with a single mechanical signature: the history records a human-approved advance to CHECKING, but the frontmatter <code>Current State</code> line was never updated from IN_PROGRESS. That number is the harness's baseline metric: the tool succeeds if it trends down, and fails if it produces more planning instead.</li>
 </ul>
 
+<div class="callout good"><span class="lbl">Update — the depicted contradictions are now corrected</span>
+The control-area contradictions shown above were corrected by the D-GOV-06 cleanup, published 2026-07-01. The figures stay
+unchanged: they are the measured evidence, and the cleanup diff becomes the harness's adversarial fixtures — the first
+live files its self-check must pass. The system measured its own drift, ruled the fix (D-GOV-06), and executed it. The
+92/154 project-scale baseline in ⑥ remains the live metric until the harness lands.
+</div>
+
 <div class="callout info"><span class="lbl">The design consequence</span>
-The fix is <em>not</em> a database that owns status (that fork is closed by the proposed D-GOV-01 ruling — see §10–11), and
+The fix is <em>not</em> a database that owns status (that fork is closed by D-GOV-01, ruled 2026-07-01 — see §10–11), and
 <em>not</em> more registers restating state in new places. It is a checker with no governed writes that audits <em>every</em> restated-state
 surface — status files, pointer files, banners vs. tables, header comments vs. fields, filenames vs. fields — plus honest
 parsing: histories are prose, so every parse is labeled <code>PARSED</code>, <code>PARSED_WITH_ASSUMPTIONS</code>, or
@@ -742,21 +755,24 @@ refuses. It never approves, never transitions state, and never becomes the proje
   <li><span class="b">5</span><strong>The shell write-path fix travels alongside, not inside.</strong> The <code>write_status.sh</code> precondition guard (§6) — the shell path's counterpart to the guard logic app-dev's TypeScript <code>transition.ts</code> path already enforces — ships in the same first PR but is independent of the read-only harness — keeping the "harness refuses nothing" claim exactly true.</li>
 </ul>
 
-<div class="callout good"><span class="lbl">The substrate question is framed for closure — formally open until ruled</span>
+<div class="callout good"><span class="lbl">The substrate question is closed — D-GOV-01 ruled 2026-07-01</span>
 Earlier plan generations flipped three times on whether operational governance state may live in a database with write
-authority (a SQLite control plane with a coordinator and leases was proposed, rejected, re-proposed, and re-cut). The v3 plan
-drafts <strong>D-GOV-01</strong> to end the loop: git-tracked plain files are the sole authority for governance state; the
-harness writes no governed authority files; any governance/harness database is a rebuildable, gitignored projection (the
-<code>catalog.sqlite</code> pattern from §8); the only write-path interventions are precondition guards. Until the owner rules
-it, D-GOV-01 is a proposal and the fork remains formally open. Once ruled, re-opening it requires superseding a record — not
+authority (a SQLite control plane with a coordinator and leases was proposed, rejected, re-proposed, and re-cut).
+<strong>D-GOV-01</strong> ended the loop — ruled by the owner 2026-07-01, SHA-bound at <code>82a35c545</code>: git-tracked
+plain files are the sole authority for governance state; the harness writes no governed authority files; any
+governance/harness database is a rebuildable, gitignored projection (the <code>catalog.sqlite</code> pattern from §8); the
+only write-path interventions are precondition guards. The authority constraint is two-sided: no tool may author or approve
+governance state, and per K-GATE-1 (D-GOV-02) no tool may non-overridably BLOCK the human's CHECKING → ISSUED judgment
+either — authority is subtracted in both directions. The fork is closed; re-opening it requires superseding the record — not
 just writing a new plan.
 </div>
 
 <!-- ===================== 11 DELTA ===================== -->
 <h2 id="delta"><span class="num">11</span>Corrections &amp; open rulings</h2>
 <p class="lead">Two honest lists. First: what this explainer corrects from the 2026-06-23 version, so the record of the fix
-is itself visible (K-CONFLICT-1 applied to our own documents). Second: what remains a PROPOSAL awaiting a human ruling —
-because per K-AUTH-1 this document can frame decisions but never make them.</p>
+is itself visible (K-CONFLICT-1 applied to our own documents). Second: the rulings ledger — the D-GOV rows were ruled by
+the owner 2026-07-01 and SHA-bound at <code>82a35c545</code>; per K-AUTH-1 this document framed those decisions but never
+made them. The canonical records live under <code>docs/governance_harness/_DECISIONS/</code>.</p>
 
 <h3 style="margin-top:26px">Corrections to the previous explainer</h3>
 <table>
@@ -810,23 +826,23 @@ because per K-AUTH-1 this document can frame decisions but never make them.</p>
   <thead><tr><th>Item</th><th>Status</th><th>What unblocks it</th></tr></thead>
   <tbody>
     <tr><td><strong>D-GOV-01</strong> — substrate authority (git-as-truth for governance state; no governed writes by the harness; rebuildable caches only; guards may refuse)</td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules the stub shipped with plan v3; SHA binds at CHANGE publish (K-AUTH-2).</td></tr>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Ruled and published; the SHA bound at CHANGE publish (K-AUTH-2). Reopening requires superseding the record.</td></tr>
     <tr><td><strong>D-GOV-02</strong> — severity taxonomy &amp; override (BLOCK/REVIEW/WARN/INFO/NOT_APPLICABLE; conditional SHA-TBD; no non-overridable block on issuance)</td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules; exit-code contract lands with the first PR.</td></tr>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Ruled as drafted; the exit-code contract lands with the first PR.</td></tr>
     <tr><td><strong>D-GOV-03</strong> — pilot scope (app-dev + piping + <code>_DomainEngines/</code> read/report; <code>domains/*</code> deferred)</td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner rules the boundary of the first release.</td></tr>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Ruled; the boundary of the first release is set.</td></tr>
     <tr><td><strong>D-GOV-04</strong> — human actor identity &amp; adoption binding (committed allowlist; adopted briefs committed; identity checks refuse absent it)</td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>Owner curates the allowlist; prevents agent prose masquerading as approval.</td></tr>
-    <tr><td><strong>D-GOV-06</strong> — <code>open_pipe_stress</code> current truth (affirm ADOPTED per the 2026-06-21 Gate-2 ruling; direct cleanup of contradicting surfaces)</td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>The §9 contradiction is resolved by ruling, never by the tool.</td></tr>
-    <tr><td>Root constitution ratification — <strong>D-GOV-05</strong> proposes ratifying a minimal harness basis now, full root ratification on its own track</td>
-      <td>DRAFT pending · D-GOV-05 PROPOSAL</td><td>Human ratification; until then, harness reports label each checked invariant's status and stay advisory.</td></tr>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Ruled; allowlist created at <code>docs/governance_harness/human_actors.md</code>, the owner its sole entry — agent prose can't masquerade as approval.</td></tr>
+    <tr><td><strong>D-GOV-06</strong> — <code>open_pipe_stress</code> current truth (ADOPTED affirmed per the 2026-06-21 Gate-2 ruling; cleanup of contradicting surfaces directed)</td>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>The §9 contradiction was resolved by ruling, never by the tool; cleanup executed 2026-07-01 — this same publication.</td></tr>
+    <tr><td>Root constitution ratification — <strong>D-GOV-05</strong> ratified a minimal harness basis; full root ratification proceeds on its own track</td>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Minimal basis ratified; until full root ratification lands, harness reports still label each checked invariant's status.</td></tr>
     <tr><td>History trailer grammar (one normalized, append-only line per transition)</td>
-      <td>Gated SPEC §3.1 amendment</td><td>Rides constitution ratification; until then the parser uses caveat classes and never guesses.</td></tr>
+      <td>Gated SPEC §3.1 amendment</td><td>Rides the ruled D-GOV-05 basis or a narrow SPEC §3.1 amendment; until it lands the parser uses caveat classes and never guesses.</td></tr>
     <tr><td>Domain-shape verifier (<code>domains/*</code> have no <code>_STATUS.md</code>)</td>
       <td>Deferred, parked</td><td>Own verify variant after the project-shape MVP proves out.</td></tr>
     <tr><td>Domain K-AUTH-2 gap (gate acceptance binds content SHA-256, not a git SHA) — <strong>D-GOV-07</strong></td>
-      <td>PROPOSAL · HumanRuling: TBD</td><td>Bind to both content SHA-256 and a git SHA; existing acceptances grandfathered with WARN.</td></tr>
+      <td>RULED 2026-07-01 · SHA 82a35c545</td><td>Ruled: acceptances bind to both content SHA-256 and a git SHA; existing acceptances grandfathered with WARN.</td></tr>
     <tr><td>Obligations / applicability register (codes, standards; IP-bounded)</td>
       <td>Deferred, parked</td><td>Revisit after the bench tool proves its value on live tranches.</td></tr>
   </tbody>
@@ -861,7 +877,7 @@ the <code>brief</code> command, and the guard. Success is tranches closing and t
   <div><b>Guard</b> — a precondition check inside an existing write tool that refuses an objectively-broken transition (the <code>write_status.sh</code> patch). Refuses; never authors.</div>
   <div><b>Rebuildable cache</b> — the only sanctioned database pattern <em>for governance state and harness projections</em>: gitignored, regenerated from files by one command, safe to delete, never cited. Engine-owned domain stores are governed by K-DOMAIN-1, not this rule.</div>
   <div><b>Self-exclusion</b> — two classes: narrative reports are never read back by the harness; captured evidence records are readable as facts for their tranche and never promote into lifecycle, approval, or plan state.</div>
-  <div><b>D-GOV-01..07</b> — the seven proposed rulings shipped with plan v3: substrate, severity &amp; override, pilot scope, actor identity, minimal governance basis, profile current truth, domain SHA binding. All HumanRuling: TBD.</div>
+  <div><b>D-GOV-01..07</b> — the seven rulings shipped with plan v3: substrate, severity &amp; override, pilot scope, actor identity, minimal governance basis, profile current truth, domain SHA binding. Ruled 2026-07-01 by the owner, SHA-bound at <code>82a35c545</code>, published under <code>docs/governance_harness/_DECISIONS/</code>.</div>
   <div><b>Persona</b> — an agent role with a defined lane and write scope (DOMAIN_ENGINE, WORKING_ITEMS, TOOLMAKER, CHANGE…).</div>
   <div><b>Read-only inspection</b> — the harness's first write-posture category: a deterministic check that inspects files and reports, leaving every governed file byte-identical. The other two categories are labeled generated-artifact output and the refusal-only guard.</div>
   <div><b>Reconciliation</b> — folding an approved result back into the shared basis so the project stays coherent.</div>
@@ -872,10 +888,10 @@ the <code>brief</code> command, and the guard. Success is tranches closing and t
 <p class="footnote">
 Chirality architecture &amp; workflows — visual explainer, revised 2026-07-01. Supersedes the 2026-06-23 explainer (corrections
 in §11); this v3 copy is patched to the merged plan after mutual cross-review. Companion to
-<code>governance_harness_plan_v3_2026-07-01.html</code> (the merged plan of record candidate, pending D-GOV-01) and
+<code>governance_harness_plan_v3_2026-07-01.html</code> (the plan of record — substrate settled by D-GOV-01, ruled 2026-07-01) and
 <code>PLAN_INDEX.md</code>; lineage: the 2026-06-22 planning transcript, the 2026-06-22 v2.1 verified plan (filed under
 <code>plans/.archive/task_management_harness_plan_2026-06-22.html</code>, in the gitignored archive — note the filename/title mismatch), and the 2026-06-23 integration
-assessment (<code>plans/.archive/governance_harness_integration_assessment_2026-06-23.md</code>, also in the gitignored archive; superseded on substrate by the proposed D-GOV-01). All paths repo-relative. Diagrams are illustrative orientation,
+assessment (<code>plans/.archive/governance_harness_integration_assessment_2026-06-23.md</code>, also in the gitignored archive; superseded on substrate by D-GOV-01, ruled 2026-07-01). All paths repo-relative. Diagrams are illustrative orientation,
 not a governance record; per K-AUTH-1 nothing here approves, adopts, or rules anything.
 </p>
 
