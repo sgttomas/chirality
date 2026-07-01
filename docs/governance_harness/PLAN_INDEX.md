@@ -22,6 +22,7 @@ repo-wide `_DECISIONS/` convention.
 | 9 | **`plans/governance_harness_proposal-B_2026-07-01/governance_harness_plan_v3_2026-07-01.html`** | 2026-07-01 | Per D-GOV-01 | **Plan of record; substrate settled by D-GOV-01 (ruled 2026-07-01).** Terminal planning artifact. |
 | 10 | **`plans/governance_harness_proposal-B_2026-07-01/chirality_architecture_explainer_v3_2026-07-01.html`** | 2026-07-01 | — | **Current explainer** (companion to v3 plan). |
 | 11 | `docs/governance_harness/_DECISIONS/D-GOV-01..07_*.md` | 2026-07-01 | — | **RULED 2026-07-01 by owner; SHA binds at publication commit.** |
+| 12 | `plans/.archive/governance_harness_proposal-B-part-2_2026-07-01/` | 2026-07-01 | — | **Superseded at arrival.** Stale parallel copies of the pre-correction corpus (101/154 baseline, pending-publish framing). Its two novel artifacts were adopted in corrected form: roadmap → `docs/PLAN.md` (maintainer-adopted 2026-07-01); register → `_DECISIONS/_REGISTER.md`. Remainder archived; do not build from it. |
 
 Note on rows 1–4 and 7: `plans/.archive/` is gitignored — these lineage
 artifacts live outside version control.

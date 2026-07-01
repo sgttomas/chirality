@@ -1,0 +1,50 @@
+# D-GOV Register — Governance Harness Decisions (**RULED 2026-07-01**; published, SHA-bound)
+
+All seven decisions were ruled by the owner in-session on 2026-07-01
+("All as recommended") and published by CHANGE in commit `82a35c545`
+(2026-07-01; the Ruling SHA was backfilled into the records by `f1549afb1`).
+Per K-AUTH-1 the rulings are the owner's acts, recorded here; per K-AUTH-2 each
+is bound to that publication commit's git SHA (D-GOV-02 conditional severity is
+satisfied). Canonical per-decision records: the `D-GOV-01..07_*.md` files in
+this directory — this register is a navigational summary; on any disagreement
+the records govern.
+
+| ID | Decision | HumanRuling | Unblocks |
+|---|---|---|---|
+| D-GOV-01 | Substrate authority | **RULED: Option A** — files as sole governance authority; projection-only databases; guard-only write interventions; engine stores exempt via K-DOMAIN-1; supersession clause in force | The v3 architecture; procedural closure of the thrice-flipped fork |
+| D-GOV-02 | Severity & override | **RULED: adopt as drafted** — five severities, exit codes, observation-boundary caveat, conditional SHA-TBD, no non-overridable block on issuance | Exit-code contract in PR 1; later CI wrapping |
+| D-GOV-03 | Pilot scope | **RULED: as recommended** — app-dev + piping + `_DomainEngines/` read/report; `domains/*` deferred | Bounded first release |
+| D-GOV-04 | Human actor identity | **RULED: as recommended** — committed allowlist; refuse (exit 2) absent it; adopted briefs committed | Attribution checks; BLOCK-capable scope checks |
+| D-GOV-05 | Minimal governance basis | **RULED: Option A** — ratify minimal harness basis now; full root ratification on its own track; trailer grammar rides this | Enforcement claims on a ratified minimum |
+| D-GOV-06 | `open_pipe_stress` current truth | **RULED: affirm ADOPTED** per the 2026-06-21 Gate-2 ruling; CHANGE-published cleanup of the six contradicting surfaces directed | Resolves the drift exemplar; first live self-check fixture |
+| D-GOV-07 | Domain gate SHA binding | **RULED: as recommended** — bind to content SHA-256 *and* git SHA; existing acceptances grandfathered WARN | Deferred domain-shape verifier prerequisite |
+
+## Completed
+
+1. **CHANGE publication** of the decision set + `PLAN_INDEX.md` — commit
+   `82a35c545`, 2026-07-01 (Ruling SHA backfilled into the records by
+   `f1549afb1`). This is what SHA-bound the rulings.
+2. **`docs/PLAN.md` adoption** — maintainer applied the proposed roadmap edits
+   reflecting ruled status, 2026-07-01.
+
+## Now actionable — still gated where noted
+
+1. **D-GOV-06 cleanup slice** — CHANGE-published correction of the six
+   contradicting surfaces: the `RULINGS_PUBLISHED.md` stale closing paragraph;
+   both halves of the `DOMAIN_ENGINE_INDEX.md` banner ("No profile is ADOPTED"
+   and "No decision is ruled"); the profile YAML header comments plus the
+   `open_issues` "Profile stays DRAFT" entry; the `.DRAFT` filename; D-T0-06's
+   stale HumanRuling line; the `_DomainEngines/_LATEST.md` "PROPOSAL, not yet
+   owner-accepted" framing. Its diff becomes the harness's first live
+   self-check fixture.
+2. **Owner-curated `human_actors` allowlist** per D-GOV-04 — identity checks
+   refuse (exit 2) absent it.
+3. **First PR** exactly per plan v3 §First PR: charter, adapters + manifests,
+   `status`, `drift`/`self-check` (against the verified 92/154 baseline),
+   `write_status.sh` guard (canonical + export source), `brief`, fixture
+   tests.
+
+## Terminal-artifact rule (restated)
+
+Planning is closed. Design changes from here supersede a D-GOV-* record or
+arrive as PR review — never a new plan document.
