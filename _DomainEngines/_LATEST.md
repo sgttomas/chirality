@@ -1,7 +1,7 @@
 # _LATEST — Domain Engine control-area pointer
 
-**Latest snapshot (PROPOSAL, not yet owner-accepted):**
-`bridge/BRIDGE_2026-06-21_tier0-prep/`
+**Latest snapshot:**
+`bridge/BRIDGE_2026-06-21_tier0-prep/` — closed prep-run artifact (immutable, K-SNAP-1). No separate owner acceptance of the snapshot document itself is on record; the substance it staged has since been ruled — profile **ADOPTED**, all 8 decisions **RULED** (2026-06-21). *(Reworded per D-GOV-06, ruled 2026-07-01; the old "PROPOSAL, not yet owner-accepted" framing contradicted the adoption facts below.)*
 
 | Field | Value |
 |---|---|

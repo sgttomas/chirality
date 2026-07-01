@@ -8,7 +8,7 @@ Purpose:
 
 Usage:
   python3 tools/validation/validate_domain_engine_profile.py \
-    _DomainEngines/profiles/open_pipe_stress.DRAFT.yaml \
+    _DomainEngines/profiles/open_pipe_stress.yaml \
     --output-report _DomainEngines/profiles/_validation/open_pipe_stress.validation.json
 
 Inputs:

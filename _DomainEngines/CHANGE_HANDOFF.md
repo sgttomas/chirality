@@ -24,7 +24,7 @@ Commit the tier-0 OpenPipeStress bridge prep package **so the owner's 8 rulings 
 - `_DomainEngines/CHANGE_HANDOFF.md` — this file (self-referential)
 
 **Domain Engine Profile (DRAFT — not validated, not adopted):**
-- `_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml`
+- `_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml` — *historical: as committed 2026-06-21; since VALIDATED → ADOPTED (owner Gate 2, D-T0-06) and renamed to `profiles/open_pipe_stress.yaml` 2026-07-01 per D-GOV-06*
 
 **Decision records (owner rulings recorded; SHA binds at this commit):**
 - `_DomainEngines/_DECISIONS/_REGISTER.md`

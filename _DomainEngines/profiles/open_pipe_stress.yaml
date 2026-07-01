@@ -1,13 +1,20 @@
-# OpenPipeStress Domain Engine Profile — DRAFT (NOT validated, NOT adopted)
+# OpenPipeStress Domain Engine Profile — ADOPTED (owner Gate 2, 2026-06-21; D-T0-06)
 #
-# Status: DRAFT. This is an INSTANCE binding of the generic DomainEngineProfile
-# contract to the OpenPipeStress engine. It is authored from the VERIFIED piping
-# layout (schema-driven + persistence-abstracted), NOT from the persona's
-# OpenPipeStress Example Binding (AGENT_DOMAIN_ENGINE.md:709-718), which is
-# aspirational and diverges from reality (see FM-03 and ARTIFACT_INVENTORY.md).
+# Status: ADOPTED. The profile_status field below is authoritative. The
+# deterministic profile-schema validator exists
+# (tools/validation/validate_domain_engine_profile.py, 8/8 tests); this profile
+# passed (report: _validation/open_pipe_stress.validation.json) → VALIDATED, and
+# the owner ruled human Gate 2 (VALIDATED → ADOPTED) on 2026-06-21 (D-T0-06).
+# Renamed from the historical open_pipe_stress.DRAFT.yaml on 2026-07-01 per D-GOV-06.
 #
-# Nothing here is adopted. No deterministic profile-schema validator exists yet
-# (TOOLMAKER handoff). No tool is invoked. No professional status is claimed.
+# Provenance: this is an INSTANCE binding of the generic DomainEngineProfile
+# contract to the OpenPipeStress engine. It was authored (as a DRAFT, 2026-06-21)
+# from the VERIFIED piping layout (schema-driven + persistence-abstracted), NOT
+# from the persona's then-divergent OpenPipeStress Example Binding (since
+# reauthored via FM-03, applied at 77a327727; see ARTIFACT_INVENTORY.md).
+#
+# No tool is invoked by this file. No professional status is claimed
+# (see professional_boundary).
 
 domain_profile:
   schema_version: "1.0"          # contract schema version (generic)
@@ -15,7 +22,7 @@ domain_profile:
   name: "OpenPipeStress Piping-Stress Engine"
   engine_type: "structural/piping-stress-analysis"
   profile_version: "0.1-DRAFT"
-  profile_status: "ADOPTED"      # human Gate 2 approved by owner 2026-06-21 (D-T0-06): governed-authoritative boundary. Validator passed (report: _validation/open_pipe_stress.validation.json). Filename retains historical ".DRAFT"; profile_status is authoritative. (see D-T0-02 / FM-01 / D-T0-06)
+  profile_status: "ADOPTED"      # human Gate 2 approved by owner 2026-06-21 (D-T0-06): governed-authoritative boundary. Validator passed (report: _validation/open_pipe_stress.validation.json). Renamed from the historical ".DRAFT" filename 2026-07-01 per D-GOV-06. (see D-T0-02 / FM-01 / D-T0-06)
   integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
   data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked.
   data_residency_reconciliation:        # RES-RECONCILE RESOLVED 2026-06-21 (net posture confirmed by owner: keep default-closed)
@@ -130,7 +137,7 @@ domain_profile:
     reserved_human_act: "HUMAN_APPROVED_FOR_PROJECT (external, SHA-bound; K-AUTH-2)"
 
   open_issues:
-    - "Profile stays DRAFT: no deterministic profile-schema validator exists yet (TOOLMAKER brief emitted; VALIDATED gated on it per D-T0-06)."
+    - "Adoption lifecycle: RESOLVED 2026-06-21 — validator built (tools/validation/validate_domain_engine_profile.py; TOOLMAKER handoff fulfilled), profile passed → VALIDATED, owner ruled Gate 2 → ADOPTED (D-T0-06). Filename renamed from .DRAFT 2026-07-01 per D-GOV-06. No longer an open issue."
     - "Readable run/state/comparison instances are TBD (schemas exist; artifacts produced on demand)."
     - "operation_risk_class is proposed (engine-checkable vs engine-silent; D-T0-03), not yet implemented in the engine."
     - "Live binding (L2-L3) gated x4: tier-0 adoption, app-dev F3, piping D-21, DEC-041 automation condition (residency is NOT a blocker post D-T0-04)."

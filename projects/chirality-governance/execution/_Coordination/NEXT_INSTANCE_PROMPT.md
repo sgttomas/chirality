@@ -8,7 +8,7 @@
 
 - Contract reconciled into canon (`agents/AGENT_DOMAIN_ENGINE.md` + root `docs/CONTRACT.md` §1.12 K-DOMAIN) — `77a327727`.
 - Profile-schema validator built (`tools/validation/validate_domain_engine_profile.py`, 8/8 tests) — `dd73d7fe8`.
-- OpenPipeStress profile conformed → **VALIDATED → ADOPTED** (owner Gate 2, 2026-06-21). The integration boundary in `_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml` is **governed-authoritative**.
+- OpenPipeStress profile conformed → **VALIDATED → ADOPTED** (owner Gate 2, 2026-06-21). The integration boundary in `_DomainEngines/profiles/open_pipe_stress.yaml` is **governed-authoritative**.
 - **Tier-0 adoption is 1 of the 4 live-build conditions — now cleared.** (Residency also cleared via RES-RECONCILE.)
 
 ## Remaining work (owned by other loops / human-gated — NOT a root build task)
@@ -21,7 +21,7 @@
 
 - **FM-05 candidate:** the FM-04 canon requires `apply_result_schema` on *every* declared tool incl. `read_only` ones (recorded `TBD`); consider requiring it only on `proposal_*`-mode tools.
 - **Result-schema TBDs:** declare the `operation_applier` / `rule_check_runner` result shapes (piping DEL-10-03 conformance).
-- **Profile filename:** retains the historical `.DRAFT` suffix; `profile_status: ADOPTED` in the field is authoritative. Rename deferred — it touches 10 references including the validator tool; churn outweighs the cosmetic benefit.
+- **Profile filename:** retains the historical `.DRAFT` suffix; `profile_status: ADOPTED` in the field is authoritative. Rename deferred — it touches 10 references including the validator tool; churn outweighs the cosmetic benefit. [rename executed 2026-07-01 per D-GOV-06]
 
 ## To resume root (tier-0) work
 

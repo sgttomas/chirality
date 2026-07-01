@@ -2,7 +2,7 @@
   "contract_source": "agents/AGENT_DOMAIN_ENGINE.md@77a327727",
   "findings": [],
   "profile_id": "open_pipe_stress",
-  "profile_path": "/Users/ryan/ai-env/projects/chirality/_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml",
+  "profile_path": "/Users/ryan/ai-env/projects/chirality/_DomainEngines/profiles/open_pipe_stress.yaml",
   "profile_status": "ADOPTED",
   "result": "VALID",
   "schema": "domain-engine-profile-validation/v1",

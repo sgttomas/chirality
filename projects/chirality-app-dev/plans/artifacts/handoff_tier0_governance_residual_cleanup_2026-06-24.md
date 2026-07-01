@@ -37,6 +37,8 @@ which is a real misread risk for any loop that binds against them.
   passed). Consider whether the filename's historical `.DRAFT` suffix should be retired or annotated; line 18
   already notes "filename retains historical .DRAFT; profile_status is authoritative", so at minimum the
   header prose should stop asserting the opposite.
+  *[Executed 2026-07-01 per D-GOV-06: header reauthored and the file renamed to
+  `_DomainEngines/profiles/open_pipe_stress.yaml`; the anchors above cite the pre-rename file.]*
 
 ## Residual 3 — `DOMAIN_ENGINE_INDEX.md` contradicts itself and mislabels the FM diffs
 

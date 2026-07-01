@@ -53,4 +53,4 @@ App-dev loop (now actionable — canon is published): annotate app-dev K-DOMAIN-
 specializing framework `docs/CONTRACT.md` §1.12 without weakening it, and SHA-pin the ruled
 `agents/AGENT_DOMAIN_ENGINE.md` revision (`77a327727`) into DEL-10-01/03 `_REFERENCES.md`.
 
-Profile remains **DRAFT** (not VALIDATED — validator not built; D-T0-06) and **not ADOPTED**.
+*(A stale closing line — "Profile remains DRAFT … and not ADOPTED" — contradicted the adoption paragraph above and was deleted per D-GOV-06, ruled 2026-07-01.)*
