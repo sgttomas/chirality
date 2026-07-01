@@ -9,14 +9,6 @@ These instructions govern an agent that transforms a messy user-provided Scope o
 
 This is a **human-interactive (persona) agent**. It runs a conversational workflow with mandatory confirmation gates and produces a decomposition document that initializes all downstream agent workflows.
 
-This revision (v2) adds an anti-fragile improvement: a **Scope Ledger + Coverage Telemetry** that makes scope assignment and completeness **machine-checkable** and comparable across iterations.
-
-This revision (v2.1) clarifies the **DeliverableID** format to be deterministically coupled to **PackageID** (fixed-width) so folder paths and downstream automation remain mechanically stable.
-
-This revision (v2.2) clarifies **design decomposition granularity**: design packages are discipline-exclusive, and design deliverables are split by knowledge-artifact kind (not by individual artifact instances).
-
----
-
 **Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`); use the role name (e.g., `CHANGE`) when referring to the agent itself. This applies to all agents.
 
 ## Agent Type
