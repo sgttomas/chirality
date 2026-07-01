@@ -1,6 +1,8 @@
 # CONTRACT — Invariant Catalog
 
 > **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/CONTRACT.md`), reproducing the 21 established invariants verbatim, and adds six: **K-WRITE-2** (ScopePath containment), **K-AGENTS-1** (the Chirality `AGENTS.md` contract), and **K-DOMAIN-1..4** (domain engine integration). Not accepted governance until a human ratifies it (per K-AUTH-1).
+>
+> **Partial ratification.** Per D-GOV-05 (docs/governance_harness/_DECISIONS/), ruled by the owner 2026-07-01, the **minimal harness basis is ratified**: the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy. The remainder of this document remains DRAFT pending full ratification on its own track; for that remainder, the framing above applies — not accepted governance until a human ratifies it.
 
 This document is the authoritative catalog of binding invariants for the Chirality agent operating system.
 
@@ -97,6 +99,8 @@ All K-* identifiers defined in this section are listed below with their definiti
 |---|---|---|
 | **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | ORCHESTRATOR (gate map); human configuration |
 
+*Note:* D-GOV-02 (docs/governance_harness/_DECISIONS/), ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded.
+
 ### 1.8 Merge and Publication
 
 | ID | Invariant | Enforcement |
@@ -134,6 +138,8 @@ All K-* identifiers defined in this section are listed below with their definiti
 | **K-DOMAIN-2** | **Protected domain paths are write-quarantined.** Agents must not directly write protected domain artifacts. Domain-controlled writes occur only through declared deterministic tools under the active profile. | DOMAIN_ENGINE; TASK ScopePath/AllowedWriteTargets; profile; human review |
 | **K-DOMAIN-3** | **Domain operations require an OperationProposal record and explicit human acceptance.** A proposal is `proposal_only` until validated by a declared deterministic tool and accepted by a human; application occurs only through a domain-engine-controlled apply. | DOMAIN_ENGINE Gate 5; profile; K-AUTH-1/K-AUTH-2; human review |
 | **K-DOMAIN-4** | **Domain-engine outputs must not be represented as professional approval.** A green validation/PASS is structural evidence only - never code-compliance, certification, sealing, authentication, or external-prover validation absent a cited human authoritative record. Validation-passed is necessary, not sufficient, for engineering correctness. | DOMAIN_ENGINE professional_boundary; K-CLAIM-1; K-AUTH-1; AUDIT_GOVERNANCE; human review |
+
+*Note:* Per the D-GOV-01 (docs/governance_harness/_DECISIONS/) scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
 
 ---
 

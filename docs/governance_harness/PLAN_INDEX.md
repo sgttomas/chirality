@@ -1,7 +1,7 @@
 # PLAN_INDEX — Governance Harness Planning Artifacts
 
-Status: PROPOSAL (classification takes effect when D-GOV-01 is ruled and this
-index is published by CHANGE). Purpose: one navigable record of which plan
+Status: ACTIVE/RULED: D-GOV-01..07 ruled by owner 2026-07-01; index published
+under `docs/governance_harness/`. Purpose: one navigable record of which plan
 governs, so no successor session or agent re-litigates a settled fork or
 builds from a superseded document. Maintained under `docs/governance_harness/`;
 decision records live at `docs/governance_harness/_DECISIONS/`, per the
@@ -19,9 +19,9 @@ repo-wide `_DECISIONS/` convention.
 | 6 | `plans/governance_harness_proposal-A_2026-07-01/governance_harness_detailed_plan_2026-06-23_REVISED_2026-07-01.html` (revision B; on-disk home is the proposal-A directory, where this file is byte-identical to row 5's — revisions A and B as merged were the two independent 2026-07-01 revision documents, but the surviving on-disk pair is one document under two names) | 2026-07-01 | Bench tool + decision set, severity taxonomy, sourced facts, adoption lifecycle | **Merged into v3.** Corrected per cross-review: missing write_status.sh guard; unconditional SHA-TBD BLOCK; no quantitative baseline; no run-validations. |
 | 7 | `plans/.archive/chirality_architecture_explainer_2026-06-23.html` | 2026-06-23 | — | **Superseded by explainer v3** (corrections recorded in explainer §11). |
 | 8 | `plans/governance_harness_proposal-A_2026-07-01/chirality_architecture_explainer_governance_harness_2026-07-01.html` (revision B explainer) | 2026-07-01 | — | **Merged into explainer v3** (artifact taxonomy, four lifecycle tracks, claim prohibitions, degrade-gracefully epistemics adopted). |
-| 9 | **`governance_harness_plan_v3_2026-07-01.html`** | 2026-07-01 | Per D-GOV-01 | **Plan of record candidate, pending D-GOV-01.** Terminal planning artifact. |
-| 10 | **`chirality_architecture_explainer_v3_2026-07-01.html`** | 2026-07-01 | — | **Current explainer** (companion to v3 plan). |
-| 11 | `D-GOV-01..07_*.md` (this directory; published home `docs/governance_harness/_DECISIONS/`) | 2026-07-01 | — | **PROPOSAL — awaiting owner ruling.** HumanRuling: TBD in all seven. |
+| 9 | **`plans/governance_harness_proposal-B_2026-07-01/governance_harness_plan_v3_2026-07-01.html`** | 2026-07-01 | Per D-GOV-01 | **Plan of record; substrate settled by D-GOV-01 (ruled 2026-07-01).** Terminal planning artifact. |
+| 10 | **`plans/governance_harness_proposal-B_2026-07-01/chirality_architecture_explainer_v3_2026-07-01.html`** | 2026-07-01 | — | **Current explainer** (companion to v3 plan). |
+| 11 | `docs/governance_harness/_DECISIONS/D-GOV-01..07_*.md` | 2026-07-01 | — | **RULED 2026-07-01 by owner; SHA binds at publication commit.** |
 
 Note on rows 1–4 and 7: `plans/.archive/` is gitignored — these lineage
 artifacts live outside version control.
@@ -29,7 +29,8 @@ artifacts live outside version control.
 ### Sibling proposal directory
 
 `plans/governance_harness_proposal-A_2026-07-01/` is the sibling proposal
-directory: superseded by merge into v3 (this directory), it retains the
+directory: superseded by merge into v3
+(`plans/governance_harness_proposal-B_2026-07-01/`), it retains the
 pre-rename D-GH-001..006 decision numbering and contains the byte-identical
 duplicate pair noted in rows 5–6 (plus an `SHA256SUMS.txt`).
 
@@ -60,7 +61,8 @@ corrected to 92/154 by live verification. Lineage paths in the Standing table
 were corrected to their actual on-disk locations (`plans/.archive/`,
 gitignored, for rows 1–4 and 7; `plans/governance_harness_proposal-A_2026-07-01/`
 for rows 5, 6 and 8), and the D-GOV-06 contradiction surfaces were confirmed
-live at HEAD. Stated plainly: this corpus — this index, the D-GOV stubs, and the v3
-documents — is currently **untracked by git**, and by the system's own
-"not in a versioned file, doesn't exist" test it binds nothing until committed
-and published by CHANGE.
+live at HEAD.
+
+Publication note: this corpus was committed 2026-07-01 (commit 836ff76f0);
+the rulings were recorded and this index published to
+`docs/governance_harness/` the same day.

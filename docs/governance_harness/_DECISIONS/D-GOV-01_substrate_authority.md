@@ -1,9 +1,9 @@
 # D-GOV-01 — Substrate authority for the governance harness
 
-Status:       PROPOSAL
-HumanRuling:  TBD
-Ruling SHA:   TBD
-Date:         TBD
+Status:       RULED
+HumanRuling:  Option A approved as recommended by owner (Ryan Tufts), 2026-07-01
+Ruling SHA:   TBD — binds at publication commit (backfilled immediately after publish)
+Date:         2026-07-01
 FramedBy:     governance_harness_plan_v3 (2026-07-01, merged)
 
 ## Decision to make
@@ -44,7 +44,7 @@ twice under adversarial review. The fork has flipped three times across plan
 generations (transcript → v2.1 → assessment → bench plans) because no ruled
 record existed.
 
-## Supersedes (once ruled)
+## Supersedes
 
 - Option C recommendation, `plans/.archive/task-management-planning-26-06-22.md` §14
 - Control-plane architecture, `plans/.archive/governance_harness_integration_assessment_2026-06-23.md`

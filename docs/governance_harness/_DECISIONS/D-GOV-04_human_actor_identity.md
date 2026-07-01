@@ -1,9 +1,9 @@
 # D-GOV-04 — Human actor identity and adoption binding
 
-Status:       PROPOSAL
-HumanRuling:  TBD
-Ruling SHA:   TBD
-Date:         TBD
+Status:       RULED
+HumanRuling:  Approved as recommended by owner (Ryan Tufts), 2026-07-01
+Ruling SHA:   TBD — binds at publication commit (backfilled immediately after publish)
+Date:         2026-07-01
 FramedBy:     governance_harness_plan_v3 (2026-07-01, merged)
 
 ## Decision to make
@@ -21,6 +21,7 @@ metadata must bind it to content.
   HUMAN_ADOPTED tranche brief must be committed to the governed record: an
   adoption existing only in a scratch directory fails the system's own
   "not in a versioned file, doesn't exist" test. Applied to this very corpus
-  (verified 2026-07-01): the proposal directory holding these records is
-  itself currently untracked by git, and by this same rule binds nothing
-  until committed and published by CHANGE.
+  (verified 2026-07-01): the proposal directory holding these records was
+  itself untracked by git at verification, and by this same rule bound
+  nothing until committed and published by CHANGE — resolved 2026-07-01
+  (commit 836ff76f0; published under `docs/governance_harness/`).

@@ -1,6 +1,6 @@
 # DIRECTIVE — Founding Intent, Scope, and Constraints
 
-> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/DIRECTIVE.md`), updated to the current merged-monorepo topology and the live instruction surface (`AGENTS.md`, `agents/`). It is not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1).
+> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/DIRECTIVE.md`), updated to the current merged-monorepo topology and the live instruction surface (`AGENTS.md`, `agents/`). It is not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1). **Partial ratification:** per D-GOV-05 (`docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md`, ruled by owner 2026-07-01), the source-of-truth and human-authority rules this directive expresses (§2.1, §2.3) are ratified as the minimal harness basis; the remainder of this document remains DRAFT.
 
 This document captures the founding intent, design philosophy, and structural constraints of the Chirality agent operating system. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.
 
@@ -136,7 +136,7 @@ The principles that follow instantiate this framework. Each principle belongs to
 
 ### 2.1 Filesystem Is the Database
 
-Project state lives entirely in git-tracked files. There is no separate database, no server state, no configuration files that diverge from the filesystem.
+Authoritative project state lives entirely in git-tracked files. There is no separate database holding authoritative state, no server state, no configuration files that diverge from the filesystem — nothing outside git-tracked files serves as a source of authoritative project truth. Rebuildable, gitignored local projections (regenerated from the files by one command, never cited as authority) are permitted per D-GOV-01 (`docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md`, ruled 2026-07-01); engine-owned domain stores are governed by the K-DOMAIN family (`CONTRACT.md` §1.12).
 
 - **Nodes:** Deliverable folders, package folders.
 - **Edges:** Rows in `Dependencies.csv`, ANCHOR rows connecting tree to graph.
@@ -276,7 +276,7 @@ These constraints are hard to change later. They define the boundaries of the sy
 
 | Constraint | Rationale |
 |---|---|
-| No external database dependency | Filesystem is the single source of truth; eliminates sync burden |
+| No external database dependency | Filesystem is the single source of authoritative truth; rebuildable gitignored projections permitted, never authoritative — per D-GOV-01 (`docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md`); eliminates sync burden |
 | No server requirement | Desktop-first; works offline; no infrastructure to manage |
 | All state as plain files | Human-readable, git-trackable, tool-agnostic |
 | Git-trackable artifacts only | Auditability, reproducibility, rollback, diff-based review |

@@ -1,9 +1,9 @@
 # D-GOV-05 — Minimal governance basis ratification
 
-Status:       PROPOSAL
-HumanRuling:  TBD
-Ruling SHA:   TBD
-Date:         TBD
+Status:       RULED
+HumanRuling:  Option A approved as recommended by owner (Ryan Tufts), 2026-07-01
+Ruling SHA:   TBD — binds at publication commit (backfilled immediately after publish)
+Date:         2026-07-01
 FramedBy:     governance_harness_plan_v3 (2026-07-01, merged)
 
 ## Decision to make

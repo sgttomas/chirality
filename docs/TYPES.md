@@ -1,6 +1,6 @@
 # TYPES — Domain Vocabulary and Hierarchy
 
-> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/TYPES.md`), preserving the established §1–§10 numbering (referenced as `TYPES §4` and `§9.2` from `AGENTS.md`), and adds the root/path-token vocabulary (§1.4–§1.5), the reconciled `WRITE_SCOPE` enum (§4.2), and the domain-decomposition entities (§8.2). Not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1).
+> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/TYPES.md`), preserving the established §1–§10 numbering (referenced as `TYPES §4` and `§9.2` from `AGENTS.md`), and adds the root/path-token vocabulary (§1.4–§1.5), the reconciled `WRITE_SCOPE` enum (§4.2), and the domain-decomposition entities (§8.2). Not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1). **Exception:** the finding-severity taxonomy (§11) is ratified per D-GOV-02 (`docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md`, ruled by owner 2026-07-01); the remainder of this document remains DRAFT.
 
 This document is the authoritative vocabulary reference for the Chirality agent operating system. It defines the canonical entities, stable identifier formats, enumerated types, agent roles, and lifecycle states.
 
@@ -384,3 +384,36 @@ The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRE
 | K-CONFLICT-1 (conflict surfacing) | Conflict — disagreements must be exposed as conflicts, not silently resolved |
 | K-AUTH-1 (human authority) | Ruling — only humans may author binding rulings and approval records |
 | K-AUTH-2 (SHA-bound approval) | Authentication — the warrant-to-content binding is mechanically verifiable |
+
+---
+
+## 11. Finding Severity (Governance Verifier Taxonomy)
+
+Ratified per D-GOV-02 (`docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md`), ruled by the owner 2026-07-01. This section is accepted governance; the DRAFT status in the banner above applies to the remainder of the document.
+
+Governance harness verifiers classify their findings using five severities, each carrying defined machine behavior and override authority.
+
+### 11.1 Severity Levels
+
+| Severity | Meaning | Machine behavior | Override |
+|---|---|---|---|
+| `BLOCK` | Objective violation **within the tool's declared observation boundary** | exit nonzero | Human only, recorded |
+| `REVIEW` | Material issue requiring human judgment | exit 0 (nonzero in `--strict`) | Human disposition |
+| `WARN` | Non-blocking inconsistency or hygiene issue | exit 0 | None needed |
+| `INFO` | Contextual fact | exit 0 | n/a |
+| `NOT_APPLICABLE` | Check skipped; preconditions absent | exit 0 + reason | n/a |
+
+### 11.2 Exit-Code Convention
+
+Harness verifiers adopt exit `0/1/2`, aligned with the newest validator class (e.g. `tools/validation/validate_domain_engine_profile.py`). This sets the convention going forward rather than inheriting a uniform existing one.
+
+### 11.3 Caveats
+
+- `BLOCK` means *mechanically blocked within the declared observation boundary*, never *globally proven safe/unsafe*.
+- `Ruling SHA: TBD` is conditional: REVIEW when the artifact self-declares bind-at-publish (the lawful tier-0 flow); BLOCK only when the claim is being relied on as bound authority.
+- No non-overridable BLOCK may attach to the CHECKING → ISSUED judgment itself (a K-GATE-1 derivation); BLOCKs apply to objective preconditions and hygiene only.
+
+### 11.4 Distinctness
+
+- This taxonomy is distinct from the epistemic labels (`FACT`, `ASSUMPTION`, `PROPOSAL`, `TBD`; §10.3): epistemic labels classify the certainty of a claim; finding severities classify verifier findings.
+- Severity `NOT_APPLICABLE` is distinct from the dependency-vocabulary enum value `NOT_APPLICABLE` (§3.2, §3.7): same token, different vocabulary.
