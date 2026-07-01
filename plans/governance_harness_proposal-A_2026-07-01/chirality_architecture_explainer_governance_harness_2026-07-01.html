@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-07-01" />
+  <title>Chirality Architecture With Governance Harness — Corrected Explainer</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">:root {
+--ink: #17202a;
+--muted: #536172;
+--paper: #f7f7f4;
+--panel: #ffffff;
+--line: #d8ded8;
+--blue: #255f85;
+--teal: #1f7a72;
+--red: #aa4c3f;
+--gold: #b47a20;
+--violet: #6a557d;
+}
+html { scroll-behavior: smooth; }
+body {
+max-width: 1080px;
+margin: 0 auto;
+padding: 42px 34px 72px;
+color: var(--ink);
+background: linear-gradient(180deg, #eef2ed 0%, var(--paper) 360px), var(--paper);
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+line-height: 1.58;
+}
+h1 { font-size: clamp(2.1rem, 4.5vw, 4.1rem); line-height: 1.0; margin-top: 0; letter-spacing: -0.035em; }
+h2 { margin-top: 2.2rem; padding-top: .6rem; border-top: 1px solid var(--line); color: #20313a; }
+h3 { margin-top: 1.6rem; color: #20313a; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+blockquote { border-left: 5px solid var(--teal); background: rgba(255,255,255,.72); margin: 1.2rem 0; padding: .7rem 1rem; color: #293744; }
+code { background: #eef1ef; border: 1px solid #dce2dd; border-radius: 4px; padding: .1rem .25rem; font-size: .92em; }
+pre { background: #20313a; color: #f6fbfa; border-radius: 8px; padding: 1rem; overflow-x: auto; }
+pre code { background: transparent; border: 0; color: inherit; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.4rem; background: rgba(255,255,255,.88); }
+th, td { border: 1px solid var(--line); padding: .62rem .72rem; vertical-align: top; }
+th { background: #eaf0ec; text-align: left; }
+hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
+ul, ol { padding-left: 1.4rem; }
+li + li { margin-top: .25rem; }
+header#title-block-header { background: rgba(255,255,255,.78); border: 1px solid var(--line); border-left: 6px solid var(--teal); border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 2rem; box-shadow: 0 14px 30px rgba(23,32,42,.08); }
+header#title-block-header h1 { margin-bottom: .7rem; }
+.subtitle, .date, .author { color: var(--muted); }
+@media print { body { background: white; max-width: none; padding: 20px; } pre { white-space: pre-wrap; } }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chirality Architecture With Governance Harness —
+Corrected Explainer</h1>
+<p class="date">2026-07-01</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#chirality-architecture-with-governance-harness-corrected-explainer" id="toc-chirality-architecture-with-governance-harness-corrected-explainer">Chirality
+Architecture With Governance Harness — Corrected Explainer</a>
+<ul>
+<li><a href="#how-to-read-this-explainer" id="toc-how-to-read-this-explainer">0. How to read this
+explainer</a></li>
+<li><a href="#corrections-to-the-earlier-explainer" id="toc-corrections-to-the-earlier-explainer">1. Corrections to the
+earlier explainer</a></li>
+<li><a href="#the-architecture-in-one-picture" id="toc-the-architecture-in-one-picture">2. The architecture in one
+picture</a></li>
+<li><a href="#three-kinds-of-artifacts" id="toc-three-kinds-of-artifacts">3. Three kinds of artifacts</a>
+<ul>
+<li><a href="#authority-artifacts" id="toc-authority-artifacts">3.1
+Authority artifacts</a></li>
+<li><a href="#evidence-artifacts" id="toc-evidence-artifacts">3.2
+Evidence artifacts</a></li>
+<li><a href="#generated-views-and-projections" id="toc-generated-views-and-projections">3.3 Generated views and
+projections</a></li>
+</ul></li>
+<li><a href="#the-authority-model" id="toc-the-authority-model">4. The
+authority model</a></li>
+<li><a href="#actors-and-write-boundaries" id="toc-actors-and-write-boundaries">5. Actors and write
+boundaries</a></li>
+<li><a href="#the-lifecycle-model-has-separate-tracks" id="toc-the-lifecycle-model-has-separate-tracks">6. The lifecycle model
+has separate tracks</a>
+<ul>
+<li><a href="#project-deliverable-lifecycle" id="toc-project-deliverable-lifecycle">6.1 Project deliverable
+lifecycle</a></li>
+<li><a href="#warrantauthentication-lifecycle" id="toc-warrantauthentication-lifecycle">6.2 Warrant/authentication
+lifecycle</a></li>
+<li><a href="#domain-profile-lifecycle" id="toc-domain-profile-lifecycle">6.3 Domain profile lifecycle</a></li>
+<li><a href="#tranche-lifecycle" id="toc-tranche-lifecycle">6.4 Tranche
+lifecycle</a></li>
+</ul></li>
+<li><a href="#how-one-governed-tranche-flows" id="toc-how-one-governed-tranche-flows">7. How one governed tranche
+flows</a></li>
+<li><a href="#where-the-harness-fits-in-the-repository" id="toc-where-the-harness-fits-in-the-repository">8. Where the harness
+fits in the repository</a></li>
+<li><a href="#what-the-harness-reads" id="toc-what-the-harness-reads">9.
+What the harness reads</a></li>
+<li><a href="#what-the-harness-produces" id="toc-what-the-harness-produces">10. What the harness
+produces</a></li>
+<li><a href="#what-the-harness-must-never-claim" id="toc-what-the-harness-must-never-claim">11. What the harness must
+never claim</a></li>
+<li><a href="#domain-engine-integration" id="toc-domain-engine-integration">12. Domain-engine
+integration</a></li>
+<li><a href="#the-self-check-loop" id="toc-the-self-check-loop">13. The
+self-check loop</a></li>
+<li><a href="#storage-rule" id="toc-storage-rule">14. Storage
+rule</a></li>
+<li><a href="#one-sentence-architecture-summary" id="toc-one-sentence-architecture-summary">15. One-sentence architecture
+summary</a></li>
+<li><a href="#glossary" id="toc-glossary">16. Glossary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="chirality-architecture-with-governance-harness-corrected-explainer">Chirality
+Architecture With Governance Harness — Corrected Explainer</h1>
+<h2 id="how-to-read-this-explainer">0. How to read this explainer</h2>
+<p>This document is an updated architecture explainer that integrates
+the proposed governance harness and corrects overstatements in the
+earlier visual explainer.</p>
+<p>It is not a governance record. It is a map.</p>
+<p>The most important correction is this:</p>
+<blockquote>
+<p>Chirality does not need a governance harness that becomes a new
+source of truth. It needs a small practitioner bench tool that reads
+governed files, reports contradictions, prepares bounded work briefs,
+checks objective scope/evidence conditions, and stops at human decision
+boundaries.</p>
+</blockquote>
+<h2 id="corrections-to-the-earlier-explainer">1. Corrections to the
+earlier explainer</h2>
+<p>The prior explainer was directionally useful, but it flattened
+several points that matter for implementation.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Earlier simplification</th>
+<th>Corrected architecture statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Everything is plain text in git; no hidden database.”</td>
+<td><strong>No hidden authoritative database.</strong> Rebuildable
+indexes and caches may exist, including SQLite-style local indexes, but
+they are not the source of authority.</td>
+</tr>
+<tr class="even">
+<td>“The harness writes nothing back.”</td>
+<td>The harness should not write governed authority files. It may write
+generated reports, JSON projections, candidate briefs, and cache files,
+all labeled non-authoritative.</td>
+</tr>
+<tr class="odd">
+<td>“The live repo contains AGENTS, agents, skills, tools, validators,
+and exact counts.”</td>
+<td>The archive references those live surfaces, but the archive provided
+for review does not include all of them. A corrected explainer should
+distinguish archive evidence from live-repo claims.</td>
+</tr>
+<tr class="even">
+<td>“Status tells where a deliverable is.”</td>
+<td>Status is necessary but insufficient. Lifecycle state, evidence
+completeness, approval SHA, staleness, scope conformance, warrant state,
+and human decision state must stay separate.</td>
+</tr>
+<tr class="odd">
+<td>“Validation/checking is close to approval.”</td>
+<td>Validation may support review. It is not approval, issue,
+authentication, professional sufficiency, or acceptance of residual
+risk.</td>
+</tr>
+<tr class="even">
+<td>“Current-state files can be read directly.”</td>
+<td>Some current-state surfaces contradict each other. The harness must
+surface these conflicts instead of choosing silently.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-architecture-in-one-picture">2. The architecture in one
+picture</h2>
+<pre class="text"><code>┌────────────────────────────────────────────────────────────────────┐
+│ Human accountable authority                                         │
+│ - approves, rules, seals, rejects, accepts risk                     │
+│ - decides applicability and sufficiency                             │
+└─────────────────────────────────────┬──────────────────────────────┘
+                                      │ human-authored records
+                                      ▼
+┌────────────────────────────────────────────────────────────────────┐
+│ Authored files and git history                                      │
+│ - root governance docs                                              │
+│ - project status / plans / decisions / dependencies                 │
+│ - domain profiles / validation reports / published rulings          │
+│ - evidence artifacts / run records / approval SHAs                  │
+└─────────────────────────────────────┬──────────────────────────────┘
+                                      │ read by adapters
+                                      ▼
+┌────────────────────────────────────────────────────────────────────┐
+│ Governance harness — practitioner bench tool                        │
+│ - status projections                                                │
+│ - self-consistency checks                                           │
+│ - candidate tranche briefs                                          │
+│ - scope checks                                                      │
+│ - evidence checks                                                   │
+│ - generated reports only                                            │
+└─────────────────────────────────────┬──────────────────────────────┘
+                                      │ bounded brief + findings
+                                      ▼
+┌────────────────────────────────────────────────────────────────────┐
+│ Bounded agent/tool work                                             │
+│ - reads declared basis                                              │
+│ - writes only inside declared scope                                 │
+│ - records evidence                                                  │
+│ - stops at human decision points                                    │
+└────────────────────────────────────────────────────────────────────┘</code></pre>
+<p>The harness lives between the governed record and the next bounded
+intervention. It helps prepare work and check work. It does not replace
+the governed record.</p>
+<h2 id="three-kinds-of-artifacts">3. Three kinds of artifacts</h2>
+<p>The system should classify files by reliance role.</p>
+<h3 id="authority-artifacts">3.1 Authority artifacts</h3>
+<p>These are authored, reviewed, and versioned records that carry
+project truth.</p>
+<p>Examples:</p>
+<ul>
+<li>root governance documents;</li>
+<li>project-local status files;</li>
+<li>decision/ruling files;</li>
+<li>dependency registers;</li>
+<li>domain profiles;</li>
+<li>validation evidence that a governed artifact cites;</li>
+<li>approval SHAs in git history.</li>
+</ul>
+<p>The harness reads these. It does not overwrite them as part of
+ordinary reporting.</p>
+<h3 id="evidence-artifacts">3.2 Evidence artifacts</h3>
+<p>These record what happened.</p>
+<p>Examples:</p>
+<ul>
+<li>run records;</li>
+<li>validation reports;</li>
+<li>command outputs;</li>
+<li>generated diffs;</li>
+<li>schema validation results;</li>
+<li>evidence bundles.</li>
+</ul>
+<p>Evidence can support a human decision. Evidence does not make the
+decision.</p>
+<h3 id="generated-views-and-projections">3.3 Generated views and
+projections</h3>
+<p>These are convenience outputs.</p>
+<p>Examples:</p>
+<ul>
+<li>one-page status summaries;</li>
+<li>self-check reports;</li>
+<li>candidate tranche briefs;</li>
+<li>scope/evidence findings;</li>
+<li>rebuildable JSON projections;</li>
+<li>optional local caches.</li>
+</ul>
+<p>Generated views must say they are not authority. They should be
+disposable and rebuildable.</p>
+<h2 id="the-authority-model">4. The authority model</h2>
+<pre class="text"><code>Human decision
+  └─ must be authored by a person when a record becomes binding
+
+Framework/root governance
+  └─ defines shared invariants, but in the archive several root docs are draft pending ratification
+
+Working root governance
+  └─ specializes the framework for a project or domain without weakening it
+
+Harness output
+  └─ generated view or candidate; never binding by itself</code></pre>
+<p>The harness can help enforce objective invariants only after the
+relevant basis has been ratified or explicitly adopted for the
+pilot.</p>
+<p>Until then, the harness should say:</p>
+<pre class="text"><code>Governance basis: draft/advisory unless a human decision record adopts it.</code></pre>
+<h2 id="actors-and-write-boundaries">5. Actors and write boundaries</h2>
+<pre class="text"><code>Human
+  - binding approvals and rulings
+  - professional judgment
+  - acceptance of residual risk
+
+Type-0 / maintainer-facing agent
+  - drafts or maintains framework-level material with human direction
+  - cannot self-ratify governance
+
+Type-1 persona
+  - manages a lane such as domain integration, working items, toolmaking, change, audit, or evaluation
+  - writes only where its role permits
+
+Type-2 bounded task
+  - executes one sealed tranche
+  - reads declared basis
+  - writes only inside declared write scope
+
+Deterministic tools
+  - check, validate, render, summarize, or project
+  - may write generated outputs
+  - do not write governed authority unless separately scoped and human-authorized
+
+Governance harness
+  - deterministic bench tool made of adapters, checks, renderers, and brief generators
+  - produces reports and candidate briefs
+  - stops at human decision points</code></pre>
+<p>The important question is not “how capable is the agent?” It is “what
+is this actor permitted to write, and what claim is it allowed to
+make?”</p>
+<h2 id="the-lifecycle-model-has-separate-tracks">6. The lifecycle model
+has separate tracks</h2>
+<p>A corrected explainer should keep at least four tracks separate.</p>
+<h3 id="project-deliverable-lifecycle">6.1 Project deliverable
+lifecycle</h3>
+<pre class="text"><code>OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED</code></pre>
+<p>Some working roots may omit or specialize states. The harness should
+read the local project convention rather than forcing a universal
+sequence.</p>
+<h3 id="warrantauthentication-lifecycle">6.2 Warrant/authentication
+lifecycle</h3>
+<pre class="text"><code>UNWARRANTED → CITED → REVIEWED → AUTHENTICATED</code></pre>
+<p>This is not the same thing as the deliverable lifecycle. A file can
+be checked but not authenticated. A claim can be cited but not
+professionally accepted.</p>
+<h3 id="domain-profile-lifecycle">6.3 Domain profile lifecycle</h3>
+<pre class="text"><code>NONE / UNKNOWN → DRAFT → VALIDATED → ADOPTED → STALE / INVALID</code></pre>
+<p>The exact enum requires the applicable domain-engine decision record.
+Validation can be deterministic. Adoption is human.</p>
+<h3 id="tranche-lifecycle">6.4 Tranche lifecycle</h3>
+<pre class="text"><code>CANDIDATE → HUMAN_ADOPTED → EXECUTED → CHECKED → HUMAN_REVIEWED → CLOSED / SUPERSEDED</code></pre>
+<p>A generated tranche brief begins as <code>CANDIDATE</code>. It
+becomes binding only if a human adopts it according to the project’s
+authority rule.</p>
+<h2 id="how-one-governed-tranche-flows">7. How one governed tranche
+flows</h2>
+<pre class="text"><code>1. Read current state
+   - adapter reads status, plans, decisions, DAG/profile/evidence surfaces
+
+2. Prepare candidate tranche
+   - harness renders objective, basis, read scope, write scope, validations, evidence targets, stop conditions
+
+3. Human adopts or edits the tranche
+   - generated candidate becomes a governed work fence only through human adoption
+
+4. Bounded work executes
+   - agent/tool reads declared basis and writes only inside declared scope
+
+5. Scope and evidence are checked
+   - harness compares diff to write scope and evidence to brief requirements
+
+6. Human reviews sufficiency and risk
+   - evidence completeness is not professional sufficiency
+
+7. Governed record is updated by the proper actor
+   - closeout, issue, approval, or rejection stays in authored files and git history</code></pre>
+<p>The harness should make each step smaller and easier to inspect. It
+should not collapse the steps.</p>
+<h2 id="where-the-harness-fits-in-the-repository">8. Where the harness
+fits in the repository</h2>
+<p>A practical implementation can live under:</p>
+<pre class="text"><code>tools/practitioner_harness/</code></pre>
+<p>and produce generated outputs under project-local non-authoritative
+folders such as:</p>
+<pre class="text"><code>&lt;working-root&gt;/_HarnessViews/
+&lt;working-root&gt;/_HarnessBriefs/
+&lt;working-root&gt;/_HarnessReports/</code></pre>
+<p>or an existing coordination-generated root if the project already has
+one.</p>
+<p>The first implementation should not create or require a
+project-global database.</p>
+<h2 id="what-the-harness-reads">9. What the harness reads</h2>
+<p>The harness should read different roots through adapters.</p>
+<pre class="text"><code>root_governance_adapter
+  README.md
+  CHIRALITY_FRAMEWORK.md
+  PROFESSIONAL_ENGINEERING.md
+  docs/DIRECTIVE.md
+  docs/CONTRACT.md
+  docs/SPEC.md
+  docs/TYPES.md
+  docs/PLAN.md
+
+app_dev_adapter
+  projects/chirality-app-dev local status, plan, coordination, decisions, validation surfaces
+
+piping_adapter
+  projects/chirality-piping PRD/DAG/status/decision/validation surfaces
+
+domain_engines_adapter
+  _DomainEngines/DOMAIN_ENGINE_INDEX.md
+  _DomainEngines/_LATEST.md
+  _DomainEngines/RULINGS_PUBLISHED.md
+  _DomainEngines/_DECISIONS/**
+  _DomainEngines/profiles/**
+  _DomainEngines/profiles/_validation/**
+
+git_adapter
+  changed paths
+  commit reachability
+  approval SHA existence
+  evidence age relative to changed files</code></pre>
+<p>The archive reviewed for this explainer does not contain the full
+live <code>projects/chirality-*</code>, <code>agents/</code>,
+<code>skills/</code>, or <code>tools/</code> trees. The harness must
+therefore degrade gracefully: report missing/unavailable surfaces as
+such, not invent their state.</p>
+<h2 id="what-the-harness-produces">10. What the harness produces</h2>
+<p>The harness produces four main generated artifact families.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Output</th>
+<th>Use</th>
+<th>Authority status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Status projection</td>
+<td>Current readable digest with source paths and caveats.</td>
+<td>Generated view.</td>
+</tr>
+<tr class="even">
+<td>Self-check report</td>
+<td>Contradictions, stale fields, path leaks, missing disclaimers,
+unresolved references.</td>
+<td>Generated findings.</td>
+</tr>
+<tr class="odd">
+<td>Candidate tranche brief</td>
+<td>Proposed bounded work fence for a selected tranche.</td>
+<td>Candidate until human adopted.</td>
+</tr>
+<tr class="even">
+<td>Scope/evidence findings</td>
+<td>Objective comparison of work to brief and declared validations.</td>
+<td>Check results, not approval.</td>
+</tr>
+</tbody>
+</table>
+<p>Every output should be source-cited and disposable.</p>
+<h2 id="what-the-harness-must-never-claim">11. What the harness must
+never claim</h2>
+<p>The harness must not say:</p>
+<ul>
+<li>“approved” unless a human-authored approval artifact says so;</li>
+<li>“issued” unless the governed lifecycle artifact says so;</li>
+<li>“professionally accepted”;</li>
+<li>“certified”;</li>
+<li>“sealed”;</li>
+<li>“ready for construction”;</li>
+<li>“safe”;</li>
+<li>“validation passed, therefore engineering correctness is
+established”;</li>
+<li>“closed” unless the governed record says closed.</li>
+</ul>
+<p>Instead, it should say narrower things:</p>
+<ul>
+<li>“required validation artifact is present”;</li>
+<li>“approval SHA field is missing/TBD/reachable/unreachable”;</li>
+<li>“diff paths are within/outside the declared write scope”;</li>
+<li>“source hash matches/does not match”;</li>
+<li>“two current-state sources conflict”;</li>
+<li>“human review required.”</li>
+</ul>
+<h2 id="domain-engine-integration">12. Domain-engine integration</h2>
+<p>The domain-engine integration boundary should look like this:</p>
+<pre class="text"><code>Domain engine owns domain truth
+  - model state
+  - solver outputs
+  - protected schemas
+  - domain computation
+
+Chirality governance records the boundary
+  - profile
+  - protected paths
+  - readable artifacts
+  - proposal paths
+  - adoption/ruling state
+
+Harness reads and checks
+  - profile consistency
+  - validation report presence
+  - protected-path diff violations
+  - stale open issues
+  - human gate status
+
+Human decides
+  - adoption
+  - apply authorization
+  - professional reliance</code></pre>
+<p>For MVP, the harness should be <strong>read-only</strong> against
+<code>_DomainEngines</code> and protected project-domain paths. It can
+report whether a domain profile says <code>ADOPTED</code>, whether the
+validation report says valid, and whether other files contradict those
+claims. It cannot resolve the contradiction.</p>
+<h2 id="the-self-check-loop">13. The self-check loop</h2>
+<p>The harness should audit the governance corpus itself.</p>
+<p>Useful first checks:</p>
+<ul>
+<li>root governance basis is draft/pending;</li>
+<li>profile filename/header/status disagree;</li>
+<li>validation report says valid while profile comments say no validator
+exists;</li>
+<li>published rulings file contains mutually exclusive current-state
+statements;</li>
+<li>decision-record title says <code>PROPOSAL; HumanRuling: TBD</code>
+while the body contains a ruling;</li>
+<li>machine-absolute paths appear where portable governance requires
+repo-relative paths;</li>
+<li>generated outputs lack disclaimers;</li>
+<li>claims cite source paths that do not exist in the
+checkout/archive.</li>
+</ul>
+<p>This is the difference between a real governance harness and
+governance theater: the harness must be willing to report uncomfortable
+contradictions in the governance corpus itself.</p>
+<h2 id="storage-rule">14. Storage rule</h2>
+<p>Use this rule everywhere:</p>
+<blockquote>
+<p>Authored files and git history are authority. Generated views and
+local caches are disposable projections. A projection may accelerate
+review, but deletion of the projection must not delete the governed
+truth.</p>
+</blockquote>
+<p>SQLite is acceptable only under this rule.</p>
+<h2 id="one-sentence-architecture-summary">15. One-sentence architecture
+summary</h2>
+<p>Chirality keeps reliance in authored files and human decisions, lets
+bounded agents propose and execute inside explicit scopes, and uses the
+governance harness as a deterministic bench tool to compile state,
+surface contradictions, prepare tranches, and check scope/evidence
+without ever becoming the authority.</p>
+<h2 id="glossary">16. Glossary</h2>
+<p><strong>Authority artifact</strong> — A governed file or git-bound
+record that carries project truth.</p>
+<p><strong>Evidence artifact</strong> — A record of what happened:
+validation output, run record, command log, or evidence bundle.</p>
+<p><strong>Generated view</strong> — A rebuildable report or projection
+produced by the harness; not authority.</p>
+<p><strong>Tranche</strong> — A bounded intervention with an objective,
+basis, read/write scope, validations, evidence targets, and stop
+conditions.</p>
+<p><strong>Scope check</strong> — Comparison of changed paths to the
+adopted write/evidence scope.</p>
+<p><strong>Evidence check</strong> — Comparison of required
+validations/artifacts to what actually exists.</p>
+<p><strong>Self-check</strong> — Audit of the governance corpus for
+contradictions, stale fields, unresolved references, path leaks, and
+missing disclaimers.</p>
+<p><strong>Approval SHA</strong> — Git commit identifier that binds an
+approval/ruling to specific content.</p>
+<p><strong>Warrant</strong> — Evidence and reasoning that supports a
+claim.</p>
+<p><strong>Authentication</strong> — Human professional acceptance of
+responsibility for a claim/work product. It cannot be produced by the
+harness.</p>
+</body>
+</html>

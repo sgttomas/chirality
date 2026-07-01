@@ -15,13 +15,4 @@ accepted snapshots, or handoff states. If a plan conflicts with a governed
 authority, follow the governed authority unless the plan explicitly records an
 approved transition or supersession path.
 
-Current contents:
-
-- `monorepo_structure_assessment_2026-06-13.md` - point-in-time structural
-  assessment of the monorepo (descriptive and advisory; not governed authority).
-- `historical-imports/chirality-app-test` - planning records imported from the
-  former private workspace for reference and provenance.
-
-The `chirality_domain_decomp_readiness_2026-06-13.md` handoff plan was consumed
-by the completed Chirality domain decomposition (DOMAIN_DECOMP Gates 1-6 closed,
-`GATE6_PUBLISH_20260615T044434Z`) and moved to `.archive/`.
+When documents are no longer relevant in that manner they are moved to `plans/.archive/`.

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirality — How app-dev and piping converge (visual explainer)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#0f172a; --muted:#52607a; --line:#dfe3ea;
+    --appdev:#2563eb;   /* app-dev = blue   */
+    --piping:#15803d;   /* piping  = green  */
+    --bridge:#7c3aed;   /* tier-0 bridge = purple */
+    --human:#dc2626;    /* human gate = red */
+    --contract:#0e7490; /* shared contract = teal */
+    --gate:#b45309;     /* fences/gates = amber */
+    --appdev-bg:#eef4ff; --piping-bg:#eef8f0; --bridge-bg:#f4eefe;
+    --human-bg:#fdeeee;  --contract-bg:#e8f6f9; --gate-bg:#fdf3e6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 24px 80px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:22px;margin-bottom:10px}
+  h1{font-size:30px;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:17px;margin:0}
+  .thesis{background:#fff;border:1px solid var(--line);border-left:5px solid var(--appdev);
+    border-radius:12px;padding:16px 20px;margin:24px 0 8px;font-size:16px}
+  .thesis b{color:var(--appdev)}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 28px;margin:26px 0;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  h2{font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+  h2 .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;
+    background:var(--ink);color:#fff;font-size:15px;margin-right:10px;vertical-align:2px}
+  .lede{color:var(--muted);margin:6px 0 18px;max-width:78ch}
+  svg{display:block;width:100%;height:auto;margin:6px 0 10px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin:6px 0 18px;font-size:13.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:13px;height:13px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+  .ann{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+  .ann li{position:relative;padding-left:34px;font-size:14.5px;color:#243046}
+  .ann li .b{position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;
+    background:var(--appdev);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center}
+  .ann.green li .b{background:var(--piping)}
+  .ann.mix li:nth-child(odd) .b{background:var(--appdev)} .ann.mix li:nth-child(even) .b{background:var(--piping)}
+  .note{background:var(--gate-bg);border:1px solid #f0dcbf;border-radius:10px;padding:12px 16px;
+    margin-top:16px;font-size:14.5px;color:#5c3d12}
+  .note b{color:var(--gate)}
+  .key{background:#eef4ff;border:1px solid #d6e2ff;border-radius:10px;padding:12px 16px;margin-top:16px;font-size:14.5px}
+  table.gloss{width:100%;border-collapse:collapse;font-size:14.5px}
+  table.gloss th,table.gloss td{border-bottom:1px solid var(--line);text-align:left;padding:9px 10px;vertical-align:top}
+  table.gloss th{color:var(--muted);font-weight:600}
+  table.gloss td:first-child{white-space:nowrap;font-weight:600;color:var(--ink)}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.02em}
+  .pill.green{background:var(--piping-bg);color:var(--piping)}
+  .pill.amber{background:var(--gate-bg);color:var(--gate)}
+  .pill.red{background:var(--human-bg);color:var(--human)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
+  code{background:#eef1f6;border-radius:5px;padding:1px 6px;font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>How <span style="color:var(--appdev)">chirality-app-dev</span> and <span style="color:var(--piping)">chirality-piping</span> converge</h1>
+  <p class="sub">So the agent harness can run <i>inside</i> piping — a plain-language visual walkthrough.</p>
+</header>
+
+<div class="thesis">
+  <b>The one idea behind everything:</b> the two projects do <b>not merge</b>, and piping does <b>not rebuild</b>
+  the harness. Instead piping <b>borrows the harness as version-pinned packages</b> and runs it as a side
+  module. A third thing — the <b style="color:var(--bridge)">chirality bridge</b> — writes the rules but builds
+  nothing. Think of it as <i>federation through a shared contract</i>, refereed by the bridge.
+</div>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">1</span>The three players</h2>
+  <p class="lede">Before any wiring, know who does what. Two builders and one referee. The harness only ever
+    flows one way — app-dev makes it, piping uses it.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--appdev)"></i> app-dev (builds the harness)</span>
+    <span><i class="sw" style="background:var(--piping)"></i> piping (the domain engine)</span>
+    <span><i class="sw" style="background:var(--bridge)"></i> the bridge / tier-0 (rules only)</span>
+  </div>
+
+  <svg viewBox="0 0 1000 360" role="img" aria-labelledby="d1t">
+    <title id="d1t">The chirality bridge sits above app-dev and piping and rules the contract between them.</title>
+    <defs>
+      <marker id="a1" markerWidth="11" markerHeight="11" refX="8" refY="5" orient="auto">
+        <path d="M0,0 L9,5 L0,10 z" fill="#475569"/></marker>
+      <marker id="a1b" markerWidth="11" markerHeight="11" refX="8" refY="5" orient="auto">
+        <path d="M0,0 L9,5 L0,10 z" fill="#7c3aed"/></marker>
+    </defs>
+
+    <!-- bridge -->
+    <rect x="300" y="20" width="400" height="86" rx="14" fill="var(--bridge-bg)" stroke="var(--bridge)" stroke-width="2"/>
+    <text x="500" y="50" text-anchor="middle" font-size="19" font-weight="700" fill="var(--bridge)">the chirality bridge · tier-0</text>
+    <text x="500" y="74" text-anchor="middle" font-size="14" fill="#5b4399">Doc-only governance — owns the rules &amp; the contract version</text>
+    <text x="500" y="93" text-anchor="middle" font-size="13" fill="#7a6aa8">builds nothing · hosts nothing</text>
+
+    <!-- app-dev -->
+    <rect x="60" y="200" width="380" height="130" rx="14" fill="var(--appdev-bg)" stroke="var(--appdev)" stroke-width="2"/>
+    <text x="250" y="232" text-anchor="middle" font-size="18" font-weight="700" fill="var(--appdev)">chirality-app-dev</text>
+    <text x="250" y="258" text-anchor="middle" font-size="14" fill="#274a93">The generalist agent harness</text>
+    <text x="250" y="280" text-anchor="middle" font-size="13" fill="#3a5aa0">turn-loop · tools · permissions · audit</text>
+    <text x="250" y="302" text-anchor="middle" font-size="13" fill="#3a5aa0">built once, for any domain (not piping-specific)</text>
+
+    <!-- piping -->
+    <rect x="560" y="200" width="380" height="130" rx="14" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="2"/>
+    <text x="750" y="232" text-anchor="middle" font-size="18" font-weight="700" fill="var(--piping)">chirality-piping</text>
+    <text x="750" y="258" text-anchor="middle" font-size="14" fill="#1c6b34">The domain engine (OpenPipeStress)</text>
+    <text x="750" y="280" text-anchor="middle" font-size="13" fill="#28793f">deterministic Rust solver + frontend</text>
+    <text x="750" y="302" text-anchor="middle" font-size="13" fill="#28793f">wants an embedded agent to help design models</text>
+
+    <!-- bridge governs both -->
+    <path d="M360,106 C320,150 300,170 270,198" fill="none" stroke="var(--bridge)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#a1b)"/>
+    <path d="M640,106 C680,150 700,170 730,198" fill="none" stroke="var(--bridge)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#a1b)"/>
+    <text x="500" y="150" text-anchor="middle" font-size="12.5" fill="#7c3aed">rules &amp; gates apply to both</text>
+
+    <!-- harness flows app-dev -> piping -->
+    <path d="M440,250 L556,250" fill="none" stroke="#475569" stroke-width="2.4" marker-end="url(#a1)"/>
+    <text x="498" y="240" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">harness →</text>
+    <text x="498" y="276" text-anchor="middle" font-size="11.5" fill="#64748b">(as packages, one direction)</text>
+  </svg>
+
+  <ul class="ann mix">
+    <li><span class="b">A</span><b>app-dev</b> owns the harness — the generic machinery that runs an AI agent. It is deliberately <i>not</i> piping-specific, so it can serve other domains later.</li>
+    <li><span class="b">B</span><b>piping</b> is the specialist: a deterministic piping-stress solver. It wants an embedded agent but will not build a harness itself.</li>
+    <li><span class="b">A</span><b>the bridge</b> is pure governance. It never ships code; it rules <i>what</i> the contract is, <i>which version</i> is in force, and <i>in what order</i> capabilities may switch on.</li>
+    <li><span class="b">B</span><b>Direction matters:</b> the harness only flows app-dev → piping. Domain truth (the models, the math) always stays inside piping.</li>
+  </ul>
+</section>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">2</span>The end-state: how the harness lives inside piping</h2>
+  <p class="lede">This is the picture of "done." Piping imports two app-dev packages and launches the agent
+    runtime as a <b>sidecar</b> (a helper process). The agent can <i>read</i> and <i>propose</i>, but a human
+    signs off and piping's own code makes the change. Follow the numbers ①–⑥.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--appdev)"></i> app-dev code (the harness)</span>
+    <span><i class="sw" style="background:var(--piping)"></i> piping code</span>
+    <span><i class="sw" style="background:var(--contract)"></i> shared contract package</span>
+    <span><i class="sw" style="background:var(--human)"></i> human decision point</span>
+  </div>
+
+  <svg viewBox="0 0 1000 600" role="img" aria-labelledby="d2t">
+    <title id="d2t">Topology of the harness running as a sidecar inside the piping app, with a human gate before any change is applied.</title>
+    <defs>
+      <marker id="a2" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#475569"/></marker>
+      <marker id="a2r" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#dc2626"/></marker>
+      <marker id="a2g" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#15803d"/></marker>
+    </defs>
+
+    <!-- outer piping app -->
+    <rect x="16" y="40" width="968" height="540" rx="18" fill="#fbfcfd" stroke="var(--piping)" stroke-width="2.5"/>
+    <text x="36" y="68" font-size="15" font-weight="700" fill="var(--piping)">the chirality-piping application</text>
+
+    <!-- piping frontend -->
+    <rect x="44" y="92" width="430" height="150" rx="12" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="1.6"/>
+    <text x="60" y="116" font-size="15" font-weight="700" fill="var(--piping)">piping frontend</text>
+    <rect x="60" y="130" width="398" height="38" rx="8" fill="var(--contract-bg)" stroke="var(--contract)" stroke-width="1.4"/>
+    <text x="72" y="154" font-size="13.5" fill="var(--contract)">imports <tspan font-weight="700">@chirality/harness-contract</tspan> (pure types)</text>
+    <rect x="60" y="176" width="398" height="38" rx="8" fill="var(--contract-bg)" stroke="var(--contract)" stroke-width="1.4"/>
+    <text x="72" y="200" font-size="13.5" fill="var(--contract)">imports <tspan font-weight="700">@chirality/harness-ui</tspan> (the agent panel)</text>
+    <text x="60" y="232" font-size="11.5" fill="#1c6b34">version-pinned — see diagram 5</text>
+
+    <!-- sidecar -->
+    <rect x="540" y="92" width="420" height="150" rx="12" fill="var(--appdev-bg)" stroke="var(--appdev)" stroke-width="2"/>
+    <text x="560" y="116" font-size="15" font-weight="700" fill="var(--appdev)">harness runtime — SIDECAR</text>
+    <text x="560" y="140" font-size="13" fill="#274a93">app-dev's Node + Claude Agent SDK process</text>
+    <text x="560" y="162" font-size="13" fill="#274a93">runs the agent turn-loop, streams 43 event types</text>
+    <rect x="560" y="176" width="384" height="48" rx="8" fill="#fff" stroke="var(--appdev)" stroke-width="1.3"/>
+    <text x="572" y="196" font-size="13" font-weight="700" fill="var(--appdev)">the AI agent</text>
+    <text x="572" y="214" font-size="12" fill="#3a5aa0">reads &amp; proposes through domain tools — never applies</text>
+
+    <!-- launch arrow -->
+    <path d="M474,150 L536,150" fill="none" stroke="#475569" stroke-width="2.2" marker-end="url(#a2)"/>
+    <text x="505" y="142" text-anchor="middle" font-size="11.5" fill="#334155">① launches</text>
+
+    <!-- kernel -->
+    <rect x="44" y="300" width="300" height="120" rx="12" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="1.6"/>
+    <text x="60" y="326" font-size="15" font-weight="700" fill="var(--piping)">piping Rust kernel</text>
+    <text x="60" y="349" font-size="13" fill="#28793f">the deterministic solver —</text>
+    <text x="60" y="368" font-size="13" fill="#28793f">the real source of domain truth</text>
+    <text x="60" y="398" font-size="12" fill="#1c6b34">produces models, runs, comparisons</text>
+
+    <!-- headless CLI -->
+    <rect x="392" y="312" width="150" height="96" rx="10" fill="#fff" stroke="var(--piping)" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="467" y="350" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--piping)">headless CLI</text>
+    <text x="467" y="370" text-anchor="middle" font-size="11.5" fill="#28793f">runs the kernel</text>
+    <text x="467" y="386" text-anchor="middle" font-size="11.5" fill="#28793f">without the GUI</text>
+
+    <!-- proposal inbox -->
+    <rect x="660" y="300" width="300" height="86" rx="12" fill="var(--contract-bg)" stroke="var(--contract)" stroke-width="1.8" stroke-dasharray="6 4"/>
+    <text x="676" y="326" font-size="14.5" font-weight="700" fill="var(--contract)">OperationProposal inbox</text>
+    <text x="676" y="348" font-size="12.5" fill="#0e7490">an "agent-writable" folder —</text>
+    <text x="676" y="366" font-size="12.5" fill="#0e7490">the only place the agent may write</text>
+
+    <!-- protected -->
+    <rect x="44" y="470" width="300" height="78" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+    <text x="76" y="500" font-size="14.5" font-weight="700" fill="#475569">🔒 protected truth</text>
+    <text x="76" y="522" font-size="12.5" fill="#64748b">write-quarantined — the agent</text>
+    <text x="76" y="539" font-size="12.5" fill="#64748b">can NEVER write here (K-DOMAIN-2)</text>
+
+    <!-- human -->
+    <rect x="660" y="452" width="300" height="96" rx="12" fill="var(--human-bg)" stroke="var(--human)" stroke-width="2"/>
+    <text x="676" y="480" font-size="15" font-weight="700" fill="var(--human)">👤 human reviewer</text>
+    <text x="676" y="503" font-size="13" fill="#a52121">reviews each proposal in the panel</text>
+    <text x="676" y="524" font-size="13" font-weight="700" fill="#a52121">accept / reject (K-DOMAIN-3)</text>
+
+    <!-- arrows: agent reads kernel output -->
+    <path d="M620,224 C540,250 360,250 250,296" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a2)"/>
+    <text x="430" y="262" text-anchor="middle" font-size="11.5" fill="#334155">② reads readable artifacts</text>
+
+    <!-- agent -> headless CLI -> kernel -->
+    <path d="M620,224 C560,270 520,300 500,310" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a2)"/>
+    <text x="600" y="292" text-anchor="middle" font-size="11.5" fill="#334155">③ runs validated jobs</text>
+    <path d="M392,360 L348,360" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a2)"/>
+
+    <!-- agent -> proposal inbox -->
+    <path d="M810,242 L810,296" fill="none" stroke="var(--contract)" stroke-width="2.2" marker-end="url(#a2)"/>
+    <text x="810" y="276" text-anchor="middle" font-size="11.5" fill="var(--contract)">④ writes a proposal</text>
+
+    <!-- proposal -> human -->
+    <path d="M810,386 L810,448" fill="none" stroke="var(--human)" stroke-width="2.2" marker-end="url(#a2r)"/>
+    <text x="810" y="424" text-anchor="middle" font-size="11.5" fill="var(--human)">⑤ review</text>
+
+    <!-- human -> kernel applies -->
+    <path d="M660,510 C470,520 360,470 250,424" fill="none" stroke="var(--piping)" stroke-width="2.4" marker-end="url(#a2g)"/>
+    <text x="470" y="500" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--piping)">⑥ on accept, PIPING applies the change</text>
+  </svg>
+
+  <ul class="ann">
+    <li><span class="b">①</span>Piping's app starts the harness as a <b>sidecar</b> — a separate process running app-dev's Node + Agent SDK. The SDK stays whole, never rewritten in Rust.</li>
+    <li><span class="b">②</span>The agent <b>reads</b> piping's allowed artifacts (existing models, run results) through read-only domain tools.</li>
+    <li><span class="b">③</span>To compute, the agent asks piping's <b>headless CLI</b> to run the real deterministic kernel — same math as the GUI, no GUI needed.</li>
+    <li><span class="b">④</span>When it has a suggestion, the agent writes an <b>OperationProposal</b> into the one folder it is allowed to write. It cannot touch protected truth.</li>
+    <li><span class="b">⑤</span>A <b>human</b> reviews that proposal in the agent panel and accepts or rejects it. Nothing happens to the model without this.</li>
+    <li><span class="b">⑥</span>On accept, <b>piping's own code</b> applies the change. The agent never mutates anything directly — that asymmetry is the safety guarantee.</li>
+  </ul>
+  <div class="key"><b>Why a sidecar and packages (not a merge)?</b> Piping keeps its own stack; app-dev keeps one
+    generic harness. Piping pins a <i>version</i> of the harness packages and bolts the runtime in as a helper.
+    Decided in <code>DEC-041</code>: "harness-as-versioned-packages — not a refactor, not a re-implementation."</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">3</span>The convergence path: a 4-rung ladder</h2>
+  <p class="lede">The bridge forbids "jumping levels." Capability switches on one safe rung at a time. Each rung
+    adds power and unlocks the next gate. Today the projects sit on the bottom rung.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:#94a3b8"></i> read-only / safe</span>
+    <span><i class="sw" style="background:var(--gate)"></i> needs a gate or fence to open</span>
+    <span><i class="sw" style="background:var(--human)"></i> live mutation (most guarded)</span>
+  </div>
+
+  <svg viewBox="0 0 1000 430" role="img" aria-labelledby="d3t">
+    <title id="d3t">Four-rung integration ladder from L0 manual bridge to L3 live proposal-apply loop.</title>
+    <!-- L0 -->
+    <rect x="40" y="330" width="250" height="70" rx="10" fill="#eef2f7" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="58" y="356" font-size="15" font-weight="700" fill="#334155">L0 · Manual bridge</text>
+    <text x="58" y="378" font-size="12.5" fill="#52607a">today — profile adopted,</text>
+    <text x="58" y="394" font-size="12.5" fill="#52607a">contract mapped on paper</text>
+    <rect x="58" y="300" width="118" height="24" rx="12" fill="var(--human-bg)"/>
+    <text x="117" y="317" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--human)">YOU ARE HERE</text>
+
+    <!-- L1 -->
+    <rect x="280" y="245" width="250" height="70" rx="10" fill="#eef2f7" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="298" y="271" font-size="15" font-weight="700" fill="#334155">L1 · Read</text>
+    <text x="298" y="293" font-size="12.5" fill="#52607a">agent discovers &amp; reads</text>
+    <text x="298" y="309" font-size="12.5" fill="#52607a">piping artifacts (no writes)</text>
+
+    <!-- L2 -->
+    <rect x="520" y="160" width="250" height="70" rx="10" fill="var(--gate-bg)" stroke="var(--gate)" stroke-width="1.8"/>
+    <text x="538" y="186" font-size="15" font-weight="700" fill="var(--gate)">L2 · Run</text>
+    <text x="538" y="208" font-size="12.5" fill="#7a5410">agent drives validated</text>
+    <text x="538" y="224" font-size="12.5" fill="#7a5410">kernel runs (still no mutation)</text>
+
+    <!-- L3 -->
+    <rect x="710" y="75" width="262" height="70" rx="10" fill="var(--human-bg)" stroke="var(--human)" stroke-width="2"/>
+    <text x="728" y="101" font-size="15" font-weight="700" fill="var(--human)">L3 · Propose → apply</text>
+    <text x="728" y="123" font-size="12.5" fill="#a52121">the full loop: agent proposes,</text>
+    <text x="728" y="139" font-size="12.5" fill="#a52121">human accepts, piping applies</text>
+
+    <!-- connecting steps -->
+    <path d="M165,330 L165,318 L405,318 L405,316" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M290,283 L296,283" fill="none" stroke="#94a3b8" stroke-width="2"/>
+    <path d="M530,205 L520,205" fill="none" stroke="var(--gate)" stroke-width="2"/>
+    <path d="M770,120 L710,120" fill="none" stroke="var(--human)" stroke-width="2"/>
+    <!-- riser arrows -->
+    <path d="M405,245 L405,318" fill="none" stroke="#94a3b8" stroke-width="2.4" marker-end="url(#a2)"/>
+    <path d="M645,160 L645,233" fill="none" stroke="var(--gate)" stroke-width="2.4" marker-end="url(#a2)"/>
+    <path d="M840,75 L840,148" fill="none" stroke="var(--human)" stroke-width="2.4" marker-end="url(#a2r)"/>
+
+    <!-- gate notes -->
+    <text x="430" y="240" font-size="11.5" fill="#475569">needs the extracted contract package</text>
+    <text x="660" y="155" font-size="11.5" fill="var(--gate)">needs the headless CLI built</text>
+    <text x="690" y="70" font-size="11.5" fill="var(--human)">needs fence F3 + F1 opened, in order</text>
+  </svg>
+
+  <ul class="ann mix">
+    <li><span class="b">L0</span><b>Manual bridge (now).</b> The agreement exists on paper: piping's profile is adopted, the contract is mapped. No automated contact yet.</li>
+    <li><span class="b">L1</span><b>Read.</b> The agent can find and read piping's data through read-only tools. Needs only app-dev's contract package extracted and imported. No fence.</li>
+    <li><span class="b">L2</span><b>Run.</b> The agent can run the real solver via the headless CLI and get validated results — but still changes nothing. <b>This rung is the linchpin.</b></li>
+    <li><span class="b">L3</span><b>Propose → apply.</b> The live loop from diagram 2. Only reachable after L2 is proven and the guarded fences open in order.</li>
+  </ul>
+  <div class="note"><b>Why L2 is the linchpin:</b> the bridge rule <code>D-T0-08</code> says fence <b>F3</b> (the
+    domain machinery for L3) may only open <i>after a proven L2</i>. And L2 needs the <b>headless CLI</b>. So the
+    entire path hinges on one buildable-today piece of code — see diagram 5.</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">4</span>The safety workflow: who may do what</h2>
+  <p class="lede">The reason this is safe to switch on is a strict division of labor. The agent suggests; a human
+    decides; the engine acts. No single party can both decide and mutate.</p>
+
+  <svg viewBox="0 0 1000 250" role="img" aria-labelledby="d4t">
+    <title id="d4t">Cycle: agent proposes, human accepts or rejects, piping engine applies, producing new state the agent reads next.</title>
+    <defs><marker id="a4" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#475569"/></marker></defs>
+    <rect x="40" y="90" width="200" height="74" rx="12" fill="var(--appdev-bg)" stroke="var(--appdev)" stroke-width="2"/>
+    <text x="140" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="var(--appdev)">AGENT</text>
+    <text x="140" y="144" text-anchor="middle" font-size="12.5" fill="#274a93">may propose &amp; read</text>
+
+    <rect x="400" y="90" width="200" height="74" rx="12" fill="var(--human-bg)" stroke="var(--human)" stroke-width="2"/>
+    <text x="500" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="var(--human)">HUMAN</text>
+    <text x="500" y="144" text-anchor="middle" font-size="12.5" fill="#a52121">may accept / reject</text>
+
+    <rect x="760" y="90" width="200" height="74" rx="12" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="2"/>
+    <text x="860" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="var(--piping)">PIPING ENGINE</text>
+    <text x="860" y="144" text-anchor="middle" font-size="12.5" fill="#1c6b34">may apply changes</text>
+
+    <path d="M240,118 L396,118" fill="none" stroke="#475569" stroke-width="2.2" marker-end="url(#a4)"/>
+    <text x="318" y="108" text-anchor="middle" font-size="12.5" fill="#334155">OperationProposal</text>
+    <path d="M600,118 L756,118" fill="none" stroke="#475569" stroke-width="2.2" marker-end="url(#a4)"/>
+    <text x="678" y="108" text-anchor="middle" font-size="12.5" fill="#334155">"accept"</text>
+
+    <path d="M860,164 C860,215 140,215 140,168" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a4)"/>
+    <text x="500" y="232" text-anchor="middle" font-size="12.5" fill="#52607a">new validated state → the agent reads it on the next turn</text>
+  </svg>
+
+  <ul class="ann">
+    <li><span class="b">1</span><b>Agent proposes.</b> It writes a structured OperationProposal — what it wants changed and why — into its writable folder. It cannot apply it.</li>
+    <li><span class="b">2</span><b>Human gates.</b> Every proposal is reviewed and explicitly accepted or rejected. This is the non-negotiable checkpoint (<code>K-DOMAIN-3</code>).</li>
+    <li><span class="b">3</span><b>Engine applies.</b> Only piping's own deterministic code performs the mutation, so domain truth is always produced by the validated engine — never by the LLM.</li>
+    <li><span class="b">4</span><b>Loop.</b> The new state becomes readable, and the agent works from it next turn. Continuous, but human-paced.</li>
+  </ul>
+</section>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">5</span>The critical path: what unblocks what</h2>
+  <p class="lede">Two teams work in parallel and rendezvous at "a proven L2." The two starting pieces (in green)
+    need <b>no permission</b> — they can be built today. Everything after the rendezvous is gated.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--piping)"></i> buildable today (no fence)</span>
+    <span><i class="sw" style="background:var(--gate)"></i> needs a ruling / fence</span>
+    <span><i class="sw" style="background:var(--human)"></i> live binding</span>
+  </div>
+
+  <svg viewBox="0 0 1000 360" role="img" aria-labelledby="d5t">
+    <title id="d5t">Two parallel tracks — app-dev package extraction and piping headless CLI — converge at a proven L2, then gated steps lead to live binding.</title>
+    <defs><marker id="a5" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 z" fill="#475569"/></marker></defs>
+
+    <text x="40" y="46" font-size="13" font-weight="700" fill="var(--appdev)">app-dev track</text>
+    <rect x="40" y="58" width="250" height="64" rx="10" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="1.8"/>
+    <text x="58" y="84" font-size="13.5" font-weight="700" fill="#1c6b34">Extract contract package</text>
+    <text x="58" y="104" font-size="12" fill="#28793f">D-APP-46 · proposed, GREEN</text>
+
+    <text x="40" y="186" font-size="13" font-weight="700" fill="var(--piping)">piping track</text>
+    <rect x="40" y="198" width="250" height="64" rx="10" fill="var(--piping-bg)" stroke="var(--piping)" stroke-width="1.8"/>
+    <text x="58" y="224" font-size="13.5" font-weight="700" fill="#1c6b34">Build the headless CLI</text>
+    <text x="58" y="244" font-size="12" fill="#28793f">DEC-042 sanctioned, no fence</text>
+
+    <!-- converge: proven L2 -->
+    <rect x="390" y="128" width="200" height="66" rx="10" fill="var(--gate-bg)" stroke="var(--gate)" stroke-width="2"/>
+    <text x="490" y="156" text-anchor="middle" font-size="14.5" font-weight="700" fill="var(--gate)">a PROVEN L2</text>
+    <text x="490" y="177" text-anchor="middle" font-size="12" fill="#7a5410">the rendezvous milestone</text>
+
+    <path d="M290,90 C340,100 350,130 388,150" fill="none" stroke="#475569" stroke-width="2.2" marker-end="url(#a5)"/>
+    <path d="M290,230 C340,220 350,190 388,172" fill="none" stroke="#475569" stroke-width="2.2" marker-end="url(#a5)"/>
+
+    <!-- gated chain -->
+    <rect x="650" y="40" width="310" height="58" rx="10" fill="var(--gate-bg)" stroke="var(--gate)" stroke-width="1.8"/>
+    <text x="666" y="64" font-size="13" font-weight="700" fill="var(--gate)">Pin Flow-A version · rule D-21</text>
+    <text x="666" y="84" font-size="11.5" fill="#7a5410">tier-0 version + piping brings R7 into scope</text>
+
+    <rect x="650" y="128" width="310" height="58" rx="10" fill="var(--gate-bg)" stroke="var(--gate)" stroke-width="1.8"/>
+    <text x="666" y="152" font-size="13" font-weight="700" fill="var(--gate)">Open fence F3 (then F1)</text>
+    <text x="666" y="172" font-size="11.5" fill="#7a5410">domain machinery, in the D-T0-08 order</text>
+
+    <rect x="650" y="216" width="310" height="64" rx="10" fill="var(--human-bg)" stroke="var(--human)" stroke-width="2"/>
+    <text x="666" y="242" font-size="13.5" font-weight="700" fill="var(--human)">L3 — harness live in piping</text>
+    <text x="666" y="262" font-size="11.5" fill="#a52121">the propose → accept → apply loop runs</text>
+
+    <path d="M590,150 C620,120 630,90 648,72" fill="none" stroke="var(--gate)" stroke-width="2" marker-end="url(#a5)"/>
+    <path d="M590,161 L646,159" fill="none" stroke="var(--gate)" stroke-width="2" marker-end="url(#a5)"/>
+    <path d="M805,186 L805,212" fill="none" stroke="var(--human)" stroke-width="2.2" marker-end="url(#a5)"/>
+    <path d="M805,98 L805,126" fill="none" stroke="var(--gate)" stroke-width="2"/>
+  </svg>
+
+  <ul class="ann green">
+    <li><span class="b">1</span><b>Start now, no permission needed:</b> app-dev extracts the contract package (proposal <code>D-APP-46</code>) and piping builds the headless CLI (<code>DEC-042</code>). These are the green boxes.</li>
+    <li><span class="b">2</span><b>They meet at a proven L2</b> — the agent reading and running piping's validated kernel. This is the single milestone everything else waits on.</li>
+    <li><span class="b">3</span><b>Then the gated steps</b> open in order: pin the contract version, rule piping's scope (<code>D-21</code>), open fence F3, then F1 for live binding.</li>
+    <li><span class="b">4</span><b>Result:</b> L3 — the harness runs live inside piping. Nothing irreversible happens until these gates are deliberately opened.</li>
+  </ul>
+</section>
+
+<!-- ============================================================= -->
+<section>
+  <h2><span class="n">6</span>Glossary — the terms in these diagrams</h2>
+  <table class="gloss">
+    <tr><th>Term</th><th>Plain meaning</th><th>State</th></tr>
+    <tr><td>Harness</td><td>app-dev's generic machinery for running an AI agent: the turn-loop, tools, permissions, audit log.</td><td><span class="pill green">built (in-process)</span></td></tr>
+    <tr><td>Sidecar</td><td>Running that harness as a separate helper process next to piping, instead of rebuilding it inside piping.</td><td><span class="pill amber">at live-binding</span></td></tr>
+    <tr><td>Flow-A contract package</td><td>The shared, dependency-free vocabulary both sides code against (the 43 event types, the agent interface, the tool list). The keystone.</td><td><span class="pill amber">proposed: D-APP-46</span></td></tr>
+    <tr><td>DomainEngineProfile</td><td>Piping's "spec sheet" declaring what the agent may read, may write, and must never touch.</td><td><span class="pill green">adopted ✓</span></td></tr>
+    <tr><td>OperationProposal</td><td>A structured suggestion the agent writes; a human must accept it before piping applies it.</td><td><span class="pill amber">contract TBD</span></td></tr>
+    <tr><td>Headless CLI</td><td>A command-line way to run piping's solver without its GUI — how the agent reaches the real engine.</td><td><span class="pill amber">not built yet</span></td></tr>
+    <tr><td>L0 → L3</td><td>The integration ladder: manual → read → run → propose-and-apply. "Do not jump levels."</td><td><span class="pill amber">at L0</span></td></tr>
+    <tr><td>Fences F1–F4</td><td>app-dev's four hard limits: F1 network/provider, F2 release, F3 domain machinery, F4 issuance. Each opens only by an owner ruling.</td><td><span class="pill amber">F3/F1 gate L3</span></td></tr>
+    <tr><td>The bridge / tier-0</td><td>The shared-root governance layer. Writes the rules and owns the contract version; builds nothing.</td><td><span class="pill green">active</span></td></tr>
+    <tr><td>DEC-041 / D-21 / D-T0-08</td><td>Rulings: use packages not a rewrite (DEC-041); piping's scope decision (D-21); the order fences open in (D-T0-08).</td><td><span class="pill amber">D-21 held</span></td></tr>
+  </table>
+  <div class="key"><b>The takeaway in one sentence:</b> app-dev publishes its harness as versioned packages, piping
+    bolts them in as a sidecar and exposes its engine through a profile, and a human gates every change — so the
+    two projects converge through a contract, climbing one safe rung at a time, refereed by the bridge.</div>
+</section>
+
+<footer>
+  Visual explainer · chirality-app-dev governance loop · 2026-06-24 · companion to the readiness assessment
+  and the D-APP-46 extraction proposal. Schematic — exact line/SHA citations live in the assessment.
+</footer>
+
+<p class="sr-only">A five-part visual explainer of how the chirality-app-dev agent harness can be embedded
+into the chirality-piping project through versioned packages and a sidecar runtime, governed by the chirality
+bridge, with a human gate on every change.</p>
+
+</div>
+</body>
+</html>

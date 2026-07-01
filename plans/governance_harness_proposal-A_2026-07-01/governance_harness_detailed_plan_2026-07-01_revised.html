@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-07-01" />
+  <title>Chirality Governance Harness Detailed Plan — Revised Practitioner Bench Architecture</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">:root {
+--ink: #17202a;
+--muted: #536172;
+--paper: #f7f7f4;
+--panel: #ffffff;
+--line: #d8ded8;
+--blue: #255f85;
+--teal: #1f7a72;
+--red: #aa4c3f;
+--gold: #b47a20;
+--violet: #6a557d;
+}
+html { scroll-behavior: smooth; }
+body {
+max-width: 1080px;
+margin: 0 auto;
+padding: 42px 34px 72px;
+color: var(--ink);
+background: linear-gradient(180deg, #eef2ed 0%, var(--paper) 360px), var(--paper);
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+line-height: 1.58;
+}
+h1 { font-size: clamp(2.1rem, 4.5vw, 4.1rem); line-height: 1.0; margin-top: 0; letter-spacing: -0.035em; }
+h2 { margin-top: 2.2rem; padding-top: .6rem; border-top: 1px solid var(--line); color: #20313a; }
+h3 { margin-top: 1.6rem; color: #20313a; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+blockquote { border-left: 5px solid var(--teal); background: rgba(255,255,255,.72); margin: 1.2rem 0; padding: .7rem 1rem; color: #293744; }
+code { background: #eef1ef; border: 1px solid #dce2dd; border-radius: 4px; padding: .1rem .25rem; font-size: .92em; }
+pre { background: #20313a; color: #f6fbfa; border-radius: 8px; padding: 1rem; overflow-x: auto; }
+pre code { background: transparent; border: 0; color: inherit; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.4rem; background: rgba(255,255,255,.88); }
+th, td { border: 1px solid var(--line); padding: .62rem .72rem; vertical-align: top; }
+th { background: #eaf0ec; text-align: left; }
+hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
+ul, ol { padding-left: 1.4rem; }
+li + li { margin-top: .25rem; }
+header#title-block-header { background: rgba(255,255,255,.78); border: 1px solid var(--line); border-left: 6px solid var(--teal); border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 2rem; box-shadow: 0 14px 30px rgba(23,32,42,.08); }
+header#title-block-header h1 { margin-bottom: .7rem; }
+.subtitle, .date, .author { color: var(--muted); }
+@media print { body { background: white; max-width: none; padding: 20px; } pre { white-space: pre-wrap; } }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chirality Governance Harness Detailed Plan — Revised
+Practitioner Bench Architecture</h1>
+<p class="date">2026-07-01</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#chirality-governance-harness-detailed-plan-revised-practitioner-bench-architecture" id="toc-chirality-governance-harness-detailed-plan-revised-practitioner-bench-architecture">Chirality
+Governance Harness Detailed Plan — Revised Practitioner Bench
+Architecture</a>
+<ul>
+<li><a href="#executive-verdict" id="toc-executive-verdict">0. Executive
+verdict</a></li>
+<li><a href="#authority-and-adoption-boundary" id="toc-authority-and-adoption-boundary">1. Authority and adoption
+boundary</a></li>
+<li><a href="#design-principles" id="toc-design-principles">2. Design
+principles</a>
+<ul>
+<li><a href="#files-remain-the-reliance-boundary" id="toc-files-remain-the-reliance-boundary">2.1 Files remain the
+reliance boundary</a></li>
+<li><a href="#no-hidden-authority-store" id="toc-no-hidden-authority-store">2.2 No hidden authority
+store</a></li>
+<li><a href="#status-is-multidimensional" id="toc-status-is-multidimensional">2.3 Status is
+multidimensional</a></li>
+<li><a href="#mechanical-checks-can-block-judgmental-checks-must-surface" id="toc-mechanical-checks-can-block-judgmental-checks-must-surface">2.4
+Mechanical checks can block; judgmental checks must surface</a></li>
+<li><a href="#historical-record-and-current-truth-must-be-distinguishable" id="toc-historical-record-and-current-truth-must-be-distinguishable">2.5
+Historical record and current truth must be distinguishable</a></li>
+</ul></li>
+<li><a href="#source-basis-and-observed-corrections" id="toc-source-basis-and-observed-corrections">3. Source basis and
+observed corrections</a></li>
+<li><a href="#the-harness-architecture" id="toc-the-harness-architecture">4. The harness architecture</a>
+<ul>
+<li><a href="#layer-1-authority-files" id="toc-layer-1-authority-files">4.1 Layer 1 — Authority files</a></li>
+<li><a href="#layer-2-adapters" id="toc-layer-2-adapters">4.2 Layer 2 —
+Adapters</a></li>
+<li><a href="#layer-3-commands" id="toc-layer-3-commands">4.3 Layer 3 —
+Commands</a></li>
+<li><a href="#layer-4-generated-views" id="toc-layer-4-generated-views">4.4 Layer 4 — Generated views</a></li>
+<li><a href="#layer-5-human-decision-points" id="toc-layer-5-human-decision-points">4.5 Layer 5 — Human decision
+points</a></li>
+</ul></li>
+<li><a href="#tranche-model" id="toc-tranche-model">5. Tranche model</a>
+<ul>
+<li><a href="#candidate-tranche-brief-fields" id="toc-candidate-tranche-brief-fields">5.1 Candidate tranche brief
+fields</a></li>
+<li><a href="#tranche-adoption" id="toc-tranche-adoption">5.2 Tranche
+adoption</a></li>
+</ul></li>
+<li><a href="#finding-model-and-severity-taxonomy" id="toc-finding-model-and-severity-taxonomy">6. Finding model and
+severity taxonomy</a></li>
+<li><a href="#required-self-checks" id="toc-required-self-checks">7.
+Required self-checks</a></li>
+<li><a href="#domain-engine-integration-in-mvp" id="toc-domain-engine-integration-in-mvp">8. Domain engine integration
+in MVP</a></li>
+<li><a href="#roadmap" id="toc-roadmap">9. Roadmap</a>
+<ul>
+<li><a href="#phase-0-governance-basis-and-plan-classification" id="toc-phase-0-governance-basis-and-plan-classification">Phase 0 —
+Governance basis and plan classification</a></li>
+<li><a href="#phase-1-read-only-inventory-and-status" id="toc-phase-1-read-only-inventory-and-status">Phase 1 — Read-only
+inventory and status</a></li>
+<li><a href="#phase-2-self-consistency-checks" id="toc-phase-2-self-consistency-checks">Phase 2 — Self-consistency
+checks</a></li>
+<li><a href="#phase-3-candidate-tranche-briefs" id="toc-phase-3-candidate-tranche-briefs">Phase 3 — Candidate tranche
+briefs</a></li>
+<li><a href="#phase-4-scope-and-evidence-checks" id="toc-phase-4-scope-and-evidence-checks">Phase 4 — Scope and evidence
+checks</a></li>
+<li><a href="#phase-5-optional-cache-and-ci-integration" id="toc-phase-5-optional-cache-and-ci-integration">Phase 5 — Optional
+cache and CI integration</a></li>
+</ul></li>
+<li><a href="#cuts-and-deferrals" id="toc-cuts-and-deferrals">10. Cuts
+and deferrals</a></li>
+<li><a href="#first-pr-recommendation" id="toc-first-pr-recommendation">11. First PR recommendation</a></li>
+<li><a href="#final-guardrail" id="toc-final-guardrail">12. Final
+guardrail</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="chirality-governance-harness-detailed-plan-revised-practitioner-bench-architecture">Chirality
+Governance Harness Detailed Plan — Revised Practitioner Bench
+Architecture</h1>
+<h2 id="executive-verdict">0. Executive verdict</h2>
+<p>Build the <strong>practitioner bench tool</strong> version of the
+governance harness. Do not build a database-owned control plane,
+autonomous coordinator, lifecycle-transition system, or general
+project-management layer as the first move.</p>
+<p>The harness should help a human practitioner and bounded agents
+answer five questions:</p>
+<ol type="1">
+<li>What is the current state of the relevant project, domain, or
+governance root?</li>
+<li>What is the next bounded tranche of work?</li>
+<li>What files and authorities define the permissible work fence?</li>
+<li>What evidence exists, is missing, stale, contradictory, or out of
+scope?</li>
+<li>What human decision is required before any claim becomes
+binding?</li>
+</ol>
+<p>The harness is therefore a <strong>compiler of existing governed
+truth</strong>, not a creator of new governed truth. It reads project
+files, produces generated views, prepares candidate tranche briefs, runs
+objective checks, and stops at human judgment boundaries.</p>
+<h2 id="authority-and-adoption-boundary">1. Authority and adoption
+boundary</h2>
+<p>This revised plan is itself only planning material. It does not
+supersede governed project files, root governance documents, decision
+records, approval SHAs, validation evidence, git history, or
+practitioner judgment.</p>
+<p>Before implementation is treated as governance-enforcing, add the
+following human decision records.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision record</th>
+<th>Required ruling</th>
+<th>Why it is first-order</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>D-GH-001_substrate_authority.md</code></td>
+<td>Git/versioned authored files are the sole authority. Harness outputs
+are generated views or candidate briefs only. SQLite, if later
+introduced, is rebuildable projection/cache only.</td>
+<td>Closes the conflict between a heavier control-plane proposal and the
+practitioner-bench direction.</td>
+</tr>
+<tr class="even">
+<td><code>D-GH-002_verifier_severity.md</code></td>
+<td>Define <code>BLOCK</code>, <code>REVIEW</code>, <code>WARN</code>,
+<code>INFO</code>, <code>NOT_APPLICABLE</code>, who may override each,
+and what exit codes mean.</td>
+<td>Prevents the harness from over-blocking judgmental work or
+under-reporting objective violations.</td>
+</tr>
+<tr class="odd">
+<td><code>D-GH-003_pilot_scope.md</code></td>
+<td>MVP pilot scope is <code>chirality-app-dev</code>,
+<code>chirality-piping</code>, and <code>_DomainEngines</code> read-only
+status/self-check only.</td>
+<td>Keeps the first release narrow and testable.</td>
+</tr>
+<tr class="even">
+<td><code>D-GH-004_human_actor_identity.md</code></td>
+<td>Define what counts as a human-authored approval/ruling and what
+metadata must bind it to content.</td>
+<td>Prevents agent-authored prose from masquerading as approval.</td>
+</tr>
+<tr class="odd">
+<td><code>D-GH-005_minimal_governance_basis.md</code></td>
+<td>Ratify the minimal governance basis needed by the harness:
+source-of-truth rule, human authority rule, generated-output rule, path
+containment, approval-SHA binding, evidence/provenance requirement, and
+verifier severities.</td>
+<td>Root <code>docs/{DIRECTIVE,CONTRACT,SPEC,TYPES,PLAN}.md</code> are
+draft/pending in the archive. The harness needs a ratified minimum basis
+before it claims enforcement.</td>
+</tr>
+<tr class="even">
+<td><code>D-GH-006_domain_profile_current_truth.md</code></td>
+<td>Resolve whether <code>open_pipe_stress</code> is currently
+<code>DRAFT</code>, <code>VALIDATED</code>, <code>ADOPTED</code>, or
+historically draft but currently adopted.</td>
+<td>The archive contains contradictory current-state signals that a
+harness must not silently normalize.</td>
+</tr>
+</tbody>
+</table>
+<p>Until these rulings exist, all harness findings should be labeled
+<strong>advisory</strong>, except purely local technical checks such as
+path containment, source-file existence, and generated-output
+labeling.</p>
+<h2 id="design-principles">2. Design principles</h2>
+<h3 id="files-remain-the-reliance-boundary">2.1 Files remain the
+reliance boundary</h3>
+<p>The harness reads authored files and git history. It may write
+generated reports, JSON projections, and candidate briefs, but those
+outputs are not authority unless a human separately adopts them in the
+governed record.</p>
+<p>A generated file must carry this header:</p>
+<pre class="text"><code>GENERATED VIEW — NOT AUTHORITY
+Sources cited inline.
+Regenerate from project files.
+Do not edit this file as a source of truth.
+Structural checks do not constitute approval, issue, authentication, professional review, or acceptance of residual risk.</code></pre>
+<h3 id="no-hidden-authority-store">2.2 No hidden authority store</h3>
+<p>A database may be useful later, but only as a projection:</p>
+<ul>
+<li>rebuildable from git-tracked files and evidence artifacts;</li>
+<li>safe to delete and regenerate;</li>
+<li>not required to interpret approvals;</li>
+<li>not the only place status, lifecycle, or decisions exist;</li>
+<li>labeled cache/projection, not governance authority.</li>
+</ul>
+<h3 id="status-is-multidimensional">2.3 Status is multidimensional</h3>
+<p>The harness must not emit one global green badge. It should keep
+these dimensions separate:</p>
+<ul>
+<li>lifecycle state;</li>
+<li>evidence completeness;</li>
+<li>reference/hash resolution;</li>
+<li>approval basis and approval SHA status;</li>
+<li>staleness/drift status;</li>
+<li>scope conformance;</li>
+<li>human decision state;</li>
+<li>warrant/authentication state;</li>
+<li>domain profile/adoption status where applicable.</li>
+</ul>
+<p>A deliverable may be structurally complete and still unauthenticated.
+Evidence may be present and still insufficient. A domain profile may be
+validated by schema and still require a human adoption ruling.</p>
+<h3 id="mechanical-checks-can-block-judgmental-checks-must-surface">2.4
+Mechanical checks can block; judgmental checks must surface</h3>
+<p>The harness may fail a command or CI job for objective defects such
+as out-of-scope writes, missing required source files, malformed JSON,
+unresolved references, or generated reports lacking disclaimers.</p>
+<p>It must not autonomously approve, issue, seal, certify, authenticate,
+accept residual risk, or decide professional sufficiency.</p>
+<h3 id="historical-record-and-current-truth-must-be-distinguishable">2.5
+Historical record and current truth must be distinguishable</h3>
+<p>The archive contains legitimate historical material and also
+conflicting current-state claims. The harness must distinguish:</p>
+<ul>
+<li>immutable historical snapshots;</li>
+<li>current authoritative state;</li>
+<li>generated summaries;</li>
+<li>stale prose that contradicts later ruled facts;</li>
+<li>draft/root governance material that has not been ratified.</li>
+</ul>
+<p>The harness must surface current-truth conflicts rather than picking
+the newest or most convenient claim.</p>
+<h2 id="source-basis-and-observed-corrections">3. Source basis and
+observed corrections</h2>
+<p>The following archive facts directly shape this revised plan.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source area</th>
+<th>Observed condition</th>
+<th>Harness implication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Root governance docs</td>
+<td><code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>,
+<code>docs/SPEC.md</code>, and <code>docs/TYPES.md</code> are marked
+<code>DRAFT pending human ratification</code>; <code>docs/PLAN.md</code>
+is a draft skeleton pending human authoring.</td>
+<td>Reports must state governance-basis status. Ratify a minimal harness
+basis before treating the harness as an enforcement authority.</td>
+</tr>
+<tr class="even">
+<td>Existing detailed harness plan</td>
+<td>Already correctly argues for a local, read-mostly, tranche-centered
+bench tool.</td>
+<td>Keep that direction, but add explicit substrate authority,
+self-check, severity taxonomy, and domain-engine correction work.</td>
+</tr>
+<tr class="odd">
+<td>Earlier integration assessment</td>
+<td>Leans toward a richer SQLite/control-plane/event-ledger model.</td>
+<td>Mark as historical or superseded for MVP. Do not create
+database-owned lifecycle truth.</td>
+</tr>
+<tr class="even">
+<td><code>_DomainEngines</code></td>
+<td>Contains contradictions around OpenPipeStress
+<code>DRAFT</code>/<code>VALIDATED</code>/<code>ADOPTED</code> status,
+stale open issues, and ruling headers.</td>
+<td>Add a first-class <code>self-check</code> command and a
+<code>domain_engines</code> adapter that reports contradictions instead
+of hiding them.</td>
+</tr>
+<tr class="odd">
+<td>Existing architecture explainer</td>
+<td>Contains several claims that depend on live repo surfaces not
+present in the archive, and describes the harness too narrowly as
+write-nothing.</td>
+<td>New explainer should distinguish archive evidence from live-repo
+claims and clarify that the harness may write generated artifacts but
+not governed authority.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-harness-architecture">4. The harness architecture</h2>
+<p>The harness has five layers.</p>
+<pre class="text"><code>Human authority
+  ↓ adopts, rules, approves, rejects
+Authored files and git history
+  ↓ read by adapters
+Harness projections and checks
+  ↓ emit generated views / findings / candidate briefs
+Bounded agent work
+  ↓ scoped execution + evidence
+Human review and governed update</code></pre>
+<h3 id="layer-1-authority-files">4.1 Layer 1 — Authority files</h3>
+<p>The authority layer is not created by the harness. It consists of
+existing authored artifacts, such as:</p>
+<ul>
+<li>root governance documents;</li>
+<li>project-local status files;</li>
+<li>project-local plans and coordination files;</li>
+<li>decision records and ruling files;</li>
+<li>dependency registers and DAG artifacts;</li>
+<li>domain profiles and validation reports;</li>
+<li>run/evidence artifacts;</li>
+<li>git commit history and approval SHAs.</li>
+</ul>
+<p>The harness may report contradictions within this layer. It does not
+silently resolve them.</p>
+<h3 id="layer-2-adapters">4.2 Layer 2 — Adapters</h3>
+<p>Do not start with one universal governance schema. Start with small
+adapters that read real project shapes.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Adapter</th>
+<th>Reads</th>
+<th>Emits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>root_governance_adapter</code></td>
+<td><code>README.md</code>, root docs, framework/professional docs, plan
+files</td>
+<td>Governance-basis status, draft/ratification warnings, source path
+model, generated-output rules.</td>
+</tr>
+<tr class="even">
+<td><code>app_dev_adapter</code></td>
+<td>Local coordination/status/plans/validation surfaces in
+<code>projects/chirality-app-dev</code> when available</td>
+<td>Current queue posture, deliverable state counts, active tranche
+candidates, validation commands, caveats.</td>
+</tr>
+<tr class="odd">
+<td><code>piping_adapter</code></td>
+<td>Local PRD/DAG/status/decision/validation surfaces in
+<code>projects/chirality-piping</code> when available</td>
+<td>PRD stage, DAG context, deliverable state distribution, validation
+surfaces, unresolved decisions.</td>
+</tr>
+<tr class="even">
+<td><code>domain_engines_adapter</code></td>
+<td><code>_DomainEngines/**</code>, profiles, validation reports,
+published rulings, latest pointer</td>
+<td>Domain profile status, integration level, protected/write surfaces,
+validation posture, contradictions.</td>
+</tr>
+<tr class="odd">
+<td><code>git_adapter</code></td>
+<td>Local git status, commit graph, diff ranges, object existence</td>
+<td>Approval SHA reachability, changed paths, evidence age checks, diff
+scope.</td>
+</tr>
+</tbody>
+</table>
+<p>Adapters return sourced facts, not unsourced summaries.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;fact_id&quot;</span><span class="fu">:</span> <span class="st">&quot;domain.open_pipe_stress.profile_status&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;ADOPTED&quot;</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;source_path&quot;</span><span class="fu">:</span> <span class="st">&quot;_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;source_hint&quot;</span><span class="fu">:</span> <span class="st">&quot;domain_profile.profile_status&quot;</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;authority_status&quot;</span><span class="fu">:</span> <span class="st">&quot;conflicted_current_truth&quot;</span><span class="fu">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;caveat&quot;</span><span class="fu">:</span> <span class="st">&quot;File header says DRAFT/NOT adopted while field says ADOPTED.&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="layer-3-commands">4.3 Layer 3 — Commands</h3>
+<p>The MVP command surface should answer practitioner questions
+directly.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Purpose</th>
+<th>Writes</th>
+<th>Authority boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>chirality-harness status --project app-dev</code></td>
+<td>Summarize active queue, status counts, validation posture,
+unresolved decisions, dirty git state.</td>
+<td>Markdown/JSON generated view only.</td>
+<td>Read-only relative to governed files.</td>
+</tr>
+<tr class="even">
+<td><code>chirality-harness status --project piping</code></td>
+<td>Summarize current plan/PRD stage, DAG pointer, status distribution,
+decision register state, validation surfaces.</td>
+<td>Markdown/JSON generated view only.</td>
+<td>Read-only relative to governed files.</td>
+</tr>
+<tr class="odd">
+<td><code>chirality-harness status --domain-engines</code></td>
+<td>Summarize domain profiles, integration level, validation reports,
+protected paths, open issues, contradictions.</td>
+<td>Markdown/JSON generated view only.</td>
+<td>Read-only relative to governed files.</td>
+</tr>
+<tr class="even">
+<td><code>chirality-harness self-check --root .</code></td>
+<td>Check the governance corpus for contradictions, stale fields,
+missing disclaimers, absolute paths, unresolved references,
+draft/root-basis issues.</td>
+<td>Findings report only.</td>
+<td>May block objective hygiene failures; does not approve fixes.</td>
+</tr>
+<tr class="odd">
+<td><code>chirality-harness brief --project &lt;name&gt; --tranche &lt;id&gt;</code></td>
+<td>Generate a candidate tranche brief from a practitioner-selected
+active work item.</td>
+<td>Candidate brief JSON/Markdown only.</td>
+<td>Candidate until human adopted.</td>
+</tr>
+<tr class="even">
+<td><code>chirality-harness scope-check --brief &lt;brief.json&gt; --diff &lt;range&gt;</code></td>
+<td>Compare changed paths against brief read/write/evidence scopes.</td>
+<td>Findings report only.</td>
+<td>May block objective path violations.</td>
+</tr>
+<tr class="odd">
+<td><code>chirality-harness evidence-check --brief &lt;brief.json&gt;</code></td>
+<td>Check whether required validations, artifacts, skip reasons, and
+evidence records are present.</td>
+<td>Findings report only.</td>
+<td>Reports completeness, not sufficiency.</td>
+</tr>
+<tr class="even">
+<td><code>chirality-harness closeout-digest --brief &lt;brief.json&gt; --diff &lt;range&gt;</code></td>
+<td>Summarize changed files, evidence, skipped checks, caveats, and
+human questions for a closeout review.</td>
+<td>Generated digest only.</td>
+<td>Does not transition lifecycle.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="layer-4-generated-views">4.4 Layer 4 — Generated views</h3>
+<p>Generated files should live in an obviously non-authoritative
+location, such as:</p>
+<pre class="text"><code>&lt;working-root&gt;/_HarnessViews/
+&lt;working-root&gt;/_HarnessBriefs/
+&lt;working-root&gt;/_HarnessReports/</code></pre>
+<p>or, if a project already has a coordination output root:</p>
+<pre class="text"><code>&lt;working-root&gt;/_Coordination/HarnessGenerated/</code></pre>
+<p>Every generated output must include:</p>
+<ul>
+<li>generation timestamp;</li>
+<li>command used;</li>
+<li>repo root and working root;</li>
+<li>git commit SHA or dirty-state caveat;</li>
+<li>source files used;</li>
+<li>authority disclaimer;</li>
+<li>structural-check disclaimer;</li>
+<li>machine-readable finding list when applicable.</li>
+</ul>
+<h3 id="layer-5-human-decision-points">4.5 Layer 5 — Human decision
+points</h3>
+<p>The harness should explicitly surface decisions that require a human.
+Examples:</p>
+<ul>
+<li>“Human ruling required: profile status conflict.”</li>
+<li>“Human ruling required: root governance basis remains draft.”</li>
+<li>“Human approval required: lifecycle transition from
+<code>CHECKING</code> to <code>ISSUED</code>.”</li>
+<li>“Human review required: evidence exists, but sufficiency is
+professional judgment.”</li>
+<li>“Human review required: upstream dependency changed after approval
+SHA.”</li>
+</ul>
+<h2 id="tranche-model">5. Tranche model</h2>
+<p>The core work object is the <strong>tranche</strong>, not the task,
+dashboard row, database event, or agent run.</p>
+<p>A tranche is a bounded intervention against project-local context. It
+should be small enough for scope containment and evidence review.</p>
+<h3 id="candidate-tranche-brief-fields">5.1 Candidate tranche brief
+fields</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">schema</span><span class="kw">:</span><span class="at"> chirality-harness-tranche-brief/v1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">brief_id</span><span class="kw">:</span><span class="at"> BRIEF-YYYYMMDD-&lt;slug&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> CANDIDATE</span><span class="co"> # CANDIDATE | HUMAN_ADOPTED | SUPERSEDED</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span><span class="at"> chirality-piping</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tranche_id</span><span class="kw">:</span><span class="at"> &lt;project-local-id&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">objective</span><span class="kw">:</span><span class="at"> &lt;bounded objective&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source_basis</span><span class="kw">:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">path</span><span class="kw">:</span><span class="at"> &lt;repo-relative-path&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">expected_sha_or_hash</span><span class="kw">:</span><span class="at"> &lt;optional&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">read_scope</span><span class="kw">:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;repo-relative-glob&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write_scope</span><span class="kw">:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;repo-relative-glob&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">prohibited_paths</span><span class="kw">:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;repo-relative-glob&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">expected_outputs</span><span class="kw">:</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;repo-relative-path-or-glob&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">required_validations</span><span class="kw">:</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> &lt;validation-id&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> &lt;command&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">evidence_path</span><span class="kw">:</span><span class="at"> &lt;path&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">skip_policy</span><span class="kw">:</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required_reason</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_conditions</span><span class="kw">:</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;objective condition requiring stop&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">human_decision_points</span><span class="kw">:</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> &lt;question requiring practitioner call&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">authority_notice</span><span class="kw">:</span><span class="at"> GENERATED CANDIDATE — NOT AUTHORITY UNTIL HUMAN ADOPTED</span></span></code></pre></div>
+<h3 id="tranche-adoption">5.2 Tranche adoption</h3>
+<p>A generated brief is not binding until a human adopts it according to
+the future <code>D-GH-004</code> identity/approval rule. The harness can
+record that a brief appears to have been adopted only by reading the
+governed adoption artifact.</p>
+<h2 id="finding-model-and-severity-taxonomy">6. Finding model and
+severity taxonomy</h2>
+<p>Use a small common finding schema across checks.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;finding_id&quot;</span><span class="fu">:</span> <span class="st">&quot;GH-SCOPE-001&quot;</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;severity&quot;</span><span class="fu">:</span> <span class="st">&quot;BLOCK&quot;</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Out-of-scope write&quot;</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Changed path is outside the adopted write scope.&quot;</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;source_paths&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;BRIEF.json&quot;</span><span class="ot">,</span> <span class="st">&quot;git diff --name-only&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;affected_paths&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;projects/chirality-piping/core/...&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;human_action&quot;</span><span class="fu">:</span> <span class="st">&quot;Either revert the change or obtain a revised human-adopted brief.&quot;</span><span class="fu">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;machine_action&quot;</span><span class="fu">:</span> <span class="st">&quot;fail&quot;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Severity</th>
+<th>Meaning</th>
+<th>Machine behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BLOCK</code></td>
+<td>Objective violation. The harness can safely fail the command or CI
+job.</td>
+<td>Exit nonzero.</td>
+</tr>
+<tr class="even">
+<td><code>REVIEW</code></td>
+<td>Material issue requiring human judgment.</td>
+<td>Exit zero by default unless strict mode is requested.</td>
+</tr>
+<tr class="odd">
+<td><code>WARN</code></td>
+<td>Non-blocking inconsistency, hygiene issue, or stale advisory.</td>
+<td>Exit zero.</td>
+</tr>
+<tr class="even">
+<td><code>INFO</code></td>
+<td>Contextual fact useful for review.</td>
+<td>Exit zero.</td>
+</tr>
+<tr class="odd">
+<td><code>NOT_APPLICABLE</code></td>
+<td>Check intentionally skipped because preconditions do not apply.</td>
+<td>Exit zero and report reason.</td>
+</tr>
+</tbody>
+</table>
+<p>Initial <code>BLOCK</code> examples:</p>
+<ul>
+<li>out-of-scope write;</li>
+<li>path traversal or write-scope escape;</li>
+<li>required source file missing;</li>
+<li>adopted/issued claim with <code>Ruling SHA: TBD</code> or missing
+approval basis;</li>
+<li>generated report missing required disclaimer;</li>
+<li>protected domain path modified by a non-domain tool;</li>
+<li>malformed required validation report.</li>
+</ul>
+<p>Initial <code>REVIEW</code> examples:</p>
+<ul>
+<li>conflicting profile status across current-truth files;</li>
+<li>root governance docs draft while downstream docs treat them as
+binding;</li>
+<li>evidence present but sufficiency unclear;</li>
+<li>stale open issue contradicted by later validation evidence;</li>
+<li>upstream dependency changed after approval SHA.</li>
+</ul>
+<h2 id="required-self-checks">7. Required self-checks</h2>
+<p><code>chirality-harness self-check --root .</code> is a first-class
+MVP command, not a later nicety.</p>
+<p>Initial checks:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Check</th>
+<th>Detects</th>
+<th>Suggested severity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>status_header_body_conflict</code></td>
+<td>Header/frontmatter says draft/proposal/TBD while body claims
+ruled/adopted/issued.</td>
+<td><code>REVIEW</code>, <code>BLOCK</code> if used as authority.</td>
+</tr>
+<tr class="even">
+<td><code>profile_status_conflict</code></td>
+<td>Filename/header/YAML status/index/latest/validation disagree.</td>
+<td><code>REVIEW</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>stale_open_issue</code></td>
+<td>Open-issue prose is contradicted by later validation or ruling
+artifacts.</td>
+<td><code>REVIEW</code>.</td>
+</tr>
+<tr class="even">
+<td><code>absolute_path_leak</code></td>
+<td>Machine-local absolute paths in instruction, coordination, plan,
+profile, validation, or generated files where forbidden.</td>
+<td><code>WARN</code> or <code>BLOCK</code> depending on file
+class.</td>
+</tr>
+<tr class="odd">
+<td><code>generated_disclaimer_missing</code></td>
+<td>Generated report lacks non-authority disclaimer.</td>
+<td><code>BLOCK</code>.</td>
+</tr>
+<tr class="even">
+<td><code>source_ref_unresolved</code></td>
+<td>Cited source path does not exist in checkout/archive.</td>
+<td><code>BLOCK</code> for current authority, <code>WARN</code> for
+historical planning.</td>
+</tr>
+<tr class="odd">
+<td><code>approval_sha_unreachable</code></td>
+<td>Approval/ruling SHA is absent, <code>TBD</code>, or unreachable in
+git.</td>
+<td><code>BLOCK</code> for claims of issued/adopted authority;
+<code>REVIEW</code> otherwise.</td>
+</tr>
+<tr class="even">
+<td><code>draft_basis_used_as_binding</code></td>
+<td>Draft root governance docs are treated as ratified authority.</td>
+<td><code>REVIEW</code> until minimal basis is ratified.</td>
+</tr>
+</tbody>
+</table>
+<p>The archive should be converted into adversarial fixtures for these
+checks.</p>
+<h2 id="domain-engine-integration-in-mvp">8. Domain engine integration
+in MVP</h2>
+<p>The domain-engine area should be read-only in MVP.</p>
+<p>The harness may:</p>
+<ul>
+<li>read <code>_DomainEngines/DOMAIN_ENGINE_INDEX.md</code>;</li>
+<li>read <code>_DomainEngines/_LATEST.md</code>;</li>
+<li>read <code>_DomainEngines/RULINGS_PUBLISHED.md</code>;</li>
+<li>read <code>_DomainEngines/_DECISIONS/**</code>;</li>
+<li>read profiles and validation reports;</li>
+<li>report protected paths and proposal paths;</li>
+<li>report status contradictions;</li>
+<li>check that generated OperationProposal artifacts, if present, are in
+allowed proposal paths;</li>
+<li>check that protected domain truth was not touched by an unauthorized
+diff.</li>
+</ul>
+<p>The harness must not:</p>
+<ul>
+<li>apply domain operations;</li>
+<li>mutate protected engine truth;</li>
+<li>decide that validation equals professional correctness;</li>
+<li>advance <code>DRAFT → VALIDATED → ADOPTED</code>;</li>
+<li>claim code compliance, engineering approval, certification, sealing,
+or construction readiness.</li>
+</ul>
+<h2 id="roadmap">9. Roadmap</h2>
+<h3 id="phase-0-governance-basis-and-plan-classification">Phase 0 —
+Governance basis and plan classification</h3>
+<p>Deliverables:</p>
+<ul>
+<li>create <code>docs/governance_harness/PLAN_INDEX.md</code>;</li>
+<li>create <code>D-GH-001</code> through <code>D-GH-006</code> decision
+records as drafts for human ruling;</li>
+<li>mark the earlier control-plane/event-ledger assessment as historical
+or deferred for MVP;</li>
+<li>update this revised plan as the current MVP candidate;</li>
+<li>document root governance draft status in every generated report
+footer.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>no plan ambiguity remains about whether SQLite is authority;</li>
+<li>no generated output claims authority;</li>
+<li>human-ruling requirements are explicit.</li>
+</ul>
+<h3 id="phase-1-read-only-inventory-and-status">Phase 1 — Read-only
+inventory and status</h3>
+<p>Deliverables:</p>
+<ul>
+<li>harness charter under
+<code>tools/practitioner_harness/README.md</code>;</li>
+<li>adapter skeletons for root governance, app-dev, piping, domain
+engines, and git;</li>
+<li><code>status</code> command emitting Markdown and JSON;</li>
+<li>generated-output disclaimer enforcement.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>status generation modifies no authority files;</li>
+<li>every material claim cites source paths;</li>
+<li>reports distinguish lifecycle, evidence, approval basis, staleness,
+scope, and human decision state.</li>
+</ul>
+<h3 id="phase-2-self-consistency-checks">Phase 2 — Self-consistency
+checks</h3>
+<p>Deliverables:</p>
+<ul>
+<li><code>self-check</code> command;</li>
+<li>checks for profile status conflict, stale open issues, TBD/ruling
+conflicts, absolute path leakage, missing generated disclaimers,
+unresolved references;</li>
+<li>fixture tests based on <code>_DomainEngines</code>
+contradictions.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>the OpenPipeStress draft/adopted contradiction fixture is
+detected;</li>
+<li><code>RULINGS_PUBLISHED</code> contradictory current-state claims
+are detected;</li>
+<li><code>D-T0-*</code> header/body ruling conflicts are detected;</li>
+<li>validation absolute-path leakage is detected.</li>
+</ul>
+<h3 id="phase-3-candidate-tranche-briefs">Phase 3 — Candidate tranche
+briefs</h3>
+<p>Deliverables:</p>
+<ul>
+<li><code>brief</code> command;</li>
+<li>tranche brief JSON/Markdown schema;</li>
+<li>read/write/prohibited path model;</li>
+<li>human-stop-condition rendering.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>generated briefs are clearly candidate/non-authoritative;</li>
+<li>brief contains source basis, read scope, write scope, validation
+commands, evidence targets, prohibited paths, and human decision
+points;</li>
+<li>no lifecycle transition or approval claim is created.</li>
+</ul>
+<h3 id="phase-4-scope-and-evidence-checks">Phase 4 — Scope and evidence
+checks</h3>
+<p>Deliverables:</p>
+<ul>
+<li><code>scope-check</code> against a diff range;</li>
+<li><code>evidence-check</code> against required validations and
+artifacts;</li>
+<li>robust path containment tests covering absolute paths,
+<code>..</code>, symlinks, case weirdness, and generated-output
+locations.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>out-of-scope writes fail as <code>BLOCK</code>;</li>
+<li>protected domain paths touched by unauthorized work fail as
+<code>BLOCK</code>;</li>
+<li>missing evidence reports completeness gaps without approving
+sufficiency;</li>
+<li>evidence older than changed files is flagged.</li>
+</ul>
+<h3 id="phase-5-optional-cache-and-ci-integration">Phase 5 — Optional
+cache and CI integration</h3>
+<p>Only after file projections are stable and query pain is real:</p>
+<ul>
+<li>add a rebuildable local index/cache;</li>
+<li>add CI wrappers for objective <code>BLOCK</code> findings;</li>
+<li>keep all authoritative lifecycle and decision state in authored
+files.</li>
+</ul>
+<h2 id="cuts-and-deferrals">10. Cuts and deferrals</h2>
+<p>The following are intentionally not MVP work:</p>
+<ul>
+<li>universal obligations register;</li>
+<li>full RAIL/action/risk/change register system;</li>
+<li>SQLite governance store as operational authority;</li>
+<li>leases and coordinator process;</li>
+<li>autonomous lifecycle transitions;</li>
+<li>agent-dispatch scheduler;</li>
+<li>broad document-control model;</li>
+<li>generalized event ledger;</li>
+<li>green dashboard UI;</li>
+<li>MCP/domain-engine write integration;</li>
+<li>automatic issue/approval/closeout claims.</li>
+</ul>
+<p>These can be revisited after the read-only bench tool earns
+trust.</p>
+<h2 id="first-pr-recommendation">11. First PR recommendation</h2>
+<p>Create this small, testable surface:</p>
+<pre class="text"><code>tools/practitioner_harness/README.md
+tools/practitioner_harness/chirality_harness.py
+tools/practitioner_harness/adapters/__init__.py
+tools/practitioner_harness/adapters/root_governance.py
+tools/practitioner_harness/adapters/app_dev.py
+tools/practitioner_harness/adapters/piping.py
+tools/practitioner_harness/adapters/domain_engines.py
+tools/practitioner_harness/adapters/git_state.py
+tools/practitioner_harness/checks/status_consistency.py
+tools/practitioner_harness/checks/path_policy.py
+tools/practitioner_harness/checks/source_refs.py
+tools/practitioner_harness/checks/profile_consistency.py
+tools/practitioner_harness/render/markdown.py
+tools/practitioner_harness/render/json.py
+tools/practitioner_harness/tests/fixtures/
+tools/practitioner_harness/tests/test_read_only.py
+tools/practitioner_harness/tests/test_profile_consistency.py
+tools/practitioner_harness/tests/test_scope_check.py</code></pre>
+<p>The first commands should be:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chirality-harness</span> status <span class="at">--project</span> app-dev <span class="at">--format</span> md</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">chirality-harness</span> status <span class="at">--project</span> piping <span class="at">--format</span> md</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">chirality-harness</span> status <span class="at">--domain-engines</span> <span class="at">--format</span> md</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">chirality-harness</span> self-check <span class="at">--root</span> . <span class="at">--format</span> md</span></code></pre></div>
+<p>First PR acceptance criteria:</p>
+<ul>
+<li>status and self-check modify no authority files;</li>
+<li>every material finding cites source paths;</li>
+<li>generated output is labeled non-authoritative;</li>
+<li>root draft governance status is reported;</li>
+<li>OpenPipeStress profile status contradictions are detected;</li>
+<li>stale <code>TBD</code>/ruled decision conflicts are detected;</li>
+<li>absolute path leakage is detected;</li>
+<li>objective <code>BLOCK</code> findings use nonzero exit codes;</li>
+<li>no report claims approval, issue, authentication, professional
+sufficiency, certification, or release readiness unless quoting a
+human-authored source and labeling it as such.</li>
+</ul>
+<h2 id="final-guardrail">12. Final guardrail</h2>
+<p>The harness is successful when it makes the human decision smaller,
+clearer, and better evidenced.</p>
+<p>It fails if it becomes a cleaner-looking second source of truth.</p>
+</body>
+</html>

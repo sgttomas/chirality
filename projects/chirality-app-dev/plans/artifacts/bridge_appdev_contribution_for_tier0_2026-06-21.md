@@ -62,7 +62,14 @@ not decision-backed*. Confirm or supply the decision of record (see open questio
 
 | File | Pure part (keep) | Impure part (move to runtime side) |
 |---|---|---|
-| `event-schema.ts` | `HARNESS_EVENT_TYPES` (`:3`, exactly 42), `HarnessEventType` (`:49`), `HarnessEvent` (`:51`) | `createHarnessEvent` (`:62`) uses `node:crypto` `randomUUID` — move out or inject id |
+| `event-schema.ts` | `HARNESS_EVENT_TYPES` (`:3`, **43** — see correction note below), `HarnessEventType` (`:49`), `HarnessEvent` (`:51`) | `createHarnessEvent` (`:62`) uses `node:crypto` `randomUUID` — move out or inject id |
+
+> **Correction (2026-06-24, D-APP-46 hygiene):** this cell originally read "exactly 42". The live source
+> `frontend/src/lib/harness/event-schema.ts:3-46` enumerates **43** event types — `runtime.mirror.error`
+> (`:46`) was added after this artifact was authored. Because the event vocabulary is the **keystone** of the
+> Flow-A contract package, the true count is **43**; any version-pinning must use 43. The piping-side DEC-041
+> ("the 42-type event vocabulary", `SOFTWARE_DECOMP.md:611`) carries the same stale count and is flagged for
+> tier-0/piping reconciliation in `plans/artifacts/handoff_tier0_governance_residual_cleanup_2026-06-24.md`.
 | `tool-descriptor.ts` | `HarnessToolDescriptor` (`:84`) + type vocab, `HARNESS_TOOL_DESCRIPTORS` (`:347`), lookups | `resolveHarnessToolPool` (`:987`) pulls `permission-overlay.ts` (SDK + `node:crypto` + `node:fs`) |
 
 **NOT contract material (runtime/adapter side):** `sdk-options-builder.ts` (`buildSdkOptions` `:81`, imports
