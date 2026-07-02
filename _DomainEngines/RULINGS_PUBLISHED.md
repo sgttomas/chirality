@@ -1,6 +1,6 @@
 # RULINGS_PUBLISHED — Tier-0 Bridge (2026-06-21)
 
-The owner ruled all 8 tier-0 decisions in-session on 2026-06-21. This file is the **green-light signal** the project loops watch (per `NEXT_INSTANCE_PROMPT.md`). Canonical per-decision records: `_DECISIONS/D-T0-01..08_*.md` + `_DECISIONS/_REGISTER.md`. **Rulings bind to a git SHA when CHANGE publishes** (K-AUTH-2); until then, `Ruling SHA: TBD`.
+The owner ruled all 8 tier-0 decisions in-session on 2026-06-21. This file is the **green-light signal** the project loops watch (per `NEXT_INSTANCE_PROMPT.md`). Canonical per-decision records: `_DECISIONS/D-T0-01..08_*.md` + `_DECISIONS/_REGISTER.md`. **Rulings are SHA-bound at the publication commit `6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45`** (2026-06-21; K-AUTH-2); the per-record Ruling SHA fields were backfilled 2026-07-02 per owner ruling *(the bind-at-publish/TBD conditional formerly stated here was stale after publication)*.
 
 ## The rulings
 

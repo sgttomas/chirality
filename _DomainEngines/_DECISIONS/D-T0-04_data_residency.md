@@ -1,4 +1,4 @@
-# D-T0-04 — Data-residency for live binding  (PROPOSAL; HumanRuling: TBD)
+# D-T0-04 — Data-residency for live binding  (RULED 2026-06-21)
 
 **Decision:** May any private model + Class-B inputs (allowables, SIFs, design basis) be exposed to an agent worker for L3 — and under what residency constraints?
 
@@ -17,4 +17,4 @@
 ---
 **HumanRuling:** **OPEN RESIDENCY (current stance).** The agent harness may see the private model + Class-B inputs; the app does **not** enforce privacy/residency; **any** model provider (local / Anthropic / other) is permitted. **L3 is therefore not residency-blocked.** Owner's words (2026-06-21): "It doesn't concern me that the agent sees the private model, for now. The app shouldn't try to enforce privacy either. Local models or Anthropic models or even other providers could all be used."
 **Follow-on `RES-RECONCILE` — RESOLVED 2026-06-21 (published + tier-0-verified):** app-dev fence **F1** reconciled via **`D-APP-44` @ `d83e63b95`** (amended to owner-permitted, default-closed; F2/F3/F4 intact); piping **`OPS-K-PRIV-1`** / SPEC §4.4 / `IP_AND_DATA_BOUNDARY` reconciled via **`DEC-051` @ `9db0eef27`** (provider channel relaxed; `OPS-K-IP-*` + `IP_AND_DATA_BOUNDARY` + telemetry-off preserved). **Net posture (owner-confirmed): keep default-closed** — harness egresses only under explicit owner config; engine adds no independent guard. K-CONFLICT-1 conflict cleared.
-**RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21

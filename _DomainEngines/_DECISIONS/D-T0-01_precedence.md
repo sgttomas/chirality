@@ -1,4 +1,4 @@
-# D-T0-01 — Contract precedence  (PROPOSAL; HumanRuling: TBD)
+# D-T0-01 — Contract precedence  (RULED 2026-06-21)
 
 **Decision:** Which authoring is canonical for the `DomainEngineProfile`/`OperationProposal` contract — framework-root `agents/AGENT_DOMAIN_ENGINE.md`, or app-dev `docs/TYPES.md §11`/PKG-10?
 
@@ -17,4 +17,4 @@
 **Unblocks:** single-canon PKG-10 re-draft; FM-02. **Forecloses:** independent corpus drift.
 
 ---
-**HumanRuling:** **(a) Framework-root persona canonical** — FM-02 promotes K-DOMAIN to root as **new framework policy**; app-dev conforms DOWN (19-row table) and its richer OperationProposal merges UP (FM-04).   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **(a) Framework-root persona canonical** — FM-02 promotes K-DOMAIN to root as **new framework policy**; app-dev conforms DOWN (19-row table) and its richer OperationProposal merges UP (FM-04).   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21

@@ -360,6 +360,30 @@ def test_gen2_ruling_sha_tbd_conditional_review_not_block(tmp_path):
     assert "bind-at-publish" in record_hit.caveat
 
 
+def test_gen2_backtick_quoted_tbd_is_not_a_finding(tmp_path):
+    # A backtick-QUOTED `Ruling SHA: TBD` mention is prose quoting the rule
+    # (the live false-positive shape: D-GOV-02:36), never a live TBD field;
+    # an UNQUOTED field-style "**Ruling SHA:** TBD" in the SAME file (and
+    # mid-line, as the D-T0 records carry it) must still fire.
+    repo = build_mini_repo(tmp_path)
+    fixture = repo / "_DomainEngines" / "QUOTED_TBD_FIXTURE.md"
+    _write(fixture, (
+        "# Quoted-rule fixture\n"
+        "\n"
+        "- `Ruling SHA: TBD` is **conditional**: REVIEW when the artifact\n"
+        "  self-declares bind-at-publish (prose quoting the D-GOV-02 rule).\n"
+        "\n"
+        "**HumanRuling:** fixture ruling   **RuledBy:** owner (in-session)"
+        "   **Ruling SHA:** TBD (binds at CHANGE publish)"
+        "   **Date:** 2026-06-21\n"))
+    report, _ = cmd_self_check.run_self_check(repo)
+    hits = [f for f in _findings(report, "RULING_SHA_TBD")
+            if f.source_path.endswith("QUOTED_TBD_FIXTURE.md")]
+    # Exactly one finding: the unquoted field line — NOT the quoted line 3.
+    assert [f.source_line for f in hits] == [6]
+    assert hits[0].severity is Severity.REVIEW
+
+
 def test_root_governance_status_reported_as_facts(tmp_path):
     repo = build_mini_repo(tmp_path)
     report, _ = cmd_self_check.run_self_check(repo)

@@ -1,4 +1,4 @@
-# D-T0-05 — Four-gate sequence  (PROPOSAL; HumanRuling: TBD)
+# D-T0-05 — Four-gate sequence  (RULED 2026-06-21)
 
 **Decision:** Confirm the gate ordering the build runs on.
 
@@ -13,4 +13,4 @@
 **Unblocks:** lawful sequencing of all later work.
 
 ---
-**HumanRuling:** **Confirmed** — G1–G5 as proposed (PROTOCOL Fn 1–8 / Gates 1–5; D-T0-04/07 ruled before G4).   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **Confirmed** — G1–G5 as proposed (PROTOCOL Fn 1–8 / Gates 1–5; D-T0-04/07 ruled before G4).   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21

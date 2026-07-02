@@ -32,7 +32,10 @@ from pathlib import Path
 
 from harness_common import (
     DISCLAIMER_TEMPLATE,
+    GENERATED_ROOT_NAME,
     MD_HEADER_TEMPLATE,
+    GeneratedScopeError,
+    HarnessOperationalError,
     ensure_generated_scope,
     write_generated_file,
 )
@@ -244,9 +247,28 @@ def load_evidence_records(
     path). Facts for the tranche that produced them only — never lifecycle,
     approval, or status (two-class self-exclusion). Unreadable, non-JSON,
     wrong-schema, or foreign-tranche files come back labeled UNPARSEABLE with
-    a note; a missing directory is an empty list."""
+    a note; a missing directory INSIDE the generated root is an empty list.
+
+    Fail-closed containment (same semantics as the write side): the records
+    directory must resolve inside the declared generated root
+    (`{repo_root}/_harness_generated`, via `ensure_generated_scope`) — a
+    directory outside it (or a symlinked generated root) is a refusal, never
+    an empty read: harness-captured evidence provenance exists only under
+    the declared generated root (D-GOV-01 / K-WRITE-2)."""
     repo_root = repo_root.resolve()
-    records_dir = Path(out_dir) / EVIDENCE_DIR_NAME / tranche_id
+    try:
+        records_dir = evidence_dir(out_dir, tranche_id, repo_root)
+    except GeneratedScopeError as exc:
+        raise HarnessOperationalError(
+            "Refusing to read evidence records from "
+            f"{Path(out_dir) / EVIDENCE_DIR_NAME / tranche_id}: "
+            "harness-captured evidence provenance exists only under the "
+            f"declared generated root {GENERATED_ROOT_NAME}/ "
+            "(D-GOV-01 / K-WRITE-2), and this directory does not resolve "
+            "inside it. A symlinked generated root also refuses: capture "
+            f"provenance cannot be trusted through a relocated boundary. "
+            f"({exc})"
+        ) from exc
     loaded: list[LoadedEvidenceRecord] = []
     if not records_dir.is_dir():
         return loaded

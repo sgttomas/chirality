@@ -1,4 +1,4 @@
-# D-T0-07 — Contract versioning / pinning + DEC-041 confirmation  (PROPOSAL; HumanRuling: TBD)
+# D-T0-07 — Contract versioning / pinning + DEC-041 confirmation  (RULED 2026-06-21)
 
 **Decision:** Where does the cross-repo flow-A contract package version live and how is it pinned — and confirm DEC-041 as decision-of-record.
 
@@ -13,4 +13,4 @@
 **Unblocks:** app-dev open-Q5; the DEC-041 consumable-package-pull automation condition. **Forecloses:** decision-unbacked package boundaries.
 
 ---
-**HumanRuling:** **(a) tier-0-owned scheme** — a flow-A contract version that *references* both `CLAUDE_AGENT_SDK_PACKAGE_VERSION` + `HARNESS_TOOL_REGISTRY_VERSION`. **DEC-041 confirmed** as decision-of-record (piping `SOFTWARE_DECOMP.md:611`); cross-reference it (SHA-pinned) into app-dev.   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **(a) tier-0-owned scheme** — a flow-A contract version that *references* both `CLAUDE_AGENT_SDK_PACKAGE_VERSION` + `HARNESS_TOOL_REGISTRY_VERSION`. **DEC-041 confirmed** as decision-of-record (piping `SOFTWARE_DECOMP.md:611`); cross-reference it (SHA-pinned) into app-dev.   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21
