@@ -132,6 +132,46 @@ run-over-run counts against this baseline, split by project and caveat class
 are labeled, never guessed). Success is this number trending down; failure is
 this tool becoming a cleaner-looking second source of truth.
 
+## Project-tree abs-path lint (GEN-8) and agent-registry currency (GEN-9)
+
+**GEN-8 (SPEC §0.2.4).** GEN-1 stays control-area per-line; GEN-8 extends the
+machine-absolute-path audit to the pilot project trees with a labeled
+three-way FILE classification, precedence order: evidence-marker paths
+(`_validation/`, `_run_records/`, `Assessment_`, `.validation.json`) lawfully
+carry absolute paths and are counted into a per-root fact; instruction-class
+files (a `plans`/`docs`/`_Coordination`/`_DECISIONS` path segment, or an
+`_STATUS.md`/`_CONTEXT.md`/`_LATEST*`/`README*`/`PLAN*.md`/`*_INDEX.md`/
+`AGENT_*.md` filename) yield ONE `ABS_PATH_IN_PROJECT_SURFACE` REVIEW finding
+per file; everything else is not mechanically classifiable in v1 and is
+counted into a separate per-root fact — labeled, never guessed, human triage.
+Per-file granularity rationale: the worst live file carries 21 hit lines;
+per-line findings would flood human triage without adding information.
+Disposition is detect-never-rewrite: relativization when a file is next
+touched is a human/maintenance call. The live baseline is the 19-file
+instruction-class finding set pinned in `test_live_baseline.py` — a drift
+metric that should trend DOWN as files are relativized when next touched,
+with a conscious pin update accompanying each reduction. Relationship to
+prior art: `tools/validation/validate_path_anchors.py` lints the repo-level
+live instruction surfaces (`agents/`, `skills/`, `tools/`, `init/`, root
+`AGENTS.md`, active coordination files) and deliberately excludes `plans/`
+and most project-tree content — the surfaces GEN-8 now audits.
+
+**GEN-9 (K-AGENTS-1).** Runs once per invocation against the repo-root
+`AGENTS.md` + `agents/` regardless of `--root` (same posture as GEN-4);
+`NOT_APPLICABLE` when either is absent. Forward direction: every distinct
+backticked `AGENT_*.md` file token cited in `AGENTS.md` must resolve to a
+live file under `agents/` outside `.archive/`, else `REGISTRY_TARGET_MISSING`
+(REVIEW, anchored at the first citing line; a same-named copy under the
+gitignored `agents/.archive/` is noted only when the runtime probe finds it —
+fresh worktrees never materialize gitignored trees). Reverse direction: every
+live top-level `agents/AGENT_*.md` file must appear in the registry text,
+else `AGENT_FILE_UNINDEXED` (WARN). Per K-AGENTS-1, where live registries and
+narrative disagree, the live registry governs and the discrepancy is
+surfaced; fix-vs-retain is a human disposition. v1 observation boundary: file
+tokens only — role-name narrative mentions (a bare DELIVERABLE_TASK word in
+prose) are out of scope. Neither check ever BLOCKs: SPEC §0.2.4 and
+K-AGENTS-1 are DRAFT-track bases, so findings are advisory (D-GOV-05).
+
 ## Parser: prose-bullet-v1
 
 Versioned parser plugin agreeing with the TypeScript prior art
@@ -210,11 +250,21 @@ corpus (`test_archive_fixture_corpus.py`), the `_LATEST*` pointer-currency
 check (`POINTER_TARGET_UNRESOLVED` / `POINTER_TARGET_NOT_NEWEST`, K-PROV-1 /
 K-STALE-2; REVIEW only — judgment-adjacent per D-GOV-02, never BLOCK;
 `NOT_APPLICABLE` for roots without pointer files; `test_pointer_currency.py`),
-and a live-tree baseline test (92/154; the three owner-retained stale surfaces
-must be detected by `self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING`
-pinned at zero and `DRAFT_BASIS_RULED_CLOSED` at seven on the live tree; the
-retired piping reconciliation pointer pinned as the pointer check's first
-detection target).
+the project-tree abs-path lint (`ABS_PATH_IN_PROJECT_SURFACE`, SPEC §0.2.4;
+per-file REVIEW, evidence/unclassified counted as facts, GEN-1 control-area
+per-line behavior pinned unchanged; `test_abs_path_lint_fixtures.py`, with
+all synthetic-`fixture`-home-prefix content as in-module string constants), the
+agent-registry currency check (`REGISTRY_TARGET_MISSING` REVIEW /
+`AGENT_FILE_UNINDEXED` WARN / `REGISTRY_CHECK_NOT_APPLICABLE`, K-AGENTS-1;
+never BLOCK; `test_agent_registry_fixtures.py`), and a live-tree baseline
+test (92/154; the three owner-retained stale surfaces must be detected by
+`self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING` pinned at zero and
+`DRAFT_BASIS_RULED_CLOSED` at seven on the live tree; the retired piping
+reconciliation pointer pinned as the pointer check's first detection target;
+the GEN-8 19-file instruction-class baseline with
+`plans/pi-agent-harness-assessment.md` pinned worst at 21 hit lines; the
+GEN-9 `AGENT_DELIVERABLE_TASK.md` registry drift pinned at `AGENTS.md:89`
+with the reverse direction clean).
 
 **Fixture corpus.** The adversarial fixtures in
 `test_archive_fixture_corpus.py` are verbatim pre-images from

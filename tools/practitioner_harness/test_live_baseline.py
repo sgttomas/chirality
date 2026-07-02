@@ -2,12 +2,18 @@
 """LIVE-tree baseline tests (skippable when the live roots are absent or when
 CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 92/101,
 app-dev 0/53), the three deliberately retained stale surfaces (owner ruling
-2026-07-01) that self-check MUST catch, and the retired piping reconciliation
-pointer (the GEN-7 pointer-currency check's first detection target)."""
+2026-07-01) that self-check MUST catch, the retired piping reconciliation
+pointer (the GEN-7 pointer-currency check's first detection target), the
+GEN-8 19-file instruction-class abs-path baseline (a drift metric: it trends
+DOWN as files are relativized when next touched, and a conscious pin update
+accompanies each reduction), and the GEN-9 registry zero-drift state (its
+first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
+owner direction 2026-07-01)."""
 
 from __future__ import annotations
 
 import os
+import re
 from pathlib import Path
 
 import pytest
@@ -144,6 +150,79 @@ def test_live_pointer_currency_first_detection_target():
     na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
     assert {f.source_path for f in na} == {"docs/governance_harness"}
     assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
+
+
+# The GEN-8 live baseline (measured 2026-07-01 at 4e01db61e): the 19
+# instruction-class project files carrying machine-absolute paths. This set
+# is a drift metric — it should trend DOWN as files are relativized when
+# next touched; each reduction is a conscious pin update, never a silent one.
+GEN8_BASELINE_PATHS = {
+    "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md",
+    "projects/chirality-app-dev/plans/pi-assessment/01_core_session_primitives.md",
+    "projects/chirality-app-dev/plans/pi-assessment/02_backend_adapter_feasibility.md",
+    "projects/chirality-app-dev/plans/pi-assessment/03_security_governance_fit.md",
+    "projects/chirality-app-dev/plans/pi-assessment/04_domain_harness_fit.md",
+    "projects/chirality-app-dev/plans/pi-assessment/05_license_maintenance.md",
+    "projects/chirality-app-dev/plans/artifacts/insp03_assessment_index_2026-06-20.md",
+    "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md",
+    "projects/chirality-app-dev/plans/agent-harness-patterns-from-claw-code-assessment.md",
+    "projects/chirality-app-dev/plans/"
+    "ASSESSMENT_2026-06-18_pi_rust_sdk_correction_and_harness_posture.md",
+    "projects/chirality-app-dev/plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md",
+    "projects/chirality-app-dev/plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md",
+    "projects/chirality-app-dev/plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md",
+    "projects/chirality-app-dev/plans/PLAN_2026-06-16_six_node_scc_resolution.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-08_RULING_2026-06-16.md",
+    "projects/chirality-app-dev/docs/README.md",
+    "projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
+    "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
+    "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
+}
+
+
+@live
+def test_live_gen8_abs_path_19_file_baseline():
+    from harness_common import Severity
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
+    assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
+    assert len(hits) == 19  # exactly one finding per FILE
+    assert all(f.severity is Severity.REVIEW for f in hits)
+    # The worst file (the per-file granularity rationale): 21 hit lines.
+    counts = {f.source_path:
+              int(re.search(r"carries (\d+) machine-absolute-path", f.message)
+                  .group(1))
+              for f in hits}
+    worst = "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md"
+    assert counts[worst] == 21
+    assert counts[worst] == max(counts.values())
+    # Both aggregate facts exist per project root with files > 0. Counts are
+    # NOT pinned exactly: working content churns; the finding set is the
+    # baseline, the facts are context.
+    for project in ("chirality-app-dev", "chirality-piping"):
+        for cls in ("evidence", "unclassified"):
+            fact = _fact(report, f"abs_path_lint.{project}.{cls}")
+            m = re.fullmatch(r"files=(\d+); hit_lines=(\d+)", fact.value)
+            assert m and int(m.group(1)) > 0, (project, cls, fact.value)
+
+
+@live
+def test_live_gen9_registry_currency_zero_drift():
+    # Consistency-audit §4 item 3 was the check's first detection target: the
+    # registry indexed DELIVERABLE_TASK as live (AGENTS.md:89 at 4e01db61e)
+    # while the file existed only under the gitignored agents/.archive/. The
+    # owner ruled the disposition REMOVE (directed 2026-07-01; applied in this
+    # PR — the detection state is pinned by the prior commit, fcca5fedd), so
+    # the live registry is pinned clean in BOTH directions. A regression in
+    # either direction is a conscious pin update, never a silent one; the
+    # detector itself is proven by test_agent_registry_fixtures.py.
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    assert [f for f in report.findings
+            if f.code == "REGISTRY_TARGET_MISSING"] == []
+    assert [f for f in report.findings
+            if f.code == "AGENT_FILE_UNINDEXED"] == []
+    assert [f for f in report.findings
+            if f.code == "REGISTRY_CHECK_NOT_APPLICABLE"] == []
 
 
 @live

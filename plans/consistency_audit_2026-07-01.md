@@ -76,7 +76,10 @@ ruling 2026-07-01.
    `_DECISIONS` surface; ruled O-A by the owner 2026-07-01), not an edit.
 3. **AGENTS.md registry drift** — `AGENTS.md` indexes DELIVERABLE_TASK as live
    while the file exists only in gitignored `.archive/` (K-AGENTS-1
-   registry-vs-narrative drift).
+   registry-vs-narrative drift). *Resolved 2026-07-01: owner directed removal
+   of the DELIVERABLE_TASK references (index row, narrative list, dispatch
+   row); applied in the Phase 2 self-check-hardening PR alongside the GEN-9
+   registry-currency check, whose live baseline now pins zero drift.*
 4. **Thesis appendix A drift** — stale narrow K-PROV-1 wording, plus a false
    "reproduced faithfully from CONTRACT section 2" claim: the appendix omits
    exactly K-WRITE-2, K-AGENTS-1, K-DOMAIN-1..4 and three enforcement rows.
@@ -105,7 +108,8 @@ ruling 2026-07-01.
 Items below are low-severity, deferred, or fold into already-parked work. All
 are PROPOSALS until the owner rules or a maintenance touch resolves them.
 
-1. `AGENTS.md` DELIVERABLE_TASK index row correction (§4 item 3).
+1. `AGENTS.md` DELIVERABLE_TASK index row correction (§4 item 3). *Resolved
+   2026-07-01 per the owner-directed removal recorded there.*
 2. OPS-K-AUTH-2 "if used" qualifier removal, at OPS-catalog reconciliation.
 3. DAG APPROVAL_RECORDs lack git-SHA binding — fold into the parked piping
    schema alignment.
@@ -119,7 +123,8 @@ are PROPOSALS until the owner rules or a maintenance touch resolves them.
 8. Legacy `dbm-concordance-seed` model-tier wording — reword in evidence terms
    if the skill is revived.
 9. Harness self-check, future check: `_LATEST` pointer target exists and is
-   the newest sibling (would have caught §4 item 5).
+   the newest sibling (would have caught §4 item 5). *Resolved 2026-07-01:
+   landed as the GEN-7 pointer-currency check (PR #3, merge `12894ad3f`).*
 10. App-dev `_Coordination/_LATEST` one-row decision-frontier lag
     (self-described discovery-only).
 
