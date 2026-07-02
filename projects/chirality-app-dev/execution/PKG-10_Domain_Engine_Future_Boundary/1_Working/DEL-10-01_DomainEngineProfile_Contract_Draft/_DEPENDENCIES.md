@@ -28,6 +28,10 @@ TBD - no accepted dependency edges have been extracted yet.
 - Source warning preserved: `_REFERENCES.md` records a PRD hash mismatch; no dependency row relies solely on PRD content.
 - Future-boundary/gated warning: PKG-10 domain-engine work remains future platform scope and requires amendment before implementation. No implementation, endpoint, adapter, protected-path write, or engine-specific dependency was inferred.
 - Conservative extraction warning: no EXECUTION rows were emitted because allowed sources did not explicitly state a deliverable-to-deliverable prerequisite, handoff, interface, constraint, or downstream consumer for DEL-10-01.
+- 2026-07-02 satisfaction-evidence annotation (agent decision under `TRB-chirality-app-dev-DEL-10-01-2026-07-02`; INSP-03 "Dependency closure open" gap; annotate-only — `Dependencies.csv` rows NOT mutated, `SatisfactionStatus` stays `TBD`, satisfaction judgment is a human call):
+  - `DEP-10-01-001` (IMPLEMENTS_NODE PKG-10): anchor verified structurally intact — `_CONTEXT.md` PackageID and decomposition §7/§8 PKG-10 both live; deliverable directory present under PKG-10.
+  - `DEP-10-01-002` (TRACES_TO_REQUIREMENT SOW-066, future DomainEngineProfile compatibility): supporting evidence now exists — a concrete ADOPTED tier-0 profile instance (`_DomainEngines/profiles/open_pipe_stress.yaml`, D-T0-06) conforms to the canon this draft targets.
+  - `DEP-10-01-003` (TRACES_TO_REQUIREMENT SOW-067, generic domain profile contract): supporting evidence now exists — framework canon `agents/AGENT_DOMAIN_ENGINE.md` @ `77a327727` (REF-008 pin) plus the result-schema refs published 2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`, `projects/chirality-piping/schemas/rule_check_run_result.schema.json`) narrow the contract's open hooks.
 
 ## Extracted Dependency Register
 

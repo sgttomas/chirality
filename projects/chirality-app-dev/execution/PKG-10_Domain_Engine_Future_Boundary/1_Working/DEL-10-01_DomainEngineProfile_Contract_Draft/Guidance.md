@@ -70,6 +70,8 @@ domain_profile:
 
 This example is illustrative only. It is not an accepted runtime fixture and must not be treated as implementation-ready.
 
+Cross-reference (2026-07-02, agent decision under `TRB-chirality-app-dev-DEL-10-01-2026-07-02`): a concrete ADOPTED instance of this contract now exists — `_DomainEngines/profiles/open_pipe_stress.yaml` (tier-0, ADOPTED per D-T0-06) — and the concrete result-schema refs the example marks `TBD` are published for that instance: `projects/chirality-piping/schemas/operation_outcome.schema.json` (`validate_result_schema` / `apply_result_schema`; operation_applier `OperationOutcome`) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (`deterministic_check_result_schema`; rule_check_runner `RuleCheckRunResult`). The Rust sources govern on disagreement; the ADOPTED profile's own hook fields still read `TBD` pending an owner tier-0 CHANGE. The example skeleton above stays as-is: its `TBD` placeholders are template positions, and other engines supply their own refs. Note the repo qualifier: piping DEL-10-03 (Local FEA handoff) published those schemas; app-dev DEL-10-03 is a different deliverable.
+
 ## References
 
 - `_REFERENCES.md` REF-008
