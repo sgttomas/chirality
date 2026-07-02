@@ -102,6 +102,10 @@ References are organized by category. Citations marked [PLACEHOLDER] require ver
 
 [Polanyi1975] M. Polanyi and H. Prosch, *Meaning*, Chicago, IL, USA: University of Chicago Press, 1975. ISBN: 978-0-226-67294-6.
 
+[Smith1996] B. C. Smith, *On the Origin of Objects*, Cambridge, MA, USA: MIT Press (A Bradford Book), 1996. ISBN: 978-0-262-19363-4.
+
+[Smith2019] B. C. Smith, *The Promise of Artificial Intelligence: Reckoning and Judgment*, Cambridge, MA, USA: MIT Press, 2019. ISBN: 978-0-262-04304-5.
+
 [Sellars1956] W. Sellars, "Empiricism and the Philosophy of Mind," in *Minnesota Studies in the Philosophy of Science*, vol. 1, H. Feigl and M. Scriven, Eds., Minneapolis, MN, USA: University of Minnesota Press, 1956, pp. 253–329.
 
 [Brandom1994] R. B. Brandom, *Making It Explicit: Reasoning, Representing, and Discursive Commitment*, Cambridge, MA, USA: Harvard University Press, 1994. ISBN: 978-0-674-54319-5.

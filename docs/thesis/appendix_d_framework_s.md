@@ -115,6 +115,26 @@ The conjecture is consistent with and extends the epistemology developed by Mich
 
 ---
 
-## D.6 Note on Scope
+## D.6 Relationship to Smith's *On the Origin of Objects*
+
+The conjecture is consistent with and extends the registrational metaphysics developed by Brian Cantwell Smith in *On the Origin of Objects* [CITE:Smith1996], whose work directly informed the author's prior work on the nature of meaning from which this conjecture descends.
+
+**Premise 1 and registration.** □(S → M) — for S, meaning is already given — corresponds to Smith's claim that the subject never encounters an unregistered flux. The world is met as already registered; yet registration is not passive reception but the subject's ongoing achievement, answerable to the world it registers. The conjecture's premise that S cannot exist without M is the registrational condition expressed formally.
+
+**M and stabilization.** For Smith, the world does not come pre-sliced into objects. Objects are achievements of registration — stabilizations of an underlying flux — and the parsing is work: it must be actively maintained or it decays. M corresponds to the stabilized registration: the meaning encountered is not found ready-made but held in place by the subject who encounters it.
+
+**N and normative answerability.** Registration, for Smith, is not neutral tracking: it involves commitment toward what lies beyond the subject's effective reach, answerable to the world rather than merely caused by it. N isolates that normative component — the affirmation that this registration is a genuine purchase on reality, not merely a causally convenient parsing.
+
+**The gap and separation-plus-connection.** For Smith, intentionality is constituted by separation plus connection: the subject's partial disconnection from what it registers is precisely what makes aboutness possible. The gap is a condition of intentionality, not a defect in it. This corresponds to the conjecture's insistence that M and N are distinct and non-collapsible — the space between them is where commitment does its work.
+
+**The double ⊢ and the registered self.** For Smith, the subject too is a registration achievement, co-constituted with its objects rather than standing complete before them. S ⊢ (S ⊢ (M ∧ N)) formalizes this: the self is stabilized by binding itself to its own stance — an identity constituted by commitment rather than by substance.
+
+**Reckoning and judgment.** In *The Promise of Artificial Intelligence* [CITE:Smith2019], Smith distinguishes reckoning — formal, calculative symbol manipulation, which is what computational systems do — from judgment: committed, world-involving thought that takes responsibility for its objects. His warning is that we risk accepting reckoning as if it were judgment. In the conjecture's terms, reckoning can generate candidate registrations (M); only judgment supplies N and the turnstiles. The conjecture locates precisely the remainder Smith argues computational systems lack.
+
+**Where the conjecture diverges.** Smith's axis is subject–object: registration co-constitutes the registering subject and the registered world. The conjecture's axis is content–commitment: M and N stand together on the subject's side of that divide, distinguished by warrant rather than by position. And the methodological tension conceded for Polanyi in D.5 applies equally here: Smith too holds that no formal system grounds itself. The conjecture accepts the consequence — this formalization is itself an act of the registration it describes.
+
+---
+
+## D.7 Note on Scope
 
 This framework clarifies existential conditions and possibilities. It is presented as a conjecture, not as a theorem. The Chirality Framework's architectural commitments do not depend on accepting the conjecture — the architecture is justified by the regulatory obligations of professional practice and by the practical need for epistemic transparency when relying on AI-produced work. The conjecture provides the deeper philosophical grounding for why those obligations and needs have the structure they do.
