@@ -51,7 +51,7 @@ planning surface.
 
 | Theme | Status |
 |---|---|
-| Governance harness (practitioner bench tool) | RULED — D-GOV-01..07 ruled 2026-07-01 (SHA-bound at publication commit 82a35c545); plan of record: `governance_harness_plan_v3_2026-07-01`; next slice is the first PR |
+| Governance harness (practitioner bench tool) | RULED + FIRST PR LANDED — D-GOV-01..07 ruled 2026-07-01 (SHA-bound at publication commit 82a35c545); plan of record: `governance_harness_plan_v3_2026-07-01`; first PR merged 2026-07-01 (PR #1, commit 71a67d0b1: `tools/practitioner_harness/` + `write_status.sh` guard); next slices per plan §Roadmap Phases 2–5 at owner direction |
 | Root governance ratification | ACTIVE — sequenced per D-GOV-05 (minimal harness basis first; full DIRECTIVE/SPEC/TYPES/CONTRACT ratification on its own track) |
 | Tier-0 domain-engine integration (OpenPipeStress) | ACTIVE — profile ADOPTED (affirmed by D-GOV-06); surface-cleanup slice directed; live-build conditions per `_DomainEngines/` records |
 
@@ -87,7 +87,10 @@ applicability register (deferred).
   the staging copy is a gitignored regenerated artifact). Basis:
   `governance_harness_plan_v3_2026-07-01` + `PLAN_INDEX.md`; authority:
   D-GOV-01..07 (ruled 2026-07-01, SHA 82a35c545). Planning is closed
-  (terminal-artifact rule); the next artifact is the first pull request.
+  (terminal-artifact rule). **First PR landed 2026-07-01** (PR #1, merge
+  commit 71a67d0b1); remaining phases (fixtures, brief adoption,
+  run-validations/scope-check/evidence-check, cache/CI) proceed per plan
+  §Roadmap at owner direction.
 
 - **D-GOV-06 cleanup slice.** CHANGE-published correction of the six
   contradicting `open_pipe_stress` current-truth surfaces
@@ -104,7 +107,8 @@ applicability register (deferred).
   status/history mismatch count trends down from the 92/154 baseline as
   measured by the harness `drift` command; restated-state surfaces (pointers,
   banners, index tables, header comments, filenames) are audited on the same
-  cadence.
+  cadence. First measured run (2026-07-01, at merge commit 71a67d0b1):
+  92/154 — all 92 in chirality-piping; app-dev 0/53; 0 unparseable documents.
 
 ---
 

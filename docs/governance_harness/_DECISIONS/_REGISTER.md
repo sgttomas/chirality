@@ -43,13 +43,23 @@ the records govern.
 4. **`human_actors` allowlist** per D-GOV-04 — created at owner direction,
    `docs/governance_harness/human_actors.md` (2026-07-01); identity checks
    refuse (exit 2) absent it.
+5. **First PR** per plan v3 §First PR — landed 2026-07-01 at owner direction
+   (PR #1, merge commit `71a67d0b1`): `tools/practitioner_harness/` (charter,
+   adapter manifests + loader, `prose-bullet-v1` parser with caveat classes,
+   `status` three targets, `drift`/`self-check`, `brief` CANDIDATE-only) and
+   the `write_status.sh` precondition guard (canonical file; regenerated
+   export copy byte-identical), reconciled with the `transition.ts` prior art
+   (divergences recorded in the charter). Verified at merge: `drift` measures
+   92/154 (all 92 in piping) against the recorded baseline; `self-check`
+   detects the three retained stale surfaces of item 3; 110 tests pass.
 
-## Now actionable — still gated where noted
+## Now actionable
 
-1. **First PR** exactly per plan v3 §First PR: charter, adapters + manifests,
-   `status`, `drift`/`self-check` (against the verified 92/154 baseline),
-   `write_status.sh` guard (canonical + export source), `brief`, fixture
-   tests.
+None. The First PR closed the last item. Subsequent slices — adversarial
+fixtures, brief adoption handling, `run-validations`/`scope-check`/
+`evidence-check`, cache/CI — proceed per plan v3 §Roadmap (Phases 2–5) at
+owner direction; design changes supersede a D-GOV-* record or arrive as PR
+review.
 
 ## Terminal-artifact rule (restated)
 
