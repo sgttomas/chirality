@@ -361,9 +361,11 @@ def test_fixture_draft_basis(tmp_path, monkeypatch):
 
 
 def test_fixture_latest_framing(tmp_path):
-    # v1 has no dedicated pointer-framing check: the pre-image _LATEST.md
+    # v1 has no dedicated pointer-FRAMING check: the pre-image _LATEST.md
     # framing line ("PROPOSAL, not yet owner-accepted") next to an ADOPTED
-    # adoption-facts table fires NOTHING today. Asserted explicitly as the
+    # adoption-facts table fires NOTHING today. (GEN-7 audits pointer
+    # CURRENCY — target resolution and newest-sibling — not framing prose,
+    # and this fixture designates no target.) Asserted explicitly as the
     # recorded gap (rather than skipped) so a future check flips this test.
     repo = build_mini_repo(tmp_path)
     latest_text = (

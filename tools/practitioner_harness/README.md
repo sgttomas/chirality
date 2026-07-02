@@ -206,10 +206,15 @@ symlink, case), exit-code contract, parser grammar + caveat classes, claim
 language, guard behavior matrix, the stale-open-issue (`STALE_OPEN_ISSUE`,
 K-STALE-2) and draft-basis-used-as-binding (`DRAFT_BASIS_AS_BINDING` /
 `DRAFT_BASIS_RULED_CLOSED`, K-CLAIM-1) checks with their archive fixture
-corpus (`test_archive_fixture_corpus.py`), and a live-tree baseline test
-(92/154; the three owner-retained stale surfaces must be detected by
-`self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING` pinned at zero and
-`DRAFT_BASIS_RULED_CLOSED` at seven on the live tree).
+corpus (`test_archive_fixture_corpus.py`), the `_LATEST*` pointer-currency
+check (`POINTER_TARGET_UNRESOLVED` / `POINTER_TARGET_NOT_NEWEST`, K-PROV-1 /
+K-STALE-2; REVIEW only — judgment-adjacent per D-GOV-02, never BLOCK;
+`NOT_APPLICABLE` for roots without pointer files; `test_pointer_currency.py`),
+and a live-tree baseline test (92/154; the three owner-retained stale surfaces
+must be detected by `self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING`
+pinned at zero and `DRAFT_BASIS_RULED_CLOSED` at seven on the live tree; the
+retired piping reconciliation pointer pinned as the pointer check's first
+detection target).
 
 **Fixture corpus.** The adversarial fixtures in
 `test_archive_fixture_corpus.py` are verbatim pre-images from
