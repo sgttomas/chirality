@@ -9,10 +9,14 @@ issues vs later rulings (K-STALE-2: an `open_issues` entry or an unannotated
 ruling condition asserting a state a later authoritative surface contradicts),
 and (g) draft-basis-used-as-binding (K-CLAIM-1: a `FramedBy:`/`Basis:`/
 `Authority:` line citing a document whose self-declared status is
-DRAFT/PROPOSAL without labeling it), and (h) `_LATEST*` pointer currency
+DRAFT/PROPOSAL without labeling it), (h) `_LATEST*` pointer currency
 (every pointer file's designated target must exist on disk outside any
 `.archive/` tree and plausibly be the newest same-class sibling by
-date-in-filename where the naming convention allows the comparison).
+date-in-filename where the naming convention allows the comparison),
+(i) project-tree machine-absolute-path lint (SPEC §0.2.4: per-file findings
+on instruction-class project surfaces; detect, never rewrite), and
+(j) agent-registry currency (K-AGENTS-1: `AGENTS.md` file tokens vs live
+`agents/` files, both directions).
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO except objective local generated-output
@@ -21,10 +25,17 @@ labeling violations (D-GOV-05 carve-out).
 Scope notes (v1):
 - DE-* checks audit `_DomainEngines/`.
 - GEN-1 (absolute-path leak) and GEN-2 audit the control areas
-  (`_DomainEngines/` + `docs/governance_harness/`), not the project trees:
-  project run-record/evidence surfaces lawfully carry absolute paths per
-  SPEC §0.2.4 and are excluded from this audit in v1 (same v1 boundary as
+  (`_DomainEngines/` + `docs/governance_harness/`); GEN-1 stays per-line
+  there. GEN-8 extends the abs-path audit to the pilot project trees with a
+  labeled three-way FILE classification: evidence-marker surfaces lawfully
+  carry absolute paths per SPEC §0.2.4 and are counted as facts;
+  instruction-class surfaces yield one per-file finding; everything else is
+  not mechanically classifiable in v1 and is counted as facts — labeled,
+  never guessed. GEN-2 keeps the control-area boundary (same v1 boundary as
   GEN-5).
+- GEN-9 observation boundary (v1): file tokens only (backticked
+  `AGENT_*.md` spans in `AGENTS.md`); role-name narrative mentions (e.g. a
+  bare DELIVERABLE_TASK word in prose) are outside the boundary.
 - Nothing under `_harness_generated/` is read as input, except the GEN-3
   labeling check of that directory itself.
 """
@@ -120,6 +131,20 @@ POINTER_TICK_RE = re.compile(r"`([^`]+)`")
 POINTER_HISTORY_NOTE_RE = re.compile(
     r"\b(?:exhausted|superseded|historical|retired|predecessor)\b",
     re.IGNORECASE)
+
+# GEN-8 project-tree machine-absolute-path lint (SPEC §0.2.4). A file is
+# INSTRUCTION-CLASS when any path segment or its filename marks it as an
+# instruction/coordination/plan/status surface; evidence classification
+# reuses the shared EVIDENCE_PATH_MARKERS (precedence: evidence first).
+PROJECT_INSTRUCTION_SEGMENTS = ("plans", "docs", "_Coordination", "_DECISIONS")
+PROJECT_INSTRUCTION_FILENAME_RE = re.compile(
+    r"^(_STATUS\.md|_CONTEXT\.md|_LATEST.*|README.*|PLAN.*\.md"
+    r"|.*_INDEX\.md|AGENT_.*\.md)$")
+
+# GEN-9 agent-registry currency (K-AGENTS-1). File tokens are read from
+# backtick-delimited spans only (v1 observation boundary; role-name
+# narrative mentions are out of scope).
+AGENT_FILE_TOKEN_RE = re.compile(r"AGENT_[A-Z0-9_]+\.md")
 
 _REF_EXTENSIONS = (
     ".md", ".py", ".yaml", ".yml", ".json", ".csv", ".sh", ".ts", ".tsx",
@@ -636,6 +661,111 @@ def run_self_check(
                         "(K-STALE-2: stale items are human-triaged).",
                         _rel(pfile, repo_root), line_no, invariant="K-STALE-2"))
 
+    # ----- GEN-8 project-tree machine-absolute-path lint (SPEC §0.2.4) -----
+    # GEN-1 stays control-area per-line; GEN-8 extends the audit to the
+    # project scope roots (scope entries that are not control roots) with a
+    # labeled three-way FILE classification. Per-file, not per-line: the
+    # worst live file carries 21 hit lines, and per-line findings would
+    # flood human triage without adding information. Detect, never rewrite:
+    # relativization when a file is next touched is a human/maintenance call.
+    for proot in (p for p in scope if p not in control_roots):
+        ev_files = ev_lines = un_files = un_lines = 0
+        for path in _iter_files(proot, (".md", ".yaml", ".yml", ".json")):
+            rel = _rel(path, repo_root)
+            try:
+                lines = path.read_text(encoding="utf-8").splitlines()
+            except (UnicodeDecodeError, OSError):
+                continue
+            hits = [idx for idx, line in enumerate(lines, start=1)
+                    if ABS_PATH_RE.search(line)]
+            if not hits:
+                continue
+            if any(marker in rel for marker in EVIDENCE_PATH_MARKERS):
+                ev_files += 1
+                ev_lines += len(hits)
+                continue
+            reason = _instruction_class_reason(rel, path.name)
+            if reason is None:
+                un_files += 1
+                un_lines += len(hits)
+                continue
+            report.add_finding(make_finding(
+                Severity.REVIEW, "ABS_PATH_IN_PROJECT_SURFACE", "path-anchoring",
+                f"Instruction-class project surface ({reason}) carries "
+                f"{len(hits)} machine-absolute-path hit line(s); first hit at "
+                f"line {hits[0]}. SPEC §0.2.4 requires repo-relative anchoring "
+                "on instruction/coordination/plan surfaces, while run records "
+                "and evidence artifacts lawfully carry absolute paths. Detect, "
+                "never rewrite: relativization when the file is next touched "
+                "is a human/maintenance call — human review required.",
+                rel, hits[0], invariant="SPEC-0.2.4"))
+        report.add_fact(SourcedFact(
+            fact_id=f"abs_path_lint.{proot.name}.evidence",
+            value=f"files={ev_files}; hit_lines={ev_lines}",
+            source_path=_rel(proot, repo_root),
+            authority_status="observed",
+            caveat="Machine-absolute paths on run-record/evidence surfaces "
+                   "(evidence path markers) are permitted by SPEC §0.2.4; "
+                   "counted for portability awareness, never findings."))
+        report.add_fact(SourcedFact(
+            fact_id=f"abs_path_lint.{proot.name}.unclassified",
+            value=f"files={un_files}; hit_lines={un_lines}",
+            source_path=_rel(proot, repo_root),
+            authority_status="observed",
+            caveat="SPEC §0.2.4 divides instruction/coordination/plan "
+                   "surfaces (must not embed machine-absolute paths) from "
+                   "run-record/evidence surfaces (permitted); these working "
+                   "surfaces are not mechanically classifiable in v1 — "
+                   "labeled, never guessed; human triage."))
+
+    # ----- GEN-9 agent-registry currency (K-AGENTS-1) -----
+    # Runs once per invocation against the repo-root registry regardless of
+    # root_filter (same posture as GEN-4). Never BLOCK: K-AGENTS-1 is a
+    # DRAFT-track invariant (advisory per D-GOV-05).
+    agents_index = repo_root / "AGENTS.md"
+    agents_dir = repo_root / "agents"
+    if not agents_index.is_file() or not agents_dir.is_dir():
+        report.add_finding(make_finding(
+            Severity.NOT_APPLICABLE, "REGISTRY_CHECK_NOT_APPLICABLE",
+            "staleness",
+            "Registry preconditions absent (`AGENTS.md` file or `agents/` "
+            "directory missing at the repo root); agent-registry currency "
+            "check skipped (preconditions absent).",
+            "AGENTS.md", None, invariant="K-AGENTS-1"))
+    else:
+        raw = agents_index.read_text(encoding="utf-8")
+        # Forward: every DISTINCT cited file token must resolve under agents/
+        # outside .archive; the first citing line is the finding anchor.
+        for token, line_no in sorted(_registry_file_tokens(raw).items()):
+            if (agents_dir / token).is_file():
+                continue
+            # Runtime probe only: gitignored archives are absent in fresh
+            # checkouts/worktrees, so the note is strictly conditional.
+            archived_note = (
+                f" A same-named file sits under `agents/.archive/{token}` "
+                "(gitignored; absent in fresh checkouts/worktrees)."
+                if (agents_dir / ".archive" / token).is_file() else "")
+            report.add_finding(make_finding(
+                Severity.REVIEW, "REGISTRY_TARGET_MISSING", "staleness",
+                f"The registry cites `{token}` (first at line {line_no}) but "
+                "no such file exists under `agents/` outside `.archive/`. "
+                "K-AGENTS-1: \"Where live registries (`agents/`, `skills/`, "
+                "`tools/`) and narrative disagree, the live registry governs "
+                "and the discrepancy is surfaced.\" Fix-vs-retain is a human "
+                f"disposition — human review required.{archived_note}",
+                "AGENTS.md", line_no, invariant="K-AGENTS-1"))
+        # Reverse: every live top-level agents/AGENT_*.md file must appear
+        # somewhere in the registry raw text.
+        for path in sorted(agents_dir.glob("AGENT_*.md")):
+            if not path.is_file() or path.name in raw:
+                continue
+            report.add_finding(make_finding(
+                Severity.WARN, "AGENT_FILE_UNINDEXED", "staleness",
+                f"Live file `agents/{path.name}` is referenced nowhere in "
+                "the AGENTS.md registry narrative (K-AGENTS-1: the live "
+                "registry governs); surfaced for human review.",
+                f"agents/{path.name}", None, invariant="K-AGENTS-1"))
+
     # Summary
     report.summary["scope"] = [str(_rel(p, repo_root)) for p in scope]
     report.summary["pointer_files_scanned"] = pointer_files_scanned
@@ -646,7 +776,11 @@ def run_self_check(
         "GEN-5 (unresolved refs; control files only in v1), "
         "GEN-6 (draft-basis-used-as-binding; control files only in v1), "
         "GEN-7 (_LATEST pointer currency: target resolution outside .archive "
-        "+ newest-same-class-sibling by date-in-filename)")
+        "+ newest-same-class-sibling by date-in-filename), "
+        "GEN-8 (project-tree abs-path lint: per-file, three-way "
+        "classification, detect-never-rewrite), "
+        "GEN-9 (agent-registry currency: AGENTS.md file tokens vs live "
+        "agents/ files, both directions)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
@@ -921,6 +1055,33 @@ def _surviving_class_sibling(tok: str, pointer_dir: Path) -> str | None:
     rel = Path(tok)
     _, sibs = _pointer_class_siblings(pointer_dir / rel.parent, rel.name)
     return max(sibs)[1] if sibs else None
+
+
+# --- GEN-8 project-tree abs-path helpers ----------------------------------------
+
+def _instruction_class_reason(rel: str, name: str) -> str | None:
+    """The classification reason when a project file is instruction-class
+    per SPEC §0.2.4 (a marked path segment, else a filename pattern), or
+    None when the file is an unclassified working surface."""
+    for seg in Path(rel).parts[:-1]:
+        if seg in PROJECT_INSTRUCTION_SEGMENTS:
+            return f"path segment `{seg}/`"
+    if PROJECT_INSTRUCTION_FILENAME_RE.match(name):
+        return f"filename pattern match on `{name}`"
+    return None
+
+
+# --- GEN-9 agent-registry helpers ------------------------------------------------
+
+def _registry_file_tokens(raw: str) -> dict[str, int]:
+    """DISTINCT `AGENT_*.md` file tokens in backtick-delimited spans of the
+    registry text, each mapped to its first citing line number."""
+    first_cited: dict[str, int] = {}
+    for idx, line in enumerate(raw.splitlines(), start=1):
+        for span in POINTER_TICK_RE.findall(line):
+            for m in AGENT_FILE_TOKEN_RE.finditer(span):
+                first_cited.setdefault(m.group(0), idx)
+    return first_cited
 
 
 def _ruled_decision_record(
