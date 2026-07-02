@@ -60,9 +60,23 @@ covers D-GOV-01..07 only.
 
 ## Now actionable
 
-None. The First PR closed the last item. Subsequent slices — adversarial
-fixtures, brief adoption handling, `run-validations`/`scope-check`/
-`evidence-check`, cache/CI — proceed per plan v3 §Roadmap (Phases 2–5) at
+**Phase 2 (fixtures + self-check hardening) — active per owner direction
+2026-07-01.** This is the canonical status pointer for the Phase 2 build; the
+concrete slice list is scoped in the Phase 2 PR itself, not duplicated here.
+Scope from: plan v3 §Roadmap Phase 2, and the confirmed findings +
+parked/low catalogue in `plans/consistency_audit_2026-07-01.md`. In flight:
+the `_LATEST` pointer-resolution self-check (an external session; regression
+target is the pointer repointed in commit `d74b991db`).
+
+Load-bearing nuance for whoever scopes the PR: the D-GOV-06 cleanup already
+corrected the live `_DomainEngines/` contradiction surfaces, so their fixtures
+must be **synthetic/regression snapshots** (from git history or frozen
+copies), not live files — the live surfaces are now clean and would detect
+nothing. The exceptions are the three surfaces **deliberately retained** as
+live test material (Completed item 3), which `self-check` already catches.
+
+Later slices — brief adoption handling, `run-validations`/`scope-check`/
+`evidence-check`, cache/CI — proceed per plan v3 §Roadmap (Phases 3–5) at
 owner direction; design changes supersede a D-GOV-* record or arrive as PR
 review.
 
