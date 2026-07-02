@@ -21,7 +21,6 @@ ROOT_FILES = [
     ".gitignore",
     "AGENTS.md",
     "README.md",
-    "INIT.md",
     "CHIRALITY_FRAMEWORK.md",
     "PROFESSIONAL_ENGINEERING.md",
     "LICENSE.md",
@@ -33,8 +32,6 @@ ROOT_DIRS = [
     "skills",
     "tools",
     "docs",
-    "examples",
-    "frontend",
     "init",
 ]
 
@@ -156,19 +153,23 @@ def sanitize_text_files(stage: Path) -> int:
 
 
 def build_stage(stage: Path) -> int:
+    missing = [name for name in ROOT_FILES + ROOT_DIRS if not (REPO_ROOT / name).exists()]
+    if missing:
+        raise SystemExit(
+            "allowlisted roots missing from repo root: "
+            + ", ".join(missing)
+            + "; update ROOT_FILES/ROOT_DIRS to match the tree"
+        )
+
     if stage.exists():
         shutil.rmtree(stage)
     stage.mkdir(parents=True)
 
     for name in ROOT_FILES:
-        src = REPO_ROOT / name
-        if src.exists():
-            shutil.copy2(src, stage / name)
+        shutil.copy2(REPO_ROOT / name, stage / name)
 
     for name in ROOT_DIRS:
-        src = REPO_ROOT / name
-        if src.exists():
-            copy_tree(src, stage / name)
+        copy_tree(REPO_ROOT / name, stage / name)
 
     return sanitize_text_files(stage)
 
@@ -228,12 +229,17 @@ def write_report(stage: Path, manifest_count: int, sanitized_count: int, finding
         top = rel.parts[0] if rel.parts else rel.as_posix()
         top_counts[top] = top_counts.get(top, 0) + 1
 
+    try:
+        stage_display = stage.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        stage_display = str(stage)
+
     lines = [
         "# chirality-app Public Export Report",
         "",
         "Generated from private `chirality` export profile `exports/chirality-app`.",
         "",
-        f"- Staging path: `{stage}`",
+        f"- Staging path: `{stage_display}`",
         f"- Manifest rows: {manifest_count}",
         f"- Text files sanitized for private absolute paths: {sanitized_count}",
         f"- Boundary findings: {len(findings)}",
