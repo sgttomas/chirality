@@ -146,6 +146,10 @@ def build_evidence_record(
     stderr, stderr_truncated = truncate_stream(stderr)
     return {
         "schema": EVIDENCE_SCHEMA,
+        # GEN-3 labeling marker (GENERATED_OUTPUT): evidence records live under
+        # the generated root and must self-label as generated views, exactly
+        # like Report.to_json_dict envelopes (harness_common).
+        "authority_class": "generated_view",
         "tranche_id": tranche_id,
         "brief_source_path": brief_source_path,
         "brief_state": brief_state,

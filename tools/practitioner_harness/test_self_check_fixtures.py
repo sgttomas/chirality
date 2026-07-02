@@ -403,3 +403,40 @@ def test_gen5_unresolved_source_ref(tmp_path):
                    encoding="utf-8")
     report, _ = cmd_self_check.run_self_check(repo)
     _has(report, "UNRESOLVED_SOURCE_REF", "_REGISTER.md", severity=Severity.WARN)
+
+
+def test_candidate_refs_strip_trailing_parenthetical_annotations():
+    """Regression (bridge Loop 1, 2026-07-02): committed adopted briefs emit
+    refs like `path.md (line 9)` and `path.md (declared references surface)`;
+    the annotation is descriptive, not part of the path."""
+    line = ("- `projects/chirality-app-dev/execution/PKG-00_DAG/1_Working/"
+            "DAG_CLOSURE_CONTROL.md (line 9)`")
+    assert cmd_self_check._candidate_refs(line) == [
+        "projects/chirality-app-dev/execution/PKG-00_DAG/1_Working/"
+        "DAG_CLOSURE_CONTROL.md"]
+    line = ("- `execution/PKG-10/1_Working/DEL-10-01_Draft/_REFERENCES.md "
+            "(declared references surface)`")
+    assert cmd_self_check._candidate_refs(line) == [
+        "execution/PKG-10/1_Working/DEL-10-01_Draft/_REFERENCES.md"]
+
+
+def test_gen5_brief_format_annotated_refs_resolve_to_base_path(tmp_path):
+    """GEN-5 must resolve the brief generator's annotated emission format to
+    the base path: annotated refs to existing files produce no finding, and
+    an annotated ref to a missing file is still WARNed (with the stripped
+    ref named)."""
+    repo = build_mini_repo(tmp_path)
+    reg = repo / "_DomainEngines" / "_DECISIONS" / "_REGISTER.md"
+    reg.write_text(
+        reg.read_text(encoding="utf-8")
+        + "\n- source: `_DomainEngines/_DECISIONS/_REGISTER.md (line 9)`\n"
+        + "- source: `_DomainEngines/_DECISIONS/_REGISTER.md "
+        + "(declared references surface)`\n"
+        + "- source: `_DomainEngines/does_not_exist/NOPE.md (line 3)`\n",
+        encoding="utf-8")
+    report, _ = cmd_self_check.run_self_check(repo)
+    hits = [f for f in _findings(report, "UNRESOLVED_SOURCE_REF")
+            if f.source_path.endswith("_REGISTER.md")]
+    # Only the missing base path is flagged — as the stripped ref.
+    assert len(hits) == 1
+    assert "`_DomainEngines/does_not_exist/NOPE.md`" in hits[0].message
