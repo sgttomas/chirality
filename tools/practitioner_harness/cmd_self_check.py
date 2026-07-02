@@ -44,6 +44,7 @@ from __future__ import annotations
 
 import os
 import re
+import subprocess
 from pathlib import Path
 
 import adapter_domain_engines
@@ -675,8 +676,16 @@ def run_self_check(
     # flood human triage without adding information. Detect, never rewrite:
     # relativization when a file is next touched is a human/maintenance call.
     for proot in (p for p in scope if p not in control_roots):
+        # Only git-tracked files are governed surfaces (D-GOV-01); gitignored
+        # build output (dist/, target/, .next/, packaged .app bundles) is not
+        # authored truth and must not be audited. `tracked` is None outside a
+        # git working tree (the tmp-repo fixtures) — then the walk is
+        # unrestricted, exactly as before.
+        tracked = _git_tracked_paths(repo_root, proot)
         ev_files = ev_lines = un_files = un_lines = 0
         for path in _iter_files(proot, (".md", ".yaml", ".yml", ".json")):
+            if tracked is not None and path.resolve() not in tracked:
+                continue
             rel = _rel(path, repo_root)
             try:
                 lines = path.read_text(encoding="utf-8").splitlines()
@@ -1066,6 +1075,25 @@ def _surviving_class_sibling(tok: str, pointer_dir: Path) -> str | None:
 
 
 # --- GEN-8 project-tree abs-path helpers ----------------------------------------
+
+def _git_tracked_paths(repo_root: Path, root: Path) -> set[Path] | None:
+    """Resolved paths of git-tracked files under `root`, or None when `root`
+    is not inside a git working tree (the tmp-repo fixtures git-init nothing).
+    GEN-8 uses this to exclude gitignored build output — untracked artifacts
+    are not authored governance surfaces (D-GOV-01)."""
+    try:
+        rel = root.relative_to(repo_root)
+    except ValueError:
+        rel = root
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(repo_root), "ls-files", "-z", "--", str(rel)],
+            capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return {(repo_root / name).resolve()
+            for name in proc.stdout.split("\0") if name}
+
 
 def _instruction_class_reason(rel: str, name: str) -> str | None:
     """The classification reason when a project file is instruction-class

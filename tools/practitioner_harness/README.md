@@ -146,6 +146,11 @@ per file; everything else is not mechanically classifiable in v1 and is
 counted into a separate per-root fact — labeled, never guessed, human triage.
 Per-file granularity rationale: the worst live file carries 21 hit lines;
 per-line findings would flood human triage without adding information.
+GEN-8 audits **git-tracked files only**: gitignored build output (`dist/`,
+`target/`, `.next/`, packaged `.app` bundles) is not authored governance
+truth (D-GOV-01) and is excluded, so the 19-file baseline is stable whether
+or not the working tree has been built. Outside a git working tree (the
+tmp-repo fixtures) the walk is unrestricted.
 Disposition is detect-never-rewrite: relativization when a file is next
 touched is a human/maintenance call. The live baseline is the 19-file
 instruction-class finding set pinned in `test_live_baseline.py` — a drift

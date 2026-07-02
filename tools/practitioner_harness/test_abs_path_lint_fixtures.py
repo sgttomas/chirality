@@ -20,6 +20,11 @@ findings. SPEC §0.2.4 is a DRAFT-track basis, so BLOCK is never emitted.
 
 from __future__ import annotations
 
+import shutil
+import subprocess
+
+import pytest
+
 from harness_common import Severity, find_claim_language
 from test_self_check_fixtures import _findings, _has, _write, build_mini_repo
 
@@ -224,3 +229,36 @@ def test_symlinked_root_filter_routes_control_area_to_gen1(tmp_path):
     _has(report, "ABS_PATH_IN_GOVERNED_SURFACE", "SYMLINK_NOTE.md", line=3,
          severity=Severity.REVIEW)
     assert _gen8(report) == []
+
+
+# --- (i) gitignored build output is excluded (only tracked files audited) ---------
+
+def _git(repo, *args):
+    subprocess.run(["git", "-C", str(repo), "-c", "user.email=t@example.com",
+                    "-c", "user.name=fixture", *args],
+                   check=True, capture_output=True, text=True)
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="git not available")
+def test_gitignored_build_output_is_not_audited(tmp_path):
+    # 2026-07-02 post-merge regression: on a dev checkout GEN-8 walked into
+    # gitignored build output (frontend/dist/ packaged .app bundle) and
+    # flagged packaged docs/README.md copies, inflating the 19-file baseline
+    # by 2. Untracked artifacts are not governed surfaces (D-GOV-01); GEN-8
+    # now audits git-tracked files only.
+    repo = build_mini_repo(tmp_path)
+    # A TRACKED instruction-class surface carrying an abs path -> one finding.
+    _write(repo.joinpath(*APP_DEV, "plans", "tracked_assessment.md"),
+           DECISION_ONE_HIT_MD)
+    # A gitignored build artifact carrying an abs path -> must NOT be audited.
+    _write(repo / ".gitignore", "**/dist/\n")
+    _write(repo.joinpath(*APP_DEV, "frontend", "dist", "docs", "README.md"),
+           f"# packaged copy (fixture)\n\nBuilt from {FIXTURE_ABS}/src\n")
+    _git(repo, "init", "-q")
+    _git(repo, "add", "-A")           # respects .gitignore: dist/ stays untracked
+    _git(repo, "commit", "-q", "-m", "fixture tree")
+    report, _ = cmd_self_check.run_self_check(repo)
+    hits = _gen8(report)
+    assert [f.source_path for f in hits] == [
+        "projects/chirality-app-dev/plans/tracked_assessment.md"]
+    assert not any("dist" in f.source_path for f in hits)
