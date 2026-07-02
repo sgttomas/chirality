@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  Option B approved as recommended by owner (Ryan Tufts), 2026-07-01
-Ruling SHA:   TBD — binds at publication commit (backfilled immediately after publish)
+Ruling SHA:   5f0f45c2b89909efd37b801395e857554e22f292 (publication commit, 2026-07-01)
 Date:         2026-07-01
 FramedBy:     seed-to-leaf consistency audit, 2026-07-01
 
