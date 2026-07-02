@@ -143,8 +143,10 @@ PROJECT_INSTRUCTION_FILENAME_RE = re.compile(
 
 # GEN-9 agent-registry currency (K-AGENTS-1). File tokens are read from
 # backtick-delimited spans only (v1 observation boundary; role-name
-# narrative mentions are out of scope).
-AGENT_FILE_TOKEN_RE = re.compile(r"AGENT_[A-Z0-9_]+\.md")
+# narrative mentions are out of scope). The left-boundary guard keeps a
+# superset filename (e.g. SUB_AGENT_TASK.md) from yielding a phantom
+# AGENT_TASK.md token.
+AGENT_FILE_TOKEN_RE = re.compile(r"(?<![A-Za-z0-9_])AGENT_[A-Z0-9_]+\.md")
 
 _REF_EXTENSIONS = (
     ".md", ".py", ".yaml", ".yml", ".json", ".csv", ".sh", ".ts", ".tsx",
@@ -196,6 +198,10 @@ def run_self_check(
     root_filter: Path | None = None,
 ) -> tuple[Report, str | None]:
     """Run the audit. Returns (report, identity_refusal_message_or_None)."""
+    # Normalize once: root_filter is .resolve()d below and _narrow compares
+    # path prefixes — an unresolved repo_root on a symlinked checkout would
+    # misroute control areas to the project-tree checks.
+    repo_root = repo_root.resolve()
     report = Report(command="self-check")
     de_root = repo_root / adapter_domain_engines.DE_DIRNAME
     gov_root = repo_root / "docs" / "governance_harness"
@@ -734,9 +740,10 @@ def run_self_check(
             "AGENTS.md", None, invariant="K-AGENTS-1"))
     else:
         raw = agents_index.read_text(encoding="utf-8")
+        cited = _registry_file_tokens(raw)
         # Forward: every DISTINCT cited file token must resolve under agents/
         # outside .archive; the first citing line is the finding anchor.
-        for token, line_no in sorted(_registry_file_tokens(raw).items()):
+        for token, line_no in sorted(cited.items()):
             if (agents_dir / token).is_file():
                 continue
             # Runtime probe only: gitignored archives are absent in fresh
@@ -755,9 +762,10 @@ def run_self_check(
                 f"disposition — human review required.{archived_note}",
                 "AGENTS.md", line_no, invariant="K-AGENTS-1"))
         # Reverse: every live top-level agents/AGENT_*.md file must appear
-        # somewhere in the registry raw text.
+        # as a cited file token (a raw substring test would treat a name
+        # embedded in a longer token as indexed).
         for path in sorted(agents_dir.glob("AGENT_*.md")):
-            if not path.is_file() or path.name in raw:
+            if not path.is_file() or path.name in cited:
                 continue
             report.add_finding(make_finding(
                 Severity.WARN, "AGENT_FILE_UNINDEXED", "staleness",

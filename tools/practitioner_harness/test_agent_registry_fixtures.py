@@ -165,3 +165,29 @@ def test_gen9_never_blocks(tmp_path):
         gen9 = _gen9_findings(report)
         assert gen9, sub  # every shape above yields at least one finding
         assert all(f.severity is not Severity.BLOCK for f in gen9), sub
+
+
+# --- (g) superset filenames never phantom-match (token left boundary) --------------
+
+SUPERSET_REGISTRY_MD = """# AGENTS — fixture registry
+
+| Role | File | Purpose |
+|---|---|---|
+| SUB_TASK | `SUB_AGENT_TASK.md` | Wrapper whose filename embeds a token |
+"""
+
+
+def test_superset_token_no_phantom_forward_and_reverse_fires(tmp_path):
+    # 2026-07-02 adversarial-review regression: without a left boundary the
+    # token regex extracted a phantom AGENT_TASK.md from inside
+    # SUB_AGENT_TASK.md (fabricated forward finding), and the raw-substring
+    # reverse test treated a live AGENT_TASK.md as indexed by that same
+    # superset token (suppressed WARN). Both directions now token-match.
+    repo = build_mini_repo(tmp_path)
+    _build_registry(repo, index_text=SUPERSET_REGISTRY_MD,
+                    agent_files=("AGENT_TASK.md", "SUB_AGENT_TASK.md"))
+    report, _ = cmd_self_check.run_self_check(repo)
+    assert not _findings(report, "REGISTRY_TARGET_MISSING")
+    assert [f.source_path
+            for f in _findings(report, "AGENT_FILE_UNINDEXED")] == [
+        "agents/AGENT_TASK.md"]

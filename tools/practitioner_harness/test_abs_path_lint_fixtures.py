@@ -203,3 +203,24 @@ def test_gen1_control_area_per_line_behavior_unchanged(tmp_path):
     assert all(not f.source_path.startswith("_DomainEngines")
                for f in _gen8(report))
     assert all(f.severity is not Severity.BLOCK for f in _gen8(report))
+
+
+# --- (h) symlinked repo_root/root_filter still routes control areas to GEN-1 -------
+
+def test_symlinked_root_filter_routes_control_area_to_gen1(tmp_path):
+    # 2026-07-02 adversarial-review regression: run_self_check resolves
+    # root_filter but compared it against control roots built from the
+    # caller's repo_root verbatim; a symlinked repo_root misrouted control
+    # areas into the project-tree lint. repo_root is now normalized once.
+    (tmp_path / "real").mkdir()
+    repo = build_mini_repo(tmp_path / "real")
+    _write(repo / "docs" / "governance_harness" / "SYMLINK_NOTE.md",
+           f"# note (fixture)\n\nSee {FIXTURE_ABS}/x.md\n")
+    link = tmp_path / "link"
+    link.symlink_to(tmp_path / "real")
+    linked_repo = link / "repo"
+    report, _ = cmd_self_check.run_self_check(
+        linked_repo, root_filter=linked_repo / "docs" / "governance_harness")
+    _has(report, "ABS_PATH_IN_GOVERNED_SURFACE", "SYMLINK_NOTE.md", line=3,
+         severity=Severity.REVIEW)
+    assert _gen8(report) == []
