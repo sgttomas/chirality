@@ -18,6 +18,11 @@ the records govern.
 | D-GOV-05 | Minimal governance basis | **RULED: Option A** — ratify minimal harness basis now; full root ratification on its own track; trailer grammar rides this | Enforcement claims on a ratified minimum |
 | D-GOV-06 | `open_pipe_stress` current truth | **RULED: affirm ADOPTED** per the 2026-06-21 Gate-2 ruling; CHANGE-published cleanup of the six contradicting surfaces directed | Resolves the drift exemplar; first live self-check fixture |
 | D-GOV-07 | Domain gate SHA binding | **RULED: as recommended** — bind to content SHA-256 *and* git SHA; existing acceptances grandfathered WARN | Deferred domain-shape verifier prerequisite |
+| D-GOV-08 | Epistemic vocabulary operationalization | **RULED: Option B** — warrant ladder audit-time diagnostic; FACT optional; TYPES §10.5 + thesis ch.5 corrections directed; review-severity enum registered | `TYPES.md` §10.5 / thesis ch. 5 corrections at ruling; registration of the review-finding severity enum; `evidence-check` semantics |
+
+Note (2026-07-01): with D-GOV-08 the register extends to root-governance
+vocabulary decisions framed by the harness family; the RULED banner above
+covers D-GOV-01..07 only.
 
 ## Completed
 

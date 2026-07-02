@@ -112,7 +112,7 @@ The `ProposedAuthority` column allows the agent to suggest which source should g
 | PROPOSAL | Agent suggestion; requires human decision to become binding | Decide; record rationale |
 | TBD | Unknown; placeholder requiring resolution | Resolve before reliance |
 
-These labels are defined in `TYPES.md` §10 and required by agent instruction invariants throughout the suite.
+These labels are defined in `TYPES.md` §10 and required by agent instruction invariants throughout the suite. *[Note added 2026-07-01: per D-GOV-08 (ruled 2026-07-01), the labeling act is a specified convention with no producer-side enforcing invariant — its warranting function is carried by the citation/SHA/attribution mechanisms, and its enforcement point is audit-time assessment bounded by K-CLAIM-1.]*
 
 **Why this matters.** The labels transform the reviewer's task. Without epistemic labeling, the reviewer must assess every claim independently to determine its grounding — an exhaustive process that scales poorly. With epistemic labeling, the reviewer can triage: FACTs can be verified by spot-checking citations; ASSUMPTIONs require targeted validation; PROPOSALs require decisions; TBDs require resolution. The review process becomes proportional to the actual uncertainty in the output, not to its volume.
 
@@ -135,6 +135,8 @@ Together, they address the four failure modes of LLM-assisted professional work:
 | Fabricated value for unknown quantity | TBD marking makes absence of data visible | K-INVENT-1 |
 | Silent conflict resolution | Conflict Table makes disagreement visible | K-CONFLICT-1 |
 | Ambiguous certainty status | Epistemic labels make confidence level visible | R5, R6, R7 |
+
+*[Note added 2026-07-01: R5, R6, and R7 govern provenance, invention, and conflicts respectively; the labeling act itself is enforced at audit time per D-GOV-08 (2026-07-01).]*
 
 The common thread is **visibility**. Each mechanism makes a category of epistemic failure visible to the reviewer rather than hiding it in the model's output. The system does not prevent epistemic failures — it makes them structurally detectable. This is a design choice: prevention is impossible to guarantee for LLM outputs, but detection can be architecturally enforced.
 

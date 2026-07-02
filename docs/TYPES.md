@@ -1,6 +1,6 @@
 # TYPES — Domain Vocabulary and Hierarchy
 
-> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/TYPES.md`), preserving the established §1–§10 numbering (referenced as `TYPES §4` and `§9.2` from `AGENTS.md`), and adds the root/path-token vocabulary (§1.4–§1.5), the reconciled `WRITE_SCOPE` enum (§4.2), and the domain-decomposition entities (§8.2). Not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1). **Exception:** the finding-severity taxonomy (§11) is ratified per D-GOV-02 (`docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md`, ruled by owner 2026-07-01); the remainder of this document remains DRAFT.
+> **Status: DRAFT pending human ratification.** This document re-establishes the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`). It is authored from the prior root canon (`.archive/TYPES.md`), preserving the established §1–§10 numbering (referenced as `TYPES §4` and `§9.2` from `AGENTS.md`), and adds the root/path-token vocabulary (§1.4–§1.5), the reconciled `WRITE_SCOPE` enum (§4.2), and the domain-decomposition entities (§8.2). Not accepted governance until a human ratifies it (per `CONTRACT.md` / K-AUTH-1). **Exception:** the finding-severity taxonomy (§11) is ratified per D-GOV-02 (`docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md`, ruled by owner 2026-07-01), and the §10.5 Status mapping and §10.6 review-severity registration are ruled per D-GOV-08 (2026-07-01); the remainder of this document remains DRAFT.
 
 This document is the authoritative vocabulary reference for the Chirality agent operating system. It defines the canonical entities, stable identifier formats, enumerated types, agent roles, and lifecycle states.
 
@@ -373,17 +373,35 @@ UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
 
 The deliverable lifecycle asks: *what state is this work product in?* The warrant lifecycle asks: *what state is our knowledge about this work product in?* A deliverable is ready for issuance when its warrants are sufficient — when the licensed professional has determined that the epistemic state of the claims supports authentication under professional responsibility.
 
-The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition). The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility.
+The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition; see §10.6). The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility.
 
 ### 10.5 Enforcing Invariants
 
 | Invariant | Epistemic Primitive Governed |
 |---|---|
 | K-PROV-1 (mandatory provenance) | Warrant — every claim must have an extrinsic warrant or explicit `location TBD` |
+| Audit-time assessment (`AGENT_AUDIT_EPISTEMIC`; future harness `evidence-check`), bounded by K-CLAIM-1 | Status — the labeling act is assessed at audit time, not producer-emitted; per D-GOV-08 (ruled 2026-07-01) |
 | K-INVENT-1 (no invention) | Gap — missing data must be represented as a gap (TBD), not filled with a fabrication |
 | K-CONFLICT-1 (conflict surfacing) | Conflict — disagreements must be exposed as conflicts, not silently resolved |
 | K-AUTH-1 (human authority) | Ruling — only humans may author binding rulings and approval records |
 | K-AUTH-2 (SHA-bound approval) | Authentication — the warrant-to-content binding is mechanically verifiable |
+
+### 10.6 Review Finding Severity
+
+Registered per D-GOV-08 (`docs/governance_harness/_DECISIONS/D-GOV-08_epistemic_vocabulary_operationalization.md`), ruled by the owner 2026-07-01.
+
+Review-gate findings are classified with the four-level enum defined by the review type system in `docs/SE_Design_Analysis.md` §7.3 (`FindingSeverity`):
+
+```
+CRITICAL | MAJOR | MINOR | OBSERVATION
+```
+
+This is the finding vocabulary that the "CRITICAL findings" gate conditions in §10.4 reference.
+
+Distinctness:
+
+- This enum is distinct from the governance-verifier taxonomy (`BLOCK`, `REVIEW`, `WARN`, `INFO`, `NOT_APPLICABLE`; §11): review severities classify review-gate findings about deliverable content; verifier severities classify governance harness findings.
+- It is also distinct from the agent-conformance rubric's Blocker/High/Medium/Low (`docs/rubrics/AUDIT_AGENT.md`): that rubric grades agent-file conformance, not deliverable review findings.
 
 ---
 
