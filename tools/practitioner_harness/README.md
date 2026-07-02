@@ -203,5 +203,19 @@ Co-located pytest (`python3 -m pytest tools/practitioner_harness -q`):
 read-only guarantee (byte-identical governed files), drift fixtures modeled on
 the `_DomainEngines/` contradictions, path containment (absolute, `..`,
 symlink, case), exit-code contract, parser grammar + caveat classes, claim
-language, guard behavior matrix, and a live-tree baseline test (92/154; the
-three owner-retained stale surfaces must be detected by `self-check`).
+language, guard behavior matrix, the stale-open-issue (`STALE_OPEN_ISSUE`,
+K-STALE-2) and draft-basis-used-as-binding (`DRAFT_BASIS_AS_BINDING` /
+`DRAFT_BASIS_RULED_CLOSED`, K-CLAIM-1) checks with their archive fixture
+corpus (`test_archive_fixture_corpus.py`), and a live-tree baseline test
+(92/154; the three owner-retained stale surfaces must be detected by
+`self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING` pinned at zero and
+`DRAFT_BASIS_RULED_CLOSED` at seven on the live tree).
+
+**Fixture corpus.** The adversarial fixtures in
+`test_archive_fixture_corpus.py` are verbatim pre-images from
+`git show 15c958e06^` (the state before the D-GOV-06 cleanup slice), with
+machine-absolute paths re-anchored to a synthetic `fixture` home-directory
+prefix. They live as string constants inside `test_`-prefixed modules on
+purpose: loose fixture data files under `tools/` carrying home-dir-absolute
+content would fail `tools/validation/validate_path_anchors.py`, and `tools/`
+ships verbatim into the public export.

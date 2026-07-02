@@ -77,6 +77,38 @@ def test_live_self_check_exactly_one_abs_path_in_evidence():
 
 
 @live
+def test_live_self_check_stale_open_issue_is_zero():
+    # Post-cleanup live corpus: open_issues entries are annotated in place and
+    # the D-T0-06 ruling condition carries its "[Condition met ...]" note.
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    assert [f for f in report.findings if f.code == "STALE_OPEN_ISSUE"] == []
+
+
+@live
+def test_live_self_check_draft_basis_pins():
+    from harness_common import Severity
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    assert [f for f in report.findings if f.code == "DRAFT_BASIS_AS_BINDING"] == []
+    info = [f for f in report.findings if f.code == "DRAFT_BASIS_RULED_CLOSED"]
+    # The seven D-GOV records' `FramedBy: governance_harness_plan_v3` lines:
+    # the plan HTML self-declares "PROPOSAL, pending D-GOV-01"; D-GOV-01 is
+    # RULED -> closure recorded as INFO (conditional per the D-GOV-02 model).
+    assert len(info) == 7
+    assert all(f.severity is Severity.INFO for f in info)
+    assert {(f.source_path, f.source_line) for f in info} == {
+        (f"docs/governance_harness/_DECISIONS/{name}", 7)
+        for name in (
+            "D-GOV-01_substrate_authority.md",
+            "D-GOV-02_verifier_severity_and_override.md",
+            "D-GOV-03_pilot_scope.md",
+            "D-GOV-04_human_actor_identity.md",
+            "D-GOV-05_minimal_governance_basis.md",
+            "D-GOV-06_domain_profile_current_truth.md",
+            "D-GOV-07_domain_gate_sha_binding.md",
+        )}
+
+
+@live
 def test_live_self_check_reports_root_draft_governance_and_exits_clean():
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):

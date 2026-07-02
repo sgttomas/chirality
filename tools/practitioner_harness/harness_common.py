@@ -66,6 +66,10 @@ DRAFT_INVARIANTS_EXPLICIT = (
     "K-AGENTS-1",
     "K-DOMAIN-1",
     "K-DOMAIN-4",
+    # K-STALE-2 (docs/CONTRACT.md §1.6, DRAFT-pending-ratification): "Stale
+    # items must be **triaged by a human** before being considered current.
+    # Resolution modes: no impact (clear flag), needs rework, or needs review."
+    "K-STALE-2",
 )
 
 

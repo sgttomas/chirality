@@ -3,8 +3,13 @@
 
 Audits current-truth restating surfaces for contradictions (K-CONFLICT-1:
 surface, never resolve), path-anchoring leaks (SPEC §0.2.4), `Ruling SHA: TBD`
-conditionals (D-GOV-02), generated-output labeling (D-GOV-01), and the
-self-declared DRAFT status of the root governance documents.
+conditionals (D-GOV-02), generated-output labeling (D-GOV-01), the
+self-declared DRAFT status of the root governance documents, (f) stale open
+issues vs later rulings (K-STALE-2: an `open_issues` entry or an unannotated
+ruling condition asserting a state a later authoritative surface contradicts),
+and (g) draft-basis-used-as-binding (K-CLAIM-1: a `FramedBy:`/`Basis:`/
+`Authority:` line citing a document whose self-declared status is
+DRAFT/PROPOSAL without labeling it).
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO except objective local generated-output
@@ -59,6 +64,35 @@ TAIL_DRAFT_CLAIM_RE = re.compile(
 # Lines quoting/annotating an already-corrected claim are not live claims.
 TAIL_NOTE_SKIP_RE = re.compile(r"deleted|superseded|historical|per D-GOV", re.IGNORECASE)
 GENERATED_HEADER_SENTINEL = "Generated view — not authority"
+
+# DE-8 stale open issues vs later rulings (K-STALE-2).
+OPEN_ISSUE_DRAFT_CLAIM_RE = re.compile(
+    r"(?:stays|remains)\s+DRAFT|not\s+adopted|no\s+.{0,40}validator\s+exists",
+    re.IGNORECASE)
+RESOLVED_ANNOTATION_RE = re.compile(
+    r"RESOLVED\b|No longer an open issue|per D-GOV", re.IGNORECASE)
+OPEN_CONDITION_RE = re.compile(r"(?:stays|remains)\s+DRAFT\s+until", re.IGNORECASE)
+CONDITION_MET_RE = re.compile(r"\[Condition met|per D-GOV", re.IGNORECASE)
+COMPLETION_RE = re.compile(
+    r"Lifecycle complete|→\s*ADOPTED|ruled by the owner", re.IGNORECASE)
+HUMANRULING_LINE_RE = re.compile(r"\*\*HumanRuling:\*\*")
+
+# GEN-6 draft-basis-used-as-binding (K-CLAIM-1).
+BASIS_LINE_RE = re.compile(
+    r"^(?:\*\*)?(FramedBy|Basis|Authority|Upstream authority)(?:\*\*)?\s*:")
+BASIS_DISCLOSURE_RE = re.compile(
+    r"DRAFT|PROPOSAL|pending|unratified|not (?:yet )?(?:accepted|ratified)",
+    re.IGNORECASE)
+PENDING_DECISION_RE = re.compile(r"pending\s+(D-[A-Z]+-\d+)")
+MD_STATUS_DECL_RE = re.compile(r"Status:?\s*(?:\*\*)?\s*(.+)")
+DRAFT_STATUS_RE = re.compile(r"\bDRAFT\b|\bPROPOSAL\b")
+# Known named bases (token -> repo-relative target). Extend as new named
+# bases appear in basis/authority lines.
+KNOWN_BASIS_TARGETS: dict[str, str] = {
+    "governance_harness_plan_v3":
+        "plans/governance_harness_proposal-B_2026-07-01/"
+        "governance_harness_plan_v3_2026-07-01.html",
+}
 
 _REF_EXTENSIONS = (
     ".md", ".py", ".yaml", ".yml", ".json", ".csv", ".sh", ".ts", ".tsx",
@@ -283,6 +317,61 @@ def run_self_check(
                                 "conflict — human review required.",
                                 _rel(rulings, repo_root), idx, invariant="K-CONFLICT-1"))
 
+        # DE-8 stale_open_issue: stale open issues vs later rulings (K-STALE-2).
+        # (a) profile open_issues entries vs the authoritative profile_status field
+        if obs.profile_path is not None and profile_status == "ADOPTED":
+            dp = obs.profile_data.get("domain_profile", {})
+            open_issues = dp.get("open_issues") or [] if isinstance(dp, dict) else []
+            raw_lines = obs.profile_raw.splitlines()
+            for entry in open_issues:
+                if not isinstance(entry, str):
+                    continue
+                if not OPEN_ISSUE_DRAFT_CLAIM_RE.search(entry):
+                    continue
+                if RESOLVED_ANNOTATION_RE.search(entry):
+                    continue  # annotate-in-place resolution (lawful)
+                line_no: int | None = None
+                probe = entry[:60]
+                for idx, line in enumerate(raw_lines, start=1):
+                    if probe in line:
+                        line_no = idx
+                        break
+                if line_no is None:
+                    for idx, line in enumerate(raw_lines, start=1):
+                        if "open_issues" in line:
+                            line_no = idx
+                            break
+                excerpt = entry if len(entry) <= 120 else entry[:120] + " …[truncated]"
+                report.add_finding(make_finding(
+                    Severity.REVIEW, "STALE_OPEN_ISSUE", "staleness",
+                    f"open_issues entry {excerpt!r} asserts a state the profile's "
+                    "authoritative profile_status field contradicts; sources "
+                    "conflict — human review required (K-STALE-2: stale items are "
+                    "human-triaged; the annotate-in-place pattern is the lawful "
+                    "resolution).",
+                    _rel(obs.profile_path, repo_root), line_no, invariant="K-STALE-2"))
+
+        # (b) decision-record ruling lines carrying an open condition the record's
+        # own later progress note declares met, with the condition unannotated.
+        for rec in obs.decision_records:
+            rec_lines = rec.read_text(encoding="utf-8").splitlines()
+            for idx, line in enumerate(rec_lines, start=1):
+                if not HUMANRULING_LINE_RE.search(line):
+                    continue
+                if not OPEN_CONDITION_RE.search(line):
+                    continue
+                if CONDITION_MET_RE.search(line):
+                    continue  # annotate-in-place resolution (lawful)
+                if any(COMPLETION_RE.search(later) for later in rec_lines[idx:]):
+                    report.add_finding(make_finding(
+                        Severity.REVIEW, "STALE_OPEN_ISSUE", "staleness",
+                        "Ruling line carries an open condition that the record's own "
+                        "later progress note declares met; the condition text was "
+                        "never annotated; sources conflict — human review required "
+                        "(K-STALE-2: stale items are human-triaged; the annotate-in-"
+                        "place pattern is the lawful resolution).",
+                        _rel(rec, repo_root), idx, invariant="K-STALE-2"))
+
     # ----- GEN-1 absolute-path leak (control areas; SPEC §0.2.4) -----
     for croot in control_roots:
         for path in _iter_files(croot, (".md", ".yaml", ".yml", ".json")):
@@ -408,12 +497,64 @@ def run_self_check(
                         "(checked repo-root-relative and file-relative).",
                         _rel(path, repo_root), idx, invariant="K-PROV-1"))
 
+    # ----- GEN-6 draft-basis-used-as-binding (K-CLAIM-1; NEVER BLOCK) -----
+    # Same walk as GEN-5. A basis/authority line citing a document whose
+    # self-declared status is DRAFT/PROPOSAL must label that status on the
+    # citing line (K-CLAIM-1). Unresolvable targets are GEN-5's job.
+    for path in gen5_files:
+        text = path.read_text(encoding="utf-8")
+        for idx, line in enumerate(text.splitlines(), start=1):
+            if not BASIS_LINE_RE.match(line):
+                continue
+            targets = list(_candidate_refs(line))
+            for token, rel_target in KNOWN_BASIS_TARGETS.items():
+                if token in line:
+                    targets.append(rel_target)
+            seen: set[Path] = set()
+            for ref in targets:
+                target = _resolve_ref_path(ref, repo_root, path.parent, de_root)
+                if target is None:
+                    continue  # unresolved refs are GEN-5 findings, not GEN-6
+                if target in seen:
+                    continue
+                seen.add(target)
+                status = _self_declared_status(target)
+                if not status or not DRAFT_STATUS_RE.search(status):
+                    continue  # ACTIVE/RULED/absent status: no finding
+                if BASIS_DISCLOSURE_RE.search(line):
+                    continue  # lawful labeled citation
+                excerpt = status if len(status) <= 120 else status[:120] + " …[truncated]"
+                pending = PENDING_DECISION_RE.search(status)
+                record = _ruled_decision_record(
+                    pending.group(1), repo_root, de_root) if pending else None
+                if record is not None:
+                    # Conditional modeled on D-GOV-02's SHA-TBD rule.
+                    report.add_finding(make_finding(
+                        Severity.INFO, "DRAFT_BASIS_RULED_CLOSED", "provenance",
+                        f"Cited basis self-declares {excerpt!r} pending "
+                        f"{pending.group(1)}; {pending.group(1)} is RULED per "
+                        f"{_rel(record, repo_root)} — closure recorded; sources "
+                        "govern on disagreement.",
+                        _rel(path, repo_root), idx, invariant="K-CLAIM-1"))
+                else:
+                    report.add_finding(make_finding(
+                        Severity.REVIEW, "DRAFT_BASIS_AS_BINDING", "provenance",
+                        f"Line cites `{ref}` as basis/authority without labeling "
+                        f"the cited document's self-declared {excerpt!r} status; a "
+                        "draft basis relied on as binding must carry its status "
+                        "(K-CLAIM-1). Human review required; whether anything "
+                        "relies on this as bound authority is outside this run's "
+                        "observation boundary.",
+                        _rel(path, repo_root), idx, invariant="K-CLAIM-1"))
+
     # Summary
     report.summary["scope"] = [str(_rel(p, repo_root)) for p in scope]
     report.summary["checks_run"] = (
-        "DE-1..7 (domain-engine surfaces), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), "
+        "DE-1..8 (domain-engine surfaces incl. stale open issues vs later "
+        "rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), "
         "GEN-3 (generated labeling), GEN-4 (root governance status facts), "
-        "GEN-5 (unresolved refs; control files only in v1)")
+        "GEN-5 (unresolved refs; control files only in v1), "
+        "GEN-6 (draft-basis-used-as-binding; control files only in v1)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
@@ -453,7 +594,8 @@ def _candidate_refs(line: str) -> list[str]:
     return out
 
 
-def _resolves(ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> bool:
+def _resolve_ref_path(
+        ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> Path | None:
     ref = ref.strip()
     candidates = [repo_root / ref, file_dir / ref]
     if de_root.exists():
@@ -464,7 +606,64 @@ def _resolves(ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> bool:
     for cand in candidates:
         try:
             if cand.exists():
-                return True
+                return cand
         except OSError:
             continue
-    return False
+    return None
+
+
+def _resolves(ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> bool:
+    return _resolve_ref_path(ref, repo_root, file_dir, de_root) is not None
+
+
+_HTML_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _self_declared_status(target: Path) -> str:
+    """Quote the target's self-declared status line (verbatim excerpt).
+
+    `.md`: first `Status:`-form line within the first ~10 lines (handles
+    '> **Status: DRAFT pending...**' and 'Status: ACTIVE'). `.html`: the
+    first `<strong>Status:</strong>`-form paragraph or any `Status:` line in
+    the first 200 lines, tags stripped. Empty string when absent/unreadable.
+    """
+    if not target.is_file():
+        return ""
+    try:
+        text = target.read_text(encoding="utf-8")
+    except (UnicodeDecodeError, OSError):
+        return ""
+    if target.suffix == ".md":
+        for line in text.splitlines()[:10]:
+            m = MD_STATUS_DECL_RE.search(line)
+            if m:
+                return m.group(1).strip().strip("*").strip()
+        return ""
+    if target.suffix == ".html":
+        for line in text.splitlines()[:200]:
+            if "Status:" not in line:
+                continue
+            stripped = _HTML_TAG_RE.sub("", line)
+            m = re.search(r"Status:(.{0,120})", stripped)
+            if m:
+                return m.group(1).strip()
+        return ""
+    return ""
+
+
+def _ruled_decision_record(
+        decision_id: str, repo_root: Path, de_root: Path) -> Path | None:
+    """Return the decision record for `decision_id` iff its own self-declared
+    status is RULED (checked under docs/governance_harness/_DECISIONS/ and
+    the domain-engine _DECISIONS/); else None."""
+    decisions_dirs = (
+        repo_root / "docs" / "governance_harness" / "_DECISIONS",
+        de_root / "_DECISIONS",
+    )
+    for ddir in decisions_dirs:
+        if not ddir.is_dir():
+            continue
+        for record in sorted(ddir.glob(f"{decision_id}*.md")):
+            if "RULED" in _self_declared_status(record):
+                return record
+    return None
