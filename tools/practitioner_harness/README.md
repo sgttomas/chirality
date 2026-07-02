@@ -83,8 +83,20 @@ For Chirality governance state and harness projections, the only permitted
 database pattern is a rebuildable, gitignored cache regenerated from files by
 one command, safe to delete, never cited as authority (D-GOV-01). This rule
 does not reach developer tooling caches, and it does not reach engine-owned
-domain stores (K-DOMAIN-1; D-GOV-01 scope note). No cache is implemented in
-this phase.
+domain stores (K-DOMAIN-1; D-GOV-01 scope note). No cache is implemented:
+the Phase 5 cache precondition (query pain) was measured unmet on 2026-07-02
+(slowest command, `self-check`, ~4 s) and the cache half stays closed until
+the owner directs otherwise.
+
+## CI wrapper (Phase 5, CI half)
+
+`.github/workflows/governance-harness.yml` runs the harness test suite and
+`self-check` on every pull request and push to main. Objective BLOCK findings
+exit nonzero per the D-GOV-02 contract and fail the run; REVIEW and below
+exit 0 and never gate — human judgment stays human. The wrapper adds no
+checks and holds no authority; authority stays in authored files (D-GOV-01).
+Landed 2026-07-02 on owner re-ruling of the Phase 5 CI half after Phases 3-4
+made the BLOCK surface real (register item 10 addendum).
 
 ## Claim language
 
