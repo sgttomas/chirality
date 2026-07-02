@@ -285,9 +285,21 @@ if [ $OVERRIDE_USED -eq 1 ]; then
 fi
 
 if [ $CREATING -eq 0 ]; then
-  # Update existing: replace Current State line, append to History
-  sed -i '' "s/^\*\*Current State:\*\*.*/\*\*Current State:\*\* $STATE/" "$STATUS_FILE"
-  sed -i '' "s/^\*\*Last Updated:\*\*.*/\*\*Last Updated:\*\* $TODAY/" "$STATUS_FILE"
+  # Update existing: replace Current State line, append to History.
+  # One awk pass through a tmp file: BSD sed's `-i ''` is not portable to GNU
+  # sed (silent field-update no-op on Linux); values ride ENVIRON like
+  # upsert_field so regex metacharacters are never interpreted.
+  tmp="${STATUS_FILE}.tmp.$$"
+  if ! WS_STATE="$STATE" WS_TODAY="$TODAY" awk '
+    index($0, "**Current State:**") == 1 { print "**Current State:** " ENVIRON["WS_STATE"]; next }
+    index($0, "**Last Updated:**") == 1  { print "**Last Updated:** " ENVIRON["WS_TODAY"]; next }
+    { print }
+  ' "$STATUS_FILE" > "$tmp"; then
+    rm -f "$tmp"
+    echo "ERROR: cannot update state fields in $STATUS_FILE" >&2
+    exit 2
+  fi
+  mv "$tmp" "$STATUS_FILE"
   echo "- $TODAY — State set to $STATE ($ACTOR)$HISTORY_SUFFIX" >> "$STATUS_FILE"
 else
   # Create new (only reachable at OPEN, or via recorded human override)
