@@ -1,6 +1,6 @@
 # Chirality
 
-Chirality is a governed application environment for agent-assisted, deliverable-heavy professional work. It contains a filesystem-native agent operating system together with the governance layer, deterministic tool layer, domain applications, governed project records, and human gates that let AI agents act on real work without machine output being confused with professional authority.
+Chirality is a governed application environment for agent-assisted, deliverable-heavy professional work. It contains a filesystem-native agent operating system together with the governance layer, deterministic tool layer, domain applications under declared domain-engine profiles, governed project records, and human gates that let AI agents act on real work without machine output being confused with professional authority.
 
 This repository is the private canonical source tree for Chirality. It holds the shared instruction architecture, governance documents, deterministic tool layer, public-export source surface, private project workspaces, domain workspaces, and export tooling used to produce the sanitized public `chirality-app` package.
 
@@ -8,7 +8,7 @@ The core insight:
 
 > If the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.
 
-Chirality is not an autonomous swarm. It is an instruction architecture, tool layer, and desktop harness for directing AI agents under explicit scope, evidence, write-boundary, snapshot, and human-gate rules.
+Chirality is not an autonomous swarm. Within the environment sit an instruction architecture, a tool layer, and a desktop harness for directing AI agents under explicit scope, evidence, write-boundary, snapshot, and human-gate rules.
 
 AI can accelerate professional work. It cannot inherit professional responsibility. AI may extend reckoning; it must not inherit judgment.
 
