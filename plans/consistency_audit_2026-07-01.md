@@ -70,7 +70,9 @@ ruling 2026-07-01.
 
 1. **"CRITICAL findings" severity undefined** — `docs/TYPES.md` §10.4 and
    thesis ch. 6 use a severity term absent from the `SE_Design_Analysis` §7.3
-   review enum. D-GOV-08 bundles the fix.
+   review enum. D-GOV-08 bundles the fix. *Thesis side executed 2026-07-02:
+   ch. 6 and ch. 7 now cite the enum registered as TYPES §10.6 per D-GOV-08
+   (owner-directed thesis reconciliation PR).*
 2. **DEC-041 event count stale** — 42-vs-43. DEC-041 is snapshot-immutable, so
    the remedy is a forward reconciliation record (D-28 in the piping
    `_DECISIONS` surface; ruled O-A by the owner 2026-07-01), not an edit.
@@ -83,6 +85,10 @@ ruling 2026-07-01.
 4. **Thesis appendix A drift** — stale narrow K-PROV-1 wording, plus a false
    "reproduced faithfully from CONTRACT section 2" claim: the appendix omits
    exactly K-WRITE-2, K-AGENTS-1, K-DOMAIN-1..4 and three enforcement rows.
+   *Resolved 2026-07-02: Appendix A regenerated from the live CONTRACT —
+   all 27 invariants, the full §2 enforcement map, the general-form K-PROV-1,
+   and as-of-date framing with the D-GOV-05 partial-ratification note
+   (owner-directed thesis reconciliation PR).*
 5. **NEW pointer break** —
    `projects/chirality-piping/execution/_Reconciliation/_LATEST.md` targets a
    file retired to `.archive/` on 2026-06-03 (commit `349a2ab33`). Newest
@@ -131,22 +137,35 @@ are PROPOSALS until the owner rules or a maintenance touch resolves them.
 ## 7. Thesis owner-revision pack (accumulated across 2026-07-01 sessions)
 
 For the owner's next thesis revision pass; none of these are agent-editable
-under the terminal-artifact rule without direction.
+under the terminal-artifact rule without direction. *Direction given
+2026-07-02: the owner authorized a full thesis reconciliation pass ("rectify
+all defects as much as practicable, include previous audit findings"); the
+items below were executed in that PR except where noted.*
 
 - Appendix A regeneration from the current CONTRACT — or soften the
-  faithful-reproduction claim to subset-as-of-SHA.
-- Appendix A K-PROV-1 row update to the general-claim form.
+  faithful-reproduction claim to subset-as-of-SHA. *Executed 2026-07-02
+  (regenerated; as-of-date framing).*
+- Appendix A K-PROV-1 row update to the general-claim form. *Executed
+  2026-07-02.*
 - Ch. 4 §4.7.2 vs appendix A design-time list reconciliation (add K-CLAIM-1
-  to ch. 4's list).
-- Glossary WRITE_SCOPE: 6-to-8 values.
+  to ch. 4's list). *Executed 2026-07-02 (ch. 4 and ch. 8 lists updated to
+  the live CONTRACT §2 map).*
+- Glossary WRITE_SCOPE: 6-to-8 values. *Executed 2026-07-02.*
 - Invariant-count 20/21-vs-27 sweep (ch. 6/7/8/10, appendices A/C).
-- CITE-key mismatches (Ji2023 family).
+  *Executed 2026-07-02: mutable counts removed from prose per the
+  registries-over-count-prose rule.*
+- CITE-key mismatches (Ji2023 family). *Executed 2026-07-02: chapter CITE
+  keys normalized to references.md keys; missing entries (Ouyang2022,
+  Lewis2020, Min2023, Bunge_ontology, SE_textbook cross-ref) added.*
 - Ch. 5 §5.4/§5.3.4 labeling-enforcement attribution — executed 2026-07-01 as
   dated additions per the D-GOV-08 ruling; retained here for the pack's
-  completeness.
-- SPEC section-3.3-vs-3.2 citation nicety in §9.3.5.
+  completeness. *The §5.4 table cell itself corrected 2026-07-02.*
+- SPEC section-3.3-vs-3.2 citation nicety in §9.3.5. *Verified 2026-07-02:
+  thesis §9.3.5 cites SPEC §3.3, which is the transition-rules section with
+  the authorized-actor table — correct as written; no edit made.*
 - The at-first-PR annotations for ch. 8/9 present-tense enforcement claims —
-  guard and harness now exist; annotate at next owner revision.
+  guard and harness now exist; annotate at next owner revision. *Executed
+  2026-07-02: dated notes added to ch. 8 §8.6.2 and ch. 9 §9.4.2.*
 
 ## 8. Method note
 
