@@ -21,9 +21,11 @@
 | 10. Conclusion | `10_conclusion.md` | Draft (Opus) |
 | Appendix A — Invariant Catalog | `appendix_a_invariant_catalog.md` | Draft (Sonnet) |
 | Appendix C — APEGA Mapping | `appendix_c_apega_mapping.md` | Draft (Sonnet) |
-| Appendix D — Framework with Respect to S | `appendix_d_framework_s.md` | Draft (Opus) |
-| References | `references.md` | Scaffold (Sonnet) |
+| Appendix D — A Conjecture on the Nature of Being and Knowing | `appendix_d_framework_s.md` | Draft (Opus) |
+| References | `references.md` | Draft (verified pass 2026-07-02) |
 | Glossary | `glossary.md` | Draft (Sonnet) |
+
+There is no Appendix B: the agent index is maintained as the live `AGENTS.md` registry at the repository root rather than as a static appendix. The `bigger-picture/` subdirectory contains supporting planning artifacts, not thesis chapters — see `bigger-picture/README.md`.
 
 ## Warrant Status
 
@@ -32,6 +34,8 @@
 Every chapter is agent-drafted (as the Status table records), directed by the owner, drawing from the cited governed sources in the Source Material table. Applying the system's own warrant lifecycle (`docs/TYPES.md` §10.4, UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) to this document set: the thesis stands at CITED/REVIEWED. It has NOT been AUTHENTICATED — that transition is a human act (the owner's double commitment: affirming the claims are warranted and binding to them) and has not occurred. Per K-CLAIM-1 the thesis therefore binds nothing and is not a governance surface; on any disagreement, the governed record (root `docs/`, decision records) governs.
 
 An owner-revision backlog for the thesis is catalogued in `plans/consistency_audit_2026-07-01.md` (2026-07-01).
+
+*Revision note dated 2026-07-02.* An owner-directed reconciliation pass was applied across the document set: Appendix A regenerated from the live `docs/CONTRACT.md` (27 K-* invariants); mutable registry counts removed from prose; APEGA and Engineers Canada AI-guidance currency updates (Chapters 2, 6, 9); claim-strength language normalized to Chapter 8's stated enforcement model; epistemic-labeling attribution aligned with D-GOV-08; Chapter 2 vocabulary and citation-binding corrections; glossary and cross-reference fixes. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
 ## Five Novel Contributions
 

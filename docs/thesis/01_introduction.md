@@ -22,7 +22,7 @@ The response presented in this thesis is not to make the model more reliable —
 
 The architecture, called Chirality, is a formally specified agent operating system for deliverable-heavy professional work. It operates on a foundational decision: all project state lives in git-tracked plain files. There is no external database. The filesystem is the single source of truth. This decision is load-bearing — every capability the system provides (traceability, immutable snapshots, content-addressed approval, the complete audit trail) depends on it.
 
-Agents are organized into three types: Type 0 (Architect) agents define invariant protocols and design standards; Type 1 (Manager) agents orchestrate work through gate-controlled workflows with human authority at every decision junction; Type 2 (Specialist) agents execute bounded tasks within declared write scopes and return auditable outputs. Authority flows downward. Escalation flows upward. No agent of any type can bypass a human gate.
+Agents are organized into three types: Type 0 (Architect) agents define invariant protocols and design standards; Type 1 (Manager) agents orchestrate work through gate-controlled workflows with human authority at every decision junction; Type 2 (Specialist) agents execute bounded tasks within declared write scopes and return auditable outputs. Authority flows downward. Escalation flows upward. No agent of any type is authorized to bypass a human gate, and every enforcement layer — instructions, orchestration, review — is built around that reservation.
 
 The architecture is governed by three layers of formally stated invariants — workflow design requirements (R1–R9), decomposition invariants (I1–I10), and system-wide invariants (K-*) — enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling.
 
@@ -40,9 +40,9 @@ This thesis makes five novel contributions:
 
 **3. A four-pillar philosophical framework with fractal instantiation.** The architecture rests on ontology (what exists), epistemology (what can be known), praxiology (how work is done), and axiology (what the system values). The epistemology is identified as the load-bearing pillar, and it has its own formal ontology: six primitives (claim, warrant, status, gap, conflict, ruling) and a warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) that tracks the epistemic state of claims interleaved with the deliverable lifecycle. The four pillars are presented as a compact and coherent framework for professional accountability rather than as the only possible ontology for every domain. The four-document production kit (Datasheet, Specification, Guidance, Procedure) mirrors the philosophical structure — a fractal property treated as evidence of architectural coherence within Chirality.
 
-**4. A fault containment architecture through write scope quarantine.** The Type 0/1/2 agent hierarchy combined with declared write scopes creates formal fault containment zones. A Type 2 agent failure cannot corrupt source truth. This adapts classical SE fault containment to the governance of probabilistic agents.
+**4. A fault containment architecture through write scope quarantine.** The Type 0/1/2 agent hierarchy combined with declared write scopes creates formal fault containment zones. Under the declared write-scope contract, a Type 2 agent failure is contained away from source truth. This adapts classical SE fault containment to the governance of probabilistic agents.
 
-**5. A three-layer invariant system with four-layer enforcement.** Thirty-nine formally stated invariants are enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling. This constitutes a formal methods contribution applied to a novel domain: the governance of LLM-based agent systems.
+**5. A three-layer invariant system with four-layer enforcement.** Three layers of formally stated invariants — the workflow design requirements (R1–R9), the decomposition invariants (I1–I10), and the system-wide K-* catalog maintained in `CONTRACT.md` — are enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling. This constitutes a formal methods contribution applied to a novel domain: the governance of LLM-based agent systems.
 
 ---
 
@@ -60,7 +60,7 @@ The thesis is organized as follows:
 - **Chapter 9 (Discussion)** assesses limitations, generalizability, and future work.
 - **Chapter 10 (Conclusion)** restates the contributions and answers the research question.
 
-Appendix A provides the full invariant catalog. The current agent index is maintained in `AGENTS.md`. Appendix C provides the detailed APEGA regulatory mapping.
+Appendix A provides the full invariant catalog. Appendix C provides the detailed APEGA regulatory mapping. Appendix D presents the philosophical conjecture underlying Chapter 3's framework. The current agent index is maintained in the live `AGENTS.md` registry.
 
 ---
 

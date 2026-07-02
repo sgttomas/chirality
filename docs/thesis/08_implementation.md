@@ -10,6 +10,8 @@ The chapter is organized as follows. Section 8.2 surveys the agent suite structu
 
 Throughout this chapter, references to Appendix A (invariant catalog) and `AGENTS.md` provide the detailed backing for summary claims made in the text.
 
+*Path note (2026-07-02): the desktop application and its validation framework described in this chapter live in the `chirality-app-dev` project tree of the chirality monorepo (`projects/chirality-app-dev/`); paths such as `frontend/` and `PLAN.md` are relative to that project. The example execution roots of §8.5.3 belong to the application's pre-monorepo repository layout and are preserved in repository history rather than the current monorepo tree.*
+
 ---
 
 ## 8.2 Agent Suite
@@ -42,8 +44,9 @@ Write scope distribution across the suite reflects the fault containment archite
 |-------------|--------|
 | `none` | HELPS_HUMANS, DECOMP_BASE, HELP_HUMAN |
 | `repo-metadata-only` | DOMAIN_DECOMP, CONTEXT_TRANSPOSE |
+| `repo-wide` | TOOLMAKER, SKILLMAKER |
 | `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP |
-| `deliverable-local` | WORKING_ITEMS, DELIVERABLE_TASK, REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
+| `deliverable-local` | WORKING_ITEMS, REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
 | `tool-root-only` | ORCHESTRATOR, RECONCILIATION, CHANGE, SCHEDULING, ESTIMATING, AGGREGATION, AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, DOMAIN_HYPERGRAPH, AUDIT_HYPERGRAPH_CLOSURE |
 | `workspace-scaffold-only` | PREPARATION (primary scaffold variant) |
 | `bounded-task-brief` | TASK shell; effective writes are authorized by the bounded brief, including deliverable-local and KTY-local task variants |
@@ -54,13 +57,13 @@ This distribution reflects the system's core invariant K-WRITE-1 (Appendix A): e
 
 The indexed agent suite is organized within a 3×4 matrix that maps epistemic posture (rows) to functional role (columns):
 
-|  | **Guiding** | **Applying** | **Judging** | **Reviewing** |
+|  | **GUIDING** | **APPLYING** | **JUDGING** | **REVIEWING** |
 |:---|:---|:---|:---|:---|
-| **Normative** | HELP | ORCHESTRATOR | WORKING_ITEMS | AGGREGATION |
-| **Operative** | DECOMP\* | PREP\* | TASK\* | AUDIT\* |
-| **Evaluative** | HELPS_HUMANS | — | CHANGE | RECONCILIATION |
+| **NORMATIVE** | HELP_HUMAN | ORCHESTRATOR | WORKING_ITEMS | AGGREGATION |
+| **OPERATIVE** | DECOMP\* | PREPARATION | TASK | AUDIT\* |
+| **EVALUATIVE** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RESEARCH |
 
-The matrix serves a dual purpose. Architecturally, it ensures that every agent has a clear position within the system's epistemic and functional coordinate space, preventing role ambiguity as the suite grows. Operationally, it drives the desktop application's navigation routing: NORMATIVE and EVALUATIVE rows open interactive WORKBENCH sessions; the OPERATIVE row opens PIPELINE sessions with category selectors for the four pipeline taxonomies (DECOMP\*, PREP\*, TASK\*, AUDIT\*). The current per-agent index and role classification are maintained in `AGENTS.md`.
+The matrix serves a dual purpose. Architecturally, it ensures that every agent has a clear position within the system's epistemic and functional coordinate space, preventing role ambiguity as the suite grows. Operationally, it drives the desktop application's navigation routing: NORMATIVE and EVALUATIVE rows open interactive WORKBENCH sessions; the OPERATIVE row opens PIPELINE sessions with category selectors for the four pipeline categories of the OPERATIVE row (DECOMP\*, PREPARATION, TASK, AUDIT\*). The current per-agent index and role classification are maintained in `AGENTS.md`. The matrix above is reproduced from the live `AGENTS.md` registry as of 2026-07-02; per K-AGENTS-1 the registry governs on any divergence.
 
 ---
 
@@ -93,24 +96,46 @@ The three-variant design satisfies the decomposition system's principal engineer
 The spawning graph defines which Type 1 agents may invoke which Type 2 agents and under what conditions. The graph is reproduced from DBM_Agent_Instruction_Architecture.md §6.1:
 
 ```
-ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION
-                                ├── TASK+four-documents
-                                ├── TASK+domain-documents
-                                ├── TASK+semantic-matrix-build
-                                ├── TASK+lens-register
-                                ├── DOMAIN_HYPERGRAPH [DOMAIN variant only]
-                                ├── ESTIMATING
-                                └── AGGREGATION
+HELP_HUMAN (Type 1 — classifies intent, routes to agents; does not spawn)
 
-WORKING_ITEMS (Type 1) ──spawns──── TASK
+ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION (Type 2)
+                                ├── DOMAIN_HYPERGRAPH (Type 2) [DOMAIN only; Phase 2.6]
+                                ├── ESTIMATING (Type 2)
+                                └── AGGREGATION (Type 2)
+                  ──dispatches TASK+skill──┬── four-documents [Phases 2.2 + 2.5]
+                                           ├── domain-documents [Phase 2.2; DOMAIN]
+                                           ├── semantic-matrix-build [Phase 2.3]
+                                           ├── lens-register [Phase 2.4]
+                                           ├── dependency-extract [setup + refresh]
+                                           └── estimate-snapshot, estimate-prep [Phase 4]
 
-RECONCILIATION (Type 1) ──spawns──┬── AUDIT_DEP_CLOSURE
-                                  ├── AUDIT_AGENTS
-                                  ├── AUDIT_DECOMP
-                                  └── AUDIT_HYPERGRAPH_CLOSURE [DOMAIN variant only]
+WORKING_ITEMS (Type 1) ──spawns──── TASK (Type 2)
+
+RECONCILIATION (Type 1) ──spawns──┬── AUDIT_DEP_CLOSURE (Type 2)
+                                  ├── AUDIT_AGENTS (Type 2)
+                                  ├── AUDIT_DECOMP (Type 2)
+                                  └── AUDIT_HYPERGRAPH_CLOSURE (Type 2) [DOMAIN only]
+
+EVALUATION (Type 1) ──spawns──┬── CONTENT_DIGEST (Type 2)
+                              ├── EVALUATION_REPORT (Type 2)
+                              ├── EVALUATION_STRUCTURE_AUDIT (Type 2)
+                              └── EVALUATION_DEPENDENCY_AUDIT (Type 2)
+
+DBM_PUBLISHER (Type 1) ──dispatches TASK+skill──┬── dbm-section-publish
+                                                └── dbm-publish
+
+CHANGE (Type 1) ── leaf agent (spawns nothing; implements approved edits)
+REVIEW (Type 1) ── triggers AUDIT_DECOMP as precondition check
+SCOPE_CHANGE (Type 1) ── hands off to ORCHESTRATOR (for PREPARATION) + CHANGE (for commits)
+CONTEXT_TRANSPOSE (Type 1) ── hands off to CHANGE (for publication)
+SCHEDULING (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
+TOOLMAKER (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
+SKILLMAKER (Type 1) ── standalone (designs and governs skills; coordinates with TOOLMAKER)
+PDF2MD (Type 1) ──spawns──── PDF2MD_PAGE (Type 2) [per page]
+DRAWING_EXTRACT (Type 1) ──spawns──── DRAWING_EXTRACT_PAGE (Type 2) [per page]
 ```
 
-HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, CONTEXT_TRANSPOSE, SCHEDULING, and EVALUATION are all Type 1 agents that operate as leaves or as handoff coordinators rather than primary spawners. CHANGE, in particular, requires explicit approval tokens before any state-changing action, providing the highest-control gate in the system.
+HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, CONTEXT_TRANSPOSE, and SCHEDULING operate as leaves or handoff coordinators rather than primary spawners; EVALUATION, DBM_PUBLISHER, PDF2MD, and DRAWING_EXTRACT are additional Type 1 spawners or skill dispatchers, per the graph above (DBM §6.1, as of 2026-07-02). CHANGE, in particular, requires explicit approval tokens before any state-changing action, providing the highest-control gate in the system.
 
 Session continuity across agent invocations is maintained through two durable filesystem artifacts: `NEXT_INSTANCE_PROMPT.md` (stable session startup instructions, modified only on protocol changes) and `NEXT_INSTANCE_STATE.md` (mutable state pointer, updated by WORKING_ITEMS at each session handoff). This control loop — described in Chapter 4 (§4.8) — enables multi-session project execution without hidden state.
 
@@ -154,7 +179,7 @@ The `tools/` directory contains the deterministic toolset — shell scripts and 
 | Coordination | Full dependency graph analysis (SCC, orphans, hubs, bidirectional pairs) |
 | Evaluation | Digest coverage verification; lifecycle state extraction; dependency schema checks; agent output extraction |
 
-The validation category is architecturally significant. `validate_enum.py` checks a value against 24 named enumeration sets defined in TYPES.md, enforcing schema discipline across all agent writes. `validate_dependencies_schema.py` validates a Dependencies.csv file against the v3.1 schema — all 29 required columns — providing deterministic schema compliance checking without requiring LLM reasoning. `check_min_viable_fileset.sh` verifies the five required metadata files are present in a deliverable folder. These three tools together instantiate a substantial portion of the validation criteria defined in SPEC.md §12.
+The validation category is architecturally significant. `validate_enum.py` checks a value against 24 named enumeration sets (defined across TYPES.md and the tool's own registry), enforcing schema discipline across all agent writes. `validate_dependencies_schema.py` validates a Dependencies.csv file against the v3.1 schema — all 29 required columns — providing deterministic schema compliance checking without requiring LLM reasoning. `check_min_viable_fileset.sh` verifies the five required metadata files are present in a deliverable folder. These three tools together instantiate a substantial portion of the validation criteria defined in SPEC.md §12.
 
 The coordination category contains a single but structurally important tool: `analyze_dep_closure.py`. This tool performs a complete dependency graph analysis across an execution root, detecting strongly connected components (cycles), identifying orphan deliverables (nodes with no dependency edges), performing hub analysis, and checking bidirectional pair symmetry. It produces a `closure_summary.json` and six CSV reports. This tool is invoked by the AUDIT_DEP_CLOSURE agent and supports the RECONCILIATION orchestration workflow.
 
@@ -174,7 +199,7 @@ The REGISTRY.md maintains an explicit backlog of deferred tools identified as us
 
 ## 8.4 Desktop Application
 
-The `frontend/` directory contains a Next.js and Electron desktop application that provides the runtime harness for all agent interactions. This application packages the agent operating system (instruction files, governance documents) and exposes them through a structured user interface while keeping the working root (the user's project directory) fully under user control.
+The application frontend (`frontend/` in the chirality-app-dev project tree) is a Next.js and Electron desktop application that provides the runtime harness for all agent interactions. This application packages the agent operating system (instruction files, governance documents) and exposes them through a structured user interface while keeping the working root (the user's project directory) fully under user control.
 
 ### 8.4.1 Architecture
 
@@ -206,11 +231,11 @@ Validation in the Chirality system operates across four distinct layers: agent i
 
 **AUDIT_AGENTS** (Type 2) performs conformance checking of agent instruction files against the AGENT_HELPS_HUMANS.md standard. Given a list of agent files, a canonical file, and a rubric, it produces an audit report, an issue log, and a patch plan. This mechanism enforces the structural template mandated by the Type 0 standard at the text level: header block completeness, section boundary markers, non-negotiable invariant declarations, and WRITE_SCOPE declarations. AUDIT_AGENTS writes to `_Reconciliation/AgentAudit/` as an immutable snapshot, providing a durable record of conformance state at any point in the development cycle.
 
-**AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the formal 5-gate review.
+**AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the REVIEW agent's formal 5-gate protocol (distinct from the seven-gate decomposition protocol of §8.2.4).
 
 **AUDIT_DEP_CLOSURE** (Type 2) performs dependency graph analysis using the `analyze_dep_closure.py` tool. The analysis covers: schema validation of all Dependencies.csv files in scope, identification of orphan deliverables (no dependency edges, either incoming or outgoing), strongly connected component detection (cycles in the dependency DAG, which violate the expected acyclic structure), hub identification (nodes with unusually high edge degree), and bidirectional pair symmetry checking. Results are written to `_Reconciliation/DepClosure/` as an immutable snapshot. This agent directly enforces K-DEP-1 (deliverable-local dependency registers are authoritative) and contributes to K-DEP-2 (dependency references must resolve to existing deliverable IDs) by surfacing unresolvable targets.
 
-**Folder Structure Validation Checklist.** SPEC.md §12 defines a formal validation checklist for execution roots, package folders, and deliverable folders. A valid execution root must contain at least one `PKG-XX_{Label}/` folder, a `_Decomposition/` folder with at least one decomposition document, and an `INIT.md` file. A valid deliverable folder must contain `_STATUS.md` with a valid lifecycle state, `_CONTEXT.md` with header fields matching the decomposition, `_DEPENDENCIES.md`, and `_REFERENCES.md`. An initialized deliverable (state ≥ `INITIALIZED`) must additionally contain the four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. A dependency-tracked deliverable must additionally contain `Dependencies.csv` with valid v3.1 schema headers. The tools `check_min_viable_fileset.sh`, `check_four_documents.sh`, and `validate_dependencies_schema.py` provide deterministic checks against these criteria.
+**Folder Structure Validation Checklist.** SPEC.md §12 defines a formal validation checklist for execution roots, package folders, and deliverable folders. A valid execution root must contain at least one `PKG-XX_{Label}/` folder, a `_Decomposition/` folder with at least one decomposition document, and an `INIT.md` file. A valid deliverable folder must contain `_STATUS.md` with a valid lifecycle state, `_CONTEXT.md` with header fields matching the decomposition, `_DEPENDENCIES.md`, `_REFERENCES.md`, and the `_SEMANTIC.md` placeholder — the five-file minimum viable fileset. An initialized deliverable (state ≥ `INITIALIZED`) must additionally contain the four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. A dependency-tracked deliverable must additionally contain `Dependencies.csv` with valid v3.1 schema headers. The tools `check_min_viable_fileset.sh`, `check_four_documents.sh`, and `validate_dependencies_schema.py` provide deterministic checks against these criteria.
 
 **Dependencies.csv Schema Validation.** The v3.1 schema (SPEC.md §6) defines 29 required columns, a set of enumerated column values, identity rules (exactly one IMPLEMENTS_NODE anchor per deliverable), and provenance requirements (K-PROV-1: every extracted row must cite `EvidenceFile` and `SourceRef` or explicitly state `location TBD`). The evaluation tooling includes `check_dependency_schema.sh` and `check_implements_node.sh` for per-project automated schema compliance checks.
 
@@ -226,7 +251,7 @@ The CI integration (`harness_ci_integration.md`) specifies a pre-merge workflow:
 
 ### 8.5.3 Example Projects
 
-The `examples/` directory contains five execution-root samples that serve as regression and conformance test cases:
+The application's `examples/` collection (see the path note in §8.1) contains five execution-root samples that served as regression and conformance test cases:
 
 - **`execution-6a`** — a design-build project (Penhold Public Services Building) with 6 packages (PKG-001 through PKG-006) covering general requirements, main building, site and civil works, cold storage building, optional items, and exclusions. Includes aggregation snapshots and a completed decomposition document (Phase 7).
 - **`execution-6b`** — a proposal project with 10 packages covering compliance, conceptual design, design brief, sustainability, durability, delivery plan, construction methodology, commissioning, schedule, and due diligence.
@@ -264,14 +289,20 @@ The invariant system defines enforcement that is partially carried by instructio
 
 | Enforcement Point | Invariants Checked |
 |-------------------|-------------------|
-| Agent instructions (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-DEP-1, K-DEP-2 |
-| ORCHESTRATOR (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
-| Human review (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1 |
-| Future tooling (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
+| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1..4 |
+| **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment) |
+| **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1..4 |
+| **ORCHESTRATOR** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
+| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1..4 |
+| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
+| **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
+| **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
 
-The "agent instructions (compile-time)" enforcement category means that compliance depends on the agent reading and following its instruction file correctly — not on a runtime enforcement engine that would reject non-compliant behavior. Similarly, "human review (gate)" means that the human operator is the enforcement mechanism for several invariants, not automated checking. This is a deliberate design choice documented in DIRECTIVE.md (human authority at every gate), but it has a practical consequence: the system's invariant coverage depends on the quality and consistency of agent instruction following, which cannot be guaranteed to be identical across runs.
+The "agent instructions (design-time)" enforcement category means that compliance depends on the agent reading and following its instruction file correctly — not on a runtime enforcement engine that would reject non-compliant behavior. Similarly, "human review (gate)" means that the human operator is the enforcement mechanism for several invariants, not automated checking. The deterministic exceptions are narrow: the TASK shell's ScopePath containment check (K-WRITE-2) rejects out-of-tree write targets at runtime, and the governance audit agents provide post-hoc automated checking for K-CLAIM-1, K-PROV-1, K-AGENTS-1, and K-DOMAIN-4. This is a deliberate design choice documented in DIRECTIVE.md (human authority at every gate), but it has a practical consequence: the system's invariant coverage depends on the quality and consistency of agent instruction following, which cannot be guaranteed to be identical across runs.
 
 The five invariants identified for future tooling enforcement — K-STALE-1 (staleness propagation), K-VAL-1 (dirty-state detection via SHA comparison), K-MERGE-1 (pre-merge SHA verification), K-AUTH-2 (content-addressed approval binding), and K-DEP-2 (dependency ID resolution) — are fully specified in CONTRACT.md but currently rely on human review and agent self-enforcement rather than automated checking. This represents the most significant gap between the architectural specification and the implemented enforcement layer.
+
+*Note (2026-07-02): at the chirality monorepo root — outside the desktop application but within the same governed repository — a first slice of this tooling now exists: the `write_status.sh` lifecycle-transition guard and the read-only practitioner harness (`status` / `drift` / `self-check`), built under D-GOV-01..08. The in-application enforcement gaps described above are unchanged by this; the root tooling audits the governed trees rather than intercepting agent actions.*
 
 ### 8.6.3 Future Hardening Candidates
 
@@ -293,7 +324,7 @@ PLAN.md §3 identifies seven future hardening candidates, ordered by priority:
 
 ### 8.6.4 Summary Assessment
 
-The architecture's central claim — that a formally specified invariant system, applied through a layered agent hierarchy against a filesystem-native state model, can provide the auditability and authority controls required for professional practice — is substantiated in the current implementation at the level of instruction architecture and deterministic tooling. The 21 K-* invariants catalogued in CONTRACT.md (Appendix A), the 9 R-series workflow design requirements, and the 10 I-series decomposition invariants are all stated, mapped to enforcing agents or mechanisms, and covered by at least one validation pathway.
+The architecture's central claim — that a formally specified invariant system, applied through a layered agent hierarchy against a filesystem-native state model, can provide the auditability and authority controls required for professional practice — is substantiated in the current implementation at the level of instruction architecture and deterministic tooling. The K-* invariants catalogued in CONTRACT.md (reproduced in Appendix A), the 9 R-series workflow design requirements, and the 10 I-series decomposition invariants are all stated, mapped to enforcing agents or mechanisms, and covered by at least one validation pathway.
 
 However, it would be inaccurate to characterize the current implementation as providing a verified runtime enforcement engine. The invariant system is enforced by a combination of instruction text (agents follow their specifications), deterministic tools (mechanical operations are performed correctly and reproducibly), human gates (consequential decisions are owned by licensed professionals), and a partial suite of automated audits (AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, and the evaluation subsystem). There is no runtime monitor that intercepts agent actions and rejects those that violate declared write scopes. There is no automated staleness propagation that flags downstream deliverables when an upstream deliverable changes. The sealing invariant (K-SEAL-1) depends on ORCHESTRATOR reading and enforcing its own protocol, not on a guard that prevents file writes before seal conditions are met.
 
@@ -309,7 +340,7 @@ This chapter has presented the concrete implementation of the architectural comm
 
 | Dimension | Count |
 |-----------|-------|
-| K-* invariants (CONTRACT.md) | 20 |
+| K-* invariants (CONTRACT.md) | live catalog; reproduced in Appendix A |
 | Workflow design requirements (R1–R9) | 9 |
 | Decomposition invariants (I1–I10) | 10 |
 | Contract layers | 3 (R-series, I-series, K-series) |
