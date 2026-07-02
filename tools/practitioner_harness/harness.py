@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """practitioner harness — governed read-mostly project observation CLI.
 
-Subcommands: status, drift, self-check, brief. Markdown report always to
-stdout; optional JSON report and brief files are contained to the declared
+Subcommands: status, drift, self-check, brief, next. Markdown report always
+to stdout; optional JSON report and brief files are contained to the declared
 generated root `{REPO_ROOT}/_harness_generated/` (D-GOV-01 / K-WRITE-2).
+`brief` generates a CANDIDATE projection or, with `--verify-adoption <path>`,
+verifies a brief's committed adoption (detect, never adopt — no harness
+command flips a brief's state; D-GOV-04). `next` is a sourced pick-list of
+active work: the practitioner selects; the tool never selects.
 
 Exit codes (D-GOV-02): 0 = ran, no BLOCK; 1 = >=1 BLOCK (or >=1 REVIEW under
 --strict); 2 = operational error or refusal.
@@ -20,6 +24,7 @@ from pathlib import Path
 
 import cmd_brief
 import cmd_drift
+import cmd_next
 import cmd_self_check
 import cmd_status
 from harness_common import (
@@ -48,6 +53,19 @@ def _project_root(repo_root: Path, name: str) -> Path:
     if not root.is_dir():
         raise HarnessOperationalError(f"Project root absent: {root}")
     return root
+
+
+def _alias_by_root(repo_root: Path) -> dict[Path, str]:
+    """Reverse of PROJECT_ALIASES for `next`: resolved project root -> the
+    CLI `--project` alias (where two aliases share a root, the shorter wins).
+    A root missing from this mapping gets no ready-made `brief` command —
+    `next` labels it instead of fabricating one (K-INVENT-1)."""
+    by_root: dict[Path, str] = {}
+    for alias, rel in PROJECT_ALIASES.items():
+        root = (repo_root / rel).resolve()
+        if root not in by_root or len(alias) < len(by_root[root]):
+            by_root[root] = alias
+    return by_root
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -92,11 +110,26 @@ def build_parser() -> argparse.ArgumentParser:
     p_check.add_argument("--root", help="Audit only this root (default: pilot scope)")
 
     p_brief = sub.add_parser("brief", parents=[common],
-                             help="Emit a CANDIDATE tranche brief (never adopts)")
-    p_brief.add_argument("--project", required=True, choices=sorted(set(PROJECT_ALIASES)))
-    p_brief.add_argument("--deliverable", required=True, metavar="DEL-NN-MM")
+                             help="Emit a CANDIDATE tranche brief (never adopts), "
+                                  "or verify committed adoption of an existing "
+                                  "brief (--verify-adoption; detect, never adopt)")
+    # Generate mode requires --project/--deliverable; verify mode takes ONLY
+    # the path. Both are optional at parse level and enforced manually so the
+    # two modes can share the subcommand without argparse contortions.
+    p_brief.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)))
+    p_brief.add_argument("--deliverable", metavar="DEL-NN-MM")
     p_brief.add_argument("--objective", default=None)
     p_brief.add_argument("--tranche-id", default=None)
+    p_brief.add_argument("--verify-adoption", metavar="BRIEF_PATH", default=None,
+                         help="Verify committed adoption of the brief file at "
+                              "BRIEF_PATH (D-GOV-04 / K-AUTH-2); takes only "
+                              "the path — never a lifecycle transition")
+
+    p_next = sub.add_parser("next", parents=[common],
+                            help="Sourced pick-list of active work — the "
+                                 "practitioner selects; the tool never selects")
+    p_next.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)),
+                        help="One project only (default: both pilot projects)")
     return parser
 
 
@@ -137,13 +170,41 @@ def main(argv: list[str] | None = None) -> int:
                 print(refusal, file=sys.stderr)
                 return EXIT_OPERATIONAL
         elif args.command == "brief":
-            project_root = _project_root(repo_root, args.project)
-            others = sorted(
-                {repo_root / rel for rel in PROJECT_ALIASES.values()} - {project_root})
-            report = cmd_brief.run_brief(
-                repo_root, project_root, [p for p in others if p.is_dir()],
-                deliverable=args.deliverable, objective=args.objective,
-                tranche_id=getattr(args, "tranche_id", None), out_dir=out_dir)
+            if args.verify_adoption:
+                rejected = [flag for flag, value in (
+                    ("--project", args.project),
+                    ("--deliverable", args.deliverable),
+                    ("--objective", args.objective),
+                    ("--tranche-id", getattr(args, "tranche_id", None)),
+                ) if value]
+                if rejected:
+                    raise HarnessOperationalError(
+                        "brief --verify-adoption takes only the brief path; "
+                        f"rejected: {', '.join(rejected)}.")
+                brief_path = Path(args.verify_adoption)
+                if not brief_path.is_absolute():
+                    brief_path = repo_root / brief_path
+                report = cmd_brief.run_verify_adoption(repo_root, brief_path)
+            else:
+                if not args.project or not args.deliverable:
+                    raise HarnessOperationalError(
+                        "brief (generate mode) requires --project and "
+                        "--deliverable; verify mode requires "
+                        "--verify-adoption <path>.")
+                project_root = _project_root(repo_root, args.project)
+                others = sorted(
+                    {repo_root / rel for rel in PROJECT_ALIASES.values()} - {project_root})
+                report = cmd_brief.run_brief(
+                    repo_root, project_root, [p for p in others if p.is_dir()],
+                    deliverable=args.deliverable, objective=args.objective,
+                    tranche_id=getattr(args, "tranche_id", None), out_dir=out_dir)
+        elif args.command == "next":
+            if getattr(args, "project", None):
+                roots = [_project_root(repo_root, args.project)]
+            else:
+                roots = [_project_root(repo_root, "app-dev"),
+                         _project_root(repo_root, "piping")]
+            report = cmd_next.run_next(repo_root, roots, _alias_by_root(repo_root))
         else:  # pragma: no cover - argparse enforces the choices.
             raise HarnessOperationalError(f"Unknown command {args.command!r}")
 

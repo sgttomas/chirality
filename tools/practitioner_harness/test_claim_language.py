@@ -6,8 +6,10 @@ templates, not data values (uppercase state tokens are data)."""
 
 from __future__ import annotations
 
+import brief_adoption
 import cmd_brief
 import cmd_drift
+import cmd_next
 import cmd_self_check
 import cmd_status
 import harness
@@ -15,7 +17,8 @@ import harness_common
 from harness_common import FORBIDDEN_CLAIM_WORDS, find_claim_language
 from test_self_check_fixtures import build_mini_repo
 
-TEMPLATE_MODULES = (harness_common, cmd_brief, cmd_self_check, cmd_drift, cmd_status)
+TEMPLATE_MODULES = (harness_common, cmd_brief, cmd_self_check, cmd_drift,
+                    cmd_status, cmd_next, brief_adoption)
 
 
 def test_find_claim_language_flags_lowercase_claims():
@@ -45,8 +48,12 @@ def test_rendered_markdown_reports_carry_no_claim_language(tmp_path, capsys):
         ["status", "--domain-engines"],
         ["drift", "--all"],
         ["self-check"],
+        ["next"],
         ["brief", "--project", "piping", "--deliverable", "DEL-01-02",
          "--tranche-id", "TRB-lint-001"],
+        # Verifies the brief the previous run generated (CANDIDATE, in
+        # scratch): exit 0, one INFO finding, claim-clean output.
+        ["brief", "--verify-adoption", "_harness_generated/briefs/TRB-lint-001.md"],
     ]
     for cmd in runs:
         rc = harness.main(["--repo-root", str(repo), *cmd])

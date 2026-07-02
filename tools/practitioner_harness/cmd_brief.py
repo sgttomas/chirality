@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""`brief` — emit a CANDIDATE tranche brief for one deliverable.
+"""`brief` — emit a CANDIDATE tranche brief for one deliverable, or verify a
+brief's committed adoption (`--verify-adoption`).
 
 The brief is a generated projection assembled ONLY from cited sources; nothing
 is invented (K-INVENT-1: an unstated objective stays "TBD — practitioner to
@@ -10,9 +11,11 @@ artifacts only, never the deliverable lifecycle):
     → CLOSED/SUPERSEDED
 
 Adoption is NOT implemented here — no harness command flips a brief's state.
-Adoption = a human edits `state:` to HUMAN_ADOPTED and commits the brief into
-the governed record (D-GOV-04). Until then, findings referencing this brief
-are capped at REVIEW and it fences nothing.
+Adoption = a human edits `state:` to HUMAN_ADOPTED, attributes themselves
+(docs/governance_harness/human_actors.md), and commits the brief into the
+governed record (D-GOV-04). Until then, findings referencing this brief are
+capped at REVIEW and it fences nothing. `run_verify_adoption` detects that
+posture (brief_adoption.verify_adoption); it never adopts.
 """
 
 from __future__ import annotations
@@ -24,6 +27,7 @@ from pathlib import Path
 
 import adapter_domain_engines
 import adapter_project
+import brief_adoption
 from adapter_loader import load_adapter
 from harness_common import (
     HarnessOperationalError,
@@ -45,7 +49,37 @@ FOOTER_TEMPLATE = (
 
 OBJECTIVE_TBD = "TBD — practitioner to state"
 
-TEMPLATES: list[str] = [FOOTER_TEMPLATE, OBJECTIVE_TBD, BRIEF_LIFECYCLE]
+# Adoption placeholders (parse_brief_markdown treats a value that IS the TBD
+# token — "TBD" at a word boundary — as absent) and the mechanical adoption
+# steps — all HUMAN acts; no harness command performs any of them (D-GOV-04).
+ADOPTED_BY_TBD = (
+    "TBD — on adoption, replace with an actor matching "
+    "docs/governance_harness/human_actors.md (D-GOV-04)")
+ADOPTED_ON_TBD = "TBD"
+ADOPTION_INTRO = (
+    "Adoption is a human act (D-GOV-04); the harness never performs any of "
+    "these steps and never flips this brief's state:")
+ADOPTION_STEPS = [
+    "a human edits `state:` above to HUMAN_ADOPTED",
+    "the same human fills `adopted_by:` (must match "
+    "`docs/governance_harness/human_actors.md`) and `adopted_on:`",
+    "the file is moved to a governed path OUTSIDE `_harness_generated/` — the "
+    "generated root is gitignored scratch; an adoption there does not exist "
+    "for reliance (D-GOV-04)",
+    "the file is committed — adoption binds to committed content at the "
+    "publication commit (K-AUTH-2); check with `brief --verify-adoption <path>`",
+]
+
+VERIFY_SCOPE_NOTE = (
+    "This verification examines adoption metadata and git committed-ness "
+    "only: it is not a judgment on the work the brief fences, not a review of "
+    "the brief's content, and never a lifecycle transition — the harness "
+    "never flips a brief's state (detect, never rewrite; D-GOV-04).")
+
+TEMPLATES: list[str] = [
+    FOOTER_TEMPLATE, OBJECTIVE_TBD, BRIEF_LIFECYCLE, ADOPTED_BY_TBD,
+    ADOPTED_ON_TBD, ADOPTION_INTRO, VERIFY_SCOPE_NOTE, *ADOPTION_STEPS,
+]
 
 DEL_ID_RE = re.compile(r"^DEL-\d{2}-\d{2}$")
 
@@ -189,6 +223,8 @@ def run_brief(
         report.md("  - source: practitioner-stated via --objective (recorded verbatim)")
     else:
         report.md("  - source: none — never invented (K-INVENT-1)")
+    report.md(f"- adopted_by: {ADOPTED_BY_TBD}")
+    report.md(f"- adopted_on: {ADOPTED_ON_TBD}")
     report.md("")
     report.md("## source_basis")
     report.md("")
@@ -240,6 +276,13 @@ def run_brief(
     for h in human_decision_points:
         report.md(f"- {h}")
     report.md("")
+    report.md("## adoption")
+    report.md("")
+    report.md(ADOPTION_INTRO)
+    report.md("")
+    for step in ADOPTION_STEPS:
+        report.md(f"- {step}")
+    report.md("")
     report.md("---")
     report.md("")
     report.md(FOOTER_TEMPLATE)
@@ -250,6 +293,9 @@ def run_brief(
         "state": BRIEF_STATE,
         "lifecycle": BRIEF_LIFECYCLE,
         "objective": objective or OBJECTIVE_TBD,
+        "adopted_by": ADOPTED_BY_TBD,
+        "adopted_on": ADOPTED_ON_TBD,
+        "adoption_steps": ADOPTION_STEPS,
         "source_basis": [{"value": v, "source": s} for v, s in source_basis],
         "read_scope": read_scope,
         "write_scope": write_scope,
@@ -281,4 +327,64 @@ def run_brief(
         Path(out_dir) / "briefs" / f"{tid}.json", json_text, repo_root)
     report.summary["written"] = [
         str(md_path.relative_to(repo_root)), str(json_path.relative_to(repo_root))]
+    return report
+
+
+def run_verify_adoption(repo_root: Path, brief_path: Path) -> Report:
+    """`brief --verify-adoption <path>` — committed-adoption verification of
+    one brief file (D-GOV-04 / K-AUTH-2). Renders the fence posture and the
+    findings from brief_adoption.verify_adoption; a refusal is wired through
+    report.summary["identity_refusal"] (harness.py maps it to stderr + exit 2).
+    """
+    fence, findings, refusal = brief_adoption.verify_adoption(brief_path, repo_root)
+    report = Report(command="brief")
+
+    report.md(f"# Brief committed-adoption verification — {fence.tranche_id}")
+    report.md("")
+    report.md(VERIFY_SCOPE_NOTE)
+    report.md("")
+    report.md(f"- brief: `{fence.source_path}`")
+    report.md(f"- tranche_id: `{fence.tranche_id}`")
+    report.md(f"- state: {fence.state}")
+    report.md(f"  - lifecycle: {BRIEF_LIFECYCLE}")
+    if fence.adopted_by:
+        matched = (f" — allowlist match: {fence.adopted_by_canonical}"
+                   if fence.adopted_by_canonical else " — no allowlist match")
+        report.md(f"- adopted_by: {fence.adopted_by}{matched}")
+    else:
+        report.md("- adopted_by: (absent)")
+    report.md(f"- adopted_on: {fence.adopted_on or '(absent)'}")
+    report.md(f"- committed-ness: {fence.committedness or 'not_checked'}")
+    if fence.bound_sha:
+        report.md(f"- bound SHA (publication commit; K-AUTH-2): `{fence.bound_sha}`")
+        if fence.state in brief_adoption.TERMINAL_STATES:
+            report.md(f"  - {brief_adoption.CAVEAT_TERMINAL_BOUND_SHA}")
+    report.md(f"- fence_active: {fence.fence_active}")
+    if fence.cap_reason:
+        report.md(f"  - cap_reason: {fence.cap_reason}")
+    report.md("")
+    report.md("## Fence summary (entry counts)")
+    report.md("")
+    for name, entries in (
+        ("write_scope", fence.write_scope),
+        ("prohibited_paths", fence.prohibited_paths),
+        ("validations", fence.validations),
+        ("evidence_targets", fence.evidence_targets),
+    ):
+        report.md(f"- {name}: {len(entries)} entr(y/ies)")
+    report.md("")
+
+    for finding in findings:
+        report.add_finding(finding)
+    for fact in fence.facts:
+        report.add_fact(fact)
+    report.summary["tranche_id"] = fence.tranche_id
+    report.summary["state"] = fence.state
+    report.summary["fence_active"] = fence.fence_active
+    if fence.bound_sha:
+        report.summary["bound_sha"] = fence.bound_sha
+    if fence.cap_reason:
+        report.summary["cap_reason"] = fence.cap_reason
+    if refusal is not None:
+        report.summary["identity_refusal"] = refusal
     return report
