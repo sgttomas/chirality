@@ -458,7 +458,7 @@ def run_self_check(
             text = path.read_text(encoding="utf-8")
             file_declares = bool(BIND_AT_PUBLISH_RE.search(text))
             for idx, line in enumerate(text.splitlines(), start=1):
-                if RULING_SHA_TBD_RE.search(line):
+                if _search_outside_backticks(RULING_SHA_TBD_RE, line):
                     line_declares = bool(BIND_AT_PUBLISH_RE.search(line))
                     if line_declares or file_declares:
                         caveat = (
@@ -801,6 +801,28 @@ def run_self_check(
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
+
+
+def _search_outside_backticks(
+        pattern: re.Pattern, line: str) -> re.Match | None:
+    """First match of `pattern` on `line` that does NOT sit inside a backtick
+    code span (odd number of backtick characters before the match start).
+    A backtick-quoted mention (e.g. "- `Ruling SHA: TBD` is conditional ...")
+    is prose QUOTING a rule, not a live field asserting it — quotation is
+    never a finding (K-INVENT-1: report the surface's own claim, not text it
+    cites). Field-style mid-line positives (e.g. "**Ruling SHA:** TBD" inside
+    a HumanRuling line) keep firing: they are outside any code span.
+
+    Boundary (adversarial review, 2026-07-02): the parity heuristic misreads
+    GFM double-backtick spans as outside (spurious REVIEW — fail-safe) and
+    would suppress a real field behind an UNCLOSED backtick earlier on the
+    line (verified not live: all eight D-T0 HumanRuling lines have even
+    parity). Replace with a code-span tokenizer if governed ruling lines
+    ever grow inline code."""
+    for m in pattern.finditer(line):
+        if line.count("`", 0, m.start()) % 2 == 0:
+            return m
+    return None
 
 
 _REF_CAPTURE_RE = re.compile(r"`([^`]+)`|\]\(([^)\s]+)\)")

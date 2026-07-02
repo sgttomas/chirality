@@ -503,6 +503,85 @@ def test_evidence_stale_fires_for_whole_repo_write_scope(tmp_path):
     assert compute_exit_code(report.findings) == 0  # REVIEW, never BLOCK
 
 
+# --- evidence-read containment (fail-closed; D-GOV-01 / K-WRITE-2) -----------------
+
+@requires_git
+def test_evidence_read_out_dir_outside_repo_refuses_exit_2(tmp_path, capsys):
+    # (a) out_dir OUTSIDE the repo entirely: fail-closed refusal, never an
+    # empty (or worse, trusted) read — harness-captured evidence provenance
+    # exists only under the declared generated root. CLI exit 2 for BOTH
+    # evidence-check and closeout-digest.
+    repo = build_run_repo(tmp_path, [ECHO_CMD])
+    outside = tmp_path / "elsewhere"
+    _write(outside / "evidence" / TID / "001_echo_happy_one.json", "{}")
+    with pytest.raises(HarnessOperationalError) as exc:
+        evidence_records.load_evidence_records(repo, outside, TID)
+    assert "generated root" in str(exc.value)
+    assert "provenance" in str(exc.value)
+    rc = harness.main(["--repo-root", str(repo), "--out-dir", str(outside),
+                       "evidence-check", "--brief", BRIEF_RELPATH])
+    assert rc == 2
+    assert "ERROR" in capsys.readouterr().err
+    rc = harness.main(["--repo-root", str(repo), "--out-dir", str(outside),
+                       "closeout-digest", "--brief", BRIEF_RELPATH,
+                       "--diff", "HEAD..HEAD"])
+    assert rc == 2
+    assert "ERROR" in capsys.readouterr().err
+
+
+@requires_git
+def test_evidence_read_out_dir_inside_repo_outside_generated_root_refuses(
+        tmp_path, capsys):
+    # (b) out_dir INSIDE the repo but outside {repo}/_harness_generated:
+    # same fail-closed refusal and exit 2 — the read side uses the same
+    # containment semantics as the write side (ensure_generated_scope).
+    repo = build_run_repo(tmp_path, [ECHO_CMD])
+    inside_repo = repo / "docs"
+    with pytest.raises(HarnessOperationalError) as exc:
+        evidence_records.load_evidence_records(repo, inside_repo, TID)
+    assert "generated root" in str(exc.value)
+    rc = harness.main(["--repo-root", str(repo),
+                       "--out-dir", str(inside_repo),
+                       "evidence-check", "--brief", BRIEF_RELPATH])
+    assert rc == 2
+    assert "ERROR" in capsys.readouterr().err
+    rc = harness.main(["--repo-root", str(repo),
+                       "--out-dir", str(inside_repo),
+                       "closeout-digest", "--brief", BRIEF_RELPATH,
+                       "--diff", "HEAD..HEAD"])
+    assert rc == 2
+    assert "ERROR" in capsys.readouterr().err
+
+
+@requires_git
+def test_evidence_read_generated_root_out_dir_unchanged(tmp_path):
+    # (c) the declared generated root as out_dir: unchanged behavior — a
+    # present record loads PARSED; a missing tranche directory INSIDE the
+    # generated root stays an empty list (never a refusal).
+    repo = build_run_repo(tmp_path, [ECHO_CMD])
+    _make_record(repo, "echo happy-one")
+    loaded = evidence_records.load_evidence_records(
+        repo, repo / GENERATED_ROOT_NAME, TID)
+    assert [r.parse_status for r in loaded] == ["PARSED"]
+    assert evidence_records.load_evidence_records(
+        repo, repo / GENERATED_ROOT_NAME, "TRB-absent-999") == []
+
+
+@requires_git
+def test_evidence_read_symlinked_generated_root_refuses(tmp_path):
+    # A symlinked generated root refuses on read exactly as on write:
+    # capture provenance cannot be trusted through a relocated boundary.
+    repo = build_run_repo(tmp_path, [ECHO_CMD])
+    relocated = tmp_path / "relocated_generated"
+    relocated.mkdir()
+    (repo / GENERATED_ROOT_NAME).symlink_to(relocated)
+    with pytest.raises(HarnessOperationalError) as exc:
+        evidence_records.load_evidence_records(
+            repo, repo / GENERATED_ROOT_NAME, TID)
+    assert "symlink" in str(exc.value)
+    assert "provenance" in str(exc.value)
+
+
 @requires_git
 def test_evidence_identity_refusal_exits_2(tmp_path, capsys):
     repo = build_run_repo(tmp_path, [ECHO_CMD], adopted_by="Some Stranger")
