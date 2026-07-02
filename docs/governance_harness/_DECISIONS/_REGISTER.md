@@ -119,6 +119,18 @@ covers D-GOV-01..07 only.
    0.20 s, `self-check` 3.9–4.4 s — no query pain. Nothing built;
    authority stays in authored files. Reopens only on owner direction
    when the gate condition holds.
+   *Addendum (2026-07-02, later the same day): the owner reassessed after
+   Phases 3–4 landed and re-ruled the CI half — the gate now reads as
+   cache-only. The CI wrapper landed at owner direction (PR #10, merge
+   `e9f79cb1b`): `.github/workflows/governance-harness.yml` runs the
+   harness suite + `self-check` on every PR and push to main; BLOCK exits
+   fail the run per D-GOV-02; REVIEW never gates; no new checks, no
+   authority. Its first run caught a real guard defect (BSD `sed -i ''`
+   silently failing to update `**Current State:**` on GNU sed), fixed in
+   the same PR with the guard's awk/ENVIRON idiom; the staging export
+   copy was regenerated per the documented canonical-edit flow. The cache
+   half stays closed: query-pain precondition re-measured unmet the same
+   day.*
 
 ## Now actionable
 
