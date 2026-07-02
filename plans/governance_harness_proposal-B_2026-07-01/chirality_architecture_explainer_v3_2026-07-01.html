@@ -378,6 +378,17 @@ always asks is not "how smart is the agent?" but <strong>"what is this role perm
   <li><span class="b">5</span><strong>Tools are advisors, not authorities</strong> — with one precisely-drawn exception the old explainer blurred: a <em>precondition guard</em> inside an existing write tool (the <code>write_status.sh</code> patch, §6) may <em>refuse</em> an objectively-broken transition. It still never authors state, never approves, and never edits the record. The read-only harness itself refuses nothing.</li>
 </ul>
 
+<div class="callout info"><span class="lbl">Provenance — this repository is the first exhibit</span>
+Everything in this repository — the code, the plans, most of this thesis — is agent output produced under owner
+governance: humans authored no code, only governance documents, workflows, specs, and rulings (noted 2026-07-01). Each
+artifact arrived through the loop this section describes — agents propose, checks run, the owner rules, CHANGE publishes,
+and the record keeps the evidence: git history, the decision registers, run records. The claim is deliberately narrow:
+not "agents built it, so trust it," but "the work is inspectable." No <em>attributed</em> crossing of the human-authority
+line has been found in the record — and attribution itself (free-text actor strings) is the known weakness, which the
+ruled <code>human_actors</code> allowlist (D-GOV-04, 2026-07-01) and the planned write-path guard close, while the drift
+metric (the 92/154 baseline, §9) measures what slipped past discipline.
+</div>
+
 <!-- ===================== 5 ANATOMY ===================== -->
 <h2 id="anatomy"><span class="num">5</span>Anatomy of one deliverable</h2>
 <p>A "deliverable" is one unit of work, living in its own folder. Open one up and you'll find a small, predictable set of
