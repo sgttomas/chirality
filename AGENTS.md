@@ -39,7 +39,7 @@ The OPERATIVE row opens in PIPELINE (task execution). The `PREPARATION` and `TAS
 
 **AUDIT\*:** AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, AUDIT_HYPERGRAPH_CLOSURE, AUDIT_GOVERNANCE, AUDIT_EPISTEMIC, AUDIT_SCOPE_CLOSURE, EVALUATION_REPORT, EVALUATION_STRUCTURE_AUDIT, EVALUATION_DEPENDENCY_AUDIT
 
-Other live task-family agents (DELIVERABLE_TASK, AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below by type. Canonical methods previously exposed through archived wrapper agents are now dispatched via `TASK` + `TaskSkill: <name>` (see "TASK Skill Capabilities" below).
+Other live task-family agents (AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below by type. Canonical methods previously exposed through archived wrapper agents are now dispatched via `TASK` + `TaskSkill: <name>` (see "TASK Skill Capabilities" below).
 
 ---
 
@@ -86,7 +86,6 @@ Other live task-family agents (DELIVERABLE_TASK, AGGREGATION, DOMAIN_HYPERGRAPH)
 | RESEARCHER | `AGENT_RESEARCHER.md` | Dispatched research specialist; executes one research brief into an immutable evidence packet + structured return (the Type-2 executor of RESEARCH) |
 | AGGREGATION | `AGENT_AGGREGATION.md` | Cross-scope synthesis snapshots |
 | TASK | `AGENT_TASK.md` | Generic bounded-task shell; loads profile/skill and executes within explicit scope |
-| DELIVERABLE_TASK | `AGENT_DELIVERABLE_TASK.md` | Preserved deliverable-local SME helper workflow |
 | AUDIT_AGENTS | `AGENT_AUDIT_AGENTS.md` | Agent instruction conformance audit |
 | AUDIT_DECOMP | `AGENT_AUDIT_DECOMP.md` | Decomposition coverage audit |
 | AUDIT_DEP_CLOSURE | `AGENT_AUDIT_DEP_CLOSURE.md` | Dependency closure audit |
@@ -109,7 +108,7 @@ This file is not the complete skill registry. It lists only canonical dispatch r
 |---|---|
 | ORCHESTRATOR | Dispatches setup, decomposition-support, document-production, semantic, dependency, and estimation skills as required by the active phase. See `skills/README.md` and live `skills/*/SKILL.md` files for the current inventory. |
 | SCOPE_CHANGE | Dispatches bounded remediation and decomposition-package review skills for closure support. |
-| WORKING_ITEMS / DELIVERABLE_TASK | Dispatch deliverable-local production, consistency, proposal-format, equipment, and content-digest skills when the brief selects them. |
+| WORKING_ITEMS | Dispatches deliverable-local production, consistency, proposal-format, equipment, and content-digest skills when the brief selects them. |
 | PDF2MD | Dispatches `TASK + pdf2md-page` for per-page transcription and, when `ASSET_MODE=prose`, `TASK + pdf2md-page-assets` for page-bounded asset discovery. `TASK + pdf2md` is available for smaller single-run conversions where full PDF2MD orchestration is unnecessary. |
 | EQUATION_AUDIT | Dispatches `TASK + equation-flag-interpret` per flagged equation whose `description` is a natural-language note (one TASK per such entry, in Phase 3a); when `ENABLE_CROPS=true`, also dispatches `TASK + equation-bbox-detect` per page that contains display equations (Phase 1). |
 | DRAWING_EXTRACT | Dispatches target-specific drawing skills, including `drawing-extract-page`, `drawing-titleblock-page`, and `pandid-valve-symbol-instance`, according to the `(DRAWING_TYPE, EXTRACTION_TARGET)` registry in `AGENT_DRAWING_EXTRACT.md`. |

@@ -6,8 +6,9 @@ app-dev 0/53), the three deliberately retained stale surfaces (owner ruling
 pointer (the GEN-7 pointer-currency check's first detection target), the
 GEN-8 19-file instruction-class abs-path baseline (a drift metric: it trends
 DOWN as files are relativized when next touched, and a conscious pin update
-accompanies each reduction), and the GEN-9 registry drift (the AGENTS.md
-DELIVERABLE_TASK row, the registry check's first detection target)."""
+accompanies each reduction), and the GEN-9 registry zero-drift state (its
+first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
+owner direction 2026-07-01)."""
 
 from __future__ import annotations
 
@@ -206,23 +207,22 @@ def test_live_gen8_abs_path_19_file_baseline():
 
 
 @live
-def test_live_gen9_registry_deliverable_task_drift():
-    # Consistency-audit §4 item 3, the check's first detection target: the
-    # registry indexes DELIVERABLE_TASK as live while the file exists only
-    # under the gitignored agents/.archive/ (absent in fresh worktrees, so
-    # the conditional archived-copy note is deliberately NOT asserted).
-    # Fix-vs-retain on that row is the owner's disposition.
-    from harness_common import Severity
+def test_live_gen9_registry_currency_zero_drift():
+    # Consistency-audit §4 item 3 was the check's first detection target: the
+    # registry indexed DELIVERABLE_TASK as live (AGENTS.md:89 at 4e01db61e)
+    # while the file existed only under the gitignored agents/.archive/. The
+    # owner ruled the disposition REMOVE (directed 2026-07-01; applied in this
+    # PR — the detection state is pinned by the prior commit, fcca5fedd), so
+    # the live registry is pinned clean in BOTH directions. A regression in
+    # either direction is a conscious pin update, never a silent one; the
+    # detector itself is proven by test_agent_registry_fixtures.py.
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
-    missing = [f for f in report.findings if f.code == "REGISTRY_TARGET_MISSING"]
-    assert [(f.source_path, f.source_line) for f in missing] == [
-        ("AGENTS.md", 89)]
-    assert missing[0].severity is Severity.REVIEW
-    assert "AGENT_DELIVERABLE_TASK.md" in missing[0].message
-    assert "first at line 89" in missing[0].message
-    # Reverse direction is clean: every live agents/AGENT_*.md is indexed.
+    assert [f for f in report.findings
+            if f.code == "REGISTRY_TARGET_MISSING"] == []
     assert [f for f in report.findings
             if f.code == "AGENT_FILE_UNINDEXED"] == []
+    assert [f for f in report.findings
+            if f.code == "REGISTRY_CHECK_NOT_APPLICABLE"] == []
 
 
 @live
