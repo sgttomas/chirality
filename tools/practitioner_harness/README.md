@@ -24,7 +24,9 @@ python3 tools/practitioner_harness/harness.py status --project piping
 python3 tools/practitioner_harness/harness.py status --domain-engines
 python3 tools/practitioner_harness/harness.py drift --all            # status-vs-history vs the 92/154 baseline
 python3 tools/practitioner_harness/harness.py self-check             # restated-state surface audit
+python3 tools/practitioner_harness/harness.py next                    # active-work pick-list (the practitioner selects)
 python3 tools/practitioner_harness/harness.py brief --project piping --deliverable DEL-02-04
+python3 tools/practitioner_harness/harness.py brief --verify-adoption docs/governance_harness/briefs/TRB-….md
 ```
 
 Markdown report to stdout; machine-readable JSON via `--json-report` (must
@@ -39,7 +41,7 @@ exit nonzero.
 | Engine-owned domain stores (OpenPipeStress persistence) | **Authoritative domain truth** under K-DOMAIN-1 and the adopted profile; outside this tool's cache rule |
 | `_harness/adapter.yaml` | **Harness configuration authority only** — governed, committed, human-reviewed; never lifecycle or project truth |
 | Tranche brief (CANDIDATE) | **Generated projection** — source-cited, rebuildable, non-authority footer |
-| Tranche brief (HUMAN_ADOPTED) | **Committed governed fence** (D-GOV-04); an adoption existing only in a scratch directory does not exist |
+| Tranche brief (HUMAN_ADOPTED) | **Committed governed fence** (D-GOV-04); an adoption existing only in a scratch directory does not exist. Detected — never granted — by `brief --verify-adoption` (see the Phase 3 section below) |
 | Validation records (`run-validations`, later phase) | **Factual evidence artifact** — never approval, never lifecycle state |
 | Status / drift / self-check reports | **Generated view** — never authority, never read back as input |
 | Local index cache (none yet) | **Rebuildable projection** — gitignored, one-command regeneration, never cited (D-GOV-01) |
@@ -119,6 +121,71 @@ existence, generated-output labeling — which may BLOCK regardless.
 RuledBy/AdoptedBy/HumanRuling attribution matching. Identity-dependent checks
 refuse (exit 2) when it is absent or an attributed actor does not match —
 refuse rather than guess.
+
+## Brief adoption and committed-adoption verification (Phase 3)
+
+Brief lifecycle (metadata on harness artifacts only — never the deliverable
+lifecycle): `CANDIDATE → HUMAN_ADOPTED → EXECUTED → CHECKED → HUMAN_REVIEWED
+→ CLOSED/SUPERSEDED`.
+
+**Adoption is a human act (D-GOV-04).** A brief becomes an enforceable fence
+only when a human sets its state to `HUMAN_ADOPTED`, attributes themselves
+(`adopted_by:` matching `docs/governance_harness/human_actors.md`), and the
+brief is **committed** to the governed record. No harness command flips a
+brief's state — `brief` emits CANDIDATEs (with adoption placeholder fields
+and an `## adoption` section stating the human steps), `next` lists active
+work, and `brief --verify-adoption <path>` detects the adoption posture;
+none of them adopts, and verification of adoption metadata is not a judgment
+on the work and never a lifecycle transition.
+
+Verification semantics (`brief_adoption.verify_adoption`; nothing here BLOCKs
+— Phase 3 introduces only REVIEW/WARN/INFO findings and exit-2 refusals per
+D-GOV-05):
+
+| Brief posture | Result |
+|---|---|
+| state `CANDIDATE` | fence inactive; INFO `BRIEF_NOT_ADOPTED` (a candidate projection fences nothing; no identity check — no human is attributed) |
+| adoption claimed (`HUMAN_ADOPTED`/`EXECUTED`/`CHECKED`/`HUMAN_REVIEWED`), file under `_harness_generated/` (path components matched **case-insensitively** — fail-closed for adoption on case-insensitive filesystems; the write guard stays case-sensitive, fail-closed for writes) | fence inactive; REVIEW `ADOPTION_IN_SCRATCH_DIR` — an adoption existing only in a scratch directory does not exist for reliance (D-GOV-04) |
+| adoption claimed, file untracked by git | fence inactive; REVIEW `ADOPTION_NOT_COMMITTED` (K-AUTH-2 / D-GOV-04) |
+| adoption claimed, tracked but working copy differs from HEAD | fence inactive; REVIEW `ADOPTION_UNCOMMITTED_EDITS` — K-AUTH-2 binds adoption to committed content; the uncommitted edit is not part of the adopted fence |
+| adoption claimed, committed clean, actor matched | **fence active**; `bound_sha` = the publication commit (`git log -1 --format=%H -- <path>`; K-AUTH-2), reported as the sourced fact `brief.adoption_bound_sha` |
+| state `CLOSED`/`SUPERSEDED` | same identity + committed checks (a terminal brief still claims adoption), then fence inactive; INFO `BRIEF_LIFECYCLE_TERMINAL` — a terminal-state brief no longer fences new work. When the adoption is committed clean, `bound_sha` is still populated with an explicit caveat: the SHA binds the committed adoption record, not an active fence — `fence_active` alone gates enforcement |
+
+The scratch classification is a lexical read-path check (the resolved brief
+path against `{REPO_ROOT}/_harness_generated`), deliberately decoupled from
+the write guard: a symlinked `_harness_generated/` (which the write side
+refuses) does not break verification of an unrelated, correctly committed
+brief.
+
+**Refusal rules (exit 2, never findings):** when the identity allowlist is
+absent, or the brief claims adoption with no `adopted_by`, or the attributed
+actor matches no allowlist entry, verification REFUSES rather than guesses
+(D-GOV-04). Unknown brief state, a missing brief file, or a path outside the
+repo root are operational errors (exit 2, K-INVENT-1) — never guessed. A
+brief path carrying a `..` component, or passing through a **symlink** at any
+component, is likewise refused (exit 2): resolving it would silently verify a
+different file than the one named — committed-adoption verification requires
+the real committed path (the write-side machinery refuses symlinks for the
+same fail-closed reason).
+
+**`next` and CLI aliases:** the ready-made `brief --project … --deliverable …`
+command line in a `next` row is emitted only for project roots with a
+registered CLI alias (reverse-mapped from `harness.py` `PROJECT_ALIASES`;
+where two aliases share a root the shorter wins). A root with no registered
+alias gets a labeled note in place of the command — a command line is never
+fabricated (K-INVENT-1).
+
+**fence_active and the REVIEW cap:** BLOCK-capable checks arrive in Phase 4
+and run only against verified fences (`fence_active` true). Findings
+referencing anything else — candidates, scratch-dir/untracked/dirty
+adoptions, terminal briefs — cap at REVIEW via
+`harness_common.cap_severity_for_unadopted_brief`, with
+`BriefFence.cap_reason` as the recorded reason.
+
+**Location posture:** the harness does not dictate where adopted briefs live —
+any committed governed path works; suggested convention:
+`docs/governance_harness/briefs/`. The generated root `_harness_generated/`
+is gitignored scratch and never qualifies.
 
 ## Drift baseline
 
@@ -269,7 +336,18 @@ reconciliation pointer pinned as the pointer check's first detection target;
 the GEN-8 19-file instruction-class baseline with
 `plans/pi-agent-harness-assessment.md` pinned worst at 21 hit lines; the
 GEN-9 `AGENT_DELIVERABLE_TASK.md` registry drift pinned at `AGENTS.md:89`
-with the reverse direction clean).
+with the reverse direction clean). Phase 3 brief-adoption coverage
+(`test_brief_adoption.py`, tmp-git-repo fixtures): parse exactness for the
+brief format (including the header/section boundary — a `- state:`-shaped
+bullet after the first H2 never overrides the header), the committed-adoption
+verification matrix above (candidate, committed-clean SHA binding, scratch-dir
+including case-variant spellings, untracked, dirty, terminal — with the
+terminal `bound_sha` caveat and cap-reason stacking), symlinked and
+`..`-containing brief-path refusals, identity refusals (allowlist absent /
+unmatched actor → exit 2), CLI exit-code pins (REVIEW = 0 default / 1 under
+`--strict`; clean adoption = 0 with nothing on stderr), a generate→parse
+round-trip, and the `next` pick-list (counts, precedence ordering, DEL-id
+rule, the no-alias posture, explicit truncation).
 
 **Fixture corpus.** The adversarial fixtures in
 `test_archive_fixture_corpus.py` are verbatim pre-images from

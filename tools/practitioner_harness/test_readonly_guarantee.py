@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Read-only guarantee: inspection commands leave every governed file
+"""Read-only guarantee: every harness command (inspection views, `next`,
+brief generation and `brief --verify-adoption`) leaves every governed file
 byte-identical, and all file writes land under the generated root."""
 
 from __future__ import annotations
@@ -39,7 +40,7 @@ def _copy_real_samples(repo: Path) -> None:
         shutil.copy2(sample, dest)
 
 
-def test_status_drift_self_check_leave_tree_byte_identical(tmp_path, capsys):
+def test_all_commands_leave_governed_tree_byte_identical(tmp_path, capsys):
     repo = build_mini_repo(tmp_path)
     if LIVE_REPO.joinpath("projects", "chirality-piping").is_dir():
         _copy_real_samples(repo)
@@ -54,6 +55,15 @@ def test_status_drift_self_check_leave_tree_byte_identical(tmp_path, capsys):
         ["drift", "--all", "--include-domain-engines"],
         ["self-check"],
         ["self-check", "--root", str(repo / "_DomainEngines")],
+        ["next"],
+        # The brief generate step writes ONLY under the generated root (the
+        # declared write-posture exception, excluded from the hash) so the
+        # verify-adoption step exercises a REAL verification of that file;
+        # governed files must stay byte-identical throughout.
+        ["brief", "--project", "piping", "--deliverable", "DEL-01-01",
+         "--tranche-id", "TRB-readonly-001"],
+        ["brief", "--verify-adoption",
+         GENERATED_ROOT_NAME + "/briefs/TRB-readonly-001.md"],
     ]
     for i, cmd in enumerate(commands):
         rc = harness.main([
