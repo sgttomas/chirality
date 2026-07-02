@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 """practitioner harness — governed read-mostly project observation CLI.
 
-Subcommands: status, drift, self-check, brief, next. Markdown report always
-to stdout; optional JSON report and brief files are contained to the declared
+Subcommands: status, drift, self-check, brief, next, run-validations,
+scope-check, evidence-check, closeout-digest.
+Markdown report always to stdout; optional JSON report, brief files,
+evidence records, and closeout digests are contained to the declared
 generated root `{REPO_ROOT}/_harness_generated/` (D-GOV-01 / K-WRITE-2).
 `brief` generates a CANDIDATE projection or, with `--verify-adoption <path>`,
 verifies a brief's committed adoption (detect, never adopt — no harness
 command flips a brief's state; D-GOV-04). `next` is a sourced pick-list of
 active work: the practitioner selects; the tool never selects.
+`run-validations` executes the adapter manifest's declared validation
+commands under the plan v3 mutation-control contract and captures evidence
+records — facts, never approval; a completed exit-0 run is structural
+evidence only (K-DOMAIN-4 analogue). `scope-check` compares the changed
+paths of a git diff range to the brief's fence (BLOCK only against a
+verified active fence; path judgment is never lifecycle judgment, K-GATE-1).
+`evidence-check` verifies evidence completeness per the provenance ladder
+(D-GOV-08 Option B; completeness never sufficiency; nothing there BLOCKs).
+`closeout-digest` composes both checks in-process into a digest for the
+human CHANGE closeout — never a lifecycle transition.
 
 Exit codes (D-GOV-02): 0 = ran, no BLOCK; 1 = >=1 BLOCK (or >=1 REVIEW under
 --strict); 2 = operational error or refusal.
@@ -23,8 +35,12 @@ import sys
 from pathlib import Path
 
 import cmd_brief
+import cmd_closeout
 import cmd_drift
+import cmd_evidence_check
 import cmd_next
+import cmd_run_validations
+import cmd_scope_check
 import cmd_self_check
 import cmd_status
 from harness_common import (
@@ -130,6 +146,66 @@ def build_parser() -> argparse.ArgumentParser:
                                  "practitioner selects; the tool never selects")
     p_next.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)),
                         help="One project only (default: both pilot projects)")
+
+    p_runval = sub.add_parser(
+        "run-validations", parents=[common],
+        help="Execute the adapter manifest's declared validation commands "
+             "for the project the brief fences, under the mutation-control "
+             "contract; capture evidence records (facts, never approval)")
+    p_runval.add_argument("--brief", required=True, metavar="BRIEF_PATH",
+                          help="The brief whose first write_scope entry "
+                               "resolves the project; committed-adoption "
+                               "posture is verified first (D-GOV-04)")
+    p_runval.add_argument("--list", action="store_true",
+                          help="Print the resolved command list and stop — "
+                               "nothing executed, nothing written")
+    p_runval.add_argument("--timeout-seconds", type=int, default=1800,
+                          help="Per-command timeout (default 1800); a "
+                               "timed-out command is recorded TIMED_OUT, "
+                               "never an inferred outcome")
+
+    p_scope = sub.add_parser(
+        "scope-check", parents=[common],
+        help="Compare the changed paths of a git diff range to the brief's "
+             "fence — findings report only; BLOCK only against a verified "
+             "active fence (D-GOV-04); path judgment is never lifecycle "
+             "judgment (K-GATE-1)")
+    p_scope.add_argument("--brief", required=True, metavar="BRIEF_PATH",
+                         help="The brief whose fence judges the paths; "
+                              "committed-adoption posture is verified first "
+                              "(D-GOV-04)")
+    p_scope.add_argument("--diff", required=True, metavar="RANGE",
+                         help="Git rev or A..B range for git diff "
+                              "--name-status; validated with git rev-parse "
+                              "first — an unresolvable range is an "
+                              "operational error (exit 2)")
+
+    p_evidence = sub.add_parser(
+        "evidence-check", parents=[common],
+        help="Verify evidence completeness for the brief's declared "
+             "validations per the provenance ladder (D-GOV-08 Option B) — "
+             "completeness, never sufficiency; nothing here BLOCKs")
+    p_evidence.add_argument("--brief", required=True, metavar="BRIEF_PATH",
+                            help="The brief whose declared validations and "
+                                 "evidence targets are checked; committed-"
+                                 "adoption posture is verified first "
+                                 "(D-GOV-04)")
+
+    p_closeout = sub.add_parser(
+        "closeout-digest", parents=[common],
+        help="Compose scope-check + evidence-check in-process into one "
+             "digest for the human CHANGE closeout — never a lifecycle "
+             "transition")
+    p_closeout.add_argument("--brief", required=True, metavar="BRIEF_PATH",
+                            help="The brief the digest summarizes against")
+    p_closeout.add_argument("--diff", required=True, metavar="RANGE",
+                            help="Git rev or A..B range passed to the "
+                                 "composed scope-check")
+    p_closeout.add_argument("--write-digest", action="store_true",
+                            help="Also write the digest markdown to "
+                                 "_harness_generated/closeout/"
+                                 "<tranche_id>.md (contained to the "
+                                 "generated root)")
     return parser
 
 
@@ -205,6 +281,35 @@ def main(argv: list[str] | None = None) -> int:
                 roots = [_project_root(repo_root, "app-dev"),
                          _project_root(repo_root, "piping")]
             report = cmd_next.run_next(repo_root, roots, _alias_by_root(repo_root))
+        elif args.command == "run-validations":
+            brief_path = Path(args.brief)
+            if not brief_path.is_absolute():
+                brief_path = repo_root / brief_path
+            report = cmd_run_validations.run_run_validations(
+                repo_root, brief_path, out_dir,
+                timeout_seconds=args.timeout_seconds,
+                list_only=getattr(args, "list", False),
+                alias_by_root=_alias_by_root(repo_root))
+        elif args.command == "scope-check":
+            brief_path = Path(args.brief)
+            if not brief_path.is_absolute():
+                brief_path = repo_root / brief_path
+            report = cmd_scope_check.run_scope_check(
+                repo_root, brief_path, args.diff)
+        elif args.command == "evidence-check":
+            brief_path = Path(args.brief)
+            if not brief_path.is_absolute():
+                brief_path = repo_root / brief_path
+            report = cmd_evidence_check.run_evidence_check(
+                repo_root, brief_path, out_dir, _alias_by_root(repo_root))
+        elif args.command == "closeout-digest":
+            brief_path = Path(args.brief)
+            if not brief_path.is_absolute():
+                brief_path = repo_root / brief_path
+            report = cmd_closeout.run_closeout_digest(
+                repo_root, brief_path, args.diff, out_dir,
+                _alias_by_root(repo_root),
+                write_digest=getattr(args, "write_digest", False))
         else:  # pragma: no cover - argparse enforces the choices.
             raise HarnessOperationalError(f"Unknown command {args.command!r}")
 
