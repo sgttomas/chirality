@@ -152,6 +152,6 @@ The following are internal project documents filed under the Chirality project r
 
 [Chirality_PE] Chirality Project, "PROFESSIONAL_ENGINEERING.md — Professional Practice Standard," Internal Document, Chirality Repository, 2024–2026.
 
-[Chirality_R1R9] Chirality Project, "agents/AGENT_HELPS_HUMANS.md — Type 0 Canonical Standard (R1–R9)," Internal Document, Chirality Repository, 2024–2026.
+[Chirality_R1R9] Chirality Project, "agents/AGENT_HELPS_HUMANS.md — Type 0 Canonical Standard (R1–R12)," Internal Document, Chirality Repository, 2024–2026.
 
 [Chirality_I1I10] Chirality Project, "agents/AGENT_DECOMP_BASE.md — Decomposition Protocol Standard (I1–I10)," Internal Document, Chirality Repository, 2024–2026.

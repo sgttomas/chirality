@@ -1,14 +1,14 @@
 # Appendix A — Invariant Catalog
 
-This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R9) apply universally to all agents and all workflow designs; decomposition invariants (I1–I10) govern all decomposition agents; and system-wide invariants (K-*) are enforced across the full agent suite.
+This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R12) apply universally to all agents and all workflow designs; decomposition invariants (I1–I10) govern all decomposition agents; and system-wide invariants (K-*) are enforced across the full agent suite.
 
 The R- and I-series are reproduced from `AGENT_HELPS_HUMANS.md` and `AGENT_DECOMP_BASE.md` respectively. The K-* catalog and the enforcement map in §A.4 are reproduced from the live `docs/CONTRACT.md` as of 2026-07-02 (27 invariants across 12 subsections). `CONTRACT.md` is the maintained catalog and governs on any divergence; it self-declares DRAFT pending full human ratification, with a ratified minimal basis per D-GOV-05 (ruled 2026-07-01) covering the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy.
 
 ---
 
-## A.1 Workflow Design Requirements (R1–R9)
+## A.1 Workflow Design Requirements (R1–R12)
 
-Defined in `AGENT_HELPS_HUMANS.md`. Apply to all agents and all workflow designs. A workflow design is considered compliant when all nine requirements are satisfied.
+Defined in `AGENT_HELPS_HUMANS.md` (reproduced as of 2026-07-02). Apply to all agents and all workflow designs. A workflow design is considered compliant when all twelve requirements are satisfied.
 
 | ID | Requirement | Rule |
 |----|-------------|------|
@@ -21,6 +21,9 @@ Defined in `AGENT_HELPS_HUMANS.md`. Apply to all agents and all workflow designs
 | R7 | Conflicts/duplicates are surfaced | The system does not hide or silently resolve discrepancies unless explicitly directed. |
 | R8 | Brief-driven execution exists | Pipelines have a defined brief format (INIT-TASK-style) and deterministic outputs. |
 | R9 | Publication is hygienic | Version control publishing is reviewable and non-destructive by default. |
+| R10 | Skill tool policy is explicit | Every skill declares its tool policy — preferred, optional, and disallowed tools, and the conditions for falling back from tool execution to direct LLM reasoning. When present, `allowed-tools` in skill frontmatter is authoritative. |
+| R11 | Tool contract is explicit | Every deterministic tool declares its input/output contract, scope boundary, and idempotence posture. Tools fail fast with explicit exit codes and never write outside their declared scope. |
+| R12 | Skill/tool boundary is preserved | Skills identify tool needs; TOOLMAKER implements deterministic helpers; SKILLMAKER integrates the result. Skills do not embed inline deterministic logic; tools do not carry method-level guidance. |
 
 ---
 

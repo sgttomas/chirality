@@ -28,7 +28,7 @@ The suite is distributed across three types as follows:
 | Type 1 — Interactive Personas | Gate-controlled, human-facing orchestrators |
 | Type 2 — Bounded Task Agents | Brief-driven, straight-through specialists |
 
-The Type 0 agents — HELPS_HUMANS and DECOMP_BASE — function as the architectural constitution. HELPS_HUMANS defines the nine workflow design requirements (R1–R9) and the universal structural template that every other agent must conform to. DECOMP_BASE defines the seven-gate decomposition protocol and the ten decomposition invariants (I1–I10) that all decomposition agents inherit. Neither agent writes project state; both exist solely to define the standards against which all downstream agents are validated.
+The Type 0 agents — HELPS_HUMANS and DECOMP_BASE — function as the architectural constitution. HELPS_HUMANS defines the workflow-component design requirements (R1–R12) and the universal structural template that every other agent must conform to. DECOMP_BASE defines the seven-gate decomposition protocol and the ten decomposition invariants (I1–I10) that all decomposition agents inherit. Neither agent writes project state; both exist solely to define the standards against which all downstream agents are validated.
 
 Type 1 agents are interactive personas. They execute gate-controlled, multi-phase workflows in which humans make consequential decisions at each phase boundary. Type 1 agents may spawn Type 2 specialists and maintain orchestration state, but they may not approve deliverables for reliance or override Type 0 constraints.
 
@@ -83,9 +83,9 @@ The decomposition system comprises three conforming variant agents — PROJECT_D
 
 All three variants share this protocol verbatim. Domain-specific differentiation is provided through an Extension Contract that each variant must satisfy: entity binding tables (mapping abstract DECOMP_BASE terms to domain-specific equivalents), ID format specifications, production unit type taxonomies, and domain-specific telemetry extensions. The three variants differ along the following dimensions (see Chapter 6 for detailed treatment):
 
-- **PROJECT_DECOMP** targets EPC and design-build work. Atomic units are scope items (SOW-####); production units are deliverables (DEL-XXX-YY). The worked examples in `examples/execution-6a` through `examples/execution-6c` are all PROJECT_DECOMP instances.
+- **PROJECT_DECOMP** targets EPC and design-build work. Atomic units are scope items (SOW-NNN); production units are deliverables (DEL-XX-YY). The worked examples in `examples/execution-6a` through `examples/execution-6c` are all PROJECT_DECOMP instances.
 - **SOFTWARE_DECOMP** targets software development. It introduces Context Envelope sizing (S/M/L/XL) as a mandatory telemetry extension, constraining the volume of context passed to each Type 2 agent run.
-- **DOMAIN_DECOMP** targets handbook and knowledge domain work. Atomic units are handbook units (HBK-####); production units are knowledge types (KTY-CC-TT). Domain decompositions do not produce dependency graphs; they produce hypergraph representations via the DOMAIN_HYPERGRAPH agent.
+- **DOMAIN_DECOMP** targets handbook and knowledge domain work. Atomic units are handbook units (HBA-<SOURCE_PREFIX>-NNNNN); production units are knowledge types (KTY-CC-TT). Domain decompositions do not produce dependency graphs; they produce hypergraph representations via the DOMAIN_HYPERGRAPH agent.
 
 The three-variant design satisfies the decomposition system's principal engineering requirement: a single, auditable, gate-controlled protocol that scales across fundamentally different work domains without requiring domain-specific variants of the downstream agent suite.
 
@@ -324,7 +324,7 @@ PLAN.md §3 identifies seven future hardening candidates, ordered by priority:
 
 ### 8.6.4 Summary Assessment
 
-The architecture's central claim — that a formally specified invariant system, applied through a layered agent hierarchy against a filesystem-native state model, can provide the auditability and authority controls required for professional practice — is substantiated in the current implementation at the level of instruction architecture and deterministic tooling. The K-* invariants catalogued in CONTRACT.md (reproduced in Appendix A), the 9 R-series workflow design requirements, and the 10 I-series decomposition invariants are all stated, mapped to enforcing agents or mechanisms, and covered by at least one validation pathway.
+The architecture's central claim — that a formally specified invariant system, applied through a layered agent hierarchy against a filesystem-native state model, can provide the auditability and authority controls required for professional practice — is substantiated in the current implementation at the level of instruction architecture and deterministic tooling. The K-* invariants catalogued in CONTRACT.md (reproduced in Appendix A), the R-series workflow design requirements (R1–R12), and the 10 I-series decomposition invariants are all stated, mapped to enforcing agents or mechanisms, and covered by at least one validation pathway.
 
 However, it would be inaccurate to characterize the current implementation as providing a verified runtime enforcement engine. The invariant system is enforced by a combination of instruction text (agents follow their specifications), deterministic tools (mechanical operations are performed correctly and reproducibly), human gates (consequential decisions are owned by licensed professionals), and a partial suite of automated audits (AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, and the evaluation subsystem). There is no runtime monitor that intercepts agent actions and rejects those that violate declared write scopes. There is no automated staleness propagation that flags downstream deliverables when an upstream deliverable changes. The sealing invariant (K-SEAL-1) depends on ORCHESTRATOR reading and enforcing its own protocol, not on a guard that prevents file writes before seal conditions are met.
 
@@ -341,7 +341,7 @@ This chapter has presented the concrete implementation of the architectural comm
 | Dimension | Count |
 |-----------|-------|
 | K-* invariants (CONTRACT.md) | live catalog; reproduced in Appendix A |
-| Workflow design requirements (R1–R9) | 9 |
+| Workflow design requirements (R1–R12) | 12 |
 | Decomposition invariants (I1–I10) | 10 |
 | Contract layers | 3 (R-series, I-series, K-series) |
 | Enforcement layers (CONTRACT.md §2) | 4 (agent instructions, runtime, human review, future tooling) |

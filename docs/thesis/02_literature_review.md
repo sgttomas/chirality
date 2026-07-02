@@ -42,7 +42,7 @@ Bai et al. introduced Constitutional AI (CAI), a training methodology that reduc
 
 ### 2.1.5 Hierarchical Agent Architectures
 
-Several frameworks have explored hierarchical organisation as a mechanism for managing complexity in multi-agent systems. The Self-Organised Agents (SoA) framework employs a mother–child delegation pattern in which high-level agents decompose tasks and assign subtasks to specialised child agents [12]. Research on multi-agent resilience has found that hierarchical topologies exhibit lower performance degradation under faulty-agent conditions (a 5.5% drop, compared with 23.7% for decentralised structures), suggesting that layered authority confers robustness properties [10]. Shavit et al. identified baseline governance obligations for agentic AI systems including minimal footprint, preference reversibility, and human check-in at task boundaries [11].
+Several frameworks have explored hierarchical organisation as a mechanism for managing complexity in multi-agent systems. The Self-Organised Agents (SoA) framework employs a mother–child delegation pattern in which high-level agents decompose tasks and assign subtasks to specialised child agents [21]. Research on multi-agent resilience has found that hierarchical topologies exhibit lower performance degradation under faulty-agent conditions (a 5.5% drop, compared with 23.7% for decentralised structures), suggesting that layered authority confers robustness properties [10]. Shavit et al. identified baseline governance obligations for agentic AI systems including minimal footprint, preference reversibility, and human check-in at task boundaries [11].
 
 These hierarchical models establish the structural feasibility of tiered agent authority — a foundation on which Chirality builds. However, none of the surveyed frameworks formalise the authority relationship as a typed invariant. Tiers are assigned for task specialisation or fault tolerance; they do not enforce write-scope quarantine, require gate-controlled human approval for authority escalation, or mandate that agents provide evidence structures tying every output claim to a retrievable source.
 
@@ -52,7 +52,7 @@ The literature surveyed above represents the most capable class of LLM-based age
 
 No published architecture provides a formal governance layer that specifies what agents *must not* do and what evidence they *must* provide. Specifically, the following structural properties are absent from the surveyed literature:
 
-1. **Invariant contracts**: formally specified, runtime-enforced constraints on agent action independent of model weights or prompt content.
+1. **Invariant contracts**: formally specified constraints on agent action, enforced outside the model — through declared contracts, gates, and audit — independent of model weights or prompt content.
 2. **Write-scope quarantine**: a typed boundary separating read-only from write-capable operations, enforced at the architectural level rather than through prompting.
 3. **Gate-controlled human authority**: a formal mechanism requiring human principal approval for operations above a defined authority threshold, rather than optional human-in-the-loop hooks.
 4. **Epistemic transparency obligations**: a structural requirement that every output claim carry provenance metadata — source, confidence class, and derivation path — rather than relying on population-level accuracy of the underlying model.
@@ -85,7 +85,7 @@ The Chirality architecture is designed to fill this gap: to provide not a more c
 
 [11] Y. Shavit, S. Agarwal, et al., "Practices for Governing Agentic AI Systems," OpenAI Technical Report, Dec. 2023. [Online]. Available: https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf
 
-[12] Y. Ishibashi and Y. Nishimura, "Self-Organized Agents: A LLM Multi-Agent Framework toward Ultra Large-Scale Code Generation and Optimization," *arXiv preprint arXiv:2404.02183*, 2024. [Online]. Available: https://arxiv.org/abs/2404.02183
+[21] Y. Ishibashi and Y. Nishimura, "Self-Organized Agents: A LLM Multi-Agent Framework toward Ultra Large-Scale Code Generation and Optimization," *arXiv preprint arXiv:2404.02183*, 2024. [Online]. Available: https://arxiv.org/abs/2404.02183
 
 ---
 
@@ -136,7 +136,7 @@ Retrieval-augmented generation is the closest existing approach to per-claim gro
 No published architecture proposes the following combination of properties:
 
 1. **Mandatory provenance attachment**: every claim in a system output must carry a machine-readable pointer to the source observation or retrieved document from which it was derived, as a structural constraint rather than a generation preference.
-2. **No-invention rule**: a formally specified and runtime-enforced prohibition on agents generating claims that cannot be traced to a source within the defined retrieval scope.
+2. **No-invention rule**: a formally specified prohibition, enforced through declared contract plus audit, on agents generating claims that cannot be traced to a source within the defined retrieval scope.
 3. **Epistemic labelling**: a typed taxonomy distinguishing directly-retrieved fact, inferred conclusion, and uncertain estimate, surfaced to the human principal as part of every output.
 4. **Per-claim transparency**: the epistemic status of individual claims is observable and auditable, rather than a property that can only be assessed at the population level through benchmark evaluation.
 
@@ -176,7 +176,7 @@ The application of formal methods to safety-critical software represents one of 
 
 The foundational work in modern safety engineering is Leveson's *Engineering a Safer World: Systems Thinking Applied to Safety* [1], which introduces the System-Theoretic Accident Model and Processes (STAMP). Leveson challenges the prevailing chain-of-events accident model, arguing that complex sociotechnical systems fail not through linear causal chains but through emergent behavior arising from inadequate constraint enforcement across system components. STAMP models safety as a control problem: accidents occur when safety constraints are violated by inadequate control actions. The companion hazard analysis technique, Systems-Theoretic Process Analysis (STPA), derives safety constraints from control structure rather than failure mode enumeration.
 
-The relevance to Chirality is direct. The Chirality invariant system — particularly the Runtime Invariants (R1–R9) and Interaction Invariants (I1–I10) — can be read as a STAMP-derived safety constraint set applied to a software agent control structure. Where STAMP asks "what control action could violate a safety constraint?", Chirality's gate-controlled workflow asks "what agent action could violate a professional obligation?" The architectural parallel is not coincidental: both frameworks treat safety as an emergent property of constraint enforcement rather than component reliability.
+The relevance to Chirality is direct. The Chirality invariant system — particularly the Runtime Invariants (R1–R12) and Interaction Invariants (I1–I10) — can be read as a STAMP-derived safety constraint set applied to a software agent control structure. Where STAMP asks "what control action could violate a safety constraint?", Chirality's gate-controlled workflow asks "what agent action could violate a professional obligation?" The architectural parallel is not coincidental: both frameworks treat safety as an emergent property of constraint enforcement rather than component reliability.
 
 ### 2.3.2 Avionics Software Assurance: DO-178C
 
@@ -200,7 +200,7 @@ The foundational work on fault containment through architectural partitioning is
 
 The contribution to systems engineering theory is the formalization of fault containment as an architectural property rather than a component property: a system can achieve containment even if individual components fail, provided the partition boundaries are correctly specified and enforced. Rushby's requirement that partitioning mechanisms be "absolutely reliable" — meaning their failure would itself be a safety hazard — establishes the design principle that containment infrastructure must be held to a higher assurance level than the functions it contains.
 
-Chirality's write scope system implements precisely this principle. Type 0 agents (read-only) are permanently constrained by their instruction architecture; Type 1 agents (project-scoped write) cannot access coordination infrastructure; Type 2 agents (coordination write) operate under the highest gate scrutiny. The boundaries are enforced in the system prompt layer, which is architecturally isolated from the content layer the agent reasons about. The parallel to spatial partitioning is direct: an agent cannot escape its write scope through reasoning, just as a partitioned process cannot access another partition's memory through software means alone.
+Chirality's write scope system implements precisely this principle. Type 0 agents are read-only, permanently constrained by their instruction architecture; deliverable-local agents have no write path to coordination infrastructure; and coordination-infrastructure writes are confined to designated tool roots under the highest gate scrutiny. The boundaries are enforced in the system prompt layer, which is architecturally isolated from the content layer the agent reasons about. The parallel to spatial partitioning is direct: an agent cannot escape its write scope through reasoning, just as a partitioned process cannot access another partition's memory through software means alone.
 
 ### 2.3.5 Formal Verification in Safety-Critical Domains: Model Checking and Invariant-Based Verification
 

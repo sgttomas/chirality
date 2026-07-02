@@ -184,7 +184,7 @@ The two lifecycles are interleaved: a deliverable in `IN_PROGRESS` contains clai
 
 The agent system is organized into three types with strictly partitioned responsibilities. The hierarchy is defined in DBM §2 and summarized in TYPES.md §4. It is not merely a labeling convention — it is the mechanism by which the system's authority model is enforced.
 
-**Type 0 — Canonical Standards (Architect).** Type 0 agents define the invariant protocols and design standards that all downstream agents must conform to. They do not write project state. They are, in the DBM's terminology, the "constitutional layer" of the system. The Type 0 layer is composed of HELPS_HUMANS, which defines the workflow design standard (R1–R9, the four-section agent structure, brief formats, and QA contracts), and DECOMP_BASE, which defines the decomposition protocol standard (the seven-gate protocol, I1–I10 invariants, and the extension contract for decomposition variants). Where any agent instruction disagrees with a Type 0 standard, the agent instruction must be edited to conform — not the standard.
+**Type 0 — Canonical Standards (Architect).** Type 0 agents define the invariant protocols and design standards that all downstream agents must conform to. They do not write project state. They are, in the DBM's terminology, the "constitutional layer" of the system. The Type 0 layer is composed of HELPS_HUMANS, which defines the workflow design standard (R1–R12, the four-section agent structure, brief formats, and QA contracts), and DECOMP_BASE, which defines the decomposition protocol standard (the seven-gate protocol, I1–I10 invariants, and the extension contract for decomposition variants). Where any agent instruction disagrees with a Type 0 standard, the agent instruction must be edited to conform — not the standard.
 
 **Type 1 — Interactive Personas (Manager).** Type 1 agents are human-facing orchestrators. They run conversational, gate-controlled workflows where humans make consequential decisions and agents handle routing, structural output, and brief preparation. Type 1 agents may spawn Type 2 agents. They own orchestration decisions but do not own engineering content. See `AGENTS.md` for the current agent index.
 
@@ -198,7 +198,7 @@ DBM §2 identifies three authority invariants that the entire system depends upo
 
 1. **Type 2 cannot escalate to Type 1 authority.** Specialists execute bounded briefs and return outputs. They cannot initiate gate reviews, spawn other agents, or make scope decisions. A Type 2 agent that encounters a scope question must record it as `TBD` and surface it in the run report — it cannot route the question to a human directly.
 
-2. **Type 1 cannot override Type 0 constraints.** Managers orchestrate within the rules established by canonical standards. They cannot relax the R1–R9 workflow requirements, the I1–I10 decomposition invariants, or any K-* invariant. An orchestration decision that would require violating a Type 0 constraint is not a valid orchestration decision.
+2. **Type 1 cannot override Type 0 constraints.** Managers orchestrate within the rules established by canonical standards. They cannot relax the R1–R12 workflow requirements, the I1–I10 decomposition invariants, or any K-* invariant. An orchestration decision that would require violating a Type 0 constraint is not a valid orchestration decision.
 
 3. **Human gates are reserved against every agent type.** No agent — regardless of type — is authorized to approve deliverables for external reliance, resolve conflicts authoritatively, commit to the baseline, or advance the lifecycle to `CHECKING` or `ISSUED`. These transitions are withheld from agents at every enforcement layer: no sanctioned workflow path includes them, ORCHESTRATOR's gate protocol refuses them at runtime, and the human gate makes the reservation effective. (Chapter 8, §8.6 states this enforcement model and its limits.)
 
@@ -236,7 +236,7 @@ The six categories, from most to least restrictive, are:
 
 ### 4.6.2 The Write Scope Tree
 
-DBM §7.1 presents the full assignment structure in a tree format:
+DBM §7.1 presents the assignment structure in a tree format; it is shown here updated to the live `AGENTS.md` registry membership:
 
 ```
 NONE
@@ -308,7 +308,7 @@ DBM §7.2 states six rules that govern write scope enforcement across the agent 
 
 The practical significance of write scope is containment. A failure in a Type 2 task agent — whether through model error, malformed input, or unexpected behavior — can corrupt only the zone to which that agent has write access. Because tool-root agents have no declared write path to source truth, and deliverable-local agents none to other deliverables, the blast radius of a conforming agent's failure is bounded by construction — and a non-conforming write is exposed to detection, because every write lands in a reviewable git diff.
 
-This is the property DBM §1.5 refers to as "write quarantine": formal fault containment zones established not by runtime monitoring but by the structural impossibility of cross-zone writes. The distinction matters: a monitoring approach would detect the violation after it occurred; the write scope model removes the violation from the space of conforming behavior — no sanctioned execution path includes a cross-zone write — while diff review and the audit agents carry the residual risk of non-conforming behavior (Chapter 8, §8.6). A Type 2 agent running under WORKING_ITEMS that attempts to modify a file in another deliverable's folder is not committing a policy violation — the action is outside its declared scope and should not occur in a conforming agent.
+This is the property DBM §1.5 refers to as "write quarantine": formal fault containment zones established not by runtime monitoring but by the absence of any conforming write path across zones. The distinction matters: a monitoring approach would detect the violation after it occurred; the write scope model removes the violation from the space of conforming behavior — no sanctioned execution path includes a cross-zone write — while diff review and the audit agents carry the residual risk of non-conforming behavior (Chapter 8, §8.6). A Type 2 agent running under WORKING_ITEMS that attempts to modify a file in another deliverable's folder is not committing a policy violation — the action is outside its declared scope and should not occur in a conforming agent.
 
 [COMPARE: LangChain agents and ReAct-style frameworks typically have broad tool access without formal zone partitioning; compare fault isolation properties under agent misbehavior]
 
@@ -322,7 +322,7 @@ This is the property DBM §1.5 refers to as "write quarantine": formal fault con
 
 The Chirality system maintains agent behavior through three distinct layers of contracts, defined in DBM §4. Each layer addresses a different scope of concern, and they are complementary rather than overlapping.
 
-**R1–R9: Workflow Design Requirements** (from HELPS_HUMANS). These nine requirements apply to all agents and to the design of any new agent workflow. They establish universal baseline obligations: that human decision rights are explicit (R1), that task agents run straight-through without mid-run gates (R2), that write quarantine is enforced (R3), that snapshots are immutable (R4), that provenance is mandatory (R5), that no-invention behavior is defined (R6), that conflicts and duplicates are surfaced (R7), that brief-driven execution exists (R8), and that publication is hygienic and non-destructive by default (R9).
+**R1–R12: Workflow Design Requirements** (from HELPS_HUMANS). These requirements apply to all agents and to the design of any new agent workflow (R1–R12 as of this revision; R10–R12 govern the skill/tool layer). They establish universal baseline obligations: that human decision rights are explicit (R1), that task agents run straight-through without mid-run gates (R2), that write quarantine is enforced (R3), that snapshots are immutable (R4), that provenance is mandatory (R5), that no-invention behavior is defined (R6), that conflicts and duplicates are surfaced (R7), that brief-driven execution exists (R8), and that publication is hygienic and non-destructive by default (R9).
 
 **I1–I10: Decomposition Invariants** (from DECOMP_BASE). These ten invariants apply specifically to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) and are verified by AUDIT_DECOMP. They govern: human-validated decomposition gates (I1), no-invention in scope assignment (I2), flat partition structure (I3), no overlaps and no gaps (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10).
 
@@ -346,9 +346,9 @@ The Chirality system maintains agent behavior through three distinct layers of c
 | Agent Registry | K-AGENTS-1 | AGENTS.md; AUDIT_GOVERNANCE, AUDIT_AGENTS |
 | Domain Engines | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 | DOMAIN_ENGINE (profile and operation governance) |
 
-### 4.7.2 Four Enforcement Layers
+### 4.7.2 The Enforcement Layers
 
-CONTRACT.md §2 defines the enforcement map. The K-* invariants are not enforced by a single centralized mechanism; they are distributed across four enforcement layers at different points in the system's operation:
+CONTRACT.md §2 defines the enforcement map. The K-* invariants are not enforced by a single centralized mechanism; they are distributed across complementary enforcement layers at different points in the system's operation:
 
 **Design-time (agent instructions).** The invariants K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, and K-DOMAIN-1 through K-DOMAIN-4 are constrained by the content of the agent instruction files themselves. When an agent instruction is written to conform with these invariants, the agent's behavior is constrained at the point of instruction — before any runtime invocation. This is "design-time" in the sense that the constraint is baked into the specification the agent operates from.
 
