@@ -57,28 +57,48 @@ covers D-GOV-01..07 only.
    (divergences recorded in the charter). Verified at merge: `drift` measures
    92/154 (all 92 in piping) against the recorded baseline; `self-check`
    detects the three retained stale surfaces of item 3; 110 tests pass.
+6. **Phase 2 (fixtures + self-check hardening) — complete** per plan v3
+   §Roadmap Phase 2, landed across four PRs at owner direction (2026-07-01,
+   except PR #5 on 2026-07-02): PR #2 (merge `cf5fae242`) added the
+   adversarial archive-fixture corpus (verbatim pre-images from
+   `git show 15c958e06^`, re-anchored to a synthetic home prefix) plus the
+   `STALE_OPEN_ISSUE` and `DRAFT_BASIS_AS_BINDING` detectors; PR #3 (merge
+   `12894ad3f`) added the GEN-7 `_LATEST` pointer-currency self-check
+   (`f0b5dbf96`); PR #4 (merge `55a26cf06`) added GEN-8 (project-tree
+   machine-absolute-path lint, SPEC §0.2.4; a 19-file instruction-class
+   baseline that trends down like 92/154) and GEN-9 (agent-registry currency,
+   K-AGENTS-1), with adversarial-review hardening of the GEN-9 token
+   boundaries and `run_self_check` root normalization; PR #5 (`62be11e96`)
+   corrected GEN-8 to audit git-tracked files only, excluding gitignored
+   build output (D-GOV-01) so the 19-file baseline is stable on built
+   checkouts. This resolves the consistency audit's confirmed findings §4
+   items 3 and 6. Verified at each merge: suite green (150 tests at PR #5);
+   `validate_path_anchors.py` PASS; the three retained stale surfaces of
+   item 3 still fire.
+7. **AGENTS.md `DELIVERABLE_TASK` removal** — owner ruled 2026-07-01 on the
+   consistency audit's §4-item-3 registry drift: remove rather than retain as
+   a live fixture. All three references dropped (narrative list, index row
+   citing `AGENT_DELIVERABLE_TASK.md` — a file living only in gitignored
+   `agents/.archive/` — and the `WORKING_ITEMS` dispatch row); landed in PR #4
+   commit `66fbfd765`. The GEN-9 live baseline now pins zero registry drift in
+   both directions; the audit catalogue carries dated resolution annotations.
 
 ## Now actionable
 
-**Phase 2 (fixtures + self-check hardening) — active per owner direction
-2026-07-01.** This is the canonical status pointer for the Phase 2 build; the
-concrete slice list is scoped in the Phase 2 PR itself, not duplicated here.
-Scope from: plan v3 §Roadmap Phase 2, and the confirmed findings +
-parked/low catalogue in `plans/consistency_audit_2026-07-01.md`. Landed so
-far: the GEN-7 `_LATEST` pointer-currency self-check (`f0b5dbf96`, merged via
-PR #3 `12894ad3f`, 2026-07-01; harness suite 131 tests passing at merge).
+**Phase 2 is complete (Completed items 6–7).** The next actionable work is
+Phase 3 and beyond, all owner-gated: brief adoption handling (`next`/`brief`
+CANDIDATE→HUMAN_ADOPTED per D-GOV-04), then `run-validations`/`scope-check`/
+`evidence-check` under the mutation contract with the provenance ladder, then
+cache/CI — per plan v3 §Roadmap (Phases 3–5). None is started; each begins on
+owner direction. Design changes supersede a D-GOV-* record or arrive as PR
+review — never a new plan document.
 
-Load-bearing nuance for whoever scopes the PR: the D-GOV-06 cleanup already
-corrected the live `_DomainEngines/` contradiction surfaces, so their fixtures
-must be **synthetic/regression snapshots** (from git history or frozen
-copies), not live files — the live surfaces are now clean and would detect
-nothing. The exceptions are the three surfaces **deliberately retained** as
-live test material (Completed item 3), which `self-check` already catches.
-
-Later slices — brief adoption handling, `run-validations`/`scope-check`/
-`evidence-check`, cache/CI — proceed per plan v3 §Roadmap (Phases 3–5) at
-owner direction; design changes supersede a D-GOV-* record or arrive as PR
-review.
+Standing nuance carried forward from the Phase 2 build: the D-GOV-06 cleanup
+corrected the live `_DomainEngines/` contradiction surfaces, so any regression
+fixture for them must be a **synthetic/frozen snapshot** (the PR #2 corpus is
+the pattern), not a live file — except the three surfaces **deliberately
+retained** as live test material (Completed item 3), which `self-check` still
+catches.
 
 ## Terminal-artifact rule (restated)
 
