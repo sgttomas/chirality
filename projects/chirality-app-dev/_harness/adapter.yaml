@@ -1,0 +1,24 @@
+# Harness configuration authority only — governed, committed, human-reviewed; never lifecycle or project truth (plan v3 §Authority Classes).
+schema: practitioner-harness-adapter/v1
+project: chirality-app-dev
+plan: docs/PLAN.md
+coordination: execution/_Coordination/_COORDINATION.md
+coordination_pointer: execution/_Coordination/_LATEST.md
+decision_register: execution/_Coordination/_DECISIONS/_REGISTER.md
+dag_pointer: execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DAG_CLOSURE_CONTROL.md
+status_glob: "execution/PKG-*/1_Working/DEL-*/_STATUS.md"
+exclude_globs: [".archive/**", "node_modules/**", "2_Checking/**", "3_Issued/**"]
+states: [OPEN, INITIALIZED, SEMANTIC_READY, IN_PROGRESS, CHECKING, ISSUED]
+parser_dialect: prose-bullet-v1
+dependency_register_structured: Dependencies.csv   # v3.1; absent on the 2 PKG-00 control deliverables — tolerate
+dependency_register_summary: _DEPENDENCIES.md
+drift_baseline_mismatch: 0
+drift_baseline_files: 53
+validation_commands:        # declared surfaces only; run-validations is a later phase
+  - {cwd: frontend, command: "npm run typecheck"}
+  - {cwd: frontend, command: "npm run test"}
+  - {cwd: frontend, command: "npm run validate:release-quality"}
+# --- guard preconditions: flat keys, consumed by tools/scaffolding/write_status.sh via grep ---
+guard_requires_committed_ruling_path: true
+guard_requires_approval_sha: true
+guard_approval_sha_field: "Checking Approval SHA"

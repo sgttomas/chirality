@@ -116,3 +116,6 @@ tools/retrieval/_index/
 exports/*/staging/
 exports/*/staging-*/
 exports/*/latest/
+
+# Practitioner harness generated views (rebuildable; D-GOV-01)
+_harness_generated/
