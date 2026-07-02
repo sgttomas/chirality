@@ -64,9 +64,9 @@ covers D-GOV-01..07 only.
 2026-07-01.** This is the canonical status pointer for the Phase 2 build; the
 concrete slice list is scoped in the Phase 2 PR itself, not duplicated here.
 Scope from: plan v3 §Roadmap Phase 2, and the confirmed findings +
-parked/low catalogue in `plans/consistency_audit_2026-07-01.md`. In flight:
-the `_LATEST` pointer-resolution self-check (an external session; regression
-target is the pointer repointed in commit `d74b991db`).
+parked/low catalogue in `plans/consistency_audit_2026-07-01.md`. Landed so
+far: the GEN-7 `_LATEST` pointer-currency self-check (`f0b5dbf96`, merged via
+PR #3 `12894ad3f`, 2026-07-01; harness suite 131 tests passing at merge).
 
 Load-bearing nuance for whoever scopes the PR: the D-GOV-06 cleanup already
 corrected the live `_DomainEngines/` contradiction surfaces, so their fixtures
