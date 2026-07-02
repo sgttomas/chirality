@@ -581,3 +581,30 @@ def test_loader_labels_unparseable_never_crashes(tmp_path):
     # Missing directory: empty list, never a crash.
     assert evidence_records.load_evidence_records(
         repo, out_dir, "TRB-absent-999") == []
+
+
+def test_evidence_record_carries_gen3_generated_view_marker(tmp_path):
+    """Regression (bridge Loop 1, 2026-07-02): self-check GEN-3 BLOCKed the
+    harness's own evidence JSONs (GENERATED_DISCLAIMER_MISSING) because the
+    records lacked the `"authority_class": "generated_view"` marker that
+    Report.to_json_dict envelopes carry."""
+    from cmd_self_check import GENERATED_HEADER_SENTINEL
+
+    repo = tmp_path / "repo"
+    out_dir = repo / GENERATED_ROOT_NAME
+    record = evidence_records.build_evidence_record(
+        tranche_id=TID, brief_source_path=BRIEF_RELPATH,
+        brief_state="HUMAN_ADOPTED", brief_bound_sha="abc123",
+        fence_active=True, command="echo ok", cwd=".",
+        declared_in=DECLARED_IN, exit_code=0, timed_out=False,
+        duration_seconds=0.01, tool_versions={}, stdout="ok\n", stderr="",
+        pre_run_porcelain=[], post_run_porcelain=[], changed_paths=[])
+    assert record["authority_class"] == "generated_view"
+    json_path, md_path = evidence_records.write_evidence_record(
+        record, out_dir, repo)
+    # The exact substring GEN-3 accepts for .json files under the generated
+    # root (cmd_self_check GEN-3 labeling check).
+    assert '"authority_class": "generated_view"' in json_path.read_text(
+        encoding="utf-8")
+    # The md summary carries the generated-view header sentinel.
+    assert GENERATED_HEADER_SENTINEL in md_path.read_text(encoding="utf-8")

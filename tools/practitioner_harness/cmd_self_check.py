@@ -836,6 +836,11 @@ def _candidate_refs(line: str) -> list[str]:
             continue
         # Strip trailing punctuation, :line/:col suffixes, @sha pins, section refs.
         raw = raw.split("§")[0].strip()
+        # Trailing parenthetical annotations — the brief generator's own
+        # emission format for committed adopted briefs (D-GOV-04 flow), e.g.
+        # `path.md (line 9)` or `_REFERENCES.md (declared references surface)`.
+        # The annotation is descriptive, not part of the path.
+        raw = re.sub(r"\s+\([^()]*\)$", "", raw).strip()
         raw = re.sub(r"@[0-9a-f]{7,40}$", "", raw)
         raw = re.sub(r":\d+(?:-\d+)?$", "", raw)
         raw = raw.rstrip(".,;:")
