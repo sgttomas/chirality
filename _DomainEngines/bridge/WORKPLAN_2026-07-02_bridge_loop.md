@@ -141,15 +141,28 @@ work is deferred only by gates.
 
 ## Owner-action queue (standing — re-derive each loop)
 
-1. Adopt/decline the loop-1 CANDIDATE briefs (see Gate step for the adoption acts).
-2. Rule D-APP-46 (keystone) and D-APP-45 when ready.
-3. Direct whether piping-lane backlog items enter this loop or stay in piping's own
-   sessions.
-4. Maintenance calls surfaced by evidence runs: three self-check WARN
+1. ~~Adopt/decline the loop-1 CANDIDATE briefs~~ DONE 2026-07-02 (both adopted,
+   fences verified ACTIVE at `abafd4d24`). Remaining brief lifecycle acts:
+   HUMAN_REVIEWED → CLOSED on both `TRB-chirality-app-dev-DEL-10-0{1,3}-2026-07-02`
+   after owner review of the executed tranches.
+2. **Tier-0 CHANGE**: point the ADOPTED profile's four result-schema hook fields
+   (`open_pipe_stress.yaml:81,88,101,115` `TBD # DEL-10-03`) at the schemas published
+   2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`,
+   `rule_check_run_result.schema.json`). Owner act; unblocked by Loop 1.
+3. Rule D-APP-46 (keystone) and D-APP-45 when ready.
+4. Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design docs;
+   D-21 packet prep) runs in the next loop iteration or in piping's own sessions.
+5. Harness defects surfaced by Loop 1 (spin-off task chip created): evidence JSONs
+   fail the harness's own GEN-3 check (BLOCK when evidence exists); adopted briefs
+   trip GEN-5 `UNRESOLVED_SOURCE_REF` ×8 once committed to the governed record
+   (WARN baseline now 11 = 3 pre-existing + 8 brief-format). Fix is `tools/**` work
+   (PR #12 pattern).
+6. Maintenance calls surfaced by evidence runs: the three pre-existing WARN
    `UNRESOLVED_SOURCE_REF`s (CHANGE_HANDOFF.md:27, D-T0-06:7, D-GOV-07:26 — the first
    two reference the removed DRAFT profile; D-T0-06 is fixture-adjacent) and
    PROFILE_STATUS.md's stale `open_pipe_stress.DRAFT.yaml` name — owner/CHANGE lane,
-   not agent-writable.
+   not agent-writable. Also: piping DEL-10-03 `_STATUS.md` header/history mismatch
+   (K-CONFLICT-1 human call).
 
 ## Loop Log (append-only)
 
@@ -170,3 +183,24 @@ work is deferred only by gates.
   ride main, granted repo-wide write scope for this loop, and pulled the piping-lane
   backlog into the loop "as appropriate" — execution proceeds in Loop 1; results
   appended below on close.
+  Execution (same day, main-direct at owner direction): adoption recorded and both
+  fences verified ACTIVE at `abafd4d24` (first adopted briefs in this repo's
+  history). Piping lane at `a0c50e5aa`: published
+  `schemas/operation_outcome.schema.json` + `schemas/rule_check_run_result.schema.json`
+  (derived field-by-field from the operation_applier / rule_check_runner Rust sources,
+  which govern) + stdlib contract tests; appended `DEC-055` to SOFTWARE_DECOMP.md §12
+  per the D-28 packet §8 mechanism (DEC-041 untouched) and pointed the D-28 register
+  note at it. App-dev DEL-10-03 tranche at `4968ed485`: result-schema TBDs closed by
+  cross-reference, adapter/record TBDs narrowed with residuals explicit, INSP-03
+  status-wording repaired as a MEMORY forward-correction (`_STATUS.md` needed no
+  change — already qualified). App-dev DEL-10-01 tranche at `9a29c0372`:
+  Guidance cross-reference note, `_DEPENDENCIES.md` annotate-only satisfaction
+  evidence for the three anchors (CSV untouched). Bridge lane (this commit):
+  PLAN_cross_tier.md rows 40–41 reconciled (tier-1 DONE markers; entrypoint
+  unbundled from the DEC-042 lane). Checks: scope-check clean both tranches
+  (5/5 and 3/3 in-fence, 0 prohibited); run-validations + evidence-check 3/3 both
+  briefs; closeout digests produced; piping pytest full suite passed; harness
+  pytest 236 passed; drift 92/154 flat; self-check exit 0 after deleting the
+  scratch evidence records (rebuildable; D-GOV-01). New harness defects surfaced
+  and queued (owner-action queue items 5–6). Deferred to next loop: DEC-042
+  items 1–2 design docs; D-21 packet prep (pending owner direction on lane).

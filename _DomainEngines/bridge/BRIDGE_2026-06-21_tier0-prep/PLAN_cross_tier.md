@@ -2,6 +2,13 @@
 
 A **proposed** sequence for owner confirmation (D-T0-05). It maps onto the persona's PROTOCOL Fn 1–8 / Gates 1–5 — no parallel scheme is invented. Sequencing is non-negotiable: **owner rulings first, then each project authors its OWN execution slice.** Tier-0 never writes a project's slice.
 
+> Reconciled 2026-07-02 (agent decision, owner-directed bridge Loop 1 —
+> `_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md`): tier-1 row items
+> marked DONE where the register/tree records completion (D-T0-01 ruled; D-APP-45
+> conformance tranche + REF-008 pins landed 2026-06-22; FM-01..04 applied at
+> `77a327727`), and the headless CLI entrypoint removed from the tier-2 prep lane —
+> DEC-042 (`SOFTWARE_DECOMP.md:612`) does not sanction it. Cited sources govern.
+
 ---
 
 ## Gates (PROTOCOL-mapped)
@@ -37,8 +44,8 @@ Data-residency (**D-T0-04**) and contract-versioning (**D-T0-07**) are cross-cut
 | Tier | Owner | Authors (after owner rulings) | Constraint today |
 |---|---|---|---|
 | **tier-0** | DOMAIN_ENGINE (me) | persona + contract + K-DOMAIN promotion + APEGA ceiling + `domains/` packs | doc-only; shared-root only; canon edits gated (FM-01..04) |
-| **tier-1** | app-dev (`WORKING_ITEMS`) | (1) PKG-10 DEL-10-01..05 re-draft to ruled canon — **blocked by D-T0-01**; (2) add `AGENT_DOMAIN_ENGINE.md` (ruled SHA) to DEL-10-01/03 `_REFERENCES.md`; (3) Flow-A package versioning — **blocked by D-T0-07**; (4) ProfileStatus/OperationProposal conformance — **after D-T0-02 / FM-01,FM-04**; (5) Fence-3 source-type + MCP-tool drafts (doc-only until D-T0-08) | internal refactor **green**; external publish = F2, source types/MCP = F3 — **gated** |
-| **tier-2** | piping (`WORKING_ITEMS`) | validate-only trust-probe spike; surface-reconciliation gap list; headless CLI entrypoint | **DEC-042 prep only**; **D-21 held**; no R7, no live binding |
+| **tier-1** | app-dev (`WORKING_ITEMS`) | (1) PKG-10 DEL-10-01..05 re-draft to ruled canon — **DONE** (D-T0-01 ruled; D-APP-45 conformance tranche 2026-06-22); (2) `AGENT_DOMAIN_ENGINE.md` @ `77a327727` pinned into DEL-10-01/03 `_REFERENCES.md` — **DONE** (REF-008); (3) Flow-A package versioning — D-T0-07 ruled; awaiting **D-APP-45** (AWAITING_RULING); (4) ProfileStatus/OperationProposal conformance — **DONE** (FM-01..04 applied @ `77a327727`; result-schema cross-refs recorded 2026-07-02); (5) Fence-3 source-type + MCP-tool drafts (doc-only until D-T0-08) | internal refactor **green**; external publish = F2, source types/MCP = F3 — **gated** |
+| **tier-2** | piping (`WORKING_ITEMS`) | validate-only trust-probe spike; surface-reconciliation gap list. (Headless CLI entrypoint removed from this lane 2026-07-02: DEC-042 does not sanction it — un-built TOOLMAKER handoff, `open_pipe_stress.yaml:103-107`, brief stub `TOOLMAKER_BRIEF-headless_cli_entrypoint.md`; needs its own piping-loop decision.) | **DEC-042 prep only** (items 1–2 open; item 3 done per DEC-043); **D-21 held** (prep permitted post-D-27); no R7, no live binding |
 
 ## Live build — gated by 4 asymmetric conditions (frame + gate; do NOT plan)
 
