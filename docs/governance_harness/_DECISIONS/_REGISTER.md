@@ -82,23 +82,62 @@ covers D-GOV-01..07 only.
    `agents/.archive/` — and the `WORKING_ITEMS` dispatch row); landed in PR #4
    commit `66fbfd765`. The GEN-9 live baseline now pins zero registry drift in
    both directions; the audit catalogue carries dated resolution annotations.
+8. **Phase 3 (brief + adoption) — complete** per plan v3 §Roadmap row 3,
+   landed at owner direction 2026-07-02 (PR #6, merge `89394d129`). Adoption
+   stays a human act: no harness command flips a brief's state. New
+   committed-adoption verification per D-GOV-04 (`brief --verify-adoption`):
+   identity-first refusal (exit 2) against the `human_actors` allowlist;
+   scratch-dir / untracked / uncommitted-edit adoptions surface as REVIEW
+   and fence nothing; clean committed adoption binds the publication SHA
+   (K-AUTH-2). CANDIDATE briefs now carry adoption placeholder fields and
+   steps. `next` lists practitioner-selected active work (the tool never
+   selects). Adversarial review fixed two defects pre-merge: case-variant
+   scratch paths and symlinked brief paths could previously activate a
+   fence (both now fail closed).
+9. **Phase 4 (checks) — complete** per plan v3 §Roadmap row 4, landed at
+   owner direction 2026-07-02 (PR #9, merge `47329529c`). `run-validations`
+   executes only manifest-declared commands under the mutation-control
+   contract (porcelain snapshots + content fingerprints of already-dirty
+   tracked files; evidence records `practitioner-harness-evidence/v1`;
+   timeouts labeled, never inferred); `scope-check` judges diffs against
+   the adopted fence (deny-wins matcher, blind spots stated in every
+   output); `evidence-check` applies the D-GOV-08 Option B provenance
+   ladder (completeness, never sufficiency); `closeout-digest` composes
+   and never gates. Exactly two BLOCK conditions exist: scope violations
+   against an ACTIVE fence (D-GOV-04; REVIEW-capped otherwise) and
+   governed-file mutation by a validation command (unconditional,
+   K-WRITE-2 — adversarial review closed a hole where an unadopted brief's
+   `evidence_targets` could exempt governed mutations). `CONTRACT_SOURCE`
+   and the charter basis now cite D-GOV-08 @ `5f0f45c2b` alongside
+   D-GOV-01..07 @ `82a35c545` (conscious pin update; no test pinned the
+   old string). Suite at merge: 230 passed on the built primary checkout
+   (clean worktrees: 229 + 1 environment-conditional skip).
+10. **Phase 5 (cache + CI) — closed, precondition unmet**, owner ruling
+   2026-07-02 (in-session): the plan's gate "only after query pain is
+   real" covers the entire phase — cache AND CI wrapper. Measured on the
+   primary checkout 2026-07-02: `status` 0.07–0.19 s, `drift --all`
+   0.20 s, `self-check` 3.9–4.4 s — no query pain. Nothing built;
+   authority stays in authored files. Reopens only on owner direction
+   when the gate condition holds.
 
 ## Now actionable
 
-**Phase 2 is complete (Completed items 6–7).** The next actionable work is
-Phase 3 and beyond, all owner-gated: brief adoption handling (`next`/`brief`
-CANDIDATE→HUMAN_ADOPTED per D-GOV-04), then `run-validations`/`scope-check`/
-`evidence-check` under the mutation contract with the provenance ladder, then
-cache/CI — per plan v3 §Roadmap (Phases 3–5). None is started; each begins on
-owner direction. Design changes supersede a D-GOV-* record or arrive as PR
-review — never a new plan document.
+**The plan v3 build roadmap is complete through Phase 4 (Completed items
+5–9); Phase 5 is closed precondition-unmet (item 10).** The harness's
+remaining growth is use, not construction: candidate briefs, human
+adoption, and the tranche checks on live work — each tranche at owner
+direction. Parked items keep their existing homes (audit catalogue §6,
+thesis owner-revision pack §7, piping schema alignment, domain-shape
+verifier per D-GOV-07). Design changes supersede a D-GOV-* record or
+arrive as PR review — never a new plan document.
 
-Standing nuance carried forward from the Phase 2 build: the D-GOV-06 cleanup
-corrected the live `_DomainEngines/` contradiction surfaces, so any regression
-fixture for them must be a **synthetic/frozen snapshot** (the PR #2 corpus is
-the pattern), not a live file — except the three surfaces **deliberately
-retained** as live test material (Completed item 3), which `self-check` still
-catches.
+Standing nuances carried forward: the D-GOV-06 cleanup corrected the live
+`_DomainEngines/` contradiction surfaces, so any regression fixture for
+them must be a **synthetic/frozen snapshot** (the PR #2 corpus is the
+pattern), not a live file — except the three surfaces **deliberately
+retained** as live test material (Completed item 3), which `self-check`
+still catches. The GEN-8 19-file baseline and GEN-9 zero-drift pins move
+only by conscious, documented update.
 
 ## Terminal-artifact rule (restated)
 
