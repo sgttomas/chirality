@@ -306,7 +306,7 @@ The five invariants identified for future tooling enforcement — K-STALE-1 (sta
 
 ### 8.6.3 Future Hardening Candidates
 
-PLAN.md §3 identifies seven future hardening candidates, ordered by priority:
+The implementation's planning records identified seven future hardening candidates, ordered by priority. (The list is preserved here as thesis content; the live root roadmap surface, `docs/PLAN.md`, has since been restructured around active themes and no longer carries this enumeration.)
 
 1. **Content Hash Implementation for `_REFERENCES.md`** — SHA-256 content hashes for out-of-folder references, enabling automated integrity checking against K-GHOST-1 (no ghost inputs). Currently, `_REFERENCES.md` lists paths but does not verify that referenced content has not changed since sealing. Classified as medium effort.
 
@@ -349,7 +349,7 @@ This chapter has presented the concrete implementation of the architectural comm
 | Agent matrix cells | 12 (3 rows × 4 columns) |
 | Tool registry categories | 6 |
 | Example execution roots | 4 substantive projects |
-| Future hardening candidates (PLAN.md §3) | 7 |
+| Future hardening candidates (§8.6.3) | 7 |
 
 The implementation demonstrates that the philosophical commitments of Chapter 3 — filesystem-native ontology, evidence-first epistemology, gate-controlled praxiology, and human-authority axiology — are not merely aspirational. Each is instantiated in working software: the filesystem-as-graph in the execution root structure and dependency schema; the evidence-first epistemology in the mandatory provenance requirements of Dependencies.csv and the `TBD`/`FACT`/`ASSUMPTION`/`PROPOSAL` labeling system; the gate-controlled praxiology in the 7-gate decomposition protocol, the Type 1 multi-phase workflows, and the CHANGE approval token system; and the human-authority axiology in the invariants K-AUTH-1 and K-AUTH-2 and the professional responsibility model of Chapter 7.
 

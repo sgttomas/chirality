@@ -27,6 +27,12 @@ The system has been implemented with a governed suite of agent instruction files
 
 ---
 
+## Author's Note
+
+The originating intuition behind Chirality was that meaning is not manufactured — not by the machine, and not by the professional. It is encountered, already intelligible and already significant, under conditions of responsibility. The architecture developed in this thesis is a practical attempt to preserve that encounter in AI-assisted professional work: to let AI widen what the professional can perceive, compare, and prepare, while keeping the acts of judgment, commitment, and answerability where they have always lived — with the person. The main argument asks no assent beyond professional and philosophical grounds. The deeper layer, for readers who want it, is developed in Appendix D, which also records the origin of the conjecture (§D.8).
+
+---
+
 ## Table of Contents
 
 1. [Introduction](01_introduction.md)
