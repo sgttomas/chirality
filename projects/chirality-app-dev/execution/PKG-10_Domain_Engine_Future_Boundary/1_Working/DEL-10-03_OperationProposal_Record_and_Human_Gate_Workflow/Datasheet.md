@@ -41,7 +41,7 @@
 | Activation condition | Future amendment required before domain-engine operation execution is active. | `docs/PLAN.md` R7; `_CONTEXT.md` Package Scope |
 | Current implementation state | Domain-engine implementation is not activated by this deliverable. | D-APP-39 F3; `docs/SPEC.md` Section 18 |
 | Upstream precedence | Framework-root `AGENT_DOMAIN_ENGINE.md` at `77a327727` is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. | D-T0-01; REF-008 |
-| Resolved former blockers | Required-human-gate semantics and result-schema hooks are resolved by canon; concrete evidence/schema artifacts remain implementation `TBD`. | REF-008; D-T0-01 |
+| Resolved former blockers | Required-human-gate semantics and result-schema hooks are resolved by canon; concrete result-schema refs published 2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`, `projects/chirality-piping/schemas/rule_check_run_result.schema.json`); remaining evidence artifacts (operation store, records, review checklist) implementation `TBD`. | REF-008; D-T0-01; piping DEL-10-03 |
 | Upstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
 | Downstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
 
@@ -51,7 +51,7 @@
 |---|---|---|
 | Proposal record shape | Future `OperationProposal` table with canonical fields and proposal-only status. | REF-008; `docs/TYPES.md` Section 11.2 |
 | Base state | Identifies the accepted state or artifact baseline against which a proposal is made. | REF-008 |
-| Deterministic checks | Proposal field listing checks expected before review; concrete check result payload and profile schema refs remain implementation `TBD`. | REF-008; `docs/PRD.md` Section 8.17 |
+| Deterministic checks | Proposal field listing checks expected before review; the check result payload is published 2026-07-02 (`projects/chirality-piping/schemas/rule_check_run_result.schema.json`); the ADOPTED profile's hook refs remain `TBD` pending an owner tier-0 CHANGE. | REF-008; `docs/PRD.md` Section 8.17; piping DEL-10-03 |
 | Human gate workflow | Proposal cannot reach accepted/applied lifecycle states without K-AUTH-2-bound human approval. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
 | Review checklist | Must verify field completeness, base state, deterministic checks, outputs, risks, assumptions, blockers, required human gate, protected-path posture, and professional-boundary language. | REF-008; `docs/PRD.md` Section 8.17 |
 

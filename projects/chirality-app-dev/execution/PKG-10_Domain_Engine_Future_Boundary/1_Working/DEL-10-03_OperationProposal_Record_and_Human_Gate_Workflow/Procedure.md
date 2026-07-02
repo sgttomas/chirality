@@ -11,7 +11,7 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 - Accepted `DomainEngineProfile` for the target engine: TBD.
 - Protected path and proposal path policy: TBD, sibling deliverable DEL-10-02.
 - Deterministic adapter or validation tool for the operation: TBD.
-- Concrete `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema refs: TBD.
+- Concrete `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema refs: published 2026-07-02 — `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply envelope) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic-check result); the ADOPTED profile's hook fields remain `TBD` pending an owner tier-0 CHANGE.
 - Operation store and review-checklist result artifact path/schema: TBD.
 - Declared upstream dependencies: TBD, no accepted dependency edges extracted yet.
 
@@ -37,7 +37,7 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 4. Define deterministic checks.
    - Populate `deterministic_checks` with the checks expected before review.
    - Tie checks to profile-level `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema hooks.
-   - Mark exact payloads, pass/fail schema, adapter/profile reference, evidence path, and failure reason field as `TBD` until an adapter/profile contract is accepted.
+   - Mark exact payloads, pass/fail schema, adapter/profile reference, evidence path, and failure reason field as `TBD` until an adapter/profile contract is accepted. (Since 2026-07-02 the pass/fail result shapes are published — `projects/chirality-piping/schemas/rule_check_run_result.schema.json` carries per-check status, computed/limit values, findings, and diagnostic codes; adapter/profile reference and evidence path remain `TBD`.)
 
 5. Identify expected outputs, risks, assumptions, and blockers.
    - Populate `expected_output_refs` with proposal/review artifacts or approved future adapter outputs.
@@ -78,8 +78,8 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 
 - Draft `OperationProposal` record.
 - Deterministic check plan or `TBD` placeholder.
-- Deterministic check result record: TBD future schema including check name, adapter/profile reference, pass/fail result, evidence path, and failure reason.
+- Deterministic check result record: the runner-side result shape is published (2026-07-02) as `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (`CheckOutcome`: check id, status, computed/limit values, findings, diagnostic codes); the app-dev-side record wrapper (adapter/profile reference, evidence path) remains `TBD` future schema.
 - Human gate acceptance/rejection record: TBD future artifact carrying K-AUTH-2-bound approval/rejection evidence.
 - Review checklist result: TBD future artifact recording schema completeness, protected-path posture, boundary-language review, human-gate readiness, deterministic-check readiness, and unresolved implementation blockers.
 - Boundary notice review result.
-- Adapter validation/apply result: TBD future implementation artifact including operation identifier, accepted proposal reference, output references, and failure/rollback note.
+- Adapter validation/apply result: the result envelope is published (2026-07-02) as `projects/chirality-piping/schemas/operation_outcome.schema.json` (operation/change identifiers, validation states, diff preview, diagnostics, honest acceptance receipt); the app-dev-side implementation artifact (accepted proposal reference, output references, failure/rollback note, record location) remains `TBD`.

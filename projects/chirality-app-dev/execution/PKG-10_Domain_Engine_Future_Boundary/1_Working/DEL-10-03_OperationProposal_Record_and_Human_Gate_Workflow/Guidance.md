@@ -40,7 +40,7 @@ The former "7 TBD blockers" around required-human-gate semantics and result-sche
 | Human gate | The workflow point that prevents accepted/applied lifecycle states without accountable human action. | Required by REF-008 and K-DOMAIN-3. |
 | Explicit human approval | K-AUTH-2-bound human approval evidence for accepted/applied lifecycle states. | Canonical requirement; concrete evidence artifact remains implementation `TBD`. |
 | `required_human_gate` | The `OperationProposal` field naming the required gate. | Required field; concrete value vocabulary may be profile/workflow-specific. |
-| Deterministic result schema | Schema hooks used by validation/apply/check results. | Canonical hooks required; concrete schema refs may be `TBD`. |
+| Deterministic result schema | Schema hooks used by validation/apply/check results. | Canonical hooks required; concrete refs published 2026-07-02: `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply), `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic check); the ADOPTED profile's hook fields await an owner tier-0 CHANGE. |
 | Review checklist result | Future artifact recording schema completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved implementation blockers. | Implementation `TBD` until artifact path/schema is accepted. |
 
 ## Example Minimal Proposal Shape

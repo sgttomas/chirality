@@ -59,8 +59,20 @@ Additional documentation needed before implementation:
 
 - TBD: exact proposal ID generation semantics.
 - TBD: concrete `DomainEngineProfile` instance for the target engine.
-- TBD: concrete `validate_result_schema`, `apply_result_schema`, and `deterministic_check_result_schema` refs.
+- RESOLVED by cross-reference (2026-07-02, agent decision under
+  `TRB-chirality-app-dev-DEL-10-03-2026-07-02`): concrete refs for the tier-0 engine
+  instance are published — `validate_result_schema` / `apply_result_schema` =
+  `projects/chirality-piping/schemas/operation_outcome.schema.json` (operation_applier
+  `OperationOutcome`; `mode` = `validate_only` / `apply`),
+  `deterministic_check_result_schema` =
+  `projects/chirality-piping/schemas/rule_check_run_result.schema.json`
+  (rule_check_runner `RuleCheckRunResult`); the Rust sources govern on disagreement.
+  Residual `TBD`: the ADOPTED profile's hook fields await an owner tier-0 CHANGE
+  (`_DomainEngines/profiles/open_pipe_stress.yaml:81,88,101,115`); engines other than
+  open_pipe_stress supply their own refs.
 - TBD: operation store and `storage_path` convention.
-- TBD: adapter validation/apply tooling and result-record location.
+- TBD: adapter validation/apply tooling and result-record location. (Narrowed
+  2026-07-02: the validation/apply result envelope is published — see the resolved
+  refs above; the tooling and the app-dev-side result-record location remain `TBD`.)
 - TBD: review checklist result artifact path/schema.
 - TBD: concrete proposal instances and profile-specific boundary notice copy.
