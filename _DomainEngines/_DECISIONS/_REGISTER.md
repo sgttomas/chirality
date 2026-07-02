@@ -1,6 +1,6 @@
-# Tier-0 Bridge — Decision Register (**RULED 2026-06-21**; SHAs bind at CHANGE publish)
+# Tier-0 Bridge — Decision Register (**RULED 2026-06-21**; SHA-bound at publication commit `6e70b5aac`, backfilled 2026-07-02 per owner ruling)
 
-Each row is a human-only decision framed by `bridge/BRIDGE_2026-06-21_tier0-prep/BRIEF_human_decisions.md`. DOMAIN_ENGINE drafts and recommends; **only the owner rules**. All 8 were ruled by the owner in-session on 2026-06-21 (recorded below and in each `D-T0-0*` stub); each ruling binds to a git SHA when CHANGE publishes (K-AUTH-1/K-AUTH-2). The owner took all recommendations except D-T0-04, ruled **open residency** (see its stub + `../RULINGS_PUBLISHED.md`).
+Each row is a human-only decision framed by `bridge/BRIDGE_2026-06-21_tier0-prep/BRIEF_human_decisions.md`. DOMAIN_ENGINE drafts and recommends; **only the owner rules**. All 8 were ruled by the owner in-session on 2026-06-21 (recorded below and in each `D-T0-0*` stub); each ruling is SHA-bound at the publication commit `6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45` (2026-06-21; K-AUTH-1/K-AUTH-2; the per-record Ruling SHA fields were backfilled 2026-07-02 per owner ruling). The owner took all recommendations except D-T0-04, ruled **open residency** (see its stub + `../RULINGS_PUBLISHED.md`).
 
 | ID | Decision | My recommendation | HumanRuling | Unblocks |
 |---|---|---|---|---|

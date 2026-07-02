@@ -1,4 +1,4 @@
-# D-T0-02 — ProfileStatus INVALID/UNKNOWN  (PROPOSAL; HumanRuling: TBD)
+# D-T0-02 — ProfileStatus INVALID/UNKNOWN  (RULED 2026-06-21)
 
 **Decision:** Reconcile the persona's `ProfileStatus` self-inconsistency.
 
@@ -13,4 +13,4 @@
 **Unblocks:** clean enum across profile + Handoff State. **Forecloses:** intake-vs-validation ambiguity.
 
 ---
-**HumanRuling:** **(a) Keep both** — 7-token enum `NONE|DRAFT|VALIDATED|ADOPTED|STALE|INVALID|UNKNOWN` (apply FM-01).   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **(a) Keep both** — 7-token enum `NONE|DRAFT|VALIDATED|ADOPTED|STALE|INVALID|UNKNOWN` (apply FM-01).   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21

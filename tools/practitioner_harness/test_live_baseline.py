@@ -2,8 +2,10 @@
 """LIVE-tree baseline tests (skippable when the live roots are absent or when
 CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 92/101,
 app-dev 0/53), the three deliberately retained stale surfaces (owner ruling
-2026-07-01) that self-check MUST catch, the retired piping reconciliation
-pointer (the GEN-7 pointer-currency check's first detection target), the
+2026-07-01; post-cleanup exact counts pinned per the D-T0 clean + backfill
+owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
+reconciliation pointer (the GEN-7 pointer-currency check's first detection
+target), the
 GEN-8 19-file instruction-class abs-path baseline (a drift metric: it trends
 DOWN as files are relativized when next touched, and a conscious pin update
 accompanies each reduction), and the GEN-9 registry zero-drift state (its
@@ -58,6 +60,12 @@ def test_live_drift_baseline_92_of_101_and_0_of_53():
 
 @live
 def test_live_self_check_catches_the_three_retained_surfaces():
+    # Conscious pin update (owner ruling 2026-07-02, in-session): the D-T0
+    # stale-title/TBD-SHA drift was cleaned and backfilled to the tier-0
+    # publication commit 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 per the
+    # D-GOV pattern (f1549afb1) — EXCEPT the three deliberately retained
+    # live fixture surfaces of register Completed item 3, which MUST keep
+    # firing (asserted individually below, then pinned as exact counts).
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     keyed = {(f.code, f.source_path, f.source_line) for f in report.findings}
@@ -71,6 +79,20 @@ def test_live_self_check_catches_the_three_retained_surfaces():
             1) in keyed
     assert ("STALE_DRAFT_DIRECTIVE",
             "_DomainEngines/RULINGS_PUBLISHED.md", 20) in keyed
+    # Post-cleanup exact counts: ONLY the retained surfaces remain. The seven
+    # other D-T0 titles now read "(RULED 2026-06-21)"; all eight records'
+    # Ruling SHA fields are backfilled to the publication commit;
+    # RULINGS_PUBLISHED.md:3 was reworded with the dated note; and the
+    # D-GOV-02:36 backtick-QUOTED `Ruling SHA: TBD` mention is excluded by
+    # the GEN-2 quotation suppression (prose quoting the rule, not a live
+    # field).
+    counts: dict[str, int] = {}
+    for f in report.findings:
+        counts[f.code] = counts.get(f.code, 0) + 1
+    assert counts.get("STALE_RULING_ANNOTATION", 0) == 2
+    assert counts.get("TITLE_CONTRADICTS_RULING", 0) == 1
+    assert counts.get("STALE_DRAFT_DIRECTIVE", 0) == 1
+    assert counts.get("RULING_SHA_TBD", 0) == 0
 
 
 @live

@@ -1,4 +1,4 @@
-# D-T0-08 — Fence-3 opening sequence (sub-decision)  (PROPOSAL; HumanRuling: TBD)
+# D-T0-08 — Fence-3 opening sequence (sub-decision)  (RULED 2026-06-21)
 
 **Decision:** The order and preconditions for opening app-dev fence **F3** — (a) standing up `DomainEngineProfile`/`OperationProposal` **source types** in `frontend/src`, and (b) adding **domain MCP tools** (e.g. `piping_propose_operation`).
 
@@ -13,4 +13,4 @@
 **Unblocks:** the R7 build lane. **Forecloses:** standing up MCP tools against an unsettled type contract.
 
 ---
-**HumanRuling:** **(a) Sequential** — source types first, then domain MCP tools; not before D-T0-01 (ruled) + a proven L2. Each step its own PROPOSAL packet.   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **(a) Sequential** — source types first, then domain MCP tools; not before D-T0-01 (ruled) + a proven L2. Each step its own PROPOSAL packet.   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21

@@ -1,4 +1,4 @@
-# D-T0-03 — INTEGRATION_LEVEL target + staging  (PROPOSAL; HumanRuling: TBD)
+# D-T0-03 — INTEGRATION_LEVEL target + staging  (RULED 2026-06-21)
 
 **Decision:** First target level and staging order across L0–L4; is L3 the destination or an intermediate?
 
@@ -13,4 +13,4 @@
 **Unblocks:** staged build plan. **Forecloses:** one undifferentiated proposal bucket.
 
 ---
-**HumanRuling:** **(a) L3 is the destination**, reached risk-graded **per-operation** (engine-checkable vs engine-silent); staging L0→L1→L2→L3; L4 future-only. Human gate binds to `AnalysisStatus`.   **RuledBy:** owner (in-session)   **Ruling SHA:** TBD (binds at CHANGE publish)   **Date:** 2026-06-21
+**HumanRuling:** **(a) L3 is the destination**, reached risk-graded **per-operation** (engine-checkable vs engine-silent); staging L0→L1→L2→L3; L4 future-only. Human gate binds to `AnalysisStatus`.   **RuledBy:** owner (in-session)   **Ruling SHA:** 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 (publication commit, 2026-06-21; backfilled 2026-07-02 per owner ruling)   **Date:** 2026-06-21
