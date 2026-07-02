@@ -158,7 +158,10 @@ def observe_domain_engines(repo_root: Path, de_root: Path | None = None) -> Doma
                 fact_id="decisions.register_title", value=hit[0],
                 source_path=_rel(register, repo_root), source_hint=f"line {hit[1]}",
                 authority_status="self-declared", parse_status="PARSED"))
-        ruled = len(re.findall(r"\*\*RULED", register.read_text(encoding="utf-8")))
+        # Table rows only (^|...): the register title also carries a bolded
+        # RULED annotation and must not inflate the row count.
+        ruled = len(re.findall(r"^\|.*\*\*RULED",
+                               register.read_text(encoding="utf-8"), re.MULTILINE))
         obs.register_counts["RULED"] = ruled
         obs.facts.append(SourcedFact(
             fact_id="decisions.ruled_row_count", value=str(ruled),
