@@ -37,6 +37,8 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 
 *Revision note dated 2026-07-02.* An owner-directed reconciliation pass was applied across the document set: Appendix A regenerated from the live `docs/CONTRACT.md` (27 K-* invariants); mutable registry counts removed from prose; APEGA and Engineers Canada AI-guidance currency updates (Chapters 2, 6, 9); claim-strength language normalized to Chapter 8's stated enforcement model; epistemic-labeling attribution aligned with D-GOV-08; Chapter 2 vocabulary and citation-binding corrections; glossary and cross-reference fixes. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
+*Revision note dated 2026-07-02 (positioning pass).* A second owner-directed pass stated the whole-system category — a governed application environment for agent-assisted professional work — in Chapters 1, 4, and 10; added §9.3.6 on the relationship to the AI alignment problem (align the system of use, not the model); named Smith and Polanyi as the principal philosophical pair (§3.6.3); added an Author's Note and Appendix D §D.8 recording the origin of the framework; added glossary entries for reckoning, judgment, chirality of knowledge, and knowledge gap; and repaired stale `PLAN.md` section pointers in Chapters 8 and 9. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem

@@ -95,6 +95,14 @@ One caveat is required, and it is the same caveat that runs through this thesis 
 
 The claim is falsifiable, and the repository itself is the longitudinal test. Capability-invariance predicts that the invariant catalog requires zero capability-triggered amendments across model generations — only the tooling around it evolves, as §9.2.5 anticipated. A future model improvement that forces a change to a K-* invariant would falsify the claim.
 
+### 9.3.6 Relationship to the AI Alignment Problem
+
+*Subsection added 2026-07-02.*
+
+The generalization argument extends to a problem usually framed at the model level. Most alignment work asks how to make a model produce behavior consistent with human values — through training, feedback, or specification [CITE:Ouyang2022] [CITE:Bai2022]. The governance problem this thesis addresses is adjacent but distinct: how to prevent machine output from being mistaken for accountable judgment. The Chirality response aligns the system of use, not the model. Whatever the model is internally — however it was trained, and however capable it becomes — its outputs enter professional practice only through provenance, epistemic labels, review, gates, and a recorded human commitment.
+
+The two approaches are complementary, and the architectural approach addresses only its own class of failure. Model-level alignment reduces the rate of undesirable outputs; use-level alignment ensures that no output, good or bad, acquires professional authority without a warranting act by an accountable person. Nothing in this thesis makes a model intrinsically truthful, corrigible, or safe under arbitrary deployment — §9.2.4 and §9.2.5 state those limits. What the architecture offers is a foundation that does not depend on solving model internals: rather than asking the machine to internalize values, it places machine output inside a value-bearing human structure. This avoids the confusion identified in Chapter 3 (§3.6.5) — treating the opposition between AI agency and human authority as a problem to be dissolved rather than a structure to be maintained. The load-bearing requirement is the distinction this thesis has preserved throughout: reckoning is not judgment (§3.6.3) [CITE:Smith2019]. If that distinction collapses, governance becomes confused, because machine output is treated as a candidate for the person's role. If it is preserved, AI can become extremely useful in consequential domains without becoming the locus of moral authority.
+
 ---
 
 ## 9.4 Future Work
@@ -126,7 +134,7 @@ The APEGA mapping should be replicated for other jurisdictions (EGBC, PEO, NSPE,
 
 ### 9.4.6 Multi-User Concurrent Execution
 
-The current architecture assumes sequential agent execution within a single user session. Multi-user concurrent execution — multiple licensed professionals directing agents against the same project simultaneously — would require a lock mechanism (identified as a future hardening candidate in `PLAN.md` §3.5) and conflict resolution protocols for concurrent write operations.
+The current architecture assumes sequential agent execution within a single user session. Multi-user concurrent execution — multiple licensed professionals directing agents against the same project simultaneously — would require a lock mechanism (identified as future hardening candidate 5 in Chapter 8, §8.6.3) and conflict resolution protocols for concurrent write operations.
 
 ### 9.4.7 Extension to Other Agent Platforms
 

@@ -138,3 +138,13 @@ The conjecture is consistent with and extends the registrational metaphysics dev
 ## D.7 Note on Scope
 
 This framework clarifies existential conditions and possibilities. It is presented as a conjecture, not as a theorem. The Chirality Framework's architectural commitments do not depend on accepting the conjecture — the architecture is justified by the regulatory obligations of professional practice and by the practical need for epistemic transparency when relying on AI-produced work. The conjecture provides the deeper philosophical grounding for why those obligations and needs have the structure they do.
+
+---
+
+## D.8 Origin
+
+*Note added 2026-07-02 at the author's direction.*
+
+The conjecture answers a question that precedes premise 1: what stands between perception and judgment? The framework's answer is meaning. Perception alone does not yet present anything to judge; something must first show up *as* something — a line on a drawing as a pipe, a number as a design limit, a sentence as a requirement — and as something that matters. That as-structure, together with its significance, is M: the world arriving already intelligible and already addressed to a self, before any commitment is made toward it. Judgment — N and the turnstiles — is then the response to meaning, not its manufacture. This is what □(S → M) formalizes, and it is why the architecture treats machine output as candidate meaning to be judged, never as judgment to be accepted.
+
+The conviction behind this ordering preceded the project. The author's originating insight — formed early in his first work with large language models, before the Chirality project existed, in reflection on Ayat al-Kursi (Qur'an 2:255) — is that meaning is not self-grounding: it is given and sustained, and the one who receives it encompasses only part of it. The main thesis neither depends on this conviction nor asks the reader to share it; Chapters 1 through 10 stand on regulatory, philosophical, and systems-engineering warrant. It is recorded here because it explains the architecture's most consistent refusal: at every level, the system declines to let computation manufacture warrant. That refusal was a commitment before it was a design.

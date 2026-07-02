@@ -41,6 +41,12 @@ The established direction (reflected in `AGENTS.md` and the agent suite):
   and `domains/*`; path anchoring and task write-scope containment make
   per-working-root and git-worktree isolation safe (`SPEC.md` §0.2;
   `CONTRACT.md` K-WRITE-2).
+- **Chirality is the governed environment around domain engines, not the
+  solver.** Domain engines own authoritative domain truth; Chirality governs
+  the work around them — profiles, manifests, proposals, review gates, records
+  (`CONTRACT.md` K-DOMAIN-1..4; tier-0 OpenPipeStress profile ADOPTED, affirmed
+  by D-GOV-06). The division of labor: agents propose, domain engines compute,
+  humans rule, the record binds.
 
 Details of in-flight work live in issue/branch/release records, not in this
 planning surface.
