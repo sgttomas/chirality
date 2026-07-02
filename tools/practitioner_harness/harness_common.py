@@ -25,7 +25,8 @@ from pathlib import Path
 
 TOOL_NAME = "practitioner_harness"
 REPORT_SCHEMA = "practitioner-harness-report/v1"
-CONTRACT_SOURCE = "governance_harness_plan_v3_2026-07-01 + D-GOV-01..07 @ 82a35c545"
+CONTRACT_SOURCE = ("governance_harness_plan_v3_2026-07-01 "
+                   "+ D-GOV-01..07 @ 82a35c545 + D-GOV-08 @ 5f0f45c2b")
 GENERATED_ROOT_NAME = "_harness_generated"
 HUMAN_ACTORS_RELPATH = "docs/governance_harness/human_actors.md"
 

@@ -8,8 +8,10 @@ database, and none of its output is authority.
 **Basis:** `plans/governance_harness_proposal-B_2026-07-01/governance_harness_plan_v3_2026-07-01.html`
 (plan of record; terminal planning artifact) under decisions **D-GOV-01..07**
 (`docs/governance_harness/_DECISIONS/`, ruled by the owner 2026-07-01, SHA-bound
-at publication commit `82a35c545`). Design changes from here supersede a
-D-GOV-* record or arrive as PR review — never a new plan document.
+at publication commit `82a35c545`) and **D-GOV-08** (ruled 2026-07-01,
+publication commit `5f0f45c2b`; Option B — the warrant ladder is an audit-time
+diagnostic, implemented by `evidence-check`). Design changes from here
+supersede a D-GOV-* record or arrive as PR review — never a new plan document.
 
 **Pilot scope (D-GOV-03):** `projects/chirality-app-dev`,
 `projects/chirality-piping`, and the `_DomainEngines/` control area
@@ -27,6 +29,10 @@ python3 tools/practitioner_harness/harness.py self-check             # restated-
 python3 tools/practitioner_harness/harness.py next                    # active-work pick-list (the practitioner selects)
 python3 tools/practitioner_harness/harness.py brief --project piping --deliverable DEL-02-04
 python3 tools/practitioner_harness/harness.py brief --verify-adoption docs/governance_harness/briefs/TRB-….md
+python3 tools/practitioner_harness/harness.py run-validations --brief docs/governance_harness/briefs/TRB-….md [--list] [--timeout-seconds N]
+python3 tools/practitioner_harness/harness.py scope-check --brief docs/governance_harness/briefs/TRB-….md --diff <rev-or-A..B>
+python3 tools/practitioner_harness/harness.py evidence-check --brief docs/governance_harness/briefs/TRB-….md
+python3 tools/practitioner_harness/harness.py closeout-digest --brief docs/governance_harness/briefs/TRB-….md --diff <rev-or-A..B> [--write-digest]
 ```
 
 Markdown report to stdout; machine-readable JSON via `--json-report` (must
@@ -42,17 +48,21 @@ exit nonzero.
 | `_harness/adapter.yaml` | **Harness configuration authority only** — governed, committed, human-reviewed; never lifecycle or project truth |
 | Tranche brief (CANDIDATE) | **Generated projection** — source-cited, rebuildable, non-authority footer |
 | Tranche brief (HUMAN_ADOPTED) | **Committed governed fence** (D-GOV-04); an adoption existing only in a scratch directory does not exist. Detected — never granted — by `brief --verify-adoption` (see the Phase 3 section below) |
-| Validation records (`run-validations`, later phase) | **Factual evidence artifact** — never approval, never lifecycle state |
+| Evidence records (`run-validations`, schema `practitioner-harness-evidence/v1`) | **Factual evidence artifact** — never approval, never lifecycle state; readable back as facts for its own tranche only (see Self-exclusion) |
+| Closeout digest (`closeout-digest --write-digest`) | **Generated digest** — an input to the human CHANGE closeout; never a lifecycle transition or judgment |
 | Status / drift / self-check reports | **Generated view** — never authority, never read back as input |
 | Local index cache (none yet) | **Rebuildable projection** — gitignored, one-command regeneration, never cited (D-GOV-01) |
 | `write_status.sh` guard | **Refusal mechanism** — blocks objectively broken transitions; never approval, never authorship |
 
 ## Write posture — three categories, no unqualified "read-only"
 
-1. **Read-only inspection** — `status`, `drift`, `self-check`: byte-identical
-   guarantee over governed files (tested).
-2. **Generated-artifact output** — `brief`, report emission: writes land only
-   under the declared generated root `{REPO_ROOT}/_harness_generated/`
+1. **Read-only inspection** — `status`, `drift`, `self-check`, `next`,
+   `scope-check`, `evidence-check`, `closeout-digest` without
+   `--write-digest`, `run-validations --list`: byte-identical guarantee over
+   governed files (tested).
+2. **Generated-artifact output** — `brief`, `run-validations` evidence
+   records, `closeout-digest --write-digest`, report emission: writes land
+   only under the declared generated root `{REPO_ROOT}/_harness_generated/`
    (gitignored; safe to delete; rebuildable). Path containment is enforced
    (symlinks, `..`, absolute paths resolved before the check; violations
    refuse, exit 2).
@@ -62,9 +72,10 @@ exit nonzero.
 ## Self-exclusion — two classes
 
 Narrative projections (status/drift/self-check reports) are never read back by
-any harness component as input. Evidence records (later `run-validations`
-phase) may be read as facts for the tranche that produced them and never
-promote to lifecycle, approval, plan, or project status.
+any harness component as input. Evidence records (written by
+`run-validations`, read back only by `evidence-check`) may be read as facts
+for the tranche that produced them and never promote to lifecycle, approval,
+plan, or project status.
 
 ## Cache contract
 
@@ -175,17 +186,133 @@ where two aliases share a root the shorter wins). A root with no registered
 alias gets a labeled note in place of the command — a command line is never
 fabricated (K-INVENT-1).
 
-**fence_active and the REVIEW cap:** BLOCK-capable checks arrive in Phase 4
-and run only against verified fences (`fence_active` true). Findings
-referencing anything else — candidates, scratch-dir/untracked/dirty
-adoptions, terminal briefs — cap at REVIEW via
+**fence_active and the REVIEW cap:** the Phase 4 `scope-check` BLOCK runs
+only against verified fences (`fence_active` true). Findings referencing
+anything else — candidates, scratch-dir/untracked/dirty adoptions, terminal
+briefs — cap at REVIEW via
 `harness_common.cap_severity_for_unadopted_brief`, with
-`BriefFence.cap_reason` as the recorded reason.
+`BriefFence.cap_reason` as the recorded reason. (The `run-validations`
+mutation BLOCK is deliberately outside this cap — see Phase 4 below.)
 
 **Location posture:** the harness does not dictate where adopted briefs live —
 any committed governed path works; suggested convention:
 `docs/governance_harness/briefs/`. The generated root `_harness_generated/`
 is gitignored scratch and never qualifies.
+
+## Phase 4 checks (run-validations, scope-check, evidence-check, closeout-digest)
+
+Four commands, all brief-anchored (`--brief`; committed-adoption posture is
+verified first, and identity refusals execute/judge/verify nothing — exit 2):
+
+| Command | What it does |
+|---|---|
+| `run-validations --brief [--list] [--timeout-seconds N]` | Executes the validation commands declared in the adapter manifest (the governed declaration source; the brief's validations text is cross-checked and drift surfaced as WARN `VALIDATION_DECLARATION_DRIFT` — the manifest governs) for the project resolved from the brief's first `write_scope` entry, under the mutation-control contract below. One evidence record per command, regardless of outcome. `--list` prints the resolved command list and stops: nothing executed, nothing written. Facts, never approval; a completed exit-0 run is structural evidence only (K-DOMAIN-4 analogue). |
+| `scope-check --brief --diff <range>` | Compares tracked paths changed in the git range (`git diff --name-status`; rename entries contribute both sides; the range is validated with `git rev-parse` first — unresolvable = exit 2, K-INVENT-1), plus currently observed untracked non-ignored files, to the brief's fence. Findings report only; path judgment is never lifecycle judgment (K-GATE-1). |
+| `evidence-check --brief` | Verifies evidence COMPLETENESS for the manifest-declared validations per the provenance ladder (D-GOV-08 Option B: the warrant ladder is an audit-time diagnostic, never a producer-emitted state). Evidence older than the newest commit touching the `write_scope` is flagged `EVIDENCE_STALE` (naming both timestamps). For dating the scope, each `write_scope` glob reduces to its literal directory prefix before the first wildcard component (never passed verbatim as a git pathspec — git's `*` semantics differ from the fence matcher's); an all-wildcard scope (e.g. a bare `**`) dates against the newest commit in the WHOLE repository (pathspec `.`), stated in the output — never silently skipped. Unreadable record files are `EVIDENCE_UNPARSEABLE` — labeled, never guessed. Completeness, never sufficiency; nothing here BLOCKs. |
+| `closeout-digest --brief --diff <range> [--write-digest]` | Composes scope-check + evidence-check IN-PROCESS (imported run functions, never shelled out): changed files by fence classification, captured evidence, the two check summaries, skipped (NOT_APPLICABLE) checks, caveats, and the brief's open human decision points. Findings are the union of the sub-checks', deduplicated by (code, source, line) — but the digest is a composition, NEVER a gate: any sub-check BLOCK is carried downgraded to REVIEW with a caveat naming the gating command (run scope-check for the gating exit code), so a composed BLOCK never makes the digest exit 1 (D-GOV-02: exit 1 iff a BLOCK finding is in the digest's own report). `--write-digest` writes the digest to `_harness_generated/closeout/<tranche_id>.md`; without it, nothing is written. |
+
+**The run-validations mutation-control contract** (plan v3, applied in
+order): (1) record pre-run `git status --porcelain` (taken with `--ignored`
+so ignored-cache writes are observable at all) plus a content fingerprint
+(`git hash-object` over worktree bytes) of every tracked porcelain entry;
+(2) run only declared commands — the adapter manifest is the governed
+declaration source; (3) capture stdout/stderr, exit code, duration, tool
+versions where cheap; (4) record post-run porcelain and re-fingerprint the
+union of pre/post tracked entries — a file that was ALREADY dirty before
+the run and is mutated further keeps its status code (" M" stays " M"), so
+same-status content mutation of already-dirty tracked files is caught by
+content comparison, not status codes; (5) classify changed paths:
+`expected_evidence_output` | `ignored_cache` | `unexpected_tracked_change` |
+`review_required_untracked`; (6) BLOCK if a validation command modified
+governed files outside the declared evidence/output paths.
+
+**"Declared evidence/output paths" means:** the generated root
+(`_harness_generated/`, harness-owned gitignored scratch — D-GOV-01)
+ALWAYS, plus the brief's `evidence_targets` ONLY when the fence is active
+(a human adopted those targets — D-GOV-04). An unadopted/CANDIDATE brief's
+`evidence_targets` exempt nothing: run-validations deliberately runs on
+unadopted briefs, and an agent-authored brief must not be able to declare a
+broad governed path as an evidence target and swallow governed-file
+mutations — the mutation BLOCK protects the substrate and is not
+suppressible by anything agent-authored (K-WRITE-2).
+
+**Known mutation-detection boundary (stated, not papered over):** appends
+to a PRE-EXISTING untracked file remain invisible to porcelain diffing —
+the entry reads `??` both before and after the run, and untracked files are
+not fingerprinted. New untracked files ARE observed
+(`review_required_untracked`), and tracked files are covered by status +
+content comparison.
+
+**Exactly two BLOCK-capable findings exist in Phase 4:**
+
+1. `scope-check` objective tracked-path fence violations
+   (`PROHIBITED_PATH_TOUCHED`, `SCOPE_VIOLATION`; deny wins over allow) —
+   **only when `fence_active` is true** (D-GOV-04). Against an unadopted /
+   uncommitted / terminal brief the finding is created at BLOCK and
+   immediately capped at REVIEW with the fence's `cap_reason`. Observed
+   untracked files are judged the same way but sit outside the objective
+   tracked-path boundary, so they cap at REVIEW always (stated in the
+   caveat).
+2. `run-validations` governed-file mutation outside declared evidence/output
+   paths (`VALIDATION_MUTATED_GOVERNED_FILES`) — **unconditional**. This
+   BLOCK protects the substrate (K-WRITE-2, ratified basis per D-GOV-01/05),
+   not the fence, so the D-GOV-04 adoption cap never applies: a validation
+   command must not be a backdoor write tool no matter whose brief invoked
+   it (plan v3 risk table: "Backdoor writes through validation commands →
+   BLOCK on governed-file mutation outside declared paths"). For the same
+   reason the exemption side is fence-gated: only the generated root and an
+   ADOPTED brief's `evidence_targets` count as declared evidence/output
+   paths (see above) — an unadopted brief cannot carve holes in this BLOCK.
+
+Nothing in `evidence-check` or `closeout-digest` ever BLOCKs — completeness
+is never sufficiency, and no BLOCK ever attaches to a lifecycle judgment
+(K-GATE-1). `closeout-digest` composes the sub-checks' findings but carries
+any sub-check BLOCK downgraded to REVIEW with the gating command named: the
+digest is never a gate, and its exit code (D-GOV-02: exit 1 iff a BLOCK
+finding is in ITS report) therefore never turns 1 through composition.
+
+**Fence path matching** (`scope_fence.py`): `write_scope` /
+`prohibited_paths` glob entries compile to anchored regexes over POSIX
+repo-relative paths — `**` matches across segments (a trailing `/**` is
+strictly under the directory), `*` within one segment, `?` one character;
+case-sensitive full match (the fence is what the human adopted, case-exact);
+deny (prohibited) wins over allow (write_scope); no dotfile carve-out.
+
+**Provenance ladder** (`evidence-check`; D-GOV-08 Option B): (1)
+harness-captured evidence records satisfy completeness; (2)
+timestamp-consistent external artifacts at declared `evidence_target` paths
+outside the generated root satisfy at REVIEW (`EVIDENCE_EXTERNAL_ARTIFACT`);
+(3) bare prose attestations never pass silently — an absent artifact is
+reported as `EVIDENCE_MISSING`, never accepted on narrative.
+
+**Blind-spot honesty:** every `scope-check` and `closeout-digest` output
+(refusals included) carries the fixed statement of what it cannot see:
+untracked files beyond those listed, writes outside the repository, changes
+made and reverted inside the diff range (revert games), and gitignored
+paths.
+
+**Evidence records** (`evidence_records.py`, schema
+`practitioner-harness-evidence/v1`): land at
+`_harness_generated/evidence/<tranche_id>/NNN_<slug>.json` (NNN = 3-digit
+per-command-slug run ordinal — re-invocations append, never overwrite) plus
+a sibling `.md` summary carrying the standard generated header. Fields:
+brief posture (source path, state, bound SHA, `fence_active`), command, cwd,
+`declared_in`, exit code (null when timed out) / `timed_out`, duration,
+`captured_at` (UTC), cheap tool-version probes, stdout/stderr (200 000-byte
+cap per stream with an explicit truncation marker), pre/post porcelain
+snapshots, classified `changed_paths`, disclaimer. A timed-out command is
+recorded TIMED_OUT — an unobserved outcome is never inferred (K-INVENT-1).
+Two-class self-exclusion reminder: these records are readable as FACTS for
+the tranche that produced them (that is what lets `evidence-check` work) and
+never promote to lifecycle, approval, plan, or project status.
+
+**closeout-digest posture:** the digest is an INPUT to the human CHANGE
+closeout — never a lifecycle transition, never a lifecycle judgment, never
+acceptance of residual risk, and never a gate. The gates are the sub-checks
+(`scope-check` for the fence, `run-validations` for mutations): a sub-check
+BLOCK appears in the digest downgraded to REVIEW with a caveat naming the
+gating command to run for the gating exit code. The human decides; the
+digest only collects.
 
 ## Drift baseline
 
@@ -347,7 +474,36 @@ terminal `bound_sha` caveat and cap-reason stacking), symlinked and
 unmatched actor → exit 2), CLI exit-code pins (REVIEW = 0 default / 1 under
 `--strict`; clean adoption = 0 with nothing on stderr), a generate→parse
 round-trip, and the `next` pick-list (counts, precedence ordering, DEL-id
-rule, the no-alias posture, explicit truncation).
+rule, the no-alias posture, explicit truncation). Phase 4 coverage
+(`test_run_validations.py`, `test_scope_evidence_closeout.py`; harmless
+`echo`/`python3 -c` fixture commands only — the real pilot manifests are
+never executed): the mutation-control contract end to end (happy path,
+unconditional mutation BLOCK with and without an active fence, the
+fence-gated evidence_targets exemption — a CANDIDATE brief's broad governed
+target exempts nothing and still BLOCKs, an ADOPTED brief's target classifies
+the same write as expected_evidence_output; already-dirty tracked files
+mutated further are caught by content fingerprints, with no false positive
+when untouched; ignored-cache and untracked classifications, TIMED_OUT,
+stream truncation, `--list` running/writing nothing, declaration drift,
+refusal executing nothing), the evidence-record schema/writer/reader
+(UNPARSEABLE labeling, per-slug ordinals), the fence matcher (case-variant
+no-match, nested `**`, deny-wins, dotfiles, strictly-under `/**`),
+scope-check (in-fence clean + blind-spot presence, active-fence BLOCK =
+exit 1, candidate cap to REVIEW with cap_reason, prohibited hits with
+deny-wins exercised through the integration path and the exit-1 pin,
+untracked REVIEW-never-BLOCK, rename both sides, unresolvable range =
+exit 2), evidence-check (satisfied / missing / stale / unparseable /
+no-validations NOT_APPLICABLE / mutation-flagged / external-target ladder
+rungs — never a BLOCK; whole-repo `**` write_scope dated against the newest
+repo commit and labeled, plus pathspec-prefix derivation units),
+closeout-digest (in-process composition with (code, source, line) dedup,
+sub-check BLOCK downgraded to REVIEW with the gating-command caveat — the
+digest exits 0 where scope-check exits 1 on the same state, `--write-digest`
+containment + generated header, claim-language-clean output, 0/2 CLI pins
+with `--strict` as the REVIEW escalation), and the Phase 4 read-only
+additions in `test_readonly_guarantee.py` (scope-check, evidence-check, and
+closeout-digest without `--write-digest` leave the governed tree
+byte-identical and write nothing).
 
 **Fixture corpus.** The adversarial fixtures in
 `test_archive_fixture_corpus.py` are verbatim pre-images from
