@@ -45,6 +45,12 @@ covers D-GOV-01..07 only.
    annotation "(PROPOSAL; HumanRuling = TBD)"; the D-T0-06 title line carrying
    the same tag; and the RULINGS_PUBLISHED.md action-flow line "Update the
    DRAFT profile per rulings."
+   *Note (2026-07-02): these three are a retained floor, not the complete
+   live-finding inventory — see Completed item 11. The other seven D-T0 title
+   tags and all eight `Ruling SHA: TBD` fields were genuine post-ruling drift,
+   cleaned and backfilled at owner direction; the three surfaces above stay
+   byte-identical and `self-check` still catches them (now pinned at
+   STALE_RULING_ANNOTATION=2, TITLE_CONTRADICTS_RULING=1, STALE_DRAFT_DIRECTIVE=1).*
 4. **`human_actors` allowlist** per D-GOV-04 — created at owner direction,
    `docs/governance_harness/human_actors.md` (2026-07-01); identity checks
    refuse (exit 2) absent it.
@@ -131,6 +137,25 @@ covers D-GOV-01..07 only.
    copy was regenerated per the documented canonical-edit flow. The cache
    half stays closed: query-pain precondition re-measured unmet the same
    day.*
+11. **Audit-findings slice** — three findings from an owner-run harness audit
+   resolved at owner direction 2026-07-02 (PR #11, merge `e5a237363`). Two
+   were harness defects: `evidence-check`/`closeout-digest` read `--out-dir`
+   without generated-root containment (arbitrary outside-root JSON could pose
+   as harness-captured evidence) — now routed through `ensure_generated_scope`
+   fail-closed; and the `RULING_SHA_TBD` self-check detector fired on
+   backtick-quoted prose (a live false positive on `D-GOV-02`'s own rule text)
+   — now suppresses code-span quotations while mid-line bold fields keep
+   firing. The third was genuine content drift: all eight `_DomainEngines/`
+   D-T0 records carried stale `(PROPOSAL; HumanRuling: TBD)` title tags and
+   `Ruling SHA: TBD` fields after their 2026-06-21 ruling. Owner ruled
+   clean-and-backfill (D-GOV pattern `f1549afb1`): publication commit
+   `6e70b5aac` verified per record (`git log -S`), seven titles flipped to
+   `(RULED 2026-06-21)`, eight SHA fields backfilled, stale bind-at-publish
+   prose corrected. The three retained fixture surfaces (item 3) are
+   byte-identical and still caught; live pins moved consciously
+   (STALE_RULING_ANNOTATION 9→2, TITLE_CONTRADICTS_RULING 8→1, RULING_SHA_TBD
+   10→0). Suite: 235 on the built primary checkout (234 + 1 in clean
+   worktrees).
 
 ## Now actionable
 
