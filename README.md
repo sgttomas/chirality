@@ -1,6 +1,6 @@
 # Chirality
 
-Chirality is a governed, filesystem-native agent operating system for deliverable-heavy professional work.
+Chirality is a governed application environment for agent-assisted, deliverable-heavy professional work. It contains a filesystem-native agent operating system together with the governance layer, deterministic tool layer, domain applications under declared domain-engine profiles, governed project records, and human gates that let AI agents act on real work without machine output being confused with professional authority.
 
 This repository is the private canonical source tree for Chirality. It holds the shared instruction architecture, governance documents, deterministic tool layer, public-export source surface, private project workspaces, domain workspaces, and export tooling used to produce the sanitized public `chirality-app` package.
 
@@ -8,9 +8,9 @@ The core insight:
 
 > If the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.
 
-Chirality is not an autonomous swarm. It is an instruction architecture, tool layer, and desktop harness for directing AI agents under explicit scope, evidence, write-boundary, snapshot, and human-gate rules.
+Chirality is not an autonomous swarm. Within the environment sit an instruction architecture, a tool layer, and a desktop harness for directing AI agents under explicit scope, evidence, write-boundary, snapshot, and human-gate rules.
 
-AI can accelerate professional work. It cannot inherit professional responsibility.
+AI can accelerate professional work. It cannot inherit professional responsibility. AI may extend reckoning; it must not inherit judgment.
 
 ---
 
@@ -104,6 +104,8 @@ The main epistemic mechanisms are:
 
 Human authority remains non-transferable. Agents can propose, extract, draft, reconcile, validate, and report. Humans decide, approve, adjudicate conflicts, accept residual risk, and issue work for reliance. No agent may certify, approve, sign, seal, or issue professional work product.
 
+The division of labor is constant across the environment: agents propose, deterministic tools and domain engines compute, humans rule, and the versioned record binds what was decided. Domain engines own authoritative domain truth; Chirality governs the work around them without becoming the solver (`docs/CONTRACT.md` K-DOMAIN-1..4).
+
 The invariant system is defined in `docs/CONTRACT.md`. The design basis and professional grounding are developed in `docs/DBM_Agent_Instruction_Architecture.md`, `CHIRALITY_FRAMEWORK.md`, and `PROFESSIONAL_ENGINEERING.md`.
 
 ---
@@ -173,8 +175,6 @@ The public `chirality-app` export is controlled by `exports/chirality-app/`. The
 - `skills/`
 - `tools/`
 - `docs/`
-- `examples/`
-- `frontend/`
 - `init/`
 
 The current public export profile excludes private or local-only workspace content:

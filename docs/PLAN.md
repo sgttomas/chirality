@@ -5,8 +5,11 @@
 > findings only, prepared at the owner's explicit request following the
 > D-GOV-01..07 rulings of 2026-07-01 (ruled and SHA-bound at commit
 > `82a35c545`; see `docs/governance_harness/_DECISIONS/_REGISTER.md`); per
-> K-INVENT-1 nothing is invented. §1 and the Control-Plane Boundary are
-> unchanged from the 2026-06-15 restoration.
+> K-INVENT-1 nothing is invented. The Control-Plane Boundary is unchanged
+> from the 2026-06-15 restoration; §1 is unchanged except for the
+> domain-engine containment bullet added 2026-07-02 at owner direction
+> (restating the D-GOV-06-ruled direction and `CONTRACT.md` K-DOMAIN-1..4;
+> nothing invented).
 
 ## Control-Plane Boundary
 
@@ -41,6 +44,12 @@ The established direction (reflected in `AGENTS.md` and the agent suite):
   and `domains/*`; path anchoring and task write-scope containment make
   per-working-root and git-worktree isolation safe (`SPEC.md` §0.2;
   `CONTRACT.md` K-WRITE-2).
+- **Chirality is the governed environment around domain engines, not the
+  solver.** Domain engines own authoritative domain truth; Chirality governs
+  the work around them — profiles, manifests, proposals, review gates, records
+  (`CONTRACT.md` K-DOMAIN-1..4; tier-0 OpenPipeStress profile ADOPTED, affirmed
+  by D-GOV-06). The division of labor: agents propose, domain engines compute,
+  humans rule, the record binds.
 
 Details of in-flight work live in issue/branch/release records, not in this
 planning surface.

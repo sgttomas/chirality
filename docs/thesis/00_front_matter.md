@@ -21,9 +21,15 @@ The four-document production kit (Datasheet, Specification, Guidance, Procedure)
 
 The thesis argues that the APEGA practice standard *Relying on the Work of Others and Outsourcing* can be interpreted to govern AI agent use through the same professional obligations that govern reliance on other human-prepared work, because those obligations are defined by what the professional must do, not by what the worker is. The Chirality architecture maps direct supervision and control (APEGA §3.1.1) and thorough review (APEGA §3.1.2) to specific, traceable architectural mechanisms, offering a conservative and professionally grounded interpretation rather than a regulatory ruling.
 
-The system has been implemented with a governed suite of agent instruction files, deterministic tools, a three-layer invariant system (39 formally stated invariants with four-layer enforcement), and a desktop application. Active membership is maintained in the source registries rather than mutable count prose. Classical systems engineering disciplines — architecture, configuration management, verification and validation, safety engineering, requirements engineering, control theory, formal methods, and human factors — are not treated here as compliance artifacts applied after the fact, but as the primary mechanisms by which this implementation coordinates agents, contains failures, and preserves human authority.
+The system has been implemented with a governed suite of agent instruction files, deterministic tools, a three-layer invariant system (R-, I-, and K-series invariants under a four-layer enforcement map), and a desktop application. Active membership is maintained in the source registries rather than mutable count prose. Classical systems engineering disciplines — architecture, configuration management, verification and validation, safety engineering, requirements engineering, control theory, formal methods, and human factors — are not treated here as compliance artifacts applied after the fact, but as the primary mechanisms by which this implementation coordinates agents, contains failures, and preserves human authority.
 
 **Keywords:** systems engineering, LLM agents, professional engineering, epistemic architecture, epistemic ontology, warrant lifecycle, chirality of knowledge, knowledge gap, agent governance, formal invariants, APEGA, professional work products, provenance, write quarantine
+
+---
+
+## Author's Note
+
+The originating intuition behind Chirality was that meaning is not manufactured — not by the machine, and not by the professional. It is encountered, already intelligible and already significant, under conditions of responsibility. The architecture developed in this thesis is a practical attempt to preserve that encounter in AI-assisted professional work: to let AI widen what the professional can perceive, compare, and prepare, while keeping the acts of judgment, commitment, and answerability where they have always lived — with the person. The main argument asks no assent beyond professional and philosophical grounds. The deeper layer, for readers who want it, is developed in Appendix D, which also records the origin of the conjecture (§D.8).
 
 ---
 
@@ -43,6 +49,7 @@ The system has been implemented with a governed suite of agent instruction files
 **Appendices**
 
 - [A — Invariant Catalog](appendix_a_invariant_catalog.md)
+- B — Agent Index: maintained as the live registry `AGENTS.md` at the repository root; not reproduced as a static appendix
 - [C — APEGA Regulatory Mapping](appendix_c_apega_mapping.md)
 - [D — A Conjecture on the Nature of Being and Knowing](appendix_d_framework_s.md)
 
