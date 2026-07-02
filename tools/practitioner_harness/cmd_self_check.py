@@ -9,7 +9,10 @@ issues vs later rulings (K-STALE-2: an `open_issues` entry or an unannotated
 ruling condition asserting a state a later authoritative surface contradicts),
 and (g) draft-basis-used-as-binding (K-CLAIM-1: a `FramedBy:`/`Basis:`/
 `Authority:` line citing a document whose self-declared status is
-DRAFT/PROPOSAL without labeling it).
+DRAFT/PROPOSAL without labeling it), and (h) `_LATEST*` pointer currency
+(every pointer file's designated target must exist on disk outside any
+`.archive/` tree and plausibly be the newest same-class sibling by
+date-in-filename where the naming convention allows the comparison).
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO except objective local generated-output
@@ -28,6 +31,7 @@ Scope notes (v1):
 
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 
@@ -93,6 +97,29 @@ KNOWN_BASIS_TARGETS: dict[str, str] = {
         "plans/governance_harness_proposal-B_2026-07-01/"
         "governance_harness_plan_v3_2026-07-01.html",
 }
+
+# GEN-7 _LATEST pointer currency (K-PROV-1 / K-STALE-2).
+# A "designation line" is one that names the pointer's current target:
+# 'Latest ...:', 'Active ...:', 'Approved ...:' bullets/prose, or a
+# `| Snapshot | ... |`-form table row. Historical/superseded lines
+# ('Superseded ...', 'Historical ...') are deliberately not designations.
+POINTER_FILE_PREFIX = "_LATEST"
+POINTER_DESIGNATION_RE = re.compile(
+    r"^\s*(?:[-*>]\s*)?\**(?:Latest|Active|Approved)\b[^:|`]{0,60}:\**\s*(.*)$",
+    re.IGNORECASE)
+POINTER_TABLE_ROW_RE = re.compile(
+    r"^\s*\|\s*(?:Snapshot|ExecutionSnapshot|AuthorityRecord|Path)\s*\|\s*([^|]*)\|",
+    re.IGNORECASE)
+POINTER_NONE_TOKENS = {"(none)", "none", "tbd", "n/a"}
+POINTER_DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+POINTER_TICK_RE = re.compile(r"`([^`]+)`")
+# A line whose annotation (the text BEFORE the ref) self-labels the entry as
+# history is not a current designation (same idiom as the DE-7 tail-note
+# skip). Only the pre-ref head is tested so history words later in a long
+# prose line cannot suppress a real designation.
+POINTER_HISTORY_NOTE_RE = re.compile(
+    r"\b(?:exhausted|superseded|historical|retired|predecessor)\b",
+    re.IGNORECASE)
 
 _REF_EXTENSIONS = (
     ".md", ".py", ".yaml", ".yml", ".json", ".csv", ".sh", ".ts", ".tsx",
@@ -547,14 +574,79 @@ def run_self_check(
                         "observation boundary.",
                         _rel(path, repo_root), idx, invariant="K-CLAIM-1"))
 
+    # ----- GEN-7 _LATEST pointer currency (K-PROV-1 / K-STALE-2) -----
+    # Every `_LATEST*` pointer file under each scope root must designate a
+    # target that (a) exists on disk outside any `.archive/` tree and
+    # (b) plausibly is the newest same-class sibling by date-in-filename
+    # (compared only where the naming convention allows: shared pre-date
+    # prefix, date at the same position). Judgment-adjacent per D-GOV-02
+    # (TYPES §11): REVIEW, never BLOCK — repoint vs retain is a human
+    # disposition. NOT_APPLICABLE when a root carries no pointer files.
+    pointer_files_scanned = 0
+    for sroot in scope:
+        pointer_files = _iter_pointer_files(sroot)
+        if not pointer_files:
+            report.add_finding(make_finding(
+                Severity.NOT_APPLICABLE, "POINTER_CHECK_NOT_APPLICABLE", "staleness",
+                "No `_LATEST*` pointer files under this root; pointer-currency "
+                "check skipped (preconditions absent).",
+                _rel(sroot, repo_root), None, invariant="K-STALE-2"))
+            continue
+        for pfile in pointer_files:
+            pointer_files_scanned += 1
+            seen_toks: set[str] = set()
+            seen_targets: set[Path] = set()
+            for line_no, tok in _pointer_designated_targets(pfile):
+                if tok in seen_toks:
+                    continue
+                seen_toks.add(tok)
+                target = _resolve_pointer_target(tok, pfile.parent, repo_root)
+                if target is None:
+                    archived = _archived_probe(tok, pfile.parent)
+                    archived_note = (
+                        f" A same-named entry exists under "
+                        f"`{_rel(archived, repo_root)}` — retired into `.archive/`."
+                        if archived is not None else "")
+                    survivor = _surviving_class_sibling(tok, pfile.parent)
+                    survivor_note = (
+                        f" Newest surviving same-class sibling by "
+                        f"date-in-filename: `{survivor}`."
+                        if survivor else "")
+                    report.add_finding(make_finding(
+                        Severity.REVIEW, "POINTER_TARGET_UNRESOLVED", "provenance",
+                        f"`_LATEST` pointer designates `{tok}` but no such target "
+                        "exists outside a `.archive/` tree (resolution attempted "
+                        "against the pointer's directory, its immediate "
+                        "subdirectories, and its ancestors up to the repo root)."
+                        f"{archived_note}{survivor_note} Repoint vs retain is a "
+                        "human disposition — human review required.",
+                        _rel(pfile, repo_root), line_no, invariant="K-PROV-1"))
+                    continue
+                if target in seen_targets:
+                    continue
+                seen_targets.add(target)
+                later = _later_class_sibling(target)
+                if later is not None:
+                    report.add_finding(make_finding(
+                        Severity.REVIEW, "POINTER_TARGET_NOT_NEWEST", "staleness",
+                        f"`_LATEST` pointer designates `{tok}`, but a same-class "
+                        f"sibling carries a later date-in-filename (`{later}`); "
+                        "the designated target is plausibly not the newest of "
+                        "its class; sources conflict — human review required "
+                        "(K-STALE-2: stale items are human-triaged).",
+                        _rel(pfile, repo_root), line_no, invariant="K-STALE-2"))
+
     # Summary
     report.summary["scope"] = [str(_rel(p, repo_root)) for p in scope]
+    report.summary["pointer_files_scanned"] = pointer_files_scanned
     report.summary["checks_run"] = (
         "DE-1..8 (domain-engine surfaces incl. stale open issues vs later "
         "rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), "
         "GEN-3 (generated labeling), GEN-4 (root governance status facts), "
         "GEN-5 (unresolved refs; control files only in v1), "
-        "GEN-6 (draft-basis-used-as-binding; control files only in v1)")
+        "GEN-6 (draft-basis-used-as-binding; control files only in v1), "
+        "GEN-7 (_LATEST pointer currency: target resolution outside .archive "
+        "+ newest-same-class-sibling by date-in-filename)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
@@ -649,6 +741,186 @@ def _self_declared_status(target: Path) -> str:
                 return m.group(1).strip()
         return ""
     return ""
+
+
+# --- GEN-7 pointer-currency helpers ---------------------------------------------
+
+def _iter_pointer_files(root: Path) -> list[Path]:
+    """All `_LATEST*` files under `root`, pruning archive/generated/vendor trees."""
+    if not root.is_dir():
+        return []
+    skip = {GENERATED_ROOT_NAME, ".archive", "node_modules", ".git"}
+    out: list[Path] = []
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = sorted(d for d in dirnames if d not in skip)
+        for name in sorted(filenames):
+            if name.startswith(POINTER_FILE_PREFIX):
+                out.append(Path(dirpath) / name)
+    return out
+
+
+def _pointer_target_from_text(value: str, ticked_only: bool = False) -> str | None:
+    """First plausible artifact ref in a designation value (or continuation
+    line). Backticked spans are taken as intentional refs; a bare value is
+    accepted only when it looks like an artifact name (slash, known extension,
+    or date-in-name) so status words and dates are never mistaken for targets."""
+    candidates = [(span, True) for span in POINTER_TICK_RE.findall(value)]
+    if not candidates and not ticked_only:
+        toks = value.strip().split()
+        if toks:
+            candidates.append((toks[0], False))
+    for raw, ticked in candidates:
+        tok = raw.strip().strip("*").rstrip(".,;:")
+        if not tok or tok.lower() in POINTER_NONE_TOKENS:
+            continue
+        if "://" in tok or tok.startswith("#") or " " in tok:
+            continue
+        if not re.search(r"[A-Za-z]", tok):
+            continue  # dates and numbers are values, not targets
+        if any(ch in tok for ch in "*?<>{}$[]"):
+            continue
+        if not (ticked or "/" in tok or tok.endswith(_REF_EXTENSIONS)
+                or POINTER_DATE_RE.search(tok)):
+            continue
+        return tok.rstrip("/")
+    return None
+
+
+def _history_annotated(line: str) -> bool:
+    """True when the line's pre-ref head self-labels the entry as history
+    (e.g. 'Exhausted/... (predecessor ...): `ref`')."""
+    head = line.split("`", 1)[0]
+    return bool(POINTER_HISTORY_NOTE_RE.search(head))
+
+
+def _pointer_designated_targets(pfile: Path) -> list[tuple[int, str]]:
+    """(line_no, target_token) per current-designation line in a pointer
+    file. A designation with an empty value (e.g. a bolded 'Latest snapshot:'
+    heading) takes a backticked ref from the next non-blank line within 3
+    lines. History-annotated lines are not current designations."""
+    try:
+        lines = pfile.read_text(encoding="utf-8").splitlines()
+    except (UnicodeDecodeError, OSError):
+        return []
+    out: list[tuple[int, str]] = []
+    for idx, line in enumerate(lines, start=1):
+        if _history_annotated(line):
+            continue
+        row = POINTER_TABLE_ROW_RE.match(line)
+        if row:
+            tok = _pointer_target_from_text(row.group(1))
+            if tok:
+                out.append((idx, tok))
+            continue
+        m = POINTER_DESIGNATION_RE.match(line)
+        if not m:
+            continue
+        value = m.group(1).strip()
+        if value:
+            tok = _pointer_target_from_text(value)
+            if tok:
+                out.append((idx, tok))
+            continue
+        for jdx in range(idx, min(idx + 3, len(lines))):
+            nxt = lines[jdx].strip()
+            if not nxt:
+                continue
+            if not _history_annotated(nxt):
+                tok = _pointer_target_from_text(nxt, ticked_only=True)
+                if tok:
+                    out.append((jdx + 1, tok))
+            break
+    return out
+
+
+def _resolve_pointer_target(
+        tok: str, pointer_dir: Path, repo_root: Path) -> Path | None:
+    """Resolve a designated target outside any `.archive/` tree. Bases tried:
+    the pointer's directory, its ancestors up to the repo root (pointer files
+    lawfully carry project-relative and repo-relative refs), and the pointer
+    directory's immediate subdirectories (snapshot names designated from a
+    parent-level pointer)."""
+    rel = Path(tok)
+    if rel.is_absolute() or ".." in rel.parts:
+        return None
+    bases = [pointer_dir]
+    node = pointer_dir
+    while node != repo_root and repo_root in node.parents:
+        node = node.parent
+        bases.append(node)
+    try:
+        bases.extend(sorted(
+            d for d in pointer_dir.iterdir()
+            if d.is_dir() and d.name != ".archive"))
+    except OSError:
+        pass
+    for base in bases:
+        cand = base / rel
+        try:
+            if cand.exists() and ".archive" not in cand.parts:
+                return cand
+        except OSError:
+            continue
+    return None
+
+
+def _archived_probe(tok: str, pointer_dir: Path) -> Path | None:
+    """A same-named entry under the pointer directory's `.archive/` tree, if any."""
+    arch = pointer_dir / ".archive"
+    if not arch.is_dir():
+        return None
+    try:
+        hits = sorted(arch.rglob(Path(tok).name))
+    except OSError:
+        return None
+    return hits[0] if hits else None
+
+
+def _pointer_class_siblings(
+        parent: Path, basename: str) -> tuple[str, list[tuple[str, str]]]:
+    """(target_date, [(date, name), ...]) for same-class siblings: entries of
+    `parent` sharing `basename`'s pre-date prefix with a date-in-filename at
+    the same position. Empty when the naming convention does not allow the
+    comparison (no date, no prefix, or no such parent)."""
+    m = POINTER_DATE_RE.search(basename)
+    if not m or m.start() == 0:
+        return "", []
+    prefix = basename[: m.start()]
+    if not parent.is_dir():
+        return m.group(0), []
+    sibs: list[tuple[str, str]] = []
+    try:
+        entries = sorted(parent.iterdir())
+    except OSError:
+        return m.group(0), []
+    for entry in entries:
+        name = entry.name
+        if name == basename or name == ".archive":
+            continue
+        if name.startswith(POINTER_FILE_PREFIX) or not name.startswith(prefix):
+            continue
+        sm = POINTER_DATE_RE.search(name)
+        if not sm or sm.start() != len(prefix):
+            continue
+        sibs.append((sm.group(0), name))
+    return m.group(0), sibs
+
+
+def _later_class_sibling(target: Path) -> str | None:
+    """Name of the newest same-class sibling dated strictly later than the
+    resolved target's own date-in-filename (date granularity only: equal
+    dates never flag), else None."""
+    target_date, sibs = _pointer_class_siblings(target.parent, target.name)
+    later = [(date, name) for date, name in sibs if date > target_date]
+    return max(later)[1] if later else None
+
+
+def _surviving_class_sibling(tok: str, pointer_dir: Path) -> str | None:
+    """For an unresolved target: the newest surviving same-class sibling in
+    the directory the token designates (context for human triage), else None."""
+    rel = Path(tok)
+    _, sibs = _pointer_class_siblings(pointer_dir / rel.parent, rel.name)
+    return max(sibs)[1] if sibs else None
 
 
 def _ruled_decision_record(

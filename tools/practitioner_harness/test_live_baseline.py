@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """LIVE-tree baseline tests (skippable when the live roots are absent or when
 CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 92/101,
-app-dev 0/53) and the three deliberately retained stale surfaces (owner
-ruling 2026-07-01) that self-check MUST catch."""
+app-dev 0/53), the three deliberately retained stale surfaces (owner ruling
+2026-07-01) that self-check MUST catch, and the retired piping reconciliation
+pointer (the GEN-7 pointer-currency check's first detection target)."""
 
 from __future__ import annotations
 
@@ -106,6 +107,43 @@ def test_live_self_check_draft_basis_pins():
             "D-GOV-06_domain_profile_current_truth.md",
             "D-GOV-07_domain_gate_sha_binding.md",
         )}
+
+
+@live
+def test_live_pointer_currency_first_detection_target():
+    # The 2026-07-01 consistency audit's live reproduction case: the piping
+    # reconciliation pointer designated the 2026-05-09 DEV001 run summary,
+    # retired to .archive/ on 2026-06-03 (349a2ab33). The owner ruled the
+    # disposition REPOINT (piping D-28, applied on main at d74b991db), so this
+    # test is disposition-aware: on a tree predating the repoint the check
+    # MUST fire (the check's first detection target); on the repointed tree
+    # the pointer resolves to the newest surviving sibling and MUST be quiet.
+    pointer = (LIVE_REPO / "projects" / "chirality-piping" / "execution"
+               / "_Reconciliation" / "_LATEST.md")
+    first_line = pointer.read_text(encoding="utf-8").splitlines()[0]
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    hits = [f for f in report.findings if f.code == "POINTER_TARGET_UNRESOLVED"]
+    if "2026-05-09_DEV001" in first_line:  # pre-disposition tree
+        assert [(f.source_path, f.source_line) for f in hits] == [
+            ("projects/chirality-piping/execution/_Reconciliation/_LATEST.md", 1)]
+        msg = hits[0].message
+        assert ("Reconciliation_Run_Summary_2026-05-09_DEV001_REV05_CANDIDATE_"
+                "EDGE_RECONCILIATION.md") in msg
+        # Newest surviving same-class sibling cited as triage context.
+        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
+                "COMPATIBILITY_PLANNING.md") in msg
+    else:  # repointed per the D-28 ruling
+        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
+                "COMPATIBILITY_PLANNING.md") in first_line
+        assert hits == []
+    # Every other live pointer resolves and is the newest of its class.
+    assert [f for f in report.findings
+            if f.code == "POINTER_TARGET_NOT_NEWEST"] == []
+    # docs/governance_harness carries no pointer files -> NOT_APPLICABLE.
+    from harness_common import Severity
+    na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
+    assert {f.source_path for f in na} == {"docs/governance_harness"}
+    assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
 @live

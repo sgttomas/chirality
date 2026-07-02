@@ -203,6 +203,10 @@ def build_project(repo: Path, project: str, statuses: dict[str, str],
            "# Register\n\n| ID | Decision | State |\n|---|---|---|\n| D-01 | Fixture | RULED |\n")
     _write(root / "execution" / "_DAG" / "_LATEST.md",
            "# Latest DAG Pointer\n\n- Approved graph authority: `execution/_DAG/DAG-001/`\n")
+    # The designated graph directory exists, so the GEN-7 pointer-currency
+    # check is quiet on the default fixture tree.
+    _write(root / "execution" / "_DAG" / "DAG-001" / "APPROVAL_RECORD.md",
+           "# DAG-001 record (fixture)\n")
     for name, text in statuses.items():
         _write(root / "execution" / "PKG-01_Fixture Pkg" / "1_Working"
                / name / "_STATUS.md", text)
