@@ -31,6 +31,8 @@
 
 Every chapter is agent-drafted (as the Status table records), directed by the owner, drawing from the cited governed sources in the Source Material table. Applying the system's own warrant lifecycle (`docs/TYPES.md` §10.4, UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) to this document set: the thesis stands at CITED/REVIEWED. It has NOT been AUTHENTICATED — that transition is a human act (the owner's double commitment: affirming the claims are warranted and binding to them) and has not occurred. Per K-CLAIM-1 the thesis therefore binds nothing and is not a governance surface; on any disagreement, the governed record (root `docs/`, decision records) governs.
 
+An owner-revision backlog for the thesis is catalogued in `plans/consistency_audit_2026-07-01.md` (2026-07-01).
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem
