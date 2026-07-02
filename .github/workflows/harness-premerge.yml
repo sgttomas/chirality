@@ -2,6 +2,12 @@ name: Harness Pre-merge Validation
 
 on:
   pull_request:
+    # Scoped 2026-07-01: this validates the chirality-app-dev frontend harness;
+    # the unscoped trigger + pre-monorepo paths (frontend/ at repo root) made it
+    # fail on every PR after the monorepo migration moved the frontend under
+    # projects/chirality-app-dev/.
+    paths:
+      - "projects/chirality-app-dev/frontend/**"
   workflow_dispatch:
 
 permissions:
@@ -24,7 +30,7 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: projects/chirality-app-dev/frontend/package-lock.json
 
       - name: Verify CI prerequisites
         run: |
@@ -42,12 +48,12 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          cd frontend
+          cd projects/chirality-app-dev/frontend
           npm ci
 
       - name: Start frontend server
         run: |
-          cd frontend
+          cd projects/chirality-app-dev/frontend
           nohup npm run dev -- --hostname 127.0.0.1 --port 3000 >/tmp/chirality-harness-dev.log 2>&1 &
           echo $! >/tmp/chirality-harness-dev.pid
 
@@ -55,7 +61,7 @@ jobs:
         run: |
           for attempt in $(seq 1 90); do
             status="$(curl -sS -o /tmp/harness-ready.json -w "%{http_code}" --get \
-              --data-urlencode "projectRoot=${GITHUB_WORKSPACE}" \
+              --data-urlencode "projectRoot=${GITHUB_WORKSPACE}/projects/chirality-app-dev" \
               "${HARNESS_BASE_URL}/api/harness/session/list" || true)"
 
             if [ "${status}" = "200" ]; then
@@ -73,19 +79,19 @@ jobs:
 
       - name: Run harness pre-merge wrapper
         run: |
-          cd frontend
+          cd projects/chirality-app-dev/frontend
           npm run harness:validate:premerge
 
       - name: Verify stable summary artifact
         run: |
-          test -f frontend/artifacts/harness/section8/latest/summary.json
+          test -f projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
 
       - name: Upload Section 8 summary artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: harness-section8-summary
-          path: frontend/artifacts/harness/section8/latest/summary.json
+          path: projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
           if-no-files-found: error
 
       - name: Print frontend server logs on failure
