@@ -1,11 +1,14 @@
 # Bridge Work Loop — standing plan (app-dev ↔ piping tier-0 bridge)
 
 > **Epistemic status: agent-authored plan — not authority.** Written at owner direction
-> (Ryan Tufts, K-AUTH-1) on 2026-07-02. This plan never authorizes work: owner-adopted
-> briefs and owner rulings do. Sources govern on any disagreement. This file is a
-> PROTOCOL plus a coarse backlog; it deliberately does NOT spell out work ahead of
-> time — each loop iteration re-derives state from the live tree. The Loop Log at the
-> bottom is append-only; earlier entries are history, never edited.
+> (Ryan Tufts, K-AUTH-1) on 2026-07-02; protocol reformed 2026-07-02 at owner direction
+> (see `LOOP_RECEIPTS.md`, Receipt 0). This plan never authorizes work: owner-adopted
+> briefs and owner rulings/directions do. Sources govern on any disagreement. This file
+> is a PROTOCOL plus pointer indexes; it carries NO status, NO work history, and NO
+> measurements — each loop iteration re-derives state from the live tree, and loop
+> closes append a minimal receipt to `_DomainEngines/bridge/LOOP_RECEIPTS.md` (rules
+> live at the top of that file). The Loop Log at the bottom is SEALED immutable
+> history from Loops 1–2.
 
 ## Owner intent (recorded 2026-07-02)
 
@@ -16,13 +19,14 @@ retained only where the governance structure compels it.
 
 ## Why any staging remains (the compelling reasons)
 
-1. **Adoption is a human act** (K-AUTH-1; D-GOV-04): every governed tranche requires an
-   owner-adopted brief. No agent can pre-authorize N tranches; each loop therefore has
-   an adoption gate.
-2. **Live binding is gated ×4** (`_DomainEngines/profiles/open_pipe_stress.yaml:143`):
-   tier-0 adoption (cleared) · app-dev F3 (D-T0-08 sequence, needs proven L2) ·
-   piping D-21 (adoption held) · DEC-041 automation (needs consumable package).
-   Three of four are owner rulings or unbuilt prerequisites — not agent work.
+1. **Adoption, ruling, and direction are human acts** (K-AUTH-1; D-GOV-04): deliverable
+   tranches require an owner-adopted brief; coordination/control work (decision
+   packets, CHANGE preps, design docs) requires owner direction. No agent can
+   pre-authorize N tranches; each loop therefore has a gate.
+2. **Live binding is gated** — the gate set and its current state are enumerated in
+   the ADOPTED profile's open_issues (`_DomainEngines/profiles/open_pipe_stress.yaml`,
+   the "Live binding" line) and in the decision registers; re-derive them at Step 0,
+   never from this file.
 3. **Fences F1–F4** bound what any tranche may touch regardless of ambition.
 
 The loop is therefore comprehensive over the *lawful surface at each iteration* — a
@@ -31,36 +35,59 @@ work is deferred only by gates.
 
 ## The loop protocol (every iteration)
 
-0. **Discover.** `git` state (expect main at or past this file's commit); harness
-   `status` ×3, `drift --all`, `self-check`, `next`,
-   `python3 -m pytest tools/practitioner_harness -q`
-   (`PYTHONDONTWRITEBYTECODE=1` each); read this plan's Loop Log; re-read the
-   readiness map (`_DomainEngines/bridge/READINESS_2026-07-02_bridge_tranche1.md`,
-   esp. §1's naive-reading corrections — pointers to check, not conclusions to
-   assume); check BOTH project decision registers + the tier-0 register for rulings
-   newer than the last Loop Log entry. New rulings are how work unlocks — look for
-   them every time. Compare measurements against the last Loop Log entry's recorded
-   state; a differing measurement is a finding to report, not background.
-1. **Select.** The widest lawful tranche(s) now. Principles, in order:
+0. **Discover (mandatory core).** Clean `git` state and branch awareness (log since
+   the last receipt); read the latest receipt(s) in
+   `_DomainEngines/bridge/LOOP_RECEIPTS.md`; check BOTH project decision registers +
+   the tier-0 register for rulings newer than the last receipt (new rulings are how
+   work unlocks — look every time); harness `status` ×3, `drift --all`, `self-check`
+   (`PYTHONDONTWRITEBYTECODE=1` each). Verify any derivative statement — including
+   this plan, dated maps, and your own tasking — against the live tree before relying
+   on it; on disagreement the live tree wins and the delta goes in the receipt.
+   *Conditional, by need:* harness `next` only when selecting deliverable-shaped
+   work; the dated readiness assessment
+   (`_DomainEngines/bridge/READINESS_2026-07-02_bridge_tranche1.md`) only when
+   historical rationale is needed; full harness pytest at discovery only if
+   `tools/**` changed since the last receipt (it is always mandatory at closeout —
+   step 4).
+1. **Select.** The widest lawful tranche(s) now, re-derived. Principles, in order:
    (a) work that discharges a gate prerequisite beats work that doesn't;
-   (b) owner-queued items (below) beat agent-inferred ones;
+   (b) owner-directed items beat agent-inferred ones;
    (c) doc/design-level before any binding;
-   (d) one brief per deliverable fence — don't split what one brief covers, never
-       merge across fences.
-2. **Brief.** `python3 tools/practitioner_harness/harness.py brief --project <p>
-   --deliverable <id>` per selected deliverable → CANDIDATE(s); fill the objective
-   (practitioner-proposed, grounded in cited files — K-INVENT-1).
-3. **Gate.** STOP; owner adopts/declines: edit `state:` → HUMAN_ADOPTED, fill
-   `adopted_by:`/`adopted_on:` (per `docs/governance_harness/human_actors.md`), move
-   the file to a governed path OUTSIDE `_harness_generated/`, commit; agent confirms
-   with `brief --verify-adoption <path>`. Record the outcome in the Loop Log.
-4. **Execute** on a branch (branch-first + PR), inside the adopted fence + standing
-   constraints below.
-5. **Check.** `run-validations`, `scope-check` (PR diff range vs fence),
-   `evidence-check`, `closeout-digest`; open PR; CI (governance-harness workflow)
-   green; owner merges — never self-merge.
-6. **Log.** Append a Loop Log entry: measurements, deltas observed, work done, what's
-   newly unlocked, owner-action queue changes. Next iteration starts at 0.
+   (d) match the vehicle to the work type: deliverable work takes a harness brief
+       (one brief per deliverable fence — don't split what one brief covers, never
+       merge across fences); coordination/control artifacts (decision packets,
+       CHANGE preps, design docs, correction records) take explicit owner direction
+       and need no brief — the harness brief cannot fence them.
+2. **Brief / slate.** For deliverable work: `python3
+   tools/practitioner_harness/harness.py brief --project <p> --deliverable <id>` →
+   CANDIDATE(s); fill the objective (practitioner-proposed, grounded in cited
+   files — K-INVENT-1). For coordination/control work: present the owner a decision
+   slate (options + non-binding recommendation + the on-ruling mechanism).
+3. **Gate.** STOP; adoption/ruling/direction is the owner's act (K-AUTH-1; D-GOV-04).
+   Briefs: owner edits `state:` → HUMAN_ADOPTED, fills `adopted_by:`/`adopted_on:`
+   (per `docs/governance_harness/human_actors.md`), moves the file to a governed
+   path OUTSIDE `_harness_generated/`, commits; agent confirms with
+   `brief --verify-adoption <path>`. Directions/rulings given in-session are quoted
+   verbatim in the receipt and recorded in their governed artifact (packet §7,
+   ruling record, register row) as part of execution. Record every gate outcome in
+   the receipt — including no-ops and their reason.
+4. **Execute + check (by work type).** Branch-first + PR unless the owner directs
+   main-direct; mutually exclusive write scopes when parallel; inside fences +
+   standing constraints below.
+   - Adopted deliverable tranches: `run-validations`, `scope-check` (PR diff range
+     vs fence), `evidence-check`, `closeout-digest`.
+   - Coordination/control artifacts: adversarial review (citation integrity,
+     convention fidelity against the named precedent, register consistency) +
+     git-diff scope containment.
+   - ALL work at closeout: `self-check`, `drift --all`, and the FULL harness pytest
+     including the live-baseline suite — non-`tools/**` changes that alter measured
+     reality are exactly what the live pins catch (both 2026-07-02 CI failures were
+     this); a legitimate change that moves a pinned measurement carries its
+     conscious pin update in the same PR.
+   - CI (governance-harness workflow) green; owner merges — never self-merge.
+5. **Receipt.** Append a minimal receipt to `_DomainEngines/bridge/LOOP_RECEIPTS.md`
+   per its local rules — pointers, verbatim owner directions, gate outcomes,
+   check pass/fail. No narrative here or anywhere else. Next iteration starts at 0.
 
 ## Standing constraints (all iterations)
 
@@ -72,163 +99,66 @@ work is deferred only by gates.
   `core/handoff/**`. Tier-0 control-root writes only under
   `_DomainEngines/proposals/open_pipe_stress/**` or `_DomainEngines/bridge/**`
   (profile `agent_writable_paths`).
-- Never edit: the ADOPTED profile (tier-0 CHANGE only); the three owner-retained
-  self-check fixtures (governance register item 3); DEC-041 prose / DEC-051's
-  "staged for CHANGE" wording (immutable history); the readiness assessment (deltas
-  go in Loop Log entries, not the record).
+- Never edit: the ADOPTED profile (tier-0 CHANGE only — owner act or explicit
+  owner-delegated execution); the three owner-retained self-check fixtures
+  (governance register item 3); DEC-041 prose / DEC-051's "staged for CHANGE"
+  wording (immutable history); the readiness assessment and the sealed Loop Log
+  (deltas go in loop receipts, not the record).
 - Cross-reference, never invent (K-INVENT-1). Two deliverables share the id
   DEL-10-03 (app-dev "OperationProposal Record and Human Gate Workflow" vs piping
   "Local FEA handoff data contract") — always name the repo; never merge their rows.
 
-## Backlog (coarse; re-derive at step 0 — locations are where state is recorded)
+## Where live work is re-derived (pointer index — never a status surface)
 
-### Lawful now — bridge lane (app-dev / tier-0)
+Work history and completion state live in git, PRs, decision records, and
+deliverable-local files. This index only says WHERE to look at Step 0:
 
-- **app-dev DEL-10-03 result-schema tranche** (loop-1 brief
-  `TRB-chirality-app-dev-DEL-10-03-2026-07-02`, CANDIDATE): close/annotate the open
-  result-schema TBDs (Specification.md:19,43,44,48,62,64,65;
-  Procedure.md:14,15,40,71,81,83,85; Datasheet.md:44,54; Guidance.md) by
-  cross-referencing piping Rust shapes — e.g. `OperationOutcome`,
-  `projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs:118-141`
-  — per FM-04_OperationProposal_merge.md:54-59. Note direction: FM-04 cites the
-  deliverable's 7 TBDs; no back-pointer exists inside the deliverable.
-  **[EXECUTED Loop 1 at `4968ed485`; brief HUMAN_ADOPTED, awaiting owner
-  review→CLOSED. Loop 2 verified no lawful in-fence agent work remains — all
-  residue is human-shaped or gate-blocked.]**
-- **app-dev DEL-10-01 refinement** (loop-1 brief
-  `TRB-chirality-app-dev-DEL-10-01-2026-07-02`, CANDIDATE): same cross-reference
-  pattern (Guidance.md:59-63) + dependency-closure annotation
-  (Assessment_INSP-03_DEL-10-01.md:38,46). ResponsibleParty and doc-only issuance
-  basis are human-shaped — excluded.
-  **[EXECUTED Loop 1 at `9a29c0372`; brief HUMAN_ADOPTED, awaiting owner
-  review→CLOSED. Same Loop 2 residual verdict as DEL-10-03.]**
-- **PKG-10 status-history wording repair** (INSP-03 High, ON-STRATEGY, size S:
-  Assessment_INSP-03_DEL-10-03.md:37,52; Assessment_INSP-03_DEL-10-01.md:36) —
-  in-fence with the two briefs above; wording only, no state advance.
-  **[DONE Loop 1 — MEMORY.md forward-corrections in both deliverables.]**
-- **PLAN_cross_tier.md reconciliation** (`_DomainEngines/bridge/BRIDGE_2026-06-21_
-  tier0-prep/PLAN_cross_tier.md:40-41`, self-declared PROPOSAL): row 40 still says
-  "blocked by D-T0-01" (ruled; REF-008 pin landed), row 41 bundles the headless CLI
-  entrypoint into the DEC-042 prep lane (DEC-042 does not sanction it). Lawful under
-  the bridge/** write lane; needs owner green-light on scope.
-  **[DONE Loop 1 at `d0b53d851`; the reconciled who-does-what rows now sit at
-  PLAN_cross_tier.md:47-48 (line drift from the :40-41 cited above).]**
+- **Decision registers** (open rows are the owner-gated surface):
+  `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md` ·
+  `projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md` ·
+  `_DomainEngines/_DECISIONS/_REGISTER.md`.
+- **Gates**: the ADOPTED profile's open_issues "Live binding" line
+  (`_DomainEngines/profiles/open_pipe_stress.yaml`) + D-T0-08's sequence.
+- **Deliverable-shaped work**: harness `next` pick-lists + the briefs under
+  `docs/governance_harness/briefs/`.
+- **Piping's own track**: `projects/chirality-piping/docs/PLAN.md` (Phase/R rows)
+  and `projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md` §12.
+- **Handoff context** (owner directions, gate outcomes, stale-map deltas):
+  `_DomainEngines/bridge/LOOP_RECEIPTS.md`.
+- **Shared-id hazard** (standing): two deliverables share the id DEL-10-03
+  (app-dev vs piping) — always name the repo.
 
-### Lawful now — piping lane (piping's own track unless the owner pulls it into this loop)
+## Owner-action pointer index (IDs and paths only — state lives in the records)
 
-- **DEC-055 codification append** (SOFTWARE_DECOMP.md §12; highest entry DEC-054 at
-  :624): the D-28 ruling exists (owner O-A 2026-07-01, packet §7); the §12 entry is a
-  recording action per packet §8. Never edit DEC-041 (:611) in place.
-  **[DONE Loop 1 at `a0c50e5aa` — DEC-055 at SOFTWARE_DECOMP.md:625; D-28 register
-  row points at it; DEC-041 untouched.]**
-- **D-21 packet preparation** (piping `_REGISTER.md:45` NOT_PREPARED (held); D-27
-  prerequisite RULED at :51; `docs/PLAN.md:84`): prep permitted, adoption held.
-  **[EXECUTED Loop 2 — PR #14 (`loop2/d21-packet-prep`): packet + register row
-  → AWAITING_RULING (adoption held). Owner: review/merge, then rule D-21.]**
-- **DEC-042 design/spec items 1–2** (SOFTWARE_DECOMP.md:612): proposal→apply bridge +
-  OperationSet→Plan schema extension; candidate-generation + schema-reconciliation
-  design. Item 3 (retrieval index) is DONE per DEC-043 (:613) — do not re-plan.
-  **[EXECUTED Loop 2 — PR #15 (`loop2/dec042-design-docs`): two design docs in
-  piping `plans/` under DEC-042's fence-free prep sanction (no deliverable created —
-  where the designs land, DEL-16-05 via decomposition or DEL-16-01 amendment,
-  stays the owner's choice, presented in both docs). Note: the app-dev harness has
-  NO formal Plan type today; the OperationSet→Plan extension is a piping-side
-  envelope with the app-dev half left OPEN.]**
-- **Publish piping DEL-10-03 result schemas** (profile TBDs at
-  open_pipe_stress.yaml:81,88,101,115 cite them; shapes live only in Rust today):
-  lawful piping-loop deliverable work over its own governed lane.
-  **[DONE Loop 1 at `a0c50e5aa` — `schemas/operation_outcome.schema.json` +
-  `schemas/rule_check_run_result.schema.json` + stdlib contract tests; the profile
-  hook fields themselves stay TBD pending the owner tier-0 CHANGE (queue item 2).]**
-- **Ordinary Phase E/R5 work** (`docs/PLAN.md:84`; open decision rows D-06, D-10b,
-  D-20, D-05b et al.).
+Open at the time of the 2026-07-02 protocol reform; re-derive every loop:
 
-### Owner-gated (each unlock widens the loop surface)
+- **SCA propagation for D-21** — ruled O-A; execution not yet directed. See
+  `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`
+  §8 step 3 and DEC-056.
+- **Package-extraction tranche** — greenlit, not yet scheduled. See
+  `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_RULING_2026-07-02.md`.
+- **DEC-042 design landing** — owner chose "leave in `plans/` until R7 has
+  weight" (Receipt 0); revisit after SCA propagation.
+- **Headless CLI entrypoint** — un-sanctioned, un-built; needs its own piping
+  decision. See `_DomainEngines/profiles/open_pipe_stress.yaml` (headless_runner
+  entry).
+- **root `docs/CONTRACT.md` ratification** — DRAFT; per-invariant D-GOV-05 table.
+- **Maintenance pointers**: profile open_issues gate line (stale post-DEC-056;
+  tier-0 CHANGE lane) · piping register footer prose re "D-21 remains held"
+  (stale post-ruling) · `D-APP-44_RULING_2026-06-21.md` ruling SHA still TBD
+  (optional cleanup) · residual fresh-clone WARN refs (see PR #16 §3) ·
+  D-T0-06:7 / D-GOV-07:26 WARNs stand by ruled default (R6 c/d, Receipt 0).
+- **Queued TOOLMAKER work** (Receipt 0): comparison anchors fully into
+  harness-recorded form; generated owner-queue / bridge-status view over
+  decision records.
 
-- **D-APP-46** (app-dev `_REGISTER.md:57`, AWAITING_RULING) — keystone: package
-  extraction → consumable harness contract → proven L2 → opens the F3 sequence
-  (D-T0-08) and the DEC-041 automation condition.
-- **D-APP-45** (app-dev `_REGISTER.md:56`, AWAITING_RULING) — Flow-A contract version.
-  D-28's binding rule is RULED (count from live `event-schema.ts`, 43 verified at
-  source 2026-07-02) but pin EXECUTION stays gated (D-28 §5).
-- **D-21 adoption** (held) — piping SCOPE_CHANGE packet, owner lane.
-- **Headless CLI entrypoint** (open_pipe_stress.yaml:103-107, TOOLMAKER handoff,
-  un-built; brief stub exists in BRIDGE_2026-06-21_tier0-prep/) — needs its own
-  piping-loop decision; NOT lawful prep today.
-- **root docs/CONTRACT.md ratification** (DRAFT; per-invariant D-GOV-05 table).
-- **piping DEL-10-03 status header/history mismatch** (IN_PROGRESS vs History
-  CHECKING) — which surface is right is a human call (K-CONFLICT-1); part of the
-  known drift-92 class.
+## Loop Log (SEALED 2026-07-02 — immutable history, no further entries)
 
-## Owner-action queue (standing — re-derive each loop)
-
-0. ~~**Merge PRs #17–#20** + fill the `Ruling SHA: TBD` fields.~~ DONE
-   2026-07-02: owner merged all four (merge commits `1dccf54fd` #17 /
-   `6c975774c` #18 / `f7c9e95b3` #19 / `f9626fa32` #20); post-merge tree
-   verified — self-check INFO=8/NA=1/REVIEW=23/WARN=2, drift 0/154, pytest
-   239 passed. D-APP-45/46 ruling SHAs bound to `6c975774c` (PR #18 publication
-   commit) in both records and register rows, owner-confirmed, at `940caa108`.
-   (D-APP-44's own long-standing `ruling SHA TBD` left as-is — not in scope;
-   flagged as optional future cleanup.)
-   Newly unlocked lanes to direct WHEN the owner resumes development (parked
-   pending the loop-reflection): (i) the D-21 SCA propagation workflow
-   (PRD v0.2 supersession/delta + plan revision carrying Annex A + stage-token
-   re-keying — authorized by DEC-056, not yet executed, piping lane); (ii) the
-   package-extraction tranche (D-APP-46 Option A — next loop's headline brief);
-   (iii) tier-0 CHANGE candidates now stale: profile `:143` gate line (piping
-   D-21 cleared) and piping register footer prose (~:64-65, :82 still say
-   "D-21 remains held").
-1. ~~Adopt/decline the loop-1 CANDIDATE briefs~~ DONE 2026-07-02 (both adopted,
-   fences verified ACTIVE at `abafd4d24`). ~~Remaining brief lifecycle acts:
-   HUMAN_REVIEWED → CLOSED on both~~ DONE 2026-07-02 (owner in-session sign-off
-   R4; recorded on PR #18, verify-adoption terminal posture confirmed).
-2. **Tier-0 CHANGE**: point the ADOPTED profile's four result-schema hook fields
-   (`open_pipe_stress.yaml:81,88,101,115` `TBD # DEL-10-03`) at the schemas published
-   2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`,
-   `rule_check_run_result.schema.json`). Owner act; unblocked by Loop 1.
-   **Loop 2 prepared it to one-commit readiness: PR #16 carries the CHANGE packet
-   (exact before/after per line; the :101 n/a nuance presented as your choice;
-   validator re-run steps; SHA-binding commit text). Note the packet's tasking
-   correction: :143 needs NO edit (it is the live-binding gate line, not the
-   schema-TBD line — this queue item's own ":143" framing in earlier drafts was
-   imprecise); the consequential comment edit is at :72-74.**
-3. ~~Rule D-APP-46 (keystone) and D-APP-45 when ready.~~ DONE 2026-07-02
-   (in-session: D-APP-46 Option A "I approve …"; D-APP-45 "I approve your
-   recommendation." — both recorded on PR #18 per the D-APP-44 pattern;
-   Ruling SHAs bind at merge).
-4. ~~Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design
-   docs; D-21 packet prep) runs in the next loop iteration or in piping's own
-   sessions.~~ DIRECTED 2026-07-02 (owner, in-session: "execute all items, working
-   in parallel when write scopes are mutually exclusive") and EXECUTED same day —
-   PRs #14 (D-21 packet), #15 (DEC-042 items 1–2 design docs), #16 (tier-0 CHANGE
-   prep). Remaining owner acts on this item: review/merge the three PRs; confirm
-   at D-21 ruling time the packet's §2 read that your direction superseded
-   DEC-042's "no packet is prepared while held" clause for PREPARATION only; and
-   choose where the DEC-042 designs land if adopted (new design deliverable via
-   decomposition vs DEL-16-01 Spec amendment — both docs present the options
-   without choosing).
-5. ~~Harness defects surfaced by Loop 1 (spin-off task chip created)~~ DONE
-   2026-07-02 (owner-merged PR #13 at `d925b0b51`, fix `7da70fbf5`): evidence
-   records now self-label `authority_class: generated_view` (GEN-3 clean with
-   evidence present, live at `evidence_records.py:150` / `cmd_self_check.py:492`);
-   GEN-5 strips brief-format trailing parentheticals (the 8 brief-format WARNs are
-   gone). Verified by Loop 2 measurements: self-check exit 0, WARN back to the 3
-   pre-existing; pytest 239 (+3 regression tests).
-6. Maintenance calls surfaced by evidence runs: the three pre-existing WARN
-   `UNRESOLVED_SOURCE_REF`s (CHANGE_HANDOFF.md:27, D-T0-06:7, D-GOV-07:26 — the first
-   two reference the removed DRAFT profile; D-T0-06 is fixture-adjacent) and
-   PROFILE_STATUS.md's stale `open_pipe_stress.DRAFT.yaml` name — owner/CHANGE lane,
-   not agent-writable. Also: piping DEL-10-03 `_STATUS.md` header/history mismatch
-   (K-CONFLICT-1 human call). **Loop 2 additions: PR #16 §4 carries ready-to-apply
-   proposals for each of these (with fixture-adjacent cautions and
-   record-immutability defaults). New environment fact from Loop 2 worktree runs:
-   the WARN=3 self-check baseline holds only where untracked artifacts exist on
-   disk — a fresh clone/worktree measures WARN=8, because four refs in the two
-   committed adopted briefs point at gitignored `_harness_generated/` paths and
-   CHANGE_HANDOFF.md:41 cites the empty untracked proposals dir. PR #16 §3
-   documents it with an optional fix; fresh-checkout readers should expect 8.**
-
-## Loop Log (append-only)
+> Sealed at owner direction during the 2026-07-02 loop-protocol reform
+> (Receipt 0 in `_DomainEngines/bridge/LOOP_RECEIPTS.md`). The narrative
+> entries below are the historical record of Loops 1–2 and are never edited.
+> Loop closes now append a minimal receipt to `LOOP_RECEIPTS.md` instead;
+> the narrative pattern below is retired — do not imitate it.
 
 - **2026-07-02 — Loop 1** (session of record for this plan). Discover: main
   `78a592fbf` clean; drift 92/154 all piping, flat vs recorded 92/101; self-check
