@@ -101,8 +101,8 @@ def test_all_commands_leave_governed_tree_byte_identical(tmp_path, capsys):
 
 @requires_git
 def test_phase4_checks_read_governed_files_only(tmp_path, capsys):
-    """scope-check, evidence-check, and closeout-digest WITHOUT
-    --write-digest read governed files only: the governed tree stays
+    """scope-check, evidence-check, closeout-digest WITHOUT --write-digest,
+    and coord-check read governed files only: the governed tree stays
     byte-identical and nothing lands under the generated root. (.git/ is
     excluded from the hash: `git status` refreshes the index stat cache; the
     read-only guarantee covers the governed working tree.)"""
@@ -134,6 +134,7 @@ def test_phase4_checks_read_governed_files_only(tmp_path, capsys):
         # closeout-digest WITHOUT --write-digest: reads only.
         ["closeout-digest", "--brief", BRIEF_RELPATH,
          "--diff", f"{base}..HEAD"],
+        ["coord-check", "--diff", f"{base}..HEAD"],
     ]
     for cmd in commands:
         rc = harness.main(["--repo-root", str(repo), *cmd])

@@ -70,6 +70,15 @@ WORKING_CONTENT_ONE_HIT_MD = f"""# Working content artifact (fixture)
 Draft cites a local screenshot at {FIXTURE_ABS}/Desktop/capture.png for now.
 """
 
+NON_USERS_ROOTS_PLAN_MD = """# Fixture broader roots
+
+Temp output: /tmp/chirality-harness/out.json
+Private tmp output: /private/tmp/chirality-harness/out.json
+Home output: /home/fixture/chirality-harness/out.json
+macOS temp output: /var/folders/0s/fixture/T/chirality-harness/out.json
+Boundary prose: public/private/protected-content is not a machine path.
+"""
+
 APP_DEV = ("projects", "chirality-app-dev")
 
 
@@ -83,6 +92,26 @@ def _fact(report, fact_id):
 
 def _gen8(report):
     return _findings(report, "ABS_PATH_IN_PROJECT_SURFACE")
+
+
+def test_abs_path_regex_matches_supported_machine_roots_without_privacy_false_positive():
+    matches = [
+        "/Users/fixture/project/file.md",
+        "/private/tmp/chirality/file.md",
+        "/home/fixture/project/file.md",
+        "/tmp/chirality/file.md",
+        "/var/folders/0s/chirality/file.md",
+    ]
+    for value in matches:
+        assert cmd_self_check.ABS_PATH_RE.search(value), value
+
+    misses = [
+        "public/private/protected-content",
+        "core/private/report-template.txt",
+        "docs/home/page.md",
+    ]
+    for value in misses:
+        assert cmd_self_check.ABS_PATH_RE.search(value) is None, value
 
 
 # --- (a) plans/ file: ONE per-file REVIEW finding, count + first line -------------
@@ -108,6 +137,18 @@ def test_plans_file_yields_one_finding_with_count_and_first_line(tmp_path):
     assert "never rewrite" in f.message
     assert "human review required" in f.message
     assert find_claim_language(f.message) == []
+
+
+def test_plans_file_detects_non_users_machine_roots(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    _write(repo.joinpath(*APP_DEV, "plans", "broader_roots.md"),
+           NON_USERS_ROOTS_PLAN_MD)
+    report, _ = cmd_self_check.run_self_check(repo)
+    f = _has(report, "ABS_PATH_IN_PROJECT_SURFACE",
+             "projects/chirality-app-dev/plans/broader_roots.md", line=3,
+             severity=Severity.REVIEW)
+    assert "4 machine-absolute-path hit line(s)" in f.message
+    assert "public/private/protected-content" not in f.message
 
 
 # --- (b) _Coordination/_DECISIONS record -> REVIEW --------------------------------
