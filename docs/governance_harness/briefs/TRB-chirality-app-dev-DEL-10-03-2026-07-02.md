@@ -3,10 +3,10 @@
 > Regenerate from project files; safe to delete. Structural checks are not approval,
 > issue, authentication, or acceptance of residual risk (K-AUTH-1; D-GOV-01).
 
-# Tranche brief TRB-chirality-app-dev-DEL-10-03-2026-07-02 — HUMAN_ADOPTED
+# Tranche brief TRB-chirality-app-dev-DEL-10-03-2026-07-02 — CLOSED
 
 - tranche_id: `TRB-chirality-app-dev-DEL-10-03-2026-07-02`
-- state: HUMAN_ADOPTED
+- state: CLOSED
   - lifecycle: CANDIDATE → HUMAN_ADOPTED → EXECUTED → CHECKED → HUMAN_REVIEWED → CLOSED/SUPERSEDED
   - (brief lifecycle is metadata on harness artifacts only — never the deliverable lifecycle)
 - objective: Close or annotate the open result-schema TBDs in this deliverable's working
@@ -27,6 +27,15 @@
   - adoption provenance: owner adoption directed in-session 2026-07-02 ("Both are
     adopted"); metadata recorded by agent at owner direction. The adoption act is the
     owner's (K-AUTH-1; D-GOV-04); this record binds to the publication commit (K-AUTH-2).
+- reviewed_by: Ryan Tufts
+- reviewed_on: 2026-07-02
+- closed_by: Ryan Tufts
+- closed_on: 2026-07-02
+  - closure provenance: owner review and closure signed in-session 2026-07-02 ("I
+    sign-off on these"); lifecycle steps HUMAN_REVIEWED → CLOSED recorded in the same
+    act with the same date; metadata recorded by agent at owner direction. The
+    review/closure act is the owner's (K-AUTH-1; D-GOV-04); a terminal-state brief no
+    longer fences new work.
 
 ## source_basis
 
@@ -104,11 +113,11 @@ Adoption is a human act (D-GOV-04); the harness never performs any of these step
 
 ---
 
-HUMAN_ADOPTED brief — an enforceable fence upon commit to the governed record (D-GOV-04; K-AUTH-2 binds to the publication commit); the cited sources govern on any disagreement.
+CLOSED brief — a terminal lifecycle record, no longer an active fence (D-GOV-04); the adoption and closure bind to committed content (K-AUTH-2); the cited sources govern on any disagreement.
 
 ## Summary
 
 Finding severities: none
 - tranche_id: TRB-chirality-app-dev-DEL-10-03-2026-07-02
 - deliverable: DEL-10-03
-- state: HUMAN_ADOPTED
+- state: CLOSED
