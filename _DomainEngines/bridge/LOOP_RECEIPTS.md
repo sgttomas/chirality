@@ -115,3 +115,11 @@
   - Gate outcome: HB-5 tooling/control tranche executed only; coordination-artifact diff checks are mechanical reports over citations/register rows/named precedent; no app-dev/piping integration lane resumed and no protected-path crossing.
   - Checks: `coord-check --diff origin/codex/hb4-generated-ref-classification..HEAD` pass; status x3 no severities; drift 0/154; self-check exit 0 with expected INFO=12/REVIEW=28/WARN=2; `git diff --check` pass; focused HB-5 tests 11 passed; harness pytest 247 passed / 1 skipped.
   - Parked lanes: PR #21 merge/CI disposition, PR #22/PR #23/PR #24/PR #25 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
+
+- **2026-07-03 — Receipt 7**
+  - Start: `911f7ce6c`; branch `codex/bridge-ledger-pr-merge` from `origin/main`; tree clean before ledger update.
+  - Owner direction of record (2026-07-03, in-session): "Merge the PRs" and "Update the loop ledger".
+  - Executed pointers: PRs #26→#25→#24→#23→#22→#21 merged; merge commits `b00f427ae`, `3ea9e12f`, `13563726`, `305ed6a0`, `ff80c028`, `911f7ce6c`.
+  - Gate outcome: harness/control stack landed on `main`; no app-dev/piping integration lane resumed beyond the merged D-APP-46 internal package extraction and harness-control work already recorded in Receipts 1–6.
+  - Checks: post-merge `governance-harness` on `main` passed for `911f7ce6c`; local self-check exit 0 with expected INFO=12/REVIEW=28/WARN=2; ledger diff-check pass.
+  - Parked lanes: SCA propagation, package consumption, F3, live binding, and open piping register rows remain owner/environment gated.
