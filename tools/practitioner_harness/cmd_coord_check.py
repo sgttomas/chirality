@@ -1,0 +1,215 @@
+#!/usr/bin/env python3
+"""`coord-check` - report-only checks for coordination/control artifacts.
+
+This command is the coordination-artifact analogue to the brief-fenced Phase 4
+checks: it reads the tracked paths changed by a git diff range, selects the
+coordination/control subset, and reports mechanical findings only. It never
+selects work, never validates an outcome, and never changes lifecycle state.
+"""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+from cmd_scope_check import _changed_paths, _validate_diff_range
+from cmd_self_check import (
+    _candidate_refs,
+    _is_declared_generated_root_ref,
+    _resolve_ref_path,
+)
+from harness_common import Report, Severity, make_finding
+
+COORD_NOTE = (
+    "coord-check inspects changed coordination/control artifacts in a git diff "
+    "range. It reports citation resolution, same-directory decision-register "
+    "coverage for changed decision records, and named-precedent presence for "
+    "packet-shaped records; it is never approval, selection, or lifecycle "
+    "judgment.")
+
+DIFF_NOTE = (
+    "Only current file content for tracked changed paths is inspected; deleted "
+    "files, reverted intermediate edits, untracked files, gitignored files, "
+    "and files outside this repository are blind spots.")
+
+TEMPLATES = [COORD_NOTE, DIFF_NOTE]
+
+COORD_PREFIXES = (
+    "_DomainEngines/bridge/",
+    "_DomainEngines/_DECISIONS/",
+    "_DomainEngines/proposals/",
+    "docs/governance_harness/_DECISIONS/",
+)
+DECISION_ID_RE = re.compile(r"^(D(?:-[A-Z0-9]+)*-\d+[A-Za-z]?)")
+PRECEDENT_RE = re.compile(
+    r"\b(precedent|pattern|skeleton|modeled on|convention)\b", re.IGNORECASE)
+
+
+def _is_coordination_artifact(relpath: str) -> bool:
+    if relpath.startswith(COORD_PREFIXES):
+        return relpath.endswith(".md")
+    return "/execution/_Coordination/" in relpath and relpath.endswith(".md")
+
+
+def _decision_id_from_record(relpath: str) -> str:
+    path = Path(relpath)
+    if path.name == "_REGISTER.md" or path.suffix != ".md":
+        return ""
+    if path.parent.name != "_DECISIONS":
+        return ""
+    m = DECISION_ID_RE.match(path.name)
+    return m.group(1) if m else ""
+
+
+def _register_contains_decision(register_text: str, decision_id: str) -> bool:
+    return re.search(
+        rf"\|\s*`?{re.escape(decision_id)}`?\s*\|", register_text) is not None
+
+
+def _requires_named_precedent(relpath: str) -> bool:
+    path = Path(relpath)
+    lower = path.name.lower()
+    if _decision_id_from_record(relpath):
+        return True
+    return (
+        "change_prep" in lower
+        or "decision_packet" in lower
+        or "design" in lower
+    )
+
+
+def _check_citations(
+        report: Report, repo_root: Path, relpath: str, text: str) -> int:
+    file_path = repo_root / relpath
+    de_root = repo_root / "_DomainEngines"
+    finding_count = 0
+    for idx, line in enumerate(text.splitlines(), start=1):
+        for ref in _candidate_refs(line):
+            if _resolve_ref_path(ref, repo_root, file_path.parent, de_root) is not None:
+                continue
+            if _is_declared_generated_root_ref(ref):
+                report.add_finding(make_finding(
+                    Severity.INFO, "COORD_GENERATED_REF_ABSENT", "coordination",
+                    f"Reference `{ref}` is under the declared generated root; "
+                    "generated artifacts are rebuildable and may be absent in "
+                    "fresh checkouts/worktrees.",
+                    relpath, idx, invariant="K-PROV-1"))
+            else:
+                report.add_finding(make_finding(
+                    Severity.REVIEW, "COORD_UNRESOLVED_REF", "coordination",
+                    f"Reference `{ref}` does not resolve to an existing repo path "
+                    "(checked repo-root-relative and file-relative).",
+                    relpath, idx, invariant="K-PROV-1"))
+            finding_count += 1
+    return finding_count
+
+
+def _check_register_row(report: Report, repo_root: Path, relpath: str) -> int:
+    decision_id = _decision_id_from_record(relpath)
+    if not decision_id:
+        return 0
+    register = repo_root / Path(relpath).parent / "_REGISTER.md"
+    if not register.is_file():
+        report.add_finding(make_finding(
+            Severity.REVIEW, "COORD_REGISTER_ABSENT", "coordination",
+            f"Decision record `{relpath}` has parsed id `{decision_id}`, but "
+            "the same-directory `_REGISTER.md` file is absent.",
+            relpath, invariant="K-PROV-1"))
+        return 1
+    text = register.read_text(encoding="utf-8")
+    if _register_contains_decision(text, decision_id):
+        return 0
+    report.add_finding(make_finding(
+        Severity.REVIEW, "COORD_REGISTER_ROW_MISSING", "coordination",
+        f"Decision record `{relpath}` has parsed id `{decision_id}`, but that "
+        "id is not present as a table cell in the same-directory `_REGISTER.md`.",
+        relpath, invariant="K-PROV-1"))
+    return 1
+
+
+def _check_precedent(report: Report, relpath: str, text: str) -> int:
+    if not _requires_named_precedent(relpath) or PRECEDENT_RE.search(text):
+        return 0
+    report.add_finding(make_finding(
+        Severity.REVIEW, "COORD_PRECEDENT_NOT_NAMED", "coordination",
+        f"Coordination packet-shaped artifact `{relpath}` does not name a "
+        "precedent, pattern, skeleton, or convention for its structure.",
+        relpath, invariant="K-INVENT-1"))
+    return 1
+
+
+def run_coord_check(repo_root: Path, diff_range: str) -> Report:
+    repo_root = repo_root.resolve()
+    report = Report(command="coord-check")
+    report.md("# coord-check - coordination/control artifact checks")
+    report.md("")
+    report.md(COORD_NOTE)
+    report.md("")
+    report.md(f"- diff range: `{diff_range}`")
+    report.summary["diff_range"] = diff_range
+
+    _validate_diff_range(repo_root, diff_range)
+    changed = _changed_paths(repo_root, diff_range)
+    coord_rows: list[dict] = []
+    skipped_rows: list[dict] = []
+
+    for relpath, status in changed:
+        if not _is_coordination_artifact(relpath):
+            skipped_rows.append({"path": relpath, "git_status": status})
+            continue
+        path = repo_root / relpath
+        row = {
+            "path": relpath,
+            "git_status": status,
+            "inspectable": path.is_file(),
+            "citation_findings": 0,
+            "register_findings": 0,
+            "precedent_findings": 0,
+        }
+        coord_rows.append(row)
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        row["citation_findings"] = _check_citations(
+            report, repo_root, relpath, text)
+        row["register_findings"] = _check_register_row(
+            report, repo_root, relpath)
+        row["precedent_findings"] = _check_precedent(report, relpath, text)
+
+    report.md("")
+    report.md(f"## Coordination/control paths ({len(coord_rows)})")
+    report.md("")
+    if coord_rows:
+        report.md("| path | git status | inspectable | citation | register | precedent |")
+        report.md("|---|---|---:|---:|---:|---:|")
+        for row in coord_rows:
+            report.md(
+                f"| `{row['path']}` | {row['git_status']} | "
+                f"{row['inspectable']} | {row['citation_findings']} | "
+                f"{row['register_findings']} | {row['precedent_findings']} |")
+    else:
+        report.md("- none in this diff range")
+
+    report.md("")
+    report.md(f"## Other changed paths ({len(skipped_rows)})")
+    report.md("")
+    if skipped_rows:
+        report.md("| path | git status |")
+        report.md("|---|---|")
+        for row in skipped_rows:
+            report.md(f"| `{row['path']}` | {row['git_status']} |")
+    else:
+        report.md("- none")
+
+    report.md("")
+    report.md(DIFF_NOTE)
+    report.extras["coord_check"] = {
+        "diff_range": diff_range,
+        "coordination_paths": coord_rows,
+        "other_changed_paths": skipped_rows,
+    }
+    report.summary["changed_paths"] = len(changed)
+    report.summary["coordination_paths"] = len(coord_rows)
+    report.summary["other_changed_paths"] = len(skipped_rows)
+    report.summary["blind_spots"] = DIFF_NOTE
+    return report
