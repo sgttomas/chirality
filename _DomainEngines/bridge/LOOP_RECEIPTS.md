@@ -167,3 +167,32 @@
     settlement (D-T0-07), package publishability (F2 or intra-repo mechanism),
     piping-side D-22 consumption (DEC-041 condition + piping vehicle; write-prohibited
     surface), SCA propagation, F3, live binding — all owner/environment gated.
+
+- **2026-07-03 — Receipt 9** (adoption of the Receipt 8 candidate; supersedes its
+  "awaiting adoption" gate outcome — the tranche is not yet executed).
+  - Owner direction of record (2026-07-03, in-session, Ryan Tufts): "I want it to
+    become a governed record. Take care of it."
+  - Gate outcome: owner ADOPTED `TRB-chirality-app-dev-DEL-03-01-2026-07-03`
+    (K-AUTH-1; D-GOV-04). Metadata recorded by agent at owner direction (D-APP-45
+    conformance pattern): `state: HUMAN_ADOPTED`, `adopted_by: Ryan Tufts`,
+    `adopted_on: 2026-07-03`, adoption provenance quoting the direction. The brief
+    moved out of gitignored scratch to the governed path
+    `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md`;
+    it is now the third governed brief alongside the two DEL-10-0x records. Adoption
+    binds to this publication commit (K-AUTH-2).
+  - Same-commit hygiene: two K-PROV-1 WARNs fixed in the brief (bare `src/...` refs →
+    full repo-relative package paths). Conscious live-pin update
+    `test_live_baseline.py` severity-totals INFO 12→13 — the new governed brief adds
+    one environment-independent generated-root evidence_targets INFO (HB-4 class),
+    same shape each DEL-10-0x brief contributes; the pin stays self-consistent with
+    the committed tree for CI.
+  - Checks: `brief --verify-adoption` = HUMAN_ADOPTED, fence_active True post-commit;
+    self-check exit 0 at INFO=13/NOT_APPLICABLE=1/REVIEW=28/WARN=2; drift 0/154;
+    harness pytest full (incl. live-baseline) pass.
+  - Gate outcome (execution): STOPPED — owner directed adoption only, not tranche
+    execution. The fenced deliverable work (absorb the extraction into DEL-03-01's
+    Datasheet/Assessment/Evidence records, record the consumption-readiness baseline;
+    _STATUS stays CHECKING) is ready to execute branch-first with the deliverable-work
+    check set on owner direction; a close receipt supersedes this one at execution.
+  - Parked lanes: unchanged from Receipt 8 (shim migration, D-T0-07 version, package
+    publishability, D-22 piping consumption, SCA propagation, F3, live binding).
