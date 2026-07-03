@@ -123,16 +123,17 @@ work is deferred only by gates.
   row points at it; DEC-041 untouched.]**
 - **D-21 packet preparation** (piping `_REGISTER.md:45` NOT_PREPARED (held); D-27
   prerequisite RULED at :51; `docs/PLAN.md:84`): prep permitted, adoption held.
-  **[Loop 2 scoped this to execution-ready — see Loop 2 log entry. Needs only the
-  queue-item-4 lane direction to run.]**
+  **[EXECUTED Loop 2 — PR #14 (`loop2/d21-packet-prep`): packet + register row
+  → AWAITING_RULING (adoption held). Owner: review/merge, then rule D-21.]**
 - **DEC-042 design/spec items 1–2** (SOFTWARE_DECOMP.md:612): proposal→apply bridge +
   OperationSet→Plan schema extension; candidate-generation + schema-reconciliation
   design. Item 3 (retrieval index) is DONE per DEC-043 (:613) — do not re-plan.
-  **[Loop 2 finding: NO owning deliverable exists — none of PKG-16 DEL-16-01..04's
-  Specifications scope items 1–2 and no design artifact exists anywhere in the
-  piping tree; a harness brief cannot create a deliverable. Needs an owner scoping
-  act (new design-only DEL-16-05, slot free — optionally DEL-16-06 — or a DEL-16-01
-  Specification amendment) on top of the queue-item-4 lane direction.]**
+  **[EXECUTED Loop 2 — PR #15 (`loop2/dec042-design-docs`): two design docs in
+  piping `plans/` under DEC-042's fence-free prep sanction (no deliverable created —
+  where the designs land, DEL-16-05 via decomposition or DEL-16-01 amendment,
+  stays the owner's choice, presented in both docs). Note: the app-dev harness has
+  NO formal Plan type today; the OperationSet→Plan extension is a piping-side
+  envelope with the app-dev half left OPEN.]**
 - **Publish piping DEL-10-03 result schemas** (profile TBDs at
   open_pipe_stress.yaml:81,88,101,115 cite them; shapes live only in Rust today):
   lawful piping-loop deliverable work over its own governed lane.
@@ -169,17 +170,24 @@ work is deferred only by gates.
    (`open_pipe_stress.yaml:81,88,101,115` `TBD # DEL-10-03`) at the schemas published
    2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`,
    `rule_check_run_result.schema.json`). Owner act; unblocked by Loop 1.
+   **Loop 2 prepared it to one-commit readiness: PR #16 carries the CHANGE packet
+   (exact before/after per line; the :101 n/a nuance presented as your choice;
+   validator re-run steps; SHA-binding commit text). Note the packet's tasking
+   correction: :143 needs NO edit (it is the live-binding gate line, not the
+   schema-TBD line — this queue item's own ":143" framing in earlier drafts was
+   imprecise); the consequential comment edit is at :72-74.**
 3. Rule D-APP-46 (keystone) and D-APP-45 when ready.
-4. Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design docs;
-   D-21 packet prep) runs in the next loop iteration or in piping's own sessions.
-   **Loop 2 sharpened the decision:** (a) D-21 packet prep is execution-ready on
-   your word alone — one new file
-   `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`
-   on the D-28 packet skeleton, §7 Human Ruling left OPEN, adoption hold intact
-   (full scope in the Loop 2 log entry). (b) DEC-042 items 1–2 need a second call
-   from you besides the lane: where they live — new design-only DEL-16-05 (slot is
-   free; optionally DEL-16-06), or amend DEL-16-01's Specification (no existing
-   deliverable scopes them; a harness brief cannot create one).
+4. ~~Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design
+   docs; D-21 packet prep) runs in the next loop iteration or in piping's own
+   sessions.~~ DIRECTED 2026-07-02 (owner, in-session: "execute all items, working
+   in parallel when write scopes are mutually exclusive") and EXECUTED same day —
+   PRs #14 (D-21 packet), #15 (DEC-042 items 1–2 design docs), #16 (tier-0 CHANGE
+   prep). Remaining owner acts on this item: review/merge the three PRs; confirm
+   at D-21 ruling time the packet's §2 read that your direction superseded
+   DEC-042's "no packet is prepared while held" clause for PREPARATION only; and
+   choose where the DEC-042 designs land if adopted (new design deliverable via
+   decomposition vs DEL-16-01 Spec amendment — both docs present the options
+   without choosing).
 5. ~~Harness defects surfaced by Loop 1 (spin-off task chip created)~~ DONE
    2026-07-02 (owner-merged PR #13 at `d925b0b51`, fix `7da70fbf5`): evidence
    records now self-label `authority_class: generated_view` (GEN-3 clean with
@@ -192,7 +200,14 @@ work is deferred only by gates.
    two reference the removed DRAFT profile; D-T0-06 is fixture-adjacent) and
    PROFILE_STATUS.md's stale `open_pipe_stress.DRAFT.yaml` name — owner/CHANGE lane,
    not agent-writable. Also: piping DEL-10-03 `_STATUS.md` header/history mismatch
-   (K-CONFLICT-1 human call).
+   (K-CONFLICT-1 human call). **Loop 2 additions: PR #16 §4 carries ready-to-apply
+   proposals for each of these (with fixture-adjacent cautions and
+   record-immutability defaults). New environment fact from Loop 2 worktree runs:
+   the WARN=3 self-check baseline holds only where untracked artifacts exist on
+   disk — a fresh clone/worktree measures WARN=8, because four refs in the two
+   committed adopted briefs point at gitignored `_harness_generated/` paths and
+   CHANGE_HANDOFF.md:41 cites the empty untracked proposals dir. PR #16 §3
+   documents it with an optional fix; fresh-checkout readers should expect 8.**
 
 ## Loop Log (append-only)
 
@@ -291,3 +306,51 @@ work is deferred only by gates.
   scoped), item 2 tier-0 CHANGE (closes the profile's four hook TBDs against the
   published schemas), D-APP-45/46 rulings (keystone: F3 sequence + DEC-041
   automation), or brief review→CLOSED (item 1 lifecycle completion).
+  Gate outcome (same day): owner directed in-session — "Consider the dependencies
+  and plan to execute all items, working in parallel when write scopes are
+  mutually exclusive." Read as: queue-item-4 lane direction granted (piping-lane
+  backlog runs in this loop); all agent-executable items proceed; owner-only acts
+  (rulings, adoption, CHANGE application, brief CLOSED) stay owner-side as
+  prepared packets.
+  Execution (same day, branch-first + PR per protocol step 4 — Loop 1's
+  main-direct grant was not assumed to extend): three parallel worktree branches
+  with mutually exclusive write scopes, each implement→adversarial-review(→fix)
+  verified, all three clean with zero BLOCKER/MAJOR findings (~115 citations
+  cold-checked by independent reviewers). (1) PR #14 `loop2/d21-packet-prep`
+  (`3b03430cb`): D-21 SCOPE_CHANGE packet on the D-28 skeleton — §7 Human Ruling
+  literally OPEN, adoption hold intact; Annex A complete FR crosswalk, all 25 flat
+  v0.1 FRs → v0.2 successors with dual citations (12 DIRECT / 7 SPLIT / 2 MERGE /
+  2 NARROWED / 3 UNMAPPED, explained); register row 45 → AWAITING_RULING (adoption
+  held) per the register's own precedented vocabulary (D-28 pre-ruling row doesn't
+  exist in history — it landed RULED — so precedent taken from rows D-15..D-26 and
+  D-28 §8's own token usage); piping pytest 369 passed in-worktree. Packet §2
+  records the owner direction as superseding DEC-042's "no packet is prepared
+  while held" clause for PREPARATION only — flagged for confirmation at ruling.
+  (2) PR #15 `loop2/dec042-design-docs` (`adfebfcff`): DEC-042 items 1–2 design
+  docs in piping `plans/` under the fence-free prep sanction; substantive
+  discovery recorded in doc 1: the app-dev harness has NO formal Plan/step type
+  today, so the OperationSet→Plan extension is a piping-side envelope with the
+  app-dev half labeled OPEN; both docs state the three live gates and leave the
+  landing spot (decomposition vs DEL-16-01 amendment) to the owner. (3) PR #16
+  `loop2/tier0-change-prep` (`dd6dfb951`): tier-0 CHANGE packet for queue item 2 —
+  exact before/after for :81/:88 → operation_outcome.schema.json, :115 →
+  rule_check_run_result.schema.json, :101 as a reasoned owner choice, plus the
+  :72-74 header-comment edit; ADOPTED profile byte-identical on the branch.
+  Tasking correction caught in-execution (K-INVENT-1, tree governs): profile :143
+  is the live-binding gate line, NOT a schema-TBD line — no :143 edit proposed;
+  this entry corrects the Select paragraph's ":143 open_issues" framing above.
+  New environment fact: fresh worktrees measure self-check WARN=8 (not 3) —
+  four committed-brief refs point at gitignored `_harness_generated/` paths and
+  CHANGE_HANDOFF.md:41 cites the untracked empty proposals dir; all three
+  branches verified finding-neutral against a same-environment baseline (byte-
+  identical finding sets), and the WARN=3 main-checkout baseline still holds.
+  Checks: per-worktree harness self-check exit 0 ×3 (finding-neutral); piping
+  pytest 369 passed (PR #14 worktree); CI governance-harness workflow green on
+  all three PRs; scope containment re-verified by reviewers AND by the main loop
+  (diffs: exactly 2 + 2 + 1 files, no overlaps). Owner queue after execution:
+  item 1 (brief review→CLOSED), item 2 (apply PR #16's CHANGE after merge),
+  item 3 (D-APP-45/46), item 4 residue (merge PRs #14/#15/#16; confirm the
+  prep-supersession read at D-21 ruling; choose the DEC-042 design landing spot),
+  item 6 (PR #16 §4 proposals; fresh-clone WARN=8 note). Owner merges — never
+  self-merge (protocol step 5); this close-out commit rides main in the bridge
+  lane like Loop 1's and c0934ca61 before it.
