@@ -108,16 +108,17 @@ def test_live_self_check_catches_the_three_retained_surfaces():
 
 @live
 def test_live_self_check_severity_totals_are_recorded_loop_anchors():
-    # HB-1 conscious baseline: loop receipts carry pass/fail only, so exact
-    # aggregate self-check totals live here as the harness-recorded comparison
-    # anchor. Legitimate movement gets a conscious pin update in the same PR.
+    # HB-1/HB-4 conscious baseline: loop receipts carry pass/fail only, so
+    # exact aggregate self-check totals live here as the harness-recorded
+    # comparison anchor. Legitimate movement gets a conscious pin update in
+    # the same PR.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
-        "INFO": 8,
+        "INFO": 12,
         "NOT_APPLICABLE": 1,
         "REVIEW": 28,
-        "WARN": 6,
+        "WARN": 2,
     }
 
 
