@@ -162,10 +162,21 @@ work is deferred only by gates.
 
 ## Owner-action queue (standing — re-derive each loop)
 
+0. **Merge PRs #17–#20** (each merge is your K-AUTH-2 act; all doc/record-only,
+   all adversarially reviewed clean; CI green — #17 re-run after the live-pin
+   fix at `ca071b64f`). Post-merge acts: fill the `Ruling SHA: TBD` fields in
+   `D-APP-45_RULING_2026-07-02.md` / `D-APP-46_RULING_2026-07-02.md`.
+   Then newly unlocked lanes to direct: (i) the D-21 SCA propagation workflow
+   (PRD v0.2 supersession/delta + plan revision carrying Annex A + stage-token
+   re-keying — authorized by DEC-056, not yet executed, piping lane); (ii) the
+   package-extraction tranche (D-APP-46 Option A — next loop's headline brief);
+   (iii) tier-0 CHANGE candidates now stale: profile `:143` gate line (piping
+   D-21 cleared) and piping register footer prose (~:64-65, :82 still say
+   "D-21 remains held").
 1. ~~Adopt/decline the loop-1 CANDIDATE briefs~~ DONE 2026-07-02 (both adopted,
-   fences verified ACTIVE at `abafd4d24`). Remaining brief lifecycle acts:
-   HUMAN_REVIEWED → CLOSED on both `TRB-chirality-app-dev-DEL-10-0{1,3}-2026-07-02`
-   after owner review of the executed tranches.
+   fences verified ACTIVE at `abafd4d24`). ~~Remaining brief lifecycle acts:
+   HUMAN_REVIEWED → CLOSED on both~~ DONE 2026-07-02 (owner in-session sign-off
+   R4; recorded on PR #18, verify-adoption terminal posture confirmed).
 2. **Tier-0 CHANGE**: point the ADOPTED profile's four result-schema hook fields
    (`open_pipe_stress.yaml:81,88,101,115` `TBD # DEL-10-03`) at the schemas published
    2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`,
@@ -176,7 +187,10 @@ work is deferred only by gates.
    correction: :143 needs NO edit (it is the live-binding gate line, not the
    schema-TBD line — this queue item's own ":143" framing in earlier drafts was
    imprecise); the consequential comment edit is at :72-74.**
-3. Rule D-APP-46 (keystone) and D-APP-45 when ready.
+3. ~~Rule D-APP-46 (keystone) and D-APP-45 when ready.~~ DONE 2026-07-02
+   (in-session: D-APP-46 Option A "I approve …"; D-APP-45 "I approve your
+   recommendation." — both recorded on PR #18 per the D-APP-44 pattern;
+   Ruling SHAs bind at merge).
 4. ~~Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design
    docs; D-21 packet prep) runs in the next loop iteration or in piping's own
    sessions.~~ DIRECTED 2026-07-02 (owner, in-session: "execute all items, working
@@ -354,3 +368,40 @@ work is deferred only by gates.
   item 6 (PR #16 §4 proposals; fresh-clone WARN=8 note). Owner merges — never
   self-merge (protocol step 5); this close-out commit rides main in the bridge
   lane like Loop 1's and c0934ca61 before it.
+  Rulings round (same day, owner in-session): owner directed push→merge→rule;
+  main pushed (`054f9f4db..7eabe0ff2`), PRs #14/#15/#16 owner-merged
+  (`4f6846565`/`6d893e9eb`/`3e965f021`), merged tree self-check clean at the
+  exact WARN=3 baseline. Owner then ruled the full slate: R1 D-21 = O-A with
+  the §5 rider + sub-confirmation (i), §7 fill confirmed; R2 tier-0 CHANGE
+  approved with :101 Option A + version bump, execution explicitly delegated;
+  R3 DEC-042 designs stay in plans/ until R7 has weight; R4 briefs signed off;
+  R5 D-APP-46 Option A + D-APP-45 recommendation approved; R6 (a)(b) adopted,
+  (c)(d) defaults, (e) optional taken, (f) ruled "all shall be IN_PROGRESS"
+  class-wide. Executed across five mutually-exclusive-scope branches (every
+  one implement→adversarial-review clean, zero BLOCKER/MAJOR): PR #17
+  `loop2/tier0-change-apply` (profile hooks bound ×4, :101 Option A,
+  profile_version 0.1-DRAFT→0.2, validator VALID; CHANGE_HANDOFF:27 +
+  PROFILE_STATUS + .gitkeep maintenance; D-T0-06/D-GOV-07 byte-untouched per
+  defaults; live-pin fix `ca071b64f` after CI caught the regenerated
+  validation report's transient worktree path — re-validated from the
+  canonical checkout path, pin exactly-one ABS_PATH_IN_EVIDENCE holds). PR #18
+  `loop2/rulings-record` (briefs CLOSED ×2, verify-adoption terminal posture
+  confirmed; D-APP-46 + D-APP-45 RULED per the D-APP-44 pattern, Ruling SHAs
+  TBD-until-merge). PR #19 `loop2/d21-ruled` (§7 filled per D-28 post-ruling
+  precedent; DEC-056 appended at SOFTWARE_DECOMP.md:626; register row 45
+  RULED; SCA propagation authorized NOT executed). PR #20
+  `loop2/status-class-correction` (the R6(f) class ruling executed: 92
+  reversal history entries authored — parser-verified as IN_PROGRESS
+  assertions — Decision_Log at LIFECYCLE_CORRECTION_2026-07-02_2050 mirroring
+  the 2026-05-11 precedent, _LATEST repointed, adapter baseline re-measured
+  0/101; drift 92→0 over 154 files, reviewer re-derived the mismatch set
+  byte-identical; conscious live-pin update 92/101→0/101 +
+  prose_bullet_v1/README refresh in the same PR so CI is self-consistent).
+  D-GOV-07:26 forward note per R6(d) default: the WARN stands as
+  accepted-known; the decision record is not edited — this Loop Log entry is
+  the forward note. Gate posture after this round: live-binding ×4 → piping
+  D-21 CLEARED (DEC-056); tier-0 adoption already cleared; remaining two —
+  app-dev F3 and DEC-041 automation — both route through the now-greenlit
+  package extraction (D-APP-46 Option A). Owner acts remaining: merge
+  PRs #17–#20 + fill the two Ruling SHAs (queue item 0); direct the SCA
+  propagation and the extraction tranche when ready.
