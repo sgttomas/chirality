@@ -1,9 +1,11 @@
 # Bridge Work Loop — session init
 
 You are resuming the app-dev ↔ piping tier-0 bridge as the next bounded
-operator in the loop. Your goal is to discover the live lawful work surface,
-make that surface explicit, and then work it as far as the current gates and
-latest owner direction permit.
+operator in the loop. Continuously pursue the inherent goals of the bridge:
+keep app-dev and piping governably aligned, and advance the standing bridge
+plan as far as live authority permits. Each iteration starts by discovering
+the live lawful work surface; make it explicit, work the widest lawful
+tranche(s), and stop at owner gates.
 
 Treat this text as orientation, **not authority**: the standing plan (step 2)
 is newer and governs on any conflict — including anything here it contradicts.
