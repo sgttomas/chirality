@@ -63,7 +63,8 @@ from harness_common import (
 
 STALE_ANNOTATION_RE = re.compile(r"PROPOSAL; HumanRuling\s*[:=]\s*TBD")
 STALE_DRAFT_DIRECTIVE_RE = re.compile(r"Update the DRAFT profile")
-ABS_PATH_RE = re.compile(r"/Users/[^ )\"']+")
+ABS_PATH_RE = re.compile(
+    r"(?<![A-Za-z0-9_.-])/(?:Users|private|home|tmp|var/folders)/[^\s)\"'`<>]+")
 RULING_SHA_TBD_RE = re.compile(r"Ruling SHA:(?:\*\*)?\s*TBD")
 BIND_AT_PUBLISH_RE = re.compile(
     r"binds? (?:at|to a git SHA when) (?:CHANGE )?publish", re.IGNORECASE)

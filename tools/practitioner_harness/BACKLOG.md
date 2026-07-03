@@ -22,16 +22,6 @@ severity totals currently have no recorded home at all. Shape: either extend
 committed baselines record the harness compares against and reports deltas on
 (trend statement, never BLOCK), with the conscious-update convention.
 
-## HB-3 — Broaden the machine-absolute-path detector
-
-`ABS_PATH_RE` (`cmd_self_check.py`, GEN-1/GEN-8/evidence checks) matches
-`/Users/` only. Found 2026-07-02: a validation report regenerated inside a
-`/private/tmp` worktree silently dropped the `ABS_PATH_IN_EVIDENCE` INFO —
-only the exactly-one live pin (CI on PR #17) exposed it. Shape: extend the
-pattern to other machine-absolute roots (`/private/`, `/home/`, `/tmp/`,
-`/var/folders/`), update the synthetic fixtures, and carry the conscious pin
-updates for any live-count movement in the same PR.
-
 ## HB-4 — Classify environment-dependent unresolved refs
 
 Fresh clones/worktrees measure more `UNRESOLVED_SOURCE_REF` WARNs than a

@@ -79,3 +79,12 @@
   - Gate outcome: HB-2 tooling/control tranche executed only; generated bridge-status view now derives owner-shaped act rows from live sources; no app-dev/piping integration lane resumed and no F1/F2/F3/F4 or protected-path crossing.
   - Checks: `bridge-status` pass; status x3 no severities; drift 0/154; self-check exit 0; `git diff --check` pass; harness pytest 240 passed / 1 skipped.
   - Parked lanes: PR #21 merge/CI disposition, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
+
+- **2026-07-03 — Receipt 3**
+  - Start: `901f77712`; branch `codex/hb3-abs-path-roots` stacked on `codex/hb2-bridge-status`; tree clean before HB-3 work.
+  - Owner direction of record (2026-07-03, active goal update): "Continue that pursuit until every lawful path of advancement is exhausted except for human decision. Park gated decisions, stop at owner gates, and continue any independent lawful work that keeps the development loop moving toward the bridge's inherent goals."
+  - Live gates checked: PR #21 open/UNSTABLE; PR #22 open/CLEAN with `harness` pass; app-dev `D-APP-46` RULED; piping `D-21` RULED; tier-0 register 8/8 RULED; `bridge-status` shows owner-shaped rows only.
+  - Executed pointers: `tools/practitioner_harness/cmd_self_check.py` ABS path roots broadened; `test_abs_path_lint_fixtures.py`; `test_live_baseline.py` GEN-8 conscious pin update 19→24; `tools/practitioner_harness/BACKLOG.md` HB-3 removal.
+  - Gate outcome: HB-3 tooling/control tranche executed only; self-check now detects `/private`, `/home`, `/tmp`, and `/var/folders` machine roots with boundary guards; no app-dev/piping integration lane resumed and no protected-path crossing.
+  - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected REVIEW=28/WARN=6; `git diff --check` pass; focused HB-3 tests 20 passed; harness pytest 242 passed / 1 skipped.
+  - Parked lanes: PR #21 merge/CI disposition, PR #22 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
