@@ -34,6 +34,9 @@ aligned and move the standing bridge plan forward as far as live authority
 permits.
 
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`, read
-`{REPO_ROOT}/_DomainEngines/bridge/LOOP_INIT.md`, then follow it. Derive
-current state from live sources and stop at owner gates.
+`{REPO_ROOT}/_DomainEngines/bridge/LOOP_INIT.md`, then follow it. Continue
+that pursuit until every lawful path of advancement is exhausted except for
+human decision. Park gated decisions, stop at owner gates, and continue any
+independent lawful work that keeps the development loop moving toward the
+bridge's inherent goals.
 </init-prompt>
