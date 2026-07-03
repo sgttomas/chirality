@@ -97,3 +97,21 @@
   - Gate outcome: HB-1 tooling/control tranche executed only; loop comparison anchor moved into harness-recorded form; no app-dev/piping integration lane resumed and no protected-path crossing.
   - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected REVIEW=28/WARN=6; `git diff --check` pass; live-baseline pytest 10 passed; harness pytest 243 passed / 1 skipped.
   - Parked lanes: PR #21 merge/CI disposition, PR #22/PR #23 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
+
+- **2026-07-03 — Receipt 5**
+  - Start: `fb2be718f`; branch `codex/hb4-generated-ref-classification` stacked on `codex/hb1-baseline-anchors`; tree clean before HB-4 work.
+  - Owner direction of record (2026-07-03, active goal update): "Continue that pursuit until every lawful path of advancement is exhausted except for human decision. Park gated decisions, stop at owner gates, and continue any independent lawful work that keeps the development loop moving toward the bridge's inherent goals."
+  - Live gates checked: PR #21 open/UNSTABLE; PR #22/#23/#24 open/CLEAN with `harness` pass; `bridge-status` owner-shaped rows unchanged.
+  - Executed pointers: `tools/practitioner_harness/cmd_self_check.py` generated-root unresolved-ref INFO classification; `test_self_check_fixtures.py`; `test_live_baseline.py` severity pin update WARN 6→2 / INFO 8→12; `BACKLOG.md` HB-4 removal.
+  - Gate outcome: HB-4 tooling/control tranche executed only; four `_harness_generated/` evidence-target refs are environment-dependent INFO, two true unresolved refs remain WARN; no app-dev/piping integration lane resumed and no protected-path crossing.
+  - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected INFO=12/REVIEW=28/WARN=2; `git diff --check` pass; focused HB-4 tests 27 passed; harness pytest 244 passed / 1 skipped.
+  - Parked lanes: PR #21 merge/CI disposition, PR #22/PR #23/PR #24 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
+
+- **2026-07-03 — Receipt 6**
+  - Start: `e06486f59`; branch `codex/hb5-coord-check` stacked on `codex/hb4-generated-ref-classification`; tree clean before HB-5 work.
+  - Owner direction of record (2026-07-03, active goal update): "Continue that pursuit until every lawful path of advancement is exhausted except for human decision. Park gated decisions, stop at owner gates, and continue any independent lawful work that keeps the development loop moving toward the bridge's inherent goals."
+  - Live gates checked: PR #21 open/UNSTABLE; PR #22/#23/#24/#25 open/CLEAN with `harness` pass; `bridge-status` owner-shaped rows unchanged.
+  - Executed pointers: `tools/practitioner_harness/cmd_coord_check.py`; `harness.py coord-check --diff`; README/read-only/claim-language/tests; `BACKLOG.md` exhausted.
+  - Gate outcome: HB-5 tooling/control tranche executed only; coordination-artifact diff checks are mechanical reports over citations/register rows/named precedent; no app-dev/piping integration lane resumed and no protected-path crossing.
+  - Checks: `coord-check --diff origin/codex/hb4-generated-ref-classification..HEAD` pass; status x3 no severities; drift 0/154; self-check exit 0 with expected INFO=12/REVIEW=28/WARN=2; `git diff --check` pass; focused HB-5 tests 11 passed; harness pytest 247 passed / 1 skipped.
+  - Parked lanes: PR #21 merge/CI disposition, PR #22/PR #23/PR #24/PR #25 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
