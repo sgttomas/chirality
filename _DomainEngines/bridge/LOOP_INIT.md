@@ -1,7 +1,9 @@
 # Bridge Work Loop — session init
 
-You are running the next iteration of the app-dev ↔ piping tier-0 bridge work
-loop. Get oriented with the steps below, then work the loop.
+You are resuming the app-dev ↔ piping tier-0 bridge as the next bounded
+operator in the loop. Your goal is to discover the live lawful work surface,
+make that surface explicit, and then work it as far as the current gates and
+latest owner direction permit.
 
 Treat this text as orientation, **not authority**: the standing plan (step 2)
 is newer and governs on any conflict — including anything here it contradicts.
@@ -23,7 +25,21 @@ the handoff context (owner directions, gate outcomes, stale-map deltas) lives
 in the latest receipts in `_DomainEngines/bridge/LOOP_RECEIPTS.md`, whose
 local rules govern what a receipt may contain.
 
-## 3. The stance to carry into Step 0 (the hard-won lesson)
+## 3. First return from Step 0
+
+Your first substantive output is a live orientation return, not a copied plan
+or a recap of this file. It should name:
+
+- the live git state and newest applicable receipt;
+- the latest owner directions and register/profile gates that matter now;
+- the widest lawful tranche(s) currently open;
+- any lane that is parked, and the owner action that would unpark it.
+
+If the live state says the loop is parked pending owner direction, stop after
+that orientation return unless the owner has already provided new direction in
+the current session.
+
+## 4. The stance to carry into Step 0 (the hard-won lesson)
 
 The plan, the receipts, and any dated assessment are **maps with per-claim
 citations — not authority**. The recurring failure mode in this archive is a
@@ -37,11 +53,13 @@ fluent draft grounded on stale facts. So:
   instructions this way; the discipline applies to prompts, not just files.)
 - New owner rulings since the last receipt are how work unlocks. Check both
   project decision registers and the tier-0 register every iteration.
-- Select the **widest lawful tranche(s) now**, re-derived, not pre-assumed.
-  Let dependencies resolve organically as you work rather than committing to a
-  fixed plan of the whole iteration up front.
+- Be ambitious inside the lawful surface: select the **widest lawful
+  tranche(s) now**, re-derived, not pre-assumed, and parallelize independent
+  reads, checks, and preparation where the plan permits. Let dependencies
+  resolve organically as you work rather than committing to a fixed plan of the
+  whole iteration up front.
 
-## 4. The one gate you cannot cross
+## 5. The one gate you cannot cross
 
 **Adoption, ruling, and direction are the owner's acts** (K-AUTH-1; D-GOV-04)
 — no command and no agent performs them. For deliverable work, generate
@@ -54,7 +72,7 @@ work-type checks, and append a minimal receipt to
 directions, pointers to artifacts, gate outcomes, check pass/fail) so the
 next iteration starts clean.
 
-## 5. Session conventions, constraints, and any per-loop steer
+## 6. Session conventions, constraints, and any per-loop steer
 
 Standing constraints and the loop protocol live in the plan — follow them as
 written. The session conventions are:
@@ -65,4 +83,3 @@ written. The session conventions are:
 If the owner appended a steer for this iteration (in their message, or a line
 below), honor it on top of the plan; the plan still governs the protocol, the
 fences, and the gate above.
-
