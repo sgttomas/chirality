@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Active profile | `_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml` |
+| Active profile | `open_pipe_stress.DRAFT.yaml` (as of this 2026-06-21 snapshot; renamed to `_DomainEngines/profiles/open_pipe_stress.yaml` 2026-07-01 per D-GOV-06) |
 | ProfileStatus | **ADOPTED** (validated + human Gate 2 adopted by owner 2026-06-21; governed-authoritative) |
 | Integration level (current, not yet ruled) | MANUAL_BRIDGE (L0) |
 | Validator | `tools/validation/validate_domain_engine_profile.py` (built, 8/8 tests pass) — report: `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json` (VALID) |
