@@ -2,7 +2,7 @@
 
 **Status:** Generated governance/runtime support artifact
 **Registry version:** `harness-tools.v6.mutating-mcp`
-**Source:** `frontend/src/lib/harness/tool-descriptor.ts`
+**Source:** `frontend/packages/harness-contract/src/tool-descriptor.ts`
 **Regenerate:** `npm run harness:generate-tool-catalog`
 
 This catalog is generated from `HARNESS_TOOL_DESCRIPTORS`. Do not edit

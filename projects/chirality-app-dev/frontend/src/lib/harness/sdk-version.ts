@@ -1,1 +1,1 @@
-export const CLAUDE_AGENT_SDK_PACKAGE_VERSION = '0.3.150';
+export * from '@chirality/harness-contract/sdk-version';

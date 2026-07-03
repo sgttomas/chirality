@@ -61,3 +61,12 @@
   - Queued TOOLMAKER work (not executed; lanes parked): migrate loop
     comparison anchors fully into harness-recorded form; a generated
     owner-queue / bridge-status view over decision records.
+
+- **2026-07-02 — Receipt 1**
+  - Start: `c41b92caa`; branch `codex/dapp46-harness-contract`; tree clean before work.
+  - Owner direction of record (2026-07-02, in-session, Ryan Tufts): "Your goal is to advance the inherent goals of the `chirality-app-dev` ↔ `chirality-piping` tier-0 bridge: keep the two project surfaces governably aligned and move the standing bridge plan forward as far as live authority permits. Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`, read `_DomainEngines/bridge/LOOP_INIT.md`, then follow it. Derive current state from live sources and stop at owner gates."
+  - Live gates checked: app-dev `D-APP-46` RULED; piping `D-21` RULED; tier-0 register 8/8 RULED; profile live-binding line still names x4 gates.
+  - Executed pointers: `projects/chirality-app-dev/frontend/packages/harness-contract/`; wrappers under `projects/chirality-app-dev/frontend/src/lib/harness/`; `projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs`; workspace wiring in `package.json` / `package-lock.json` / `tsconfig.json` / `next.config.mjs`.
+  - Gate outcome: D-APP-46 internal package extraction executed only; no F1/F2/F3/F4 crossing, no piping write, no publication, no version settlement; awaiting owner merge/PR disposition.
+  - Checks: contract-deps pass; app-dev typecheck/test/build pass; release-quality pass with dev server; diff-scope/adversarial pass; status x3 no severities; drift 0/154; self-check exit 0; harness pytest 238 passed / 1 skipped; PR CI `harness` pass, `Harness pre-merge` blocked by missing `ANTHROPIC_API_KEY` secret.
+  - Parked lanes: SCA propagation, package consumption, F3, and live binding remain owner-directed follow-ons after merge.

@@ -1,0 +1,21 @@
+{
+  "name": "@chirality/harness-contract",
+  "version": "0.0.0-private",
+  "private": true,
+  "description": "Dependency-free internal Flow-A harness contract spine.",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./agent-engine-port": "./src/agent-engine-port.ts",
+    "./engine-conformance": "./src/engine-conformance.ts",
+    "./errors": "./src/errors.ts",
+    "./event-schema": "./src/event-schema.ts",
+    "./mcp/tool-names": "./src/mcp/tool-names.ts",
+    "./sdk-version": "./src/sdk-version.ts",
+    "./tool-catalog": "./src/tool-catalog.ts",
+    "./tool-descriptor": "./src/tool-descriptor.ts",
+    "./transcript-replay": "./src/transcript-replay.ts",
+    "./types": "./src/types.ts",
+    "./package.json": "./package.json"
+  }
+}
