@@ -88,3 +88,12 @@
   - Gate outcome: HB-3 tooling/control tranche executed only; self-check now detects `/private`, `/home`, `/tmp`, and `/var/folders` machine roots with boundary guards; no app-dev/piping integration lane resumed and no protected-path crossing.
   - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected REVIEW=28/WARN=6; `git diff --check` pass; focused HB-3 tests 20 passed; harness pytest 242 passed / 1 skipped.
   - Parked lanes: PR #21 merge/CI disposition, PR #22 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
+
+- **2026-07-03 — Receipt 4**
+  - Start: `96cbd0025`; branch `codex/hb1-baseline-anchors` stacked on `codex/hb3-abs-path-roots`; tree clean before HB-1 work.
+  - Owner direction of record (2026-07-03, active goal update): "Continue that pursuit until every lawful path of advancement is exhausted except for human decision. Park gated decisions, stop at owner gates, and continue any independent lawful work that keeps the development loop moving toward the bridge's inherent goals."
+  - Live gates checked: PR #21 open/UNSTABLE; PR #22 open/CLEAN; PR #23 open/CLEAN with `harness` pass; `bridge-status` owner-shaped rows unchanged.
+  - Executed pointers: `tools/practitioner_harness/test_live_baseline.py` HB-1 aggregate self-check severity-total anchor; `tools/practitioner_harness/BACKLOG.md` HB-1 removal.
+  - Gate outcome: HB-1 tooling/control tranche executed only; loop comparison anchor moved into harness-recorded form; no app-dev/piping integration lane resumed and no protected-path crossing.
+  - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected REVIEW=28/WARN=6; `git diff --check` pass; live-baseline pytest 10 passed; harness pytest 243 passed / 1 skipped.
+  - Parked lanes: PR #21 merge/CI disposition, PR #22/PR #23 owner merge order, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.
