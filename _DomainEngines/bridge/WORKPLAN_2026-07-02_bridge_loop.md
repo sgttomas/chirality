@@ -162,11 +162,16 @@ work is deferred only by gates.
 
 ## Owner-action queue (standing — re-derive each loop)
 
-0. **Merge PRs #17–#20** (each merge is your K-AUTH-2 act; all doc/record-only,
-   all adversarially reviewed clean; CI green — #17 re-run after the live-pin
-   fix at `ca071b64f`). Post-merge acts: fill the `Ruling SHA: TBD` fields in
-   `D-APP-45_RULING_2026-07-02.md` / `D-APP-46_RULING_2026-07-02.md`.
-   Then newly unlocked lanes to direct: (i) the D-21 SCA propagation workflow
+0. ~~**Merge PRs #17–#20** + fill the `Ruling SHA: TBD` fields.~~ DONE
+   2026-07-02: owner merged all four (merge commits `1dccf54fd` #17 /
+   `6c975774c` #18 / `f7c9e95b3` #19 / `f9626fa32` #20); post-merge tree
+   verified — self-check INFO=8/NA=1/REVIEW=23/WARN=2, drift 0/154, pytest
+   239 passed. D-APP-45/46 ruling SHAs bound to `6c975774c` (PR #18 publication
+   commit) in both records and register rows, owner-confirmed, at `940caa108`.
+   (D-APP-44's own long-standing `ruling SHA TBD` left as-is — not in scope;
+   flagged as optional future cleanup.)
+   Newly unlocked lanes to direct WHEN the owner resumes development (parked
+   pending the loop-reflection): (i) the D-21 SCA propagation workflow
    (PRD v0.2 supersession/delta + plan revision carrying Annex A + stage-token
    re-keying — authorized by DEC-056, not yet executed, piping lane); (ii) the
    package-extraction tranche (D-APP-46 Option A — next loop's headline brief);
