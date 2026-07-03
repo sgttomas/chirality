@@ -62,6 +62,7 @@ def test_all_commands_leave_governed_tree_byte_identical(tmp_path, capsys):
         ["drift", "--all", "--include-domain-engines"],
         ["self-check"],
         ["self-check", "--root", str(repo / "_DomainEngines")],
+        ["bridge-status"],
         ["next"],
         # The brief generate step writes ONLY under the generated root (the
         # declared write-posture exception, excluded from the hash) so the

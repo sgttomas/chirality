@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """practitioner harness — governed read-mostly project observation CLI.
 
-Subcommands: status, drift, self-check, brief, next, run-validations,
-scope-check, evidence-check, closeout-digest.
+Subcommands: status, drift, self-check, bridge-status, brief, next,
+run-validations, scope-check, evidence-check, closeout-digest.
 Markdown report always to stdout; optional JSON report, brief files,
 evidence records, and closeout digests are contained to the declared
 generated root `{REPO_ROOT}/_harness_generated/` (D-GOV-01 / K-WRITE-2).
@@ -35,6 +35,7 @@ import sys
 from pathlib import Path
 
 import cmd_brief
+import cmd_bridge_status
 import cmd_closeout
 import cmd_drift
 import cmd_evidence_check
@@ -124,6 +125,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_check = sub.add_parser("self-check", parents=[common],
                              help="Consistency audit over the pilot scope")
     p_check.add_argument("--root", help="Audit only this root (default: pilot scope)")
+
+    sub.add_parser("bridge-status", parents=[common],
+                   help="Generated bridge owner-shaped act pick-list; the "
+                        "tool never selects")
 
     p_brief = sub.add_parser("brief", parents=[common],
                              help="Emit a CANDIDATE tranche brief (never adopts), "
@@ -245,6 +250,8 @@ def main(argv: list[str] | None = None) -> int:
                     report.write_json(json_report, repo_root)
                 print(refusal, file=sys.stderr)
                 return EXIT_OPERATIONAL
+        elif args.command == "bridge-status":
+            report = cmd_bridge_status.run_bridge_status(repo_root)
         elif args.command == "brief":
             if args.verify_adoption:
                 rejected = [flag for flag, value in (

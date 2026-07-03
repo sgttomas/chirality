@@ -70,3 +70,12 @@
   - Gate outcome: D-APP-46 internal package extraction executed only; no F1/F2/F3/F4 crossing, no piping write, no publication, no version settlement; awaiting owner merge/PR disposition.
   - Checks: contract-deps pass; app-dev typecheck/test/build pass; release-quality pass with dev server; diff-scope/adversarial pass; status x3 no severities; drift 0/154; self-check exit 0; harness pytest 238 passed / 1 skipped; PR CI `harness` pass, `Harness pre-merge` blocked by missing `ANTHROPIC_API_KEY` secret.
   - Parked lanes: SCA propagation, package consumption, F3, and live binding remain owner-directed follow-ons after merge.
+
+- **2026-07-03 — Receipt 2**
+  - Start: `ecc9c5a35`; branch `codex/hb2-bridge-status` stacked on `codex/dapp46-harness-contract`; tree clean before HB-2 work.
+  - Owner direction of record (2026-07-03, active goal update): "Continuously pursue the inherent goals of the `chirality-app-dev` ↔ `chirality-piping` tier-0 bridge: keep the two project surfaces governably aligned and move the standing bridge plan forward as far as live authority permits."
+  - Live gates checked: PR #21 open/UNSTABLE (`harness` pass; `Harness pre-merge` fails on missing `ANTHROPIC_API_KEY`); app-dev `D-APP-46` RULED; piping `D-21` RULED; tier-0 register 8/8 RULED; profile live-binding line still names x4 gates.
+  - Executed pointers: `tools/practitioner_harness/cmd_bridge_status.py`; `harness.py bridge-status`; `test_bridge_status.py`; harness README/tests; `_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md` HB-2 pointer replacement; `tools/practitioner_harness/BACKLOG.md` HB-2 removal.
+  - Gate outcome: HB-2 tooling/control tranche executed only; generated bridge-status view now derives owner-shaped act rows from live sources; no app-dev/piping integration lane resumed and no F1/F2/F3/F4 or protected-path crossing.
+  - Checks: `bridge-status` pass; status x3 no severities; drift 0/154; self-check exit 0; `git diff --check` pass; harness pytest 240 passed / 1 skipped.
+  - Parked lanes: PR #21 merge/CI disposition, SCA propagation, package consumption, F3, and live binding remain owner/environment gated.

@@ -22,24 +22,6 @@ severity totals currently have no recorded home at all. Shape: either extend
 committed baselines record the harness compares against and reports deltas on
 (trend statement, never BLOCK), with the conscious-update convention.
 
-## HB-2 — Generated owner-queue / bridge-status view
-
-Replace hand-maintained owner-queue prose (retired from the bridge workplan
-2026-07-02) with a derived view — e.g. `harness.py bridge-status`. Inputs all
-exist as structured records today: decision-register rows in
-AWAITING_RULING/held states (three registers), the ADOPTED profile's
-open_issues live-binding gate line, brief lifecycle states via the
-`--verify-adoption` machinery, and `_DomainEngines/bridge/LOOP_RECEIPTS.md`
-for the latest gate outcome. Output: a sourced pick-list of owner-shaped acts,
-same posture as `next` (the tool never selects; generated view, not
-authority). Precondition observed in the reflection: every human act must
-have a structured primary artifact — the 2026-07-02 ruling records and
-Decision_Log show the current record shapes suffice. Completion criterion
-(owner caveat, 2026-07-02): when this view lands, reduce or remove the
-hand-maintained "Owner-action pointer index" in
-`_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md` — that index is
-explicitly transitional until then.
-
 ## HB-3 — Broaden the machine-absolute-path detector
 
 `ABS_PATH_RE` (`cmd_self_check.py`, GEN-1/GEN-8/evidence checks) matches
