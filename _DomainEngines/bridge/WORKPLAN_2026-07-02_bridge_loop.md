@@ -92,33 +92,53 @@ work is deferred only by gates.
   `projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs:118-141`
   — per FM-04_OperationProposal_merge.md:54-59. Note direction: FM-04 cites the
   deliverable's 7 TBDs; no back-pointer exists inside the deliverable.
+  **[EXECUTED Loop 1 at `4968ed485`; brief HUMAN_ADOPTED, awaiting owner
+  review→CLOSED. Loop 2 verified no lawful in-fence agent work remains — all
+  residue is human-shaped or gate-blocked.]**
 - **app-dev DEL-10-01 refinement** (loop-1 brief
   `TRB-chirality-app-dev-DEL-10-01-2026-07-02`, CANDIDATE): same cross-reference
   pattern (Guidance.md:59-63) + dependency-closure annotation
   (Assessment_INSP-03_DEL-10-01.md:38,46). ResponsibleParty and doc-only issuance
   basis are human-shaped — excluded.
+  **[EXECUTED Loop 1 at `9a29c0372`; brief HUMAN_ADOPTED, awaiting owner
+  review→CLOSED. Same Loop 2 residual verdict as DEL-10-03.]**
 - **PKG-10 status-history wording repair** (INSP-03 High, ON-STRATEGY, size S:
   Assessment_INSP-03_DEL-10-03.md:37,52; Assessment_INSP-03_DEL-10-01.md:36) —
   in-fence with the two briefs above; wording only, no state advance.
+  **[DONE Loop 1 — MEMORY.md forward-corrections in both deliverables.]**
 - **PLAN_cross_tier.md reconciliation** (`_DomainEngines/bridge/BRIDGE_2026-06-21_
   tier0-prep/PLAN_cross_tier.md:40-41`, self-declared PROPOSAL): row 40 still says
   "blocked by D-T0-01" (ruled; REF-008 pin landed), row 41 bundles the headless CLI
   entrypoint into the DEC-042 prep lane (DEC-042 does not sanction it). Lawful under
   the bridge/** write lane; needs owner green-light on scope.
+  **[DONE Loop 1 at `d0b53d851`; the reconciled who-does-what rows now sit at
+  PLAN_cross_tier.md:47-48 (line drift from the :40-41 cited above).]**
 
 ### Lawful now — piping lane (piping's own track unless the owner pulls it into this loop)
 
 - **DEC-055 codification append** (SOFTWARE_DECOMP.md §12; highest entry DEC-054 at
   :624): the D-28 ruling exists (owner O-A 2026-07-01, packet §7); the §12 entry is a
   recording action per packet §8. Never edit DEC-041 (:611) in place.
+  **[DONE Loop 1 at `a0c50e5aa` — DEC-055 at SOFTWARE_DECOMP.md:625; D-28 register
+  row points at it; DEC-041 untouched.]**
 - **D-21 packet preparation** (piping `_REGISTER.md:45` NOT_PREPARED (held); D-27
   prerequisite RULED at :51; `docs/PLAN.md:84`): prep permitted, adoption held.
+  **[Loop 2 scoped this to execution-ready — see Loop 2 log entry. Needs only the
+  queue-item-4 lane direction to run.]**
 - **DEC-042 design/spec items 1–2** (SOFTWARE_DECOMP.md:612): proposal→apply bridge +
   OperationSet→Plan schema extension; candidate-generation + schema-reconciliation
   design. Item 3 (retrieval index) is DONE per DEC-043 (:613) — do not re-plan.
+  **[Loop 2 finding: NO owning deliverable exists — none of PKG-16 DEL-16-01..04's
+  Specifications scope items 1–2 and no design artifact exists anywhere in the
+  piping tree; a harness brief cannot create a deliverable. Needs an owner scoping
+  act (new design-only DEL-16-05, slot free — optionally DEL-16-06 — or a DEL-16-01
+  Specification amendment) on top of the queue-item-4 lane direction.]**
 - **Publish piping DEL-10-03 result schemas** (profile TBDs at
   open_pipe_stress.yaml:81,88,101,115 cite them; shapes live only in Rust today):
   lawful piping-loop deliverable work over its own governed lane.
+  **[DONE Loop 1 at `a0c50e5aa` — `schemas/operation_outcome.schema.json` +
+  `schemas/rule_check_run_result.schema.json` + stdlib contract tests; the profile
+  hook fields themselves stay TBD pending the owner tier-0 CHANGE (queue item 2).]**
 - **Ordinary Phase E/R5 work** (`docs/PLAN.md:84`; open decision rows D-06, D-10b,
   D-20, D-05b et al.).
 
@@ -152,11 +172,21 @@ work is deferred only by gates.
 3. Rule D-APP-46 (keystone) and D-APP-45 when ready.
 4. Direct whether the remaining piping-lane backlog (DEC-042 items 1–2 design docs;
    D-21 packet prep) runs in the next loop iteration or in piping's own sessions.
-5. Harness defects surfaced by Loop 1 (spin-off task chip created): evidence JSONs
-   fail the harness's own GEN-3 check (BLOCK when evidence exists); adopted briefs
-   trip GEN-5 `UNRESOLVED_SOURCE_REF` ×8 once committed to the governed record
-   (WARN baseline now 11 = 3 pre-existing + 8 brief-format). Fix is `tools/**` work
-   (PR #12 pattern).
+   **Loop 2 sharpened the decision:** (a) D-21 packet prep is execution-ready on
+   your word alone — one new file
+   `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`
+   on the D-28 packet skeleton, §7 Human Ruling left OPEN, adoption hold intact
+   (full scope in the Loop 2 log entry). (b) DEC-042 items 1–2 need a second call
+   from you besides the lane: where they live — new design-only DEL-16-05 (slot is
+   free; optionally DEL-16-06), or amend DEL-16-01's Specification (no existing
+   deliverable scopes them; a harness brief cannot create one).
+5. ~~Harness defects surfaced by Loop 1 (spin-off task chip created)~~ DONE
+   2026-07-02 (owner-merged PR #13 at `d925b0b51`, fix `7da70fbf5`): evidence
+   records now self-label `authority_class: generated_view` (GEN-3 clean with
+   evidence present, live at `evidence_records.py:150` / `cmd_self_check.py:492`);
+   GEN-5 strips brief-format trailing parentheticals (the 8 brief-format WARNs are
+   gone). Verified by Loop 2 measurements: self-check exit 0, WARN back to the 3
+   pre-existing; pytest 239 (+3 regression tests).
 6. Maintenance calls surfaced by evidence runs: the three pre-existing WARN
    `UNRESOLVED_SOURCE_REF`s (CHANGE_HANDOFF.md:27, D-T0-06:7, D-GOV-07:26 — the first
    two reference the removed DRAFT profile; D-T0-06 is fixture-adjacent) and
@@ -204,3 +234,60 @@ work is deferred only by gates.
   scratch evidence records (rebuildable; D-GOV-01). New harness defects surfaced
   and queued (owner-action queue items 5–6). Deferred to next loop: DEC-042
   items 1–2 design docs; D-21 packet prep (pending owner direction on lane).
+
+- **2026-07-02 — Loop 2.** Discover: main `054f9f4db` clean, five commits past the
+  Loop 1 close (`d0b53d851`) — owner-merged PR #13 harness fix (`7da70fbf5`) plus
+  three owner LOOP_INIT.md bridge commits; full-diff confirms NO register,
+  decision, profile, or governed-record changes in that range, so no new rulings
+  landed. Measurements: status ×3 no severities (app-dev 53 / piping 101 status
+  files; tier-0 contradiction pointer 5); drift 92/154 flat vs recorded 92/101;
+  self-check exit 0 with REVIEW=23 (pins exact vs Loop 1: 2/1/0/1 + GEN-8 19
+  files), INFO=9, WARN=3 — the 8 brief-format GEN-5 WARNs are gone and evidence
+  records self-label for GEN-3, i.e. queue item 5 is discharged by PR #13
+  (verified at `evidence_records.py:150` / `cmd_self_check.py:492`); pytest 239
+  passed (+3 = PR #13's regression tests); `next`: app-dev 53 CHECKING, piping
+  8 CHECKING / 92 IN_PROGRESS / 1 ISSUED. Spot-verify: 7-agent sweep (registers,
+  Loop 1 outputs, adopted-fence residuals, DEC-042 lane, D-21 packet scope,
+  readiness §1, completeness critic) — zero substantive refutations; both briefs
+  still HUMAN_ADOPTED (owner review→CLOSED pending); profile hook fields still
+  TBD ×4 (queue item 2 open); D-APP-45/46 AWAITING_RULING (app-dev register
+  :56-57); D-21 NOT_PREPARED (held) (piping register :45). Deltas vs the maps
+  (recorded here, maps never edited): (1) readiness §7 "9 RULED tier-0 register
+  rows" is a MISCOUNT — the live register has exactly 8 (D-T0-01..08 at
+  `_DomainEngines/_DECISIONS/_REGISTER.md:7-14`); the ninth "RULED" match is the
+  register's title line. (2) readiness §1.1 cites the FM-04 record under
+  `_DomainEngines/proposals/open_pipe_stress/` — that directory is empty; the live
+  FM records sit under `bridge/BRIDGE_2026-06-21_tier0-prep/framework_maintenance/`.
+  (3) PLAN_cross_tier who-does-what rows drifted to :47-48 (map cites :40-41);
+  substance of the Loop 1 reconciliation holds. (4) readiness §1.3's "DEC-055
+  still pending" is cleared (Loop 1 appended it; live at SOFTWARE_DECOMP.md:625).
+  (5) piping DEL-10-03 header/history mismatch unchanged (IN_PROGRESS `_STATUS.md:3`
+  vs CHECKING history :15 — known drift-92 class, K-CONFLICT-1 human call).
+  Select: NO lawful agent tranche exists outside the owner gates this iteration —
+  the two adopted fences are fully discharged (every remaining residual is
+  human-shaped or gate-blocked: ResponsibleParty, issuance basis/INSP-04,
+  _SEMANTIC_LENSING HumanRuling=TBD rows, SatisfactionStatus judgments, profile
+  hook fields in a prohibited path), the tier-0 proposals lane is empty by design,
+  and both open backlog items are piping-lane pending queue-item-4 direction.
+  Loop 2 instead sharpened the gate: D-21 packet prep is execution-ready (one new
+  file `execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`
+  on the D-28 packet skeleton — PROPOSAL disclaimer; §2 verified-facts checked
+  cold; §4 options adopt-v0.2-set / decline-terminate-at-R5 / adopt-delta; §7
+  Human Ruling left OPEN; §8 mechanism DEC append + register row NOT_PREPARED→
+  AWAITING_RULING; content = v0.2 scope delta (R6/R7 + inserted R3 from
+  `docs/_ScopeChange/OpenPipeStress_PRD_v0.2.md`) + the mandatory
+  traceability-breaking FR crosswalk (flat FR-001..025 → FR-MOD/KNOW/GUI/SOL/RULE/
+  CMP/HAND/AGENT/REP per `plans/PLAN_2026-06-17_prd_completion.md:263`); prerequisite
+  D-27 RULED; adoption hold intact); DEC-042 items 1–2 have NO owning deliverable
+  (no PKG-16 Spec scopes them; no design artifact exists; DEL-16-05 slot free) —
+  owner scoping act required on top of lane direction. Gate: STOPPED — no piping-lane
+  writes, no briefs generated (nothing deliverable-shaped exists to fence: the D-21
+  packet is coordination-level; DEC-042 items lack a deliverable). Work done this
+  iteration (bridge lane, this commit): backlog rows executed in Loop 1 marked
+  DONE; queue item 5 marked DONE (PR #13); queue item 4 sharpened with the
+  execution-ready D-21 scope and the DEC-042 scoping sub-decision. Owner-action
+  queue after this loop: items 1–4 and 6 open. Next iteration unlocks on any of:
+  item 4 direction (D-21 packet prep executes immediately; DEC-042 items 1–2 once
+  scoped), item 2 tier-0 CHANGE (closes the profile's four hook TBDs against the
+  published schemas), D-APP-45/46 rulings (keystone: F3 sequence + DEC-041
+  automation), or brief review→CLOSED (item 1 lifecycle completion).
