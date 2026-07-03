@@ -8,7 +8,9 @@ caveat class PARSED; rules 2-9 yield PARSED_WITH_ASSUMPTIONS; no match yields
 UNPARSEABLE. First match wins.
 
 DELIBERATE v1 LIMITATIONS (do NOT extend; the 9-rule set is ruled baseline
-material behind the recorded drift baseline of 92/154):
+material behind the recorded drift baseline — 92/154 as measured 2026-07-01,
+0/154 after the 2026-07-02 class-wide K-CONFLICT-1 correction; the ruleset
+stays frozen because it produced the ruled measurement):
 - "preserved/retained/kept/verified as/updated to X" phrasings -> UNPARSEABLE.
 - Evidence-lifecycle bullets ("Evidence promoted to COMMITTED ...") must never
   yield a deliverable state: COMMITTED is not in the lifecycle-state vocabulary,

@@ -24,7 +24,7 @@ out of scope by construction; `.archive/` trees excluded from every walk.
 python3 tools/practitioner_harness/harness.py status --project app-dev
 python3 tools/practitioner_harness/harness.py status --project piping
 python3 tools/practitioner_harness/harness.py status --domain-engines
-python3 tools/practitioner_harness/harness.py drift --all            # status-vs-history vs the 92/154 baseline
+python3 tools/practitioner_harness/harness.py drift --all            # status-vs-history vs the recorded baseline
 python3 tools/practitioner_harness/harness.py self-check             # restated-state surface audit
 python3 tools/practitioner_harness/harness.py next                    # active-work pick-list (the practitioner selects)
 python3 tools/practitioner_harness/harness.py brief --project piping --deliverable DEL-02-04
@@ -338,6 +338,14 @@ run-over-run counts against this baseline, split by project and caveat class
 are labeled, never guessed). Success is this number trending down; failure is
 this tool becoming a cleaner-looking second source of truth.
 
+**Resolved to 0/154 on 2026-07-02**: the owner ruled the class-wide
+K-CONFLICT-1 conflict ("all shall be IN_PROGRESS" — header authoritative;
+the 2026-06-16 header reversals were affirmed and the missing reversal
+history entries authored, one parser-verified line per file). Ruling record:
+`projects/chirality-piping/execution/_Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md`.
+The recorded adapter baseline was re-measured to 0/101 in the same act; the
+live pin in `test_live_baseline.py` carries the matching conscious update.
+
 ## Project-tree abs-path lint (GEN-8) and agent-registry currency (GEN-9)
 
 **GEN-8 (SPEC §0.2.4).** GEN-1 stays control-area per-line; GEN-8 extends the
@@ -468,7 +476,8 @@ all synthetic-`fixture`-home-prefix content as in-module string constants), the
 agent-registry currency check (`REGISTRY_TARGET_MISSING` REVIEW /
 `AGENT_FILE_UNINDEXED` WARN / `REGISTRY_CHECK_NOT_APPLICABLE`, K-AGENTS-1;
 never BLOCK; `test_agent_registry_fixtures.py`), and a live-tree baseline
-test (92/154; the three owner-retained stale surfaces must be detected by
+test (0/154 after the 2026-07-02 class correction, originally 92/154; the
+three owner-retained stale surfaces must be detected by
 `self-check`; `STALE_OPEN_ISSUE`/`DRAFT_BASIS_AS_BINDING` pinned at zero and
 `DRAFT_BASIS_RULED_CLOSED` at seven on the live tree; the retired piping
 reconciliation pointer pinned as the pointer check's first detection target;
