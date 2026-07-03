@@ -10,12 +10,4 @@
 > 2026-07-02 (`_DomainEngines/bridge/LOOP_RECEIPTS.md`, Receipt 0) unless
 > noted.
 
-## HB-5 — Coordination-artifact check mode (optional, lower priority)
-
-`scope-check`/`evidence-check`/`closeout-digest` are brief-fenced; the
-reformed loop protocol covers coordination/control artifacts (decision
-packets, CHANGE preps, design docs) with procedural adversarial review
-instead. A harness-native analogue — citation resolution over a git diff
-range, register-row consistency, convention-precedent presence — would make
-that check mechanical. Only worth building if the coordination-artifact
-volume stays high after the bridge loop resumes.
+No open harness-backlog items remain.

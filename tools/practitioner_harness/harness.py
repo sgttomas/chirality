@@ -2,7 +2,7 @@
 """practitioner harness — governed read-mostly project observation CLI.
 
 Subcommands: status, drift, self-check, bridge-status, brief, next,
-run-validations, scope-check, evidence-check, closeout-digest.
+run-validations, scope-check, evidence-check, closeout-digest, coord-check.
 Markdown report always to stdout; optional JSON report, brief files,
 evidence records, and closeout digests are contained to the declared
 generated root `{REPO_ROOT}/_harness_generated/` (D-GOV-01 / K-WRITE-2).
@@ -20,6 +20,9 @@ verified active fence; path judgment is never lifecycle judgment, K-GATE-1).
 (D-GOV-08 Option B; completeness never sufficiency; nothing there BLOCKs).
 `closeout-digest` composes both checks in-process into a digest for the
 human CHANGE closeout — never a lifecycle transition.
+`coord-check` is the report-only coordination/control analogue over a git
+diff range: citation resolution, decision-register coverage, and named
+precedent presence where packet-shaped records call for it.
 
 Exit codes (D-GOV-02): 0 = ran, no BLOCK; 1 = >=1 BLOCK (or >=1 REVIEW under
 --strict); 2 = operational error or refusal.
@@ -37,6 +40,7 @@ from pathlib import Path
 import cmd_brief
 import cmd_bridge_status
 import cmd_closeout
+import cmd_coord_check
 import cmd_drift
 import cmd_evidence_check
 import cmd_next
@@ -211,6 +215,16 @@ def build_parser() -> argparse.ArgumentParser:
                                  "_harness_generated/closeout/"
                                  "<tranche_id>.md (contained to the "
                                  "generated root)")
+
+    p_coord = sub.add_parser(
+        "coord-check", parents=[common],
+        help="Report-only checks for changed coordination/control artifacts "
+             "in a git diff range: citation resolution, decision-register "
+             "coverage, and named-precedent presence")
+    p_coord.add_argument("--diff", required=True, metavar="RANGE",
+                         help="Git rev or A..B range for git diff "
+                              "--name-status; validated with git rev-parse "
+                              "first")
     return parser
 
 
@@ -317,6 +331,8 @@ def main(argv: list[str] | None = None) -> int:
                 repo_root, brief_path, args.diff, out_dir,
                 _alias_by_root(repo_root),
                 write_digest=getattr(args, "write_digest", False))
+        elif args.command == "coord-check":
+            report = cmd_coord_check.run_coord_check(repo_root, args.diff)
         else:  # pragma: no cover - argparse enforces the choices.
             raise HarnessOperationalError(f"Unknown command {args.command!r}")
 
