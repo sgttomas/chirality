@@ -45,9 +45,15 @@ the owner has adopted do you execute inside the fence, run the plan's checks,
 and append a Loop Log entry (measurements, deltas, work done, what is newly
 unlocked, owner-queue changes) so the next iteration starts clean.
 
-## 5. Conventions, constraints, and any per-loop steer
+## 5. Session conventions, constraints, and any per-loop steer
 
-Session conventions and standing constraints live in the plan — follow them as
-written. If the owner appended a steer for this iteration (in their message,
-or a line below), honor it on top of the plan; the plan still governs the
-protocol, the fences, and the gate above.
+Standing constraints and the loop protocol live in the plan — follow them as
+written. The session conventions are:
+
+- Subagent model assignments: `opus` for exploration and reporting; `fable`
+  for orchestration, planning, and implementing work.
+
+If the owner appended a steer for this iteration (in their message, or a line
+below), honor it on top of the plan; the plan still governs the protocol, the
+fences, and the gate above.
+
