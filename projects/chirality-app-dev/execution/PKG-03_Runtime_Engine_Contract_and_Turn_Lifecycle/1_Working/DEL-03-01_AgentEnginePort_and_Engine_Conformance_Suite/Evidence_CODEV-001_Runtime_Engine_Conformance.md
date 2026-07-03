@@ -25,6 +25,28 @@ This note does not satisfy dependency rows, advance lifecycle state, authorize p
 expansion, or make release, professional, certification, sealing, authentication, or
 code-compliance claims.
 
+## D-APP-46 Package-Extraction Forward Note - 2026-07-03
+
+The source-path rows below remain historical evidence for the first CODEV-001
+implementation tranche. D-APP-46 later extracted the dependency-free contract spine into
+`@chirality/harness-contract`, with back-compat re-exports preserved under
+`frontend/src/lib/harness/`.
+
+Package-owned homes for extracted CODEV-001 surfaces:
+
+| Historical surface | Current package-owned source | Back-compat shim |
+|---|---|---|
+| Product-owned runtime boundary | `frontend/packages/harness-contract/src/agent-engine-port.ts` | `frontend/src/lib/harness/agent-engine-port.ts` |
+| Stable browser event names | `frontend/packages/harness-contract/src/agent-engine-port.ts` | `frontend/src/lib/harness/agent-engine-port.ts` |
+| Versioned persisted runtime event schema | `frontend/packages/harness-contract/src/event-schema.ts` | `frontend/src/lib/harness/event-schema.ts` |
+| SDK message / UI event shared types | `frontend/packages/harness-contract/src/types.ts` | `frontend/src/lib/harness/types.ts` |
+| Engine conformance helpers | `frontend/packages/harness-contract/src/engine-conformance.ts` | `frontend/src/lib/harness/engine-conformance.ts` |
+
+Current package-consumption readiness is recorded in
+`Evidence_CODEV-002_Harness_Contract_Package_Consumption_Readiness.md`. This forward note
+does not claim package publishability, piping consumption, F2/F3/F4 crossing, dependency
+satisfaction, or lifecycle advancement.
+
 ## Scope
 
 This evidence record covers the first CODEV-001 implementation tranche for DEL-03-01.

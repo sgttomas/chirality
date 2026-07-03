@@ -16,6 +16,27 @@
 
 DEL-03-01 defines the product-owned runtime boundary and conformance suite for harness turn execution before adapter behavior is treated as a production-default path.
 
+## D-APP-46 Forward Note - 2026-07-03
+
+The requirements matrix below remains a historical INSP-03 assessment of the 2026-06-20 source layout. D-APP-46 later extracted the dependency-free contract spine into the internal package `@chirality/harness-contract`; the `frontend/src/lib/harness/*` contract files listed in this record are retained as back-compat shims where extraction applied, not as the package-owned source.
+
+Current package-owned contract homes:
+
+| Contract surface | Package-owned source | Back-compat shim |
+|---|---|---|
+| Agent engine port / public UI event names | `frontend/packages/harness-contract/src/agent-engine-port.ts` | `frontend/src/lib/harness/agent-engine-port.ts` |
+| Runtime event schema | `frontend/packages/harness-contract/src/event-schema.ts` | `frontend/src/lib/harness/event-schema.ts` |
+| Runtime contract types | `frontend/packages/harness-contract/src/types.ts` | `frontend/src/lib/harness/types.ts` |
+| Engine conformance helpers | `frontend/packages/harness-contract/src/engine-conformance.ts` | `frontend/src/lib/harness/engine-conformance.ts` |
+| Harness error types | `frontend/packages/harness-contract/src/errors.ts` | `frontend/src/lib/harness/errors.ts` |
+| SDK version constants | `frontend/packages/harness-contract/src/sdk-version.ts` | `frontend/src/lib/harness/sdk-version.ts` |
+| Tool catalog | `frontend/packages/harness-contract/src/tool-catalog.ts` | `frontend/src/lib/harness/tool-catalog.ts` |
+| Tool descriptor contract | `frontend/packages/harness-contract/src/tool-descriptor.ts` | `frontend/src/lib/harness/tool-descriptor.ts` |
+| Transcript replay views | `frontend/packages/harness-contract/src/transcript-replay.ts` | `frontend/src/lib/harness/transcript-replay.ts` |
+| MCP tool-name contract | `frontend/packages/harness-contract/src/mcp/tool-names.ts` | `frontend/src/lib/harness/mcp/tool-names.ts` |
+
+This note is a forward correction only. It does not rewrite the historical INSP-03 finding, mark any dependency row satisfied, claim package publishability, cross F2/F3/F4, or advance DEL-03-01 beyond CHECKING.
+
 ## Requirements Conformance Matrix
 
 | Requirement | Status | Evidence | Notes |

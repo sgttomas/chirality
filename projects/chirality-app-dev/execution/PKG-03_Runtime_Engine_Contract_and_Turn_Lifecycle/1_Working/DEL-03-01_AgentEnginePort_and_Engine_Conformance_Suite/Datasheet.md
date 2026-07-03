@@ -55,7 +55,7 @@ Source: `_CONTEXT.md` and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE
 | Conformance suite | `engine-conformance.ts` or equivalent tests for stub and SDK-backed adapters. | `docs/PLAN.md` R1; `docs/PRD.md` section 12.5 |
 | Stub adapter | Deterministic adapter retained for tests. | `docs/SPEC.md` section 10.3 |
 | SDK-backed adapter | Provider implementation behind the product-owned contract. | `docs/SPEC.md` section 10.3 |
-| Exact final source path | CANDIDATE / TBD: `docs/PRD.md` R1 lists `frontend/src/lib/harness/agent-engine-port.ts` or equivalent, while `docs/PLAN.md` R1 and the decomposition name only `agent-engine-port.ts` or equivalent. Treat the frontend path as a candidate until implementation accepts final placement. | `docs/PRD.md` R1 implementation targets; `docs/PLAN.md` R1 implementation targets; `execution/_Decomposition/...v3_2.md` DEL-03-01 |
+| Exact final source path | ACCEPTED PLACEMENT (2026-07-03): D-APP-46 extraction accepted `frontend/packages/harness-contract/src/agent-engine-port.ts` as the package-owned source. The original app-dev path `frontend/src/lib/harness/agent-engine-port.ts` remains as a back-compat shim that re-exports `@chirality/harness-contract/agent-engine-port`. | D-APP-46 ruling; `frontend/packages/harness-contract/src/agent-engine-port.ts`; `frontend/src/lib/harness/agent-engine-port.ts` |
 
 ## References
 
