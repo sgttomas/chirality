@@ -128,33 +128,19 @@ deliverable-local files. This index only says WHERE to look at Step 0:
 - **Shared-id hazard** (standing): two deliverables share the id DEL-10-03
   (app-dev vs piping) — always name the repo.
 
-## Owner-action pointer index (IDs and paths only — state lives in the records)
+## Generated owner-action view (HB-2)
 
-**Transitional surface** (owner caveat 2026-07-02): this hand-maintained index
-is reduced or removed once HB-2's generated bridge-status view lands
-(`tools/practitioner_harness/BACKLOG.md`). Open at the time of the 2026-07-02
-protocol reform; re-derive every loop:
+The hand-maintained owner-action pointer index was transitional and is replaced
+by a generated view. At Step 0, run:
 
-- **SCA propagation for D-21** — ruled O-A; execution not yet directed. See
-  `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`
-  §8 step 3 and DEC-056.
-- **Package-extraction tranche** — greenlit, not yet scheduled. See
-  `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_RULING_2026-07-02.md`.
-- **DEC-042 design landing** — owner chose "leave in `plans/` until R7 has
-  weight" (Receipt 0); revisit after SCA propagation.
-- **Headless CLI entrypoint** — un-sanctioned, un-built; needs its own piping
-  decision. See `_DomainEngines/profiles/open_pipe_stress.yaml` (headless_runner
-  entry).
-- **root `docs/CONTRACT.md` ratification** — DRAFT; per-invariant D-GOV-05 table.
-- **Maintenance pointers**: profile open_issues gate line (stale post-DEC-056;
-  tier-0 CHANGE lane) · piping register footer prose re "D-21 remains held"
-  (stale post-ruling) · `D-APP-44_RULING_2026-06-21.md` ruling SHA still TBD
-  (optional cleanup) · residual fresh-clone WARN refs (see PR #16 §3) ·
-  D-T0-06:7 / D-GOV-07:26 WARNs stand by ruled default (R6 c/d, Receipt 0).
-- **Queued TOOLMAKER work** — lives in `tools/practitioner_harness/BACKLOG.md`
-  (HB-1..HB-5: harness-recorded anchors, generated bridge-status view,
-  abs-path detector breadth, environment-dependent ref classification,
-  optional coordination-artifact check mode). Harness lane, PR pattern.
+`PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py bridge-status`
+
+The view is generated output, not authority. It reads the decision registers,
+the ADOPTED profile's live-binding line, governed brief lifecycle records, and
+the latest loop receipt; it reports sourced owner-shaped act rows and never
+selects work. This workplan section intentionally carries no hand-maintained
+owner-action state. Remaining harness development candidates live in
+`tools/practitioner_harness/BACKLOG.md`.
 
 ## Loop Log (SEALED 2026-07-02 — immutable history, no further entries)
 

@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import brief_adoption
 import cmd_brief
+import cmd_bridge_status
 import cmd_closeout
+import cmd_coord_check
 import cmd_drift
 import cmd_evidence_check
 import cmd_next
@@ -23,9 +25,10 @@ from harness_common import FORBIDDEN_CLAIM_WORDS, find_claim_language
 from test_self_check_fixtures import build_mini_repo
 
 TEMPLATE_MODULES = (harness_common, cmd_brief, cmd_self_check, cmd_drift,
-                    cmd_status, cmd_next, brief_adoption,
+                    cmd_status, cmd_next, cmd_bridge_status, brief_adoption,
                     cmd_run_validations, evidence_records,
-                    cmd_scope_check, cmd_evidence_check, cmd_closeout)
+                    cmd_scope_check, cmd_evidence_check, cmd_closeout,
+                    cmd_coord_check)
 
 
 def test_find_claim_language_flags_lowercase_claims():
@@ -55,6 +58,7 @@ def test_rendered_markdown_reports_carry_no_claim_language(tmp_path, capsys):
         ["status", "--domain-engines"],
         ["drift", "--all"],
         ["self-check"],
+        ["bridge-status"],
         ["next"],
         ["brief", "--project", "piping", "--deliverable", "DEL-01-02",
          "--tranche-id", "TRB-lint-001"],

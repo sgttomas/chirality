@@ -405,6 +405,30 @@ def test_gen5_unresolved_source_ref(tmp_path):
     _has(report, "UNRESOLVED_SOURCE_REF", "_REGISTER.md", severity=Severity.WARN)
 
 
+def test_gen5_generated_root_source_ref_is_environment_dependent_info(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    brief = repo / "docs" / "governance_harness" / "briefs" / "TRB-fixture.md"
+    _write(brief, """# Fixture brief
+
+## evidence_targets
+
+- `_harness_generated/briefs/TRB-fixture.md` (under the declared generated root)
+- `_harness_generated/briefs/TRB-fixture.json` (under the declared generated root)
+- `docs/governance_harness/briefs/missing.md`
+""")
+    report, _ = cmd_self_check.run_self_check(repo)
+    hits = [f for f in _findings(report, "UNRESOLVED_SOURCE_REF")
+            if f.source_path.endswith("TRB-fixture.md")]
+    assert [(f.source_line, f.severity) for f in hits] == [
+        (5, Severity.INFO),
+        (6, Severity.INFO),
+        (7, Severity.WARN),
+    ]
+    messages = " || ".join(f.message for f in hits)
+    assert "declared generated root" in messages
+    assert "does not resolve to an existing repo path" in messages
+
+
 def test_candidate_refs_strip_trailing_parenthetical_annotations():
     """Regression (bridge Loop 1, 2026-07-02): committed adopted briefs emit
     refs like `path.md (line 9)` and `path.md (declared references surface)`;
