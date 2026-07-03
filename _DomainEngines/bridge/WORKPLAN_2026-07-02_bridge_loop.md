@@ -130,7 +130,10 @@ deliverable-local files. This index only says WHERE to look at Step 0:
 
 ## Owner-action pointer index (IDs and paths only — state lives in the records)
 
-Open at the time of the 2026-07-02 protocol reform; re-derive every loop:
+**Transitional surface** (owner caveat 2026-07-02): this hand-maintained index
+is reduced or removed once HB-2's generated bridge-status view lands
+(`tools/practitioner_harness/BACKLOG.md`). Open at the time of the 2026-07-02
+protocol reform; re-derive every loop:
 
 - **SCA propagation for D-21** — ruled O-A; execution not yet directed. See
   `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-21_prd_scope_change_v0_2_milestone_set.md`

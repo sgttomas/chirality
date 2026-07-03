@@ -34,7 +34,11 @@ for the latest gate outcome. Output: a sourced pick-list of owner-shaped acts,
 same posture as `next` (the tool never selects; generated view, not
 authority). Precondition observed in the reflection: every human act must
 have a structured primary artifact — the 2026-07-02 ruling records and
-Decision_Log show the current record shapes suffice.
+Decision_Log show the current record shapes suffice. Completion criterion
+(owner caveat, 2026-07-02): when this view lands, reduce or remove the
+hand-maintained "Owner-action pointer index" in
+`_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md` — that index is
+explicitly transitional until then.
 
 ## HB-3 — Broaden the machine-absolute-path detector
 
