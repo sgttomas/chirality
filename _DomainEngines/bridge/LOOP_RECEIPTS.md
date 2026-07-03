@@ -217,7 +217,7 @@
     server (typecheck/test/release-quality latest exits 0; ignored npm workspace link
     restored); scope-check 5/5 in-fence; evidence-check/closeout-digest no findings;
     status x3 no severities; drift 0/154; self-check exit 0 at
-    INFO=13/NOT_APPLICABLE=1/REVIEW=28/WARN=2; harness pytest 248 passed.
+    INFO=14/NOT_APPLICABLE=1/REVIEW=28/WARN=2; harness pytest 248 passed.
   - Parked lanes: shim migration/wrapper retirement, D-T0-07 version settlement,
     package publishability, D-22 piping consumption, SCA propagation, F3, live binding,
     and PR #29 owner merge/CI disposition.

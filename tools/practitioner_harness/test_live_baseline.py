@@ -112,16 +112,15 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # exact aggregate self-check totals live here as the harness-recorded
     # comparison anchor. Legitimate movement gets a conscious pin update in
     # the same PR.
-    # INFO 12->13 on 2026-07-03: owner adopted a third governed brief
-    # (TRB-chirality-app-dev-DEL-03-01-2026-07-03), which carries one
-    # evidence_targets ref into the declared _harness_generated/ root — an
-    # environment-independent generated-root INFO (HB-4 classification), the
-    # same shape the two DEL-10-0x briefs each already contribute. Pin updates
-    # here are conscious, never silent.
+    # INFO 12->14 on 2026-07-03: owner adopted a third governed brief
+    # (TRB-chirality-app-dev-DEL-03-01-2026-07-03), which carries two
+    # evidence_targets refs into the declared _harness_generated/ root — an
+    # environment-independent generated-root INFO pair (HB-4 classification).
+    # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
-        "INFO": 13,
+            "INFO": 14,
         "NOT_APPLICABLE": 1,
         "REVIEW": 28,
         "WARN": 2,
