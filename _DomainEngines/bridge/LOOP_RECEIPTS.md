@@ -167,3 +167,12 @@
     settlement (D-T0-07), package publishability (F2 or intra-repo mechanism),
     piping-side D-22 consumption (DEC-041 condition + piping vehicle; write-prohibited
     surface), SCA propagation, F3, live binding — all owner/environment gated.
+
+- **2026-07-03 — Receipt 9**
+  - Start: `c09ed185b`; detached `HEAD` contained by `main`/`origin/main`; tree clean before regeneration.
+  - Owner direction of record (2026-07-03, active goal): "Continue that pursuit until every lawful path of advancement is exhausted except for human decision. Park gated decisions, stop at owner gates, and continue any independent lawful work that keeps the development loop moving toward the bridge's inherent goals."
+  - Live gates checked: no new register/profile unlocks; app-dev `D-APP-45`/`D-APP-46` RULED; piping `D-21`/`D-22` RULED; tier-0 8/8 RULED; profile live-binding line still names x4 gates; `bridge-status` owner-shaped rows unchanged.
+  - Executed pointers: regenerated CANDIDATE `TRB-chirality-app-dev-DEL-03-01-2026-07-03` at `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md` because the Receipt 8 gitignored scratch file was absent in this checkout; no governed DEL, frontend, piping, or profile writes.
+  - Gate outcome: STOPPED awaiting owner adoption of the candidate brief (K-AUTH-1; D-GOV-04); adoption mechanism unchanged from Receipt 8.
+  - Checks: `bridge-status` pass; status x3 no severities; drift 0/154; self-check exit 0 with expected INFO=12/NOT_APPLICABLE=1/REVIEW=28/WARN=2; `harness:validate:contract-deps` pass; harness pytest 247 passed / 1 skipped.
+  - Parked lanes: DEL-03-01 execution until brief adoption; shim-importer migration/wrapper retirement, tier-0 Flow-A version settlement, package publishability, piping-side D-22 consumption, SCA propagation, F3, and live binding remain owner/environment gated.
