@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """LIVE-tree baseline tests (skippable when the live roots are absent or when
-CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 92/101,
-app-dev 0/53), the three deliberately retained stale surfaces (owner ruling
+CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 0/101,
+app-dev 0/53 — conscious pin update 2026-07-02: the original 92/101 class was
+resolved by the owner's class-wide K-CONFLICT-1 ruling, header IN_PROGRESS
+authoritative, recorded at projects/chirality-piping/execution/_Reconciliation/
+LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md),
+the three deliberately retained stale surfaces (owner ruling
 2026-07-01; post-cleanup exact counts pinned per the D-T0 clean + backfill
 owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
 reconciliation pointer (the GEN-7 pointer-currency check's first detection
@@ -42,20 +46,26 @@ def _fact(report, fact_id):
 
 
 @live
-def test_live_drift_baseline_92_of_101_and_0_of_53():
+def test_live_drift_baseline_0_of_101_and_0_of_53():
+    # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
+    # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
+    # shall be IN_PROGRESS"); one parser-verified reversal history line was
+    # appended per file. Ruling record: projects/chirality-piping/execution/
+    # _Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/
+    # Decision_Log.md. Pin updates here are conscious, never silent.
     report = cmd_drift.run_drift(LIVE_REPO, [
         LIVE_REPO / "projects" / "chirality-app-dev",
         LIVE_REPO / "projects" / "chirality-piping",
     ])
     piping = _fact(report, "drift.chirality-piping").value
     assert "files=101" in piping
-    assert "mismatches=92" in piping
+    assert "mismatches=0" in piping
     assert "unparseable_docs=0" in piping
     app_dev = _fact(report, "drift.chirality-app-dev").value
     assert "files=53" in app_dev
     assert "mismatches=0" in app_dev
     assert report.summary["files_total"] == 154
-    assert report.summary["mismatches_total"] == 92
+    assert report.summary["mismatches_total"] == 0
 
 
 @live
