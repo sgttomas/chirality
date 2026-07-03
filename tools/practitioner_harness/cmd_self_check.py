@@ -63,7 +63,8 @@ from harness_common import (
 
 STALE_ANNOTATION_RE = re.compile(r"PROPOSAL; HumanRuling\s*[:=]\s*TBD")
 STALE_DRAFT_DIRECTIVE_RE = re.compile(r"Update the DRAFT profile")
-ABS_PATH_RE = re.compile(r"/Users/[^ )\"']+")
+ABS_PATH_RE = re.compile(
+    r"(?<![A-Za-z0-9_.-])/(?:Users|private|home|tmp|var/folders)/[^\s)\"'`<>]+")
 RULING_SHA_TBD_RE = re.compile(r"Ruling SHA:(?:\*\*)?\s*TBD")
 BIND_AT_PUBLISH_RE = re.compile(
     r"binds? (?:at|to a git SHA when) (?:CHANGE )?publish", re.IGNORECASE)
@@ -550,6 +551,14 @@ def run_self_check(
         for idx, line in enumerate(text.splitlines(), start=1):
             for ref in _candidate_refs(line):
                 if not _resolves(ref, repo_root, path.parent, de_root):
+                    if _is_declared_generated_root_ref(ref):
+                        report.add_finding(make_finding(
+                            Severity.INFO, "UNRESOLVED_SOURCE_REF", "provenance",
+                            f"Reference `{ref}` is under the declared generated root "
+                            f"`{GENERATED_ROOT_NAME}/`; generated artifacts are "
+                            "rebuildable and may be absent in fresh checkouts/worktrees.",
+                            _rel(path, repo_root), idx, invariant="K-PROV-1"))
+                        continue
                     report.add_finding(make_finding(
                         Severity.WARN, "UNRESOLVED_SOURCE_REF", "provenance",
                         f"Reference `{ref}` does not resolve to an existing repo path "
@@ -884,6 +893,11 @@ def _resolve_ref_path(
 
 def _resolves(ref: str, repo_root: Path, file_dir: Path, de_root: Path) -> bool:
     return _resolve_ref_path(ref, repo_root, file_dir, de_root) is not None
+
+
+def _is_declared_generated_root_ref(ref: str) -> bool:
+    parts = Path(ref.strip().lstrip("./")).parts
+    return bool(parts) and parts[0] == GENERATED_ROOT_NAME
 
 
 _HTML_TAG_RE = re.compile(r"<[^>]+>")

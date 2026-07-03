@@ -2,6 +2,9 @@
   "name": "chirality-frontend",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "description": "Frontend workspace bootstrap for Chirality desktop runtime",
   "author": "Chirality Project",
   "main": "dist-electron/main.js",
@@ -20,8 +23,9 @@
     "harness:validate:agentsdk-mcp-probe": "vitest run src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts",
     "harness:validate:agentsdk-packaged-proof": "node ./scripts/verify-packaged-agent-sdk-runtime.mjs",
     "harness:validate:agentsdk-packaged-live-read-tool": "node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs",
+    "harness:validate:contract-deps": "node ./scripts/assert-harness-contract-deps.mjs",
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
-    "validate:release-quality": "node ./scripts/validate-release-quality-evidence.mjs",
+    "validate:release-quality": "npm run harness:validate:contract-deps && node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
@@ -29,6 +33,7 @@
     "desktop:dist": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run instruction-root:integrity"
   },
   "dependencies": {
+    "@chirality/harness-contract": "file:packages/harness-contract",
     "@anthropic-ai/claude-agent-sdk": "0.3.150",
     "@anthropic-ai/sdk": "0.93.0",
     "ansi_up": "^6.0.6",

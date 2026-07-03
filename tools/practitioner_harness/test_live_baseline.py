@@ -5,12 +5,13 @@ app-dev 0/53 — conscious pin update 2026-07-02: the original 92/101 class was
 resolved by the owner's class-wide K-CONFLICT-1 ruling, header IN_PROGRESS
 authoritative, recorded at projects/chirality-piping/execution/_Reconciliation/
 LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md),
-the three deliberately retained stale surfaces (owner ruling
+the current aggregate self-check severity totals, the three deliberately
+retained stale surfaces (owner ruling
 2026-07-01; post-cleanup exact counts pinned per the D-T0 clean + backfill
 owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
 reconciliation pointer (the GEN-7 pointer-currency check's first detection
 target), the
-GEN-8 19-file instruction-class abs-path baseline (a drift metric: it trends
+GEN-8 24-file instruction-class abs-path baseline (a drift metric: it trends
 DOWN as files are relativized when next touched, and a conscious pin update
 accompanies each reduction), and the GEN-9 registry zero-drift state (its
 first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
@@ -106,6 +107,22 @@ def test_live_self_check_catches_the_three_retained_surfaces():
 
 
 @live
+def test_live_self_check_severity_totals_are_recorded_loop_anchors():
+    # HB-1/HB-4 conscious baseline: loop receipts carry pass/fail only, so
+    # exact aggregate self-check totals live here as the harness-recorded
+    # comparison anchor. Legitimate movement gets a conscious pin update in
+    # the same PR.
+    report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
+    assert refusal is None
+    assert report.severity_counts() == {
+        "INFO": 12,
+        "NOT_APPLICABLE": 1,
+        "REVIEW": 28,
+        "WARN": 2,
+    }
+
+
+@live
 def test_live_self_check_exactly_one_abs_path_in_evidence():
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_EVIDENCE"]
@@ -184,10 +201,11 @@ def test_live_pointer_currency_first_detection_target():
     assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
-# The GEN-8 live baseline (measured 2026-07-01 at 4e01db61e): the 19
-# instruction-class project files carrying machine-absolute paths. This set
-# is a drift metric — it should trend DOWN as files are relativized when
-# next touched; each reduction is a conscious pin update, never a silent one.
+# The GEN-8 live baseline (conscious pin update 2026-07-03, HB-3): broadening
+# the detector beyond /Users to /private, /home, /tmp, and /var/folders moved
+# the instruction-class project-file set from 19 to 24. This set is a drift
+# metric — it should trend DOWN as files are relativized when next touched;
+# each reduction is a conscious pin update, never a silent one.
 GEN8_BASELINE_PATHS = {
     "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md",
     "projects/chirality-app-dev/plans/pi-assessment/01_core_session_primitives.md",
@@ -200,11 +218,16 @@ GEN8_BASELINE_PATHS = {
     "projects/chirality-app-dev/plans/agent-harness-patterns-from-claw-code-assessment.md",
     "projects/chirality-app-dev/plans/"
     "ASSESSMENT_2026-06-18_pi_rust_sdk_correction_and_harness_posture.md",
+    "projects/chirality-app-dev/plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md",
     "projects/chirality-app-dev/plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md",
     "projects/chirality-app-dev/plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md",
+    "projects/chirality-app-dev/plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md",
+    "projects/chirality-app-dev/plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md",
     "projects/chirality-app-dev/plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md",
     "projects/chirality-app-dev/plans/PLAN_2026-06-16_six_node_scc_resolution.md",
     "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-08_RULING_2026-06-16.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-16_RULING_2026-06-18.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-17_RULING_2026-06-18.md",
     "projects/chirality-app-dev/docs/README.md",
     "projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
     "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
@@ -213,12 +236,12 @@ GEN8_BASELINE_PATHS = {
 
 
 @live
-def test_live_gen8_abs_path_19_file_baseline():
+def test_live_gen8_abs_path_24_file_baseline():
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 19  # exactly one finding per FILE
+    assert len(hits) == 24  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:
