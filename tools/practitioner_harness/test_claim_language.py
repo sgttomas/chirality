@@ -10,6 +10,7 @@ import brief_adoption
 import cmd_brief
 import cmd_bridge_status
 import cmd_closeout
+import cmd_coord_check
 import cmd_drift
 import cmd_evidence_check
 import cmd_next
@@ -26,7 +27,8 @@ from test_self_check_fixtures import build_mini_repo
 TEMPLATE_MODULES = (harness_common, cmd_brief, cmd_self_check, cmd_drift,
                     cmd_status, cmd_next, cmd_bridge_status, brief_adoption,
                     cmd_run_validations, evidence_records,
-                    cmd_scope_check, cmd_evidence_check, cmd_closeout)
+                    cmd_scope_check, cmd_evidence_check, cmd_closeout,
+                    cmd_coord_check)
 
 
 def test_find_claim_language_flags_lowercase_claims():

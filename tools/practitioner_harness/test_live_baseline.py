@@ -5,12 +5,13 @@ app-dev 0/53 — conscious pin update 2026-07-02: the original 92/101 class was
 resolved by the owner's class-wide K-CONFLICT-1 ruling, header IN_PROGRESS
 authoritative, recorded at projects/chirality-piping/execution/_Reconciliation/
 LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md),
-the three deliberately retained stale surfaces (owner ruling
+the current aggregate self-check severity totals, the three deliberately
+retained stale surfaces (owner ruling
 2026-07-01; post-cleanup exact counts pinned per the D-T0 clean + backfill
 owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
 reconciliation pointer (the GEN-7 pointer-currency check's first detection
 target), the
-GEN-8 19-file instruction-class abs-path baseline (a drift metric: it trends
+GEN-8 24-file instruction-class abs-path baseline (a drift metric: it trends
 DOWN as files are relativized when next touched, and a conscious pin update
 accompanies each reduction), and the GEN-9 registry zero-drift state (its
 first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
@@ -103,6 +104,22 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     assert counts.get("TITLE_CONTRADICTS_RULING", 0) == 1
     assert counts.get("STALE_DRAFT_DIRECTIVE", 0) == 1
     assert counts.get("RULING_SHA_TBD", 0) == 0
+
+
+@live
+def test_live_self_check_severity_totals_are_recorded_loop_anchors():
+    # HB-1/HB-4 conscious baseline: loop receipts carry pass/fail only, so
+    # exact aggregate self-check totals live here as the harness-recorded
+    # comparison anchor. Legitimate movement gets a conscious pin update in
+    # the same PR.
+    report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
+    assert refusal is None
+    assert report.severity_counts() == {
+        "INFO": 12,
+        "NOT_APPLICABLE": 1,
+        "REVIEW": 28,
+        "WARN": 2,
+    }
 
 
 @live

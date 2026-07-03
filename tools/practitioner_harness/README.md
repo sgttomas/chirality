@@ -34,6 +34,7 @@ python3 tools/practitioner_harness/harness.py run-validations --brief docs/gover
 python3 tools/practitioner_harness/harness.py scope-check --brief docs/governance_harness/briefs/TRB-….md --diff <rev-or-A..B>
 python3 tools/practitioner_harness/harness.py evidence-check --brief docs/governance_harness/briefs/TRB-….md
 python3 tools/practitioner_harness/harness.py closeout-digest --brief docs/governance_harness/briefs/TRB-….md --diff <rev-or-A..B> [--write-digest]
+python3 tools/practitioner_harness/harness.py coord-check --diff <rev-or-A..B>
 ```
 
 Markdown report to stdout; machine-readable JSON via `--json-report` (must
@@ -51,7 +52,7 @@ exit nonzero.
 | Tranche brief (HUMAN_ADOPTED) | **Committed governed fence** (D-GOV-04); an adoption existing only in a scratch directory does not exist. Detected — never granted — by `brief --verify-adoption` (see the Phase 3 section below) |
 | Evidence records (`run-validations`, schema `practitioner-harness-evidence/v1`) | **Factual evidence artifact** — never approval, never lifecycle state; readable back as facts for its own tranche only (see Self-exclusion) |
 | Closeout digest (`closeout-digest --write-digest`) | **Generated digest** — an input to the human CHANGE closeout; never a lifecycle transition or judgment |
-| Status / drift / self-check / bridge-status reports | **Generated view** — never authority, never read back as input |
+| Status / drift / self-check / bridge-status / coord-check reports | **Generated view** — never authority, never read back as input |
 | Local index cache (none yet) | **Rebuildable projection** — gitignored, one-command regeneration, never cited (D-GOV-01) |
 | `write_status.sh` guard | **Refusal mechanism** — blocks objectively broken transitions; never approval, never authorship |
 
@@ -59,7 +60,7 @@ exit nonzero.
 
 1. **Read-only inspection** — `status`, `drift`, `self-check`,
    `bridge-status`, `next`, `scope-check`, `evidence-check`, `closeout-digest` without
-   `--write-digest`, `run-validations --list`: byte-identical guarantee over
+   `--write-digest`, `coord-check`, `run-validations --list`: byte-identical guarantee over
    governed files (tested).
 2. **Generated-artifact output** — `brief`, `run-validations` evidence
    records, `closeout-digest --write-digest`, report emission: writes land
