@@ -123,3 +123,47 @@
   - Gate outcome: harness/control stack landed on `main`; no app-dev/piping integration lane resumed beyond the merged D-APP-46 internal package extraction and harness-control work already recorded in Receipts 1–6.
   - Checks: post-merge `governance-harness` on `main` passed for `911f7ce6c`; local self-check exit 0 with expected INFO=12/REVIEW=28/WARN=2; ledger diff-check pass.
   - Parked lanes: SCA propagation, package consumption, F3, live binding, and open piping register rows remain owner/environment gated.
+
+- **2026-07-03 — Receipt 8**
+  - Start: `2310e30ba`; branch `main` clean/synced; loop entered via `LOOP_INIT.md` on the standing goal-update direction.
+  - Owner direction of record (2026-07-03, in-session): "Prepare the next bridge
+    package-consumption loop as candidate brief(s), then stop for adoption."
+  - Live gates checked: app-dev `D-APP-46` RULED (Option A extraction merged, PR #21
+    / content commit `ecc9c5a35`); `D-APP-45` RULED (Flow-A wiring shape only, version
+    stays `TBD_BY_TIER_0`); piping `D-21`/`D-22` RULED; tier-0 8/8 RULED; profile
+    live-binding line still names x4 gates; DEC-041 automation condition UNMET; DEC-042
+    bar on app-dev dependency consumption intact (`SOFTWARE_DECOMP.md:612`).
+  - Select: exactly one brief-shaped fence in the consumption lane — DEL-03-01
+    (`AgentEnginePort and Engine Conformance Suite`, CHECKING). Code/version/publish/
+    piping steps are ruling-shaped, not brief-fenceable (a brief write_scope is the
+    DEL governance dir only; `cmd_brief.py:177`).
+  - Prepared (NOT committed — gitignored scratch, awaiting owner adoption):
+    CANDIDATE `TRB-chirality-app-dev-DEL-03-01-2026-07-03` at
+    `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md`.
+    Objective: doc-only, in-fence — absorb the merged extraction into DEL-03-01
+    contract records (close `Datasheet.md:58` source-path TBD; forward-annotate the
+    INSP-03 / CODEV-001 rows whose cited paths are now package re-export shims) and
+    record the consumption-readiness baseline (`@chirality/harness-contract`
+    `0.0.0-private`/`private:true`, exports root+10 subpaths; ruled version wiring
+    `FLOW_A_CONTRACT_VERSION=TBD_BY_TIER_0` / `CLAUDE_AGENT_SDK_PACKAGE_VERSION=0.3.150`
+    / `HARNESS_TOOL_REGISTRY_VERSION=harness-tools.v6.mutating-mcp`; 64 frontend
+    importers on shim paths, 0 direct; dependency lint at `package.json:26`). No
+    lifecycle advance (_STATUS stays CHECKING, F4 untouched); no frontend/piping writes.
+  - Verification: 3 independent adversarial reviewers (citation integrity, scope
+    lawfulness, convention fidelity vs. the closed DEL-10-03 exemplar) — zero findings.
+  - Stale-map delta: fresh-derived discovery reproduces this Select; nothing in the
+    committed tree pointed a next session at the prepared candidate before this
+    receipt (Receipt 7 predates the loop) — hence this pointer.
+  - Checks: status x3 no severities; drift 0/154; self-check exit 0 with expected
+    INFO=12/NOT_APPLICABLE=1/REVIEW=28/WARN=2 (after deleting rebuildable Loop-1
+    scratch under `_harness_generated/`); harness pytest 248 passed.
+  - Gate outcome: STOPPED awaiting owner adoption of the candidate brief
+    (K-AUTH-1; D-GOV-04). On adoption: owner edits `state:`→HUMAN_ADOPTED, fills
+    `adopted_by`/`adopted_on`, moves the file to `docs/governance_harness/briefs/`
+    OUTSIDE the gitignored root, commits; then the tranche executes branch-first
+    with the deliverable-work check set and a close receipt supersedes this one.
+  - Parked lanes: shim-importer migration/wrapper retirement (fence-free app-dev
+    refactor, wants owner direction or a D-APP-47 packet), tier-0 Flow-A version
+    settlement (D-T0-07), package publishability (F2 or intra-repo mechanism),
+    piping-side D-22 consumption (DEC-041 condition + piping vehicle; write-prohibited
+    surface), SCA propagation, F3, live binding — all owner/environment gated.
