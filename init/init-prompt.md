@@ -28,15 +28,19 @@ Then read `{WORKING_ROOT}/execution/_Coordination/NEXT_INSTANCE_PROMPT.md` and f
 </init-prompt>
 
 <init-prompt>
-Continuously pursue the inherent goals of the `chirality-app-dev` ↔
-`chirality-piping` tier-0 bridge: keep the two project surfaces governably
-aligned and move the standing bridge plan forward as far as live authority
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Read `{REPO_ROOT}/<LOOP_DIR>/LOOP_INIT.md` and follow it: pursue the loop's
+inherent goals — recorded in its standing plan — as far as live authority
 permits.
 
-Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`, read
-`{REPO_ROOT}/_DomainEngines/bridge/LOOP_INIT.md`, then follow it. Continue
-that pursuit until every lawful path of advancement is exhausted except for
-human decision. Park gated decisions, stop at owner gates, and continue any
-independent lawful work that keeps the development loop moving toward the
-bridge's inherent goals.
+Steer (this run): <none>
 </init-prompt>
+
+`<LOOP_DIR>` for the app-dev ↔ piping tier-0 bridge loop: `_DomainEngines/bridge`.
+The launcher is deliberately generic: the loop's goal, protocol, and specifics
+live in `<LOOP_DIR>`'s `LOOP_INIT.md` → standing plan → receipts, which change
+at their own pace; a stale pasted copy of this launcher can only mispoint,
+never override protocol. Replace the `Steer` placeholder with any per-run
+direction (or leave `<none>`); the steer overrides the loop's default posture
+but never the owner gate.

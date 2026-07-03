@@ -10,7 +10,14 @@
 > live at the top of that file). The Loop Log at the bottom is SEALED immutable
 > history from Loops 1–2.
 
-## Owner intent (recorded 2026-07-02)
+## Owner intent (recorded 2026-07-02; goal of record added 2026-07-03)
+
+**The loop's goal** (owner direction of record, quoted verbatim in
+`LOOP_RECEIPTS.md` Receipts 1–6): keep the `chirality-app-dev` and
+`chirality-piping` project surfaces governably aligned and move this standing
+bridge plan forward as far as live authority permits. This section is the
+goal's single durable home — the generic launcher (`init/init-prompt.md`) and
+`LOOP_INIT.md` deliberately point here instead of restating it.
 
 Execute the most comprehensive amount of bridge work available, as a series of loops,
 across sessions. Each iteration discovers state fresh rather than following pre-spelled
