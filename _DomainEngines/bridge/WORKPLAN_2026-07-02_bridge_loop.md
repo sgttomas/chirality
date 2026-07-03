@@ -148,9 +148,10 @@ Open at the time of the 2026-07-02 protocol reform; re-derive every loop:
   (stale post-ruling) · `D-APP-44_RULING_2026-06-21.md` ruling SHA still TBD
   (optional cleanup) · residual fresh-clone WARN refs (see PR #16 §3) ·
   D-T0-06:7 / D-GOV-07:26 WARNs stand by ruled default (R6 c/d, Receipt 0).
-- **Queued TOOLMAKER work** (Receipt 0): comparison anchors fully into
-  harness-recorded form; generated owner-queue / bridge-status view over
-  decision records.
+- **Queued TOOLMAKER work** — lives in `tools/practitioner_harness/BACKLOG.md`
+  (HB-1..HB-5: harness-recorded anchors, generated bridge-status view,
+  abs-path detector breadth, environment-dependent ref classification,
+  optional coordination-artifact check mode). Harness lane, PR pattern.
 
 ## Loop Log (SEALED 2026-07-02 — immutable history, no further entries)
 
