@@ -5,7 +5,7 @@
 **Decision ID:** D-T0-10 (residual of D-T0-08 per the 2026-07-03 residual-work convention)
 **Prepared by:** bridge work loop agent; the acknowledgment act is the owner's (K-AUTH-1; D-GOV-04).
 **Staged packet:** `../bridge/CHANGE_PREP_2026-07-04_proven_l2_acknowledgment.md` (exact profile edits §3; evidence index §2; owner steps §4).
-**Ruling SHA:** TBD at publication commit (backfill per the D-APP-44 / D-31 precedent).
+**Ruling SHA:** `2081d6daa` — the commit publishing this record and applying the staged CHANGE (backfilled same-branch per the D-APP-44 / D-31 precedent).
 
 ## Decision ruled
 
@@ -23,7 +23,9 @@ on the DEC-064/TP-RUNNER-014 evidence, and apply the staged tier-0 CHANGE
   `result:stress:pipe-P-120:end-j:torsional-shear`, two SHA-256 checksums;
   witness
   `projects/chirality-piping/validation/witness/generated/tp_runner_014_headless_entrypoint_preview_run.json`;
-  run record DEL-10-05 `_run_records/WORKING_ITEMS_RUN_2026-07-04_TP-RUNNER-014.md`.
+  run record `WORKING_ITEMS_RUN_2026-07-04_TP-RUNNER-014.md` in the DEL-10-05
+  deliverable's `_run_records` directory (full path indexed in the staged
+  packet §2).
 - DEC-025 five-surface sweep 5/5 bound to the tranche HEAD `98dfde1d1`;
   adversarial review reproduced the run byte-identical
   (`_DomainEngines/bridge/LOOP_RECEIPTS.md` Receipt 23).
