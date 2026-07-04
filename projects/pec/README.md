@@ -4,10 +4,13 @@ Web-based, multi-user system of record for multidisciplinary engineering executi
 controlled records, condition-gated transitions, and derived (always explainable) status. Implements
 `docs/PRD.md` (v0.4), Phase 1 scope.
 
+**New here? Start with [`docs/STATUS.md`](docs/STATUS.md)** — current state, what's next, and the read-order for the rest of the docs.
+
 ## Layout
 
 | Path | Contents |
 |---|---|
+| `docs/STATUS.md` | **Status & handoff** — where the project is, what remains; read this first |
 | `docs/PRD.md` | Product requirements (basis document, v0.4) |
 | `docs/SPEC.md` | Implementation specification: data model, lifecycles, conditions engine, derived status, API, RBAC |
 | `docs/adr/ADR.md` | Architecture decision records (implementer-level; PRD OM-*/D-* taken as given) |
