@@ -500,8 +500,18 @@ type ChildRunRecord = {
 
 This section is an app-dev vocabulary target that conforms to framework-root
 `agents/AGENT_DOMAIN_ENGINE.md` at commit `77a327727605f05da5f304288f1ddd87dc09659d`.
-It is documentation only. It does not stand up source types, domain MCP tools, protected-path hooks,
-domain runtime, or operation-application behavior.
+
+> **Forward note (2026-07-04 — D-APP-49 ruling O-A; D-T0-10 proven-L2 acknowledgment recorded):**
+> F3 step (a) is open, and the prior boundary sentence — "It is documentation only. It does not
+> stand up source types, domain MCP tools, protected-path hooks, domain runtime, or
+> operation-application behavior." — is amended forward: the `DomainEngineProfile` /
+> `OperationProposal` vocabulary below now has inert source-type mirrors (types + type guards
+> only; no behavior, persistence, UI, I/O, or imports) in
+> `frontend/packages/harness-contract/src/domain-profile.ts` and
+> `frontend/packages/harness-contract/src/operation-proposal.ts`. The rest of the boundary
+> stands unchanged: this section and those modules stand up no domain MCP tools (step (b)
+> remains the separate D-APP-50 lane; `mcp__chirality__domain_*` stays reserved), no
+> protected-path hooks, no domain runtime, and no operation-application behavior.
 
 ### 11.1 `DomainEngineProfile`
 
