@@ -21,7 +21,7 @@ domain_profile:
   id: "open_pipe_stress"
   name: "OpenPipeStress Piping-Stress Engine"
   engine_type: "structural/piping-stress-analysis"
-  profile_version: "0.2"
+  profile_version: "0.3"
   profile_status: "ADOPTED"      # human Gate 2 approved by owner 2026-06-21 (D-T0-06): governed-authoritative boundary. Validator passed (report: _validation/open_pipe_stress.validation.json). Renamed from the historical ".DRAFT" filename 2026-07-01 per D-GOV-06. (see D-T0-02 / FM-01 / D-T0-06)
   integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
   data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked.
@@ -142,5 +142,5 @@ domain_profile:
     - "Adoption lifecycle: RESOLVED 2026-06-21 — validator built (tools/validation/validate_domain_engine_profile.py; TOOLMAKER handoff fulfilled), profile passed → VALIDATED, owner ruled Gate 2 → ADOPTED (D-T0-06). Filename renamed from .DRAFT 2026-07-01 per D-GOV-06. No longer an open issue."
     - "Readable run/state/comparison instances are TBD (schemas exist; artifacts produced on demand)."
     - "operation_risk_class is proposed (engine-checkable vs engine-silent; D-T0-03), not yet implemented in the engine."
-    - "Live binding (L2-L3) gated x4: tier-0 adoption, app-dev F3, piping D-21, DEC-041 automation condition (residency is NOT a blocker post D-T0-04)."
+    - "Live binding (L2-L3) gated x1: app-dev F3 (D-T0-08 sequence — proven L2 then source types then MCP tools, proven-L2 scoping at piping D-32; cleared: tier-0 adoption 2026-06-21 per D-T0-06, piping D-21 2026-07-02 per DEC-056, DEC-041 automation condition 2026-07-04 per DEC-063/D-31; residency is NOT a blocker post D-T0-04)."
     - "RES-RECONCILE: RESOLVED 2026-06-21 (both halves published) — app-dev F1 via D-APP-44 @ d83e63b95; piping OPS-K-PRIV-1/SPEC §4.4/IP_AND_DATA_BOUNDARY via DEC-051 @ 9db0eef27. Net posture default-closed (see data_residency_reconciliation). No longer an open issue."

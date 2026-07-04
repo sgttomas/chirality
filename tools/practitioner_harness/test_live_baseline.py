@@ -120,13 +120,17 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # live-binding gate check; the profile line still names cleared
     # tier-0-adoption and piping D-21 gates while the profile/register sources
     # report them resolved.
+    # REVIEW 29->28 on 2026-07-04 (later the same day): the owner-delegated
+    # tier-0 CHANGE (CHANGE_PREP_2026-07-04_live_binding_gate_destale.md)
+    # rewrote the profile live-binding line to the single genuinely open gate
+    # (app-dev F3), so the HB-8 STALE_LIVE_BINDING_GATE finding cleared.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 14,
         "NOT_APPLICABLE": 1,
-        "REVIEW": 29,
+        "REVIEW": 28,
         "WARN": 2,
     }
 
@@ -151,12 +155,17 @@ def test_live_self_check_stale_open_issue_is_zero():
 
 @live
 def test_live_self_check_live_binding_gate_drift_is_detected():
+    # Conscious pin inversion 2026-07-04: this test originally pinned the
+    # HB-8 STALE_LIVE_BINDING_GATE finding at profile :145 (the line still
+    # named the cleared tier-0-adoption and piping D-21 gates). The
+    # owner-delegated tier-0 CHANGE
+    # (CHANGE_PREP_2026-07-04_live_binding_gate_destale.md) rewrote the line
+    # to the single genuinely open gate (app-dev F3), so the live corpus now
+    # lawfully carries ZERO findings of this code. Detector behaviour on
+    # synthetic stale input stays covered by the HB-8 fixture tests.
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "STALE_LIVE_BINDING_GATE"]
-    assert [(f.source_path, f.source_line) for f in hits] == [
-        ("_DomainEngines/profiles/open_pipe_stress.yaml", 145)]
-    assert "tier-0 adoption" in hits[0].message
-    assert "piping D-21" in hits[0].message
+    assert hits == []
 
 
 @live
