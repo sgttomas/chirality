@@ -12,25 +12,33 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from cmd_scope_check import _changed_paths, _validate_diff_range
+from cmd_scope_check import _changed_paths, _run_git, _validate_diff_range
 from cmd_self_check import (
+    ABS_PATH_RE,
+    EVIDENCE_PATH_MARKERS,
     _candidate_refs,
     _is_declared_generated_root_ref,
     _resolve_ref_path,
 )
-from harness_common import Report, Severity, make_finding
+from harness_common import (
+    HarnessOperationalError,
+    Report,
+    Severity,
+    make_finding,
+)
 
 COORD_NOTE = (
     "coord-check inspects changed coordination/control artifacts in a git diff "
     "range. It reports citation resolution, same-directory decision-register "
-    "coverage for changed decision records, and named-precedent presence for "
-    "packet-shaped records; it is never approval, selection, or lifecycle "
-    "judgment.")
+    "coverage for changed decision records, named-precedent presence for "
+    "packet-shaped records, and machine-absolute paths on lines the diff "
+    "range ADDS; it is never approval, selection, or lifecycle judgment.")
 
 DIFF_NOTE = (
-    "Only current file content for tracked changed paths is inspected; deleted "
-    "files, reverted intermediate edits, untracked files, gitignored files, "
-    "and files outside this repository are blind spots.")
+    "Only current file content and diff-added lines for tracked changed paths "
+    "are inspected; deleted files, reverted intermediate edits, untracked "
+    "files, gitignored files, and files outside this repository are blind "
+    "spots.")
 
 TEMPLATES = [COORD_NOTE, DIFF_NOTE]
 
@@ -43,6 +51,17 @@ COORD_PREFIXES = (
 DECISION_ID_RE = re.compile(r"^(D(?:-[A-Z0-9]+)*-\d+[A-Za-z]?)")
 PRECEDENT_RE = re.compile(
     r"\b(precedent|pattern|skeleton|modeled on|convention)\b", re.IGNORECASE)
+
+# HB-10 diff-added machine-absolute-path check (SPEC §0.2.4). The D-05b
+# packet (2026-07-04) quoted a machine-absolute path verbatim; the GEN-8
+# self-check lint caught it only at full-audit/CI time, after the closeout
+# checks had already been recorded. This check closes the pre-commit seam:
+# it flags machine-absolute paths on lines the diff range ADDS to changed
+# coordination artifacts, reusing self-check's ABS_PATH_RE machine-root
+# pattern and EVIDENCE_PATH_MARKERS exemption (imported, never duplicated;
+# run-record/evidence artifacts lawfully carry absolute paths per SPEC
+# §0.2.4). Detect, never rewrite.
+HUNK_HEADER_RE = re.compile(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@")
 
 
 def _is_coordination_artifact(relpath: str) -> bool:
@@ -127,6 +146,71 @@ def _check_register_row(report: Report, repo_root: Path, relpath: str) -> int:
     return 1
 
 
+def _parse_added_lines(diff_text: str) -> list[tuple[int, str]]:
+    """Unified-diff ADDED lines as (new-file line number, content).
+
+    Removed lines and `\\ No newline` markers never advance the new-file
+    counter; context lines do. Text before the first hunk header (or after
+    a `diff ` file header) is never treated as hunk content, so `+++` file
+    headers cannot yield phantom added lines.
+    """
+    added: list[tuple[int, str]] = []
+    new_line = 0
+    in_hunk = False
+    for raw in diff_text.splitlines():
+        if raw.startswith("diff "):
+            in_hunk = False
+            continue
+        m = HUNK_HEADER_RE.match(raw)
+        if m:
+            new_line = int(m.group(1))
+            in_hunk = True
+            continue
+        if not in_hunk:
+            continue
+        if raw.startswith("+"):
+            added.append((new_line, raw[1:]))
+            new_line += 1
+        elif raw.startswith(("-", "\\")):
+            continue
+        else:
+            new_line += 1
+    return added
+
+
+def _added_lines(
+        repo_root: Path, diff_range: str, relpath: str) -> list[tuple[int, str]]:
+    proc = _run_git(
+        repo_root, "diff", "--unified=0", diff_range, "--", relpath)
+    if proc.returncode != 0:
+        raise HarnessOperationalError(
+            f"git diff --unified=0 failed for range {diff_range!r} path "
+            f"{relpath!r}: {proc.stderr.strip()} (operational error).")
+    return _parse_added_lines(proc.stdout)
+
+
+def _check_added_abs_paths(
+        report: Report, relpath: str,
+        added_lines: list[tuple[int, str]]) -> int:
+    if any(marker in relpath for marker in EVIDENCE_PATH_MARKERS):
+        return 0  # evidence artifacts lawfully carry absolute paths
+    finding_count = 0
+    for line_no, line in added_lines:
+        if not ABS_PATH_RE.search(line):
+            continue
+        report.add_finding(make_finding(
+            Severity.REVIEW, "COORD_ABS_PATH_ADDED", "coordination",
+            "Line added by this diff range embeds a machine-absolute path "
+            "on a coordination/control artifact; SPEC §0.2.4 requires "
+            "repo-relative anchoring on instruction/coordination surfaces "
+            "(run-record/evidence artifacts lawfully carry absolute paths). "
+            "Detect, never rewrite: relativize before commit or record the "
+            "human disposition — human review required.",
+            relpath, line_no, invariant="SPEC-0.2.4"))
+        finding_count += 1
+    return finding_count
+
+
 def _check_precedent(report: Report, relpath: str, text: str) -> int:
     if not _requires_named_precedent(relpath) or PRECEDENT_RE.search(text):
         return 0
@@ -165,8 +249,14 @@ def run_coord_check(repo_root: Path, diff_range: str) -> Report:
             "citation_findings": 0,
             "register_findings": 0,
             "precedent_findings": 0,
+            "abs_path_findings": 0,
         }
         coord_rows.append(row)
+        # Diff-added lines are judged from the diff itself, so deletions and
+        # renames-away (no current file) are still inspected — they simply
+        # contribute no added lines.
+        row["abs_path_findings"] = _check_added_abs_paths(
+            report, relpath, _added_lines(repo_root, diff_range, relpath))
         if not path.is_file():
             continue
         text = path.read_text(encoding="utf-8")
@@ -180,13 +270,14 @@ def run_coord_check(repo_root: Path, diff_range: str) -> Report:
     report.md(f"## Coordination/control paths ({len(coord_rows)})")
     report.md("")
     if coord_rows:
-        report.md("| path | git status | inspectable | citation | register | precedent |")
-        report.md("|---|---|---:|---:|---:|---:|")
+        report.md("| path | git status | inspectable | citation | register | precedent | abs-path |")
+        report.md("|---|---|---:|---:|---:|---:|---:|")
         for row in coord_rows:
             report.md(
                 f"| `{row['path']}` | {row['git_status']} | "
                 f"{row['inspectable']} | {row['citation_findings']} | "
-                f"{row['register_findings']} | {row['precedent_findings']} |")
+                f"{row['register_findings']} | {row['precedent_findings']} | "
+                f"{row['abs_path_findings']} |")
     else:
         report.md("- none in this diff range")
 

@@ -21,8 +21,9 @@ verified active fence; path judgment is never lifecycle judgment, K-GATE-1).
 `closeout-digest` composes both checks in-process into a digest for the
 human CHANGE closeout — never a lifecycle transition.
 `coord-check` is the report-only coordination/control analogue over a git
-diff range: citation resolution, decision-register coverage, and named
-precedent presence where packet-shaped records call for it.
+diff range: citation resolution, decision-register coverage, named
+precedent presence where packet-shaped records call for it, and
+machine-absolute paths on diff-added lines (HB-10; SPEC §0.2.4).
 
 Exit codes (D-GOV-02): 0 = ran, no BLOCK; 1 = >=1 BLOCK (or >=1 REVIEW under
 --strict); 2 = operational error or refusal.
@@ -220,7 +221,8 @@ def build_parser() -> argparse.ArgumentParser:
         "coord-check", parents=[common],
         help="Report-only checks for changed coordination/control artifacts "
              "in a git diff range: citation resolution, decision-register "
-             "coverage, and named-precedent presence")
+             "coverage, named-precedent presence, and machine-absolute "
+             "paths on diff-added lines")
     p_coord.add_argument("--diff", required=True, metavar="RANGE",
                          help="Git rev or A..B range for git diff "
                               "--name-status; validated with git rev-parse "

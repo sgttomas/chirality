@@ -383,6 +383,12 @@ prior art: `tools/validation/validate_path_anchors.py` lints the repo-level
 live instruction surfaces (`agents/`, `skills/`, `tools/`, `init/`, root
 `AGENTS.md`, active coordination files) and deliberately excludes `plans/`
 and most project-tree content — the surfaces GEN-8 now audits.
+HB-10 closes the same class at the pre-commit seam: `coord-check --diff`
+reuses `ABS_PATH_RE` and the evidence-marker exemption (imported from
+`cmd_self_check`, never duplicated) to flag machine-absolute paths on lines
+a diff ADDS to changed coordination artifacts (`COORD_ABS_PATH_ADDED`,
+REVIEW, per added line — the D-05b:54 class is caught before commit instead
+of at self-check/CI time).
 
 **GEN-9 (K-AGENTS-1).** Runs once per invocation against the repo-root
 `AGENTS.md` + `agents/` regardless of `--root` (same posture as GEN-4);
