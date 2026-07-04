@@ -6,13 +6,13 @@
  */
 
 import type {
-  Check, Condition, Deliverable, Explain, Hold, IntakeItem, InterfaceItem, Log, Project,
+  Check, Condition, Deliverable, Explain, Hold, IntakeItem, InterfaceItem, Log, Package, Project,
   ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
 } from '@pec/core'
 import {
   activeHoldsFor, ageWorkingDays, commentIsOpen, currentRevision, daysOverdue,
   deliverableStatus, explainTransition, localDate, myWeek, packageStatus, projectStatus,
-  transitionsFrom, visibleLogs, waitingOnYou,
+  transitionsFrom, visibleLogs, waitingOnYou, workflowCompleteness,
 } from '@pec/core'
 import type { Sx } from './shared.ts'
 import { snapshot } from './shared.ts'
@@ -134,6 +134,27 @@ function isInPackage(snap: ProjectSnapshot, targetType: string, targetId: number
 
 // ---------- Packages (PEC-PKG-*) ----------
 
+/** Count of the package's open issues (holds, interfaces, decisions, risks, action items).
+ *  Runs on the unfiltered snapshot — it is a shared-truth count, not a titled row list. */
+function openIssueCount(snap: ProjectSnapshot, pkg: Package): number {
+  const delIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
+  const revIds = new Set(snap.revisions.filter((r) => delIds.has(r.deliverableId)).map((r) => r.id))
+  const holds = snap.holds.filter((h) => h.state === 'active'
+    && snap.holdLinks.some((l) => l.holdId === h.id && isInPackage(snap, l.targetType, l.targetId, pkg.id))).length
+  const interfaces = snap.interfaces.filter((i) =>
+    (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id) && (i.state === 'open' || i.state === 'agreed')).length
+  const decisions = snap.decisions.filter((d) =>
+    d.packageId === pkg.id && d.state !== 'decided' && d.state !== 'superseded').length
+  const risks = (snap.risks as Risk[]).filter((r) =>
+    (r.packageId === pkg.id || (r.deliverableId != null && delIds.has(r.deliverableId))) && r.state !== 'closed').length
+  const actions = snap.workItems.filter((w) =>
+    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination')
+    && (w.packageId === pkg.id
+      || (w.anchorType === 'deliverable' && delIds.has(w.anchorId))
+      || (w.anchorType === 'revision' && revIds.has(w.anchorId)))).length
+  return holds + interfaces + decisions + risks + actions
+}
+
 export function packagesView(sx: Sx): unknown {
   const snap = snapshot(sx)
   return snap.packages.map((p) => {
@@ -141,6 +162,7 @@ export function packagesView(sx: Sx): unknown {
     return {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
+      openIssues: openIssueCount(snap, p),
     }
   })
 }
@@ -151,33 +173,88 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
   if (!pkg) throw notFound(`package #${packageId}`)
   const st = packageStatus(snap, pkg)
   const cal = snap.project.calendar
+  const today = snap.today
   const leadId = pkg.leadId
+  const overdue = (needBy: string | null): boolean => needBy != null && daysOverdue(needBy, today) > 0
 
+  // sphere: deliverables in this package + their revisions (for anchoring action items & risks)
+  const pkgDelIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
+  const pkgRevIds = new Set(snap.revisions.filter((r) => pkgDelIds.has(r.deliverableId)).map((r) => r.id))
+  const workItemInPkg = (w: WorkItem): boolean =>
+    w.packageId === pkg.id
+    || (w.anchorType === 'deliverable' && pkgDelIds.has(w.anchorId))
+    || (w.anchorType === 'revision' && pkgRevIds.has(w.anchorId))
+
+  // ---- the package's open issues (holds, interfaces, decisions, risks, action items) ----
+  // Tasks live on deliverables (workflow status); ISSUES live here — the lead's cockpit.
   const holdsByCause: Record<string, number> = {}
   const pkgHolds = snap.holds.filter((h) => h.state === 'active'
     && snap.holdLinks.some((l) => l.holdId === h.id && isInPackage(snap, l.targetType, l.targetId, pkg.id)))
   for (const h of pkgHolds) holdsByCause[h.cause] = (holdsByCause[h.cause] ?? 0) + 1
 
-  // Row lists carry titles/details → filter by log visibility (PEC-NFR-005). Counts above
-  // and health below run on the unfiltered snapshot (shared truth).
+  // Row lists carry titles/details → filter by log visibility (PEC-NFR-005). Counts and health
+  // run on the unfiltered snapshot (shared truth).
   const visHolds = visibleByLog(sx, snap, pkgHolds)
-  const interfaces = visibleByLog(sx, snap, snap.interfaces.filter((i) =>
+  const allInterfaces = visibleByLog(sx, snap, snap.interfaces.filter((i) =>
     i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id))
-  const decisions = visibleByLog(sx, snap, snap.decisions.filter((d) => d.packageId === pkg.id))
+  const openInterfaces = allInterfaces.filter((i) => i.state === 'open' || i.state === 'agreed')
+  const allDecisions = visibleByLog(sx, snap, snap.decisions.filter((d) => d.packageId === pkg.id))
+  const openDecisions = allDecisions.filter((d) => d.state !== 'decided' && d.state !== 'superseded')
+  const pkgRisks = (snap.risks as Risk[]).filter((r) =>
+    (r.packageId === pkg.id || (r.deliverableId != null && pkgDelIds.has(r.deliverableId))) && r.state !== 'closed')
+  const actionItems = visibleByLog(sx, snap, snap.workItems.filter((w) =>
+    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && workItemInPkg(w)))
 
-  // "Needs the lead this week" (PEC-PKG-005)
+  interface Issue {
+    type: 'hold' | 'interface' | 'decision' | 'risk' | 'action'
+    recordType: string; ref: string; id: number; title: string
+    ownerId: number | null; needBy: string | null; state: string
+    overdue: boolean; ageWd: number; detail: string
+  }
+  const issues: Issue[] = [
+    ...visHolds.map((h) => ({
+      type: 'hold' as const, recordType: 'hold', ref: h.ref, id: h.id, title: h.title,
+      ownerId: h.ownerId, needBy: h.needBy, state: h.state, overdue: overdue(h.needBy),
+      ageWd: ageWorkingDays(h.raisedAt, today, cal), detail: h.cause.replaceAll('_', ' '),
+    })),
+    ...openInterfaces.map((i) => ({
+      type: 'interface' as const, recordType: 'interface_item', ref: i.ref, id: i.id, title: i.title,
+      ownerId: null, needBy: i.needBy, state: i.state, overdue: overdue(i.needBy),
+      ageWd: 0, detail: `${i.givingParty} → ${i.receivingParty}`,
+    })),
+    ...openDecisions.map((d) => ({
+      type: 'decision' as const, recordType: 'decision', ref: d.ref, id: d.id, title: d.title,
+      ownerId: d.authorityId, needBy: d.needBy, state: d.state, overdue: overdue(d.needBy),
+      ageWd: ageWorkingDays(d.createdAt, today, cal), detail: `state ${d.state}`,
+    })),
+    ...pkgRisks.map((r) => ({
+      type: 'risk' as const, recordType: 'risk', ref: r.ref, id: r.id, title: r.title,
+      ownerId: r.ownerId, needBy: r.needBy, state: r.state, overdue: overdue(r.needBy),
+      ageWd: 0, detail: r.probability != null && r.impact != null ? `P${r.probability}×I${r.impact}` : (r.cause ?? '—'),
+    })),
+    ...actionItems.map((w) => ({
+      type: 'action' as const, recordType: 'work_item', ref: w.ref, id: w.id, title: w.title,
+      ownerId: w.ownerId, needBy: w.needBy, state: w.state, overdue: overdue(w.needBy),
+      ageWd: ageWorkingDays(w.createdAt, today, cal), detail: w.kind.replaceAll('_', ' '),
+    })),
+  ].sort((a, b) =>
+    Number(b.overdue) - Number(a.overdue)
+    || b.ageWd - a.ageWd
+    || (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))
+
+  // "Needs the lead this week" (PEC-PKG-005) — the lead's personal action queue
   const needsLead = leadId == null ? [] : [
     ...snap.approvalRecords
       .filter((a) => a.state === 'ready' && a.signatoryIds.includes(leadId))
       .map((a) => ({ kind: 'sign_off_due', ref: a.ref, id: a.id, recordType: 'approval_record', title: a.title, due: a.dueDate })),
-    ...snap.decisions
-      .filter((d) => d.state === 'pending' && d.authorityId === leadId && d.packageId === pkg.id)
+    ...openDecisions
+      .filter((d) => d.state === 'pending' && d.authorityId === leadId)
       .map((d) => ({ kind: 'decision_to_rule', ref: d.ref, id: d.id, recordType: 'decision', title: d.title, due: d.needBy })),
     ...visHolds
       .filter((h) => h.ownerId === leadId)
       .map((h) => ({ kind: 'hold_to_resolve', ref: h.ref, id: h.id, recordType: 'hold', title: h.title, due: h.needBy })),
-    ...interfaces
-      .filter((i) => (i.state === 'open' || i.state === 'agreed') && i.givingPackageId === pkg.id)
+    ...openInterfaces
+      .filter((i) => i.givingPackageId === pkg.id)
       .map((i) => ({ kind: 'interface_obligation', ref: i.ref, id: i.id, recordType: 'interface_item', title: i.title, due: i.needBy })),
   ]
 
@@ -186,35 +263,45 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
     health: redact(sx, snap, st.health),
     summary: {
       deliverablesOnPlan: `${st.onPlanCount}/${st.totalCount}`,
+      openIssues: issues.length,
+      overdueIssues: issues.filter((i) => i.overdue).length,
       holdsByCause,
-      openInterfaces: interfaces.filter((i) => i.state === 'open' || i.state === 'agreed').length,
-      openDecisions: decisions.filter((d) => d.state !== 'decided' && d.state !== 'superseded').length,
+      openHolds: visHolds.length,
+      openInterfaces: openInterfaces.length,
+      openDecisions: openDecisions.length,
+      openRisks: pkgRisks.length,
+      openActionItems: actionItems.length,
     },
-    // deliverables ordered by nearest commitment / need-by (PEC-PKG-004)
-    deliverables: st.deliverableStatuses
-      .map((s) => ({
-        id: s.deliverable.id, docNo: s.deliverable.docNo, title: s.deliverable.title,
-        discipline: s.deliverable.discipline, ownerId: s.deliverable.ownerId,
-        dueDate: s.deliverable.dueDate, milestone: s.deliverable.milestone,
-        state: s.revision?.state ?? 'no_revision', revCode: s.revision?.revCode ?? null,
-        health: redact(sx, snap, s.health), openItems: s.openItemCount, holds: s.activeHoldCount,
-        forecastSlipWd: s.forecastSlipWd,
+    // the cockpit: every open issue, urgency-first (PEC-PKG issues orientation)
+    issues,
+    needsLead,
+    // deliverables carry their WORKFLOW status (not issues), ordered by nearest commitment (PEC-PKG-004)
+    deliverables: snap.deliverables
+      .filter((d) => d.packageId === pkg.id)
+      .map((d) => ({
+        id: d.id, docNo: d.docNo, title: d.title, discipline: d.discipline, ownerId: d.ownerId,
+        dueDate: d.dueDate, milestone: d.milestone, workflow: workflowCompleteness(snap, d),
       }))
       .sort((a, b) => (a.dueDate ?? '9999').localeCompare(b.dueDate ?? '9999')),
-    needsLead,
-    decisions: decisions.map((d) => ({
+    // the grouped registers remain available for detail/CSV
+    decisions: allDecisions.map((d) => ({
       ref: d.ref, id: d.id, title: d.title, state: d.state, needBy: d.needBy,
-      overdueDays: (d.state === 'decided' || d.state === 'superseded') ? 0 : daysOverdue(d.needBy, snap.today),
+      overdueDays: (d.state === 'decided' || d.state === 'superseded') ? 0 : daysOverdue(d.needBy, today),
       affected: snap.decisionLinks.filter((l) => l.decisionId === d.id).length,
     })),
-    interfaces: interfaces.map((i) => ({
+    interfaces: allInterfaces.map((i) => ({
       ref: i.ref, id: i.id, title: i.title, giving: i.givingParty, receiving: i.receivingParty,
       state: i.state, needBy: i.needBy, requiredInfo: i.requiredInfo,
-      overdueWd: i.needBy ? ageWorkingDays(`${i.needBy}T00:00:00Z`, snap.today, cal) : 0,
+      overdueWd: i.needBy ? ageWorkingDays(`${i.needBy}T00:00:00Z`, today, cal) : 0,
       blockingImpact: snap.holdLinks.filter((l) => {
         const h = snap.holds.find((x) => x.id === l.holdId)
         return h?.state === 'active' && h.cause === 'interface'
       }).length,
+    })),
+    risks: pkgRisks.map((r) => ({
+      ref: r.ref, id: r.id, title: r.title, ownerId: r.ownerId, state: r.state,
+      probability: r.probability, impact: r.impact, needBy: r.needBy,
+      overdue: overdue(r.needBy), mitigation: r.mitigation,
     })),
   }
 }
@@ -232,30 +319,24 @@ export interface DeliverableFilters {
 
 export function deliverablesView(sx: Sx, f: DeliverableFilters): unknown {
   const snap = snapshot(sx)
+  // A deliverable's summary STATUS is its workflow completeness (which gates are closed),
+  // not its issue load — issues are surfaced at the package level (PEC-PKG issues cockpit).
   let rows = snap.deliverables.map((d) => {
-    const s = deliverableStatus(snap, d)
-    return { d, s, rev: s.revision }
+    const rev = currentRevision(snap, d.id)
+    return { d, rev, workflow: workflowCompleteness(snap, d) }
   })
   if (f.packageId) rows = rows.filter((r) => r.d.packageId === f.packageId)
   if (f.discipline) rows = rows.filter((r) => r.d.discipline === f.discipline)
   if (f.state) rows = rows.filter((r) => (r.rev?.state ?? 'no_revision') === f.state)
   if (f.dueBefore) rows = rows.filter((r) => r.d.dueDate != null && r.d.dueDate <= f.dueBefore!)
-  if (f.holdCause) {
-    rows = rows.filter((r) => {
-      const holds = activeHoldsFor(snap, 'deliverable', r.d.id)
-      const revHolds = r.rev ? activeHoldsFor(snap, 'revision', r.rev.id) : []
-      return [...holds, ...revHolds].some((h) => h.cause === f.holdCause)
-    })
-  }
   if (f.view === 'issued') rows = rows.filter((r) => r.rev?.state === 'issued')
   else if (f.view === 'active' || !f.view) rows = rows.filter((r) => r.rev?.state !== 'superseded')
 
-  return rows.map(({ d, s, rev }) => ({
+  return rows.map(({ d, rev, workflow }) => ({
     id: d.id, docNo: d.docNo, title: d.title, packageId: d.packageId,
     discipline: d.discipline, ownerId: d.ownerId, revCode: rev?.revCode ?? null,
     state: rev?.state ?? 'no_revision', dueDate: d.dueDate, milestone: d.milestone,
-    dcRef: d.dcRef, health: redact(sx, snap, s.health),
-    openItems: s.openItemCount, holds: s.activeHoldCount,
+    dcRef: d.dcRef, workflow,
   }))
 }
 
@@ -328,7 +409,8 @@ export function deliverableDetailView(sx: Sx, id: number): unknown {
   const offered = rev ? transitionsFrom('revision', rev.state).filter((t) => !t.auto).map((t) => t.event) : []
 
   return {
-    deliverable: d, health: redact(sx, snap, s.health), forecastSlipWd: s.forecastSlipWd,
+    deliverable: d, workflow: workflowCompleteness(snap, d),
+    health: redact(sx, snap, s.health), forecastSlipWd: s.forecastSlipWd,
     currentRevision: rev, revisionChain: chain, openItems, facts,
     beforeIssue, offeredTransitions: offered, evidence, history,
   }

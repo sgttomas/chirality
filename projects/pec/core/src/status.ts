@@ -167,6 +167,85 @@ export function deliverableStatus(snap: ProjectSnapshot, d: Deliverable): Delive
   return mk('green', 'DH-G', 'on plan', 'no hold, no overdue, no slip', [])
 }
 
+// ---------- deliverable workflow completeness (PEC-DEL: status = production-workflow progress) ----------
+
+/**
+ * A deliverable's *status* is how far its current revision has progressed through the
+ * production workflow and which gates it has closed — drafted → checked → approved → issued.
+ * This is deliberately decoupled from issues (holds, action items, overdue): those live at the
+ * package level (issues cockpit) and, on drill-down, may be tied to a deliverable, but they are
+ * never the deliverable's summary status. Pure over the revision lifecycle state (I-4).
+ */
+export type WorkflowStageState = 'done' | 'current' | 'pending'
+
+export interface WorkflowStage {
+  key: 'drafted' | 'checked' | 'approved' | 'issued'
+  label: string
+  state: WorkflowStageState
+}
+
+export interface WorkflowCompleteness {
+  currentState: Revision['state'] | 'no_revision'
+  revCode: string | null
+  stages: WorkflowStage[]
+  /** of the three gate milestones (checked, approved, issued) that are closed */
+  gatesClosed: number
+  gatesTotal: number
+  /** 0..100 over the four milestones (drafted counts once a revision exists) */
+  pct: number
+  label: string
+  returned: boolean
+  superseded: boolean
+}
+
+const WORKFLOW_STAGES: Array<{ key: WorkflowStage['key']; label: string }> = [
+  { key: 'drafted', label: 'Drafted' },
+  { key: 'checked', label: 'Checked' },
+  { key: 'approved', label: 'Approved' },
+  { key: 'issued', label: 'Issued' },
+]
+
+export function workflowCompleteness(snap: ProjectSnapshot, d: Deliverable): WorkflowCompleteness {
+  const rev = currentRevision(snap, d.id)
+  if (!rev) {
+    return {
+      currentState: 'no_revision', revCode: null,
+      stages: WORKFLOW_STAGES.map((s) => ({ ...s, state: 'pending' as WorkflowStageState })),
+      gatesClosed: 0, gatesTotal: 3, pct: 0, label: 'no revision', returned: false, superseded: false,
+    }
+  }
+  const st = rev.state
+  const superseded = st === 'superseded'
+  const returned = st === 'returned_with_comments'
+  const checkedDone = st === 'check_accepted' || st === 'ready_for_approval' || st === 'approved' || st === 'issued'
+  const approvedDone = st === 'approved' || st === 'issued'
+  const issuedDone = st === 'issued'
+  const gatesClosed = (checkedDone ? 1 : 0) + (approvedDone ? 1 : 0) + (issuedDone ? 1 : 0)
+
+  const done: Record<WorkflowStage['key'], boolean> = {
+    drafted: true, checked: checkedDone, approved: approvedDone, issued: issuedDone,
+  }
+  const firstOpen = WORKFLOW_STAGES.find((s) => !done[s.key])
+  const stages: WorkflowStage[] = WORKFLOW_STAGES.map((s) => ({
+    key: s.key, label: s.label,
+    state: done[s.key] ? 'done'
+      : (!superseded && firstOpen?.key === s.key ? 'current' : 'pending'),
+  }))
+  const label = superseded ? 'superseded'
+    : returned ? 'returned with comments'
+    : issuedDone ? 'issued'
+    : approvedDone ? 'approved — awaiting issue'
+    : checkedDone ? 'checked — awaiting approval'
+    : st === 'in_check' ? 'in check'
+    : 'drafting'
+
+  return {
+    currentState: st, revCode: rev.revCode, stages, gatesClosed, gatesTotal: 3,
+    pct: Math.round((stages.filter((s) => s.state === 'done').length / stages.length) * 100),
+    label, returned, superseded,
+  }
+}
+
 // ---------- package health ----------
 
 export interface PackageStatus {
