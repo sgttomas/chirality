@@ -80,7 +80,10 @@ work is deferred only by gates.
    the receipt — including no-ops and their reason.
 4. **Execute + check (by work type).** Branch-first + PR unless the owner directs
    main-direct; mutually exclusive write scopes when parallel; inside fences +
-   standing constraints below.
+   standing constraints below. Prefer independent branches or one batched PR over
+   stacked dependent PRs — deep stacks impose a rigid owner merge order (the
+   six-deep #21–#26 stack, merged reverse-order in Receipt 7, is the cautionary
+   precedent).
    - Adopted deliverable tranches: `run-validations`, `scope-check` (PR diff range
      vs fence), `evidence-check`, `closeout-digest`.
    - Coordination/control artifacts: adversarial review (citation integrity,
@@ -90,7 +93,10 @@ work is deferred only by gates.
      including the live-baseline suite — non-`tools/**` changes that alter measured
      reality are exactly what the live pins catch (both 2026-07-02 CI failures were
      this); a legitimate change that moves a pinned measurement carries its
-     conscious pin update in the same PR.
+     conscious pin update in the same PR. Closeout checks bind to the exact
+     final commit: any edit after a check run — however small — invalidates
+     that run; re-run the closeout set at the final SHA before recording
+     results in a receipt (the Receipt 19 D-05b delta is the precedent).
    - CI (governance-harness workflow) green; owner merges — never self-merge.
 5. **Receipt.** Append a minimal receipt to `_DomainEngines/bridge/LOOP_RECEIPTS.md`
    per its local rules — pointers, verbatim owner directions, gate outcomes,
@@ -130,6 +136,9 @@ deliverable-local files. This index only says WHERE to look at Step 0:
   `docs/governance_harness/briefs/`.
 - **Piping's own track**: `projects/chirality-piping/docs/PLAN.md` (Phase/R rows)
   and `projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md` §12.
+- **App-dev's own track**: `projects/chirality-app-dev/docs/PLAN.md` (strategic
+  roadmap; tactical/sequencing state routes to its `execution/_Coordination`
+  artifacts, whose register rows are already indexed above).
 - **Handoff context** (owner directions, gate outcomes, stale-map deltas):
   `_DomainEngines/bridge/LOOP_RECEIPTS.md`.
 - **Shared-id hazard** (standing): two deliverables share the id DEL-10-03
