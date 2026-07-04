@@ -27,6 +27,18 @@ framework and move the pec standing plan forward as far as live authority
 permits" — takes over **once the owner adopts that wording via D-T0-15**; until
 then the implementation goal above governs.
 
+**Addendum (2026-07-04, owner direction of record — quoted verbatim in
+`LOOP_RECEIPTS.md` Receipt 4):** the staged integration ladder is a core
+inherent goal of the project: *"That's exactly the progression this needs to
+follow from L1, L2 to L3. It's one of the core inherent goals of the project
+now."* — said of the ruled D-T0-13 staging. This directs loop priority; it
+changes no ruling. The lawful path remains exactly the ruled staging — L0 now →
+proven read-only L1 evidence → per-operation L2 → L3 future-only pending a pec
+proposal-shaped API — inside fences F-PEC-1..4 and the D-T0-14 residency gate
+(CLOSED default; the real-data case arrives via D-PEC-01). Under CLOSED
+residency, L1 evidence work over committed fixtures and scratch databases is
+already lawful; instance-content capture is not.
+
 ## Why any staging remains (the compelling reasons)
 
 1. **Adoption, ruling, and direction are human acts** (K-AUTH-1; D-GOV-04): the

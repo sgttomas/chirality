@@ -80,3 +80,11 @@
   - Gate outcome: D-T0-16 O-A tranche executed after PR #51 merge; bridge-status reports `pec` as `DRAFT` with `Gate 2 open`. No ADOPTED status, no `status`/`drift`/`next`/`brief --project pec` citizenship, no PEC runtime/server/non-scratch DB mutation, no instance-content capture or egress.
   - Checks: profile validator VALID; bridge-status pass; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; full practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass.
   - Parked lanes: owner merge of the D-T0-16 harness PR; profile Gate 2 adoption remains owner-only; real data/export authorization remains for future D-PEC-01.
+
+- **2026-07-04 — Receipt 4** (PR #53 merged; ladder-as-core-goal direction recorded).
+  - Start: `d0924a926` (`origin/main`); direction-recording only, no tranche executed.
+  - Gate outcome (closes Receipt 3's parked merge lane): owner direction (2026-07-04, in-session, Ryan Tufts): "I want you to carry this forward. Proceed as you recommend. I approve the merge." — PR #53 merged `904715d4d`; post-merge checks on `main`: validator VALID, self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5, harness pytest 264 passed (live DRAFT/Gate-2-open rider test ran green).
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts), said of the ruled D-T0-13 staging: "That's exactly the progression this needs to follow from L1, L2 to L3. It's one of the core inherent goals of the project now." — recorded durably in the standing plan's owner-intent addendum (same PR).
+  - No ruling changed: D-T0-13/D-T0-14 govern staging and residency; Gate 2 open, owner-only; fences F-PEC-1..4 unchanged.
+  - Next lawful tranches under the addendum: L1 read-only evidence inside CLOSED residency (committed fixtures/scratch DBs only, immutable capture manifests per D-T0-13), and D-PEC-01 packet preparation when the owner directs the real-data case.
+  - Checks (this PR, loop-file-only change): self-check pass; harness pytest pass.
