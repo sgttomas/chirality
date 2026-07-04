@@ -298,7 +298,7 @@ export function buildRouter(db: Db): Router {
 
   // ---------- history ----------
   r.get('/api/projects/:pid/history/:recordType/:id', authed((c) =>
-    c.sx.repo.historyFor(String(c.params.recordType), idOf(c), 200)))
+    c.sx.repo.historyFor(c.sx.projectId, String(c.params.recordType), idOf(c), 200)))
 
   // ---------- import / export / reports ----------
   r.post('/api/projects/:pid/import/:contract', tx((c) => {

@@ -13,6 +13,7 @@ import {
   workingDaysBetween, workingDaysOverdue,
 } from './calendar.ts'
 import { activeHoldsFor, evaluateCondition } from './conditions.ts'
+import { snapshotIndex } from './snapshot-index.ts'
 import { commentIsOpen } from './types.ts'
 
 const HEALTH_RANK: Record<Health, number> = { green: 0, amber: 1, red: 2 }
@@ -40,12 +41,9 @@ export function currentRevision(snap: ProjectSnapshot, deliverableId: number): R
  * the primary anchor to avoid double counting (§13.4).
  */
 export function openWorkItemsFor(snap: ProjectSnapshot, d: Deliverable, _rev: Revision | null): WorkItem[] {
-  const revIds = new Set(snap.revisions.filter((r) => r.deliverableId === d.id).map((r) => r.id))
-  return snap.workItems.filter(
-    (w) => (w.state === 'open' || w.state === 'in_work')
-      && ((w.anchorType === 'deliverable' && w.anchorId === d.id)
-        || (w.anchorType === 'revision' && revIds.has(w.anchorId))),
-  )
+  const sphere = snapshotIndex(snap).sphereWorkItemsByDeliverable.get(d.id)
+  if (!sphere) return []
+  return sphere.filter((w) => w.state === 'open' || w.state === 'in_work')
 }
 
 /** Active holds in the deliverable's sphere: the deliverable, its current revision, open items, conditions and checks on it. */

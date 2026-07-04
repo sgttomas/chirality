@@ -10,6 +10,7 @@
 import type {
   Condition, ContributingRef, Hold, HoldTargetType, ProjectSnapshot, RecordType,
 } from './types.ts'
+import { snapshotIndex } from './snapshot-index.ts'
 
 // ---------- hold overlay (OM-2) ----------
 
@@ -17,11 +18,12 @@ import type {
 export function activeHoldsFor(
   snap: ProjectSnapshot, targetType: HoldTargetType, targetId: number,
 ): Hold[] {
-  const holdById = new Map(snap.holds.map((h) => [h.id, h]))
+  const idx = snapshotIndex(snap)
+  const links = idx.holdLinksByTarget.get(`${targetType}:${targetId}`)
+  if (!links) return []
   const out: Hold[] = []
-  for (const link of snap.holdLinks) {
-    if (link.targetType !== targetType || link.targetId !== targetId) continue
-    const hold = holdById.get(link.holdId)
+  for (const link of links) {
+    const hold = idx.holdById.get(link.holdId)
     if (hold && hold.state === 'active') out.push(hold)
   }
   return out

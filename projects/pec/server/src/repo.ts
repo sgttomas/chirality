@@ -149,7 +149,7 @@ export class Repo {
       const current = this.maybeGet(table, projectId, id)
       if (!current) throw notFound(`${table} #${id}`)
       const recordType = Object.entries(TABLE).find(([, t]) => t === table)?.[0] ?? table
-      const intervening = this.historyFor(recordType, id, 10)
+      const intervening = this.historyFor(projectId, recordType, id, 10)
       throw versionConflict({ currentVersion: (current as Row).version, intervening })
     }
   }
@@ -177,10 +177,12 @@ export class Repo {
     })
   }
 
-  historyFor(recordType: string, recordId: number, limit = 200): HistoryEntry[] {
+  /** Project-scoped by contract (PEC-NFR-007): history_entry carries project_id, so a
+   *  foreign record id supplied on another project's route returns nothing. */
+  historyFor(projectId: number, recordType: string, recordId: number, limit = 200): HistoryEntry[] {
     const rows = this.db.prepare(
-      'SELECT * FROM history_entry WHERE record_type = ? AND record_id = ? ORDER BY id DESC LIMIT ?',
-    ).all(recordType, recordId, limit) as Row[]
+      'SELECT * FROM history_entry WHERE project_id = ? AND record_type = ? AND record_id = ? ORDER BY id DESC LIMIT ?',
+    ).all(projectId, recordType, recordId, limit) as Row[]
     return rows.map((r) => fromRow('history_entry', r) as unknown as HistoryEntry)
   }
 
@@ -238,16 +240,18 @@ export class Repo {
       (this.db.prepare(`SELECT * FROM ${table} WHERE project_id = ?`).all(projectId) as Row[])
         .map((r) => fromRow(table, r) as T)
 
+    // Link tables carry no project_id; scope them through the parent's project so the scan is
+    // bounded to this project and never reads another tenant's links (PEC-NFR-007, PEC-NFR-003).
     const holds = all<ProjectSnapshot['holds'][number]>('hold')
-    const holdIds = new Set(holds.map((h) => h.id))
-    const holdLinks = (this.db.prepare('SELECT * FROM hold_link').all() as Row[])
+    const holdLinks = (this.db.prepare(
+      'SELECT hl.* FROM hold_link hl JOIN hold h ON h.id = hl.hold_id WHERE h.project_id = ?',
+    ).all(projectId) as Row[])
       .map((r) => fromRow('hold_link', r) as unknown as ProjectSnapshot['holdLinks'][number])
-      .filter((l) => holdIds.has(l.holdId))
     const decisions = all<ProjectSnapshot['decisions'][number]>('decision')
-    const decisionIds = new Set(decisions.map((d) => d.id))
-    const decisionLinks = (this.db.prepare('SELECT * FROM decision_link').all() as Row[])
+    const decisionLinks = (this.db.prepare(
+      'SELECT dl.* FROM decision_link dl JOIN decision d ON d.id = dl.decision_id WHERE d.project_id = ?',
+    ).all(projectId) as Row[])
       .map((r) => fromRow('decision_link', r) as unknown as ProjectSnapshot['decisionLinks'][number])
-      .filter((l) => decisionIds.has(l.decisionId))
 
     return {
       project: project as ProjectSnapshot['project'],

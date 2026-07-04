@@ -150,7 +150,7 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 | Requirement | Where implemented | Test |
 |---|---|---|
 | Sponsor brief | `server/src/reports/sponsor-brief.ts` (print-HTML; PDF via browser print, ADR-010) | gap (see PEC-OV-006) |
-| Register exports: action & hold log, deliverables status, decision log, risk log, approval register | server CSV: `server/src/import/index.ts` `exportRegister()` (`mdl`, `rail`, `decisions`, `risks`, `approvals`, `interfaces`, `intake`); any *filtered view* exports exactly what is displayed via the client-side `web/src/shared.tsx` `RegisterTable` export button (note: the unified Log register exports client-side only — there is no server `export/log.csv`) | server: '§16: MDL import … export round-trips', '§16: RAIL import … unanchored intake row round-trips in the export'; decisions/risks/approvals/interfaces/intake exports: gap |
+| Register exports: action & hold log, deliverables status, decision log, risk log, approval register | server CSV: `server/src/import/index.ts` `exportRegister()` (`mdl`, `rail`, `decisions`, `risks`, `approvals`, `interfaces`, `intake`); any *filtered view* exports exactly what is displayed via the client-side `web/src/shared.tsx` `RegisterTable` export button (note: the unified Log register exports client-side only — there is no server `export/log.csv`) | server: '§16: MDL import … export round-trips', '§16: RAIL import … unanchored intake row round-trips in the export'; decisions/risks exports round-trip in pilot-hardening.test.ts; approvals/interfaces/intake exports: gap |
 | Individual weekly commitments | `exportRegister('commitments')` in `server/src/import/index.ts` (`GET export/commitments.csv`, ADR-010) | gap — manual: export and compare against My Week |
 
 ## PRD §16 Import contracts (P1)
@@ -159,8 +159,8 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 |---|---|---|
 | MDL import (required/optional columns, per-row rejects, state seeding) | `server/src/import/index.ts` `importMdl()`; RFC 4180 parser `server/src/import/csv.ts`; idempotent-by-key + `force=true` conflict rule; history `kind=import` | server: '§16: MDL import validates row-by-row, seeds state, rejects bad rows with reasons; export round-trips' |
 | RAIL import (type mapping, hold_cause required for holds, unanchored → intake) | `importRail()` in `server/src/import/index.ts` | server: '§16: RAIL import anchors on doc_no match, else lands as unanchored intake; holds require cause' |
-| Decision log import | `importDecisions()` in `server/src/import/index.ts` | gap — importer untested |
-| Risk log import | `importRisks()` in `server/src/import/index.ts` | gap — importer untested |
+| Decision log import | `importDecisions()` in `server/src/import/index.ts` (external `decision_id` stored as the `ref` idempotency key — fixed 2026-07-04) | server: pilot-hardening.test.ts 'decisions import: happy path, decided-requires-outcome, bad status/authority rejected', '… external decision_id is preserved as the ref and re-import is idempotent', '… affected_refs links … export round-trips' |
+| Risk log import | `importRisks()` in `server/src/import/index.ts` (external `risk_id` stored as the `ref` idempotency key — fixed 2026-07-04) | server: pilot-hardening.test.ts 'risks import: happy path + linking + bounds/status validation; re-import is idempotent' |
 
 ## PRD §17 Non-functional requirements (P1 rows)
 
@@ -168,10 +168,10 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 |---|---|---|
 | PEC-NFR-001 append-only history + audit events | UPDATE/DELETE-rejecting triggers on `history_entry`/`audit_event` (`server/src/db.ts`); insert-only repo methods (`server/src/repo.ts` `history()`/`audit()`); audit writes at approval outcome + waiver (`services/decisions.ts`), issue (`services/revisions.ts`), config change (`api.ts` `PUT config`) | server: 'I-7: UPDATE/DELETE on history and audit tables are rejected by triggers …', 'I-8 …' (waiver audit), 'D-11/I-5 …' (issue audit) |
 | PEC-NFR-002 no hard delete of controlled records | delete-rejecting triggers on all controlled tables (`server/src/db.ts` `CONTROLLED_TABLES`); repo exposes no delete; terminal states with reason (cancel/withdraw/supersede) in lifecycles | server: 'I-7/PEC-NFR-002: controlled records cannot be hard-deleted' |
-| PEC-NFR-003 ≤ 2 s at 10k open items / 250k history | design provision: per-project `ProjectSnapshot` loaded in a handful of indexed queries (`server/src/repo.ts` `snapshot()`); status pure in-memory (`core/src/status.ts`); history reads capped (`historyFor(…, limit)`) | gap — no automated load test at the stated volumes |
+| PEC-NFR-003 ≤ 2 s at 10k open items / 250k history | per-project `ProjectSnapshot` loaded in a handful of indexed queries (`server/src/repo.ts` `snapshot()`, ~300 ms at 10k; history never loaded into the snapshot); derivation de-quadratic-ized by a memoized per-snapshot index (`core/src/snapshot-index.ts`) consulted by `activeHoldsFor()`/`openWorkItemsFor()`, turning the O(deliverables × work-items) rescans into O(1) map hits — measured 2026-07-04: overview 628 ms, packages 551 ms, deliverables 543 ms at 10k (was 11–13 s) | server: pilot-hardening.test.ts 'PEC-NFR-003: derived views render within 2s at 10k deliverables/work-items', '… snapshot load is bounded and history-independent' |
 | PEC-NFR-004 optimistic concurrency | version-checked `update()` in `server/src/repo.ts`; 409 `VERSION_CONFLICT` with intervening history (`server/src/errors.ts`); every web mutation sends `version` and `web/src/shared.tsx` `ErrorBox` tells the user to reload | server: 'PEC-NFR-004: stale version writes are rejected with the intervening history' |
 | PEC-NFR-005 server-side RBAC + log visibility at the query layer | rules matrix `core/src/permissions.ts` (`can()`), enforced per route/service via `requireCan()` (`server/src/services/shared.ts`); log visibility `visibleLogs()` applied at serialization in `views.ts`; UI probe `GET can/:action` | core: permissions.test.ts (whole file); server: 'RBAC: viewer is read-only; checker acceptance is checker-only …' |
-| PEC-NFR-007 multi-project isolation | every project-scoped repo query takes `project_id` from the authenticated route (`server/src/api.ts` `authed()` → `Sx.projectId`; `server/src/repo.ts` `get/list/update` are project-scoped), never from the body | gap — no cross-project probe test |
+| PEC-NFR-007 multi-project isolation | every project-scoped repo query takes `project_id` from the authenticated route (`server/src/api.ts` `authed()` → `Sx.projectId`; `server/src/repo.ts` `get/list/update` are project-scoped), never from the body; `historyFor()` now takes `project_id` as its leading argument and filters on it (fixes a confirmed leak where the history endpoint returned another project's `history_entry` rows by record id — fixed 2026-07-04); snapshot link scans (`hold_link`/`decision_link`) are bounded to the project via a join on the parent's `project_id` | server: pilot-hardening.test.ts 'PEC-NFR-007: the history endpoint does not leak another project\'s history rows' (probed across every id-taking endpoint; only history leaked, now closed) |
 | PEC-NFR-009 backup/restore, RPO ≤ 24 h, tested restore | `tools/backup.ts` — `backup`: WAL-safe `VACUUM INTO` snapshot to `backups/pec-YYYYMMDD-HHMMSS.db`, prunes to newest 14; `restore <file>`: integrity-checks the backup, moves the live db (+wal/shm) aside to `pec.db.pre-restore*`, copies the backup into place, prints restart instructions; honors `PEC_DB` like the server (SPEC §12: run daily for RPO ≤ 24 h) | manual: backup → mutate → restore round-trip executed against a scratch DB on 2026-07-04 (restored contents verified, prior db preserved at `.pre-restore`); the pilot-readiness gate additionally requires one rehearsal against the real pilot DB |
 | PEC-NFR-010 UTC storage; project timezone + working-day calendar | all timestamps UTC ISO-8601 (`server/src/repo.ts` `nowIso()`); `core/src/calendar.ts` (localDate, working-day math over project weekend/holiday config); thresholds computed in working days (`core/src/status.ts`) | core: calendar.test.ts 'localDate respects timezone (PEC-NFR-010)' + the whole file |
 
@@ -196,20 +196,23 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 
 Honest list of what is implemented but not automatically tested (or deliberately thin), as of 2026-07-04:
 
-1. Intake conversion fan-out + raiser notification (PEC-AHL-005/007), multi-project isolation
-   (PEC-NFR-007), the check three-facts + comment reopen sub-lifecycle (PEC-CHK-002/003),
-   decision-gated issue (§9), and the decisions/risks importers + exports (§16) are now covered
-   by `server/test/integration.test.ts`.
+1. **Closed by the 2026-07-04 pilot-hardening pass** (`server/test/pilot-hardening.test.ts`,
+   driven by a live adversarial probe): PEC-NFR-007 cross-project isolation (a confirmed
+   history-endpoint leak, now fixed and regression-tested); the decisions/risks importers +
+   exports and RAIL re-import idempotency (§16) — three importers were discarding the external
+   id and duplicating on re-import, now fixed; PEC-NFR-003 load at 10k items — the derived views
+   were O(deliverables × work-items) (11–13 s), now de-quadratic-ized to ~0.6 s and guarded by a
+   budget test; and intake conversion fan-out with back-links (PEC-AHL-005). Intake conversion +
+   check three-facts/comment reopen (PEC-CHK-002/003) + decision-gated issue (§9) are also
+   exercised by `server/test/integration.test.ts`.
 2. **Still no automated tests** for: sponsor brief rendering (PEC-OV-006); independence warning
    (PEC-CHK-004); risk and interface registers (PEC-RISK-001/002, PEC-INT-001, PEC-PKG-007);
    approvals/interfaces/intake/commitments exports (§15); the PH-A2 package-health rule; the
    log-change history entry (PEC-AHL-002); most of the PEC-NOT-001 catalog and the sweep's
-   idempotency (only `hold_resolved_unblocked` is asserted).
-2. **PEC-NFR-003** (10k items / 250k history ≤ 2 s) has no load test — the design provision
-   (snapshot reads, capped history queries) is in place but unmeasured at that scale.
-3. **PEC-NFR-007** multi-project isolation is structural (route-scoped `project_id` everywhere)
-   but has no cross-project probe test.
-4. **No server-side `export/log.csv`**: the unified Log register exports client-side via
+   idempotency (only `hold_resolved_unblocked` is asserted). The 250k-history half of PEC-NFR-003
+   is reasoned (the snapshot never loads `history_entry`, proven history-independent) but the
+   budget test exercises the 10k-open-items dimension only.
+3. **No server-side `export/log.csv`**: the unified Log register exports client-side via
    `RegisterTable` ("exports exactly what is displayed", PRD §15); SPEC §7's export list
    mentions `log` — deviation recorded here.
 5. **Checklist/condition template management has no API/UI**: templates are seeded via

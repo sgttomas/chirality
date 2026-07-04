@@ -203,6 +203,7 @@ CREATE TABLE IF NOT EXISTS hold_link (
   target_id INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_hold_link_target ON hold_link(target_type, target_id);
+CREATE INDEX IF NOT EXISTS idx_hold_link_hold ON hold_link(hold_id);
 
 CREATE TABLE IF NOT EXISTS checklist_template (
   id INTEGER PRIMARY KEY,

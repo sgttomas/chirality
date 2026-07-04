@@ -229,7 +229,9 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
     }
 
     if (isHold) {
-      const holdRef = sx.repo.nextRef(sx.projectId, 'hold')
+      // item_id is the idempotency key (re-import lookup binds `ref = item_id`, ~line 194);
+      // store it so re-importing the same RAIL row updates instead of duplicating (§16).
+      const holdRef = row.item_id!
       const currentRev = sx.repo.list<Revision>('revision', sx.projectId,
         "deliverable_id = ? AND state != 'superseded'", [deliverable!.id]).sort((a, b) => b.id - a.id)[0]
       const holdId = sx.repo.insert('hold', {
@@ -251,7 +253,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       return
     }
     if (isInterface) {
-      const iref = sx.repo.nextRef(sx.projectId, 'interface_item')
+      const iref = row.item_id!
       const iid = sx.repo.insert('interface_item', {
         projectId: sx.projectId, ref: iref, title: row.statement!.slice(0, 140),
         givingParty: row.package ?? 'unknown', receivingParty: row.deliverable_ref ?? 'unknown',
@@ -262,7 +264,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       return
     }
 
-    const wiRef = sx.repo.nextRef(sx.projectId, 'work_item')
+    const wiRef = row.item_id!
     const pkgId = deliverable
       ? (sx.repo.get<Deliverable>('deliverable', sx.projectId, deliverable.id)).packageId
       : null
@@ -321,7 +323,9 @@ function importDecisions(sx: Sx, csv: string, force: boolean): ImportReport {
       report.updated++
       return
     }
-    const ref = sx.repo.nextRef(sx.projectId, 'decision')
+    // The external decision_id IS the idempotency key (the re-import lookup binds `ref = decision_id`,
+    // index.ts ~309). Store it verbatim so re-imports match and update instead of duplicating (§16).
+    const ref = row.decision_id!
     const id = sx.repo.insert('decision', {
       projectId: sx.projectId, ref, title: row.title, statement: row.statement,
       preparerId: row.preparer ? personByNameOrEmail(sx, row.preparer) : null,
@@ -387,7 +391,9 @@ function importRisks(sx: Sx, csv: string, force: boolean): ImportReport {
       importHistory(sx, 'risk', existing.id, `${row.risk_id} updated by risk-log import`)
       report.updated++
     } else {
-      const ref = sx.repo.nextRef(sx.projectId, 'risk')
+      // The external risk_id IS the idempotency key (re-import lookup binds `ref = risk_id`,
+      // index.ts ~372). Store it verbatim so re-imports match and update instead of duplicating (§16).
+      const ref = row.risk_id!
       const id = sx.repo.insert('risk', { projectId: sx.projectId, ref, ...fields })
       importHistory(sx, 'risk', id, `${ref} created from risk-log row ${row.risk_id} (seeding)`)
       report.accepted++
