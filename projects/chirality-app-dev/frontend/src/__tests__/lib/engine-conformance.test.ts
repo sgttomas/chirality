@@ -3,14 +3,14 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { AgentEnginePort, AgentEngineRunInput } from '../../lib/harness/agent-engine-port';
+import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 import {
   runEngineConformance,
   runEngineInterruptConformance
-} from '../../lib/harness/engine-conformance';
+} from '@chirality/harness-contract/engine-conformance';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import type { ResolvedOpts, SessionRecord, UIEvent } from '../../lib/harness/types';
+import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_engine_conformance',

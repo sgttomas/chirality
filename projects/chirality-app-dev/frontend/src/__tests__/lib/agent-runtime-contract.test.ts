@@ -9,7 +9,7 @@ import {
   validateChildRunRecord
 } from '../../lib/harness/agent-runtime-contract';
 import type { SubagentGovernanceDecision } from '../../lib/harness/subagent-governance';
-import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_parent',

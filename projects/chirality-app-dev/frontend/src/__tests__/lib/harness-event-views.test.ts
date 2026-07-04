@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { HarnessEvent, HarnessEventType } from '../../lib/harness/event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
 import {
   derivePermissionRequests,
   deriveSubagentActivity,

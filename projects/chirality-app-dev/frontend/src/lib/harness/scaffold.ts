@@ -1,7 +1,7 @@
 import { constants as fsConstants } from 'node:fs';
 import { access, copyFile, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { HarnessError } from './errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { sanitizeNonEmptyLabel } from './sanitize';
 
 const PKG_ID_PATTERN = /^PKG-\d{2,3}$/;

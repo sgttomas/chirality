@@ -2,9 +2,20 @@
 
 **Decision:** Where does the cross-repo flow-A contract package version live and how is it pinned — and confirm DEC-041 as decision-of-record.
 
+**Structural precedent:** Same-directory tier-0 decision/ruling summary pattern used by D-T0-04 through D-T0-06.
+
 **Why the owner's:** cross-repo version governance is a maintainer decision; DEC-041's status needs confirmation.
 
-**Verified facts:** `CLAUDE_AGENT_SDK_PACKAGE_VERSION='0.3.150'` (`frontend/src/lib/harness/sdk-version.ts`); `HARNESS_TOOL_REGISTRY_VERSION` (`frontend/src/lib/harness/tool-descriptor.ts:13`). **DEC-041 EXISTS** at piping `execution/_Decomposition/SOFTWARE_DECOMP.md:611` (harness-as-versioned-packages; gated behind D-21 + an automation condition; 2026-06-18) — **refutes** app-dev's "no written DEC-041 text"; it was simply invisible from app-dev's tree.
+**Verified facts:** `CLAUDE_AGENT_SDK_PACKAGE_VERSION='0.3.150'`
+(`projects/chirality-app-dev/frontend/packages/harness-contract/src/sdk-version.ts`);
+`HARNESS_TOOL_REGISTRY_VERSION`
+(`projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts`).
+These constants moved to the direct package source when D-APP-47 retired the
+frontend harness shims. **DEC-041 EXISTS** at piping
+`projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:611`
+(harness-as-versioned-packages; gated behind D-21 + an automation condition;
+2026-06-18) — **refutes** app-dev's "no written DEC-041 text"; it was simply
+invisible from app-dev's tree.
 
 **Options:** (a) tier-0-owned scheme that *references* both app-dev versions; (b) extend `CLAUDE_AGENT_SDK_PACKAGE_VERSION`; (c) extend `HARNESS_TOOL_REGISTRY_VERSION`.
 

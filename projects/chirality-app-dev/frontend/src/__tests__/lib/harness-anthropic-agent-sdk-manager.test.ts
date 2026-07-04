@@ -4,7 +4,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AnthropicAgentSdkManager } from '../../lib/harness/anthropic-agent-sdk-manager';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import { UIEvent } from '../../lib/harness/types';
+import { UIEvent } from '@chirality/harness-contract/types';
 
 async function* createStream(events: unknown[]): AsyncIterable<unknown> {
   for (const event of events) {

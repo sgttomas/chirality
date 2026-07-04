@@ -1,6 +1,6 @@
-import type { HarnessEvent, HarnessEventType } from './event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
 import { redactJsonLike } from './run-logger';
-import type { UIEvent } from './types';
+import type { UIEvent } from '@chirality/harness-contract/types';
 
 /**
  * The keystone bridge: forward rich HarnessEvents to the live browser stream as a

@@ -3,13 +3,13 @@ import {
   CHIRALITY_MCP_SERVER_NAME,
   CHIRALITY_MCP_SERVER_VERSION,
   CHIRALITY_MCP_TOOL_NAMES
-} from './mcp/tool-names';
+} from '@chirality/harness-contract/mcp/tool-names';
 import { HARNESS_PERMISSION_POLICY_VERSION } from './permission-overlay';
 import { PERSONA_COMPOSER_VERSION } from './persona-manager';
-import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from './sdk-version';
+import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from '@chirality/harness-contract/sdk-version';
 import { SUBAGENT_BRIDGE_POLICY_VERSION } from './subagent-bridge';
-import { HARNESS_TOOL_REGISTRY_VERSION } from './tool-descriptor';
-import type { HarnessRuntimeFingerprint } from './types';
+import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
+import type { HarnessRuntimeFingerprint } from '@chirality/harness-contract/types';
 
 export const HARNESS_RUNTIME_FINGERPRINT_SCHEMA_VERSION = 'harness-runtime-fingerprint.v1';
 

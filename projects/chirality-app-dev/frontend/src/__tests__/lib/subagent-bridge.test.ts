@@ -8,7 +8,7 @@ import {
   SUBAGENT_EXECUTION_ALLOWED_REASON,
   SUBAGENT_EXECUTION_DENIED_REASON
 } from '../../lib/harness/subagent-bridge';
-import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_bridge',

@@ -6,7 +6,7 @@ import { hasUiApiKey } from './api-key-store';
 import { PersonaComposer } from './persona-manager';
 import { FileSessionManager } from './session-manager';
 import { TurnEngine } from './turn-engine';
-import { IAgentSdkManager, IAttachmentResolver, IPersonaManager, ISessionManager } from './types';
+import { IAgentSdkManager, IAttachmentResolver, IPersonaManager, ISessionManager } from '@chirality/harness-contract/types';
 
 type HarnessRuntime = {
   sessionManager: ISessionManager;

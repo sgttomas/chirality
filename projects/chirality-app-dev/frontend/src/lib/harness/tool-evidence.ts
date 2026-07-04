@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer';
-import type { HarnessToolDescriptor, HarnessToolResultBudget } from './tool-descriptor';
+import type { HarnessToolDescriptor, HarnessToolResultBudget } from '@chirality/harness-contract/tool-descriptor';
 import { redactJsonLike } from './run-logger';
 
 const SAFE_PATH_FIELD_NAMES = [

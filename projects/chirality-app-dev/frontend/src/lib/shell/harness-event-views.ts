@@ -1,4 +1,4 @@
-import type { HarnessEvent, HarnessEventType } from '../harness/event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
 
 /**
  * Pure derivations over the bridged `harness:event` stream. These power the

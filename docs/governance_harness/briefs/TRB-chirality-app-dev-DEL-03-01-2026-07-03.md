@@ -13,9 +13,9 @@
   deliverable's contract records and record the package-consumption readiness baseline —
   doc-only, within-fence: (1) close the Datasheet.md:58 "Exact final source path"
   CANDIDATE/TBD by cross-reference to the accepted placement
-  (`frontend/packages/harness-contract/src/agent-engine-port.ts`, back-compat shim
-  retained at `frontend/src/lib/harness/agent-engine-port.ts`;
-  D-APP-46_RULING_2026-07-02.md); (2) annotate — never rewrite — the contract-surface
+  (`frontend/packages/harness-contract/src/agent-engine-port.ts`; D-APP-46
+  established the package placement, and D-APP-47 later retired the former
+  frontend shim); (2) annotate — never rewrite — the contract-surface
   paths recorded in Assessment_INSP-03_DEL-03-01.md:23-35 and
   Evidence_CODEV-001_Runtime_Engine_Conformance.md:38-43 with their post-extraction
   homes (10 `frontend/src/lib/harness/*.ts` entries are now package re-export shims;

@@ -12,7 +12,7 @@ import path from 'node:path';
 import { z } from 'zod/v4';
 import { previewScaffoldExecutionRoot } from '../scaffold';
 import type { CoordinationMode } from '../scaffold';
-import { createHarnessEvent } from '../event-schema';
+import { createHarnessEvent } from '../event-factory';
 import {
   readDeliverableDependencies,
   readDeliverableStatus,
@@ -21,7 +21,7 @@ import {
 } from '../../workspace/deliverable-contracts';
 import type { DependencyRegisterRow } from '../../dependencies/schema';
 import { normalizeProjectRoot, scanProjectScopes } from '../../workspace/filesystem';
-import { HarnessError } from '../errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import {
   appendHarnessPermissionDecisionEvent,
   resolveHarnessPermissionDecision
@@ -35,7 +35,7 @@ import {
   withToolResultPersistence
 } from '../tool-evidence';
 import { persistToolResultArtifact } from '../tool-result-artifacts';
-import { getHarnessToolDescriptor } from '../tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateToolPathPolicy } from '../tool-path-policy';
 import {
   CHIRALITY_MCP_SERVER_NAME,
@@ -45,7 +45,7 @@ import {
   type ChiralityMcpAllowedToolName,
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
-} from './tool-names';
+} from '@chirality/harness-contract/mcp/tool-names';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;

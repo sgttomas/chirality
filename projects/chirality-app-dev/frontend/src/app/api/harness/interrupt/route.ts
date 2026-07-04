@@ -6,7 +6,7 @@ import {
 } from '../../../../lib/harness/http';
 import { getHarnessRuntime } from '../../../../lib/harness/runtime';
 import { getPermissionBroker } from '../../../../lib/harness/permission-broker';
-import { InterruptRequest } from '../../../../lib/harness/types';
+import { InterruptRequest } from '@chirality/harness-contract/types';
 
 export async function POST(request: Request): Promise<Response> {
   try {

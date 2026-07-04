@@ -1,8 +1,9 @@
 import { randomUUID } from 'node:crypto';
-import { createHarnessEvent, type HarnessEventType } from './event-schema';
-import { HarnessError } from './errors';
+import { createHarnessEvent } from './event-factory';
+import type { HarnessEventType } from '@chirality/harness-contract/event-schema';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
-import { IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
+import { IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
 
 type ActiveTurnState = {
   interrupted: boolean;

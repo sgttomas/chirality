@@ -7,7 +7,7 @@ import {
   getPermissionBroker,
   resetPermissionBrokerForTests
 } from '../../lib/harness/permission-broker';
-import type { ResolvedOpts, SessionRecord } from '../../lib/harness/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 
 /** Wait until the broker has registered a pending request for the session. */
 async function waitForPending(sessionId: string): Promise<void> {

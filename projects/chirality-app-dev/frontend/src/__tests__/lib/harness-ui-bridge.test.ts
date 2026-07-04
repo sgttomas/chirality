@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { createHarnessEvent } from '../../lib/harness/event-schema';
+import { createHarnessEvent } from '../../lib/harness/event-factory';
 import { harnessEventToUiEvent } from '../../lib/harness/harness-ui-bridge';
 
 afterEach(() => {

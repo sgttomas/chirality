@@ -2,7 +2,8 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { createHarnessEvent, HARNESS_EVENT_TYPES } from '../../lib/harness/event-schema';
+import { createHarnessEvent } from '../../lib/harness/event-factory';
+import { HARNESS_EVENT_TYPES } from '@chirality/harness-contract/event-schema';
 import { appendHarnessEvent, replayHarnessEvents } from '../../lib/harness/session-events';
 
 let tmpDir = '';

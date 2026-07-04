@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { HarnessError } from '../../../../lib/harness/errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { errorResponse, readJsonBody, requireNonEmptyString } from '../../../../lib/harness/http';
 import { getPermissionBroker, type PermissionVerdict } from '../../../../lib/harness/permission-broker';
 

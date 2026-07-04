@@ -1,13 +1,14 @@
 import type { Options, PermissionMode, SettingSource } from '@anthropic-ai/claude-agent-sdk';
 import { createChiralityToolHooks } from './chirality-hooks';
-import { ContentBlock, ResolvedOpts, SessionRecord } from './types';
+import { ContentBlock, ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 import {
   createHarnessCanUseTool,
   normalizeHarnessPermissionMode
 } from './permission-overlay';
 import { getPermissionBroker } from './permission-broker';
 import { getPermissionEventChannel } from './permission-event-channel';
-import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
+import { resolveHarnessToolPool } from './tool-pool';
+import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import {
   createChiralityMcpServers,
   filterChiralityMcpAllowedToolNames

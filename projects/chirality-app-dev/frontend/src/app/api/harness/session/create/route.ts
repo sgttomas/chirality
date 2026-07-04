@@ -6,7 +6,7 @@ import {
   requireNonEmptyString
 } from '../../../../../lib/harness/http';
 import { getHarnessRuntime } from '../../../../../lib/harness/runtime';
-import { SessionCreateRequest } from '../../../../../lib/harness/types';
+import { SessionCreateRequest } from '@chirality/harness-contract/types';
 import { CHAT_SECTION } from '../../../../../lib/shell/loop-first';
 
 export async function POST(request: Request): Promise<Response> {

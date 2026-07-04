@@ -1,9 +1,9 @@
 import { hasUiApiKey } from './api-key-store';
-import { asHarnessError, HarnessError } from './errors';
+import { asHarnessError, HarnessError } from '@chirality/harness-contract/errors';
 import { resolveRuntimeOptions } from './options';
-import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from './sdk-version';
+import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from '@chirality/harness-contract/sdk-version';
 import { evaluateSubagentGovernance } from './subagent-governance';
-import { resolveHarnessToolPool } from './tool-descriptor';
+import { resolveHarnessToolPool } from './tool-pool';
 import {
   AttachmentError,
   AttachmentFailureDetails,
@@ -18,7 +18,7 @@ import {
   TurnErrorSeverity,
   TurnRequest,
   UIEvent
-} from './types';
+} from '@chirality/harness-contract/types';
 
 const MAX_ATTACHMENT_WARNING_DETAILS = 3;
 export type TurnEngineProviderMode = 'stub' | 'anthropic' | 'agentSdk';

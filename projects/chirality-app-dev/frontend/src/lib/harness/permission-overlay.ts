@@ -1,11 +1,12 @@
 import type { CanUseTool, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'node:crypto';
-import { createHarnessEvent, type HarnessEvent } from './event-schema';
+import { createHarnessEvent } from './event-factory';
+import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
 import { appendHarnessEvent } from './session-events';
 import { summarizeToolDescriptor, summarizeToolInput } from './tool-evidence';
 import { evaluateToolPathPolicy } from './tool-path-policy';
 import { evaluateShellCommandPolicy } from './tool-shell-policy';
-import type { HarnessToolDescriptor } from './tool-descriptor';
+import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
 export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v4.subagent';

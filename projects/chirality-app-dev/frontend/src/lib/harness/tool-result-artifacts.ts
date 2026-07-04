@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { redactJsonLike } from './run-logger';
-import type { HarnessToolDescriptor } from './tool-descriptor';
+import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 
 export type ToolResultArtifactMetadata = {
   artifactPath: string;

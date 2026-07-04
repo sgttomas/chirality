@@ -1,6 +1,6 @@
 import type { AgentDefinition } from '@anthropic-ai/claude-agent-sdk';
-import type { ResolvedOpts, SessionRecord } from './types';
-import { getCurrentTrancheDisallowedToolNames } from './tool-descriptor';
+import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import { getCurrentTrancheDisallowedToolNames } from '@chirality/harness-contract/tool-descriptor';
 
 export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v2.executable-r5';
 export const SUBAGENT_BRIDGE_RULING_REF = 'D-APP-10 Option C';

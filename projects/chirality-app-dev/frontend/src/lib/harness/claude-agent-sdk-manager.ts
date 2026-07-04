@@ -1,8 +1,8 @@
 import { query, type Query } from '@anthropic-ai/claude-agent-sdk';
 import { createHash, randomUUID } from 'node:crypto';
-import { AgentEnginePort, AgentEngineRunInput } from './agent-engine-port';
+import { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
 import { getUiApiKey } from './api-key-store';
-import { HarnessError } from './errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { redactConfiguredApiKeys } from './run-logger';
 import { buildSdkOptions, buildSdkPrompt } from './sdk-options-builder';
 import {
@@ -10,15 +10,16 @@ import {
   mapSdkMessageToHarnessWithArtifacts
 } from './sdk-message-mapper';
 import { appendHarnessEvent } from './session-events';
-import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from './types';
-import { createHarnessEvent, type HarnessEvent } from './event-schema';
+import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import { createHarnessEvent } from './event-factory';
+import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
 import {
   getPermissionEventChannel,
   type SessionPermissionChannel
 } from './permission-event-channel';
 import { getPermissionBroker } from './permission-broker';
-import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from './sdk-version';
+import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from '@chirality/harness-contract/sdk-version';
 
 type SdkQuery = typeof query;
 

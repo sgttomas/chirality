@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { HarnessError } from '../../../../../lib/harness/errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import {
   errorResponse,
   readJsonBody,
@@ -9,7 +9,7 @@ import { resolveRuntimeOptions } from '../../../../../lib/harness/options';
 import { buildHarnessRuntimeFingerprint } from '../../../../../lib/harness/runtime-fingerprint';
 import { getHarnessRuntime } from '../../../../../lib/harness/runtime';
 import { assertProjectRootAccessible } from '../../../../../lib/harness/session-manager';
-import { SessionBootRequest } from '../../../../../lib/harness/types';
+import { SessionBootRequest } from '@chirality/harness-contract/types';
 
 export async function POST(request: Request): Promise<Response> {
   try {

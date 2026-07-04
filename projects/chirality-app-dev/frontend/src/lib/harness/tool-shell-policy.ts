@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer';
 import path from 'node:path';
 import { resolveInstructionRootPath } from './instruction-root';
 import { evaluateToolPathPolicy } from './tool-path-policy';
-import type { HarnessToolDescriptor } from './tool-descriptor';
+import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 
 export const HARNESS_SHELL_POLICY_VERSION = 'harness-shell.v1.bash';
 export const DEFAULT_BASH_TIMEOUT_MS = 120_000;

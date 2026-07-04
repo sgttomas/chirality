@@ -9,7 +9,7 @@ import {
   resolveHarnessPermissionDecision
 } from '../../lib/harness/permission-overlay';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import { getHarnessToolDescriptor } from '../../lib/harness/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 
 const sessionId = 'sess_permission_overlay';
 let tmpDir = '';

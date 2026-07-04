@@ -1,7 +1,7 @@
 import { constants as fsConstants } from 'node:fs';
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { HarnessError } from './errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { assertInstructionRootReadable } from './instruction-root';
 
 export type ParsedFrontmatter = Record<string, unknown>;
