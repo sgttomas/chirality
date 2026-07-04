@@ -21,7 +21,7 @@ domain_profile:
   id: "open_pipe_stress"
   name: "OpenPipeStress Piping-Stress Engine"
   engine_type: "structural/piping-stress-analysis"
-  profile_version: "0.3"
+  profile_version: "0.4"
   profile_status: "ADOPTED"      # human Gate 2 approved by owner 2026-06-21 (D-T0-06): governed-authoritative boundary. Validator passed (report: _validation/open_pipe_stress.validation.json). Renamed from the historical ".DRAFT" filename 2026-07-01 per D-GOV-06. (see D-T0-02 / FM-01 / D-T0-06)
   integration_level: "MANUAL_BRIDGE"   # L0 today. RULED (D-T0-03): L3 is the destination, reached risk-graded per-operation (L0->L1->L2->L3; L4 future-only).
   data_residency: "OPEN"               # RULED (D-T0-04): agent may see private model + Class-B inputs; app does not enforce privacy; any provider. L3 not residency-blocked.
@@ -103,10 +103,10 @@ domain_profile:
       validate_result_schema: "n/a"   # read_only — no proposal-validate outcome; rule-check result shape published (DEL-10-03, 2026-07-02): projects/chirality-piping/schemas/rule_check_run_result.schema.json, carried by operation_proposal_contract.deterministic_check_result_schema
       apply_result_schema: "TBD"      # n/a (read_only)
     - id: "headless_runner"
-      impl: "projects/chirality-piping/core/runner/headless (Rust; lib-only — needs a thin CLI entrypoint, lib.rs:655)"
+      impl: "projects/chirality-piping/core/runner/headless (Rust; lib + PROVISIONAL thin CLI entrypoint headless_preview_runner — DEC-064/TP-RUNNER-014; final CLI syntax stays TBD)"
       mode: "read_only"          # validated-kernel runs (L2 candidate)
       requires_human_confirmation: false
-      status: "TOOLMAKER handoff — entrypoint not yet built"
+      status: "L2 PROVEN — validated-kernel run demonstrated 2026-07-04 (DEC-064/TP-RUNNER-014); acknowledged by owner 2026-07-04 (D-T0-10)"
       validate_result_schema: "TBD"   # n/a (read_only)
       apply_result_schema: "TBD"      # n/a (read_only)
 

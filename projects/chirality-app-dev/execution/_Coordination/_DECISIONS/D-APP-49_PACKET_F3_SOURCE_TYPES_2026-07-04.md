@@ -143,7 +143,13 @@ surfaces, and everything under `projects/chirality-piping/`.
 
 ## Human Ruling And Disposition
 
-**Ruling recorded:** _Awaiting owner ruling._
+**Ruling recorded:** **O-A** — two type modules in `@chirality/harness-contract`, riders 1-5
+adopted as binding conditions; the package-location deviation owner-ruled (owner, Ryan Tufts,
+in-session 2026-07-04, via the run steer quoted verbatim in the ruling record; as-recommended
+reading per the Receipt 20/21 precedent). Ruling record:
+`execution/_Coordination/_DECISIONS/D-APP-49_RULING_2026-07-04.md`. The rider-3 precondition —
+the recorded proven-L2 acknowledgment — was recorded the same session as `D-T0-10` before any
+tranche execution.
 
 ## Ruling Mechanism
 
