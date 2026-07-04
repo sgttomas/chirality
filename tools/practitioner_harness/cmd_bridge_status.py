@@ -16,7 +16,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import adapter_git_state
+import adapter_project
 import brief_adoption
+from adapter_loader import load_adapter
 from harness_common import Report, Severity, SourcedFact, make_finding
 
 PICKLIST_NOTE = (
@@ -48,6 +50,11 @@ GATE_NOTE = (
     "Gate rows are derived from the profile's own live-binding line, not from "
     "a hand-maintained gate list. Register rows and decision records are cited "
     "when the gate token resolves mechanically.")
+BLOCKED_ON_NOTE = (
+    "Deliverable blocked-on rows quote optional `blocked-on: D-XX[, D-YY]` "
+    "tokens from deliverable `_STATUS.md` files. They are a reverse index from "
+    "owner-side decisions to deliverable work; they do not change lifecycle "
+    "state or resolve the decisions.")
 
 TEMPLATES: list[str] = [
     PICKLIST_NOTE,
@@ -60,6 +67,7 @@ TEMPLATES: list[str] = [
     NO_OWNER_ACTS,
     PARKED_NOTE,
     GATE_NOTE,
+    BLOCKED_ON_NOTE,
 ]
 
 REGISTER_SOURCES = (
@@ -83,6 +91,10 @@ RECEIPTS_RELPATH = "_DomainEngines/bridge/LOOP_RECEIPTS.md"
 BRIEFS_RELPATH = "docs/governance_harness/briefs"
 PIPING_DECOMP_RELPATH = "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md"
 HARNESS_BACKLOG_RELPATH = "tools/practitioner_harness/BACKLOG.md"
+PROJECT_RELPATHS = (
+    "projects/chirality-app-dev",
+    "projects/chirality-piping",
+)
 
 CANONICAL_RECEIPT_LABELS = (
     "Owner direction of record",
@@ -174,6 +186,16 @@ class GateObservation:
     source_path: str
     line: int | None
     resolved_current: bool = False
+
+
+@dataclass(frozen=True)
+class BlockedOnRecord:
+    decision_id: str
+    project: str
+    deliverable_dir: str
+    current_state: str
+    source_path: str
+    line: int | None
 
 
 def _source(path: str, line: int | None = None) -> str:
@@ -407,6 +429,7 @@ def _owner_acts(
     profile: ProfileInfo | None,
     receipt: ReceiptSummary | None,
     briefs: list[BriefRecord],
+    blocked_on: list[BlockedOnRecord],
 ) -> list[OwnerAct]:
     acts: list[OwnerAct] = []
     if receipt and receipt.gate_outcome:
@@ -455,6 +478,18 @@ def _owner_acts(
                     owner_side="owner review or next-phase direction if continuing this brief",
                 )
             )
+    open_decision_ids = {row.decision_id for row in open_rows}
+    for record in blocked_on:
+        if record.decision_id not in open_decision_ids:
+            continue
+        acts.append(
+            OwnerAct(
+                source=_source(record.source_path, record.line),
+                item=f"{record.decision_id} blocked deliverable {record.project}/{record.deliverable_dir}",
+                posture=f"Current State={record.current_state}",
+                owner_side=f"owner disposition of {record.decision_id} before tagged deliverable work resumes",
+            )
+        )
     return acts
 
 
@@ -729,6 +764,32 @@ def _add_fact(report: Report, fact_id: str, value: str, source: str, line: int |
     )
 
 
+def _blocked_on_records(repo_root: Path) -> list[BlockedOnRecord]:
+    records: list[BlockedOnRecord] = []
+    for relroot in PROJECT_RELPATHS:
+        project_root = repo_root / relroot
+        if not project_root.is_dir():
+            continue
+        manifest = load_adapter(project_root)
+        for path in adapter_project.collect_status_files(manifest):
+            result = adapter_project.analyze_status_file(path, manifest, repo_root)
+            if not result.blocked_on:
+                continue
+            state = (result.current_state or "UNKNOWN").strip().upper()
+            for decision_id in result.blocked_on:
+                records.append(
+                    BlockedOnRecord(
+                        decision_id=decision_id,
+                        project=manifest.project,
+                        deliverable_dir=path.parent.name,
+                        current_state=state,
+                        source_path=result.rel_path,
+                        line=result.blocked_on_line,
+                    )
+                )
+    return records
+
+
 def run_bridge_status(repo_root: Path) -> Report:
     report = Report(command="bridge-status")
     rows = _all_register_rows(repo_root)
@@ -739,7 +800,8 @@ def run_bridge_status(repo_root: Path) -> Report:
     briefs, refusal = _brief_records(repo_root)
     parked_lanes = _parked_lane_records(repo_root, receipt, rows, briefs)
     gate_observations = _live_binding_gate_observations(repo_root, profile, rows)
-    owner_acts = _owner_acts(open_rows, profile, receipt, briefs)
+    blocked_on = _blocked_on_records(repo_root)
+    owner_acts = _owner_acts(open_rows, profile, receipt, briefs, blocked_on)
 
     report.md("# Bridge status - owner-shaped act pick-list")
     report.md("")
@@ -831,6 +893,30 @@ def run_bridge_status(repo_root: Path) -> Report:
                 row.state,
                 row.source_path,
                 row.line,
+            )
+    report.md("")
+
+    report.md("## Deliverable blocked-on links")
+    report.md("")
+    report.md(BLOCKED_ON_NOTE)
+    report.md("")
+    if not blocked_on:
+        report.md("- no `blocked-on` tokens parsed from configured deliverable `_STATUS.md` files")
+    else:
+        report.md("| Decision | Project | Deliverable directory | Current State | Source |")
+        report.md("|---|---|---|---|---|")
+        for record in sorted(blocked_on, key=lambda r: (r.decision_id, r.project, r.deliverable_dir)):
+            report.md(
+                f"| `{_esc(record.decision_id)}` | {_esc(record.project)} | "
+                f"`{_esc(record.deliverable_dir)}` | {_esc(record.current_state)} | "
+                f"`{_source(record.source_path, record.line)}` |"
+            )
+            _add_fact(
+                report,
+                f"bridge_status.blocked_on.{record.decision_id}.{record.project}.{record.deliverable_dir}",
+                record.current_state,
+                record.source_path,
+                record.line,
             )
     report.md("")
 
@@ -938,6 +1024,7 @@ def run_bridge_status(repo_root: Path) -> Report:
     report.summary["parked_lane_receipt_only"] = sum(
         1 for lane in parked_lanes if lane.anchor_status == "receipt-only")
     report.summary["live_binding_gate_rows"] = len(gate_observations)
+    report.summary["blocked_on_links"] = len(blocked_on)
     report.summary["owner_act_rows"] = len(owner_acts)
     if receipt is not None:
         report.summary["latest_receipt"] = receipt.title

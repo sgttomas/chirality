@@ -22,6 +22,11 @@ from adapter_loader import AdapterManifest
 from harness_common import SourcedFact
 
 SHA_FIELD_RE = re.compile(r"\b([0-9a-f]{7,64})\b")
+DECISION_ID_RE = re.compile(r"\bD-(?:APP|T0|GOV)-\d+\b|\bD-\d+[A-Za-z]?\b")
+BLOCKED_ON_FIELD_RE = re.compile(
+    r"^\s*(?:\*\*blocked-on:\*\*|blocked-on:)\s*(.*?)\s*$",
+    re.IGNORECASE,
+)
 
 
 @dataclass
@@ -37,6 +42,8 @@ class StatusFileResult:
     unparseable_doc: bool
     empty_history: bool
     approval_sha: str | None = None
+    blocked_on: tuple[str, ...] = ()
+    blocked_on_line: int | None = None
 
 
 @dataclass
@@ -83,6 +90,23 @@ def _field_line_number(text: str, key: str) -> int | None:
     return None
 
 
+def _blocked_on_tokens(text: str) -> tuple[tuple[str, ...], int | None]:
+    for idx, line in enumerate(text.splitlines(), start=1):
+        match = BLOCKED_ON_FIELD_RE.match(line)
+        if not match:
+            continue
+        seen: set[str] = set()
+        tokens: list[str] = []
+        for token in DECISION_ID_RE.findall(match.group(1)):
+            normalized = token.upper()
+            if normalized in seen:
+                continue
+            seen.add(normalized)
+            tokens.append(normalized)
+        return tuple(tokens), idx
+    return (), None
+
+
 def analyze_status_file(path: Path, manifest: AdapterManifest, repo_root: Path) -> StatusFileResult:
     text = path.read_text(encoding="utf-8")
     doc = prose_bullet_v1.parse_status_document(text)
@@ -98,6 +122,7 @@ def analyze_status_file(path: Path, manifest: AdapterManifest, repo_root: Path) 
         m = SHA_FIELD_RE.search(value)
         if m:
             approval_sha = m.group(1)
+    blocked_on, blocked_on_line = _blocked_on_tokens(text)
     return StatusFileResult(
         path=path,
         rel_path=str(path.relative_to(repo_root)),
@@ -110,6 +135,8 @@ def analyze_status_file(path: Path, manifest: AdapterManifest, repo_root: Path) 
         unparseable_doc=unparseable_doc,
         empty_history=len(doc.history) == 0,
         approval_sha=approval_sha,
+        blocked_on=blocked_on,
+        blocked_on_line=blocked_on_line,
     )
 
 

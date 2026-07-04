@@ -200,6 +200,13 @@ where two aliases share a root the shorter wins). A root with no registered
 alias gets a labeled note in place of the command — a command line is never
 fabricated (K-INVENT-1).
 
+**`blocked-on` status tokens:** a deliverable `_STATUS.md` may include an
+optional field line `blocked-on: D-XX[, D-YY]` or `**blocked-on:** D-XX[, D-YY]`.
+The adapter treats these as decision-link metadata only: they do not change
+`Current State`, do not resolve decisions, and do not select work. `next`
+quotes the tokens beside active rows, and `bridge-status` builds the reverse
+index from owner-side decision rows to tagged deliverables.
+
 **fence_active and the REVIEW cap:** the Phase 4 `scope-check` BLOCK runs
 only against verified fences (`fence_active` true). Findings referencing
 anything else — candidates, scratch-dir/untracked/dirty adoptions, terminal

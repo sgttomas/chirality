@@ -612,6 +612,32 @@ def test_next_counts_listing_and_del_id_rule(tmp_path):
     assert "Truncated" not in md  # 4 active rows, under the cap
 
 
+def test_next_lists_blocked_on_tokens_from_status(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    piping = repo / "projects" / "chirality-piping"
+    status = (
+        piping
+        / "execution"
+        / "PKG-01_Fixture Pkg"
+        / "1_Working"
+        / "DEL-01-02_Second fixture"
+        / "_STATUS.md"
+    )
+    status.write_text(
+        status.read_text(encoding="utf-8").replace(
+            "**Last Updated:** 2026-06-04",
+            "**Last Updated:** 2026-06-04\n**blocked-on:** D-APP-47, D-30",
+        ),
+        encoding="utf-8",
+    )
+
+    report = cmd_next.run_next(repo, [piping], harness._alias_by_root(repo))
+    md = report.render_markdown()
+
+    assert "Blocked-On" in md
+    assert "`D-APP-47`, `D-30`" in md
+
+
 def test_next_truncation_is_explicit(tmp_path):
     repo = tmp_path / "repo"  # a bare tree: exactly 12 active deliverables
     build_project(repo, "chirality-app-dev", {

@@ -67,6 +67,7 @@ def test_bridge_status_derives_open_rows_profile_and_receipt(tmp_path):
     assert report.summary["parked_lane_rows"] == 1
     assert report.summary["parked_lane_receipt_only"] == 1
     assert report.summary["live_binding_gate_rows"] == 4
+    assert report.summary["blocked_on_links"] == 0
     assert "D-APP-99" in md
     assert "D-06" in md
     assert "Live binding (L2-L3) gated x4" in md
@@ -76,6 +77,45 @@ def test_bridge_status_derives_open_rows_profile_and_receipt(tmp_path):
     assert "fixture lane remains owner-directed" in md
     assert "receipt-only" in md
     assert "tool never selects" in md
+
+
+def test_bridge_status_indexes_status_blocked_on_tokens(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    app_status = (
+        repo
+        / "projects"
+        / "chirality-app-dev"
+        / "execution"
+        / "PKG-01_Fixture Pkg"
+        / "1_Working"
+        / "DEL-02-01_Match one"
+        / "_STATUS.md"
+    )
+    app_status.write_text(
+        app_status.read_text(encoding="utf-8").replace(
+            "**Last Updated:** 2026-06-04",
+            "**Last Updated:** 2026-06-04\n**blocked-on:** D-T0-09, D-30",
+        ),
+        encoding="utf-8",
+    )
+    register = (
+        repo
+        / "projects"
+        / "chirality-piping"
+        / "execution"
+        / "_Coordination"
+        / "_DECISIONS"
+        / "_REGISTER.md"
+    )
+    _append(register, "| D-30 | Fixture package consumption | NOT_PREPARED |\n")
+
+    report = cmd_bridge_status.run_bridge_status(repo)
+    md = report.render_markdown()
+
+    assert report.summary["blocked_on_links"] == 2
+    assert "## Deliverable blocked-on links" in md
+    assert "`D-30` | chirality-app-dev | `DEL-02-01_Match one`" in md
+    assert "D-30 blocked deliverable chirality-app-dev/DEL-02-01_Match one" in md
 
 
 def test_bridge_status_warns_on_latest_receipt_label_drift(tmp_path):
