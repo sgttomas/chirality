@@ -24,8 +24,8 @@ on the DEC-064/TP-RUNNER-014 evidence, and apply the staged tier-0 CHANGE
   witness
   `projects/chirality-piping/validation/witness/generated/tp_runner_014_headless_entrypoint_preview_run.json`;
   run record `WORKING_ITEMS_RUN_2026-07-04_TP-RUNNER-014.md` in the DEL-10-05
-  deliverable's `_run_records` directory (full path indexed in the staged
-  packet §2).
+  deliverable's `_run_records` directory (named with the same pointers in
+  Receipt 23's executed-pointers line).
 - DEC-025 five-surface sweep 5/5 bound to the tranche HEAD `98dfde1d1`;
   adversarial review reproduced the run byte-identical
   (`_DomainEngines/bridge/LOOP_RECEIPTS.md` Receipt 23).

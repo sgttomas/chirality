@@ -217,6 +217,11 @@ describe('isDomainEngineProfile', () => {
     ).toBe(false);
   });
 
+  it('rejects invalid open_issues elements when present', () => {
+    expect(isDomainEngineProfile({ ...validProfile(), open_issues: [42] })).toBe(false);
+    expect(isDomainEngineProfile({ ...validProfile(), open_issues: [''] })).toBe(false);
+  });
+
   it('rejects empty required path lists', () => {
     expect(isDomainEngineProfile({ ...validProfile(), domain_root_patterns: [] })).toBe(false);
     expect(
