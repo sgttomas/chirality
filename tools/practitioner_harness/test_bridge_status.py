@@ -13,6 +13,11 @@ def _append(path, text: str) -> None:
         handle.write(text)
 
 
+def _write(path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
 def test_bridge_status_derives_open_rows_profile_and_receipt(tmp_path):
     repo = build_mini_repo(tmp_path)
     app_register = (
@@ -149,3 +154,36 @@ def test_bridge_status_cli_runs_on_minimal_fixture(tmp_path, capsys):
     assert rc == 0
     assert "Generated view" in out
     assert "# Bridge status - owner-shaped act pick-list" in out
+
+
+def test_bridge_status_reports_pec_profile_as_draft_gate_open(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    _write(
+        repo / "_DomainEngines" / "profiles" / "pec.yaml",
+        """domain_profile:
+  id: "pec"
+  profile_status: "DRAFT"
+  profile_version: "0.1"
+  integration_level: "MANUAL_BRIDGE"
+""",
+    )
+    _write(
+        repo
+        / "projects"
+        / "pec"
+        / "execution"
+        / "_Coordination"
+        / "_DECISIONS"
+        / "_REGISTER.md",
+        "# PEC register\n\n| ID | Decision | State |\n|---|---|---|\n"
+        "| D-PEC-01 | Fixture data residency export case | NOT_PREPARED |\n",
+    )
+
+    report = cmd_bridge_status.run_bridge_status(repo)
+    md = report.render_markdown()
+    facts = {fact.fact_id: fact.value for fact in report.facts}
+
+    assert facts["bridge_status.profile.pec.profile_status"] == "DRAFT"
+    assert facts["bridge_status.profile.pec.gate_posture"] == "Gate 2 open"
+    assert "| `pec` | `DRAFT` | Gate 2 open | `MANUAL_BRIDGE` |" in md
+    assert "D-PEC-01" in md

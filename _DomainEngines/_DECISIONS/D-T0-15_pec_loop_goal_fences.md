@@ -1,6 +1,6 @@
 # D-T0-15 - PROPOSAL: PEC standing loop goal and fences
 
-**Status:** RULED / O-A affirmed by owner; publication pending PR #51 merge.
+**Status:** RULED / O-A affirmed by owner; published by PR #51 merge commit `57307cac1`.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-15  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -49,7 +49,7 @@ Recommend O-A.
 
 **Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04.
 
-**Publication:** Pending owner merge of PR #51.
+**Publication:** Published by PR #51 merge commit `57307cac1` (2026-07-04).
 
 Owner ruling excerpt:
 

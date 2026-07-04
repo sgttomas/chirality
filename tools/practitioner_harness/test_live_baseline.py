@@ -11,7 +11,7 @@ retained stale surfaces (owner ruling
 owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
 reconciliation pointer (the GEN-7 pointer-currency check's first detection
 target), the
-GEN-8 24-file instruction-class abs-path baseline (a drift metric: it trends
+GEN-8 25-file instruction-class abs-path baseline (a drift metric: it trends
 DOWN as files are relativized when next touched, and a conscious pin update
 accompanies each reduction), and the GEN-9 registry zero-drift state (its
 first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
@@ -25,6 +25,7 @@ from pathlib import Path
 
 import pytest
 
+import cmd_bridge_status
 import cmd_drift
 import cmd_self_check
 
@@ -74,14 +75,13 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     # Conscious pin update (owner ruling 2026-07-02, in-session): the D-T0
     # stale-title/TBD-SHA drift was cleaned and backfilled to the tier-0
     # publication commit 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 per the
-    # D-GOV pattern (f1549afb1) — EXCEPT the three deliberately retained
-    # live fixture surfaces of register Completed item 3, which MUST keep
-    # firing (asserted individually below, then pinned as exact counts).
+    # D-GOV pattern (f1549afb1). The D-T0-16 PEC harness tranche removed the
+    # DOMAIN_ENGINE_INDEX stale PEC-proposal annotation; the remaining live
+    # fixture surfaces MUST keep firing (asserted individually below, then
+    # pinned as exact counts).
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     keyed = {(f.code, f.source_path, f.source_line) for f in report.findings}
-    assert ("STALE_RULING_ANNOTATION",
-            "_DomainEngines/DOMAIN_ENGINE_INDEX.md", 43) in keyed
     assert ("STALE_RULING_ANNOTATION",
             "_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md",
             1) in keyed
@@ -100,7 +100,7 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     counts: dict[str, int] = {}
     for f in report.findings:
         counts[f.code] = counts.get(f.code, 0) + 1
-    assert counts.get("STALE_RULING_ANNOTATION", 0) == 2
+    assert counts.get("STALE_RULING_ANNOTATION", 0) == 1
     assert counts.get("TITLE_CONTRADICTS_RULING", 0) == 1
     assert counts.get("STALE_DRAFT_DIRECTIVE", 0) == 1
     assert counts.get("RULING_SHA_TBD", 0) == 0
@@ -126,14 +126,20 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # (app-dev F3), so the HB-8 STALE_LIVE_BINDING_GATE finding cleared.
     # INFO 14->15 on 2026-07-04: the PEC registration package added a staged
     # profile validation report under _DomainEngines/pec/profile/_validation/.
+    # D-T0-16 moved the PEC profile into _DomainEngines/profiles/pec.yaml,
+    # updated DOMAIN_ENGINE_INDEX.md, and added projects/pec to scoped
+    # self-checks. Net baseline movement: stale index REVIEW cleared; PEC
+    # PILOT.md adds one project-surface REVIEW; old profile-path historical
+    # refs in D-T0-11/D-T0-12 add three WARNs; projects/pec adds one pointer
+    # NOT_APPLICABLE row.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 15,
-        "NOT_APPLICABLE": 1,
+        "NOT_APPLICABLE": 2,
         "REVIEW": 28,
-        "WARN": 2,
+        "WARN": 5,
     }
 
 
@@ -143,9 +149,20 @@ def test_live_self_check_abs_path_in_evidence_reports_are_pinned():
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_EVIDENCE"]
     assert len(hits) == 2
     assert {(h.source_path, h.source_line) for h in hits} == {
-        ("_DomainEngines/pec/profile/_validation/pec.validation.json", 5),
+        ("_DomainEngines/profiles/_validation/pec.validation.json", 5),
         ("_DomainEngines/profiles/_validation/open_pipe_stress.validation.json", 5),
     }
+
+
+@live
+def test_live_bridge_status_reports_pec_draft_gate_open():
+    report = cmd_bridge_status.run_bridge_status(LIVE_REPO)
+    assert _fact(report, "bridge_status.profile.pec.profile_status").value == "DRAFT"
+    assert _fact(report, "bridge_status.profile.pec.gate_posture").value == (
+        "Gate 2 open"
+    )
+    md = report.render_markdown()
+    assert "| `pec` | `DRAFT` | Gate 2 open | `MANUAL_BRIDGE` |" in md
 
 
 @live
@@ -225,18 +242,23 @@ def test_live_pointer_currency_first_detection_target():
     # Every other live pointer resolves and is the newest of its class.
     assert [f for f in report.findings
             if f.code == "POINTER_TARGET_NOT_NEWEST"] == []
-    # docs/governance_harness carries no pointer files -> NOT_APPLICABLE.
+    # docs/governance_harness and projects/pec carry no pointer files ->
+    # NOT_APPLICABLE.
     from harness_common import Severity
     na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
-    assert {f.source_path for f in na} == {"docs/governance_harness"}
+    assert {f.source_path for f in na} == {
+        "docs/governance_harness",
+        "projects/pec",
+    }
     assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
 # The GEN-8 live baseline (conscious pin update 2026-07-03, HB-3): broadening
 # the detector beyond /Users to /private, /home, /tmp, and /var/folders moved
-# the instruction-class project-file set from 19 to 24. This set is a drift
-# metric — it should trend DOWN as files are relativized when next touched;
-# each reduction is a conscious pin update, never a silent one.
+# the instruction-class project-file set from 19 to 24. D-T0-16 then added
+# projects/pec to scoped self-checks, moving 24->25 via projects/pec/docs/PILOT.md.
+# This set is a drift metric — it should trend DOWN as files are relativized
+# when next touched; each reduction is a conscious pin update, never a silent one.
 GEN8_BASELINE_PATHS = {
     "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md",
     "projects/chirality-app-dev/plans/pi-assessment/01_core_session_primitives.md",
@@ -263,16 +285,17 @@ GEN8_BASELINE_PATHS = {
     "projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
     "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
     "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
+    "projects/pec/docs/PILOT.md",
 }
 
 
 @live
-def test_live_gen8_abs_path_24_file_baseline():
+def test_live_gen8_abs_path_25_file_baseline():
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 24  # exactly one finding per FILE
+    assert len(hits) == 25  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:

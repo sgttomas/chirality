@@ -46,7 +46,7 @@ PEC is registered as a DRAFT domain engine under `_DomainEngines/pec/`.
 Agents must read the tier-0 profile, loop, and decision register before making
 claims about PEC harness integration:
 
-- `_DomainEngines/pec/profile/pec.DRAFT.yaml`
+- `_DomainEngines/profiles/pec.yaml`
 - `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md`
 - `_DomainEngines/_DECISIONS/_REGISTER.md`
 - `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
@@ -98,4 +98,3 @@ development loop, project governance, agents, or skills, record them in at most
 one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do not
 create a plan merely to satisfy this instruction when no actionable issue was
 found.
-

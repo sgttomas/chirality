@@ -559,3 +559,20 @@ def test_gen5_brief_format_annotated_refs_resolve_to_base_path(tmp_path):
     # Only the missing base path is flagged — as the stripped ref.
     assert len(hits) == 1
     assert "`_DomainEngines/does_not_exist/NOPE.md`" in hits[0].message
+
+
+def test_gen5_pec_project_relative_refs_resolve(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    _write(repo / "projects" / "pec" / "docs" / "STATUS.md", "# PEC status\n")
+    reg = repo / "_DomainEngines" / "_DECISIONS" / "_REGISTER.md"
+    reg.write_text(
+        reg.read_text(encoding="utf-8")
+        + "\n- PEC project-local source: `docs/STATUS.md`\n",
+        encoding="utf-8",
+    )
+
+    report, _ = cmd_self_check.run_self_check(repo)
+    hits = [f for f in _findings(report, "UNRESOLVED_SOURCE_REF")
+            if f.source_path.endswith("_REGISTER.md")]
+
+    assert all("docs/STATUS.md" not in hit.message for hit in hits)

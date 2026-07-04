@@ -26,12 +26,23 @@ DE_DIRNAME = "_DomainEngines"
 
 
 @dataclass
+class DomainEngineProfileObservation:
+    profile_id: str
+    profile_data: dict = field(default_factory=dict)
+    profile_raw: str = ""
+    profile_path: Path | None = None
+    protected_write_paths: list[str] = field(default_factory=list)
+    agent_writable_paths: list[str] = field(default_factory=list)
+
+
+@dataclass
 class DomainEnginesObservation:
     root: Path
     facts: list[SourcedFact] = field(default_factory=list)
     profile_data: dict = field(default_factory=dict)
     profile_raw: str = ""
     profile_path: Path | None = None
+    profile_observations: dict[str, DomainEngineProfileObservation] = field(default_factory=dict)
     register_counts: dict[str, int] = field(default_factory=dict)
     decision_records: list[Path] = field(default_factory=list)
     protected_write_paths: list[str] = field(default_factory=list)
@@ -104,30 +115,50 @@ def observe_domain_engines(repo_root: Path, de_root: Path | None = None) -> Doma
     profiles_dir = root / "profiles"
     if profiles_dir.is_dir():
         for profile_path in sorted(profiles_dir.glob("*.yaml")):
-            obs.profile_path = profile_path
-            obs.profile_raw = profile_path.read_text(encoding="utf-8")
+            profile_raw = profile_path.read_text(encoding="utf-8")
             if yaml is None:
                 raise HarnessOperationalError(
                     "PyYAML is required to read domain-engine profiles but is not "
                     "importable in this interpreter (operational error, exit 2).")
             try:
-                data = yaml.safe_load(obs.profile_raw) or {}
+                data = yaml.safe_load(profile_raw) or {}
             except Exception as exc:  # noqa: BLE001
                 raise HarnessOperationalError(
                     f"Unparseable profile YAML {profile_path}: {exc}") from exc
-            obs.profile_data = data if isinstance(data, dict) else {}
-            dp = obs.profile_data.get("domain_profile", {}) if isinstance(
-                obs.profile_data.get("domain_profile", {}), dict) else {}
+            profile_data = data if isinstance(data, dict) else {}
+            dp = profile_data.get("domain_profile", {}) if isinstance(
+                profile_data.get("domain_profile", {}), dict) else {}
+            profile_id = str(dp.get("id") or profile_path.stem)
             rel = _rel(profile_path, repo_root)
+            profile_obs = DomainEngineProfileObservation(
+                profile_id=profile_id,
+                profile_data=profile_data,
+                profile_raw=profile_raw,
+                profile_path=profile_path,
+                protected_write_paths=[
+                    str(p) for p in (dp.get("protected_write_paths") or [])],
+                agent_writable_paths=[
+                    str(p) for p in (dp.get("agent_writable_paths") or [])],
+            )
+            obs.profile_observations[profile_id] = profile_obs
+            # Backward-compatible primary profile fields keep the original
+            # OpenPipeStress observation stable while profile-keyed fields
+            # carry any additional domain engines.
+            if profile_id == "open_pipe_stress" or obs.profile_path is None:
+                obs.profile_path = profile_path
+                obs.profile_raw = profile_raw
+                obs.profile_data = profile_data
+                obs.protected_write_paths = list(profile_obs.protected_write_paths)
+                obs.agent_writable_paths = list(profile_obs.agent_writable_paths)
             for key in ("profile_status", "profile_version", "integration_level", "id"):
                 if key in dp:
                     obs.facts.append(SourcedFact(
-                        fact_id=f"profile.{key}", value=str(dp[key]), source_path=rel,
+                        fact_id=f"profile.{profile_id}.{key}", value=str(dp[key]), source_path=rel,
                         authority_status="governed_committed", parse_status="PARSED"))
-            obs.protected_write_paths = [
-                str(p) for p in (dp.get("protected_write_paths") or [])]
-            obs.agent_writable_paths = [
-                str(p) for p in (dp.get("agent_writable_paths") or [])]
+                    if profile_id == "open_pipe_stress" or len(obs.profile_observations) == 1:
+                        obs.facts.append(SourcedFact(
+                            fact_id=f"profile.{key}", value=str(dp[key]), source_path=rel,
+                            authority_status="governed_committed", parse_status="PARSED"))
 
         # Validation reports.
         for report_path in sorted((profiles_dir / "_validation").glob("*.json")):
@@ -139,8 +170,9 @@ def observe_domain_engines(repo_root: Path, de_root: Path | None = None) -> Doma
                     source_path=_rel(report_path, repo_root),
                     authority_status="generated_evidence", parse_status="UNPARSEABLE"))
                 continue
+            profile_id = str(report.get("profile_id") or report_path.stem.removesuffix(".validation"))
             obs.facts.append(SourcedFact(
-                fact_id="profile.validation_report",
+                fact_id=f"profile.{profile_id}.validation_report",
                 value=(f"result={report.get('result')}, "
                        f"profile_status={report.get('profile_status')}, "
                        f"errors={report.get('summary', {}).get('error_count')}"),
@@ -148,6 +180,16 @@ def observe_domain_engines(repo_root: Path, de_root: Path | None = None) -> Doma
                 authority_status="generated_evidence", parse_status="PARSED",
                 caveat=("Evidence artifact quoted; validator output is a structural "
                         "check, not acceptance of residual risk (K-GATE-1).")))
+            if profile_id == "open_pipe_stress":
+                obs.facts.append(SourcedFact(
+                    fact_id="profile.validation_report",
+                    value=(f"result={report.get('result')}, "
+                           f"profile_status={report.get('profile_status')}, "
+                           f"errors={report.get('summary', {}).get('error_count')}"),
+                    source_path=_rel(report_path, repo_root),
+                    authority_status="generated_evidence", parse_status="PARSED",
+                    caveat=("Evidence artifact quoted; validator output is a structural "
+                            "check, not acceptance of residual risk (K-GATE-1).")))
 
     # Decision register + records.
     register = root / "_DECISIONS" / "_REGISTER.md"

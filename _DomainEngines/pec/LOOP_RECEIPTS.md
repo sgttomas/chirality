@@ -2,7 +2,7 @@
 
 > **Epistemic status: derivative handoff ledger — not authority.** Append-only.
 > Current state is always re-derived from the live tree, the decision registers,
-> the pec profile (staged path; DRAFT until owner Gate 2), git history, and the
+> the pec profile (`_DomainEngines/profiles/pec.yaml`; DRAFT until owner Gate 2), git history, and the
 > deterministic checks; on any disagreement those sources govern (K-AUTH-1). A
 > receipt records only what tools cannot re-derive: owner directions given
 > outside governed artifacts, gate outcomes and their rationale, deltas found in
@@ -72,3 +72,11 @@
   - Not executed: no harness code change, no profile move, no ADOPTED status, no PEC server/non-scratch DB mutation, no instance-content capture or egress.
   - Checks: profile validator VALID; self-check pass; full practitioner harness pytest pass; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
   - Parked lanes: owner merge of PR #51; after merge, TOOLMAKER harness PR under D-T0-16 is the next lawful tranche. Real data/export authorization remains for future D-PEC-01.
+
+- **2026-07-04 — Receipt 3** (PR #51 merged; D-T0-16 harness tranche executed).
+  - Start: `57307cac1` (`origin/main` after PR #51 merge); branch `codex/pec-harness-tranche`; PR #51 merged by owner direction.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "merge PR #51".
+  - Executed pointers: `tools/practitioner_harness/{adapter_domain_engines.py,cmd_bridge_status.py,cmd_self_check.py,harness.py}` + tests; `_DomainEngines/profiles/pec.yaml` + validation report; `_DomainEngines/DOMAIN_ENGINE_INDEX.md`; D-T0-11..16 publication-status updates; PEC `AGENTS.md`/`docs/STATUS.md` pointer corrections; harness backlog.
+  - Gate outcome: D-T0-16 O-A tranche executed after PR #51 merge; bridge-status reports `pec` as `DRAFT` with `Gate 2 open`. No ADOPTED status, no `status`/`drift`/`next`/`brief --project pec` citizenship, no PEC runtime/server/non-scratch DB mutation, no instance-content capture or egress.
+  - Checks: profile validator VALID; bridge-status pass; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; full practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass.
+  - Parked lanes: owner merge of the D-T0-16 harness PR; profile Gate 2 adoption remains owner-only; real data/export authorization remains for future D-PEC-01.

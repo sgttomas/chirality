@@ -44,7 +44,7 @@ Ground truth for behavior is the **tests** (`core/test/`, `server/test/`) and th
 PEC's project-local agent rules live in `AGENTS.md`. Human-gated PEC-local
 coordination decisions are tracked at `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 Tier-0 domain-engine registration is staged under `_DomainEngines/pec/` with
-profile `_DomainEngines/pec/profile/pec.DRAFT.yaml`; owner rulings live in
+profile `_DomainEngines/profiles/pec.yaml` (DRAFT; owner Gate 2 open); owner rulings live in
 `_DomainEngines/_DECISIONS/_REGISTER.md`.
 
 ## What's next (prioritized)
