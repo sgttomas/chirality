@@ -38,12 +38,20 @@ const opts: ResolvedOpts = {
   mode: 'direct'
 };
 
-const DOMAIN_MCP_TOOL_NAMES = [
+const LIVE_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_completeness_check',
-  'mcp__chirality__domain_rule_check_run',
+  'mcp__chirality__domain_rule_check_run'
+] as const;
+
+const PARKED_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_headless_preview_run',
   'mcp__chirality__domain_propose_operation',
   'mcp__chirality__domain_proposal_validate'
+] as const;
+
+const DOMAIN_MCP_TOOL_NAMES = [
+  ...LIVE_DOMAIN_MCP_TOOL_NAMES,
+  ...PARKED_DOMAIN_MCP_TOOL_NAMES
 ] as const;
 
 let tmpDir = '';
@@ -202,13 +210,42 @@ describe('buildSdkOptions', () => {
     expect(readOnly.mcpServers).toEqual({});
   });
 
-  it('keeps descriptor-only domain MCP tools denied even when explicitly requested', () => {
+  it('attaches D-APP-50 tranche-1 read-side domain MCP tools when explicitly requested', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'readOnly',
+        tools: ['domain_completeness_check', 'domain_rule_check_run']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual([...LIVE_DOMAIN_MCP_TOOL_NAMES]);
+    expect(options.allowedTools).toEqual([...LIVE_DOMAIN_MCP_TOOL_NAMES]);
+    expect(options.disallowedTools).not.toContain('mcp__chirality__domain_completeness_check');
+    expect(options.disallowedTools).not.toContain('mcp__chirality__domain_rule_check_run');
+    expect(options.disallowedTools).toEqual(expect.arrayContaining([...PARKED_DOMAIN_MCP_TOOL_NAMES]));
+    expect(options.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
+  });
+
+  it('keeps parked domain MCP tools denied even when explicitly requested', () => {
     const options = buildSdkOptions({
       session,
       opts: {
         ...opts,
         mode: 'workspaceWrite',
-        tools: ['domain_completeness_check', 'domain_propose_operation']
+        tools: [
+          'domain_headless_preview_run',
+          'domain_propose_operation',
+          'domain_proposal_validate'
+        ]
       },
       abortController: new AbortController(),
       systemPrompt: 'persona prompt'
@@ -216,7 +253,7 @@ describe('buildSdkOptions', () => {
 
     expect(options.tools).toEqual([]);
     expect(options.allowedTools).toEqual([]);
-    expect(options.disallowedTools).toEqual(expect.arrayContaining([...DOMAIN_MCP_TOOL_NAMES]));
+    expect(options.disallowedTools).toEqual(expect.arrayContaining([...PARKED_DOMAIN_MCP_TOOL_NAMES]));
     expect(options.mcpServers).toEqual({});
   });
 

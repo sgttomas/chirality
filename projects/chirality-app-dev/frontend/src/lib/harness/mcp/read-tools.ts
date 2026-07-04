@@ -43,6 +43,7 @@ import {
   isChiralityMcpAllowedToolName,
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
+  type ChiralityMcpDomainToolName,
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from '@chirality/harness-contract/mcp/tool-names';
@@ -71,6 +72,17 @@ export type ScaffoldPreviewArgs = {
   decompositionPath: string;
   projectName?: string;
   coordinationMode?: string;
+};
+
+export type DomainCompletenessCheckArgs = {
+  profileId: string;
+  inputRef: string;
+};
+
+export type DomainRuleCheckRunArgs = {
+  profileId: string;
+  rulePackRef: string;
+  valueBindingsRef: string;
 };
 
 export type StatusTransitionArgs = {
@@ -118,7 +130,7 @@ function jsonToolResult(value: unknown): CallToolResult {
 
 async function runReadMcpToolWithEvidence(input: {
   context: ChiralityReadMcpContext;
-  toolName: ChiralityMcpReadToolName;
+  toolName: ChiralityMcpReadToolName | ChiralityMcpDomainToolName;
   args: unknown;
   execute: () => Promise<CallToolResult>;
 }): Promise<CallToolResult> {
@@ -432,6 +444,148 @@ async function assertExistingPathWithinProjectRoot(input: {
   return candidatePath;
 }
 
+function summarizeJsonValue(value: unknown): Record<string, unknown> {
+  if (Array.isArray(value)) {
+    return {
+      topLevelType: 'array',
+      length: value.length
+    };
+  }
+  if (value && typeof value === 'object') {
+    const keys = Object.keys(value as Record<string, unknown>).sort();
+    return {
+      topLevelType: 'object',
+      keys: keys.slice(0, 32),
+      keyCount: keys.length
+    };
+  }
+  return {
+    topLevelType: value === null ? 'null' : typeof value
+  };
+}
+
+async function readProjectTextReference(input: {
+  projectRoot: string;
+  reference: string;
+  field: string;
+}): Promise<{
+  content: string;
+  evidence: {
+    path: string;
+    relativePath: string;
+    sha256: string;
+    byteLength: number;
+  };
+}> {
+  const projectRoot = await realpath(path.resolve(input.projectRoot));
+  const filePath = await assertExistingPathWithinProjectRoot({
+    projectRoot,
+    candidatePath: resolveProjectPath(projectRoot, input.reference),
+    field: input.field
+  });
+  const content = await readFile(filePath, 'utf8');
+  return {
+    content,
+    evidence: {
+      path: filePath,
+      relativePath: path.relative(projectRoot, filePath),
+      sha256: createHash('sha256').update(content).digest('hex'),
+      byteLength: Buffer.byteLength(content)
+    }
+  };
+}
+
+async function readProjectJsonReference(input: {
+  projectRoot: string;
+  reference: string;
+  field: string;
+}): Promise<{
+  field: string;
+  path: string;
+  relativePath: string;
+  sha256: string;
+  byteLength: number;
+  json: Record<string, unknown>;
+}> {
+  const { content, evidence } = await readProjectTextReference(input);
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(content);
+  } catch (error) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      `${input.field} must reference a JSON document`,
+      {
+        field: input.field,
+        path: evidence.path,
+        error: error instanceof Error ? error.message : String(error)
+      }
+    );
+  }
+
+  return {
+    field: input.field,
+    ...evidence,
+    json: summarizeJsonValue(parsed)
+  };
+}
+
+async function readOpenPipeStressProfile(input: {
+  projectRoot: string;
+  profileId: string;
+  toolId: 'completeness_checker' | 'rule_check_runner';
+}): Promise<{
+  path: string;
+  relativePath: string;
+  sha256: string;
+  byteLength: number;
+}> {
+  if (input.profileId !== 'open_pipe_stress') {
+    throw new HarnessError('INVALID_REQUEST', 400, 'profileId is not registered for this domain transport', {
+      profileId: input.profileId,
+      supportedProfileIds: ['open_pipe_stress']
+    });
+  }
+
+  const { content, evidence } = await readProjectTextReference({
+    projectRoot: input.projectRoot,
+    reference: '_DomainEngines/profiles/open_pipe_stress.yaml',
+    field: 'profileId'
+  });
+  if (!content.includes('id: open_pipe_stress') || !content.includes(`id: ${input.toolId}`)) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'profileId does not expose the requested deterministic tool',
+      {
+        profileId: input.profileId,
+        toolId: input.toolId,
+        profilePath: evidence.path
+      }
+    );
+  }
+  return evidence;
+}
+
+function domainReadTransportStatus(toolId: 'completeness_checker' | 'rule_check_runner') {
+  return {
+    status: 'live',
+    posture: 'DEC-041 in-process read transport',
+    tranche: 'D-APP-50 tranche-1 read-side exposure',
+    toolId,
+    writes: false,
+    network: false,
+    shell: false,
+    inputContract:
+      'project-root-contained JSON references plus _DomainEngines/profiles/open_pipe_stress.yaml',
+    deterministicToolExecution:
+      'not invoked in this tranche; the authoritative Rust tool is library-only and has no stable JSON CLI transport',
+    resultSemantics:
+      'transport/evidence envelope only; no domain verdict, no live binding claim, and no professional engineering conclusion'
+  };
+}
+
 export async function statusReadTool(
   context: ChiralityReadMcpContext,
   args: StatusReadArgs
@@ -505,6 +659,73 @@ export async function scaffoldPreviewTool(
           coordinationMode: args.coordinationMode as CoordinationMode | undefined
         })
       );
+    }
+  });
+}
+
+export async function domainCompletenessCheckTool(
+  context: ChiralityReadMcpContext,
+  args: DomainCompletenessCheckArgs
+): Promise<CallToolResult> {
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'domain_completeness_check',
+    args,
+    execute: async () => {
+      const profile = await readOpenPipeStressProfile({
+        projectRoot: context.projectRoot,
+        profileId: args.profileId,
+        toolId: 'completeness_checker'
+      });
+      const input = await readProjectJsonReference({
+        projectRoot: context.projectRoot,
+        reference: args.inputRef,
+        field: 'inputRef'
+      });
+
+      return jsonToolResult({
+        profileId: args.profileId,
+        toolId: 'completeness_checker',
+        transportStatus: domainReadTransportStatus('completeness_checker'),
+        profile,
+        inputs: [input]
+      });
+    }
+  });
+}
+
+export async function domainRuleCheckRunTool(
+  context: ChiralityReadMcpContext,
+  args: DomainRuleCheckRunArgs
+): Promise<CallToolResult> {
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'domain_rule_check_run',
+    args,
+    execute: async () => {
+      const profile = await readOpenPipeStressProfile({
+        projectRoot: context.projectRoot,
+        profileId: args.profileId,
+        toolId: 'rule_check_runner'
+      });
+      const rulePack = await readProjectJsonReference({
+        projectRoot: context.projectRoot,
+        reference: args.rulePackRef,
+        field: 'rulePackRef'
+      });
+      const valueBindings = await readProjectJsonReference({
+        projectRoot: context.projectRoot,
+        reference: args.valueBindingsRef,
+        field: 'valueBindingsRef'
+      });
+
+      return jsonToolResult({
+        profileId: args.profileId,
+        toolId: 'rule_check_runner',
+        transportStatus: domainReadTransportStatus('rule_check_runner'),
+        profile,
+        inputs: [rulePack, valueBindings]
+      });
     }
   });
 }
@@ -734,6 +955,35 @@ export function buildChiralityMcpTools(input: {
     );
   }
 
+  if (allowed.has('mcp__chirality__domain_completeness_check')) {
+    tools.push(
+      tool(
+        'domain_completeness_check',
+        'Return D-APP-50 tranche-1 transport evidence for the open_pipe_stress completeness_checker read wrapper.',
+        {
+          profileId: z.string().min(1),
+          inputRef: z.string().min(1)
+        },
+        (args) => domainCompletenessCheckTool(input.context, args)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__domain_rule_check_run')) {
+    tools.push(
+      tool(
+        'domain_rule_check_run',
+        'Return D-APP-50 tranche-1 transport evidence for the open_pipe_stress rule_check_runner read wrapper.',
+        {
+          profileId: z.string().min(1),
+          rulePackRef: z.string().min(1),
+          valueBindingsRef: z.string().min(1)
+        },
+        (args) => domainRuleCheckRunTool(input.context, args)
+      )
+    );
+  }
+
   return tools;
 }
 
@@ -757,7 +1007,7 @@ export function createChiralityMcpServers(input: {
       name: CHIRALITY_MCP_SERVER_NAME,
       version: CHIRALITY_MCP_SERVER_VERSION,
       instructions:
-        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands or access networks.',
+        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, read-only domain transport evidence, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands or access networks.',
       tools
     })
   };

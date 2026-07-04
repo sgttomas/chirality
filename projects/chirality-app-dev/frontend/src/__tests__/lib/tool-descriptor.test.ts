@@ -45,12 +45,20 @@ const MUTATING_MCP_TOOL_NAMES = [
   'mcp__chirality__deps_write'
 ] as const;
 
-const DOMAIN_MCP_TOOL_NAMES = [
+const LIVE_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_completeness_check',
-  'mcp__chirality__domain_rule_check_run',
+  'mcp__chirality__domain_rule_check_run'
+] as const;
+
+const PARKED_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_headless_preview_run',
   'mcp__chirality__domain_propose_operation',
   'mcp__chirality__domain_proposal_validate'
+] as const;
+
+const DOMAIN_MCP_TOOL_NAMES = [
+  ...LIVE_DOMAIN_MCP_TOOL_NAMES,
+  ...PARKED_DOMAIN_MCP_TOOL_NAMES
 ] as const;
 
 const ALL_MCP_TOOL_NAMES = [
@@ -181,7 +189,8 @@ describe('tool descriptor registry', () => {
       'scaffold_preview',
       'domain_completeness_check',
       'domain_rule_check_run',
-      'domain_headless_preview_run'
+      'domain_headless_preview_run',
+      'domain_proposal_validate'
     ]);
     expect(
       descriptors
@@ -230,19 +239,34 @@ describe('tool descriptor registry', () => {
     expect(bash?.runtime.exposedToModel).toBe(true);
   });
 
-  it('registers D-APP-50 domain MCP descriptors as descriptor-only until transport is sound', () => {
-    const domainDescriptors = DOMAIN_MCP_TOOL_NAMES.map((toolName) =>
+  it('registers D-APP-50 tranche-1 domain MCP exposure without opening parked tools', () => {
+    const liveDomainDescriptors = LIVE_DOMAIN_MCP_TOOL_NAMES.map((toolName) =>
+      getHarnessToolDescriptor(toolName)
+    );
+    const parkedDomainDescriptors = PARKED_DOMAIN_MCP_TOOL_NAMES.map((toolName) =>
       getHarnessToolDescriptor(toolName)
     );
 
-    expect(domainDescriptors.map((descriptor) => descriptor?.name)).toEqual([
+    expect(liveDomainDescriptors.map((descriptor) => descriptor?.name)).toEqual([
       'domain_completeness_check',
-      'domain_rule_check_run',
+      'domain_rule_check_run'
+    ]);
+    for (const descriptor of liveDomainDescriptors) {
+      expect(descriptor?.surface).toBe('chirality-mcp');
+      expect(descriptor?.permissions).toEqual(['read']);
+      expect(descriptor?.pathScope).toBe('project-root-read');
+      expect(descriptor?.runtime.exposedToModel).toBe(true);
+      expect(descriptor?.runtime.reason).toContain('D-APP-50 tranche-1');
+      expect(descriptor?.humanGate).toEqual({ required: false });
+      expect(descriptor?.provenance.recordsDiff).toBe(false);
+    }
+
+    expect(parkedDomainDescriptors.map((descriptor) => descriptor?.name)).toEqual([
       'domain_headless_preview_run',
       'domain_propose_operation',
       'domain_proposal_validate'
     ]);
-    for (const descriptor of domainDescriptors) {
+    for (const descriptor of parkedDomainDescriptors) {
       expect(descriptor?.surface).toBe('reserved');
       expect(descriptor?.runtime.exposedToModel).toBe(false);
       expect(descriptor?.runtime.reason).toContain('D-APP-50');
@@ -252,8 +276,21 @@ describe('tool descriptor registry', () => {
       });
     }
     expect(
-      domainDescriptors.map((descriptor) => descriptor?.adapter.claudeAgentSdk?.toolName)
+      [...liveDomainDescriptors, ...parkedDomainDescriptors].map(
+        (descriptor) => descriptor?.adapter.claudeAgentSdk?.toolName
+      )
     ).toEqual(DOMAIN_MCP_TOOL_NAMES);
+    expect(getHarnessToolDescriptor('domain_headless_preview_run')?.humanGate).toMatchObject({
+      reason: expect.stringContaining('provisional/TBD')
+    });
+    expect(getHarnessToolDescriptor('domain_proposal_validate')).toMatchObject({
+      permissions: ['read'],
+      pathScope: 'project-root-read',
+      provenance: expect.objectContaining({
+        recordsDiff: false,
+        storeOutput: 'inline-or-artifact'
+      })
+    });
     expect(getHarnessToolDescriptor('domain_apply')).toBeUndefined();
     expect(getHarnessToolDescriptor('domain_proposal_apply')).toBeUndefined();
   });
@@ -367,9 +404,28 @@ describe('tool descriptor registry', () => {
     ]);
   });
 
-  it('keeps D-APP-50 domain MCP descriptors out of the model context', () => {
+  it('resolves D-APP-50 tranche-1 read-side domain MCP tools when explicitly requested', () => {
     const readOnly = resolveHarnessToolPool({
       requestedTools: ['domain_completeness_check', 'domain_rule_check_run'],
+      mode: 'readOnly'
+    });
+
+    expect(readOnly.allowedToolNames).toEqual([...LIVE_DOMAIN_MCP_TOOL_NAMES]);
+    expect(readOnly.disallowedToolNames).toEqual(
+      getCurrentTrancheDisallowedToolNames([...LIVE_DOMAIN_MCP_TOOL_NAMES])
+    );
+    expect(readOnly.deniedTools).toEqual([]);
+    expect(
+      buildChiralityMcpTools({
+        context: { projectRoot: '/tmp/chirality-project', sessionId: 'sess_domain_read' },
+        allowedToolNames: readOnly.allowedToolNames
+      }).map((definition) => (definition as { name: string }).name)
+    ).toEqual(['domain_completeness_check', 'domain_rule_check_run']);
+  });
+
+  it('keeps parked D-APP-50 domain MCP descriptors out of the model context', () => {
+    const readOnly = resolveHarnessToolPool({
+      requestedTools: ['domain_headless_preview_run', 'domain_proposal_validate'],
       mode: 'readOnly'
     });
 
@@ -377,19 +433,19 @@ describe('tool descriptor registry', () => {
     expect(readOnly.disallowedToolNames).toEqual(getCurrentTrancheDisallowedToolNames());
     expect(readOnly.deniedTools).toEqual([
       expect.objectContaining({
-        toolName: 'domain_completeness_check',
-        descriptorName: 'domain_completeness_check',
-        message: expect.stringContaining('D-APP-50')
+        toolName: 'domain_headless_preview_run',
+        descriptorName: 'domain_headless_preview_run',
+        message: expect.stringContaining('provisional/TBD')
       }),
       expect.objectContaining({
-        toolName: 'domain_rule_check_run',
-        descriptorName: 'domain_rule_check_run',
+        toolName: 'domain_proposal_validate',
+        descriptorName: 'domain_proposal_validate',
         message: expect.stringContaining('D-APP-50')
       })
     ]);
 
     const workspaceWrite = resolveHarnessToolPool({
-      requestedTools: ['domain_propose_operation', 'domain_proposal_validate'],
+      requestedTools: ['domain_propose_operation'],
       mode: 'workspaceWrite'
     });
 
@@ -398,11 +454,6 @@ describe('tool descriptor registry', () => {
       expect.objectContaining({
         toolName: 'domain_propose_operation',
         descriptorName: 'domain_propose_operation',
-        message: expect.stringContaining('D-APP-50')
-      }),
-      expect.objectContaining({
-        toolName: 'domain_proposal_validate',
-        descriptorName: 'domain_proposal_validate',
         message: expect.stringContaining('D-APP-50')
       })
     ]);

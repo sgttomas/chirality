@@ -226,11 +226,19 @@ and requested mutating Chirality MCP tools only in `workspaceWrite` mode after d
 permission-overlay, and handler-wrapper resolution. The current Chirality MCP read tools
 are `mcp__chirality__status_read`,
 `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
-`mcp__chirality__scaffold_preview`. The current mutating Chirality MCP tools are
+`mcp__chirality__scaffold_preview`. D-APP-50 tranche-1 also exposes the
+read-side domain transport wrappers `mcp__chirality__domain_completeness_check`
+and `mcp__chirality__domain_rule_check_run`; those handlers return DEC-041
+in-process read-transport evidence envelopes only and do not produce domain
+verdicts, live-binding claims, professional conclusions, shell execution, network
+access, or piping writes. The current mutating Chirality MCP tools are
 `mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
-D-APP-50 domain MCP descriptors are registered under
-`mcp__chirality__domain_*` but remain descriptor-only until DEC-041 runtime
-transport and K-DOMAIN-2 proposal-write quarantine are sound.
+D-APP-50 keeps `mcp__chirality__domain_headless_preview_run` descriptor-only
+because DEC-064 / TP-RUNNER-014 leaves the headless preview CLI entrypoint
+provisional/TBD, and keeps `mcp__chirality__domain_propose_operation` plus
+`mcp__chirality__domain_proposal_validate` descriptor-only until the K-DOMAIN-2
+proposal-write quarantine is implemented. `operation_applier.apply` remains
+unregistered and unexposed.
 
 The SDK options builder passes requested and allowed names through both `tools` and
 `allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
@@ -262,12 +270,12 @@ alias, or adapter tool name. Same-descriptor canonical/adapter equivalence is pe
 only when it resolves to the same descriptor.
 
 Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names.
-`mcp__chirality__domain_*` names are D-APP-50 descriptor-only registrations:
-they do not expose handlers, apply domain operations, write piping paths, or
-advance live binding. Remote MCP, plugins, broad tool search, remote execution,
-provider/network expansion, concrete non-Anthropic providers, further default/provider
-semantics changes, and release/professional-boundary changes remain out of scope until a
-future human ruling authorizes them.
+Only the two D-APP-50 tranche-1 read-side domain transport wrappers are model
+exposed. Parked domain names do not expose handlers, apply domain operations,
+write piping paths, or advance live binding. Remote MCP, plugins, broad tool
+search, remote execution, provider/network expansion, concrete non-Anthropic
+providers, further default/provider semantics changes, and release/professional-boundary
+changes remain out of scope until a future human ruling authorizes them.
 
 The R6-04 module split was deferred at closeout because it was optional organization work
 and the acceptance criteria were satisfied by the collision invariant, generated catalog,
