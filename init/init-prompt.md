@@ -4,7 +4,7 @@ Each section below is a **standalone launcher**. To start a session, copy the
 text **between the `<init-prompt>` tags** for the launch you want, substitute any
 remaining `<PLACEHOLDER>` tokens, and paste it as the first message.
 
-Four launchers live here:
+Six launchers live here:
 
 1. **Generic project launcher** — a fill-in template for any workspace/persona.
 2. **Root-governance WORKING_ITEMS launcher** — the standing WORKING_ITEMS entry.
@@ -15,6 +15,14 @@ Four launchers live here:
    `plans/pec_bridge_integration_plan_2026-07-04.md` (pec tier-0 registration),
    then continues as the standing pec loop. Its file is
    `_DomainEngines/pec/LOOP_INIT.md`.
+5. **Piping work loop launcher** — the chirality-piping project development
+   loop. Its file is `projects/chirality-piping/loop/LOOP_INIT.md`.
+6. **App-dev work loop launcher** — the chirality-app-dev project development
+   loop. Its file is `projects/chirality-app-dev/loop/LOOP_INIT.md`.
+
+Every project also carries the same launcher in its own `init/init-prompt.md`
+(pec's points at the pec loop above), so the per-project copy and the section
+here are interchangeable.
 
 ---
 
@@ -96,3 +104,45 @@ Same thin-launcher rationale as §3: the goal (implement
 the standing pec goal once ruled), the protocol, and the fences live in
 `_DomainEngines/pec/LOOP_INIT.md` → `WORKPLAN_2026-07-04_pec_loop.md` → its
 receipts.
+
+---
+
+## 5. Piping work loop launcher (chirality-piping development) — ACTIVE
+
+Paste-ready as written; replace `<none>` with a per-run steer if you want one.
+
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Read `{REPO_ROOT}/projects/chirality-piping/loop/LOOP_INIT.md` and follow it: pursue the
+loop's inherent goals — recorded in its standing plan — as far as live authority permits.
+
+Steer (this run): <none>
+</init-prompt>
+
+Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
+index live in `projects/chirality-piping/loop/LOOP_INIT.md` →
+`WORKPLAN_2026-07-04_piping_loop.md` → its receipts. This supersedes the older
+status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
+remains as a historical map.
+
+---
+
+## 6. App-dev work loop launcher (chirality-app-dev development) — ACTIVE
+
+Paste-ready as written; replace `<none>` with a per-run steer if you want one.
+
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Read `{REPO_ROOT}/projects/chirality-app-dev/loop/LOOP_INIT.md` and follow it: pursue the
+loop's inherent goals — recorded in its standing plan — as far as live authority permits.
+
+Steer (this run): <none>
+</init-prompt>
+
+Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
+index live in `projects/chirality-app-dev/loop/LOOP_INIT.md` →
+`WORKPLAN_2026-07-04_app_dev_loop.md` → its receipts. This supersedes the older
+status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
+remains as a historical map.
