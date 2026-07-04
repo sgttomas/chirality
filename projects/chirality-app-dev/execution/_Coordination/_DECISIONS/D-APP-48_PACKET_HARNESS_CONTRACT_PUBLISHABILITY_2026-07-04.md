@@ -77,3 +77,6 @@ the owner to manually copy package files between sessions.
 
 Ruling record:
 `execution/_Coordination/_DECISIONS/D-APP-48_RULING_2026-07-04.md`.
+
+Implemented pull contract:
+`execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_2026-07-04.json`.
