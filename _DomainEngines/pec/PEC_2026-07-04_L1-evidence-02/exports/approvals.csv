@@ -1,0 +1,4 @@
+approval_id,title,type,authority_source,applies_to,signatories,due_date,state,outcome,outcome_decision
+APR-0001,IFR authorization — AUR-P-002,issue_authorization,Engineering procedure EP-04 (issue authorization),revision#2,approver@aurora.dev,2026-07-11,decided,approve,DEC-0001
+APR-0002,Pump datasheet P-101 approval,datasheet_approval,Engineering procedure EP-04,revision#5,approver@aurora.dev,2026-07-01,decided,approve,DEC-0002
+APR-0003,Client hold point — HAZOP actions closed,client_hold_point,Contract Exhibit C — client hold points,revision#1,approver@aurora.dev,2026-06-29,ready,,

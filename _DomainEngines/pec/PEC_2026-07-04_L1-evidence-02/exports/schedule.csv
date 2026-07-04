@@ -1,0 +1,4 @@
+activity_id,description,start,finish,package,deliverable_ref
+SCH-1010,PFD update and squad check,2026-06-27,2026-07-15,PKG-P,AUR-P-002
+SCH-1020,Compressor datasheet finalization,2026-07-04,2026-07-22,PKG-M,AUR-M-001
+SCH-1030,Stress critical line list rework,2026-07-07,2026-07-29,PKG-PI,AUR-PI-002

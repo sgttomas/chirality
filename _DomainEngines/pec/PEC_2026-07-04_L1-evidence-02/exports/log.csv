@@ -1,0 +1,14 @@
+item_id,type,title,log,package,owner,state,age_wd,need_by,overdue,hold_cause,anchor_status
+HLD-0001,hold,Awaiting certified vendor pump curves for P-101,internal,,lead.mech@aurora.dev,active,20,2026-06-27,yes,vendor_data,anchored
+INTK-0001,intake_item,Need vendor pump curves for the P-101 hydraulic check,internal,,,raised,8,2026-06-29,yes,,unanchored
+WI-0001,work_item,Incorporate client IFR comments into PFD rev B,internal,PKG-P,eor@aurora.dev,in_work,0,2026-07-11,no,,anchored
+WI-0003,work_item,Resolve stress model clashes on critical lines,internal,PKG-PI,eor@aurora.dev,in_work,0,2026-07-02,yes,,anchored
+WI-0006,work_item,Draft PFD rev B markups for squad check,internal,PKG-P,eor@aurora.dev,open,0,2026-07-14,no,,anchored
+WI-0002,work_item,Update stream numbering per client standard,internal,PKG-P,ic1@aurora.dev,open,0,2026-07-18,no,,anchored
+WI-0004,work_item,Confirm pipe support locations with civil,internal,PKG-PI,ic1@aurora.dev,open,0,2026-06-30,yes,,anchored
+WI-0005,work_item,Add package 2 P&ID tags to the instrument index,internal,PKG-EI,ic1@aurora.dev,open,0,2026-07-11,no,,anchored
+WI-0007,work_item,Return H&MB basis notes to the process lead,internal,PKG-P,ic1@aurora.dev,open,0,2026-07-04,no,,anchored
+INT-0001,interface_item,Pump hydraulic data,internal,PKG-P,,open,0,2026-06-20,yes,,anchored
+INT-0002,interface_item,Instrument air demand list,internal,PKG-M,,open,0,2026-07-14,no,,anchored
+INTK-0002,intake_item,Units basis needs confirming before the H&MB tables are finalized,internal,,,raised,0,,no,,unanchored
+INTK-0003,intake_item,Stress critical line list is slipping against the Gate 3 date,internal,,,raised,0,,no,,unanchored

@@ -96,3 +96,12 @@
   - Evidence summary: typecheck/test/build/drill all exit 0 at `090cd4efb`; 161 tests pass (core 72, server 89); drill 17/17 on scratch DB. Not a pilot-readiness or correctness claim (F-PEC-2).
   - Gate outcome: L1 deterministic-check seam exercised; remaining L1 seams (exports, reports, Explain) need an owner-provisioned session and, for instance content, D-PEC-01/D-T0-14. Gate 2 adoption remains owner-only.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5 (no baseline shift); harness pytest pass.
+
+- **2026-07-04 — Receipt 6** (L1 evidence 02 — owner-provisioned demo session; L1 seams complete).
+  - Start: `8e42b126c` (`origin/main` after PR #57); isolated worktree; pec sources unmodified.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "provision the demo basis: scratch DB, seeded demo data, capture as admin@aurora.dev" — the actor/visibility basis for this capture.
+  - Executed pointers: `_DomainEngines/pec/PEC_2026-07-04_L1-evidence-02/` (MANIFEST + 18 hashed artifacts): authenticated session, all 11 register exports, sponsor-brief + package-pack renders, revision-gate Explain payloads, plan view — over the live HTTP API against a seeded scratch DB, deleted after capture.
+  - Residency: D-T0-14 CLOSED respected — demo seed content only; no real project data existed in the DB at any point; no egress.
+  - Delta found (tool gap, recorded in the manifest): `tools/seed.ts:43` ignores `PEC_DB` (server honors it) — compounds the profile's `seed.demo` open issue; candidate repair rides the future `pec_api_adapter`/harness work, not this loop's write scope (F-PEC-1).
+  - Gate outcome: with evidence 01 (deterministic checks) + 02 (API seams), the L1 rung is exercised end-to-end at demo scope. Next rungs are owner-shaped: L1 acceptance → per-operation L2 (D-T0-13), D-PEC-01 for any real-data basis, Gate 2 adoption.
+  - Checks: self-check pass; harness pytest pass.

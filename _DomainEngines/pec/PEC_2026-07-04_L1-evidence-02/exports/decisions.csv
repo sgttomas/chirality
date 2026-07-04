@@ -1,0 +1,5 @@
+decision_id,title,statement,authority,need_by,status,preparer,outcome,rationale,decided_date,affected_refs
+DEC-0001,APR-0001 outcome: approve,Approval outcome for APR-0001 (IFR authorization — AUR-P-002),approver@aurora.dev,,decided,,approve,PFD is consistent with design basis rev A; authorized for IFR issue.,2026-07-04,
+DEC-0002,APR-0002 outcome: approve,Approval outcome for APR-0002 (Pump datasheet P-101 approval),approver@aurora.dev,,decided,,approve,Datasheet accepted; vendor curve confirmation tracked separately.,2026-07-04,
+DEC-0004,Waive COND-0048,Waive condition COND-0048: Vendor certification package attached before issue (gate revision.issue on revision#6),pm@aurora.dev,,decided,,waive,Client accepted certification to follow with the IFC issue (client call 2026-06-30); exposure logged in the risk register.,2026-07-04,
+DEC-0003,Confirm metric vs imperial units basis,Client RFI-014: are datasheets and the H&MB to be issued in metric or imperial units? Blocks the H&MB issue.,pm@aurora.dev,2026-06-24,pending,lead.process@aurora.dev,,,,

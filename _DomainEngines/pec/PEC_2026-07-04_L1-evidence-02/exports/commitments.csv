@@ -1,0 +1,7 @@
+week,owner,item_id,title,deliverable_ref,need_by,state,why_in_week
+2026-W27,eor@aurora.dev,WI-0001,Incorporate client IFR comments into PFD rev B,AUR-P-002,2026-07-11,in_work,planning commitment
+2026-W27,eor@aurora.dev,WI-0003,Resolve stress model clashes on critical lines,AUR-PI-002,2026-07-02,in_work,need-by
+2026-W27,eor@aurora.dev,WI-0006,Draft PFD rev B markups for squad check,AUR-P-002,2026-07-14,open,manual commitment
+2026-W27,ic1@aurora.dev,WI-0002,Update stream numbering per client standard,AUR-P-002,2026-07-18,open,planning commitment
+2026-W27,ic1@aurora.dev,WI-0004,Confirm pipe support locations with civil,AUR-PI-002,2026-06-30,open,need-by
+2026-W27,ic1@aurora.dev,WI-0007,Return H&MB basis notes to the process lead,AUR-P-003,2026-07-04,open,need-by
