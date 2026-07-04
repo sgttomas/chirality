@@ -4,7 +4,7 @@ The single "where are we, what's next" file. **If you're a new agent or contribu
 then read deeper docs only as your task requires (read-order below). Keep this file current when you land
 substantial work — durable state lives in repo files, not in chat history.
 
-_Last updated: 2026-07-04 (after PR #39)._
+_Last updated: 2026-07-04 (after the P1-coverage pass; PRs #35/#36/#39 merged, coverage PR open)._
 
 ## Current state
 
@@ -38,7 +38,7 @@ Ground truth for behavior is the **tests** (`core/test/`, `server/test/`) and th
 
 ## What's next (prioritized)
 
-**A. Finish P1 coverage (small, incremental).** From `docs/TRACEABILITY.md` "Known P1 gaps" — implemented but not automatically tested: sponsor-brief render (PEC-OV-006), independence-warning path (PEC-CHK-004), risk/interface register CRUD (PEC-RISK/INT, PEC-PKG-007), the approvals/interfaces/intake/commitments exports (§15), the PH-A2 package-health rule, the log-change history entry (PEC-AHL-002), and the notification catalog + sweep idempotency (PEC-NOT-001). Also: no server `export/log.csv` (client-side only), and the 250k-history half of PEC-NFR-003 is reasoned but unmeasured.
+**A. Finish P1 coverage — DONE (2026-07-04).** The previously untested surfaces now have automated tests (`server/test/coverage-*.test.ts`, `core/test/coverage-ph-a2.test.ts`; 32 tests): sponsor-brief render (PEC-OV-006), independence warning (PEC-CHK-004), risk/interface registers (PEC-RISK/INT, PEC-PKG-007), the §15 exports, the PH-A2 rule, the log-change history entry (PEC-AHL-002), notification producers + sweep idempotency (PEC-NOT-001), and PEC-NFR-003 at 250k history rows. Also implemented `export/log.csv` and fixed a real defect (risk API now enforces the 1–5 probability/impact range). Suite is now 127 tests. See `docs/TRACEABILITY.md` "Known P1 gaps" for the few remaining thin spots (checklist/condition-template CRUD is seed/DB-only by design).
 
 **B. Pilot readiness (the real next step).** Import a real master deliverables list and RAIL via the §16 importers (`POST import/mdl|rail`), and run one coordinator through a real weekly triage. Rehearse backup/restore against the real pilot DB (`tools/backup.ts`; PEC-NFR-009 wants one tested restore). Let pilot feedback drive P2 scope — the PRD is explicitly pilot-driven.
 

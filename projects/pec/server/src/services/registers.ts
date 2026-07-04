@@ -25,9 +25,19 @@ export interface CreateRiskInput {
   needBy?: string
 }
 
+/** probability/impact are a 1-5 scale (PEC-RISK-001); enforced here as in the CSV importer. */
+function validateRiskScore(name: string, v: unknown): void {
+  if (v == null) return
+  if (typeof v !== 'number' || !Number.isInteger(v) || v < 1 || v > 5) {
+    throw badRequest(`${name} must be an integer 1-5 (PEC-RISK-001)`)
+  }
+}
+
 export function createRisk(sx: Sx, input: CreateRiskInput, opts?: { skipPermission?: boolean }): Risk {
   if (!opts?.skipPermission) requireCan(sx, 'risk.create')
   if (!input.title) throw badRequest('risk title required')
+  validateRiskScore('probability', input.probability)
+  validateRiskScore('impact', input.impact)
   if (input.packageId) sx.repo.get('package', sx.projectId, input.packageId)
   if (input.deliverableId) sx.repo.get('deliverable', sx.projectId, input.deliverableId)
   const ref = sx.repo.nextRef(sx.projectId, 'risk')
@@ -55,6 +65,8 @@ export function updateRisk(sx: Sx, id: number, version: number, patch: Partial<R
   const clean: Record<string, unknown> = {}
   for (const k of editable) if (k in patch) clean[k] = patch[k]
   if ('state' in clean && !RISK_STATES.includes(clean.state as never)) throw badRequest('invalid risk state')
+  if ('probability' in clean) validateRiskScore('probability', clean.probability)
+  if ('impact' in clean) validateRiskScore('impact', clean.impact)
   if ('needBy' in clean) clean.needBy = optDate(clean.needBy, 'need-by')
   if (Object.keys(clean).length === 0) throw badRequest('no editable fields')
   sx.repo.update('risk', sx.projectId, id, version, clean)
