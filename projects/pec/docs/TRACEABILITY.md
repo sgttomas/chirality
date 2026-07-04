@@ -193,6 +193,34 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 
 ---
 
+## P2 — planning & capacity (built 2026-07-04; SPEC §14, ADR-013)
+
+| Requirement | Where implemented | Test |
+|---|---|---|
+| PEC-PLAN-001 Now/Next/Later; "Now" carries named owner + confirmed capacity | `core/src/plan.ts` `planHorizons()`; `server/src/services/plan.ts` `createPlanItem()` ('now' requires a week and a named responsible); `web/src/pages/Plan.tsx` columns | core: plan.test.ts 'planHorizons resolves…'; server: p2-plan.test.ts 'plan items: pm plans work/checks/approvals…' |
+| PEC-PLAN-002 six-week lookahead (Work/Check/Approve/Hold-by-cause/Issue) from plan + schedule import | `core/src/plan.ts` `lookahead()` (priority hold > issue > approve > check > work); `export/lookahead.csv`; Plan page grid | core: plan.test.ts 'lookahead: cell priority…'; server: '…lookahead export' |
+| PEC-PLAN-003 capacity by discipline/week; check/approval hours load capacity (I-9) | `capacity_entry` table; `core/src/plan.ts` `capacityView()` (byType split); `PUT plan/capacity`; package block `views.ts` `packageDetailView().capacity` | core: plan.test.ts 'I-9: check and approval hours load capacity…'; server: 'capacity: PUT capacity + overload surfaces…' |
+| PEC-PLAN-004 overcapacity flagged per §8.4; may create/link a Risk | `PH-R3`/`PH-A3`/`S-CAP` in `core/src/status.ts`; "raise risk" on the Plan page (`risk.create` now includes planner) | core: plan.test.ts 'PH-R3/PH-A3…', 'S-CAP…'; server: same capacity test |
+| PEC-PLAN-005 shifts carry impact statement; cross-package review by affected leads | `shiftPlanItem()`/`reviewPlanShift()` in `services/plan.ts` (proposed → lead notified → applied/rejected) | server: p2-plan.test.ts 'cross-package shift proposes, notifies the affected lead…' |
+| PEC-PLAN-006 every shift records its reason; plan-change log visible | `plan_shift` table (reason NOT NULL path, delete-trigger protected); `planView().shifts`; Plan page log | server: 'plan shift: same-package applies with reason; reason required' |
+| PEC-PLAN-007 / PEC-MW-007 weekly commit generates My Week | `commitWeek()` stamps `committed_week` + `commit_source='plan'`, notifies `week_committed`, idempotent; `core/src/status.ts` `myWeek()` provenance string | core: plan.test.ts 'myWeek: plan-committed items say so'; server: 'weekly commit generates My Week…' |
+| PEC-PLAN-008 shifts link affected conditions/holds/risks/schedule activities | `plan_shift_link`; links validated per type; feeds the cross-package test | server: cross-package shift test (risk link) |
+| PEC-PKG-003 package capacity/discipline load for the current period | `packageDetailView().capacity`; package pack §Capacity; Packages page card | server: 'PEC-PKG-009: the weekly package review pack renders…' (detail assertion) |
+| PEC-PKG-008 interface aging feeds package health | `PH-A4` (`interfaceOverdueWarnWd`, default 0) under the PH-R2 escalation | core: plan.test.ts 'PH-A4…'; server: 'interface register: aging…' |
+| PEC-PKG-009 weekly package review pack | `server/src/reports/package-pack.ts`; `GET reports/package-pack/:id`; button on package detail | server: 'PEC-PKG-009: the weekly package review pack renders…' |
+| PEC-INT-002 dedicated interface register with aging + giving/receiving filters | `views.ts` `interfaceRegisterView()` (overdueWd/aging + filters); `web/src/pages/Registers.tsx` InterfacesTab | server: 'interface register: aging + giving/receiving filters…' |
+| PEC-OV-008 schedule-pressure view (lookahead load vs capacity) | `views.ts` `overviewView().schedulePressure`; Overview section | server: capacity test asserts pct + breaches |
+| PEC-NOT-002 role digests | `services/sweep.ts` `sweepDigests()` — planning / package review / judgments / holds / comments, one per person per ISO week | server: 'PEC-NOT-002/003: sweep emits severity-tagged…' |
+| PEC-NOT-003 §8.4 thresholds drive notification severity | `notification.severity` column; producers in `sweep.ts`; badges in `MyWeek.tsx` | same test (severity assertions) |
+| PEC-AUTH-005 supersession link with affected-record set | `supersession_link` table (delete-trigger protected); written by `supersedeDecision()`/`supersedeApproval()` | server: 'PEC-AUTH-005: superseding writes a first-class supersession link…' |
+| PEC-CHK-006 checking effort available to Plan | checks are plan items (`PLAN_ITEM_TYPES`), hours in `capacityView().byType.check` | core: I-9 capacity test |
+| PEC-RISK-003 capacity overload can create/link a risk | with PEC-PLAN-004 (planner in `risk.create`; Plan page button; shift links accept risks) | covered by PEC-PLAN-004/008 tests |
+| §16 P2 schedule-activity import + export | `importSchedule()`/`export schedule` in `server/src/import/index.ts` (upsert by activity_id; mapping columns only when present; stated mappings must resolve) | server: '§16 P2 schedule import: row-level rejects, idempotent refresh, round-trip export…' |
+| §8.3/§8.4 P2 capacity rules configurable (PEC-OV-007) | `capacityWarnPct`/`capacityRedPct`/`interfaceOverdueWarnWd` in `Thresholds` + Admin editor | core: capacity tests exercise the defaults |
+| P2 not built here (deliberate) | PEC-AHL-008 duplicate suggestion (wants pilot vocabulary), PEC-NFR-006 SSO (wants an IdP; ADR-007 keeps auth pluggable), PEC-NFR-008 single-tenant deploy (deployment posture, not code) | ADR-013 records the rationale |
+
+---
+
 ## Known P1 gaps
 
 Honest list of what is implemented but not automatically tested (or deliberately thin), as of 2026-07-04:

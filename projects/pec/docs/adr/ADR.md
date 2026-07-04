@@ -142,3 +142,48 @@ Packages speak the same issues language (PEC-NFR-005 preserved via the same scop
 information. DH-* remains an internal aggregation stage, legitimate as derivation, invisible as
 presentation. Revisit the derivation itself only if the pilot demonstrates the §8.3 defaults mislead —
 that is what PEC-OV-007 threshold configurability and this ADR's paper trail are for.
+
+## ADR-013 P2 planning & capacity — implementer choices
+**Context.** PRD §12.4 specifies the P2 requirements but leaves the planning data model and several
+rule scopes to the implementer: what a "Commitment" is, how capacity attaches to people, what the §8.3
+package capacity rule means when capacity is defined by discipline (PEC-PLAN-003), and how the
+plan-shift review works.
+**Decision.**
+1. **One plan placement per record** (`plan_item`, UNIQUE on the underlying record): a work item,
+   check, or approval record is placed once — horizon (now/next/later) + ISO week + planned hours.
+   Checks and approvals are plan items exactly like work (I-9): their hours load the same capacity
+   cells and are reported per type. `later` is the unscheduled backlog (no week).
+2. **Discipline is denormalized onto the plan item**, snapshotted from the responsible person (owner /
+   checker / first signatory) at planning time and editable. Capacity math stays a pure function of
+   the snapshot without loading persons; a planner can re-bucket a placement without touching people.
+3. **Package capacity rule (PH-R3/PH-A3) reads through disciplines**: capacity exists per
+   discipline/week (PEC-PLAN-003), so the only well-defined package reading of §8.3's "committed load
+   vs capacity" is exposure — the package breaches when the current week's load in a discipline its
+   planned records draw on exceeds the threshold, with those plan items as the contributing records.
+   S-CAP applies the same cells at project level (current week; §8.3 says "in the current week").
+4. **Plan shifts are the plan-change log** (append-only table, no delete trigger exception): every
+   move records reason (PEC-PLAN-006) and links (PEC-PLAN-008). A shift whose linked/own packages
+   differ is cross-package: it requires an impact statement, lands `proposed`, notifies the affected
+   leads, and applies only on review (PEC-PLAN-005); within-package shifts apply immediately.
+5. **The weekly commit writes the durable fact onto the work item** (`committed_week` +
+   `commit_source='plan'`) rather than deriving My Week from plan rows at read time — the committed
+   week must survive later plan edits (a commitment is a record, not a view), and the P1 manual flag
+   coexists (`commit_source='manual'`). Commit is idempotent; checks/approvals notify their
+   responsible person instead (their My Week obligations already project via PEC-MW-002).
+6. **Schedule import is import-owned** (D-04): rows upsert by `activity_id` and always refresh —
+   there is no in-app edit path to protect — but mapping columns update only when present in the CSV,
+   and a stated mapping that does not resolve rejects the row (§16: nothing silently dropped/wiped).
+7. **Digests are notifications** (PEC-NOT-002): one per person per digest type per ISO week, produced
+   by the existing sweep (hourly + login), idempotent the same way the daily overdue events are.
+   Severity on all time-driven notifications comes from the §8.4 thresholds (PEC-NOT-003); a
+   `severity` column was added rather than a parallel channel.
+8. **Supersession links are first-class rows** (`supersession_link`, PEC-AUTH-005): old → replacement
+   with the affected-record set (JSON of refs) captured at supersession time from decision links /
+   applies-to / satisfied conditions. P3 propagation gets a stable substrate; nothing is recomputed
+   retroactively.
+**Consequences.** Plan tables are additive; P1 behavior is unchanged until records are planned
+(capacity rules and S-CAP are silent with no plan/capacity rows). `interfaceOverdueWarnWd`,
+`capacityWarnPct`, `capacityRedPct` join the configurable thresholds (PEC-OV-007). Existing databases
+migrate in place via `ensureColumn` (notification.severity, work_item.commit_source). PEC-AHL-008
+(duplicate suggestion) and PEC-NFR-006 (SSO) remain the P2 items deliberately not built here: the
+first wants pilot vocabulary to tune matching against, the second an IdP to integrate with.

@@ -58,6 +58,7 @@ const CONTRACTS = [
   ['rail', 'RAIL — rolling action item list'],
   ['decisions', 'Decision log'],
   ['risks', 'Risk register'],
+  ['schedule', 'Schedule activities (P2 — feeds the lookahead)'],
 ] as const
 
 function ImportSection(): JSX.Element {
@@ -182,6 +183,8 @@ const EXPORTS = [
   ['interfaces', 'Interfaces'],
   ['intake', 'Intake'],
   ['commitments', 'Weekly commitments'],
+  ['schedule', 'Schedule activities'],
+  ['lookahead', 'Six-week lookahead'],
 ] as const
 
 function ExportSection(): JSX.Element {
@@ -227,6 +230,9 @@ const THRESHOLD_KEYS: ReadonlyArray<readonly [string, string]> = [
   ['schedulePressureWarnD', 'Schedule pressure — warn (d)'],
   ['schedulePressureRedD', 'Schedule pressure — escalate (d)'],
   ['interfaceOverdueRedWd', 'Interface overdue — escalate (wd)'],
+  ['interfaceOverdueWarnWd', 'Interface overdue — warn (wd, P2)'],
+  ['capacityWarnPct', 'Capacity load — warn (%, P2)'],
+  ['capacityRedPct', 'Capacity load — escalate (%, P2)'],
 ]
 
 function ThresholdsSection(): JSX.Element {

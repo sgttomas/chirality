@@ -22,8 +22,10 @@ import * as registers from './services/registers.ts'
 import * as revisions from './services/revisions.ts'
 import * as views from './services/views.ts'
 import { sweepProject } from './services/sweep.ts'
+import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
+import { packagePack } from './reports/package-pack.ts'
 import { can, explainTransition } from '@pec/core'
 import type { PermissionAction } from '@pec/core'
 import { pctx } from './services/shared.ts'
@@ -133,11 +135,17 @@ export function buildRouter(db: Db): Router {
     anchored: c.query.get('anchored') != null ? c.query.get('anchored') === 'true' : undefined,
   })))
   r.get('/api/projects/:pid/my-week', authed((c) => views.myWeekView(c.sx)))
-  r.get('/api/projects/:pid/plan', authed(() => ({
-    phase: 'P2',
-    note: 'Now/Next/Later, six-week lookahead, and capacity arrive in Phase 2 (PRD §12.4). '
-      + 'P1 My Week is driven by need-by dates plus the manual commit-to-week flag (PEC-MW-007).',
-  })))
+
+  // ---------- Plan module (P2 — PRD §12.4) ----------
+  r.get('/api/projects/:pid/plan', authed((c) => plan.planView(
+    c.sx, c.query.get('weeks') ? Math.min(Math.max(Number(c.query.get('weeks')) || 6, 1), 12) : 6,
+  )))
+  r.post('/api/projects/:pid/plan-items', tx((c) => plan.createPlanItem(c.sx, body(c) as never)))
+  r.put('/api/projects/:pid/plan-items/:id', tx((c) => plan.updatePlanItem(c.sx, idOf(c), body(c) as never)))
+  r.post('/api/projects/:pid/plan-items/:id/shift', tx((c) => plan.shiftPlanItem(c.sx, idOf(c), body(c) as never)))
+  r.post('/api/projects/:pid/plan-shifts/:id/review', tx((c) => plan.reviewPlanShift(c.sx, idOf(c), body(c) as never)))
+  r.post('/api/projects/:pid/plan/commit', tx((c) => plan.commitWeek(c.sx, String(body(c).week ?? ''))))
+  r.put('/api/projects/:pid/plan/capacity', tx((c) => plan.upsertCapacity(c.sx, body(c) as never)))
 
   // permission probe for the UI ("can I?" — rules stay server-side)
   r.get('/api/projects/:pid/can/:action', authed((c) => {
@@ -266,7 +274,11 @@ export function buildRouter(db: Db): Router {
     const b = body(c)
     return registers.updateRisk(c.sx, idOf(c), Number(b.version), b as never)
   }))
-  r.get('/api/projects/:pid/interfaces', authed((c) => views.interfaceRegisterView(c.sx)))
+  r.get('/api/projects/:pid/interfaces', authed((c) => views.interfaceRegisterView(c.sx, {
+    givingPackageId: c.query.get('giving') ? Number(c.query.get('giving')) : undefined,
+    receivingPackageId: c.query.get('receiving') ? Number(c.query.get('receiving')) : undefined,
+    state: c.query.get('state') ?? undefined,
+  })))
   r.post('/api/projects/:pid/interfaces', tx((c) => registers.createInterface(c.sx, body(c) as never)))
   r.put('/api/projects/:pid/interfaces/:id', tx((c) => {
     const b = body(c)
@@ -316,6 +328,10 @@ export function buildRouter(db: Db): Router {
   r.get('/api/projects/:pid/reports/sponsor-brief', authed((c) => {
     c.res.setHeader('content-type', 'text/html; charset=utf-8')
     return sponsorBrief(c.sx)
+  }))
+  r.get('/api/projects/:pid/reports/package-pack/:id', authed((c) => {
+    c.res.setHeader('content-type', 'text/html; charset=utf-8')
+    return packagePack(c.sx, idOf(c))
   }))
 
   // ---------- config ----------

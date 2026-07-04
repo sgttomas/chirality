@@ -89,6 +89,26 @@ export function OverviewPage(): JSX.Element {
       <RegisterTable cols={rollupCols} rows={data.packageRollup} exportName="package-rollup.csv"
         onRowClick={(r) => nav(`/p/${pid}/packages/${r.id}`)} />
 
+      <h2>Schedule pressure — lookahead load vs capacity (PEC-OV-008)</h2>
+      {data.schedulePressure.every((w: any) => w.loadH === 0 && w.capacityH === 0)
+        ? <p className="muted small">No planned load or capacity yet — set both on the <Link to={`/p/${pid}/plan`}>Plan</Link> page.</p>
+        : (
+          <div className="cards">
+            {data.schedulePressure.map((w: any) => (
+              <div key={w.week} className="card" style={{ minWidth: 150 }}>
+                <b className="small">{w.week}</b>
+                <div>{w.loadH} h / {w.capacityH} h</div>
+                {w.pct != null
+                  ? <span className={`badge ${w.pct > 110 ? 'red' : w.pct > 100 ? 'amber' : 'green'}`}>{w.pct}%</span>
+                  : <span className="muted small">no capacity baseline</span>}
+                {w.breaches.map((b: any) => (
+                  <div key={b.discipline} className="small muted">{b.discipline} {b.pct}%</div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+
       <h2>Waiting on you</h2>
       {data.waitingOnYou.breaching.length === 0 && data.waitingOnYou.other.length === 0
         ? <p className="muted small">Nothing is waiting on your decision or signature.</p>

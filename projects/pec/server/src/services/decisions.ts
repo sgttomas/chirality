@@ -308,11 +308,16 @@ export function supersedeDecision(sx: Sx, id: number, payload: { version: number
   // basis drift response: flag affected records for review
   const linked = sx.repo.db.prepare('SELECT record_type, record_id FROM decision_link WHERE decision_id = ?')
     .all(id) as Array<{ record_type: string; record_id: number }>
+  const affected: Array<{ recordType: RecordType; id: number; ref: string }> = []
   for (const l of linked) {
     const table = TABLE[l.record_type]
     if (!table) continue
     const rec = sx.repo.maybeGet<Record<string, unknown>>(table, sx.projectId, l.record_id)
     if (!rec) continue
+    affected.push({
+      recordType: l.record_type as RecordType, id: l.record_id,
+      ref: String(rec.ref ?? rec.docNo ?? `#${l.record_id}`),
+    })
     sx.repo.history({
       projectId: sx.projectId, recordType: l.record_type as RecordType, recordId: l.record_id,
       actorId: sx.session.personId, kind: 'basis_superseded',
@@ -330,6 +335,12 @@ export function supersedeDecision(sx: Sx, id: number, payload: { version: number
       })
     }
   }
+  // P2: the supersession link is a first-class record — old basis → replacement with the
+  // affected-record set identified for review (PEC-AUTH-005 pattern; propagation is P3)
+  sx.repo.insert('supersession_link', {
+    projectId: sx.projectId, recordType: 'decision', oldId: id, newId: replacement.id,
+    affected, createdBy: sx.session.personId, createdAt: nowIso(),
+  })
   // conditions satisfied by the superseded decision flip back open (defense in depth mirrors core)
   unsatisfyConditions(sx, (c) => c.satisfiedByType === 'decision' && c.satisfiedById === id,
     `decision ${d.ref} superseded`)
@@ -569,9 +580,16 @@ export function supersedeApproval(sx: Sx, id: number, payload: { version: number
     payload: null, authorityRef: null,
   })
   // flag target for review + reopen conditions satisfied by this approval
+  const affected: Array<{ recordType: RecordType; id: number; ref: string }> = []
   const table = TABLE[a.appliesToType]
   if (table) {
     const rec = sx.repo.maybeGet<Record<string, unknown>>(table, sx.projectId, a.appliesToId)
+    if (rec) {
+      affected.push({
+        recordType: a.appliesToType as RecordType, id: a.appliesToId,
+        ref: String(rec.ref ?? rec.docNo ?? `#${a.appliesToId}`),
+      })
+    }
     const owner = (rec?.ownerId ?? null) as number | null
     if (owner) {
       sx.repo.notify({
@@ -583,8 +601,16 @@ export function supersedeApproval(sx: Sx, id: number, payload: { version: number
       })
     }
   }
+  const satisfiedConds = sx.repo.list<Condition>('condition_record', sx.projectId,
+    "satisfied_by_type = 'approval_record' AND satisfied_by_id = ?", [id])
+  for (const c of satisfiedConds) affected.push({ recordType: 'condition', id: c.id, ref: c.ref })
   unsatisfyConditions(sx, (c) => c.satisfiedByType === 'approval_record' && c.satisfiedById === id,
     `approval ${a.ref} superseded`)
+  // P2: first-class supersession link with the affected-record set (PEC-AUTH-005)
+  sx.repo.insert('supersession_link', {
+    projectId: sx.projectId, recordType: 'approval_record', oldId: id, newId: replacement.id,
+    affected, createdBy: sx.session.personId, createdAt: nowIso(),
+  })
   if (a.appliesToType === 'revision') syncRevisionState(sx, a.appliesToId)
   return sx.repo.get<ApprovalRecord>('approval_record', sx.projectId, id)
 }

@@ -8,7 +8,7 @@ here is rehearsable in advance with `npm run drill` — run that first; it must 
 
 ```bash
 npm install
-npm test          # 131 tests green, including the PEC-NFR-009 backup/restore round-trip
+npm test          # 154 tests green, including the PEC-NFR-009 backup/restore round-trip
 npm run drill     # full pipeline rehearsal on bundled fixtures → must PASS
 ```
 
@@ -119,6 +119,10 @@ Record the date of that rehearsal in STATUS before starting the pilot.
 - **Metrics**: the §18.1 pilot targets are all derivable from registers and exports — snapshot
   them weekly (deliverables represented, % anchored, untriaged age, condition-chain completeness
   on issued revisions, overdue decisions).
-- **Feedback drives P2**: the PRD is explicitly pilot-driven. Log product feedback as intake items
-  in the pilot project itself (quick type `action`, log `internal`) so nothing is lost, and fold
-  the themes into STATUS "What's next".
+- **Weekly planning (P2)**: the planner sets capacity, plans the week (work, checks, and approvals
+  all load capacity — I-9), and commits it — the commit generates everyone's My Week
+  (PEC-PLAN-007). Leads open the review pack from the package page (PEC-PKG-009).
+- **Feedback drives tuning**: the PRD is explicitly pilot-driven. Log product feedback as intake
+  items in the pilot project itself (quick type `action`, log `internal`) so nothing is lost, and
+  fold the themes into STATUS "What's next" — capacity thresholds, digest content, and lookahead
+  cells are the P2 surfaces most likely to need pilot calibration (ADR-013).

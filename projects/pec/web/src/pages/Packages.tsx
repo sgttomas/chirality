@@ -112,7 +112,11 @@ export function PackageDetailPage(): JSX.Element {
       <h1>
         <span className="mono">{pkg.code}</span> {pkg.name}{' '}
         <span className="muted small">lead {person(pkg.leadId)}</span>{' '}
-        <HealthBadge explain={data.health} label={`package ${pkg.code}`} />
+        <HealthBadge explain={data.health} label={`package ${pkg.code}`} />{' '}
+        <button className="btn secondary small" title="print-friendly HTML; print to PDF (ADR-010)"
+          onClick={() => window.open(p(pid, `reports/package-pack/${pkg.id}`), '_blank')}>
+          ⎙ weekly review pack
+        </button>
       </h1>
 
       {/* Summary: issues first — this is an issue-management view (PEC-PKG-002) */}
@@ -138,6 +142,23 @@ export function PackageDetailPage(): JSX.Element {
         <div className="card kpi" style={{ cursor: 'default' }}>
           <b>{s.deliverablesOnPlan}</b>
           <span>deliverables on plan</span>
+        </div>
+        {/* PEC-PKG-003 (P2): this package's discipline load for the current planning period */}
+        <div className="card kpi" style={{ cursor: 'default' }}>
+          <b>{data.capacity.rows.reduce((a: number, r: any) => a + r.packageLoadH, 0)} h</b>
+          <span>planned load {data.capacity.week}</span>
+          <div style={{ marginTop: '.25rem' }}>
+            {data.capacity.rows.length === 0
+              ? <span className="muted small">no planned load</span>
+              : data.capacity.rows.map((r: any) => (
+                <span key={r.discipline}
+                  className={`badge ${r.level === 'red' ? 'red' : r.level === 'warn' ? 'amber' : 'plain'}`}
+                  style={{ marginRight: '.25rem' }}
+                  title={`${r.discipline}: package ${r.packageLoadH} h of ${r.disciplineLoadH} h discipline load, capacity ${r.capacityH ?? '—'} h`}>
+                  {r.discipline} {r.pct != null ? `${r.pct}%` : `${r.packageLoadH} h`}
+                </span>
+              ))}
+          </div>
         </div>
       </div>
 
