@@ -11,7 +11,7 @@
 | **Integration level** | `MANUAL_BRIDGE` (L0) today |
 | **Tools invoked** | Repo-wide harness self-check; profile validator; closeout tests listed in `RUN_SUMMARY.md`. No PEC server and no non-scratch PEC DB command. |
 | **Write scope this run** | Tier-0 registration surfaces under `_DomainEngines/pec/**`, `_DomainEngines/proposals/pec/**`, `_DomainEngines/_DECISIONS/**`, `DOMAIN_ENGINE_INDEX.md`, harness backlog/live-baseline pins, plus `projects/pec/AGENTS.md`, `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`, and one `projects/pec/docs/STATUS.md` pointer section. |
-| **Permissions** | DRAFT/PROPOSAL authoring only. Owner gates remain open. No `HumanRuling` filled. No profile adoption. No release, residency, or harness-tranche execution. |
+| **Permissions** | DRAFT/profile-prep and ruling-publication edits only. Owner rulings on D-T0-11..16 are recorded, but no profile adoption, profile move, release, instance-content egress, or harness-tranche execution is authorized in this PR. |
 | **Expected outputs** | Staged DRAFT profile, validation report, prep snapshot, six D-T0 packets, tier-0 register rows, PEC-side register, PEC AGENTS, STATUS pointer, proposals surface, and harness-tranche backlog/brief. |
 
 ## Inputs read
@@ -44,4 +44,3 @@
   plus live sources.
 - Repo self-check is invoked through `python3 tools/practitioner_harness/harness.py self-check`;
   there is no standalone `tools/practitioner_harness/self_check.py`.
-

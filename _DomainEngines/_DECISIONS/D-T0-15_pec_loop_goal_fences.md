@@ -1,6 +1,6 @@
 # D-T0-15 - PROPOSAL: PEC standing loop goal and fences
 
-**Status:** PROPOSAL / awaiting owner ruling.  
+**Status:** RULED / O-A affirmed by owner; publication pending PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-15  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -47,4 +47,19 @@ Recommend O-A.
 
 ## Human ruling
 
-HumanRuling: OPEN - awaiting owner ruling.
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04.
+
+**Publication:** Pending owner merge of PR #51.
+
+Owner ruling excerpt:
+
+> The goal wording is the one from the workplan you directed; the fence table
+> matches F-PEC-1..4 as authored (I diffed the packet wording against the
+> workplan -- same boundaries, with F-PEC-4 sensibly adding "this registration
+> package's enumerated tier-0 edits"). The "launcher is Receipt-0 scaffolding,
+> not adoption" clause is exactly the right disambiguation of the
+> ACTIVE-ahead-of-plan delta.
+
+This ruling adopts the standing goal and fences after the registration package
+is published. It does not convert the already-ACTIVE launcher into profile
+adoption.

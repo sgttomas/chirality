@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| `RunStatus` | PARTIAL |
+| `RunStatus` | PARTIAL - RULINGS_RECORDED |
 | `DomainEngineID` | `pec` |
 | `ProfileStatus` | DRAFT |
 | `IntegrationLevel` | MANUAL_BRIDGE (L0) |
@@ -12,15 +12,14 @@
 | `DomainToolsInvoked` | No PEC server; no non-scratch PEC DB mutation. Validation and harness checks only. |
 | `AgentArtifactsWritten` | Inventory in `ARTIFACT_INVENTORY.md`. |
 | `ProtectedPathsTouched` | none. The only PEC project writes are `AGENTS.md`, `execution/_Coordination/_DECISIONS/_REGISTER.md`, and the one-time `docs/STATUS.md` pointer section. |
-| `HumanApprovals` | Owner direction to create the PEC loop exists in `_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 0. D-T0-11..16 remain awaiting owner ruling. |
+| `HumanApprovals` | Owner direction to create the PEC loop exists in `_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 0. Owner ruled D-T0-11..16 in-session on 2026-07-04; publication remains pending owner merge of PR #51. |
 | `BoundaryNoticesApplied` | No professional status, no pilot-readiness/go-live claim, no issue/approval/check/decision outcome claim, no instance-data egress. |
 | `RerunRequirements` | Rerun profile validator, repo self-check, full harness pytest, and PEC belt-and-braces after any edit. |
-| `RemainingBlockers` | Owner rulings on D-T0-11, D-T0-12, D-T0-13, D-T0-14, D-T0-15, and D-T0-16; owner merge/acceptance of this package. |
-| `NextOwningWorkflow` | Owner decision slate, then either CHANGE publication and later TOOLMAKER/harness tranche if D-T0-16 is authorized. |
+| `RemainingBlockers` | Owner merge/acceptance of PR #51. After merge, the only next lawful implementation tranche is the TOOLMAKER harness PR under D-T0-16. Real instance-content export/capture remains parked for a future D-PEC-01 concrete data case. |
+| `NextOwningWorkflow` | Owner merge of PR #51, then TOOLMAKER harness tranche under D-T0-16 with the sequencing and DRAFT-in-`profiles/` test riders. |
 
 ## Closure verdict
 
-PARTIAL. The package can be checked and reviewed, but the phase is not closed
-until owner rulings and any resulting publication steps occur. Later phases must
-consume the accepted snapshot/ruling records, not this derivative package alone.
-
+PARTIAL. The owner rulings have been recorded, but the package is not published
+until PR #51 merges. Later phases must consume the accepted snapshot/ruling
+records after publication, not this derivative package alone.

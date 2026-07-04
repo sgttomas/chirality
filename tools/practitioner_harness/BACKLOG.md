@@ -12,4 +12,4 @@
 
 | ID | Item | Gate | Source | Status |
 |---|---|---|---|---|
-| HB-PEC-1 | Make domain-engine profile observation multi-profile-safe, add PEC aliases/register/profile/project awareness, extend reference resolution for `projects/pec`, move the accepted PEC profile into `_DomainEngines/profiles/pec.yaml`, and carry conscious live-baseline pin updates. | D-T0-16 owner authorization | `_DomainEngines/pec/PEC_2026-07-04_tier0-prep/TOOLMAKER_BRIEF-harness_pec_registration.md` | queued / not authorized |
+| HB-PEC-1 | Make domain-engine profile observation multi-profile-safe, add PEC aliases/register/profile/project awareness, extend reference resolution for `projects/pec`, move the staged PEC profile into `_DomainEngines/profiles/pec.yaml`, and carry conscious live-baseline pin updates. | D-T0-16 O-A ruled; execute only after PR #51 merges and D-T0-11/D-T0-12 ruling records are published | `_DomainEngines/pec/PEC_2026-07-04_tier0-prep/TOOLMAKER_BRIEF-harness_pec_registration.md` | authorized / held for PR #51 merge; include PEC DRAFT + Gate 2 open test rider |

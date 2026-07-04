@@ -1,6 +1,6 @@
 # D-T0-11 - PROPOSAL: PEC registration shape
 
-**Status:** PROPOSAL / awaiting owner ruling.  
+**Status:** RULED / O-A affirmed by owner; publication pending PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-11  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -43,4 +43,18 @@ execute the harness tranche.
 
 ## Human ruling
 
-HumanRuling: OPEN - awaiting owner ruling.
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04.
+
+**Publication:** Pending owner merge of PR #51.
+
+Owner ruling excerpt:
+
+> `pec` as id matches the workspace/package name; loop dir, proposals dir, and
+> `D-PEC-XX` are the sibling convention you already chose during planning.
+> O-B (`pec_execution_control`) buys nothing -- the INDEX row carries the
+> descriptive name. Keeping `_LATEST.md` bridge-pointed is right; pec
+> discoverability is handled by the INDEX read-order edit instead.
+
+This ruling accepts the authored registration shape only. It does not adopt the
+profile, authorize instance-data egress, move the profile into
+`_DomainEngines/profiles/`, or execute the harness tranche.

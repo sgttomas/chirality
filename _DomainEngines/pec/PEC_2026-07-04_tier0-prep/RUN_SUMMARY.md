@@ -3,9 +3,9 @@
 ## Result
 
 This package registers PEC as a proposed second domain engine in the tier-0
-control area and stops at owner gates. It is not a profile adoption, not a
-residency ruling, not a harness-tranche execution, and not a PEC runtime state
-change.
+control area and records the owner's D-T0-11..16 rulings. It is not a profile
+adoption, not an instance-content egress authorization, not a harness-tranche
+execution, and not a PEC runtime state change.
 
 ## Artifacts authored
 
@@ -34,8 +34,8 @@ The closeout checks for this package are:
 
 ## Gate result
 
-STOP at owner gates. D-T0-11 through D-T0-16 remain open proposals; the owner
-must rule registration shape, profile lifecycle, integration staging, data
-residency, standing loop goal/fences, and harness-tranche authorization before
-any corresponding state transition or code tranche executes.
-
+D-T0-11 through D-T0-16 have owner rulings recorded in their packets and in the
+tier-0 register, with publication pending owner merge of PR #51. D-T0-16
+authorizes the next TOOLMAKER harness PR only after PR #51 merges; this package
+does not execute that tranche, move the profile, adopt the profile, or permit
+instance-content egress.

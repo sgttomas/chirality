@@ -63,3 +63,12 @@
   - Gate outcome: registration package authored only; STOP at owner rulings D-T0-11..16. No `HumanRuling` filled, no profile adoption, no harness tranche, no profile move into `_DomainEngines/profiles/`, no PEC server/non-scratch DB mutation, no release/egress/professional claim.
   - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=1/REVIEW=28/WARN=2; full practitioner harness pytest 259 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass after `npm install`; `git diff --check` pass.
   - Parked lanes: owner rulings on D-T0-11 registration shape, D-T0-12 profile lifecycle/Gate 2, D-T0-13 integration staging, D-T0-14 data residency, D-T0-15 standing goal/fences, and D-T0-16 harness-tranche authorization.
+
+- **2026-07-04 — Receipt 2** (owner rulings recorded; harness tranche held).
+  - Start: `60e0f63b8`; branch `codex/pec-registration-package`; PR #51 open/unmerged/green at discovery; tree clean before ruling-publication edits.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "Bottom line: **I affirm all six recommendations**" and "I rule as above, the loop's next lawful tranche is exactly one thing: the TOOLMAKER harness PR under D-T0-16." Per-decision wording and D-T0-16 riders are recorded in D-T0-11..16.
+  - Executed pointers: D-T0-11..16 packet ruling sections; `_DomainEngines/_DECISIONS/_REGISTER.md`; `PEC_2026-07-04_tier0-prep/{BRIEF_human_decisions.md,Handoff_State.md,TOOLMAKER_BRIEF-harness_pec_registration.md}`; `tools/practitioner_harness/BACKLOG.md`.
+  - Gate outcome: D-T0-11 O-A, D-T0-12 O-A, D-T0-13 O-A with D-T0-14 residency gate note, D-T0-14 deferred with O-A CLOSED default, D-T0-15 O-A, D-T0-16 O-A with sequencing + DRAFT/Gate 2 open riders.
+  - Not executed: no harness code change, no profile move, no ADOPTED status, no PEC server/non-scratch DB mutation, no instance-content capture or egress.
+  - Checks: profile validator VALID; self-check pass; full practitioner harness pytest pass; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
+  - Parked lanes: owner merge of PR #51; after merge, TOOLMAKER harness PR under D-T0-16 is the next lawful tranche. Real data/export authorization remains for future D-PEC-01.

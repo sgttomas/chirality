@@ -1,6 +1,6 @@
 # D-T0-14 - PROPOSAL: PEC data residency and instance-content visibility
 
-**Status:** PROPOSAL / awaiting owner ruling.  
+**Status:** RULED / deferred with O-A CLOSED default; publication pending PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-14  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -37,5 +37,21 @@ manifest with source refs, command refs, output paths, and limitations.
 
 ## Human ruling
 
-HumanRuling: OPEN - awaiting owner ruling.
+**Ruling:** Deferred by owner (Ryan Tufts), 2026-07-04, with O-A CLOSED default
+kept in force for now.
 
+**Publication:** Pending owner merge of PR #51.
+
+Owner ruling excerpt:
+
+> I'd still defer: under O-A CLOSED the L1 lane remains usable against
+> committed fixtures and scratch/demo DBs, which covers everything until real
+> MDL/RAIL data enters -- and that moment already has a home as D-PEC-01 in
+> the pec register. Let D-PEC-01 preparation force the O-B ruling with a
+> concrete data case in front of you, rather than pre-authorizing egress in the
+> abstract.
+
+The current rule remains repo-file-only plus committed fixtures and scratch/demo
+DB evidence. O-B is not pre-authorized; a future D-PEC-01 packet should present
+the concrete owner-approved export case if real PEC instance content becomes
+necessary.

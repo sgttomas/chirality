@@ -155,9 +155,9 @@ domain_profile:
     reserved_human_act: "approval outcome, decision outcome, check acceptance, comment acceptance, revision issue, and waiver/hold/approval judgment acts by the named PEC authority"
 
   open_issues:
-    - "Profile staging location: stays under _DomainEngines/pec/profile/ until D-T0-16 authorizes the multi-profile harness tranche."
-    - "Data residency for PEC instance content is TBD pending D-T0-14; default is no instance-content egress."
-    - "Readable instance artifacts require owner-provisioned exports or credentials plus an actor/visibility basis."
+    - "Profile staging location: stays under _DomainEngines/pec/profile/ until PR #51 merges and the D-T0-16-authorized multi-profile harness tranche executes."
+    - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; no instance-content egress absent a future owner ruling."
+    - "Readable instance artifacts require a future concrete D-PEC-01/O-B-style ruling with owner-provisioned exports or credentials plus an actor/visibility basis."
     - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."
     - "PEC's reserved human acts are internal RBAC acts, while the current canon wording is oriented to external professional approval records; canon clarification may be needed."
     - "L3 operation-proposal semantics overlap PEC native lifecycles and need a future ruling before any proposal-shaped apply path."

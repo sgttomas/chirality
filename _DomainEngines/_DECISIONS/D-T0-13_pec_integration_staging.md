@@ -1,6 +1,6 @@
 # D-T0-13 - PROPOSAL: PEC integration level and staging
 
-**Status:** PROPOSAL / awaiting owner ruling.  
+**Status:** RULED / O-A affirmed by owner; publication pending PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-13  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -40,4 +40,22 @@ Generated outputs are derivative packages, not substitute authority.
 
 ## Human ruling
 
-HumanRuling: OPEN - awaiting owner ruling.
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04.
+
+**Publication:** Pending owner merge of PR #51.
+
+Owner ruling excerpt:
+
+> PEC has no proposal-shaped apply seam -- its "writes" are native RBAC
+> lifecycle acts, so declaring L3 now (O-C) would pretend an API exists that
+> doesn't, and L1-only (O-B) wastes the genuinely deterministic seams PEC does
+> have (drill on scratch DB, VACUUM-INTO backup, row-level import reports).
+
+Owner sequencing note:
+
+> Ruling O-A here does not by itself unlock any instance-content capture --
+> every L1 evidence act touching real data still routes through D-T0-14.
+
+This ruling authorizes the stated L0-now/L2-destination staging model. It does
+not grant residency authority or permit agent-visible capture of PEC instance
+content.

@@ -1,6 +1,6 @@
 # D-T0-12 - PROPOSAL: PEC profile lifecycle and Gate 2
 
-**Status:** PROPOSAL / awaiting owner ruling.  
+**Status:** RULED / O-A affirmed by owner; publication pending PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-12  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -41,5 +41,17 @@ PEC to ADOPTED.
 
 ## Human ruling
 
-HumanRuling: OPEN - awaiting owner ruling.
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04.
 
+**Publication:** Pending owner merge of PR #51.
+
+Owner ruling excerpt:
+
+> This is just reusing the exact lifecycle `open_pipe_stress` already went
+> through (validator evidence -> owner Gate 2), and the validator ran VALID
+> with zero findings. Ruling O-A also resolves the one coupling I flagged
+> earlier: PR #51's live-baseline pin on the validation report becomes
+> consistent by construction.
+
+This ruling confirms the lifecycle and validator evidence path. It does not
+itself adopt the PEC profile; Gate 2 remains open and owner-only.

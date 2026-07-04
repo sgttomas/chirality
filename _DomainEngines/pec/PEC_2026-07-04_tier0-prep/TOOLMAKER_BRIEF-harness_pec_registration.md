@@ -1,7 +1,8 @@
 # TOOLMAKER Brief - PEC harness registration tranche
 
-**Status:** CANDIDATE, gated on D-T0-16. Do not execute this brief until the
-owner authorizes the harness tranche.
+**Status:** AUTHORIZED by D-T0-16, execution-held until PR #51 merges and the
+D-T0-11/D-T0-12 ruling records are published. Do not execute this brief in the
+registration PR.
 
 ## Goal
 
@@ -17,8 +18,17 @@ register PEC in the harness read/status surfaces without giving PEC full
 | `tools/practitioner_harness/harness.py` | Add project aliases `pec` and `chirality-pec` for `projects/pec`. |
 | `tools/practitioner_harness/cmd_bridge_status.py` | Add the PEC decision register, staged/adopted profile candidates, and `projects/pec` to the bridge-status awareness set. Extend decision ID detection to include `D-PEC-XX`. |
 | `tools/practitioner_harness/cmd_self_check.py` | Add `projects/pec` to scoped checks and reference resolution. Keep detect-never-rewrite posture. |
-| `_DomainEngines/pec/profile/pec.DRAFT.yaml` | Move to `_DomainEngines/profiles/pec.yaml` only inside the authorized tranche and only after multi-profile safety is in place. |
-| Tests | Extend bridge-status/self-check fixtures and update `test_live_baseline.py` pins consciously at the same final SHA. |
+| `_DomainEngines/pec/profile/pec.DRAFT.yaml` | Move to `_DomainEngines/profiles/pec.yaml` only inside the authorized follow-on tranche, only after PR #51 has merged, and only after multi-profile safety is in place. The move must not imply adoption. |
+| Tests | Extend bridge-status/self-check fixtures and update `test_live_baseline.py` pins consciously at the same final SHA, including assertions that PEC reports as DRAFT with Gate 2 open. |
+
+## D-T0-16 owner riders
+
+1. **Sequencing:** execute only after PR #51 merges and D-T0-11/D-T0-12 are
+   ruled/published. The tranche moves the profile into `profiles/`, which
+   presupposes the accepted registration shape and lifecycle rulings.
+2. **DRAFT-in-`profiles/` representation:** bridge-status/self-check tests must
+   assert PEC reports as DRAFT, Gate 2 open. Location in
+   `_DomainEngines/profiles/` must never infer ADOPTED status.
 
 ## Explicitly out of scope
 
@@ -43,5 +53,5 @@ register PEC in the harness read/status surfaces without giving PEC full
 - Existing bridge-status and self-check behavior remains green.
 - `open_pipe_stress` live-baseline assertions remain intentional.
 - PEC profile validation remains VALID after move.
+- PEC is rendered as DRAFT with Gate 2 open after the profile move.
 - Full practitioner harness pytest passes at the final commit SHA.
-

@@ -1,8 +1,9 @@
 # Human Decisions - PEC tier-0 registration prep
 
 All rows below are owner decisions. Agents may recommend and prepare artifacts;
-only the owner rules. No `Ruling SHA` field is present until a ruling is
-published.
+only the owner rules. Rulings were given in-session on 2026-07-04 and are
+recorded in the tier-0 register plus per-decision packets; publication remains
+pending owner merge of PR #51.
 
 | ID | Decision | Recommendation | Unblocks |
 |---|---|---|---|
@@ -13,9 +14,21 @@ published.
 | D-T0-15 | Standing PEC loop goal and fences F-PEC-1..4. | Adopt fences and the proposed standing goal; recognize the launcher already landed ACTIVE by Receipt 0 owner direction. | The standing PEC loop can continue after the registration slate. |
 | D-T0-16 | Harness-tranche authorization. | Authorize after the registration package lands and owner accepts the needed staging. | Multi-profile adapter fix, PEC alias/register/status/self-check citizenship, and profile move to `_DomainEngines/profiles/pec.yaml`. |
 
-## Gate
+## Rulings recorded 2026-07-04
 
-Stop here for owner ruling. Filling any `HumanRuling`, changing profile status
-to ADOPTED, executing the harness tranche, moving the profile into
-`_DomainEngines/profiles/`, or changing PEC runtime state is outside this prep.
+| ID | Ruling |
+|---|---|
+| D-T0-11 | O-A affirmed: authored `pec` registration shape accepted. |
+| D-T0-12 | O-A affirmed: validator evidence path accepted; ADOPTED remains owner Gate 2 only. |
+| D-T0-13 | O-A affirmed: L0 now, L2 destination through deterministic seams; no instance-content capture authority from this ruling. |
+| D-T0-14 | Deferred: O-A CLOSED default applies for now; any O-B export/capture basis should be presented through D-PEC-01 with a concrete data case. |
+| D-T0-15 | O-A affirmed: standing goal and fences adopted after package publication. |
+| D-T0-16 | O-A affirmed over O-B: later TOOLMAKER harness PR authorized with sequencing and DRAFT-in-`profiles/` representation riders. |
 
+## Gate outcome
+
+Owner rulings have been received and recorded. This publication update still
+does not change profile status to ADOPTED, execute the harness tranche, move
+the profile into `_DomainEngines/profiles/`, or change PEC runtime state. Under
+D-T0-16, the next lawful tranche is a separate TOOLMAKER harness PR after PR
+#51 merges; that tranche must test PEC as DRAFT with Gate 2 open.
