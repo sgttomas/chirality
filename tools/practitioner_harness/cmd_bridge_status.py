@@ -17,7 +17,7 @@ from pathlib import Path
 
 import adapter_git_state
 import brief_adoption
-from harness_common import Report, SourcedFact
+from harness_common import Report, Severity, SourcedFact, make_finding
 
 PICKLIST_NOTE = (
     "Sourced pick-list only: the tool never selects work; owner-shaped acts "
@@ -39,6 +39,15 @@ NO_OPEN_REGISTERS = (
     "No non-RULED register rows were parsed from the configured registers.")
 NO_BRIEFS = "No governed brief markdown files found under docs/governance_harness/briefs/."
 NO_OWNER_ACTS = "No owner-shaped act rows were derived from the configured inputs."
+PARKED_NOTE = (
+    "Parked-lane rows are parsed from the latest receipt. `anchored` means the "
+    "lane text resolves to a register row, governed brief, PR pointer, or "
+    "harness backlog/profile/decision-record item; `receipt-only` means the "
+    "latest receipt is the only parsed home.")
+GATE_NOTE = (
+    "Gate rows are derived from the profile's own live-binding line, not from "
+    "a hand-maintained gate list. Register rows and decision records are cited "
+    "when the gate token resolves mechanically.")
 
 TEMPLATES: list[str] = [
     PICKLIST_NOTE,
@@ -49,6 +58,8 @@ TEMPLATES: list[str] = [
     NO_OPEN_REGISTERS,
     NO_BRIEFS,
     NO_OWNER_ACTS,
+    PARKED_NOTE,
+    GATE_NOTE,
 ]
 
 REGISTER_SOURCES = (
@@ -70,6 +81,17 @@ PROFILE_CANDIDATES = (
 
 RECEIPTS_RELPATH = "_DomainEngines/bridge/LOOP_RECEIPTS.md"
 BRIEFS_RELPATH = "docs/governance_harness/briefs"
+PIPING_DECOMP_RELPATH = "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md"
+HARNESS_BACKLOG_RELPATH = "tools/practitioner_harness/BACKLOG.md"
+
+CANONICAL_RECEIPT_LABELS = (
+    "Owner direction of record",
+    "Gate outcome",
+    "Parked lanes",
+)
+DECISION_ID_RE = re.compile(r"\bD-(?:APP|T0|GOV)-\d+\b|\bD-\d+[A-Za-z]?\b")
+PR_REF_RE = re.compile(r"\bPR\s*#\d+\b", re.IGNORECASE)
+HB_REF_RE = re.compile(r"\bHB-\d+\b")
 
 
 @dataclass(frozen=True)
@@ -110,6 +132,7 @@ class ReceiptSummary:
     title: str
     source_path: str
     line: int
+    bullets: tuple[ReceiptBullet, ...] = ()
     owner_direction: ReceiptBullet | None = None
     gate_outcome: ReceiptBullet | None = None
     parked_lanes: ReceiptBullet | None = None
@@ -132,6 +155,25 @@ class OwnerAct:
     item: str
     posture: str
     owner_side: str
+
+
+@dataclass(frozen=True)
+class ParkedLaneRecord:
+    lane: str
+    anchor_status: str
+    anchor_kind: str
+    anchor_source: str
+    source_path: str
+    line: int
+
+
+@dataclass(frozen=True)
+class GateObservation:
+    gate: str
+    observed_state: str
+    source_path: str
+    line: int | None
+    resolved_current: bool = False
 
 
 def _source(path: str, line: int | None = None) -> str:
@@ -221,11 +263,16 @@ def _parse_decision_rows(repo_root: Path, label: str, relpath: str) -> list[Deci
 
 
 def _open_register_rows(repo_root: Path) -> tuple[list[DecisionRow], int]:
+    all_rows = _all_register_rows(repo_root)
+    open_rows = [row for row in all_rows if not row.state.upper().startswith("RULED")]
+    return open_rows, len(all_rows)
+
+
+def _all_register_rows(repo_root: Path) -> list[DecisionRow]:
     all_rows: list[DecisionRow] = []
     for label, relpath in REGISTER_SOURCES:
         all_rows.extend(_parse_decision_rows(repo_root, label, relpath))
-    open_rows = [row for row in all_rows if not row.state.upper().startswith("RULED")]
-    return open_rows, len(all_rows)
+    return all_rows
 
 
 def _field_value(line: str) -> str:
@@ -286,11 +333,11 @@ def _make_receipt_bullet(parts: list[str], source_path: str, line: int) -> Recei
     return ReceiptBullet(label=label, text=text, source_path=source_path, line=line)
 
 
-def _latest_receipt(repo_root: Path) -> ReceiptSummary | None:
+def _receipt_summaries(repo_root: Path) -> list[ReceiptSummary]:
     relpath = RECEIPTS_RELPATH
     path = repo_root / relpath
     if not path.is_file():
-        return None
+        return []
     lines = path.read_text(encoding="utf-8").splitlines()
     starts: list[tuple[int, str]] = []
     for idx, line in enumerate(lines):
@@ -298,26 +345,29 @@ def _latest_receipt(repo_root: Path) -> ReceiptSummary | None:
         if match:
             starts.append((idx, _clean_cell(match.group(1))))
     if not starts:
-        return None
-    start_idx, title = starts[-1]
-    end_idx = len(lines)
-    # Find the next receipt heading after the latest heading, if any. This
-    # normally does not exist, but it keeps the helper correct for arbitrary
-    # fixture slices.
-    for idx, _title in starts:
-        if idx > start_idx:
-            end_idx = idx
-            break
-    bullets = _receipt_bullets(lines, start_idx, end_idx, relpath)
-    by_label = {bullet.label.lower(): bullet for bullet in bullets if bullet.label}
-    return ReceiptSummary(
-        title=title,
-        source_path=relpath,
-        line=start_idx + 1,
-        owner_direction=by_label.get("owner direction of record"),
-        gate_outcome=by_label.get("gate outcome"),
-        parked_lanes=by_label.get("parked lanes"),
-    )
+        return []
+    summaries: list[ReceiptSummary] = []
+    for pos, (start_idx, title) in enumerate(starts):
+        end_idx = starts[pos + 1][0] if pos + 1 < len(starts) else len(lines)
+        bullets = _receipt_bullets(lines, start_idx, end_idx, relpath)
+        by_label = {bullet.label.lower(): bullet for bullet in bullets if bullet.label}
+        summaries.append(
+            ReceiptSummary(
+                title=title,
+                source_path=relpath,
+                line=start_idx + 1,
+                bullets=tuple(bullets),
+                owner_direction=by_label.get("owner direction of record"),
+                gate_outcome=by_label.get("gate outcome"),
+                parked_lanes=by_label.get("parked lanes"),
+            )
+        )
+    return summaries
+
+
+def _latest_receipt(repo_root: Path) -> ReceiptSummary | None:
+    receipts = _receipt_summaries(repo_root)
+    return receipts[-1] if receipts else None
 
 
 def _brief_records(repo_root: Path) -> tuple[list[BriefRecord], str | None]:
@@ -418,6 +468,254 @@ def _find_decision_row(repo_root: Path, relpath: str, decision_id: str) -> Decis
     return None
 
 
+def _row_by_id(rows: list[DecisionRow]) -> dict[str, DecisionRow]:
+    return {row.decision_id: row for row in rows}
+
+
+def _receipt_missing_labels(receipt: ReceiptSummary) -> list[str]:
+    labels = {bullet.label.lower() for bullet in receipt.bullets if bullet.label}
+    return [label for label in CANONICAL_RECEIPT_LABELS if label.lower() not in labels]
+
+
+def _parked_lane_parts(bullet: ReceiptBullet | None) -> list[str]:
+    if bullet is None:
+        return []
+    body = bullet.text.split(":", 1)[1] if ":" in bullet.text else bullet.text
+    parts: list[str] = []
+    for raw in re.split(r";\s*|,\s*", body):
+        text = raw.strip().strip(".")
+        if text:
+            parts.append(text)
+    return parts
+
+
+def _classify_parked_lane(
+    repo_root: Path,
+    lane: str,
+    source_path: str,
+    line: int,
+    rows_by_id: dict[str, DecisionRow],
+    briefs: list[BriefRecord],
+) -> ParkedLaneRecord:
+    row_hits = [rows_by_id[match.group(0)]
+                for match in DECISION_ID_RE.finditer(lane)
+                if match.group(0) in rows_by_id]
+    if row_hits:
+        anchors = ", ".join(
+            f"{row.decision_id}@{_source(row.source_path, row.line)}"
+            for row in row_hits)
+        return ParkedLaneRecord(
+            lane=lane,
+            anchor_status="anchored",
+            anchor_kind="register",
+            anchor_source=anchors,
+            source_path=source_path,
+            line=line,
+        )
+    for brief in briefs:
+        if brief.tranche_id in lane:
+            return ParkedLaneRecord(
+                lane=lane,
+                anchor_status="anchored",
+                anchor_kind="governed brief",
+                anchor_source=brief.source_path,
+                source_path=source_path,
+                line=line,
+            )
+    prs = PR_REF_RE.findall(lane)
+    if prs:
+        return ParkedLaneRecord(
+            lane=lane,
+            anchor_status="anchored",
+            anchor_kind="PR pointer",
+            anchor_source=", ".join(prs),
+            source_path=source_path,
+            line=line,
+        )
+    hb_sources = []
+    for hb in HB_REF_RE.findall(lane):
+        found = _find_backlog_item(repo_root, hb)
+        if found is not None:
+            hb_sources.append(f"{hb}@{_source(found[0], found[1])}")
+    if hb_sources:
+        return ParkedLaneRecord(
+            lane=lane,
+            anchor_status="anchored",
+            anchor_kind="harness backlog",
+            anchor_source=", ".join(hb_sources),
+            source_path=source_path,
+            line=line,
+        )
+    dec_sources = []
+    for dec in re.findall(r"\bDEC-\d+\b", lane):
+        found = _find_decision_record_line(repo_root, dec)
+        if found is not None:
+            dec_sources.append(f"{dec}@{_source(found[0], found[1])}")
+    if dec_sources:
+        return ParkedLaneRecord(
+            lane=lane,
+            anchor_status="anchored",
+            anchor_kind="decision record",
+            anchor_source=", ".join(dec_sources),
+            source_path=source_path,
+            line=line,
+        )
+    if re.search(r"\blive binding\b", lane, re.IGNORECASE):
+        profile = _load_profile(repo_root)
+        if profile is not None and profile.live_binding_line:
+            return ParkedLaneRecord(
+                lane=lane,
+                anchor_status="anchored",
+                anchor_kind="profile live-binding line",
+                anchor_source=_source(profile.source_path, profile.live_binding_line_no),
+                source_path=source_path,
+                line=line,
+            )
+    if re.search(r"\bF3\b", lane):
+        row = rows_by_id.get("D-T0-08")
+        if row is not None:
+            return ParkedLaneRecord(
+                lane=lane,
+                anchor_status="anchored",
+                anchor_kind="tier-0 F3 sequence row",
+                anchor_source=f"{row.decision_id}@{_source(row.source_path, row.line)}",
+                source_path=source_path,
+                line=line,
+            )
+    return ParkedLaneRecord(
+        lane=lane,
+        anchor_status="receipt-only",
+        anchor_kind="-",
+        anchor_source="-",
+        source_path=source_path,
+        line=line,
+    )
+
+
+def _parked_lane_records(
+    repo_root: Path,
+    receipt: ReceiptSummary | None,
+    rows: list[DecisionRow],
+    briefs: list[BriefRecord],
+) -> list[ParkedLaneRecord]:
+    if receipt is None or receipt.parked_lanes is None:
+        return []
+    rows_by_id = _row_by_id(rows)
+    return [
+        _classify_parked_lane(
+            repo_root,
+            part,
+            receipt.parked_lanes.source_path,
+            receipt.parked_lanes.line,
+            rows_by_id,
+            briefs,
+        )
+        for part in _parked_lane_parts(receipt.parked_lanes)
+    ]
+
+
+def _find_backlog_item(repo_root: Path, item_id: str) -> tuple[str, int] | None:
+    path = repo_root / HARNESS_BACKLOG_RELPATH
+    if not path.is_file():
+        return None
+    heading = re.compile(rf"^##\s+{re.escape(item_id)}\b")
+    for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if heading.search(line):
+            return HARNESS_BACKLOG_RELPATH, idx
+    return None
+
+
+def _live_binding_gate_tokens(line: str) -> list[str]:
+    if not line:
+        return []
+    _, sep, after = line.partition(":")
+    body = after if sep else line
+    body = re.sub(r"\s*\([^)]*\)\.?\s*$", "", body).strip().strip(".")
+    return [part.strip() for part in body.split(",") if part.strip()]
+
+
+def _find_decision_record_line(repo_root: Path, decision_id: str) -> tuple[str, int] | None:
+    path = repo_root / PIPING_DECOMP_RELPATH
+    if not path.is_file():
+        return None
+    needle = f"|{decision_id}|"
+    for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if needle in line:
+            return PIPING_DECOMP_RELPATH, idx
+    return None
+
+
+def _live_binding_gate_observations(
+    repo_root: Path,
+    profile: ProfileInfo | None,
+    rows: list[DecisionRow],
+) -> list[GateObservation]:
+    if profile is None or not profile.live_binding_line:
+        return []
+    rows_by_id = _row_by_id(rows)
+    observations: list[GateObservation] = []
+    for token in _live_binding_gate_tokens(profile.live_binding_line):
+        lower = token.lower()
+        if "tier-0 adoption" in lower and profile.profile_status:
+            observations.append(GateObservation(
+                gate=token,
+                observed_state=f"profile_status={profile.profile_status}",
+                source_path=profile.source_path,
+                line=profile.profile_status_line,
+                resolved_current=profile.profile_status.upper() == "ADOPTED",
+            ))
+            continue
+        if "app-dev f3" in lower:
+            row = rows_by_id.get("D-T0-08")
+            if row is not None:
+                observations.append(GateObservation(
+                    gate=token,
+                    observed_state=f"{row.decision_id} {row.state_column}={row.state}",
+                    source_path=row.source_path,
+                    line=row.line,
+                    resolved_current=False,
+                ))
+            else:
+                observations.append(GateObservation(
+                    gate=token,
+                    observed_state="not mechanically resolved",
+                    source_path=profile.source_path,
+                    line=profile.live_binding_line_no,
+                ))
+            continue
+        id_match = DECISION_ID_RE.search(token)
+        if id_match and id_match.group(0) in rows_by_id:
+            row = rows_by_id[id_match.group(0)]
+            observations.append(GateObservation(
+                gate=token,
+                observed_state=f"{row.decision_id} {row.state_column}={row.state}",
+                source_path=row.source_path,
+                line=row.line,
+                resolved_current=row.state.upper().startswith("RULED"),
+            ))
+            continue
+        dec_match = re.search(r"\bDEC-\d+\b", token)
+        if dec_match:
+            located = _find_decision_record_line(repo_root, dec_match.group(0))
+            if located is not None:
+                source_path, line = located
+                observations.append(GateObservation(
+                    gate=token,
+                    observed_state=f"{dec_match.group(0)} recorded; condition text governs",
+                    source_path=source_path,
+                    line=line,
+                    resolved_current=False,
+                ))
+                continue
+        observations.append(GateObservation(
+            gate=token,
+            observed_state="not mechanically resolved",
+            source_path=profile.source_path,
+            line=profile.live_binding_line_no,
+        ))
+    return observations
+
+
 def _add_fact(report: Report, fact_id: str, value: str, source: str, line: int | None = None) -> None:
     report.add_fact(
         SourcedFact(
@@ -433,10 +731,14 @@ def _add_fact(report: Report, fact_id: str, value: str, source: str, line: int |
 
 def run_bridge_status(repo_root: Path) -> Report:
     report = Report(command="bridge-status")
-    open_rows, parsed_register_rows = _open_register_rows(repo_root)
+    rows = _all_register_rows(repo_root)
+    open_rows = [row for row in rows if not row.state.upper().startswith("RULED")]
+    parsed_register_rows = len(rows)
     profile = _load_profile(repo_root)
     receipt = _latest_receipt(repo_root)
     briefs, refusal = _brief_records(repo_root)
+    parked_lanes = _parked_lane_records(repo_root, receipt, rows, briefs)
+    gate_observations = _live_binding_gate_observations(repo_root, profile, rows)
     owner_acts = _owner_acts(open_rows, profile, receipt, briefs)
 
     report.md("# Bridge status - owner-shaped act pick-list")
@@ -460,6 +762,20 @@ def run_bridge_status(repo_root: Path) -> Report:
     else:
         report.md(f"- latest: `{receipt.title}` - `{_source(receipt.source_path, receipt.line)}`")
         _add_fact(report, "bridge_status.latest_receipt", receipt.title, receipt.source_path, receipt.line)
+        missing = _receipt_missing_labels(receipt)
+        if missing:
+            report.add_finding(make_finding(
+                Severity.WARN,
+                "RECEIPT_BULLET_LABEL_DRIFT",
+                "staleness",
+                "Latest receipt lacks canonical bridge-loop bullet label(s): "
+                + ", ".join(missing)
+                + ". Exact labels keep generated views from silently dropping "
+                  "owner-direction, gate-outcome, or parked-lane handoff data.",
+                receipt.source_path,
+                receipt.line,
+                invariant="K-STALE-2",
+            ))
         for label, bullet in (
             ("owner direction", receipt.owner_direction),
             ("gate outcome", receipt.gate_outcome),
@@ -474,6 +790,23 @@ def run_bridge_status(repo_root: Path) -> Report:
                 bullet.text,
                 bullet.source_path,
                 bullet.line,
+            )
+    report.md("")
+
+    report.md("## Parked lane classification")
+    report.md("")
+    report.md(PARKED_NOTE)
+    report.md("")
+    if not parked_lanes:
+        report.md("- no parked-lane bullet parsed from the latest receipt")
+    else:
+        report.md("| Lane | Classification | Anchor kind | Anchor source | Source |")
+        report.md("|---|---|---|---|---|")
+        for lane in parked_lanes:
+            report.md(
+                f"| {_esc(lane.lane)} | {_esc(lane.anchor_status)} | "
+                f"{_esc(lane.anchor_kind)} | {_esc(lane.anchor_source)} | "
+                f"`{_source(lane.source_path, lane.line)}` |"
             )
     report.md("")
 
@@ -546,37 +879,17 @@ def run_bridge_status(repo_root: Path) -> Report:
             report.md("- live-binding line: not found in configured profile")
 
     report.md("")
+    report.md(GATE_NOTE)
+    report.md("")
     report.md("| Gate source | Observed state | Source |")
     report.md("|---|---|---|")
-    gate_rows = (
-        (
-            "tier-0 D-T0-08",
-            _find_decision_row(repo_root, "_DomainEngines/_DECISIONS/_REGISTER.md", "D-T0-08"),
-        ),
-        (
-            "app-dev D-APP-46",
-            _find_decision_row(
-                repo_root,
-                "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
-                "D-APP-46",
-            ),
-        ),
-        (
-            "piping D-21",
-            _find_decision_row(
-                repo_root,
-                "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
-                "D-21",
-            ),
-        ),
-    )
-    for label, row in gate_rows:
-        if row is None:
-            report.md(f"| {label} | not parsed | - |")
-        else:
+    if not gate_observations:
+        report.md("| profile live-binding line | not parsed | - |")
+    else:
+        for gate in gate_observations:
             report.md(
-                f"| {label} | {_esc(row.state_column)}={_esc(row.state)} | "
-                f"`{_source(row.source_path, row.line)}` |"
+                f"| {_esc(gate.gate)} | {_esc(gate.observed_state)} | "
+                f"`{_source(gate.source_path, gate.line)}` |"
             )
     report.md("")
 
@@ -621,6 +934,10 @@ def run_bridge_status(repo_root: Path) -> Report:
     report.summary["parsed_register_rows"] = parsed_register_rows
     report.summary["open_register_rows"] = len(open_rows)
     report.summary["brief_records"] = len(briefs)
+    report.summary["parked_lane_rows"] = len(parked_lanes)
+    report.summary["parked_lane_receipt_only"] = sum(
+        1 for lane in parked_lanes if lane.anchor_status == "receipt-only")
+    report.summary["live_binding_gate_rows"] = len(gate_observations)
     report.summary["owner_act_rows"] = len(owner_acts)
     if receipt is not None:
         report.summary["latest_receipt"] = receipt.title

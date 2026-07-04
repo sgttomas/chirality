@@ -116,13 +116,17 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # (TRB-chirality-app-dev-DEL-03-01-2026-07-03), which carries two
     # evidence_targets refs into the declared _harness_generated/ root — an
     # environment-independent generated-root INFO pair (HB-4 classification).
+    # REVIEW 28->29 on 2026-07-04: HB-8 added the detect-never-rewrite
+    # live-binding gate check; the profile line still names cleared
+    # tier-0-adoption and piping D-21 gates while the profile/register sources
+    # report them resolved.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 14,
         "NOT_APPLICABLE": 1,
-        "REVIEW": 28,
+        "REVIEW": 29,
         "WARN": 2,
     }
 
@@ -143,6 +147,16 @@ def test_live_self_check_stale_open_issue_is_zero():
     # the D-T0-06 ruling condition carries its "[Condition met ...]" note.
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     assert [f for f in report.findings if f.code == "STALE_OPEN_ISSUE"] == []
+
+
+@live
+def test_live_self_check_live_binding_gate_drift_is_detected():
+    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    hits = [f for f in report.findings if f.code == "STALE_LIVE_BINDING_GATE"]
+    assert [(f.source_path, f.source_line) for f in hits] == [
+        ("_DomainEngines/profiles/open_pipe_stress.yaml", 145)]
+    assert "tier-0 adoption" in hits[0].message
+    assert "piping D-21" in hits[0].message
 
 
 @live

@@ -249,3 +249,12 @@
     `D-T0-09`, SCA propagation `D-29`, D-22 consumption execution `D-30`, F3,
     live binding; HB-6..HB-9 in the harness backlog; PR #29 + PR #30 owner
     merge/CI disposition.
+
+- **2026-07-04 — Receipt 12**
+  - Start: `b954523b2`; branch `codex/hb6-hb8-bridge-detectors`; tree clean before work; PR #29 and PR #30 already merged on `main`; PR #31 opened for owner merge.
+  - Owner direction of record: "Continue working toward the active thread goal."
+  - Live gates checked: app-dev `D-APP-47`/`D-APP-48`, piping `D-29`/`D-30`, and tier-0 `D-T0-09` remain open; profile live-binding line still names x4; DEL-03-01 brief remains `HUMAN_ADOPTED`/active.
+  - Executed pointers: `tools/practitioner_harness/cmd_bridge_status.py` HB-6; `tools/practitioner_harness/cmd_self_check.py` HB-7/HB-8; `test_bridge_status.py`; `test_self_check_fixtures.py`; `test_live_baseline.py`; `BACKLOG.md` HB-6..HB-8 removal.
+  - Gate outcome: harness/control tranche executed only; detect-never-rewrite receipt/profile checks added; no app-dev/piping integration lane resumed and no protected-path, profile, F1/F2/F3/F4, publication, or live-binding write.
+  - Checks: bridge-status pass/no findings; status x3 no severities; drift 0/154; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; focused HB tests pass; full harness pytest pass.
+  - Parked lanes: `D-APP-47`, `D-APP-48`, `D-T0-09`, `D-29`, `D-30`; active brief `TRB-chirality-app-dev-DEL-03-01-2026-07-03`; HB-9; F3/live binding/DEC-041 automation condition.
