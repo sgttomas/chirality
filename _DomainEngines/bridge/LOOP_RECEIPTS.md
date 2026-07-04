@@ -196,3 +196,28 @@
     check set on owner direction; a close receipt supersedes this one at execution.
   - Parked lanes: unchanged from Receipt 8 (shim migration, D-T0-07 version, package
     publishability, D-22 piping consumption, SCA propagation, F3, live binding).
+
+- **2026-07-03 — Receipt 10**
+  - Start: `fd249dc94`; branch `codex/del0301-consumption-records`; PR #29
+    (`https://github.com/sgttomas/chirality/pull/29`) opened for owner merge.
+  - Owner direction of record (2026-07-03, active goal launch): "Resolve `REPO_ROOT`
+    with `git rev-parse --show-toplevel`. Read `{REPO_ROOT}/_DomainEngines/bridge/LOOP_INIT.md`
+    and follow it: pursue the loop's inherent goals — recorded in its standing plan —
+    as far as live authority permits. Steer (this run): <none>"
+  - Live gates checked: Receipt 9 active brief `HUMAN_ADOPTED`/fence_active True;
+    D-APP-45/D-APP-46, piping D-21/D-22, and tier-0 8/8 RULED; profile live-binding
+    line still x4; `bridge-status` owner-shaped rows unchanged.
+  - Executed pointers: DEL-03-01 `Datasheet.md`, `Assessment_INSP-03_DEL-03-01.md`,
+    `Evidence_CODEV-001_Runtime_Engine_Conformance.md`,
+    `Evidence_CODEV-002_Harness_Contract_Package_Consumption_Readiness.md`, `MEMORY.md`.
+  - Gate outcome: adopted DEL-03-01 doc/evidence tranche executed only; `_STATUS.md`
+    remains CHECKING; no frontend source, piping, package publication, version
+    settlement, F2/F3/F4, or live-binding change.
+  - Checks: `brief --verify-adoption` pass; run-validations pass with local Next dev
+    server (typecheck/test/release-quality latest exits 0; ignored npm workspace link
+    restored); scope-check 5/5 in-fence; evidence-check/closeout-digest no findings;
+    status x3 no severities; drift 0/154; self-check exit 0 at
+    INFO=14/NOT_APPLICABLE=1/REVIEW=28/WARN=2; harness pytest 248 passed.
+  - Parked lanes: shim migration/wrapper retirement, D-T0-07 version settlement,
+    package publishability, D-22 piping consumption, SCA propagation, F3, live binding,
+    and PR #29 owner merge/CI disposition.
