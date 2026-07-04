@@ -2,11 +2,12 @@ import type { HarnessEventType } from './event-schema';
 import {
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
+  type ChiralityMcpDomainToolName,
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v6.mutating-mcp';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v7.domain-mcp-descriptors';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -138,6 +139,12 @@ const CHIRALITY_MUTATING_MCP_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
     'Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper.'
+};
+
+const CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: false,
+  reason:
+    'D-APP-50 registers the governed domain MCP descriptor, but keeps it descriptor-only until runtime transport and write quarantine are sound.'
 };
 
 const SDK_WRITE_RUNTIME: HarnessToolRuntimeSupport = {
@@ -324,6 +331,57 @@ function chiralityMutatingMcpDescriptor(input: {
     inputSchema: input.inputSchema,
     outputSchema: input.outputSchema,
     runtime: CHIRALITY_MUTATING_MCP_RUNTIME
+  };
+}
+
+function chiralityDomainDescriptorOnly(input: {
+  name: string;
+  aliases: readonly string[];
+  description: string;
+  mcpToolName: ChiralityMcpDomainToolName;
+  permissions: readonly HarnessToolPermission[];
+  pathScope: HarnessToolPathScope;
+  idempotence: HarnessToolIdempotence;
+  concurrency: HarnessToolConcurrency;
+  resultBudget: HarnessToolResultBudget;
+  inputSchema: Record<string, unknown>;
+  outputSchema?: Record<string, unknown>;
+  gateReason: string;
+}): HarnessToolDescriptor {
+  return {
+    name: input.name,
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: [...input.aliases, input.mcpToolName],
+      adapterToolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+    }),
+    description: input.description,
+    surface: 'reserved',
+    permissions: input.permissions,
+    pathScope: input.pathScope,
+    idempotence: input.idempotence,
+    concurrency: input.concurrency,
+    interruptBehavior: input.permissions.includes('workspace-write') ? 'block' : 'cancel',
+    resultBudget: input.resultBudget,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: input.permissions.includes('workspace-write') ? 'metadata' : 'inline-or-artifact',
+      recordsDiff: input.permissions.includes('workspace-write')
+    },
+    humanGate: {
+      required: true,
+      gate: 'future-policy',
+      reason: input.gateReason
+    },
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+      }
+    },
+    inputSchema: input.inputSchema,
+    outputSchema: input.outputSchema,
+    runtime: CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME
   };
 }
 
@@ -547,6 +605,159 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       gate: 'interactive-confirmation',
       reason: 'Dependency register writes require workspaceWrite mode and governed row validation.'
     }
+  }),
+  chiralityDomainDescriptorOnly({
+    name: 'domain_completeness_check',
+    aliases: ['mcp.domain_completeness_check'],
+    description:
+      'Reserved D-APP-50 domain MCP descriptor for the profile completeness_checker read-only wrapper.',
+    mcpToolName: 'domain_completeness_check',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
+    idempotence: 'idempotent',
+    concurrency: 'safe',
+    resultBudget: READ_RESULT_BUDGET,
+    inputSchema: {
+      type: 'object',
+      required: ['profileId', 'inputRef'],
+      properties: {
+        profileId: {
+          type: 'string'
+        },
+        inputRef: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['profileId', 'toolId', 'transportStatus']
+    },
+    gateReason:
+      'D-APP-50 permits descriptor-only exposure until the completeness_checker transport is sound under DEC-041.'
+  }),
+  chiralityDomainDescriptorOnly({
+    name: 'domain_rule_check_run',
+    aliases: ['mcp.domain_rule_check_run'],
+    description:
+      'Reserved D-APP-50 domain MCP descriptor for the profile rule_check_runner read-only wrapper.',
+    mcpToolName: 'domain_rule_check_run',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
+    idempotence: 'idempotent',
+    concurrency: 'safe',
+    resultBudget: READ_RESULT_BUDGET,
+    inputSchema: {
+      type: 'object',
+      required: ['profileId', 'rulePackRef', 'valueBindingsRef'],
+      properties: {
+        profileId: {
+          type: 'string'
+        },
+        rulePackRef: {
+          type: 'string'
+        },
+        valueBindingsRef: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['profileId', 'toolId', 'transportStatus']
+    },
+    gateReason:
+      'D-APP-50 permits descriptor-only exposure until the rule_check_runner transport is sound under DEC-041.'
+  }),
+  chiralityDomainDescriptorOnly({
+    name: 'domain_headless_preview_run',
+    aliases: ['mcp.domain_headless_preview_run'],
+    description:
+      'Reserved D-APP-50 domain MCP descriptor for the proven-L2 headless_runner preview wrapper.',
+    mcpToolName: 'domain_headless_preview_run',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
+    idempotence: 'input-dependent',
+    concurrency: 'exclusive',
+    resultBudget: READ_RESULT_BUDGET,
+    inputSchema: {
+      type: 'object',
+      required: ['profileId', 'modelInputPath'],
+      properties: {
+        profileId: {
+          type: 'string'
+        },
+        modelInputPath: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['profileId', 'toolId', 'transportStatus']
+    },
+    gateReason:
+      'D-APP-50 permits descriptor-only exposure until the headless_runner transport is sound under DEC-041.'
+  }),
+  chiralityDomainDescriptorOnly({
+    name: 'domain_propose_operation',
+    aliases: ['mcp.domain_propose_operation'],
+    description:
+      'Reserved D-APP-50 domain MCP descriptor for draft OperationProposal record creation; applies nothing.',
+    mcpToolName: 'domain_propose_operation',
+    permissions: ['workspace-write'],
+    pathScope: 'project-root-write',
+    idempotence: 'mutating',
+    concurrency: 'serialized-by-path',
+    resultBudget: WRITE_RESULT_BUDGET,
+    inputSchema: {
+      type: 'object',
+      required: ['profileId', 'proposal'],
+      properties: {
+        profileId: {
+          type: 'string'
+        },
+        proposal: {
+          type: 'object'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['ok', 'proposalPath', 'transportStatus']
+    },
+    gateReason:
+      'D-APP-50 keeps proposal-record writes descriptor-only until K-DOMAIN-2 agent-writable path quarantine is implemented.'
+  }),
+  chiralityDomainDescriptorOnly({
+    name: 'domain_proposal_validate',
+    aliases: ['mcp.domain_proposal_validate'],
+    description:
+      'Reserved D-APP-50 domain MCP descriptor for operation_applier.validate; validates proposals and applies nothing.',
+    mcpToolName: 'domain_proposal_validate',
+    permissions: ['workspace-write'],
+    pathScope: 'project-root-write',
+    idempotence: 'input-dependent',
+    concurrency: 'serialized-by-path',
+    resultBudget: WRITE_RESULT_BUDGET,
+    inputSchema: {
+      type: 'object',
+      required: ['profileId', 'proposalPath'],
+      properties: {
+        profileId: {
+          type: 'string'
+        },
+        proposalPath: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['ok', 'proposalPath', 'transportStatus']
+    },
+    gateReason:
+      'D-APP-50 excludes apply and keeps proposal validation descriptor-only until operation_applier.validate transport is sound.'
   }),
   {
     name: 'write_file',

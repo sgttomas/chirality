@@ -107,9 +107,11 @@ capability, change provider scope, or create release/professional approval.
 
 ## Naming Boundary
 
-Chirality-owned in-process MCP tools use \`mcp__chirality__*\` adapter names. The future
-\`mcp__chirality__domain_*\` namespace is reserved for governed domain-profile tools and
-must not be implemented or exposed before the future domain-profile amendment.
+Chirality-owned in-process MCP tools use \`mcp__chirality__*\` adapter names.
+D-APP-50 registers \`mcp__chirality__domain_*\` descriptors for governed
+domain-profile tools. Those descriptors stay descriptor-only until DEC-041
+runtime transport and K-DOMAIN-2 proposal-write quarantine are sound; no
+domain apply tool is registered or exposed.
 
 SDK built-in tool names and Chirality MCP adapter names are collision-checked by the
 descriptor registry tests. Unknown tools remain rejected before streaming.

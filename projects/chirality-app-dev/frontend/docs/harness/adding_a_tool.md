@@ -70,8 +70,8 @@ and must be rejected.
 ## In-Process Chirality MCP Path
 
 Chirality MCP tools use the `mcp__chirality__*` adapter-name convention. Add the raw tool
-name to `CHIRALITY_MCP_READ_TOOL_NAMES` or `CHIRALITY_MCP_MUTATING_TOOL_NAMES`, then add
-the handler to `buildChiralityMcpTools`.
+name to the relevant registry list, then add the handler to `buildChiralityMcpTools` only
+when the descriptor is meant to be exposed to the model.
 
 Read-only MCP handlers must preserve project-root containment, result-budget handling,
 redaction, and event logging. Mutating MCP handlers require a stricter path because the
@@ -98,10 +98,11 @@ bypass and must be rejected in review.
 Current Chirality MCP adapter names are cataloged in
 `frontend/docs/harness/tool_catalog.md`.
 
-Future domain tools must use `mcp__chirality__domain_*` only after a governed
-domain-profile amendment. Do not add placeholder domain handlers, broad tool search,
-remote MCP servers, plugin marketplace hooks, remote execution, or provider-network
-expansion as part of ordinary local tool work.
+D-APP-50 domain tools use `mcp__chirality__domain_*` descriptor names, but they stay
+descriptor-only until DEC-041 runtime transport and K-DOMAIN-2 proposal-write quarantine
+are sound. Do not add placeholder domain handlers, broad tool search, remote MCP servers,
+plugin marketplace hooks, remote execution, provider-network expansion, or apply-capable
+domain tools as part of ordinary local tool work.
 
 ## Agent Tool Exception
 

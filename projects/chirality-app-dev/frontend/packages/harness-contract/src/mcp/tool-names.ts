@@ -13,16 +13,29 @@ export const CHIRALITY_MCP_MUTATING_TOOL_NAMES = [
   'deps_write'
 ] as const;
 
+export const CHIRALITY_MCP_DOMAIN_TOOL_NAMES = [
+  'domain_completeness_check',
+  'domain_rule_check_run',
+  'domain_headless_preview_run',
+  'domain_propose_operation',
+  'domain_proposal_validate'
+] as const;
+
 export type ChiralityMcpReadToolName = (typeof CHIRALITY_MCP_READ_TOOL_NAMES)[number];
 export type ChiralityMcpMutatingToolName = (typeof CHIRALITY_MCP_MUTATING_TOOL_NAMES)[number];
-export type ChiralityMcpToolName = ChiralityMcpReadToolName | ChiralityMcpMutatingToolName;
+export type ChiralityMcpDomainToolName = (typeof CHIRALITY_MCP_DOMAIN_TOOL_NAMES)[number];
+export type ChiralityMcpToolName =
+  | ChiralityMcpReadToolName
+  | ChiralityMcpMutatingToolName
+  | ChiralityMcpDomainToolName;
 
 export type ChiralityMcpAllowedToolName =
   `mcp__${typeof CHIRALITY_MCP_SERVER_NAME}__${ChiralityMcpToolName}`;
 
 export const CHIRALITY_MCP_TOOL_NAMES = [
   ...CHIRALITY_MCP_READ_TOOL_NAMES,
-  ...CHIRALITY_MCP_MUTATING_TOOL_NAMES
+  ...CHIRALITY_MCP_MUTATING_TOOL_NAMES,
+  ...CHIRALITY_MCP_DOMAIN_TOOL_NAMES
 ] as const satisfies readonly ChiralityMcpToolName[];
 
 export const CHIRALITY_MCP_ALLOWED_TOOL_NAMES = CHIRALITY_MCP_TOOL_NAMES.map(

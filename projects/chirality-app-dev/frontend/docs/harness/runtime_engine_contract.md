@@ -228,6 +228,9 @@ are `mcp__chirality__status_read`,
 `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and
 `mcp__chirality__scaffold_preview`. The current mutating Chirality MCP tools are
 `mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
+D-APP-50 domain MCP descriptors are registered under
+`mcp__chirality__domain_*` but remain descriptor-only until DEC-041 runtime
+transport and K-DOMAIN-2 proposal-write quarantine are sound.
 
 The SDK options builder passes requested and allowed names through both `tools` and
 `allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
@@ -258,9 +261,10 @@ descriptor-to-MCP-registration drift are gated by `tool-descriptor.test.ts`.
 alias, or adapter tool name. Same-descriptor canonical/adapter equivalence is permitted
 only when it resolves to the same descriptor.
 
-Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names. The future
-`mcp__chirality__domain_*` namespace is reserved for a governed domain-profile amendment
-and is not implemented by R6. Remote MCP, plugins, broad tool search, remote execution,
+Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names.
+`mcp__chirality__domain_*` names are D-APP-50 descriptor-only registrations:
+they do not expose handlers, apply domain operations, write piping paths, or
+advance live binding. Remote MCP, plugins, broad tool search, remote execution,
 provider/network expansion, concrete non-Anthropic providers, further default/provider
 semantics changes, and release/professional-boundary changes remain out of scope until a
 future human ruling authorizes them.

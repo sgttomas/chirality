@@ -38,6 +38,14 @@ const opts: ResolvedOpts = {
   mode: 'direct'
 };
 
+const DOMAIN_MCP_TOOL_NAMES = [
+  'mcp__chirality__domain_completeness_check',
+  'mcp__chirality__domain_rule_check_run',
+  'mcp__chirality__domain_headless_preview_run',
+  'mcp__chirality__domain_propose_operation',
+  'mcp__chirality__domain_proposal_validate'
+] as const;
+
 let tmpDir = '';
 
 afterEach(async () => {
@@ -75,6 +83,7 @@ describe('buildSdkOptions', () => {
     expect(options.allowedTools).not.toContain('Agent');
     expect(options.agents).toBeUndefined();
     expect(options.disallowedTools).toContain('mcp__chirality__status_read');
+    expect(options.disallowedTools).toEqual(expect.arrayContaining([...DOMAIN_MCP_TOOL_NAMES]));
     expect(options.mcpServers).toEqual({});
     expect(options.hooks?.PreToolUse?.[0]?.hooks[0]).toBeTypeOf('function');
     expect(options.hooks?.PostToolUse?.[0]?.hooks[0]).toBeTypeOf('function');
@@ -103,6 +112,7 @@ describe('buildSdkOptions', () => {
       'mcp__chirality__scaffold_preview',
       'mcp__chirality__status_transition',
       'mcp__chirality__deps_write',
+      ...DOMAIN_MCP_TOOL_NAMES,
       'Write',
       'Edit',
       'MultiEdit',
@@ -136,6 +146,7 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
     expect(options.disallowedTools).toContain('mcp__chirality__status_transition');
+    expect(options.disallowedTools).toEqual(expect.arrayContaining([...DOMAIN_MCP_TOOL_NAMES]));
     expect(options.mcpServers).toMatchObject({
       chirality: {
         type: 'sdk',
@@ -189,6 +200,24 @@ describe('buildSdkOptions', () => {
     expect(readOnly.disallowedTools).toContain('mcp__chirality__status_transition');
     expect(readOnly.disallowedTools).toContain('mcp__chirality__deps_write');
     expect(readOnly.mcpServers).toEqual({});
+  });
+
+  it('keeps descriptor-only domain MCP tools denied even when explicitly requested', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'workspaceWrite',
+        tools: ['domain_completeness_check', 'domain_propose_operation']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual([]);
+    expect(options.allowedTools).toEqual([]);
+    expect(options.disallowedTools).toEqual(expect.arrayContaining([...DOMAIN_MCP_TOOL_NAMES]));
+    expect(options.mcpServers).toEqual({});
   });
 
   it('allows only explicit project settings and never user or local sources', () => {

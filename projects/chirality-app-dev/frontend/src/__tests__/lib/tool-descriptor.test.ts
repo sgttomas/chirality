@@ -33,6 +33,32 @@ function toRawChiralityMcpToolName(toolName: ChiralityMcpAllowedToolName): strin
   return toolName.replace(/^mcp__chirality__/, '');
 }
 
+const READ_MCP_TOOL_NAMES = [
+  'mcp__chirality__status_read',
+  'mcp__chirality__deps_read',
+  'mcp__chirality__scope_scan',
+  'mcp__chirality__scaffold_preview'
+] as const;
+
+const MUTATING_MCP_TOOL_NAMES = [
+  'mcp__chirality__status_transition',
+  'mcp__chirality__deps_write'
+] as const;
+
+const DOMAIN_MCP_TOOL_NAMES = [
+  'mcp__chirality__domain_completeness_check',
+  'mcp__chirality__domain_rule_check_run',
+  'mcp__chirality__domain_headless_preview_run',
+  'mcp__chirality__domain_propose_operation',
+  'mcp__chirality__domain_proposal_validate'
+] as const;
+
+const ALL_MCP_TOOL_NAMES = [
+  ...READ_MCP_TOOL_NAMES,
+  ...MUTATING_MCP_TOOL_NAMES,
+  ...DOMAIN_MCP_TOOL_NAMES
+] as const;
+
 describe('tool descriptor registry', () => {
   it('fails closed on duplicate descriptor lookup keys', () => {
     const [readFile] = listHarnessToolDescriptors();
@@ -78,11 +104,11 @@ describe('tool descriptor registry', () => {
   it('keeps built-in SDK tool names disjoint from Chirality MCP adapter names', () => {
     const descriptors = listHarnessToolDescriptors();
     const builtinToolNames = descriptors
-      .filter((descriptor) => descriptor.surface !== 'chirality-mcp')
       .map((descriptor) => descriptor.adapter.claudeAgentSdk?.toolName)
-      .filter((toolName): toolName is ClaudeAgentSdkToolName => Boolean(toolName));
+      .filter((toolName): toolName is ClaudeAgentSdkToolName =>
+        Boolean(toolName && !toolName.startsWith('mcp__chirality__'))
+      );
     const chiralityMcpToolNames = descriptors
-      .filter((descriptor) => descriptor.surface === 'chirality-mcp')
       .map((descriptor) => descriptor.adapter.claudeAgentSdk?.toolName)
       .filter((toolName): toolName is ChiralityMcpAllowedToolName =>
         Boolean(toolName?.startsWith('mcp__chirality__'))
@@ -126,6 +152,11 @@ describe('tool descriptor registry', () => {
       'scaffold_preview',
       'status_transition',
       'dependency_write',
+      'domain_completeness_check',
+      'domain_rule_check_run',
+      'domain_headless_preview_run',
+      'domain_propose_operation',
+      'domain_proposal_validate',
       'write_file',
       'edit_file',
       'multi_edit_file',
@@ -147,12 +178,19 @@ describe('tool descriptor registry', () => {
       'status_read',
       'dependency_read',
       'scope_scan',
-      'scaffold_preview'
+      'scaffold_preview',
+      'domain_completeness_check',
+      'domain_rule_check_run',
+      'domain_headless_preview_run'
     ]);
     expect(
       descriptors
         .filter((descriptor) => descriptor.permissions.includes('read'))
-        .every((descriptor) => descriptor.runtime.exposedToModel === true)
+        .every((descriptor) =>
+          descriptor.surface === 'reserved'
+            ? descriptor.runtime.exposedToModel === false
+            : descriptor.runtime.exposedToModel === true
+        )
     ).toBe(true);
     expect(
       descriptors
@@ -192,6 +230,34 @@ describe('tool descriptor registry', () => {
     expect(bash?.runtime.exposedToModel).toBe(true);
   });
 
+  it('registers D-APP-50 domain MCP descriptors as descriptor-only until transport is sound', () => {
+    const domainDescriptors = DOMAIN_MCP_TOOL_NAMES.map((toolName) =>
+      getHarnessToolDescriptor(toolName)
+    );
+
+    expect(domainDescriptors.map((descriptor) => descriptor?.name)).toEqual([
+      'domain_completeness_check',
+      'domain_rule_check_run',
+      'domain_headless_preview_run',
+      'domain_propose_operation',
+      'domain_proposal_validate'
+    ]);
+    for (const descriptor of domainDescriptors) {
+      expect(descriptor?.surface).toBe('reserved');
+      expect(descriptor?.runtime.exposedToModel).toBe(false);
+      expect(descriptor?.runtime.reason).toContain('D-APP-50');
+      expect(descriptor?.humanGate).toMatchObject({
+        required: true,
+        gate: 'future-policy'
+      });
+    }
+    expect(
+      domainDescriptors.map((descriptor) => descriptor?.adapter.claudeAgentSdk?.toolName)
+    ).toEqual(DOMAIN_MCP_TOOL_NAMES);
+    expect(getHarnessToolDescriptor('domain_apply')).toBeUndefined();
+    expect(getHarnessToolDescriptor('domain_proposal_apply')).toBeUndefined();
+  });
+
   it('resolves Write/Edit/Bash only in workspaceWrite mode', () => {
     const resolution = resolveHarnessToolPool({
       requestedTools: ['read', 'write', 'Edit', 'multi_edit', 'bash'],
@@ -203,12 +269,7 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
-      'mcp__chirality__status_read',
-      'mcp__chirality__deps_read',
-      'mcp__chirality__scope_scan',
-      'mcp__chirality__scaffold_preview',
-      'mcp__chirality__status_transition',
-      'mcp__chirality__deps_write',
+      ...ALL_MCP_TOOL_NAMES,
       'MultiEdit',
       'NotebookEdit',
       'WebFetch',
@@ -255,8 +316,8 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
-      'mcp__chirality__status_transition',
-      'mcp__chirality__deps_write',
+      ...MUTATING_MCP_TOOL_NAMES,
+      ...DOMAIN_MCP_TOOL_NAMES,
       'Write',
       'Edit',
       'MultiEdit',
@@ -302,6 +363,47 @@ describe('tool descriptor registry', () => {
       expect.objectContaining({
         toolName: 'deps_write',
         descriptorName: 'dependency_write'
+      })
+    ]);
+  });
+
+  it('keeps D-APP-50 domain MCP descriptors out of the model context', () => {
+    const readOnly = resolveHarnessToolPool({
+      requestedTools: ['domain_completeness_check', 'domain_rule_check_run'],
+      mode: 'readOnly'
+    });
+
+    expect(readOnly.allowedToolNames).toEqual([]);
+    expect(readOnly.disallowedToolNames).toEqual(getCurrentTrancheDisallowedToolNames());
+    expect(readOnly.deniedTools).toEqual([
+      expect.objectContaining({
+        toolName: 'domain_completeness_check',
+        descriptorName: 'domain_completeness_check',
+        message: expect.stringContaining('D-APP-50')
+      }),
+      expect.objectContaining({
+        toolName: 'domain_rule_check_run',
+        descriptorName: 'domain_rule_check_run',
+        message: expect.stringContaining('D-APP-50')
+      })
+    ]);
+
+    const workspaceWrite = resolveHarnessToolPool({
+      requestedTools: ['domain_propose_operation', 'domain_proposal_validate'],
+      mode: 'workspaceWrite'
+    });
+
+    expect(workspaceWrite.allowedToolNames).toEqual([]);
+    expect(workspaceWrite.deniedTools).toEqual([
+      expect.objectContaining({
+        toolName: 'domain_propose_operation',
+        descriptorName: 'domain_propose_operation',
+        message: expect.stringContaining('D-APP-50')
+      }),
+      expect.objectContaining({
+        toolName: 'domain_proposal_validate',
+        descriptorName: 'domain_proposal_validate',
+        message: expect.stringContaining('D-APP-50')
       })
     ]);
   });
@@ -354,12 +456,7 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
-      'mcp__chirality__status_read',
-      'mcp__chirality__deps_read',
-      'mcp__chirality__scope_scan',
-      'mcp__chirality__scaffold_preview',
-      'mcp__chirality__status_transition',
-      'mcp__chirality__deps_write',
+      ...ALL_MCP_TOOL_NAMES,
       'Write',
       'Edit',
       'MultiEdit',
@@ -372,12 +469,7 @@ describe('tool descriptor registry', () => {
     expect(getCurrentTrancheDisallowedToolNames(['Read', 'Grep'])).toEqual([
       'Glob',
       'LS',
-      'mcp__chirality__status_read',
-      'mcp__chirality__deps_read',
-      'mcp__chirality__scope_scan',
-      'mcp__chirality__scaffold_preview',
-      'mcp__chirality__status_transition',
-      'mcp__chirality__deps_write',
+      ...ALL_MCP_TOOL_NAMES,
       'Write',
       'Edit',
       'MultiEdit',
