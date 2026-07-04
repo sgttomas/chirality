@@ -37,6 +37,9 @@ ACTIVE_DEFINITION = (
     "in the per-state facts but not listed as pick-up-next work. "
     "UNPARSEABLE = document-level parse failure — labeled, never guessed "
     "(K-INVENT-1); such files are counted but never listed as active.")
+BLOCKED_ON_NOTE = (
+    "`blocked-on` quotes optional `blocked-on: D-XX[, D-YY]` tokens from "
+    "_STATUS.md; tokens are links to owner-side decisions, not lifecycle state.")
 NO_DEL_ID_NOTE = (
     "(directory name carries no DEL-NN-MM id prefix — `brief` requires a DEL "
     "id; not invented per K-INVENT-1)")
@@ -50,7 +53,7 @@ TRUNCATION_NOTE = (
 
 TEMPLATES: list[str] = [
     PICKLIST_NOTE, ACTIVE_DEFINITION, NO_DEL_ID_NOTE, NO_ALIAS_NOTE,
-    TRUNCATION_NOTE,
+    TRUNCATION_NOTE, BLOCKED_ON_NOTE,
 ]
 
 DEL_ID_PREFIX_RE = re.compile(r"^(DEL-\d{2}-\d{2})(?=[_.\s]|$)")
@@ -68,6 +71,8 @@ def run_next(repo_root: Path, project_roots: list[Path],
     report.md(PICKLIST_NOTE)
     report.md("")
     report.md(ACTIVE_DEFINITION)
+    report.md("")
+    report.md(BLOCKED_ON_NOTE)
     report.md("")
 
     precedence = {state: idx for idx, state in enumerate(ACTIVE_STATES)}
@@ -117,8 +122,8 @@ def run_next(repo_root: Path, project_roots: list[Path],
             continue
 
         shown = active[:MAX_ROWS_PER_PROJECT]
-        report.md("| Deliverable directory | Current State | Source | Brief command |")
-        report.md("|---|---|---|---|")
+        report.md("| Deliverable directory | Current State | Blocked-On | Source | Brief command |")
+        report.md("|---|---|---|---|---|")
         for r in shown:
             dirname = r.path.parent.name
             loc = r.rel_path + (f":{r.current_state_line}"
@@ -132,7 +137,10 @@ def run_next(repo_root: Path, project_roots: list[Path],
             else:
                 command = NO_DEL_ID_NOTE
             state = (r.current_state or "").strip().upper()
-            report.md(f"| `{dirname}` | {state} | `{loc}` | {command} |")
+            blocked_on = ", ".join(f"`{token}`" for token in r.blocked_on) or "-"
+            report.md(
+                f"| `{dirname}` | {state} | {blocked_on} | `{loc}` | {command} |"
+            )
         report.md("")
         if len(active) > len(shown):
             report.md(TRUNCATION_NOTE.format(

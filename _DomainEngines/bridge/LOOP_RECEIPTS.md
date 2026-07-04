@@ -258,3 +258,12 @@
   - Gate outcome: harness/control tranche executed only; detect-never-rewrite receipt/profile checks added; no app-dev/piping integration lane resumed and no protected-path, profile, F1/F2/F3/F4, publication, or live-binding write.
   - Checks: bridge-status pass/no findings; status x3 no severities; drift 0/154; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; focused HB tests pass; full harness pytest pass.
   - Parked lanes: `D-APP-47`, `D-APP-48`, `D-T0-09`, `D-29`, `D-30`; active brief `TRB-chirality-app-dev-DEL-03-01-2026-07-03`; HB-9; F3/live binding/DEC-041 automation condition.
+
+- **2026-07-04 — Receipt 13**
+  - Start: `6be4145ab`; branch `codex/hb9-blocked-on-status`; PR #31 merged to `main` at merge commit `6be4145ab`.
+  - Owner direction of record: "You are approved to merge PR #31. HB-9 I approve     Option A: add simple blocked-on: D-XX[, D-YY] tokens to deliverable _STATUS.md. Continue pursuing your goals."
+  - Live gates checked: app-dev `D-APP-47`/`D-APP-48`, piping `D-29`/`D-30`, and tier-0 `D-T0-09` remain open; profile live-binding line still names x4; DEL-03-01 brief remains `HUMAN_ADOPTED`/active.
+  - Executed pointers: PR #31 merge; `tools/practitioner_harness/adapter_project.py`; `cmd_next.py`; `cmd_bridge_status.py`; `test_brief_adoption.py`; `test_bridge_status.py`; `README.md`; `BACKLOG.md`; DEL-03-01 `_STATUS.md` `blocked-on` metadata.
+  - Gate outcome: owner-approved PR #31 merge completed; HB-9 Option A convention executed; no decision register state, profile, F1/F2/F3/F4, publication, live-binding, lifecycle, app source, or piping source write.
+  - Checks: focused HB-9 tests pass; coord-check --diff main..HEAD exit 0 at INFO=1 (generated-root reference only); drift 0/154; status x3 no severities; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; bridge-status pass/no findings with `blocked_on_links=4`; full harness pytest pass.
+  - Parked lanes: `D-APP-47`, `D-APP-48`, `D-T0-09`, `D-29`, `D-30`; active brief `TRB-chirality-app-dev-DEL-03-01-2026-07-03`; F3/live binding/DEC-041 automation condition.
