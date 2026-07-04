@@ -1,0 +1,16 @@
+
+> pec@0.1.0 typecheck
+> npm run typecheck --workspace core && npm run typecheck --workspace server && npm run typecheck --workspace web
+
+
+> @pec/core@0.1.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @pec/server@0.1.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @pec/web@0.1.0 typecheck
+> tsc -p tsconfig.json
+
