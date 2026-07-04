@@ -1,0 +1,45 @@
+
+> pec@0.1.0 drill
+> node --disable-warning=ExperimentalWarning tools/pilot-drill.ts
+
+
+PEC pilot drill — scratch db /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/pec-pilot-drill-ca1fc627/drill.db
+mode: bundled Borealis fixtures
+
+1. §16 imports (MDL → RAIL → decisions → risks), as the admin
+   mdl: accepted 24, updated 0, conflicts 0, rejected 0, intake created 0
+   rail: accepted 15, updated 0, conflicts 0, rejected 1, intake created 3
+      row 20 rejected: hold_cause must be one of information, decision, approval, resource, client_input, interface, vendor_data, other
+   decisions: accepted 6, updated 0, conflicts 0, rejected 0, intake created 0
+   risks: accepted 8, updated 0, conflicts 0, rejected 0, intake created 0
+  ✓ MDL: 24 deliverables accepted, none rejected — accepted 24, updated 0, conflicts 0, rejected 0, intake created 0
+  ✓ RAIL: 15 anchored records accepted — accepted 15, updated 0, conflicts 0, rejected 1, intake created 3
+  ✓ RAIL: 3 unmatched rows landed as unanchored intake (I-2)
+  ✓ RAIL: the deliberate bad row (invalid hold_cause) was rejected with a row-level report
+  ✓ decisions: 6 accepted — accepted 6, updated 0, conflicts 0, rejected 0, intake created 0
+  ✓ risks: 8 accepted — accepted 8, updated 0, conflicts 0, rejected 0, intake created 0
+   mdl re-import: accepted 0, updated 24, conflicts 0, rejected 0, intake created 0
+  ✓ MDL re-import is idempotent: all rows updated in place, none duplicated — updated 24, accepted 0
+  ✓ deliverable count unchanged after re-import — 24 rows
+
+2. Coordinator triage over the unanchored intake
+   triage queue: 3 unanchored item(s): INTK-0001 (action), INTK-0002 (hold), INTK-0003 (interface)
+  ✓ intake converted to an anchored work item at triage — INTK-0001 → WI-0001 (anchored to BOR-PR-001)
+  ✓ created record back-linked to the intake (PEC-AHL-005)
+  ✓ raiser notified at routing (PEC-AHL-007)
+  ✓ statement preserved verbatim after triage (OM-3)
+
+3. Derived views render on the imported data
+   overview (PM home): 31.3 ms
+   packages register: 4.0 ms
+   package cockpit (BOR-CV): 3.5 ms
+  ✓ role homes render within the 2 s budget (PEC-NFR-003)
+
+4. Backup / restore rehearsal (tools/backup.ts)
+  ✓ backup written while the database is open (WAL-safe VACUUM INTO)
+  ✓ restore succeeded
+  ✓ restored database is the pre-mutation snapshot
+  ✓ pre-restore database preserved aside, mutation included (nothing destroyed)
+
+PASS — pilot drill complete.
+Next: docs/PILOT.md walks the same steps against the real pilot data.

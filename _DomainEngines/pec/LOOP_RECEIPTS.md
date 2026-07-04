@@ -88,3 +88,11 @@
   - No ruling changed: D-T0-13/D-T0-14 govern staging and residency; Gate 2 open, owner-only; fences F-PEC-1..4 unchanged.
   - Next lawful tranches under the addendum: L1 read-only evidence inside CLOSED residency (committed fixtures/scratch DBs only, immutable capture manifests per D-T0-13), and D-PEC-01 packet preparation when the owner directs the real-data case.
   - Checks (this PR, loop-file-only change): self-check pass; harness pytest pass.
+
+- **2026-07-04 — Receipt 5** (first L1 evidence capture — deterministic-check seam).
+  - Start: `090cd4efb` (`origin/main` after PR #56); isolated worktree; pec subtree unmodified.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "approved to merge and proceed from there." — PR #56 merged `090cd4efb`; proceeding = first lawful ladder tranche under the Receipt-4 addendum.
+  - Executed pointers: `_DomainEngines/pec/PEC_2026-07-04_L1-evidence-01/` (MANIFEST.md + typecheck/test/build/drill logs) — immutable snapshot per the D-T0-13 capture convention; committed inputs and scratch DB only; no server start, no instance content, no egress (D-T0-14 CLOSED respected).
+  - Evidence summary: typecheck/test/build/drill all exit 0 at `090cd4efb`; 161 tests pass (core 72, server 89); drill 17/17 on scratch DB. Not a pilot-readiness or correctness claim (F-PEC-2).
+  - Gate outcome: L1 deterministic-check seam exercised; remaining L1 seams (exports, reports, Explain) need an owner-provisioned session and, for instance content, D-PEC-01/D-T0-14. Gate 2 adoption remains owner-only.
+  - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5 (no baseline shift); harness pytest pass.
