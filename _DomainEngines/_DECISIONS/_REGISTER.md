@@ -14,6 +14,6 @@ Each row is a human-only decision framed by `bridge/BRIDGE_2026-06-21_tier0-prep
 | D-T0-06 | Profile adoption lifecycle + sub-gates | Persona cadence; validator via TOOLMAKER | **RULED: persona cadence; VALIDATED via TOOLMAKER** | profile off DRAFT |
 | D-T0-07 | Contract versioning + DEC-041 confirm | tier-0-owned scheme referencing both versions; DEC-041 is written | **RULED: tier-0-owned; DEC-041 confirmed** | app-dev Q5; pkg pull |
 | D-T0-08 | Fence-3 opening sequence (sub-decision) | sequential: source types → MCP tools; after D-T0-01 + proven L2 | **RULED: sequential** | R7 build lane |
-| D-T0-09 | Residual of `D-T0-07` (2026-07-03 convention): settle the concrete Flow-A contract version **value** under the ruled tier-0-owned scheme — `FLOW_A_CONTRACT_VERSION` remains `TBD_BY_TIER_0` in the extracted app-dev package until this rules | (deferred to the packet / CHANGE prep when the owner directs preparation) | OPEN — awaiting owner (appended 2026-07-03; D-T0-07's ruling act is complete and immutable) | app-dev Q5 completion; `DEC-041` pkg-pull versioning; piping D-30 consumption execution |
+| D-T0-09 | Residual of `D-T0-07` (2026-07-03 convention): settle the concrete Flow-A contract version **value** under the ruled tier-0-owned scheme — `FLOW_A_CONTRACT_VERSION` remains `TBD_BY_TIER_0` in the extracted app-dev package until this rules | Prepared packet: `D-T0-09_flow_a_contract_version_value.md`; recommendation O-A sets `FLOW_A_CONTRACT_VERSION` to `flow-a.contract.v0.1.0` | AWAITING_RULING — packet prepared 2026-07-04; owner value/ruling still required | app-dev Q5 completion; `DEC-041` pkg-pull versioning; piping D-30 consumption execution |
 
-Per-decision records: `D-T0-01..08_*.md`.
+Per-decision records: `D-T0-01..09_*.md`.
