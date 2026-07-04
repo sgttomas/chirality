@@ -14,6 +14,9 @@ the evidence is fresh" — `_DomainEngines/bridge/CHANGE_PREP_2026-07-04_proven_
 **Basis:** `D-T0-08` (F3 opening sequence), `D-T0-01` (canonical contract shape),
 `DEC-064`/piping `D-32` (proven-L2 tranche in-flight this PR; owner acknowledgment staged
 as a separate tier-0 act).
+**Paths:** `docs/`, `execution/`, and `frontend/` citations are relative to
+`projects/chirality-app-dev/`; `agents/`, `tools/`, `_DomainEngines/`, and
+`projects/chirality-piping/` citations are repo-root-relative.
 
 The fence being stepped through, verbatim
 (`execution/_Coordination/_DECISIONS/D-APP-39_RULING_2026-06-20.md:33`):
@@ -44,7 +47,7 @@ All rows checked cold 2026-07-04 at the current tree.
 | CONTRACT §1.10: K-DOMAIN-1..4 specialize framework `docs/CONTRACT.md` §1.12 at commit `77a327727605f05da5f304288f1ddd87dc09659d` and MUST NOT weaken (`:133-134`); K-DOMAIN-1..4 rows (`:138-141`). | `docs/CONTRACT.md:131-141` |
 | Boundary checklists: Scope row keeps "R7 domain-engine implementation" behind its hard fence (`:25`); SB-06 red-flags work that "implements R7 domain engine behavior" (`:50`). | `docs/BOUNDARY_REVIEW_CHECKLISTS.md:25,:50` |
 | TYPES §11 doc-only boundary sentence: "It is documentation only. It does not stand up source types, domain MCP tools, protected-path hooks, domain runtime, or operation-application behavior." — the exact line step (a) crosses. Conforms to `agents/AGENT_DOMAIN_ENGINE.md` @ `77a327727…` (`:501-502`). | `docs/TYPES.md:501-504` |
-| Canonical shape: Minimal Domain Engine Profile Shape (YAML) in the framework-root persona; app-dev field tables mirror it — §11.1 `DomainEngineProfile` (canonical snake_case form; `:509-510`, table `:512-529`), §11.2 `OperationProposal` 20-field table (`:537-558`). | `agents/AGENT_DOMAIN_ENGINE.md:693-748`; `docs/TYPES.md:506-529,:531-558` |
+| Canonical shape: the persona's Minimal Domain Engine Profile Shape (YAML, `:693-748`) is the `DomainEngineProfile` source; the persona's `OperationProposal` shape is its separate "Valid Operation Proposal" section. App-dev field tables are the conformance mirrors — §11.1 `DomainEngineProfile` (canonical snake_case form; `:509-510`, table `:512-529`), §11.2 `OperationProposal` 20-field table (`:537-558`). | `agents/AGENT_DOMAIN_ENGINE.md:693-748` (profile shape) + its "Valid Operation Proposal" section; `docs/TYPES.md:506-529,:531-558` |
 | Deterministic field lists/enums: `CONTRACT_SOURCE = "agents/AGENT_DOMAIN_ENGINE.md@77a327727"` (`:56`); required string/list fields (`:62-76`), deterministic-tool fields (`:78-84`), operation-contract fields (`:86-91`); enums for profile status, integration level, tool mode, risk class, lifecycle order (`:93-130`). | `tools/validation/validate_domain_engine_profile.py:56,:62-130` |
 | Package home: `@chirality/harness-contract`, version `0.0.0-private`, `private: true`; barrel `src/index.ts` re-exports 10 modules; `src/types.ts` `UIEvent` union (`:206`) with `harness:event` passthrough member (`:269`); `src/event-schema.ts` `HARNESS_EVENT_TYPES` = **43** members (last `runtime.mirror.error`); `src/sdk-version.ts:1` `FLOW_A_CONTRACT_VERSION = 'flow-a.contract.v0.1.0'` (D-T0-09). | `frontend/packages/harness-contract/package.json`; `frontend/packages/harness-contract/src/{index.ts,types.ts,event-schema.ts,sdk-version.ts}` |
 | Reserved step-(b) namespace: "The future `mcp__chirality__domain_*` namespace is reserved for governed domain-profile tools and must not be implemented or exposed before the future domain-profile amendment." | `frontend/packages/harness-contract/src/tool-catalog.ts:110-112` |

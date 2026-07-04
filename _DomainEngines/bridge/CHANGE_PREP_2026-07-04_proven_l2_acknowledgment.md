@@ -35,12 +35,15 @@ lib-only ("TOOLMAKER handoff — entrypoint not yet built").
   MechanicsSolved, RuleInputsIncomplete]`, 822 result refs including the
   golden `result:stress:pipe-P-120:end-j:torsional-shear`, two SHA-256
   checksums (`runner_request` `3eb2516d…`, `result_envelope` `60cc21fc…`),
-  zero diagnostics. Full captured output:
+  zero runner-result diagnostics (the mechanics envelope carries
+  informational/warning domain diagnostics only — none blocking; exit
+  status is recorded in the run record). Full captured stdout:
   `projects/chirality-piping/validation/witness/generated/tp_runner_014_headless_entrypoint_preview_run.json`.
 - **Run record:** DEL-10-05
   `_run_records/WORKING_ITEMS_RUN_2026-07-04_TP-RUNNER-014.md`.
-- **Merge-gate evidence:** the DEC-025 five-surface sweep artifact bound to
-  the code commit, under
+- **Merge-gate evidence:** the DEC-025 five-surface sweep (5/5 pass) bound
+  to the tranche's final code state, committed as the evidence-only
+  closeout commit under
   `projects/chirality-piping/validation/evidence/sweeps/`.
 
 ## 3. Exact edits the acknowledgment applies
