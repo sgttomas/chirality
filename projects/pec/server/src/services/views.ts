@@ -101,6 +101,8 @@ export function overviewView(sx: Sx): unknown {
         && appliesPackage(snap, a.appliesToType, a.appliesToId) === p.pkg.id).length,
       openDecisions: snap.decisions.filter((d) => d.packageId === p.pkg.id
         && (d.state === 'identified' || d.state === 'in_progress' || d.state === 'pending')).length,
+      // same log-scoped count the Packages register and cockpit show (ADR-012, PEC-NFR-005)
+      openIssues: openIssueCount(sx, snap, p.pkg),
     })),
     waitingOnYou: {
       breaching: waiting.filter((w) => w.breach !== 'none'),

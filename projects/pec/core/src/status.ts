@@ -256,6 +256,29 @@ export interface PackageStatus {
   totalCount: number
 }
 
+/**
+ * Contributing refs for the deliverable-derived package rules (PH-R1, PH-A1) and KPI-ONPLAN:
+ * each pressured deliverable states its pressure in plain terms, then the underlying issue and
+ * schedule records themselves follow — the same holds, overdue items, conditions, and aging
+ * comments the package cockpit lists — so drill-down never dead-ends at the internal
+ * per-deliverable RAG label (ADR-012). Carried-through refs are capped per deliverable.
+ */
+function pressureRefs(statuses: DeliverableStatus[]): ContributingRef[] {
+  const refs: ContributingRef[] = []
+  for (const s of statuses) {
+    refs.push({
+      recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo,
+      why: `${s.health.value}: ${s.health.detail}${s.deliverable.milestone ? `; milestone ${s.deliverable.milestone}` : ''} (${s.health.ruleId})`,
+    })
+    for (const c of s.health.contributing.slice(0, 3)) {
+      // slip rules point back at the deliverable itself — already covered by the row above
+      if (c.recordType === 'deliverable' && c.id === s.deliverable.id) continue
+      refs.push({ ...c, why: `on ${s.deliverable.docNo}: ${c.why}` })
+    }
+  }
+  return refs
+}
+
 export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatus {
   const th = snap.project.thresholds
   const cal = snap.project.calendar
@@ -272,10 +295,7 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
   // PH-R1: red deliverable linked to a package milestone
   const redMilestone = statuses.filter((s) => s.health.value === 'red' && s.deliverable.milestone)
   if (redMilestone.length > 0) {
-    return mk('red', 'PH-R1', 'red deliverable linked to a package milestone', 'any', redMilestone.map((s) => ({
-      recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo,
-      why: `red (${s.health.ruleId}), milestone ${s.deliverable.milestone}`,
-    })))
+    return mk('red', 'PH-R1', 'red deliverable linked to a package milestone', 'any', pressureRefs(redMilestone))
   }
   // PH-R2: interface overdue past escalation
   const lateInterfaces = snap.interfaces.filter((i) =>
@@ -290,7 +310,7 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
   const pressured = statuses.filter((s) => s.health.value !== 'green')
   if (dels.length > 0 && pressured.length / dels.length >= 0.2) {
     return mk('amber', 'PH-A1', `${pressured.length}/${dels.length} deliverables amber or red`, '>= 20%',
-      pressured.map((s) => ({ recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo, why: `${s.health.value} (${s.health.ruleId})` })))
+      pressureRefs(pressured))
   }
   // PH-A2: package-level decision past need-by
   const lateDecisions = snap.decisions.filter((d) =>
@@ -504,7 +524,8 @@ export function projectStatus(snap: ProjectSnapshot): ProjectStatus {
         value: allDel.length > 0 ? Math.round((green.length / allDel.length) * 100) : 100,
         ruleId: 'KPI-ONPLAN', detail: `${green.length}/${allDel.length} deliverables green`,
         contributing: allDel.filter((s) => s.health.value !== 'green').map((s) => ({
-          recordType: 'deliverable' as const, id: s.deliverable.id, ref: s.deliverable.docNo, why: `${s.health.value} (${s.health.ruleId})`,
+          recordType: 'deliverable' as const, id: s.deliverable.id, ref: s.deliverable.docNo,
+          why: `${s.health.value}: ${s.health.detail} (${s.health.ruleId})`,
         })),
       },
       holdsByCause: {

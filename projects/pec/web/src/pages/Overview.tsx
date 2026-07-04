@@ -29,6 +29,7 @@ export function OverviewPage(): JSX.Element {
     { key: 'lead', label: 'Lead', render: (r) => <span className="small">{person(r.leadId)}</span> },
     { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} /> },
     { key: 'onplan', label: 'On plan', render: (r) => <span className="mono">{r.onPlan}/{r.total}</span> },
+    { key: 'issues', label: 'Open issues', render: (r) => r.openIssues > 0 ? <b>{r.openIssues}</b> : <span className="muted">0</span> },
     { key: 'holds', label: 'Holds', render: (r) => r.holds > 0 ? <span className="badge hold">{r.holds}</span> : <span className="muted">0</span> },
     { key: 'checks', label: 'Checks due', render: (r) => r.checksDue },
     { key: 'apprs', label: 'Approvals due', render: (r) => r.approvalsDue },

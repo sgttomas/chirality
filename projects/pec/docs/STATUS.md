@@ -31,7 +31,7 @@ npm run seed && npm run dev   # demo project AUR at http://localhost:4811 (all u
 2. **This file** — state + next work.
 3. **`docs/PRD.md`** — the basis document (v0.4). Requirements are IDs like `PEC-DEL-001`; phases P1/P2/P3.
 4. **`docs/TRACEABILITY.md`** — requirement → code → test map, with an honest **"Known P1 gaps"** section. This is the most useful map when picking up a specific requirement.
-5. **`docs/adr/ADR.md`** — the *why* behind implementer choices (ADR-001..011). ADR-011 explains the current status/issues split.
+5. **`docs/adr/ADR.md`** — the *why* behind implementer choices (ADR-001..012). ADR-011/012 explain the current status/issues split and why the health derivation stands.
 6. **`docs/SPEC.md`** — deep data-model / lifecycle / conditions / API detail; consult per subsystem.
 
 Ground truth for behavior is the **tests** (`core/test/`, `server/test/`) and the pure derivations in `core/src/`.
@@ -51,7 +51,15 @@ Still for the pilot team, and inherently manual: import the *real* MDL/RAIL, run
 a *real* weekly triage, one restore rehearsal against the real pilot DB (PILOT.md §5), and let pilot
 feedback drive P2 scope — the PRD is explicitly pilot-driven.
 
-**C. Open design threads from ADR-011 (decide before they harden).** Deliverable *status* is now workflow completeness, but **package/project health still derive from the issue-driven `deliverableStatus`** (PH-A1 counts amber/red deliverables; PJ-* rolls those up). That coexistence is intentional but is a seam: decide whether package/overview health should be reframed around package-level *issue* signals (hold age, overdue decisions, late interfaces, risks) rather than deliverable-RAG, for consistency with the issues-at-package model — and whether the Overview should adopt the issues framing.
+**C. ADR-011 open thread — DECIDED and closed (2026-07-04, ADR-012).** The §8.3/§8.4 derivation stands
+rule-for-rule (PH-A1 is a PRD default; no pre-pilot deviation from the basis document — the full
+rationale is ADR-012). What was broken was presentation: PH-R1/PH-A1 drill-downs dead-ended at the
+now-invisible per-deliverable RAG label. Fixed: their explanations state the pressure in plain terms and
+carry the underlying issue records (holds, overdue items, conditions, comments) into `contributing`, so
+drill-down always lands on a cockpit-visible record; and the Overview package rollup now shows the same
+log-scoped `openIssues` count as the Packages register/cockpit (PEC-NFR-005 preserved). Tests:
+`core/test/status.test.ts` (2 ADR-012 tests), `server/test/coverage-adr-012.test.ts`. Revisit the
+derivation only on pilot evidence.
 
 **D. P2 — planning & capacity (the big next theme).** Plan module (Now/Next/Later, six-week lookahead), capacity by discipline where check/approval hours load capacity (I-9), the weekly commit that generates each person's My Week (replacing the P1 interim need-by + manual "commit to this week" flag), the dedicated interface register with aging, weekly package-review packs, supersession links, and role-digest notifications. Builds cleanly on the existing lifecycle/conditions/derivation machinery.
 

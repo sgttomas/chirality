@@ -117,3 +117,28 @@ register `openIssues` count is log-visibility-scoped so it matches the drill-dow
 reveals the existence of records the caller cannot see (PEC-NFR-005). I-4 is preserved: workflow status
 is derived-on-read and never stored; health continues to carry Explain payloads for the rollups. The
 deviation from the P1 "deliverable health" presentation is deliberate and recorded here, not drift.
+
+## ADR-012 Package/project health derivation stands; explanations carry through to issue records
+**Context.** ADR-011 left a seam open: package health (PH-R1/PH-A1) and project health still derive from
+the issue-driven per-deliverable RAG (DH-*), a concept the UI no longer surfaces as "deliverable health"
+since a deliverable's status became workflow completeness. Should package/overview health be reframed
+around package-level issue signals (hold age, overdue decisions, late interfaces, risks) instead?
+**Decision.** The derivation stands, rule for rule. PRD §8.3 specifies the package rules — including
+"≥ 20% of active deliverables amber/red" — as the shipped defaults; the pilot has not run, and deviating
+from the basis document ahead of pilot evidence would invert the pilot-driven posture. The rules are also
+not redundant with an issue-count reframing: PH-R1/PH-A1 weight issues by schedule impact (forecast slip,
+milestone linkage) that flat issue aggregation cannot express; §8.3 already contains the direct
+package-level issue rules (PH-R2 interfaces, PH-A2 decisions); and hold-age/decision-latency pressure
+already escalates through the §8.4 project signals — a parallel per-package copy would be rule sprawl.
+P2 extends §8.3 in kind (capacity load rules), confirming the frame. What was actually broken is the
+*explanation*: PH-R1/PH-A1 drill-downs bottomed out at "AUR-M-001 amber (DH-A1)" — an internal label
+pointing at nothing a user can open. Fixed in the presentation layer: (1) the contributing refs of
+PH-R1/PH-A1 (and KPI-ONPLAN) now state the pressure in plain terms and carry through the underlying
+records themselves — the same holds, overdue items, conditions, and aging comments the package cockpit
+lists (capped at 3 per deliverable) — so every drill-down lands on a cockpit-visible record; (2) the
+Overview package rollup (PEC-OV-003) adopts the cockpit's log-scoped `openIssues` count, so Overview and
+Packages speak the same issues language (PEC-NFR-005 preserved via the same scoping).
+**Consequences.** No health value changes anywhere; only Explain payloads and the Overview rollup gain
+information. DH-* remains an internal aggregation stage, legitimate as derivation, invisible as
+presentation. Revisit the derivation itself only if the pilot demonstrates the §8.3 defaults mislead —
+that is what PEC-OV-007 threshold configurability and this ADR's paper trail are for.
