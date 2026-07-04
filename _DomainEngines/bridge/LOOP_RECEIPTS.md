@@ -221,3 +221,31 @@
   - Parked lanes: shim migration/wrapper retirement, D-T0-07 version settlement,
     package publishability, D-22 piping consumption, SCA propagation, F3, live binding,
     and PR #29 owner merge/CI disposition.
+
+- **2026-07-03 — Receipt 11**
+  - Start: branch `loop3/register-residual-convention` stacked on
+    `codex/del0301-consumption-records` (PR #29) so this receipt appends after
+    Receipt 10; PR #30 (`https://github.com/sgttomas/chirality/pull/30`) opened
+    for owner merge after #29.
+  - Owner directions of record (2026-07-03, in-session, Ryan Tufts): "Proceed
+    accordingly. I rule that your proposed convention for Item 2 is accepted
+    and direct you to incorporate the stubs in Item 1. Then prepare the
+    `BACKLOG.md` for capturing the remaining items." (ruling + direction on the
+    in-session work-scope-surfacing recommendation).
+  - Executed pointers: residual-work-row convention recorded in all three
+    register headers; app-dev rows `D-APP-47`/`D-APP-48`; piping rows
+    `D-29`/`D-30`; tier-0 row `D-T0-09` — the one tier-0 control-root write,
+    isolated flagged commit `e0b80f9f9`, append-only; owner merge is the gate;
+    `tools/practitioner_harness/BACKLOG.md` HB-6..HB-9 queued.
+  - Gate outcome: coordination/control tranche executed at explicit owner
+    ruling/direction; all new rows NOT_PREPARED / OPEN — nothing ruled,
+    advanced, or authorized; STOPPED awaiting owner merges (#29 then #30).
+  - Checks: adversarial review no findings (citations cold-checked incl. the
+    64-importer baseline; all register diffs append-only); coord-check --diff
+    no findings; status x3 no severities; drift 0/154; self-check exit 0 at
+    INFO=14/NOT_APPLICABLE=1/REVIEW=28/WARN=2; harness pytest 248 passed.
+  - Parked lanes (unchanged in substance, now register-anchored): shim
+    migration `D-APP-47`, publishability `D-APP-48`, Flow-A version value
+    `D-T0-09`, SCA propagation `D-29`, D-22 consumption execution `D-30`, F3,
+    live binding; HB-6..HB-9 in the harness backlog; PR #29 + PR #30 owner
+    merge/CI disposition.
