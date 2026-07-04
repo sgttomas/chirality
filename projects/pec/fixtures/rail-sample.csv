@@ -1,0 +1,6 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes
+RAIL-101,Chase client for updated feed composition,action,internal,eor@aurora.dev,2026-07-17,open,pm@aurora.dev,2026-06-24,PKG-P,AUR-P-003,,,
+RAIL-102,Vendor data outstanding on compressor datasheet,hold,internal,lead.mech@aurora.dev,2026-07-10,open,pm@aurora.dev,2026-06-20,PKG-M,AUR-M-002,vendor_data,,
+RAIL-103,Confirm cooling water return temperature with utilities,coordination,package,ic1@aurora.dev,2026-07-24,in_work,coord@aurora.dev,2026-06-29,PKG-P,AUR-P-002,,,
+RAIL-104,Legacy action with no matching deliverable reference,action,internal,ic2@aurora.dev,2026-07-31,open,coord@aurora.dev,2026-06-15,PKG-X,AUR-X-999,,,Lands as unanchored intake (I-2)
+RAIL-105,Hold row missing its typed cause,hold,internal,lead.mech@aurora.dev,2026-07-08,open,pm@aurora.dev,2026-06-25,PKG-M,AUR-M-001,,,BAD ROW: hold_cause required

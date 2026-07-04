@@ -1,0 +1,25 @@
+{
+  "name": "pec",
+  "private": true,
+  "version": "0.1.0",
+  "description": "9-Domains: Project Execution Control — execution-control layer per docs/PRD.md",
+  "type": "module",
+  "workspaces": [
+    "core",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "seed": "node --disable-warning=ExperimentalWarning tools/seed.ts",
+    "dev": "npm run dev --workspace server & npm run dev --workspace web & wait",
+    "dev:server": "npm run dev --workspace server",
+    "dev:web": "npm run dev --workspace web",
+    "test": "npm run test --workspace core && npm run test --workspace server",
+    "typecheck": "npm run typecheck --workspace core && npm run typecheck --workspace server && npm run typecheck --workspace web",
+    "build": "npm run build --workspace web",
+    "start": "npm run start --workspace server"
+  },
+  "engines": {
+    "node": ">=23.6"
+  }
+}

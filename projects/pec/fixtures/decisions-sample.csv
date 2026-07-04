@@ -1,0 +1,5 @@
+decision_id,title,statement,authority,need_by,status,preparer,outcome,rationale,decided_date,affected_refs
+DEC-CL-01,Select compressor anti-surge vendor package,Which anti-surge control package is the project basis for K-201?,pm@aurora.dev,2026-07-15,pending,lead.mech@aurora.dev,,,,AUR-M-002
+DEC-CL-02,Confirm design ambient temperature,Confirm 38C vs 41C design ambient for the air coolers,em@aurora.dev,2026-06-19,decided,lead.process@aurora.dev,confirm_basis,Client letter L-118 confirms 38C; the 41C reading was a one-off,2026-06-18,AUR-M-003;AUR-P-001
+DEC-CL-03,Set piping corrosion allowance for wet service,Corrosion allowance basis needed before line class selection,pm@aurora.dev,2026-08-01,identified,,,,,AUR-PI-001
+DEC-CL-04,Approve deviation on vessel nozzle loads,Deviation from client spec table 7 requested by vendor,unknown@nowhere.dev,2026-07-20,decided,,,,,BAD ROW: unknown authority and decided without outcome
