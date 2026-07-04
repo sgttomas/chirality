@@ -16,7 +16,7 @@ import {
   readChatDraftSnapshotFromStorage
 } from '../../lib/harness/chat-draft';
 import { type UiAttachment } from '../../lib/harness/ui-attachments';
-import type { HarnessEvent } from '../../lib/harness/event-schema';
+import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
 import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions } from '../workspace/harness-events-provider';

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type { HarnessEvent, HarnessEventType } from '../../lib/harness/event-schema';
-import { deriveTranscriptView } from '../../lib/harness/transcript-replay';
-import type { SessionRecord } from '../../lib/harness/types';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
+import { deriveTranscriptView } from '@chirality/harness-contract/transcript-replay';
+import type { SessionRecord } from '@chirality/harness-contract/types';
 
 let counter = 0;
 

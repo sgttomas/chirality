@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { resolveRuntimeOptions } from '../../lib/harness/options';
-import type { HarnessOpts, SessionRecord } from '../../lib/harness/types';
+import type { HarnessOpts, SessionRecord } from '@chirality/harness-contract/types';
 
 let tmpDir = '';
 

@@ -8,12 +8,10 @@ import {
   normalizeHarnessPermissionMode
 } from './permission-overlay';
 import { SUBAGENT_BRIDGE_POLICY_VERSION } from './subagent-bridge';
-import {
-  HARNESS_TOOL_REGISTRY_VERSION,
-  resolveHarnessToolPool
-} from './tool-descriptor';
-import { CHIRALITY_MCP_SERVER_NAME } from './mcp/tool-names';
-import { IPersonaManager } from './types';
+import { resolveHarnessToolPool } from './tool-pool';
+import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
+import { CHIRALITY_MCP_SERVER_NAME } from '@chirality/harness-contract/mcp/tool-names';
+import { IPersonaManager } from '@chirality/harness-contract/types';
 
 export const PERSONA_COMPOSER_VERSION = 'persona-composer.v1.instruction-root';
 

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { asHarnessError, HarnessError } from './errors';
-import { HarnessErrorResponse } from './types';
+import { asHarnessError, HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessErrorResponse } from '@chirality/harness-contract/types';
 
 export async function readJsonBody<T>(request: Request): Promise<T> {
   try {

@@ -10,7 +10,7 @@ import type {
   ResolvedOpts,
   SessionRecord,
   UIEvent
-} from '../../lib/harness/types';
+} from '@chirality/harness-contract/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_turn_engine',

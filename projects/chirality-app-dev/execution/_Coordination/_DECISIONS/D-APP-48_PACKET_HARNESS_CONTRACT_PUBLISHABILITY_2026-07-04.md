@@ -1,6 +1,6 @@
-# D-APP-48 - PROPOSAL: Harness-contract publishability mechanism
+# D-APP-48 - RULING: Harness-contract publishability mechanism
 
-**Status:** PROPOSAL / `AWAITING_RULING` for mechanism selection.
+**Status:** RULED / Option A selected 2026-07-04.
 **Date prepared:** 2026-07-04
 **Decision ID:** D-APP-48
 **Prepared by:** bridge work loop agent, at owner direction to prepare and execute all agent-lawful coordination/control work on D-APP-48.
@@ -22,7 +22,7 @@ condition.
 | Fact | Source |
 |---|---|
 | The package exists in the app-dev frontend workspace as `@chirality/harness-contract`, version `0.0.0-private`, `private: true`, with file-workspace wiring from the app frontend. | `projects/chirality-app-dev/frontend/package.json`; `projects/chirality-app-dev/frontend/packages/harness-contract/package.json` |
-| The package exports the dependency-free contract spine and carries `FLOW_A_CONTRACT_VERSION = 'TBD_BY_TIER_0'`, `CLAUDE_AGENT_SDK_PACKAGE_VERSION = '0.3.150'`, and `HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v6.mutating-mcp'`. | `projects/chirality-app-dev/frontend/packages/harness-contract/src/sdk-version.ts`; `projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts` |
+| The package exports the dependency-free contract spine. D-T0-09 now rules `FLOW_A_CONTRACT_VERSION = 'flow-a.contract.v0.1.0'`; the referenced constants remain `CLAUDE_AGENT_SDK_PACKAGE_VERSION = '0.3.150'` and `HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v6.mutating-mcp'`. | `_DomainEngines/_DECISIONS/D-T0-09_flow_a_contract_version_value.md`; `projects/chirality-app-dev/frontend/packages/harness-contract/src/sdk-version.ts`; `projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts` |
 | DEC-041 requires the dependency to be consumable as a highly-automated package pull and not require laborious manual cross-repo/cross-session coordination. | `projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md` DEC-041 |
 | D-APP-48 blocks piping D-30 consumption execution. | `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md`; `projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md` |
 | Package publication / external distribution is a hard-fence concern under the bridge plan unless separately ruled. | `_DomainEngines/bridge/WORKPLAN_2026-07-02_bridge_loop.md` |
@@ -73,7 +73,7 @@ the owner to manually copy package files between sessions.
 
 ## Human ruling
 
-**Ruling:** OPEN.
+**Ruling recorded:** O-A approved by owner (Ryan Tufts), 2026-07-04.
 
-The owner may select O-A, O-B, O-C, O-D, or give a custom ruling. Only a ruling
-record and register update may treat the mechanism as authorized.
+Ruling record:
+`execution/_Coordination/_DECISIONS/D-APP-48_RULING_2026-07-04.md`.

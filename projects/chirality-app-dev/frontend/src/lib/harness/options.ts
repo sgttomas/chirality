@@ -8,7 +8,7 @@ import {
   type ParsedFrontmatter,
   readAgentInstruction
 } from './agent-instruction';
-import { HarnessOpts, ResolvedOpts, SessionRecord } from './types';
+import { HarnessOpts, ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 
 const DEFAULT_MODEL = 'haiku';
 const DEFAULT_TOOLS = ['read', 'write', 'bash'];

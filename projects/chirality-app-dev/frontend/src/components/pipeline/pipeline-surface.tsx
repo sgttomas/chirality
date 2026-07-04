@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useDeliverables } from '../workspace/deliverables-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { harnessApiErrorMessage, scaffoldHarnessExecutionRoot } from '../../lib/harness/client';
-import type { CoordinationMode, ScaffoldExecutionRootResponse } from '../../lib/harness/types';
+import type { CoordinationMode, ScaffoldExecutionRootResponse } from '@chirality/harness-contract/types';
 import {
   currentIsoDate,
   fetchDeliverableDependencies,

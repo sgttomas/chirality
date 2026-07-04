@@ -1,7 +1,7 @@
 import { constants } from 'node:fs';
 import { access, lstat, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { IAttachmentResolver, ResolvedAttachments } from './types';
+import { IAttachmentResolver, ResolvedAttachments } from '@chirality/harness-contract/types';
 
 const BYTES_PER_MIB = 1024 * 1024;
 const MAX_ATTACHMENT_BYTES = 10 * BYTES_PER_MIB;

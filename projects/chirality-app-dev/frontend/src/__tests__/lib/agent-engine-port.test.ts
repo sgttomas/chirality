@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PUBLIC_UI_EVENT_NAMES } from '../../lib/harness/agent-engine-port';
+import { PUBLIC_UI_EVENT_NAMES } from '@chirality/harness-contract/agent-engine-port';
 
 describe('agent engine port contract', () => {
   it('keeps browser UI event names stable and provider-neutral', () => {

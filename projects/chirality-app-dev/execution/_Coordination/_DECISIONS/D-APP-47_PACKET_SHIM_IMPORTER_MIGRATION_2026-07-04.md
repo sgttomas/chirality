@@ -1,6 +1,6 @@
-# D-APP-47 - PROPOSAL: Shim-importer migration and wrapper retirement
+# D-APP-47 - RULING: Shim-importer migration and wrapper retirement
 
-**Status:** PROPOSAL / `AWAITING_RULING` for implementation greenlight.
+**Status:** RULED / Option A selected 2026-07-04.
 **Date prepared:** 2026-07-04
 **Decision ID:** D-APP-47
 **Prepared by:** bridge work loop agent, at owner direction to prepare and execute all agent-lawful coordination/control work on D-APP-47.
@@ -70,7 +70,7 @@ single import surface before downstream automated consumption is attempted.
 
 ## Human ruling
 
-**Ruling:** OPEN.
+**Ruling recorded:** O-A approved by owner (Ryan Tufts), 2026-07-04.
 
-The owner may select O-A, O-B, O-C, or give a custom ruling. Only a ruling record
-and register update may treat implementation as authorized.
+Ruling record:
+`execution/_Coordination/_DECISIONS/D-APP-47_RULING_2026-07-04.md`.

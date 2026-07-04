@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { HarnessEvent } from './event-schema';
+import { HarnessEvent } from '@chirality/harness-contract/event-schema';
 import { redactJsonLike } from './run-logger';
 
 function getSessionRootDirectory(): string {

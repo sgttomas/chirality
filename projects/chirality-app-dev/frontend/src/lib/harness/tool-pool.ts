@@ -1,29 +1,3 @@
-export {
-  HARNESS_TOOL_DESCRIPTORS,
-  HARNESS_TOOL_REGISTRY_VERSION,
-  createDescriptorLookup,
-  getCurrentTrancheDisallowedToolNames,
-  getHarnessToolDescriptor,
-  getKnownHarnessToolNames,
-  listHarnessToolDescriptors
-} from '@chirality/harness-contract/tool-descriptor';
-export type {
-  ClaudeAgentSdkBuiltinToolName,
-  ClaudeAgentSdkToolName,
-  HarnessToolConcurrency,
-  HarnessToolDescriptor,
-  HarnessToolHumanGate,
-  HarnessToolIdempotence,
-  HarnessToolInterruptBehavior,
-  HarnessToolPathScope,
-  HarnessToolPermission,
-  HarnessToolProvenance,
-  HarnessToolResolutionIssue,
-  HarnessToolResultBudget,
-  HarnessToolRuntimeSupport,
-  HarnessToolSurface
-} from '@chirality/harness-contract/tool-descriptor';
-
 import {
   HARNESS_TOOL_REGISTRY_VERSION,
   getCurrentTrancheDisallowedToolNames,

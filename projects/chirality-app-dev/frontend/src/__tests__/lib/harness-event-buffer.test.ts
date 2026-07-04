@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { HarnessEvent, HarnessEventType } from '../../lib/harness/event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
 import { boundHarnessEventBuffer } from '../../lib/shell/harness-event-buffer';
 import { deriveToolActivity } from '../../lib/shell/harness-event-views';
 

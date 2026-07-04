@@ -1,4 +1,4 @@
-import type { HarnessEvent } from '../harness/event-schema';
+import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
 
 /**
  * Keep only the last `max` events (dropping the oldest), preserving order.

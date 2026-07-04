@@ -1,6 +1,6 @@
-# D-T0-09 - PROPOSAL: Flow-A contract version value
+# D-T0-09 - RULING: Flow-A contract version value
 
-**Status:** PROPOSAL / `AWAITING_RULING`.
+**Status:** RULED / Option A selected 2026-07-04.
 **Date prepared:** 2026-07-04
 **Decision ID:** D-T0-09
 **Prepared by:** bridge work loop agent, at owner direction to prepare the ruling packet.
@@ -57,6 +57,10 @@ The follow-on implementation should:
 
 ## Human ruling
 
-**Ruling:** OPEN.
+**Ruling recorded:** O-A approved by owner (Ryan Tufts), 2026-07-04.
 
-The owner may select O-A, O-B, O-C, O-D, or provide a direct value.
+Concrete value: `flow-a.contract.v0.1.0`.
+
+Owner ruling, verbatim:
+
+> D-T0-09: O-A, value flow-a.contract.v0.1.0

@@ -6,7 +6,7 @@ import {
   listHarnessSessions,
   replaySessionEvents
 } from '../../lib/harness/client';
-import type { SessionRecord } from '../../lib/harness/types';
+import type { SessionRecord } from '@chirality/harness-contract/types';
 import {
   useHarnessEventActions,
   useHarnessStreaming

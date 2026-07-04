@@ -10,7 +10,7 @@ import type {
 } from '@anthropic-ai/claude-agent-sdk';
 import { createHash } from 'node:crypto';
 import { lstat, readFile } from 'node:fs/promises';
-import { createHarnessEvent } from './event-schema';
+import { createHarnessEvent } from './event-factory';
 import { appendHarnessEvent } from './session-events';
 import {
   summarizeToolDescriptor,
@@ -26,7 +26,7 @@ import {
   DEFAULT_BASH_TIMEOUT_MS,
   evaluateShellCommandPolicy
 } from './tool-shell-policy';
-import { getHarnessToolDescriptor, type HarnessToolDescriptor } from './tool-descriptor';
+import { getHarnessToolDescriptor, type HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
 const WRITE_HOOK_TIMEOUT_SECONDS = 5;

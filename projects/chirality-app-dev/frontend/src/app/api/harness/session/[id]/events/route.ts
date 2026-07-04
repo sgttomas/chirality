@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { HarnessError } from '../../../../../../lib/harness/errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harness/http';
 import { getHarnessRuntime } from '../../../../../../lib/harness/runtime';
 import { replayHarnessEvents } from '../../../../../../lib/harness/session-events';
-import { deriveTranscriptView } from '../../../../../../lib/harness/transcript-replay';
+import { deriveTranscriptView } from '@chirality/harness-contract/transcript-replay';
 
 type RouteContext = {
   params: {

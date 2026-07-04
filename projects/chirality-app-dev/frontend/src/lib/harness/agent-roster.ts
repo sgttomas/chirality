@@ -6,7 +6,7 @@ import {
   readAgentInstruction,
   type AgentClass
 } from './agent-instruction';
-import { HarnessError } from './errors';
+import { HarnessError } from '@chirality/harness-contract/errors';
 import { assertInstructionRootReadable } from './instruction-root';
 
 /**
