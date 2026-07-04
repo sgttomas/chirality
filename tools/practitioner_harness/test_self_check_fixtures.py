@@ -384,6 +384,101 @@ def test_gen2_backtick_quoted_tbd_is_not_a_finding(tmp_path):
     assert hits[0].severity is Severity.REVIEW
 
 
+def test_gen10_latest_receipt_requires_canonical_labels(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    receipts = repo / "_DomainEngines" / "bridge" / "LOOP_RECEIPTS.md"
+    _write(
+        receipts,
+        "# Bridge Loop Receipts\n\n"
+        "## Receipts\n\n"
+        "- **2026-07-03 - Receipt 1**\n"
+        "  - Owner directions of record: pluralized fixture direction.\n"
+        "  - Gate outcome: fixture gate.\n"
+        "  - Parked lanes: PR #42.\n",
+    )
+
+    report, refusal = cmd_self_check.run_self_check(repo)
+
+    assert refusal is None
+    hit = _has(
+        report,
+        "RECEIPT_STRUCTURE_LABEL_MISSING",
+        "_DomainEngines/bridge/LOOP_RECEIPTS.md",
+        5,
+        Severity.WARN,
+    )
+    assert "Owner direction of record" in hit.message
+
+
+def test_gen10_receipt_only_lane_without_carry_forward_or_retirement(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    receipts = repo / "_DomainEngines" / "bridge" / "LOOP_RECEIPTS.md"
+    _write(
+        receipts,
+        "# Bridge Loop Receipts\n\n"
+        "## Receipts\n\n"
+        "- **2026-07-02 - Receipt 0**\n"
+        "  - Owner direction of record: fixture direction.\n"
+        "  - Gate outcome: fixture gate.\n"
+        "  - Parked lanes: PR #41.\n"
+        "- **2026-07-03 - Receipt 1**\n"
+        "  - Owner direction of record: fixture direction.\n"
+        "  - Gate outcome: fixture gate.\n"
+        "  - Parked lanes: unanchored fixture lane.\n",
+    )
+
+    report, refusal = cmd_self_check.run_self_check(repo)
+
+    assert refusal is None
+    hit = _has(
+        report,
+        "PARKED_LANE_RECEIPT_ONLY",
+        "_DomainEngines/bridge/LOOP_RECEIPTS.md",
+        12,
+        Severity.REVIEW,
+    )
+    assert "unanchored fixture lane" in hit.message
+
+
+def test_de_live_binding_gate_line_reports_resolved_named_gates(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    profile = repo / "_DomainEngines" / "profiles" / "open_pipe_stress.DRAFT.yaml"
+    _write(
+        profile,
+        profile.read_text(encoding="utf-8")
+        + '\n  open_issues:\n'
+          '    - "Live binding (L2-L3) gated x4: tier-0 adoption, app-dev F3, '
+          'piping D-21, DEC-041 automation condition."\n',
+    )
+    piping_register = (
+        repo
+        / "projects"
+        / "chirality-piping"
+        / "execution"
+        / "_Coordination"
+        / "_DECISIONS"
+        / "_REGISTER.md"
+    )
+    _write(
+        piping_register,
+        piping_register.read_text(encoding="utf-8")
+        + "| D-21 | Fixture scope change | RULED |\n",
+    )
+
+    report, refusal = cmd_self_check.run_self_check(repo)
+
+    assert refusal is None
+    hit = _has(
+        report,
+        "STALE_LIVE_BINDING_GATE",
+        "_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml",
+        23,
+        Severity.REVIEW,
+    )
+    assert "tier-0 adoption" in hit.message
+    assert "piping D-21" in hit.message
+
+
 def test_root_governance_status_reported_as_facts(tmp_path):
     repo = build_mini_repo(tmp_path)
     report, _ = cmd_self_check.run_self_check(repo)

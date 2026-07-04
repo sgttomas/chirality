@@ -16,7 +16,8 @@ date-in-filename where the naming convention allows the comparison),
 (i) project-tree machine-absolute-path lint (SPEC §0.2.4: per-file findings
 on instruction-class project surfaces; detect, never rewrite), and
 (j) agent-registry currency (K-AGENTS-1: `AGENTS.md` file tokens vs live
-`agents/` files, both directions).
+`agents/` files, both directions), and (k) bridge-receipt structure /
+parked-lane carry-forward checks for the bridge loop (GEN-10).
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO except objective local generated-output
@@ -36,6 +37,10 @@ Scope notes (v1):
 - GEN-9 observation boundary (v1): file tokens only (backticked
   `AGENT_*.md` spans in `AGENTS.md`); role-name narrative mentions (e.g. a
   bare DELIVERABLE_TASK word in prose) are outside the boundary.
+- GEN-10 observation boundary (v1): latest bridge receipt only, with the
+  prior receipt used only for parked-lane carry-forward comparison. Detects
+  canonical bullet labels and whether parked-lane tokens carry forward,
+  resolve to a structural home, or self-retire in the latest receipt.
 - Nothing under `_harness_generated/` is read as input, except the GEN-3
   labeling check of that directory itself.
 """
@@ -48,6 +53,7 @@ import subprocess
 from pathlib import Path
 
 import adapter_domain_engines
+import cmd_bridge_status
 from harness_common import (
     Finding,
     GENERATED_ROOT_NAME,
@@ -432,6 +438,9 @@ def run_self_check(
                         "place pattern is the lawful resolution).",
                         _rel(rec, repo_root), idx, invariant="K-STALE-2"))
 
+        _add_live_binding_gate_findings(report, repo_root)
+        _add_bridge_receipt_findings(report, repo_root)
+
     # ----- GEN-1 absolute-path leak (control areas; SPEC §0.2.4) -----
     for croot in control_roots:
         for path in _iter_files(croot, (".md", ".yaml", ".yml", ".json")):
@@ -806,10 +815,107 @@ def run_self_check(
         "GEN-8 (project-tree abs-path lint: per-file, three-way "
         "classification, detect-never-rewrite), "
         "GEN-9 (agent-registry currency: AGENTS.md file tokens vs live "
-        "agents/ files, both directions)")
+        "agents/ files, both directions), "
+        "GEN-10 (bridge receipt labels + parked-lane carry-forward)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
+
+
+def _add_live_binding_gate_findings(report: Report, repo_root: Path) -> None:
+    profile = cmd_bridge_status._load_profile(repo_root)
+    rows = cmd_bridge_status._all_register_rows(repo_root)
+    observations = cmd_bridge_status._live_binding_gate_observations(
+        repo_root, profile, rows)
+    resolved = [obs for obs in observations if obs.resolved_current]
+    if not resolved or profile is None:
+        return
+    details = "; ".join(
+        f"{obs.gate} -> {obs.observed_state} at "
+        f"{cmd_bridge_status._source(obs.source_path, obs.line)}"
+        for obs in resolved)
+    report.add_finding(make_finding(
+        Severity.REVIEW,
+        "STALE_LIVE_BINDING_GATE",
+        "staleness",
+        "Profile live-binding open_issues line still names gate(s) that "
+        "current source state reports as cleared/resolved: "
+        f"{details}. Detect, never rewrite: profile text is CHANGE-gated; "
+        "human disposition is required.",
+        profile.source_path,
+        profile.live_binding_line_no,
+        invariant="K-STALE-2",
+    ))
+
+
+def _add_bridge_receipt_findings(report: Report, repo_root: Path) -> None:
+    receipts = cmd_bridge_status._receipt_summaries(repo_root)
+    if not receipts:
+        return
+    latest = receipts[-1]
+    missing = cmd_bridge_status._receipt_missing_labels(latest)
+    if missing:
+        report.add_finding(make_finding(
+            Severity.WARN,
+            "RECEIPT_STRUCTURE_LABEL_MISSING",
+            "staleness",
+            "Latest bridge receipt lacks canonical bullet label(s): "
+            + ", ".join(missing)
+            + ". Exact labels are part of the bridge handoff protocol because "
+              "generated views parse them mechanically.",
+            latest.source_path,
+            latest.line,
+            invariant="K-STALE-2",
+        ))
+
+    rows = cmd_bridge_status._all_register_rows(repo_root)
+    briefs, refusal = cmd_bridge_status._brief_records(repo_root)
+    if refusal is not None:
+        briefs = []
+    latest_lanes = cmd_bridge_status._parked_lane_records(repo_root, latest, rows, briefs)
+    previous_lanes = (
+        cmd_bridge_status._parked_lane_records(repo_root, receipts[-2], rows, briefs)
+        if len(receipts) >= 2 else []
+    )
+    previous_text = {lane.lane.lower() for lane in previous_lanes}
+    latest_receipt_text = " ".join(b.text for b in latest.bullets).lower()
+    retired_re = re.compile(r"\b(retired|closed|done|executed|merged|superseded)\b")
+    for lane in latest_lanes:
+        if lane.anchor_status == "anchored":
+            continue
+        if lane.lane.lower() in previous_text:
+            continue
+        if retired_re.search(lane.lane.lower()):
+            continue
+        report.add_finding(make_finding(
+            Severity.REVIEW,
+            "PARKED_LANE_RECEIPT_ONLY",
+            "staleness",
+            "Latest parked-lane token is receipt-only: "
+            f"{lane.lane!r}. It does not recur verbatim from the previous "
+            "receipt, resolve to a parsed register/brief/PR pointer, or state "
+            "a retirement reason; human review required.",
+            lane.source_path,
+            lane.line,
+            invariant="K-STALE-2",
+        ))
+    for lane in previous_lanes:
+        if lane.anchor_status == "anchored":
+            continue
+        token = lane.lane.lower()
+        if token in latest_receipt_text:
+            continue
+        report.add_finding(make_finding(
+            Severity.REVIEW,
+            "PARKED_LANE_DROPPED",
+            "staleness",
+            "Previous receipt-only parked-lane token is absent from the latest "
+            f"receipt without a parsed structural home or retirement note: "
+            f"{lane.lane!r}. Human review required.",
+            latest.source_path,
+            latest.line,
+            invariant="K-STALE-2",
+        ))
 
 
 def _search_outside_backticks(

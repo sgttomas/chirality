@@ -39,6 +39,7 @@ def test_bridge_status_derives_open_rows_profile_and_receipt(tmp_path):
 
     _append(app_register, "| D-APP-99 | Fixture bridge packet | AWAITING_RULING |\n")
     _append(piping_register, "| D-06 | Fixture release matrix | NOT_PREPARED |\n")
+    _append(piping_register, "| D-21 | Fixture scoped gate | RULED |\n")
     _append(
         profile,
         '\n  open_issues:\n'
@@ -63,11 +64,40 @@ def test_bridge_status_derives_open_rows_profile_and_receipt(tmp_path):
     assert report.summary["open_register_rows"] == 2
     assert report.summary["latest_receipt"] == "2026-07-03 - Receipt 1"
     assert report.summary["owner_act_rows"] >= 5
+    assert report.summary["parked_lane_rows"] == 1
+    assert report.summary["parked_lane_receipt_only"] == 1
+    assert report.summary["live_binding_gate_rows"] == 4
     assert "D-APP-99" in md
     assert "D-06" in md
     assert "Live binding (L2-L3) gated x4" in md
+    assert "piping D-21" in md
+    assert "D-21 State=RULED" in md
     assert "fixture gate waits on owner merge" in md
+    assert "fixture lane remains owner-directed" in md
+    assert "receipt-only" in md
     assert "tool never selects" in md
+
+
+def test_bridge_status_warns_on_latest_receipt_label_drift(tmp_path):
+    repo = build_mini_repo(tmp_path)
+    receipts = repo / "_DomainEngines" / "bridge" / "LOOP_RECEIPTS.md"
+    receipts.parent.mkdir(parents=True, exist_ok=True)
+    receipts.write_text(
+        "# Bridge Loop Receipts\n\n"
+        "## Receipts\n\n"
+        "- **2026-07-03 - Receipt 1**\n"
+        "  - Owner directions of record: pluralized fixture direction.\n"
+        "  - Gate outcome: fixture gate.\n"
+        "  - Parked lanes: PR #42.\n",
+        encoding="utf-8",
+    )
+
+    report = cmd_bridge_status.run_bridge_status(repo)
+
+    hits = [f for f in report.findings if f.code == "RECEIPT_BULLET_LABEL_DRIFT"]
+    assert len(hits) == 1
+    assert hits[0].severity.value == "WARN"
+    assert "Owner direction of record" in hits[0].message
 
 
 def test_bridge_status_cli_runs_on_minimal_fixture(tmp_path, capsys):
