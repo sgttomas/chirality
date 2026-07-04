@@ -1,3 +1,21 @@
+# Session init prompts
+
+Each section below is a **standalone launcher**. To start a session, copy the
+text **between the `<init-prompt>` tags** for the launch you want, substitute any
+remaining `<PLACEHOLDER>` tokens, and paste it as the first message.
+
+Three launchers live here:
+
+1. **Generic project launcher** — a fill-in template for any workspace/persona.
+2. **Root-governance WORKING_ITEMS launcher** — the standing WORKING_ITEMS entry.
+3. **Bridge work loop launcher** — the app-dev ↔ piping tier-0 bridge; this is
+   the active loop. Its file is `_DomainEngines/bridge/LOOP_INIT.md` (note the
+   order: `LOOP_INIT`, not `INIT_LOOP`).
+
+---
+
+## 1. Generic project launcher (fill the placeholders)
+
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
@@ -7,9 +25,12 @@ Read `{REPO_ROOT}/agents/<AGENT_INSTRUCTION_FILE>`.
 
 Act in the `<AGENT_NAME>` persona for `{WORKING_ROOT}`.
 
-Then read `{WORKING_ROOT}/<COORDINATION_PROMPT_SUBPATH>` and follow the instructions.  
+Then read `{WORKING_ROOT}/<COORDINATION_PROMPT_SUBPATH>` and follow the instructions.
 </init-prompt>
 
+---
+
+## 2. Root-governance WORKING_ITEMS launcher
 
 <init-prompt>
 Your goal is to complete the inherent goals of this project that you will discover as you follow those instructions.
@@ -27,20 +48,25 @@ Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
 Then read `{WORKING_ROOT}/execution/_Coordination/NEXT_INSTANCE_PROMPT.md` and follow the instructions.
 </init-prompt>
 
+---
+
+## 3. Bridge work loop launcher (app-dev ↔ piping tier-0 bridge) — ACTIVE
+
+Paste-ready as written; replace `<none>` with a per-run steer if you want one
+(e.g. `prepare only — do not execute adopted briefs`).
+
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
-Read `{REPO_ROOT}/<LOOP_DIR>/LOOP_INIT.md` and follow it: pursue the loop's
-inherent goals — recorded in its standing plan — as far as live authority
-permits.
+Read `{REPO_ROOT}/_DomainEngines/bridge/LOOP_INIT.md` and follow it: pursue the loop's
+inherent goals — recorded in its standing plan — as far as live authority permits.
 
 Steer (this run): <none>
 </init-prompt>
 
-`<LOOP_DIR>` for the app-dev ↔ piping tier-0 bridge loop: `_DomainEngines/bridge`.
-The launcher is deliberately generic: the loop's goal, protocol, and specifics
-live in `<LOOP_DIR>`'s `LOOP_INIT.md` → standing plan → receipts, which change
-at their own pace; a stale pasted copy of this launcher can only mispoint,
-never override protocol. Replace the `Steer` placeholder with any per-run
-direction (or leave `<none>`); the steer overrides the loop's default posture
-but never the owner gate.
+The launcher is deliberately thin: the loop's goal, protocol, and specifics live
+in `_DomainEngines/bridge/LOOP_INIT.md` → its standing plan → its receipts, which
+change at their own pace. A stale pasted copy of this launcher can only mispoint,
+never override protocol; the steer overrides the loop's default posture but never
+the owner gate (K-AUTH-1). To launch a different loop later, point the same
+pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
