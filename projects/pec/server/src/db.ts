@@ -14,8 +14,9 @@ const CONTROLLED_TABLES = [
   'package', 'deliverable', 'revision', 'intake_item', 'work_item', 'hold',
   'check_record', 'review_comment', 'approval_record', 'decision', 'risk',
   'interface_item', 'condition_record', 'issue_event',
-  // P2: the plan-change log and supersession links are records of change — never deleted
-  'plan_shift', 'supersession_link',
+  // P2: plan placements, the plan-change log, its links, and supersession links are
+  // records of planning state/change — no delete path (move to 'later' instead)
+  'plan_item', 'plan_shift', 'plan_shift_link', 'supersession_link',
 ]
 
 const SCHEMA = `

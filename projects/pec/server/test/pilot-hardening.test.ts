@@ -17,6 +17,8 @@ import { openDb, withTx } from '../src/db.ts'
 import { Repo, nowIso } from '../src/repo.ts'
 import type { Sx } from '../src/services/shared.ts'
 import { overviewView, packagesView, deliverablesView } from '../src/services/views.ts'
+import { planView } from '../src/services/plan.ts'
+import { isoWeekOf } from '@pec/core'
 
 // ============================================================================
 // Cross-project isolation (PEC-NFR-007)
@@ -258,9 +260,29 @@ function seedAtScale(deliverables: number): { repo: Repo; sx: Sx; pid: number } 
       revIds.push(repo.insert('revision', { projectId: pid, deliverableId: d, revCode: 'A', state: 'in_work', createdAt: now, createdBy: owner }))
     }
   })
+  const wiIds: number[] = []
   withTx(db, () => {
     for (let i = 0; i < deliverables; i++) {
-      repo.insert('work_item', { projectId: pid, ref: `WI${i}`, title: `w${i}`, kind: 'action', log: 'internal', anchorType: 'revision', anchorId: revIds[i % revIds.length]!, packageId: pkgIds[i % pkgIds.length], ownerId: owner, state: 'open', needBy: '2027-01-01', createdBy: owner, createdAt: now })
+      wiIds.push(repo.insert('work_item', { projectId: pid, ref: `WI${i}`, title: `w${i}`, kind: 'action', log: 'internal', anchorType: 'revision', anchorId: revIds[i % revIds.length]!, packageId: pkgIds[i % pkgIds.length], ownerId: owner, state: 'open', needBy: '2027-01-01', createdBy: owner, createdAt: now }))
+    }
+  })
+  // P2 plan data at scale: 2k plan items + capacity + 500 schedule activities — the plan
+  // index (core/src/plan.ts) must keep deliverableStatus/packageStatus off O(n²) paths
+  withTx(db, () => {
+    const week = isoWeekOf(new Date().toISOString().slice(0, 10))
+    for (let i = 0; i < Math.min(2000, wiIds.length); i++) {
+      repo.insert('plan_item', {
+        projectId: pid, ref: `PLN${i}`, itemType: 'work_item', itemId: wiIds[i]!,
+        horizon: 'now', week, discipline: 'Process', plannedHours: 4, createdBy: owner, createdAt: now,
+      })
+    }
+    repo.insert('capacity_entry', { projectId: pid, week, discipline: 'Process', hours: 4000 })
+    for (let i = 0; i < 500; i++) {
+      repo.insert('schedule_activity', {
+        projectId: pid, activityId: `ACT${i}`, description: `a${i}`,
+        startDate: '2027-01-04', finishDate: '2027-01-15',
+        packageId: pkgIds[i % pkgIds.length], deliverableId: (i % deliverables) + 1,
+      })
     }
   })
   // a few hundred holds on deliverables, to exercise the hold-overlay index too
@@ -291,11 +313,13 @@ test('PEC-NFR-003: derived views render within 2s at 10k deliverables/work-items
   const ov = median(() => overviewView(sx))
   const pk = median(() => packagesView(sx))
   const dl = median(() => deliverablesView(sx, {}))
+  const pl = median(() => planView(sx))
   // Budget is 2000ms; a reintroduced O(n^2) put these at 11-13s, so this both asserts the NFR
   // and hard-fails a quadratic regression.
   assert.ok(ov <= 2000, `overviewView ${ov.toFixed(0)}ms must be <= 2000ms`)
   assert.ok(pk <= 2000, `packagesView ${pk.toFixed(0)}ms must be <= 2000ms`)
   assert.ok(dl <= 2000, `deliverablesView ${dl.toFixed(0)}ms must be <= 2000ms`)
+  assert.ok(pl <= 2000, `planView ${pl.toFixed(0)}ms must be <= 2000ms`)
 })
 
 test('PEC-NFR-003: snapshot load is bounded and history-independent', () => {

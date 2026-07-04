@@ -10,7 +10,7 @@ import type {
 } from '@pec/core'
 import {
   PLAN_HORIZONS, PLAN_ITEM_TYPES, capacityView, isValidIsoWeek, isoWeekOf, isoWeeksFrom,
-  lookahead, planHorizons, resolvePlanItem,
+  lookahead, planHorizons, resolvePlanItem, visibleLogs,
 } from '@pec/core'
 import type { PlanItemType } from '@pec/core'
 import { badRequest, forbidden, notFound } from '../errors.ts'
@@ -115,6 +115,9 @@ export function updatePlanItem(sx: Sx, id: number, input: UpdatePlanItemInput): 
     patch.plannedHours = input.plannedHours
   }
   if (input.discipline !== undefined) patch.discipline = input.discipline
+  if (Object.keys(patch).length === 0) {
+    throw badRequest('nothing to update — plannedHours and discipline are the editable fields; placement changes go through a shift (PEC-PLAN-006)')
+  }
   sx.repo.update('plan_item', sx.projectId, id, input.version, patch)
   planItemHistory(sx, id, 'field_change', `${pi.ref} updated (${Object.keys(patch).join(', ')})`)
   return sx.repo.get<PlanItem>('plan_item', sx.projectId, id)
@@ -210,14 +213,22 @@ export function shiftPlanItem(sx: Sx, id: number, input: ShiftPlanItemInput): Pl
 
   const snap = snapshot(sx)
   const ownPkg = resolvePlanItem(snap, pi)?.packageId ?? null
+  // affectedPackageIds holds the FOREIGN packages the shift reaches into — they are whose
+  // leads must review (PEC-PLAN-005); the origin package never reviews its own shift.
   const affected = new Set<number>()
   for (const l of input.links ?? []) {
-    for (const p of packageOfRecord(sx, snap, l.recordType, l.recordId)) affected.add(p)
+    for (const p of packageOfRecord(sx, snap, l.recordType, l.recordId)) {
+      if (p !== ownPkg) affected.add(p)
+    }
   }
-  if (ownPkg != null) affected.add(ownPkg)
-  const crossPackage = [...affected].some((p) => p !== ownPkg)
+  const crossPackage = affected.size > 0
   if (crossPackage && !input.impactStatement) {
     throw badRequest('cross-package shifts carry an impact statement (milestones, capacity, affected deliverables) and are reviewed by the affected leads (PEC-PLAN-005)')
+  }
+  // the proposed path applies nothing yet, but a stale read must still be rejected up front
+  // (PEC-NFR-004) rather than surfacing later at review time
+  if (input.version !== pi.version) {
+    throw badRequest(`stale plan item: expected version ${pi.version}, got ${input.version} (PEC-NFR-004) — reload and retry`)
   }
 
   const ref = sx.repo.nextRef(sx.projectId, 'plan_shift')
@@ -242,7 +253,7 @@ export function shiftPlanItem(sx: Sx, id: number, input: ShiftPlanItemInput): Pl
 
   if (crossPackage) {
     // review required before the move applies (PEC-PLAN-005)
-    const leads = snap.packages.filter((p) => affected.has(p.id) && p.id !== ownPkg && p.leadId != null)
+    const leads = snap.packages.filter((p) => affected.has(p.id) && p.leadId != null)
     for (const p of leads) {
       sx.repo.notify({
         projectId: sx.projectId, personId: p.leadId!, event: 'plan_shift_review',
@@ -269,18 +280,27 @@ export function reviewPlanShift(sx: Sx, id: number, input: ReviewPlanShiftInput)
   requireCan(sx, 'plan.review')
   const shift = sx.repo.get<PlanShift>('plan_shift', sx.projectId, id)
   if (shift.state !== 'proposed') throw badRequest(`only proposed shifts are reviewable; ${shift.ref} is ${shift.state}`)
-  // a package_lead must lead one of the affected packages (pm/EM/admin review any)
-  const leadOnly = sx.roles.includes('package_lead')
-    && !sx.roles.some((r) => r === 'pm' || r === 'engineering_manager' || r === 'admin')
-  if (leadOnly && !sx.session.isAdmin) {
-    const leadsAffected = sx.db.prepare(
-      `SELECT COUNT(*) AS n FROM package WHERE project_id = ? AND lead_id = ? AND id IN (${shift.affectedPackageIds.map(() => '?').join(',') || 'NULL'})`,
+  // A lead must lead one of the AFFECTED (foreign) packages — the origin package's lead,
+  // including the proposer, cannot self-approve (PEC-PLAN-005); pm/EM/admin review any.
+  const seniorReviewer = sx.session.isAdmin
+    || sx.roles.some((r) => r === 'pm' || r === 'engineering_manager' || r === 'admin')
+  if (!seniorReviewer) {
+    const leadsAffected = shift.affectedPackageIds.length === 0 ? { n: 0 } : sx.db.prepare(
+      `SELECT COUNT(*) AS n FROM package WHERE project_id = ? AND lead_id = ? AND id IN (${shift.affectedPackageIds.map(() => '?').join(',')})`,
     ).get(sx.projectId, sx.session.personId, ...shift.affectedPackageIds) as { n: number }
     if (leadsAffected.n === 0) throw forbidden('plan.review: you do not lead an affected package (PEC-PLAN-005)')
+    if (shift.createdBy === sx.session.personId) {
+      throw forbidden('plan.review: the proposer does not review their own shift (PEC-PLAN-005)')
+    }
   }
 
   if (input.approve) {
     const pi = sx.repo.get<PlanItem>('plan_item', sx.projectId, shift.planItemId)
+    // the proposal captured the placement it moves FROM; if the plan item has moved since
+    // (another shift applied), this review is stale and must not blind-apply (PEC-NFR-004)
+    if (pi.horizon !== shift.fromHorizon || (pi.week ?? null) !== (shift.fromWeek ?? null)) {
+      throw badRequest(`${shift.ref} is stale: ${pi.ref} has moved since the proposal (now ${pi.horizon}${pi.week ? `/${pi.week}` : ''}) — re-propose the shift`)
+    }
     sx.repo.systemUpdate('plan_item', sx.projectId, pi.id, { horizon: shift.toHorizon, week: shift.toWeek })
     planItemHistory(sx, pi.id, 'transition',
       `${pi.ref} moved to ${shift.toHorizon}${shift.toWeek ? ` (${shift.toWeek})` : ''} — ${shift.ref} approved by review`)
@@ -376,7 +396,10 @@ export function commitWeek(sx: Sx, week: string): CommitWeekResult {
           projectId: sx.projectId, personId: responsible, event: 'week_committed',
           recordType: pi.itemType, recordId: pi.itemId, recordRef: rec.ref,
           reason: `${pi.itemType === 'check' ? 'checking' : 'approval'} booked into week ${week} (${pi.plannedHours} h — I-9)`,
-          nextAction: 'see My Week', due: null,
+          // checks project into My Week (checks owed); approvals surface in the approval
+          // register and in Waiting-on-you once ready — point people where the record lives
+          nextAction: pi.itemType === 'check' ? 'see My Week (checks you owe)' : 'see the approval register / Waiting on you',
+          due: null,
         })
         notified++
       }
@@ -402,8 +425,8 @@ export function upsertCapacity(sx: Sx, input: UpsertCapacityInput): CapacityEntr
     throw badRequest('hours must be a number ≥ 0')
   }
   const existing = sx.db.prepare(
-    'SELECT id FROM capacity_entry WHERE project_id = ? AND week = ? AND discipline = ?',
-  ).get(sx.projectId, input.week, input.discipline) as { id: number } | undefined
+    'SELECT id, hours FROM capacity_entry WHERE project_id = ? AND week = ? AND discipline = ?',
+  ).get(sx.projectId, input.week, input.discipline) as { id: number; hours: number } | undefined
   let id: number
   if (existing) {
     sx.repo.systemUpdate('capacity_entry', sx.projectId, existing.id, { hours: input.hours })
@@ -413,6 +436,13 @@ export function upsertCapacity(sx: Sx, input: UpsertCapacityInput): CapacityEntr
       projectId: sx.projectId, week: input.week, discipline: input.discipline, hours: input.hours,
     })
   }
+  // capacity drives the §8.3/§8.4 rules; changes leave an audit trail like config does
+  sx.repo.audit({
+    projectId: sx.projectId, actorId: sx.session.personId, action: 'capacity_change',
+    recordType: 'project', recordId: sx.projectId,
+    priorValue: existing ? { week: input.week, discipline: input.discipline, hours: existing.hours } : null,
+    newValue: { week: input.week, discipline: input.discipline, hours: input.hours },
+  })
   return sx.repo.get<CapacityEntry>('capacity_entry', sx.projectId, id)
 }
 
@@ -426,13 +456,29 @@ export function planView(sx: Sx, weeksCount = 6): unknown {
   const pkgCode = (id: number | null): string | null =>
     snap.packages.find((p) => p.id === id)?.code ?? null
 
-  const serialize = (vs: ReturnType<typeof planHorizons>['now']) => vs.map((v) => ({
-    id: v.planItem.id, ref: v.planItem.ref, itemType: v.planItem.itemType, itemId: v.planItem.itemId,
-    version: v.planItem.version, horizon: v.planItem.horizon, week: v.planItem.week,
-    discipline: v.planItem.discipline, plannedHours: v.planItem.plannedHours,
-    itemRef: v.itemRef, title: v.title, responsibleId: v.responsibleId, needBy: v.needBy,
-    deliverableDocNo: v.deliverable?.docNo ?? null, packageCode: pkgCode(v.packageId), open: v.open,
-  }))
+  // Log visibility (PEC-NFR-005): derived numbers stay on the unfiltered snapshot, but
+  // title-bearing rows follow the register rule — work-item titles outside the caller's
+  // visible logs are redacted to ref-only (checks/approvals carry no log).
+  const logs = visibleLogs(sx.roles, snap.project.config.logVisibility)
+  const seesAll = logs.length === 3
+  const wiById = seesAll ? null : new Map(snap.workItems.map((w) => [w.id, w]))
+  const wiRestricted = (itemType: string, itemId: number): boolean => {
+    if (seesAll || itemType !== 'work_item') return false
+    const w = wiById!.get(itemId)
+    return w != null && !logs.includes(w.log)
+  }
+
+  const serialize = (vs: ReturnType<typeof planHorizons>['now']) => vs.map((v) => {
+    const restricted = wiRestricted(v.planItem.itemType, v.planItem.itemId)
+    return {
+      id: v.planItem.id, ref: v.planItem.ref, itemType: v.planItem.itemType, itemId: v.planItem.itemId,
+      version: v.planItem.version, horizon: v.planItem.horizon, week: v.planItem.week,
+      discipline: v.planItem.discipline, plannedHours: v.planItem.plannedHours,
+      itemRef: v.itemRef, title: restricted ? '[restricted log]' : v.title,
+      responsibleId: v.responsibleId, needBy: v.needBy,
+      deliverableDocNo: v.deliverable?.docNo ?? null, packageCode: pkgCode(v.packageId), open: v.open,
+    }
+  })
 
   const shifts = [...snap.planShifts]
     .sort((a, b) => b.id - a.id)
@@ -440,9 +486,11 @@ export function planView(sx: Sx, weeksCount = 6): unknown {
     .map((s) => {
       const pi = snap.planItems.find((x) => x.id === s.planItemId)
       const v = pi ? resolvePlanItem(snap, pi) : null
+      const restricted = pi != null && wiRestricted(pi.itemType, pi.itemId)
       return {
         id: s.id, ref: s.ref, version: s.version, state: s.state,
-        planItemRef: pi?.ref ?? null, itemRef: v?.itemRef ?? null, title: v?.title ?? null,
+        planItemRef: pi?.ref ?? null, itemRef: v?.itemRef ?? null,
+        title: restricted ? '[restricted log]' : v?.title ?? null,
         fromHorizon: s.fromHorizon, toHorizon: s.toHorizon, fromWeek: s.fromWeek, toWeek: s.toWeek,
         reason: s.reason, impactStatement: s.impactStatement,
         crossPackage: s.crossPackage,
@@ -461,6 +509,7 @@ export function planView(sx: Sx, weeksCount = 6): unknown {
   const plannable = [
     ...snap.workItems
       .filter((w) => (w.state === 'open' || w.state === 'in_work') && !plannedKeys.has(`work_item:${w.id}`))
+      .filter((w) => seesAll || logs.includes(w.log))
       .map((w) => ({ itemType: 'work_item' as const, itemId: w.id, ref: w.ref, label: `${w.ref} — ${w.title}` })),
     ...snap.checks
       .filter((c) => c.state !== 'accepted' && c.state !== 'reopened' && !plannedKeys.has(`check:${c.id}`))

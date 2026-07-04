@@ -99,10 +99,10 @@ export function OverviewPage(): JSX.Element {
                 <b className="small">{w.week}</b>
                 <div>{w.loadH} h / {w.capacityH} h</div>
                 {w.pct != null
-                  ? <span className={`badge ${w.pct > 110 ? 'red' : w.pct > 100 ? 'amber' : 'green'}`}>{w.pct}%</span>
+                  ? <span className={`badge ${w.level === 'red' ? 'red' : w.level === 'warn' ? 'amber' : 'green'}`}>{w.pct}%</span>
                   : <span className="muted small">no capacity baseline</span>}
                 {w.breaches.map((b: any) => (
-                  <div key={b.discipline} className="small muted">{b.discipline} {b.pct}%</div>
+                  <div key={b.discipline} className="small muted">{b.discipline} {b.pct != null ? `${b.pct}%` : 'over'}</div>
                 ))}
               </div>
             ))}

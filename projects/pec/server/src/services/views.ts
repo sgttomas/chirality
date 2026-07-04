@@ -114,13 +114,17 @@ export function overviewView(sx: Sx): unknown {
     schedulePressure: (() => {
       const weeks = isoWeeksFrom(snap.today, 6)
       const cells = capacityView(snap, weeks)
+      const th = snap.project.thresholds
       return weeks.map((week) => {
         const wk = cells.filter((c) => c.week === week)
         const loadH = wk.reduce((s, c) => s + c.loadH, 0)
         const capacityH = wk.reduce((s, c) => s + (c.capacityH ?? 0), 0)
+        const raw = capacityH > 0 ? (loadH / capacityH) * 100 : null
         return {
           week, loadH, capacityH,
-          pct: capacityH > 0 ? Math.round((loadH / capacityH) * 100) : null,
+          pct: raw != null ? Math.round(raw) : null,
+          // level from the configurable thresholds so the client never hardcodes them (PEC-OV-007)
+          level: raw == null ? 'none' : raw > th.capacityRedPct ? 'red' : raw > th.capacityWarnPct ? 'warn' : 'none',
           breaches: wk.filter((c) => c.level !== 'none')
             .map((c) => ({ discipline: c.discipline, pct: c.pct, level: c.level })),
         }

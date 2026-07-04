@@ -162,7 +162,11 @@ export function PlanPage(): JSX.Element {
                 <td>{c.loadH}</td>
                 <td className="small muted">{c.byType.work_item} / {c.byType.check} / {c.byType.approval_record}</td>
                 <td>{c.capacityH ?? <span className="muted">not set</span>}</td>
-                <td>{c.pct != null ? <span className={`badge ${CAP_COLOR[c.level]}`}>{c.pct}%</span> : <span className="muted">—</span>}</td>
+                <td>{c.pct != null
+                  ? <span className={`badge ${CAP_COLOR[c.level]}`}>{c.pct}%</span>
+                  : c.level !== 'none'
+                    ? <span className={`badge ${CAP_COLOR[c.level]}`} title="load against a zero-hour capacity baseline">over</span>
+                    : <span className="muted">—</span>}</td>
                 <td>
                   {c.level !== 'none' && (
                     <button className="btn small secondary" title="overcapacity may create or link a Risk (PEC-PLAN-004)"

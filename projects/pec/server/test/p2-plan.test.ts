@@ -395,6 +395,151 @@ test('PEC-AUTH-005: superseding writes a first-class supersession link with the 
   }
 })
 
+test('PEC-NFR-005: the plan view redacts and filters restricted-log work items per caller', async () => {
+  const env = await createTestEnv()
+  try {
+    const pm = await env.as('pm@t.co')
+    const week = isoWeekOf(env.repo.snapshot(env.projectId).today)
+    const secret = await pm.post(`${P(env)}/work-items`, {
+      title: 'SECRET internal action', anchorType: 'deliverable', anchorId: env.deliverableId,
+      ownerId: env.people['ic@t.co'], needBy: null, log: 'internal',
+    })
+    const open = await pm.post(`${P(env)}/work-items`, {
+      title: 'Client-visible action', anchorType: 'deliverable', anchorId: env.deliverableId,
+      ownerId: env.people['ic@t.co'], needBy: null, log: 'client',
+    })
+    await pm.post(`${P(env)}/plan-items`, {
+      itemType: 'work_item', itemId: secret.body.id, horizon: 'now', week, plannedHours: 8,
+    })
+
+    // pm sees all logs
+    const pmView = await pm.get(`${P(env)}/plan`)
+    assert.ok(JSON.stringify(pmView.body).includes('SECRET internal action'))
+
+    // viewer defaults to package+client: title redacted in horizons, absent from plannable
+    const viewer = await env.as('viewer@t.co')
+    const vView = await viewer.get(`${P(env)}/plan`)
+    assert.equal(vView.status, 200)
+    assert.ok(!JSON.stringify(vView.body).includes('SECRET internal action'),
+      'internal-log work-item title must not reach a restricted caller (PEC-NFR-005)')
+    const row = vView.body.horizons.now.find((x: any) => x.itemId === secret.body.id)
+    assert.equal(row.title, '[restricted log]', 'planned row stays (capacity truth) with the title redacted')
+    assert.ok(vView.body.plannable.some((x: any) => x.itemId === open.body.id), 'client-log item still offered')
+    assert.ok(!vView.body.plannable.some((x: any) => x.itemId === secret.body.id))
+
+    // the package review pack follows the same rule (PEC-PKG-009)
+    const dueSoon = await pm.put(`${P(env)}/work-items/${secret.body.id}`, {
+      version: secret.body.version, needBy: '2020-01-01',
+    })
+    assert.equal(dueSoon.status, 200)
+    const pack = await viewer.get(`${P(env)}/reports/package-pack/${env.packageId}`)
+    assert.equal(pack.status, 200)
+    assert.ok(!String(pack.body).includes('SECRET internal action'), 'pack filters restricted-log rows')
+    const pmPack = await pm.get(`${P(env)}/reports/package-pack/${env.packageId}`)
+    assert.ok(String(pmPack.body).includes('SECRET internal action'))
+  } finally {
+    await env.close()
+  }
+})
+
+test('PEC-PLAN-005 hardening: origin lead cannot self-approve; stale reviews refuse to apply', async () => {
+  const env = await createTestEnv()
+  try {
+    const pm = await env.as('pm@t.co')
+    const lead = await env.as('lead@t.co') // leads PKG-A (origin)
+    const week = isoWeekOf(env.repo.snapshot(env.projectId).today)
+
+    // give checker@t.co the lead seat of a second package
+    const pkg2 = await pm.post(`${P(env)}/packages`, {
+      code: 'PKG-C', name: 'Civil', leadId: env.people['checker@t.co'],
+    })
+    env.db.prepare('INSERT INTO project_role (project_id, person_id, role) VALUES (?, ?, ?)')
+      .run(env.projectId, env.people['checker@t.co']!, 'package_lead')
+    const risk = await pm.post(`${P(env)}/risks`, {
+      title: 'Civil risk', packageId: pkg2.body.id, ownerId: env.people['lead@t.co'], state: 'open',
+    })
+
+    const wi = await pm.post(`${P(env)}/work-items`, {
+      title: 'Origin work', anchorType: 'deliverable', anchorId: env.deliverableId,
+      ownerId: env.people['ic@t.co'], needBy: null,
+    })
+    const pi = await pm.post(`${P(env)}/plan-items`, {
+      itemType: 'work_item', itemId: wi.body.id, horizon: 'now', week, plannedHours: 8,
+    })
+    const proposed = await lead.post(`${P(env)}/plan-items/${pi.body.id}/shift`, {
+      version: pi.body.version, toHorizon: 'next', toWeek: week, reason: 'rebalance',
+      impactStatement: 'delays civil risk mitigation',
+      links: [{ recordType: 'risk', recordId: risk.body.id }],
+    })
+    assert.equal(proposed.status, 200, JSON.stringify(proposed.body))
+    assert.equal(proposed.body.state, 'proposed')
+    assert.deepEqual(proposed.body.affectedPackageIds, [pkg2.body.id], 'affected = the foreign packages only')
+
+    // the origin package's lead (also the proposer) cannot review it
+    const selfReview = await lead.post(`${P(env)}/plan-shifts/${proposed.body.id}/review`, {
+      version: proposed.body.version, approve: true,
+    })
+    assert.equal(selfReview.status, 403, JSON.stringify(selfReview.body))
+
+    // meanwhile the plan item moves through a legitimate same-package shift…
+    const fresh = await pm.get(`${P(env)}/plan`)
+    const current = fresh.body.horizons.now.find((x: any) => x.id === pi.body.id)
+    const moved = await pm.post(`${P(env)}/plan-items/${pi.body.id}/shift`, {
+      version: current.version, toHorizon: 'later', toWeek: null, reason: 'parked pending inputs',
+    })
+    assert.equal(moved.status, 200, JSON.stringify(moved.body))
+
+    // …so the earlier proposal is stale: the affected lead's approval must refuse to blind-apply
+    const checkerLead = await env.as('checker@t.co')
+    const staleApprove = await checkerLead.post(`${P(env)}/plan-shifts/${proposed.body.id}/review`, {
+      version: proposed.body.version, approve: true,
+    })
+    assert.equal(staleApprove.status, 400, JSON.stringify(staleApprove.body))
+    assert.match(staleApprove.body.error.message, /stale/)
+  } finally {
+    await env.close()
+  }
+})
+
+test('PEC-NOT-002: a lead of several packages gets one package-review digest per package', async () => {
+  const env = await createTestEnv()
+  try {
+    const pm = await env.as('pm@t.co')
+    // lead@t.co already leads PKG-A; give them a second package with its own overdue decision
+    const pkg2 = await pm.post(`${P(env)}/packages`, {
+      code: 'PKG-D', name: 'Second scope', leadId: env.people['lead@t.co'],
+    })
+    for (const pkgId of [env.packageId, pkg2.body.id]) {
+      const d = await pm.post(`${P(env)}/decisions`, {
+        title: `Overdue in pkg ${pkgId}`, statement: 'late', authorityId: env.people['pm@t.co'],
+        needBy: '2020-01-01', packageId: pkgId,
+      })
+      assert.equal(d.status, 200)
+    }
+    sweepProject(env.db, env.projectId)
+    const lead = await env.as('lead@t.co')
+    const notifs = await lead.get(`${P(env)}/notifications`)
+    const digests = notifs.body.filter((n: any) => n.event === 'digest_package_review')
+    assert.equal(digests.length, 2, 'one digest per led package (PEC-NOT-002)')
+    assert.equal(sweepProject(env.db, env.projectId), 0, 'still idempotent within the week')
+  } finally {
+    await env.close()
+  }
+})
+
+test('PEC-OV-007: GET config serves thresholds merged with the shipped defaults', async () => {
+  const env = await createTestEnv()
+  try {
+    const admin = await env.as('admin@t.co')
+    const cfg = await admin.get(`${P(env)}/config`)
+    assert.equal(cfg.status, 200)
+    assert.equal(cfg.body.thresholds.capacityWarnPct, 100, 'effective default shown, not 0')
+    assert.equal(cfg.body.thresholds.holdAgeRedWd, 14)
+  } finally {
+    await env.close()
+  }
+})
+
 test('PEC-PKG-009: the weekly package review pack renders with capacity, lookahead, and issues', async () => {
   const env = await createTestEnv()
   try {

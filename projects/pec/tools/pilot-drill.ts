@@ -162,8 +162,8 @@ if (fixtureMode) {
   check('decisions: 6 accepted', reports.decisions!.accepted === 6, reportLine(reports.decisions!))
   check('risks: 8 accepted', reports.risks!.accepted === 8, reportLine(reports.risks!))
 } else {
-  check('every row landed somewhere (accepted / updated / conflict / rejected / intake) — nothing silently dropped',
-    true, 'inspect the per-contract reports above')
+  console.log('  ℹ custom CSVs: no fixture expectations to assert — read the per-contract reports')
+  console.log('    above; every row is accounted for as accepted / updated / conflict / rejected / intake.')
 }
 
 // idempotency: a re-import must update, never duplicate (§16)

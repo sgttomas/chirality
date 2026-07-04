@@ -8,7 +8,7 @@ here is rehearsable in advance with `npm run drill` — run that first; it must 
 
 ```bash
 npm install
-npm test          # 154 tests green, including the PEC-NFR-009 backup/restore round-trip
+npm test          # 161 tests green, including the PEC-NFR-009 backup/restore round-trip
 npm run drill     # full pipeline rehearsal on bundled fixtures → must PASS
 ```
 

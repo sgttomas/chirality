@@ -22,7 +22,7 @@ _Last updated: 2026-07-04 (after the B/C/D pass: pilot-readiness tooling, ADR-01
 ```bash
 npm install        # node_modules is gitignored — reinstall after any fresh clone/worktree
 npm run typecheck  # clean across core/server/web
-npm test           # 154 pass (69 core + 85 server), 0 fail
+npm test           # 161 pass (72 core + 89 server), 0 fail
 npm run build      # web SPA builds
 npm run drill      # pilot pipeline rehearsal on a scratch DB → PASS
 npm run seed && npm run dev   # demo project AUR at http://localhost:4811 (all users password: pilot)

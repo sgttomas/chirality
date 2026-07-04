@@ -26,7 +26,7 @@ import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
-import { can, explainTransition } from '@pec/core'
+import { DEFAULT_THRESHOLDS, can, explainTransition } from '@pec/core'
 import type { PermissionAction } from '@pec/core'
 import { pctx } from './services/shared.ts'
 
@@ -85,7 +85,7 @@ export function buildRouter(db: Db): Router {
     const memberships = db.prepare('SELECT DISTINCT project_id FROM project_role WHERE person_id = ?')
       .all(result.session.personId) as Array<{ project_id: number }>
     for (const m of memberships) {
-      try { withTx(db, () => sweepProject(db, m.project_id)) } catch { /* sweep must never block login */ }
+      try { withTx(db, () => sweepProject(db, m.project_id, { digests: false })) } catch { /* sweep must never block login */ }
     }
     return { me: result.session }
   })
@@ -335,7 +335,12 @@ export function buildRouter(db: Db): Router {
   }))
 
   // ---------- config ----------
-  r.get('/api/projects/:pid/config', authed((c) => c.sx.repo.get('project', null, c.sx.projectId)))
+  r.get('/api/projects/:pid/config', authed((c) => {
+    // thresholds are served merged with the shipped defaults so the Admin editor shows the
+    // EFFECTIVE values, not zeros, on a project that never overrode them (PEC-OV-007)
+    const row = c.sx.repo.get<Record<string, unknown>>('project', null, c.sx.projectId)
+    return { ...row, thresholds: { ...DEFAULT_THRESHOLDS, ...(row.thresholds as object) } }
+  }))
   r.put('/api/projects/:pid/config', tx((c) => {
     requireCan(c.sx, 'config.manage', {})
     const b = body(c)

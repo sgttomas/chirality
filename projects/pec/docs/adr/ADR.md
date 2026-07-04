@@ -133,9 +133,11 @@ already escalates through the §8.4 project signals — a parallel per-package c
 P2 extends §8.3 in kind (capacity load rules), confirming the frame. What was actually broken is the
 *explanation*: PH-R1/PH-A1 drill-downs bottomed out at "AUR-M-001 amber (DH-A1)" — an internal label
 pointing at nothing a user can open. Fixed in the presentation layer: (1) the contributing refs of
-PH-R1/PH-A1 (and KPI-ONPLAN) now state the pressure in plain terms and carry through the underlying
+PH-R1/PH-A1 now state each deliverable's pressure in plain terms and carry through the underlying
 records themselves — the same holds, overdue items, conditions, and aging comments the package cockpit
-lists (capped at 3 per deliverable) — so every drill-down lands on a cockpit-visible record; (2) the
+lists (capped at 3 per deliverable) — so every drill-down lands on a cockpit-visible record; KPI-ONPLAN
+whys gain the same plain-language detail (its contributing list stays at deliverable granularity — it
+counts deliverables, and carrying records through at project scale would flood the drawer); (2) the
 Overview package rollup (PEC-OV-003) adopts the cockpit's log-scoped `openIssues` count, so Overview and
 Packages speak the same issues language (PEC-NFR-005 preserved via the same scoping).
 **Consequences.** No health value changes anywhere; only Explain payloads and the Overview rollup gain
@@ -182,7 +184,15 @@ plan-shift review works.
    applies-to / satisfied conditions. P3 propagation gets a stable substrate; nothing is recomputed
    retroactively.
 **Consequences.** Plan tables are additive; P1 behavior is unchanged until records are planned
-(capacity rules and S-CAP are silent with no plan/capacity rows). `interfaceOverdueWarnWd`,
+(capacity rules and S-CAP are silent with no plan/capacity rows). Plan resolution is indexed per
+snapshot (`core/src/plan.ts` planIndex, WeakMap-memoized like snapshot-index.ts) so the health rules
+stay off O(n²) paths at PEC-NFR-003 scale; the perf guard now seeds 2k plan items. `plan_shift` loads
+fully into the snapshot like the other controlled registers — bounded by human planning actions, the
+same class as decisions/holds. An adversarial review pass (2026-07-04) additionally hardened: plan-view
+and package-pack log visibility (PEC-NFR-005), cross-package review integrity (foreign-lead-only,
+no self-approval, stale proposals refuse to apply), per-package digest idempotency, raw-ratio capacity
+classification incl. zero-hour baselines, phantom-W53 rejection, schedule-forecast gating on issued
+deliverables, capacity-change audit events, and served-merged threshold defaults. `interfaceOverdueWarnWd`,
 `capacityWarnPct`, `capacityRedPct` join the configurable thresholds (PEC-OV-007). Existing databases
 migrate in place via `ensureColumn` (notification.severity, work_item.commit_source). PEC-AHL-008
 (duplicate suggestion) and PEC-NFR-006 (SSO) remain the P2 items deliberately not built here: the

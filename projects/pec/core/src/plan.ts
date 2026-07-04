@@ -25,47 +25,117 @@ export interface PlanItemView {
   open: boolean
 }
 
-function deliverableOfRevision(snap: ProjectSnapshot, revisionId: number): Deliverable | null {
-  const rev = snap.revisions.find((r) => r.id === revisionId)
-  return rev ? snap.deliverables.find((d) => d.id === rev.deliverableId) ?? null : null
+/**
+ * Per-snapshot plan index, memoized like snapshot-index.ts: derived-status callers hit the
+ * plan lookups once per deliverable and once per package (overviewView → deliverableStatus ×N
+ * and packageStatus ×N), so resolution must not rescan the snapshot arrays each call
+ * (PEC-NFR-003). Snapshots are rebuilt per request; tests build fresh fixture snapshots.
+ */
+interface PlanIndex {
+  /** resolved view per plan item id (missing when the underlying record is gone) */
+  views: Map<number, PlanItemView>
+  /** plan-sourced forecast candidate dates per deliverable id (SPEC §6.1 P2) */
+  forecastByDeliverable: Map<number, string[]>
+  /** current-week capacity breach cells (§8.3/§8.4 P2) */
+  breaches: CapacityCell[]
+}
+
+const PLAN_INDEX = new WeakMap<ProjectSnapshot, PlanIndex>()
+
+function planIndex(snap: ProjectSnapshot): PlanIndex {
+  const cached = PLAN_INDEX.get(snap)
+  if (cached) return cached
+
+  const workById = new Map(snap.workItems.map((w) => [w.id, w]))
+  const checkById = new Map(snap.checks.map((c) => [c.id, c]))
+  const apprById = new Map(snap.approvalRecords.map((a) => [a.id, a]))
+  const delById = new Map(snap.deliverables.map((d) => [d.id, d]))
+  const delIdByRev = new Map(snap.revisions.map((r) => [r.id, r.deliverableId]))
+  const delOfRev = (revisionId: number): Deliverable | null => {
+    const dId = delIdByRev.get(revisionId)
+    return dId != null ? delById.get(dId) ?? null : null
+  }
+
+  const resolve = (pi: PlanItem): PlanItemView | null => {
+    if (pi.itemType === 'work_item') {
+      const w = workById.get(pi.itemId)
+      if (!w) return null
+      const del = w.anchorType === 'deliverable' ? delById.get(w.anchorId) ?? null
+        : w.anchorType === 'revision' ? delOfRev(w.anchorId) : null
+      return {
+        planItem: pi, itemRef: w.ref, title: w.title, responsibleId: w.ownerId,
+        needBy: w.needBy, deliverable: del, packageId: w.packageId,
+        open: w.state === 'open' || w.state === 'in_work',
+      }
+    }
+    if (pi.itemType === 'check') {
+      const c = checkById.get(pi.itemId)
+      if (!c) return null
+      const del = delOfRev(c.revisionId)
+      return {
+        planItem: pi, itemRef: c.ref, title: del ? `check ${del.docNo}` : `check #${c.revisionId}`,
+        responsibleId: c.checkerId, needBy: del?.dueDate ?? null,
+        deliverable: del, packageId: del?.packageId ?? null,
+        open: c.state !== 'accepted',
+      }
+    }
+    const a = apprById.get(pi.itemId)
+    if (!a) return null
+    const del = a.appliesToType === 'revision' ? delOfRev(a.appliesToId)
+      : a.appliesToType === 'deliverable' ? delById.get(a.appliesToId) ?? null
+      : null
+    return {
+      planItem: pi, itemRef: a.ref, title: a.title,
+      responsibleId: a.signatoryIds[0] ?? null, needBy: a.dueDate,
+      deliverable: del,
+      packageId: del?.packageId ?? (a.appliesToType === 'package' ? a.appliesToId : null),
+      open: a.state !== 'decided' && a.state !== 'superseded',
+    }
+  }
+
+  const views = new Map<number, PlanItemView>()
+  for (const pi of snap.planItems) {
+    const v = resolve(pi)
+    if (v) views.set(pi.id, v)
+  }
+
+  const forecastByDeliverable = new Map<number, string[]>()
+  const pushForecast = (deliverableId: number, date: string): void => {
+    const list = forecastByDeliverable.get(deliverableId) ?? []
+    list.push(date)
+    forecastByDeliverable.set(deliverableId, list)
+  }
+  for (const v of views.values()) {
+    if (v.open && v.deliverable && v.planItem.week) {
+      pushForecast(v.deliverable.id, isoWeekSunday(v.planItem.week))
+    }
+  }
+  // Schedule finishes forecast only deliverables whose workflow is still open — a schedule
+  // row must not keep an issued deliverable red forever (plan items gate on `open` above).
+  const workflowDone = new Set<number>()
+  {
+    const latest = new Map<number, { id: number; state: string }>()
+    for (const r of snap.revisions) {
+      const cur = latest.get(r.deliverableId)
+      if (r.state !== 'superseded' && (!cur || r.id > cur.id)) latest.set(r.deliverableId, r)
+    }
+    for (const [dId, r] of latest) if (r.state === 'issued') workflowDone.add(dId)
+  }
+  for (const a of snap.scheduleActivities) {
+    if (a.deliverableId != null && a.finishDate && !workflowDone.has(a.deliverableId)) {
+      pushForecast(a.deliverableId, a.finishDate)
+    }
+  }
+
+  const idx: PlanIndex = { views, forecastByDeliverable, breaches: [] }
+  PLAN_INDEX.set(snap, idx)
+  // after caching so capacityView's resolvePlanItem calls hit the views map
+  idx.breaches = capacityView(snap, [isoWeekOf(snap.today)]).filter((c) => c.level !== 'none')
+  return idx
 }
 
 export function resolvePlanItem(snap: ProjectSnapshot, pi: PlanItem): PlanItemView | null {
-  if (pi.itemType === 'work_item') {
-    const w = snap.workItems.find((x) => x.id === pi.itemId)
-    if (!w) return null
-    const del = w.anchorType === 'deliverable'
-      ? snap.deliverables.find((d) => d.id === w.anchorId) ?? null
-      : w.anchorType === 'revision' ? deliverableOfRevision(snap, w.anchorId) : null
-    return {
-      planItem: pi, itemRef: w.ref, title: w.title, responsibleId: w.ownerId,
-      needBy: w.needBy, deliverable: del, packageId: w.packageId,
-      open: w.state === 'open' || w.state === 'in_work',
-    }
-  }
-  if (pi.itemType === 'check') {
-    const c = snap.checks.find((x) => x.id === pi.itemId)
-    if (!c) return null
-    const del = deliverableOfRevision(snap, c.revisionId)
-    return {
-      planItem: pi, itemRef: c.ref, title: del ? `check ${del.docNo}` : `check #${c.revisionId}`,
-      responsibleId: c.checkerId, needBy: del?.dueDate ?? null,
-      deliverable: del, packageId: del?.packageId ?? null,
-      open: c.state !== 'accepted',
-    }
-  }
-  const a = snap.approvalRecords.find((x) => x.id === pi.itemId)
-  if (!a) return null
-  const del = a.appliesToType === 'revision' ? deliverableOfRevision(snap, a.appliesToId)
-    : a.appliesToType === 'deliverable' ? snap.deliverables.find((d) => d.id === a.appliesToId) ?? null
-    : null
-  return {
-    planItem: pi, itemRef: a.ref, title: a.title,
-    responsibleId: a.signatoryIds[0] ?? null, needBy: a.dueDate,
-    deliverable: del,
-    packageId: del?.packageId ?? (a.appliesToType === 'package' ? a.appliesToId : null),
-    open: a.state !== 'decided' && a.state !== 'superseded',
-  }
+  return planIndex(snap).views.get(pi.id) ?? null
 }
 
 // ---------- Now / Next / Later (PEC-PLAN-001) ----------
@@ -140,17 +210,23 @@ export function capacityView(snap: ProjectSnapshot, weeks: string[]): CapacityCe
   }
   for (const c of cells.values()) {
     if (c.capacityH != null && c.capacityH > 0) {
-      c.pct = Math.round((c.loadH / c.capacityH) * 100)
-      c.level = c.pct > th.capacityRedPct ? 'red' : c.pct > th.capacityWarnPct ? 'warn' : 'none'
+      // classify on the raw ratio (a load 0.4% past the threshold must not round back under it);
+      // pct stays rounded for display
+      const raw = (c.loadH / c.capacityH) * 100
+      c.pct = Math.round(raw)
+      c.level = raw > th.capacityRedPct ? 'red' : raw > th.capacityWarnPct ? 'warn' : 'none'
+    } else if (c.capacityH != null && c.loadH > 0) {
+      // planned load against an explicit zero baseline is unbounded overload, not "no baseline"
+      c.level = 'red'
     }
   }
   return [...cells.values()].sort((a, b) =>
     a.week.localeCompare(b.week) || a.discipline.localeCompare(b.discipline))
 }
 
-/** Overloaded (week, discipline) cells for the current week — feeds S-CAP and PH-R3/PH-A3 (§8.3/§8.4 P2). */
+/** Overloaded (week, discipline) cells for the current week — feeds S-CAP and PH-R3/PH-A3 (§8.3/§8.4 P2). Memoized per snapshot. */
 export function capacityBreaches(snap: ProjectSnapshot): CapacityCell[] {
-  return capacityView(snap, [isoWeekOf(snap.today)]).filter((c) => c.level !== 'none')
+  return planIndex(snap).breaches
 }
 
 // ---------- six-week lookahead (PEC-PLAN-002) ----------
@@ -235,21 +311,13 @@ export function lookahead(snap: ProjectSnapshot, weeks?: string[]): LookaheadRow
 // ---------- plan-sourced forecast candidates (SPEC §6.1: P2 replaces need-by-only forecast) ----------
 
 /**
- * Latest planned completion date for a deliverable's sphere: the Sunday of the latest planned
- * week among its open plan items, and the latest finish of schedule activities mapped to it.
- * Feeds deliverableStatus() forecast alongside the P1 need-by candidates.
+ * Planned completion candidates for a deliverable: the Sunday of each open planned week in its
+ * sphere, and the finish of schedule activities mapped to it. Feeds deliverableStatus() forecast
+ * alongside the P1 need-by candidates. O(1) per deliverable via the per-snapshot plan index —
+ * overviewView calls deliverableStatus for every deliverable (PEC-NFR-003).
  */
 export function planForecastCandidates(snap: ProjectSnapshot, d: Deliverable): string[] {
-  const out: string[] = []
-  for (const pi of snap.planItems) {
-    if (!pi.week) continue
-    const v = resolvePlanItem(snap, pi)
-    if (v && v.open && v.deliverable?.id === d.id) out.push(isoWeekSunday(pi.week))
-  }
-  for (const a of snap.scheduleActivities) {
-    if (a.deliverableId === d.id && a.finishDate) out.push(a.finishDate)
-  }
-  return out
+  return planIndex(snap).forecastByDeliverable.get(d.id) ?? []
 }
 
 // ---------- helpers shared with the server layer ----------

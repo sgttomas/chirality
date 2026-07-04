@@ -8,7 +8,7 @@
 
 import {
   ageWorkingDays, capacityView, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead,
-  packageStatus, resolvePlanItem, workflowCompleteness, workingDaysOverdue,
+  packageStatus, resolvePlanItem, visibleLogs, workflowCompleteness, workingDaysOverdue,
 } from '@pec/core'
 import { notFound } from '../errors.ts'
 import type { Sx } from '../services/shared.ts'
@@ -29,6 +29,12 @@ export function packagePack(sx: Sx, packageId: number): string {
   const week = isoWeekOf(today)
   const weeks = isoWeeksFrom(today, 6)
   const th = snap.project.thresholds
+  // the pack mirrors the cockpit, so it follows the same log-visibility rule for
+  // title-bearing rows (PEC-NFR-005) — unlike the sponsor brief this is a per-package
+  // working document, not a sponsor-only export
+  const logs = visibleLogs(sx.roles, snap.project.config.logVisibility)
+  const sees = <T extends { log: import('@pec/core').Log }>(rows: T[]): T[] =>
+    logs.length === 3 ? rows : rows.filter((r) => logs.includes(r.log))
 
   const badge = (h: string): string =>
     `<span style="color:${COLOR[h] ?? '#333'};font-weight:700;text-transform:uppercase">${esc(h)}</span>`
@@ -37,7 +43,7 @@ export function packagePack(sx: Sx, packageId: number): string {
   const delIds = new Set(dels.map((d) => d.id))
   const revIds = new Set(snap.revisions.filter((r) => delIds.has(r.deliverableId)).map((r) => r.id))
 
-  const holds = snap.holds.filter((h) => h.state === 'active'
+  const holds = sees(snap.holds).filter((h) => h.state === 'active'
     && snap.holdLinks.some((l) => l.holdId === h.id && (
       (l.targetType === 'deliverable' && delIds.has(l.targetId))
       || (l.targetType === 'revision' && revIds.has(l.targetId))
@@ -46,12 +52,12 @@ export function packagePack(sx: Sx, packageId: number): string {
     .map((h) => ({ ...h, ageWd: ageWorkingDays(h.raisedAt, today, cal) }))
     .sort((a, b) => b.ageWd - a.ageWd)
 
-  const decisions = snap.decisions.filter((d) => d.packageId === pkg.id
+  const decisions = sees(snap.decisions).filter((d) => d.packageId === pkg.id
     && d.state !== 'decided' && d.state !== 'superseded')
     .map((d) => ({ ...d, overdue: daysOverdue(d.needBy, today) }))
     .sort((a, b) => b.overdue - a.overdue)
 
-  const interfaces = snap.interfaces.filter((i) =>
+  const interfaces = sees(snap.interfaces).filter((i) =>
     (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id)
     && i.state !== 'closed' && i.state !== 'cancelled')
     .map((i) => ({ ...i, overdueWd: workingDaysOverdue(i.needBy, today, cal) }))
@@ -61,7 +67,7 @@ export function packagePack(sx: Sx, packageId: number): string {
     (r.packageId === pkg.id || (r.deliverableId != null && delIds.has(r.deliverableId))) && r.state !== 'closed')
     .sort((a, b) => ((b.probability ?? 0) * (b.impact ?? 0)) - ((a.probability ?? 0) * (a.impact ?? 0)))
 
-  const openItems = snap.workItems.filter((w) =>
+  const openItems = sees(snap.workItems).filter((w) =>
     (w.state === 'open' || w.state === 'in_work') && w.packageId === pkg.id
     && daysOverdue(w.needBy, today) > 0)
     .sort((a, b) => (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))

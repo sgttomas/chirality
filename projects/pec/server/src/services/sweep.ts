@@ -17,7 +17,13 @@ import {
 import type { Db } from '../db.ts'
 import { Repo, nowIso } from '../repo.ts'
 
-export function sweepProject(db: Db, projectId: number): number {
+export interface SweepOptions {
+  /** weekly digests are heavier (per-package scans, capacity); the login-time sweep skips
+   *  them and leaves them to the hourly timer (PEC-NOT-002) */
+  digests?: boolean
+}
+
+export function sweepProject(db: Db, projectId: number, opts: SweepOptions = {}): number {
   const repo = new Repo(db)
   const snap = repo.snapshot(projectId)
   const today = snap.today
@@ -67,7 +73,7 @@ export function sweepProject(db: Db, projectId: number): number {
     }
   }
 
-  emitted += sweepDigests(db, repo, snap, projectId)
+  if (opts.digests !== false) emitted += sweepDigests(db, repo, snap, projectId)
   return emitted
 }
 
@@ -93,20 +99,25 @@ function sweepDigests(db: Db, repo: Repo, snap: ProjectSnapshot, projectId: numb
   const tz = snap.project.calendar.timezone
   let emitted = 0
 
-  const alreadyThisWeek = (personId: number, event: string): boolean => {
+  // keyed per (person, event, record) so a lead of several packages gets one digest per
+  // package per week, not only the first (PEC-NOT-002)
+  const alreadyThisWeek = (personId: number, event: string, recordType: string, recordId: number): boolean => {
     const rows = db.prepare(
       `SELECT at FROM notification WHERE project_id = ? AND person_id = ? AND event = ?
-       ORDER BY id DESC LIMIT 1`,
-    ).all(projectId, personId, event) as Array<{ at: string }>
+       AND record_type = ? AND record_id = ? ORDER BY id DESC LIMIT 1`,
+    ).all(projectId, personId, event, recordType, recordId) as Array<{ at: string }>
     const last = rows[0]
     return last != null && isoWeekOf(localDate(last.at, tz)) === week
   }
 
-  const emitDigest = (personId: number, event: NotificationEvent, line: DigestLine, nextAction: string): void => {
-    if (!personId || line.count === 0 || alreadyThisWeek(personId, event)) return
+  const emitDigest = (personId: number, event: NotificationEvent, line: DigestLine, nextAction: string,
+    record: { recordType: string; recordId: number; recordRef: string } = {
+      recordType: 'project', recordId: projectId, recordRef: `${snap.project.code} ${week}`,
+    }): void => {
+    if (!personId || line.count === 0 || alreadyThisWeek(personId, event, record.recordType, record.recordId)) return
     repo.insert('notification', {
       projectId, personId, at: nowIso(), event,
-      recordType: 'project', recordId: projectId, recordRef: `${snap.project.code} ${week}`,
+      recordType: record.recordType, recordId: record.recordId, recordRef: record.recordRef,
       reason: line.text, nextAction, due: null, severity: line.worst, readAt: null,
     })
     emitted++
@@ -162,7 +173,8 @@ function sweepDigests(db: Db, repo: Repo, snap: ProjectSnapshot, projectId: numb
       text: `package review digest ${pkg.code} — ${holds} open hold(s), ${overdueDecs.length} overdue `
         + `decision(s), ${lateIfaces.length} late interface(s); weekly pack: reports/package-pack/${pkg.id}`,
     }
-    emitDigest(pkg.leadId, 'digest_package_review', line, 'run the weekly package review (PEC-PKG-009)')
+    emitDigest(pkg.leadId, 'digest_package_review', line, 'run the weekly package review (PEC-PKG-009)',
+      { recordType: 'package', recordId: pkg.id, recordRef: `${pkg.code} ${week}` })
   }
 
   // judgments digest: overdue decisions (authority) + aging ready approvals (signatories)

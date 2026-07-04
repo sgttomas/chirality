@@ -6,8 +6,9 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  capacityBreaches, capacityView, deliverableStatus, isoWeekMonday, isoWeekOf, isoWeekSunday,
-  isoWeeksFrom, lookahead, myWeek, packageStatus, planHorizons, projectSignals, projectStatus,
+  capacityBreaches, capacityView, deliverableStatus, isValidIsoWeek, isoWeekMonday, isoWeekOf,
+  isoWeekSunday, isoWeeksFrom, lookahead, myWeek, packageStatus, planHorizons, projectSignals,
+  projectStatus,
 } from '../src/index.ts'
 import * as fx from './fixtures.ts'
 
@@ -16,7 +17,7 @@ test('calendar: ISO week inverse helpers round-trip (Monday/Sunday, weeks-from)'
   assert.equal(isoWeekMonday('2026-W29'), '2026-07-13')
   assert.equal(isoWeekSunday('2026-W29'), '2026-07-19')
   assert.equal(isoWeekOf(isoWeekMonday('2026-W01')), '2026-W01')
-  assert.equal(isoWeekOf(isoWeekMonday('2027-W53')), isoWeekOf(isoWeekMonday('2027-W53'))) // no throw
+  assert.throws(() => isoWeekMonday('2027-W53'), /invalid ISO week/, '2027 has 52 ISO weeks')
   assert.deepEqual(isoWeeksFrom('2026-07-15', 3), ['2026-W29', '2026-W30', '2026-W31'])
 })
 
@@ -183,6 +184,53 @@ test('PH-A4: interface aging below escalation feeds package health amber (PEC-PK
   assert.equal(s.health.value, 'amber')
   assert.equal(s.health.ruleId, 'PH-A4')
   assert.equal(s.health.contributing[0]!.recordType, 'interface_item')
+})
+
+test('capacity edge cases: threshold compares the raw ratio; zero-hour baseline with load is red', () => {
+  const p = fx.pkg()
+  const d = fx.deliverable({ packageId: p.id })
+  const rev = fx.revision({ deliverableId: d.id })
+  const w = fx.workItem({ anchorType: 'deliverable', anchorId: d.id, packageId: p.id })
+  // 1104/1000 = 110.4% — rounds to 110 but must escalate (> 110 on the raw ratio)
+  let snap = fx.snapshot({
+    packages: [p], deliverables: [d], revisions: [rev], workItems: [w],
+    capacityEntries: [fx.capacity({ hours: 1000 })],
+    planItems: [fx.planItem({ itemType: 'work_item', itemId: w.id, plannedHours: 1104 })],
+  })
+  let c = capacityView(snap, ['2026-W29'])[0]!
+  assert.equal(c.pct, 110)
+  assert.equal(c.level, 'red', 'raw 110.4% escalates even though it rounds to 110')
+
+  // explicit zero-hour capacity with planned load = unbounded overload, not "no baseline"
+  snap = fx.snapshot({
+    packages: [p], deliverables: [d], revisions: [rev], workItems: [w],
+    capacityEntries: [fx.capacity({ hours: 0 })],
+    planItems: [fx.planItem({ itemType: 'work_item', itemId: w.id, plannedHours: 8 })],
+  })
+  c = capacityView(snap, ['2026-W29'])[0]!
+  assert.equal(c.pct, null)
+  assert.equal(c.level, 'red')
+})
+
+test('calendar: isValidIsoWeek rejects phantom W53 in 52-week ISO years', () => {
+  assert.equal(isValidIsoWeek('2026-W53'), true, '2026 is a 53-week ISO year')
+  assert.equal(isoWeekOf(isoWeekMonday('2026-W53')), '2026-W53')
+  assert.equal(isValidIsoWeek('2025-W53'), false, '2025 has 52 ISO weeks')
+  assert.equal(isValidIsoWeek('2026-W00'), false)
+  assert.equal(isValidIsoWeek('2026-W54'), false)
+})
+
+test('plan-sourced forecast: schedule finishes stop forecasting once the deliverable is issued', () => {
+  const p = fx.pkg()
+  const d = fx.deliverable({ packageId: p.id, dueDate: '2026-07-16' })
+  const rev = fx.revision({ deliverableId: d.id, state: 'issued' })
+  const snap = fx.snapshot({
+    packages: [p], deliverables: [d], revisions: [rev],
+    scheduleActivities: [fx.scheduleActivity({ deliverableId: d.id, startDate: '2026-07-20', finishDate: '2026-08-14' })],
+  })
+  const s = deliverableStatus(snap, d)
+  assert.equal(s.forecastSlipWd, 0, 'an issued deliverable is not kept red by a stale schedule row')
+  assert.equal(s.health.ruleId, 'DH-G')
 })
 
 test('myWeek: plan-committed items say so (PEC-PLAN-007 / PEC-MW-005)', () => {

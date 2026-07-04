@@ -311,11 +311,12 @@ milestone) · `PH-R2` interface item overdue past escalation (implementer defaul
 overdue, `thresholds.interfaceOverdueRedWd`, configurable — the PRD §8.4 table has no interface row) ·
 `PH-A1` ≥ 20% of active deliverables amber/red · `PH-A2` package-level decision past need_by · `PH-G`
 otherwise. (Capacity rules are P2.)
-**Explanation carry-through (ADR-012):** DH-* is an internal aggregation stage — deliverable-derived
-rules (PH-R1, PH-A1, KPI-ONPLAN) state each pressured deliverable's pressure in plain terms and carry
-the underlying issue/schedule records (holds, overdue items, conditions, aging comments; capped at 3
-per deliverable) into `contributing`, so drill-down always lands on a cockpit-visible record. The
-Overview package rollup additionally reports the cockpit's log-scoped `openIssues` count (PEC-NFR-005).
+**Explanation carry-through (ADR-012):** DH-* is an internal aggregation stage — PH-R1/PH-A1 state
+each pressured deliverable's pressure in plain terms and carry the underlying issue/schedule records
+(holds, overdue items, conditions, aging comments; capped at 3 per deliverable) into `contributing`,
+so drill-down always lands on a cockpit-visible record; KPI-ONPLAN whys carry the plain-language
+detail at deliverable granularity. The Overview package rollup additionally reports the cockpit's
+log-scoped `openIssues` count (PEC-NFR-005).
 
 ### 6.3 Project health & thresholds (§8.4)
 Project health = worst package health, floored by governance signals breaching at project level: a

@@ -275,11 +275,12 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
   // discipline this package's planned records draw on (ADR-013 reading — capacity is
   // defined per discipline, PEC-PLAN-003, so package exposure is via its disciplines).
   const breaches = capacityBreaches(snap)
+  const planById = breaches.length > 0 ? new Map(snap.planItems.map((x) => [x.id, x])) : null
   const capRefs = (level: 'red' | 'warn'): ContributingRef[] => {
     const refs: ContributingRef[] = []
     for (const cell of breaches.filter((c) => c.level === level)) {
       for (const piId of cell.planItemIds) {
-        const pi = snap.planItems.find((x) => x.id === piId)
+        const pi = planById?.get(piId)
         if (!pi) continue
         const v = resolvePlanItem(snap, pi)
         if (v?.packageId !== pkg.id) continue

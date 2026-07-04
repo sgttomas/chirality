@@ -98,23 +98,30 @@ export function isoWeekOf(dateLocal: string): string {
   return `${thursday.getUTCFullYear()}-W${String(week).padStart(2, '0')}`
 }
 
-/** True when a string is a well-formed ISO week 'YYYY-Www' (weeks 01..53). */
-export function isValidIsoWeek(week: string | null | undefined): week is string {
-  if (week == null || !/^\d{4}-W\d{2}$/.test(week)) return false
-  const n = Number(week.slice(6))
-  return n >= 1 && n <= 53
-}
-
-/** Monday (local date) of an ISO week 'YYYY-Www' — inverse of isoWeekOf. */
-export function isoWeekMonday(week: string): string {
-  if (!isValidIsoWeek(week)) throw new Error(`invalid ISO week: ${week}`)
-  const year = Number(week.slice(0, 4))
-  const num = Number(week.slice(6))
+function isoWeekMondayUnchecked(year: number, num: number): string {
   // ISO week 1 contains Jan 4; step back to that week's Monday, then forward (num-1) weeks.
   const jan4 = new Date(Date.UTC(year, 0, 4))
   const day = (jan4.getUTCDay() + 6) % 7 // Mon=0
   const week1Monday = new Date(jan4.getTime() - day * DAY_MS)
   return fmtLocal(new Date(week1Monday.getTime() + (num - 1) * 7 * DAY_MS))
+}
+
+/**
+ * True when a string is a real ISO week 'YYYY-Www' — including the round-trip check, so
+ * W53 is accepted only in 53-week ISO years (a phantom '2025-W53' would otherwise be
+ * stored and then vanish from every weekly view).
+ */
+export function isValidIsoWeek(week: string | null | undefined): week is string {
+  if (week == null || !/^\d{4}-W\d{2}$/.test(week)) return false
+  const n = Number(week.slice(6))
+  if (n < 1 || n > 53) return false
+  return isoWeekOf(isoWeekMondayUnchecked(Number(week.slice(0, 4)), n)) === week
+}
+
+/** Monday (local date) of an ISO week 'YYYY-Www' — inverse of isoWeekOf. */
+export function isoWeekMonday(week: string): string {
+  if (!isValidIsoWeek(week)) throw new Error(`invalid ISO week: ${week}`)
+  return isoWeekMondayUnchecked(Number(week.slice(0, 4)), Number(week.slice(6)))
 }
 
 /** Sunday (local date) of an ISO week — the latest date the week covers. */
