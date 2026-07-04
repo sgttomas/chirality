@@ -1,13 +1,21 @@
 name: Harness Pre-merge Validation
 
 on:
-  pull_request:
-    # Scoped 2026-07-01: this validates the chirality-app-dev frontend harness;
-    # the unscoped trigger + pre-monorepo paths (frontend/ at repo root) made it
-    # fail on every PR after the monorepo migration moved the frontend under
-    # projects/chirality-app-dev/.
-    paths:
-      - "projects/chirality-app-dev/frontend/**"
+  # Rescoped 2026-07-04 (owner-directed): manual-only. This job runs
+  # PR-authored code (npm ci, boots the app, runs the mutable harness) with
+  # ANTHROPIC_API_KEY in env, so a pull_request trigger exposes a paid key to
+  # any same-repo PR's code (exfiltration surface). It is also not a required
+  # gate (private repo, no branch protection) and its substance runs locally +
+  # under the governance-harness workflow. Two prerequisites are also unmet: no
+  # ANTHROPIC_API_KEY secret is configured, and no step installs the `claude`
+  # CLI the "Verify CI prerequisites" step requires — so any automatic run
+  # fails regardless. Restore an automatic trigger (e.g. push: branches:[main],
+  # or pull_request scoped to the frontend paths) only after wiring a protected
+  # Environment secret + a claude-CLI install step.
+  #
+  # Prior scope note (2026-07-01): the unscoped trigger + pre-monorepo paths
+  # (frontend/ at repo root) made it fail on every PR after the monorepo
+  # migration moved the frontend under projects/chirality-app-dev/.
   workflow_dispatch:
 
 permissions:
