@@ -94,3 +94,26 @@ deliberate reading of §15, revisited only if a pilot demands generated PDFs.
 **Consequences.** No PDF dependency server-side; brief formatting is CSS print styles; export coverage is
 testable per register, and round-trip fidelity (§16) is preserved because register exports mirror the
 import schemas.
+
+## ADR-011 Deliverable status is workflow completeness; issues live at the package
+**Context.** P1 shipped a single issue-driven RAG (`deliverableStatus`, DH-*) as a deliverable's
+"health" and surfaced holds/overdue counts on the Deliverables register. Pilot direction (2026-07-04)
+drew a sharper line: a deliverable is a document moving through a production workflow, so its *status*
+is workflow completeness — which gates (drafted → checked → approved → issued) it has closed. Issues
+(holds, interfaces, decisions, risks, action items) are coordination records that belong to the
+package: they are what a Package Lead manages, not what a deliverable *is*.
+**Decision.** Add a pure `workflowCompleteness(snap, deliverable)` derivation over the revision
+lifecycle (independent of issues) and make it the deliverable summary status on the Deliverables page
+and the deliverable-detail header. Reorient the Packages page into an issues cockpit: a unified,
+urgency-sorted list of the package's holds, interfaces, decisions, risks, and rolled-up open
+action/coordination work items, with an `openIssues` count on the register. Deliverable-level issues
+are removed from the deliverables summary; they remain visible on drill-down (deliverable detail) as
+tied context. The existing issue-driven `deliverableStatus` (DH-*) is retained — it still feeds package
+and project health rollups (PH-*/PJ-*) and the Overview, which are legitimately issue/schedule signals.
+**Consequences.** `deliverablesView` returns `workflow` instead of `health`/`openItems`/`holds`; the
+hold-cause filter leaves the Deliverables page (issues are a package lens). `packageDetailView` gains
+`issues`, `risks`, action-item roll-up, and richer counts; `packagesView` gains `openIssues`. The
+register `openIssues` count is log-visibility-scoped so it matches the drill-down cockpit and never
+reveals the existence of records the caller cannot see (PEC-NFR-005). I-4 is preserved: workflow status
+is derived-on-read and never stored; health continues to carry Explain payloads for the rollups. The
+deviation from the P1 "deliverable health" presentation is deliberate and recorded here, not drift.

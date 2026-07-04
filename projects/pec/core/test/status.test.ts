@@ -1,9 +1,77 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { deliverableStatus, myWeek, packageStatus, projectStatus, waitingOnYou } from '../src/status.ts'
+import { deliverableStatus, myWeek, packageStatus, projectStatus, waitingOnYou, workflowCompleteness } from '../src/status.ts'
 import * as fx from './fixtures.ts'
 
 // TODAY = 2026-07-15 (Wed)
+
+// ---------- workflow completeness (deliverable status = production-workflow progress) ----------
+
+type WorkflowKey = 'drafted' | 'checked' | 'approved' | 'issued'
+
+test('workflowCompleteness: no revision → nothing started, 0%', () => {
+  const d = fx.deliverable()
+  const snap = fx.snapshot({ deliverables: [d] })
+  const w = workflowCompleteness(snap, d)
+  assert.equal(w.currentState, 'no_revision')
+  assert.equal(w.gatesClosed, 0)
+  assert.equal(w.pct, 0)
+  assert.ok(w.stages.every((s) => s.state === 'pending'))
+})
+
+test('workflowCompleteness: maps each revision state to closed gates + a single current stage', () => {
+  const cases: Array<[string, number, WorkflowKey | null]> = [
+    ['in_work', 0, 'checked'],
+    ['in_check', 0, 'checked'],
+    ['check_accepted', 1, 'approved'],
+    ['ready_for_approval', 1, 'approved'],
+    ['approved', 2, 'issued'],
+    ['issued', 3, null],
+  ]
+  for (const [state, gatesClosed, current] of cases) {
+    const d = fx.deliverable()
+    const rev = fx.revision({ deliverableId: d.id, state: state as never })
+    const w = workflowCompleteness(fx.snapshot({ deliverables: [d], revisions: [rev] }), d)
+    assert.equal(w.gatesClosed, gatesClosed, `${state}: gatesClosed`)
+    assert.equal(w.stages.find((s) => s.state === 'current')?.key ?? null, current, `${state}: current stage`)
+    assert.equal(w.stages[0]!.state, 'done', `${state}: drafted always done when a revision exists`)
+    assert.equal(w.stages.filter((s) => s.state === 'done').length, gatesClosed + 1, `${state}: done count`)
+  }
+})
+
+test('workflowCompleteness: issued is 100% with every stage done and none current', () => {
+  const d = fx.deliverable()
+  const rev = fx.revision({ deliverableId: d.id, state: 'issued' })
+  const w = workflowCompleteness(fx.snapshot({ deliverables: [d], revisions: [rev] }), d)
+  assert.equal(w.pct, 100)
+  assert.equal(w.label, 'issued')
+  assert.ok(w.stages.every((s) => s.state === 'done'))
+  assert.equal(w.stages.find((s) => s.state === 'current'), undefined)
+})
+
+test('workflowCompleteness: returned-with-comments reopens the workflow (no closed gates, flagged)', () => {
+  const d = fx.deliverable()
+  const rev = fx.revision({ deliverableId: d.id, state: 'returned_with_comments' })
+  const w = workflowCompleteness(fx.snapshot({ deliverables: [d], revisions: [rev] }), d)
+  assert.equal(w.returned, true)
+  assert.equal(w.gatesClosed, 0)
+  assert.equal(w.stages.find((s) => s.state === 'current')?.key, 'checked')
+})
+
+test('workflowCompleteness: status is independent of holds and overdue items (issues live at the package)', () => {
+  const d = fx.deliverable({ dueDate: '2026-01-01' }) // long overdue
+  const rev = fx.revision({ deliverableId: d.id, state: 'approved' })
+  const h = fx.hold()
+  const link = { id: fx.id(), holdId: h.id, targetType: 'deliverable' as const, targetId: d.id }
+  const overdueItem = fx.workItem({ anchorType: 'deliverable', anchorId: d.id, needBy: '2026-01-01', state: 'open' })
+  const snap = fx.snapshot({ deliverables: [d], revisions: [rev], holds: [h], holdLinks: [link], workItems: [overdueItem] })
+  const w = workflowCompleteness(snap, d)
+  // workflow status reflects only gate progress — the hold and overdue item do not touch it
+  assert.equal(w.gatesClosed, 2)
+  assert.equal(w.label, 'approved — awaiting issue')
+  // the issue-driven view still exists (for package/overview rollup) and is NOT green here
+  assert.notEqual(deliverableStatus(snap, d).health.value, 'green')
+})
 
 test('DH-G: green when no hold, no overdue, no slip (§8.2)', () => {
   const p = fx.pkg()

@@ -307,3 +307,31 @@ export function fmtDate(d: string | null | undefined): string {
 export function StateTag({ s }: { s: string }): JSX.Element {
   return <span className={`state ${s}`}>{s.replaceAll('_', ' ')}</span>
 }
+
+// ---------- workflow completeness (deliverable status = production-workflow progress) ----------
+
+export interface WorkflowInfo {
+  currentState: string
+  revCode: string | null
+  stages: Array<{ key: string; label: string; state: 'done' | 'current' | 'pending' }>
+  gatesClosed: number
+  gatesTotal: number
+  pct: number
+  label: string
+  returned: boolean
+  superseded: boolean
+}
+
+/** Compact gate-progress indicator: drafted → checked → approved → issued. */
+export function WorkflowStages({ workflow, showLabel = true }: { workflow: WorkflowInfo; showLabel?: boolean }): JSX.Element {
+  const w = workflow
+  return (
+    <span className={`wf${w.superseded ? ' superseded' : ''}`}
+      title={`${w.label}${w.revCode ? ` · rev ${w.revCode}` : ''} · ${w.gatesClosed}/${w.gatesTotal} gates closed`}>
+      <span className="wf-dots" aria-hidden>
+        {w.stages.map((s) => <span key={s.key} className={`wf-dot ${s.state}`} title={s.label} />)}
+      </span>
+      {showLabel && <span className="wf-label small">{w.label}</span>}
+    </span>
+  )
+}

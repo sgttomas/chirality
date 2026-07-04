@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import {
-  ConditionsPanel, Drawer, ErrorBox, HealthBadge, HistoryTrail, RegisterTable, StateTag,
+  ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RegisterTable, StateTag, WorkflowStages,
   fmtDate, useApp, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
@@ -19,10 +19,6 @@ import type { Col } from '../shared.tsx'
 const REVISION_STATES = [
   'in_work', 'in_check', 'check_accepted', 'ready_for_approval',
   'approved', 'issued', 'returned_with_comments', 'superseded',
-]
-const HOLD_CAUSES = [
-  'information', 'decision', 'approval', 'resource',
-  'client_input', 'interface', 'vendor_data', 'other',
 ]
 const WORK_ITEM_KINDS = ['action', 'coordination', 'risk_treatment', 'rework', 'other']
 const EVIDENCE_KINDS = ['attachment', 'markup', 'comment_sheet', 'transmittal', 'link', 'note']
@@ -36,7 +32,6 @@ export function DeliverablesPage(): JSX.Element {
   const [pkgF, setPkgF] = useState('')
   const [discF, setDiscF] = useState('')
   const [stateF, setStateF] = useState('')
-  const [causeF, setCauseF] = useState('')
   const [viewF, setViewF] = useState('active')
 
   const { data: pkgs } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
@@ -46,28 +41,26 @@ export function DeliverablesPage(): JSX.Element {
   if (pkgF) qs.set('package', pkgF)
   if (discF) qs.set('discipline', discF)
   if (stateF) qs.set('state', stateF)
-  if (causeF) qs.set('hold_cause', causeF)
   qs.set('view', viewF)
   const { data, error } = useLoad<any[]>(
     () => api.get(p(pid, `deliverables?${qs.toString()}`)),
-    [pid, pkgF, discF, stateF, causeF, viewF],
+    [pid, pkgF, discF, stateF, viewF],
   )
 
   const pkgCode = (id: number | null) =>
     pkgs?.find((x: any) => x.id === id)?.code ?? (id != null ? `#${id}` : '—')
 
+  // Status = workflow completeness (which gates are closed). Issues live at the package level.
   const cols: Array<Col<any>> = [
     { key: 'docNo', label: 'Doc no', render: (r) => <Link className="mono" to={`/p/${pid}/deliverables/${r.id}`}>{r.docNo}</Link>, csv: (r) => r.docNo },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'pkg', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span> },
     { key: 'disc', label: 'Discipline', render: (r) => r.discipline ?? '—' },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
-    { key: 'rev', label: 'Rev / state', render: (r) => <><span className="mono">{r.revCode ?? '—'}</span> <StateTag s={r.state} /></>, csv: (r) => `${r.revCode ?? ''} ${r.state}` },
+    { key: 'rev', label: 'Rev', render: (r) => <span className="mono">{r.revCode ?? '—'}</span>, csv: (r) => r.revCode ?? '' },
+    { key: 'status', label: 'Status (workflow)', render: (r) => <WorkflowStages workflow={r.workflow} />, csv: (r) => `${r.workflow.label} (${r.workflow.gatesClosed}/${r.workflow.gatesTotal})` },
     { key: 'due', label: 'Due', render: (r) => <span className="nowrap">{fmtDate(r.dueDate)}</span> },
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? '—' },
-    { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={r.docNo} />, csv: (r) => r.health.value },
-    { key: 'open', label: 'Open items', render: (r) => r.openItems },
-    { key: 'holds', label: 'Holds', render: (r) => r.holds > 0 ? <span className="badge hold">{r.holds}</span> : <span className="muted">0</span>, csv: (r) => r.holds },
   ]
 
   return (
@@ -83,10 +76,6 @@ export function DeliverablesPage(): JSX.Element {
           <option value="">any state</option>
           {REVISION_STATES.map((s) => <option key={s} value={s}>{s.replaceAll('_', ' ')}</option>)}
           <option value="no_revision">no revision</option>
-        </select>
-        <select value={causeF} onChange={(e) => setCauseF(e.target.value)}>
-          <option value="">any hold cause</option>
-          {HOLD_CAUSES.map((c) => <option key={c} value={c}>{c.replaceAll('_', ' ')}</option>)}
         </select>
         <select value={viewF} onChange={(e) => setViewF(e.target.value)}>
           <option value="active">active</option>
@@ -178,10 +167,11 @@ export function DeliverableDetailPage(): JSX.Element {
     <div>
       {/* 1 — header + metadata (PEC-DEL-002) */}
       <h1>
-        <span className="mono">{d.docNo}</span> — {d.title}{' '}
-        <HealthBadge explain={data.health} label={d.docNo} />
+        <span className="mono">{d.docNo}</span> — {d.title}
         {rev && <> <span className="mono small muted">rev {rev.revCode}</span> <StateTag s={rev.state} /></>}
       </h1>
+      {/* deliverable status = workflow completeness (gates closed); issues appear below as drill-down context */}
+      <div style={{ margin: '.2rem 0 .4rem' }}><WorkflowStages workflow={data.workflow} /></div>
       <div className="card" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(140px, 1fr))', gap: '.5rem .9rem' }}>
         {meta.map(([label, value]) => (
           <div key={label as string}>
