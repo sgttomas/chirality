@@ -319,8 +319,8 @@ export function deliverableDetailView(sx: Sx, id: number): unknown {
     (e.recordType === 'deliverable' && e.recordId === id)
     || (rev != null && e.recordType === 'revision' && e.recordId === rev.id))
   const history = [
-    ...sx.repo.historyFor('deliverable', id, 100),
-    ...(rev ? sx.repo.historyFor('revision', rev.id, 100) : []),
+    ...sx.repo.historyFor(sx.projectId, 'deliverable', id, 100),
+    ...(rev ? sx.repo.historyFor(sx.projectId, 'revision', rev.id, 100) : []),
   ].sort((a, b) => b.at.localeCompare(a.at)).slice(0, 150)
 
   // Before-this-issues panel (PEC-DEL-004): conditions on the issue gate of the current revision
@@ -500,7 +500,7 @@ export function workItemDetailView(sx: Sx, id: number): unknown {
     blockedBy: activeHoldsFor(snap, 'work_item', id).map((h) => ({ ref: h.ref, cause: h.cause, title: h.title, ownerId: h.ownerId, needBy: h.needBy })),
     closureConditions: closeExplain,
     offeredTransitions: transitionsFrom('work_item', w.state).filter((t) => !t.auto).map((t) => t.event),
-    history: sx.repo.historyFor('work_item', id, 100),
+    history: sx.repo.historyFor(sx.projectId, 'work_item', id, 100),
     evidence: snap.evidence.filter((e) => e.recordType === 'work_item' && e.recordId === id),
   }
 }
@@ -520,6 +520,6 @@ export function checkDetailView(sx: Sx, id: number): unknown {
       commentsClosed: snap.reviewComments.filter((x) => x.checkId === id && commentIsOpen(x)).length === 0,
       checkerAccepted: c.state === 'accepted',
     },
-    history: sx.repo.historyFor('check', id, 100),
+    history: sx.repo.historyFor(sx.projectId, 'check', id, 100),
   }
 }
