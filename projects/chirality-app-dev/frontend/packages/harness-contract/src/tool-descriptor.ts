@@ -7,7 +7,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v7.domain-mcp-descriptors';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v8.domain-mcp-read-live';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -133,6 +133,12 @@ const CHIRALITY_READ_MCP_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
     'Read-only Chirality MCP tools are exposed behind descriptor resolution and permission overlay policy.'
+};
+
+const CHIRALITY_DOMAIN_READ_MCP_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport.'
 };
 
 const CHIRALITY_MUTATING_MCP_RUNTIME: HarnessToolRuntimeSupport = {
@@ -292,6 +298,49 @@ function chiralityReadMcpDescriptor(input: {
   };
 }
 
+function chiralityDomainReadMcpDescriptor(input: {
+  name: ChiralityMcpDomainToolName;
+  aliases: readonly string[];
+  description: string;
+  mcpToolName: ChiralityMcpDomainToolName;
+  inputSchema: Record<string, unknown>;
+  outputSchema?: Record<string, unknown>;
+}): HarnessToolDescriptor {
+  return {
+    name: input.name,
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: [...input.aliases, input.mcpToolName],
+      adapterToolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+    }),
+    description: input.description,
+    surface: 'chirality-mcp',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
+    idempotence: 'idempotent',
+    concurrency: 'safe',
+    interruptBehavior: 'cancel',
+    resultBudget: READ_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'inline-or-artifact',
+      recordsDiff: false
+    },
+    humanGate: {
+      required: false
+    },
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+      }
+    },
+    inputSchema: input.inputSchema,
+    outputSchema: input.outputSchema,
+    runtime: CHIRALITY_DOMAIN_READ_MCP_RUNTIME
+  };
+}
+
 function chiralityMutatingMcpDescriptor(input: {
   name: string;
   aliases: readonly string[];
@@ -381,7 +430,10 @@ function chiralityDomainDescriptorOnly(input: {
     },
     inputSchema: input.inputSchema,
     outputSchema: input.outputSchema,
-    runtime: CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME
+    runtime: {
+      ...CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME,
+      reason: `D-APP-50 descriptor-only park: ${input.gateReason}`
+    }
   };
 }
 
@@ -606,17 +658,12 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       reason: 'Dependency register writes require workspaceWrite mode and governed row validation.'
     }
   }),
-  chiralityDomainDescriptorOnly({
+  chiralityDomainReadMcpDescriptor({
     name: 'domain_completeness_check',
     aliases: ['mcp.domain_completeness_check'],
     description:
-      'Reserved D-APP-50 domain MCP descriptor for the profile completeness_checker read-only wrapper.',
+      'D-APP-50 tranche-1 domain MCP read wrapper for completeness_checker transport evidence.',
     mcpToolName: 'domain_completeness_check',
-    permissions: ['read'],
-    pathScope: 'project-root-read',
-    idempotence: 'idempotent',
-    concurrency: 'safe',
-    resultBudget: READ_RESULT_BUDGET,
     inputSchema: {
       type: 'object',
       required: ['profileId', 'inputRef'],
@@ -632,21 +679,14 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     outputSchema: {
       type: 'object',
       required: ['profileId', 'toolId', 'transportStatus']
-    },
-    gateReason:
-      'D-APP-50 permits descriptor-only exposure until the completeness_checker transport is sound under DEC-041.'
+    }
   }),
-  chiralityDomainDescriptorOnly({
+  chiralityDomainReadMcpDescriptor({
     name: 'domain_rule_check_run',
     aliases: ['mcp.domain_rule_check_run'],
     description:
-      'Reserved D-APP-50 domain MCP descriptor for the profile rule_check_runner read-only wrapper.',
+      'D-APP-50 tranche-1 domain MCP read wrapper for rule_check_runner transport evidence.',
     mcpToolName: 'domain_rule_check_run',
-    permissions: ['read'],
-    pathScope: 'project-root-read',
-    idempotence: 'idempotent',
-    concurrency: 'safe',
-    resultBudget: READ_RESULT_BUDGET,
     inputSchema: {
       type: 'object',
       required: ['profileId', 'rulePackRef', 'valueBindingsRef'],
@@ -665,9 +705,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     outputSchema: {
       type: 'object',
       required: ['profileId', 'toolId', 'transportStatus']
-    },
-    gateReason:
-      'D-APP-50 permits descriptor-only exposure until the rule_check_runner transport is sound under DEC-041.'
+    }
   }),
   chiralityDomainDescriptorOnly({
     name: 'domain_headless_preview_run',
@@ -697,7 +735,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       required: ['profileId', 'toolId', 'transportStatus']
     },
     gateReason:
-      'D-APP-50 permits descriptor-only exposure until the headless_runner transport is sound under DEC-041.'
+      'DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure.'
   }),
   chiralityDomainDescriptorOnly({
     name: 'domain_propose_operation',
@@ -735,11 +773,11 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     description:
       'Reserved D-APP-50 domain MCP descriptor for operation_applier.validate; validates proposals and applies nothing.',
     mcpToolName: 'domain_proposal_validate',
-    permissions: ['workspace-write'],
-    pathScope: 'project-root-write',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
     idempotence: 'input-dependent',
-    concurrency: 'serialized-by-path',
-    resultBudget: WRITE_RESULT_BUDGET,
+    concurrency: 'safe',
+    resultBudget: READ_RESULT_BUDGET,
     inputSchema: {
       type: 'object',
       required: ['profileId', 'proposalPath'],

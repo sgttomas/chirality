@@ -7,6 +7,8 @@ import type { DependencyRegisterRow } from '../../lib/dependencies/schema';
 import {
   createChiralityReadMcpServers,
   dependenciesReadTool,
+  domainCompletenessCheckTool,
+  domainRuleCheckRunTool,
   scaffoldPreviewTool,
   scopeScanTool,
   statusReadTool
@@ -40,11 +42,22 @@ const DECOMPOSITION_DOCUMENT = `# Example System - Software Decomposition
 | DEL-05-03 | Lifecycle State Handling | RUNTIME |
 `;
 
+const DOMAIN_PROFILE = `id: open_pipe_stress
+deterministic_tools:
+  - id: completeness_checker
+    mode: read_only
+  - id: rule_check_runner
+    mode: read_only
+`;
+
 type FixtureContext = {
   tmpRoot: string;
   projectRoot: string;
   deliverablePath: string;
   decompositionPath: string;
+  domainInputPath: string;
+  rulePackPath: string;
+  valueBindingsPath: string;
 };
 
 let fixture: FixtureContext;
@@ -103,9 +116,14 @@ beforeEach(async () => {
   );
   const decompositionDirectory = path.join(projectRoot, '_Decomposition');
   const decompositionPath = path.join(decompositionDirectory, 'decomposition.md');
+  const profileDirectory = path.join(projectRoot, '_DomainEngines', 'profiles');
+  const domainInputPath = path.join(projectRoot, 'domain-input.json');
+  const rulePackPath = path.join(projectRoot, 'rule-pack.json');
+  const valueBindingsPath = path.join(projectRoot, 'value-bindings.json');
 
   await mkdir(deliverablePath, { recursive: true });
   await mkdir(decompositionDirectory, { recursive: true });
+  await mkdir(profileDirectory, { recursive: true });
   await writeFile(path.join(deliverablePath, '_STATUS.md'), STATUS_DOCUMENT, 'utf8');
   await writeFile(
     path.join(deliverablePath, 'Dependencies.csv'),
@@ -113,12 +131,27 @@ beforeEach(async () => {
     'utf8'
   );
   await writeFile(decompositionPath, DECOMPOSITION_DOCUMENT, 'utf8');
+  await writeFile(path.join(profileDirectory, 'open_pipe_stress.yaml'), DOMAIN_PROFILE, 'utf8');
+  await writeFile(domainInputPath, JSON.stringify({ nodes: [], edges: [] }), 'utf8');
+  await writeFile(
+    rulePackPath,
+    JSON.stringify({ grammar_version: 'test', rules: [] }),
+    'utf8'
+  );
+  await writeFile(
+    valueBindingsPath,
+    JSON.stringify({ supplied_values: {}, solver_results: {} }),
+    'utf8'
+  );
 
   fixture = {
     tmpRoot,
     projectRoot,
     deliverablePath,
-    decompositionPath
+    decompositionPath,
+    domainInputPath,
+    rulePackPath,
+    valueBindingsPath
   };
   process.env.CHIRALITY_SESSION_ROOT = path.join(tmpRoot, 'sessions');
 });
@@ -228,6 +261,70 @@ describe('Chirality read MCP tools', () => {
     await expect(stat(executionRoot)).rejects.toMatchObject({ code: 'ENOENT' });
   });
 
+  it('returns D-APP-50 read-side domain transport evidence without domain verdicts', async () => {
+    const context = { projectRoot: fixture.projectRoot, sessionId };
+    const completeness = parseJsonToolResult<{
+      profileId: string;
+      toolId: string;
+      transportStatus: {
+        status: string;
+        deterministicToolExecution: string;
+        resultSemantics: string;
+      };
+      inputs: Array<{ field: string; relativePath: string; sha256: string; json: unknown }>;
+    }>(
+      await domainCompletenessCheckTool(context, {
+        profileId: 'open_pipe_stress',
+        inputRef: path.relative(fixture.projectRoot, fixture.domainInputPath)
+      })
+    );
+    const ruleRun = parseJsonToolResult<{
+      profileId: string;
+      toolId: string;
+      transportStatus: {
+        status: string;
+        deterministicToolExecution: string;
+      };
+      inputs: Array<{ field: string; relativePath: string; sha256: string }>;
+    }>(
+      await domainRuleCheckRunTool(context, {
+        profileId: 'open_pipe_stress',
+        rulePackRef: path.relative(fixture.projectRoot, fixture.rulePackPath),
+        valueBindingsRef: path.relative(fixture.projectRoot, fixture.valueBindingsPath)
+      })
+    );
+
+    expect(completeness).toMatchObject({
+      profileId: 'open_pipe_stress',
+      toolId: 'completeness_checker',
+      transportStatus: {
+        status: 'live',
+        deterministicToolExecution: expect.stringContaining('not invoked'),
+        resultSemantics: expect.stringContaining('no domain verdict')
+      }
+    });
+    expect(completeness.inputs).toEqual([
+      expect.objectContaining({
+        field: 'inputRef',
+        relativePath: 'domain-input.json',
+        sha256: expect.any(String),
+        json: expect.objectContaining({ topLevelType: 'object' })
+      })
+    ]);
+    expect(ruleRun).toMatchObject({
+      profileId: 'open_pipe_stress',
+      toolId: 'rule_check_runner',
+      transportStatus: {
+        status: 'live',
+        deterministicToolExecution: expect.stringContaining('not invoked')
+      }
+    });
+    expect(ruleRun.inputs.map((input) => input.field)).toEqual([
+      'rulePackRef',
+      'valueBindingsRef'
+    ]);
+  });
+
   it('rejects scaffold preview paths outside the active project root', async () => {
     await expect(
       scaffoldPreviewTool(
@@ -268,6 +365,18 @@ describe('Chirality read MCP tools', () => {
       createChiralityReadMcpServers({
         context: { projectRoot: fixture.projectRoot, sessionId },
         allowedToolNames: ['mcp__chirality__status_read']
+      })
+    ).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
+
+    expect(
+      createChiralityReadMcpServers({
+        context: { projectRoot: fixture.projectRoot, sessionId },
+        allowedToolNames: ['mcp__chirality__domain_completeness_check']
       })
     ).toMatchObject({
       chirality: {

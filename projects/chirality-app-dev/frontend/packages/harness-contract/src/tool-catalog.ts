@@ -108,10 +108,17 @@ capability, change provider scope, or create release/professional approval.
 ## Naming Boundary
 
 Chirality-owned in-process MCP tools use \`mcp__chirality__*\` adapter names.
-D-APP-50 registers \`mcp__chirality__domain_*\` descriptors for governed
-domain-profile tools. Those descriptors stay descriptor-only until DEC-041
-runtime transport and K-DOMAIN-2 proposal-write quarantine are sound; no
-domain apply tool is registered or exposed.
+D-APP-50 tranche-1 exposes only the read-side domain transport wrappers
+\`mcp__chirality__domain_completeness_check\` and
+\`mcp__chirality__domain_rule_check_run\`. Their handlers return live
+DEC-041 in-process read-transport evidence envelopes only: no domain verdict,
+no live-binding claim, no professional conclusion, and no piping write.
+\`mcp__chirality__domain_headless_preview_run\` remains descriptor-only because
+the DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD.
+\`mcp__chirality__domain_propose_operation\` and
+\`mcp__chirality__domain_proposal_validate\` remain descriptor-only until the
+K-DOMAIN-2 proposal-write quarantine is implemented; no domain apply tool is
+registered or exposed.
 
 SDK built-in tool names and Chirality MCP adapter names are collision-checked by the
 descriptor registry tests. Unknown tools remain rejected before streaming.

@@ -98,9 +98,15 @@ bypass and must be rejected in review.
 Current Chirality MCP adapter names are cataloged in
 `frontend/docs/harness/tool_catalog.md`.
 
-D-APP-50 domain tools use `mcp__chirality__domain_*` descriptor names, but they stay
-descriptor-only until DEC-041 runtime transport and K-DOMAIN-2 proposal-write quarantine
-are sound. Do not add placeholder domain handlers, broad tool search, remote MCP servers,
+D-APP-50 tranche-1 exposes only the read-side domain transport wrappers
+`mcp__chirality__domain_completeness_check` and
+`mcp__chirality__domain_rule_check_run`. They must remain read-only DEC-041
+in-process transport/evidence-envelope tools and must not claim a domain verdict,
+live binding, professional conclusion, shell execution, network access, or piping write.
+`mcp__chirality__domain_headless_preview_run` stays descriptor-only while the
+DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD. Proposal/write names
+stay descriptor-only until the K-DOMAIN-2 proposal-write quarantine is implemented.
+Do not add placeholder domain handlers, broad tool search, remote MCP servers,
 plugin marketplace hooks, remote execution, provider-network expansion, or apply-capable
 domain tools as part of ordinary local tool work.
 
