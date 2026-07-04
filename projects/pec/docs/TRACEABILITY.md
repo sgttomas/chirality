@@ -173,7 +173,7 @@ strings are not DB-enums, so `reconciled` can be added without migration.
 | PEC-NFR-004 optimistic concurrency | version-checked `update()` in `server/src/repo.ts`; 409 `VERSION_CONFLICT` with intervening history (`server/src/errors.ts`); every web mutation sends `version` and `web/src/shared.tsx` `ErrorBox` tells the user to reload | server: 'PEC-NFR-004: stale version writes are rejected with the intervening history' |
 | PEC-NFR-005 server-side RBAC + log visibility at the query layer | rules matrix `core/src/permissions.ts` (`can()`), enforced per route/service via `requireCan()` (`server/src/services/shared.ts`); log visibility `visibleLogs()` applied at serialization in `views.ts`; UI probe `GET can/:action` | core: permissions.test.ts (whole file); server: 'RBAC: viewer is read-only; checker acceptance is checker-only …' |
 | PEC-NFR-007 multi-project isolation | every project-scoped repo query takes `project_id` from the authenticated route (`server/src/api.ts` `authed()` → `Sx.projectId`; `server/src/repo.ts` `get/list/update` are project-scoped), never from the body; `historyFor()` now takes `project_id` as its leading argument and filters on it (fixes a confirmed leak where the history endpoint returned another project's `history_entry` rows by record id — fixed 2026-07-04); snapshot link scans (`hold_link`/`decision_link`) are bounded to the project via a join on the parent's `project_id` | server: pilot-hardening.test.ts 'PEC-NFR-007: the history endpoint does not leak another project\'s history rows' (probed across every id-taking endpoint; only history leaked, now closed) |
-| PEC-NFR-009 backup/restore, RPO ≤ 24 h, tested restore | `tools/backup.ts` — `backup`: WAL-safe `VACUUM INTO` snapshot to `backups/pec-YYYYMMDD-HHMMSS.db`, prunes to newest 14; `restore <file>`: integrity-checks the backup, moves the live db (+wal/shm) aside to `pec.db.pre-restore*`, copies the backup into place, prints restart instructions; honors `PEC_DB` like the server (SPEC §12: run daily for RPO ≤ 24 h) | manual: backup → mutate → restore round-trip executed against a scratch DB on 2026-07-04 (restored contents verified, prior db preserved at `.pre-restore`); the pilot-readiness gate additionally requires one rehearsal against the real pilot DB |
+| PEC-NFR-009 backup/restore, RPO ≤ 24 h, tested restore | `tools/backup.ts` — `backup`: WAL-safe `VACUUM INTO` snapshot to `backups/pec-YYYYMMDD-HHMMSS.db`, prunes to newest 14; `restore <file>`: integrity-checks the backup, moves the live db (+wal/shm) aside to `pec.db.pre-restore*`, copies the backup into place, prints restart instructions; honors `PEC_DB` like the server (SPEC §12: run daily for RPO ≤ 24 h); operational procedure + rehearsal recipe in `docs/PILOT.md` §4–5 | server: coverage-backup-restore.test.ts 'PEC-NFR-009: backup → mutate → restore round-trip; prior database preserved aside', '… restore refuses a corrupt backup …', '… unknown backup name fails …', 'backup prunes to the newest 14'; also rehearsed end-to-end by `npm run drill` (`tools/pilot-drill.ts` §4). The pilot-readiness gate additionally requires one rehearsal against the real pilot DB (PILOT.md §5) |
 | PEC-NFR-010 UTC storage; project timezone + working-day calendar | all timestamps UTC ISO-8601 (`server/src/repo.ts` `nowIso()`); `core/src/calendar.ts` (localDate, working-day math over project weekend/holiday config); thresholds computed in working days (`core/src/status.ts`) | core: calendar.test.ts 'localDate respects timezone (PEC-NFR-010)' + the whole file |
 
 ## PRD §5 Invariants I-1..I-10
@@ -222,7 +222,13 @@ Honest list of what is implemented but not automatically tested (or deliberately
 5. **Checklist/condition template management has no API/UI**: templates are seeded via
    `tools/seed.ts` or direct DB in P1 (PEC-CHK-001 instantiation itself works and SPEC §7
    names templates under config — CRUD deferred).
-6. **Tested restore against the pilot database** (PEC-NFR-009) still to be rehearsed before
-   pilot; the backup→restore round-trip is verified against a scratch DB (see NFR table).
+6. **Backup/restore now automated** (2026-07-04, item B): the round-trip, corrupt-backup
+   refusal, and retention pruning run in CI (`server/test/coverage-backup-restore.test.ts`), and
+   `npm run drill` (`tools/pilot-drill.ts`) rehearses the whole pilot pipeline — §16 imports with
+   reject reporting + MDL re-import idempotency, coordinator triage over unanchored intake,
+   derived-view rendering, backup → mutate → restore — against a scratch DB (fixtures under
+   `tools/fixtures/`, or the real pilot CSVs via `--mdl/--rail/--decisions/--risks`). What remains
+   is inherently manual: one rehearsal against the **real pilot database** before go-live
+   (recipe: `docs/PILOT.md` §5) — record its date in STATUS when done.
 7. **PEC-NOT-002/003, PEC-CHK-004 hard block, PEC-REC-\*, dedicated interface register** are
    P2/P3 by design (SPEC §11), not gaps.

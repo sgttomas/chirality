@@ -1,0 +1,25 @@
+doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type
+BOR-PR-001,Process design basis memorandum,BOR-PR,Process,eng.process@borealis.dev,B,issued,2026-07-10,Gate 2,IFR,EDMS-1001,CL-PR-001,,report
+BOR-PR-002,Process flow diagram — compression train,BOR-PR,Process,eng.process@borealis.dev,A,in_check,2026-07-24,Gate 2,IFR,EDMS-1002,CL-PR-002,,drawing
+BOR-PR-003,Heat and material balance,BOR-PR,Process,eng.process@borealis.dev,A,in_work,2026-07-31,,IFR,EDMS-1003,CL-PR-003,,calculation
+BOR-PR-004,P&ID — inlet separation sheet 1,BOR-PR,Process,eng.process@borealis.dev,A,in_work,2026-08-14,Gate 2,IFR,EDMS-1004,CL-PR-004,,drawing
+BOR-PR-005,P&ID — compression sheet 1,BOR-PR,Process,eng.process@borealis.dev,A,in_work,2026-08-14,,IFR,EDMS-1005,CL-PR-005,,drawing
+BOR-PR-006,Flare load summary,BOR-PR,Process,eng.process@borealis.dev,A,check_accepted,2026-08-07,,IFR,EDMS-1006,CL-PR-006,,calculation
+BOR-ME-001,Compressor datasheet K-101,BOR-ME,Mechanical,eng.mech@borealis.dev,A,in_check,2026-07-17,Gate 2,IFR,EDMS-2001,CL-ME-001,,datasheet
+BOR-ME-002,Air cooler datasheet E-201,BOR-ME,Mechanical,eng.mech@borealis.dev,A,in_work,2026-08-21,,IFR,EDMS-2002,CL-ME-002,,datasheet
+BOR-ME-003,Suction scrubber datasheet V-101,BOR-ME,Mechanical,eng.mech@borealis.dev,A,approved,2026-07-15,,IFR,EDMS-2003,CL-ME-003,awaiting transmittal,datasheet
+BOR-ME-004,Mechanical equipment list,BOR-ME,Mechanical,eng.mech@borealis.dev,B,IFR,2026-07-03,Gate 2,IFR,EDMS-2004,CL-ME-004,issued as rev B,list
+BOR-ME-005,Piping and valve material specification,BOR-ME,Mechanical,eng.mech@borealis.dev,A,in_work,2026-09-04,,IFR,EDMS-2005,CL-ME-005,,specification
+BOR-ME-006,Pressure vessel calculation V-101,BOR-ME,Mechanical,eng.mech@borealis.dev,A,ready_for_approval,2026-07-22,,IFR,EDMS-2006,CL-ME-006,,calculation
+BOR-CV-001,Plot plan,BOR-CV,Civil,lead.process@borealis.dev,A,in_check,2026-07-24,Gate 2,IFR,EDMS-3001,CL-CV-001,,drawing
+BOR-CV-002,Grading and drainage plan,BOR-CV,Civil,lead.mech@borealis.dev,A,in_work,2026-08-28,,IFR,EDMS-3002,CL-CV-002,,drawing
+BOR-CV-003,Foundation design brief — compressor building,BOR-CV,Civil,lead.mech@borealis.dev,A,in_work,2026-09-11,,IFR,EDMS-3003,CL-CV-003,,report
+BOR-CV-004,Geotechnical interpretation report,BOR-CV,Civil,lead.process@borealis.dev,B,issued,2026-06-26,,IFR,EDMS-3004,CL-CV-004,,report
+BOR-EL-001,Electrical one-line diagram,BOR-EL,Electrical,eng.elec@borealis.dev,A,in_work,2026-08-07,Gate 2,IFR,EDMS-4001,CL-EL-001,,drawing
+BOR-EL-002,Electrical load list,BOR-EL,Electrical,eng.elec@borealis.dev,A,check_accepted,2026-07-17,,IFR,EDMS-4002,CL-EL-002,,list
+BOR-EL-003,Hazardous area classification drawing,BOR-EL,Electrical,eng.elec@borealis.dev,A,in_work,2026-08-28,,IFR,EDMS-4003,CL-EL-003,,drawing
+BOR-EL-004,Instrument index,BOR-EL,Instrumentation,eng.elec@borealis.dev,A,in_work,2026-09-04,,IFR,EDMS-4004,CL-EL-004,,list
+BOR-EL-005,Cable schedule,BOR-EL,Electrical,eng.elec@borealis.dev,A,in_work,2026-09-18,,IFR,EDMS-4005,CL-EL-005,,list
+BOR-EL-006,Control system architecture drawing,BOR-EL,Instrumentation,eng.elec@borealis.dev,A,returned_with_comments,2026-07-08,,IFR,EDMS-4006,CL-EL-006,client comments on rev A,drawing
+BOR-PR-007,Utility flow diagram,BOR-PR,Process,eng.process@borealis.dev,A,in_work,2026-09-25,,IFR,EDMS-1007,CL-PR-007,,drawing
+BOR-ME-007,Relief valve sizing calculations,BOR-ME,Mechanical,eng.mech@borealis.dev,A,in_work,2026-08-21,,IFR,EDMS-2007,CL-ME-007,,calculation

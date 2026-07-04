@@ -40,7 +40,16 @@ Ground truth for behavior is the **tests** (`core/test/`, `server/test/`) and th
 
 **A. Finish P1 coverage — DONE (2026-07-04).** The previously untested surfaces now have automated tests (`server/test/coverage-*.test.ts`, `core/test/coverage-ph-a2.test.ts`; 32 tests): sponsor-brief render (PEC-OV-006), independence warning (PEC-CHK-004), risk/interface registers (PEC-RISK/INT, PEC-PKG-007), the §15 exports, the PH-A2 rule, the log-change history entry (PEC-AHL-002), notification producers + sweep idempotency (PEC-NOT-001), and PEC-NFR-003 at 250k history rows. Also implemented `export/log.csv` and fixed a real defect (risk API now enforces the 1–5 probability/impact range). Suite is now 127 tests. See `docs/TRACEABILITY.md` "Known P1 gaps" for the few remaining thin spots (checklist/condition-template CRUD is seed/DB-only by design).
 
-**B. Pilot readiness (the real next step).** Import a real master deliverables list and RAIL via the §16 importers (`POST import/mdl|rail`), and run one coordinator through a real weekly triage. Rehearse backup/restore against the real pilot DB (`tools/backup.ts`; PEC-NFR-009 wants one tested restore). Let pilot feedback drive P2 scope — the PRD is explicitly pilot-driven.
+**B. Pilot readiness — tooling DONE (2026-07-04); the human rehearsal remains.** The tested restore
+(PEC-NFR-009) is now automated (`server/test/coverage-backup-restore.test.ts`: round-trip, corrupt-backup
+refusal, retention pruning), and `npm run drill` (`tools/pilot-drill.ts`) rehearses the whole pilot
+pipeline against a scratch DB — §16 imports in order with row-level reject reporting, MDL re-import
+idempotency, coordinator triage over unanchored intake, derived-view budget, backup → mutate → restore.
+Point it at the real spreadsheets with `--mdl/--rail/--decisions/--risks` to shake them down. The runbook
+is `docs/PILOT.md` (provisioning, import order, weekly triage script, backup cron, restore procedure).
+Still for the pilot team, and inherently manual: import the *real* MDL/RAIL, run one coordinator through
+a *real* weekly triage, one restore rehearsal against the real pilot DB (PILOT.md §5), and let pilot
+feedback drive P2 scope — the PRD is explicitly pilot-driven.
 
 **C. Open design threads from ADR-011 (decide before they harden).** Deliverable *status* is now workflow completeness, but **package/project health still derive from the issue-driven `deliverableStatus`** (PH-A1 counts amber/red deliverables; PJ-* rolls those up). That coexistence is intentional but is a seam: decide whether package/overview health should be reframed around package-level *issue* signals (hold age, overdue decisions, late interfaces, risks) rather than deliverable-RAG, for consistency with the issues-at-package model — and whether the Overview should adopt the issues framing.
 
