@@ -2,6 +2,8 @@
 
 **Decision:** Where does the cross-repo flow-A contract package version live and how is it pinned — and confirm DEC-041 as decision-of-record.
 
+**Structural precedent:** Same-directory tier-0 decision/ruling summary pattern used by D-T0-04 through D-T0-06.
+
 **Why the owner's:** cross-repo version governance is a maintainer decision; DEC-041's status needs confirmation.
 
 **Verified facts:** `CLAUDE_AGENT_SDK_PACKAGE_VERSION='0.3.150'`
