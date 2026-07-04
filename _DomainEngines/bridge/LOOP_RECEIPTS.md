@@ -267,3 +267,11 @@
   - Gate outcome: owner-approved PR #31 merge completed; HB-9 Option A convention executed; no decision register state, profile, F1/F2/F3/F4, publication, live-binding, lifecycle, app source, or piping source write.
   - Checks: focused HB-9 tests pass; coord-check --diff main..HEAD exit 0 at INFO=1 (generated-root reference only); drift 0/154; status x3 no severities; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; bridge-status pass/no findings with `blocked_on_links=4`; full harness pytest pass.
   - Parked lanes: `D-APP-47`, `D-APP-48`, `D-T0-09`, `D-29`, `D-30`; active brief `TRB-chirality-app-dev-DEL-03-01-2026-07-03`; F3/live binding/DEC-041 automation condition.
+
+- **2026-07-04 — Receipt 14**
+  - Start: `5f2e98cc6`; branch `codex/five-lane-control-packets`; PR #32 already merged to `main` at `5f2e98cc6`; pre-existing untracked `projects/9-domains/` left untouched.
+  - Owner direction of record: "I approve work on D-APP-47, D-APP-48, D-T0-09, D-29, and D-30. Prepare and execute all agent-lawful coordination/control work in parallel where scopes do not conflict. For D-30, prepare now but hold any prerequisite-dependent execution until D-APP-48 and D-T0-09 are resolved. For D-T0-09, prepare the ruling packet."
+  - Executed pointers: D-APP-47 packet, D-APP-48 packet, D-T0-09 packet, D-29 packet, D-30 packet; corresponding register rows moved to `AWAITING_RULING` / prerequisite-held prepared posture.
+  - Gate outcome: coordination/control preparation only; D-29 truth-changing SCOPE_CHANGE propagation held at packet/gate approval; D-30 prerequisite-dependent execution held on D-APP-48 + D-T0-09; no profile, F1/F2/F3/F4, publication, live-binding, lifecycle, app source, piping source, PRD, or decomposition-truth write.
+  - Checks: git diff --check pass; coord-check --diff main..HEAD exit 0 at INFO=1 (generated-root reference only); status x3 no severities; drift 0/154; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; bridge-status pass/no findings; full harness pytest 255 passed.
+  - Parked lanes: owner rulings on D-APP-47, D-APP-48, D-T0-09, D-29, and D-30; D-30 implementation remains conditional on D-APP-48 + D-T0-09; F3/live binding remains gated by the profile line and DEC-041 automation condition.
