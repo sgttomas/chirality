@@ -6,7 +6,7 @@
   ],
   "source": {
     "repository": "https://github.com/sgttomas/chirality",
-    "commitSha": "73c88f12f0669de8361bc4ddc782e724280c2d5a",
+    "commitSha": "6a20981b96b53ecfe89fded386e2063a329b736d",
     "commitRole": "source package pin for the private intra-repo pull contract"
   },
   "package": {
@@ -19,7 +19,7 @@
   "constants": {
     "flowAContractVersion": "flow-a.contract.v0.1.0",
     "claudeAgentSdkPackageVersion": "0.3.150",
-    "harnessToolRegistryVersion": "harness-tools.v7.domain-mcp-descriptors"
+    "harnessToolRegistryVersion": "harness-tools.v8.domain-mcp-read-live"
   },
   "validation": {
     "dependencyLintCommand": "cd projects/chirality-app-dev/frontend && npm run harness:validate:contract-deps",
@@ -72,13 +72,13 @@
       "export": "./tool-catalog",
       "target": "./src/tool-catalog.ts",
       "sourcePath": "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts",
-      "sha256": "03b70aea109b67d3ad35c87418071721574d70708abb42090b639d766c0277f9"
+      "sha256": "902701c1e2b8443db81700b8f0caa8741e01def228a5cded27d06d0295276e3c"
     },
     {
       "export": "./tool-descriptor",
       "target": "./src/tool-descriptor.ts",
       "sourcePath": "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts",
-      "sha256": "425a8d04164b961217ea069332983ff09e1ef2204de2e306e0c131f194e177b3"
+      "sha256": "73fd6eac4d1afd47afcb6f6ef853e321d2e41f8cb52e707f6bcf2172aba465b3"
     },
     {
       "export": "./transcript-replay",
