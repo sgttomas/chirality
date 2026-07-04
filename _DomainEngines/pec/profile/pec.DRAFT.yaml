@@ -1,0 +1,165 @@
+# PEC Domain Engine Profile - DRAFT (registration package; Gate 2 not ruled)
+#
+# Status: DRAFT. This profile is staged under _DomainEngines/pec/profile/
+# rather than _DomainEngines/profiles/ until the harness tranche makes the
+# domain-engine adapter multi-profile-safe. The validator report may mark this
+# schema-valid, but validation does not adopt the profile; owner Gate 2 remains
+# the adoption act.
+#
+# Provenance: instance binding for projects/pec, the engineering execution
+# control app. Source behavior is the committed PEC tree: docs/STATUS.md,
+# docs/SPEC.md, docs/TRACEABILITY.md, package scripts, server routes, and tools.
+# No PEC server or mutating live database command is invoked by this file.
+
+domain_profile:
+  schema_version: "1.0"
+  id: "pec"
+  name: "PEC - Engineering Execution Control (project controls)"
+  engine_type: "project-controls/engineering-execution-control"
+  profile_version: "0.1"
+  profile_status: "DRAFT"
+  integration_level: "MANUAL_BRIDGE"
+  data_residency: "TBD"  # Pending D-T0-14; gate-safe default is CLOSED/no instance-content egress.
+
+  domain_root_patterns:
+    - "projects/pec/**"
+
+  authoritative_artifacts:
+    - "projects/pec/core/**"
+    - "projects/pec/server/**"
+    - "projects/pec/web/**"
+    - "projects/pec/tools/**"
+    - "projects/pec/fixtures/**"
+    - "projects/pec/docs/**"
+    - "projects/pec/package.json"
+    - "projects/pec/package-lock.json"
+    - "projects/pec/tsconfig.base.json"
+    - "<$PEC_DB ?? projects/pec/pec.db (+ -wal/-shm)>"
+    - "<$PEC_BACKUP_DIR ?? projects/pec/backups/>"
+
+  chirality_readable_artifacts:
+    - "projects/pec/README.md"
+    - "projects/pec/docs/STATUS.md"
+    - "projects/pec/docs/PRD.md"
+    - "projects/pec/docs/SPEC.md"
+    - "projects/pec/docs/TRACEABILITY.md"
+    - "projects/pec/docs/PILOT.md"
+    - "projects/pec/docs/adr/ADR.md"
+    - "projects/pec/fixtures/*.csv"
+    - "<human-exported PEC register CSVs: mdl, rail, decisions, risks, approvals, interfaces, intake, commitments, schedule, lookahead, log>"
+    - "<human-exported sponsor brief HTML and package-pack HTML>"
+    - "<Explain payloads returned by PEC API routes>"
+    - "<ImportReport JSON responses returned by PEC import routes>"
+    - "<drill, backup, and restore evidence produced from scratch or owner-approved exported inputs>"
+
+  protected_write_paths:
+    - "projects/pec/** except projects/pec/execution/_Coordination/**, projects/pec/AGENTS.md, and the one-time projects/pec/docs/STATUS.md pointer edit"
+    - "<$PEC_DB ?? projects/pec/pec.db (+ -wal/-shm)>"
+    - "<$PEC_BACKUP_DIR ?? projects/pec/backups/>"
+
+  agent_writable_paths:
+    - "_DomainEngines/proposals/pec/**"
+    - "_DomainEngines/pec/**"
+    - "projects/pec/execution/_Coordination/**"
+    - "projects/pec/AGENTS.md"
+
+  deterministic_tools:
+    - id: "pilot_drill"
+      impl: "projects/pec/tools/pilot-drill.ts via npm run drill"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "Runs against a scratch database under the OS temp directory; never projects/pec/pec.db. Exit 0 means the rehearsal checks passed, not pilot readiness."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "pec.test"
+      impl: "projects/pec/package.json scripts: npm run typecheck && npm test && npm run build"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "Build/test verification over the committed project tree."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "export.register"
+      impl: "projects/pec/server/src/import/index.ts exportRegister plus UI register exports"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "API-mode register export; requires an owner-provisioned session and visibility basis before instance data is captured."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "reports.render"
+      impl: "projects/pec/server/src/reports/sponsor-brief.ts and server/src/reports/package-pack.ts"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "Renders print-HTML reports through authenticated API routes; title-bearing rows are visibility-filtered where the report contract requires it."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "explain.read"
+      impl: "projects/pec/core/src/status.ts and core/src/conditions.ts via API explain payloads"
+      mode: "read_only"
+      requires_human_confirmation: false
+      note: "Reads derived explanation payloads; derived health is not an engineering correctness claim."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "backup.create"
+      impl: "projects/pec/tools/backup.ts backup"
+      mode: "domain_controlled_write"
+      requires_human_confirmation: false
+      note: "Uses SQLite VACUUM INTO and writes to the configured backup directory; does not mutate record lifecycle state."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "backup.restore"
+      impl: "projects/pec/tools/backup.ts restore <file>"
+      mode: "domain_controlled_write"
+      requires_human_confirmation: true
+      note: "Replaces the live database path after moving the current file aside; server must be stopped first."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "import.csv"
+      impl: "projects/pec/server/src/import/index.ts importContract"
+      mode: "domain_controlled_write"
+      requires_human_confirmation: true
+      note: "POST import/:contract for mdl, rail, decisions, risks, and schedule; force=true is never agent-set without a ruling."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+    - id: "seed.demo"
+      impl: "projects/pec/tools/seed.ts via npm run seed"
+      mode: "domain_controlled_write"
+      requires_human_confirmation: true
+      note: "Demo seed is destructive to the configured PEC_DB; lawful only against an explicit scratch/demo database or owner-approved demo state."
+      validate_result_schema: "TBD"
+      apply_result_schema: "TBD"
+
+  operation_proposal_contract:
+    lifecycle: ["draft", "ready_for_review", "accepted", "rejected", "applied"]
+    risk_classes: ["engine_checkable", "engine_silent"]
+    deterministic_check_result_schema: "TBD"
+    accepted_or_applied_requires:
+      - "human approval bound to git SHA per K-AUTH-2"
+      - "engine-controlled apply through PEC's RBAC API with append-only history/audit evidence"
+
+  operation_risk_class_axis: ["engine_checkable", "engine_silent"]
+
+  professional_boundary:
+    agent_must_not_claim:
+      - "approved"
+      - "issued"
+      - "checked or check-accepted"
+      - "ready for construction"
+      - "code compliant"
+      - "certified"
+      - "sealed"
+      - "professionally approved"
+      - "derived health implies engineering correctness"
+      - "record states changed outside PEC's RBAC API and append-only history"
+      - "pilot readiness or go-live absent a cited owner record"
+    bound_to_engine_lifecycle: "projects/pec/core/src/lifecycles.ts controlled lifecycles: work_item, revision, check, approval_record, decision, hold, intake_item"
+    reserved_human_act: "approval outcome, decision outcome, check acceptance, comment acceptance, revision issue, and waiver/hold/approval judgment acts by the named PEC authority"
+
+  open_issues:
+    - "Profile staging location: stays under _DomainEngines/pec/profile/ until PR #51 merges and the D-T0-16-authorized multi-profile harness tranche executes."
+    - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; no instance-content egress absent a future owner ruling."
+    - "Readable instance artifacts require a future concrete D-PEC-01/O-B-style ruling with owner-provisioned exports or credentials plus an actor/visibility basis."
+    - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."
+    - "PEC's reserved human acts are internal RBAC acts, while the current canon wording is oriented to external professional approval records; canon clarification may be needed."
+    - "L3 operation-proposal semantics overlap PEC native lifecycles and need a future ruling before any proposal-shaped apply path."
+    - "PEC is outside the governed decomposition loop; profile adoption would not adopt or amend PEC decomposition truth."
+    - "seed.demo lacks an in-tool refuse-non-demo-DB guard; use only under explicit scratch/demo authority until repaired."

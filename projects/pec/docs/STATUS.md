@@ -39,6 +39,14 @@ npm run seed && npm run dev   # demo project AUR at http://localhost:4811 (all u
 
 Ground truth for behavior is the **tests** (`core/test/`, `server/test/`) and the pure derivations in `core/src/`.
 
+## Governance & agent harness
+
+PEC's project-local agent rules live in `AGENTS.md`. Human-gated PEC-local
+coordination decisions are tracked at `execution/_Coordination/_DECISIONS/_REGISTER.md`.
+Tier-0 domain-engine registration is staged under `_DomainEngines/pec/` with
+profile `_DomainEngines/pec/profile/pec.DRAFT.yaml`; owner rulings live in
+`_DomainEngines/_DECISIONS/_REGISTER.md`.
+
 ## What's next (prioritized)
 
 **A. Finish P1 coverage — DONE (2026-07-04).** The previously untested surfaces now have automated tests (`server/test/coverage-*.test.ts`, `core/test/coverage-ph-a2.test.ts`; 32 tests): sponsor-brief render (PEC-OV-006), independence warning (PEC-CHK-004), risk/interface registers (PEC-RISK/INT, PEC-PKG-007), the §15 exports, the PH-A2 rule, the log-change history entry (PEC-AHL-002), notification producers + sweep idempotency (PEC-NOT-001), and PEC-NFR-003 at 250k history rows. Also implemented `export/log.csv` and fixed a real defect (risk API now enforces the 1–5 probability/impact range). Suite is now 127 tests. See `docs/TRACEABILITY.md` "Known P1 gaps" for the few remaining thin spots (checklist/condition-template CRUD is seed/DB-only by design).
