@@ -1,6 +1,6 @@
 # D-T0-16 - PROPOSAL: PEC harness tranche authorization
 
-**Status:** RULED / O-A authorized with riders; execution held pending PR #51 merge.
+**Status:** RULED / O-A authorized with riders; execution unblocked by PR #51 merge.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-16  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -39,7 +39,7 @@ at the final SHA.
 
 **Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-04, over O-B.
 
-**Publication:** Pending owner merge of PR #51.
+**Publication:** Published by PR #51 merge commit `57307cac1` (2026-07-04).
 
 Owner ruling excerpt:
 

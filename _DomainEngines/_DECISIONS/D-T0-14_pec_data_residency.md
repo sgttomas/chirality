@@ -1,6 +1,6 @@
 # D-T0-14 - PROPOSAL: PEC data residency and instance-content visibility
 
-**Status:** RULED / deferred with O-A CLOSED default; publication pending PR #51 merge.
+**Status:** RULED / deferred with O-A CLOSED default; published by PR #51 merge commit `57307cac1`.
 **Date prepared:** 2026-07-04  
 **Decision ID:** D-T0-14  
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -40,7 +40,7 @@ manifest with source refs, command refs, output paths, and limitations.
 **Ruling:** Deferred by owner (Ryan Tufts), 2026-07-04, with O-A CLOSED default
 kept in force for now.
 
-**Publication:** Pending owner merge of PR #51.
+**Publication:** Published by PR #51 merge commit `57307cac1` (2026-07-04).
 
 Owner ruling excerpt:
 

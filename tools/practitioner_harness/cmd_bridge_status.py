@@ -80,18 +80,24 @@ REGISTER_SOURCES = (
         "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
     ),
     ("tier-0 register", "_DomainEngines/_DECISIONS/_REGISTER.md"),
+    (
+        "pec register",
+        "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    ),
 )
 
 PROFILE_CANDIDATES = (
     "_DomainEngines/profiles/open_pipe_stress.yaml",
     "_DomainEngines/profiles/open_pipe_stress.DRAFT.yaml",
+    "_DomainEngines/profiles/pec.yaml",
+    "_DomainEngines/pec/profile/pec.DRAFT.yaml",
 )
 
 RECEIPTS_RELPATH = "_DomainEngines/bridge/LOOP_RECEIPTS.md"
 BRIEFS_RELPATH = "docs/governance_harness/briefs"
 PIPING_DECOMP_RELPATH = "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md"
 HARNESS_BACKLOG_RELPATH = "tools/practitioner_harness/BACKLOG.md"
-PROJECT_RELPATHS = (
+BLOCKED_ON_PROJECT_RELPATHS = (
     "projects/chirality-app-dev",
     "projects/chirality-piping",
 )
@@ -101,9 +107,9 @@ CANONICAL_RECEIPT_LABELS = (
     "Gate outcome",
     "Parked lanes",
 )
-DECISION_ID_RE = re.compile(r"\bD-(?:APP|T0|GOV)-\d+\b|\bD-\d+[A-Za-z]?\b")
+DECISION_ID_RE = re.compile(r"\bD-(?:APP|T0|GOV|PEC)-\d+\b|\bD-\d+[A-Za-z]?\b")
 PR_REF_RE = re.compile(r"\bPR\s*#\d+\b", re.IGNORECASE)
-HB_REF_RE = re.compile(r"\bHB-\d+\b")
+HB_REF_RE = re.compile(r"\bHB(?:-[A-Z]+)?-\d+\b")
 
 
 @dataclass(frozen=True)
@@ -121,6 +127,7 @@ class DecisionRow:
 @dataclass(frozen=True)
 class ProfileInfo:
     source_path: str
+    profile_id: str = ""
     profile_status: str = ""
     profile_status_line: int | None = None
     profile_version: str = ""
@@ -303,28 +310,53 @@ def _field_value(line: str) -> str:
     return value.strip('"').strip("'")
 
 
-def _load_profile(repo_root: Path) -> ProfileInfo | None:
+def _load_profile_from_path(repo_root: Path, relpath: str) -> ProfileInfo | None:
+    path = repo_root / relpath
+    if not path.is_file():
+        return None
+    kwargs: dict[str, object] = {"source_path": relpath}
+    for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        stripped = line.strip()
+        if stripped.startswith("id:"):
+            kwargs["profile_id"] = _field_value(stripped)
+        elif stripped.startswith("profile_status:"):
+            kwargs["profile_status"] = _field_value(stripped)
+            kwargs["profile_status_line"] = idx
+        elif stripped.startswith("profile_version:"):
+            kwargs["profile_version"] = _field_value(stripped)
+            kwargs["profile_version_line"] = idx
+        elif stripped.startswith("integration_level:"):
+            kwargs["integration_level"] = _field_value(stripped)
+            kwargs["integration_level_line"] = idx
+        elif "Live binding" in stripped and "gated" in stripped:
+            kwargs["live_binding_line"] = stripped.lstrip("- ").strip().strip('"')
+            kwargs["live_binding_line_no"] = idx
+    if not kwargs.get("profile_id"):
+        kwargs["profile_id"] = Path(relpath).stem.removesuffix(".DRAFT")
+    return ProfileInfo(**kwargs)
+
+
+def _load_profiles(repo_root: Path) -> list[ProfileInfo]:
+    profiles: list[ProfileInfo] = []
+    seen: set[str] = set()
     for relpath in PROFILE_CANDIDATES:
-        path = repo_root / relpath
-        if not path.is_file():
+        profile = _load_profile_from_path(repo_root, relpath)
+        if profile is None:
             continue
-        kwargs: dict[str, object] = {"source_path": relpath}
-        for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
-            stripped = line.strip()
-            if stripped.startswith("profile_status:"):
-                kwargs["profile_status"] = _field_value(stripped)
-                kwargs["profile_status_line"] = idx
-            elif stripped.startswith("profile_version:"):
-                kwargs["profile_version"] = _field_value(stripped)
-                kwargs["profile_version_line"] = idx
-            elif stripped.startswith("integration_level:"):
-                kwargs["integration_level"] = _field_value(stripped)
-                kwargs["integration_level_line"] = idx
-            elif "Live binding" in stripped and "gated" in stripped:
-                kwargs["live_binding_line"] = stripped.lstrip("- ").strip().strip('"')
-                kwargs["live_binding_line_no"] = idx
-        return ProfileInfo(**kwargs)
-    return None
+        key = profile.profile_id or profile.source_path
+        if key in seen:
+            continue
+        seen.add(key)
+        profiles.append(profile)
+    return profiles
+
+
+def _load_profile(repo_root: Path) -> ProfileInfo | None:
+    profiles = _load_profiles(repo_root)
+    for profile in profiles:
+        if profile.profile_id == "open_pipe_stress":
+            return profile
+    return profiles[0] if profiles else None
 
 
 def _receipt_bullets(
@@ -654,8 +686,9 @@ def _find_backlog_item(repo_root: Path, item_id: str) -> tuple[str, int] | None:
     if not path.is_file():
         return None
     heading = re.compile(rf"^##\s+{re.escape(item_id)}\b")
+    table_row = re.compile(rf"^\|\s*{re.escape(item_id)}\s*\|")
     for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
-        if heading.search(line):
+        if heading.search(line) or table_row.search(line):
             return HARNESS_BACKLOG_RELPATH, idx
     return None
 
@@ -766,7 +799,7 @@ def _add_fact(report: Report, fact_id: str, value: str, source: str, line: int |
 
 def _blocked_on_records(repo_root: Path) -> list[BlockedOnRecord]:
     records: list[BlockedOnRecord] = []
-    for relroot in PROJECT_RELPATHS:
+    for relroot in BLOCKED_ON_PROJECT_RELPATHS:
         project_root = repo_root / relroot
         if not project_root.is_dir():
             continue
@@ -795,6 +828,7 @@ def run_bridge_status(repo_root: Path) -> Report:
     rows = _all_register_rows(repo_root)
     open_rows = [row for row in rows if not row.state.upper().startswith("RULED")]
     parsed_register_rows = len(rows)
+    profiles = _load_profiles(repo_root)
     profile = _load_profile(repo_root)
     receipt = _latest_receipt(repo_root)
     briefs, refusal = _brief_records(repo_root)
@@ -924,32 +958,40 @@ def run_bridge_status(repo_root: Path) -> Report:
     report.md("")
     report.md(PROFILE_NOTE)
     report.md("")
-    if profile is None:
+    if not profiles:
         report.md("- profile absent: no configured profile candidate found")
     else:
-        if profile.profile_status:
+        report.md("| Profile | Status | Gate posture | Integration level | Source |")
+        report.md("|---|---|---|---|---|")
+        for item in profiles:
+            gate_posture = (
+                "Gate 2 open"
+                if item.profile_status.upper() in {"DRAFT", "VALIDATED"}
+                else "Gate 2 adopted"
+                if item.profile_status.upper() == "ADOPTED"
+                else "Gate 2 unknown"
+            )
             report.md(
-                f"- profile_status: `{profile.profile_status}` - "
-                f"`{_source(profile.source_path, profile.profile_status_line)}`"
+                f"| `{_esc(item.profile_id or '-')}` | `{_esc(item.profile_status or '-')}` | "
+                f"{_esc(gate_posture)} | `{_esc(item.integration_level or '-')}` | "
+                f"`{_source(item.source_path, item.profile_status_line)}` |"
             )
             _add_fact(
                 report,
-                "bridge_status.profile_status",
-                profile.profile_status,
-                profile.source_path,
-                profile.profile_status_line,
+                f"bridge_status.profile.{item.profile_id}.profile_status",
+                item.profile_status,
+                item.source_path,
+                item.profile_status_line,
             )
-        if profile.profile_version:
-            report.md(
-                f"- profile_version: `{profile.profile_version}` - "
-                f"`{_source(profile.source_path, profile.profile_version_line)}`"
+            _add_fact(
+                report,
+                f"bridge_status.profile.{item.profile_id}.gate_posture",
+                gate_posture,
+                item.source_path,
+                item.profile_status_line,
             )
-        if profile.integration_level:
-            report.md(
-                f"- integration_level: `{profile.integration_level}` - "
-                f"`{_source(profile.source_path, profile.integration_level_line)}`"
-            )
-        if profile.live_binding_line:
+        report.md("")
+        if profile is not None and profile.live_binding_line:
             report.md(
                 f"- live-binding line: {profile.live_binding_line} - "
                 f"`{_source(profile.source_path, profile.live_binding_line_no)}`"

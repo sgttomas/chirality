@@ -216,6 +216,7 @@ def run_self_check(
     default_scope = [
         repo_root / "projects" / "chirality-app-dev",
         repo_root / "projects" / "chirality-piping",
+        repo_root / "projects" / "pec",
         de_root,
         gov_root,
     ]
@@ -243,10 +244,24 @@ def run_self_check(
         if register.is_file():
             first = register.read_text(encoding="utf-8").splitlines()[:1]
             register_ruled = bool(first and re.search(r"\bRULED\b", first[0]))
-        profile_status = ""
-        for fact in obs.facts:
-            if fact.fact_id == "profile.profile_status":
-                profile_status = fact.value.upper()
+        profile_records = list(obs.profile_observations.values())
+        if not profile_records and obs.profile_path is not None:
+            profile_records = [
+                adapter_domain_engines.DomainEngineProfileObservation(
+                    profile_id="profile",
+                    profile_data=obs.profile_data,
+                    profile_raw=obs.profile_raw,
+                    profile_path=obs.profile_path,
+                    protected_write_paths=obs.protected_write_paths,
+                    agent_writable_paths=obs.agent_writable_paths,
+                )
+            ]
+        profile_status_by_id: dict[str, str] = {}
+        for profile in profile_records:
+            dp = profile.profile_data.get("domain_profile", {})
+            status = str(dp.get("profile_status", "")).upper() if isinstance(dp, dict) else ""
+            profile_status_by_id[profile.profile_id] = status
+        any_profile_adopted = any(status == "ADOPTED" for status in profile_status_by_id.values())
 
         de_md_files = _iter_files(de_root, (".md",))
 
@@ -304,7 +319,7 @@ def run_self_check(
                         _rel(rec, repo_root), 1, invariant="K-CONFLICT-1"))
 
         # DE-3 stale_draft_directive
-        if profile_status == "ADOPTED":
+        if any_profile_adopted:
             for path in de_md_files:
                 for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
                     if STALE_DRAFT_DIRECTIVE_RE.search(line):
@@ -316,17 +331,26 @@ def run_self_check(
                             _rel(path, repo_root), idx, invariant="K-CONFLICT-1"))
 
         # DE-4 filename_vs_field
-        if obs.profile_path is not None and ".DRAFT" in obs.profile_path.name and profile_status == "ADOPTED":
-            report.add_finding(make_finding(
-                Severity.REVIEW, "FILENAME_CONTRADICTS_STATUS", "staleness",
-                f"Profile filename {obs.profile_path.name!r} carries '.DRAFT' while "
-                "profile_status is ADOPTED; sources conflict — human review required.",
-                _rel(obs.profile_path, repo_root), None, invariant="K-CONFLICT-1"))
+        for profile in profile_records:
+            profile_status = profile_status_by_id.get(profile.profile_id, "")
+            if (
+                profile.profile_path is not None
+                and ".DRAFT" in profile.profile_path.name
+                and profile_status == "ADOPTED"
+            ):
+                report.add_finding(make_finding(
+                    Severity.REVIEW, "FILENAME_CONTRADICTS_STATUS", "staleness",
+                    f"Profile filename {profile.profile_path.name!r} carries '.DRAFT' while "
+                    "profile_status is ADOPTED; sources conflict — human review required.",
+                    _rel(profile.profile_path, repo_root), None, invariant="K-CONFLICT-1"))
 
         # DE-5 header_comment_vs_field (+ version-string ambiguity INFO)
-        if obs.profile_path is not None and obs.profile_raw:
+        for profile in profile_records:
+            profile_status = profile_status_by_id.get(profile.profile_id, "")
+            if profile.profile_path is None or not profile.profile_raw:
+                continue
             header_lines: list[tuple[int, str]] = []
-            for idx, line in enumerate(obs.profile_raw.splitlines(), start=1):
+            for idx, line in enumerate(profile.profile_raw.splitlines(), start=1):
                 if line.startswith("#"):
                     header_lines.append((idx, line))
                 elif line.strip():
@@ -339,10 +363,10 @@ def run_self_check(
                             "YAML header comment claims DRAFT/NOT validated/NOT adopted "
                             "while the profile_status field is ADOPTED; sources conflict "
                             "— human review required.",
-                            _rel(obs.profile_path, repo_root), idx,
+                            _rel(profile.profile_path, repo_root), idx,
                             invariant="K-CONFLICT-1"))
             version = ""
-            dp = obs.profile_data.get("domain_profile", {})
+            dp = profile.profile_data.get("domain_profile", {})
             if isinstance(dp, dict):
                 version = str(dp.get("profile_version", ""))
             if "DRAFT" in version.upper() and profile_status == "ADOPTED":
@@ -351,13 +375,13 @@ def run_self_check(
                     f"profile_version {version!r} carries a '-DRAFT' suffix while "
                     "profile_status is ADOPTED. Explicitly NOT a status conflict "
                     "(version-string labeling ambiguity only).",
-                    _rel(obs.profile_path, repo_root), None, invariant="K-CONFLICT-1"))
+                    _rel(profile.profile_path, repo_root), None, invariant="K-CONFLICT-1"))
 
         # DE-6 banner_vs_table
         if index_path := (de_root / "DOMAIN_ENGINE_INDEX.md"):
             if index_path.is_file():
                 text = index_path.read_text(encoding="utf-8")
-                if register_ruled or profile_status == "ADOPTED":
+                if register_ruled or any_profile_adopted:
                     for idx, line in enumerate(text.splitlines(), start=1):
                         if BANNER_CLAIM_RE.search(line):
                             report.add_finding(make_finding(
@@ -385,10 +409,13 @@ def run_self_check(
 
         # DE-8 stale_open_issue: stale open issues vs later rulings (K-STALE-2).
         # (a) profile open_issues entries vs the authoritative profile_status field
-        if obs.profile_path is not None and profile_status == "ADOPTED":
-            dp = obs.profile_data.get("domain_profile", {})
+        for profile in profile_records:
+            profile_status = profile_status_by_id.get(profile.profile_id, "")
+            if profile.profile_path is None or profile_status != "ADOPTED":
+                continue
+            dp = profile.profile_data.get("domain_profile", {})
             open_issues = dp.get("open_issues") or [] if isinstance(dp, dict) else []
-            raw_lines = obs.profile_raw.splitlines()
+            raw_lines = profile.profile_raw.splitlines()
             for entry in open_issues:
                 if not isinstance(entry, str):
                     continue
@@ -415,7 +442,7 @@ def run_self_check(
                     "conflict — human review required (K-STALE-2: stale items are "
                     "human-triaged; the annotate-in-place pattern is the lawful "
                     "resolution).",
-                    _rel(obs.profile_path, repo_root), line_no, invariant="K-STALE-2"))
+                    _rel(profile.profile_path, repo_root), line_no, invariant="K-STALE-2"))
 
         # (b) decision-record ruling lines carrying an open condition the record's
         # own later progress note declares met, with the condition unannotated.
@@ -986,7 +1013,7 @@ def _resolve_ref_path(
     if de_root.exists():
         candidates.append(de_root / ref)
     # Control files lawfully reference project files project-relatively.
-    for project in ("chirality-app-dev", "chirality-piping"):
+    for project in ("chirality-app-dev", "chirality-piping", "pec"):
         candidates.append(repo_root / "projects" / project / ref)
     for cand in candidates:
         try:

@@ -63,7 +63,16 @@ PROJECT_ALIASES: dict[str, str] = {
     "chirality-app-dev": "projects/chirality-app-dev",
     "piping": "projects/chirality-piping",
     "chirality-piping": "projects/chirality-piping",
+    "pec": "projects/pec",
+    "chirality-pec": "projects/pec",
 }
+
+FULL_CITIZENSHIP_PROJECTS = (
+    "app-dev",
+    "chirality-app-dev",
+    "piping",
+    "chirality-piping",
+)
 
 
 def _project_root(repo_root: Path, name: str) -> Path:
@@ -116,12 +125,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_status = sub.add_parser("status", parents=[common],
                               help="One-page sourced posture view")
     g = p_status.add_mutually_exclusive_group(required=True)
-    g.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)))
+    g.add_argument("--project", choices=FULL_CITIZENSHIP_PROJECTS)
     g.add_argument("--domain-engines", action="store_true")
 
     p_drift = sub.add_parser("drift", parents=[common],
                              help="Current State vs history-assertion drift audit")
-    p_drift.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)))
+    p_drift.add_argument("--project", choices=FULL_CITIZENSHIP_PROJECTS)
     p_drift.add_argument("--all", action="store_true",
                          help="Audit both pilot projects (default)")
     p_drift.add_argument("--include-domain-engines", action="store_true",
@@ -142,7 +151,7 @@ def build_parser() -> argparse.ArgumentParser:
     # Generate mode requires --project/--deliverable; verify mode takes ONLY
     # the path. Both are optional at parse level and enforced manually so the
     # two modes can share the subcommand without argparse contortions.
-    p_brief.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)))
+    p_brief.add_argument("--project", choices=FULL_CITIZENSHIP_PROJECTS)
     p_brief.add_argument("--deliverable", metavar="DEL-NN-MM")
     p_brief.add_argument("--objective", default=None)
     p_brief.add_argument("--tranche-id", default=None)
@@ -154,7 +163,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_next = sub.add_parser("next", parents=[common],
                             help="Sourced pick-list of active work — the "
                                  "practitioner selects; the tool never selects")
-    p_next.add_argument("--project", choices=sorted(set(PROJECT_ALIASES)),
+    p_next.add_argument("--project", choices=FULL_CITIZENSHIP_PROJECTS,
                         help="One project only (default: both pilot projects)")
 
     p_runval = sub.add_parser(
