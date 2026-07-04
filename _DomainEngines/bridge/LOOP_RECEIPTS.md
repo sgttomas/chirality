@@ -275,3 +275,11 @@
   - Gate outcome: coordination/control preparation only; D-29 truth-changing SCOPE_CHANGE propagation held at packet/gate approval; D-30 prerequisite-dependent execution held on D-APP-48 + D-T0-09; no profile, F1/F2/F3/F4, publication, live-binding, lifecycle, app source, piping source, PRD, or decomposition-truth write.
   - Checks: git diff --check pass; coord-check --diff main..HEAD exit 0 at INFO=1 (generated-root reference only); status x3 no severities; drift 0/154; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; bridge-status pass/no findings; full harness pytest 255 passed.
   - Parked lanes: owner rulings on D-APP-47, D-APP-48, D-T0-09, D-29, and D-30; D-30 implementation remains conditional on D-APP-48 + D-T0-09; F3/live binding remains gated by the profile line and DEC-041 automation condition.
+
+- **2026-07-04 — Receipt 15**
+  - Start: `9a65ecf07`; branch `codex/pr33-merge-receipt`; PR #33 merged to `main` at merge commit `9a65ecf07`; pre-existing untracked `projects/9-domains/` left untouched.
+  - Owner direction of record: "I approve merger of PR #33 and rule that you prepare all those packets."
+  - Live gates checked: D-APP-47, D-APP-48, D-T0-09, D-29, and D-30 packet records remain prepared with `OPEN` human-ruling sections; corresponding register rows remain `AWAITING_RULING` / prerequisite-held prepared posture.
+  - Gate outcome: owner-approved PR #33 merge completed; direction ratifies packet preparation only; no packet option/value ruling, implementation greenlight, profile, F1/F2/F3/F4, publication, live-binding, lifecycle, app source, piping source, PRD, or decomposition-truth write recorded.
+  - Checks: bridge-status pass/no findings; status x3 no severities; drift 0/154; self-check exit 0 at INFO=14/NOT_APPLICABLE=1/REVIEW=29/WARN=2; full harness pytest 255 passed.
+  - Parked lanes: owner option/value rulings on D-APP-47, D-APP-48, D-T0-09, D-29, and D-30; D-30 implementation remains conditional on D-APP-48 + D-T0-09; F3/live binding remains gated by the profile line and DEC-041 automation condition.
