@@ -141,7 +141,13 @@ On an O-A ruling, the executing tranche (after D-APP-49's tranche) would touch, 
 
 ## Human Ruling And Disposition
 
-**Ruling recorded:** _Awaiting owner ruling._
+**Ruling recorded:** **O-A** — staged read-first tool set under the reserved
+`mcp__chirality__domain_*` namespace, riders 1-6 adopted as binding conditions;
+`operation_applier.apply` excluded outright (owner, Ryan Tufts, in-session 2026-07-04, via the
+run steer quoted verbatim in the ruling record; as-recommended reading per the Receipt 20/21
+precedent). The steer's ordering condition was satisfied first: the D-APP-49 source-types
+tranche landed at the PR #47 merge `fe15cfe68`, and the proven-L2 acknowledgment is recorded
+(`D-T0-10`). Ruling record: `execution/_Coordination/_DECISIONS/D-APP-50_RULING_2026-07-04.md`.
 
 ## Ruling Mechanism
 
