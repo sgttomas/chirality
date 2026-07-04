@@ -81,7 +81,7 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     assert refusal is None
     keyed = {(f.code, f.source_path, f.source_line) for f in report.findings}
     assert ("STALE_RULING_ANNOTATION",
-            "_DomainEngines/DOMAIN_ENGINE_INDEX.md", 34) in keyed
+            "_DomainEngines/DOMAIN_ENGINE_INDEX.md", 43) in keyed
     assert ("STALE_RULING_ANNOTATION",
             "_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md",
             1) in keyed
@@ -124,11 +124,13 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # tier-0 CHANGE (CHANGE_PREP_2026-07-04_live_binding_gate_destale.md)
     # rewrote the profile live-binding line to the single genuinely open gate
     # (app-dev F3), so the HB-8 STALE_LIVE_BINDING_GATE finding cleared.
+    # INFO 14->15 on 2026-07-04: the PEC registration package added a staged
+    # profile validation report under _DomainEngines/pec/profile/_validation/.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
-            "INFO": 14,
+            "INFO": 15,
         "NOT_APPLICABLE": 1,
         "REVIEW": 28,
         "WARN": 2,
@@ -136,13 +138,14 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
 
 
 @live
-def test_live_self_check_exactly_one_abs_path_in_evidence():
+def test_live_self_check_abs_path_in_evidence_reports_are_pinned():
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_EVIDENCE"]
-    assert len(hits) == 1
-    assert hits[0].source_path == (
-        "_DomainEngines/profiles/_validation/open_pipe_stress.validation.json")
-    assert hits[0].source_line == 5
+    assert len(hits) == 2
+    assert {(h.source_path, h.source_line) for h in hits} == {
+        ("_DomainEngines/pec/profile/_validation/pec.validation.json", 5),
+        ("_DomainEngines/profiles/_validation/open_pipe_stress.validation.json", 5),
+    }
 
 
 @live

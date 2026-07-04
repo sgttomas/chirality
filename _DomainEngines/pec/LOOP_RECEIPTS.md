@@ -53,3 +53,13 @@
     iteration starts at Step 0 and authors the registration package (PR-A
     tier-0, PR-B pec-side) per the plan, terminating in the D-T0-11..16 slate
     (renumber from the live register) for the owner.
+
+- **2026-07-04 — Receipt 1** (registration package authored).
+  - Start: `6a3fe012c`; branch `codex/pec-registration-package`; tree clean before work; no `tools/**` changes since Receipt 0 at discovery, so discovery self-check only.
+  - Owner direction of record: "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`. Read `{REPO_ROOT}/_DomainEngines/pec/LOOP_INIT.md` and follow it: pursue the loop's inherent goals — recorded in its standing plan — as far as live authority permits. Steer (this run): <none>"
+  - Live gates checked: tier-0 register current through D-T0-10; no PEC-local register existed at discovery; bridge Receipt 24 says D-T0-10/D-APP-49/D-APP-50 are ruled and the remaining bridge lane is app-dev F3 execution.
+  - Executed pointers: `_DomainEngines/pec/profile/pec.DRAFT.yaml` + validation report; `_DomainEngines/pec/PEC_2026-07-04_tier0-prep/`; D-T0-11..16 proposal packets + register rows; `_DomainEngines/proposals/pec/.gitkeep`; `projects/pec/AGENTS.md`; `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`; `projects/pec/docs/STATUS.md` pointer section; harness backlog/live-baseline pin updates.
+  - Deltas (live tree wins): `init/init-prompt.md` already had the PEC launcher ACTIVE; the companion plan path named by the registration plan is absent; repo self-check entrypoint is `python3 tools/practitioner_harness/harness.py self-check`.
+  - Gate outcome: registration package authored only; STOP at owner rulings D-T0-11..16. No `HumanRuling` filled, no profile adoption, no harness tranche, no profile move into `_DomainEngines/profiles/`, no PEC server/non-scratch DB mutation, no release/egress/professional claim.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=1/REVIEW=28/WARN=2; full practitioner harness pytest 259 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass after `npm install`; `git diff --check` pass.
+  - Parked lanes: owner rulings on D-T0-11 registration shape, D-T0-12 profile lifecycle/Gate 2, D-T0-13 integration staging, D-T0-14 data residency, D-T0-15 standing goal/fences, and D-T0-16 harness-tranche authorization.
