@@ -206,16 +206,19 @@ Honest list of what is implemented but not automatically tested (or deliberately
    budget test; and intake conversion fan-out with back-links (PEC-AHL-005). Intake conversion +
    check three-facts/comment reopen (PEC-CHK-002/003) + decision-gated issue (§9) are also
    exercised by `server/test/integration.test.ts`.
-2. **Still no automated tests** for: sponsor brief rendering (PEC-OV-006); independence warning
-   (PEC-CHK-004); risk and interface registers (PEC-RISK-001/002, PEC-INT-001, PEC-PKG-007);
-   approvals/interfaces/intake/commitments exports (§15); the PH-A2 package-health rule; the
-   log-change history entry (PEC-AHL-002); most of the PEC-NOT-001 catalog and the sweep's
-   idempotency (only `hold_resolved_unblocked` is asserted). The 250k-history half of PEC-NFR-003
-   is reasoned (the snapshot never loads `history_entry`, proven history-independent) but the
-   budget test exercises the 10k-open-items dimension only.
-3. **No server-side `export/log.csv`**: the unified Log register exports client-side via
-   `RegisterTable` ("exports exactly what is displayed", PRD §15); SPEC §7's export list
-   mentions `log` — deviation recorded here.
+2. **Closed by the 2026-07-04 P1-coverage pass** (`server/test/coverage-*.test.ts` +
+   `core/test/coverage-ph-a2.test.ts`, 32 tests): sponsor-brief render (PEC-OV-006); independence
+   warning (PEC-CHK-004); risk + interface registers incl. version-conflict handling and the
+   risk-treatment work-item projection (PEC-RISK-001/002, PEC-INT-001, PEC-PKG-007); the §15
+   exports — approvals/interfaces/intake/commitments/log, with log-visibility on the log export;
+   the PH-A2 package-health rule; the log-change history entry (PEC-AHL-002); notification
+   producers + sweep idempotency (PEC-NOT-001); and PEC-NFR-003 at 250k history rows (snapshot
+   proven history-independent). The pass also fixed a real defect: the risk API
+   (`createRisk`/`updateRisk`) did not enforce the probability/impact **1–5** range that the CSV
+   importer does — now validated (`server/src/services/registers.ts` `validateRiskScore()`).
+3. **Server `export/log.csv` implemented** (2026-07-04): a `log` case in `exportRegister`
+   (`server/src/import/index.ts`) mirrors the displayed Action & Hold Log with log-visibility
+   filtering (§7, PEC-NFR-005); the client-side `RegisterTable` export remains for filtered views.
 5. **Checklist/condition template management has no API/UI**: templates are seeded via
    `tools/seed.ts` or direct DB in P1 (PEC-CHK-001 instantiation itself works and SPEC §7
    names templates under config — CRUD deferred).

@@ -12,7 +12,7 @@
  */
 
 import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, Revision, Risk, WorkItem } from '@pec/core'
-import { HOLD_CAUSES, LOGS, isoWeekOf } from '@pec/core'
+import { HOLD_CAUSES, LOGS, ageWorkingDays, daysOverdue, isoWeekOf, visibleLogs } from '@pec/core'
 import { badRequest } from '../errors.ts'
 import { nowIso } from '../repo.ts'
 import type { Sx } from '../services/shared.ts'
@@ -534,6 +534,43 @@ export function exportRegister(sx: Sx, register: string): string {
         rows.push([week, personName(sx, w.ownerId), w.ref, w.title,
           w.anchorType === 'deliverable' ? docNo(w.anchorId) : '', w.needBy, w.state, why])
       }
+      return toCsv(headers, rows)
+    }
+    case 'log': {
+      // Unified Action & Hold Log export, filtered to the caller's visible logs (§7, PEC-NFR-005) —
+      // mirrors the displayed log register (ADR-010: export exactly what is shown).
+      const logs = visibleLogs(sx.roles, snap.project.config.logVisibility)
+      const cal = snap.project.calendar
+      const today = snap.today
+      const headers = ['item_id', 'type', 'title', 'log', 'package', 'owner', 'state',
+        'age_wd', 'need_by', 'overdue', 'hold_cause', 'anchor_status']
+      interface LR {
+        type: string; ref: string; title: string; log: Log; pkgId: number | null
+        ownerId: number | null; state: string; ageWd: number; needBy: string | null
+        overdue: boolean; cause: string | null; anchor: string
+      }
+      const lrows: LR[] = []
+      for (const w of snap.workItems as WorkItem[]) {
+        if (w.state !== 'open' && w.state !== 'in_work') continue
+        lrows.push({ type: 'work_item', ref: w.ref, title: w.title, log: w.log, pkgId: w.packageId, ownerId: w.ownerId, state: w.state, ageWd: ageWorkingDays(w.createdAt, today, cal), needBy: w.needBy, overdue: daysOverdue(w.needBy, today) > 0, cause: null, anchor: 'anchored' })
+      }
+      for (const h of snap.holds as Hold[]) {
+        if (h.state !== 'active') continue
+        lrows.push({ type: 'hold', ref: h.ref, title: h.title, log: h.log, pkgId: null, ownerId: h.ownerId, state: h.state, ageWd: ageWorkingDays(h.raisedAt, today, cal), needBy: h.needBy, overdue: daysOverdue(h.needBy, today) > 0, cause: h.cause, anchor: 'anchored' })
+      }
+      for (const i of snap.interfaces as InterfaceItem[]) {
+        if (i.state !== 'open' && i.state !== 'agreed') continue
+        lrows.push({ type: 'interface_item', ref: i.ref, title: i.title, log: i.log, pkgId: i.givingPackageId ?? i.receivingPackageId, ownerId: null, state: i.state, ageWd: 0, needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0, cause: null, anchor: 'anchored' })
+      }
+      for (const t of snap.intakeItems as IntakeItem[]) {
+        if (t.state === 'dispositioned') continue
+        lrows.push({ type: 'intake_item', ref: t.ref, title: t.statementVerbatim.slice(0, 120), log: t.log, pkgId: null, ownerId: t.suggestedOwnerId, state: t.state, ageWd: ageWorkingDays(t.raisedAt, today, cal), needBy: t.needBy, overdue: daysOverdue(t.needBy, today) > 0, cause: null, anchor: 'unanchored' })
+      }
+      const rows = lrows
+        .filter((r) => logs.includes(r.log))
+        .sort((a, b) => b.ageWd - a.ageWd)
+        .map((r) => [r.ref, r.type, r.title, r.log, pkgCode(r.pkgId), personName(sx, r.ownerId),
+          r.state, String(r.ageWd), r.needBy, r.overdue ? 'yes' : 'no', r.cause, r.anchor])
       return toCsv(headers, rows)
     }
     default:
