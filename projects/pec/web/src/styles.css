@@ -90,6 +90,27 @@ table.reg tr.clickable { cursor: pointer; }
 .state.superseded, .state.cancelled, .state.withdrawn, .state.waived { background: #eee9e2; color: #7d6b4f; }
 .state.blocked, .state.reopened { background: var(--red-bg); color: var(--red); }
 
+/* workflow completeness — gate progress (drafted → checked → approved → issued) */
+.wf { display: inline-flex; align-items: center; gap: .4rem; }
+.wf-dots { display: inline-flex; gap: 3px; }
+.wf-dot { width: 9px; height: 9px; border-radius: 50%; background: #dde2e9; flex: none; }
+.wf-dot.done { background: var(--green); }
+.wf-dot.current { background: var(--amber); box-shadow: 0 0 0 2px var(--amber-bg); }
+.wf-label { color: var(--muted); }
+.wf.superseded .wf-label { color: #7d6b4f; }
+
+/* issue-type tags for the package issues cockpit */
+.itype {
+  display: inline-block; padding: .05rem .45rem; border-radius: 4px; font-size: .72rem;
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .02em; white-space: nowrap;
+  background: #e8ecf0; color: #3b4854;
+}
+.itype-hold { background: #ece4fb; color: var(--hold); }
+.itype-interface { background: #e2f0f7; color: #1c6a8f; }
+.itype-decision { background: #fdeecd; color: #8a6a12; }
+.itype-risk { background: var(--red-bg); color: var(--red); }
+.itype-action { background: #e5efe6; color: #3d7a49; }
+
 .btn {
   background: var(--accent); color: var(--accent-ink); border: none; border-radius: var(--radius);
   padding: .4rem .8rem; cursor: pointer; font-size: .84rem;
