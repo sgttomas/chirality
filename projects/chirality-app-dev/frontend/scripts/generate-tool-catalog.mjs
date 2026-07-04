@@ -32,7 +32,9 @@ function parseArgs(argv) {
 
 async function main() {
   const { check } = parseArgs(process.argv.slice(2));
-  const { renderHarnessToolCatalog } = require('../src/lib/harness/tool-catalog.ts');
+  const { renderHarnessToolCatalog } = require(
+    '../packages/harness-contract/src/tool-catalog.ts'
+  );
   const rendered = renderHarnessToolCatalog();
 
   if (check) {
