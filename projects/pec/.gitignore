@@ -1,0 +1,7 @@
+node_modules/
+web/dist/
+pec.db
+pec.db-shm
+pec.db-wal
+backups/
+*.tsbuildinfo

@@ -1,0 +1,5 @@
+risk_id,title,cause,consequence,owner,status,package,deliverable_ref,probability,impact,mitigation,need_by
+RSK-CL-01,Client survey data older than five years,Topographic survey dates from 2019,Plot plan rework late in FEED,lead.process@aurora.dev,open,PKG-P,,3,4,Request updated survey; freeze plot north of the pipe rack,2026-07-30
+RSK-CL-02,Long-lead compressor quote validity expires,Vendor quote lapses mid-FEED,Re-quote delays the K-201 datasheet,lead.mech@aurora.dev,mitigating,PKG-M,AUR-M-002,4,4,Ask vendor for a 60-day validity extension,2026-07-20
+RSK-CL-03,August vacation season reduces checking capacity,Concurrent checker leave,Check turnaround exceeds five working days,em@aurora.dev,open,,,2,3,Stagger checker leave; pre-book an external checker,2026-08-10
+RSK-CL-04,Probability out of range demo row,Bad data in the legacy register,Shows the per-row reject report,eor@aurora.dev,open,PKG-P,,7,4,,2026-07-15

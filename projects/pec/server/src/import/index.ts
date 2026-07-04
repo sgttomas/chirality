@@ -1,0 +1,536 @@
+/**
+ * Import/export contracts (PRD §16, SPEC §8).
+ *
+ * Behavior: validate row-by-row, never silently drop; reject report per row.
+ * State seeding: imported records are CREATED AT their imported lifecycle state —
+ * initial-state seeding, not a transition, outside the I-5 gates — with history
+ * kind=import. Conditions gate subsequent transitions only. No synthetic issue events.
+ * Re-import concurrency: a matched record updates only when its latest history entry is
+ * itself an import entry; otherwise the row is a conflict unless force=true.
+ * Round-trip: exports mirror the import schemas; RAIL export includes non-converted
+ * intake items flagged unanchored.
+ */
+
+import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, Revision, Risk, WorkItem } from '@pec/core'
+import { HOLD_CAUSES, LOGS, isoWeekOf } from '@pec/core'
+import { badRequest } from '../errors.ts'
+import { nowIso } from '../repo.ts'
+import type { Sx } from '../services/shared.ts'
+import { parseTable, toCsv } from './csv.ts'
+import { createRevision } from '../services/revisions.ts'
+
+export interface ImportReport {
+  contract: string
+  accepted: number
+  updated: number
+  conflicts: Array<{ row: number; key: string; reason: string }>
+  rejected: Array<{ row: number; errors: string[] }>
+  intakeCreated: number
+}
+
+// ---------- shared helpers ----------
+
+function personByNameOrEmail(sx: Sx, s: string): number | null {
+  if (!s) return null
+  const row = sx.db.prepare('SELECT id FROM person WHERE email = ? OR name = ?')
+    .get(s, s) as { id: number } | undefined
+  return row?.id ?? null
+}
+
+function normState(s: string): string {
+  return s.trim().toLowerCase().replaceAll(' ', '_').replaceAll('-', '_')
+}
+
+const REV_STATES = new Map<string, Revision['state']>([
+  ['in_work', 'in_work'], ['in_check', 'in_check'], ['check_accepted', 'check_accepted'],
+  ['ready_for_approval', 'ready_for_approval'], ['approved', 'approved'], ['issued', 'issued'],
+  ['returned_with_comments', 'returned_with_comments'], ['superseded', 'superseded'],
+  ['ifr', 'issued'], ['ifa', 'issued'], ['ifc', 'issued'],
+])
+
+const WI_STATES = new Map<string, WorkItem['state']>([
+  ['open', 'open'], ['in_work', 'in_work'], ['in_progress', 'in_work'], ['started', 'in_work'],
+  ['closed', 'closed'], ['complete', 'closed'], ['completed', 'closed'], ['done', 'closed'],
+  ['cancelled', 'cancelled'], ['canceled', 'cancelled'],
+])
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+
+/** Latest history entry for a record is an import entry → safe to re-import (resolution 3). */
+function lastChangeIsImport(sx: Sx, recordType: string, recordId: number): boolean {
+  const rows = sx.db.prepare(
+    'SELECT kind FROM history_entry WHERE record_type = ? AND record_id = ? ORDER BY id DESC LIMIT 1',
+  ).all(recordType, recordId) as Array<{ kind: string }>
+  return rows.length === 0 || rows[0]!.kind === 'import' || rows[0]!.kind === 'created'
+}
+
+function importHistory(sx: Sx, recordType: string, recordId: number, summary: string): void {
+  sx.repo.history({
+    projectId: sx.projectId, recordType: recordType as never, recordId,
+    actorId: sx.session.personId, kind: 'import', summary, payload: null, authorityRef: null,
+  })
+}
+
+// ---------- MDL ----------
+
+function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'mdl', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  const required = ['doc_no', 'title', 'package', 'discipline', 'owner', 'current_rev', 'state', 'due_date']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`MDL import missing required columns: ${missing.join(', ')} (§16)`)
+
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of ['doc_no', 'title', 'package', 'current_rev', 'state']) {
+      if (!row[col]) errors.push(`${col} is required`)
+    }
+    const state = REV_STATES.get(normState(row.state ?? ''))
+    if (row.state && !state) errors.push(`unrecognized state "${row.state}" (accepted: ${[...new Set(REV_STATES.values())].join(', ')})`)
+    if (row.due_date && !DATE_RE.test(row.due_date)) errors.push(`due_date must be YYYY-MM-DD, got "${row.due_date}"`)
+    const ownerId = row.owner ? personByNameOrEmail(sx, row.owner) : null
+    if (row.owner && ownerId == null) errors.push(`owner "${row.owner}" matches no person (email or exact name)`)
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    // package: auto-create on first sight (adoption bridge)
+    let pkg = sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number } | undefined
+    if (!pkg) {
+      const pkgId = sx.repo.insert('package', { projectId: sx.projectId, code: row.package, name: row.package })
+      importHistory(sx, 'package', pkgId, `package ${row.package} created by MDL import`)
+      pkg = { id: pkgId }
+    }
+
+    const existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
+      .get(sx.projectId, row.doc_no ?? '') as { id: number; version: number } | undefined
+    const fields = {
+      packageId: pkg.id, title: row.title, discipline: row.discipline || null,
+      deliverableType: row.deliverable_type || null, ownerId,
+      dueDate: row.due_date || null, milestone: row.milestone || null,
+      issuePurposePlan: row.issue_purpose_plan || null, dcRef: row.edms_ref || null,
+      clientNo: row.client_no || null, remarks: row.remarks || null,
+    }
+    if (existing) {
+      if (!lastChangeIsImport(sx, 'deliverable', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: row.doc_no!, reason: 'edited in-app since last import; re-run with force=true to overwrite (PEC-NFR-004)' })
+        return
+      }
+      sx.repo.systemUpdate('deliverable', sx.projectId, existing.id, fields)
+      importHistory(sx, 'deliverable', existing.id, `${row.doc_no} updated by MDL import`)
+      // revision: new current_rev → create at imported state (seeding)
+      const currentRev = sx.repo.list<Revision>('revision', sx.projectId,
+        "deliverable_id = ? AND state != 'superseded'", [existing.id]).sort((a, b) => b.id - a.id)[0]
+      if (!currentRev || currentRev.revCode !== row.current_rev) {
+        // A new rev code → create at the imported state (initial-state seeding, outside the gates).
+        const rev = createRevision(sx, { deliverableId: existing.id, revCode: row.current_rev! },
+          { skipPermission: true, initialState: state })
+        importHistory(sx, 'revision', rev.id, `${row.doc_no} rev ${row.current_rev} seeded at ${state} by MDL import`)
+      } else if (currentRev.state !== state) {
+        // The rev already exists in-system: its lifecycle state is under transition control.
+        // Import must NEVER advance it past the issue gate (I-5, D-11) — it can only seed a
+        // brand-new record. Metadata was still updated; the state field is ignored and reported.
+        report.conflicts.push({
+          row: rowNo, key: `${row.doc_no} rev ${row.current_rev}`,
+          reason: `revision already exists in state '${currentRev.state}'; import will not force it to '${state}' — issue-affecting transitions must go through the gated workflow (I-5). Metadata updated.`,
+        })
+      }
+      report.updated++
+    } else {
+      const id = sx.repo.insert('deliverable', { projectId: sx.projectId, docNo: row.doc_no, ...fields })
+      importHistory(sx, 'deliverable', id, `${row.doc_no} created by MDL import (as-imported state ${state})`)
+      const rev = createRevision(sx, { deliverableId: id, revCode: row.current_rev! },
+        { skipPermission: true, initialState: state })
+      importHistory(sx, 'revision', rev.id, `${row.doc_no} rev ${row.current_rev} seeded at ${state} by MDL import`)
+      report.accepted++
+    }
+  })
+  return report
+}
+
+// ---------- RAIL ----------
+
+function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'rail', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  const required = ['item_id', 'statement', 'type', 'log', 'owner', 'need_by', 'status', 'raised_by', 'raised_date']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`RAIL import missing required columns: ${missing.join(', ')} (§16)`)
+
+  const WI_KINDS = new Set(['action', 'coordination', 'risk_treatment', 'rework', 'other', 'task'])
+
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of required) if (!row[col]) errors.push(`${col} is required`)
+    const log = (row.log ?? '').toLowerCase() as Log
+    if (row.log && !LOGS.includes(log)) errors.push(`log must be one of ${LOGS.join(', ')}`)
+    const type = normState(row.type ?? '')
+    const isHold = type === 'hold'
+    const isInterface = type === 'interface'
+    if (!isHold && !isInterface && !WI_KINDS.has(type)) {
+      errors.push(`unrecognized type "${row.type}" (accepted: ${[...WI_KINDS].join(', ')}, hold, interface)`)
+    }
+    const ownerId = personByNameOrEmail(sx, row.owner ?? '')
+    if (row.owner && ownerId == null) errors.push(`owner "${row.owner}" matches no person`)
+    const raisedBy = personByNameOrEmail(sx, row.raised_by ?? '') ?? ownerId
+    if (row.need_by && !DATE_RE.test(row.need_by)) errors.push('need_by must be YYYY-MM-DD')
+    const wiState = isHold || isInterface ? null : WI_STATES.get(normState(row.status ?? ''))
+    if (!isHold && !isInterface && row.status && !wiState) errors.push(`unrecognized status "${row.status}"`)
+    if (isHold && !row.hold_cause) errors.push('hold rows require hold_cause (I-3)')
+    if (isHold && row.hold_cause && !HOLD_CAUSES.includes(normState(row.hold_cause) as never)) {
+      errors.push(`hold_cause must be one of ${HOLD_CAUSES.join(', ')}`)
+    }
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    // anchor resolution
+    const deliverable = row.deliverable_ref
+      ? sx.db.prepare('SELECT id FROM deliverable WHERE project_id = ? AND doc_no = ?')
+        .get(sx.projectId, row.deliverable_ref ?? '') as { id: number } | undefined
+      : undefined
+
+    // idempotency: item_id matches one of our refs → update path
+    const table = isHold ? 'hold' : isInterface ? 'interface_item' : 'work_item'
+    const existing = sx.db.prepare(`SELECT id, version FROM ${table} WHERE project_id = ? AND ref = ?`)
+      .get(sx.projectId, row.item_id ?? '') as { id: number; version: number } | undefined
+    if (existing) {
+      if (!lastChangeIsImport(sx, table === 'hold' ? 'hold' : table === 'interface_item' ? 'interface_item' : 'work_item', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: row.item_id!, reason: 'edited in-app since last import; use force=true' })
+        return
+      }
+      if (table === 'work_item') {
+        sx.repo.systemUpdate('work_item', sx.projectId, existing.id, {
+          statement: row.statement, needBy: row.need_by || null, state: wiState,
+          ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso() } : {}),
+        })
+      }
+      importHistory(sx, table, existing.id, `${row.item_id} updated by RAIL import`)
+      report.updated++
+      return
+    }
+
+    if (!deliverable) {
+      // RAIL anchors on deliverable_ref match only (PRD §16); everything else lands unanchored.
+      // No resolvable anchor: the row lands as an intake item flagged unanchored (I-2).
+      const ref = sx.repo.nextRef(sx.projectId, 'intake_item')
+      const quickType = isHold ? 'hold' : isInterface ? 'interface' : 'action'
+      const id = sx.repo.insert('intake_item', {
+        projectId: sx.projectId, ref,
+        statementVerbatim: `[${row.item_id}] ${row.statement}`,
+        quickType, anchorSuggestion: row.deliverable_ref || row.package || null,
+        needBy: row.need_by || null, suggestedOwnerId: ownerId,
+        log, raisedBy: raisedBy ?? sx.session.personId,
+        raisedAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
+        state: 'raised',
+      })
+      importHistory(sx, 'intake_item', id, `${ref} created unanchored from RAIL row ${row.item_id} (anchor "${row.deliverable_ref ?? ''}" unmatched)`)
+      report.intakeCreated++
+      return
+    }
+
+    if (isHold) {
+      const holdRef = sx.repo.nextRef(sx.projectId, 'hold')
+      const currentRev = sx.repo.list<Revision>('revision', sx.projectId,
+        "deliverable_id = ? AND state != 'superseded'", [deliverable!.id]).sort((a, b) => b.id - a.id)[0]
+      const holdId = sx.repo.insert('hold', {
+        projectId: sx.projectId, ref: holdRef, title: row.statement!.slice(0, 140),
+        cause: normState(row.hold_cause!), statement: row.statement,
+        ownerId: ownerId!, needBy: row.need_by,
+        raisedBy: raisedBy ?? sx.session.personId,
+        raisedAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
+        state: normState(row.status ?? '') === 'closed' ? 'resolved' : 'active',
+        log,
+      })
+      sx.repo.insert('hold_link', {
+        holdId,
+        targetType: currentRev ? 'revision' : 'deliverable',
+        targetId: currentRev ? currentRev.id : deliverable!.id,
+      })
+      importHistory(sx, 'hold', holdId, `${holdRef} created from RAIL row ${row.item_id}, blocks ${row.deliverable_ref}`)
+      report.accepted++
+      return
+    }
+    if (isInterface) {
+      const iref = sx.repo.nextRef(sx.projectId, 'interface_item')
+      const iid = sx.repo.insert('interface_item', {
+        projectId: sx.projectId, ref: iref, title: row.statement!.slice(0, 140),
+        givingParty: row.package ?? 'unknown', receivingParty: row.deliverable_ref ?? 'unknown',
+        requiredInfo: row.statement, needBy: row.need_by || null, state: 'open', log,
+      })
+      importHistory(sx, 'interface_item', iid, `${iref} created from RAIL row ${row.item_id}`)
+      report.accepted++
+      return
+    }
+
+    const wiRef = sx.repo.nextRef(sx.projectId, 'work_item')
+    const pkgId = deliverable
+      ? (sx.repo.get<Deliverable>('deliverable', sx.projectId, deliverable.id)).packageId
+      : null
+    const wid = sx.repo.insert('work_item', {
+      projectId: sx.projectId, ref: wiRef, title: row.statement!.slice(0, 140),
+      statement: row.statement, kind: type === 'task' ? 'action' : type, log,
+      anchorType: 'deliverable', anchorId: deliverable!.id, packageId: pkgId,
+      ownerId: ownerId!, needBy: row.need_by, state: wiState,
+      ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso(), closingStatement: row.notes || null } : {}),
+      createdBy: raisedBy ?? sx.session.personId,
+      createdAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
+    })
+    importHistory(sx, 'work_item', wid, `${wiRef} created from RAIL row ${row.item_id} at state ${wiState} (seeding)`)
+    report.accepted++
+  })
+  return report
+}
+
+// ---------- decisions ----------
+
+function importDecisions(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'decisions', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  const required = ['decision_id', 'title', 'statement', 'authority', 'need_by', 'status']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`decision import missing required columns: ${missing.join(', ')} (§16)`)
+  const STATES = new Map([
+    ['identified', 'identified'], ['in_progress', 'in_progress'], ['pending', 'pending'],
+    ['pending_decision', 'pending'], ['decided', 'decided'], ['superseded', 'superseded'],
+  ])
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of ['decision_id', 'title', 'statement', 'authority', 'status']) {
+      if (!row[col]) errors.push(`${col} is required`)
+    }
+    const state = STATES.get(normState(row.status ?? ''))
+    if (row.status && !state) errors.push(`unrecognized status "${row.status}"`)
+    const authorityId = personByNameOrEmail(sx, row.authority ?? '')
+    if (row.authority && authorityId == null) errors.push(`authority "${row.authority}" matches no person`)
+    if (state === 'decided' && !row.outcome) errors.push('decided rows require outcome')
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    const existing = sx.db.prepare('SELECT id FROM decision WHERE project_id = ? AND ref = ?')
+      .get(sx.projectId, row.decision_id ?? '') as { id: number } | undefined
+    if (existing) {
+      if (!lastChangeIsImport(sx, 'decision', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: row.decision_id!, reason: 'edited in-app since last import; use force=true' })
+        return
+      }
+      sx.repo.systemUpdate('decision', sx.projectId, existing.id, {
+        title: row.title, statement: row.statement, needBy: row.need_by || null, state,
+        outcome: row.outcome ? normState(row.outcome) : null, rationale: row.rationale || null,
+      })
+      importHistory(sx, 'decision', existing.id, `${row.decision_id} updated by decision-log import`)
+      report.updated++
+      return
+    }
+    const ref = sx.repo.nextRef(sx.projectId, 'decision')
+    const id = sx.repo.insert('decision', {
+      projectId: sx.projectId, ref, title: row.title, statement: row.statement,
+      preparerId: row.preparer ? personByNameOrEmail(sx, row.preparer) : null,
+      authorityId: authorityId!, needBy: row.need_by || null, state,
+      outcome: row.outcome ? normState(row.outcome) : null, rationale: row.rationale || null,
+      decidedAt: row.decided_date ? `${row.decided_date}T00:00:00Z` : null,
+      kind: 'standalone', log: 'internal', createdAt: nowIso(),
+    })
+    importHistory(sx, 'decision', id, `${ref} created from decision-log row ${row.decision_id} at state ${state} (seeding)`)
+    for (const affected of (row.affected_refs ?? '').split(';').map((s) => s.trim()).filter(Boolean)) {
+      const d = sx.db.prepare('SELECT id FROM deliverable WHERE project_id = ? AND doc_no = ?')
+        .get(sx.projectId, affected) as { id: number } | undefined
+      if (d) sx.repo.insert('decision_link', { decisionId: id, recordType: 'deliverable', recordId: d.id, relation: 'affects' })
+    }
+    report.accepted++
+  })
+  return report
+}
+
+// ---------- risks ----------
+
+function importRisks(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'risks', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  const required = ['risk_id', 'title', 'cause', 'consequence', 'owner', 'status']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`risk import missing required columns: ${missing.join(', ')} (§16)`)
+  const STATES = new Map([['open', 'open'], ['mitigating', 'mitigating'], ['treating', 'mitigating'], ['closed', 'closed']])
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of ['risk_id', 'title', 'status']) if (!row[col]) errors.push(`${col} is required`)
+    const state = STATES.get(normState(row.status ?? ''))
+    if (row.status && !state) errors.push(`unrecognized status "${row.status}"`)
+    const ownerId = row.owner ? personByNameOrEmail(sx, row.owner) : null
+    if (row.owner && ownerId == null) errors.push(`owner "${row.owner}" matches no person`)
+    for (const n of ['probability', 'impact'] as const) {
+      if (row[n] && !/^[1-5]$/.test(row[n]!)) errors.push(`${n} must be 1-5`)
+    }
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    const pkg = row.package
+      ? sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?').get(sx.projectId, row.package ?? '') as { id: number } | undefined
+      : undefined
+    const del = row.deliverable_ref
+      ? sx.db.prepare('SELECT id FROM deliverable WHERE project_id = ? AND doc_no = ?').get(sx.projectId, row.deliverable_ref ?? '') as { id: number } | undefined
+      : undefined
+    const existing = sx.db.prepare('SELECT id FROM risk WHERE project_id = ? AND ref = ?')
+      .get(sx.projectId, row.risk_id ?? '') as { id: number } | undefined
+    const fields = {
+      title: row.title, cause: row.cause || null, consequence: row.consequence || null,
+      packageId: pkg?.id ?? null, deliverableId: del?.id ?? null, ownerId,
+      probability: row.probability ? Number(row.probability) : null,
+      impact: row.impact ? Number(row.impact) : null,
+      mitigation: row.mitigation || null, needBy: row.need_by || null, state,
+    }
+    if (existing) {
+      if (!lastChangeIsImport(sx, 'risk', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: row.risk_id!, reason: 'edited in-app since last import; use force=true' })
+        return
+      }
+      sx.repo.systemUpdate('risk', sx.projectId, existing.id, fields)
+      importHistory(sx, 'risk', existing.id, `${row.risk_id} updated by risk-log import`)
+      report.updated++
+    } else {
+      const ref = sx.repo.nextRef(sx.projectId, 'risk')
+      const id = sx.repo.insert('risk', { projectId: sx.projectId, ref, ...fields })
+      importHistory(sx, 'risk', id, `${ref} created from risk-log row ${row.risk_id} (seeding)`)
+      report.accepted++
+    }
+  })
+  return report
+}
+
+export function importContract(sx: Sx, contract: string, csv: string, force: boolean): ImportReport {
+  switch (contract) {
+    case 'mdl': return importMdl(sx, csv, force)
+    case 'rail': return importRail(sx, csv, force)
+    case 'decisions': return importDecisions(sx, csv, force)
+    case 'risks': return importRisks(sx, csv, force)
+    default: throw badRequest(`unknown import contract: ${contract} (mdl, rail, decisions, risks)`)
+  }
+}
+
+// ---------- exports (mirror import schemas; round-trip §16) ----------
+
+function personName(sx: Sx, id: number | null): string {
+  if (id == null) return ''
+  const row = sx.db.prepare('SELECT email FROM person WHERE id = ?').get(id) as { email: string } | undefined
+  return row?.email ?? ''
+}
+
+export function exportRegister(sx: Sx, register: string): string {
+  const snap = sx.repo.snapshot(sx.projectId)
+  const pkgCode = (id: number | null): string => snap.packages.find((p) => p.id === id)?.code ?? ''
+  const docNo = (id: number | null): string => snap.deliverables.find((d) => d.id === id)?.docNo ?? ''
+
+  switch (register) {
+    case 'mdl': {
+      const headers = ['doc_no', 'title', 'package', 'discipline', 'owner', 'current_rev', 'state', 'due_date',
+        'milestone', 'issue_purpose_plan', 'edms_ref', 'client_no', 'remarks', 'deliverable_type']
+      const rows = snap.deliverables.map((d) => {
+        const revs = snap.revisions.filter((r) => r.deliverableId === d.id && r.state !== 'superseded').sort((a, b) => b.id - a.id)
+        const cur = revs[0]
+        return [d.docNo, d.title, pkgCode(d.packageId), d.discipline, personName(sx, d.ownerId),
+          cur?.revCode ?? '', cur?.state ?? '', d.dueDate, d.milestone, d.issuePurposePlan,
+          d.dcRef, d.clientNo, d.remarks, d.deliverableType]
+      })
+      return toCsv(headers, rows)
+    }
+    case 'rail': {
+      const headers = ['item_id', 'statement', 'type', 'log', 'owner', 'need_by', 'status', 'raised_by', 'raised_date',
+        'package', 'deliverable_ref', 'hold_cause', 'closed_date', 'notes', 'anchor_status']
+      const rows: Array<Array<string | null>> = []
+      for (const w of snap.workItems as WorkItem[]) {
+        rows.push([w.ref, w.statement ?? w.title, w.kind, w.log, personName(sx, w.ownerId), w.needBy, w.state,
+          personName(sx, w.createdBy), w.createdAt.slice(0, 10),
+          pkgCode(w.packageId), w.anchorType === 'deliverable' ? docNo(w.anchorId) : '', '',
+          w.closedAt?.slice(0, 10) ?? '', w.closingStatement ?? '', 'anchored'])
+      }
+      for (const h of snap.holds as Hold[]) {
+        if (h.state === 'withdrawn') continue
+        const link = snap.holdLinks.find((l) => l.holdId === h.id)
+        const anchor = link?.targetType === 'deliverable' ? docNo(link.targetId)
+          : link?.targetType === 'revision' ? docNo(snap.revisions.find((r) => r.id === link.targetId)?.deliverableId ?? null) : ''
+        rows.push([h.ref, h.statement ?? h.title, 'hold', h.log, personName(sx, h.ownerId), h.needBy,
+          h.state === 'active' ? 'open' : 'closed', personName(sx, h.raisedBy), h.raisedAt.slice(0, 10),
+          '', anchor, h.cause, h.resolvedAt?.slice(0, 10) ?? '', h.resolutionNote ?? '', 'anchored'])
+      }
+      for (const i of snap.interfaces as InterfaceItem[]) {
+        if (i.state === 'cancelled' || i.state === 'closed') continue
+        rows.push([i.ref, i.title, 'interface', i.log, '', i.needBy, i.state, '', '',
+          pkgCode(i.givingPackageId), '', '', '', i.requiredInfo ?? '', 'anchored'])
+      }
+      // non-converted intake rows, flagged unanchored (round-trip completeness)
+      for (const t of snap.intakeItems as IntakeItem[]) {
+        if (t.state === 'dispositioned') continue
+        rows.push([t.ref, t.statementVerbatim, t.quickType, t.log, personName(sx, t.suggestedOwnerId), t.needBy,
+          'raised', personName(sx, t.raisedBy), t.raisedAt.slice(0, 10),
+          '', t.anchorSuggestion ?? '', '', '', '', 'unanchored'])
+      }
+      return toCsv(headers, rows)
+    }
+    case 'decisions': {
+      const headers = ['decision_id', 'title', 'statement', 'authority', 'need_by', 'status',
+        'preparer', 'outcome', 'rationale', 'decided_date', 'affected_refs']
+      const rows = snap.decisions.map((d) => [
+        d.ref, d.title, d.statement, personName(sx, d.authorityId), d.needBy, d.state,
+        personName(sx, d.preparerId), d.outcome ?? '', d.rationale ?? '', d.decidedAt?.slice(0, 10) ?? '',
+        snap.decisionLinks.filter((l) => l.decisionId === d.id && l.recordType === 'deliverable')
+          .map((l) => docNo(l.recordId)).filter(Boolean).join(';'),
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'risks': {
+      const headers = ['risk_id', 'title', 'cause', 'consequence', 'owner', 'status',
+        'package', 'deliverable_ref', 'probability', 'impact', 'mitigation', 'need_by']
+      const rows = (snap.risks as Risk[]).map((r) => [
+        r.ref, r.title, r.cause, r.consequence, personName(sx, r.ownerId), r.state,
+        pkgCode(r.packageId), docNo(r.deliverableId), r.probability?.toString() ?? '',
+        r.impact?.toString() ?? '', r.mitigation, r.needBy,
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'approvals': {
+      const headers = ['approval_id', 'title', 'type', 'authority_source', 'applies_to', 'signatories',
+        'due_date', 'state', 'outcome', 'outcome_decision']
+      const rows = snap.approvalRecords.map((a) => {
+        const outcome = a.outcomeDecisionId != null ? snap.decisions.find((d) => d.id === a.outcomeDecisionId) : null
+        return [a.ref, a.title, a.approvalType, a.authoritySource,
+          `${a.appliesToType}#${a.appliesToId}`, a.signatoryIds.map((s) => personName(sx, s)).join(';'),
+          a.dueDate, a.state, outcome?.outcome ?? '', outcome?.ref ?? '']
+      })
+      return toCsv(headers, rows)
+    }
+    case 'interfaces': {
+      const headers = ['interface_id', 'title', 'giving_party', 'receiving_party', 'giving_package',
+        'receiving_package', 'required_info', 'need_by', 'state', 'log']
+      const rows = (snap.interfaces as InterfaceItem[]).map((i) => [
+        i.ref, i.title, i.givingParty, i.receivingParty, pkgCode(i.givingPackageId),
+        pkgCode(i.receivingPackageId), i.requiredInfo, i.needBy, i.state, i.log,
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'intake': {
+      const headers = ['intake_id', 'statement', 'quick_type', 'log', 'raised_by', 'raised_date',
+        'state', 'disposition', 'anchor_suggestion', 'need_by']
+      const rows = (snap.intakeItems as IntakeItem[]).map((t) => [
+        t.ref, t.statementVerbatim, t.quickType, t.log, personName(sx, t.raisedBy),
+        t.raisedAt.slice(0, 10), t.state, t.disposition ?? '', t.anchorSuggestion, t.needBy,
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'commitments': {
+      // individual weekly commitments (PRD §15; ADR-010)
+      const week = isoWeekOf(snap.today)
+      const headers = ['week', 'owner', 'item_id', 'title', 'deliverable_ref', 'need_by', 'state', 'why_in_week']
+      const rows: Array<Array<string | null>> = []
+      for (const w of snap.workItems as WorkItem[]) {
+        if (w.state !== 'open' && w.state !== 'in_work') continue
+        const why = w.committedWeek === week ? 'manual commitment'
+          : (w.needBy != null && (w.needBy <= snap.today || isoWeekOf(w.needBy) === week)) ? 'need-by' : null
+        if (!why) continue
+        rows.push([week, personName(sx, w.ownerId), w.ref, w.title,
+          w.anchorType === 'deliverable' ? docNo(w.anchorId) : '', w.needBy, w.state, why])
+      }
+      return toCsv(headers, rows)
+    }
+    default:
+      throw badRequest(`unknown register export: ${register}`)
+  }
+}
