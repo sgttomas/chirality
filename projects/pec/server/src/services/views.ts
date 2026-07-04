@@ -134,21 +134,23 @@ function isInPackage(snap: ProjectSnapshot, targetType: string, targetId: number
 
 // ---------- Packages (PEC-PKG-*) ----------
 
-/** Count of the package's open issues (holds, interfaces, decisions, risks, action items).
- *  Runs on the unfiltered snapshot — it is a shared-truth count, not a titled row list. */
-function openIssueCount(snap: ProjectSnapshot, pkg: Package): number {
+/** Count of the package's open issues (holds, interfaces, decisions, risks, action items),
+ *  scoped to the caller's visible logs so it matches the drill-down cockpit (PEC-NFR-005). */
+function openIssueCount(sx: Sx, snap: ProjectSnapshot, pkg: Package): number {
+  const logs = logsFor(sx, snap)
+  const sees = (l: Log): boolean => logs.length === 3 || logs.includes(l)
   const delIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
   const revIds = new Set(snap.revisions.filter((r) => delIds.has(r.deliverableId)).map((r) => r.id))
-  const holds = snap.holds.filter((h) => h.state === 'active'
+  const holds = snap.holds.filter((h) => h.state === 'active' && sees(h.log)
     && snap.holdLinks.some((l) => l.holdId === h.id && isInPackage(snap, l.targetType, l.targetId, pkg.id))).length
-  const interfaces = snap.interfaces.filter((i) =>
-    (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id) && (i.state === 'open' || i.state === 'agreed')).length
-  const decisions = snap.decisions.filter((d) =>
-    d.packageId === pkg.id && d.state !== 'decided' && d.state !== 'superseded').length
+  const interfaces = snap.interfaces.filter((i) => sees(i.log)
+    && (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id) && (i.state === 'open' || i.state === 'agreed')).length
+  const decisions = snap.decisions.filter((d) => sees(d.log)
+    && d.packageId === pkg.id && d.state !== 'decided' && d.state !== 'superseded').length
   const risks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && delIds.has(r.deliverableId))) && r.state !== 'closed').length
   const actions = snap.workItems.filter((w) =>
-    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination')
+    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && sees(w.log)
     && (w.packageId === pkg.id
       || (w.anchorType === 'deliverable' && delIds.has(w.anchorId))
       || (w.anchorType === 'revision' && revIds.has(w.anchorId)))).length
@@ -162,7 +164,7 @@ export function packagesView(sx: Sx): unknown {
     return {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
-      openIssues: openIssueCount(snap, p),
+      openIssues: openIssueCount(sx, snap, p),
     }
   })
 }
