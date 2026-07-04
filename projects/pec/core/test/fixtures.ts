@@ -1,9 +1,9 @@
 /** Snapshot fixture builders for core tests. */
 
 import type {
-  ApprovalRecord, Check, Condition, Decision, Deliverable, Evidence, Hold, HoldLink,
-  IntakeItem, InterfaceItem, Package, Project, ProjectSnapshot, ReviewComment, Revision,
-  Risk, WorkItem,
+  ApprovalRecord, CapacityEntry, Check, Condition, Decision, Deliverable, Evidence, Hold,
+  HoldLink, IntakeItem, InterfaceItem, Package, PlanItem, PlanPeriod, PlanShift, Project,
+  ProjectSnapshot, ReviewComment, Revision, Risk, ScheduleActivity, WorkItem,
 } from '../src/types.ts'
 import { DEFAULT_THRESHOLDS } from '../src/types.ts'
 
@@ -32,7 +32,9 @@ export function snapshot(over: Partial<ProjectSnapshot> = {}): ProjectSnapshot {
     project: project(), packages: [], deliverables: [], revisions: [], workItems: [],
     holds: [], holdLinks: [], checks: [], reviewComments: [], approvalRecords: [],
     decisions: [], decisionLinks: [], risks: [], interfaces: [], intakeItems: [],
-    conditions: [], issueEvents: [], evidence: [], today: TODAY,
+    conditions: [], issueEvents: [], evidence: [],
+    planItems: [], planPeriods: [], capacityEntries: [], scheduleActivities: [], planShifts: [],
+    today: TODAY,
     ...over,
   }
 }
@@ -64,7 +66,8 @@ export function workItem(over: Partial<WorkItem> = {}): WorkItem {
   return {
     id: n, projectId: 1, ref: `WI-${n}`, title: 'Work item', statement: null, kind: 'action',
     log: 'internal', anchorType: 'deliverable', anchorId: 0, packageId: null, ownerId: 1,
-    needBy: null, priority: null, priorityProvenance: null, state: 'open', committedWeek: null,
+    needBy: null, priority: null, priorityProvenance: null, state: 'open',
+    committedWeek: null, commitSource: null,
     sourceType: null, sourceId: null, closingStatement: null, closedBy: null, closedAt: null,
     cancelReason: null, createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
   }
@@ -171,5 +174,48 @@ export function evidence(over: Partial<Evidence> = {}): Evidence {
     id: n, projectId: 1, recordType: 'revision', recordId: 0, kind: 'attachment',
     label: 'artifact', urlOrPath: null, content: null, addedBy: 1,
     addedAt: '2026-07-10T00:00:00Z', ...over,
+  }
+}
+
+// ---------- P2 planning & capacity ----------
+
+export function planItem(over: Partial<PlanItem> & Pick<PlanItem, 'itemType' | 'itemId'>): PlanItem {
+  const n = id()
+  return {
+    id: n, projectId: 1, ref: `PLN-${n}`, horizon: 'now', week: '2026-W29',
+    discipline: 'Process', plannedHours: 8, createdBy: 1,
+    createdAt: '2026-07-10T00:00:00Z', version: 1, ...over,
+  }
+}
+
+export function planPeriod(over: Partial<PlanPeriod> = {}): PlanPeriod {
+  const n = id()
+  return {
+    id: n, projectId: 1, week: '2026-W29', state: 'open',
+    committedAt: null, committedBy: null, version: 1, ...over,
+  }
+}
+
+export function capacity(over: Partial<CapacityEntry> = {}): CapacityEntry {
+  const n = id()
+  return { id: n, projectId: 1, week: '2026-W29', discipline: 'Process', hours: 40, version: 1, ...over }
+}
+
+export function scheduleActivity(over: Partial<ScheduleActivity> = {}): ScheduleActivity {
+  const n = id()
+  return {
+    id: n, projectId: 1, activityId: `ACT-${n}`, description: 'Activity',
+    startDate: '2026-07-13', finishDate: '2026-07-24', packageId: null, deliverableId: null,
+    version: 1, ...over,
+  }
+}
+
+export function planShift(over: Partial<PlanShift> & Pick<PlanShift, 'planItemId'>): PlanShift {
+  const n = id()
+  return {
+    id: n, projectId: 1, ref: `PLS-${n}`, fromHorizon: 'next', toHorizon: 'now',
+    fromWeek: null, toWeek: '2026-W29', reason: 'test shift', impactStatement: null,
+    crossPackage: false, affectedPackageIds: [], state: 'applied', createdBy: 1,
+    createdAt: '2026-07-10T00:00:00Z', reviewedBy: null, reviewedAt: null, version: 1, ...over,
   }
 }

@@ -23,6 +23,7 @@ export type PermissionAction =
   | 'interface.create' | 'interface.update'
   | 'evidence.add'
   | 'config.manage'
+  | 'plan.manage' | 'plan.commit' | 'plan.propose' | 'plan.review'
 
 export interface PermissionContext {
   roles: Role[]
@@ -202,8 +203,9 @@ export function can(action: PermissionAction, ctx: PermissionContext): Permissio
 
     case 'risk.create':
     case 'risk.update':
-      return hasAny(ctx, [...LEADS, 'coordinator', 'engineer_of_record']) || ctx.isOwner === true
-        ? yes('lead/coordinator/owner') : no('requires a lead, coordinator, or the risk owner')
+      // planner included in P2: overcapacity may create or link a risk (PEC-PLAN-004, PEC-RISK-003)
+      return hasAny(ctx, [...LEADS, 'coordinator', 'engineer_of_record', 'planner']) || ctx.isOwner === true
+        ? yes('lead/coordinator/planner/owner') : no('requires a lead, coordinator, planner, or the risk owner')
 
     case 'interface.create':
     case 'interface.update':
@@ -214,6 +216,23 @@ export function can(action: PermissionAction, ctx: PermissionContext): Permissio
 
     case 'config.manage':
       return hasAny(ctx, ['admin']) ? yes('project admin (audit-evented)') : no('configuration requires admin')
+
+    // P2 planning (PRD §14: planners commit plans; leads propose plan changes)
+    case 'plan.manage':
+      return hasAny(ctx, ['planner', 'pm', 'engineering_manager', 'admin'])
+        ? yes('planner/pm/EM') : no('plan items and capacity are managed by the planner, pm, or EM')
+
+    case 'plan.commit':
+      return hasAny(ctx, ['planner', 'pm', 'admin'])
+        ? yes('planner/pm (PEC-PLAN-007)') : no('the weekly commit is recorded by the planner or pm')
+
+    case 'plan.propose':
+      return hasAny(ctx, ['package_lead', 'discipline_lead', 'planner', 'pm', 'engineering_manager', 'admin'])
+        ? yes('lead or planner (PEC-PLAN-005)') : no('plan shifts are proposed by leads or the planner')
+
+    case 'plan.review':
+      return hasAny(ctx, ['package_lead', 'discipline_lead', 'pm', 'engineering_manager', 'admin'])
+        ? yes('affected lead (PEC-PLAN-005)') : no('cross-package shifts are reviewed by affected leads')
   }
 }
 

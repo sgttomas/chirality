@@ -1,0 +1,20 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes
+BOR-RAIL-0001,Confirm inlet gas composition with client reservoir team,action,client,eng.process@borealis.dev,2026-07-08,open,pm@borealis.dev,2026-06-22,BOR-PR,BOR-PR-001,,,
+BOR-RAIL-0002,Update HMB for revised turndown case,action,internal,eng.process@borealis.dev,2026-07-15,in_progress,lead.process@borealis.dev,2026-06-24,BOR-PR,BOR-PR-003,,,
+BOR-RAIL-0003,Incorporate flare tip vendor quote into load summary,action,internal,eng.process@borealis.dev,2026-07-10,open,lead.process@borealis.dev,2026-06-25,BOR-PR,BOR-PR-006,,,
+BOR-RAIL-0004,Close out squad-check comments on PFD,action,internal,eng.process@borealis.dev,2026-07-04,open,checker@borealis.dev,2026-06-26,BOR-PR,BOR-PR-002,,,
+BOR-RAIL-0005,Chase compressor vendor for performance curves,action,internal,eng.mech@borealis.dev,2026-07-06,open,lead.mech@borealis.dev,2026-06-20,BOR-ME,BOR-ME-001,,,
+BOR-RAIL-0006,Verify air cooler plot space against plot plan rev A,coordination,internal,eng.mech@borealis.dev,2026-07-17,open,lead.mech@borealis.dev,2026-06-27,BOR-ME,BOR-ME-002,,,
+BOR-RAIL-0007,Issue transmittal for approved scrubber datasheet,action,internal,dc@borealis.dev,2026-07-03,open,lead.mech@borealis.dev,2026-06-29,BOR-ME,BOR-ME-003,,,
+BOR-RAIL-0008,Confirm foundation loads with vendor GA,coordination,internal,lead.mech@borealis.dev,2026-07-20,open,lead.process@borealis.dev,2026-06-27,BOR-CV,BOR-CV-003,,,
+BOR-RAIL-0009,Align one-line with revised load list,action,internal,eng.elec@borealis.dev,2026-07-13,open,lead.process@borealis.dev,2026-06-28,BOR-EL,BOR-EL-001,,,
+BOR-RAIL-0010,Resolve tag numbering clash in instrument index,action,internal,eng.elec@borealis.dev,2026-06-30,closed,coord@borealis.dev,2026-06-18,BOR-EL,BOR-EL-004,,2026-06-27,renumbered per DC standard
+BOR-RAIL-0011,Archive superseded geotech report rev A,action,internal,dc@borealis.dev,2026-06-26,closed,dc@borealis.dev,2026-06-19,BOR-CV,BOR-CV-004,,2026-06-24,
+BOR-RAIL-0012,Vendor compressor performance data outstanding,hold,internal,lead.mech@borealis.dev,2026-07-09,open,eng.mech@borealis.dev,2026-06-23,BOR-ME,BOR-ME-001,vendor_data,,
+BOR-RAIL-0013,Units basis decision pending — metric vs imperial datasheets,hold,internal,pm@borealis.dev,2026-07-07,open,lead.process@borealis.dev,2026-06-24,BOR-PR,BOR-PR-004,decision,,
+BOR-RAIL-0014,Process to confirm nozzle loads for air cooler,interface,internal,lead.process@borealis.dev,2026-07-16,open,lead.mech@borealis.dev,2026-06-25,BOR-PR,BOR-ME-002,,,
+BOR-RAIL-0015,Electrical load list needed for generator sizing,interface,internal,eng.elec@borealis.dev,2026-07-11,open,lead.mech@borealis.dev,2026-06-26,BOR-EL,BOR-EL-002,,,
+BOR-RAIL-0016,Client to confirm winterization philosophy,action,client,pm@borealis.dev,2026-07-14,open,pm@borealis.dev,2026-06-25,,,,,no MDL row yet — needs triage
+BOR-RAIL-0017,Missing survey benchmark data for grading design,hold,internal,lead.mech@borealis.dev,2026-07-10,open,lead.mech@borealis.dev,2026-06-26,BOR-CV,BOR-CV-999,information,,references a doc_no not in the MDL
+BOR-RAIL-0018,HV cable routing to be agreed with pipeline group,interface,internal,eng.elec@borealis.dev,2026-07-21,open,eng.elec@borealis.dev,2026-06-27,BOR-EL,,,,
+BOR-RAIL-0019,Site access road washout risk during rainy season,hold,internal,lead.mech@borealis.dev,2026-07-30,open,coord@borealis.dev,2026-06-28,BOR-CV,BOR-CV-002,weather,,deliberately invalid hold_cause — exercises the reject report

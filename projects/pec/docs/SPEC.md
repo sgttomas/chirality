@@ -1,4 +1,4 @@
-# PEC — Implementation Specification (P1)
+# PEC — Implementation Specification (P1 + P2)
 
 **Basis:** `docs/PRD.md` (Project Execution Control PRD v0.4). This SPEC translates the PRD's P1 scope into
 buildable contracts: data model, state machines, conditions engine, derived status, API, permissions, and
@@ -6,8 +6,9 @@ import/export. Where the PRD leaves an implementation choice open, the choice is
 `docs/adr/`. Requirement IDs (`PEC-*`), invariants (`I-*`), object-model decisions (`OM-*`), and defaults
 (`D-*`) refer to the PRD.
 
-Phase scope: **P1 only** (controlled tracker replacement, PRD §21 Phase 1). P2/P3 headroom is noted where a
-P1 schema choice would otherwise foreclose it.
+Phase scope: **P1** (controlled tracker replacement, PRD §21 Phase 1) in §1–§13, plus the **P2 planning
+& capacity build** in §14 (2026-07-04; ADR-013). P3 headroom is noted where a schema choice would
+otherwise foreclose it.
 
 ---
 
@@ -310,6 +311,12 @@ milestone) · `PH-R2` interface item overdue past escalation (implementer defaul
 overdue, `thresholds.interfaceOverdueRedWd`, configurable — the PRD §8.4 table has no interface row) ·
 `PH-A1` ≥ 20% of active deliverables amber/red · `PH-A2` package-level decision past need_by · `PH-G`
 otherwise. (Capacity rules are P2.)
+**Explanation carry-through (ADR-012):** DH-* is an internal aggregation stage — PH-R1/PH-A1 state
+each pressured deliverable's pressure in plain terms and carry the underlying issue/schedule records
+(holds, overdue items, conditions, aging comments; capped at 3 per deliverable) into `contributing`,
+so drill-down always lands on a cockpit-visible record; KPI-ONPLAN whys carry the plain-language
+detail at deliverable granularity. The Overview package rollup additionally reports the cockpit's
+log-scoped `openIssues` count (PEC-NFR-005).
 
 ### 6.3 Project health & thresholds (§8.4)
 Project health = worst package health, floored by governance signals breaching at project level: a
@@ -418,13 +425,18 @@ lookahead) and showing need-by-driven My Week source rules.
   RBAC matrix probes; optimistic concurrency; import round-trip; notification catalog.
 - Traceability: `docs/TRACEABILITY.md` maps every P1 requirement id → module + test.
 
-## 11 P1 exclusions (explicit)
+## 11 Exclusions (explicit)
 
-Plan module (P2), capacity (P2), digests (P2), duplicate suggestion (P2), checklist-sourced conditions
-(P2 — §5.2 keeps the enum headroom only), supersession propagation analysis (P3), routes/authority matrix
-(P3), archive views (P3), lessons (P3), reconciliation (P3), SSO (P2), EDMS/schedule integration (P2+).
-Schema headroom kept: state strings not DB-enums, `committed_week` on work items, `superseded_*` links,
-condition `source` includes `checklist` (P2) and `route` (P3) strings.
+Built in the P2 pass (2026-07-04, §14): Plan module, capacity, digests + notification severity,
+dedicated interface register with aging, weekly package review packs, schedule import, supersession
+links, plan-sourced forecast.
+
+Still excluded: duplicate suggestion (P2 — wants pilot vocabulary to tune matching), SSO (P2 — wants an
+IdP; auth stays pluggable behind `server/src/auth.ts`, ADR-007), checklist-sourced conditions (P2 —
+§5.2 keeps the enum headroom only), EDMS live integration (P2+, import-only per D-03), supersession
+propagation analysis (P3 — the P2 `supersession_link` rows are its substrate), routes/authority matrix
+(P3), archive views (P3), lessons (P3), reconciliation (P3). Schema headroom kept: state strings not
+DB-enums, condition `source` includes `checklist` (P2) and `route` (P3) strings.
 
 ## 12 Operations
 
@@ -460,3 +472,71 @@ their fixes (regression-tested in `server/test/hardening.test.ts`):
 - **Cross-view consistency (I-1).** A work item on any revision of a deliverable — including a superseded
   one — projects into the deliverable's open-items list and counts toward its health, so a deliverable
   never derives green while carrying an owned overdue item.
+
+## 14 P2 — planning & capacity (PRD §12.4; ADR-013)
+
+### 14.1 Data model (all project-scoped; PRD §13.1 P2 entities)
+- `plan_item` (the Commitment): `ref (PLN-…), item_type (work_item | check | approval_record — I-9),
+  item_id, horizon (now | next | later), week ('YYYY-Www', null = backlog), discipline (denormalized
+  from the responsible person, editable), planned_hours, version`. UNIQUE(project, item_type, item_id).
+- `plan_period`: `week UNIQUE(project, week), state (open | committed), committed_at/by`.
+- `capacity_entry`: `week, discipline, hours`; UNIQUE(project, week, discipline) (PEC-PLAN-003).
+- `schedule_activity` (imported, §16 P2): `activity_id UNIQUE(project), description, start_date,
+  finish_date, package_id?, deliverable_id?`.
+- `plan_shift` (the plan-change log; delete-trigger protected): `ref (PLS-…), plan_item_id,
+  from/to horizon+week, reason (required), impact_statement, cross_package, affected_package_ids,
+  state (applied | proposed | rejected), reviewed_by/at` + `plan_shift_link (record_type, record_id)`
+  for conditions/holds/risks/interfaces/schedule activities (PEC-PLAN-008).
+- `supersession_link` (PEC-AUTH-005; delete-trigger protected): `record_type, old_id, new_id,
+  affected [{recordType, id, ref}]` — written by decision/approval supersession.
+- P1 tables extended in place (`ensureColumn` migration): `work_item.commit_source (manual | plan)`,
+  `notification.severity (info | warn | red)`.
+
+### 14.2 Derivations (pure, `core/src/plan.ts`; consumed by status rules)
+- `planHorizons(snap)` — Now/Next/Later with each placement resolved to its underlying record,
+  responsible person, deliverable, and package (PEC-PLAN-001).
+- `capacityView(snap, weeks)` — load vs capacity per (week, discipline); only open underlying records
+  load; hours split by work/check/approval (I-9); `pct` and level (`warn > capacityWarnPct`,
+  `red > capacityRedPct`, defaults 100/110 per §8.4). `capacityBreaches(snap)` = current-week cells.
+- `lookahead(snap, weeks)` — rows deliverables, cells the derived weekly state with priority
+  **Hold-by-cause > Issue (due week) > Approve > Check > Work**, sourced from plan items and schedule
+  activities overlapping the week (PEC-PLAN-002). Holds show on the current week.
+- Forecast (§6.1) gains plan-sourced candidates: Sunday of the latest planned week over the
+  deliverable's sphere + mapped schedule-activity finishes (`planForecastCandidates`).
+- New health rules: `PH-R3` red / `PH-A3` amber — current-week capacity breach in a discipline the
+  package's planned records draw on (§8.3 P2, ADR-013 reading); `PH-A4` amber — interface overdue past
+  `interfaceOverdueWarnWd` but under the PH-R2 escalation (PEC-PKG-008); `S-CAP` project signal
+  (§8.4 capacity row). Amber order: PH-A1, PH-A2, PH-A3, PH-A4.
+- `myWeek` committed-reason provenance: `commit_source='plan'` → "planning commitment — weekly commit".
+
+### 14.3 Plan services & API (`server/src/services/plan.ts`)
+`GET plan` (?weeks=1..12) → currentWeek, periods, horizons, lookahead, capacity, shifts (latest 50),
+plannable (unplanned open work/checks/approvals) · `POST plan-items` (perm `plan.manage`: planner/pm/EM;
+'now'/'next' require a week; 'now' requires a named responsible) · `PUT plan-items/:id` (hours/discipline
+only — placement changes go through shifts) · `POST plan-items/:id/shift` (perm `plan.propose`: +leads;
+reason required; cross-package → impact statement required, state `proposed`, affected leads notified
+`plan_shift_review`) · `POST plan-shifts/:id/review` (perm `plan.review`; a package_lead must lead an
+affected package; approve applies the move) · `POST plan/commit {week}` (perm `plan.commit`: planner/pm;
+stamps `committed_week` + `commit_source='plan'` on the week's open planned work items, notifies
+`week_committed`, idempotent; checks/approvals notify their responsible) · `PUT plan/capacity` (upsert).
+`GET reports/package-pack/:id` — weekly review pack print-HTML (PEC-PKG-009). Interface register
+(`GET interfaces`) gains `?giving=&receiving=&state=` filters + `overdueWd`/`aging` (PEC-INT-002).
+Overview gains `schedulePressure` (six-week load vs capacity, PEC-OV-008) — the §8.4 signals grid
+carries S-CAP. Permission additions: `plan.manage`, `plan.commit`, `plan.propose`, `plan.review`;
+`risk.create` adds `planner` (PEC-PLAN-004/PEC-RISK-003).
+
+### 14.4 Schedule import/export (§16 P2, D-04)
+`POST import/schedule` — required `activity_id, description, start, finish`; optional
+`package, deliverable_ref`. Rows upsert by `activity_id` and always refresh (import-owned data);
+mapping columns update only when present in the CSV; a stated mapping that does not resolve rejects
+the row. `GET export/schedule.csv` mirrors the schema; `GET export/lookahead.csv` exports the six-week
+grid (PRD §15 P2).
+
+### 14.5 Digests & severity (PEC-NOT-002/003)
+The sweep additionally emits weekly digests — one notification per person per digest type per ISO week:
+`digest_planning` (planner/pm: capacity breaches, uncommitted planned week), `digest_package_review`
+(leads: holds/overdue decisions/late interfaces per package + pack pointer), `digest_judgments`
+(authorities/signatories past threshold), `digest_holds` (hold owners), `digest_comments` (responders
+past threshold). All time-driven notifications carry `severity` from the §8.4 thresholds; the web
+notification inbox badges warn/red.
+

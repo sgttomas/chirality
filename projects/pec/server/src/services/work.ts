@@ -107,6 +107,11 @@ export function updateWorkItem(
   for (const k of EDITABLE) if (k in patch) clean[k] = patch[k]
   if (Object.keys(clean).length === 0) throw badRequest('no editable fields in patch')
   if ('needBy' in clean) clean.needBy = optDate(clean.needBy, 'need-by')
+  if ('committedWeek' in clean) {
+    // the API commit toggle is the owner's manual flag; the weekly planning commit stamps
+    // commit_source='plan' through its own path (PEC-MW-007 / PEC-PLAN-007)
+    clean.commitSource = clean.committedWeek == null ? null : 'manual'
+  }
   if ('anchorType' in clean || 'anchorId' in clean) {
     const at = (clean.anchorType ?? wi.anchorType) as AnchorType
     const ai = (clean.anchorId ?? wi.anchorId) as number

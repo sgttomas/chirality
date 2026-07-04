@@ -753,7 +753,12 @@ function RiskDrawer({ row, onClose }: { row: any; onClose(): void }): JSX.Elemen
 /** PEC-INT-001: interface register — giving/receiving party, required info, need-by, state. */
 function InterfacesTab(): JSX.Element {
   const { pid } = useApp()
-  const { data, error } = useLoad(() => api.get(p(pid, 'interfaces')), [pid])
+  // PEC-INT-002 (P2): dedicated register with aging and giving/receiving filters
+  const [giving, setGiving] = useState('')
+  const [receiving, setReceiving] = useState('')
+  const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
+  const { data, error } = useLoad(() => api.get(p(pid,
+    `interfaces?giving=${giving}&receiving=${receiving}`)), [pid, giving, receiving])
   const [editing, setEditing] = useState<any>(null) // 'new' | row
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
@@ -761,9 +766,15 @@ function InterfacesTab(): JSX.Element {
   const cols: Array<Col<any>> = [
     { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
-    { key: 'parties', label: 'Giving → receiving', render: (r) => <span className="small">{r.givingParty} → {r.receivingParty}</span> },
+    { key: 'parties', label: 'Giving → receiving', render: (r) => <span className="small">{r.givingParty}{r.givingPackageCode ? ` (${r.givingPackageCode})` : ''} → {r.receivingParty}{r.receivingPackageCode ? ` (${r.receivingPackageCode})` : ''}</span> },
     { key: 'info', label: 'Required info', render: (r) => <span className="small">{r.requiredInfo}</span> },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
+    {
+      key: 'aging', label: 'Aging (wd overdue)', render: (r) => r.overdueWd > 0
+        ? <span className={`badge ${r.aging === 'red' ? 'red' : 'amber'}`}>{r.overdueWd} wd</span>
+        : <span className="muted small">—</span>,
+      csv: (r) => r.overdueWd,
+    },
     { key: 'state', label: 'State', render: (r) => <StateTag s={r.state} /> },
     { key: 'log', label: 'Log', render: (r) => <span className="small muted">{r.log}</span> },
   ]
@@ -773,9 +784,24 @@ function InterfacesTab(): JSX.Element {
       <div style={{ display: 'flex', alignItems: 'baseline', gap: '.75rem' }}>
         <p className="section-note" style={{ flex: 1 }}>
           Cross-package information obligations (OM-7) — click a row to edit. Delivered/closed
-          interfaces satisfy interface-type conditions (§5.3).
+          interfaces satisfy interface-type conditions (§5.3). Aging feeds package health
+          (PEC-PKG-008).
         </p>
         <button className="btn small" onClick={() => setEditing('new')}>+ New interface</button>
+      </div>
+      <div className="filters">
+        <label>giving package{' '}
+          <select value={giving} onChange={(e) => setGiving(e.target.value)}>
+            <option value="">any</option>
+            {(packages ?? []).map((k: any) => <option key={k.id} value={k.id}>{k.code}</option>)}
+          </select>
+        </label>
+        <label>receiving package{' '}
+          <select value={receiving} onChange={(e) => setReceiving(e.target.value)}>
+            <option value="">any</option>
+            {(packages ?? []).map((k: any) => <option key={k.id} value={k.id}>{k.code}</option>)}
+          </select>
+        </label>
       </div>
       <RegisterTable cols={cols} rows={data} exportName="interface-register.csv" onRowClick={(r) => setEditing(r)} />
       {editing && <InterfaceDrawer row={editing === 'new' ? null : editing} onClose={() => setEditing(null)} />}

@@ -10,9 +10,10 @@ import type {
   ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
 } from '@pec/core'
 import {
-  activeHoldsFor, ageWorkingDays, commentIsOpen, currentRevision, daysOverdue,
-  deliverableStatus, explainTransition, localDate, myWeek, packageStatus, projectStatus,
-  transitionsFrom, visibleLogs, waitingOnYou, workflowCompleteness,
+  activeHoldsFor, ageWorkingDays, capacityView, commentIsOpen, currentRevision, daysOverdue,
+  deliverableStatus, explainTransition, isoWeekOf, isoWeeksFrom, localDate, myWeek,
+  packageStatus, projectStatus, resolvePlanItem, transitionsFrom, visibleLogs, waitingOnYou,
+  workflowCompleteness, workingDaysOverdue,
 } from '@pec/core'
 import type { Sx } from './shared.ts'
 import { snapshot } from './shared.ts'
@@ -101,12 +102,34 @@ export function overviewView(sx: Sx): unknown {
         && appliesPackage(snap, a.appliesToType, a.appliesToId) === p.pkg.id).length,
       openDecisions: snap.decisions.filter((d) => d.packageId === p.pkg.id
         && (d.state === 'identified' || d.state === 'in_progress' || d.state === 'pending')).length,
+      // same log-scoped count the Packages register and cockpit show (ADR-012, PEC-NFR-005)
+      openIssues: openIssueCount(sx, snap, p.pkg),
     })),
     waitingOnYou: {
       breaching: waiting.filter((w) => w.breach !== 'none'),
       other: waiting.filter((w) => w.breach === 'none'),
     },
     topBlockers: blockers,
+    // PEC-OV-008 (P2): schedule pressure — lookahead load vs capacity, next six weeks
+    schedulePressure: (() => {
+      const weeks = isoWeeksFrom(snap.today, 6)
+      const cells = capacityView(snap, weeks)
+      const th = snap.project.thresholds
+      return weeks.map((week) => {
+        const wk = cells.filter((c) => c.week === week)
+        const loadH = wk.reduce((s, c) => s + c.loadH, 0)
+        const capacityH = wk.reduce((s, c) => s + (c.capacityH ?? 0), 0)
+        const raw = capacityH > 0 ? (loadH / capacityH) * 100 : null
+        return {
+          week, loadH, capacityH,
+          pct: raw != null ? Math.round(raw) : null,
+          // level from the configurable thresholds so the client never hardcodes them (PEC-OV-007)
+          level: raw == null ? 'none' : raw > th.capacityRedPct ? 'red' : raw > th.capacityWarnPct ? 'warn' : 'none',
+          breaches: wk.filter((c) => c.level !== 'none')
+            .map((c) => ({ discipline: c.discipline, pct: c.pct, level: c.level })),
+        }
+      })
+    })(),
   }
 }
 
@@ -260,6 +283,21 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
       .map((i) => ({ kind: 'interface_obligation', ref: i.ref, id: i.id, recordType: 'interface_item', title: i.title, due: i.needBy })),
   ]
 
+  // PEC-PKG-003 (P2): the package's capacity/discipline load for the current planning period —
+  // this package's plan items in the current week, against the project's discipline capacity
+  const currentWeek = isoWeekOf(snap.today)
+  const capacityCells = capacityView(snap, [currentWeek])
+  const pkgLoad = capacityCells
+    .map((cell) => {
+      const pkgHours = cell.planItemIds.reduce((sum, piId) => {
+        const pi = snap.planItems.find((x) => x.id === piId)
+        if (!pi) return sum
+        return resolvePlanItem(snap, pi)?.packageId === pkg.id ? sum + pi.plannedHours : sum
+      }, 0)
+      return { week: cell.week, discipline: cell.discipline, packageLoadH: pkgHours, disciplineLoadH: cell.loadH, capacityH: cell.capacityH, pct: cell.pct, level: cell.level }
+    })
+    .filter((row) => row.packageLoadH > 0 || row.level !== 'none')
+
   return {
     package: pkg,
     health: redact(sx, snap, st.health),
@@ -274,6 +312,7 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
       openRisks: pkgRisks.length,
       openActionItems: actionItems.length,
     },
+    capacity: { week: currentWeek, rows: pkgLoad },
     // the cockpit: every open issue, urgency-first (PEC-PKG issues orientation)
     issues,
     needsLead,
@@ -553,10 +592,38 @@ export function riskRegisterView(sx: Sx): Risk[] {
   return snap.risks
 }
 
-export function interfaceRegisterView(sx: Sx): InterfaceItem[] {
+/** Dedicated interface register (PEC-INT-002, P2): aging + giving/receiving filters. */
+export interface InterfaceFilters {
+  givingPackageId?: number
+  receivingPackageId?: number
+  state?: string
+}
+
+export function interfaceRegisterView(sx: Sx, f: InterfaceFilters = {}): unknown {
   const snap = snapshot(sx)
   const logs = logsFor(sx, snap)
-  return snap.interfaces.filter((i) => logs.includes(i.log))
+  const cal = snap.project.calendar
+  const today = snap.today
+  const th = snap.project.thresholds
+  const pkgCode = (id: number | null): string | null => snap.packages.find((p) => p.id === id)?.code ?? null
+  return snap.interfaces
+    .filter((i) => logs.includes(i.log))
+    .filter((i) => (f.givingPackageId ? i.givingPackageId === f.givingPackageId : true))
+    .filter((i) => (f.receivingPackageId ? i.receivingPackageId === f.receivingPackageId : true))
+    .filter((i) => (f.state ? i.state === f.state : true))
+    .map((i) => {
+      const open = i.state === 'open' || i.state === 'agreed'
+      const overdueWd = open ? workingDaysOverdue(i.needBy, today, cal) : 0
+      return {
+        ...i,
+        givingPackageCode: pkgCode(i.givingPackageId),
+        receivingPackageCode: pkgCode(i.receivingPackageId),
+        overdueWd,
+        aging: overdueWd > th.interfaceOverdueRedWd ? 'red'
+          : overdueWd > th.interfaceOverdueWarnWd ? 'warn' : 'none',
+      }
+    })
+    .sort((a, b) => b.overdueWd - a.overdueWd || (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))
 }
 
 export function holdRegisterView(sx: Sx, cause?: string): unknown {

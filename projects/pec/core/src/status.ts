@@ -13,8 +13,12 @@ import {
   workingDaysBetween, workingDaysOverdue,
 } from './calendar.ts'
 import { activeHoldsFor, evaluateCondition } from './conditions.ts'
-import { snapshotIndex } from './snapshot-index.ts'
 import { commentIsOpen } from './types.ts'
+import { activeHoldsInSphere, currentRevision, openWorkItemsFor } from './sphere.ts'
+import { capacityBreaches, planForecastCandidates, resolvePlanItem } from './plan.ts'
+
+// sphere helpers live in sphere.ts (shared with plan.ts); re-exported here for compatibility
+export { activeHoldsInSphere, currentRevision, openWorkItemsFor } from './sphere.ts'
 
 const HEALTH_RANK: Record<Health, number> = { green: 0, amber: 1, red: 2 }
 
@@ -23,46 +27,6 @@ function worse(a: Health, b: Health): Health {
 }
 
 // ---------- deliverable sphere ----------
-
-/** Latest non-superseded revision; falls back to the latest revision when all are superseded. */
-export function currentRevision(snap: ProjectSnapshot, deliverableId: number): Revision | null {
-  const revs = snap.revisions
-    .filter((r) => r.deliverableId === deliverableId)
-    .sort((a, b) => a.id - b.id)
-  if (revs.length === 0) return null
-  const live = revs.filter((r) => r.state !== 'superseded')
-  return (live.length > 0 ? live[live.length - 1] : revs[revs.length - 1]) ?? null
-}
-
-/**
- * Open work items in a deliverable's sphere: anchored directly to the deliverable, or to
- * ANY of its revisions (I-1 — a work item on a prior/superseded revision is still the
- * deliverable's open work and must count toward its health, not vanish). Rollups still use
- * the primary anchor to avoid double counting (§13.4).
- */
-export function openWorkItemsFor(snap: ProjectSnapshot, d: Deliverable, _rev: Revision | null): WorkItem[] {
-  const sphere = snapshotIndex(snap).sphereWorkItemsByDeliverable.get(d.id)
-  if (!sphere) return []
-  return sphere.filter((w) => w.state === 'open' || w.state === 'in_work')
-}
-
-/** Active holds in the deliverable's sphere: the deliverable, its current revision, open items, conditions and checks on it. */
-export function activeHoldsInSphere(snap: ProjectSnapshot, d: Deliverable, rev: Revision | null): Hold[] {
-  const holds = new Map<number, Hold>()
-  const add = (hs: Hold[]) => { for (const h of hs) holds.set(h.id, h) }
-  add(activeHoldsFor(snap, 'deliverable', d.id))
-  if (rev) {
-    add(activeHoldsFor(snap, 'revision', rev.id))
-    for (const c of snap.conditions.filter((x) => x.parentType === 'revision' && x.parentId === rev.id)) {
-      add(activeHoldsFor(snap, 'condition', c.id))
-    }
-    for (const c of snap.checks.filter((x) => x.revisionId === rev.id)) {
-      add(activeHoldsFor(snap, 'check', c.id))
-    }
-  }
-  for (const w of openWorkItemsFor(snap, d, rev)) add(activeHoldsFor(snap, 'work_item', w.id))
-  return [...holds.values()]
-}
 
 export interface DeliverableStatus {
   deliverable: Deliverable
@@ -90,13 +54,14 @@ export function deliverableStatus(snap: ProjectSnapshot, d: Deliverable): Delive
       .filter((e) => e.effectiveState === 'open' || e.effectiveState === 'blocked_by_hold')
     : []
 
-  // --- forecast (P1: need-by driven; plan-sourced in P2) ---
+  // --- forecast: need-by driven (P1) plus plan-sourced candidates (P2, SPEC §6.1) ---
   // Only well-formed dates participate; a malformed stored value is ignored, never thrown (I-4).
   let forecastDate = isValidLocalDate(d.dueDate) ? d.dueDate : null
   const candidates: string[] = []
   for (const w of items) if (isValidLocalDate(w.needBy)) candidates.push(w.needBy)
   for (const e of revConditions) if (e.condition.severity === 'hard' && isValidLocalDate(e.condition.needBy)) candidates.push(e.condition.needBy)
   for (const h of holds) if (isValidLocalDate(h.needBy)) candidates.push(h.needBy)
+  for (const c of planForecastCandidates(snap, d)) if (isValidLocalDate(c)) candidates.push(c)
   for (const c of candidates) {
     if (!forecastDate || calendarDaysBetween(forecastDate, c) > 0) forecastDate = c
   }
@@ -256,6 +221,29 @@ export interface PackageStatus {
   totalCount: number
 }
 
+/**
+ * Contributing refs for the deliverable-derived package rules (PH-R1, PH-A1) and KPI-ONPLAN:
+ * each pressured deliverable states its pressure in plain terms, then the underlying issue and
+ * schedule records themselves follow — the same holds, overdue items, conditions, and aging
+ * comments the package cockpit lists — so drill-down never dead-ends at the internal
+ * per-deliverable RAG label (ADR-012). Carried-through refs are capped per deliverable.
+ */
+function pressureRefs(statuses: DeliverableStatus[]): ContributingRef[] {
+  const refs: ContributingRef[] = []
+  for (const s of statuses) {
+    refs.push({
+      recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo,
+      why: `${s.health.value}: ${s.health.detail}${s.deliverable.milestone ? `; milestone ${s.deliverable.milestone}` : ''} (${s.health.ruleId})`,
+    })
+    for (const c of s.health.contributing.slice(0, 3)) {
+      // slip rules point back at the deliverable itself — already covered by the row above
+      if (c.recordType === 'deliverable' && c.id === s.deliverable.id) continue
+      refs.push({ ...c, why: `on ${s.deliverable.docNo}: ${c.why}` })
+    }
+  }
+  return refs
+}
+
 export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatus {
   const th = snap.project.thresholds
   const cal = snap.project.calendar
@@ -272,10 +260,7 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
   // PH-R1: red deliverable linked to a package milestone
   const redMilestone = statuses.filter((s) => s.health.value === 'red' && s.deliverable.milestone)
   if (redMilestone.length > 0) {
-    return mk('red', 'PH-R1', 'red deliverable linked to a package milestone', 'any', redMilestone.map((s) => ({
-      recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo,
-      why: `red (${s.health.ruleId}), milestone ${s.deliverable.milestone}`,
-    })))
+    return mk('red', 'PH-R1', 'red deliverable linked to a package milestone', 'any', pressureRefs(redMilestone))
   }
   // PH-R2: interface overdue past escalation
   const lateInterfaces = snap.interfaces.filter((i) =>
@@ -286,11 +271,36 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
     return mk('red', 'PH-R2', 'interface item overdue past escalation', `> ${th.interfaceOverdueRedWd} wd overdue`,
       lateInterfaces.map((i) => ({ recordType: 'interface_item', id: i.id, ref: i.ref, why: `need-by ${i.needBy}, ${i.givingParty} → ${i.receivingParty}` })))
   }
+  // PH-R3 / PH-A3 (P2, §8.3): committed load beyond capacity in the current week, in a
+  // discipline this package's planned records draw on (ADR-013 reading — capacity is
+  // defined per discipline, PEC-PLAN-003, so package exposure is via its disciplines).
+  const breaches = capacityBreaches(snap)
+  const planById = breaches.length > 0 ? new Map(snap.planItems.map((x) => [x.id, x])) : null
+  const capRefs = (level: 'red' | 'warn'): ContributingRef[] => {
+    const refs: ContributingRef[] = []
+    for (const cell of breaches.filter((c) => c.level === level)) {
+      for (const piId of cell.planItemIds) {
+        const pi = planById?.get(piId)
+        if (!pi) continue
+        const v = resolvePlanItem(snap, pi)
+        if (v?.packageId !== pkg.id) continue
+        refs.push({
+          recordType: 'plan_item', id: pi.id, ref: pi.ref,
+          why: `${v.itemRef}: ${pi.plannedHours} h in ${cell.week}, ${cell.discipline} at ${cell.pct}% (${cell.loadH}/${cell.capacityH} h)`,
+        })
+      }
+    }
+    return refs
+  }
+  const capRed = capRefs('red')
+  if (capRed.length > 0) {
+    return mk('red', 'PH-R3', 'committed load beyond capacity escalation in the current week', `> ${th.capacityRedPct}%`, capRed)
+  }
   // PH-A1: ≥ 20% of active deliverables amber/red
   const pressured = statuses.filter((s) => s.health.value !== 'green')
   if (dels.length > 0 && pressured.length / dels.length >= 0.2) {
     return mk('amber', 'PH-A1', `${pressured.length}/${dels.length} deliverables amber or red`, '>= 20%',
-      pressured.map((s) => ({ recordType: 'deliverable', id: s.deliverable.id, ref: s.deliverable.docNo, why: `${s.health.value} (${s.health.ruleId})` })))
+      pressureRefs(pressured))
   }
   // PH-A2: package-level decision past need-by
   const lateDecisions = snap.decisions.filter((d) =>
@@ -300,6 +310,23 @@ export function packageStatus(snap: ProjectSnapshot, pkg: Package): PackageStatu
   if (lateDecisions.length > 0) {
     return mk('amber', 'PH-A2', 'package-level decision past need-by', 'need-by past',
       lateDecisions.map((d) => ({ recordType: 'decision', id: d.id, ref: d.ref, why: `need-by ${d.needBy}, state ${d.state}` })))
+  }
+  // PH-A3 (P2, §8.3): load over capacity but under escalation, current week
+  const capWarn = capRefs('warn')
+  if (capWarn.length > 0) {
+    return mk('amber', 'PH-A3', 'committed load over capacity in the current week', `> ${th.capacityWarnPct}%`, capWarn)
+  }
+  // PH-A4 (P2, PEC-PKG-008): interface aging feeds package health below the PH-R2 escalation
+  const agingInterfaces = snap.interfaces.filter((i) =>
+    (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id)
+    && (i.state === 'open' || i.state === 'agreed')
+    && workingDaysOverdue(i.needBy, today, cal) > th.interfaceOverdueWarnWd)
+  if (agingInterfaces.length > 0) {
+    return mk('amber', 'PH-A4', 'interface item overdue (aging)', `> ${th.interfaceOverdueWarnWd} wd overdue`,
+      agingInterfaces.map((i) => ({
+        recordType: 'interface_item', id: i.id, ref: i.ref,
+        why: `need-by ${i.needBy}, ${workingDaysOverdue(i.needBy, today, cal)} wd overdue, ${i.givingParty} → ${i.receivingParty}`,
+      })))
   }
   return mk('green', 'PH-G', 'no breach', '', [])
 }
@@ -425,6 +452,23 @@ export function projectSignals(snap: ProjectSnapshot): Signal[] {
     })
   }
 
+  // S-CAP: capacity (P2, §8.4) — committed load vs capacity per discipline, current week
+  {
+    const warn: ContributingRef[] = []; const red: ContributingRef[] = []
+    for (const cell of capacityBreaches(snap)) {
+      const bucket = cell.level === 'red' ? red : warn
+      for (const piId of cell.planItemIds.slice(0, 5)) {
+        const pi = snap.planItems.find((x) => x.id === piId)
+        if (!pi) continue
+        bucket.push({
+          recordType: 'plan_item', id: pi.id, ref: pi.ref,
+          why: `${cell.discipline} ${cell.week}: ${cell.loadH}/${cell.capacityH} h (${cell.pct}%)`,
+        })
+      }
+    }
+    push('S-CAP', 'Capacity load', `warn > ${th.capacityWarnPct}%, escalate > ${th.capacityRedPct}%`, warn, red)
+  }
+
   // S-SCHED: schedule forecast vs gate (deliverables carrying a milestone)
   {
     const warn: ContributingRef[] = []; const red: ContributingRef[] = []
@@ -504,7 +548,8 @@ export function projectStatus(snap: ProjectSnapshot): ProjectStatus {
         value: allDel.length > 0 ? Math.round((green.length / allDel.length) * 100) : 100,
         ruleId: 'KPI-ONPLAN', detail: `${green.length}/${allDel.length} deliverables green`,
         contributing: allDel.filter((s) => s.health.value !== 'green').map((s) => ({
-          recordType: 'deliverable' as const, id: s.deliverable.id, ref: s.deliverable.docNo, why: `${s.health.value} (${s.health.ruleId})`,
+          recordType: 'deliverable' as const, id: s.deliverable.id, ref: s.deliverable.docNo,
+          why: `${s.health.value}: ${s.health.detail} (${s.health.ruleId})`,
         })),
       },
       holdsByCause: {
@@ -624,8 +669,11 @@ export function myWeek(snap: ProjectSnapshot, personId: number): MyWeek {
     if (w.ownerId !== personId || (w.state !== 'open' && w.state !== 'in_work')) continue
     const overdue = w.needBy != null && daysOverdue(w.needBy, today) > 0
     let why: string | null = null
-    if (w.committedWeek === week) why = 'committed to this week (manual)'
-    else if (overdue) why = `overdue: need-by ${w.needBy} past (escalation)`
+    if (w.committedWeek === week) {
+      why = w.commitSource === 'plan'
+        ? 'planning commitment — weekly commit (PEC-PLAN-007)'
+        : 'committed to this week (manual)'
+    } else if (overdue) why = `overdue: need-by ${w.needBy} past (escalation)`
     else if (w.needBy && isoWeekOf(w.needBy) === week) why = `need-by ${w.needBy} falls this week`
     if (!why) continue
     committed.push({

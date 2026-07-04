@@ -117,3 +117,83 @@ register `openIssues` count is log-visibility-scoped so it matches the drill-dow
 reveals the existence of records the caller cannot see (PEC-NFR-005). I-4 is preserved: workflow status
 is derived-on-read and never stored; health continues to carry Explain payloads for the rollups. The
 deviation from the P1 "deliverable health" presentation is deliberate and recorded here, not drift.
+
+## ADR-012 Package/project health derivation stands; explanations carry through to issue records
+**Context.** ADR-011 left a seam open: package health (PH-R1/PH-A1) and project health still derive from
+the issue-driven per-deliverable RAG (DH-*), a concept the UI no longer surfaces as "deliverable health"
+since a deliverable's status became workflow completeness. Should package/overview health be reframed
+around package-level issue signals (hold age, overdue decisions, late interfaces, risks) instead?
+**Decision.** The derivation stands, rule for rule. PRD §8.3 specifies the package rules — including
+"≥ 20% of active deliverables amber/red" — as the shipped defaults; the pilot has not run, and deviating
+from the basis document ahead of pilot evidence would invert the pilot-driven posture. The rules are also
+not redundant with an issue-count reframing: PH-R1/PH-A1 weight issues by schedule impact (forecast slip,
+milestone linkage) that flat issue aggregation cannot express; §8.3 already contains the direct
+package-level issue rules (PH-R2 interfaces, PH-A2 decisions); and hold-age/decision-latency pressure
+already escalates through the §8.4 project signals — a parallel per-package copy would be rule sprawl.
+P2 extends §8.3 in kind (capacity load rules), confirming the frame. What was actually broken is the
+*explanation*: PH-R1/PH-A1 drill-downs bottomed out at "AUR-M-001 amber (DH-A1)" — an internal label
+pointing at nothing a user can open. Fixed in the presentation layer: (1) the contributing refs of
+PH-R1/PH-A1 now state each deliverable's pressure in plain terms and carry through the underlying
+records themselves — the same holds, overdue items, conditions, and aging comments the package cockpit
+lists (capped at 3 per deliverable) — so every drill-down lands on a cockpit-visible record; KPI-ONPLAN
+whys gain the same plain-language detail (its contributing list stays at deliverable granularity — it
+counts deliverables, and carrying records through at project scale would flood the drawer); (2) the
+Overview package rollup (PEC-OV-003) adopts the cockpit's log-scoped `openIssues` count, so Overview and
+Packages speak the same issues language (PEC-NFR-005 preserved via the same scoping).
+**Consequences.** No health value changes anywhere; only Explain payloads and the Overview rollup gain
+information. DH-* remains an internal aggregation stage, legitimate as derivation, invisible as
+presentation. Revisit the derivation itself only if the pilot demonstrates the §8.3 defaults mislead —
+that is what PEC-OV-007 threshold configurability and this ADR's paper trail are for.
+
+## ADR-013 P2 planning & capacity — implementer choices
+**Context.** PRD §12.4 specifies the P2 requirements but leaves the planning data model and several
+rule scopes to the implementer: what a "Commitment" is, how capacity attaches to people, what the §8.3
+package capacity rule means when capacity is defined by discipline (PEC-PLAN-003), and how the
+plan-shift review works.
+**Decision.**
+1. **One plan placement per record** (`plan_item`, UNIQUE on the underlying record): a work item,
+   check, or approval record is placed once — horizon (now/next/later) + ISO week + planned hours.
+   Checks and approvals are plan items exactly like work (I-9): their hours load the same capacity
+   cells and are reported per type. `later` is the unscheduled backlog (no week).
+2. **Discipline is denormalized onto the plan item**, snapshotted from the responsible person (owner /
+   checker / first signatory) at planning time and editable. Capacity math stays a pure function of
+   the snapshot without loading persons; a planner can re-bucket a placement without touching people.
+3. **Package capacity rule (PH-R3/PH-A3) reads through disciplines**: capacity exists per
+   discipline/week (PEC-PLAN-003), so the only well-defined package reading of §8.3's "committed load
+   vs capacity" is exposure — the package breaches when the current week's load in a discipline its
+   planned records draw on exceeds the threshold, with those plan items as the contributing records.
+   S-CAP applies the same cells at project level (current week; §8.3 says "in the current week").
+4. **Plan shifts are the plan-change log** (append-only table, no delete trigger exception): every
+   move records reason (PEC-PLAN-006) and links (PEC-PLAN-008). A shift whose linked/own packages
+   differ is cross-package: it requires an impact statement, lands `proposed`, notifies the affected
+   leads, and applies only on review (PEC-PLAN-005); within-package shifts apply immediately.
+5. **The weekly commit writes the durable fact onto the work item** (`committed_week` +
+   `commit_source='plan'`) rather than deriving My Week from plan rows at read time — the committed
+   week must survive later plan edits (a commitment is a record, not a view), and the P1 manual flag
+   coexists (`commit_source='manual'`). Commit is idempotent; checks/approvals notify their
+   responsible person instead (their My Week obligations already project via PEC-MW-002).
+6. **Schedule import is import-owned** (D-04): rows upsert by `activity_id` and always refresh —
+   there is no in-app edit path to protect — but mapping columns update only when present in the CSV,
+   and a stated mapping that does not resolve rejects the row (§16: nothing silently dropped/wiped).
+7. **Digests are notifications** (PEC-NOT-002): one per person per digest type per ISO week, produced
+   by the existing sweep (hourly + login), idempotent the same way the daily overdue events are.
+   Severity on all time-driven notifications comes from the §8.4 thresholds (PEC-NOT-003); a
+   `severity` column was added rather than a parallel channel.
+8. **Supersession links are first-class rows** (`supersession_link`, PEC-AUTH-005): old → replacement
+   with the affected-record set (JSON of refs) captured at supersession time from decision links /
+   applies-to / satisfied conditions. P3 propagation gets a stable substrate; nothing is recomputed
+   retroactively.
+**Consequences.** Plan tables are additive; P1 behavior is unchanged until records are planned
+(capacity rules and S-CAP are silent with no plan/capacity rows). Plan resolution is indexed per
+snapshot (`core/src/plan.ts` planIndex, WeakMap-memoized like snapshot-index.ts) so the health rules
+stay off O(n²) paths at PEC-NFR-003 scale; the perf guard now seeds 2k plan items. `plan_shift` loads
+fully into the snapshot like the other controlled registers — bounded by human planning actions, the
+same class as decisions/holds. An adversarial review pass (2026-07-04) additionally hardened: plan-view
+and package-pack log visibility (PEC-NFR-005), cross-package review integrity (foreign-lead-only,
+no self-approval, stale proposals refuse to apply), per-package digest idempotency, raw-ratio capacity
+classification incl. zero-hour baselines, phantom-W53 rejection, schedule-forecast gating on issued
+deliverables, capacity-change audit events, and served-merged threshold defaults. `interfaceOverdueWarnWd`,
+`capacityWarnPct`, `capacityRedPct` join the configurable thresholds (PEC-OV-007). Existing databases
+migrate in place via `ensureColumn` (notification.severity, work_item.commit_source). PEC-AHL-008
+(duplicate suggestion) and PEC-NFR-006 (SSO) remain the P2 items deliberately not built here: the
+first wants pilot vocabulary to tune matching against, the second an IdP to integrate with.

@@ -29,6 +29,8 @@ import {
 import { createWorkItem, transitionWorkItem } from '../server/src/services/work.ts'
 import { raiseHold } from '../server/src/services/holds.ts'
 import { dispositionIntake, openTriage, raiseIntake } from '../server/src/services/intake.ts'
+import { commitWeek, createPlanItem, shiftPlanItem, upsertCapacity } from '../server/src/services/plan.ts'
+import { importContract } from '../server/src/import/index.ts'
 import {
   createDeliverable, createInterface, createPackage, createRisk, updateInterface, updateRisk,
 } from '../server/src/services/registers.ts'
@@ -497,6 +499,65 @@ withTx(db, () => {
   })
 })
 
+// ---------- 7l. P2 plan & capacity (PRD §12.4: PEC-PLAN-*, I-9, PEC-PLAN-007) ----------
+
+console.log('seeding: plan, capacity, weekly commit …')
+const week = isoWeekOf(TODAY)
+withTx(db, () => {
+  // capacity by discipline for the current week (PEC-PLAN-003)
+  for (const [discipline, hours] of [['Process', 40], ['Mechanical', 40], ['Instrumentation', 32]] as const) {
+    upsertCapacity(as('planner'), { week, discipline, hours })
+  }
+  // plan the open Process work: two work items + the AUR-P-004 check + the hold-point
+  // approval — checking and approving load capacity like work (I-9). 42/40 h on Process
+  // → S-CAP warn + PH-A3 on the amber tier without forcing the demo red.
+  const openProcessItems = repo.list<{ id: number; ref: string }>('work_item', projectId,
+    "state IN ('open','in_work') AND package_id = ? LIMIT 2", [pkgId['PKG-P']!])
+  for (const w of openProcessItems) {
+    createPlanItem(as('planner'), {
+      itemType: 'work_item', itemId: w.id, horizon: 'now', week, plannedHours: 14, discipline: 'Process',
+    })
+  }
+  const p004Check = repo.list<Check>('check_record', projectId, 'revision_id = ?', [R('AUR-P-004')])[0]
+  if (p004Check) {
+    createPlanItem(as('planner'), {
+      itemType: 'check', itemId: p004Check.id, horizon: 'now', week, plannedHours: 8, discipline: 'Process',
+    })
+  }
+  const holdPointApproval = repo.list<{ id: number }>('approval_record', projectId,
+    "approval_type = 'client_hold_point' LIMIT 1")[0]
+  if (holdPointApproval) {
+    createPlanItem(as('planner'), {
+      itemType: 'approval_record', itemId: holdPointApproval.id, horizon: 'now', week, plannedHours: 6, discipline: 'Process',
+    })
+  }
+  // a backlog entry plus a reasoned shift into next week (PEC-PLAN-006)
+  const pipingItem = repo.list<{ id: number; version: number }>('work_item', projectId,
+    "state IN ('open','in_work') AND package_id = ? LIMIT 1", [pkgId['PKG-PI']!])[0]
+  if (pipingItem) {
+    const pi = createPlanItem(as('planner'), {
+      itemType: 'work_item', itemId: pipingItem.id, horizon: 'later', week: null, plannedHours: 10, discipline: 'Mechanical',
+    })
+    shiftPlanItem(as('planner'), pi.id, {
+      version: pi.version, toHorizon: 'next', toWeek: isoWeekOf(day(7)),
+      reason: 'stress inputs land Friday; pulling the line-list rework into next week',
+    })
+  }
+  // the weekly commit generates My Week (PEC-PLAN-007 / PEC-MW-007)
+  commitWeek(as('planner'), week)
+})
+withTx(db, () => {
+  // schedule import feeding the lookahead (§16 P2, D-04)
+  const schedCsv = [
+    'activity_id,description,start,finish,package,deliverable_ref',
+    `SCH-1010,PFD update and squad check,${day(-7)},${day(11)},PKG-P,AUR-P-002`,
+    `SCH-1020,Compressor datasheet finalization,${day(0)},${day(18)},PKG-M,AUR-M-001`,
+    `SCH-1030,Stress critical line list rework,${day(3)},${day(25)},PKG-PI,AUR-PI-002`,
+  ].join('\r\n')
+  const rep = importContract(as('admin'), 'schedule', schedCsv, false)
+  if (rep.rejected.length > 0) throw new Error(`schedule seed rejected: ${JSON.stringify(rep.rejected)}`)
+})
+
 // ---------- 8. summary ----------
 
 const count = (table: string): number =>
@@ -509,7 +570,9 @@ const COUNTS: Array<[string, string]> = [
   ['approval_record', 'approval_record'], ['decision', 'decision'],
   ['condition', 'condition_record'], ['condition_template', 'condition_template'],
   ['issue_event', 'issue_event'], ['interface_item', 'interface_item'], ['risk', 'risk'],
-  ['intake_item', 'intake_item'], ['history_entry', 'history_entry'],
+  ['intake_item', 'intake_item'], ['plan_item', 'plan_item'], ['plan_shift', 'plan_shift'],
+  ['capacity_entry', 'capacity_entry'], ['schedule_activity', 'schedule_activity'],
+  ['history_entry', 'history_entry'],
   ['audit_event', 'audit_event'], ['notification', 'notification'],
 ]
 
@@ -540,6 +603,10 @@ console.log('  2. eor@aurora.dev → My Week: overdue stress items, a committed-
 console.log('     and the open check comment owed on AUR-P-004; try closing a blocked item.')
 console.log('  3. coord@aurora.dev → Registers → Intake: three untriaged items (one aged red);')
 console.log('     triage one into an anchored work item, then check the raiser notification.')
+console.log('  4. planner@aurora.dev → Plan (P2): Process is at 105% this week (S-CAP warn, I-9 —')
+console.log('     the check and hold-point approval load capacity); the week is committed, so')
+console.log("     eor's My Week shows \"planning commitment\"; the lookahead mixes plan cells with")
+console.log('     imported schedule activities; one reasoned shift sits in the plan-change log.')
 console.log('')
 console.log(` Database: ${dbPath}`)
 console.log(' Start the app:  npm run dev   (server :4810, web :4811)')

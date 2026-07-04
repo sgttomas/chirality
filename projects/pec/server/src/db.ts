@@ -14,6 +14,9 @@ const CONTROLLED_TABLES = [
   'package', 'deliverable', 'revision', 'intake_item', 'work_item', 'hold',
   'check_record', 'review_comment', 'approval_record', 'decision', 'risk',
   'interface_item', 'condition_record', 'issue_event',
+  // P2: plan placements, the plan-change log, its links, and supersession links are
+  // records of planning state/change — no delete path (move to 'later' instead)
+  'plan_item', 'plan_shift', 'plan_shift_link', 'supersession_link',
 ]
 
 const SCHEMA = `
@@ -153,6 +156,7 @@ CREATE TABLE IF NOT EXISTS work_item (
   priority_provenance TEXT,
   state TEXT NOT NULL DEFAULT 'open',
   committed_week TEXT,
+  commit_source TEXT,             -- manual | plan (PEC-PLAN-007)
   source_type TEXT,
   source_id INTEGER,
   closing_statement TEXT,
@@ -478,9 +482,104 @@ CREATE TABLE IF NOT EXISTS notification (
   reason TEXT NOT NULL,
   next_action TEXT NOT NULL,
   due TEXT,
+  severity TEXT NOT NULL DEFAULT 'info',
   read_at TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_notification_person ON notification(project_id, person_id, read_at);
+
+-- ---------- P2 planning & capacity (PRD §12.4, §13.1) ----------
+
+CREATE TABLE IF NOT EXISTS plan_item (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  ref TEXT NOT NULL,
+  item_type TEXT NOT NULL,         -- work_item | check | approval_record (I-9)
+  item_id INTEGER NOT NULL,
+  horizon TEXT NOT NULL DEFAULT 'later',  -- now | next | later (PEC-PLAN-001)
+  week TEXT,                       -- ISO 'YYYY-Www'; null = unscheduled backlog
+  discipline TEXT,                 -- capacity discipline (denormalized, ADR-013)
+  planned_hours REAL NOT NULL DEFAULT 0,
+  created_by INTEGER NOT NULL,
+  created_at TEXT NOT NULL,
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, item_type, item_id)
+);
+CREATE INDEX IF NOT EXISTS idx_plan_item_week ON plan_item(project_id, week);
+
+CREATE TABLE IF NOT EXISTS plan_period (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  week TEXT NOT NULL,
+  state TEXT NOT NULL DEFAULT 'open',   -- open | committed (PEC-PLAN-007)
+  committed_at TEXT,
+  committed_by INTEGER,
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, week)
+);
+
+CREATE TABLE IF NOT EXISTS capacity_entry (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  week TEXT NOT NULL,
+  discipline TEXT NOT NULL,
+  hours REAL NOT NULL DEFAULT 0,
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, week, discipline)
+);
+
+CREATE TABLE IF NOT EXISTS schedule_activity (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  activity_id TEXT NOT NULL,       -- external id, the §16 idempotency key
+  description TEXT NOT NULL,
+  start_date TEXT NOT NULL,
+  finish_date TEXT NOT NULL,
+  package_id INTEGER,
+  deliverable_id INTEGER,
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, activity_id)
+);
+
+CREATE TABLE IF NOT EXISTS plan_shift (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  ref TEXT NOT NULL,
+  plan_item_id INTEGER NOT NULL REFERENCES plan_item(id),
+  from_horizon TEXT NOT NULL,
+  to_horizon TEXT NOT NULL,
+  from_week TEXT,
+  to_week TEXT,
+  reason TEXT NOT NULL,            -- PEC-PLAN-006: every shift records its reason
+  impact_statement TEXT,           -- PEC-PLAN-005
+  cross_package INTEGER NOT NULL DEFAULT 0,
+  affected_package_ids TEXT NOT NULL DEFAULT '[]',
+  state TEXT NOT NULL DEFAULT 'applied',  -- applied | proposed | rejected
+  created_by INTEGER NOT NULL,
+  created_at TEXT NOT NULL,
+  reviewed_by INTEGER,
+  reviewed_at TEXT,
+  version INTEGER NOT NULL DEFAULT 1
+);
+CREATE INDEX IF NOT EXISTS idx_plan_shift_project ON plan_shift(project_id, state);
+
+CREATE TABLE IF NOT EXISTS plan_shift_link (
+  id INTEGER PRIMARY KEY,
+  plan_shift_id INTEGER NOT NULL REFERENCES plan_shift(id),
+  record_type TEXT NOT NULL,
+  record_id INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS supersession_link (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  record_type TEXT NOT NULL,       -- approval_record | decision | revision | basis_reference
+  old_id INTEGER NOT NULL,
+  new_id INTEGER,
+  affected TEXT NOT NULL DEFAULT '[]',  -- [{recordType, id, ref}] (PEC-AUTH-005)
+  created_by INTEGER NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_supersession_old ON supersession_link(record_type, old_id);
 
 -- Append-only enforcement (I-7, PEC-NFR-001)
 CREATE TRIGGER IF NOT EXISTS history_no_update BEFORE UPDATE ON history_entry
@@ -505,10 +604,21 @@ CREATE TRIGGER IF NOT EXISTS ${t}_no_delete BEFORE DELETE ON ${t}
 BEGIN SELECT RAISE(ABORT, 'controlled records are never hard-deleted (PEC-NFR-002)'); END;`).join('\n')
 }
 
+/** Add a column to a pre-P2 database if it is missing (CREATE TABLE IF NOT EXISTS won't). */
+function ensureColumn(db: Db, table: string, column: string, ddl: string): void {
+  const cols = db.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name: string }>
+  if (!cols.some((c) => c.name === column)) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${ddl}`)
+  }
+}
+
 export function openDb(path: string): Db {
   const db = new DatabaseSync(path, { enableForeignKeyConstraints: true })
   db.exec(SCHEMA)
   db.exec(deleteGuards())
+  // P2 columns on P1 tables (existing databases predate the CREATE TABLE defaults)
+  ensureColumn(db, 'notification', 'severity', "TEXT NOT NULL DEFAULT 'info'")
+  ensureColumn(db, 'work_item', 'commit_source', 'TEXT')
   return db
 }
 

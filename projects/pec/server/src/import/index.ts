@@ -12,7 +12,9 @@
  */
 
 import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, Revision, Risk, WorkItem } from '@pec/core'
-import { HOLD_CAUSES, LOGS, ageWorkingDays, daysOverdue, isoWeekOf, visibleLogs } from '@pec/core'
+import {
+  HOLD_CAUSES, LOGS, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
+} from '@pec/core'
 import { badRequest } from '../errors.ts'
 import { nowIso } from '../repo.ts'
 import type { Sx } from '../services/shared.ts'
@@ -402,13 +404,72 @@ function importRisks(sx: Sx, csv: string, force: boolean): ImportReport {
   return report
 }
 
+// ---------- schedule activities (§16 P2, D-04: CSV/XER-derived, no live sync) ----------
+
+function importSchedule(sx: Sx, csv: string, _force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'schedule', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  const required = ['activity_id', 'description', 'start', 'finish']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`schedule import missing required columns: ${missing.join(', ')} (§16 P2)`)
+
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of required) if (!row[col]) errors.push(`${col} is required`)
+    for (const col of ['start', 'finish'] as const) {
+      if (row[col] && !DATE_RE.test(row[col]!)) errors.push(`${col} must be YYYY-MM-DD, got "${row[col]}"`)
+    }
+    if (row.start && row.finish && DATE_RE.test(row.start) && DATE_RE.test(row.finish) && row.finish < row.start) {
+      errors.push('finish is before start')
+    }
+    // package/deliverable mapping is optional, but a stated mapping must resolve —
+    // silently dropping it would be a silent drop of data (§16)
+    const pkg = row.package
+      ? sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
+        .get(sx.projectId, row.package) as { id: number } | undefined
+      : undefined
+    if (row.package && !pkg) errors.push(`package "${row.package}" matches no package code`)
+    const del = row.deliverable_ref
+      ? sx.db.prepare('SELECT id FROM deliverable WHERE project_id = ? AND doc_no = ?')
+        .get(sx.projectId, row.deliverable_ref) as { id: number } | undefined
+      : undefined
+    if (row.deliverable_ref && !del) errors.push(`deliverable_ref "${row.deliverable_ref}" matches no doc_no`)
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    // mapping columns update only when present in the CSV — a narrower re-import must not
+    // silently wipe an earlier mapping (§16: nothing dropped without a report)
+    const fields: Record<string, unknown> = {
+      description: row.description, startDate: row.start, finishDate: row.finish,
+    }
+    if (headers.includes('package')) fields.packageId = pkg?.id ?? null
+    if (headers.includes('deliverable_ref')) fields.deliverableId = del?.id ?? null
+    const existing = sx.db.prepare('SELECT id FROM schedule_activity WHERE project_id = ? AND activity_id = ?')
+      .get(sx.projectId, row.activity_id ?? '') as { id: number } | undefined
+    if (existing) {
+      // schedule rows are import-owned (no in-app edit path); re-import always refreshes
+      sx.repo.systemUpdate('schedule_activity', sx.projectId, existing.id, fields)
+      importHistory(sx, 'schedule_activity', existing.id, `${row.activity_id} refreshed by schedule import`)
+      report.updated++
+    } else {
+      const id = sx.repo.insert('schedule_activity', {
+        projectId: sx.projectId, activityId: row.activity_id, ...fields,
+      })
+      importHistory(sx, 'schedule_activity', id, `${row.activity_id} created by schedule import`)
+      report.accepted++
+    }
+  })
+  return report
+}
+
 export function importContract(sx: Sx, contract: string, csv: string, force: boolean): ImportReport {
   switch (contract) {
     case 'mdl': return importMdl(sx, csv, force)
     case 'rail': return importRail(sx, csv, force)
     case 'decisions': return importDecisions(sx, csv, force)
     case 'risks': return importRisks(sx, csv, force)
-    default: throw badRequest(`unknown import contract: ${contract} (mdl, rail, decisions, risks)`)
+    case 'schedule': return importSchedule(sx, csv, force)
+    default: throw badRequest(`unknown import contract: ${contract} (mdl, rail, decisions, risks, schedule)`)
   }
 }
 
@@ -528,7 +589,8 @@ export function exportRegister(sx: Sx, register: string): string {
       const rows: Array<Array<string | null>> = []
       for (const w of snap.workItems as WorkItem[]) {
         if (w.state !== 'open' && w.state !== 'in_work') continue
-        const why = w.committedWeek === week ? 'manual commitment'
+        const why = w.committedWeek === week
+          ? (w.commitSource === 'plan' ? 'planning commitment' : 'manual commitment')
           : (w.needBy != null && (w.needBy <= snap.today || isoWeekOf(w.needBy) === week)) ? 'need-by' : null
         if (!why) continue
         rows.push([week, personName(sx, w.ownerId), w.ref, w.title,
@@ -571,6 +633,26 @@ export function exportRegister(sx: Sx, register: string): string {
         .sort((a, b) => b.ageWd - a.ageWd)
         .map((r) => [r.ref, r.type, r.title, r.log, pkgCode(r.pkgId), personName(sx, r.ownerId),
           r.state, String(r.ageWd), r.needBy, r.overdue ? 'yes' : 'no', r.cause, r.anchor])
+      return toCsv(headers, rows)
+    }
+    case 'schedule': {
+      // mirrors the §16 P2 schedule import for round-trip
+      const headers = ['activity_id', 'description', 'start', 'finish', 'package', 'deliverable_ref']
+      const rows = snap.scheduleActivities.map((a) => [
+        a.activityId, a.description, a.startDate, a.finishDate,
+        pkgCode(a.packageId), docNo(a.deliverableId),
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'lookahead': {
+      // six-week lookahead (PRD §15 P2): rows deliverables, one column per week (PEC-PLAN-002)
+      const weeks = isoWeeksFrom(snap.today, 6)
+      const headers = ['doc_no', 'title', 'package', 'due_date', ...weeks]
+      const rows = lookahead(snap, weeks).map((r) => [
+        r.deliverable.docNo, r.deliverable.title, pkgCode(r.deliverable.packageId),
+        r.deliverable.dueDate,
+        ...r.cells.map((c) => (c ? `${c.state}: ${c.detail}` : '')),
+      ])
       return toCsv(headers, rows)
     }
     default:

@@ -180,6 +180,42 @@ test('PH-R1: red deliverable with milestone → red package; PH-R2 late interfac
   assert.equal(packageStatus(snap, p).health.ruleId, 'PH-R2')
 })
 
+test('ADR-012: PH-A1 drill-down states the pressure and carries the underlying issue records', () => {
+  const p = fx.pkg()
+  const ds = Array.from({ length: 5 }, () => fx.deliverable({ packageId: p.id, dueDate: '2026-09-01' }))
+  const revs = ds.map((d) => fx.revision({ deliverableId: d.id }))
+  const h = fx.hold()
+  const snap = fx.snapshot({
+    packages: [p], deliverables: ds, revisions: revs, holds: [h],
+    holdLinks: [fx.holdLink({ holdId: h.id, targetType: 'deliverable', targetId: ds[0]!.id })],
+  })
+  const s = packageStatus(snap, p)
+  assert.equal(s.health.ruleId, 'PH-A1')
+  const delRef = s.health.contributing.find((c) => c.recordType === 'deliverable' && c.id === ds[0]!.id)
+  assert.ok(delRef, 'the pressured deliverable is listed')
+  assert.ok(delRef!.why.includes('active hold'), `plain-language pressure, got "${delRef!.why}"`)
+  const holdRef = s.health.contributing.find((c) => c.recordType === 'hold' && c.id === h.id)
+  assert.ok(holdRef, 'the hold itself contributes — drill-down lands on a cockpit-visible record')
+  assert.ok(holdRef!.why.includes(ds[0]!.docNo), 'carried-through ref names its deliverable')
+})
+
+test('ADR-012: PH-R1 drill-down carries the escalated hold behind the red milestone deliverable', () => {
+  const p = fx.pkg()
+  const d = fx.deliverable({ packageId: p.id, dueDate: '2026-09-01', milestone: 'G2' })
+  const rev = fx.revision({ deliverableId: d.id })
+  const h = fx.hold({ raisedAt: '2026-06-01T00:00:00Z' }) // > holdAgeRedWd before TODAY → DH-R2
+  const snap = fx.snapshot({
+    packages: [p], deliverables: [d], revisions: [rev], holds: [h],
+    holdLinks: [fx.holdLink({ holdId: h.id, targetType: 'deliverable', targetId: d.id })],
+  })
+  const s = packageStatus(snap, p)
+  assert.equal(s.health.ruleId, 'PH-R1')
+  const delRef = s.health.contributing.find((c) => c.recordType === 'deliverable' && c.id === d.id)!
+  assert.ok(delRef.why.includes('milestone G2'), 'milestone linkage stated')
+  assert.ok(s.health.contributing.some((c) => c.recordType === 'hold' && c.id === h.id),
+    'the escalated hold is a contributing record')
+})
+
 test('project health: escalate-tier signal breach is a red contribution (§8.4 table)', () => {
   const p = fx.pkg()
   const d = fx.deliverable({ packageId: p.id, dueDate: '2026-09-01' })

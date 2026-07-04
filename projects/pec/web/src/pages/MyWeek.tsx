@@ -128,7 +128,15 @@ export function MyWeekPage(): JSX.Element {
   const nb = (r: any, node: JSX.Element): JSX.Element => (r.readAt == null ? <b>{node}</b> : node)
   const notifCols: Array<Col<any>> = [
     { key: 'at', label: 'When', render: (r) => nb(r, <span className="mono nowrap small">{r.at.slice(0, 16).replace('T', ' ')}</span>) },
-    { key: 'event', label: 'Event', render: (r) => nb(r, <span className="state">{r.event}</span>) },
+    {
+      key: 'event', label: 'Event', render: (r) => nb(r, (
+        <span className="nowrap">
+          <span className="state">{r.event}</span>{' '}
+          {r.severity === 'red' && <span className="badge red">red</span>}
+          {r.severity === 'warn' && <span className="badge amber">warn</span>}{/* PEC-NOT-003 */}
+        </span>
+      )),
+    },
     { key: 'rec', label: 'Record', render: (r) => nb(r, <span className="mono">{r.recordRef}</span>) },
     { key: 'why', label: 'Why', render: (r) => nb(r, <span className="small">{r.reason}</span>) },
     { key: 'next', label: 'Next action', render: (r) => nb(r, <span className="small">{r.nextAction}</span>) },

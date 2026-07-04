@@ -1,0 +1,9 @@
+risk_id,title,cause,consequence,owner,status,package,deliverable_ref,probability,impact,mitigation,need_by
+BOR-RSK-001,Late compressor vendor data,Single vendor with long quote cycle,Datasheet and foundation design slip past Gate 2,lead.mech@borealis.dev,mitigating,BOR-ME,BOR-ME-001,4,5,Weekly vendor expediting call; escalate via procurement,2026-07-09
+BOR-RSK-002,Units basis rework,Units decision pending while datasheets progress,Rework across all mechanical datasheets,lead.process@borealis.dev,open,BOR-PR,,3,4,Hold datasheet issue until BOR-DEC-001 decided,2026-07-07
+BOR-RSK-003,Checking capacity shortfall,Two checkers on leave in August,Check backlog delays IFR issues,pm@borealis.dev,open,,,3,3,Cross-train second process checker; pre-book checks,2026-08-01
+BOR-RSK-004,Geotech uncertainty at compressor building,Interpretation report based on sparse boreholes,Foundation redesign after vendor loads arrive,lead.mech@borealis.dev,mitigating,BOR-CV,BOR-CV-003,2,4,Supplementary boreholes ordered,2026-07-18
+BOR-RSK-005,Client comment turnaround,Client review cycle exceeding 10 working days,Returned comments stall control system design,pm@borealis.dev,open,BOR-EL,BOR-EL-006,3,3,Agree comment SLA at next steering meeting,2026-07-15
+BOR-RSK-006,Flare load growth,Late load additions from packaged units,Flare system resize late in FEED,eng.process@borealis.dev,open,BOR-PR,BOR-PR-006,2,4,Freeze load basis at Gate 2; contingency in header sizing,2026-07-25
+BOR-RSK-007,Survey data gap,Benchmark data missing for grading design,Grading plan cannot be checked,lead.mech@borealis.dev,mitigating,BOR-CV,BOR-CV-002,4,2,Survey crew mobilized,2026-07-10
+BOR-RSK-008,HAZID actions unresolved at gate,HAZID scheduled late against Gate 2 date,Gate review conditional or deferred,pm@borealis.dev,closed,,,2,3,HAZID pulled forward; actions tracked in RAIL,2026-06-20

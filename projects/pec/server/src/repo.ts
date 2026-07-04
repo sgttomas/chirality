@@ -7,7 +7,7 @@
 import type { Db } from './db.ts'
 import { notFound, versionConflict } from './errors.ts'
 import type {
-  HistoryEntry, Notification, NotificationEvent, ProjectSnapshot, RecordType,
+  HistoryEntry, Notification, NotificationEvent, NotificationSeverity, ProjectSnapshot, RecordType,
 } from '@pec/core'
 import { DEFAULT_THRESHOLDS, localDate } from '@pec/core'
 
@@ -28,6 +28,7 @@ export const TABLE: Partial<Record<RecordType | string, string>> = {
   risk: 'risk', interface_item: 'interface_item', condition: 'condition_record',
   issue_event: 'issue_event', evidence: 'evidence', basis_reference: 'basis_reference',
   person: 'person',
+  plan_item: 'plan_item', plan_shift: 'plan_shift', schedule_activity: 'schedule_activity',
 }
 
 /** ref prefixes per record type (ADR-008) */
@@ -35,6 +36,7 @@ const REF_PREFIX: Record<string, string> = {
   intake_item: 'INTK', work_item: 'WI', hold: 'HLD', check: 'CHK', review_comment: 'CMT',
   approval_record: 'APR', decision: 'DEC', risk: 'RSK', interface_item: 'INT',
   condition: 'COND', issue_event: 'EVT',
+  plan_item: 'PLN', plan_shift: 'PLS',
 }
 
 const JSON_COLS: Record<string, string[]> = {
@@ -45,12 +47,15 @@ const JSON_COLS: Record<string, string[]> = {
   checklist_template: ['items'],
   history_entry: ['payload'],
   audit_event: ['prior_value', 'new_value'],
+  plan_shift: ['affected_package_ids'],
+  supersession_link: ['affected'],
 }
 
 const BOOL_COLS: Record<string, string[]> = {
   person: ['is_admin'],
   check_record: ['independence_warning'],
   approval_record: ['hold_point'],
+  plan_shift: ['cross_package'],
 }
 
 type Row = Record<string, unknown>
@@ -202,9 +207,13 @@ export class Repo {
   notify(n: {
     projectId: number; personId: number; event: NotificationEvent; recordType: string;
     recordId: number; recordRef: string; reason: string; nextAction: string; due?: string | null
+    /** PEC-NOT-003: §8.4 thresholds drive severity; producers default to 'info' */
+    severity?: NotificationSeverity
   }): void {
     if (!n.personId) return
-    this.insert('notification', { ...n, at: nowIso(), due: n.due ?? null, readAt: null })
+    this.insert('notification', {
+      ...n, at: nowIso(), due: n.due ?? null, severity: n.severity ?? 'info', readAt: null,
+    })
   }
 
   notificationsFor(projectId: number, personId: number, unreadOnly = false): Notification[] {
@@ -270,6 +279,11 @@ export class Repo {
       conditions: all('condition_record'),
       issueEvents: all('issue_event'),
       evidence: all('evidence'),
+      planItems: all('plan_item'),
+      planPeriods: all('plan_period'),
+      capacityEntries: all('capacity_entry'),
+      scheduleActivities: all('schedule_activity'),
+      planShifts: all('plan_shift'),
       today: localDate(nowIso(), project.calendar.timezone),
     }
   }

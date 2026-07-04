@@ -13,6 +13,7 @@ export const RECORD_TYPES = [
   'intake_item', 'work_item', 'hold', 'check', 'review_comment',
   'approval_record', 'decision', 'risk', 'interface_item',
   'condition', 'issue_event', 'evidence', 'basis_reference', 'person',
+  'plan_item', 'plan_shift', 'schedule_activity', // P2 planning (PRD §13.1)
 ] as const
 export type RecordType = (typeof RECORD_TYPES)[number]
 
@@ -86,6 +87,11 @@ export interface Thresholds {
   schedulePressureRedD: number
   /** §8.3 "interface item overdue past escalation" — escalation threshold, working days (implementer default) */
   interfaceOverdueRedWd: number
+  /** PEC-PKG-008 (P2): interface aging feeds package health below escalation — amber past this, working days */
+  interfaceOverdueWarnWd: number
+  /** §8.4 capacity row (P2): committed load as % of capacity — warn above, escalate above */
+  capacityWarnPct: number
+  capacityRedPct: number
 }
 
 export const DEFAULT_THRESHOLDS: Thresholds = {
@@ -98,6 +104,8 @@ export const DEFAULT_THRESHOLDS: Thresholds = {
   forecastSlipAmberWd: 5,
   schedulePressureWarnD: 0, schedulePressureRedD: 10,
   interfaceOverdueRedWd: 7,
+  interfaceOverdueWarnWd: 0,
+  capacityWarnPct: 100, capacityRedPct: 110,
 }
 
 export interface ProjectConfig {
@@ -228,7 +236,9 @@ export interface WorkItem {
   priority: string | null
   priorityProvenance: string | null
   state: WorkItemState
-  committedWeek: string | null // ISO week 'YYYY-Www' — P1 manual commit (PEC-MW-007)
+  committedWeek: string | null // ISO week 'YYYY-Www' (PEC-MW-007)
+  /** who set committedWeek: the owner's manual flag or the weekly planning commit (PEC-PLAN-007) */
+  commitSource: 'manual' | 'plan' | null
   sourceType: RecordType | null
   sourceId: number | null
   closingStatement: string | null
@@ -602,15 +612,21 @@ export interface AuditEvent {
   authorityRef: string | null
 }
 
-/** PEC-NOT-001 event catalog. */
+/** PEC-NOT-001 event catalog; P2 adds the weekly-commit, plan-review, and digest events (PEC-NOT-002). */
 export const NOTIFICATION_EVENTS = [
   'assigned', 'item_overdue', 'hold_blocks_your_record', 'decision_past_need_by',
   'approval_requires_you', 'check_requires_you', 'comment_requires_you',
   'raised_item_routed', 'raised_item_updated', 'raised_item_closed',
   'revision_ready_for_check', 'revision_ready_for_approval',
   'basis_superseded', 'hold_resolved_unblocked', 'condition_warn',
+  'week_committed', 'plan_shift_review',
+  'digest_planning', 'digest_package_review', 'digest_judgments', 'digest_holds', 'digest_comments',
 ] as const
 export type NotificationEvent = (typeof NOTIFICATION_EVENTS)[number]
+
+/** PEC-NOT-003: §8.4 escalation thresholds drive notification severity. */
+export const NOTIFICATION_SEVERITIES = ['info', 'warn', 'red'] as const
+export type NotificationSeverity = (typeof NOTIFICATION_SEVERITIES)[number]
 
 export interface Notification {
   id: number
@@ -624,7 +640,118 @@ export interface Notification {
   reason: string
   nextAction: string
   due: string | null
+  severity: NotificationSeverity
   readAt: string | null
+}
+
+// ---------- planning & capacity (P2 — PRD §12.4, §13.1) ----------
+
+/** What may be placed on the plan and load capacity: work, checking, approving (I-9). */
+export const PLAN_ITEM_TYPES = ['work_item', 'check', 'approval_record'] as const
+export type PlanItemType = (typeof PLAN_ITEM_TYPES)[number]
+
+export const PLAN_HORIZONS = ['now', 'next', 'later'] as const
+export type PlanHorizon = (typeof PLAN_HORIZONS)[number]
+
+/** One record's placement on the plan (the §13.1 Commitment entity). One placement per record. */
+export interface PlanItem {
+  id: number
+  projectId: number
+  ref: string
+  itemType: PlanItemType
+  itemId: number
+  horizon: PlanHorizon
+  /** ISO week 'YYYY-Www'; required for 'now'/'next', null for 'later' (backlog) */
+  week: string | null
+  /** capacity discipline this placement loads — snapshotted from the responsible person, editable (ADR-013) */
+  discipline: string | null
+  plannedHours: number
+  createdBy: number
+  createdAt: string
+  version: number
+}
+
+export const PLAN_PERIOD_STATES = ['open', 'committed'] as const
+export type PlanPeriodState = (typeof PLAN_PERIOD_STATES)[number]
+
+/** A planning week; committing it generates the My Week sets (PEC-PLAN-007). */
+export interface PlanPeriod {
+  id: number
+  projectId: number
+  week: string // 'YYYY-Www'
+  state: PlanPeriodState
+  committedAt: string | null
+  committedBy: number | null
+  version: number
+}
+
+/** Available hours per discipline per week (PEC-PLAN-003). */
+export interface CapacityEntry {
+  id: number
+  projectId: number
+  week: string
+  discipline: string
+  hours: number
+  version: number
+}
+
+/** Imported schedule row feeding the lookahead (§16 P2, D-04). */
+export interface ScheduleActivity {
+  id: number
+  projectId: number
+  activityId: string
+  description: string
+  startDate: string // YYYY-MM-DD
+  finishDate: string
+  packageId: number | null
+  deliverableId: number | null
+  version: number
+}
+
+export const PLAN_SHIFT_STATES = ['applied', 'proposed', 'rejected'] as const
+export type PlanShiftState = (typeof PLAN_SHIFT_STATES)[number]
+
+/** The plan-change log: every move records its reason (PEC-PLAN-005/006/008). */
+export interface PlanShift {
+  id: number
+  projectId: number
+  ref: string
+  planItemId: number
+  fromHorizon: PlanHorizon
+  toHorizon: PlanHorizon
+  fromWeek: string | null
+  toWeek: string | null
+  reason: string
+  impactStatement: string | null
+  /** impacts cross packages → requires review by affected leads (PEC-PLAN-005) */
+  crossPackage: boolean
+  affectedPackageIds: number[]
+  state: PlanShiftState
+  createdBy: number
+  createdAt: string
+  reviewedBy: number | null
+  reviewedAt: string | null
+  version: number
+}
+
+/** Links a shift to the conditions/holds/risks/schedule activities it affects (PEC-PLAN-008). */
+export interface PlanShiftLink {
+  id: number
+  planShiftId: number
+  recordType: RecordType
+  recordId: number
+}
+
+/** Old basis → replacement, with the affected-record set (PEC-AUTH-005; §13.1 P2 link, P3 propagation). */
+export interface SupersessionLink {
+  id: number
+  projectId: number
+  recordType: 'approval_record' | 'decision' | 'revision' | 'basis_reference'
+  oldId: number
+  newId: number | null
+  affected: Array<{ recordType: RecordType; id: number; ref: string }>
+  createdBy: number
+  createdAt: string
 }
 
 // ---------- snapshot ----------
@@ -649,6 +776,12 @@ export interface ProjectSnapshot {
   conditions: Condition[]
   issueEvents: IssueEvent[]
   evidence: Evidence[]
+  // P2 planning & capacity (PRD §13.1)
+  planItems: PlanItem[]
+  planPeriods: PlanPeriod[]
+  capacityEntries: CapacityEntry[]
+  scheduleActivities: ScheduleActivity[]
+  planShifts: PlanShift[]
   /** today's local date in the project timezone, YYYY-MM-DD */
   today: string
 }

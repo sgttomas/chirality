@@ -1,0 +1,7 @@
+decision_id,title,statement,authority,need_by,status,preparer,outcome,rationale,decided_date,affected_refs
+BOR-DEC-001,Units basis for datasheets,Confirm metric versus imperial units basis for all vendor datasheets,pm@borealis.dev,2026-07-07,pending,lead.process@borealis.dev,,,,BOR-PR-004;BOR-ME-001
+BOR-DEC-002,Compression train sparing,Select 2x50% versus 3x33% sparing for the compression train,pm@borealis.dev,2026-07-21,in_progress,eng.process@borealis.dev,,,,BOR-PR-002;BOR-PR-003
+BOR-DEC-003,Flare tip vendor selection,Approve single-source flare tip vendor to hold schedule,lead.process@borealis.dev,2026-07-14,identified,,,,,BOR-PR-006
+BOR-DEC-004,Air cooler plot orientation,Confirm air cooler bank orientation against prevailing wind study,lead.mech@borealis.dev,2026-07-24,identified,,,,,BOR-ME-002;BOR-CV-001
+BOR-DEC-005,Inlet separator design margin,Confirm 10% versus 20% design margin on inlet separation,pm@borealis.dev,2026-06-30,decided,eng.process@borealis.dev,approve,20% margin retained per client reservoir uncertainty,2026-06-27,BOR-PR-001;BOR-PR-004
+BOR-DEC-006,Winterization philosophy,Decide extent of winterization for exposed instrumentation,pm@borealis.dev,2026-07-28,pending,lead.process@borealis.dev,,,,BOR-EL-004
