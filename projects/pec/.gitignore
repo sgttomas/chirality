@@ -6,3 +6,6 @@ pec.db-shm
 pec.db-wal
 backups/
 *.tsbuildinfo
+# D-PEC-01 pilot rehearsal surface: real input spreadsheets, scratch DBs, scratch backups.
+# Never committed (owner ruling: manifests/hashes only) — ignored wholesale.
+pilot-scratch/
