@@ -1,0 +1,8 @@
+source_backup: /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T//pec-l2-backup-create.eCrN4b/backups/pec-20260704-213204.db
+source_backup.bytes: 8192
+source_backup.integrity_check: ok
+source_backup.marker: L2 / backup.create / scratch/demo / PEC loop evidence; no real instance content
+snapshot_artifact: _DomainEngines/pec/PEC_2026-07-04_L2-backup-create-01/artifacts/pec-20260704-213204.db
+snapshot_artifact.bytes: 8192
+snapshot_artifact.integrity_check: ok
+snapshot_artifact.marker: L2 / backup.create / scratch/demo / PEC loop evidence; no real instance content
