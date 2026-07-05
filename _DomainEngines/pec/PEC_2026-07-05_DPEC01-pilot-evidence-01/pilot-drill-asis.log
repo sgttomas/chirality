@@ -1,0 +1,25 @@
+
+PEC pilot drill — scratch db /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/pec-pilot-drill-3293ebf7/drill.db
+mode: custom CSVs (report-only counts)
+
+1. §16 imports (MDL → RAIL → decisions → risks), as the admin
+file:///Users/ryan/ai-env/projects/chirality/projects/pec/server/src/errors.ts:14
+export const badRequest = (msg        , details          ) => new AppError(400, 'BAD_REQUEST', msg, details)
+                                                              ^
+
+AppError: MDL import missing required columns: doc_no, title, package, discipline, owner, current_rev, state, due_date (§16)
+    at badRequest (file:///Users/ryan/ai-env/projects/chirality/projects/pec/server/src/errors.ts:14:63)
+    at importMdl (file:///Users/ryan/ai-env/projects/chirality/projects/pec/server/src/import/index.ts:83:33)
+    at importContract (file:///Users/ryan/ai-env/projects/chirality/projects/pec/server/src/import/index.ts:467:24)
+    at file:///Users/ryan/ai-env/projects/chirality/projects/pec/tools/pilot-drill.ts:149:35
+    at withTx (file:///Users/ryan/ai-env/projects/chirality/projects/pec/server/src/db.ts:629:17)
+    at file:///Users/ryan/ai-env/projects/chirality/projects/pec/tools/pilot-drill.ts:149:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:371:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:669:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 400,
+  code: 'BAD_REQUEST',
+  details: null
+}
+
+Node.js v24.5.0
