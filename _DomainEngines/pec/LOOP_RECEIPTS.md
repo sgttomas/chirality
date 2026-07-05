@@ -113,3 +113,12 @@
   - What it unlocks: per-operation L2 of the D-T0-13 O-A path — `backup.create` first, each act human-confirmed, demo/scratch basis until D-PEC-01. Unchanged: D-T0-14 CLOSED, profile DRAFT/Gate 2 open, fences F-PEC-1..4, L3 future-only.
   - Handoff: no session-bound state exists — the next iteration (any agent) re-derives from this ledger, the registers, and the live tree per LOOP_INIT. Next lawful tranche: demo/scratch-basis `backup.create` L2 evidence, or D-PEC-01 packet preparation at owner direction.
   - Checks: self-check pass; harness pytest pass.
+
+- **2026-07-04 — Receipt 8** (L2 `backup.create` evidence captured).
+  - Start: `a20ce9c6c` (`origin/main` after PR #60); branch `codex/pec-l2-backup-create-evidence`; tree clean before evidence work.
+  - Owner direction of record: "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`. Read `{REPO_ROOT}/_DomainEngines/pec/LOOP_INIT.md` and follow it: pursue the loop's inherent goals — recorded in its standing plan — as far as live authority permits. Steer (this run): <none>"
+  - Live gates checked: D-T0-17 RULED/ACCEPTED unlocks per-operation L2 with `backup.create` first; D-T0-14 CLOSED remains in force; D-PEC-01 is NOT_PREPARED; profile `pec` remains DRAFT/Gate 2 open.
+  - Executed pointers: `_DomainEngines/pec/PEC_2026-07-04_L2-backup-create-01/` (MANIFEST + logs + scratch SQLite backup artifact `artifacts/pec-20260704-213204.db`, SHA-256 `8f538eac51c1376e2e96efe65f593eca2b96b69af7ec89434ae9a0122e2e8fb3`).
+  - Gate outcome: L2 `backup.create` evidence executed on scratch/demo basis only; no PEC source edit, no server start, no non-scratch DB mutation, no real instance-content capture/egress, no restore/import/Gate-2/L3 claim.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass after `npm install`; `git diff --check` pass.
+  - Parked lanes: `backup.restore`/`seed.demo`/`import.csv` L2 acts require their applicable human-confirmation/data basis; D-PEC-01 remains the real-data authorization packet; profile Gate 2 adoption and L3 remain owner-only/future.
