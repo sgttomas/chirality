@@ -131,3 +131,11 @@
   - Gate outcome: L2 `backup.restore` evidence executed on scratch/demo basis only; D-PEC-01 packet prepared only. No real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
   - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
   - Parked lanes: owner ruling on D-PEC-01; `import.csv` over real data and real-pilot restore remain gated by that ruling; `seed.demo` remains parked behind the scratch/demo guard gap; profile Gate 2 adoption and L3 remain owner-only/future.
+
+- **2026-07-04 — Receipt 10** (PR #63 merged; stopped at D-PEC-01 owner gate).
+  - Start: `d9a266311` (`origin/main` after PR #63 merge); branch `codex/pec-after-dpec01-packet`; tree clean before receipt-only work.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "I approve merger of the PR.  Then continue with the remaining work." — PR #63 merged `d9a266311`.
+  - Live gates checked: D-PEC-01 is `AWAITING_RULING`; D-T0-14 CLOSED remains in force; profile `pec` remains DRAFT/Gate 2 open; no new tier-0 or PEC-local ruling appeared after Receipt 9.
+  - Gate outcome: stopped after merge accounting because all remaining advancement is owner-shaped. No D-PEC-01 `HumanRuling` filled, no real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
+  - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; closeout checks ride this receipt-only branch.
+  - Parked lanes: owner ruling on D-PEC-01; profile Gate 2 adoption; L3/proposal-shaped apply path; `seed.demo` guard repair remains outside the PEC loop's current write fence.
