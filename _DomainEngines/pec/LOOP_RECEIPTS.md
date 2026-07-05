@@ -155,3 +155,11 @@
   - Gate outcome: stopped after merge accounting because all remaining advancement is owner-shaped. No D-PEC-01 `HumanRuling` filled, no real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; closeout checks ride this receipt-only branch.
   - Parked lanes: owner ruling on D-PEC-01; profile Gate 2 adoption; L3/proposal-shaped apply path; `seed.demo` guard repair remains outside the PEC loop's current write fence.
+
+- **2026-07-05 — Receipt 13** (PR #66 merged; PEC slate rulings recorded).
+  - Start: `d14fb7e87` (`origin/main` after PR #66 merge); branch `codex/pec-record-rulings`; tree clean before ruling-accounting work.
+  - Owner direction of record (2026-07-05, in-session, Ryan Tufts): PR #66 merge approved and the PEC slate ruled; full verbatim rulings live in D-PEC-01 and D-PEC-04..06.
+  - Executed pointers: D-PEC-01 RULED O-A with hash-permitted rider and owner-basis-before-run rider; D-PEC-04 RULED O-B Gate 2 remains DRAFT/open; D-PEC-05 RULED O-B L3 deferred; D-PEC-06 RULED O-A `seed.demo` guard repair authorized as a later separate PR; PEC-local register rows updated.
+  - Gate outcome: real-data rehearsal authorized only in principle; not executable until owner supplies exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits. `force=true` remains prohibited absent separate ruling. No Gate-2/L3/pilot-readiness/go-live claim.
+  - Checks: closeout checks ride this ruling-accounting branch.
+  - Parked lanes: owner-supplied D-PEC-01 execution basis; merge of this accounting PR; then separate narrow `seed.demo` guard PR.
