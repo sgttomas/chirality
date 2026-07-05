@@ -4,8 +4,9 @@
  * HistoryTrail, useLoad hook, people directory, error surfaces for 409s.
  */
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { api } from './api.ts'
 import type { Explain, Health, Me, ProjectRef } from './api.ts'
 
@@ -32,6 +33,36 @@ export function usePerson(): (id: number | null | undefined) => string {
   const { people } = useApp()
   const map = useMemo(() => new Map(people.map((p) => [p.id, p.name])), [people])
   return useCallback((id) => (id == null ? '—' : map.get(id) ?? `#${id}`), [map])
+}
+
+// ---------- record → route resolution (I-4 drill-down lands on the source) ----------
+
+/**
+ * Map a contributing/record ref to the page where that record lives, or `null` when the type
+ * has no stable URL home yet. Register/log-homed records land on the matching tab with a
+ * `?ref=` highlight (see useHighlightRef + RegisterTable); a deliverable lands on its own
+ * detail page. work_item / revision / review_comment / check exist only inside detail-page
+ * drawers keyed by a parent id the ref doesn't carry, so they stay non-navigable for now.
+ */
+export function refRoute(pid: number | string, recordType: string, id: number, ref: string): string | null {
+  const reg = (tab: string): string => `/p/${pid}/registers/${tab}?ref=${encodeURIComponent(ref)}`
+  switch (recordType) {
+    case 'deliverable': return `/p/${pid}/deliverables/${id}`
+    case 'hold': return reg('holds')
+    case 'decision': return reg('decisions')
+    case 'risk': return reg('risks')
+    case 'interface_item': return reg('interfaces')
+    case 'approval_record': return reg('approvals')
+    case 'intake_item': return `/p/${pid}/log?ref=${encodeURIComponent(ref)}`
+    case 'plan_item': return `/p/${pid}/plan`
+    default: return null
+  }
+}
+
+/** The `?ref=` deep-link target from the current URL, used to flash+scroll a landed row. */
+export function useHighlightRef(): string | undefined {
+  const loc = useLocation()
+  return new URLSearchParams(loc.search).get('ref') ?? undefined
 }
 
 /** Load data with automatic reload when the app-wide refresh key bumps. */
@@ -72,11 +103,14 @@ export function useExplain(): (title: string, e: Explain) => void {
 
 export function ExplainProvider({ children }: { children: ReactNode }): JSX.Element {
   const [state, setState] = useState<ExplainState | null>(null)
+  const { pid } = useApp()
+  const nav = useNavigate()
+  const close = () => setState(null)
   return (
     <ExplainCtx.Provider value={{ show: (title, explain) => setState({ title, explain }) }}>
       {children}
       {state && (
-        <Drawer title={`Why: ${state.title}`} onClose={() => setState(null)}>
+        <Drawer title={`Why: ${state.title}`} onClose={close}>
           <p>
             <span className={`badge ${typeof state.explain.value === 'string' ? state.explain.value : 'plain'}`}>
               {typeof state.explain.value === 'object' ? 'value' : String(state.explain.value)}
@@ -89,17 +123,22 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
           {state.explain.contributing.length === 0 && <p className="muted small">none — nothing degrading this value</p>}
           <table className="reg">
             <tbody>
-              {state.explain.contributing.map((c, i) => (
-                <tr key={i}>
-                  <td className="mono nowrap">{c.ref}</td>
-                  <td className="small muted">{c.recordType.replaceAll('_', ' ')}</td>
-                  <td className="small">{c.why}</td>
-                </tr>
-              ))}
+              {state.explain.contributing.map((c, i) => {
+                const route = refRoute(pid, c.recordType, c.id, c.ref)
+                return (
+                  <tr key={i} className={route ? 'clickable' : undefined}
+                    onClick={route ? () => { close(); nav(route) } : undefined}>
+                    <td className="mono nowrap">{route ? <a className="reflink">{c.ref}</a> : c.ref}</td>
+                    <td className="small muted">{c.recordType.replaceAll('_', ' ')}</td>
+                    <td className="small">{c.why}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
           <p className="small muted" style={{ marginTop: '.8rem' }}>
             Derived per PRD §8 — status is computed from records, never set by hand (I-4).
+            Click a contributing record to open its source.
           </p>
         </Drawer>
       )}
@@ -225,12 +264,22 @@ export interface Col<T> {
   csv?(row: T): string | number | null
 }
 
-export function RegisterTable<T>({ cols, rows, exportName, onRowClick }: {
+export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlightRef, rowRef }: {
   cols: Array<Col<T>>
   rows: T[]
   exportName?: string
   onRowClick?(row: T): void
+  /** ref of a row to flash + scroll into view on mount (deep-link landing, see useHighlightRef) */
+  highlightRef?: string
+  /** how to read a row's ref for highlight matching */
+  rowRef?(row: T): string
 }): JSX.Element {
+  const flashRow = useRef<HTMLTableRowElement | null>(null)
+  useEffect(() => {
+    if (highlightRef && flashRow.current) {
+      flashRow.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    }
+  }, [highlightRef, rows])
   const exportCsv = () => {
     const esc = (v: unknown) => {
       const s = v == null ? '' : String(v)
@@ -257,11 +306,16 @@ export function RegisterTable<T>({ cols, rows, exportName, onRowClick }: {
       <table className="reg">
         <thead><tr>{cols.map((c) => <th key={c.key}>{c.label}</th>)}</tr></thead>
         <tbody>
-          {rows.map((r, i) => (
-            <tr key={i} className={onRowClick ? 'clickable' : undefined} onClick={onRowClick ? () => onRowClick(r) : undefined}>
-              {cols.map((c) => <td key={c.key}>{c.render(r)}</td>)}
-            </tr>
-          ))}
+          {rows.map((r, i) => {
+            const hit = highlightRef != null && rowRef?.(r) === highlightRef
+            const cls = [onRowClick ? 'clickable' : '', hit ? 'row-flash' : ''].filter(Boolean).join(' ')
+            return (
+              <tr key={i} ref={hit ? flashRow : undefined} className={cls || undefined}
+                onClick={onRowClick ? () => onRowClick(r) : undefined}>
+                {cols.map((c) => <td key={c.key}>{c.render(r)}</td>)}
+              </tr>
+            )
+          })}
           {rows.length === 0 && <tr><td colSpan={cols.length} className="muted small">no records</td></tr>}
         </tbody>
       </table>

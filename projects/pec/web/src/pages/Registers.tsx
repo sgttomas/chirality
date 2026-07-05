@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import {
-  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useLoad, usePerson,
+  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -57,6 +57,7 @@ function ApprovalsTab(): JSX.Element {
   const { pid } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'approval-register')), [pid])
+  const hl = useHighlightRef()
   const [creating, setCreating] = useState(false)
   const [outcomeFor, setOutcomeFor] = useState<any>(null)
 
@@ -122,7 +123,8 @@ function ApprovalsTab(): JSX.Element {
         </p>
         <button className="btn small" onClick={() => setCreating(true)}>+ New approval record</button>
       </div>
-      <RegisterTable cols={cols} rows={data} exportName="approval-register.csv" />
+      <RegisterTable cols={cols} rows={data} exportName="approval-register.csv"
+        highlightRef={hl} rowRef={(r) => r.ref} />
       {creating && <NewApprovalDrawer onClose={() => setCreating(false)} />}
       {outcomeFor && <ApprovalOutcomeDrawer row={outcomeFor} onClose={() => setOutcomeFor(null)} />}
     </div>
@@ -290,6 +292,7 @@ function DecisionsTab(): JSX.Element {
   const { pid, refresh, toast } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'decisions')), [pid])
+  const hl = useHighlightRef()
   const [creating, setCreating] = useState(false)
   const [assignFor, setAssignFor] = useState<any>(null)
   const [outcomeFor, setOutcomeFor] = useState<any>(null)
@@ -349,7 +352,8 @@ function DecisionsTab(): JSX.Element {
         <button className="btn small" onClick={() => setCreating(true)}>+ New decision</button>
       </div>
       <ErrorBox error={actionError} />
-      <RegisterTable cols={cols} rows={data} exportName="decision-register.csv" />
+      <RegisterTable cols={cols} rows={data} exportName="decision-register.csv"
+        highlightRef={hl} rowRef={(r) => r.ref} />
       {creating && <NewDecisionDrawer onClose={() => setCreating(false)} />}
       {assignFor && <AssignPreparerDrawer row={assignFor} onClose={() => setAssignFor(null)} />}
       {outcomeFor && <DecisionOutcomeDrawer row={outcomeFor} onClose={() => setOutcomeFor(null)} />}
@@ -611,6 +615,7 @@ function RisksTab(): JSX.Element {
   const { pid } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'risks')), [pid])
+  const hl = useHighlightRef()
   const [editing, setEditing] = useState<any>(null) // 'new' | row
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
@@ -647,7 +652,8 @@ function RisksTab(): JSX.Element {
         </p>
         <button className="btn small" onClick={() => setEditing('new')}>+ New risk</button>
       </div>
-      <RegisterTable cols={cols} rows={data} exportName="risk-register.csv" onRowClick={(r) => setEditing(r)} />
+      <RegisterTable cols={cols} rows={data} exportName="risk-register.csv" onRowClick={(r) => setEditing(r)}
+        highlightRef={hl} rowRef={(r) => r.ref} />
       {editing && <RiskDrawer row={editing === 'new' ? null : editing} onClose={() => setEditing(null)} />}
     </div>
   )
@@ -759,6 +765,7 @@ function InterfacesTab(): JSX.Element {
   const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   const { data, error } = useLoad(() => api.get(p(pid,
     `interfaces?giving=${giving}&receiving=${receiving}`)), [pid, giving, receiving])
+  const hl = useHighlightRef()
   const [editing, setEditing] = useState<any>(null) // 'new' | row
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
@@ -803,7 +810,8 @@ function InterfacesTab(): JSX.Element {
           </select>
         </label>
       </div>
-      <RegisterTable cols={cols} rows={data} exportName="interface-register.csv" onRowClick={(r) => setEditing(r)} />
+      <RegisterTable cols={cols} rows={data} exportName="interface-register.csv" onRowClick={(r) => setEditing(r)}
+        highlightRef={hl} rowRef={(r) => r.ref} />
       {editing && <InterfaceDrawer row={editing === 'new' ? null : editing} onClose={() => setEditing(null)} />}
     </div>
   )
@@ -893,6 +901,7 @@ function HoldsTab(): JSX.Element {
   const { pid, refresh, toast } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'holds')), [pid])
+  const hl = useHighlightRef()
   const [raising, setRaising] = useState(false)
   const [resolving, setResolving] = useState<any>(null)
   const [actionError, setActionError] = useState<any>(null)
@@ -949,7 +958,8 @@ function HoldsTab(): JSX.Element {
         <button className="btn small" onClick={() => setRaising(true)}>+ Raise hold</button>
       </div>
       <ErrorBox error={actionError} />
-      <RegisterTable cols={cols} rows={data} exportName="hold-register.csv" />
+      <RegisterTable cols={cols} rows={data} exportName="hold-register.csv"
+        highlightRef={hl} rowRef={(r) => r.ref} />
       {raising && <RaiseHoldDrawer onClose={() => setRaising(false)} />}
       {resolving && <ResolveHoldDrawer row={resolving} onClose={() => setResolving(null)} />}
     </div>

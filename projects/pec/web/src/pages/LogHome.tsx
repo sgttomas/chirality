@@ -9,7 +9,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { api, p } from '../api.ts'
 import {
-  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useLoad, usePerson,
+  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -78,6 +78,7 @@ function OpenItemsTab(): JSX.Element {
     return q.toString()
   }, [log, type, owner, cause, overdue, anchored])
   const { data, error } = useLoad<LogRow[]>(() => api.get(p(pid, qs ? `log?${qs}` : 'log')), [pid, qs])
+  const hl = useHighlightRef()
 
   const cols: Array<Col<LogRow>> = [
     { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
@@ -146,7 +147,8 @@ function OpenItemsTab(): JSX.Element {
       </div>
       {error && <ErrorBox error={{ message: error }} />}
       {!data && !error && <p className="muted">loading…</p>}
-      {data && <RegisterTable cols={cols} rows={data} exportName="action-hold-log.csv" />}
+      {data && <RegisterTable cols={cols} rows={data} exportName="action-hold-log.csv"
+        highlightRef={hl} rowRef={(r) => r.ref} />}
     </div>
   )
 }

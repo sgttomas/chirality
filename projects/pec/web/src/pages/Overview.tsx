@@ -7,15 +7,30 @@
 
 import { Link, useNavigate } from 'react-router-dom'
 import { api, p } from '../api.ts'
+import type { Explain } from '../api.ts'
 import {
-  ErrorBox, HealthBadge, KpiCard, RegisterTable, StateTag, fmtDate, useApp, useLoad, usePerson,
+  ErrorBox, HealthBadge, KpiCard, RegisterTable, StateTag, fmtDate, refRoute, useApp, useExplain,
+  useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
+
+/** Present a governance Signal (§8.4) through the shared explain drawer, mapping its level to a
+ *  badge tone; the drawer's contributing rows are then click-through to source (I-4). */
+function signalToExplain(s: any): Explain {
+  return {
+    value: s.level === 'red' ? 'red' : s.level === 'warn' ? 'amber' : 'green',
+    ruleId: s.id,
+    detail: s.detail,
+    threshold: s.threshold,
+    contributing: s.contributing,
+  }
+}
 
 export function OverviewPage(): JSX.Element {
   const { pid } = useApp()
   const nav = useNavigate()
   const person = usePerson()
+  const explain = useExplain()
   const { data, error } = useLoad(() => api.get(p(pid, 'overview')), [pid])
 
   if (error) return <ErrorBox error={{ message: error }} />
@@ -23,6 +38,12 @@ export function OverviewPage(): JSX.Element {
 
   const holdsTotal = Object.values(data.kpis.holdsByCause.value as Record<string, number>)
     .reduce((a, b) => a + b, 0)
+
+  // navigate a row that carries its own record identity (recordType/id/ref) to its source
+  const rowToSource = (r: any) => {
+    const route = refRoute(pid, r.recordType, r.id, r.ref)
+    if (route) nav(route)
+  }
 
   const rollupCols: Array<Col<any>> = [
     { key: 'code', label: 'Package', render: (r) => <><b>{r.code}</b> <span className="muted small">{r.name}</span></> },
@@ -49,7 +70,15 @@ export function OverviewPage(): JSX.Element {
     {
       key: 'blocks', label: 'Blocks', render: (r) => r.blocks.length === 0
         ? <span className="muted small">—</span>
-        : <span className="small">{r.blocks.map((b: any) => `${b.recordType.replaceAll('_', ' ')} (${b.why})`).join('; ')}</span>,
+        : <span className="small">{r.blocks.map((b: any, i: number) => {
+          const route = refRoute(pid, b.recordType, b.id, b.ref)
+          const label = `${b.recordType.replaceAll('_', ' ')} (${b.why})`
+          return (
+            <span key={i}>{i > 0 && '; '}{route
+              ? <Link to={route} onClick={(e) => e.stopPropagation()}>{label}</Link>
+              : label}</span>
+          )
+        })}</span>,
     },
   ]
 
@@ -74,7 +103,9 @@ export function OverviewPage(): JSX.Element {
       <h2>Governance signals (§8.4)</h2>
       <div className="cards">
         {data.signals.map((s: any) => (
-          <div key={s.id} className="card" style={{ minWidth: 180 }}>
+          <div key={s.id} className="card" style={{ minWidth: 180, cursor: 'pointer' }}
+            title={`${s.id} — click to drill down to contributing records`}
+            onClick={() => explain(s.label, signalToExplain(s))}>
             <span className={`badge ${s.level === 'red' ? 'red' : s.level === 'warn' ? 'amber' : 'green'}`}>
               {s.level === 'none' ? 'ok' : s.level}
             </span>{' '}
@@ -95,7 +126,8 @@ export function OverviewPage(): JSX.Element {
         : (
           <div className="cards">
             {data.schedulePressure.map((w: any) => (
-              <div key={w.week} className="card" style={{ minWidth: 150 }}>
+              <Link key={w.week} to={`/p/${pid}/plan`} className="card" style={{ minWidth: 150, color: 'inherit' }}
+                title="open the Plan page — load, capacity, and shifts by week">
                 <b className="small">{w.week}</b>
                 <div>{w.loadH} h / {w.capacityH} h</div>
                 {w.pct != null
@@ -104,7 +136,7 @@ export function OverviewPage(): JSX.Element {
                 {w.breaches.map((b: any) => (
                   <div key={b.discipline} className="small muted">{b.discipline} {b.pct != null ? `${b.pct}%` : 'over'}</div>
                 ))}
-              </div>
+              </Link>
             ))}
           </div>
         )}
@@ -115,14 +147,16 @@ export function OverviewPage(): JSX.Element {
         : (
           <>
             {data.waitingOnYou.breaching.length > 0 && (
-              <RegisterTable cols={waitCols} rows={data.waitingOnYou.breaching} />
+              <RegisterTable cols={waitCols} rows={data.waitingOnYou.breaching}
+                onRowClick={rowToSource} />
             )}
             {data.waitingOnYou.other.length > 0 && (
               <details style={{ marginTop: '.5rem' }}>
                 <summary className="small muted">
                   {data.waitingOnYou.other.length} more within thresholds (PEC-OV-004 shows breaches first)
                 </summary>
-                <RegisterTable cols={waitCols} rows={data.waitingOnYou.other} />
+                <RegisterTable cols={waitCols} rows={data.waitingOnYou.other}
+                  onRowClick={rowToSource} />
               </details>
             )}
           </>
@@ -131,6 +165,7 @@ export function OverviewPage(): JSX.Element {
       <h2>Top blockers — typed by cause (PEC-OV-005)</h2>
       <RegisterTable
         exportName="top-blockers.csv"
+        onRowClick={(r: any) => nav(refRoute(pid, 'hold', r.id, r.ref)!)}
         cols={[
           { key: 'ref', label: 'Hold', render: (r: any) => <span className="mono">{r.ref}</span> },
           { key: 'cause', label: 'Cause', render: (r: any) => <span className="badge hold">{r.cause.replaceAll('_', ' ')}</span> },

@@ -6,8 +6,8 @@
  */
 
 import type {
-  Check, Condition, Deliverable, Explain, Hold, IntakeItem, InterfaceItem, Log, Package, Project,
-  ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
+  Check, Condition, ContributingRef, Deliverable, Explain, Hold, IntakeItem, InterfaceItem, Log,
+  Package, Project, ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
 } from '@pec/core'
 import {
   activeHoldsFor, ageWorkingDays, capacityView, commentIsOpen, currentRevision, daysOverdue,
@@ -34,10 +34,15 @@ function visibleByLog<T extends { log: Log }>(sx: Sx, snap: ProjectSnapshot, row
   return rows.filter((r) => logs.includes(r.log))
 }
 
-/** Redact explanation refs pointing at records outside the caller's visible logs (SPEC §2.2). */
-function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<T> {
+/**
+ * Redact contributing refs pointing at records outside the caller's visible logs (SPEC §2.2):
+ * the ref (type + ref) is kept, its `why` statement omitted. Only the six log-scoped record
+ * types can be restricted; refs to non-log-scoped types (approval_record, plan_item, deliverable,
+ * check, revision, …) carry no log-owned content and pass through unchanged.
+ */
+function redactRefs(sx: Sx, snap: ProjectSnapshot, refs: ContributingRef[]): ContributingRef[] {
   const logs = logsFor(sx, snap)
-  if (logs.length === 3) return explain
+  if (logs.length === 3) return refs
   const holder = (rt: string, id: number): { log?: Log } | undefined => {
     switch (rt) {
       case 'work_item': return snap.workItems.find((x) => x.id === id)
@@ -49,16 +54,15 @@ function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<
       default: return undefined
     }
   }
-  return {
-    ...explain,
-    contributing: explain.contributing.map((c) => {
-      const rec = holder(c.recordType, c.id)
-      if (rec?.log && !logs.includes(rec.log)) {
-        return { ...c, why: '[restricted log]' }
-      }
-      return c
-    }),
-  }
+  return refs.map((c) => {
+    const rec = holder(c.recordType, c.id)
+    return rec?.log && !logs.includes(rec.log) ? { ...c, why: '[restricted log]' } : c
+  })
+}
+
+/** Redact an Explain payload's contributing refs pointing outside the caller's visible logs (SPEC §2.2). */
+function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<T> {
+  return { ...explain, contributing: redactRefs(sx, snap, explain.contributing) }
 }
 
 // ---------- Overview (PEC-OV-*) ----------
@@ -89,7 +93,9 @@ export function overviewView(sx: Sx): unknown {
       approvalsInFlight: redact(sx, snap, status.kpis.approvalsInFlight),
       scheduleForecastWd: redact(sx, snap, status.kpis.scheduleForecastWd),
     },
-    signals: status.signals,
+    // signals derive on the full snapshot (shared truth) but their contributing refs must be
+    // visibility-redacted before serialization, like the KPIs above (SPEC §2.2, PEC-NFR-005)
+    signals: status.signals.map((s) => ({ ...s, contributing: redactRefs(sx, snap, s.contributing) })),
     packageRollup: status.packageStatuses.map((p) => ({
       id: p.pkg.id, code: p.pkg.code, name: p.pkg.name, leadId: p.pkg.leadId,
       health: redact(sx, snap, p.health),
@@ -105,10 +111,15 @@ export function overviewView(sx: Sx): unknown {
       // same log-scoped count the Packages register and cockpit show (ADR-012, PEC-NFR-005)
       openIssues: openIssueCount(sx, snap, p.pkg),
     })),
-    waitingOnYou: {
-      breaching: waiting.filter((w) => w.breach !== 'none'),
-      other: waiting.filter((w) => w.breach === 'none'),
-    },
+    // rows are self-scoped (items awaiting this caller's own signature/decision), but the
+    // `blocks` refs can name records in logs the caller can't see — redact those (SPEC §2.2)
+    waitingOnYou: (() => {
+      const scrub = (w: typeof waiting[number]) => ({ ...w, blocks: redactRefs(sx, snap, w.blocks) })
+      return {
+        breaching: waiting.filter((w) => w.breach !== 'none').map(scrub),
+        other: waiting.filter((w) => w.breach === 'none').map(scrub),
+      }
+    })(),
     topBlockers: blockers,
     // PEC-OV-008 (P2): schedule pressure — lookahead load vs capacity, next six weeks
     schedulePressure: (() => {
