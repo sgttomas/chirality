@@ -58,4 +58,18 @@ here — the brief comes back as a rulable artifact first.
 
 ## Human ruling
 
-_(open — owner's act)_
+**Ruling: O-C affirmed** — owner (Ryan Tufts), 2026-07-05, in-session:
+
+> I approve `O-C`: formalize the zero-code pathway today (user drops a file,
+> agent maps → proposed import → user approves import)
+
+Recorded with the same-message companion directions (test-data date fills
+authorized; `schedule.csv` supplied in place of the PDF) in
+`_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 20.
+
+Executed on ruling: the zero-code pathway is formalized in
+`../IMPORT_TEMPLATES/FILE_DROP_RUNBOOK.md` and was exercised the same day
+(schedule import, evidence-04). The O-B half (design-only track) produced
+`_DomainEngines/proposals/pec/BRIEF_2026-07-05_embedded_upload_agent_design.md`
+— CANDIDATE, awaiting its own adoption gate; implementation remains gated on
+brief adoption + a pec source tranche authorization.
