@@ -1,0 +1,37 @@
+{
+  "261:6fca7955c61d": {
+    "page": 261,
+    "hash": "6fca7955c61d",
+    "kind": "equations",
+    "description": "f_n = 0.906 \\sqrt{\\frac{EI}{48WL^3}} = 0.130 \\sqrt{\\frac{EI}{WL^3}} \\quad (9.6)",
+    "flagged_at": "2026-07-05"
+  },
+  "261:032325aa31f2": {
+    "page": 261,
+    "hash": "032325aa31f2",
+    "kind": "equations",
+    "description": "f_n = \\alpha \\sqrt{\\frac{EI}{WL^3}} = \\frac{\\alpha}{L^2} \\sqrt{\\frac{EI}{w_y}} \\quad (9.7)",
+    "flagged_at": "2026-07-05"
+  },
+  "261:8b354676d376": {
+    "page": 261,
+    "hash": "8b354676d376",
+    "kind": "equations",
+    "description": "f_n = \\frac{0.265}{L^2} \\sqrt{\\frac{EI}{w_y}} = 0.265 \\sqrt{\\frac{EI}{WL^3}}",
+    "flagged_at": "2026-07-05"
+  },
+  "96:0655c7d544d5": {
+    "page": 96,
+    "hash": "0655c7d544d5",
+    "kind": "equations",
+    "description": "M_{zA} = 102,000 \\times .0289 = 2940 \\text{ ft-lb}",
+    "flagged_at": "2026-07-05"
+  },
+  "96:3504e8fc8e2a": {
+    "page": 96,
+    "hash": "3504e8fc8e2a",
+    "kind": "equations",
+    "description": "M_{zC} = -212,000 \\times .0289 = -6120 \\text{ ft-lb}",
+    "flagged_at": "2026-07-05"
+  }
+}
