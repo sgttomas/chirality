@@ -147,3 +147,11 @@
   - Gate outcome: stopped after merge accounting because all remaining advancement is owner-shaped. No D-PEC-01 `HumanRuling` filled, no real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; closeout checks ride this receipt-only branch.
   - Parked lanes: owner ruling on D-PEC-01; profile Gate 2 adoption; L3/proposal-shaped apply path; `seed.demo` guard repair remains outside the PEC loop's current write fence.
+
+- **2026-07-05 — Receipt 12** (PR #65 merged; stopped at D-PEC-01 owner gate).
+  - Start: `935a7493c` (`origin/main` after PR #65 merge); branch `codex/pec-after-pr65-merge`; tree clean before receipt-only work.
+  - Owner direction of record (2026-07-05, in-session, Ryan Tufts): "I approve merger of the PR.  Then continue with the remaining work." — PR #65 merged `935a7493c`.
+  - Live gates checked: D-PEC-01 is `AWAITING_RULING`; D-T0-14 CLOSED remains in force; profile `pec` remains DRAFT/Gate 2 open; no new tier-0 or PEC-local ruling appeared after Receipt 11.
+  - Gate outcome: stopped after merge accounting because all remaining advancement is owner-shaped. No D-PEC-01 `HumanRuling` filled, no real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
+  - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; closeout checks ride this receipt-only branch.
+  - Parked lanes: owner ruling on D-PEC-01; profile Gate 2 adoption; L3/proposal-shaped apply path; `seed.demo` guard repair remains outside the PEC loop's current write fence.
