@@ -171,3 +171,11 @@
   - Gate outcome: D-PEC-06 O-A executed narrowly — `seed.demo` now requires explicit `PEC_DB`, refuses non-scratch/non-demo targets, and seeds only explicit temp/scratch/demo targets. No D-PEC-01 real-data rehearsal, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
   - Checks: profile validator VALID; self-check pass; practitioner harness pytest pass; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
   - Parked lanes: D-PEC-01 evidence run awaits owner-supplied exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits; profile Gate 2 remains DRAFT/open; L3 remains deferred until after D-PEC-01 evidence.
+
+- **2026-07-05 — Receipt 15** (PR #69 merged; D-PEC-01 basis surface prepared).
+  - Start: `bc77dec2c` (`origin/main` after PR #69 merge); branch `codex/pec-pr69-l3-basis`; tree clean before accounting work; rebased before PR onto `433a50edc` after unrelated piping PR #67 merged.
+  - Owner direction of record (2026-07-05, in-session, Ryan Tufts): "Proceed accordingly" toward and through L3; lawful interpretation is D-PEC-01 basis preparation because D-PEC-05 parks L3 until pilot evidence exists.
+  - Executed pointers: `_DomainEngines/profiles/pec.yaml` + validation report; `_DomainEngines/pec/PEC_2026-07-05_DPEC01-execution-basis/{OWNER_INPUTS.md,RUNBOOK.md,MANIFEST_TEMPLATE.md}`.
+  - Gate outcome: PR #69 merge accounted; stale `seed.demo` profile open issue resolved; D-PEC-01 owner-input checklist/runbook/manifest template prepared. No D-PEC-01 evidence run, no raw real-content capture, no `force=true`, no Gate-2 adoption, no L3 design/execution tranche.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
+  - Parked lanes: D-PEC-01 evidence run awaits owner-supplied exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits; L3 remains deferred until after that evidence is captured.

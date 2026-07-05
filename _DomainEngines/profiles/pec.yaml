@@ -154,10 +154,10 @@ domain_profile:
 
   open_issues:
     - "Profile location: RESOLVED 2026-07-04 by the D-T0-16 harness tranche; this file now lives at _DomainEngines/profiles/pec.yaml, still DRAFT with owner Gate 2 open."
-    - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; no instance-content egress absent a future owner ruling."
-    - "Readable instance artifacts require a future concrete D-PEC-01/O-B-style ruling with owner-provisioned exports or credentials plus an actor/visibility basis."
+    - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; D-PEC-01 O-A permits only the narrow pilot evidence run after the owner supplies exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits."
+    - "Readable instance artifacts remain gated by D-PEC-01's owner-supplied execution basis; SHA-256 hashes of real input files are permitted in manifests, but raw real content capture is not permitted unless the owner enumerates it."
     - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."
     - "PEC's reserved human acts are internal RBAC acts, while the current canon wording is oriented to external professional approval records; canon clarification may be needed."
     - "L3 operation-proposal semantics overlap PEC native lifecycles and need a future ruling before any proposal-shaped apply path."
     - "PEC is outside the governed decomposition loop; profile adoption would not adopt or amend PEC decomposition truth."
-    - "seed.demo lacks an in-tool refuse-non-demo-DB guard; use only under explicit scratch/demo authority until repaired."
+    - "seed.demo guard: RESOLVED 2026-07-05 by PR #69; the tool now requires explicit PEC_DB and refuses non-scratch/non-demo targets."
