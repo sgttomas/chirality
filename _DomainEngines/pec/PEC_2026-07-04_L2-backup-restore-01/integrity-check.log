@@ -1,0 +1,16 @@
+source_backup: /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T//pec-l2-backup-restore.OKYnBP/backups/pec-20260704-214358.db
+source_backup.bytes: 8192
+source_backup.integrity_check: ok
+source_backup.marker_phases: pre-backup
+snapshot_source_backup: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/source-backup-pec-20260704-214358.db
+snapshot_source_backup.bytes: 8192
+snapshot_source_backup.integrity_check: ok
+snapshot_source_backup.marker_phases: pre-backup
+restored_db: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/restored-db.db
+restored_db.bytes: 8192
+restored_db.integrity_check: ok
+restored_db.marker_phases: pre-backup
+pre_restore_db: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/pre-restore-db.db
+pre_restore_db.bytes: 8192
+pre_restore_db.integrity_check: ok
+pre_restore_db.marker_phases: pre-backup,post-backup
