@@ -1,0 +1,5 @@
+scratch_root: /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T//pec-l2-backup-restore.OKYnBP
+source_backup: /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T//pec-l2-backup-restore.OKYnBP/backups/pec-20260704-214358.db
+source_artifact: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/source-backup-pec-20260704-214358.db
+restored_artifact: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/restored-db.db
+pre_restore_artifact: _DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/artifacts/pre-restore-db.db

@@ -19,7 +19,6 @@ machine-visible.
 
 | ID | Decision | Blocks | State | Packet | Ruling record |
 |---|---|---|---|---|---|
-| D-PEC-01 | Pilot rehearsal and real MDL/RAIL/import authorization: whether, when, and with what data-residency basis the pilot team imports real spreadsheets and rehearses a real restore. | Real pilot execution; any agent-visible instance-data capture. | NOT_PREPARED | - | - |
+| D-PEC-01 | Pilot rehearsal and real MDL/RAIL/import authorization: whether, when, and with what data-residency basis the pilot team imports real spreadsheets and rehearses a real restore. | Real pilot execution; any agent-visible instance-data capture. | AWAITING_RULING | `D-PEC-01_pilot_rehearsal_real_data_authorization.md` | - |
 | D-PEC-02 | Post-pilot P3 scope selection after pilot feedback: monthly reconciliation loop, archive views, lessons learned, authority matrix/approval-route templates, and supersession-impact propagation. | P3 planning and implementation order. | NOT_PREPARED | - | - |
 | D-PEC-03 | Pointer row: PEC tier-0 integration decisions D-T0-11..16 are governed in `_DomainEngines/_DECISIONS/`, not duplicated here. | Local agents finding the tier-0 gate surface. | NOT_PREPARED | - | `_DomainEngines/_DECISIONS/_REGISTER.md` |
-

@@ -122,3 +122,12 @@
   - Gate outcome: L2 `backup.create` evidence executed on scratch/demo basis only; no PEC source edit, no server start, no non-scratch DB mutation, no real instance-content capture/egress, no restore/import/Gate-2/L3 claim.
   - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass after `npm install`; `git diff --check` pass.
   - Parked lanes: `backup.restore`/`seed.demo`/`import.csv` L2 acts require their applicable human-confirmation/data basis; D-PEC-01 remains the real-data authorization packet; profile Gate 2 adoption and L3 remain owner-only/future.
+
+- **2026-07-04 — Receipt 9** (PR #61 merged; L2 `backup.restore` evidence + D-PEC-01 packet).
+  - Start: `c7d754174` (`origin/main` after PR #61 merge); branch `codex/pec-after-l2-backup`; tree clean before continuation work.
+  - Owner direction of record (2026-07-04, in-session, Ryan Tufts): "I approve merger of the PR.  Then continue with the remaining work." — PR #61 merged `c7d754174`.
+  - Live gates checked: D-T0-17 keeps per-operation L2 open; D-T0-14 CLOSED remains in force; profile `pec` remains DRAFT/Gate 2 open; D-PEC-01 was NOT_PREPARED at discovery.
+  - Executed pointers: `_DomainEngines/pec/PEC_2026-07-04_L2-backup-restore-01/` (MANIFEST + scratch restore logs/artifacts; restored/source DB SHA-256 `c0fda65d6897d918d1dd27ce83503bd1a6d399aaf348cb29fc0a73b5c23d278b`); `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-01_pilot_rehearsal_real_data_authorization.md`; D-PEC-01 register row `AWAITING_RULING`.
+  - Gate outcome: L2 `backup.restore` evidence executed on scratch/demo basis only; D-PEC-01 packet prepared only. No real instance-content capture/egress, no real import/restore, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 263 passed / 1 skipped; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
+  - Parked lanes: owner ruling on D-PEC-01; `import.csv` over real data and real-pilot restore remain gated by that ruling; `seed.demo` remains parked behind the scratch/demo guard gap; profile Gate 2 adoption and L3 remain owner-only/future.
