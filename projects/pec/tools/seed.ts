@@ -11,7 +11,8 @@
  */
 
 import { existsSync, rmSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { tmpdir } from 'node:os'
+import { dirname, join, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { openDb, withTx } from '../server/src/db.ts'
@@ -40,7 +41,32 @@ import { isWorkingDay, isoWeekOf, localDate } from '@pec/core'
 // ---------- fresh database ----------
 
 const here = dirname(fileURLToPath(import.meta.url))
-const dbPath = join(here, '..', 'pec.db')
+const rawDbPath = process.env.PEC_DB?.trim()
+
+function pathIsInside(child: string, parent: string): boolean {
+  const normalizedParent = parent.endsWith(sep) ? parent : `${parent}${sep}`
+  return child === parent || child.startsWith(normalizedParent)
+}
+
+function hasScratchOrDemoToken(path: string): boolean {
+  return path
+    .split(/[\\/_.-]+/)
+    .some((part) => ['scratch', 'demo'].includes(part.toLowerCase()))
+}
+
+function assertDemoSeedTarget(rawPath: string | undefined): string {
+  if (!rawPath) {
+    throw new Error('PEC_DB is required for demo seeding; point it at a scratch/demo database.')
+  }
+  const dbPath = resolve(rawPath)
+  const tempRoot = resolve(tmpdir())
+  if (!pathIsInside(dbPath, tempRoot) && !hasScratchOrDemoToken(dbPath)) {
+    throw new Error(`Refusing to seed non-scratch/non-demo database target: ${dbPath}`)
+  }
+  return dbPath
+}
+
+const dbPath = assertDemoSeedTarget(rawDbPath)
 for (const p of [dbPath, `${dbPath}-wal`, `${dbPath}-shm`]) {
   if (existsSync(p)) rmSync(p)
 }
