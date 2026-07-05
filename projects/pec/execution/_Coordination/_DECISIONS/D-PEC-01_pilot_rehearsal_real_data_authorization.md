@@ -1,9 +1,10 @@
 # D-PEC-01 - PROPOSAL: pilot rehearsal and real-data authorization
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** RULED / O-A affirmed by owner; exact rehearsal basis still pending owner supply.
 **Date prepared:** 2026-07-04
 **Decision ID:** D-PEC-01
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
+**Ruling SHA:** TBD - backfill to the commit publishing this ruling record.
 
 ## Decision to rule
 
@@ -65,4 +66,15 @@ The next lawful tranche should be a branch-first evidence run that records:
 
 ## Human ruling
 
-**Ruling:** TBD by owner.
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-05, in-session.
+
+Owner ruling of record:
+
+> D-PEC-01: O-A. Authorize the narrow pilot-only real-data rehearsal as scoped in the packet. Two riders: (1) SHA-256 hashes of the real input files are permitted in manifests -- resolve the packet's "hashes if permitted" clause as permitted; this anchors the evidence chain without content egress, same convention as the L1 manifests. (2) The exact spreadsheet/export paths, actor/visibility basis, scratch DB/backup locations, and capture limits will be supplied by me before the evidence run begins -- do not start the rehearsal until I provide them. `force=true` remains off; it requires a separate ruling.
+
+This ruling authorizes only the narrow pilot-only real-data rehearsal described
+in O-A. It does not itself supply the real spreadsheet/export paths,
+actor/visibility basis, scratch database or backup locations, or capture
+limits. Agents must not begin the real-data evidence run until the owner
+provides those inputs. `force=true` remains prohibited absent a separate owner
+ruling.
