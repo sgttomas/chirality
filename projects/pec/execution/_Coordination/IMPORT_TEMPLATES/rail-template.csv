@@ -1,0 +1,2 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes,anchor_status
+PKG-1,Confirm inlet separator sizing basis,action,package,person@example.com,2026-09-30,open,person@example.com,2026-07-01,26020-PKG-001,26020-PKG-001-SOW,,,Source: weekly meeting,

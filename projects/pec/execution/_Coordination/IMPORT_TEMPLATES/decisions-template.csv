@@ -1,0 +1,2 @@
+decision_id,title,statement,authority,need_by,status,preparer,outcome,rationale,decided_date,affected_refs
+1,02-25 Truckout location,MLE to move the 02-25 truck out over to 04-25,person@example.com,2026-07-15,decided,person@example.com,select,Source: Client RAIL; Area: 26020-03,2026-06-15,26020-PKG-001-SOW
