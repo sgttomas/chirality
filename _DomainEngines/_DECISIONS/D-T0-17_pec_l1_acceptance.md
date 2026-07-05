@@ -4,7 +4,7 @@
 **Date prepared:** 2026-07-04 (record added at acceptance per the D-T0-10 precedent)
 **Decision ID:** D-T0-17 (residual of D-T0-13 per the 2026-07-03 residual-work convention)
 **Prepared by:** PEC work loop agent; the acceptance act is the owner's (K-AUTH-1; D-GOV-04).
-**Ruling SHA:** TBD at publication commit (backfilled same-branch per the D-T0-10 / D-APP-44 precedent).
+**Ruling SHA:** `0164d944f` — the commit publishing this record (backfilled same-branch per the D-T0-10 / D-APP-44 precedent).
 
 ## Decision ruled
 
