@@ -1,0 +1,280 @@
+intake_id,statement,quick_type,log,raised_by,raised_date,state,disposition,anchor_suggestion,need_by
+INTK-0001,"[PKG-62] James to complete a RACI (comms, distribution, etc.)",action,package,james.m@placeholder.invalid,2026-03-01,raised,,Common,2026-04-17
+INTK-0002,[PKG-63] James to complete a Communication Plan for MLE to Innotech,action,package,james.m@placeholder.invalid,2026-03-01,raised,,Common,2026-03-09
+INTK-0003,[PKG-64] Project Execution Plan,action,package,james.m@placeholder.invalid,2026-03-01,raised,,Common,2026-06-29
+INTK-0004,[PKG-65] Adam to provide BB plan,action,package,adam.m@placeholder.invalid,2026-03-01,raised,,Common,2026-04-17
+INTK-0005,[PKG-67] Teams Page Functionality,action,package,james.m@placeholder.invalid,2026-03-11,raised,,Common,2026-03-16
+INTK-0006,[PKG-68] Value Engineering Sessions,action,package,adam.m@placeholder.invalid,2026-03-11,raised,,Common,2026-03-19
+INTK-0007,[PKG-69] Project Roster and DDM,action,package,james.m@placeholder.invalid,2026-05-14,raised,,Common,2026-05-29
+INTK-0008,"[PKG-70] 30% FEED Deliverables, cost, schedule",action,package,james.m@placeholder.invalid,2026-04-23,raised,,Common,2026-05-01
+INTK-0009,[PKG-71] Risk Register,action,package,james.m@placeholder.invalid,2026-05-14,raised,,Common,2026-06-25
+INTK-0010,[PKG-72] Project Execution Plan,action,package,james.m@placeholder.invalid,2026-05-01,raised,,Common,2026-06-12
+INTK-0011,[PKG-73] Project Document Naming,action,package,all@placeholder.invalid,2025-06-04,raised,,Common,2026-06-04
+INTK-0012,[PKG-74] FEED Mapping,action,package,all@placeholder.invalid,2026-04-09,raised,,Common,2026-04-10
+INTK-0013,[PKG-75] Time Sheet Codes and Common,action,package,all@placeholder.invalid,2026-04-09,raised,,Common,2026-04-09
+INTK-0014,[PKG-76] MLE to complete their discipline specific reviews of existing data from TOU,action,package,all@placeholder.invalid,2026-03-01,raised,,Common,2026-04-06
+INTK-0015,[PKG-77] MLE to dicsuss reaching out to Vector for the native files and information on FEED,action,package,fvv@placeholder.invalid,2026-03-11,raised,,Common,2026-04-10
+INTK-0016,[PKG-78] Define which vendor packages have their own control system and which are on the common. Gord to take lead and set up meeting for internal folks to get this sorted.,action,package,gord.s@placeholder.invalid,2026-03-11,raised,,Common,2026-03-18
+INTK-0017,[PKG-81] Pipe Rack X-Sections for piperack design,action,package,ee.fvv.gps@placeholder.invalid,2026-04-02,raised,,Common,2026-04-30
+INTK-0018,[PKG-82] Process Design Basis / Process Simulation / HMB - IFR,action,package,gps@placeholder.invalid,2026-04-09,raised,,Common,2026-04-30
+INTK-0019,[PKG-83] Design Basis Memorandum,action,package,adam.m@placeholder.invalid,2026-04-09,raised,,Common,2026-05-06
+INTK-0020,[PKG-84] Major Equipment List Mechanical,action,package,ryan@placeholder.invalid,2026-04-09,raised,,Common,2026-04-17
+INTK-0021,[PKG-85] Major Equipment List Electrical,action,package,alex@placeholder.invalid,2026-04-09,raised,,Common,2026-04-17
+INTK-0022,[PKG-86] Preliminary Single Lines,action,package,alex.chris@placeholder.invalid,2026-04-09,raised,,Common,2026-04-23
+INTK-0023,[PKG-87] Control System Architecture,action,package,gordon@placeholder.invalid,2026-04-09,raised,,Common,2026-04-23
+INTK-0024,[PKG-88] Rough Grading Design (cut/fill) for Class 3,action,package,fvv@placeholder.invalid,2026-04-09,raised,,Common,2026-04-29
+INTK-0025,[PKG-89] PFD and P&ID,action,package,gps.jon@placeholder.invalid,2026-04-09,raised,,Common,2026-05-06
+INTK-0026,[PKG-90] Range of CO2 and H2S for AGI,action,package,gps@placeholder.invalid,2026-04-09,raised,,26020-01 - Deep Cut,2026-04-13
+INTK-0027,[PKG-91] Electric vs heat medium for NGL Mole Sieve,action,package,greg@placeholder.invalid,2026-05-14,raised,,Common,2026-05-19
+INTK-0028,[PKG-92] Piping Specs,action,package,adam.m@placeholder.invalid,2026-04-23,raised,,Common,2026-05-29
+INTK-0029,[PKG-93] Standby Generator Load,action,package,eric.s.alex.m@placeholder.invalid,2026-05-14,raised,,Common,2026-05-29
+INTK-0030,[PKG-94] Instrumentation datasheet work,action,package,glenn@placeholder.invalid,2026-05-21,raised,,Common,2026-06-30
+INTK-0031,[PKG-96] Equipment Tagging,action,package,all@placeholder.invalid,2026-05-27,raised,,Common,2026-06-30
+INTK-0032,[PKG-100] Sales Gas,action,package,adam.greg@placeholder.invalid,2026-05-27,raised,,Common,2026-06-12
+INTK-0033,[PKG-103] Pipe Bridges,action,package,ryan@placeholder.invalid,2026-06-04,raised,,Common,2026-06-12
+INTK-0034,[PKG-104] Flare Lines Design,action,package,kamal.greg@placeholder.invalid,2026-07-05,raised,,Common,2026-07-31
+INTK-0035,[PKG-105] 03-25 storage tank segregation,action,package,ryan@placeholder.invalid,2026-06-11,raised,,26020-03 - Liquids Hub,2026-06-19
+INTK-0036,[PKG-106] Pipeline risers,action,package,james.m@placeholder.invalid,2026-06-11,raised,,26020-01 - Deep Cut,2026-06-19
+INTK-0037,[PKG-109] Geotechnical Report,action,package,petri@placeholder.invalid,2026-06-19,raised,,26020-01 - Deep Cut,2026-06-30
+INTK-0038,[PKG-110] PFD and P&ID Development,action,package,all@placeholder.invalid,2026-03-11,raised,,Common,2026-04-06
+INTK-0039,[PKG-111] Site visit - FVV and JE to start compiling a list of possible items to see at site. Adam to pass through Danielle to try to arrange. Note on tickets/orientation,action,package,fvv.je.am.inno@placeholder.invalid,2026-03-11,raised,,,2026-03-18
+INTK-0040,[PKG-112] Navis automation to be set-up and confirmed with all modules received.,action,package,ee@placeholder.invalid,2026-03-19,raised,,Common,2026-03-25
+INTK-0041,[PKG-113] Plot Plan and pro's Con's list.,action,package,petar.b@placeholder.invalid,2026-03-26,raised,,26020-01 - Deep Cut,2027-03-27
+INTK-0042,[PKG-114] 3D model for purpose of BOM,action,package,all@placeholder.invalid,2026-04-09,raised,,,2026-04-29
+INTK-0043,[PKG-115] Tank Farm Layout,action,package,ernie@placeholder.invalid,2026-05-14,raised,,Common,2026-05-29
+INTK-0044,[PKG-116] Site Scan/Survey,action,package,franscois.ernie@placeholder.invalid,2026-05-14,raised,,Common,2026-06-18
+INTK-0045,[PKG-121] Pipe rack modules,action,package,ernie@placeholder.invalid,2026-06-04,raised,,Common,2026-06-19
+INTK-0046,[PKG-123] Permit Amendments,action,package,ryan.maureen@placeholder.invalid,2026-04-09,raised,,Common,2026-06-19
+INTK-0047,[PKG-124] New Permit Required,action,package,ryan.maureen@placeholder.invalid,2026-05-21,raised,,Common,2026-06-19
+INTK-0048,"[PKG-125] SCM to complete a procurement plan: Requires tracker, sourcing strategy, vendor lists for each piece of equipmnent, etc.",action,package,mark.ratte@placeholder.invalid,2026-03-01,raised,,Common,2026-04-24
+INTK-0049,[PKG-126] SCM to complete a folder set up for each package in the procurement tracker,action,package,adam.m@placeholder.invalid,2026-03-01,raised,,Common,2026-04-08
+INTK-0050,[PKG-127] SCM to review the transportation study and advise if there are any comments/changes/revisions to make,action,package,paul@placeholder.invalid,2026-03-01,raised,,Common,2026-04-16
+INTK-0051,[PKG-128] Technical evaluation templates for all major equipment to be set up and put into SCM folders.,action,package,adam.m@placeholder.invalid,2026-03-01,raised,,Common,2026-04-07
+INTK-0052,[PKG-129] Cryogenic Technical Evaluation,action,package,anand.s@placeholder.invalid,2026-03-11,raised,,26020-01 - Deep Cut,2026-06-19
+INTK-0053,[PKG-130] SCM Lesson Learned,action,package,mark.ratte@placeholder.invalid,2026-03-11,raised,,Common,2026-04-10
+INTK-0054,[PKG-131] Equipment package datasheet template to Civil,action,package,adam.m@placeholder.invalid,2026-03-19,raised,,Common,2026-04-06
+INTK-0055,"[PKG-133] MLE to begin digging through the Class 3 estimate and determine what equipment pricing will need to be received by vendors, what pricing MLE has in house, what pricing TOU has in house and what to do about Construction Costs",action,package,all@placeholder.invalid,2026-03-01,raised,,Common,2026-05-01
+INTK-0056,[PKG-134] Class 4 Estimate,action,package,ryan@placeholder.invalid,2026-05-14,raised,,Common,2026-06-10
+INTK-0057,[PKG-135] Complete FEED refresh,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0058,[PKG-136] DBM Support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0059,[PKG-137] Schedules,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0060,[PKG-138] Reporting,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0061,[PKG-139] Overall coordination / meetings,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0062,[PKG-140] Continue review of deep cut packages,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0063,[PKG-141] First draft of project execution plan,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0064,[PKG-142] Begin regulatory support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0065,[PKG-143] DBM Support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0066,[PKG-144] Schedules,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0067,[PKG-145] Reporting,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0068,[PKG-146] Overall coordination / meetings,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0069,[PKG-147] Support assembly of long lead RFQ packages,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0070,[PKG-148] Complete execution plan,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0071,[PKG-149] Create risk register,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0072,[PKG-150] Continue regulatory support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0073,[PKG-151] DBM Support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0074,[PKG-152] Schedules,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0075,[PKG-153] Reporting,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0076,[PKG-154] Overall coordination / meetings,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0077,[PKG-155] Support assembly of long lead RFQ packages,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0078,[PKG-156] Updates to risk register,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0079,[PKG-157] Complete regulatory support,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0080,[PKG-158] Begin assembly of Class 3 estimate,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0081,[PKG-159] Complete DBM for FEED,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0082,[PKG-160] Schedules,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0083,[PKG-161] Reporting,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0084,[PKG-162] Overall coordination / meetings,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0085,[PKG-163] Support assembly of long lead RFQ packages,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0086,[PKG-164] Updates to risk register,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0087,[PKG-165] Complete Class 3 estimate,action,package,project@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0088,[PKG-166] Updating process simulations,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0089,[PKG-167] Updating Process Design Basis,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0090,[PKG-168] Updating H&MB,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0091,"[PKG-169] Further discussions on process operations, optimizing heat medium system, treating and amine system",action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0092,[PKG-170] Continue review of deep cut packages,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0093,"[PKG-171] Complete updates to process simulations, PDB, H&MB",action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0094,[PKG-172] Updates to PFD based on process discussions in May and comments on FEED refresh PFD,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0095,[PKG-173] Support Plot Plan revision based on process requirements,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0096,[PKG-174] Begin regulatory support,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0097,[PKG-175] Begin P&ID creation,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0098,[PKG-176] Start support of RFQ creation of long leads,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0099,[PKG-177] Support DBM updates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0100,[PKG-178] Regulatory support,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0101,[PKG-179] Complete PFD updates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0102,[PKG-180] Complete Plot Plan support,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0103,[PKG-181] Continue Regulatory Support,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0104,[PKG-182] Continue P&ID creation,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0105,[PKG-183] Support RFQ creation of long leads,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0106,[PKG-184] Support line designation table creation,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0107,[PKG-185] Support DBM updates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0108,"[PKG-186] Complete P&ID creation, reviews",action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0109,[PKG-187] Complete regulatory support,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0110,[PKG-188] Final checks on FEED deliverables,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0111,[PKG-189] Support RFQ creation of long leads,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0112,[PKG-190] Support Class 3 Estimates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0113,[PKG-191] Support DBM updates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0114,[PKG-192] Support Class 3 Estimates,action,package,process@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0115,[PKG-193] Complete updates of piping specification for purpose of 3D model,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0116,[PKG-194] Continue review of deep cut packages,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0117,[PKG-195] Support plot plan updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0118,[PKG-196] Support PFD updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0119,[PKG-197] Support P&ID creation,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0120,[PKG-198] RFQ creation of mechanical long leads,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0121,"[PKG-199] Creation of mechanical lists (tie-in, equipment, etc.)",action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0122,[PKG-200] Support regulatory updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0123,[PLAN-067] Support DBM updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0124,[PLAN-068] Support 3D model,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0125,[PLAN-069] Support plot plan updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0126,[PLAN-070] Support PFD updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0127,[PLAN-071] Support P&ID creation,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0128,[PLAN-072] RFQ creation of mechanical long leads,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0129,"[PLAN-073] Creation of mechanical lists (tie-in, equipment, etc.)",action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0130,[PLAN-074] Support regulatory updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0131,[PLAN-075] Support DBM updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0132,[PLAN-076] Support 3D model,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0133,[PLAN-077] Complete plot plan updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0134,[PLAN-078] Complete P&ID support,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0135,[PLAN-079] Complete RFQ creation of mechanical long leads,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0136,"[PLAN-080] Complete mechanical lists (tie-in, equipment, etc.)",action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0137,[PLAN-081] Support regulatory updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0138,[PLAN-082] Complete DBM updates,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0139,[PLAN-083] Support Class 3 estimate,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0140,[PLAN-084] Support 3D model and participate in model review,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0141,[PLAN-085] Class 3 estimate support,action,package,mechanical@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0142,[PLAN-086] Continue deep cut package support,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0143,[PLAN-087] Updates to plot plans based on FEED refresh comments,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0144,"[PLAN-088] 3D model efforts for vent headers, inlet risers, tank farms etc.",action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0145,[PLAN-089] Pipe transposition,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0146,[PLAN-090] 3D model continuation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0147,[PLAN-091] Plot plan updates from process and mechanical,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0148,[PLAN-092] PFD updates from process and mechanical,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0149,[PLAN-093] P&ID support,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0150,[PLAN-094] Line designation table creation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0151,[PLAN-095] Support control philosophy creation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0152,[PLAN-096] 3D model continuation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0153,[PLAN-097] Complete PFD updates,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0154,[PLAN-098] Complete plot plan updates,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0155,[PLAN-099] Start P&ID updates,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0156,[PLAN-100] Line designation table continuation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0157,[PLAN-101] Support control philosophy creation,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0158,[PLAN-102] Support DBM updates,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0159,[PLAN-103] Complete 3D model for purpose of FEED,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0160,[PLAN-104] Host 30% 3D model review,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0161,[PLAN-105] Complete P&ID drafting,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0162,[PLAN-106] Complete line designation table support,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0163,[PLAN-107] BOM creation for Class 3 estimate,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0164,[PLAN-108] Support DBM updates,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0165,[PLAN-109] Class 3 estimate support,action,package,piping@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0166,[PLAN-110] Continue deep cut package support,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0167,"[PLAN-111] 3D model effort for grading, stormwater, pond design, tank containment, etc.",action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0168,"[PLAN-112] Continue 3D model effort for grading, stormwater, pond design, tank containment, etc.",action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0169,[PLAN-113] Plot plan support,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0170,[PLAN-114] Support regulatory updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0171,[PLAN-115] Support DBM updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0172,[PLAN-116] Pipe rack module optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0173,[PLAN-117] Tank farm structural optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0174,"[PLAN-118] 3D model effort for grading, stormwater, pond design, tank containment, etc.",action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0175,[PLAN-119] Complete plot plan support,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0176,[PLAN-120] Continue support of regulatory updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0177,[PLAN-121] Continue support of DBM updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0178,[PLAN-122] Continue pipe rack module optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0179,[PLAN-123] Continue tank farm structural optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0180,"[PLAN-124] Complete 3D model effort for grading, stormwater, pond design, tank containment, etc. for purpose of FEED",action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0181,[PLAN-125] Participate in 3D model review,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0182,[PLAN-126] Continue support of regulatory updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0183,[PLAN-127] Complete support of DBM updates,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0184,[PLAN-128] Complete pipe rack module optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0185,[PLAN-129] Complete tank farm structural optimization,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0186,[PLAN-130] Support Class 3 estimate,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0187,[PLAN-131] Class 3 estimate support,action,package,csa@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0188,[PLAN-132] Support review of deep cut packages,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0189,[PLAN-133] Support 3D model efforts for updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0190,[PLAN-134] Review requirements for long leads,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0191,[PLAN-135] Review optimizations for electrical system,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0192,[PLAN-136] Support PFD and P&ID creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0193,[PLAN-137] Support DBM updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0194,[PLAN-138] Support control system / philosophy creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0195,[PLAN-139] 3D model updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0196,[PLAN-140] Begin creation of long lead RFQ packages,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0197,[PLAN-141] Support regulatory updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0198,"[PLAN-142] Begin updates to single lines, load lists, cable schedules with updated plot plan",action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0199,[PLAN-143] Support PFD and P&ID creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0200,[PLAN-144] Support DBM updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0201,[PLAN-145] Support control system / philosophy creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0202,[PLAN-146] 3D model updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0203,[PLAN-147] Begin creation of long lead RFQ packages,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0204,"[PLAN-148] Continue updates to single lines, load lists, cable schedules with updated plot plan",action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0205,[PLAN-149] Complete support PFD and P&ID creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0206,[PLAN-150] Complete support of DBM updates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0207,[PLAN-151] Complete support of control system / philosophy creation,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0208,[PLAN-152] Complete 3D model updates and participate in 3D model review 30%,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0209,[PLAN-153] Complete creation of long lead RFQ packages,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0210,"[PLAN-154] Complete updates to single lines, load lists, cable schedules with updated plot plan",action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0211,[PLAN-155] Support Class 3 estimates,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0212,[PLAN-156] Class 3 estimate support,action,package,electrical@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0213,[PLAN-157] Support review of deep cut packages,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0214,[PLAN-158] Datasheet creation in support of long lead packages,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0215,[PLAN-159] Creation of P&ID typicals to support P&ID development,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0216,[PLAN-160] Instrumentation specification updates,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-05-31
+INTK-0217,[PLAN-161] Datasheet creation in support of long lead packages,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0218,[PLAN-162] Creation of P&ID typicals to support P&ID development,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0219,[PLAN-163] Instrumentation specification updates,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0220,[PLAN-164] Begin control system architecture,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0221,[PLAN-165] Begin control philosophy,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0222,[PLAN-166] Begin updates to instrument index,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0223,[PLAN-167] DBM Support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0224,[PLAN-168] Datasheet creation in support of long lead packages,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0225,[PLAN-169] Creation of P&ID typicals to support P&ID development,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0226,[PLAN-170] Instrumentation specification updates,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0227,[PLAN-171] Continue control system architecture,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0228,[PLAN-172] Continue control philosophy,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0229,[PLAN-173] Continue updates to instrument index,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0230,[PLAN-174] Creation of analyzer specification,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0231,[PLAN-175] DBM support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0232,[PLAN-176] PFD and P&ID support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0233,[PLAN-177] Complete instrument index for FEED,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0234,[PLAN-178] Support Class 3 estimate,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0235,[PLAN-179] Participate in 3D model review,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0236,[PLAN-180] Complete DBM support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0237,[PLAN-181] Complete PFD and P&ID support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0238,[PLAN-182] Class 3 estimate support,action,package,i.c@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0239,[PLAN-183] Support SCM requirements for long lead package reviews,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0240,[PLAN-184] Support project execution plan creation from SCM perspective,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0241,[PLAN-185] Support from project controls,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0242,[PLAN-186] DC and Bluebeam support,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-06-30
+INTK-0243,[PLAN-187] Support SCM requirements for long lead package reviews,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0244,[PLAN-188] Support project execution plan creation from SCM perspective,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0245,[PLAN-189] Support from project controls,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0246,[PLAN-190] DC and Bluebeam support,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-07-31
+INTK-0247,[PLAN-191] Support SCM requirements for long lead package reviews,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0248,[PLAN-192] Support project execution plan creation from SCM perspective,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0249,[PLAN-193] Support from project controls,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0250,[PLAN-194] DC and Bluebeam support,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-08-31
+INTK-0251,[PLAN-195] Support SCM requirements for long lead package reviews,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0252,[PLAN-196] Support project execution plan creation from SCM perspective,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0253,[PLAN-197] Support from project controls,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0254,[PLAN-198] DC and Bluebeam support,action,package,pc.dc.scm@placeholder.invalid,2026-07-05,raised,,,2026-09-30
+INTK-0255,"[PKG-61] Upcoming Engineering Items:
+
+
+Process Simulations Update - June 01
+Heat and Material Balance Update - June 01
+Process Design Basis Update - June 01
+Project Execution Plan - June 12",action,package,james.m@placeholder.invalid,2026-03-11,raised,,Common,2026-12-31
+INTK-0256,"[PKG-66] NOTE: Email Subject Lines:
+ Job # - Client Name - Subject",action,package,all@placeholder.invalid,2026-07-05,raised,,Common,2026-12-31
+INTK-0257,[PKG-79] Value Engineering Sessions,action,package,all@placeholder.invalid,2026-04-02,raised,,Common,2026-12-31
+INTK-0258,[PKG-80] Storm Pond,action,package,fvv.je.am.inno@placeholder.invalid,2026-04-02,raised,,Common,2026-12-31
+INTK-0259,[PKG-95] Piping specs usage and suitability,action,package,adam.m@placeholder.invalid,2026-05-21,raised,,Common,2026-12-31
+INTK-0260,[PKG-97] Storage Strategy,action,package,adam.greg@placeholder.invalid,2026-05-27,raised,,Common,2026-12-31
+INTK-0261,[PKG-98] LP Flare,action,package,adam.greg@placeholder.invalid,2026-05-27,raised,,Common,2026-12-31
+INTK-0262,[PKG-99] Truck Loading,action,package,adam.greg@placeholder.invalid,2026-05-27,raised,,Common,2026-12-31
+INTK-0263,[PKG-101] Product Specs,action,package,greg@placeholder.invalid,2026-05-27,raised,,Common,2026-12-31
+INTK-0264,[PKG-102] Hybrid Amine System,action,package,greg@placeholder.invalid,2026-05-27,raised,,Common,2026-12-31
+INTK-0265,[PKG-107] Flare KOD Combination,action,package,greg@placeholder.invalid,2026-06-12,raised,,Common,2026-12-31
+INTK-0266,[PKG-108] 02-25 Electrical to Truck Out,action,package,adam.alex@placeholder.invalid,2026-06-12,raised,,26020-03 - Liquids Hub,2026-12-31
+INTK-0267,[PKG-117] Plot Plan Updates,action,package,ernie@placeholder.invalid,2026-05-21,raised,,Common,2026-12-31
+INTK-0268,[PKG-118] 3D model updates,action,package,all@placeholder.invalid,2026-05-21,raised,,Common,2026-12-31
+INTK-0269,[PKG-119] Plot Plan Freeze,action,package,adam.james@placeholder.invalid,2026-05-28,raised,,Common,2026-12-31
+INTK-0270,[PKG-120] Plot Plan Reconfiguration,action,package,ernie@placeholder.invalid,2026-06-23,raised,,Common,2026-12-31
+INTK-0271,[PKG-122] Survey and Scans,action,package,adam@placeholder.invalid,2026-06-25,raised,,Common,2026-12-31
+INTK-0272,[PKG-132] Long Lead RFQ Packages for other Equipment,action,package,ryan.peter@placeholder.invalid,2026-06-18,raised,,Common,2026-12-31
