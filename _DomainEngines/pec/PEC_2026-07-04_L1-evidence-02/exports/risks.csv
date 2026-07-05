@@ -1,0 +1,4 @@
+risk_id,title,cause,consequence,owner,status,package,deliverable_ref,probability,impact,mitigation,need_by
+RSK-0001,Units-basis decision delay pushes H&MB past Gate 3,Client has not confirmed metric vs imperial basis (DEC-0003 pending),H&MB and every dependent datasheet slip past the Gate 3 date,lead.process@aurora.dev,mitigating,PKG-P,AUR-P-003,4,5,Escalate at the weekly client meeting; prepare dual-unit tables for the two critical sheets,2026-07-11
+RSK-0002,Vendor curves late for long-lead pumps,Vendor engineering backlog,P-101 datasheet issue slips; hold ages further,lead.mech@aurora.dev,open,PKG-M,AUR-M-001,3,4,Weekly expediting call; escalate via procurement,2026-07-14
+RSK-0003,August vacation season reduces checking capacity,Concurrent checker leave,Check turnaround exceeds 5 wd on peak weeks,em@aurora.dev,open,,,2,3,Stagger checker leave; pre-book external checker for drawings,2026-08-03

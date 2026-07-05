@@ -1,0 +1,15 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes,anchor_status
+WI-0001,Incorporate client IFR comments into PFD rev B,rework,internal,eor@aurora.dev,2026-07-11,in_work,eor@aurora.dev,2026-07-04,PKG-P,AUR-P-002,,,,anchored
+WI-0003,Resolve stress model clashes on critical lines,action,internal,eor@aurora.dev,2026-07-02,in_work,lead.mech@aurora.dev,2026-07-04,PKG-PI,AUR-PI-002,,,,anchored
+WI-0006,Draft PFD rev B markups for squad check,action,internal,eor@aurora.dev,2026-07-14,open,lead.process@aurora.dev,2026-07-04,PKG-P,AUR-P-002,,,,anchored
+WI-0002,Update stream numbering per client standard,action,internal,ic1@aurora.dev,2026-07-18,open,eor@aurora.dev,2026-07-04,PKG-P,AUR-P-002,,,,anchored
+WI-0004,Confirm pipe support locations with civil,action,internal,ic1@aurora.dev,2026-06-30,open,lead.mech@aurora.dev,2026-07-04,PKG-PI,AUR-PI-002,,,,anchored
+WI-0005,Instrument index is missing tags from the package 2 P&IDs,action,internal,ic1@aurora.dev,2026-07-11,open,coord@aurora.dev,2026-07-04,PKG-EI,AUR-EI-002,,,,anchored
+WI-0007,Return H&MB basis notes to the process lead,action,internal,ic1@aurora.dev,2026-07-04,open,lead.process@aurora.dev,2026-07-04,PKG-P,AUR-P-003,,,,anchored
+HLD-0001,Vendor has not returned certified performance curves; datasheet cannot issue without them.,hold,internal,lead.mech@aurora.dev,2026-06-27,open,lead.mech@aurora.dev,2026-06-05,,AUR-M-001,vendor_data,,,anchored
+INT-0001,Pump hydraulic data,interface,internal,,2026-06-20,open,,,PKG-P,,,,"Rated flow, differential head, and NPSHa for P-101 sizing",anchored
+INT-0002,Instrument air demand list,interface,internal,,2026-07-14,open,,,PKG-M,,,,Continuous and peak instrument air demand per consumer,anchored
+INT-0003,Electrical load list,interface,internal,,2026-07-03,delivered,,,PKG-EI,,,,Connected and operating loads feeding the one-line diagram,anchored
+INTK-0001,Need vendor pump curves for the P-101 hydraulic check,need_information,internal,,2026-06-29,raised,ic2@aurora.dev,2026-06-23,,AUR-M-001,,,,unanchored
+INTK-0002,Units basis needs confirming before the H&MB tables are finalized,need_decision,internal,,,raised,ic2@aurora.dev,2026-07-04,,AUR-P-003,,,,unanchored
+INTK-0003,Stress critical line list is slipping against the Gate 3 date,risk_schedule,internal,,,raised,planner@aurora.dev,2026-07-04,,AUR-PI-002,,,,unanchored

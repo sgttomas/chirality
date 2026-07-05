@@ -1,0 +1,5 @@
+intake_id,statement,quick_type,log,raised_by,raised_date,state,disposition,anchor_suggestion,need_by
+INTK-0004,Instrument index is missing tags from the package 2 P&IDs,action,internal,ic2@aurora.dev,2026-07-04,dispositioned,converted,AUR-EI-002,
+INTK-0001,Need vendor pump curves for the P-101 hydraulic check,need_information,internal,ic2@aurora.dev,2026-06-23,raised,,AUR-M-001,2026-06-29
+INTK-0002,Units basis needs confirming before the H&MB tables are finalized,need_decision,internal,ic2@aurora.dev,2026-07-04,raised,,AUR-P-003,
+INTK-0003,Stress critical line list is slipping against the Gate 3 date,risk_schedule,internal,planner@aurora.dev,2026-07-04,raised,,AUR-PI-002,

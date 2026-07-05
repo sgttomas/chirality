@@ -1,0 +1,4 @@
+interface_id,title,giving_party,receiving_party,giving_package,receiving_package,required_info,need_by,state,log
+INT-0001,Pump hydraulic data,Process,Mechanical,PKG-P,PKG-M,"Rated flow, differential head, and NPSHa for P-101 sizing",2026-06-20,open,internal
+INT-0002,Instrument air demand list,Mechanical,E&I,PKG-M,PKG-EI,Continuous and peak instrument air demand per consumer,2026-07-14,open,internal
+INT-0003,Electrical load list,E&I,Process,PKG-EI,PKG-P,Connected and operating loads feeding the one-line diagram,2026-07-03,delivered,internal

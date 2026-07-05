@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Sponsor brief — Aurora Gas Plant FEED</title>
+<style>
+  body{font:14px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#1b1f24;margin:2rem auto;max-width:60rem;padding:0 1rem}
+  h1{font-size:1.4rem;border-bottom:2px solid #1b1f24;padding-bottom:.4rem}
+  h2{font-size:1.05rem;margin-top:1.6rem}
+  table{border-collapse:collapse;width:100%;margin:.5rem 0}
+  th,td{border:1px solid #d0d7de;padding:.35rem .6rem;text-align:left;font-size:.85rem}
+  th{background:#f6f8fa}
+  .kpi{display:inline-block;border:1px solid #d0d7de;border-radius:6px;padding:.6rem 1rem;margin:.25rem;text-align:center}
+  .kpi b{display:block;font-size:1.3rem}
+  .muted{color:#57606a;font-size:.8rem}
+  @media print { body{margin:0} .kpi{break-inside:avoid} }
+</style></head><body>
+<h1>AUR — Sponsor Brief <span class="muted">(2026-07-04)</span></h1>
+<p>Project health: <span style="color:#c92a2a;font-weight:700;text-transform:uppercase">red</span> <span class="muted">— worst package: PKG-M (PH-R2); red contribution: S-HOLD, S-DEC, S-APPR, S-CMT, S-INTAKE, S-ANCHOR, S-SCHED breached escalation threshold</span></p>
+<div>
+  <span class="kpi"><b>71%</b>deliverables on plan</span>
+  <span class="kpi"><b>1</b>active holds</span>
+  <span class="kpi"><b>1</b>open decisions</span>
+  <span class="kpi"><b>1</b>approvals in flight</span>
+  <span class="kpi"><b>28 wd</b>worst forecast slip</span>
+</div>
+
+<h2>Package rollup</h2>
+<table><tr><th>Package</th><th>Health</th><th>On plan</th><th>Rule</th></tr>
+<tr><td>PKG-EI — Electrical &amp; Instrumentation</td><td><span style="color:#1a7f37;font-weight:700;text-transform:uppercase">green</span></td><td>4/4</td><td class="muted">PH-G: no breach</td></tr><tr><td>PKG-M — Mechanical</td><td><span style="color:#c92a2a;font-weight:700;text-transform:uppercase">red</span></td><td>2/3</td><td class="muted">PH-R2: interface item overdue past escalation</td></tr><tr><td>PKG-P — Process</td><td><span style="color:#c92a2a;font-weight:700;text-transform:uppercase">red</span></td><td>2/4</td><td class="muted">PH-R2: interface item overdue past escalation</td></tr><tr><td>PKG-PI — Piping</td><td><span style="color:#c92a2a;font-weight:700;text-transform:uppercase">red</span></td><td>2/3</td><td class="muted">PH-R1: red deliverable linked to a package milestone</td></tr>
+</table>
+
+<h2>Waiting on decisions / approvals</h2>
+<table><tr><th>Ref</th><th>Kind</th><th>Title</th><th>Need by</th><th>Age (wd)</th><th>Breach</th></tr>
+<tr><td colspan="6" class="muted">none</td></tr>
+</table>
+
+<h2>Top holds</h2>
+<table><tr><th>Ref</th><th>Cause</th><th>Title</th><th>Owner needs by</th><th>Age (wd)</th></tr>
+<tr><td>HLD-0001</td><td>vendor_data</td><td>Awaiting certified vendor pump curves for P-101</td><td>2026-06-27</td><td>20</td></tr>
+</table>
+
+<h2>Top risks</h2>
+<table><tr><th>Ref</th><th>Title</th><th>P×I</th><th>Mitigation</th></tr>
+<tr><td>RSK-0001</td><td>Units-basis decision delay pushes H&amp;MB past Gate 3</td><td>4×5</td><td class="muted">Escalate at the weekly client meeting; prepare dual-unit tables for the two critical sheets</td></tr><tr><td>RSK-0002</td><td>Vendor curves late for long-lead pumps</td><td>3×4</td><td class="muted">Weekly expediting call; escalate via procurement</td></tr><tr><td>RSK-0003</td><td>August vacation season reduces checking capacity</td><td>2×3</td><td class="muted">Stagger checker leave; pre-book external checker for drawings</td></tr>
+</table>
+
+<h2>Governance signals</h2>
+<table><tr><th>Signal</th><th>Level</th><th>Detail</th><th>Threshold</th></tr>
+<tr><td>Hold age</td><td>red</td><td>1 record(s) breaching</td><td class="muted">warn &gt; 7 wd, escalate &gt; 14 wd</td></tr><tr><td>Decision past need-by</td><td>red</td><td>1 record(s) breaching</td><td class="muted">warn &gt; 0 d, escalate &gt; 7 d or blocking issue</td></tr><tr><td>Approval latency</td><td>red</td><td>1 record(s) breaching</td><td class="muted">warn &gt; 5 wd, escalate &gt; 10 wd</td></tr><tr><td>Check comment age</td><td>red</td><td>2 record(s) breaching</td><td class="muted">warn &gt; 5 wd, escalate &gt; 10 wd</td></tr><tr><td>Untriaged intake age</td><td>red</td><td>1 record(s) breaching</td><td class="muted">warn &gt; 2 wd, escalate &gt; 5 wd</td></tr><tr><td>Unanchored items</td><td>red</td><td>3 unanchored, 1 older than 5 d</td><td class="muted">warn &gt; 0, escalate &gt; 5 or age &gt; 5 d</td></tr><tr><td>Capacity load</td><td>warn</td><td>4 record(s) breaching</td><td class="muted">warn &gt; 100%, escalate &gt; 110%</td></tr><tr><td>Schedule forecast vs gate</td><td>red</td><td>1 record(s) breaching</td><td class="muted">warn &gt; 0 d, escalate &gt; 10 d</td></tr>
+</table>
+<p class="muted">Derived per PRD §8; every value drills down to contributing records in the application (I-4). Print this page to PDF for distribution (ADR-010).</p>
+</body></html>
