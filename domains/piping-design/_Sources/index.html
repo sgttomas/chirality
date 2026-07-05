@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piping sources — audit hub</title>
+<style>
+:root{--ok:#2e9e44; --bad:#e07b00; --ink:#1f2430; --mut:#6b7280}
+*{box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',sans-serif;margin:0;background:#f3f4f6;color:var(--ink)}
+header{background:#111827;color:#fff;padding:1.6rem 2rem}
+header h1{margin:0;font-size:1.5rem}
+header p{margin:.4rem 0 0;color:#9ca3af;font-size:.95rem}
+main{max-width:1000px;margin:0 auto;padding:1.5rem 1rem 3rem;display:grid;gap:1rem}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.1rem 1.3rem;
+  display:flex;flex-wrap:wrap;align-items:center;gap:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.info{flex:1;min-width:260px}
+.info h2{margin:0 0 .2rem;font-size:1.12rem}
+.info .sub{color:var(--mut);font-size:.85rem}
+.pwrap{margin-top:.55rem;display:flex;align-items:center;gap:.6rem}
+.pbar{flex:1;max-width:340px;height:12px;background:#e5e7eb;border-radius:6px;overflow:hidden;display:flex}
+.pbar .pv{background:var(--ok);height:100%}
+.pbar .pf{background:var(--bad);height:100%}
+.ptext{font-size:.8rem;color:var(--mut);white-space:nowrap}
+.actions{display:flex;flex-direction:column;gap:.45rem;align-items:stretch}
+a.go{display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;
+  font-weight:700;font-size:1rem;padding:.65rem 1.3rem;border-radius:10px}
+a.go:hover{background:#1d4ed8}
+.others{display:flex;gap:.7rem;justify-content:center;font-size:.78rem}
+.others a{color:var(--mut)}
+.done-badge{font-size:.78rem;color:var(--ok);font-weight:700}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding-bottom:2rem}
+</style></head>
+<body>
+<header>
+  <h1>📚 Piping source audits</h1>
+  <p>Pick a book and hit <b>Check equations</b>. Your progress is saved in this browser — use “💾 Save my work” inside the checker before you stop.</p>
+</header>
+<main id="cards"></main>
+<footer>Progress bars read this browser’s saved answers; a book you’ve never opened shows 0.</footer>
+<script>
+const BOOKS = [
+  {dir:"MWK_1956", name:"Design of Piping Systems", sub:"M.W. Kellogg Co., 1956", total:1050, pages:150},
+  {dir:"Pipe-Stress-Engineering", name:"Pipe Stress Engineering", sub:"L.C. Peng", total:743, pages:228},
+  {dir:"Process-Piping-Design-Rip-Weaver-Volume-2", name:"Process Piping Design, Vol. 2", sub:"Rip Weaver", total:26, pages:5},
+  {dir:"Piping_Manual", name:"Piping Manual", sub:"", total:8, pages:3},
+  {dir:"Process-Piping-Design-Rip-Weaver-Volume-1", name:"Process Piping Design, Vol. 1", sub:"Rip Weaver", total:4, pages:1},
+];
+const OTHER = ["figures","tables","images","folios"];
+
+function progressFor(dir, total) {
+  try {
+    const path = new URL(`${dir}/audit/equations.html`, location.href).pathname;
+    const prefix = "audit:" + path;
+    /* the app may salt its key with a reset epoch ("#YYYY-MM-DD"); use the newest */
+    let best = null;
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k === prefix || k.startsWith(prefix + "#")) {
+        if (best === null || k > best) best = k;
+      }
+    }
+    if (!best) return {v:0, f:0};
+    const st = JSON.parse(localStorage.getItem(best));
+    return {v:Object.keys(st.verified||{}).length, f:Object.keys(st.flagged||{}).length};
+  } catch(e) { return {v:0, f:0}; }
+}
+
+const main = document.getElementById("cards");
+BOOKS.forEach(b => {
+  const {v,f} = progressFor(b.dir, b.total);
+  const done = v + f, pct = x => (x / b.total * 100) + "%";
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="info">
+      <h2>${b.name}</h2>
+      <div class="sub">${b.sub ? b.sub + " · " : ""}${b.total} equation${b.total===1?"":"s"} on ${b.pages} page${b.pages===1?"":"s"}</div>
+      <div class="pwrap">
+        <div class="pbar"><div class="pv" style="width:${pct(v)}"></div><div class="pf" style="width:${pct(f)}"></div></div>
+        <span class="ptext">${done} / ${b.total} checked${f ? ` · ${f} flagged` : ""}</span>
+        ${done >= b.total ? '<span class="done-badge">🎉 done!</span>' : ""}
+      </div>
+    </div>
+    <div class="actions">
+      <a class="go" href="${b.dir}/audit/equations.html">Check equations ▸</a>
+      <div class="others">${OTHER.map(k => `<a href="${b.dir}/audit/${k}.html">${k}</a>`).join(" ")}
+        <a href="${b.dir}/audit/${b.dir}.html">whole book</a></div>
+    </div>`;
+  main.appendChild(card);
+});
+</script>
+</body></html>

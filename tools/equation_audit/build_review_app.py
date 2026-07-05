@@ -1,7 +1,171 @@
-<!doctype html>
+#!/usr/bin/env python3
+"""Build the equation review app: a single-file equations.html audit surface.
+
+Replaces the page-strip chunk-list layout with a focused review app
+designed for non-expert reviewers:
+
+  - Left pane: the source page PNG, kept clean (no machine-drawn
+    boxes), with a pen/highlighter/eraser toolbar. Marks are freehand
+    SVG strokes stored in normalized page coordinates, so they stay
+    glued to the page content, scale with it, and persist in
+    localStorage (`ink:<pathname>`, keyed per page) — like marking a
+    paper copy while working through the audit.
+  - Right pane (width adjustable by dragging the splitter): ONE
+    equation at a time — big KaTeX render, "It matches" / "Something's
+    wrong" buttons, note box with live preview, skip, and auto-advance
+    to the next unreviewed equation.
+
+State model is bit-compatible with the classic surface: same
+localStorage key (`audit:<pathname>`), same INITIAL baking from the
+disk sidecars, same export filenames and JSON schemas
+(`<slug>_equations_{verified,flagged}_<ts>.json`, plus
+`_rejected` when 1.5-P proposals were rejected), so EQUATION_AUDIT
+phases and browser state from the previous layout carry over unchanged.
+
+Inputs (all under --audit-dir):
+  equations.jsonl   one record per display equation (page, index, latex, hash)
+  eq_bboxes.json    optional; page -> [{index, bbox_norm}] from
+                    recover_eq_bboxes.py (equations without a bbox get
+                    no highlight but remain reviewable)
+  sidecars          equations_{verified,flagged,backcheck,rejected}.json
+                    with the usual legacy fallbacks
+  pages/            page_NNNN.png renders
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from tools.source_audit import equations as eq_mod  # noqa: E402
+from tools.source_audit import chunk as sa_chunk  # noqa: E402
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser()
+    p.add_argument("--audit-dir", required=True)
+    p.add_argument("--title", required=True)
+    p.add_argument("--out", default=None, help="default: <audit-dir>/equations.html")
+    p.add_argument("--pages-dir-rel", default="pages")
+    p.add_argument(
+        "--state-epoch",
+        default="",
+        help=(
+            "Optional salt appended to the browser-storage key. Bumping it "
+            "makes the app ignore all previously saved in-browser answers — "
+            "use when deliberately resetting the audit to a clean slate."
+        ),
+    )
+    return p.parse_args()
+
+
+def load_records(audit_dir: Path) -> list[dict]:
+    records = []
+    with (audit_dir / "equations.jsonl").open(encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            r = json.loads(line)
+            r["key"] = f'{r["page"]}:{r["hash"]}'
+            records.append(r)
+    records.sort(key=lambda r: (r["page"], r["index"]))
+    return records
+
+
+def load_bboxes(audit_dir: Path) -> dict[tuple[int, int], list[float]]:
+    path = audit_dir / "eq_bboxes.json"
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    out = {}
+    for page_str, entries in data.items():
+        for e in entries:
+            out[(int(page_str), int(e["index"]))] = e["bbox_norm"]
+    return out
+
+
+def build_payload(records, bboxes, verified, flagged, backcheck) -> list[dict]:
+    payload = []
+    for r in records:
+        status, note = sa_chunk.initial_status_for_key(
+            r["key"], verified, flagged, backcheck=backcheck
+        )
+        entry = {
+            "key": r["key"],
+            "page": r["page"],
+            "index": r["index"],
+            "hash": r["hash"],
+            "latex": r["latex"],
+            "bbox": bboxes.get((r["page"], r["index"])),
+        }
+        bc = backcheck.get(r["key"]) if status == "backcheck" else None
+        if bc:
+            entry["bc"] = {
+                "description": bc.get("description", ""),
+                "prev_latex": bc.get("prev_latex", ""),
+                "source": bc.get("source", "EQUATION_AUDIT-phase3"),
+                "proposal_hash": bc.get("proposal_hash", ""),
+            }
+        payload.append(entry)
+    return payload
+
+
+def json_for_script(obj) -> str:
+    """JSON safe to embed inside a <script> block."""
+    return json.dumps(obj, ensure_ascii=False).replace("</", "<\\/")
+
+
+def render_app(title: str, payload: list[dict], initial_state: dict,
+               pages_dir_rel: str, state_epoch: str = "") -> str:
+    pages = sorted({e["page"] for e in payload})
+    return (
+        APP_TEMPLATE
+        .replace("__TITLE__", title)
+        .replace("__EQS_JSON__", json_for_script(payload))
+        .replace("__INITIAL_JSON__", json_for_script(initial_state))
+        .replace("__PAGES_JSON__", json_for_script(pages))
+        .replace("__PAGES_DIR__", pages_dir_rel)
+        .replace("__STATE_EPOCH__", state_epoch)
+    )
+
+
+def main() -> int:
+    args = parse_args()
+    audit_dir = Path(args.audit_dir).resolve()
+    out_html = Path(args.out).resolve() if args.out else audit_dir / "equations.html"
+
+    records = load_records(audit_dir)
+    bboxes = load_bboxes(audit_dir)
+    verified, flagged, backcheck, rejected = eq_mod.load_sidecars_with_legacy(audit_dir)
+    suppressed_bc = {k: v for k, v in backcheck.items()
+                     if not eq_mod._is_rejected(v, rejected)}
+
+    payload = build_payload(records, bboxes, verified, flagged, suppressed_bc)
+    initial_state = {
+        "verified": verified,
+        "flagged": flagged,
+        "backcheck": suppressed_bc,
+        "rejected": rejected,
+    }
+    doc = render_app(args.title, payload, initial_state, args.pages_dir_rel,
+                     state_epoch=args.state_epoch)
+    out_html.write_text(doc, encoding="utf-8")
+
+    with_bbox = sum(1 for e in payload if e["bbox"])
+    print(f"equations={len(payload)} pages={len({e['page'] for e in payload})} "
+          f"with_bbox={with_bbox} html={out_html}")
+    return 0
+
+
+APP_TEMPLATE = r"""<!doctype html>
 <html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Piping_Manual — equation check</title>
+<title>__TITLE__ — equation check</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
   onload="window.__katexReady=true;document.dispatchEvent(new Event('katex-ready'));"></script>
@@ -122,7 +286,7 @@ kbd{background:#eef0f3;border:1px solid #d1d5db;border-bottom-width:2px;border-r
 <body>
 <header>
   <a id="home-btn" href="../../index.html" title="back to the list of books">🏠 Home</a>
-  <h1>Piping_Manual</h1>
+  <h1>__TITLE__</h1>
   <div class="progress">
     <div class="pbar"><div class="pv" id="pv"></div><div class="pf" id="pf"></div></div>
     <span class="ptext" id="ptext"></span>
@@ -201,12 +365,12 @@ kbd{background:#eef0f3;border:1px solid #d1d5db;border-bottom-width:2px;border-r
 
 <script>
 const KIND = "equations";
-const STATE_EPOCH = "2026-07-05"; /* bumped on deliberate resets */
+const STATE_EPOCH = "__STATE_EPOCH__"; /* bumped on deliberate resets */
 const STORAGE_KEY = "audit:" + location.pathname + (STATE_EPOCH ? "#" + STATE_EPOCH : "");
-const EQS = [{"key": "340:79d58ab4555d", "page": 340, "index": 1, "hash": "79d58ab4555d", "latex": "\\frac{(9 \\text{ in} + 6 \\text{ in} + 12 \\text{ in}) 4}{3.1416} = 34.37 \\text{ in}", "bbox": [0.115415, 0.298426, 0.798122, 0.593826]}, {"key": "340:9107aeff4478", "page": 340, "index": 2, "hash": "9107aeff4478", "latex": "\\frac{(9 \\text{ in} + 7.5 \\text{ in} + 12 \\text{ in}) 8}{3.1416} = 72.57 \\text{ in}", "bbox": [0.115806, 0.376513, 0.928404, 0.671913]}, {"key": "389:3c4c80051c60", "page": 389, "index": 1, "hash": "3c4c80051c60", "latex": "\\frac{150{,}000 \\times 42}{7.48} = 842{,}245 \\text{ ft}^3 \\text{ of liquid}", "bbox": [0.128627, 0.326463, 0.923922, 0.621704]}, {"key": "389:def2af1216af", "page": 389, "index": 2, "hash": "def2af1216af", "latex": "h = \\frac{4V}{\\pi D^2}", "bbox": [0.123922, 0.363443, 0.923922, 0.658684]}, {"key": "389:e15cd49ce8ac", "page": 389, "index": 3, "hash": "e15cd49ce8ac", "latex": "h = \\frac{4 \\times 842{,}245}{(3.1417)(150^2)}", "bbox": [0.123922, 0.392543, 0.923922, 0.687784]}, {"key": "389:24228a9527e3", "page": 389, "index": 4, "hash": "24228a9527e3", "latex": "V = \\frac{\\pi b}{3}(r^2 + rR + R^2)", "bbox": [0.123922, 0.436193, 0.923922, 0.731434]}, {"key": "390:2f6aac8016df", "page": 390, "index": 1, "hash": "2f6aac8016df", "latex": "V = \\frac{5.1417 \\times 1}{3} \\times (6{,}084 + 6{,}201 + 6{,}320)", "bbox": [0.076471, 0.0, 0.872549, 0.222795]}, {"key": "390:aa02548e4242", "page": 390, "index": 2, "hash": "aa02548e4242", "latex": "\\begin{aligned}\n& 842{,}245 \\text{ ft}^3 \\text{ of stored liquid} \\\\\n+ \\ & 19{,}479 \\text{ ft}^3 \\text{ of berm soil} \\\\\n\\hline\n& 861{,}724 \\text{ dike area required}\n\\end{aligned}", "bbox": [0.125882, 0.0, 0.872549, 0.264323]}];
-const INITIAL = {"verified": {}, "flagged": {}, "backcheck": {}, "rejected": {}};
-const PAGES = [340, 389, 390];
-const PAGES_DIR = "pages";
+const EQS = __EQS_JSON__;
+const INITIAL = __INITIAL_JSON__;
+const PAGES = __PAGES_JSON__;
+const PAGES_DIR = "__PAGES_DIR__";
 
 let state = loadState();
 let cur = 0;
@@ -875,3 +1039,8 @@ wireSplitter();
 render();
 </script>
 </body></html>
+"""
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
