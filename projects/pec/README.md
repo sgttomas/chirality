@@ -23,15 +23,22 @@ controlled records, condition-gated transitions, and derived (always explainable
 
 ## Run
 
+Run these from `projects/pec/`. The seed guard requires `PEC_DB` to point at a **scratch/demo**
+database — a path containing a `scratch` or `demo` token, or one under the system temp dir. Use an
+**absolute** path: `npm run seed` and `npm run dev` execute from different workspace directories, so a
+relative `./pec-demo.db` resolves to two different files — the server would read an empty one it
+auto-creates and every login would fail.
+
 ```bash
-npm install            # workspace deps (web toolchain; core/server have none at runtime)
-npm run seed           # create pec.db with the demo FEED project + users
-npm run dev            # server on :4810, web dev server on :4811 (proxies /api)
-npm test               # core unit tests + server invariant/integration suite
-npm run build && npm start   # production: server serves built web app
+npm install                        # workspace deps (web toolchain; core/server have none at runtime)
+export PEC_DB="$PWD/pec-demo.db"   # absolute path; must contain "scratch"/"demo" (seed guard)
+npm run seed                       # create $PEC_DB with the demo FEED project + users
+npm run dev                        # server on :4810, web dev server on :4811 (proxies /api)
+npm test                           # core unit tests + server invariant/integration suite (own temp DBs)
+npm run build && npm start         # production: server serves built web app (also reads $PEC_DB)
 ```
 
-Demo logins are printed by the seed script (password `pilot` for all).
+Demo logins are printed by the seed script (all share password `pilot`) — e.g. `pm@aurora.dev`.
 
 ## Principles the code must keep (from the PRD)
 
