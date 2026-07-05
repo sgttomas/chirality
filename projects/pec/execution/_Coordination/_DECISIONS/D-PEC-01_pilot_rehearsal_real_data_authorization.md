@@ -4,7 +4,7 @@
 **Date prepared:** 2026-07-04
 **Decision ID:** D-PEC-01
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
-**Ruling SHA:** TBD - backfill to the commit publishing this ruling record.
+**Ruling SHA:** `3e4ba7543` - the commit publishing this ruling record (backfilled same-branch per the D-T0-10 / D-T0-17 precedent).
 
 ## Decision to rule
 
