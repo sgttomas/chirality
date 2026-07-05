@@ -163,3 +163,11 @@
   - Gate outcome: real-data rehearsal authorized only in principle; not executable until owner supplies exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits. `force=true` remains prohibited absent separate ruling. No Gate-2/L3/pilot-readiness/go-live claim.
   - Checks: closeout checks ride this ruling-accounting branch.
   - Parked lanes: owner-supplied D-PEC-01 execution basis; merge of this accounting PR; then separate narrow `seed.demo` guard PR.
+
+- **2026-07-05 — Receipt 14** (PR #68 merged; D-PEC-06 `seed.demo` guard repair executed).
+  - Start: `73091e8be` (`origin/main` after PR #68 merge); branch `codex/pec-seed-demo-guard`; tree clean before guard work.
+  - Owner direction of record (2026-07-05, in-session, Ryan Tufts): "I approve merger of the PR.  Then continue with the remaining work." — PR #68 merged `73091e8be`.
+  - Executed pointers: `projects/pec/tools/seed.ts`; `projects/pec/server/test/seed-guard.test.ts`.
+  - Gate outcome: D-PEC-06 O-A executed narrowly — `seed.demo` now requires explicit `PEC_DB`, refuses non-scratch/non-demo targets, and seeds only explicit temp/scratch/demo targets. No D-PEC-01 real-data rehearsal, no `force=true`, no Gate-2/L3/pilot-readiness/go-live claim.
+  - Checks: profile validator VALID; self-check pass; practitioner harness pytest pass; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
+  - Parked lanes: D-PEC-01 evidence run awaits owner-supplied exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits; profile Gate 2 remains DRAFT/open; L3 remains deferred until after D-PEC-01 evidence.
