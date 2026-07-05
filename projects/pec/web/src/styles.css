@@ -66,6 +66,14 @@ table.reg th {
 table.reg td { padding: .42rem .6rem; border-bottom: 1px solid #eceff2; vertical-align: top; }
 table.reg tr:hover td { background: #f4f8fb; }
 table.reg tr.clickable { cursor: pointer; }
+/* deep-link landing: briefly flash the row a deep link scrolled to (see useHighlightRef) */
+table.reg tr.row-flash td { animation: row-flash 2.4s ease-out 1; }
+@keyframes row-flash {
+  0%, 30% { background: var(--amber-bg); }
+  100% { background: transparent; }
+}
+/* clickable contributing ref inside the explain drawer */
+.reflink { color: var(--accent); cursor: pointer; text-decoration: underline; }
 .mono { font-family: var(--mono); font-size: .82rem; white-space: nowrap; }
 .muted { color: var(--muted); }
 .small { font-size: .78rem; }

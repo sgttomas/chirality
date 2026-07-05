@@ -119,7 +119,7 @@ This agent is the post-PDF2MD review step for sources that contain mathematical 
           --work-dir {WORK_DIR} \
           --crops-dir {SOURCE_AUDIT_ROOT}/working/crops/
       ```
-   e. Re-run `audit_equations.py` if the audit HTML must embed crop references (current `audit_equations.py` does not embed crops automatically; a future enhancement may add a `--crops-dir` flag).
+   e. Re-run `audit_equations.py` with `--crops-dir {SOURCE_AUDIT_ROOT}/working/crops/` so each equation chunk embeds the source crop beside the rendered KaTeX and raw LaTeX.
 3. Report:
    > "Phase 1 complete. Extracted {N} display equations across {P} pages.
    > {ENABLE_CROPS: ' Crops: {C} written.' or ''}
