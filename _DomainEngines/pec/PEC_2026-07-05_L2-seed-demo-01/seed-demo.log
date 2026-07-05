@@ -1,0 +1,31 @@
+  interface_item           3
+  risk                     3
+  intake_item              4
+  plan_item                5
+  plan_shift               1
+  capacity_entry           3
+  schedule_activity        3
+  history_entry          163
+  audit_event              7
+  notification            28
+
+ Suggested demo walks
+ ────────────────────
+  1. pm@aurora.dev → Overview: project health is RED — click the badge and every
+     KPI for the rule + contributing records; drill S-HOLD (aged vendor_data hold),
+     S-DEC (units decision blocking AUR-P-003 issue), S-APPR, S-CMT, S-INTAKE;
+     PKG-PI is red via PH-R1 (Gate 3 deliverable AUR-PI-002 slipping).
+  2. eor@aurora.dev → My Week: overdue stress items, a committed-this-week item,
+     and the open check comment owed on AUR-P-004; try closing a blocked item.
+  3. coord@aurora.dev → Registers → Intake: three untriaged items (one aged red);
+     triage one into an anchored work item, then check the raiser notification.
+  4. planner@aurora.dev → Plan (P2): Process is at 105% this week (S-CAP warn, I-9 —
+     the check and hold-point approval load capacity); the week is committed, so
+     eor's My Week shows "planning commitment"; the lookahead mixes plan cells with
+     imported schedule activities; one reasoned shift sits in the plan-change log.
+
+ Database: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-demo-seed.db
+ Start the app:  npm run dev   (server :4810, web :4811)
+
+seed exit=0
+eafc3b3f49be5f490df870e0e7cec769ae3329e66ee78507aed6ed59001aecc8  /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-demo-seed.db

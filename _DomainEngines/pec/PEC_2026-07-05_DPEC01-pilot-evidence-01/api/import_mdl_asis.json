@@ -1,0 +1,1 @@
+{"error":{"code":"BAD_REQUEST","message":"MDL import missing required columns: doc_no, title, package, discipline, owner, current_rev, state, due_date (§16)","details":null}}

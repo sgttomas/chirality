@@ -1,0 +1,1 @@
+{"error":{"code":"BAD_REQUEST","message":"risk import missing required columns: risk_id, title, cause, consequence, owner, status (§16)","details":null}}

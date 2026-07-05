@@ -1,0 +1,182 @@
+{
+  "mdl": {
+    "source_file": "pilot-scratch/input/mdl.xlsx",
+    "sheet": "Master Deliverables List",
+    "verbatim_csv_sha256": "c0938c3e5131971e133dff904bbbf9cfd8b3d2246e8c39e870c98e234e40ef11",
+    "total_rows_incl_banner": 459,
+    "detected_header_row": 2,
+    "detected_headers": [
+      "Item #",
+      "Deliverable ID",
+      "Package ID",
+      "Package Name",
+      "Area #",
+      "Package Type",
+      "Deliverable Description",
+      "Document Type",
+      "Discipline",
+      "Working Status",
+      "Priority",
+      "Hold Type",
+      "Next Approval Gate",
+      "Next Target Date"
+    ],
+    "required_columns_s16": [
+      "doc_no",
+      "title",
+      "package",
+      "discipline",
+      "owner",
+      "current_rev",
+      "state",
+      "due_date"
+    ],
+    "required_present_in_detected_header": [
+      "discipline"
+    ],
+    "required_missing_from_detected_header": [
+      "doc_no",
+      "title",
+      "package",
+      "owner",
+      "current_rev",
+      "state",
+      "due_date"
+    ]
+  },
+  "rail": {
+    "source_file": "pilot-scratch/input/rail.xlsx",
+    "sheet": "RAIL",
+    "verbatim_csv_sha256": "2dc983051772f440a09457b5e1af12f33fe83731e07d421fa1a51176a60caae9",
+    "total_rows_incl_banner": 339,
+    "detected_header_row": 7,
+    "detected_headers": [
+      "#",
+      "Item #",
+      "RESPONSIBLE PARTY",
+      "PACKAGE",
+      "AREA",
+      "ITEM TYPE",
+      "ITEM DESCRIPTION",
+      "UPDATES",
+      "STATUS",
+      "HOLD TYPES",
+      "PRIORITY",
+      "NEXT APPROVAL STAGE",
+      "ASSIGNED \nDATE",
+      "ORIGINAL TARGET COMPLETION DATE",
+      "CURRENT TARGET COMPLETION DATE"
+    ],
+    "required_columns_s16": [
+      "item_id",
+      "statement",
+      "type",
+      "log",
+      "owner",
+      "need_by",
+      "status",
+      "raised_by",
+      "raised_date"
+    ],
+    "required_present_in_detected_header": [
+      "status"
+    ],
+    "required_missing_from_detected_header": [
+      "item_id",
+      "statement",
+      "type",
+      "log",
+      "owner",
+      "need_by",
+      "raised_by",
+      "raised_date"
+    ]
+  },
+  "decisions": {
+    "source_file": "pilot-scratch/input/decisions.xlsx",
+    "sheet": "Sheet1",
+    "verbatim_csv_sha256": "d485285c01b00afb92fff5b77dd0f1e17aa611d95e40ff8092fb39bd5bbd0034",
+    "total_rows_incl_banner": 63,
+    "detected_header_row": 1,
+    "detected_headers": [
+      "ID #",
+      "Category",
+      "Source",
+      "Action",
+      "Decision",
+      "Responsible",
+      "Status",
+      "Area",
+      "Open Date",
+      "Due Date",
+      "Forecast Date",
+      "Date Closed",
+      "Comments"
+    ],
+    "required_columns_s16": [
+      "decision_id",
+      "title",
+      "statement",
+      "authority",
+      "need_by",
+      "status"
+    ],
+    "required_present_in_detected_header": [
+      "status"
+    ],
+    "required_missing_from_detected_header": [
+      "decision_id",
+      "title",
+      "statement",
+      "authority",
+      "need_by"
+    ]
+  },
+  "risks": {
+    "source_file": "pilot-scratch/input/risk.xlsx",
+    "sheet": "Risk Log",
+    "verbatim_csv_sha256": "257b2d1e0fff4cfc220d5cad9388ef36c516d095e4dd0315ff9440ef56837ea9",
+    "total_rows_incl_banner": 155,
+    "detected_header_row": 10,
+    "detected_headers": [
+      "NO",
+      "RISK ID",
+      "ACTION ITEM #",
+      "RISK TITLE",
+      "RISK DESCRIPTION",
+      "CATEGORY",
+      "TYPE",
+      "PROB",
+      "IMP",
+      "RISK LEVEL",
+      "RISK TREATMENT",
+      "PROPOSED MITIGATION",
+      "PROB2",
+      "IMP3",
+      "RISK LEVEL2",
+      "RISK OWNER",
+      "TARGET COMPLETION",
+      "MITIGATION STATUS",
+      "Stakeholders",
+      "Risks arising from interactions with stakeholders (investors, clients, NGOs, communities, public).",
+      "Investor concerns, client disputes, NGO opposition, community protests, loss of social license."
+    ],
+    "required_columns_s16": [
+      "risk_id",
+      "title",
+      "cause",
+      "consequence",
+      "owner",
+      "status"
+    ],
+    "required_present_in_detected_header": [],
+    "required_missing_from_detected_header": [
+      "risk_id",
+      "title",
+      "cause",
+      "consequence",
+      "owner",
+      "status"
+    ]
+  }
+}

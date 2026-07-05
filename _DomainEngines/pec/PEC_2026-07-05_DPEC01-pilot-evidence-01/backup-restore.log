@@ -1,0 +1,14 @@
+backup written: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/backups/pec-20260705-154636.db (340.0 KiB)
+backup exit=0
+backup file: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/backups/pec-20260705-154636.db
+current database moved aside: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-restore.db.pre-restore
+restored: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/backups/pec-20260705-154636.db → /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-restore.db
+
+Next steps:
+  1. If the PEC server was running during the restore, stop it now — it must
+     not keep writing to the replaced file.
+  2. Restart the server:  npm start   (or npm run dev:server)
+  3. Verify, then keep or remove pec-scratch-restore.db.pre-restore* as you see fit.
+restore exit=0
+03928fb7c932d0eab13ac2e343d6e4378c4fbdd672ca03b0675a2d427262a11f  /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/backups/pec-20260705-154636.db
+03928fb7c932d0eab13ac2e343d6e4378c4fbdd672ca03b0675a2d427262a11f  /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-restore.db

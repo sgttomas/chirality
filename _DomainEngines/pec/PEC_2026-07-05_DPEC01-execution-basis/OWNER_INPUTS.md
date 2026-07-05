@@ -18,24 +18,42 @@ riders:
 `force=true` remains off and requires a separate ruling. D-PEC-05 keeps L3
 deferred until after D-PEC-01 pilot evidence is captured.
 
-## Owner-Supplied Basis
+## Owner-Supplied Basis (supplied 2026-07-05, in-session, Ryan Tufts)
 
 | Required input | Owner value |
 |---|---|
-| MDL spreadsheet/export path | TBD - owner supplied |
-| RAIL spreadsheet/export path | TBD - owner supplied |
-| Decisions spreadsheet/export path, if in scope | TBD - owner supplied |
-| Risks spreadsheet/export path, if in scope | TBD - owner supplied |
-| Schedule spreadsheet/export path, if in scope | TBD - owner supplied |
-| Actor identity for any authenticated API capture | TBD - owner supplied |
-| Visibility basis for that actor | TBD - owner supplied |
-| Scratch `PEC_DB` path for import rehearsal | TBD - owner supplied |
-| Scratch backup directory | TBD - owner supplied |
-| Real backup artifact path for restore rehearsal, if in scope | TBD - owner supplied |
-| Scratch restore target `PEC_DB` path | TBD - owner supplied |
-| Whether agents may view raw file contents | TBD - owner supplied |
-| Whether unredacted exports/reports may be committed | TBD - owner supplied |
-| Capture limits beyond hashes/counts/timings/reject summaries | TBD - owner supplied |
+| MDL spreadsheet/export path | `projects/pec/pilot-scratch/input/mdl.xlsx` |
+| RAIL spreadsheet/export path | `projects/pec/pilot-scratch/input/rail.xlsx` |
+| Decisions spreadsheet/export path, if in scope | `projects/pec/pilot-scratch/input/decisions.xlsx` |
+| Risks spreadsheet/export path, if in scope | `projects/pec/pilot-scratch/input/risks.xlsx` (live tree: file is `risk.xlsx` — delta recorded below) |
+| Schedule spreadsheet/export path, if in scope | `projects/pec/pilot-scratch/input/schedule.pdf` |
+| Actor identity for any authenticated API capture | `ryan@chirality.ai` |
+| Visibility basis for that actor | full (all three logs) |
+| Scratch `PEC_DB` path for import rehearsal | `projects/pec/pilot-scratch/db/pec-scratch-import.db` |
+| Scratch backup directory | `projects/pec/pilot-scratch/backups/` |
+| Real backup artifact path for restore rehearsal, if in scope | OUT OF SCOPE this run — no real pilot DB exists yet; the real restore rehearsal (PILOT.md §5) becomes its own later evidence run |
+| Scratch restore target `PEC_DB` path | `projects/pec/pilot-scratch/db/pec-scratch-restore.db` |
+| Whether agents may view raw file contents | YES — owner ruling 2026-07-05: "I'm okay with the agents reading the raw files … I'm controlling the data appropriately." |
+| Whether unredacted exports/reports may be committed | YES — run-generated exports and reports may be committed unredacted (same ruling). The raw input spreadsheets and DB files themselves remain uncommitted (and are gitignored under `pilot-scratch/`). Committable artifacts must be written OUTSIDE `pilot-scratch/` (evidence-snapshot dir), since that tree is ignored wholesale. |
+| Capture limits beyond hashes/counts/timings/reject summaries | none — full content capture permitted per the above; hashes still anchor the evidence chain (rider 1) |
+
+### Deltas found at execution (live tree wins; recorded per loop rule)
+
+- Owner basis names `risks.xlsx`; the live file is
+  `projects/pec/pilot-scratch/input/risk.xlsx`. Content identity is anchored by
+  the SHA-256 in the evidence manifest; the run uses the live file.
+- `tools/pilot-drill.ts` always creates its own scratch DB under the OS temp
+  directory (drill design; the profile's `pec.drill` note says the same). The
+  owner-supplied scratch import `PEC_DB` is therefore exercised by the
+  API-mode import rehearsal (server + `POST /api/import/:contract`), which is
+  also where the actor/visibility basis applies.
+- The import layer is CSV-only (`server/src/import/csv.ts`); the `.xlsx`
+  inputs are converted verbatim (first sheet, no header mapping) to scratch
+  CSVs before import; original and derived hashes are both recorded.
+  `schedule.pdf` is hashed but not importable verbatim: the schedule contract
+  is CSV/XER-derived (D-04) and a PDF has no verbatim CSV form — recorded as a
+  limitation, owner to supply a spreadsheet export if schedule import is
+  wanted in a later run.
 
 ## Evidence Run Shape Once Basis Exists
 
