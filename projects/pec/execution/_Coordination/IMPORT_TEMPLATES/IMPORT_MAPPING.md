@@ -99,13 +99,38 @@ Populate `schedule-template.csv` from the schedule tool's CSV/XER export (the
 RAIL references `26020-FEED-Activities-Plan…xlsx`, which looks like the
 natural source).
 
-## ⚑ The one blocking gap: the person roster
+## The person roster — RULED (owner, 2026-07-05: "Create placeholders")
 
-§16 rejects any RAIL `owner` or decisions `authority` that is not a registered
-person (exact name or email). The workbooks use first names, disciplines, and
-companies — 39 distinct RAIL values (`Adam`, `Alex / Chris`, `Process`,
-`CSA`…) and 9 decisions values (`Millenia`, `Tourmaline`, `Piping`,
-`None`…). Until the pilot roster exists (people registered + a mapping from
-these strings), those rows land as row-level rejects in the import report —
-by design. Owner options: supply a roster mapping, or rule that discipline/
-company placeholder persons may be created.
+`ROSTER_PLACEHOLDERS.csv` beside this file holds the 44 placeholder persons
+(workbook strings verbatim as names; `@placeholder.invalid` emails; no login).
+Replace a placeholder with the real person in-app (or update + re-import) as
+the pilot roster firms up. `None` is deliberately NOT a placeholder — decision
+rows with authority `None` stay rejected until a real authority is assigned.
+
+Owner ruling on the ⚑ clerical defaults (2026-07-05): "Proceed with this
+as-is unless you recommend changes now (do it!)" — defaults above stand, and
+two recommended changes were applied at the same ruling:
+
+- RAIL `raised_date` now defaults to the import date when ASSIGNED DATE is
+  blank (tagged `[raised_date defaulted to import date]` in notes) — 199 rows.
+- RAIL `package` now carries the workbook AREA (e.g. `26020-01 - Deep Cut`)
+  so unanchored intake rows keep their area as the anchor suggestion.
+
+## Known import-seam behaviors (observed 2026-07-05, evidence-03)
+
+- **RAIL re-import is not idempotent for unanchored rows**: rows that land as
+  intake are NOT matched by `item_id` on re-import and would duplicate. Only
+  re-import rows that were rejected (or that match an existing
+  work-item/hold/interface ref). Candidate harness/tool improvement — logged
+  in the evidence-03 manifest.
+- Person-creation from the roster CSV must use a real CSV parser: the quoted
+  `"PC, DC, SCM"` name breaks naive comma-splitting (this bit the first
+  roster application; fixed in-place in the scratch DB).
+
+## Residual workbook data gaps (owner/pilot-team side)
+
+- 17 RAIL rows with no target-completion date (+1 with a `1900-11-27` junk
+  date) — reject until dated.
+- 8 decision rows with authority `None` + 2 with blank authority + 2 with
+  blank status — reject until assigned.
+- Risk log unpopulated; schedule needs a CSV/XER export (PDF not importable).
