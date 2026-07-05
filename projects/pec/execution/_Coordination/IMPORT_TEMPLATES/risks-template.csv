@@ -1,0 +1,2 @@
+risk_id,title,cause,consequence,owner,status,package,deliverable_ref,probability,impact,mitigation,need_by
+RISK-1,Vendor data late for compressor skid,Long-lead vendor engineering backlog,Piping and E&I deliverables slip past Gate 3,person@example.com,open,26020-PKG-001,,3,4,Expedite vendor data via weekly vendor call,2026-08-15
