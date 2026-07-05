@@ -105,3 +105,11 @@
   - Delta found (tool gap, recorded in the manifest): `tools/seed.ts:43` ignores `PEC_DB` (server honors it) — compounds the profile's `seed.demo` open issue; candidate repair rides the future `pec_api_adapter`/harness work, not this loop's write scope (F-PEC-1).
   - Gate outcome: with evidence 01 (deterministic checks) + 02 (API seams), the L1 rung is exercised end-to-end at demo scope. Next rungs are owner-shaped: L1 acceptance → per-operation L2 (D-T0-13), D-PEC-01 for any real-data basis, Gate 2 adoption.
   - Checks: self-check pass; harness pytest pass.
+
+- **2026-07-04 — Receipt 7** (L1 accepted as proven; loop handed to the standing agent).
+  - Start: `fa0cdf3b8` (`origin/main` after PR #58 merge, owner-directed).
+  - Owner ruling of record (2026-07-04, in-session, Ryan Tufts): "I accept L1 as proven. Once you've accounted for that ruling and what it entails, I want to hand-off the rest of the work to the other agent."
+  - Executed pointers: `_DomainEngines/_DECISIONS/D-T0-17_pec_l1_acceptance.md` (acceptance record, D-T0-10 precedent; evidence commit-bound to PR #57 `8e42b126c` and PR #58 `fa0cdf3b8`); D-T0-17 register row RULED; ruling SHA backfill rides this branch.
+  - What it unlocks: per-operation L2 of the D-T0-13 O-A path — `backup.create` first, each act human-confirmed, demo/scratch basis until D-PEC-01. Unchanged: D-T0-14 CLOSED, profile DRAFT/Gate 2 open, fences F-PEC-1..4, L3 future-only.
+  - Handoff: no session-bound state exists — the next iteration (any agent) re-derives from this ledger, the registers, and the live tree per LOOP_INIT. Next lawful tranche: demo/scratch-basis `backup.create` L2 evidence, or D-PEC-01 packet preparation at owner direction.
+  - Checks: self-check pass; harness pytest pass.
