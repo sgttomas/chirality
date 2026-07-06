@@ -40,10 +40,11 @@ Routes (`projects/pec/server/src/api.ts`, D-PEC-08 block):
 
 Auth is cookie/session only: `POST /api/auth/login` → httpOnly `pec_session`
 cookie (7-day TTL), DB-backed, person-bound; **no API-token / bearer / service
-mechanism exists** (`server/src/auth.ts`; grep-verified). Mutations carry a
-same-origin guard that fires only when an `Origin` header is present
-(`services/proposals.ts` `requireSameOrigin`, RV-21); a header-less
-programmatic client passes. Server: `node:http`, port `PEC_PORT` (default
+mechanism exists** (`server/src/auth.ts`; grep-verified). The five
+import-proposal mutation routes carry a same-origin guard that fires only when
+an `Origin` header is present (`services/proposals.ts` `requireSameOrigin`,
+RV-21); other mutations (intake triage, login) carry no origin guard; a
+header-less programmatic client passes. Server: `node:http`, port `PEC_PORT` (default
 4810), DB `PEC_DB`; ADR-002 zero server runtime dependencies.
 
 ## 3. Transport design (D-T0-19 sub-item 2, recommendation O-2A)
@@ -97,21 +98,25 @@ descriptor text.
 
 ## 5. Phased tranche plan (D-T0-19 sub-item 1; no source change under this brief)
 
-- **P1 — app-dev `D-APP-51` (future PROPOSAL):** replace the singleton profile
-  gate with a small registry (id → profile path, engine kind, transport
-  binding); expose the two read tools for `profileId: 'pec'`. No pec writes;
-  no new live tools beyond the read pair.
-- **P2 — app-dev `D-APP-52` (future PROPOSAL):** the localhost HTTP client +
-  session identity per §3; first live exposure of `domain_propose_operation` +
-  `domain_proposal_validate`, scoped to pec; hermetic scratch-basis rehearsal
-  + committed bridge evidence (§7). Real-data use additionally gated by
-  `D-T0-20`.
+- **P1 — app-dev future PROPOSAL (provisionally `D-APP-51`, renumbered from
+  the live app-dev register at authoring time):** replace the singleton
+  profile gate with a small registry (id → profile path, engine kind,
+  transport binding); expose the two read tools for `profileId: 'pec'`. No pec
+  writes; no new live tools beyond the read pair.
+- **P2 — app-dev future PROPOSAL (provisionally `D-APP-52`, same renumber
+  rule):** the localhost HTTP client + session identity per §3; first live
+  exposure of `domain_propose_operation` + `domain_proposal_validate`, scoped
+  to pec; hermetic scratch-basis rehearsal + committed bridge evidence (§7).
+  Real-data **visibility** additionally gated by `D-T0-20`; real/non-scratch
+  DB **operation** by its own future basis row (the D-PEC-10 scratch/demo
+  rider and the deferred pilot-DB basis stand).
 - **P3 — pec `D-PEC-16` → later source-tranche row:** built-in agent UI
   (sibling brief); engine-side source changes, if any, ride that lane — the
   bridge itself requires **zero pec source change**.
 - **P4 — end-to-end weekly-workflow rehearsal** through the harness UI: owner
   at the screen for every accept/apply, agent driving propose/refresh/triage,
-  captured per §7 and the FILE_DROP_RUNBOOK v1.2 cycle.
+  captured per §7 and the FILE_DROP_RUNBOOK v1.2 cycle — on the mutation basis
+  then ruled (scratch until the pilot-DB/real-basis row rules).
 
 Cross-loop fences: app-dev source executes only under D-APP-* rulings in the
 app-dev register; this lane never writes `_DomainEngines/bridge/**`,
@@ -124,10 +129,13 @@ What the model sees is exactly what tool results carry. Under the current
 CLOSED default: synthetic/demo/scratch bases freely; owner-dropped file
 content and count-level + dropped-row-error reports per D-PEC-12 §4; nothing
 else without a per-run owner enumeration. If `D-T0-20` rules O-B, the
-enumerated surface (intake items, proposal records/reports, profile
-`chirality_readable_artifacts`, dropped files) becomes the standing bound, and
-the transport client enforces it by construction: the client binds only the
-§4-mapped endpoints — it has no generic "GET any pec URL" tool. Capture limits
+enumerated surface (intake items, proposal records/reports, the profile's
+`chirality_readable_artifacts` set, dropped files) becomes the standing bound,
+and for the v1 endpoint set the transport client enforces it structurally: the
+client binds only the §4-mapped endpoints — it has no generic "GET any pec
+URL" tool. Any later tool that reaches other enumerated surfaces (register
+exports, Explain payloads) needs its own D-APP row and re-check against this
+bound. Capture limits
 for what may be *committed* remain governed by the D-PEC-01/RV-11 conventions
 regardless of the visibility ruling.
 

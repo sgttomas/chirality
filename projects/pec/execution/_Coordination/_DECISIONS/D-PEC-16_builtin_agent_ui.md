@@ -62,6 +62,7 @@ row may waive.
 | O-A | Adopt the brief with runtime **RT-B (local sidecar)**: a separate local Node process (free to use the Claude Agent SDK and the app-dev `harness-contract` packages) drives pec exclusively through the RBAC'd HTTP API as the provisioned agent person; the pec web UI gains an agent panel that talks to the sidecar; the pec server package stays zero-dependency. | Richest agent soonest; one engine-side seam shared with the `D-T0-19` bridge; the SDK dependency lives outside the pec server package (ADR-002 intact); the sidecar's packaging/start story is a tranche-level design item. |
 | O-B | Adopt the brief with runtime **RT-A (in-server, zero-dep)**: a hand-rolled `node:https` Anthropic API client inside the pec server, streaming to the web UI. | Truly single-process "built-in", ADR-002 intact by construction — but re-implements session/tool-loop/streaming plumbing the SDK already provides; slower to useful, more surface to test. |
 | O-C | Defer or redirect (e.g., treat the app-dev harness UI as the only agent surface). | The bridge half proceeds alone; the "built-in agent UI in pec" end goal has no design of record. |
+| O-D | Adopt the brief; defer the runtime choice (RT-A vs RT-B) to the source-tranche row, where concrete packaging facts are in front of the owner. | Design of record now, runtime commitment later — the D-APP-50 "transport settles in-tranche" precedent; the tranche packet must then carry the runtime decision explicitly. |
 
 ## Recommendation (non-binding)
 
@@ -69,16 +70,18 @@ O-A. The owner's ruled priority is a *useful agent* (D-PEC-12 amendment:
 "focus on making a useful agent for now"); RT-B reaches useful fastest while
 keeping every governance property structural: the sidecar holds no special
 power — it is just another RBAC-bounded API client, so the UI, the harness
-bridge, and the loop agents all converge on the same audited seam.
+bridge, and the loop agents all converge on the same audited seam. O-D is a
+sound second choice if the owner prefers ruling the runtime with the tranche
+packet's packaging facts in view.
 
 ## On ruling (mechanism)
 
-Record the ruling verbatim here and in the register row. O-A/O-B: the brief's
-status moves CANDIDATE → ADOPTED with the chosen runtime recorded and any
-owner riders appended; a new row (D-PEC-17-to-be) opens NOT_PREPARED for the
-source-tranche authorization; no source change until that row rules. O-C: the
-brief stays CANDIDATE (or is withdrawn) and the row closes with the ruling
-recorded.
+Record the ruling verbatim here and in the register row. O-A/O-B/O-D: the
+brief's status moves CANDIDATE → ADOPTED with the runtime choice (or its
+O-D deferral-to-tranche) recorded and any owner riders appended; a new row
+(D-PEC-17-to-be) opens NOT_PREPARED for the source-tranche authorization; no
+source change until that row rules. O-C: the brief stays CANDIDATE (or is
+withdrawn) and the row closes with the ruling recorded.
 
 ## Human ruling
 

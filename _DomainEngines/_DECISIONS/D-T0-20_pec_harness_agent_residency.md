@@ -56,6 +56,10 @@ acts; K-DOMAIN-4 professional-boundary claims; the D-PEC-01/RV-11 conventions
 for what may be **committed** to the repo (capture limits are a separate
 question from model visibility — a materially new data source still needs
 fresh owner confirmation of capture limits before its exports are committed);
+**the mutation basis** — this row rules visibility/egress only; the D-PEC-10
+scratch/demo-basis rider and the deferred pilot-DB basis (owner 2026-07-05:
+"Another time") stand, so agent operation against a real/non-scratch DB needs
+its own future row regardless of what this one rules;
 `_DomainEngines/profiles/pec.yaml` `data_residency` until the ruled option's
 mechanism updates it; piping's engine-specific D-T0-04 OPEN ruling (unrelated
 regime).
@@ -65,7 +69,7 @@ regime).
 | ID | Option | Consequence |
 |---|---|---|
 | O-A | Keep CLOSED. Agent sessions on real data see only owner-dropped file content, count-level report summaries, and row-level errors for the dropped rows themselves (the D-PEC-12 §4 baseline). | No standing workflow on real data: triage of real intake items, LLM mapping over instance content, and the harness bridge's real-data use all stay blocked or per-run-enumerated; the built-in UI ships deterministic-only. |
-| O-B | **Enumerated OPEN surface.** Agent sessions may read, and route to the owner-configured model provider, exactly: (i) intake items and their dispositions; (ii) `import_proposal` records, dry-run/apply reports, and import-related history entries; (iii) the profile's `chirality_readable_artifacts` set (register export CSVs, sponsor-brief/package-pack renders, Explain payloads, ImportReport JSON); (iv) owner-dropped weekly files. All under the agent person's RBAC visibility, `is_admin=0`. Anything outside the enumeration stays CLOSED. | The ruled weekly workflow, the bridge, and the built-in UI's LLM features all become lawful on real data under one standing basis; the enumeration is auditable against the profile and RBAC; egress remains bounded to the owner-configured provider. |
+| O-B | **Enumerated OPEN surface.** Agent sessions may read, and route to the owner-configured model provider, exactly: (i) intake items and their dispositions; (ii) `import_proposal` records, dry-run/apply reports, and import-related history entries; (iii) the profile's `chirality_readable_artifacts` set as enumerated in `_DomainEngines/profiles/pec.yaml` (register export CSVs, sponsor-brief/package-pack renders, Explain payloads, ImportReport JSON, the committed README/docs/fixtures files, and scratch/owner-approved drill/backup/restore evidence); (iv) owner-dropped weekly files. All under the agent person's RBAC visibility, `is_admin=0`. Anything outside the enumeration stays CLOSED. | The ruled weekly workflow, the bridge, and the built-in UI's LLM features all become **visibility-lawful** on real data under one standing basis (the mutation basis for a real/non-scratch DB remains its own future row); the enumeration is auditable against the profile and RBAC; egress remains bounded to the owner-configured provider. |
 | O-C | Full OPEN (piping D-T0-04 parity): the agent may see any instance content its RBAC visibility reaches. | Simplest to operate; gives up the enumerated audit surface for a pilot dataset that includes real project execution content. |
 
 ## Recommendation (non-binding)

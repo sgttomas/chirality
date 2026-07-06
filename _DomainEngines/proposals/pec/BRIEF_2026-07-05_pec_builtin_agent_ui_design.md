@@ -18,9 +18,9 @@ feeds.
 
 Direction of record (2026-07-05, verbatim): "a fully functioning bridge, with
 a built-in agent UI in pec." The workflow it serves is ruled (D-PEC-10 O-A,
-owner intent verbatim in that packet): five weekly source documents; "the
-agent to intake and triage the information therein to the correct database
-assignments"; "the interface will also allow the human to make targeted
+owner intent verbatim in that packet): five weekly source documents; updates
+"by having the agent intake and triage the information therein to the correct
+database assignments"; "the interface will also allow the human to make targeted
 changes within the current screen and what it shows"; "the agent is the
 primary means of making updates."
 
@@ -100,8 +100,8 @@ runtime choice never changes what the agent may do to pec.
   `config.manage` silently.
 - **Deferred obligations RV-13..21** of the adopted upload brief bind the
   tranche wherever the surfaces overlap (hash binding, CSV-only v1,
-  history-vs-audit, permission naming, dry-run contract, upload-store
-  lifecycle, precedent note, CSRF posture).
+  history-vs-audit, permission naming, dry-run contract, report-field
+  completeness, upload-store lifecycle, precedent note, CSRF posture).
 - **No new authority:** the panel adds capability, never permission — anything
   the agent cannot do via the raw API it cannot do via the panel.
 

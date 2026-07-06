@@ -93,13 +93,16 @@ pilot-readiness, go-live, or professional claim (K-DOMAIN-4).
 
 Proposed phase order (detail in the bridge design brief):
 
-- **P1 (app-dev, future `D-APP-51`):** multi-engine profile registry replacing
-  the singleton gate in `read-tools.ts`; read-side tools accept `profileId:
-  'pec'`. No pec writes.
-- **P2 (app-dev, future `D-APP-52`):** pec HTTP transport client + live
-  exposure of `domain_propose_operation` / `domain_proposal_validate` scoped to
-  pec; hermetic scratch-basis bridge rehearsal evidence. Real-data use
-  additionally gated by `D-T0-20`.
+- **P1 (app-dev, future row — provisionally `D-APP-51`, renumbered from the
+  live app-dev register at authoring time):** multi-engine profile registry
+  replacing the singleton gate in `read-tools.ts`; read-side tools accept
+  `profileId: 'pec'`. No pec writes.
+- **P2 (app-dev, future row — provisionally `D-APP-52`, same renumber rule):**
+  pec HTTP transport client + live exposure of `domain_propose_operation` /
+  `domain_proposal_validate` scoped to pec; hermetic scratch-basis bridge
+  rehearsal evidence. Real-data **visibility** additionally gated by
+  `D-T0-20`; real/non-scratch DB **operation** by its own future basis row
+  (below).
 - **P3 (pec, `D-PEC-16` → its own later source-tranche row):** the built-in
   agent UI.
 - **P4:** end-to-end weekly-workflow rehearsal through the harness UI (owner
@@ -108,7 +111,7 @@ Proposed phase order (detail in the bridge design brief):
 
 | ID | Option | Consequence |
 |---|---|---|
-| O-1A | Single lane, run by the pec loop, with an explicit owner-granted authoring scope for app-dev **decision/coordination packets only** (`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` rows `D-APP-51+` authored as PROPOSALs by this loop; app-dev source tranches execute only under those D-APP rulings). | One accountable lane and receipt trail; the F-PEC-4 fence set gains the enumerated app-dev coordination paths by this ruling (dated note, no fence rewrite); app-dev source stays behind its own register's rulings; the app-dev↔piping loop untouched. |
+| O-1A | Single lane, run by the pec loop, with an explicit owner-granted authoring scope for app-dev **decision/coordination packets only** (`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` rows authored as PROPOSALs by this loop; app-dev source tranches execute only under those D-APP rulings). | One accountable lane and receipt trail; the F-PEC-4 fence set gains the enumerated app-dev coordination paths by this ruling (dated note, no fence rewrite). Disclosed overlap: the app-dev register file is also the concurrent app-dev↔piping loop's write surface and both loops would mint from the same `D-APP-*` sequence — the grant therefore includes a recorded deconfliction act (dated grant note in the app-dev register preamble at ruling time; IDs minted from the live register at authoring time; receipt cross-references in both ledgers). That loop's own lanes are otherwise untouched, and app-dev source stays behind its own register's rulings. |
 | O-1B | Split lanes: this loop prepares only pec/tier-0-side artifacts; a separate app-dev-side loop authors and executes the D-APP packets. | Cleaner fence story, but two loops must coordinate sequencing through receipts; the owner carries the cross-loop scheduling. |
 | O-1C | Defer. | The bridge stays unplanned; the built-in-UI lane (D-PEC-16) can still proceed engine-side. |
 
@@ -120,8 +123,8 @@ trail for the owner's stated top priority without weakening any source fence.
 
 | ID | Option | Consequence |
 |---|---|---|
-| O-2A | **Localhost HTTP + person-bound service identity.** The harness client talks to the owner-run pec server (`127.0.0.1`, configured port, default 4810); authenticates via `POST /api/auth/login` as an owner-provisioned agent person (`is_admin=0`, coordinator-class grant — the D-PEC-10 actor model); holds the `pec_session` cookie in memory for the session; credentials come from local environment, never committed. No pec source change needed for v1 (evidenced by rehearsal-01). Rehearsal/evidence runs use scratch DBs; real-DB runs follow the D-PEC-10 O-A weekly-cycle rules and `D-T0-20`. | The transport matches the engine's shape: RBAC, audit attribution, hash/staleness guards all come from the engine itself, and both agent hosts (harness and built-in UI) share one seam. |
-| O-2B | Child-process/sidecar per the D-APP-50 framing: app-dev spawns the pec server against a scratch DB and drives the same API. | Hermetic for tests, but wrong as the primary transport — the weekly workflow targets the owner's live server and DB, which the harness must never spawn or own; reduces to O-2A plus lifecycle management. |
+| O-2A | **Localhost HTTP + person-bound service identity.** The harness client talks to the owner-run pec server (`127.0.0.1`, configured port, default 4810); authenticates via `POST /api/auth/login` as an owner-provisioned agent person (`is_admin=0`, coordinator-class grant — the D-PEC-10 actor model); holds the `pec_session` cookie in memory for the session; credentials come from local environment, never committed. No pec source change needed for v1 (evidenced by rehearsal-01). Rehearsal/evidence runs use scratch DBs; operation against the owner's real/non-scratch DB is **not** granted here — it additionally needs `D-T0-20` (visibility) **and** its own future basis row lifting the D-PEC-10 scratch/demo-basis rider (the deferred pilot-DB basis; owner 2026-07-05: "Another time"). | The transport matches the engine's shape: RBAC, audit attribution, hash/staleness guards all come from the engine itself, and both agent hosts (harness and built-in UI) share one seam. |
+| O-2B | Child-process/sidecar per the D-APP-50 framing: app-dev spawns the pec server against a scratch DB and drives the same API. | Hermetic for tests, but wrong as the primary transport — the weekly workflow is intended (pending its future basis row) to target the owner's live server and DB, which the harness must never spawn or own; reduces to O-2A plus lifecycle management. |
 | O-2C | Defer transport to the executing D-APP tranche (D-APP-50 precedent). | Keeps tier-0 clean but re-opens at app-dev a question that is cross-project here: the transport fixes the *actor model* (provisioned person vs process identity), which is an engine-governance fact, not an app-dev implementation detail. |
 
 **Recommendation (non-binding):** O-2A as the ruled transport, with the
@@ -157,15 +160,23 @@ corrected to read-grade. Refresh therefore rides the write-graded
 ## On ruling (mechanism)
 
 Record the ruling verbatim here and in the register row. O-1A additionally:
-append a dated fence-scope note to this packet and to the `D-T0-15` fence
-record naming the granted app-dev coordination paths (no fence text rewrite);
-the next loop iteration authors the `D-APP-51`/`D-APP-52` PROPOSAL packets in
-the app-dev register per P1/P2 and stops at their rulings. O-2A/O-3A: the
-ruled transport and mapping bind the future D-APP tranches; no execution under
-this row. The companion `D-T0-20` rules separately; nothing in this row moves
-residency. O-1B: this loop stops after tier-0/pec-side artifacts and the owner
-routes the D-APP packets. Any O-*C: the row closes with the ruling recorded;
-no execution.
+append a dated fence-scope note to this packet, to the `D-T0-15` fence record,
+and to the pec workplan's F-PEC-4 bullet (dated grant pointers, no fence text
+rewrite — the same note may, at the owner's word, also ratify explicitly the
+precedent-only tier-0 packet-authoring carve-out this loop has used since
+D-T0-11); place the deconfliction grant note in the app-dev register preamble
+at ruling time so the app-dev↔piping loop discovers the grant at its own
+step-0; the next loop iteration then authors the P1/P2 PROPOSAL packets in the
+app-dev register (IDs minted from the live register) and stops at their
+rulings. A ruling affirming O-1A/O-2A/O-3A together also moves the bridge
+design brief CANDIDATE → ADOPTED as the design basis for those packets
+(adoption authorizes no implementation); a partial ruling leaves it CANDIDATE
+with the ruled sub-items recorded in it. O-2A/O-3A: the ruled transport and
+mapping bind the future D-APP tranches; no execution under this row. The
+companion `D-T0-20` rules separately; nothing in this row moves residency or
+any mutation basis. O-1B: this loop stops after tier-0/pec-side artifacts and
+the owner routes the D-APP packets. Any O-*C: the row closes with the ruling
+recorded; no execution.
 
 ## Human ruling
 
