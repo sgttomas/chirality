@@ -1,0 +1,14 @@
+[
+ {
+  "id": 2519,
+  "projectId": 1,
+  "recordType": "work_item",
+  "recordId": 1,
+  "at": "2026-07-06T14:44:20.593Z",
+  "actorId": 46,
+  "kind": "created",
+  "summary": "WI-0001 created, anchored to deliverable#450, owner #6",
+  "payload": "{\"input\":{\"title\":\"[PKG-83] Design Basis Memorandum\",\"anchorType\":\"deliverable\",\"anchorId\":450,\"ownerId\":6,\"needBy\":\"2026-05-06\",\"kind\":\"action\",\"log\":\"package\",\"sourceType\":\"intake_item\",\"sourceId\":19}}",
+  "authorityRef": null
+ }
+]

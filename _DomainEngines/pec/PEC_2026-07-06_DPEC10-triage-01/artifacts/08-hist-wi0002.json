@@ -1,0 +1,14 @@
+[
+ {
+  "id": 2528,
+  "projectId": 1,
+  "recordType": "work_item",
+  "recordId": 2,
+  "at": "2026-07-06T14:44:20.598Z",
+  "actorId": 46,
+  "kind": "created",
+  "summary": "WI-0002 created, anchored to deliverable#435, owner #25",
+  "payload": "{\"input\":{\"title\":\"[PKG-87] Control System Architecture\",\"anchorType\":\"deliverable\",\"anchorId\":435,\"ownerId\":25,\"needBy\":\"2026-04-23\",\"kind\":\"action\",\"log\":\"package\",\"sourceType\":\"intake_item\",\"sourceId\":23}}",
+  "authorityRef": null
+ }
+]

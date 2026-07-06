@@ -1,0 +1,38 @@
+[
+ {
+  "id": 2529,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 23,
+  "at": "2026-07-06T14:44:20.598Z",
+  "actorId": 46,
+  "kind": "dispositioned",
+  "summary": "INTK-0023 dispositioned: converted \u2192 WI-0002 (Converted to a work item anchored to MDL deliverable id 435 ('Control System Architecture - Includes PLC, DCS, etc.') \u2014 the statement remainder of [PKG-87] resolves to exactly one MDL deliverable title (pre-run scan); owner and need-by carried verbatim from the source row. (D-PEC-10 triage-01 R2))",
+  "payload": "{\"disposition\":\"converted\",\"created\":[{\"recordType\":\"work_item\",\"recordId\":2,\"ref\":\"WI-0002\"}]}",
+  "authorityRef": null
+ },
+ {
+  "id": 2527,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 23,
+  "at": "2026-07-06T14:44:20.597Z",
+  "actorId": 46,
+  "kind": "transition",
+  "summary": "INTK-0023: raised \u2192 in_triage",
+  "payload": null,
+  "authorityRef": null
+ },
+ {
+  "id": 1993,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 23,
+  "at": "2026-07-05T22:28:59.430Z",
+  "actorId": 1,
+  "kind": "import",
+  "summary": "INTK-0023 created unanchored from RAIL row PKG-87 (anchor \"\" unmatched)",
+  "payload": null,
+  "authorityRef": null
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "id": 1985,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 15,
+  "at": "2026-07-05T22:28:59.429Z",
+  "actorId": 1,
+  "kind": "import",
+  "summary": "INTK-0015 created unanchored from RAIL row PKG-77 (anchor \"\" unmatched)",
+  "payload": null,
+  "authorityRef": null
+ }
+]
