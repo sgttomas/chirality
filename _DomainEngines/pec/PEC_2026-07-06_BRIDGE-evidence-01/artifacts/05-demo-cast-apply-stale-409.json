@@ -1,0 +1,19 @@
+{
+  "demoCast": true,
+  "act": "apply (attempt)",
+  "actor": "admin@aurora.dev (owner-role admin persona)",
+  "force": false,
+  "engineResponse": {
+    "status": 409,
+    "body": {
+      "error": {
+        "code": "STALE_PROPOSAL",
+        "message": "the project changed since this proposal's dry-run; refresh the dry-run and re-review (RV-13)",
+        "details": {
+          "basisHistoryId": 0,
+          "currentWatermark": 167
+        }
+      }
+    }
+  }
+}

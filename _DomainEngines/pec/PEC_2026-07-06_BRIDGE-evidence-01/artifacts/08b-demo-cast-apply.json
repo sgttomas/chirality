@@ -1,0 +1,49 @@
+{
+  "demoCast": true,
+  "act": "apply",
+  "actor": "admin@aurora.dev (owner-role admin persona)",
+  "force": false,
+  "engineResponse": {
+    "status": 200,
+    "body": {
+      "id": 1,
+      "projectId": 2,
+      "ref": "IPR-0001",
+      "contract": "mdl",
+      "sourceName": "mdl-syn-v1.csv",
+      "sourceSha256": "b53971bfaa3cffc470c0bcf6c3a8543bd7b802c9d88ffc4fbfeaf9c0994fcc30",
+      "sourceBytes": 681,
+      "sourceCsv": "doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type\nSYN-D-201,Bridge design basis — synthetic,SYN-PKG-201,Process,admin@aurora.dev,A,in_work,2026-09-15,Gate 2,IFR,SYN-EDMS-0201,,Synthetic D-APP-52 bridge rehearsal row,Design Basis\nSYN-D-202,Bridge equipment list — synthetic,SYN-PKG-201,Mechanical,admin@aurora.dev,A,in_work,2026-09-22,Gate 2,IFR,SYN-EDMS-0202,,Synthetic D-APP-52 bridge rehearsal row,Equipment List\nSYN-D-203,Bridge line list — synthetic,SYN-PKG-201,Piping,admin@aurora.dev,A,in_work,2026-09-29,Gate 2,IFR,SYN-EDMS-0203,,Synthetic D-APP-52 bridge rehearsal row,Line List\n",
+      "state": "applied",
+      "basisHistoryId": 167,
+      "dryRunReport": {
+        "contract": "mdl",
+        "accepted": 3,
+        "updated": 0,
+        "conflicts": [],
+        "rejected": [],
+        "intakeCreated": 0
+      },
+      "dryRunAt": "2026-07-06T11:46:47.109Z",
+      "acceptedBy": 15,
+      "acceptedAt": "2026-07-06T11:46:47.161Z",
+      "acceptedSha256": "b53971bfaa3cffc470c0bcf6c3a8543bd7b802c9d88ffc4fbfeaf9c0994fcc30",
+      "rejectedBy": null,
+      "rejectedAt": null,
+      "rejectReason": null,
+      "appliedBy": 15,
+      "appliedAt": "2026-07-06T11:46:47.164Z",
+      "applyReport": {
+        "contract": "mdl",
+        "accepted": 3,
+        "updated": 0,
+        "conflicts": [],
+        "rejected": [],
+        "intakeCreated": 0
+      },
+      "createdBy": 16,
+      "createdAt": "2026-07-06T11:46:46.906Z",
+      "version": 7
+    }
+  }
+}

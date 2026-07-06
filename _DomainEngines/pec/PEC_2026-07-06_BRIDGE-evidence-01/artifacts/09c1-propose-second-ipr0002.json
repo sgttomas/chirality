@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "profileId": "pec",
+  "toolId": "domain_propose_operation",
+  "mode": "propose",
+  "transportStatus": {
+    "status": "live",
+    "posture": "D-T0-19 O-2A loopback HTTP transport (bridge P2, D-APP-52)",
+    "endpoint": {
+      "host": "127.0.0.1",
+      "port": 4907,
+      "method": "POST",
+      "path": "/api/projects/2/import-proposals"
+    },
+    "actorModel": "owner-provisioned pec agent person (is_admin=0, import.propose grant); credentials from local environment, never in results",
+    "network": "loopback-only; endpoint allowlist: login, propose, refresh, get-proposal",
+    "filesystemWrites": false,
+    "shell": false,
+    "originHeader": "none (RV-21 permits header-less programmatic clients; recorded, not hidden)"
+  },
+  "inputs": {
+    "contract": "mdl",
+    "sourceName": "mdl-syn-v1-second.csv",
+    "csv": {
+      "source": "inline",
+      "sha256": "b53971bfaa3cffc470c0bcf6c3a8543bd7b802c9d88ffc4fbfeaf9c0994fcc30",
+      "byteLength": 681
+    }
+  },
+  "engine": {
+    "id": 2,
+    "projectId": 2,
+    "ref": "IPR-0002",
+    "contract": "mdl",
+    "sourceName": "mdl-syn-v1-second.csv",
+    "sourceSha256": "b53971bfaa3cffc470c0bcf6c3a8543bd7b802c9d88ffc4fbfeaf9c0994fcc30",
+    "sourceBytes": 681,
+    "sourceCsv": "doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type\nSYN-D-201,Bridge design basis — synthetic,SYN-PKG-201,Process,admin@aurora.dev,A,in_work,2026-09-15,Gate 2,IFR,SYN-EDMS-0201,,Synthetic D-APP-52 bridge rehearsal row,Design Basis\nSYN-D-202,Bridge equipment list — synthetic,SYN-PKG-201,Mechanical,admin@aurora.dev,A,in_work,2026-09-22,Gate 2,IFR,SYN-EDMS-0202,,Synthetic D-APP-52 bridge rehearsal row,Equipment List\nSYN-D-203,Bridge line list — synthetic,SYN-PKG-201,Piping,admin@aurora.dev,A,in_work,2026-09-29,Gate 2,IFR,SYN-EDMS-0203,,Synthetic D-APP-52 bridge rehearsal row,Line List\n",
+    "state": "ready_for_review",
+    "basisHistoryId": 179,
+    "dryRunReport": {
+      "contract": "mdl",
+      "accepted": 0,
+      "updated": 3,
+      "conflicts": [],
+      "rejected": [],
+      "intakeCreated": 0
+    },
+    "dryRunAt": "2026-07-06T11:46:47.317Z",
+    "acceptedBy": null,
+    "acceptedAt": null,
+    "acceptedSha256": null,
+    "rejectedBy": null,
+    "rejectedAt": null,
+    "rejectReason": null,
+    "appliedBy": null,
+    "appliedAt": null,
+    "applyReport": null,
+    "createdBy": 16,
+    "createdAt": "2026-07-06T11:46:47.316Z",
+    "version": 2
+  },
+  "resultSemantics": "transport/evidence envelope only; no domain verdict; a green dry-run is NOT acceptance — acceptance and application are human acts in pec behind admin-only RBAC (K-DOMAIN-3/K-DOMAIN-4)"
+}

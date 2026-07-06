@@ -1,0 +1,11 @@
+{
+  "step": "00-agent-login",
+  "ok": true,
+  "actor": {
+    "email": "pec-bridge-agent@rehearsal.demo",
+    "personId": 16,
+    "is_admin": 0,
+    "role": "coordinator (import.propose grant; never import.accept)"
+  },
+  "note": "Session established by the transport client login() from local-environment credentials; the login response body is discarded by design and neither credentials nor the cookie appear in any artifact."
+}

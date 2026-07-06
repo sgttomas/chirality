@@ -1,0 +1,59 @@
+{
+  "ok": false,
+  "profileId": "pec",
+  "toolId": "domain_propose_operation",
+  "mode": "refresh",
+  "errorClass": "version_conflict",
+  "status": 409,
+  "engineError": {
+    "code": "VERSION_CONFLICT",
+    "message": "the record changed since you read it (PEC-NFR-004)",
+    "details": {
+      "currentVersion": 2,
+      "intervening": [
+        {
+          "id": 182,
+          "projectId": 2,
+          "recordType": "import_proposal",
+          "recordId": 2,
+          "at": "2026-07-06T11:46:47.317Z",
+          "actorId": 16,
+          "kind": "proposal_dry_run",
+          "summary": "IPR-0002 dry-run computed (0 would create, 3 would update, 0 conflicts, 0 rejected, 0 to intake)",
+          "payload": null,
+          "authorityRef": null
+        },
+        {
+          "id": 181,
+          "projectId": 2,
+          "recordType": "import_proposal",
+          "recordId": 2,
+          "at": "2026-07-06T11:46:47.316Z",
+          "actorId": 16,
+          "kind": "created",
+          "summary": "IPR-0002 proposed (mdl, 681 bytes, sha256 b53971bfaa3c…)",
+          "payload": null,
+          "authorityRef": null
+        }
+      ]
+    }
+  },
+  "normalFlow": false,
+  "message": "pec refused the request (409 VERSION_CONFLICT): the record changed since you read it (PEC-NFR-004)",
+  "transportStatus": {
+    "status": "live",
+    "posture": "D-T0-19 O-2A loopback HTTP transport (bridge P2, D-APP-52)",
+    "endpoint": {
+      "host": "127.0.0.1",
+      "port": 4907,
+      "method": "POST",
+      "path": "/api/projects/2/import-proposals/2/refresh"
+    },
+    "actorModel": "owner-provisioned pec agent person (is_admin=0, import.propose grant); credentials from local environment, never in results",
+    "network": "loopback-only; endpoint allowlist: login, propose, refresh, get-proposal",
+    "filesystemWrites": false,
+    "shell": false,
+    "originHeader": "none (RV-21 permits header-less programmatic clients; recorded, not hidden)"
+  },
+  "resultSemantics": "transport/evidence envelope only; no domain verdict; a green dry-run is NOT acceptance — acceptance and application are human acts in pec behind admin-only RBAC (K-DOMAIN-3/K-DOMAIN-4)"
+}

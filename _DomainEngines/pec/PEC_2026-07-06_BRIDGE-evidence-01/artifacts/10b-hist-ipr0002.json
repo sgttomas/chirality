@@ -1,0 +1,32 @@
+{
+  "capture": "history extract (script-side read as the admin persona; disclosed)",
+  "engineResponse": {
+    "status": 200,
+    "body": [
+      {
+        "id": 182,
+        "projectId": 2,
+        "recordType": "import_proposal",
+        "recordId": 2,
+        "at": "2026-07-06T11:46:47.317Z",
+        "actorId": 16,
+        "kind": "proposal_dry_run",
+        "summary": "IPR-0002 dry-run computed (0 would create, 3 would update, 0 conflicts, 0 rejected, 0 to intake)",
+        "payload": null,
+        "authorityRef": null
+      },
+      {
+        "id": 181,
+        "projectId": 2,
+        "recordType": "import_proposal",
+        "recordId": 2,
+        "at": "2026-07-06T11:46:47.316Z",
+        "actorId": 16,
+        "kind": "created",
+        "summary": "IPR-0002 proposed (mdl, 681 bytes, sha256 b53971bfaa3c…)",
+        "payload": null,
+        "authorityRef": null
+      }
+    ]
+  }
+}
