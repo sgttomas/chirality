@@ -1,0 +1,19 @@
+doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type
+AUR-P-001,Process design basis,PKG-P,Process,eor@aurora.dev,A,in_work,2026-08-19,,IFR,,,,basis
+AUR-P-002,Process flow diagram (PFD),PKG-P,Process,eor@aurora.dev,B,in_work,2026-07-26,Gate 3,IFR,,,,drawing
+AUR-P-003,Heat & material balance (H&MB),PKG-P,Process,ic1@aurora.dev,A,in_work,2026-08-04,,IFR,,,,calculation
+AUR-P-004,"P&ID — process area, sheet 1",PKG-P,Process,eor@aurora.dev,A,in_check,2026-07-19,,IFR,,,,drawing
+AUR-P-005,Process control philosophy,PKG-P,Process,eor@aurora.dev,A,in_work,2026-09-18,,IFR,,,Imported from legacy MDL,philosophy
+AUR-M-001,Pump datasheet P-101,PKG-M,Mechanical,ic1@aurora.dev,A,approved,2026-08-04,,IFR,,,,datasheet
+AUR-M-002,Compressor datasheet K-201,PKG-M,Mechanical,ic2@aurora.dev,A,in_work,2026-09-03,,IFR,,,,datasheet
+AUR-M-003,Air cooler datasheet E-301,PKG-M,Mechanical,ic2@aurora.dev,,,2026-09-18,,IFR,,,,datasheet
+AUR-M-004,Vessel datasheet V-101,PKG-M,Mechanical,ic1@aurora.dev,A,in_check,2026-09-04,,IFR,EDMS-00412,,,datasheet
+AUR-PI-001,Piping line list,PKG-PI,Piping,ic1@aurora.dev,A,in_work,2026-08-14,,IFR,,,,list
+AUR-PI-002,Stress critical line list,PKG-PI,Piping,eor@aurora.dev,A,in_work,2026-06-21,Gate 3,IFR,,,,list
+AUR-PI-003,Piping material specification,PKG-PI,Piping,ic2@aurora.dev,,,2026-10-03,,IFR,,,,specification
+AUR-PI-004,Tie-in list,PKG-PI,Piping,ic2@aurora.dev,B,issued,2026-08-14,,IFR,,CL-771,Rev A superseded by B at import,list
+AUR-EI-001,One-line diagram,PKG-EI,Electrical,eor@aurora.dev,A,in_work,2026-08-24,,IFR,,,,drawing
+AUR-EI-002,Instrument index,PKG-EI,Instrumentation,ic1@aurora.dev,A,in_work,2026-09-08,,IFR,,,,list
+AUR-EI-003,Cable schedule,PKG-EI,Electrical,ic2@aurora.dev,,,2026-09-28,,IFR,,,,list
+AUR-EI-004,Hazardous area classification,PKG-EI,Electrical,eor@aurora.dev,,,2026-08-09,,IFR,,,,drawing
+AUR-EI-005,Instrument datasheets — control valves,PKG-EI,Instrumentation,ic1@aurora.dev,A,in_work,2026-10-02,Gate 3,IFA,,,,datasheet
