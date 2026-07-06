@@ -1,0 +1,40 @@
+{
+  "id": 2,
+  "projectId": 1,
+  "ref": "IPR-0002",
+  "contract": "tracker",
+  "sourceName": "tracker-syn-v2.csv",
+  "sourceSha256": "dd2bcbaa8697a093cf83b15ea37d23e28399705e89a8a4c8abd040e07e22aa91",
+  "sourceBytes": 2063,
+  "sourceCsv": "tracking_no,package_name,discipline,area,package_type_approved,package_type_proposed,line_items,vendors_engaged,vendor_awarded,expected_delivery_date,cost_estimate_cad,comments,stage_budgetary_datasheet,stage_cost_estimate,stage_package_datasheet,stage_package,stage_rfq,stage_review,stage_vendor_bids,stage_clarifications,stage_evaluation,stage_eng_req,stage_po,stage_databook,package\n99999-01-PT-01-001,Fictional Process Skid Alpha,Mechanical,9-01 (Fictionland North),No,SKID,Imaginary Deaerator Drum; Imaginary Flash Vessel,Acme Fictional Vessels; Borealis Fable Fab,Acme Fictional Vessels,,,Synthetic fixture row v2 - stage advanced and vendor_awarded populated,issued,complete,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-P\n99999-01-PT-01-777,Fictional Mechanical Package Bravo,Mechanical,9-01 (Fictionland North),No,PUMP,Imaginary Charge Pump A; Imaginary Charge Pump B,Fable Pumps Inc,,,,Synthetic fixture row v2 - cost estimate completed; CoA number unchanged and still shared,issued,complete,not_started,not_started,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-M\n99999-01-PT-01-777,Fictional Piping Spool Package Charlie,Mechanical,9-02 (Fictionland South),No,PIPING,Imaginary Spool Set C1; Imaginary Spool Set C2,Fictional Spools Ltd; Make-Believe Metals,,,,Synthetic fixture row v2 - package stage advanced; CoA number unchanged and still shared,not_applicable,complete,not_started,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-PI\n99999-02-PT-02-104,Fictional Electrical Package Delta,Electrical,9-02 (Fictionland South),No,MCC,Imaginary MCC Lineup,Storybook Switchgear; Fable Power Systems,,,,Synthetic fixture row v2 - CoA number RENUMBERED (-004 to -104): updates in place as plain data on the package key,issued,complete,not_started,not_started,not_started,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,PKG-EI\n",
+  "state": "applied",
+  "basisHistoryId": 170,
+  "dryRunReport": {
+    "contract": "tracker",
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": [],
+    "rejected": [],
+    "intakeCreated": 0
+  },
+  "dryRunAt": "2026-07-06T19:08:42.906Z",
+  "acceptedBy": 15,
+  "acceptedAt": "2026-07-06T19:08:42.907Z",
+  "acceptedSha256": "dd2bcbaa8697a093cf83b15ea37d23e28399705e89a8a4c8abd040e07e22aa91",
+  "rejectedBy": null,
+  "rejectedAt": null,
+  "rejectReason": null,
+  "appliedBy": 15,
+  "appliedAt": "2026-07-06T19:08:42.909Z",
+  "applyReport": {
+    "contract": "tracker",
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": [],
+    "rejected": [],
+    "intakeCreated": 0
+  },
+  "createdBy": 16,
+  "createdAt": "2026-07-06T19:08:42.906Z",
+  "version": 4
+}

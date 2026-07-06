@@ -620,7 +620,8 @@ owner-directed PR #93/#94 merges).
 commit).
 
 **Owner amendment (2026-07-06, in-session, Ryan Tufts, verbatim — governs
-over this packet's prose per the amendment clause below):**
+over this packet's prose per the amendment clause in "On ruling
+(mechanism)" above):**
 
 > You should match the tracker entries with the PKG-#### numbers we're using.
 > Keep the CoA number but don't key on that.

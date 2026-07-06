@@ -1,0 +1,66 @@
+{
+  "note": "COUNT-LEVEL capture (D-PEC-13 ruling item-4 default: manifests/hashes/counts only for tracker-derived content). Raw payloads live untracked in pilot-scratch, referenced by hash. AMENDED contract: key = package (resolved package.code); tracking_no = plain non-unique data.",
+  "proposal": {
+    "ref": "IPR-0002",
+    "contract": "tracker",
+    "sourceSha256": "da6fadb1f9611fde4082355229e39b24cf59c43c9ac9fa3716cd99c21a521698",
+    "sourceBytes": 22277,
+    "state": "applied"
+  },
+  "dryRun": {
+    "accepted": 54,
+    "updated": 0,
+    "conflicts": 0,
+    "rejected": 11,
+    "intakeCreated": 0
+  },
+  "apply": {
+    "accepted": 54,
+    "updated": 0,
+    "conflicts": 0,
+    "rejected": 11,
+    "intakeCreated": 0
+  },
+  "applyIdenticalToDryRun": true,
+  "rejectedRowCoordinates": {
+    "note": "owner-side data gaps (unresolvable package key), workbook sheet-row coordinates only — content withheld per the ruled capture default; CSV row numbers equal workbook sheet rows (header row 1 in both)",
+    "rows": [
+      6,
+      17,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "allErrorsAre": [
+      "package is required"
+    ]
+  },
+  "conflictNote": "zero conflicts: under the amended package key the duplicated CoA value (workbook rows 16/54) is no longer an import defect",
+  "coaDuplicateProof": [
+    {
+      "registerRowsSharingOneCoaValue": 2,
+      "distinctPackageIds": 2,
+      "allAnchored": true
+    }
+  ],
+  "registerRows": 54,
+  "anchorResolvedRows": 54,
+  "export": {
+    "sha256": "2cc75f74d5e9f0e616095b0f3a8dcacf0a93c1cb79d38d245eaeadd5b3f77c9b",
+    "rows": 54,
+    "columns": 25
+  },
+  "rawArtifactHashes": {
+    "01-propose.json": "123a72b809a6bfdc706ba57cc3ec910837a0ed424b2a5602d9b05ab5880ec217",
+    "02-demo-cast-accept.json": "30904636131093d72d9f3d1218a5e56cf6a24a3de0ab026ba72e13dfc63308c8",
+    "03-demo-cast-apply.json": "42cf0dfb742decc47c03c134899ce9911c54ae0ebf2c8ae1e24d15715406f931",
+    "04-register-view.json": "9a467ed3f16cd4b245655deadb57cf7164323d3ab6347b5ec4fc65e656b564a7",
+    "05-export-tracker.csv": "2cc75f74d5e9f0e616095b0f3a8dcacf0a93c1cb79d38d245eaeadd5b3f77c9b"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "agent": {
+    "personId": 46,
+    "email": "pec-agent@rehearsal.demo",
+    "is_admin": 0,
+    "roles": [
+      {
+        "project_id": 1,
+        "role": "coordinator"
+      }
+    ],
+    "credential": "fresh ephemeral, script-side"
+  },
+  "demoCastAdmin": {
+    "personId": 47,
+    "email": "pec-demo-admin@rehearsal.demo",
+    "is_admin": 0,
+    "roles": [
+      {
+        "project_id": 1,
+        "role": "admin"
+      }
+    ],
+    "credential": "fresh ephemeral, script-side"
+  },
+  "preRun": {
+    "sessionRows": 0,
+    "importProposalRows": 1,
+    "intake": {
+      "total": 272,
+      "dispositioned": 257,
+      "raised": 15
+    }
+  },
+  "migrationFiredAtThisOpen": {
+    "packageTrackerRowsAfterRebuild": 0,
+    "packageIdNotNull": true,
+    "uniqueClause": "UNIQUE(project_id, package_id)",
+    "trackingNoNullable": true
+  }
+}

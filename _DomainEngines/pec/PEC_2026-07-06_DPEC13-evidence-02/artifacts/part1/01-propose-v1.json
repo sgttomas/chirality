@@ -1,0 +1,46 @@
+{
+  "id": 1,
+  "projectId": 1,
+  "ref": "IPR-0001",
+  "contract": "tracker",
+  "sourceName": "tracker-syn-v1.csv",
+  "sourceSha256": "60ba85491dfa2e95442f74990176c9cda637388c53945bafa08425cde7917358",
+  "sourceBytes": 2795,
+  "sourceCsv": "tracking_no,package_name,discipline,area,package_type_approved,package_type_proposed,line_items,vendors_engaged,vendor_awarded,expected_delivery_date,cost_estimate_cad,comments,stage_budgetary_datasheet,stage_cost_estimate,stage_package_datasheet,stage_package,stage_rfq,stage_review,stage_vendor_bids,stage_clarifications,stage_evaluation,stage_eng_req,stage_po,stage_databook,package\n99999-01-PT-01-001,Fictional Process Skid Alpha,Mechanical,9-01 (Fictionland North),No,SKID,Imaginary Deaerator Drum; Imaginary Flash Vessel,Acme Fictional Vessels; Borealis Fable Fab,,,,Synthetic fixture row - clean create on the package key,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-P\n99999-01-PT-01-777,Fictional Mechanical Package Bravo,Mechanical,9-01 (Fictionland North),No,PUMP,Imaginary Charge Pump A; Imaginary Charge Pump B,Fable Pumps Inc,,,,Synthetic fixture row - shares its CoA number with the PKG-PI row below (amendment: both land),issued,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-M\n99999-01-PT-01-777,Fictional Piping Spool Package Charlie,Mechanical,9-02 (Fictionland South),No,PIPING,Imaginary Spool Set C1; Imaginary Spool Set C2,Fictional Spools Ltd; Make-Believe Metals,,,,Synthetic fixture row - same CoA number as the PKG-M row above on a DIFFERENT package (amendment: both land),not_applicable,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-PI\n99999-01-PT-01-002,Fictional Process Skid Alpha Duplicate,Mechanical,9-01 (Fictionland North),No,SKID,Imaginary Surge Drum,Acme Fictional Vessels,,,,Synthetic fixture row - second occurrence of the PKG-P key in this file (conflict: first valid wins),issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-P\n99999-01-PT-01-005,Fictional Orphan Building Package,Electrical,9-03 (Fictionland East),No,BUILDING,Imaginary E-House,Storybook Switchgear,,,,Synthetic fixture row - unresolvable package key (reject: data gap; NO intake fallback),not_applicable,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-NOPE\n99999-02-PT-02-004,Fictional Electrical Package Delta,Electrical,9-02 (Fictionland South),No,MCC,Imaginary MCC Lineup,Storybook Switchgear; Fable Power Systems,,,,Synthetic fixture row - CoA number gets renumbered in v2 (updates as plain data),issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-EI\n",
+  "state": "ready_for_review",
+  "basisHistoryId": 163,
+  "dryRunReport": {
+    "contract": "tracker",
+    "accepted": 4,
+    "updated": 0,
+    "conflicts": [
+      {
+        "row": 5,
+        "key": "PKG-P",
+        "reason": "duplicate package in file; first occurrence applied, this one skipped"
+      }
+    ],
+    "rejected": [
+      {
+        "row": 6,
+        "errors": [
+          "package \"PKG-NOPE\" matches no package code"
+        ]
+      }
+    ],
+    "intakeCreated": 0
+  },
+  "dryRunAt": "2026-07-06T19:08:42.900Z",
+  "acceptedBy": null,
+  "acceptedAt": null,
+  "acceptedSha256": null,
+  "rejectedBy": null,
+  "rejectedAt": null,
+  "rejectReason": null,
+  "appliedBy": null,
+  "appliedAt": null,
+  "applyReport": null,
+  "createdBy": 16,
+  "createdAt": "2026-07-06T19:08:42.899Z",
+  "version": 2
+}

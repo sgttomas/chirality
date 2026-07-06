@@ -189,6 +189,17 @@ test('missing required columns refuse the whole file (§16) — package is heade
   assert.equal(res.status, 400)
   assert.match(res.body.error.message, /tracker import missing required columns/)
   assert.match(res.body.error.message, /stage_databook, package \(§16\)/)
+
+  // tracking_no stays header-required even though it is no longer the key
+  const noCoaHeader = await admin.postCsv(
+    `${P}/import/tracker`,
+    csvWith(
+      REQUIRED_HEADERS.filter((h) => h !== 'tracking_no'),
+      [{ package: 'PKG-T01', package_name: 'Synthetic package one' }],
+    ),
+  )
+  assert.equal(noCoaHeader.status, 400)
+  assert.match(noCoaHeader.body.error.message, /tracking_no/)
 })
 
 test('export mirrors the import columns exactly and round-trips (§16)', async () => {
