@@ -1,6 +1,6 @@
-# D-PEC-13 - PROPOSAL: Package Tracker import contract + proposal-shaped agent path
+# D-PEC-13 - Package Tracker import contract + proposal-shaped agent path
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** RULED (O-A, 2026-07-06 — see Human ruling).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-13
 **Prepared by:** PEC work loop agent under the standing plan. The ruling act is
@@ -587,8 +587,34 @@ the key semantics.
 
 ## Human ruling
 
-**Ruling:** _(open — awaiting the owner)_
+**Ruling (owner, Ryan Tufts, 2026-07-06, in-session, verbatim):**
 
-**Ruling SHA:** _(recorded on ruling)_
+> Proceed with 1. Rule D-PEC-13 as follows. Use the tracker.xlsx provided as
+> your template and proceed accordingly.
 
-**Status change:** _(AWAITING_RULING → … on ruling)_
+— where "1." is this packet as presented first on the session decision slate,
+with recommendation O-A.
+
+**Recorded interpretation (the ruling text governs on any disagreement):**
+the recommended option **O-A** is affirmed — the `tracker` contract and agent
+path are adopted with the owner-provided tracker.xlsx as the template basis
+(exactly this packet's workbook → template mapping), and the implementation
+tranche is authorized in the same ruling, bounded by the pinned fence. Two
+in-packet defaults stand because the ruling does not state otherwise:
+
+1. **Profile fence-note:** the ruling does not open the one profile-note edit
+   (the fence-note required the choice to be stated in the ruling), so
+   `_DomainEngines/profiles/pec.yaml` is NOT touched by this tranche; the
+   one-line sixth-contract note remains pending its own explicit opener
+   (owner ruling line or tier-0 pointer/residual row) and is recorded as a
+   parked residual in the receipt.
+2. **Capture limits (Decision-to-rule item 4):** no capture-limits line was
+   stated, so the strictest standing reading governs — manifests/hashes-only
+   grain for all tracker.xlsx-derived captures (committed evidence uses
+   synthetic fixtures; the real-run capture is count-level + hashes).
+
+**Ruling SHA:** received with `main` at `c4e00afbb` (immediately after the
+owner-directed PR #93/#94 merges).
+
+**Status change:** AWAITING_RULING → RULED (register row flipped in the same
+commit).
