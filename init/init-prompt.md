@@ -99,6 +99,8 @@ inherent goals — recorded in its standing plan — as far as live authority pe
 Steer (this run): <none>
 </init-prompt>
 
+Use `opus` agents for discovery, research and summaries, use `fable` agents with `high` reasoning effort for planning and `low` reasoning effort for execution.
+
 Same thin-launcher rationale as §3: the goal (implement
 `plans/pec_bridge_integration_plan_2026-07-04.md`, stop at the owner gates, then
 the standing pec goal once ruled), the protocol, and the fences live in
