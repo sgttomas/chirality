@@ -120,9 +120,15 @@ claim, no professional conclusion, and no piping write.
 \`mcp__chirality__domain_headless_preview_run\` remains descriptor-only because
 the DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD.
 \`mcp__chirality__domain_propose_operation\` and
-\`mcp__chirality__domain_proposal_validate\` remain descriptor-only pending
-D-APP-52 (the K-DOMAIN-2 proposal-write quarantine is not implemented); no
-domain apply tool is registered or exposed.
+\`mcp__chirality__domain_proposal_validate\` are live pec-scoped exposures per
+D-APP-52: both handlers resolve only the registry's \`pec\` entry and ride a
+loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport to the local pec
+engine seam (login, propose, refresh, get-proposal — no generic request
+surface; credentials from the local environment, never in results). Proposal
+refresh mutates and rides the workspace-write \`domain_propose_operation\`
+tool; \`domain_proposal_validate\` is read-only and never recomputes.
+Acceptance and application remain human acts in pec behind admin-only RBAC;
+no accept/apply/force tool is registered or exposed.
 
 SDK built-in tool names and Chirality MCP adapter names are collision-checked by the
 descriptor registry tests. Unknown tools remain rejected before streaming.
