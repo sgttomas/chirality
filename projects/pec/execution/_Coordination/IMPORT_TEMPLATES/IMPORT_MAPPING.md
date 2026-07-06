@@ -142,8 +142,9 @@ two recommended changes were applied at the same ruling:
 
 ## §tracker — workbook → template mapping (added 2026-07-06, D-PEC-13 O-A)
 
-Owner ruling of record: "Use the tracker.xlsx provided as your template and
-proceed accordingly." (verbatim in
+Owner ruling of record (verbatim, both sentences): "Proceed with 1. Rule
+D-PEC-13 as follows. Use the tracker.xlsx provided as your template and
+proceed accordingly." (recorded in
 `../_DECISIONS/D-PEC-13_package_tracker_import_contract.md`). Capture grain:
 manifests/hashes only (the ruling's item-4 default) — this section carries
 header names, shape patterns, and counts; no verbatim workbook content. Source
@@ -177,6 +178,15 @@ always refreshes); rows with no resolvable `package` anchor still create
 `package_tracker` records with a null link (NO intake fallback — ruled
 divergence from RAIL, D-PEC-13). Stated-but-unresolvable `package` anchors
 reject the row.
+
+Refresh conventions (shipped behavior, test-pinned): optional columns refresh
+only when their header is present in the file — a narrower re-import retains
+existing values rather than silently wiping them (the schedule contract's §16
+no-silent-wipe reading, generalized); header-required columns always refresh.
+Duplicate-vs-validation precedence: rows are validated before the
+duplicate-in-file check, so an invalid duplicate row reports as a reject (not
+a conflict), and if the FIRST occurrence of a key is invalid the next valid
+occurrence wins the key — every row is reported either way, nothing silent.
 
 ## Residual workbook data gaps (owner/pilot-team side)
 

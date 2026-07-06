@@ -31,9 +31,17 @@ const HEADERS = [
 ] as const
 type TrackerRow = Partial<Record<(typeof HEADERS)[number], string>>
 
-function trackerCsv(rows: TrackerRow[]): string {
-  return [HEADERS.join(','), ...rows.map((r) => HEADERS.map((h) => r[h] ?? '').join(','))].join('\r\n')
+function csvWith(headers: ReadonlyArray<(typeof HEADERS)[number]>, rows: TrackerRow[]): string {
+  return [headers.join(','), ...rows.map((r) => headers.map((h) => r[h] ?? '').join(','))].join('\r\n')
 }
+
+function trackerCsv(rows: TrackerRow[]): string {
+  return csvWith(HEADERS, rows)
+}
+
+/** Just the header-required columns — the narrowest lawful tracker file. */
+const REQUIRED_HEADERS = HEADERS.filter((h) =>
+  h === 'tracking_no' || h === 'package_name' || h === 'discipline' || h === 'area' || h.startsWith('stage_'))
 
 /** A fully populated synthetic row; workbook-style (un-normalized) stage vocabulary. */
 function row(trackingNo: string, over: TrackerRow = {}): TrackerRow {
@@ -222,4 +230,66 @@ test('tracker register view serves the imported rows read-only', async () => {
   const r = res.body.find((t: { trackingNo: string }) => t.trackingNo === 'TRK-0300')
   assert.equal(r.packageId, env.packageId)
   assert.equal(r.stageBudgetaryDatasheet, 'issued')
+})
+
+test('a narrower re-import whose header omits optional columns retains their values (§16: no silent wipe)', async () => {
+  const admin = await env.as('admin@t.co')
+  const v1 = await admin.postCsv(`${P}/import/tracker`, trackerCsv([
+    row('TRK-0500', { vendors_engaged: 'Vendor Z', comments: 'keep me' }),
+  ]))
+  assert.equal(v1.status, 200, JSON.stringify(v1.body))
+  assert.equal(v1.body.accepted, 1)
+  const before = dbRow('TRK-0500')!
+  assert.equal(before.vendors_engaged, 'Vendor Z')
+  assert.equal(before.comments, 'keep me')
+
+  // v2: header-required columns only; a stage changes, the optional columns are absent
+  const v2 = await admin.postCsv(`${P}/import/tracker`, csvWith(REQUIRED_HEADERS, [
+    row('TRK-0500', { stage_rfq: 'In Progress' }),
+  ]))
+  assert.equal(v2.status, 200, JSON.stringify(v2.body))
+  assert.equal(v2.body.updated, 1)
+  assert.equal(v2.body.rejected.length, 0)
+  const after = dbRow('TRK-0500')!
+  assert.equal(after.stage_rfq, 'in_progress', 'header-required column refreshed')
+  assert.equal(after.vendors_engaged, 'Vendor Z', 'absent optional column retained, not wiped')
+  assert.equal(after.comments, 'keep me', 'absent optional column retained, not wiped')
+  assert.equal(Number(after.version), Number(before.version) + 1, 'refresh bumps the version')
+})
+
+test('blank row-required fields reject the row; valid rows in the same file still apply', async () => {
+  const admin = await env.as('admin@t.co')
+  const res = await admin.postCsv(`${P}/import/tracker`, trackerCsv([
+    row('', { package_name: 'No key' }),
+    row('TRK-0601', { package_name: '' }),
+    row('TRK-0600'),
+  ]))
+  assert.equal(res.status, 200, JSON.stringify(res.body))
+  assert.equal(res.body.rejected.length, 2)
+  assert.match(res.body.rejected[0].errors.join('; '), /tracking_no is required/)
+  assert.match(res.body.rejected[1].errors.join('; '), /package_name is required/)
+  assert.equal(res.body.accepted, 1)
+  assert.equal(dbRow('TRK-0601'), undefined, 'rejected row never lands')
+  assert.equal(dbRow('TRK-0600')!.package_name, 'Synthetic package TRK-0600')
+})
+
+test('duplicate-vs-validation precedence: a rejected occurrence never claims the key; the first VALID one wins', async () => {
+  const admin = await env.as('admin@t.co')
+  const res = await admin.postCsv(`${P}/import/tracker`, trackerCsv([
+    row('TRK-0700', { stage_rfq: 'Bogus', package_name: 'First occurrence invalid' }),
+    row('TRK-0700', { package_name: 'Second valid wins' }),
+    row('TRK-0700', { package_name: 'Third occurrence' }),
+  ]))
+  assert.equal(res.status, 200, JSON.stringify(res.body))
+  assert.equal(res.body.rejected.length, 1, 'invalid first occurrence is a reject, not a conflict')
+  assert.match(res.body.rejected[0].errors.join('; '), /unrecognized stage_rfq/)
+  assert.equal(res.body.accepted, 1)
+  assert.equal(res.body.conflicts.length, 1)
+  assert.equal(res.body.conflicts[0].key, 'TRK-0700')
+  assert.match(res.body.conflicts[0].reason, /duplicate tracking_no in file/)
+  assert.equal(dbRow('TRK-0700')!.package_name, 'Second valid wins', 'first valid occurrence claims the key')
+  const n = (env.db.prepare(
+    'SELECT COUNT(*) AS n FROM package_tracker WHERE project_id = ? AND tracking_no = ?',
+  ).get(env.projectId, 'TRK-0700') as { n: number }).n
+  assert.equal(n, 1)
 })
