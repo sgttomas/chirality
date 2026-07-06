@@ -1,7 +1,7 @@
 # Harness Tool Catalog
 
 **Status:** Generated governance/runtime support artifact
-**Registry version:** `harness-tools.v8.domain-mcp-read-live`
+**Registry version:** `harness-tools.v9.multi-engine-profile-registry`
 **Source:** `frontend/packages/harness-contract/src/tool-descriptor.ts`
 **Regenerate:** `npm run harness:generate-tool-catalog`
 
@@ -13,17 +13,21 @@ capability, change provider scope, or create release/professional approval.
 ## Naming Boundary
 
 Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names.
-D-APP-50 tranche-1 exposes only the read-side domain transport wrappers
+A closed, ruled two-entry domain profile registry (D-APP-51) gates the
+read-side domain transport wrappers
 `mcp__chirality__domain_completeness_check` and
-`mcp__chirality__domain_rule_check_run`. Their handlers return live
-DEC-041 in-process read-transport evidence envelopes only: no domain verdict,
-no live-binding claim, no professional conclusion, and no piping write.
+`mcp__chirality__domain_rule_check_run` for exactly the registered profileIds
+`open_pipe_stress` (D-APP-50 tranche-1) and `pec` (D-APP-51 P1); registering
+any further profileId requires its own D-APP ruling (no filesystem discovery,
+no dynamic registration). Their handlers return live DEC-041 in-process
+read-transport evidence envelopes only: no domain verdict, no live-binding
+claim, no professional conclusion, and no piping write.
 `mcp__chirality__domain_headless_preview_run` remains descriptor-only because
 the DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD.
 `mcp__chirality__domain_propose_operation` and
-`mcp__chirality__domain_proposal_validate` remain descriptor-only until the
-K-DOMAIN-2 proposal-write quarantine is implemented; no domain apply tool is
-registered or exposed.
+`mcp__chirality__domain_proposal_validate` remain descriptor-only pending
+D-APP-52 (the K-DOMAIN-2 proposal-write quarantine is not implemented); no
+domain apply tool is registered or exposed.
 
 SDK built-in tool names and Chirality MCP adapter names are collision-checked by the
 descriptor registry tests. Unknown tools remain rejected before streaming.
@@ -48,8 +52,8 @@ present and explicitly allows executable delegation.
 | scaffold_preview | mcp__chirality__scaffold_preview | Preview execution-root scaffold paths from decomposition markdown without writing files. | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: Read-only Chirality MCP tools are exposed behind descriptor resolution and permission overlay policy. |
 | status_transition | mcp__chirality__status_transition | Apply a governed lifecycle transition to a deliverable _STATUS.md file. | chirality-mcp | workspace-write | project-root-write | workspaceWrite | mutating | serialized-by-path | approval-sha: CHECKING and ISSUED transitions require HUMAN actor approvalSha evidence. | Handler-level permission/evidence wrapper; project-root path policy; redaction; event logging. SDK canUseTool and hooks do not auto-fire for raw in-process MCP calls. | yes: Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper. |
 | dependency_write | mcp__chirality__deps_write | Write a governed Dependencies.csv register using v3.1 dependency writer semantics. | chirality-mcp | workspace-write | project-root-write | workspaceWrite | mutating | serialized-by-path | interactive-confirmation: Dependency register writes require workspaceWrite mode and governed row validation. | Handler-level permission/evidence wrapper; project-root path policy; redaction; event logging. SDK canUseTool and hooks do not auto-fire for raw in-process MCP calls. | yes: Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper. |
-| domain_completeness_check | mcp__chirality__domain_completeness_check | D-APP-50 tranche-1 domain MCP read wrapper for completeness_checker transport evidence. | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
-| domain_rule_check_run | mcp__chirality__domain_rule_check_run | D-APP-50 tranche-1 domain MCP read wrapper for rule_check_runner transport evidence. | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
+| domain_completeness_check | mcp__chirality__domain_completeness_check | Registry-gated domain MCP read wrapper for completeness_checker transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec). | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
+| domain_rule_check_run | mcp__chirality__domain_rule_check_run | Registry-gated domain MCP read wrapper for rule_check_runner transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec). | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
 | domain_headless_preview_run | mcp__chirality__domain_headless_preview_run | Reserved D-APP-50 domain MCP descriptor for the proven-L2 headless_runner preview wrapper. | reserved | read | project-root-read | reserved / future policy | input-dependent | exclusive | future-policy: DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure. | Not exposed; future policy must define permission, hook, path, redaction, and event requirements before activation. | no: D-APP-50 descriptor-only park: DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure. |
 | domain_propose_operation | mcp__chirality__domain_propose_operation | Reserved D-APP-50 domain MCP descriptor for draft OperationProposal record creation; applies nothing. | reserved | workspace-write | project-root-write | reserved / future policy | mutating | serialized-by-path | future-policy: D-APP-50 keeps proposal-record writes descriptor-only until K-DOMAIN-2 agent-writable path quarantine is implemented. | Not exposed; future policy must define permission, hook, path, redaction, and event requirements before activation. | no: D-APP-50 descriptor-only park: D-APP-50 keeps proposal-record writes descriptor-only until K-DOMAIN-2 agent-writable path quarantine is implemented. |
 | domain_proposal_validate | mcp__chirality__domain_proposal_validate | Reserved D-APP-50 domain MCP descriptor for operation_applier.validate; validates proposals and applies nothing. | reserved | read | project-root-read | reserved / future policy | input-dependent | safe | future-policy: D-APP-50 excludes apply and keeps proposal validation descriptor-only until operation_applier.validate transport is sound. | Not exposed; future policy must define permission, hook, path, redaction, and event requirements before activation. | no: D-APP-50 descriptor-only park: D-APP-50 excludes apply and keeps proposal validation descriptor-only until operation_applier.validate transport is sound. |

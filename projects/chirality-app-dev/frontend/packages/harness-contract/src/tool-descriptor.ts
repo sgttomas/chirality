@@ -7,7 +7,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v8.domain-mcp-read-live';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v9.multi-engine-profile-registry';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -662,7 +662,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     name: 'domain_completeness_check',
     aliases: ['mcp.domain_completeness_check'],
     description:
-      'D-APP-50 tranche-1 domain MCP read wrapper for completeness_checker transport evidence.',
+      'Registry-gated domain MCP read wrapper for completeness_checker transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec).',
     mcpToolName: 'domain_completeness_check',
     inputSchema: {
       type: 'object',
@@ -685,7 +685,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     name: 'domain_rule_check_run',
     aliases: ['mcp.domain_rule_check_run'],
     description:
-      'D-APP-50 tranche-1 domain MCP read wrapper for rule_check_runner transport evidence.',
+      'Registry-gated domain MCP read wrapper for rule_check_runner transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec).',
     mcpToolName: 'domain_rule_check_run',
     inputSchema: {
       type: 'object',

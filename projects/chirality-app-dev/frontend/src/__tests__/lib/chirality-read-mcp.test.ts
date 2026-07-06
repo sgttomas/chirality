@@ -42,12 +42,32 @@ const DECOMPOSITION_DOCUMENT = `# Example System - Software Decomposition
 | DEL-05-03 | Lifecycle State Handling | RUNTIME |
 `;
 
-const DOMAIN_PROFILE = `id: open_pipe_stress
-deterministic_tools:
-  - id: completeness_checker
-    mode: read_only
-  - id: rule_check_runner
-    mode: read_only
+// Vendored verbatim byte strings of the load-bearing regions of the REAL
+// _DomainEngines/profiles/open_pipe_stress.yaml — quoted YAML ids, exactly as
+// the live file writes them (D-APP-51 V-9 regression basis; the pre-D-APP-51
+// unquoted fixture masked a marker check that never matched the live bytes).
+const DOMAIN_PROFILE = `domain_profile:
+  schema_version: "1.0"          # contract schema version (generic)
+  id: "open_pipe_stress"
+  deterministic_tools:
+    - id: "completeness_checker"
+      impl: "projects/chirality-piping/core/rules/completeness_checker (Rust)"
+      mode: "read_only"
+    - id: "rule_check_runner"
+      impl: "projects/chirality-piping/core/rules/rule_check_runner (Rust)"
+      mode: "read_only"
+`;
+
+// Vendored verbatim byte strings of the load-bearing region of the REAL
+// _DomainEngines/profiles/pec.yaml (quoted id; declares NO completeness_checker
+// or rule_check_runner deterministic tools — the D-APP-51 disclosure basis).
+const PEC_DOMAIN_PROFILE = `domain_profile:
+  schema_version: "1.0"
+  id: "pec"
+  deterministic_tools:
+    - id: "pilot_drill"
+      impl: "projects/pec/tools/pilot-drill.ts via npm run drill"
+      mode: "read_only"
 `;
 
 type FixtureContext = {
@@ -132,6 +152,7 @@ beforeEach(async () => {
   );
   await writeFile(decompositionPath, DECOMPOSITION_DOCUMENT, 'utf8');
   await writeFile(path.join(profileDirectory, 'open_pipe_stress.yaml'), DOMAIN_PROFILE, 'utf8');
+  await writeFile(path.join(profileDirectory, 'pec.yaml'), PEC_DOMAIN_PROFILE, 'utf8');
   await writeFile(domainInputPath, JSON.stringify({ nodes: [], edges: [] }), 'utf8');
   await writeFile(
     rulePackPath,
@@ -303,6 +324,26 @@ describe('Chirality read MCP tools', () => {
         resultSemantics: expect.stringContaining('no domain verdict')
       }
     });
+    // D-APP-51 V-9 regression pin: the preserved open_pipe_stress envelope
+    // strings byte-match the pre-registry values, and the additive registry
+    // fields carry the ruled open_pipe_stress entry.
+    expect(completeness.transportStatus).toMatchObject({
+      posture: 'DEC-041 in-process read transport',
+      tranche: 'D-APP-50 tranche-1 read-side exposure',
+      toolId: 'completeness_checker',
+      writes: false,
+      network: false,
+      shell: false,
+      engineKind: 'deterministic-cli',
+      readTransportBinding: 'in-process-read-evidence',
+      declaredDeterministicToolId: 'completeness_checker',
+      inputContract:
+        'project-root-contained JSON references plus _DomainEngines/profiles/open_pipe_stress.yaml',
+      deterministicToolExecution:
+        'not invoked in this tranche; the authoritative Rust tool is library-only and has no stable JSON CLI transport',
+      resultSemantics:
+        'transport/evidence envelope only; no domain verdict, no live binding claim, and no professional engineering conclusion'
+    });
     expect(completeness.inputs).toEqual([
       expect.objectContaining({
         field: 'inputRef',
@@ -316,13 +357,204 @@ describe('Chirality read MCP tools', () => {
       toolId: 'rule_check_runner',
       transportStatus: {
         status: 'live',
-        deterministicToolExecution: expect.stringContaining('not invoked')
+        toolId: 'rule_check_runner',
+        tranche: 'D-APP-50 tranche-1 read-side exposure',
+        engineKind: 'deterministic-cli',
+        readTransportBinding: 'in-process-read-evidence',
+        declaredDeterministicToolId: 'rule_check_runner',
+        deterministicToolExecution: expect.stringContaining('not invoked'),
+        resultSemantics:
+          'transport/evidence envelope only; no domain verdict, no live binding claim, and no professional engineering conclusion'
       }
     });
     expect(ruleRun.inputs.map((input) => input.field)).toEqual([
       'rulePackRef',
       'valueBindingsRef'
     ]);
+  });
+
+  it('refuses unregistered profileIds on both domain read tools with the enumerated registry', async () => {
+    const context = { projectRoot: fixture.projectRoot, sessionId };
+    const expectedRefusal = {
+      type: 'INVALID_REQUEST',
+      status: 400,
+      message: 'profileId is not registered for this domain transport',
+      details: {
+        profileId: 'nope',
+        supportedProfileIds: ['open_pipe_stress', 'pec']
+      }
+    };
+
+    await expect(
+      domainCompletenessCheckTool(context, {
+        profileId: 'nope',
+        inputRef: path.relative(fixture.projectRoot, fixture.domainInputPath)
+      })
+    ).rejects.toMatchObject(expectedRefusal);
+    await expect(
+      domainRuleCheckRunTool(context, {
+        profileId: 'nope',
+        rulePackRef: path.relative(fixture.projectRoot, fixture.rulePackPath),
+        valueBindingsRef: path.relative(fixture.projectRoot, fixture.valueBindingsPath)
+      })
+    ).rejects.toMatchObject(expectedRefusal);
+  });
+
+  it('returns D-APP-51 pec read-side evidence with the declared-null deterministic tool disclosure', async () => {
+    const context = { projectRoot: fixture.projectRoot, sessionId };
+    const completeness = parseJsonToolResult<{
+      profileId: string;
+      toolId: string;
+      transportStatus: Record<string, unknown>;
+      profile: { relativePath: string; sha256: string };
+      inputs: Array<{ field: string }>;
+    }>(
+      await domainCompletenessCheckTool(context, {
+        profileId: 'pec',
+        inputRef: path.relative(fixture.projectRoot, fixture.domainInputPath)
+      })
+    );
+    const ruleRun = parseJsonToolResult<{
+      profileId: string;
+      toolId: string;
+      transportStatus: Record<string, unknown>;
+      inputs: Array<{ field: string }>;
+    }>(
+      await domainRuleCheckRunTool(context, {
+        profileId: 'pec',
+        rulePackRef: path.relative(fixture.projectRoot, fixture.rulePackPath),
+        valueBindingsRef: path.relative(fixture.projectRoot, fixture.valueBindingsPath)
+      })
+    );
+
+    for (const [result, toolId] of [
+      [completeness, 'completeness_checker'],
+      [ruleRun, 'rule_check_runner']
+    ] as const) {
+      expect(result).toMatchObject({
+        profileId: 'pec',
+        toolId,
+        transportStatus: {
+          status: 'live',
+          posture: 'DEC-041 in-process read transport',
+          tranche: 'D-APP-51 P1 multi-engine registry read exposure',
+          toolId,
+          writes: false,
+          network: false,
+          shell: false,
+          engineKind: 'http-api',
+          readTransportBinding: 'in-process-read-evidence',
+          declaredDeterministicToolId: null,
+          inputContract:
+            'project-root-contained JSON references plus _DomainEngines/profiles/pec.yaml',
+          deterministicToolExecution: expect.stringContaining('declares no completeness_checker'),
+          resultSemantics: expect.stringContaining('no domain verdict')
+        }
+      });
+      expect(result.transportStatus.deterministicToolExecution).toContain(
+        'no HTTP transport exists'
+      );
+    }
+    expect(completeness.profile.relativePath).toBe(
+      path.join('_DomainEngines', 'profiles', 'pec.yaml')
+    );
+    expect(completeness.inputs.map((input) => input.field)).toEqual(['inputRef']);
+    expect(ruleRun.inputs.map((input) => input.field)).toEqual([
+      'rulePackRef',
+      'valueBindingsRef'
+    ]);
+  });
+
+  it('refuses profile files that fail the registered marker checks', async () => {
+    const context = { projectRoot: fixture.projectRoot, sessionId };
+    const profileDirectory = path.join(fixture.projectRoot, '_DomainEngines', 'profiles');
+
+    // (a) identity-marker mismatch: pec.yaml without its registered id bytes.
+    await writeFile(
+      path.join(profileDirectory, 'pec.yaml'),
+      PEC_DOMAIN_PROFILE.replace('id: "pec"', 'id: "not_pec"'),
+      'utf8'
+    );
+    await expect(
+      domainCompletenessCheckTool(context, {
+        profileId: 'pec',
+        inputRef: path.relative(fixture.projectRoot, fixture.domainInputPath)
+      })
+    ).rejects.toMatchObject({
+      type: 'INVALID_REQUEST',
+      status: 400,
+      message: 'profile file does not match the registered profileId',
+      details: {
+        profileId: 'pec',
+        profilePath: expect.stringContaining('pec.yaml')
+      }
+    });
+
+    // (b) per-tool marker mismatch: open_pipe_stress.yaml without the
+    // rule_check_runner declaration refuses rule_check_run while
+    // completeness_check still passes.
+    await writeFile(
+      path.join(profileDirectory, 'open_pipe_stress.yaml'),
+      DOMAIN_PROFILE.replace('    - id: "rule_check_runner"\n', '    - id: "something_else"\n'),
+      'utf8'
+    );
+    await expect(
+      domainRuleCheckRunTool(context, {
+        profileId: 'open_pipe_stress',
+        rulePackRef: path.relative(fixture.projectRoot, fixture.rulePackPath),
+        valueBindingsRef: path.relative(fixture.projectRoot, fixture.valueBindingsPath)
+      })
+    ).rejects.toMatchObject({
+      type: 'INVALID_REQUEST',
+      status: 400,
+      message: 'profileId does not expose the requested deterministic tool',
+      details: {
+        profileId: 'open_pipe_stress',
+        toolId: 'rule_check_runner',
+        profilePath: expect.stringContaining('open_pipe_stress.yaml')
+      }
+    });
+    const completeness = parseJsonToolResult<{ profileId: string; toolId: string }>(
+      await domainCompletenessCheckTool(context, {
+        profileId: 'open_pipe_stress',
+        inputRef: path.relative(fixture.projectRoot, fixture.domainInputPath)
+      })
+    );
+    expect(completeness).toMatchObject({
+      profileId: 'open_pipe_stress',
+      toolId: 'completeness_checker'
+    });
+  });
+
+  it('rejects pec input references outside the active project root with failure evidence', async () => {
+    const outsideInputPath = path.join(fixture.tmpRoot, 'outside-input.json');
+    await writeFile(outsideInputPath, JSON.stringify({ nodes: [] }), 'utf8');
+
+    await expect(
+      domainCompletenessCheckTool(
+        { projectRoot: fixture.projectRoot, sessionId },
+        {
+          profileId: 'pec',
+          inputRef: outsideInputPath
+        }
+      )
+    ).rejects.toMatchObject({
+      type: 'INVALID_REQUEST',
+      message: expect.stringContaining('inputRef must resolve inside projectRoot')
+    });
+
+    const replay = await replayHarnessEvents(sessionId);
+    expect(replay.events.map((event) => event.type)).toEqual(['tool.started', 'tool.failed']);
+    expect(replay.events[1].data).toMatchObject({
+      source: 'chirality-mcp',
+      toolName: 'domain_completeness_check',
+      adapterToolName: 'mcp__chirality__domain_completeness_check',
+      failureSource: 'handler',
+      error: {
+        errorName: 'HarnessError',
+        message: expect.stringContaining('inputRef must resolve inside projectRoot')
+      }
+    });
   });
 
   it('rejects scaffold preview paths outside the active project root', async () => {
