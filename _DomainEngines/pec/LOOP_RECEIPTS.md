@@ -231,3 +231,64 @@
   - Gate outcome: review executed to the report; STOP at the S-1..S-5 slate — packet corrigendum, runbook v1.1, brief v1.1, new register rows (adoption-gate residual; CSV formula-injection repair authorization), IMPORT_MAPPING refresh are all owner-ruling-gated. Ruled packet not amended; no pec source change; no reserved human act.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; coord-check re-run on both Receipt 19/20 ranges (confirms COORD_PRECEDENT_NOT_NAMED on packet + brief); PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
   - Parked lanes: owner ruling on slate S-1..S-5; all Receipt-20 parked lanes carry forward unchanged.
+
+- **2026-07-05 — Receipt 22** (S-1..S-5 ruled; D-PEC-07 corrigendum + adopted brief + open residual rows).
+  - Start: `7e00eca8b` (`origin/main` after PR #80); branch `codex/pec-dpec07-slate-rulings`; tree clean before work.
+  - Owner ruling of record (2026-07-05, in-session, Ryan Tufts):
+
+    > I have read projects/pec/execution/_Coordination/REVIEW_2026-07-05_D-PEC-07_artifacts.md
+    > and I rule on the slate as follows. Execute the affirmed items branch-first in one PR per
+    > the workplan step-4 checks; record these rulings verbatim in the governed artifacts and
+    > Receipt 22; stop for my merge — do not self-merge.
+    >
+    > - S-1 (packet corrigendum): affirmed. Set the D-PEC-07 header status to RULED, add the
+    >   `**Ruling SHA:** 1a9e4071c` line, and append a dated corrigendum note correcting RV-1
+    >   (a CSV file-upload UI already exists in the Admin page; what is absent is a multipart
+    >   endpoint, server-side file storage, and an agent surface), RV-2 (D-T0-13 O-A ruled L2 as
+    >   the destination with L3 future-only — not L3 as the destination), and RV-4 (the lifecycle
+    >   is the five-state list including `rejected`). Also correct RV-5: annotate that F-PEC-1 is
+    >   an absolute write-path fence, not a tranche-unlockable one. Do not rewrite the ruled text
+    >   itself — corrections live in the appended dated note.
+    >
+    > - S-2 (runbook v1.1): affirmed in full. RV-7: approval must follow the Step-3 proposed
+    >   import — a drop-time "proceed"/"import it" message is not the approval; remove that
+    >   shortcut. RV-8: scope the idempotency claim to the contracts actually evidenced (MDL,
+    >   decisions); mark risks and schedule as code-implied but not yet evidenced. RV-9: change
+    >   "(later: pilot) PEC_DB" to "pilot only under a future owner ruling." RV-10: add the
+    >   export-and-compare verification as a standing rule. RV-11: note the commit-capture rule
+    >   rides my 2026-07-05 basis and a materially new data source needs fresh confirmation of
+    >   capture limits.
+    >
+    > - S-3 (brief): I adopt the brief. Change its status from CANDIDATE to ADOPTED and record
+    >   this adoption ruling in it. Adoption authorizes NO implementation: I am deferring the
+    >   source-tranche gate — do not author or request a tranche, and the F-PEC-1 fence stays
+    >   closed. One adoption rider (RV-12): the LLM-backed-mapper step remains gated on a future
+    >   D-T0-14 residency ruling; the adopted brief must state that routing instance content to
+    >   an external model is not authorized under the current CLOSED residency. All other brief
+    >   fixes (RV-13 K-AUTH-2/hash binding, RV-14 CSV-only v1, and RV-15 through RV-21) are
+    >   deferred to the tranche packet as named obligations and need not be applied now.
+    >
+    > - S-4 (register rows): affirmed. Because I adopt the brief this session, open D-PEC-08
+    >   scoped to the remaining gate only — the source-tranche authorization for the upload-agent
+    >   implementation — AWAITING_RULING. Open D-PEC-09 for the CSV formula-injection repair,
+    >   AWAITING_RULING and design-only; it authorizes no source change.
+    >
+    > - S-5 (IMPORT_MAPPING refresh): affirmed. Update the schedule section to the proven
+    >   schedule.csv extractor mapping (evidence-04, SCH-{id}) and add the risks placeholder note.
+  - Executed pointers: `D-PEC-07_embedded_upload_agent_pathway.md` corrigendum; `FILE_DROP_RUNBOOK.md` v1.1; adopted `BRIEF_2026-07-05_embedded_upload_agent_design.md` with RV-12 rider and RV-13..21 deferred obligations; PEC register rows + packets `D-PEC-08_upload_agent_source_tranche_authorization.md` and `D-PEC-09_csv_formula_injection_repair.md`; `IMPORT_MAPPING.md` schedule/risks refresh.
+  - Gate outcome: S-1..S-5 executed exactly as ruled. D-PEC-08 and D-PEC-09 are AWAITING_RULING; D-PEC-09 is design-only and authorizes no source change. No upload-agent implementation tranche authored/requested; no pec source change; no `force=true`; no non-scratch DB mutation; no self-merge.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass; `coord-check --diff origin/main..HEAD` pass after precedent notes.
+  - Parked lanes: owner merge of this PR; D-PEC-08 source-tranche authorization; D-PEC-09 CSV formula-injection repair ruling; Receipt-20 parked lanes otherwise carry forward.
+
+- **2026-07-05 — Receipt 23** (D-PEC-09 source repair authorized and executed).
+  - Start: `eab490eea` on `codex/pec-dpec07-slate-rulings`; PR #81 open; tree clean before D-PEC-09 ruling/execution work.
+  - Owner ruling of record (2026-07-05, in-session, Ryan Tufts):
+
+    > I authorize the source change for D-PEC-09.
+    >
+    > Commit and merge once you're complete.
+
+  - Executed pointers: `projects/pec/server/src/import/csv.ts` neutralizes exported CSV cells beginning with `=`, `+`, `-`, or `@`; `projects/pec/server/test/csv.test.ts` pins the serializer regression; `D-PEC-09_csv_formula_injection_repair.md` and PEC register row record O-A/RULED.
+  - Gate outcome: D-PEC-09 narrow source repair executed and merge authorized. D-PEC-08 remains AWAITING_RULING; no upload-agent implementation tranche; no unrelated import behavior change; no data model change; no `force=true`; no non-scratch DB mutation.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass (server tests 94, including CSV neutralization); `coord-check --diff origin/main..HEAD` pass/no findings; `git diff --check` pass.
+  - Parked lanes: D-PEC-08 source-tranche authorization; Receipt-20 parked lanes otherwise carry forward.
