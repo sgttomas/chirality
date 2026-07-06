@@ -276,6 +276,9 @@ export function buildRouter(db: Db): Router {
     const b = body(c)
     return registers.updateRisk(c.sx, idOf(c), Number(b.version), b as never)
   }))
+  // package tracker register (§16 tracker contract, D-PEC-13) — read-only: rows are
+  // import-owned; the only write path is the tracker import/proposal seam
+  r.get('/api/projects/:pid/tracker', authed((c) => views.trackerRegisterView(c.sx)))
   r.get('/api/projects/:pid/interfaces', authed((c) => views.interfaceRegisterView(c.sx, {
     givingPackageId: c.query.get('giving') ? Number(c.query.get('giving')) : undefined,
     receivingPackageId: c.query.get('receiving') ? Number(c.query.get('receiving')) : undefined,

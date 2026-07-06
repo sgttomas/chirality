@@ -19,7 +19,7 @@ import { requireCan } from './shared.ts'
 import type { ImportReport } from '../import/index.ts'
 import { importContract } from '../import/index.ts'
 
-const CONTRACTS = ['mdl', 'rail', 'decisions', 'risks', 'schedule'] as const
+const CONTRACTS = ['mdl', 'rail', 'decisions', 'risks', 'schedule', 'tracker'] as const
 /** RV-14: CSV-only v1, size-capped well under the global body cap. */
 const MAX_CSV_BYTES = 5 * 1024 * 1024
 

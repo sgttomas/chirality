@@ -542,6 +542,39 @@ CREATE TABLE IF NOT EXISTS schedule_activity (
   UNIQUE(project_id, activity_id)
 );
 
+-- D-PEC-13: imported Package Tracker rows (§16 tracker contract; import-owned like schedule_activity)
+CREATE TABLE IF NOT EXISTS package_tracker (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  tracking_no TEXT NOT NULL,       -- external id, the §16 idempotency key (stored verbatim)
+  package_name TEXT NOT NULL,
+  discipline TEXT,
+  area TEXT,
+  package_type_approved TEXT,
+  package_type_proposed TEXT,
+  line_items TEXT,
+  vendors_engaged TEXT,
+  vendor_awarded TEXT,
+  expected_delivery_date TEXT,
+  cost_estimate_cad TEXT,
+  comments TEXT,
+  stage_budgetary_datasheet TEXT,
+  stage_cost_estimate TEXT,
+  stage_package_datasheet TEXT,
+  stage_package TEXT,
+  stage_rfq TEXT,
+  stage_review TEXT,
+  stage_vendor_bids TEXT,
+  stage_clarifications TEXT,
+  stage_evaluation TEXT,
+  stage_eng_req TEXT,
+  stage_po TEXT,
+  stage_databook TEXT,
+  package_id INTEGER REFERENCES package(id),
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, tracking_no)
+);
+
 CREATE TABLE IF NOT EXISTS plan_shift (
   id INTEGER PRIMARY KEY,
   project_id INTEGER NOT NULL REFERENCES project(id),
