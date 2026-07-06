@@ -1,0 +1,18 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes,anchor_status
+WI-0001,[PKG-83] Design Basis Memorandum,action,package,adam.m@placeholder.invalid,2026-05-06,open,pec-agent@rehearsal.demo,2026-07-06,26020-PKG-135,26020-PKG-135-FEED-2000.10,,,,anchored
+WI-0002,[PKG-87] Control System Architecture,action,package,gordon@placeholder.invalid,2026-04-23,open,pec-agent@rehearsal.demo,2026-07-06,26020-PKG-120,26020-PKG-120-FEED-7000.29,,,,anchored
+INTK-0015,[PKG-77] MLE to dicsuss reaching out to Vector for the native files and information on FEED,action,package,fvv@placeholder.invalid,2026-04-10,raised,fvv@placeholder.invalid,2026-03-11,,Common,,,,unanchored
+INTK-0027,[PKG-91] Electric vs heat medium for NGL Mole Sieve,action,package,greg@placeholder.invalid,2026-05-19,raised,greg@placeholder.invalid,2026-05-14,,Common,,,,unanchored
+INTK-0028,[PKG-92] Piping Specs,action,package,adam.m@placeholder.invalid,2026-05-29,raised,adam.m@placeholder.invalid,2026-04-23,,Common,,,,unanchored
+INTK-0029,[PKG-93] Standby Generator Load,action,package,eric.s.alex.m@placeholder.invalid,2026-05-29,raised,eric.s.alex.m@placeholder.invalid,2026-05-14,,Common,,,,unanchored
+INTK-0032,[PKG-100] Sales Gas,action,package,adam.greg@placeholder.invalid,2026-06-12,raised,adam.greg@placeholder.invalid,2026-05-27,,Common,,,,unanchored
+INTK-0036,[PKG-106] Pipeline risers,action,package,james.m@placeholder.invalid,2026-06-19,raised,james.m@placeholder.invalid,2026-06-11,,26020-01 - Deep Cut,,,,unanchored
+INTK-0041,[PKG-113] Plot Plan and pro's Con's list.,action,package,petar.b@placeholder.invalid,2027-03-27,raised,petar.b@placeholder.invalid,2026-03-26,,26020-01 - Deep Cut,,,,unanchored
+INTK-0046,[PKG-123] Permit Amendments,action,package,ryan.maureen@placeholder.invalid,2026-06-19,raised,ryan.maureen@placeholder.invalid,2026-04-09,,Common,,,,unanchored
+INTK-0047,[PKG-124] New Permit Required,action,package,ryan.maureen@placeholder.invalid,2026-06-19,raised,ryan.maureen@placeholder.invalid,2026-05-21,,Common,,,,unanchored
+INTK-0259,[PKG-95] Piping specs usage and suitability,action,package,adam.m@placeholder.invalid,2026-12-31,raised,adam.m@placeholder.invalid,2026-05-21,,Common,,,,unanchored
+INTK-0260,[PKG-97] Storage Strategy,action,package,adam.greg@placeholder.invalid,2026-12-31,raised,adam.greg@placeholder.invalid,2026-05-27,,Common,,,,unanchored
+INTK-0262,[PKG-99] Truck Loading,action,package,adam.greg@placeholder.invalid,2026-12-31,raised,adam.greg@placeholder.invalid,2026-05-27,,Common,,,,unanchored
+INTK-0264,[PKG-102] Hybrid Amine System,action,package,greg@placeholder.invalid,2026-12-31,raised,greg@placeholder.invalid,2026-05-27,,Common,,,,unanchored
+INTK-0265,[PKG-107] Flare KOD Combination,action,package,greg@placeholder.invalid,2026-12-31,raised,greg@placeholder.invalid,2026-06-12,,Common,,,,unanchored
+INTK-0266,[PKG-108] 02-25 Electrical to Truck Out,action,package,adam.alex@placeholder.invalid,2026-12-31,raised,adam.alex@placeholder.invalid,2026-06-12,,26020-03 - Liquids Hub,,,,unanchored

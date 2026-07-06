@@ -1,0 +1,38 @@
+[
+ {
+  "id": 2520,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 19,
+  "at": "2026-07-06T14:44:20.593Z",
+  "actorId": 46,
+  "kind": "dispositioned",
+  "summary": "INTK-0019 dispositioned: converted \u2192 WI-0001 (Converted to a work item anchored to MDL deliverable id 450 ('Design Basis Memorandum') \u2014 the statement remainder of [PKG-83] resolves to exactly one MDL deliverable title (pre-run scan); owner and need-by carried verbatim from the source row. (D-PEC-10 triage-01 R2))",
+  "payload": "{\"disposition\":\"converted\",\"created\":[{\"recordType\":\"work_item\",\"recordId\":1,\"ref\":\"WI-0001\"}]}",
+  "authorityRef": null
+ },
+ {
+  "id": 2518,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 19,
+  "at": "2026-07-06T14:44:20.591Z",
+  "actorId": 46,
+  "kind": "transition",
+  "summary": "INTK-0019: raised \u2192 in_triage",
+  "payload": null,
+  "authorityRef": null
+ },
+ {
+  "id": 1989,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 19,
+  "at": "2026-07-05T22:28:59.430Z",
+  "actorId": 1,
+  "kind": "import",
+  "summary": "INTK-0019 created unanchored from RAIL row PKG-83 (anchor \"\" unmatched)",
+  "payload": null,
+  "authorityRef": null
+ }
+]

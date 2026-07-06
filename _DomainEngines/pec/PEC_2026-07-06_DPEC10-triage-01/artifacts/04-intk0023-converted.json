@@ -1,0 +1,27 @@
+{
+ "intake": {
+  "id": 23,
+  "projectId": 1,
+  "ref": "INTK-0023",
+  "statementVerbatim": "[PKG-87] Control System Architecture",
+  "quickType": "action",
+  "anchorSuggestion": "Common",
+  "needBy": "2026-04-23",
+  "suggestedOwnerId": 25,
+  "log": "package",
+  "raisedBy": 25,
+  "raisedAt": "2026-04-09T00:00:00Z",
+  "state": "dispositioned",
+  "disposition": "converted",
+  "dispositionNote": "Converted to a work item anchored to MDL deliverable id 435 ('Control System Architecture - Includes PLC, DCS, etc.') \u2014 the statement remainder of [PKG-87] resolves to exactly one MDL deliverable title (pre-run scan); owner and need-by carried verbatim from the source row. (D-PEC-10 triage-01 R2)",
+  "mergedIntoIntakeId": null,
+  "version": 3
+ },
+ "created": [
+  {
+   "recordType": "work_item",
+   "recordId": 2,
+   "ref": "WI-0002"
+  }
+ ]
+}

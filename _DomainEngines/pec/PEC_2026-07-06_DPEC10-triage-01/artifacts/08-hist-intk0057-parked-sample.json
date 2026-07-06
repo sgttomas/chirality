@@ -1,0 +1,38 @@
+[
+ {
+  "id": 2581,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 57,
+  "at": "2026-07-06T14:44:20.623Z",
+  "actorId": 46,
+  "kind": "dispositioned",
+  "summary": "INTK-0057 dispositioned: parked (Parked: [PKG-135] is a month-scoped level-of-effort plan row (need-by 2026-05-31); intake conversion families (work item/hold/risk/decision/approval record/interface) do not include plan items and no single deliverable anchor is resolvable from the row. (D-PEC-10 triage-01 R3-B))",
+  "payload": "{\"disposition\":\"parked\",\"created\":[]}",
+  "authorityRef": null
+ },
+ {
+  "id": 2580,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 57,
+  "at": "2026-07-06T14:44:20.623Z",
+  "actorId": 46,
+  "kind": "transition",
+  "summary": "INTK-0057: raised \u2192 in_triage",
+  "payload": null,
+  "authorityRef": null
+ },
+ {
+  "id": 2027,
+  "projectId": 1,
+  "recordType": "intake_item",
+  "recordId": 57,
+  "at": "2026-07-05T22:28:59.432Z",
+  "actorId": 1,
+  "kind": "import",
+  "summary": "INTK-0057 created unanchored from RAIL row PKG-135 (anchor \"\" unmatched)",
+  "payload": null,
+  "authorityRef": null
+ }
+]
