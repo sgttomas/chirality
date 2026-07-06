@@ -13,11 +13,178 @@ export function AdminPage(): JSX.Element {
   return (
     <div>
       <h1>Admin</h1>
+      <ProposalsSection />
       <ImportSection />
       <ExportSection />
       <ThresholdsSection />
       <PeopleSection />
     </div>
+  )
+}
+
+// ================================================================ proposed imports (D-PEC-08)
+
+interface ImportProposalRow {
+  id: number
+  ref: string
+  contract: string
+  sourceName: string | null
+  sourceSha256: string
+  sourceBytes: number
+  state: 'draft' | 'ready_for_review' | 'accepted' | 'rejected' | 'applied'
+  dryRunReport: (ImportReport & { error?: undefined }) | { error: string } | null
+  applyReport: ImportReport | null
+  rejectReason: string | null
+  version: number
+}
+
+/** Proposals POST the CSV as a text body (like direct import); metadata rides the query. */
+async function proposeCsv(pid: number, contract: string, csv: string, filename: string | null): Promise<ImportProposalRow> {
+  const q = filename ? `?contract=${contract}&filename=${encodeURIComponent(filename)}` : `?contract=${contract}`
+  const res = await fetch(p(pid, `import-proposals${q}`), {
+    method: 'POST', credentials: 'same-origin',
+    headers: { 'content-type': 'text/csv' }, body: csv,
+  })
+  const text = await res.text()
+  let parsed: any = text
+  try { parsed = JSON.parse(text) } catch { /* non-JSON error body */ }
+  if (!res.ok) {
+    const err = parsed?.error ?? { code: `HTTP_${res.status}`, message: text || res.statusText, details: null }
+    throw new PecApiError({ status: res.status, ...err })
+  }
+  return parsed as ImportProposalRow
+}
+
+function ProposalsSection(): JSX.Element {
+  const { pid, refresh, toast } = useApp()
+  const [contract, setContract] = useState('mdl')
+  const [csv, setCsv] = useState('')
+  const [fileName, setFileName] = useState<string | null>(null)
+  const [error, setError] = useState<any>(null)
+  const [busy, setBusy] = useState(false)
+  const [reload, setReload] = useState(0)
+  const { data: rows, error: listError } = useLoad<ImportProposalRow[]>(
+    () => api.get(p(pid, 'import-proposals')), [pid, reload])
+
+  const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0]
+    if (!f) return
+    setCsv(await f.text())
+    setFileName(f.name)
+  }
+
+  const act = async (fn: () => Promise<unknown>, done: string) => {
+    setBusy(true); setError(null)
+    try {
+      await fn()
+      toast(done)
+      setReload((n) => n + 1)
+      refresh()
+    } catch (err) { setError(err) } finally { setBusy(false) }
+  }
+
+  const propose = (e: React.FormEvent) => {
+    e.preventDefault()
+    void act(async () => {
+      const r = await proposeCsv(pid, contract, csv, fileName)
+      setCsv(''); setFileName(null)
+      return r
+    }, 'Proposal created — review the dry-run below')
+  }
+
+  return (
+    <div>
+      <h2>Proposed imports (D-PEC-08)</h2>
+      <p className="section-note">
+        Upload → dry-run preview → accept (bound to the file's SHA-256) → apply. The
+        dry-run runs the real §16 contract and rolls back; nothing changes until a
+        human accepts and applies. If the registers change in between, the proposal
+        goes stale and must be refreshed and re-accepted.
+      </p>
+      <form className="stack card" style={{ maxWidth: 640 }} onSubmit={propose}>
+        <div className="row">
+          <label>Contract
+            <select value={contract} onChange={(e) => setContract(e.target.value)}>
+              {CONTRACTS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+            </select>
+          </label>
+          <label>CSV file {fileName && <span className="muted">({fileName})</span>}
+            <input type="file" accept=".csv,text/csv" onChange={onFile} />
+          </label>
+        </div>
+        <label>… or paste CSV (header row required, RFC 4180)
+          <textarea value={csv} onChange={(e) => { setCsv(e.target.value); setFileName(null) }} />
+        </label>
+        <ErrorBox error={error} />
+        <div className="row">
+          <button className="btn" disabled={busy || !csv.trim()}>Propose import</button>
+        </div>
+      </form>
+      {listError && <ErrorBox error={{ message: listError }} />}
+      {rows && rows.length > 0 && (
+        <table className="reg" style={{ marginTop: '.6rem', maxWidth: 860 }}>
+          <thead><tr><th>Ref</th><th>Contract</th><th>File</th><th>State</th><th>Dry-run</th><th /></tr></thead>
+          <tbody>
+            {rows.map((r) => <ProposalRow key={r.id} row={r} busy={busy} act={act} />)}
+          </tbody>
+        </table>
+      )}
+    </div>
+  )
+}
+
+function ProposalRow({ row, busy, act }: {
+  row: ImportProposalRow
+  busy: boolean
+  act: (fn: () => Promise<unknown>, done: string) => Promise<void>
+}): JSX.Element {
+  const { pid } = useApp()
+  const [open, setOpen] = useState(false)
+  const base = p(pid, `import-proposals/${row.id}`)
+  const report = row.state === 'applied' ? row.applyReport : row.dryRunReport
+  const summary = report == null ? '—'
+    : 'error' in report && report.error ? `error: ${report.error}`
+    : `${(report as ImportReport).accepted} create · ${(report as ImportReport).updated} update · ${(report as ImportReport).conflicts.length} conflicts · ${(report as ImportReport).rejected.length} rejected · ${(report as ImportReport).intakeCreated} to intake`
+  return (
+    <>
+      <tr>
+        <td className="mono">{row.ref}</td>
+        <td className="mono">{row.contract}</td>
+        <td className="small">{row.sourceName ?? '—'} <span className="muted mono">({row.sourceSha256.slice(0, 12)}…)</span></td>
+        <td>{row.state}{row.state === 'rejected' && row.rejectReason && <span className="muted small"> — {row.rejectReason}</span>}</td>
+        <td className="small">{summary}{report != null && !('error' in report && report.error) && (
+          <> <button className="btn small secondary" onClick={() => setOpen(!open)}>{open ? 'hide' : 'detail'}</button></>
+        )}</td>
+        <td>
+          {row.state === 'ready_for_review' && (
+            <>
+              {/* acceptance echoes the displayed hash + version: what you see is what you approve (RV-13) */}
+              <button className="btn small" disabled={busy}
+                onClick={() => void act(() => api.post(`${base}/accept`, { version: row.version, sha256: row.sourceSha256 }),
+                  `${row.ref} accepted`)}>Accept</button>{' '}
+              <button className="btn small secondary" disabled={busy}
+                onClick={() => void act(() => api.post(`${base}/refresh`, { version: row.version }), `${row.ref} dry-run refreshed`)}>Refresh</button>
+            </>
+          )}
+          {row.state === 'accepted' && (
+            <button className="btn small" disabled={busy}
+              onClick={() => void act(() => api.post(`${base}/apply`, { version: row.version }), `${row.ref} applied`)}>Apply</button>
+          )}
+          {(row.state === 'draft' || row.state === 'ready_for_review' || row.state === 'accepted') && (
+            <>{' '}
+              <button className="btn small secondary" disabled={busy}
+                onClick={() => {
+                  const reason = window.prompt('Reject reason?')
+                  if (reason) void act(() => api.post(`${base}/reject`, { version: row.version, reason }), `${row.ref} rejected`)
+                }}>Reject</button>
+            </>
+          )}
+        </td>
+      </tr>
+      {open && report != null && !('error' in report && report.error) && (
+        <tr><td colSpan={6}><ImportReportView report={report as ImportReport} /></td></tr>
+      )}
+    </>
   )
 }
 

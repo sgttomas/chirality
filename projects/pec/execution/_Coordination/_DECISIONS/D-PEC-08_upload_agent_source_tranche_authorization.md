@@ -4,7 +4,7 @@
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-08
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
-**Ruling SHA:** _backfilled on this branch after the ruling-recording commit_
+**Ruling SHA:** `563a968d3`
 
 ## Ruling (2026-07-05)
 

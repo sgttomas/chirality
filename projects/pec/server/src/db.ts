@@ -17,6 +17,8 @@ const CONTROLLED_TABLES = [
   // P2: plan placements, the plan-change log, its links, and supersession links are
   // records of planning state/change — no delete path (move to 'later' instead)
   'plan_item', 'plan_shift', 'plan_shift_link', 'supersession_link',
+  // D-PEC-08: import proposals are controlled records — reject, never delete
+  'import_proposal',
 ]
 
 const SCHEMA = `
@@ -568,6 +570,37 @@ CREATE TABLE IF NOT EXISTS plan_shift_link (
   record_type TEXT NOT NULL,
   record_id INTEGER NOT NULL
 );
+
+-- D-PEC-08: proposed imports (profile operation_proposal_contract lifecycle:
+-- draft → ready_for_review → accepted → rejected/applied). The uploaded CSV lives
+-- in-row so the single-file backup path (VACUUM INTO) covers it (RV-19).
+CREATE TABLE IF NOT EXISTS import_proposal (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  ref TEXT NOT NULL,
+  contract TEXT NOT NULL,
+  source_name TEXT,
+  source_sha256 TEXT NOT NULL,
+  source_bytes INTEGER NOT NULL,
+  source_csv TEXT NOT NULL,
+  state TEXT NOT NULL DEFAULT 'draft',
+  basis_history_id INTEGER,
+  dry_run_report TEXT,
+  dry_run_at TEXT,
+  accepted_by INTEGER,
+  accepted_at TEXT,
+  accepted_sha256 TEXT,
+  rejected_by INTEGER,
+  rejected_at TEXT,
+  reject_reason TEXT,
+  applied_by INTEGER,
+  applied_at TEXT,
+  apply_report TEXT,
+  created_by INTEGER NOT NULL,
+  created_at TEXT NOT NULL,
+  version INTEGER NOT NULL DEFAULT 1
+);
+CREATE INDEX IF NOT EXISTS idx_import_proposal_project ON import_proposal(project_id, state);
 
 CREATE TABLE IF NOT EXISTS supersession_link (
   id INTEGER PRIMARY KEY,

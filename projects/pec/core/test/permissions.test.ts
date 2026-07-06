@@ -65,6 +65,22 @@ test('system-driven transitions are never user-invokable', () => {
   assert.equal(can('approval.auto', ctx(['pm'])).allowed, false)
 })
 
+test('import proposals: register-handling roles propose; only admin accepts/applies (D-PEC-08, RV-16)', () => {
+  for (const r of ['admin', 'pm', 'coordinator', 'document_controller'] as const) {
+    assert.equal(can('import.propose', ctx([r])).allowed, true, `${r} proposes`)
+  }
+  for (const r of ['contributor', 'package_lead', 'engineer_of_record', 'viewer'] as const) {
+    assert.equal(can('import.propose', ctx([r])).allowed, false, `${r} does not propose`)
+  }
+  assert.equal(can('import.accept', ctx(['admin'])).allowed, true)
+  for (const r of ['pm', 'coordinator', 'document_controller', 'viewer'] as const) {
+    assert.equal(can('import.accept', ctx([r])).allowed, false, `${r} does not accept`)
+  }
+  // instance admin break-glass applies: accept is register administration, not an
+  // engineering judgment (I-6 untouched)
+  assert.equal(can('import.accept', ctx(['contributor'], { isInstanceAdmin: true })).allowed, true)
+})
+
 test('log visibility: viewer sees package+client by default; config overrides (PEC-NFR-005)', () => {
   assert.deepEqual(visibleLogs(['viewer'], undefined), ['package', 'client'])
   assert.deepEqual(visibleLogs(['contributor'], undefined), ['package', 'internal', 'client'])

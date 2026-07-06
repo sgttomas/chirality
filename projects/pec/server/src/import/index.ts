@@ -213,6 +213,34 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
 
     if (!deliverable) {
       // RAIL anchors on deliverable_ref match only (PRD §16); everything else lands unanchored.
+      // Idempotency (D-PEC-08, evidence-03 seam finding): a row that already landed as an
+      // undispositioned intake item — matched by its verbatim "[item_id] " prefix — updates
+      // that item's mutable fields instead of duplicating it. The statement itself is
+      // trigger-frozen (OM-3): a changed statement is a conflict, never a silent rewrite.
+      const prefix = `[${row.item_id}] `
+      const priorIntake = sx.db.prepare(
+        "SELECT id, version, statement_verbatim FROM intake_item WHERE project_id = ? AND state != 'dispositioned' AND substr(statement_verbatim, 1, ?) = ?",
+      ).get(sx.projectId, prefix.length, prefix) as { id: number; version: number; statement_verbatim: string } | undefined
+      if (priorIntake) {
+        if (!lastChangeIsImport(sx, 'intake_item', priorIntake.id) && !force) {
+          report.conflicts.push({ row: rowNo, key: row.item_id!, reason: 'edited in-app since last import; use force=true' })
+          return
+        }
+        if (priorIntake.statement_verbatim !== `${prefix}${row.statement}`) {
+          report.conflicts.push({
+            row: rowNo, key: row.item_id!,
+            reason: 'intake statement is preserved verbatim (OM-3) and the imported statement differs; disposition the existing intake item or use a new item_id. Other fields not updated.',
+          })
+          return
+        }
+        sx.repo.systemUpdate('intake_item', sx.projectId, priorIntake.id, {
+          needBy: row.need_by || null, suggestedOwnerId: ownerId,
+          anchorSuggestion: row.deliverable_ref || row.package || null, log,
+        })
+        importHistory(sx, 'intake_item', priorIntake.id, `updated from RAIL row ${row.item_id} (still unanchored)`)
+        report.updated++
+        return
+      }
       // No resolvable anchor: the row lands as an intake item flagged unanchored (I-2).
       const ref = sx.repo.nextRef(sx.projectId, 'intake_item')
       const quickType = isHold ? 'hold' : isInterface ? 'interface' : 'action'
