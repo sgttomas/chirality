@@ -24,6 +24,7 @@ export type PermissionAction =
   | 'evidence.add'
   | 'config.manage'
   | 'import.propose' | 'import.accept'
+  | 'agent.direct'
   | 'plan.manage' | 'plan.commit' | 'plan.propose' | 'plan.review'
 
 export interface PermissionContext {
@@ -228,6 +229,19 @@ export function can(action: PermissionAction, ctx: PermissionContext): Permissio
     case 'import.accept':
       return hasAny(ctx, ['admin'])
         ? yes('project admin (parity with direct import)') : no('accepting/applying an import proposal requires admin')
+
+    // D-PEC-17: who may open the agent panel and direct the agent — exactly the
+    // roles holding BOTH import.propose and intake.triage themselves, so directing
+    // the agent is never wider than the director's own act families.
+    // document_controller is deliberately excluded (GOV MINOR-2): it holds
+    // import.propose but lacks intake.triage, and via the panel it could otherwise
+    // direct the agent to triage — triage-by-proxy for a role without the permission.
+    // The agent's own acts are bounded by the agent person's grant — directing
+    // adds capability, never permission. Deliberately NOT a personal judgment (I-6).
+    case 'agent.direct':
+      return hasAny(ctx, ['admin', 'pm', 'coordinator'])
+        ? yes('holds both propose and triage authority (D-PEC-17)')
+        : no('directing the agent requires admin, pm, or coordinator')
 
     // P2 planning (PRD §14: planners commit plans; leads propose plan changes)
     case 'plan.manage':
