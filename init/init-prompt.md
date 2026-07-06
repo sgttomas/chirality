@@ -99,14 +99,6 @@ inherent goals — recorded in its standing plan — as far as live authority pe
 Steer (this run): <none>
 </init-prompt>
 
-Subagent assignments (single home for this convention — the pec `LOOP_INIT.md`
-§7 points here; owner-revised 2026-07-05): use `opus` agents for discovery,
-research, summaries, running deterministic checks, and breadth verification;
-use `fable` agents with `high` reasoning effort for planning, for adversarial
-verification of anything that will be recorded as fact, and for execution that
-touches governed artifacts, fences, or rulings; `fable` at `low` effort only
-for mechanical execution of fully specified changes.
-
 Same thin-launcher rationale as §3: the goal (implement
 `plans/pec_bridge_integration_plan_2026-07-04.md`, stop at the owner gates, then
 the standing pec goal once ruled), the protocol, and the fences live in
