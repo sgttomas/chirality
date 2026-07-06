@@ -1,6 +1,6 @@
 # D-T0-20 - PROPOSAL: pec instance-content visibility for LLM-hosted agents (residual of D-T0-14)
 
-**Status:** AWAITING_RULING.
+**Status:** RULED — O-B affirmed by owner 2026-07-06 (verbatim below).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-T0-20 (residual of `D-T0-14`, 2026-07-03 residual-row convention)
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -94,4 +94,26 @@ the only path to real content.
 
 ## Human ruling
 
-**Ruling:** _pending._
+**Ruling:** O-B. Owner ruling of record (2026-07-06, in-session steer, Ryan
+Tufts, verbatim):
+
+> D-T0-20: I rule O-B, the enumerated OPEN surface exactly as listed
+> (i)–(iv), under the agent person's RBAC, is_admin=0. This ruling also
+> discharges the D-PEC-10 Scope-note-4 visibility confirmation for the
+> 272-item run. The mutation basis is unchanged: scratch/demo only — agent
+> operation against my real/non-scratch DB still requires its own future
+> row. For clarity: the pilot-scratch instance is within the scratch/demo
+> mutation basis, so the 272-item triage run may proceed on it.
+
+**Ruling SHA:** received with `main` at `4c636e53e` (tag
+`pre-bridge-session-2026-07-06`); published by this packet's PR.
+
+**Mechanism executed (same PR):** `_DomainEngines/profiles/pec.yaml`
+`data_residency` updated to the O-B enumerated-OPEN value with a dated
+open-issue annotation (validator re-run VALID); the RV-12 rider in the
+adopted upload-agent brief annotated with a dated pointer to this ruling (no
+rewrite of the adopted text); basis recorded in the pec register (pointer row
+`D-PEC-18`). The D-PEC-10 Scope-note-4 visibility confirmation for the
+272-item run is discharged by the ruling text above; the mutation basis is
+untouched — scratch/demo only, with the pilot-scratch instance inside that
+basis per the ruling's clarity sentence.

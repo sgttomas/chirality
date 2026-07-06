@@ -130,6 +130,13 @@ already lawful; instance-content capture is not.
   D-T0-16). The pec DRAFT profile stays OUT of `_DomainEngines/profiles/`
   until that tranche (the multi-profile adapter defect is the reason — see the
   plan's live-tree facts).
+  *Grant note (2026-07-06, owner D-T0-19 O-1A ruling — dated pointer, no
+  fence rewrite):* the fence set gains the enumerated app-dev
+  **decision/coordination packet** paths
+  (`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` rows
+  authored as PROPOSALs by this loop); app-dev **source** stays behind D-APP
+  rulings; deconfliction note in the app-dev register preamble; twin notes in
+  the D-T0-19 and D-T0-15 packets.
 
 ## Where live work is re-derived (pointer index — never a status surface)
 

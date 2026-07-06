@@ -362,3 +362,80 @@
   - Gate outcome: STOP at the slate per the steer — D-T0-19, D-T0-20, D-PEC-16 all AWAITING_RULING; briefs CANDIDATE; no source tranche in either project; no app-dev, bridge-loop, or piping write; no D-APP row opened (P1/P2 IDs provisional, renumber-at-authoring); no self-merge — owner merges this PR.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5 (no baseline shift); full `tools/` pytest pass at final SHA; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; coord-check on the range pass/no findings; `git diff --check` pass.
   - Parked lanes: owner rulings D-T0-19 (O-1A also grants + deconflicts the app-dev packet-authoring scope and adopts the bridge brief) / D-T0-20 / D-PEC-16 → next iteration authors the app-dev P1/P2 PROPOSALs and the D-PEC-17-to-be tranche row as ruled; the real/non-scratch-DB mutation-basis row remains future (pilot-DB: "Another time"); D-PEC-13/14/15, 272-item basis confirmation, risks upload owner-side — carry forward.
+
+- **2026-07-06 — Receipt 32** (bridge-lane rulings recorded; reconstruction anchor tagged; session pre-ruling of record).
+  - Start: `4c636e53e` (`origin/main` after PR #88, clean); branch `codex/pec-bridge-rulings-2026-07-06`. **Reconstruction anchor (owner steer): tag `pre-bridge-session-2026-07-06` = `4c636e53e5b428e93afddfa1e70a6cd633abcc72`, pushed before any other work.**
+  - Owner rulings of record (2026-07-06, in-session steer, Ryan Tufts): **D-T0-19 RULED O-1A + O-2A + O-3A**, **D-T0-20 RULED O-B**, **D-PEC-16 RULED O-A (runtime RT-B)** — each quoted verbatim in its packet's Human-ruling section (rule 2 satisfied there); ruling received with `main` at `4c636e53e`.
+  - Owner session authorization of record (2026-07-06, in-session steer, Ryan Tufts, item 4 — quoted verbatim in full as that item itself requires; this receipt and every pre-ruled selection this session rely on it):
+
+    > Session authorization — a conditional standing pre-ruling (this session
+    > only; expires at session end or 24 hours after this direction, whichever
+    > comes first; quote this item verbatim in the first receipt that relies on
+    > it). Development is open across all fronts of this repository, with the
+    > bridge lane (D-T0-19 P1→P4, D-PEC-17) as top priority. For any decision
+    > packet PREPARED THIS SESSION — including the P1/P2 app-dev packets,
+    > D-PEC-17, and the preparation of previously opened NOT_PREPARED rows such
+    > as D-PEC-13/14/15 — I pre-rule, now, the packet's recommended option,
+    > conditional on all of the following. The agent records each outcome
+    > verbatim as "recommended option selected by the owner's 2026-07-06
+    > conditional pre-ruling" with a pointer to this direction — K-AUTH-1
+    > intact: the ruling act is mine, made here; the agent only records which
+    > option this pre-ruling selected.
+    >
+    > Conditions:
+    > a. The packet has passed the two-lens adversarial verification pass (fact
+    >    lens + governance lens, fable agents at high effort) with every BLOCKER
+    >    and MAJOR finding fixed, and the verifiers were told the result will be
+    >    pre-ruled without my read.
+    > b. The recommendation lies inside the architecture already ruled (D-T0-19/
+    >    D-T0-20/D-PEC-16 and prior rulings). If the honest recommendation falls
+    >    outside these bounds, conflicts with an exclusion below, or the agent
+    >    finds itself recommending against its own earlier work, STOP and bring
+    >    it to me.
+    > c. Self-merge is permitted only when the full check set is green at the
+    >    final SHA: profile validator where touched; repo self-check with no
+    >    unexplained baseline shift; full tools/ pytest; pec `npm run typecheck
+    >    && npm test && npm run build && npm run drill`; coord-check on the
+    >    committed range; `git diff --check`; and CI green on the PR for every
+    >    check that does not require the absent ANTHROPIC_API_KEY — the known
+    >    harness-premerge secret failure is excluded from "green," with its
+    >    key-independent substance run locally instead and the exclusion noted
+    >    in the receipt. Every pre-ruled selection and every self-merge goes in
+    >    the receipt.
+    >
+    > Environment constraint: no ANTHROPIC_API_KEY exists in this environment
+    > and none will be provided this session. Build every LLM seam (the RT-B
+    > sidecar's engine, any harness-session-dependent path) behind a
+    > config-driven engine port with a deterministic stub, so a key can be
+    > dropped in later without source change. All tests and evidence this
+    > session are key-independent (stubbed engine or direct handler/API
+    > invocation); live-LLM demonstration is deferred, and its absence is
+    > stated plainly in the evidence packs — never worked around by sourcing,
+    > hardcoding, or fabricating a key or its outputs.
+    >
+    > I note and intend the transitive consequence: this authorization opens
+    > source changes in both pec and chirality-app-dev this session, under the
+    > ruled designs, the standing fences as amended by item 1, and the checks
+    > above.
+    >
+    > Excluded — still my acts only:
+    > - anything lifting the scratch/demo mutation basis toward my real/
+    >   non-scratch DB;
+    > - any residency expansion beyond the D-T0-20 O-B enumeration;
+    > - force=true in any form;
+    > - accept/apply on real data (demo-cast accept/apply on scratch bases for
+    >   rehearsal evidence is permitted per the D-PEC-12 full-agency amendment
+    >   and must be disclosed in the evidence pack);
+    > - ruling any NEW tier-0 (D-T0-*) row: prepare it and stop;
+    > - ruling rows another loop prepared before this session (e.g., piping
+    >   D-12/D-07b);
+    > - release/publish/egress acts and professional claims (F-PEC-3,
+    >   K-DOMAIN-4) — unchanged;
+    > - anything the standing fences reserve to me that this direction does not
+    >   explicitly cover.
+
+  - Per-run steer also of record (one line each): orchestration = dependency-ordered tranches, disjoint write scopes in parallel, main loop holds shared surfaces/gates/merges; subagent models = opus for discovery/checks/breadth, fable-high for planning/adversarial verification/governed execution, fable-low for mechanical execution only.
+  - Executed pointers (this PR): D-T0-19/D-T0-20 packets + tier-0 register rows RULED; D-PEC-16 packet + pec register row RULED; bridge brief + UI brief CANDIDATE → ADOPTED (dated adoption notes; RT-B of record); O-1A fence-scope grant notes (D-T0-19 packet, D-T0-15 packet, workplan F-PEC-4 bullet); app-dev register preamble deconfliction grant note + bridge-ledger cross-loop note 2026-07-06; `_DomainEngines/profiles/pec.yaml` `data_residency` CLOSED → OPEN_ENUMERATED per D-T0-20 O-B (validator VALID, report byte-unchanged); RV-12 rider annotation in the adopted upload brief; pec register rows opened `D-PEC-17` (NOT_PREPARED) + `D-PEC-18` (pointer, RULED).
+  - Gate outcome: rulings recorded exactly as given; no new tier-0 row ruled; the D-PEC-10 Scope-note-4 visibility confirmation for the 272-item run is discharged by the D-T0-20 ruling text; the 272-item run on pilot-scratch is owner-clarified lawful (scratch/demo mutation basis) and parked behind the bridge-lane priority. Self-merge of this PR under item 4c with the full check set green at the final SHA.
+  - Checks (at this PR's final SHA): profile validator VALID; self-check pass no baseline shift; full `tools/` pytest pass; pec `npm run typecheck && npm test && npm run build && npm run drill` pass; coord-check on the committed range pass; `git diff --check` pass; CI consulted with the known harness-premerge `ANTHROPIC_API_KEY` secret failure excluded per item 4c (key-independent substance run locally).
+  - Parked lanes: P1/P2 app-dev packets + tranches (next, this session, under item 4); D-PEC-17 preparation + tranche (next, this session, under item 4); P4 end-to-end rehearsal (owner at the screen — cannot be discharged agent-side); 272-item triage run on pilot-scratch (lawful, behind bridge priority); D-PEC-13/14/15 preparation (item-4-eligible, behind bridge priority); live-LLM demonstration (deferred — no key this session); pilot-DB/real-basis row, risks upload owner-side — carry forward.

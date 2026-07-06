@@ -23,6 +23,15 @@ Owner ruling of record (verbatim, 2026-07-05, in-session, Ryan Tufts):
 Adoption closes only the brief-adoption gate. The source-tranche gate remains
 deferred; no tranche is authored or requested by this adoption.
 
+> **RV-12 rider annotation (2026-07-06, dated pointer — no rewrite of the
+> adopted text):** the "future D-T0-14 residency ruling" the rider gates on
+> has now been made: tier-0 `D-T0-20` (residual of D-T0-14) RULED O-B
+> 2026-07-06 — LLM-hosted agent sessions may read, and route to the
+> owner-configured model provider, exactly the enumerated surface (i)–(iv)
+> under the agent person's RBAC, `is_admin=0`; everything unenumerated stays
+> CLOSED; the mutation basis (scratch/demo only) is unchanged. Ruling
+> verbatim: `_DomainEngines/_DECISIONS/D-T0-20_pec_harness_agent_residency.md`.
+
 ## Goal (owner's words, D-PEC-07)
 
 "I want the embedded agent to accept a file upload from me and take action
