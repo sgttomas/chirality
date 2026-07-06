@@ -1,0 +1,2 @@
+sweep: 2 notification(s)
+PEC server on http://localhost:4899 (db: /Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/db/pec-scratch-import.db)

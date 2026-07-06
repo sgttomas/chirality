@@ -11,12 +11,12 @@
  * intake items flagged unanchored.
  */
 
-import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, Revision, Risk, WorkItem } from '@pec/core'
+import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, PackageTracker, Revision, Risk, WorkItem } from '@pec/core'
 import {
-  HOLD_CAUSES, LOGS, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
+  HOLD_CAUSES, LOGS, TRACKER_STAGE_STATES, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
 } from '@pec/core'
 import { badRequest } from '../errors.ts'
-import { nowIso } from '../repo.ts'
+import { nowIso, snakeToCamel } from '../repo.ts'
 import type { Sx } from '../services/shared.ts'
 import { parseTable, toCsv } from './csv.ts'
 import { createRevision } from '../services/revisions.ts'
@@ -490,6 +490,98 @@ function importSchedule(sx: Sx, csv: string, _force: boolean): ImportReport {
   return report
 }
 
+// ---------- Package Tracker (§16 sixth contract, D-PEC-13 as amended) ----------
+// One row per package: the `package` column is row-required and must resolve to an existing
+// package.code — the idempotency key (owner amendment: "match the tracker entries with the
+// PKG-#### numbers"). The CoA tracking number is kept verbatim as plain, non-unique data.
+
+/** The 12 procurement-stage columns, in contract order (CSV columns ≡ export columns). */
+const TRACKER_STAGE_COLS = [
+  'stage_budgetary_datasheet', 'stage_cost_estimate', 'stage_package_datasheet', 'stage_package',
+  'stage_rfq', 'stage_review', 'stage_vendor_bids', 'stage_clarifications', 'stage_evaluation',
+  'stage_eng_req', 'stage_po', 'stage_databook',
+] as const
+
+const TRACKER_OPTIONAL_COLS = [
+  'package_type_approved', 'package_type_proposed', 'line_items', 'vendors_engaged',
+  'vendor_awarded', 'expected_delivery_date', 'cost_estimate_cad', 'comments',
+] as const
+
+function importTracker(sx: Sx, csv: string, _force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'tracker', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+  // tracking_no stays header-required (the weekly file always carries it, and the check
+  // catches column drift early) but is row-optional
+  const required = ['tracking_no', 'package_name', 'discipline', 'area', ...TRACKER_STAGE_COLS, 'package']
+  const missing = required.filter((h) => !headers.includes(h))
+  if (missing.length > 0) throw badRequest(`tracker import missing required columns: ${missing.join(', ')} (§16)`)
+
+  const seen = new Set<string>()
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    for (const col of ['package_name', 'package']) if (!row[col]) errors.push(`${col} is required`)
+    const stages: Record<string, string | null> = {}
+    for (const col of TRACKER_STAGE_COLS) {
+      if (!row[col]) { stages[col] = null; continue } // blank stored null
+      const v = normState(row[col]!)
+      if (!(TRACKER_STAGE_STATES as readonly string[]).includes(v)) {
+        // unrecognized stage values reject the row — never silently coerced (D-PEC-13)
+        errors.push(`unrecognized ${col} "${row[col]}" (accepted: ${TRACKER_STAGE_STATES.join(', ')})`)
+        continue
+      }
+      stages[col] = v
+    }
+    if (row.expected_delivery_date && !DATE_RE.test(row.expected_delivery_date)) {
+      errors.push(`expected_delivery_date must be YYYY-MM-DD, got "${row.expected_delivery_date}"`)
+    }
+    // the package IS the idempotency key (owner amendment): row-required, must resolve —
+    // an unresolvable key is a data gap and rejects the row, never silently dropped (§16).
+    // NO intake fallback (ruled divergence from RAIL): intakeCreated stays 0 by construction.
+    const pkg = row.package
+      ? sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
+        .get(sx.projectId, row.package) as { id: number } | undefined
+      : undefined
+    if (row.package && !pkg) errors.push(`package "${row.package}" matches no package code`)
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    // within-file duplicate keys: the first valid occurrence wins; later ones are conflicts,
+    // never applied, never silent (D-PEC-13)
+    if (seen.has(row.package!)) {
+      report.conflicts.push({ row: rowNo, key: row.package!, reason: 'duplicate package in file; first occurrence applied, this one skipped' })
+      return
+    }
+    seen.add(row.package!)
+
+    // optional columns update only when present in the CSV — a narrower re-import must not
+    // silently wipe earlier data (§16: nothing dropped without a report)
+    const fields: Record<string, unknown> = {
+      trackingNo: row.tracking_no || null, // kept verbatim; plain data, never keyed on
+      packageName: row.package_name, discipline: row.discipline || null, area: row.area || null,
+    }
+    for (const col of TRACKER_STAGE_COLS) fields[snakeToCamel(col)] = stages[col]
+    for (const col of TRACKER_OPTIONAL_COLS) {
+      if (headers.includes(col)) fields[snakeToCamel(col)] = row[col] || null
+    }
+
+    const existing = sx.db.prepare('SELECT id FROM package_tracker WHERE project_id = ? AND package_id = ?')
+      .get(sx.projectId, pkg!.id) as { id: number } | undefined
+    if (existing) {
+      // tracker rows are import-owned (no in-app edit path); re-import always refreshes
+      sx.repo.systemUpdate('package_tracker', sx.projectId, existing.id, fields)
+      importHistory(sx, 'package_tracker', existing.id, `${row.package} tracker row refreshed by tracker import`)
+      report.updated++
+    } else {
+      const id = sx.repo.insert('package_tracker', {
+        projectId: sx.projectId, packageId: pkg!.id, ...fields,
+      })
+      importHistory(sx, 'package_tracker', id, `${row.package} tracker row created by tracker import`)
+      report.accepted++
+    }
+  })
+  return report
+}
+
 export function importContract(sx: Sx, contract: string, csv: string, force: boolean): ImportReport {
   switch (contract) {
     case 'mdl': return importMdl(sx, csv, force)
@@ -497,7 +589,8 @@ export function importContract(sx: Sx, contract: string, csv: string, force: boo
     case 'decisions': return importDecisions(sx, csv, force)
     case 'risks': return importRisks(sx, csv, force)
     case 'schedule': return importSchedule(sx, csv, force)
-    default: throw badRequest(`unknown import contract: ${contract} (mdl, rail, decisions, risks, schedule)`)
+    case 'tracker': return importTracker(sx, csv, force)
+    default: throw badRequest(`unknown import contract: ${contract} (mdl, rail, decisions, risks, schedule, tracker)`)
   }
 }
 
@@ -669,6 +762,23 @@ export function exportRegister(sx: Sx, register: string): string {
       const rows = snap.scheduleActivities.map((a) => [
         a.activityId, a.description, a.startDate, a.finishDate,
         pkgCode(a.packageId), docNo(a.deliverableId),
+      ])
+      return toCsv(headers, rows)
+    }
+    case 'tracker': {
+      // mirrors the §16 tracker import for round-trip (D-PEC-13); tracker rows are
+      // import-owned and stay out of the snapshot — direct table read
+      const headers = ['tracking_no', 'package_name', 'discipline', 'area',
+        'package_type_approved', 'package_type_proposed', 'line_items', 'vendors_engaged',
+        'vendor_awarded', 'expected_delivery_date', 'cost_estimate_cad', 'comments',
+        ...TRACKER_STAGE_COLS, 'package']
+      const rows = sx.repo.list<PackageTracker>('package_tracker', sx.projectId).map((t) => [
+        t.trackingNo, t.packageName, t.discipline, t.area,
+        t.packageTypeApproved, t.packageTypeProposed, t.lineItems, t.vendorsEngaged,
+        t.vendorAwarded, t.expectedDeliveryDate, t.costEstimateCad, t.comments,
+        t.stageBudgetaryDatasheet, t.stageCostEstimate, t.stagePackageDatasheet, t.stagePackage,
+        t.stageRfq, t.stageReview, t.stageVendorBids, t.stageClarifications, t.stageEvaluation,
+        t.stageEngReq, t.stagePo, t.stageDatabook, pkgCode(t.packageId),
       ])
       return toCsv(headers, rows)
     }

@@ -1,0 +1,40 @@
+{
+  "provisioned": {
+    "personId": 16,
+    "email": "pec-agent@rehearsal.demo",
+    "is_admin": 0,
+    "role": "coordinator",
+    "projectId": 1,
+    "projectCode": "AUR"
+  },
+  "seedCastProvides": {
+    "demoAdmin": {
+      "personId": 15,
+      "email": "admin@aurora.dev",
+      "hasAdminRole": true
+    },
+    "anchorPackages": [
+      {
+        "id": 1,
+        "code": "PKG-P"
+      },
+      {
+        "id": 2,
+        "code": "PKG-M"
+      },
+      {
+        "id": 3,
+        "code": "PKG-PI"
+      },
+      {
+        "id": 4,
+        "code": "PKG-EI"
+      }
+    ],
+    "pkgNopeAbsent": true
+  },
+  "freshSchemaShape": {
+    "packageIdNotNull": true,
+    "columns": 28
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "note": "evidence that the shipped old-shape rebuild migration (server/src/db.ts openDb: nullable package_id detected -> DROP TABLE package_tracker + recreate at the amended DDL) fired on the standing pilot-scratch DB. BEFORE facts read read-only from a scratchpad copy of the pre-run backup; AFTER facts read read-only from a scratchpad copy of the post-run backup — the live DB was never opened for this capture.",
+  "whenItFired": "at the script-side basis-prep openDb (the first open of the standing DB with the amended code, server down), before server start — the same open also provisioned the run credentials; disclosed in 00-basis-prep.json (migrationFiredAtThisOpen)",
+  "before_fromPreRunBackupCopy": {
+    "backupSha256": "b2780788a36c40659b27e0ed39be60c4af7d8c63efa171b97b398c0f78ffd2ed",
+    "shape": "OLD (evidence-01 / pre-amendment)",
+    "keyColumns": {
+      "tracking_no": { "notnull": 1, "comment_in_ddl": "external id, the §16 idempotency key (stored verbatim)" },
+      "package_id": { "notnull": 0, "referencesPackage": true }
+    },
+    "uniqueConstraint": "UNIQUE(project_id, tracking_no)",
+    "autoindexColumns": ["project_id", "tracking_no"],
+    "packageTrackerRowCount": 64,
+    "rowCountNote": "the 64 rows applied by evidence-01 under the pre-amendment tracking_no key"
+  },
+  "after_fromPostRunBackupCopy": {
+    "backupSha256": "776f98ae23600fc85e6046a1df08e4641c40c555eacb4e52fb904693ab6e1cce",
+    "shape": "AMENDED (D-PEC-13 owner amendment 2026-07-06)",
+    "keyColumns": {
+      "tracking_no": { "notnull": 0, "comment_in_ddl": "CoA number, kept verbatim; data only, NOT the key" },
+      "package_id": { "notnull": 1, "referencesPackage": true, "comment_in_ddl": "the §16 idempotency key" }
+    },
+    "uniqueConstraint": "UNIQUE(project_id, package_id)",
+    "autoindexColumns": ["project_id", "package_id"],
+    "packageTrackerRowCount": 54,
+    "anchored": 54,
+    "rowCountNote": "0 immediately after the rebuild (captured in 00-basis-prep.json); 54 after this run's IPR-0002 apply repopulated the register under the amended key",
+    "coaValuesSharedByMultipleRows": 1,
+    "rowsCarryingTheSharedCoaValue": 2
+  },
+  "dataLossDisclosure": "the 64 old-shape rows were import-owned, reproducible register rows (the shipped migration's stated basis: old-shape tables exist only on scratch instances); this run's re-import repopulated the register from the same owner workbook under the amended key — 54 rows land, the other 11 workbook rows are owner-side data gaps reported in 01-run-counts.json"
+}

@@ -1,0 +1,18 @@
+{
+  "note": "deterministic preview check: the v2 apply report must equal the v2 dry-run report",
+  "identical": true,
+  "dryRun": {
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": 0,
+    "rejected": 0,
+    "intakeCreated": 0
+  },
+  "apply": {
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": 0,
+    "rejected": 0,
+    "intakeCreated": 0
+  }
+}

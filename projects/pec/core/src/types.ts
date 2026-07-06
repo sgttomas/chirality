@@ -15,6 +15,7 @@ export const RECORD_TYPES = [
   'condition', 'issue_event', 'evidence', 'basis_reference', 'person',
   'plan_item', 'plan_shift', 'schedule_activity', // P2 planning (PRD §13.1)
   'import_proposal', // D-PEC-08: proposed imports (§16 contracts behind a human accept/apply gate)
+  'package_tracker', // D-PEC-13: §16 tracker contract (import-owned register)
 ] as const
 export type RecordType = (typeof RECORD_TYPES)[number]
 
@@ -706,6 +707,45 @@ export interface ScheduleActivity {
   finishDate: string
   packageId: number | null
   deliverableId: number | null
+  version: number
+}
+
+/** Procurement-stage vocabulary of the §16 tracker contract (D-PEC-13); unrecognized values reject the row. */
+export const TRACKER_STAGE_STATES = [
+  'not_started', 'in_progress', 'complete', 'issued', 'not_applicable',
+] as const
+export type TrackerStageState = (typeof TRACKER_STAGE_STATES)[number]
+
+/** Imported Package Tracker row (§16 tracker contract, D-PEC-13 as amended). Import-owned:
+ *  no in-app edit path. One row per package — the resolved package is the idempotency key. */
+export interface PackageTracker {
+  id: number
+  projectId: number
+  trackingNo: string | null // CoA number, kept verbatim; plain data, NOT the key (owner amendment)
+  packageName: string
+  discipline: string | null
+  area: string | null
+  packageTypeApproved: string | null
+  packageTypeProposed: string | null
+  lineItems: string | null
+  vendorsEngaged: string | null
+  vendorAwarded: string | null
+  expectedDeliveryDate: string | null // YYYY-MM-DD
+  costEstimateCad: string | null
+  comments: string | null
+  stageBudgetaryDatasheet: TrackerStageState | null
+  stageCostEstimate: TrackerStageState | null
+  stagePackageDatasheet: TrackerStageState | null
+  stagePackage: TrackerStageState | null
+  stageRfq: TrackerStageState | null
+  stageReview: TrackerStageState | null
+  stageVendorBids: TrackerStageState | null
+  stageClarifications: TrackerStageState | null
+  stageEvaluation: TrackerStageState | null
+  stageEngReq: TrackerStageState | null
+  stagePo: TrackerStageState | null
+  stageDatabook: TrackerStageState | null
+  packageId: number // the resolved package — the §16 idempotency key (owner amendment)
   version: number
 }
 

@@ -20,6 +20,7 @@ const TABS = [
   ['risks', 'Risks'],
   ['interfaces', 'Interfaces'],
   ['holds', 'Holds'],
+  ['tracker', 'Tracker'],
 ] as const
 
 export function RegistersPage(): JSX.Element {
@@ -41,6 +42,7 @@ export function RegistersPage(): JSX.Element {
       {tab === 'risks' && <RisksTab />}
       {tab === 'interfaces' && <InterfacesTab />}
       {tab === 'holds' && <HoldsTab />}
+      {tab === 'tracker' && <TrackerTab />}
     </div>
   )
 }
@@ -883,6 +885,81 @@ function InterfaceDrawer({ row, onClose }: { row: any; onClose(): void }): JSX.E
         </div>
       </form>
     </Drawer>
+  )
+}
+
+// ================================================================ tracker
+
+/** The 12 procurement stages of the §16 tracker contract, field key → short label. */
+const TRACKER_STAGES = [
+  ['stageBudgetaryDatasheet', 'Budgetary DS'],
+  ['stageCostEstimate', 'Cost est.'],
+  ['stagePackageDatasheet', 'Package DS'],
+  ['stagePackage', 'Package'],
+  ['stageRfq', 'RFQ'],
+  ['stageReview', 'Review'],
+  ['stageVendorBids', 'Vendor bids'],
+  ['stageClarifications', 'Clarifications'],
+  ['stageEvaluation', 'Evaluation'],
+  ['stageEngReq', 'Eng. req.'],
+  ['stagePo', 'PO'],
+  ['stageDatabook', 'Databook'],
+] as const
+
+/** Package Tracker register (§16 tracker contract, D-PEC-13) — read-only: rows are
+ *  import-owned (no in-app edit path); the only write path is the tracker import. */
+function TrackerTab(): JSX.Element {
+  const { pid } = useApp()
+  const { data, error } = useLoad(() => api.get(p(pid, 'tracker')), [pid])
+  const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
+  const hl = useHighlightRef()
+  if (error) return <ErrorBox error={{ message: error }} />
+  if (!data) return <p className="muted">loading…</p>
+
+  const pkgCode = (id: number | null): string | null =>
+    (packages ?? []).find((k: any) => k.id === id)?.code ?? null
+
+  const cols: Array<Col<any>> = [
+    {
+      // the key column (owner amendment): one tracker row per package
+      key: 'package', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span>,
+      csv: (r) => pkgCode(r.packageId),
+    },
+    {
+      key: 'trackingNo', label: 'CoA #', render: (r) => r.trackingNo
+        ? <span className="mono">{r.trackingNo}</span> : <span className="muted small">—</span>,
+      csv: (r) => r.trackingNo,
+    },
+    { key: 'packageName', label: 'Package name', render: (r) => r.packageName },
+    { key: 'discipline', label: 'Discipline', render: (r) => <span className="small">{r.discipline}</span> },
+    { key: 'area', label: 'Area', render: (r) => <span className="small">{r.area}</span> },
+    { key: 'typeProposed', label: 'Proposed type', render: (r) => <span className="small">{r.packageTypeProposed}</span>, csv: (r) => r.packageTypeProposed },
+    { key: 'vendorsEngaged', label: 'Vendors engaged', render: (r) => <span className="small">{r.vendorsEngaged}</span>, csv: (r) => r.vendorsEngaged },
+    { key: 'vendorAwarded', label: 'Awarded', render: (r) => <span className="small">{r.vendorAwarded}</span>, csv: (r) => r.vendorAwarded },
+    { key: 'delivery', label: 'Expected delivery', render: (r) => <span className="nowrap">{fmtDate(r.expectedDeliveryDate)}</span>, csv: (r) => r.expectedDeliveryDate },
+    {
+      key: 'stages', label: 'Stages', render: (r) => (
+        <span className="small">{TRACKER_STAGES.map(([k, label]) => r[k] && (
+          <span key={k} className={`state ${r[k]}`} style={{ marginRight: '.25rem' }}
+            title={`${label}: ${r[k].replaceAll('_', ' ')}`}>{label}</span>
+        ))}</span>
+      ),
+      csv: (r) => TRACKER_STAGES.map(([k, label]) => `${label}: ${r[k] ?? ''}`).join('; '),
+    },
+    { key: 'comments', label: 'Comments', render: (r) => <span className="small muted">{r.comments}</span> },
+  ]
+
+  return (
+    <div>
+      <p className="section-note">
+        Package Tracker (§16 tracker contract, D-PEC-13 as amended) — import-owned: rows
+        update only via the tracker import/proposal path; there is no in-app edit here.
+        One row per package (the key); re-import refreshes matched packages in place. The
+        CoA tracking number is carried verbatim as data.
+      </p>
+      <RegisterTable cols={cols} rows={data} exportName="tracker-register.csv"
+        highlightRef={hl} rowRef={(r) => pkgCode(r.packageId) ?? ''} />
+    </div>
   )
 }
 

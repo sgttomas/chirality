@@ -1,0 +1,11 @@
+{
+  "note": "agent session established (identity fact only; no token captured)",
+  "me": {
+    "me": {
+      "personId": 16,
+      "name": "PEC tracker-import agent (D-PEC-13 evidence-02)",
+      "email": "pec-agent@rehearsal.demo",
+      "isAdmin": false
+    }
+  }
+}

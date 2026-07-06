@@ -7,7 +7,7 @@
 
 import type {
   Check, Condition, ContributingRef, Deliverable, Explain, Hold, IntakeItem, InterfaceItem, Log,
-  Package, Project, ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
+  Package, PackageTracker, Project, ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
 } from '@pec/core'
 import {
   activeHoldsFor, ageWorkingDays, capacityView, commentIsOpen, currentRevision, daysOverdue,
@@ -601,6 +601,12 @@ export function decisionRegisterView(sx: Sx): unknown {
 export function riskRegisterView(sx: Sx): Risk[] {
   const snap = snapshot(sx)
   return snap.risks
+}
+
+/** Package Tracker register (§16 tracker contract, D-PEC-13): import-owned rows, read-only.
+ *  Direct table read — tracker rows stay out of the snapshot by design. */
+export function trackerRegisterView(sx: Sx): PackageTracker[] {
+  return sx.repo.list<PackageTracker>('package_tracker', sx.projectId)
 }
 
 /** Dedicated interface register (PEC-INT-002, P2): aging + giving/receiving filters. */

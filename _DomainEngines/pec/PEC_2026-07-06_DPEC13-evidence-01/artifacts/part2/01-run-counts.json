@@ -1,0 +1,40 @@
+{
+  "note": "COUNT-LEVEL capture (D-PEC-13 ruling item-4 default: manifests/hashes/counts only for tracker-derived content). Raw payloads live untracked in pilot-scratch, referenced by hash.",
+  "proposal": {
+    "ref": "IPR-0001",
+    "contract": "tracker",
+    "sourceSha256": "da6fadb1f9611fde4082355229e39b24cf59c43c9ac9fa3716cd99c21a521698",
+    "sourceBytes": 22277,
+    "state": "applied"
+  },
+  "dryRun": {
+    "accepted": 64,
+    "updated": 0,
+    "conflicts": 1,
+    "rejected": 0,
+    "intakeCreated": 0
+  },
+  "apply": {
+    "accepted": 64,
+    "updated": 0,
+    "conflicts": 1,
+    "rejected": 0,
+    "intakeCreated": 0
+  },
+  "applyIdenticalToDryRun": true,
+  "conflictNote": "the single conflict is the duplicated tracking-number value (workbook rows 16/54); key literal withheld per the ruled capture default",
+  "registerRows": 64,
+  "anchorResolvedRows": 53,
+  "export": {
+    "sha256": "82a78424962d56d04fa4ca15f18bbea68fc17b9ed048b93ad852ae186e718e79",
+    "rows": 64,
+    "columns": 25
+  },
+  "rawArtifactHashes": {
+    "01-propose.json": "923c313bac5c021bcccfbd54e6e2018f1a74557bece40a7e2eb5633062361e9a",
+    "02-demo-cast-accept.json": "efda1b0a0dde8bc0ef20358ea050bbc215723234134939941f0eb944c92de8f4",
+    "03-demo-cast-apply.json": "db1a1373618c015bd4ffdcd28724b9bcbaa802e73b658b46aff1229fed40559e",
+    "04-register-view.json": "1720da4c2fccb47fe8c132e651aedee64ab321617c82a532c0fb4e068ec18155",
+    "05-export-tracker.csv": "82a78424962d56d04fa4ca15f18bbea68fc17b9ed048b93ad852ae186e718e79"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "note": "agent-side xlsx->CSV mapping per IMPORT_MAPPING §tracker AS AMENDED (2026-07-06 owner amendment: key = resolved package.code; the CoA number is kept verbatim as plain non-unique data). COUNT-LEVEL capture only (ruled item-4 default). The authored CSV lives untracked at pilot-scratch/import-ready/tracker.csv (owner surface), referenced by hash.",
+  "sources": {
+    "tracker.xlsx": {
+      "path": "projects/pec/pilot-scratch/input/tracker.xlsx",
+      "sha256": "01fc38f085dc8218c0e006d8a27c8ad7fa157c964ffe4041a7599ebc54f6bf9e",
+      "matchesRuledPacketHash": true,
+      "sheet": "Package Summary",
+      "readBasis": "D-T0-20 O-B enumeration item (iv), owner-dropped weekly file"
+    },
+    "mdl.xlsx": {
+      "path": "projects/pec/pilot-scratch/input/mdl.xlsx",
+      "sha256": "bf73c03f5f753652c7d0e62086dedbbcc6f6642de29b32976e814efc7860db74",
+      "sheet": "Master Deliverables List (header row 2)",
+      "use": "unique-name package resolution: tracker Package Name -> MDL Package ID -> package.code (now the KEY, not an enrichment)"
+    }
+  },
+  "authoredCsv": {
+    "path": "projects/pec/pilot-scratch/import-ready/tracker.csv (untracked, NOT committed; re-authored from source, overwriting the evidence-01 file)",
+    "sha256": "da6fadb1f9611fde4082355229e39b24cf59c43c9ac9fa3716cd99c21a521698",
+    "byteIdenticalToEvidence01Csv": true,
+    "byteIdenticalNote": "the evidence-01 mapping already carried all 25 amended columns (package populated where uniquely resolvable, blank otherwise); the amendment changed the SERVER-side key semantics, not the authoring mapping — the re-derivation reproduced the same bytes",
+    "dataRows": 65,
+    "columns": 25
+  },
+  "mappingCounts": {
+    "packageKeyResolvedUnique": 54,
+    "packageKeyUnmatched": 11,
+    "packageKeyAmbiguous": 0,
+    "unresolvedRowsIncludedInCsv": "all 11, with a blank package key, so the CONTRACT rejects them — the §16 report is the data-gap evidence (no silent authoring-side trim)",
+    "unresolvedWorkbookSheetRows": [6, 17, 57, 58, 59, 60, 61, 62, 63, 64, 65],
+    "resolvedPackageCodeCollisionsAcrossWorkbookRows": 0,
+    "resolvedAnchorsPresentAsPackageCodeInStandingDb": "54/54 (pre-checked read-only against a scratchpad copy of the pre-run backup, triage-01 read-path precedent)",
+    "distinctTrackingNoValues": 64,
+    "duplicatedCoaValue": {
+      "workbookSheetRows": [16, 54],
+      "bothRowsCarryAResolvedPackageKey": true,
+      "theTwoResolvedPackagesAreDistinct": true,
+      "note": "plain-data oddity under the amended contract, no longer an import defect; key literal withheld per the ruled capture default"
+    },
+    "vendorsDashBlanked": 13,
+    "multilineJoinsLineItems": 30,
+    "multilineJoinsVendors": 16,
+    "commentsPopulated": 12
+  },
+  "mappingRulesApplied": [
+    "newline -> '; ' joins (line_items, vendors_engaged, comments)",
+    "literal '-' vendors marker -> blank",
+    "stage vocabulary normalized (Not Started -> not_started, In Progress -> in_progress, Complete -> complete, Issued -> issued, Not Applicable -> not_applicable)",
+    "package_type_approved / package_type_proposed trimmed",
+    "package key stated only where the tracker Package Name resolves to exactly one MDL Package ID (blank otherwise -> contract reject)"
+  ]
+}

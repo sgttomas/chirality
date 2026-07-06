@@ -7,7 +7,7 @@
 > workbooks govern the content. Clerical defaults below are flagged ⚑ for
 > owner ratification. Example rows in the `*-template.csv` files are fiction.
 
-## The five templates
+## The six templates (tracker added 2026-07-06 under the D-PEC-13 O-A ruling)
 
 Each `*-template.csv` header row is the exact §16 contract (identical to the
 register export headers, so export→edit→re-import round-trips). Required
@@ -20,6 +20,7 @@ columns per contract (header-level; ✱ = also required per row):
 | `decisions` | decision_id✱, title✱, statement✱, authority✱, need_by, status✱ |
 | `risks` | risk_id✱, title✱, cause, consequence, owner, status✱ |
 | `schedule` | activity_id✱, description✱, start✱, finish✱ |
+| `tracker` | package✱ (the key, amended 2026-07-06), package_name✱, tracking_no, discipline, area, stage_* (12, header-required) |
 
 Accepted vocabularies (import normalizes case/spaces/hyphens):
 
@@ -139,6 +140,55 @@ two recommended changes were applied at the same ruling:
   `"PC, DC, SCM"` name breaks naive comma-splitting (this bit the first
   roster application; fixed in-place in the scratch DB).
 
+## §tracker — workbook → template mapping (added 2026-07-06, D-PEC-13 O-A)
+
+Owner ruling of record (verbatim, both sentences): "Proceed with 1. Rule
+D-PEC-13 as follows. Use the tracker.xlsx provided as your template and
+proceed accordingly." (recorded in
+`../_DECISIONS/D-PEC-13_package_tracker_import_contract.md`). Capture grain:
+manifests/hashes only (the ruling's item-4 default) — this section carries
+header names, shape patterns, and counts; no verbatim workbook content. Source
+file: `pilot-scratch/input/tracker.xlsx`, sheet `Package Summary`, SHA-256
+`01fc38f085dc8218c0e006d8a27c8ad7fa157c964ffe4041a7599ebc54f6bf9e`, 65 data
+rows.
+
+Agent-side mapping at CSV-authoring time (xlsx never enters the server —
+ADR-002):
+
+| §16 column | Workbook column | Note |
+|---|---|---|
+| tracking_no | CoA Tracking Number | plain data field, shape `26020-NN-PT-NN-NNN`; kept verbatim, non-unique, never a conflict source (owner amendment 2026-07-06: "Keep the CoA number but don't key on that.") |
+| package_name | Package Name | |
+| discipline | Discipline | |
+| area | Area | |
+| package_type_approved | Approved Package Type (per TOU)? | trimmed; mixed `No`/type-string semantics carried verbatim ⚑ |
+| package_type_proposed | Proposed Package Type for TOU | trimmed |
+| line_items | Line Items | newline → `; ` join |
+| vendors_engaged | Vendor(s) Engaged | newline → `; ` join; `-` → blank ⚑ |
+| vendor_awarded | Vendor Awarded | empty in workbook today |
+| expected_delivery_date | Expected Delivery Date | empty today; `YYYY-MM-DD` when populated |
+| cost_estimate_cad | Cost Estimate $CAD (2026) | empty today |
+| comments | Comments | 12/65; carries prose dates today ⚑ |
+| stage_* (12) | Budgetary Datasheet … Databook | vocabulary normalized (`Not Started`→`not_started`, `In Progress`→`in_progress`, `Complete`→`complete`, `Issued`→`issued`, `Not Applicable`→`not_applicable`) |
+| package | — (derived) | **the idempotency key** (owner amendment 2026-07-06: "match the tracker entries with the PKG-#### numbers we're using"): unique tracker-name → MDL Package ID → `package.code` resolution at authoring time (54/65 unique today); row-required and must resolve to an existing `package` record — unresolved rows reject as owner-side data gaps until mapped (11/65 today, residual gap below) |
+| — | Package # | 0/65 populated; unmapped until the owner populates it ⚑ |
+
+Tracker rows are import-owned (no in-app edit path in this scope; re-import
+always refreshes); rows with no resolvable `package` anchor still create
+`package_tracker` records with a null link (NO intake fallback — ruled
+divergence from RAIL, D-PEC-13). Stated-but-unresolvable `package` anchors
+reject the row.
+
+Refresh conventions (shipped behavior, test-pinned): optional columns refresh
+only when their header is present in the file — a narrower re-import retains
+existing values rather than silently wiping them (the schedule contract's §16
+no-silent-wipe reading, generalized); header-required columns always refresh.
+Duplicate-vs-validation precedence (on the package key per the 2026-07-06
+amendment): rows are validated before the duplicate-in-file check, so an
+invalid duplicate row reports as a reject (not a conflict), and if the FIRST
+occurrence of a key is invalid the next valid occurrence wins the key — every
+row is reported either way, nothing silent.
+
 ## Residual workbook data gaps (owner/pilot-team side)
 
 - 17 RAIL rows with no target-completion date (+1 with a `1900-11-27` junk
@@ -147,3 +197,10 @@ two recommended changes were applied at the same ruling:
   blank status — reject until assigned.
 - Risk log unpopulated; schedule.csv extractor mapping is proven by
   evidence-04.
+- Tracker workbook (2026-07-06, updated under the same-day key amendment):
+  11/65 rows have a Package Name resolving to no `package` record — they
+  reject as data gaps until the owner maps them (or adds the MDL rows); the
+  duplicated CoA value on sheet rows 16/54 is no longer an import blocker
+  (both rows key on their distinct packages) but remains a workbook oddity
+  the owner may fix; `Package #` column 0/65 populated (unmapped until
+  populated).

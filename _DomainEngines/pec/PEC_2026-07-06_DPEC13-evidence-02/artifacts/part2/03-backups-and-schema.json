@@ -1,0 +1,32 @@
+{
+  "note": "backup + teardown facts for the standing pilot-scratch instance run (the standing DB is RETAINED per its owner-designated role; backups byte-identical, cmp-verified at capture).",
+  "preRunBackup": {
+    "path": "projects/pec/pilot-scratch/backups/pre-tracker2-20260706/pec-scratch-import.db",
+    "sha256": "b2780788a36c40659b27e0ed39be60c4af7d8c63efa171b97b398c0f78ffd2ed",
+    "matchesEvidence01PostRunBackup": true,
+    "matchesNote": "the standing DB was unchanged between the evidence-01 teardown and this run's preflight",
+    "walShmPresentAtPreflight": false,
+    "noProcessHeldDbAtPreflight": true,
+    "port4899FreeAtPreflight": true,
+    "ownerDevServerOn4811": "observed listening at preflight; never touched by this run"
+  },
+  "postRunBackup": {
+    "path": "projects/pec/pilot-scratch/backups/post-tracker2-20260706/pec-scratch-import.db",
+    "sha256": "776f98ae23600fc85e6046a1df08e4641c40c555eacb4e52fb904693ab6e1cce",
+    "walCheckpointedBeforeCopy": true,
+    "walShmPresentAfterCheckpoint": false
+  },
+  "standingStateUndisturbed": {
+    "intakeItemRowsPrePost": [272, 272],
+    "intakeDispositionedRowsPrePost": [257, 257],
+    "intakeRaisedRowsPrePost": [15, 15],
+    "note": "the D-PEC-10 triage state (272 total / 257 dispositioned / 15 raised) was not touched by this run"
+  },
+  "teardown": {
+    "credentialsDisabled": 2,
+    "how": "both ephemeral password hashes overwritten with a non-verifiable value, script-side, server down",
+    "sessionRowsRemaining": 0,
+    "personRowsRetained": "personId 46 (agent) and personId 47 (demo-cast admin) remain, with role grants, so history attribution stays resolvable (triage-01 precedent)",
+    "postRunRegisterFacts": { "packageTrackerRows": 54, "anchored": 54, "importProposalRows": 2 }
+  }
+}

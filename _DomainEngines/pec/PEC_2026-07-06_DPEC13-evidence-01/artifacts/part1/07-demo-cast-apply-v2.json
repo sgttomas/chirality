@@ -1,0 +1,40 @@
+{
+  "id": 2,
+  "projectId": 1,
+  "ref": "IPR-0002",
+  "contract": "tracker",
+  "sourceName": "tracker-syn-v2.csv",
+  "sourceSha256": "56337a6eb88c00b74f1ca222cadf067c19e66f06d6799b5df023ba89ec8e3647",
+  "sourceBytes": 1542,
+  "sourceCsv": "tracking_no,package_name,discipline,area,package_type_approved,package_type_proposed,line_items,vendors_engaged,vendor_awarded,expected_delivery_date,cost_estimate_cad,comments,stage_budgetary_datasheet,stage_cost_estimate,stage_package_datasheet,stage_package,stage_rfq,stage_review,stage_vendor_bids,stage_clarifications,stage_evaluation,stage_eng_req,stage_po,stage_databook,package\n26020-01-PT-90-001,Synthetic Compressor Skid A,Mechanical,9-90 (Synthetic Area One),SKID,SKID,Compressor; Motor; Local panel,Vendor Alpha; Vendor Beta,,2027-03-01,,Fictional synthetic row,issued,complete,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-01-PT-90-002,Synthetic Pump Package B,Mechanical,9-90 (Synthetic Area One),No,PUMP,Pump; Baseplate,Vendor Gamma,Vendor Gamma,,,,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-02-PT-91-003,Synthetic MCC Building C,Electrical,9-91 (Synthetic Area Two),No,E-HOUSE,MCC; Transformer,,,,,,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-02-PT-91-004,Synthetic Heater D,Mechanical,9-91 (Synthetic Area Two),HEATER,HEATER,Heater; Burner management,Vendor Delta,,,,Anchored to a seeded package record,issued,complete,in_progress,not_started,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-P\n",
+  "state": "applied",
+  "basisHistoryId": 170,
+  "dryRunReport": {
+    "contract": "tracker",
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": [],
+    "rejected": [],
+    "intakeCreated": 0
+  },
+  "dryRunAt": "2026-07-06T17:02:28.868Z",
+  "acceptedBy": 15,
+  "acceptedAt": "2026-07-06T17:02:28.869Z",
+  "acceptedSha256": "56337a6eb88c00b74f1ca222cadf067c19e66f06d6799b5df023ba89ec8e3647",
+  "rejectedBy": null,
+  "rejectedAt": null,
+  "rejectReason": null,
+  "appliedBy": 15,
+  "appliedAt": "2026-07-06T17:02:28.871Z",
+  "applyReport": {
+    "contract": "tracker",
+    "accepted": 0,
+    "updated": 4,
+    "conflicts": [],
+    "rejected": [],
+    "intakeCreated": 0
+  },
+  "createdBy": 16,
+  "createdAt": "2026-07-06T17:02:28.867Z",
+  "version": 4
+}

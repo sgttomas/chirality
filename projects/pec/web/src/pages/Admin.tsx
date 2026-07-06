@@ -226,6 +226,7 @@ const CONTRACTS = [
   ['decisions', 'Decision log'],
   ['risks', 'Risk register'],
   ['schedule', 'Schedule activities (P2 — feeds the lookahead)'],
+  ['tracker', 'Package Tracker (D-PEC-13 — procurement stages)'],
 ] as const
 
 function ImportSection(): JSX.Element {
@@ -351,6 +352,7 @@ const EXPORTS = [
   ['intake', 'Intake'],
   ['commitments', 'Weekly commitments'],
   ['schedule', 'Schedule activities'],
+  ['tracker', 'Package Tracker'],
   ['lookahead', 'Six-week lookahead'],
 ] as const
 

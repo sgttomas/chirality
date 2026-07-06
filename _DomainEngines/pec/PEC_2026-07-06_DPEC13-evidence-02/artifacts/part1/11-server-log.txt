@@ -1,0 +1,2 @@
+sweep: 11 notification(s)
+PEC server on http://localhost:4899 (db: /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality/26d8879e-fcdc-433b-940d-f2cee5ebaf47/scratchpad/part1/pec-dpec13e2-scratch-demo.db)
