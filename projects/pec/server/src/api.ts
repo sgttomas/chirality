@@ -24,6 +24,7 @@ import * as views from './services/views.ts'
 import { sweepProject } from './services/sweep.ts'
 import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
+import * as proposals from './services/proposals.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
 import { DEFAULT_THRESHOLDS, can, explainTransition } from '@pec/core'
@@ -332,6 +333,36 @@ export function buildRouter(db: Db): Router {
   r.get('/api/projects/:pid/reports/package-pack/:id', authed((c) => {
     c.res.setHeader('content-type', 'text/html; charset=utf-8')
     return packagePack(c.sx, idOf(c))
+  }))
+
+  // ---------- import proposals (D-PEC-08: propose → human accept → apply) ----------
+  const sameOrigin = (c: ReqCtx): void => proposals.requireSameOrigin(
+    c.req.headers.origin as string | undefined, c.req.headers.host)
+  r.post('/api/projects/:pid/import-proposals', tx((c) => {
+    sameOrigin(c)
+    const csv = typeof c.body === 'string' ? c.body : String((c.body as Record<string, unknown>)?.csv ?? '')
+    return proposals.createProposal(c.sx, String(c.query.get('contract') ?? ''), csv, c.query.get('filename'))
+  }))
+  r.get('/api/projects/:pid/import-proposals', authed((c) => proposals.listProposals(c.sx)))
+  r.get('/api/projects/:pid/import-proposals/:id', authed((c) => proposals.getProposal(c.sx, idOf(c))))
+  r.post('/api/projects/:pid/import-proposals/:id/refresh', tx((c) => {
+    sameOrigin(c)
+    return proposals.refreshDryRun(c.sx, idOf(c), Number(body(c).version))
+  }))
+  r.post('/api/projects/:pid/import-proposals/:id/accept', tx((c) => {
+    sameOrigin(c)
+    const b = body(c)
+    return proposals.acceptProposal(c.sx, idOf(c), Number(b.version), String(b.sha256 ?? ''))
+  }))
+  r.post('/api/projects/:pid/import-proposals/:id/reject', tx((c) => {
+    sameOrigin(c)
+    const b = body(c)
+    return proposals.rejectProposal(c.sx, idOf(c), Number(b.version), String(b.reason ?? ''))
+  }))
+  r.post('/api/projects/:pid/import-proposals/:id/apply', tx((c) => {
+    sameOrigin(c)
+    const b = body(c)
+    return proposals.applyProposal(c.sx, idOf(c), Number(b.version), b.force === true)
   }))
 
   // ---------- config ----------

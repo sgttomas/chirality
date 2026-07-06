@@ -14,6 +14,7 @@ export const RECORD_TYPES = [
   'approval_record', 'decision', 'risk', 'interface_item',
   'condition', 'issue_event', 'evidence', 'basis_reference', 'person',
   'plan_item', 'plan_shift', 'schedule_activity', // P2 planning (PRD §13.1)
+  'import_proposal', // D-PEC-08: proposed imports (§16 contracts behind a human accept/apply gate)
 ] as const
 export type RecordType = (typeof RECORD_TYPES)[number]
 

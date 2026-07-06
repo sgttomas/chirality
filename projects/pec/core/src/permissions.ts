@@ -23,6 +23,7 @@ export type PermissionAction =
   | 'interface.create' | 'interface.update'
   | 'evidence.add'
   | 'config.manage'
+  | 'import.propose' | 'import.accept'
   | 'plan.manage' | 'plan.commit' | 'plan.propose' | 'plan.review'
 
 export interface PermissionContext {
@@ -216,6 +217,17 @@ export function can(action: PermissionAction, ctx: PermissionContext): Permissio
 
     case 'config.manage':
       return hasAny(ctx, ['admin']) ? yes('project admin (audit-evented)') : no('configuration requires admin')
+
+    // D-PEC-08: proposed imports. Proposing is register-handling work; accept/apply carries
+    // the same power as direct import, so it keeps parity with the config.manage gate.
+    // Deliberately NOT a personal judgment (I-6): no engineering authority is recorded.
+    case 'import.propose':
+      return hasAny(ctx, ['admin', 'pm', 'coordinator', 'document_controller'])
+        ? yes('register-handling role (D-PEC-08)') : no('proposing an import requires admin, pm, coordinator, or document control')
+
+    case 'import.accept':
+      return hasAny(ctx, ['admin'])
+        ? yes('project admin (parity with direct import)') : no('accepting/applying an import proposal requires admin')
 
     // P2 planning (PRD §14: planners commit plans; leads propose plan changes)
     case 'plan.manage':

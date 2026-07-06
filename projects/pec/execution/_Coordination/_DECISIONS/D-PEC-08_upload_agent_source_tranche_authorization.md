@@ -1,9 +1,26 @@
 # D-PEC-08 - PROPOSAL: upload-agent source-tranche authorization
 
-**Status:** AWAITING_RULING.
+**Status:** RULED (O-A, 2026-07-05).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-08
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
+**Ruling SHA:** `563a968d3`
+
+## Ruling (2026-07-05)
+
+Owner ruling of record (verbatim, 2026-07-05, in-session steer, Ryan Tufts):
+
+> I authorize `D-PEC-08` with `O-A` for preparation/execution of a bounded upload-agent
+> source tranche, limited to an exact file fence, tests, deferred D-PEC-07 obligations
+> RV-13 through RV-21, and rollback/verification plan.
+
+Scope of the ruling as given: O-A opens a bounded source tranche whose exact
+file fence, tests, RV-13..21 obligation handling, and rollback/verification
+plan are named in the tranche packet
+`projects/pec/execution/_Coordination/TRANCHE_2026-07-05_D-PEC-08_upload_agent_v1.md`
+prepared and executed under this same ruling. Everything outside that fence
+remains closed under F-PEC-1..4; `force=true` remains prohibited in agent runs;
+no Gate-2, L3-beyond-this-design, pilot-readiness, or go-live implication.
 
 ## Owner ruling that opened this row
 

@@ -29,6 +29,7 @@ export const TABLE: Partial<Record<RecordType | string, string>> = {
   issue_event: 'issue_event', evidence: 'evidence', basis_reference: 'basis_reference',
   person: 'person',
   plan_item: 'plan_item', plan_shift: 'plan_shift', schedule_activity: 'schedule_activity',
+  import_proposal: 'import_proposal',
 }
 
 /** ref prefixes per record type (ADR-008) */
@@ -37,6 +38,7 @@ const REF_PREFIX: Record<string, string> = {
   approval_record: 'APR', decision: 'DEC', risk: 'RSK', interface_item: 'INT',
   condition: 'COND', issue_event: 'EVT',
   plan_item: 'PLN', plan_shift: 'PLS',
+  import_proposal: 'IPR',
 }
 
 const JSON_COLS: Record<string, string[]> = {
@@ -49,6 +51,7 @@ const JSON_COLS: Record<string, string[]> = {
   audit_event: ['prior_value', 'new_value'],
   plan_shift: ['affected_package_ids'],
   supersession_link: ['affected'],
+  import_proposal: ['dry_run_report', 'apply_report'],
 }
 
 const BOOL_COLS: Record<string, string[]> = {
