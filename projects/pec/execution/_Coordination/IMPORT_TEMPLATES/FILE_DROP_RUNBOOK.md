@@ -59,3 +59,38 @@ Owner ruling of record (verbatim, 2026-07-05, in-session, Ryan Tufts):
 - Rows the agent cannot map without inventing meaning are proposed as
   questions or left to reject with reasons — never silently guessed; test-data
   fills happen only under an explicit owner ruling and are tagged in-row.
+
+## v1.2 — the weekly agent intake+triage cycle (D-PEC-10 O-A, ruled 2026-07-05)
+
+Authorized mechanism (packet: `../_DECISIONS/D-PEC-10_agent_intake_triage.md`;
+rehearsed: `_DomainEngines/pec/PEC_2026-07-05_DPEC10-rehearsal-01/`):
+
+1. **Drop.** Owner places the weekly documents (RAIL, MDL — risks/schedule per
+   D-PEC-14, Package Tracker per D-PEC-13 once ruled).
+2. **Propose serially, one document at a time.** The agent (its own
+   provisioned person, `is_admin=0`, coordinator) files one import proposal,
+   the owner accepts + applies it at the screen, then the agent files the
+   next. Anchors resolve at dry-run time, so a RAIL proposal filed before the
+   MDL apply lands unanchored — file MDL first, or refresh the RAIL dry-run
+   after the MDL apply. An apply moves the watermark; a proposal left pending
+   across another apply just needs a refresh + re-accept (this is the guard
+   working, not a fault).
+3. **Accept/apply are the owner's screen acts, always.** A refreshed dry-run
+   voids any prior acceptance (RV-13); the owner re-reviews from the new basis.
+4. **Triage after the applies.** The agent open-triages and dispositions the
+   un-dispositioned intake queue: `converted` routes to the correct record
+   (decisions arrive via triage conversion or owner screen entry — D-PEC-10
+   WF-10, never an import assumption), `parked`/`duplicate`/`rejected` with
+   grounds in the note; items the agent cannot ground in a source row are left
+   un-dispositioned for the owner. Conversion never creates approval records
+   (agent-act rider).
+5. **Re-import boundary (supersedes the v1.1 "never re-import a full RAIL
+   file" rule, which predates the PR #82 repair).** Evidenced 2026-07-05: a
+   full RAIL re-import updates un-dispositioned intake items in place (no
+   duplication) and reports a changed statement as an OM-3 conflict; rows
+   whose intake items are already **dispositioned** re-land as NEW intake
+   items — until D-PEC-15 rules a convention, drop dispositioned `item_id`s
+   from the weekly export or expect and triage the re-landed rows.
+6. **Capture.** Evidence per the L3-evidence convention when the run is a
+   governed rung; routine weekly cycles log through the app's own history —
+   the append-only record separates agent acts from the owner's by person.

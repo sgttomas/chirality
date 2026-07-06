@@ -1,0 +1,5 @@
+doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type
+SYN-D-001,Process design basis — synthetic,SYN-PKG-001,Process,admin@aurora.dev,A,in_work,2026-09-15,Gate 2,IFR,SYN-EDMS-0001,,Synthetic rehearsal row (D-PEC-10),Design Basis
+SYN-D-002,Equipment list — synthetic,SYN-PKG-001,Mechanical,admin@aurora.dev,A,in_work,2026-09-22,Gate 2,IFR,SYN-EDMS-0002,,Synthetic rehearsal row (D-PEC-10),Equipment List
+SYN-D-003,Line list — synthetic,SYN-PKG-001,Piping,admin@aurora.dev,A,in_work,2026-09-29,Gate 2,IFR,SYN-EDMS-0003,,Synthetic rehearsal row (D-PEC-10),Line List
+SYN-D-004,Instrument index — synthetic,SYN-PKG-002,Instrumentation,admin@aurora.dev,A,in_work,2026-10-06,Gate 3,IFR,SYN-EDMS-0004,,Synthetic rehearsal row (D-PEC-10),Instrument Index
