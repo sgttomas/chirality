@@ -91,8 +91,11 @@ artifacts, gate outcomes, check pass/fail) so the next iteration starts clean.
 Standing constraints and the loop protocol live in the plan — follow them as
 written. The session conventions are:
 
-- Subagent model assignments: `opus` for exploration and reporting; `fable`
-  for orchestration, planning, and implementing work.
+- Subagent model assignments: the single home for this convention is the pec
+  launcher section of `init/init-prompt.md` (§4) at the repo root — read it
+  there; do not rely on any copy. (Consolidated at owner direction 2026-07-05;
+  this file previously carried its own wording and the bridge loop's
+  `LOOP_INIT.md` still does — that copy governs only the bridge loop.)
 
 If the owner appended a steer for this run (the launcher's `Steer` line, their
 message, or a line below), honor it on top of the plan and over §5's defaults;
