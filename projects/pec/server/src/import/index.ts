@@ -490,7 +490,10 @@ function importSchedule(sx: Sx, csv: string, _force: boolean): ImportReport {
   return report
 }
 
-// ---------- Package Tracker (§16 sixth contract, D-PEC-13) ----------
+// ---------- Package Tracker (§16 sixth contract, D-PEC-13 as amended) ----------
+// One row per package: the `package` column is row-required and must resolve to an existing
+// package.code — the idempotency key (owner amendment: "match the tracker entries with the
+// PKG-#### numbers"). The CoA tracking number is kept verbatim as plain, non-unique data.
 
 /** The 12 procurement-stage columns, in contract order (CSV columns ≡ export columns). */
 const TRACKER_STAGE_COLS = [
@@ -507,7 +510,9 @@ const TRACKER_OPTIONAL_COLS = [
 function importTracker(sx: Sx, csv: string, _force: boolean): ImportReport {
   const report: ImportReport = { contract: 'tracker', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
   const { headers, rows } = parseTable(csv)
-  const required = ['tracking_no', 'package_name', 'discipline', 'area', ...TRACKER_STAGE_COLS]
+  // tracking_no stays header-required (the weekly file always carries it, and the check
+  // catches column drift early) but is row-optional
+  const required = ['tracking_no', 'package_name', 'discipline', 'area', ...TRACKER_STAGE_COLS, 'package']
   const missing = required.filter((h) => !headers.includes(h))
   if (missing.length > 0) throw badRequest(`tracker import missing required columns: ${missing.join(', ')} (§16)`)
 
@@ -515,7 +520,7 @@ function importTracker(sx: Sx, csv: string, _force: boolean): ImportReport {
   rows.forEach((row, i) => {
     const rowNo = i + 2
     const errors: string[] = []
-    for (const col of ['tracking_no', 'package_name']) if (!row[col]) errors.push(`${col} is required`)
+    for (const col of ['package_name', 'package']) if (!row[col]) errors.push(`${col} is required`)
     const stages: Record<string, string | null> = {}
     for (const col of TRACKER_STAGE_COLS) {
       if (!row[col]) { stages[col] = null; continue } // blank stored null
@@ -530,8 +535,9 @@ function importTracker(sx: Sx, csv: string, _force: boolean): ImportReport {
     if (row.expected_delivery_date && !DATE_RE.test(row.expected_delivery_date)) {
       errors.push(`expected_delivery_date must be YYYY-MM-DD, got "${row.expected_delivery_date}"`)
     }
-    // package anchor is optional enrichment, but a stated anchor must resolve —
-    // silently dropping it would be a silent drop of data (§16, schedule precedent)
+    // the package IS the idempotency key (owner amendment): row-required, must resolve —
+    // an unresolvable key is a data gap and rejects the row, never silently dropped (§16).
+    // NO intake fallback (ruled divergence from RAIL): intakeCreated stays 0 by construction.
     const pkg = row.package
       ? sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
         .get(sx.projectId, row.package) as { id: number } | undefined
@@ -539,39 +545,37 @@ function importTracker(sx: Sx, csv: string, _force: boolean): ImportReport {
     if (row.package && !pkg) errors.push(`package "${row.package}" matches no package code`)
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
 
-    // within-file duplicate keys: the first occurrence wins; later ones are conflicts,
+    // within-file duplicate keys: the first valid occurrence wins; later ones are conflicts,
     // never applied, never silent (D-PEC-13)
-    if (seen.has(row.tracking_no!)) {
-      report.conflicts.push({ row: rowNo, key: row.tracking_no!, reason: 'duplicate tracking_no in file; first occurrence applied, this one skipped' })
+    if (seen.has(row.package!)) {
+      report.conflicts.push({ row: rowNo, key: row.package!, reason: 'duplicate package in file; first occurrence applied, this one skipped' })
       return
     }
-    seen.add(row.tracking_no!)
+    seen.add(row.package!)
 
     // optional columns update only when present in the CSV — a narrower re-import must not
     // silently wipe earlier data (§16: nothing dropped without a report)
     const fields: Record<string, unknown> = {
+      trackingNo: row.tracking_no || null, // kept verbatim; plain data, never keyed on
       packageName: row.package_name, discipline: row.discipline || null, area: row.area || null,
     }
     for (const col of TRACKER_STAGE_COLS) fields[snakeToCamel(col)] = stages[col]
     for (const col of TRACKER_OPTIONAL_COLS) {
       if (headers.includes(col)) fields[snakeToCamel(col)] = row[col] || null
     }
-    if (headers.includes('package')) fields.packageId = pkg?.id ?? null
 
-    const existing = sx.db.prepare('SELECT id FROM package_tracker WHERE project_id = ? AND tracking_no = ?')
-      .get(sx.projectId, row.tracking_no ?? '') as { id: number } | undefined
+    const existing = sx.db.prepare('SELECT id FROM package_tracker WHERE project_id = ? AND package_id = ?')
+      .get(sx.projectId, pkg!.id) as { id: number } | undefined
     if (existing) {
       // tracker rows are import-owned (no in-app edit path); re-import always refreshes
       sx.repo.systemUpdate('package_tracker', sx.projectId, existing.id, fields)
-      importHistory(sx, 'package_tracker', existing.id, `${row.tracking_no} refreshed by tracker import`)
+      importHistory(sx, 'package_tracker', existing.id, `${row.package} tracker row refreshed by tracker import`)
       report.updated++
     } else {
-      // Unresolvable rows never fall back to intake (ruled divergence from RAIL): the tracker
-      // row IS the register row — created regardless, packageId null when no anchor is stated.
       const id = sx.repo.insert('package_tracker', {
-        projectId: sx.projectId, trackingNo: row.tracking_no, ...fields,
+        projectId: sx.projectId, packageId: pkg!.id, ...fields,
       })
-      importHistory(sx, 'package_tracker', id, `${row.tracking_no} created by tracker import`)
+      importHistory(sx, 'package_tracker', id, `${row.package} tracker row created by tracker import`)
       report.accepted++
     }
   })

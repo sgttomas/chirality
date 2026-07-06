@@ -716,11 +716,12 @@ export const TRACKER_STAGE_STATES = [
 ] as const
 export type TrackerStageState = (typeof TRACKER_STAGE_STATES)[number]
 
-/** Imported Package Tracker row (§16 tracker contract, D-PEC-13). Import-owned: no in-app edit path. */
+/** Imported Package Tracker row (§16 tracker contract, D-PEC-13 as amended). Import-owned:
+ *  no in-app edit path. One row per package — the resolved package is the idempotency key. */
 export interface PackageTracker {
   id: number
   projectId: number
-  trackingNo: string // external key, stored verbatim — the §16 idempotency key
+  trackingNo: string | null // CoA number, kept verbatim; plain data, NOT the key (owner amendment)
   packageName: string
   discipline: string | null
   area: string | null
@@ -744,7 +745,7 @@ export interface PackageTracker {
   stageEngReq: TrackerStageState | null
   stagePo: TrackerStageState | null
   stageDatabook: TrackerStageState | null
-  packageId: number | null // enrichment link, not a requirement (no intake fallback)
+  packageId: number // the resolved package — the §16 idempotency key (owner amendment)
   version: number
 }
 

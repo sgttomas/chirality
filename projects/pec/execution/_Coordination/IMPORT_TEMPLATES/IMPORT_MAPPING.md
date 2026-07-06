@@ -20,7 +20,7 @@ columns per contract (header-level; ✱ = also required per row):
 | `decisions` | decision_id✱, title✱, statement✱, authority✱, need_by, status✱ |
 | `risks` | risk_id✱, title✱, cause, consequence, owner, status✱ |
 | `schedule` | activity_id✱, description✱, start✱, finish✱ |
-| `tracker` | tracking_no✱, package_name✱, discipline, area, stage_* (12, header-required) |
+| `tracker` | package✱ (the key, amended 2026-07-06), package_name✱, tracking_no, discipline, area, stage_* (12, header-required) |
 
 Accepted vocabularies (import normalizes case/spaces/hyphens):
 
@@ -157,7 +157,7 @@ ADR-002):
 
 | §16 column | Workbook column | Note |
 |---|---|---|
-| tracking_no | CoA Tracking Number | key, shape `26020-NN-PT-NN-NNN`; 64 distinct / 65 rows — the duplicate surfaces as a conflict (residual gap below) |
+| tracking_no | CoA Tracking Number | plain data field, shape `26020-NN-PT-NN-NNN`; kept verbatim, non-unique, never a conflict source (owner amendment 2026-07-06: "Keep the CoA number but don't key on that.") |
 | package_name | Package Name | |
 | discipline | Discipline | |
 | area | Area | |
@@ -170,7 +170,7 @@ ADR-002):
 | cost_estimate_cad | Cost Estimate $CAD (2026) | empty today |
 | comments | Comments | 12/65; carries prose dates today ⚑ |
 | stage_* (12) | Budgetary Datasheet … Databook | vocabulary normalized (`Not Started`→`not_started`, `In Progress`→`in_progress`, `Complete`→`complete`, `Issued`→`issued`, `Not Applicable`→`not_applicable`) |
-| package | — (derived) | unique tracker-name → MDL Package ID → `package.code` resolution at authoring time (54/65 unique today); blank otherwise ⚑ |
+| package | — (derived) | **the idempotency key** (owner amendment 2026-07-06: "match the tracker entries with the PKG-#### numbers we're using"): unique tracker-name → MDL Package ID → `package.code` resolution at authoring time (54/65 unique today); row-required and must resolve to an existing `package` record — unresolved rows reject as owner-side data gaps until mapped (11/65 today, residual gap below) |
 | — | Package # | 0/65 populated; unmapped until the owner populates it ⚑ |
 
 Tracker rows are import-owned (no in-app edit path in this scope; re-import
@@ -183,10 +183,11 @@ Refresh conventions (shipped behavior, test-pinned): optional columns refresh
 only when their header is present in the file — a narrower re-import retains
 existing values rather than silently wiping them (the schedule contract's §16
 no-silent-wipe reading, generalized); header-required columns always refresh.
-Duplicate-vs-validation precedence: rows are validated before the
-duplicate-in-file check, so an invalid duplicate row reports as a reject (not
-a conflict), and if the FIRST occurrence of a key is invalid the next valid
-occurrence wins the key — every row is reported either way, nothing silent.
+Duplicate-vs-validation precedence (on the package key per the 2026-07-06
+amendment): rows are validated before the duplicate-in-file check, so an
+invalid duplicate row reports as a reject (not a conflict), and if the FIRST
+occurrence of a key is invalid the next valid occurrence wins the key — every
+row is reported either way, nothing silent.
 
 ## Residual workbook data gaps (owner/pilot-team side)
 
@@ -196,7 +197,10 @@ occurrence wins the key — every row is reported either way, nothing silent.
   blank status — reject until assigned.
 - Risk log unpopulated; schedule.csv extractor mapping is proven by
   evidence-04.
-- Tracker workbook (2026-07-06): one CoA tracking-number value duplicated on
-  sheet rows 16 and 54 (two different packages) — the import reports the
-  second occurrence as a conflict until the workbook is fixed; `Package #`
-  column 0/65 populated (unmapped until populated).
+- Tracker workbook (2026-07-06, updated under the same-day key amendment):
+  11/65 rows have a Package Name resolving to no `package` record — they
+  reject as data gaps until the owner maps them (or adds the MDL rows); the
+  duplicated CoA value on sheet rows 16/54 is no longer an import blocker
+  (both rows key on their distinct packages) but remains a workbook oddity
+  the owner may fix; `Package #` column 0/65 populated (unmapped until
+  populated).

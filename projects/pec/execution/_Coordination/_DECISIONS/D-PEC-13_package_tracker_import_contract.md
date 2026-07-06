@@ -618,3 +618,29 @@ owner-directed PR #93/#94 merges).
 
 **Status change:** AWAITING_RULING → RULED (register row flipped in the same
 commit).
+
+**Owner amendment (2026-07-06, in-session, Ryan Tufts, verbatim — governs
+over this packet's prose per the amendment clause below):**
+
+> You should match the tracker entries with the PKG-#### numbers we're using.
+> Keep the CoA number but don't key on that.
+
+**Recorded interpretation of the amendment:** the idempotency key of the
+`tracker` contract changes from `tracking_no` (the CoA number) to the
+project's package identifiers (`package.code`, the MDL-created
+`26020-PKG-NNN` universe) — i.e. the `package` column becomes the
+row-required key and must resolve to an existing `package` record
+(anchor-must-resolve, already ruled); one tracker row per package
+(`UNIQUE(project_id, package_id)`); re-import matches on the package and
+updates in place. `tracking_no` is retained verbatim as a plain data field —
+optional, non-unique, never a conflict source. Direct consequences, stated
+for the record: (1) the duplicated CoA value (workbook rows 16/54) stops
+being an import defect — both rows key on their distinct packages and both
+land; (2) workbook rows whose Package Name resolves to no `package` record
+(11/65 observed) reject as owner-side data gaps until mapped (§16
+never-silently-drop) — listed count-level in evidence; (3) within-file
+duplicate semantics move to the package key (first valid occurrence wins;
+later ones report as conflicts). Executed as an amendment revision inside
+the same ruled tranche fence, evidenced by
+`PEC_2026-07-06_DPEC13-evidence-02/`; evidence-01 remains the honest record
+of the pre-amendment run.

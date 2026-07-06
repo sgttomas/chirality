@@ -920,7 +920,16 @@ function TrackerTab(): JSX.Element {
     (packages ?? []).find((k: any) => k.id === id)?.code ?? null
 
   const cols: Array<Col<any>> = [
-    { key: 'trackingNo', label: 'Tracking #', render: (r) => <span className="mono">{r.trackingNo}</span> },
+    {
+      // the key column (owner amendment): one tracker row per package
+      key: 'package', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span>,
+      csv: (r) => pkgCode(r.packageId),
+    },
+    {
+      key: 'trackingNo', label: 'CoA #', render: (r) => r.trackingNo
+        ? <span className="mono">{r.trackingNo}</span> : <span className="muted small">—</span>,
+      csv: (r) => r.trackingNo,
+    },
     { key: 'packageName', label: 'Package name', render: (r) => r.packageName },
     { key: 'discipline', label: 'Discipline', render: (r) => <span className="small">{r.discipline}</span> },
     { key: 'area', label: 'Area', render: (r) => <span className="small">{r.area}</span> },
@@ -937,24 +946,19 @@ function TrackerTab(): JSX.Element {
       ),
       csv: (r) => TRACKER_STAGES.map(([k, label]) => `${label}: ${r[k] ?? ''}`).join('; '),
     },
-    {
-      key: 'package', label: 'Linked package', render: (r) => pkgCode(r.packageId)
-        ? <span className="mono small">{pkgCode(r.packageId)}</span>
-        : <span className="muted small">—</span>,
-      csv: (r) => pkgCode(r.packageId),
-    },
     { key: 'comments', label: 'Comments', render: (r) => <span className="small muted">{r.comments}</span> },
   ]
 
   return (
     <div>
       <p className="section-note">
-        Package Tracker (§16 tracker contract, D-PEC-13) — import-owned: rows update only
-        via the tracker import/proposal path; there is no in-app edit here. Re-import
-        refreshes matched tracking numbers in place.
+        Package Tracker (§16 tracker contract, D-PEC-13 as amended) — import-owned: rows
+        update only via the tracker import/proposal path; there is no in-app edit here.
+        One row per package (the key); re-import refreshes matched packages in place. The
+        CoA tracking number is carried verbatim as data.
       </p>
       <RegisterTable cols={cols} rows={data} exportName="tracker-register.csv"
-        highlightRef={hl} rowRef={(r) => r.trackingNo} />
+        highlightRef={hl} rowRef={(r) => pkgCode(r.packageId) ?? ''} />
     </div>
   )
 }

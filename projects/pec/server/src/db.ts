@@ -21,6 +21,43 @@ const CONTROLLED_TABLES = [
   'import_proposal',
 ]
 
+// D-PEC-13 (as amended): imported Package Tracker rows — §16 tracker contract, import-owned
+// like schedule_activity. One row per package: the resolved package is the idempotency key;
+// the CoA tracking number is kept verbatim as plain data (owner amendment). Shared between
+// the base schema and the old-shape rebuild in openDb.
+const PACKAGE_TRACKER_DDL = `
+CREATE TABLE IF NOT EXISTS package_tracker (
+  id INTEGER PRIMARY KEY,
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  tracking_no TEXT,                -- CoA number, kept verbatim; data only, NOT the key
+  package_name TEXT NOT NULL,
+  discipline TEXT,
+  area TEXT,
+  package_type_approved TEXT,
+  package_type_proposed TEXT,
+  line_items TEXT,
+  vendors_engaged TEXT,
+  vendor_awarded TEXT,
+  expected_delivery_date TEXT,
+  cost_estimate_cad TEXT,
+  comments TEXT,
+  stage_budgetary_datasheet TEXT,
+  stage_cost_estimate TEXT,
+  stage_package_datasheet TEXT,
+  stage_package TEXT,
+  stage_rfq TEXT,
+  stage_review TEXT,
+  stage_vendor_bids TEXT,
+  stage_clarifications TEXT,
+  stage_evaluation TEXT,
+  stage_eng_req TEXT,
+  stage_po TEXT,
+  stage_databook TEXT,
+  package_id INTEGER NOT NULL REFERENCES package(id),  -- the §16 idempotency key
+  version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(project_id, package_id)
+);`
+
 const SCHEMA = `
 PRAGMA journal_mode = WAL;
 PRAGMA foreign_keys = ON;
@@ -542,38 +579,7 @@ CREATE TABLE IF NOT EXISTS schedule_activity (
   UNIQUE(project_id, activity_id)
 );
 
--- D-PEC-13: imported Package Tracker rows (§16 tracker contract; import-owned like schedule_activity)
-CREATE TABLE IF NOT EXISTS package_tracker (
-  id INTEGER PRIMARY KEY,
-  project_id INTEGER NOT NULL REFERENCES project(id),
-  tracking_no TEXT NOT NULL,       -- external id, the §16 idempotency key (stored verbatim)
-  package_name TEXT NOT NULL,
-  discipline TEXT,
-  area TEXT,
-  package_type_approved TEXT,
-  package_type_proposed TEXT,
-  line_items TEXT,
-  vendors_engaged TEXT,
-  vendor_awarded TEXT,
-  expected_delivery_date TEXT,
-  cost_estimate_cad TEXT,
-  comments TEXT,
-  stage_budgetary_datasheet TEXT,
-  stage_cost_estimate TEXT,
-  stage_package_datasheet TEXT,
-  stage_package TEXT,
-  stage_rfq TEXT,
-  stage_review TEXT,
-  stage_vendor_bids TEXT,
-  stage_clarifications TEXT,
-  stage_evaluation TEXT,
-  stage_eng_req TEXT,
-  stage_po TEXT,
-  stage_databook TEXT,
-  package_id INTEGER REFERENCES package(id),
-  version INTEGER NOT NULL DEFAULT 1,
-  UNIQUE(project_id, tracking_no)
-);
+${PACKAGE_TRACKER_DDL}
 
 CREATE TABLE IF NOT EXISTS plan_shift (
   id INTEGER PRIMARY KEY,
@@ -685,6 +691,15 @@ export function openDb(path: string): Db {
   // P2 columns on P1 tables (existing databases predate the CREATE TABLE defaults)
   ensureColumn(db, 'notification', 'severity', "TEXT NOT NULL DEFAULT 'info'")
   ensureColumn(db, 'work_item', 'commit_source', 'TEXT')
+  // D-PEC-13 owner amendment: the tracker key moved from tracking_no to the resolved package.
+  // Old-shape tables (nullable package_id, UNIQUE on tracking_no) exist only on scratch
+  // instances and hold import-owned, reproducible rows — rebuild at the new shape; the next
+  // tracker import repopulates.
+  const trackerCols = db.prepare('PRAGMA table_info(package_tracker)').all() as Array<{ name: string; notnull: number }>
+  if (trackerCols.some((c) => c.name === 'package_id' && c.notnull === 0)) {
+    db.exec('DROP TABLE package_tracker')
+    db.exec(PACKAGE_TRACKER_DDL)
+  }
   return db
 }
 
