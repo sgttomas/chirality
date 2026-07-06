@@ -1,0 +1,34 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "import.refresh",
+        "ok": true,
+        "summary": "IPR-0001 dry-run refreshed — ready_for_review; 2 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake. Any prior acceptance is voided; a human must re-review and re-accept in Admin: /p/1/admin",
+        "payload": {
+          "id": 1,
+          "ref": "IPR-0001",
+          "contract": "mdl",
+          "state": "ready_for_review",
+          "version": 6,
+          "sourceName": "mdl-aurora-evidence.csv",
+          "report": {
+            "contract": "mdl",
+            "accepted": 2,
+            "updated": 0,
+            "conflicts": [],
+            "rejected": [],
+            "intakeCreated": 0
+          },
+          "adminLink": "/p/1/admin"
+        }
+      },
+      {
+        "type": "agent:reply",
+        "text": "Dry-run refreshed. Any prior acceptance is voided; a human must re-review and re-accept.\nHuman accept/apply: /p/1/admin\n— PEC Agent"
+      }
+    ]
+  }
+}

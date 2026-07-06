@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "engine": "stub",
+  "egress": "none",
+  "configured": true,
+  "agent": {
+    "name": "PEC Agent",
+    "email": "pec-agent@rehearsal.demo"
+  }
+}

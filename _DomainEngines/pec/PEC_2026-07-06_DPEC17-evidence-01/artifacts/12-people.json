@@ -1,0 +1,101 @@
+{
+  "status": 200,
+  "body": [
+    {
+      "id": 15,
+      "name": "Ada Admin",
+      "email": "admin@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 8,
+      "name": "Alice Approve",
+      "email": "approver@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 7,
+      "name": "Charles Check",
+      "email": "checker@aurora.dev",
+      "discipline": "Process"
+    },
+    {
+      "id": 10,
+      "name": "Cody Coordinate",
+      "email": "coord@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 11,
+      "name": "Dana Doc",
+      "email": "dc@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 3,
+      "name": "Elena Engmgr",
+      "email": "em@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 6,
+      "name": "Erin Record",
+      "email": "eor@aurora.dev",
+      "discipline": "Process"
+    },
+    {
+      "id": 13,
+      "name": "Imogen Contributor",
+      "email": "ic2@aurora.dev",
+      "discipline": "Instrumentation"
+    },
+    {
+      "id": 12,
+      "name": "Ivan Contributor",
+      "email": "ic1@aurora.dev",
+      "discipline": "Mechanical"
+    },
+    {
+      "id": 5,
+      "name": "Marco Mech",
+      "email": "lead.mech@aurora.dev",
+      "discipline": "Mechanical"
+    },
+    {
+      "id": 16,
+      "name": "PEC Agent",
+      "email": "pec-agent@rehearsal.demo",
+      "discipline": null
+    },
+    {
+      "id": 9,
+      "name": "Paul Plan",
+      "email": "planner@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 2,
+      "name": "Petra Manager",
+      "email": "pm@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 4,
+      "name": "Priya Process",
+      "email": "lead.process@aurora.dev",
+      "discipline": "Process"
+    },
+    {
+      "id": 1,
+      "name": "Sam Sponsor",
+      "email": "sponsor@aurora.dev",
+      "discipline": null
+    },
+    {
+      "id": 14,
+      "name": "Vic View",
+      "email": "viewer@aurora.dev",
+      "discipline": null
+    }
+  ]
+}

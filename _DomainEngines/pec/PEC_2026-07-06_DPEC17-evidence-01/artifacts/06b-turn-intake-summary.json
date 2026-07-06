@@ -1,0 +1,32 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "intake.summary",
+        "ok": true,
+        "summary": "2 open intake item(s):\nINTK-0001 [raised] Need vendor pump curves for the P-101 hydraulic check\nINTK-0003 [raised] Stress critical line list is slipping against the Gate 3 date",
+        "payload": {
+          "counts": {
+            "raised": 2
+          },
+          "open": [
+            {
+              "id": 1,
+              "ref": "INTK-0001",
+              "state": "raised",
+              "quickType": "need_information"
+            },
+            {
+              "id": 3,
+              "ref": "INTK-0003",
+              "state": "raised",
+              "quickType": "risk_schedule"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

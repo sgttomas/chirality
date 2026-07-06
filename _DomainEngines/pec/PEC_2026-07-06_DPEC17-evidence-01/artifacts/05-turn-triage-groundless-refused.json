@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:refused",
+        "act": "intake.triage",
+        "reason": "no grounds given for INTK-0001 — left for the owner (a disposition needs stated grounds; D-PEC-10 rider)"
+      }
+    ]
+  }
+}

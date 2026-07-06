@@ -1,0 +1,10 @@
+{
+  "status": 403,
+  "body": {
+    "error": {
+      "code": "FORBIDDEN",
+      "message": "agent.direct: directing the agent requires admin, pm, or coordinator",
+      "details": null
+    }
+  }
+}
