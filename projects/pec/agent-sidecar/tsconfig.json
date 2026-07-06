@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pec/core": ["../core/src/index.ts"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "../core/src/**/*.ts",
+    "../server/src/**/*.ts",
+    "../server/test/**/*.ts"
+  ]
+}
