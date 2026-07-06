@@ -1,6 +1,6 @@
 # D-T0-19 - PROPOSAL: the pec ↔ chirality-app-dev harness bridge lane — scope, transport, and tool mapping
 
-**Status:** AWAITING_RULING.
+**Status:** RULED — O-1A, O-2A, O-3A affirmed by owner 2026-07-06 (verbatim below).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-T0-19 (new coupling row — no prior row in any register claims the
 pec ↔ app-dev pair; verified 2026-07-05 against the tier-0, pec-local, app-dev,
@@ -180,4 +180,33 @@ recorded; no execution.
 
 ## Human ruling
 
-**Ruling:** _pending._
+**Ruling:** O-1A, O-2A, O-3A. Owner ruling of record (2026-07-06, in-session
+steer, Ryan Tufts, verbatim):
+
+> D-T0-19: I rule O-1A, O-2A, and O-3A. The bridge design brief moves
+> CANDIDATE → ADOPTED as the design basis for the P1/P2 packets. Apply the
+> O-1A mechanism as written: dated fence-scope grant notes (this packet,
+> D-T0-15, the workplan's F-PEC-4 bullet) and the deconfliction grant note in
+> the app-dev register preamble. The grant is decision/coordination packets
+> only — app-dev source stays behind D-APP rulings (which item 4 below lets
+> this session make).
+
+("item 4 below" is item 4 of the same owner direction — the session-scoped
+conditional standing pre-ruling, quoted verbatim in
+`_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 32.)
+
+**Ruling SHA:** received with `main` at `4c636e53e` (tag
+`pre-bridge-session-2026-07-06`); published by this packet's PR.
+
+## Fence-scope grant note (dated, per the O-1A mechanism — no fence rewrite)
+
+2026-07-06, by the D-T0-19 O-1A ruling above: the F-PEC-4 fence set gains the
+enumerated app-dev **decision/coordination packet** paths —
+`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` rows
+authored as PROPOSALs by the pec work loop. App-dev **source** tranches
+execute only under those D-APP rulings. The deconfliction act of record is the
+dated grant note in the app-dev register preamble (same date), with receipt
+cross-references in both loop ledgers (`_DomainEngines/pec/LOOP_RECEIPTS.md`
+Receipt 32; `_DomainEngines/bridge/LOOP_RECEIPTS.md` cross-loop note
+2026-07-06). D-APP IDs are minted from the live app-dev register at authoring
+time. Twin notes: the `D-T0-15` packet and the pec workplan's F-PEC-4 bullet.

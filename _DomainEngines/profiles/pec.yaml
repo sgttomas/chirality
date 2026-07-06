@@ -20,7 +20,7 @@ domain_profile:
   profile_version: "0.1"
   profile_status: "ADOPTED"
   integration_level: "OPERATION_PROPOSAL"  # L3, imports scope — D-T0-18 O-A + D-PEC-12 (owner-ruled 2026-07-05); reached via the ruled L0->L1->L2 ladder.
-  data_residency: "CLOSED"  # D-T0-14 deferred default; no instance-content egress absent a future owner ruling.
+  data_residency: "OPEN_ENUMERATED"  # D-T0-20 O-B (owner-ruled 2026-07-06, residual of D-T0-14): LLM-hosted agent sessions may read, and route to the owner-configured model provider, exactly the enumerated surface (i) intake items + dispositions, (ii) import_proposal records/dry-run/apply reports + import-related history, (iii) this profile's chirality_readable_artifacts set, (iv) owner-dropped weekly files — all under the agent person's RBAC visibility, is_admin=0. Everything unenumerated stays CLOSED. Mutation basis unchanged: scratch/demo only (real/non-scratch DB operation needs its own future row).
 
   domain_root_patterns:
     - "projects/pec/**"
@@ -157,7 +157,7 @@ domain_profile:
 
   open_issues:
     - "Profile location: RESOLVED 2026-07-04 by the D-T0-16 harness tranche; this file now lives at _DomainEngines/profiles/pec.yaml. Gate 2: RESOLVED 2026-07-05 by owner adoption ruling, recorded in the D-T0-12 packet Gate-2 adoption note."
-    - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; D-PEC-01 O-A permits only the narrow pilot evidence run after the owner supplies exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits."
+    - "Data residency: RESOLVED for LLM-agent visibility 2026-07-06 by D-T0-20 O-B (residual of D-T0-14) — enumerated OPEN surface (i)-(iv) under the agent person's RBAC, is_admin=0; unenumerated content stays CLOSED; capture-limit conventions for what may be committed remain governed by D-PEC-01/RV-11; the mutation basis for a real/non-scratch DB remains its own future row."
     - "Readable instance artifacts remain gated by D-PEC-01's owner-supplied execution basis; SHA-256 hashes of real input files are permitted in manifests, but raw real content capture is not permitted unless the owner enumerates it."
     - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."
     - "PEC's reserved human acts are internal RBAC acts, while the current canon wording is oriented to external professional approval records; canon clarification may be needed."

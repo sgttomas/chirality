@@ -1,9 +1,13 @@
-# BRIEF (CANDIDATE): pec ↔ chirality-app-dev harness bridge — design
+# BRIEF (ADOPTED): pec ↔ chirality-app-dev harness bridge — design
 
-**Status:** CANDIDATE — design only. Adoption is the owner's act; this brief
-authorizes no implementation in either project. Companion decision packets:
-tier-0 `D-T0-19` (lane, transport, mapping), `D-T0-20` (residency), pec-local
-`D-PEC-16` (built-in agent UI, sibling brief).
+**Status:** ADOPTED — adopted by the owner's D-T0-19 ruling (O-1A + O-2A +
+O-3A, 2026-07-06, verbatim in
+`../../_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md`) as the design basis for
+the P1/P2 app-dev packets. Adoption authorizes no implementation in either
+project — every source tranche carries its own D-APP/D-PEC ruling. Companion
+decision packets: tier-0 `D-T0-19` (lane, transport, mapping — RULED), `D-T0-20`
+(residency — RULED O-B 2026-07-06), pec-local `D-PEC-16` (built-in agent UI,
+sibling brief — RULED O-A/RT-B 2026-07-06).
 **Date:** 2026-07-05
 **Prepared by:** PEC work loop agent (K-AUTH-1; D-GOV-04).
 
@@ -173,3 +177,12 @@ evidence dirs (FILE_DROP_RUNBOOK v1.2 convention).
 Adoption is the owner's act and authorizes no implementation; the D-APP-51/52
 packets and any pec-side tranche carry their own rulings. Owner riders land
 here as dated notes.
+
+**Adoption note (2026-07-06):** adopted by the owner's D-T0-19 ruling —
+"The bridge design brief moves CANDIDATE → ADOPTED as the design basis for
+the P1/P2 packets." (in-session steer, Ryan Tufts; full ruling verbatim in
+the D-T0-19 packet). The companion rulings landed the same direction:
+`D-T0-20` O-B (enumerated OPEN visibility surface — §6's O-B branch is now
+the standing bound; mutation basis unchanged, scratch/demo only) and
+`D-PEC-16` O-A with runtime RT-B (sibling brief adopted). No implementation
+is authorized by this adoption.

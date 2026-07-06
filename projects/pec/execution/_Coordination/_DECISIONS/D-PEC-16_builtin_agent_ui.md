@@ -1,6 +1,6 @@
 # D-PEC-16 - PROPOSAL: the built-in agent UI in pec — design gate
 
-**Status:** AWAITING_RULING.
+**Status:** RULED — O-A (runtime RT-B) affirmed by owner 2026-07-06 (verbatim below).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-16
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -85,4 +85,24 @@ withdrawn) and the row closes with the ruling recorded.
 
 ## Human ruling
 
-**Ruling:** _pending._
+**Ruling:** O-A with runtime RT-B (local sidecar). Owner ruling of record
+(2026-07-06, in-session steer, Ryan Tufts, verbatim):
+
+> D-PEC-16: I rule O-A — adopt the UI brief with runtime RT-B (local
+> sidecar). Adoption authorizes no implementation; open the source-tranche
+> row (D-PEC-17) NOT_PREPARED per the mechanism, then prepare and proceed
+> under item 4.
+
+("item 4" is item 4 of the same owner direction — the session-scoped
+conditional standing pre-ruling, quoted verbatim in
+`_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 32.)
+
+**Ruling SHA:** received with `main` at `4c636e53e` (tag
+`pre-bridge-session-2026-07-06`); published by this packet's PR.
+
+**Mechanism executed (same PR):** the UI brief
+`_DomainEngines/proposals/pec/BRIEF_2026-07-05_pec_builtin_agent_ui_design.md`
+moves CANDIDATE → ADOPTED with runtime RT-B recorded; pec register row
+`D-PEC-17` (source-tranche authorization for the adopted UI design) opened
+NOT_PREPARED. Its preparation and pre-ruled selection proceed under item 4 of
+the same direction; no source change under this row.

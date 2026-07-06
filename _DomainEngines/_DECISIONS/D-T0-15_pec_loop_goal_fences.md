@@ -63,3 +63,15 @@ Owner ruling excerpt:
 This ruling adopts the standing goal and fences after the registration package
 is published. It does not convert the already-ACTIVE launcher into profile
 adoption.
+
+## Fence-scope grant note (dated — no fence rewrite)
+
+2026-07-06, by the owner's D-T0-19 O-1A ruling (verbatim in
+`D-T0-19_pec_appdev_bridge_lane.md`): the F-PEC-4 fence set gains the
+enumerated app-dev **decision/coordination packet** paths —
+`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` rows
+authored as PROPOSALs by the pec work loop; app-dev **source** stays behind
+D-APP rulings. Deconfliction with the app-dev↔piping loop is recorded as a
+dated grant note in the app-dev register preamble (same date); D-APP IDs are
+minted from the live app-dev register at authoring time. Twin notes: the
+D-T0-19 packet and the pec workplan's F-PEC-4 bullet.

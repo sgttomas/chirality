@@ -1,10 +1,13 @@
-# BRIEF (CANDIDATE): the built-in agent UI in pec — design
+# BRIEF (ADOPTED): the built-in agent UI in pec — design
 
-**Status:** CANDIDATE — design only. Adoption is the owner's act via pec-local
-`D-PEC-16`; this brief authorizes no implementation. Companions: tier-0
-`D-T0-19`/`D-T0-20`; sibling brief
-`BRIEF_2026-07-05_pec_appdev_bridge_design.md` (shared seam, actor model, and
-human-act boundary).
+**Status:** ADOPTED — adopted by the owner's D-PEC-16 O-A ruling with runtime
+**RT-B (local sidecar)** (2026-07-06, verbatim in
+`../../../projects/pec/execution/_Coordination/_DECISIONS/D-PEC-16_builtin_agent_ui.md`).
+Adoption authorizes no implementation; the source tranche is `D-PEC-17`
+(opened NOT_PREPARED at ruling). Companions: tier-0 `D-T0-19`/`D-T0-20` (both
+RULED 2026-07-06); sibling brief
+`BRIEF_2026-07-05_pec_appdev_bridge_design.md` (ADOPTED same direction —
+shared seam, actor model, and human-act boundary).
 **Date:** 2026-07-05
 **Prepared by:** PEC work loop agent (K-AUTH-1; D-GOV-04).
 
@@ -124,3 +127,14 @@ the screen (D-PEC-10 gate precedent) → weekly use.
 
 Adoption is the owner's act (via D-PEC-16) and authorizes no implementation.
 Owner riders land here as dated notes.
+
+**Adoption note (2026-07-06):** adopted by the owner's D-PEC-16 ruling — "I
+rule O-A — adopt the UI brief with runtime RT-B (local sidecar). Adoption
+authorizes no implementation; open the source-tranche row (D-PEC-17)
+NOT_PREPARED per the mechanism" (in-session steer, Ryan Tufts; full ruling
+verbatim in the D-PEC-16 packet). Runtime of record: **RT-B** (§3). The
+residency bound is now the `D-T0-20` O-B enumerated surface (§6's O-B
+branch). Session environment constraint of record (owner, 2026-07-06): no
+`ANTHROPIC_API_KEY` exists or will be provided this session — the tranche
+builds the LLM seam behind a config-driven engine port with a deterministic
+stub, key-droppable later without source change.
