@@ -52,6 +52,13 @@ import {
   type DomainEngineProfileRegistryEntry,
   type DomainReadToolId
 } from './domain-profile-registry';
+import {
+  domainProposalValidateTool,
+  domainProposeOperationTool,
+  PEC_PROPOSAL_CONTRACTS,
+  type DomainProposalValidateArgs,
+  type DomainProposeOperationArgs
+} from './domain-proposal-tools';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
@@ -832,7 +839,7 @@ export function createChiralityReadMcpServer(
     name: CHIRALITY_MCP_SERVER_NAME,
     version: CHIRALITY_MCP_SERVER_VERSION,
     instructions:
-      'Chirality read-only MCP tools expose project status, dependency, scope, and scaffold-preview data. They do not write files, run shell commands, or access networks.',
+      'Chirality read-only MCP tools expose project status, dependency, scope, and scaffold-preview data. They do not write files, run shell commands, or access networks (the D-APP-52 pec domain proposal tools, which use a loopback-only HTTP transport, are not part of this read-only server).',
     tools: [
       tool(
         'status_read',
@@ -1002,6 +1009,42 @@ export function buildChiralityMcpTools(input: {
     );
   }
 
+  if (allowed.has('mcp__chirality__domain_propose_operation')) {
+    tools.push(
+      tool(
+        'domain_propose_operation',
+        'Create (mode propose) or refresh (mode refresh) a pec import-proposal dry-run record over the D-APP-52 loopback-only allowlisted HTTP transport; refresh mutates and voids any prior acceptance. Acceptance and application remain human acts in pec (no apply tool exists).',
+        {
+          profileId: z.string().min(1),
+          projectId: z.number().int().positive(),
+          mode: z.enum(['propose', 'refresh']).optional(),
+          contract: z.enum(PEC_PROPOSAL_CONTRACTS).optional(),
+          csvContent: z.string().optional(),
+          csvFileRef: z.string().optional(),
+          sourceName: z.string().optional(),
+          proposalId: z.number().int().positive().optional(),
+          expectedVersion: z.number().int().optional()
+        },
+        (args) => domainProposeOperationTool(mutatingContext, args as DomainProposeOperationArgs)
+      )
+    );
+  }
+
+  if (allowed.has('mcp__chirality__domain_proposal_validate')) {
+    tools.push(
+      tool(
+        'domain_proposal_validate',
+        'Read a pec import-proposal record and its stored dry-run report over the D-APP-52 loopback-only allowlisted HTTP transport; read-only, never recomputes.',
+        {
+          profileId: z.string().min(1),
+          projectId: z.number().int().positive(),
+          proposalId: z.number().int().positive()
+        },
+        (args) => domainProposalValidateTool(input.context, args as DomainProposalValidateArgs)
+      )
+    );
+  }
+
   return tools;
 }
 
@@ -1025,7 +1068,7 @@ export function createChiralityMcpServers(input: {
       name: CHIRALITY_MCP_SERVER_NAME,
       version: CHIRALITY_MCP_SERVER_VERSION,
       instructions:
-        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, read-only domain transport evidence, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands or access networks.',
+        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, read-only domain transport evidence, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands. The two pec domain proposal tools (domain_propose_operation, domain_proposal_validate) use a loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport to the local pec engine seam (D-APP-52); every other tool accesses no network.',
       tools
     })
   };

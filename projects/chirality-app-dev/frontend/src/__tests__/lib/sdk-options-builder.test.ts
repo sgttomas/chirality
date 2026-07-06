@@ -43,15 +43,18 @@ const LIVE_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_rule_check_run'
 ] as const;
 
-const PARKED_DOMAIN_MCP_TOOL_NAMES = [
-  'mcp__chirality__domain_headless_preview_run',
+const PARKED_DOMAIN_MCP_TOOL_NAMES = ['mcp__chirality__domain_headless_preview_run'] as const;
+
+// D-APP-52: live pec-scoped proposal tools (write + read grades).
+const PEC_PROPOSAL_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_propose_operation',
   'mcp__chirality__domain_proposal_validate'
 ] as const;
 
 const DOMAIN_MCP_TOOL_NAMES = [
   ...LIVE_DOMAIN_MCP_TOOL_NAMES,
-  ...PARKED_DOMAIN_MCP_TOOL_NAMES
+  ...PARKED_DOMAIN_MCP_TOOL_NAMES,
+  ...PEC_PROPOSAL_DOMAIN_MCP_TOOL_NAMES
 ] as const;
 
 let tmpDir = '';
@@ -241,11 +244,7 @@ describe('buildSdkOptions', () => {
       opts: {
         ...opts,
         mode: 'workspaceWrite',
-        tools: [
-          'domain_headless_preview_run',
-          'domain_propose_operation',
-          'domain_proposal_validate'
-        ]
+        tools: ['domain_headless_preview_run']
       },
       abortController: new AbortController(),
       systemPrompt: 'persona prompt'
@@ -255,6 +254,56 @@ describe('buildSdkOptions', () => {
     expect(options.allowedTools).toEqual([]);
     expect(options.disallowedTools).toEqual(expect.arrayContaining([...PARKED_DOMAIN_MCP_TOOL_NAMES]));
     expect(options.mcpServers).toEqual({});
+  });
+
+  it('attaches the D-APP-52 pec proposal tools in workspaceWrite mode when explicitly requested', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'workspaceWrite',
+        tools: ['domain_propose_operation', 'domain_proposal_validate']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual([...PEC_PROPOSAL_DOMAIN_MCP_TOOL_NAMES]);
+    expect(options.allowedTools).toEqual([...PEC_PROPOSAL_DOMAIN_MCP_TOOL_NAMES]);
+    expect(options.disallowedTools).not.toContain('mcp__chirality__domain_propose_operation');
+    expect(options.disallowedTools).not.toContain('mcp__chirality__domain_proposal_validate');
+    expect(options.disallowedTools).toEqual(
+      expect.arrayContaining([...PARKED_DOMAIN_MCP_TOOL_NAMES])
+    );
+    expect(options.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
+  });
+
+  it('keeps the write-graded pec proposal tool denied in readOnly mode while validate attaches', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: {
+        ...opts,
+        mode: 'readOnly',
+        tools: ['domain_propose_operation', 'domain_proposal_validate']
+      },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual(['mcp__chirality__domain_proposal_validate']);
+    expect(options.allowedTools).toEqual(['mcp__chirality__domain_proposal_validate']);
+    expect(options.disallowedTools).toContain('mcp__chirality__domain_propose_operation');
+    expect(options.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
   });
 
   it('allows only explicit project settings and never user or local sources', () => {

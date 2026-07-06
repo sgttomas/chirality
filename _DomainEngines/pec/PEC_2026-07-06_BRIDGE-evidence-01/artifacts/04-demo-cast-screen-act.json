@@ -1,0 +1,27 @@
+{
+  "demoCast": true,
+  "act": "screen-act (raise intake item)",
+  "actor": "admin@aurora.dev (owner-role admin persona)",
+  "purpose": "moves the project history watermark so the accepted proposal goes stale (RV-13)",
+  "engineResponse": {
+    "status": 200,
+    "body": {
+      "id": 5,
+      "projectId": 2,
+      "ref": "INTK-0001",
+      "statementVerbatim": "Synthetic owner screen act: bridge rehearsal watermark mover (D-APP-52).",
+      "quickType": "action",
+      "anchorSuggestion": null,
+      "needBy": null,
+      "suggestedOwnerId": null,
+      "log": "internal",
+      "raisedBy": 15,
+      "raisedAt": "2026-07-06T11:46:47.012Z",
+      "state": "raised",
+      "disposition": null,
+      "dispositionNote": null,
+      "mergedIntoIntakeId": null,
+      "version": 1
+    }
+  }
+}

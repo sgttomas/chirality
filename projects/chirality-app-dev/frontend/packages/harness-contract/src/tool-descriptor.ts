@@ -7,7 +7,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v9.multi-engine-profile-registry';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v10.pec-proposal-tools-live';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -737,66 +737,144 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     gateReason:
       'DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure.'
   }),
-  chiralityDomainDescriptorOnly({
+  {
     name: 'domain_propose_operation',
-    aliases: ['mcp.domain_propose_operation'],
+    aliases: uniqueDescriptorAliases({
+      name: 'domain_propose_operation',
+      aliases: ['mcp.domain_propose_operation', 'domain_propose_operation'],
+      adapterToolName: toChiralityMcpAllowedToolName('domain_propose_operation')
+    }),
     description:
-      'Reserved D-APP-50 domain MCP descriptor for draft OperationProposal record creation; applies nothing.',
-    mcpToolName: 'domain_propose_operation',
+      'Create (mode propose) or refresh (mode refresh) a pec import-proposal dry-run record over the D-APP-52 loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport, acting as the owner-provisioned pec agent person; refresh mutates and voids any prior acceptance. The domain human gate — acceptance and application — lives in pec behind admin-only RBAC and is not tool-reachable (K-DOMAIN-3).',
+    surface: 'chirality-mcp',
     permissions: ['workspace-write'],
-    pathScope: 'project-root-write',
+    pathScope: 'project-root-read',
     idempotence: 'mutating',
     concurrency: 'serialized-by-path',
+    interruptBehavior: 'block',
     resultBudget: WRITE_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'metadata',
+      recordsDiff: false
+    },
+    humanGate: {
+      required: true,
+      gate: 'interactive-confirmation',
+      reason:
+        'pec proposal-record mutations require workspaceWrite mode; domain acceptance/application remain human in-app acts behind pec admin-only RBAC (K-DOMAIN-3).'
+    },
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName('domain_propose_operation')
+      }
+    },
     inputSchema: {
       type: 'object',
-      required: ['profileId', 'proposal'],
+      required: ['profileId', 'projectId'],
       properties: {
         profileId: {
           type: 'string'
         },
-        proposal: {
-          type: 'object'
+        projectId: {
+          type: 'integer',
+          minimum: 1
+        },
+        mode: {
+          type: 'string',
+          enum: ['propose', 'refresh'],
+          default: 'propose'
+        },
+        contract: {
+          type: 'string',
+          enum: ['mdl', 'rail', 'decisions', 'risks', 'schedule']
+        },
+        csvContent: {
+          type: 'string'
+        },
+        csvFileRef: {
+          type: 'string'
+        },
+        sourceName: {
+          type: 'string'
+        },
+        proposalId: {
+          type: 'integer',
+          minimum: 1
+        },
+        expectedVersion: {
+          type: 'integer'
         }
       }
     },
     outputSchema: {
       type: 'object',
-      required: ['ok', 'proposalPath', 'transportStatus']
+      required: ['profileId', 'toolId', 'transportStatus']
     },
-    gateReason:
-      'D-APP-50 keeps proposal-record writes descriptor-only until K-DOMAIN-2 agent-writable path quarantine is implemented.'
-  }),
-  chiralityDomainDescriptorOnly({
+    runtime: {
+      exposedToModel: true,
+      reason:
+        'D-APP-52 exposes the pec proposal write wrapper in workspaceWrite mode over the loopback-only endpoint-allowlisted HTTP transport with handler-level permission/evidence checks.'
+    }
+  },
+  {
     name: 'domain_proposal_validate',
-    aliases: ['mcp.domain_proposal_validate'],
+    aliases: uniqueDescriptorAliases({
+      name: 'domain_proposal_validate',
+      aliases: ['mcp.domain_proposal_validate', 'domain_proposal_validate'],
+      adapterToolName: toChiralityMcpAllowedToolName('domain_proposal_validate')
+    }),
     description:
-      'Reserved D-APP-50 domain MCP descriptor for operation_applier.validate; validates proposals and applies nothing.',
-    mcpToolName: 'domain_proposal_validate',
+      'Read a pec import-proposal record and its stored dry-run report over the D-APP-52 loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport. GET only: never issues a POST, never recomputes, never mutates; staleness is inspectable via the stored dryRunAt/basisHistoryId.',
+    surface: 'chirality-mcp',
     permissions: ['read'],
     pathScope: 'project-root-read',
     idempotence: 'input-dependent',
     concurrency: 'safe',
+    interruptBehavior: 'cancel',
     resultBudget: READ_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'inline-or-artifact',
+      recordsDiff: false
+    },
+    humanGate: {
+      required: false
+    },
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName('domain_proposal_validate')
+      }
+    },
     inputSchema: {
       type: 'object',
-      required: ['profileId', 'proposalPath'],
+      required: ['profileId', 'projectId', 'proposalId'],
       properties: {
         profileId: {
           type: 'string'
         },
-        proposalPath: {
-          type: 'string'
+        projectId: {
+          type: 'integer',
+          minimum: 1
+        },
+        proposalId: {
+          type: 'integer',
+          minimum: 1
         }
       }
     },
     outputSchema: {
       type: 'object',
-      required: ['ok', 'proposalPath', 'transportStatus']
+      required: ['profileId', 'toolId', 'transportStatus']
     },
-    gateReason:
-      'D-APP-50 excludes apply and keeps proposal validation descriptor-only until operation_applier.validate transport is sound.'
-  }),
+    runtime: {
+      exposedToModel: true,
+      reason:
+        'D-APP-52 exposes the pec proposal read wrapper (GET-only, never recomputes) over the loopback-only endpoint-allowlisted HTTP transport.'
+    }
+  },
   {
     name: 'write_file',
     aliases: ['sdk.write'],

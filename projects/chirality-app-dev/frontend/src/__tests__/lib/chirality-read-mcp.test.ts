@@ -616,5 +616,18 @@ describe('Chirality read MCP tools', () => {
         name: 'chirality'
       }
     });
+
+    // D-APP-52: the live pec proposal tool names attach the server too.
+    expect(
+      createChiralityReadMcpServers({
+        context: { projectRoot: fixture.projectRoot, sessionId },
+        allowedToolNames: ['mcp__chirality__domain_proposal_validate']
+      })
+    ).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
   });
 });
