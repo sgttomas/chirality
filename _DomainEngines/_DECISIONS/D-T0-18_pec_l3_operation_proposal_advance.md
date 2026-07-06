@@ -74,4 +74,17 @@ owner names. O-B/O-C: row closes with the ruling recorded; no execution.
 
 ## Human ruling
 
-**Ruling:** _pending._
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-05.
+
+Owner ruling of record (verbatim, in-session):
+
+> 1. O-A advance.
+> 2. The agent should have full agency, don't try to use semantics as a replacement
+> for proper governance harnesses (more than just semantics) so focus on making a
+> useful agent for now.
+> Merge the PR first and then proceed accordingly.
+
+Item 2 rules the companion `D-PEC-12` (recorded there). PR #84 was merged first
+as directed (`45ff3e6a7`); execution proceeds in the PR carrying this note.
+
+**Ruling SHA:** backfilled in the execution PR (see the PEC loop Receipt 28).
