@@ -13,6 +13,8 @@ import { api, p } from './api.ts'
 import type { Me, ProjectRef } from './api.ts'
 import { AppContext, ExplainProvider, useApp, useLoad } from './shared.tsx'
 import { RaiseItemButton } from './RaiseItem.tsx'
+import { ScreenContextProvider } from './agent/context.tsx'
+import { AgentDock } from './agent/AgentPanel.tsx'
 import { OverviewPage } from './pages/Overview.tsx'
 import { PackagesPage, PackageDetailPage } from './pages/Packages.tsx'
 import { DeliverablesPage, DeliverableDetailPage } from './pages/Deliverables.tsx'
@@ -84,6 +86,8 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
       refreshKey, refresh: () => setRefreshKey((k) => k + 1), toast,
     }}>
       <ExplainProvider>
+        {/* D-PEC-17: screen-context = route + visible record ids only (rider 5) */}
+        <ScreenContextProvider>
         <div className="app">
           <aside className="sidebar">
             <div className="brand">
@@ -119,12 +123,15 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
           <main className="main">
             <div className="topbar">
               <div className="spacer" />
+              {/* D-PEC-17: agent panel toggle — renders only when can('agent.direct') */}
+              <AgentDock />
               <RaiseItemButton />
             </div>
             <Outlet />
           </main>
           {toastMsg && <div className="toast">{toastMsg}</div>}
         </div>
+        </ScreenContextProvider>
       </ExplainProvider>
     </AppContext.Provider>
   )
