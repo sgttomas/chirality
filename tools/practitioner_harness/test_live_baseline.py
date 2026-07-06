@@ -165,7 +165,9 @@ def test_live_bridge_status_reports_pec_adopted_gate_closed():
         "Gate 2 adopted"
     )
     md = report.render_markdown()
-    assert "| `pec` | `ADOPTED` | Gate 2 adopted | `MANUAL_BRIDGE` |" in md
+    # integration level pin updated 2026-07-05: D-T0-18 O-A advanced pec to
+    # OPERATION_PROPOSAL (L3, imports scope) — conscious pin update, same PR.
+    assert "| `pec` | `ADOPTED` | Gate 2 adopted | `OPERATION_PROPOSAL` |" in md
 
 
 @live

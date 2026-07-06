@@ -13,7 +13,7 @@
 | DOMAIN_ENGINE_ID | Engine | Profile | ProfileStatus | Integration level (today) |
 |---|---|---|---|---|
 | `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.yaml` | **ADOPTED** (validated + Gate-2 adopted 2026-06-21) | `MANUAL_BRIDGE` (L0) |
-| `pec` | PEC engineering execution-control engine (`projects/pec/`) | `profiles/pec.yaml` | **ADOPTED** (validated + owner Gate-2 ruling 2026-07-05; D-T0-12 adoption note) | `MANUAL_BRIDGE` (L0) |
+| `pec` | PEC engineering execution-control engine (`projects/pec/`) | `profiles/pec.yaml` | **ADOPTED** (validated + owner Gate-2 ruling 2026-07-05; D-T0-12 adoption note) | `OPERATION_PROPOSAL` (L3, imports scope; D-T0-18 O-A 2026-07-05) |
 
 ## Layout
 
@@ -37,7 +37,7 @@ _DomainEngines/
     PEC_2026-07-04_tier0-prep/     ← immutable registration prep snapshot
   proposals/
     open_pipe_stress/             ← (empty; no OperationProposals authored — L3 not reached)
-    pec/                          ← (empty; no OperationProposals authored — L3 not reached)
+    pec/                          ← import-proposal mirrors (L3 imports scope; D-T0-18 O-A 2026-07-05)
   _DECISIONS/
     _REGISTER.md                  ← tier-0 decision register, including ruled PEC registration rows
     D-T0-01..10_*.md              ← ruled / acknowledged historical records

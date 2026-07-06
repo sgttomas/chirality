@@ -19,7 +19,7 @@ domain_profile:
   engine_type: "project-controls/engineering-execution-control"
   profile_version: "0.1"
   profile_status: "ADOPTED"
-  integration_level: "MANUAL_BRIDGE"
+  integration_level: "OPERATION_PROPOSAL"  # L3, imports scope — D-T0-18 O-A + D-PEC-12 (owner-ruled 2026-07-05); reached via the ruled L0->L1->L2 ladder.
   data_residency: "CLOSED"  # D-T0-14 deferred default; no instance-content egress absent a future owner ruling.
 
   domain_root_patterns:
@@ -118,7 +118,7 @@ domain_profile:
       impl: "projects/pec/server/src/import/index.ts importContract"
       mode: "domain_controlled_write"
       requires_human_confirmation: true
-      note: "POST import/:contract for mdl, rail, decisions, risks, and schedule; force=true is never agent-set without a ruling."
+      note: "POST import/:contract for mdl, rail, decisions, risks, and schedule; force=true is never agent-set without a ruling. Preferred route since D-T0-18/D-PEC-12: the import-proposal pathway (POST import-proposals: propose -> dry-run -> hash-bound accept -> atomic apply)."
       validate_result_schema: "TBD"
       apply_result_schema: "TBD"
     - id: "seed.demo"
@@ -161,6 +161,6 @@ domain_profile:
     - "Readable instance artifacts remain gated by D-PEC-01's owner-supplied execution basis; SHA-256 hashes of real input files are permitted in manifests, but raw real content capture is not permitted unless the owner enumerates it."
     - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."
     - "PEC's reserved human acts are internal RBAC acts, while the current canon wording is oriented to external professional approval records; canon clarification may be needed."
-    - "L3 operation-proposal semantics overlap PEC native lifecycles and need a future ruling before any proposal-shaped apply path."
+    - "L3 operation-proposal semantics: RESOLVED for the import scope 2026-07-05 by D-PEC-12 (with owner full-agency amendment) + D-T0-18 O-A; the in-app import_proposal record is the single record of authority. Other operation families still need their own ruling."
     - "PEC is outside the governed decomposition loop; profile adoption would not adopt or amend PEC decomposition truth."
     - "seed.demo guard: RESOLVED 2026-07-05 by PR #69; the tool now requires explicit PEC_DB and refuses non-scratch/non-demo targets."

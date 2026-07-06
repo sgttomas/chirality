@@ -1,6 +1,6 @@
 # D-PEC-12 - PROPOSAL: L3 operation-proposal semantics for the import seam
 
-**Status:** AWAITING_RULING (companion to tier-0 `D-T0-18`; rules together).
+**Status:** RULED (2026-07-05, with owner amendment; companion to tier-0 `D-T0-18`).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-12
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -65,4 +65,30 @@ mechanism as the L3 mechanism and keep every gate human.
 
 ## Human ruling
 
-**Ruling:** _pending._
+**Ruling:** RULED with owner amendment (Ryan Tufts), 2026-07-05 — O-B shape (adopt
+with amendments stated in the ruling).
+
+Owner ruling of record (verbatim, in-session, ruling both this packet and D-T0-18):
+
+> 1. O-A advance.
+> 2. The agent should have full agency, don't try to use semantics as a replacement
+> for proper governance harnesses (more than just semantics) so focus on making a
+> useful agent for now.
+> Merge the PR first and then proceed accordingly.
+
+Recorded interpretation of the amendment (the ruling text governs on any
+disagreement): the binding gates are the MECHANICAL harnesses — the shipped RBAC
+(`import.propose`/`import.accept`), hash+version-bound acceptance, staleness
+refusal, transaction-atomic apply, append-only history/audit, the standing
+fences, and the decision registers — not this packet's prose. Within those
+harnesses the agent has FULL AGENCY across the proposal pathway (author, file,
+dry-run, refresh, withdraw, and — when operating under an owner-provisioned or
+demo/scratch actor basis — accept and apply through the same audited API).
+Sections 1, 2, 4, 5, and 6 of the proposed semantics stand as working
+conventions, not as new authority constraints; section 3's propose/accept role
+split describes the shipped RBAC defaults, and the operating human basis
+determines what the agent may lawfully drive end-to-end. Priority is a USEFUL
+agent; governance-harness gaps found in practice come back as register rows,
+not as prose restrictions invented mid-run.
+
+**Status change:** AWAITING_RULING → RULED.
