@@ -1,8 +1,11 @@
-# PEC Domain Engine Profile - DRAFT (registered profile; Gate 2 open)
+# PEC Domain Engine Profile - ADOPTED (owner Gate 2 ruled 2026-07-05)
 #
-# Status: DRAFT. This profile lives under _DomainEngines/profiles/ after the
-# D-T0-16 harness tranche made the domain-engine adapter multi-profile-safe.
-# Location under profiles/ is not adoption; owner Gate 2 remains open.
+# Status: ADOPTED. Owner ruling of record (verbatim, 2026-07-05, in-session,
+# Ryan Tufts): "I adopt the pec profile for Gate 2, you may execute as you
+# see fit." Recorded in the D-T0-12 packet Gate-2 adoption note, per the
+# D-T0-12 O-A lifecycle (validator evidence -> owner Gate 2). This profile
+# lives under _DomainEngines/profiles/ after the D-T0-16 harness tranche
+# made the domain-engine adapter multi-profile-safe.
 #
 # Provenance: instance binding for projects/pec, the engineering execution
 # control app. Source behavior is the committed PEC tree: docs/STATUS.md,
@@ -15,7 +18,7 @@ domain_profile:
   name: "PEC - Engineering Execution Control (project controls)"
   engine_type: "project-controls/engineering-execution-control"
   profile_version: "0.1"
-  profile_status: "DRAFT"
+  profile_status: "ADOPTED"
   integration_level: "MANUAL_BRIDGE"
   data_residency: "CLOSED"  # D-T0-14 deferred default; no instance-content egress absent a future owner ruling.
 
@@ -153,7 +156,7 @@ domain_profile:
     reserved_human_act: "approval outcome, decision outcome, check acceptance, comment acceptance, revision issue, and waiver/hold/approval judgment acts by the named PEC authority"
 
   open_issues:
-    - "Profile location: RESOLVED 2026-07-04 by the D-T0-16 harness tranche; this file now lives at _DomainEngines/profiles/pec.yaml, still DRAFT with owner Gate 2 open."
+    - "Profile location: RESOLVED 2026-07-04 by the D-T0-16 harness tranche; this file now lives at _DomainEngines/profiles/pec.yaml. Gate 2: RESOLVED 2026-07-05 by owner adoption ruling, recorded in the D-T0-12 packet Gate-2 adoption note."
     - "Data residency for PEC instance content is CLOSED by the deferred D-T0-14 default; D-PEC-01 O-A permits only the narrow pilot evidence run after the owner supplies exact paths, actor/visibility basis, scratch DB/backup locations, and capture limits."
     - "Readable instance artifacts remain gated by D-PEC-01's owner-supplied execution basis; SHA-256 hashes of real input files are permitted in manifests, but raw real content capture is not permitted unless the owner enumerates it."
     - "No published machine-readable result schemas yet for ImportReport, Explain payloads, drill reports, or report captures."

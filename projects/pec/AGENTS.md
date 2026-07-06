@@ -42,7 +42,8 @@ Prompts and TASK briefs must derive paths from the active checkout:
 
 ## Domain-Engine Boundary
 
-PEC is registered as a DRAFT domain engine under `_DomainEngines/pec/`.
+PEC is registered as an ADOPTED domain engine under `_DomainEngines/pec/`
+(profile Gate 2 adopted by owner ruling 2026-07-05; D-T0-12 adoption note).
 Agents must read the tier-0 profile, loop, and decision register before making
 claims about PEC harness integration:
 

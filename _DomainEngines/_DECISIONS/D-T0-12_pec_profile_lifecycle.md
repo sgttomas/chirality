@@ -55,3 +55,29 @@ Owner ruling excerpt:
 
 This ruling confirms the lifecycle and validator evidence path. It does not
 itself adopt the PEC profile; Gate 2 remains open and owner-only.
+
+## Gate-2 adoption ruling (2026-07-05, appended note — the O-A ruling text above is unchanged)
+
+**Ruling:** PEC profile ADOPTED by owner (Ryan Tufts), 2026-07-05.
+
+Owner ruling of record (verbatim, in-session):
+
+> merge PR #82 now, then I adopt the pec profile for Gate 2, you may execute
+> as you see fit.  We will not start the pilot DB this time.  Another time.
+
+Basis: validator evidence current and VALID; D-PEC-01 pilot rehearsal evidence
+01-04 exists (the D-PEC-04 O-B "until pilot evidence" deferral is thereby
+discharged by the owner's own judgment). Executed: profile
+`_DomainEngines/profiles/pec.yaml` status DRAFT -> ADOPTED, registry row and
+banner updated, live-baseline pin consciously updated in the same PR, PEC-local
+pointer row D-PEC-11 opened RULED. Adoption is a governance act only: no pec
+source change, no pilot start (owner deferred it in the same ruling), no
+professional or go-live claim (APEGA ceiling, K-AUTH-1).
+
+**Adoption SHA:** recorded in the PEC loop receipt for this PR (Receipt 26).
+
+Structure precedent (this appended note): the dated-corrigendum/adoption-note
+convention of the D-PEC-07 packet and the D-T0-06 Gate-2 adoption record; the
+ruled text above is unchanged. Note: the ruled text's reference to the
+DRAFT-era staged profile path is historical — the profile has lived at
+`_DomainEngines/profiles/pec.yaml` since the D-T0-16 tranche.
