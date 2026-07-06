@@ -85,6 +85,4 @@ withdrawn) and the row closes with the ruling recorded.
 
 ## Human ruling
 
-**Ruling:** —
-
-**Ruling SHA:** TBD at publication commit.
+**Ruling:** _pending._

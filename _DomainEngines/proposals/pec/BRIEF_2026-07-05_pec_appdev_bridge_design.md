@@ -40,11 +40,12 @@ Routes (`projects/pec/server/src/api.ts`, D-PEC-08 block):
 
 Auth is cookie/session only: `POST /api/auth/login` → httpOnly `pec_session`
 cookie (7-day TTL), DB-backed, person-bound; **no API-token / bearer / service
-mechanism exists** (`server/src/auth.ts`; grep-verified). The five
-import-proposal mutation routes carry a same-origin guard that fires only when
-an `Origin` header is present (`services/proposals.ts` `requireSameOrigin`,
-RV-21); other mutations (intake triage, login) carry no origin guard; a
-header-less programmatic client passes. Server: `node:http`, port `PEC_PORT` (default
+mechanism exists** (`projects/pec/server/src/auth.ts`; grep-verified). The
+five import-proposal mutation routes carry a same-origin guard that fires only
+when an `Origin` header is present (`requireSameOrigin` in
+`projects/pec/server/src/services/proposals.ts`, RV-21); other mutations
+(intake triage, login) carry no origin guard; a header-less programmatic
+client passes. Server: `node:http`, port `PEC_PORT` (default
 4810), DB `PEC_DB`; ADR-002 zero server runtime dependencies.
 
 ## 3. Transport design (D-T0-19 sub-item 2, recommendation O-2A)

@@ -94,6 +94,4 @@ the only path to real content.
 
 ## Human ruling
 
-**Ruling:** —
-
-**Ruling SHA:** TBD at publication commit.
+**Ruling:** _pending._

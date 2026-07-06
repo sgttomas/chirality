@@ -180,6 +180,4 @@ recorded; no execution.
 
 ## Human ruling
 
-**Ruling:** —
-
-**Ruling SHA:** TBD at publication commit.
+**Ruling:** _pending._
