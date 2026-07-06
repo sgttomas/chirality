@@ -47,6 +47,11 @@ import {
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from '@chirality/harness-contract/mcp/tool-names';
+import {
+  resolveDomainEngineProfile,
+  type DomainEngineProfileRegistryEntry,
+  type DomainReadToolId
+} from './domain-profile-registry';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
@@ -531,29 +536,39 @@ async function readProjectJsonReference(input: {
   };
 }
 
-async function readOpenPipeStressProfile(input: {
+async function readRegisteredDomainProfile(input: {
   projectRoot: string;
   profileId: string;
-  toolId: 'completeness_checker' | 'rule_check_runner';
+  toolId: DomainReadToolId;
 }): Promise<{
-  path: string;
-  relativePath: string;
-  sha256: string;
-  byteLength: number;
+  evidence: {
+    path: string;
+    relativePath: string;
+    sha256: string;
+    byteLength: number;
+  };
+  entry: DomainEngineProfileRegistryEntry;
 }> {
-  if (input.profileId !== 'open_pipe_stress') {
-    throw new HarnessError('INVALID_REQUEST', 400, 'profileId is not registered for this domain transport', {
-      profileId: input.profileId,
-      supportedProfileIds: ['open_pipe_stress']
-    });
-  }
+  const entry = resolveDomainEngineProfile(input.profileId);
 
   const { content, evidence } = await readProjectTextReference({
     projectRoot: input.projectRoot,
-    reference: '_DomainEngines/profiles/open_pipe_stress.yaml',
+    reference: entry.profileRelativePath,
     field: 'profileId'
   });
-  if (!content.includes('id: open_pipe_stress') || !content.includes(`id: ${input.toolId}`)) {
+  if (!content.includes(entry.identityMarker)) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'profile file does not match the registered profileId',
+      {
+        profileId: input.profileId,
+        profilePath: evidence.path
+      }
+    );
+  }
+  const gate = entry.toolGate[input.toolId];
+  if (gate.requiredMarker !== null && !content.includes(gate.requiredMarker)) {
     throw new HarnessError(
       'INVALID_REQUEST',
       400,
@@ -565,24 +580,27 @@ async function readOpenPipeStressProfile(input: {
       }
     );
   }
-  return evidence;
+  return { evidence, entry };
 }
 
-function domainReadTransportStatus(toolId: 'completeness_checker' | 'rule_check_runner') {
+function domainReadTransportStatus(
+  entry: DomainEngineProfileRegistryEntry,
+  toolId: DomainReadToolId
+) {
   return {
     status: 'live',
-    posture: 'DEC-041 in-process read transport',
-    tranche: 'D-APP-50 tranche-1 read-side exposure',
+    posture: entry.transportStatus.posture,
+    tranche: entry.transportStatus.tranche,
     toolId,
     writes: false,
     network: false,
     shell: false,
-    inputContract:
-      'project-root-contained JSON references plus _DomainEngines/profiles/open_pipe_stress.yaml',
-    deterministicToolExecution:
-      'not invoked in this tranche; the authoritative Rust tool is library-only and has no stable JSON CLI transport',
-    resultSemantics:
-      'transport/evidence envelope only; no domain verdict, no live binding claim, and no professional engineering conclusion'
+    engineKind: entry.engineKind,
+    readTransportBinding: entry.readTransportBinding,
+    declaredDeterministicToolId: entry.toolGate[toolId].declaredDeterministicToolId,
+    inputContract: entry.transportStatus.inputContract,
+    deterministicToolExecution: entry.transportStatus.deterministicToolExecution,
+    resultSemantics: entry.transportStatus.resultSemantics
   };
 }
 
@@ -672,7 +690,7 @@ export async function domainCompletenessCheckTool(
     toolName: 'domain_completeness_check',
     args,
     execute: async () => {
-      const profile = await readOpenPipeStressProfile({
+      const { evidence: profile, entry } = await readRegisteredDomainProfile({
         projectRoot: context.projectRoot,
         profileId: args.profileId,
         toolId: 'completeness_checker'
@@ -686,7 +704,7 @@ export async function domainCompletenessCheckTool(
       return jsonToolResult({
         profileId: args.profileId,
         toolId: 'completeness_checker',
-        transportStatus: domainReadTransportStatus('completeness_checker'),
+        transportStatus: domainReadTransportStatus(entry, 'completeness_checker'),
         profile,
         inputs: [input]
       });
@@ -703,7 +721,7 @@ export async function domainRuleCheckRunTool(
     toolName: 'domain_rule_check_run',
     args,
     execute: async () => {
-      const profile = await readOpenPipeStressProfile({
+      const { evidence: profile, entry } = await readRegisteredDomainProfile({
         projectRoot: context.projectRoot,
         profileId: args.profileId,
         toolId: 'rule_check_runner'
@@ -722,7 +740,7 @@ export async function domainRuleCheckRunTool(
       return jsonToolResult({
         profileId: args.profileId,
         toolId: 'rule_check_runner',
-        transportStatus: domainReadTransportStatus('rule_check_runner'),
+        transportStatus: domainReadTransportStatus(entry, 'rule_check_runner'),
         profile,
         inputs: [rulePack, valueBindings]
       });
@@ -959,7 +977,7 @@ export function buildChiralityMcpTools(input: {
     tools.push(
       tool(
         'domain_completeness_check',
-        'Return D-APP-50 tranche-1 transport evidence for the open_pipe_stress completeness_checker read wrapper.',
+        'Return registry-gated read-side domain transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec) for the completeness_checker wrapper.',
         {
           profileId: z.string().min(1),
           inputRef: z.string().min(1)
@@ -973,7 +991,7 @@ export function buildChiralityMcpTools(input: {
     tools.push(
       tool(
         'domain_rule_check_run',
-        'Return D-APP-50 tranche-1 transport evidence for the open_pipe_stress rule_check_runner read wrapper.',
+        'Return registry-gated read-side domain transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec) for the rule_check_runner wrapper.',
         {
           profileId: z.string().min(1),
           rulePackRef: z.string().min(1),
