@@ -1,0 +1,43 @@
+{
+  "status": 200,
+  "body": {
+    "id": 1,
+    "projectId": 1,
+    "ref": "IPR-0001",
+    "contract": "mdl",
+    "sourceName": "mdl-aurora-evidence.csv",
+    "sourceSha256": "90dfbbab9b99dbcdf44467cc230157bcd947cd375c70370c0eaaef94710727a8",
+    "sourceBytes": 236,
+    "sourceCsv": "doc_no,title,package,discipline,owner,current_rev,state,due_date\r\nAUR-EV-001,Evidence P&ID Sheet 1,PKG-EV,Process,eor@aurora.dev,A,in_work,2027-05-31\r\nAUR-EV-002,Evidence P&ID Sheet 2,PKG-EV,Process,eor@aurora.dev,A,in_work,2027-06-30\r\n",
+    "state": "applied",
+    "basisHistoryId": 168,
+    "dryRunReport": {
+      "contract": "mdl",
+      "accepted": 2,
+      "updated": 0,
+      "conflicts": [],
+      "rejected": [],
+      "intakeCreated": 0
+    },
+    "dryRunAt": "2026-07-06T11:37:06.352Z",
+    "acceptedBy": 15,
+    "acceptedAt": "2026-07-06T11:37:06.358Z",
+    "acceptedSha256": "90dfbbab9b99dbcdf44467cc230157bcd947cd375c70370c0eaaef94710727a8",
+    "rejectedBy": null,
+    "rejectedAt": null,
+    "rejectReason": null,
+    "appliedBy": 15,
+    "appliedAt": "2026-07-06T11:37:06.362Z",
+    "applyReport": {
+      "contract": "mdl",
+      "accepted": 2,
+      "updated": 0,
+      "conflicts": [],
+      "rejected": [],
+      "intakeCreated": 0
+    },
+    "createdBy": 16,
+    "createdAt": "2026-07-06T11:36:07.173Z",
+    "version": 8
+  }
+}

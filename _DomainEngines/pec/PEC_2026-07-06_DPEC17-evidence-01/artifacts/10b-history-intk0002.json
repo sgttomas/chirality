@@ -1,0 +1,41 @@
+{
+  "status": 200,
+  "body": [
+    {
+      "id": 168,
+      "projectId": 1,
+      "recordType": "intake_item",
+      "recordId": 2,
+      "at": "2026-07-06T11:36:07.198Z",
+      "actorId": 16,
+      "kind": "dispositioned",
+      "summary": "INTK-0002 dispositioned: parked (units basis is on the owner desk; revisit after the Gate 3 basis note lands)",
+      "payload": "{\"disposition\":\"parked\",\"created\":[]}",
+      "authorityRef": null
+    },
+    {
+      "id": 167,
+      "projectId": 1,
+      "recordType": "intake_item",
+      "recordId": 2,
+      "at": "2026-07-06T11:36:07.196Z",
+      "actorId": 16,
+      "kind": "transition",
+      "summary": "INTK-0002: raised → in_triage",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 144,
+      "projectId": 1,
+      "recordType": "intake_item",
+      "recordId": 2,
+      "at": "2026-07-06T11:30:10.127Z",
+      "actorId": 13,
+      "kind": "created",
+      "summary": "INTK-0002 raised (need_decision)",
+      "payload": null,
+      "authorityRef": null
+    }
+  ]
+}

@@ -81,6 +81,25 @@ test('import proposals: register-handling roles propose; only admin accepts/appl
   assert.equal(can('import.accept', ctx(['contributor'], { isInstanceAdmin: true })).allowed, true)
 })
 
+test('agent.direct: exactly the roles holding both propose and triage authority (D-PEC-17)', () => {
+  for (const r of ['admin', 'pm', 'coordinator'] as const) {
+    assert.equal(can('agent.direct', ctx([r])).allowed, true, `${r} may direct the agent`)
+  }
+  // GOV MINOR-2 deliberate exclusion (pinned): document_controller holds import.propose
+  // but lacks intake.triage — granting agent.direct would be triage-by-proxy.
+  assert.equal(can('agent.direct', ctx(['document_controller'])).allowed, false,
+    'document_controller is deliberately excluded (GOV MINOR-2)')
+  for (const r of ['contributor', 'checker', 'planner', 'viewer', 'package_lead', 'engineer_of_record'] as const) {
+    assert.equal(can('agent.direct', ctx([r])).allowed, false, `${r} does not direct the agent`)
+  }
+  // viewer-only early refusal + non-member refusal
+  assert.equal(can('agent.direct', ctx(['viewer'])).reason, 'viewer is read-only')
+  assert.equal(can('agent.direct', ctx([])).allowed, false, 'non-member refused')
+  // instance-admin break-glass applies (NOT a personal judgment — no engineering
+  // authority is recorded by directing the agent)
+  assert.equal(can('agent.direct', ctx(['contributor'], { isInstanceAdmin: true })).allowed, true)
+})
+
 test('log visibility: viewer sees package+client by default; config overrides (PEC-NFR-005)', () => {
   assert.deepEqual(visibleLogs(['viewer'], undefined), ['package', 'client'])
   assert.deepEqual(visibleLogs(['contributor'], undefined), ['package', 'internal', 'client'])

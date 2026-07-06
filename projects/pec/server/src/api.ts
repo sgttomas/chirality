@@ -25,6 +25,7 @@ import { sweepProject } from './services/sweep.ts'
 import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import * as proposals from './services/proposals.ts'
+import { agentMessage, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
 import { DEFAULT_THRESHOLDS, can, explainTransition } from '@pec/core'
@@ -363,6 +364,23 @@ export function buildRouter(db: Db): Router {
     sameOrigin(c)
     const b = body(c)
     return proposals.applyProposal(c.sx, idOf(c), Number(b.version), b.force === true)
+  }))
+
+  // ---------- agent panel proxy (D-PEC-17: the brief's narrow "/api/agent/*" surface; exact shape /api/projects/:pid/agent/*) ----------
+  // authed (not tx): the proxy performs no local DB mutation. Project scoping comes
+  // from authed's membership check plus the injected pid (the client-sent pid is
+  // overwritten server-side). agent.direct gates who may DIRECT the agent; what the
+  // agent can DO stays bounded by the agent person's own grant (two-key property).
+  r.get('/api/projects/:pid/agent/status', authed((c) => {
+    requireCan(c.sx, 'agent.direct', {})
+    return agentStatus(agentTargetFromEnv())
+  }))
+  r.post('/api/projects/:pid/agent/messages', authed((c) => {
+    requireCan(c.sx, 'agent.direct', {})
+    sameOrigin(c) // reuse the RV-21 guard on the mutation route
+    const b = body(c)
+    // fresh outbound request in agent-proxy.ts: the human's cookie never reaches the sidecar
+    return agentMessage(agentTargetFromEnv(), { ...b, pid: c.sx.projectId })
   }))
 
   // ---------- config ----------

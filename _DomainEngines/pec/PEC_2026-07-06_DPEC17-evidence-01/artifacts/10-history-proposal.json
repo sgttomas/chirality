@@ -1,0 +1,77 @@
+{
+  "status": 200,
+  "body": [
+    {
+      "id": 186,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:37:06.362Z",
+      "actorId": 15,
+      "kind": "proposal_applied",
+      "summary": "IPR-0001 applied (2 created, 0 updated, 0 conflicts, 0 rejected, 0 to intake)",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 170,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:37:06.358Z",
+      "actorId": 15,
+      "kind": "proposal_accepted",
+      "summary": "IPR-0001 accepted by admin@aurora.dev (sha256 90dfbbab9b99…)",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 169,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:37:06.352Z",
+      "actorId": 16,
+      "kind": "proposal_dry_run",
+      "summary": "IPR-0001 dry-run computed (2 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake)",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 166,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:36:07.186Z",
+      "actorId": 16,
+      "kind": "proposal_dry_run",
+      "summary": "IPR-0001 dry-run computed (2 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake)",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 165,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:36:07.178Z",
+      "actorId": 16,
+      "kind": "proposal_dry_run",
+      "summary": "IPR-0001 dry-run computed (2 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake)",
+      "payload": null,
+      "authorityRef": null
+    },
+    {
+      "id": 164,
+      "projectId": 1,
+      "recordType": "import_proposal",
+      "recordId": 1,
+      "at": "2026-07-06T11:36:07.173Z",
+      "actorId": 16,
+      "kind": "created",
+      "summary": "IPR-0001 proposed (mdl, 236 bytes, sha256 90dfbbab9b99…)",
+      "payload": null,
+      "authorityRef": null
+    }
+  ]
+}

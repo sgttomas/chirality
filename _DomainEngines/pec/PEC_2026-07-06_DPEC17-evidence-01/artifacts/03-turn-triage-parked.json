@@ -1,0 +1,33 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "intake.triage",
+        "ok": true,
+        "summary": "INTK-0002 dispositioned parked: units basis is on the owner desk; revisit after the Gate 3 basis note lands",
+        "payload": {
+          "item": {
+            "id": 2,
+            "projectId": 1,
+            "ref": "INTK-0002",
+            "statementVerbatim": "Units basis needs confirming before the H&MB tables are finalized",
+            "quickType": "need_decision",
+            "anchorSuggestion": "AUR-P-003",
+            "needBy": null,
+            "suggestedOwnerId": null,
+            "log": "internal",
+            "raisedBy": 13,
+            "raisedAt": "2026-07-06T11:30:10.127Z",
+            "state": "dispositioned",
+            "disposition": "parked",
+            "dispositionNote": "units basis is on the owner desk; revisit after the Gate 3 basis note lands",
+            "mergedIntoIntakeId": null,
+            "version": 3
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "deterministic": true,
+  "second": {
+    "status": 200,
+    "body": {
+      "events": [
+        {
+          "type": "act:refused",
+          "act": "intake.triage",
+          "reason": "I do not convert intake items: conversion can create records (including approval records) that must stay owner acts. Please perform the conversion of INTK-0003 on-screen (Action & Hold Log → triage), under your own session."
+        }
+      ]
+    }
+  }
+}
