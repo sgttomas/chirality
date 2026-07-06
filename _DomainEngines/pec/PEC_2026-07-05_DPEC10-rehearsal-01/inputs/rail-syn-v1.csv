@@ -1,0 +1,7 @@
+item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause,closed_date,notes,anchor_status
+SYN-R-1,Confirm separator sizing basis for the SYN unit,action,internal,admin@aurora.dev,2026-09-10,open,admin@aurora.dev,2026-07-01,SYN-PKG-001,SYN-D-001,,,Anchored row: creates a work item (D-PEC-10),
+SYN-R-2,Decide venting philosophy for the SYN flare header,action,internal,admin@aurora.dev,2026-09-17,open,admin@aurora.dev,2026-07-01,SYN-PKG-001,,,,Unanchored: triage target converted-to-decision (WF-10),
+SYN-R-3,Evaluate vendor alternative for the SYN compressor skid,action,internal,admin@aurora.dev,2026-09-24,open,admin@aurora.dev,2026-07-02,SYN-PKG-001,,,,Unanchored: triage target parked,
+SYN-R-4,Update the SYN equipment list for long-lead items,action,internal,admin@aurora.dev,2026-09-24,open,admin@aurora.dev,2026-07-02,SYN-PKG-001,,,,Unanchored: duplicate of SYN-R-5 in substance,
+SYN-R-5,Revise the SYN equipment list to capture long-lead items,action,internal,admin@aurora.dev,2026-09-24,open,admin@aurora.dev,2026-07-03,SYN-PKG-001,,,,Unanchored: triage target converted-to-work-item,
+SYN-R-6,Hold SYN heat exchanger datasheet pending client data,hold,internal,admin@aurora.dev,2026-10-01,open,admin@aurora.dev,2026-07-03,SYN-PKG-001,,client_input,,Unanchored hold: left for the owner (agent cannot ground),

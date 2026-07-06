@@ -1,6 +1,6 @@
 # D-PEC-10 - PROPOSAL: agent-performed intake and triage (workflow intent, obligations, rehearsal gate)
 
-**Status:** AWAITING_RULING.
+**Status:** RULED (O-A, 2026-07-05).
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-10
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -236,9 +236,19 @@ paths) are carried as named rows instead of silent trims.
 
 ## Human ruling
 
-**Ruling:** _awaiting owner (Ryan Tufts)._
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-05.
 
-(The verbatim ruling is recorded here; status change AWAITING_RULING → RULED.)
+Owner ruling of record (verbatim, in-session):
+
+> 1. I rule `O-A`
+> 2. merge PR #86
+
+PR #86 was merged as directed (merge commit `9dd310cc3`); execution proceeds
+per the On-ruling O-A mechanism in the PR carrying this note.
+
+**Ruling SHA:** `9dd310cc3` (PR #86 merge commit — the packet the owner ruled on).
+
+**Status change:** AWAITING_RULING → RULED.
 
 ## Riders (bind any ruled option)
 

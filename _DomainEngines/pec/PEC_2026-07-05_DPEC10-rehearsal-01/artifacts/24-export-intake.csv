@@ -1,0 +1,7 @@
+intake_id,statement,quick_type,log,raised_by,raised_date,state,disposition,anchor_suggestion,need_by
+INTK-0001,[SYN-R-2] Decide venting philosophy for the SYN flare header,action,internal,admin@aurora.dev,2026-07-01,dispositioned,converted,SYN-PKG-001,2026-09-24
+INTK-0002,[SYN-R-3] Evaluate vendor alternative for the SYN compressor skid,action,internal,admin@aurora.dev,2026-07-02,dispositioned,parked,SYN-PKG-001,2026-10-01
+INTK-0003,[SYN-R-4] Update the SYN equipment list for long-lead items,action,internal,admin@aurora.dev,2026-07-02,dispositioned,duplicate,SYN-PKG-001,2026-09-24
+INTK-0004,[SYN-R-5] Revise the SYN equipment list to capture long-lead items,action,internal,admin@aurora.dev,2026-07-03,dispositioned,converted,SYN-PKG-001,2026-10-01
+INTK-0005,[SYN-R-6] Hold SYN heat exchanger datasheet pending client data,hold,internal,admin@aurora.dev,2026-07-03,raised,,SYN-PKG-001,2026-10-08
+INTK-0006,[SYN-R-7] Coordinate SYN tie-in schedule with brownfield operations,action,internal,admin@aurora.dev,2026-07-05,raised,,SYN-PKG-001,2026-10-15
