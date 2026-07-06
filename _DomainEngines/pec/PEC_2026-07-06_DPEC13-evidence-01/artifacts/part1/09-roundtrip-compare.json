@@ -1,0 +1,9 @@
+{
+  "note": "export-and-compare round-trip (D-PEC-12 §5): applied v2 vs GET /export/tracker.csv, column-for-column keyed on tracking_no",
+  "headerMatch": true,
+  "sourceRows": 4,
+  "exportRows": 4,
+  "columns": 25,
+  "mismatches": [],
+  "pass": true
+}

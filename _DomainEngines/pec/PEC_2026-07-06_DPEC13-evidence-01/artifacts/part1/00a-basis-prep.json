@@ -1,0 +1,25 @@
+{
+  "note": "script-side basis prep on the FRESH scratch DB (rehearsal-01 / triage-01 precedent): instance setup, not a workflow act. Seed = D-PEC-06-guarded `npm run seed` (PEC_DB pointed at the scratch path; guard passed on the 'scratch' path token). The agent person was provisioned with an ephemeral random credential generated at run time (never committed; deleted with the scratch DB).",
+  "provisioned": {
+    "personId": 16,
+    "email": "pec-agent@rehearsal.demo",
+    "is_admin": 0,
+    "role": "coordinator",
+    "projectId": 1,
+    "projectCode": "AUR"
+  },
+  "seedCastProvides": {
+    "demoAdmin": {
+      "personId": 15,
+      "email": "admin@aurora.dev",
+      "hasAdminRole": true,
+      "note": "seeded demo-cast admin, used (disclosed per act) for accept/apply only"
+    },
+    "anchorPackagePkgP": {
+      "id": 1,
+      "code": "PKG-P",
+      "note": "seed-provided package record — the resolving anchor target; no extra basis-prep record creation was needed"
+    },
+    "pkgNopeAbsent": true
+  }
+}

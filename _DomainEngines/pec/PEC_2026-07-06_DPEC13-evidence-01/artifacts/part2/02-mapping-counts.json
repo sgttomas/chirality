@@ -1,0 +1,43 @@
+{
+  "note": "agent-side xlsx->CSV mapping per IMPORT_MAPPING §tracker, COUNT-LEVEL capture only (ruled item-4 default). The authored CSV lives untracked at pilot-scratch/import-ready/tracker.csv (owner surface), referenced by hash.",
+  "sources": {
+    "tracker.xlsx": {
+      "path": "projects/pec/pilot-scratch/input/tracker.xlsx",
+      "sha256": "01fc38f085dc8218c0e006d8a27c8ad7fa157c964ffe4041a7599ebc54f6bf9e",
+      "matchesRuledPacketHash": true,
+      "sheet": "Package Summary",
+      "readBasis": "D-T0-20 O-B enumeration item (iv), owner-dropped weekly file"
+    },
+    "mdl.xlsx": {
+      "path": "projects/pec/pilot-scratch/input/mdl.xlsx",
+      "sha256": "bf73c03f5f753652c7d0e62086dedbbcc6f6642de29b32976e814efc7860db74",
+      "sheet": "Master Deliverables List (header row 2)",
+      "use": "unique-name package resolution: tracker Package Name -> MDL Package ID -> package.code"
+    }
+  },
+  "authoredCsv": {
+    "path": "projects/pec/pilot-scratch/import-ready/tracker.csv (untracked, NOT committed)",
+    "sha256": "da6fadb1f9611fde4082355229e39b24cf59c43c9ac9fa3716cd99c21a521698",
+    "dataRows": 65,
+    "columns": 25
+  },
+  "mappingCounts": {
+    "distinctTrackingNo": 64,
+    "withinFileDuplicate": "one pair, workbook sheet rows 16/54 (key literal withheld per the ruled capture default)",
+    "anchorResolvedUnique": 54,
+    "anchorUnmatched": 11,
+    "anchorAmbiguous": 0,
+    "resolvedAnchorsPresentAsPackageCodeInStandingDb": "54/54 (pre-checked read-only against a scratchpad copy of the pre-run backup, triage-01 read-path precedent)",
+    "vendorsDashBlanked": 13,
+    "multilineJoinsLineItems": 30,
+    "multilineJoinsVendors": 16,
+    "commentsPopulated": 12
+  },
+  "mappingRulesApplied": [
+    "newline -> '; ' joins (line_items, vendors_engaged, comments)",
+    "literal '-' vendors marker -> blank",
+    "stage vocabulary normalized (Not Started -> not_started, In Progress -> in_progress, Complete -> complete, Issued -> issued, Not Applicable -> not_applicable)",
+    "package_type_approved / package_type_proposed trimmed",
+    "package anchor stated only where the tracker Package Name resolves to exactly one MDL Package ID (blank otherwise)"
+  ]
+}

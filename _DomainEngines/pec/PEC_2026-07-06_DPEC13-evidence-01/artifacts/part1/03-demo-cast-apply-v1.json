@@ -1,0 +1,66 @@
+{
+  "id": 1,
+  "projectId": 1,
+  "ref": "IPR-0001",
+  "contract": "tracker",
+  "sourceName": "tracker-syn-v1.csv",
+  "sourceSha256": "cf78131addd7254e96573600d9e9653698b99692e815ba511eab53ef3cf8388f",
+  "sourceBytes": 2156,
+  "sourceCsv": "tracking_no,package_name,discipline,area,package_type_approved,package_type_proposed,line_items,vendors_engaged,vendor_awarded,expected_delivery_date,cost_estimate_cad,comments,stage_budgetary_datasheet,stage_cost_estimate,stage_package_datasheet,stage_package,stage_rfq,stage_review,stage_vendor_bids,stage_clarifications,stage_evaluation,stage_eng_req,stage_po,stage_databook,package\n26020-01-PT-90-001,Synthetic Compressor Skid A,Mechanical,9-90 (Synthetic Area One),SKID,SKID,Compressor; Motor; Local panel,Vendor Alpha; Vendor Beta,,2027-03-01,,Fictional synthetic row,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-01-PT-90-002,Synthetic Pump Package B,Mechanical,9-90 (Synthetic Area One),No,PUMP,Pump; Baseplate,Vendor Gamma,,,,,issued,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-02-PT-91-003,Synthetic MCC Building C,Electrical,9-91 (Synthetic Area Two),No,E-HOUSE,MCC; Transformer,,,,,,not_applicable,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n26020-02-PT-91-004,Synthetic Heater D,Mechanical,9-91 (Synthetic Area Two),HEATER,HEATER,Heater; Burner management,Vendor Delta,,,,Anchored to a seeded package record,issued,complete,in_progress,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-P\n26020-03-PT-92-005,Synthetic Filter E,Mechanical,9-92 (Synthetic Area Three),FILTER,FILTER,Filter housing,Vendor Epsilon,,,,Stated anchor deliberately does not resolve,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,PKG-NOPE\n26020-01-PT-90-001,Synthetic Duplicate F,Mechanical,9-90 (Synthetic Area One),SKID,SKID,Deliberate within-file duplicate key,,,,,Duplicate of the first data row key,issued,complete,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,not_started,\n",
+  "state": "applied",
+  "basisHistoryId": 163,
+  "dryRunReport": {
+    "contract": "tracker",
+    "accepted": 4,
+    "updated": 0,
+    "conflicts": [
+      {
+        "row": 7,
+        "key": "26020-01-PT-90-001",
+        "reason": "duplicate tracking_no in file; first occurrence applied, this one skipped"
+      }
+    ],
+    "rejected": [
+      {
+        "row": 6,
+        "errors": [
+          "package \"PKG-NOPE\" matches no package code"
+        ]
+      }
+    ],
+    "intakeCreated": 0
+  },
+  "dryRunAt": "2026-07-06T17:02:28.862Z",
+  "acceptedBy": 15,
+  "acceptedAt": "2026-07-06T17:02:28.864Z",
+  "acceptedSha256": "cf78131addd7254e96573600d9e9653698b99692e815ba511eab53ef3cf8388f",
+  "rejectedBy": null,
+  "rejectedAt": null,
+  "rejectReason": null,
+  "appliedBy": 15,
+  "appliedAt": "2026-07-06T17:02:28.865Z",
+  "applyReport": {
+    "contract": "tracker",
+    "accepted": 4,
+    "updated": 0,
+    "conflicts": [
+      {
+        "row": 7,
+        "key": "26020-01-PT-90-001",
+        "reason": "duplicate tracking_no in file; first occurrence applied, this one skipped"
+      }
+    ],
+    "rejected": [
+      {
+        "row": 6,
+        "errors": [
+          "package \"PKG-NOPE\" matches no package code"
+        ]
+      }
+    ],
+    "intakeCreated": 0
+  },
+  "createdBy": 16,
+  "createdAt": "2026-07-06T17:02:28.861Z",
+  "version": 4
+}

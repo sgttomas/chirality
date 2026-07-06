@@ -1,0 +1,22 @@
+{
+  "note": "script-side basis prep on the STANDING pilot-scratch instance (server down; triage-01 basis-prep precedent). Instance setup, not workflow acts. Identity facts and counts only.",
+  "agent": {
+    "personId": 46,
+    "email": "pec-agent@rehearsal.demo",
+    "is_admin": 0,
+    "roles": [{ "project_id": 1, "role": "coordinator" }],
+    "credential": "fresh ephemeral credential provisioned script-side (its prior hash had been overwritten non-verifiable at the D-PEC-10 triage-run teardown); generated at run time, never committed, disabled at teardown"
+  },
+  "demoCastAdmin": {
+    "personId": 47,
+    "email": "pec-demo-admin@rehearsal.demo",
+    "is_admin": 0,
+    "role": "admin on project 1",
+    "credential": "fresh ephemeral, script-side, disabled at teardown",
+    "why": "accept/apply is admin-role-only (import.accept) and this instance has no seeded demo admin — its real admin is the owner (personId 1), whose credential was never touched, read, or used. is_admin=0: the acting basis is the project admin ROLE grant, never the is_admin flag."
+  },
+  "preRun": {
+    "sessionRows": 0,
+    "importProposalRows": 0
+  }
+}
