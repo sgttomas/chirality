@@ -1,9 +1,10 @@
 # D-PEC-07 - PROPOSAL: embedded upload-agent pathway (file upload → agent-mapped update)
 
-**Status:** AWAITING_RULING.
+**Status:** RULED.
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-07
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
+**Ruling SHA:** `1a9e4071c` - the commit publishing the D-PEC-07 O-C ruling record (backfilled same-branch per the D-T0-10 / D-T0-17 precedent).
 
 ## Owner direction of record (verbatim, 2026-07-05, in-session, Ryan Tufts)
 
@@ -73,3 +74,29 @@ Executed on ruling: the zero-code pathway is formalized in
 `_DomainEngines/proposals/pec/BRIEF_2026-07-05_embedded_upload_agent_design.md`
 — CANDIDATE, awaiting its own adoption gate; implementation remains gated on
 brief adoption + a pec source tranche authorization.
+
+## Corrigendum (2026-07-05, Receipt 22)
+
+Owner ruling of record (verbatim, 2026-07-05, in-session, Ryan Tufts):
+
+> S-1 (packet corrigendum): affirmed. Set the D-PEC-07 header status to RULED, add the
+> `**Ruling SHA:** 1a9e4071c` line, and append a dated corrigendum note correcting RV-1
+> (a CSV file-upload UI already exists in the Admin page; what is absent is a multipart
+> endpoint, server-side file storage, and an agent surface), RV-2 (D-T0-13 O-A ruled L2 as
+> the destination with L3 future-only — not L3 as the destination), and RV-4 (the lifecycle
+> is the five-state list including `rejected`). Also correct RV-5: annotate that F-PEC-1 is
+> an absolute write-path fence, not a tranche-unlockable one. Do not rewrite the ruled text
+> itself — corrections live in the appended dated note.
+
+Corrections to read with, not over, the ruled text above:
+
+- **RV-1:** a CSV file-upload UI already exists in the Admin page. What is
+  absent is a multipart endpoint, server-side file storage, and an agent
+  surface.
+- **RV-2:** D-T0-13 O-A ruled L2 as the destination with L3 future-only, not
+  L3 as the destination.
+- **RV-4:** the proposal lifecycle is the five-state list `draft`,
+  `ready_for_review`, `accepted`, `rejected`, `applied`.
+- **RV-5:** F-PEC-1 is an absolute write-path fence. A tranche authorization
+  can open only the explicitly ruled source scope; it does not relax the
+  standing ban on non-scratch DB mutation or other barred write paths.

@@ -85,19 +85,31 @@ Accepted vocabularies (import normalizes case/spaces/hyphens):
 | rationale | Category + Source + Area + Comments | preserves unslotted columns |
 | decided_date | Date Closed | serials → ISO |
 
-### risks (`Risk Log` sheet — scaffold only, not yet populated per owner)
+### risks (`Risk Log` sheet — placeholder/scaffold only, not yet populated per owner)
 
-Workbook scaffold → template crosswalk for when the log is populated:
+No risks import has succeeded yet because the owner-provided workbook held only
+the scaffold sheet. This mapping is a placeholder crosswalk for when the risk
+log is populated:
 `RISK ID`→risk_id, `RISK TITLE`→title, `RISK DESCRIPTION`→cause (put the
 impact side in consequence), `PROB`→probability, `IMP`→impact, `PROPOSED
 MITIGATION`→mitigation, `CATEGORY`/`TYPE`/`RISK LEVEL`/`RISK TREATMENT` have
 no §16 slot — carry in title prefix or mitigation text as needed.
 
-### schedule (`schedule.pdf` — not importable; contract is CSV/XER-derived)
+### schedule (`schedule.csv` extractor output, evidence-04: 127 rows → 127 mapped)
 
-Populate `schedule-template.csv` from the schedule tool's CSV/XER export (the
-RAIL references `26020-FEED-Activities-Plan…xlsx`, which looks like the
-natural source).
+The owner replaced the PDF with `pilot-scratch/input/schedule.csv`; evidence-04
+proved the CSV extractor path. Mapping applied:
+
+| §16 column | Source | Note |
+|---|---|---|
+| activity_id | `id` | `SCH-{id}` idempotency key |
+| description | `task_name` | Adds `[Summary]` / `[Milestone]` tags where the extractor flags them |
+| start | `start` | ISO date passthrough |
+| finish | `finish` | ISO date passthrough |
+
+Evidence: `_DomainEngines/pec/PEC_2026-07-05_DPEC01-pilot-evidence-04/MANIFEST.md`
+records 127/127 accepted and `activity_id←SCH-{id}`,
+`description←task_name`, ISO start/finish passthrough.
 
 ## The person roster — RULED (owner, 2026-07-05: "Create placeholders")
 
@@ -133,4 +145,5 @@ two recommended changes were applied at the same ruling:
   date) — reject until dated.
 - 8 decision rows with authority `None` + 2 with blank authority + 2 with
   blank status — reject until assigned.
-- Risk log unpopulated; schedule needs a CSV/XER export (PDF not importable).
+- Risk log unpopulated; schedule.csv extractor mapping is proven by
+  evidence-04.
