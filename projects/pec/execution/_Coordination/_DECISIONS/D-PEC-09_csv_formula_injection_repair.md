@@ -1,6 +1,6 @@
-# D-PEC-09 - PROPOSAL: CSV formula-injection neutralization in exports
+# D-PEC-09 - RULING: CSV formula-injection neutralization in exports
 
-**Status:** AWAITING_RULING.
+**Status:** RULED / O-A affirmed by owner.
 **Date prepared:** 2026-07-05
 **Decision ID:** D-PEC-09
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -48,3 +48,19 @@ D-PEC-06.
 O-A in a later narrow PR, after owner ruling. The repair should be scoped to CSV
 export neutralization and regression tests, with no unrelated import or data
 model changes.
+
+## Human ruling
+
+**Ruling:** O-A affirmed by owner (Ryan Tufts), 2026-07-05, in-session.
+
+Owner ruling of record:
+
+> I authorize the source change for D-PEC-09.
+>
+> Commit and merge once you're complete.
+
+This ruling authorizes the narrow CSV export-neutralization source change and
+supersedes the prior design-only stop for D-PEC-09. The authorized scope is
+limited to CSV export escaping/neutralization and regression tests; it does not
+authorize unrelated import behavior changes, data model changes, upload-agent
+implementation, `force=true`, or non-scratch DB mutation.

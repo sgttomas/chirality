@@ -203,7 +203,7 @@
   - Executed pointers: originals preserved byte-identical at `pilot-scratch/originals-2026-07-05/` (uncommitted); `projects/pec/execution/_Coordination/IMPORT_TEMPLATES/` (five §16 template CSVs + `IMPORT_MAPPING.md`, F-PEC-1 coordination surface); `PEC_2026-07-05_DPEC01-pilot-evidence-02/` (import reports, exports, overview, sponsor brief, post-import backup log).
   - Results: MDL 457/457 accepted, re-import 457 updated/0 duplicated (idempotency), export byte-identical to import input; RAIL 272 and decisions 62 rejected row-level with one substantive blocker — no person roster exists (owner/authority match no person); clerical mapping defaults flagged ⚑ in `IMPORT_MAPPING.md` for owner ratification.
   - Gate outcome: real-data import testing executed to the instance's limit; no `force=true`, no real production DB (none exists), no Gate-2/L3/pilot-readiness/go-live claim, no reserved PEC human act. Roster creation is owner-shaped (identity records) — options presented in `IMPORT_MAPPING.md`.
-  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass; `coord-check --diff origin/main..HEAD` pass after precedent notes.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
   - Parked lanes: owner rules roster (mapping table or placeholder-person policy) → RAIL/decisions re-import; ⚑ mapping-default ratifications; risk-log population and schedule CSV/XER export (owner-side); real-backup restore once a real pilot DB exists; Gate 2 / L3 per D-PEC-04/05.
 
 - **2026-07-05 — Receipt 19** (stack merged; roster + evidence 03; D-PEC-07 packet).
@@ -277,5 +277,18 @@
     >   schedule.csv extractor mapping (evidence-04, SCH-{id}) and add the risks placeholder note.
   - Executed pointers: `D-PEC-07_embedded_upload_agent_pathway.md` corrigendum; `FILE_DROP_RUNBOOK.md` v1.1; adopted `BRIEF_2026-07-05_embedded_upload_agent_design.md` with RV-12 rider and RV-13..21 deferred obligations; PEC register rows + packets `D-PEC-08_upload_agent_source_tranche_authorization.md` and `D-PEC-09_csv_formula_injection_repair.md`; `IMPORT_MAPPING.md` schedule/risks refresh.
   - Gate outcome: S-1..S-5 executed exactly as ruled. D-PEC-08 and D-PEC-09 are AWAITING_RULING; D-PEC-09 is design-only and authorizes no source change. No upload-agent implementation tranche authored/requested; no pec source change; no `force=true`; no non-scratch DB mutation; no self-merge.
-  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass; `git diff --check` pass; `coord-check --diff origin/main..HEAD` pass after precedent notes.
   - Parked lanes: owner merge of this PR; D-PEC-08 source-tranche authorization; D-PEC-09 CSV formula-injection repair ruling; Receipt-20 parked lanes otherwise carry forward.
+
+- **2026-07-05 — Receipt 23** (D-PEC-09 source repair authorized and executed).
+  - Start: `eab490eea` on `codex/pec-dpec07-slate-rulings`; PR #81 open; tree clean before D-PEC-09 ruling/execution work.
+  - Owner ruling of record (2026-07-05, in-session, Ryan Tufts):
+
+    > I authorize the source change for D-PEC-09.
+    >
+    > Commit and merge once you're complete.
+
+  - Executed pointers: `projects/pec/server/src/import/csv.ts` neutralizes exported CSV cells beginning with `=`, `+`, `-`, or `@`; `projects/pec/server/test/csv.test.ts` pins the serializer regression; `D-PEC-09_csv_formula_injection_repair.md` and PEC register row record O-A/RULED.
+  - Gate outcome: D-PEC-09 narrow source repair executed and merge authorized. D-PEC-08 remains AWAITING_RULING; no upload-agent implementation tranche; no unrelated import behavior change; no data model change; no `force=true`; no non-scratch DB mutation.
+  - Checks: profile validator VALID; self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=5; practitioner harness pytest 264 passed; PEC `npm run typecheck && npm test && npm run build && npm run drill` pass (server tests 94, including CSV neutralization); `coord-check --diff origin/main..HEAD` pass/no findings; `git diff --check` pass.
+  - Parked lanes: D-PEC-08 source-tranche authorization; Receipt-20 parked lanes otherwise carry forward.

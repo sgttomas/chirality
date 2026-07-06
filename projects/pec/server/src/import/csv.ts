@@ -29,7 +29,8 @@ export function parseCsv(text: string): string[][] {
 export function toCsv(headers: string[], rows: Array<Array<string | number | null | undefined>>): string {
   const esc = (v: string | number | null | undefined): string => {
     const s = v == null ? '' : String(v)
-    return /[",\n\r]/.test(s) ? `"${s.replaceAll('"', '""')}"` : s
+    const neutralized = /^[=+\-@]/.test(s) ? `'${s}` : s
+    return /[",\n\r]/.test(neutralized) ? `"${neutralized.replaceAll('"', '""')}"` : neutralized
   }
   return [headers.map(esc).join(','), ...rows.map((r) => r.map(esc).join(','))].join('\r\n') + '\r\n'
 }
