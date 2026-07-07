@@ -194,7 +194,7 @@ test('feedbackOf: refusals carry no payload; results without payload stay bare',
 
 test('hermetic session options (adversarial finding): tools [] disables built-ins; whitelist + canUseTool deny pin the rest', async () => {
   const { buildQueryOptions } = await import('../src/engine/sdk.ts')
-  const opts = buildQueryOptions({ marker: 'server' })
+  const opts = buildQueryOptions({ marker: 'server' }, {})
   // tools: [] is the load-bearing restrictor — allowedTools alone does NOT
   // restrict the tool set in this SDK (it only auto-approves)
   assert.deepEqual(opts.tools, [])
@@ -202,11 +202,43 @@ test('hermetic session options (adversarial finding): tools [] disables built-in
   assert.deepEqual(opts.allowedTools, PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`))
   assert.deepEqual(opts.mcpServers, { pec: { marker: 'server' } })
   assert.equal(opts.maxTurns, MAX_ACTS_PER_TURN + 4)
+  assert.equal('model' in opts, false, 'no model pin unless the owner selects one')
   const canUseTool = opts.canUseTool as (name: string, input: unknown) => Promise<{ behavior: string; message?: string }>
   assert.equal((await canUseTool('mcp__pec__read_register', { register: 'plan' })).behavior, 'allow')
   for (const outside of ['Bash', 'Read', 'WebFetch', 'Glob', 'mcp__other__tool']) {
     const denied = await canUseTool(outside, {})
     assert.equal(denied.behavior, 'deny', `must deny ${outside}`)
     assert.match(denied.message ?? '', /outside the pec act surface/)
+  }
+})
+
+test('owner-tunable limits (widening direction): PEC_AGENT_MAX_ACTS and PEC_AGENT_MODEL are per-launch knobs; invalid budget fails loudly', async () => {
+  const { buildQueryOptions, turnLimitsFromEnv } = await import('../src/engine/sdk.ts')
+  // defaults
+  assert.deepEqual(turnLimitsFromEnv({}), { maxActs: MAX_ACTS_PER_TURN, maxTurns: MAX_ACTS_PER_TURN + 4 })
+  // owner widens the budget per launch
+  const wide = buildQueryOptions({ marker: 'server' }, { PEC_AGENT_MAX_ACTS: '32', PEC_AGENT_MODEL: 'claude-fable-5' })
+  assert.equal(wide.maxTurns, 36)
+  assert.equal(wide.model, 'claude-fable-5')
+  assert.match(String(wide.systemPrompt), /32 tool calls per turn/)
+  // the widened budget binds in the handlers too
+  const sink: TurnSink = { events: [], actsUsed: 0 }
+  const acts = makeActs({
+    projectOverview: async () => ({ kind: 'result', act: 'read.overview', ok: true, summary: 'overview read' }),
+  })
+  const tools = buildPecTools(
+    tool as Parameters<typeof buildPecTools>[0],
+    z as Parameters<typeof buildPecTools>[1],
+    { input: INPUT, acts, sink, maxActs: 2 },
+  ) as BuiltTool[]
+  const overview = toolByName(tools, 'project_overview')
+  await overview.handler({}, {})
+  await overview.handler({}, {})
+  const refused = JSON.parse((await overview.handler({}, {})).content[0]!.text) as { refused?: boolean; reason?: string }
+  assert.equal(refused.refused, true)
+  assert.match(refused.reason ?? '', /2 acts this turn/)
+  // invalid values refuse at resolution, never silently clamp
+  for (const bad of ['0', '-1', 'many', '2.5']) {
+    assert.throws(() => turnLimitsFromEnv({ PEC_AGENT_MAX_ACTS: bad }), /positive integer/, `must refuse: ${bad}`)
   }
 })

@@ -34,6 +34,8 @@ PEC_AGENT_PORT=4812
 PEC_AGENT_EMAIL=...            # owner-provisioned agent person (is_admin=0, coordinator)
 PEC_AGENT_PASSWORD=...         # local env only; never committed, never echoed
 PEC_AGENT_URL=...              # server-side: where the proxy finds the sidecar (default http://127.0.0.1:4812)
+PEC_AGENT_MAX_ACTS=8           # per-turn act budget (owner knob, D-PEC-21 widening direction)
+PEC_AGENT_MODEL=...            # model for the SDK engine (default: the SDK's default model)
 ```
 
 Unconfigured credentials are non-fatal: the sidecar starts, `/agent/health`

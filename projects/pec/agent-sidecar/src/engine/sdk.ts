@@ -42,25 +42,43 @@ export const KEY_ABSENT_MSG =
   + 'sources or fabricates a key; set it in the local environment and restart, '
   + 'or run the default engine: PEC_AGENT_ENGINE=stub.'
 
-/** D-PEC-21 item 1: the per-turn act budget, enforced in every tool handler */
+/** D-PEC-21 item 1 default act budget (owner-widenable per launch: PEC_AGENT_MAX_ACTS) */
 export const MAX_ACTS_PER_TURN = 8
 /** cap on any single act payload serialized back to the model (bytes of JSON) */
 export const MAX_FEEDBACK_PAYLOAD_BYTES = 48 * 1024
-/** outer bound on the SDK loop — budget refusals + the closing answer fit inside */
-const MAX_SDK_TURNS = MAX_ACTS_PER_TURN + 4
 
-const SYSTEM_PROMPT = [
-  'You are the pec project agent. You act ONLY through the pec tools provided.',
-  'Accept, apply, reject-of-others, and force are human acts you must direct',
-  'the owner to perform in Admin — no tool performs them and you never claim',
-  'to. Answer from tool results actually returned — never invent record state.',
-  'The input JSON may carry prior turns in "history": treat them as this same',
-  'conversation. Reads are basis-gated (D-T0-21): a tool refusal naming the',
-  `access basis is final for this turn — report it to the owner, never work`,
-  `around it. You have ${MAX_ACTS_PER_TURN} tool calls per turn; a wrong or`,
-  'empty read may be followed by a better one. Finish every turn with a plain',
-  'concise answer for the owner.',
-].join('\n')
+/**
+ * Owner-tunable turn limits (D-PEC-21 owner widening direction, 2026-07-07):
+ * PEC_AGENT_MAX_ACTS raises/lowers the per-turn act budget per launch
+ * (default 8); the SDK maxTurns tracks it with headroom. Invalid values fail
+ * at startup, never silently.
+ */
+export function turnLimitsFromEnv(env: Record<string, string | undefined> = process.env): { maxActs: number; maxTurns: number } {
+  const raw = env.PEC_AGENT_MAX_ACTS?.trim()
+  let maxActs = MAX_ACTS_PER_TURN
+  if (raw) {
+    maxActs = Number(raw)
+    if (!Number.isInteger(maxActs) || maxActs <= 0) {
+      throw new Error(`PEC_AGENT_MAX_ACTS must be a positive integer — got '${raw}'`)
+    }
+  }
+  return { maxActs, maxTurns: maxActs + 4 }
+}
+
+function systemPromptOf(maxActs: number): string {
+  return [
+    'You are the pec project agent. You act ONLY through the pec tools provided.',
+    'Accept, apply, reject-of-others, and force are human acts you must direct',
+    'the owner to perform in Admin — no tool performs them and you never claim',
+    'to. Answer from tool results actually returned — never invent record state.',
+    'The input JSON may carry prior turns in "history": treat them as this same',
+    'conversation. Reads are basis-gated (D-T0-21): a tool refusal naming the',
+    `access basis is final for this turn — report it to the owner, never work`,
+    `around it. You have ${maxActs} tool calls per turn; a wrong or`,
+    'empty read may be followed by a better one. Finish every turn with a plain',
+    'concise answer for the owner.',
+  ].join('\n')
+}
 
 /** narrow structural view over the dynamically imported SDK (no SDK types offline) */
 interface SdkModuleLike {
@@ -158,17 +176,18 @@ const opt = (v: unknown): string | undefined => (typeof v === 'string' ? v : und
 export function buildPecTools(
   toolFn: NonNullable<SdkModuleLike['tool']>,
   z: ZodLike,
-  ctx: { input: AgentTurnInput; acts: BoundActs; sink: TurnSink },
+  ctx: { input: AgentTurnInput; acts: BoundActs; sink: TurnSink; maxActs?: number },
 ): unknown[] {
   const { input, acts, sink } = ctx
+  const maxActs = ctx.maxActs ?? MAX_ACTS_PER_TURN
 
   const bounded = (
     name: string, description: string, schema: Record<string, unknown>,
     exec: (args: Record<string, unknown>) => Promise<ActResult>,
   ): unknown =>
     toolFn(name, description, schema, async (args) => {
-      if (sink.actsUsed >= MAX_ACTS_PER_TURN) {
-        const reason = `act budget exhausted (${MAX_ACTS_PER_TURN} acts this turn) — answer now from the results you already have`
+      if (sink.actsUsed >= maxActs) {
+        const reason = `act budget exhausted (${maxActs} acts this turn) — answer now from the results you already have`
         if (!sink.budgetNoticed) {
           sink.budgetNoticed = true
           sink.events.push({ type: 'act:refused', act: name, reason })
@@ -245,11 +264,18 @@ export function buildPecTools(
  * allowedTools auto-approves exactly the pec tools; canUseTool re-denies
  * everything else, belt-and-braces.
  */
-export function buildQueryOptions(server: unknown): Record<string, unknown> {
+export function buildQueryOptions(
+  server: unknown,
+  env: Record<string, string | undefined> = process.env,
+): Record<string, unknown> {
   const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
+  const { maxActs, maxTurns } = turnLimitsFromEnv(env)
+  // PEC_AGENT_MODEL: owner-selected per launch (default: the SDK's default model)
+  const model = env.PEC_AGENT_MODEL?.trim()
   return {
-    systemPrompt: SYSTEM_PROMPT,
-    maxTurns: MAX_SDK_TURNS,
+    systemPrompt: systemPromptOf(maxActs),
+    maxTurns,
+    ...(model ? { model } : {}),
     tools: [],
     mcpServers: { pec: server },
     settingSources: [],
@@ -276,6 +302,7 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
     throw new Error("the installed @anthropic-ai/claude-agent-sdk did not bring its own 'zod' dependency — reinstall it (npm i @anthropic-ai/claude-agent-sdk -w agent-sidecar)")
   }
   if (!process.env.ANTHROPIC_API_KEY) throw new Error(KEY_ABSENT_MSG)
+  turnLimitsFromEnv() // invalid PEC_AGENT_MAX_ACTS fails at startup, never mid-turn
 
   const sdk = mod as SdkModuleLike
   const z = (zmod as { z?: ZodLike }).z
@@ -290,9 +317,10 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
 
     async runTurn(input: AgentTurnInput, acts: BoundActs): Promise<AgentEvent[]> {
       const sink: TurnSink = { events: [], actsUsed: 0 }
+      const { maxActs } = turnLimitsFromEnv()
       const server = sdk.createSdkMcpServer!({
         name: 'pec', version: '1.0.0',
-        tools: buildPecTools(sdk.tool!, z, { input, acts, sink }),
+        tools: buildPecTools(sdk.tool!, z, { input, acts, sink, maxActs }),
       })
       let text = ''
       for await (const message of sdk.query!({

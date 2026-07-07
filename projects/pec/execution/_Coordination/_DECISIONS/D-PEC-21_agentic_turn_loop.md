@@ -182,3 +182,25 @@ discharged:
 - MINORs fixed: over-budget refusals now surface to the panel once per turn
   (the owner sees the whole chain); a zod-resolution failure now reports
   itself instead of masquerading as SDK-absent.
+
+## Owner widening direction (2026-07-07, in-session)
+
+Verbatim: "I want to give as much permission and ability to the agent via
+the harness as practical.  If you've put restrictions over what the harness
+has then explain why."
+
+Recorded interpretation and execution: (a) this settles the
+mechanism-authority MAJOR — the SDK-native harness mechanism is confirmed as
+the owner's intent; (b) the practical engineering caps are opened as
+per-launch owner knobs: `PEC_AGENT_MAX_ACTS` (act budget, default 8;
+`maxTurns` tracks it) and `PEC_AGENT_MODEL` (model selection, default the
+SDK's default) — both env acts at launch, invalid values fail at startup,
+test-pinned; (c) the restrictions RETAINED and why, as explained to the
+owner in-session: the ruled human-act exclusions and RBAC/basis clamp
+(D-T0-21 — not this row's to move), and the hermetic session (`tools: []`,
+`settingSources: []`) because the harness subprocess runs as the owner's OS
+user — built-in filesystem/shell tools would let the model read the real
+`pec.db`, `~/.secrets`, and arbitrary files outside the agent person's RBAC
+and the D-T0-20/21 residency basis, with everything read egressing to the
+model provider. Widening THAT is a residency/mutation-basis decision — its
+own future tier-0-companion row if the owner wants it, not a default.
