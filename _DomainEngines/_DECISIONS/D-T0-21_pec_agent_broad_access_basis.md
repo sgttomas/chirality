@@ -1,6 +1,6 @@
 # D-T0-21 - PROPOSAL: pec agent broad-access basis (designer testing mode alongside the D-T0-20 enumeration)
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** RULED 2026-07-06 (execution deferred to the next session).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-T0-21 (residual-work row convention, owner-ruled 2026-07-03: D-T0-20's ruled row stays immutable; this residue gets its own row)
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act
@@ -86,4 +86,13 @@ owner-selected per launch).
 
 ## Human ruling
 
-*(open — the owner rules; record verbatim, with date)*
+**RULED — 2026-07-06** (owner in-session, Ryan Tufts, verbatim):
+
+> I want to make the ruling here to give approval to proceed with this work.
+> But I want to defer implementation of the work until the next session.
+
+Recorded interpretation (agent, per the presented slate): O-B (dual basis, owner-selected per launch, default `enumerated`) affirmed as
+presented (the recommended option). Implementation is DEFERRED by the same
+ruling: no source change this session; the ruled-but-unexecuted tranche is
+live authority for the next session (LOOP_INIT S5 adopted-brief posture),
+executed inside the D-PEC-20 fence with the packet's verification plan.

@@ -1,6 +1,6 @@
 # D-PEC-20 - PROPOSAL: agent broad-functionality source tranche (dual access basis + read acts + screen context adoption)
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** RULED 2026-07-06 (execution deferred to the next session).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-20
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1;
@@ -24,7 +24,7 @@ would widen.
 | Fact | Source |
 |---|---|
 | Clamp: `assertReadInsideEnumeration` throws outside intake/import under `model-provider` egress. | `projects/pec/agent-sidecar/src/acts.ts:36-60` |
-| Acts vocabulary is the bounded set in `bindActs`; no register/overview read acts exist. | `projects/pec/agent-sidecar/src/acts.ts:93-` |
+| Acts vocabulary is the bounded set in `bindActs`; no register/overview read acts exist. | `projects/pec/agent-sidecar/src/acts.ts:93` |
 | The pec client (`pec-client.ts`) wraps only the routes those acts need. | `projects/pec/agent-sidecar/src/pec-client.ts` |
 | Every needed read route already exists server-side, RBAC'd (overview, packages, deliverables, plan, my-week, log, holds, approval-register, decisions, risks, tracker, interfaces, intake, history/:recordType/:id, revisions/:id/explain, reports/*, export/:register). **No server change is required.** | `projects/pec/server/src/api.ts` |
 | Screen context: route + ids only; `usePublishScreenContext` exists but no list page adopts it (v1 scope note in the D-PEC-17 packet). | `projects/pec/web/src/agent/context.tsx` |
@@ -92,4 +92,13 @@ reverting restores today's behavior even mid-run.
 
 ## Human ruling
 
-*(open — the owner rules; record verbatim, with date)*
+**RULED — 2026-07-06** (owner in-session, Ryan Tufts, verbatim):
+
+> I want to make the ruling here to give approval to proceed with this work.
+> But I want to defer implementation of the work until the next session.
+
+Recorded interpretation (agent, per the presented slate): O-A (the full tranche, items 1-6) affirmed as
+presented (the recommended option). Implementation is DEFERRED by the same
+ruling: no source change this session; the ruled-but-unexecuted tranche is
+live authority for the next session (LOOP_INIT S5 adopted-brief posture),
+executed inside the D-PEC-20 fence with the packet's verification plan.
