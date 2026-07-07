@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "intake.summary",
+        "ok": true,
+        "summary": "the intake queue has no open items",
+        "payload": {
+          "counts": {},
+          "open": []
+        }
+      }
+    ]
+  }
+}
