@@ -1,11 +1,12 @@
 /**
  * ScreenContext (D-PEC-17 rider 5): route + visible record ids ONLY — derived
- * from the router (route params), never scraped from the DOM. v1 context is
- * the route plus the route-param record (e.g. /p/1/deliverables/7 → one
- * deliverable record); list pages MAY publish visible ids later through the
- * optional usePublishScreenContext hook — no page file adopts it in v1
- * (recorded scope note in the D-PEC-17 packet). Everything the agent then
- * reads back goes through the API under the agent person's own visibility.
+ * from the router (route params) or published by the page from its own loaded
+ * rows, never scraped from the DOM. Detail routes contribute their route-param
+ * record (e.g. /p/1/deliverables/7 → one deliverable record); the main list
+ * pages publish their visible rows through usePublishScreenContext (adopted
+ * under D-PEC-20 item 4 — the D-PEC-17 v1 no-adoption scope note is
+ * discharged). Everything the agent then reads back goes through the API
+ * under the agent person's own visibility.
  */
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'

@@ -58,7 +58,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   startSidecar(cfg).then(
     (s) => {
       console.log(`pec agent sidecar on http://127.0.0.1:${s.port} `
-        + `(engine: ${s.engine.subject}, egress: ${s.engine.egress}, `
+        + `(engine: ${s.engine.subject}, egress: ${s.engine.egress}, access: ${cfg.access}, `
         + `${s.configured ? `agent: ${s.client.whoami()?.email ?? '?'}` : 'unconfigured — set PEC_AGENT_EMAIL/PEC_AGENT_PASSWORD'})`)
     },
     (e) => {

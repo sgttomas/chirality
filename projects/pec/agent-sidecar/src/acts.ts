@@ -3,11 +3,14 @@
  * comes from an API response in the same turn (F-PEC-2 — the engine formats,
  * never invents). Guards owned here:
  *
- * - D-T0-20 O-B enumeration clamp, keyed on the engine's egress class: reads
- *   outside the enumerated surface (i) intake, (ii) proposals/reports/
- *   import-history, (iii) chirality_readable_artifacts, (iv) dropped files
- *   throw OUTSIDE_ENUMERATION when egress is 'model-provider' — never silently
- *   narrowed; under 'none' (stub) all RBAC-visible reads pass.
+ * - D-T0-20 O-B enumeration clamp, keyed on the engine's egress class AND the
+ *   D-T0-21 O-B access basis: under 'model-provider' egress with the default
+ *   'enumerated' basis, reads outside the enumerated surface (i) intake,
+ *   (ii) proposals/reports/import-history, (iii) chirality_readable_artifacts,
+ *   (iv) dropped files throw OUTSIDE_ENUMERATION — never silently narrowed;
+ *   under the owner-selected 'broad' basis (launch-time env act), RBAC-visible
+ *   reads pass for model-provider engines too; under 'none' (stub) all
+ *   RBAC-visible reads pass. Human-only acts move with NEITHER basis.
  * - Grounds discipline: triage without non-empty grounds is refused ("left
  *   for the owner"), never dispositioned (D-PEC-10 rider).
  * - Conversion guard (GOV MAJOR-1, belt to the client's braces): any
@@ -20,6 +23,7 @@
 
 import type { PecAgentClient, ProposalSummary, ProposalView } from './pec-client.ts'
 import { AgentClientError } from './pec-client.ts'
+import type { AccessBasis } from './config.ts'
 import type { ActResult, BoundActs, EgressClass, ScreenContextRecord } from './engine/port.ts'
 import { detectContract } from './contract-detect.ts'
 import { CONTRACTS } from './contract-detect.ts'
@@ -27,6 +31,8 @@ import { CONTRACTS } from './contract-detect.ts'
 export interface ActContext {
   pid: number
   egress: EgressClass
+  /** D-T0-21 O-B access basis (default 'enumerated'; owner-selected per launch) */
+  access: AccessBasis
   client: PecAgentClient
 }
 
@@ -44,18 +50,39 @@ export function classifyRead(recordType: string): EnumerationClass {
 }
 
 /**
- * The clamp (rider 6, pinned by test): under 'model-provider' egress a read
- * outside the enumeration throws OUTSIDE_ENUMERATION — never silently
- * narrowed. Under 'none' (stub: no external-model session exists) every
- * RBAC-visible read passes; D-T0-20's own scoping sentence covers exactly
- * external-model sessions, so v1 is visibility-lawful by construction.
+ * The clamp (rider 6, pinned by test), keyed on egress AND the D-T0-21 O-B
+ * access basis: under 'model-provider' egress with the 'enumerated' basis a
+ * read outside the enumeration throws OUTSIDE_ENUMERATION — never silently
+ * narrowed; exactly the pre-D-T0-21 behavior (regression-pinned). Under the
+ * owner-selected 'broad' basis, RBAC-visible reads pass for model-provider
+ * engines too (D-T0-21 O-B — the owner flips it per launch, knowing any
+ * RBAC-visible record the model reads may reach the model provider). Under
+ * 'none' (stub: no external-model session exists) every RBAC-visible read
+ * passes regardless of basis.
  */
-export function assertReadInsideEnumeration(egress: EgressClass, recordType: string): void {
+export function assertReadInsideEnumeration(
+  egress: EgressClass, recordType: string, access: AccessBasis = 'enumerated',
+): void {
   if (egress !== 'model-provider') return
+  if (access === 'broad') return
   if (classifyRead(recordType) === 'outside') {
     throw new AgentClientError('OUTSIDE_ENUMERATION',
-      `reading '${recordType}' is outside the D-T0-20 O-B enumerated surface for a model-provider engine`)
+      `reading '${recordType}' is outside the D-T0-20 O-B enumerated surface for a model-provider engine `
+      + `on the 'enumerated' access basis (the owner may select PEC_AGENT_ACCESS=broad per launch — D-T0-21 O-B)`)
   }
+}
+
+/**
+ * Basis gate for the D-PEC-20 read acts (overview / registers / explain /
+ * reports): these surfaces are outside the D-T0-20 enumeration by
+ * construction, so for a model-provider engine they pass only on the
+ * owner-selected 'broad' basis. Refusals name the basis — never silent.
+ */
+function broadReadRefusal(ctx: ActContext, act: string, surface: string): ActResult | null {
+  if (ctx.egress !== 'model-provider' || ctx.access === 'broad') return null
+  return refused(act,
+    `reading ${surface} is outside the D-T0-20 O-B enumerated surface for a model-provider engine `
+    + `on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)`)
 }
 
 const refused = (act: string, reason: string): ActResult => ({ kind: 'refused', act, reason })
@@ -249,7 +276,7 @@ export function bindActs(ctx: ActContext): BoundActs {
       const readings: Array<{ record: ScreenContextRecord; view: unknown }> = []
       for (const rec of records) {
         try {
-          assertReadInsideEnumeration(ctx.egress, rec.recordType)
+          assertReadInsideEnumeration(ctx.egress, rec.recordType, ctx.access)
         } catch (e) {
           // never silently narrowed: the whole act refuses, naming the record
           return refused('screen.read',
@@ -266,6 +293,85 @@ export function bindActs(ctx: ActContext): BoundActs {
           ? `route ${route} — no records in view`
           : `route ${route} — ${readings.map((r) => `${r.record.recordType} ${r.record.ref}`).join(', ')}`,
         { route, readings })
+    },
+
+    // ---- D-PEC-20 read acts (existing RBAC'd GET routes; basis-gated) ----
+
+    async projectOverview() {
+      const gate = broadReadRefusal(ctx, 'read.overview', 'the project overview')
+      if (gate) return gate
+      const r = await ctx.client.overview(ctx.pid)
+      if (!r.ok) {
+        return refused('read.overview', r.kind === 'forbidden' ? r.message : 'overview unavailable (stale)')
+      }
+      return result('read.overview', true, `project overview read (project ${ctx.pid})`, r.value)
+    },
+
+    async readRegister({ register }) {
+      const name = register.trim().toLowerCase()
+      const gate = broadReadRefusal(ctx, 'read.register', `the ${name} register`)
+      if (gate) return gate
+      let r
+      try {
+        r = await ctx.client.readRegister(ctx.pid, name)
+      } catch (e) {
+        if (e instanceof AgentClientError && e.code === 'AGENT_UNMAPPED_READ') {
+          return refused('read.register', e.message)
+        }
+        throw e
+      }
+      if (!r.ok) {
+        return refused('read.register', r.kind === 'forbidden' ? r.message : `${name} register unavailable (stale)`)
+      }
+      const rows = Array.isArray(r.value) ? r.value : (r.value as { rows?: unknown[] })?.rows
+      const count = Array.isArray(rows) ? `${rows.length} row(s)` : 'view'
+      return result('read.register', true, `${name} register read — ${count}`, r.value)
+    },
+
+    async recordHistory({ recordType, id }) {
+      // record-typed read: the enumeration clamp applies per record type
+      // (intake/import history stays inside the enumeration on either basis)
+      try {
+        assertReadInsideEnumeration(ctx.egress, recordType, ctx.access)
+      } catch (e) {
+        return refused('read.history', e instanceof Error ? e.message : String(e))
+      }
+      const r = await ctx.client.historyFor(ctx.pid, recordType, id)
+      if (!r.ok) {
+        return refused('read.history', r.kind === 'forbidden' ? r.message : 'history unavailable (stale)')
+      }
+      return result('read.history', true,
+        `history for ${recordType} #${id} — ${r.value.length} event(s)`, { recordType, id, events: r.value })
+    },
+
+    async explainRevision({ id }) {
+      const gate = broadReadRefusal(ctx, 'read.explain', `revision #${id} readiness`)
+      if (gate) return gate
+      const r = await ctx.client.explainRevision(ctx.pid, id)
+      if (!r.ok) {
+        return refused('read.explain', r.kind === 'forbidden' ? r.message : 'explain unavailable (stale)')
+      }
+      return result('read.explain', true, `revision #${id} readiness explained`, r.value)
+    },
+
+    async readReport({ report, id }) {
+      const name = report.trim().toLowerCase()
+      const gate = broadReadRefusal(ctx, 'read.report', `the ${name} report`)
+      if (gate) return gate
+      if (name === 'sponsor-brief') {
+        const r = await ctx.client.sponsorBrief(ctx.pid)
+        if (!r.ok) return refused('read.report', r.kind === 'forbidden' ? r.message : 'report unavailable (stale)')
+        return result('read.report', true, 'sponsor brief read', r.value)
+      }
+      if (name === 'package-pack') {
+        if (!Number.isInteger(id) || (id as number) <= 0) {
+          return refused('read.report', 'package-pack needs a package id (e.g. "package pack 3")')
+        }
+        const r = await ctx.client.packagePack(ctx.pid, id as number)
+        if (!r.ok) return refused('read.report', r.kind === 'forbidden' ? r.message : 'report unavailable (stale)')
+        return result('read.report', true, `package pack read (package #${id})`, r.value)
+      }
+      return refused('read.report', `unknown report '${report}' (one of: sponsor-brief, package-pack <id>)`)
     },
   }
 }

@@ -135,6 +135,10 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 
   const agentName = status?.agent?.name ?? 'agent'
   const agentProposals = (proposals ?? []).filter((row) => agentPersonId != null && row.createdBy === agentPersonId)
+  // D-T0-21 O-B disclosure: the sidecar health field rides the proxy verbatim;
+  // read structurally here (the shared AgentStatus type is outside this
+  // tranche's fence — keep the two in step by hand, as api.ts documents)
+  const access = (status as (AgentStatus & { access?: string }) | null)?.access ?? null
 
   return (
     <aside className="agent-panel" onDragOver={(e) => e.preventDefault()}
@@ -144,6 +148,8 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
           {/* WF-8: the agent renders under the agent person's name, exactly as history records it */}
           <b>{status?.agent ? status.agent.name : 'pec agent'}</b>{' '}
           <span className="badge plain">{status?.engine ?? '—'}</span>{' '}
+          {/* D-T0-21 O-B: the active access basis is always shown; broad is loud */}
+          {access && <span className={`badge ${access === 'broad' ? 'amber' : 'plain'}`}>{access} access</span>}{' '}
           {status && !status.configured && <span className="badge amber">not configured</span>}
           {status && status.configured && <span className="badge green">ready</span>}
         </div>

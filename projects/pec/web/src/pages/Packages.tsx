@@ -9,6 +9,7 @@
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
+import { usePublishScreenContext } from '../agent/context.tsx'
 import {
   ErrorBox, HealthBadge, RegisterTable, StateTag, WorkflowStages, fmtDate, useApp, useLoad, usePerson,
 } from '../shared.tsx'
@@ -21,6 +22,8 @@ export function PackagesPage(): JSX.Element {
   const nav = useNavigate()
   const person = usePerson()
   const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext((data ?? []).map((r: any) => ({ recordType: 'package', ref: r.code, id: r.id })))
 
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>

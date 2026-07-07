@@ -8,6 +8,7 @@
 
 import { useMemo, useRef, useState } from 'react'
 import { api, p } from '../api.ts'
+import { usePublishScreenContext } from '../agent/context.tsx'
 import {
   Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
 } from '../shared.tsx'
@@ -78,6 +79,8 @@ function OpenItemsTab(): JSX.Element {
     return q.toString()
   }, [log, type, owner, cause, overdue, anchored])
   const { data, error } = useLoad<LogRow[]>(() => api.get(p(pid, qs ? `log?${qs}` : 'log')), [pid, qs])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext((data ?? []).map((r) => ({ recordType: r.recordType, ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
 
   const cols: Array<Col<LogRow>> = [
