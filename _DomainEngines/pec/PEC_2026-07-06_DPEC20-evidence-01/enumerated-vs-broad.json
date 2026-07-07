@@ -1,0 +1,190 @@
+{
+  "enumerated": [
+    {
+      "question": "project overview",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading the project overview is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "register deliverables",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading the deliverables register is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "register risks",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading the risks register is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "register tracker",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading the tracker register is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "history deliverable #1",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading 'deliverable' is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis (the owner may select PEC_AGENT_ACCESS=broad per launch — D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "history intake_item #1 (inside the D-T0-20 enumeration)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "history for intake_item #1 — 1 event(s)"
+      }
+    },
+    {
+      "question": "explain revision #1",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading revision #1 readiness is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "sponsor brief report",
+      "outcome": {
+        "kind": "refused",
+        "reason": "reading the sponsor-brief report is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis — the owner may select PEC_AGENT_ACCESS=broad per launch (D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "screen.read deliverable #1",
+      "outcome": {
+        "kind": "refused",
+        "reason": "deliverable TST-PR-001: reading 'deliverable' is outside the D-T0-20 O-B enumerated surface for a model-provider engine on the 'enumerated' access basis (the owner may select PEC_AGENT_ACCESS=broad per launch — D-T0-21 O-B)"
+      }
+    },
+    {
+      "question": "screen.read intake_item #1 (inside the enumeration)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "route /p/1/log — intake_item INTK-0001"
+      }
+    },
+    {
+      "question": "proposal status (existing enumerated act)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "the agent has no proposals in this project. Admin: /p/1/admin"
+      }
+    },
+    {
+      "question": "intake queue summary (existing enumerated act)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "1 open intake item(s):\nINTK-0001 [raised] Evidence scratch item: confirm vendor data need-by for PKG-A."
+      }
+    }
+  ],
+  "broad": [
+    {
+      "question": "project overview",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "project overview read (project 1)"
+      }
+    },
+    {
+      "question": "register deliverables",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "deliverables register read — 1 row(s)"
+      }
+    },
+    {
+      "question": "register risks",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "risks register read — 0 row(s)"
+      }
+    },
+    {
+      "question": "register tracker",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "tracker register read — 0 row(s)"
+      }
+    },
+    {
+      "question": "history deliverable #1",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "history for deliverable #1 — 0 event(s)"
+      }
+    },
+    {
+      "question": "history intake_item #1 (inside the D-T0-20 enumeration)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "history for intake_item #1 — 1 event(s)"
+      }
+    },
+    {
+      "question": "explain revision #1",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "revision #1 readiness explained"
+      }
+    },
+    {
+      "question": "sponsor brief report",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "sponsor brief read"
+      }
+    },
+    {
+      "question": "screen.read deliverable #1",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "route /p/1/deliverables/1 — deliverable TST-PR-001"
+      }
+    },
+    {
+      "question": "screen.read intake_item #1 (inside the enumeration)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "route /p/1/log — intake_item INTK-0001"
+      }
+    },
+    {
+      "question": "proposal status (existing enumerated act)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "the agent has no proposals in this project. Admin: /p/1/admin"
+      }
+    },
+    {
+      "question": "intake queue summary (existing enumerated act)",
+      "outcome": {
+        "kind": "result",
+        "ok": true,
+        "summary": "1 open intake item(s):\nINTK-0001 [raised] Evidence scratch item: confirm vendor data need-by for PKG-A."
+      }
+    }
+  ]
+}

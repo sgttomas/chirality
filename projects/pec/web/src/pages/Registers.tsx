@@ -8,6 +8,7 @@
 
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { usePublishScreenContext } from '../agent/context.tsx'
 import { api, p } from '../api.ts'
 import {
   Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
@@ -59,6 +60,8 @@ function ApprovalsTab(): JSX.Element {
   const { pid } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'approval-register')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'approval_record', ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
   const [creating, setCreating] = useState(false)
   const [outcomeFor, setOutcomeFor] = useState<any>(null)
@@ -294,6 +297,8 @@ function DecisionsTab(): JSX.Element {
   const { pid, refresh, toast } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'decisions')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'decision', ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
   const [creating, setCreating] = useState(false)
   const [assignFor, setAssignFor] = useState<any>(null)
@@ -617,6 +622,8 @@ function RisksTab(): JSX.Element {
   const { pid } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'risks')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'risk', ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
   const [editing, setEditing] = useState<any>(null) // 'new' | row
   if (error) return <ErrorBox error={{ message: error }} />
@@ -767,6 +774,8 @@ function InterfacesTab(): JSX.Element {
   const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   const { data, error } = useLoad(() => api.get(p(pid,
     `interfaces?giving=${giving}&receiving=${receiving}`)), [pid, giving, receiving])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'interface_item', ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
   const [editing, setEditing] = useState<any>(null) // 'new' | row
   if (error) return <ErrorBox error={{ message: error }} />
@@ -911,6 +920,8 @@ const TRACKER_STAGES = [
 function TrackerTab(): JSX.Element {
   const { pid } = useApp()
   const { data, error } = useLoad(() => api.get(p(pid, 'tracker')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'package_tracker', ref: r.trackingNo ?? `#${r.id}`, id: r.id })))
   const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   const hl = useHighlightRef()
   if (error) return <ErrorBox error={{ message: error }} />
@@ -978,6 +989,8 @@ function HoldsTab(): JSX.Element {
   const { pid, refresh, toast } = useApp()
   const person = usePerson()
   const { data, error } = useLoad(() => api.get(p(pid, 'holds')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'hold', ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
   const [raising, setRaising] = useState(false)
   const [resolving, setResolving] = useState<any>(null)

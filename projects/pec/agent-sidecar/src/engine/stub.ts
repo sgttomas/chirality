@@ -21,7 +21,14 @@ const CAPABILITIES = [
   '- triage INTK-<n> as parked|duplicate|rejected: <grounds> (also: open triage INTK-<n>)',
   '- status / proposals — my open proposals with lifecycle states',
   '- queue / intake — the intake queue summary',
+  '- overview — the project overview and governance signals',
+  '- register <name> — read a register (deliverables, packages, plan, my-week, '
+    + 'holds, approvals, decisions, risks, tracker, interfaces, log)',
+  '- history <recordType> <id> — a record\'s history events',
+  '- explain revision <id> — a revision\'s readiness explanation',
+  '- sponsor brief / package pack <id> — report payloads',
   '- describe what you are looking at (when the panel sends screen context)',
+  '(reads outside the enumerated surface follow the launch-selected access basis — D-T0-21)',
   'Accept, apply, and reject-of-others happen in Admin, by you — never by me.',
 ].join('\n')
 
@@ -146,7 +153,34 @@ export function createStubEngine(): AgentEnginePort {
         return toEvents(r)
       }
 
-      // 5. status queries
+      // 5. read acts (D-PEC-20 item 5 — deterministic routing; the acts layer
+      //    applies the D-T0-21 basis gate, so refusals surface verbatim)
+      const explain = /\bexplain\s+revision\s+#?(\d+)\b/i.exec(msg)
+      if (explain) {
+        return toEvents(await acts.explainRevision({ id: Number(explain[1]) }))
+      }
+      const history = /\bhistory\s+(?:of\s+)?([a-z_]+)\s+#?(\d+)\b/i.exec(msg)
+      if (history) {
+        return toEvents(await acts.recordHistory({ recordType: history[1]!.toLowerCase(), id: Number(history[2]) }))
+      }
+      if (/\bsponsor\s+brief\b/i.test(lower)) {
+        return toEvents(await acts.readReport({ report: 'sponsor-brief' }))
+      }
+      const pack = /\bpackage\s+pack\s+#?(\d+)\b/i.exec(msg)
+      if (pack) {
+        return toEvents(await acts.readReport({ report: 'package-pack', id: Number(pack[1]) }))
+      }
+      const named = /\bregister\s+([a-z-]+(?:\s+week)?)\b/i.exec(msg)
+      const bare = /^(deliverables|packages|plan|my[- ]week|holds|approvals|decisions|risks|tracker|interfaces|log)$/.exec(lower)
+      if (named || bare) {
+        const register = (named?.[1] ?? bare![1]!).toLowerCase().replace(/\s+/g, '-')
+        return toEvents(await acts.readRegister({ register }))
+      }
+      if (/\boverview\b/i.test(lower)) {
+        return toEvents(await acts.projectOverview())
+      }
+
+      // 6. status queries
       if (/\b(status|proposals)\b/i.test(lower)) {
         return toEvents(await acts.proposalStatus())
       }
@@ -154,12 +188,12 @@ export function createStubEngine(): AgentEnginePort {
         return toEvents(await acts.intakeSummary())
       }
 
-      // 6. screen context
+      // 7. screen context
       if (input.context && /(what am i looking at|this screen|this one)/i.test(lower)) {
         return toEvents(await acts.readScreenContext(input.context))
       }
 
-      // 7. fallback: deterministic capability statement
+      // 8. fallback: deterministic capability statement
       return [reply(CAPABILITIES)]
     },
   }

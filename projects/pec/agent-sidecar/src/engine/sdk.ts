@@ -50,7 +50,13 @@ const SYSTEM_PROMPT = [
   '  proposeCsv {csv, filename?, contract?} · refreshProposal {ref} ·',
   '  withdrawProposal {ref, reason} · proposalStatus {} ·',
   '  triageItem {ref, disposition?, grounds?} · intakeSummary {} ·',
-  '  readScreenContext {route, records}',
+  '  readScreenContext {route, records} ·',
+  '  projectOverview {} · readRegister {register} (deliverables, packages, plan,',
+  '  my-week, holds, approvals, decisions, risks, tracker, interfaces, log) ·',
+  '  recordHistory {recordType, id} · explainRevision {id} ·',
+  '  readReport {report: "sponsor-brief"|"package-pack", id?}',
+  'Reads are basis-gated (D-T0-21): a refusal naming the access basis is final',
+  'for this turn — report it to the owner, never work around it.',
 ].join('\n')
 
 function assistantTextOf(message: unknown): string {
@@ -133,6 +139,21 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
           }))
         case 'intakeSummary':
           return toEvents(await acts.intakeSummary())
+        case 'projectOverview':
+          return toEvents(await acts.projectOverview())
+        case 'readRegister':
+          return toEvents(await acts.readRegister({ register: String(args.register ?? '') }))
+        case 'recordHistory':
+          return toEvents(await acts.recordHistory({
+            recordType: String(args.recordType ?? ''), id: Number(args.id ?? 0),
+          }))
+        case 'explainRevision':
+          return toEvents(await acts.explainRevision({ id: Number(args.id ?? 0) }))
+        case 'readReport':
+          return toEvents(await acts.readReport({
+            report: String(args.report ?? ''),
+            id: args.id != null ? Number(args.id) : undefined,
+          }))
         case 'readScreenContext':
           return toEvents(await acts.readScreenContext(
             (input.context ?? { route: '', records: [] })))

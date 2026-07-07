@@ -1,0 +1,60 @@
+[
+  {
+    "act": "POST /api/projects/1/import-proposals/1/accept",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/import-proposals/1/apply",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/approval-records/1/outcome",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/approval-records/1/supersede",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/conditions/1/waive",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/import/mdl?force=true",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "POST /api/projects/1/import-proposals/1/refresh",
+    "outcome": "refused before any network call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "triage INTK-0001 as converted (broad basis)",
+    "outcome": {
+      "kind": "refused",
+      "reason": "disposition 'converted' could create approval records under conversion — the agent never creates approval records (GOV MAJOR-1; D-PEC-10 rider); the owner performs conversions on-screen"
+    }
+  },
+  {
+    "act": "withdraw of the coordinator's proposal",
+    "outcome": "refused before the reject call",
+    "code": "AGENT_FORBIDDEN_ACT"
+  },
+  {
+    "act": "direct HTTP accept as the agent person (client guard bypassed)",
+    "outcome": "server refused HTTP 403",
+    "body": {
+      "error": {
+        "code": "FORBIDDEN",
+        "message": "import.accept: accepting/applying an import proposal requires admin",
+        "details": null
+      }
+    }
+  }
+]

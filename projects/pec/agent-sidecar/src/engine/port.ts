@@ -67,6 +67,14 @@ export interface BoundActs {
   triageItem(input: { ref: string; disposition?: string; grounds?: string }): Promise<ActResult>
   intakeSummary(): Promise<ActResult>
   readScreenContext(input: { route: string; records: ScreenContextRecord[] }): Promise<ActResult>
+  // ---- read acts over existing RBAC'd GET routes (D-PEC-20 item 3; D-T0-21
+  // O-B basis-gated for model-provider engines — refused under 'enumerated',
+  // RBAC-visible under 'broad'). Read-only; summaries carry record refs. ----
+  projectOverview(): Promise<ActResult>
+  readRegister(input: { register: string }): Promise<ActResult>
+  recordHistory(input: { recordType: string; id: number }): Promise<ActResult>
+  explainRevision(input: { id: number }): Promise<ActResult>
+  readReport(input: { report: string; id?: number }): Promise<ActResult>
 }
 
 export interface AgentEnginePort {

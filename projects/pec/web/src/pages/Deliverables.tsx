@@ -10,6 +10,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
+import { usePublishScreenContext } from '../agent/context.tsx'
 import {
   ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RegisterTable, StateTag, WorkflowStages,
   fmtDate, useApp, useLoad, usePerson,
@@ -46,6 +47,8 @@ export function DeliverablesPage(): JSX.Element {
     () => api.get(p(pid, `deliverables?${qs.toString()}`)),
     [pid, pkgF, discF, stateF, viewF],
   )
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext((data ?? []).map((r: any) => ({ recordType: 'deliverable', ref: r.docNo, id: r.id })))
 
   const pkgCode = (id: number | null) =>
     pkgs?.find((x: any) => x.id === id)?.code ?? (id != null ? `#${id}` : '—')

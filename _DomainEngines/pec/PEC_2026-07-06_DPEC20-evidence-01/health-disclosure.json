@@ -1,0 +1,24 @@
+{
+  "enumerated": {
+    "ok": true,
+    "engine": "stub",
+    "egress": "none",
+    "access": "enumerated",
+    "configured": true,
+    "agent": {
+      "name": "PEC Agent",
+      "email": "pec-agent@rehearsal.demo"
+    }
+  },
+  "broad": {
+    "ok": true,
+    "engine": "stub",
+    "egress": "none",
+    "access": "broad",
+    "configured": true,
+    "agent": {
+      "name": "PEC Agent",
+      "email": "pec-agent@rehearsal.demo"
+    }
+  }
+}

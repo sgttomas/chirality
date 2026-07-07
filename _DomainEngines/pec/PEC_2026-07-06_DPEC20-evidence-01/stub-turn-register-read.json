@@ -1,0 +1,57 @@
+{
+  "events": [
+    {
+      "type": "act:result",
+      "act": "read.register",
+      "ok": true,
+      "summary": "deliverables register read — 1 row(s)",
+      "payload": [
+        {
+          "id": 1,
+          "docNo": "TST-PR-001",
+          "title": "PFD",
+          "packageId": 1,
+          "discipline": "Process",
+          "ownerId": 5,
+          "revCode": "A",
+          "state": "in_work",
+          "dueDate": "2027-06-30",
+          "milestone": null,
+          "dcRef": null,
+          "workflow": {
+            "currentState": "in_work",
+            "revCode": "A",
+            "stages": [
+              {
+                "key": "drafted",
+                "label": "Drafted",
+                "state": "done"
+              },
+              {
+                "key": "checked",
+                "label": "Checked",
+                "state": "current"
+              },
+              {
+                "key": "approved",
+                "label": "Approved",
+                "state": "pending"
+              },
+              {
+                "key": "issued",
+                "label": "Issued",
+                "state": "pending"
+              }
+            ],
+            "gatesClosed": 0,
+            "gatesTotal": 3,
+            "pct": 25,
+            "label": "drafting",
+            "returned": false,
+            "superseded": false
+          }
+        }
+      ]
+    }
+  ]
+}

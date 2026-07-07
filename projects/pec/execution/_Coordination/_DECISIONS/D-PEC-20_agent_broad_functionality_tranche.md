@@ -1,6 +1,9 @@
 # D-PEC-20 - PROPOSAL: agent broad-functionality source tranche (dual access basis + read acts + screen context adoption)
 
 **Status:** RULED 2026-07-06 (execution deferred to the next session).
+**Execution note (dated):** executed 2026-07-06 in the deferred-to session —
+tranche + evidence `_DomainEngines/pec/PEC_2026-07-06_DPEC20-evidence-01/`;
+recorded in `_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 46.
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-20
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1;

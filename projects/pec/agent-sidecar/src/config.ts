@@ -8,8 +8,18 @@
 
 export type EngineName = 'stub' | 'sdk'
 
+/**
+ * Access basis for model-provider-egress reads (D-T0-21 O-B, dual basis):
+ * 'enumerated' (default) — the D-T0-20 O-B clamp exactly as ruled; 'broad' —
+ * RBAC-visible reads pass for model-provider engines too (owner-selected per
+ * launch; the human-only acts are excluded regardless of basis).
+ */
+export type AccessBasis = 'enumerated' | 'broad'
+
 export interface SidecarConfig {
   engine: EngineName
+  /** D-T0-21 O-B access basis; default 'enumerated' — never widened silently */
+  access: AccessBasis
   /** pec server base URL — loopback only (127.0.0.1 / ::1 / localhost). */
   pecBaseUrl: string
   /** port the sidecar's own loopback HTTP surface listens on */
@@ -42,6 +52,10 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
   if (engineRaw !== 'stub' && engineRaw !== 'sdk') {
     throw new Error(`PEC_AGENT_ENGINE must be 'stub' or 'sdk' — got '${engineRaw}'`)
   }
+  const accessRaw = (env.PEC_AGENT_ACCESS ?? 'enumerated').trim()
+  if (accessRaw !== 'enumerated' && accessRaw !== 'broad') {
+    throw new Error(`PEC_AGENT_ACCESS must be 'enumerated' or 'broad' — got '${accessRaw}'`)
+  }
   const pecBaseUrl = (env.PEC_BASE_URL ?? 'http://127.0.0.1:4810').trim().replace(/\/+$/, '')
   assertLoopbackBaseUrl(pecBaseUrl)
   const port = Number(env.PEC_AGENT_PORT ?? 4812)
@@ -50,5 +64,5 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
   }
   const agentEmail = env.PEC_AGENT_EMAIL?.trim() || null
   const agentPassword = env.PEC_AGENT_PASSWORD || null
-  return { engine: engineRaw, pecBaseUrl, port, agentEmail, agentPassword }
+  return { engine: engineRaw, access: accessRaw, pecBaseUrl, port, agentEmail, agentPassword }
 }

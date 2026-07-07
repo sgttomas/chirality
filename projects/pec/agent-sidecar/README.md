@@ -9,16 +9,26 @@ Zero runtime dependencies (mirrors `@pec/server`, ADR-002 posture).
 
 - Can: file CSV import proposals, refresh/withdraw its own proposals, triage
   intake items **with grounds** (`parked` / `duplicate` / `rejected` only),
-  report status, read the enumerated surfaces.
-- Cannot (structurally — no method, URL denylist, payload guard, and pec RBAC):
-  accept, apply, reject others' proposals, use `force`, record approval /
-  decision / check outcomes, or create approval records via conversion
-  (GOV MAJOR-1). Accept/apply stay human acts in Admin.
+  report status, read the enumerated surfaces — and, on the owner-selected
+  `broad` access basis (D-T0-21 O-B), read everything the agent person's own
+  RBAC shows over the existing GET routes: project overview, the registers
+  (deliverables, packages, plan, my-week, holds, approvals, decisions, risks,
+  tracker, interfaces, log), record history, revision explanations, and the
+  sponsor-brief / package-pack report payloads (D-PEC-20).
+- Cannot (structurally — no method, URL denylist, payload guard, and pec RBAC;
+  **excluded regardless of access basis**): accept, apply, reject others'
+  proposals, use `force`, record approval / decision / check outcomes, or
+  create approval records via conversion (GOV MAJOR-1). Accept/apply stay
+  human acts in Admin.
 
 ## Environment
 
 ```
 PEC_AGENT_ENGINE=stub|sdk      # default stub; sdk needs the package + ANTHROPIC_API_KEY
+PEC_AGENT_ACCESS=enumerated|broad   # default enumerated (D-T0-20 clamp exactly as ruled);
+                               # broad = RBAC-visible reads for model-provider engines too —
+                               # an owner act per launch (D-T0-21 O-B); disclosed in
+                               # /agent/health and the panel badge
 PEC_BASE_URL=http://127.0.0.1:4810   # loopback only — non-loopback hosts are refused
 PEC_AGENT_PORT=4812
 PEC_AGENT_EMAIL=...            # owner-provisioned agent person (is_admin=0, coordinator)
@@ -61,4 +71,7 @@ Selecting `sdk` without the package or the key fails at startup with a message
 naming exactly those steps. The SDK engine's egress class is
 `model-provider`, which arms the D-T0-20 O-B enumeration clamp in the acts
 layer (reads outside the enumerated surface are refused, never silently
-narrowed).
+narrowed) — unless the owner selects the `broad` access basis for the launch
+(D-T0-21 O-B), in which case reads widen to the agent person's own RBAC
+visibility and any record the model reads may reach the model provider. The
+human-only acts do not move with the switch.

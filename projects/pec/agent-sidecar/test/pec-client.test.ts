@@ -60,7 +60,7 @@ after(async () => { await new Promise<void>((r) => server.close(() => r())) })
 
 function cfg(over: Partial<SidecarConfig> = {}): SidecarConfig {
   return {
-    engine: 'stub', pecBaseUrl: base, port: 0,
+    engine: 'stub', access: 'enumerated', pecBaseUrl: base, port: 0,
     agentEmail: 'agent@t.co', agentPassword: 'secret', ...over,
   }
 }
@@ -238,12 +238,12 @@ test('enumeration clamp: out-of-enumeration reads pass under egress none, throw 
     ? { status: 200, body: { id: 7, docNo: 'TST-PR-001' } }
     : null
   const records = [{ recordType: 'deliverable', ref: 'TST-PR-001', id: 7 }]
-  const underStub = await bindActs({ pid: 1, egress: 'none', client })
+  const underStub = await bindActs({ pid: 1, egress: 'none', access: 'enumerated', client })
     .readScreenContext({ route: '/p/1/deliverables/7', records })
   assert.equal(underStub.kind, 'result', 'stub egress reads the deliverable')
 
   seen.length = 0
-  const underSdk = await bindActs({ pid: 1, egress: 'model-provider', client })
+  const underSdk = await bindActs({ pid: 1, egress: 'model-provider', access: 'enumerated', client })
     .readScreenContext({ route: '/p/1/deliverables/7', records })
   assert.equal(underSdk.kind, 'refused')
   assert.match((underSdk as { reason: string }).reason, /OUTSIDE|enumerated/i)

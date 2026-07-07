@@ -327,6 +327,51 @@ export class PecAgentClient {
     return this.toResult(await this.request('GET', `/api/projects/${pid}/history/${recordType}/${id}`))
   }
 
+  // ---------- broad-basis reads (D-PEC-20 item 3; D-T0-21 O-B) ----------
+  // Every route below is an EXISTING RBAC'd GET on the pec server — zero
+  // server change. acts.ts applies the basis gate BEFORE any of these run
+  // for a model-provider engine; visibility stays the agent person's own RBAC.
+
+  async overview(pid: number): Promise<ApiResult<unknown>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/overview`))
+  }
+
+  /** register name → its existing GET route (read-only list views) */
+  static readonly REGISTER_ROUTES: Record<string, string> = {
+    deliverables: 'deliverables',
+    packages: 'packages',
+    plan: 'plan',
+    'my-week': 'my-week',
+    holds: 'holds',
+    approvals: 'approval-register',
+    decisions: 'decisions',
+    risks: 'risks',
+    tracker: 'tracker',
+    interfaces: 'interfaces',
+    log: 'log',
+  }
+
+  async readRegister(pid: number, register: string): Promise<ApiResult<unknown>> {
+    const route = PecAgentClient.REGISTER_ROUTES[register]
+    if (!route) {
+      throw new AgentClientError('AGENT_UNMAPPED_READ',
+        `no register read mapped for '${register}' (one of: ${Object.keys(PecAgentClient.REGISTER_ROUTES).join(', ')})`)
+    }
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/${route}`))
+  }
+
+  async explainRevision(pid: number, id: number): Promise<ApiResult<unknown>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/revisions/${id}/explain`))
+  }
+
+  async sponsorBrief(pid: number): Promise<ApiResult<unknown>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/sponsor-brief`))
+  }
+
+  async packagePack(pid: number, id: number): Promise<ApiResult<unknown>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/package-pack/${id}`))
+  }
+
   async can(pid: number, action: string): Promise<{ allowed: boolean; reason: string }> {
     const r = this.toResult<{ allowed: boolean; reason: string }>(
       await this.request('GET', `/api/projects/${pid}/can/${action}`))
@@ -348,6 +393,7 @@ export class PecAgentClient {
       package: `/api/projects/${pid}/packages/${id}`,
       work_item: `/api/projects/${pid}/work-items/${id}`,
       import_proposal: `/api/projects/${pid}/import-proposals/${id}`,
+      check: `/api/projects/${pid}/checks/${id}`,
     }
     if (recordType === 'intake_item') {
       const all = await this.listIntake(pid)
@@ -355,6 +401,27 @@ export class PecAgentClient {
       const item = all.value.find((i) => i.id === id)
       if (!item) throw new AgentClientError('NOT_FOUND', `intake item #${id} not visible`)
       return { ok: true, value: item }
+    }
+    // register-view record types have no per-id GET route; resolve the row out
+    // of the existing register view (zero server change — D-PEC-20 item 3)
+    const registerOf: Record<string, string> = {
+      risk: 'risks',
+      decision: 'decisions',
+      hold: 'holds',
+      approval_record: 'approvals',
+      interface_item: 'interfaces',
+      package_tracker: 'tracker',
+    }
+    const reg = registerOf[recordType]
+    if (reg) {
+      const view = await this.readRegister(pid, reg)
+      if (!view.ok) return view
+      const rows = Array.isArray(view.value)
+        ? view.value
+        : (view.value as { rows?: unknown[] })?.rows ?? []
+      const row = (rows as Array<{ id?: number }>).find((r) => r?.id === id)
+      if (!row) throw new AgentClientError('NOT_FOUND', `${recordType} #${id} not visible`)
+      return { ok: true, value: row }
     }
     const route = routes[recordType]
     if (!route) {

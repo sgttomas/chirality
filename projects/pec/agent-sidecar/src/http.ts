@@ -99,6 +99,8 @@ export function createSidecarHttpServer(deps: SidecarHttpDeps): Server {
           ok: true,
           engine: deps.engine.subject,
           egress: deps.engine.egress,
+          // D-T0-21 O-B disclosure: the active access basis is always stated
+          access: deps.cfg.access,
           configured: deps.configured,
           agent: me ? { name: me.name, email: me.email } : null,
         })
@@ -112,7 +114,7 @@ export function createSidecarHttpServer(deps: SidecarHttpDeps): Server {
         }
         const body = await readJsonBody(req)
         const turn = validateTurn(body)
-        const acts = bindActs({ pid: turn.pid, egress: deps.engine.egress, client: deps.client })
+        const acts = bindActs({ pid: turn.pid, egress: deps.engine.egress, access: deps.cfg.access, client: deps.client })
         try {
           const events = await deps.engine.runTurn(turn, acts)
           sendJson(res, 200, { events })

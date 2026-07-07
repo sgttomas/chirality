@@ -30,6 +30,12 @@ function fakeActs(overrides: Partial<Record<string, ActResult>> = {}): { acts: B
     triageItem: record('intake.triage') as BoundActs['triageItem'],
     intakeSummary: () => { calls.push({ act: 'intake.summary', args: {} }); return Promise.resolve(canned('intake.summary')) },
     readScreenContext: record('screen.read') as BoundActs['readScreenContext'],
+    // D-PEC-20 read acts
+    projectOverview: () => { calls.push({ act: 'read.overview', args: {} }); return Promise.resolve(canned('read.overview')) },
+    readRegister: record('read.register') as BoundActs['readRegister'],
+    recordHistory: record('read.history') as BoundActs['recordHistory'],
+    explainRevision: record('read.explain') as BoundActs['explainRevision'],
+    readReport: record('read.report') as BoundActs['readReport'],
   }
   return { acts, calls }
 }

@@ -1,0 +1,29 @@
+{
+  "basisPrep": {
+    "agentPerson": {
+      "id": 11,
+      "email": "pec-agent@rehearsal.demo",
+      "is_admin": 0,
+      "role": "coordinator"
+    },
+    "humanCoordinatorActs": {
+      "intakeItem": {
+        "id": 1,
+        "ref": "INTK-0001"
+      },
+      "foreignProposal": {
+        "id": 1,
+        "ref": "IPR-0001",
+        "contract": "risks",
+        "state": "draft"
+      }
+    },
+    "note": "no accept/apply/force/disposition performed by anyone in this capture"
+  },
+  "agentIdentity": {
+    "personId": 11,
+    "name": "PEC Agent",
+    "email": "pec-agent@rehearsal.demo"
+  },
+  "egressNote": "egress 'model-provider' set at the acts seam (the exact context the SDK engine runs under); no ANTHROPIC_API_KEY exists in this environment, no model session occurred — live-LLM demonstration remains deferred"
+}
