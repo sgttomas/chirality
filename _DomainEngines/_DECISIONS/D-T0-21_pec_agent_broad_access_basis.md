@@ -1,6 +1,10 @@
 # D-T0-21 - PROPOSAL: pec agent broad-access basis (designer testing mode alongside the D-T0-20 enumeration)
 
 **Status:** RULED 2026-07-06 (execution deferred to the next session).
+**Execution note (dated):** the companion `D-PEC-20` tranche was executed
+2026-07-06 in the deferred-to session; evidence
+`_DomainEngines/pec/PEC_2026-07-06_DPEC20-evidence-01/`; recorded in
+`_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 46.
 **Date prepared:** 2026-07-06
 **Decision ID:** D-T0-21 (residual-work row convention, owner-ruled 2026-07-03: D-T0-20's ruled row stays immutable; this residue gets its own row)
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act
