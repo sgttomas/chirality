@@ -26,6 +26,16 @@ export interface ScreenContextRecord {
   id: number
 }
 
+/**
+ * One prior turn of the conversation, flattened to text by the client
+ * (D-PEC-21 item 2). The transcript rides the REQUEST — the sidecar stores
+ * nothing between requests; a request without history is a fresh start.
+ */
+export interface HistoryEntry {
+  who: 'you' | 'agent'
+  text: string
+}
+
 export interface AgentTurnInput {
   pid: number
   message: string
@@ -39,6 +49,8 @@ export interface AgentTurnInput {
     name: string
     text: string
   }
+  /** prior turns, newest last (D-PEC-21: ≤ 40 entries, each ≤ 8 KiB — http.ts validates) */
+  history?: HistoryEntry[]
 }
 
 export type AgentEvent =

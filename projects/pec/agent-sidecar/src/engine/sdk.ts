@@ -1,25 +1,28 @@
 /**
- * SDK engine loader (D-PEC-17 rider 2: the key-droppable seam). This file
- * exists so the later live-LLM enablement is dependency + env + config only —
- * ZERO source change:
+ * SDK engine (D-PEC-17 rider 2, reshaped by D-PEC-21): the live-LLM seam.
+ * Enablement is dependency + env + config only:
  *
  *   npm i @anthropic-ai/claude-agent-sdk -w agent-sidecar
  *   export ANTHROPIC_API_KEY=...        (never committed, never fabricated)
  *   PEC_AGENT_ENGINE=sdk
  *
- * No SDK dependency is added in v1 (the package is not resolvable in the pec
- * tree — verified in the packet); the dynamic import is typed over `unknown`
- * behind a narrow local structural interface, so typecheck passes without the
- * package. No code path here sources, hardcodes, or fabricates a key or model
- * output. Egress class 'model-provider' → the D-T0-20 acts clamp binds on
- * every read the acts layer performs for this engine.
+ * Turn shape (D-PEC-21 O-A, owner-directed mechanism): the SDK's own agentic
+ * harness runs the loop. Each bounded act is exposed as an in-process MCP
+ * tool (createSdkMcpServer/tool) whose handler dispatches through the SAME
+ * BoundActs surface the stub drives — every guard, clamp, and refusal binds
+ * on every call, and no accept/apply/reject-of-others/force tool exists to
+ * expose. query() drives read → result → next act natively, bounded by an
+ * in-handler act budget plus maxTurns; the conversation history rides the
+ * request (port.ts HistoryEntry — the sidecar stores nothing between
+ * requests). The session is hermetic: settingSources [], an allowedTools
+ * whitelist of exactly the pec tools, and a canUseTool that denies everything
+ * else — the model gets no filesystem, shell, or network tool.
  *
- * The turn wiring drives the SAME bounded acts layer the stub drives: the
- * model may only answer with an act directive (dispatched through BoundActs —
- * so every guard, clamp, and refusal binds) or a plain reply. It cannot name
- * an accept/apply act because no such act exists on the surface it is given.
- * Live-LLM demonstration is deferred until a key exists (Receipt 32 item 4);
- * this body is exercised then, under its own evidence.
+ * The dynamic imports are typed over `unknown` behind narrow structural
+ * interfaces, so typecheck never depends on the SDK's types. zod is imported
+ * dynamically on the same path — it is a dependency OF the SDK (ships with
+ * it), reachable only after the SDK import succeeded. No code path here
+ * sources, hardcodes, or fabricates a key or model output.
  */
 
 import type { AgentEnginePort, AgentEvent, AgentTurnInput, BoundActs, ActResult } from './port.ts'
@@ -36,28 +39,53 @@ export const KEY_ABSENT_MSG =
   + 'sources or fabricates a key; set it in the local environment and restart, '
   + 'or run the default engine: PEC_AGENT_ENGINE=stub.'
 
+/** D-PEC-21 item 1: the per-turn act budget, enforced in every tool handler */
+export const MAX_ACTS_PER_TURN = 8
+/** cap on any single act payload serialized back to the model (bytes of JSON) */
+export const MAX_FEEDBACK_PAYLOAD_BYTES = 48 * 1024
+/** outer bound on the SDK loop — budget refusals + the closing answer fit inside */
+const MAX_SDK_TURNS = MAX_ACTS_PER_TURN + 4
+
+const SYSTEM_PROMPT = [
+  'You are the pec project agent. You act ONLY through the pec tools provided.',
+  'Accept, apply, reject-of-others, and force are human acts you must direct',
+  'the owner to perform in Admin — no tool performs them and you never claim',
+  'to. Answer from tool results actually returned — never invent record state.',
+  'The input JSON may carry prior turns in "history": treat them as this same',
+  'conversation. Reads are basis-gated (D-T0-21): a tool refusal naming the',
+  `access basis is final for this turn — report it to the owner, never work`,
+  `around it. You have ${MAX_ACTS_PER_TURN} tool calls per turn; a wrong or`,
+  'empty read may be followed by a better one. Finish every turn with a plain',
+  'concise answer for the owner.',
+].join('\n')
+
 /** narrow structural view over the dynamically imported SDK (no SDK types offline) */
 interface SdkModuleLike {
   query?: (opts: { prompt: string; options?: Record<string, unknown> }) => AsyncIterable<unknown>
+  tool?: (
+    name: string,
+    description: string,
+    inputSchema: Record<string, unknown>,
+    handler: (args: Record<string, unknown>, extra: unknown) => Promise<ToolCallResult>,
+  ) => unknown
+  createSdkMcpServer?: (opts: { name: string; version?: string; tools?: unknown[] }) => unknown
 }
 
-const SYSTEM_PROMPT = [
-  'You are the pec project agent. You act ONLY through the acts below; accept,',
-  'apply, reject-of-others, and force are human acts you must direct the owner',
-  'to perform in Admin. Reply with EXACTLY ONE JSON object, nothing else:',
-  '  {"reply": "<text>"}  — to answer without acting, or',
-  '  {"act": "<name>", "args": {...}} where <name> is one of:',
-  '  proposeCsv {csv, filename?, contract?} · refreshProposal {ref} ·',
-  '  withdrawProposal {ref, reason} · proposalStatus {} ·',
-  '  triageItem {ref, disposition?, grounds?} · intakeSummary {} ·',
-  '  readScreenContext {route, records} ·',
-  '  projectOverview {} · readRegister {register} (deliverables, packages, plan,',
-  '  my-week, holds, approvals, decisions, risks, tracker, interfaces, log) ·',
-  '  recordHistory {recordType, id} · explainRevision {id} ·',
-  '  readReport {report: "sponsor-brief"|"package-pack", id?}',
-  'Reads are basis-gated (D-T0-21): a refusal naming the access basis is final',
-  'for this turn — report it to the owner, never work around it.',
-].join('\n')
+interface ZodTypeLike { optional(): unknown }
+interface ZodLike {
+  string(): ZodTypeLike
+  number(): ZodTypeLike
+}
+
+export interface ToolCallResult {
+  content: Array<{ type: 'text'; text: string }>
+}
+
+/** per-turn mutable state shared between runTurn and the tool handlers */
+export interface TurnSink {
+  events: AgentEvent[]
+  actsUsed: number
+}
 
 function assistantTextOf(message: unknown): string {
   if (message == null || typeof message !== 'object') return ''
@@ -77,92 +105,194 @@ function toEvents(r: ActResult): AgentEvent[] {
     : [{ type: 'act:refused', act: r.act, reason: r.reason }]
 }
 
+/** what one act feeds back to the model — payload size-capped, truncation disclosed */
+export function feedbackOf(r: ActResult): Record<string, unknown> {
+  if (r.kind === 'refused') return { act: r.act, refused: true, reason: r.reason }
+  let payload: unknown = r.payload
+  if (payload !== undefined) {
+    const raw = JSON.stringify(payload)
+    if (Buffer.byteLength(raw, 'utf8') > MAX_FEEDBACK_PAYLOAD_BYTES) {
+      payload = {
+        truncated: true,
+        note: `payload exceeded the ${MAX_FEEDBACK_PAYLOAD_BYTES}-byte feedback cap; ask a narrower question or use the summary`,
+        head: raw.slice(0, MAX_FEEDBACK_PAYLOAD_BYTES),
+      }
+    }
+  }
+  return { act: r.act, ok: r.ok, summary: r.summary, ...(payload === undefined ? {} : { payload }) }
+}
+
+/** the turn input as the model sees it (exported for tests) */
+export function promptOf(input: AgentTurnInput): string {
+  return JSON.stringify({
+    message: input.message,
+    context: input.context ?? null,
+    attachment: input.attachment ? { name: input.attachment.name, text: input.attachment.text } : null,
+    history: input.history ?? null,
+  })
+}
+
+/** the full bounded tool surface — THIS LIST is the boundary; no accept/apply shape exists */
+export const PEC_TOOL_NAMES = [
+  'propose_csv', 'refresh_proposal', 'withdraw_proposal', 'proposal_status',
+  'triage_item', 'intake_summary', 'read_screen_context', 'project_overview',
+  'read_register', 'record_history', 'explain_revision', 'read_report',
+] as const
+
+const s = (v: unknown): string => String(v ?? '')
+const opt = (v: unknown): string | undefined => (typeof v === 'string' ? v : undefined)
+
+/**
+ * Build the in-process MCP tool definitions over a BoundActs (D-PEC-21).
+ * `toolFn`/`z` are the SDK's own `tool` and zod, passed in so tests can build
+ * and drive the handlers directly with no key and no live session. Every
+ * handler: (1) enforces the act budget, (2) dispatches through BoundActs so
+ * every guard binds, (3) mirrors the result to the panel event sink, and
+ * (4) returns the size-capped feedback JSON to the model.
+ */
+export function buildPecTools(
+  toolFn: NonNullable<SdkModuleLike['tool']>,
+  z: ZodLike,
+  ctx: { input: AgentTurnInput; acts: BoundActs; sink: TurnSink },
+): unknown[] {
+  const { input, acts, sink } = ctx
+
+  const bounded = (
+    name: string, description: string, schema: Record<string, unknown>,
+    exec: (args: Record<string, unknown>) => Promise<ActResult>,
+  ): unknown =>
+    toolFn(name, description, schema, async (args) => {
+      if (sink.actsUsed >= MAX_ACTS_PER_TURN) {
+        return {
+          content: [{
+            type: 'text' as const,
+            text: JSON.stringify({
+              refused: true,
+              reason: `act budget exhausted (${MAX_ACTS_PER_TURN} acts this turn) — answer now from the results you already have`,
+            }),
+          }],
+        }
+      }
+      sink.actsUsed += 1
+      const r = await exec(args)
+      sink.events.push(...toEvents(r))
+      return { content: [{ type: 'text' as const, text: JSON.stringify(feedbackOf(r)) }] }
+    })
+
+  return [
+    bounded('propose_csv',
+      'File a CSV as an import proposal (dry-run only; accept/apply stay human, in Admin).',
+      { csv: z.string().optional(), filename: z.string().optional(), contract: z.string().optional() },
+      (a) => acts.proposeCsv({
+        csv: typeof a.csv === 'string' ? a.csv : input.attachment?.text ?? '',
+        filename: opt(a.filename) ?? input.attachment?.name,
+        contract: opt(a.contract),
+      })),
+    bounded('refresh_proposal',
+      'Recompute an import proposal dry-run (voids any prior acceptance; a human re-reviews).',
+      { ref: z.string() },
+      (a) => acts.refreshProposal({ ref: s(a.ref) })),
+    bounded('withdraw_proposal',
+      'Withdraw one of MY OWN import proposals, with a reason.',
+      { ref: z.string(), reason: z.string() },
+      (a) => acts.withdrawProposal({ ref: s(a.ref), reason: s(a.reason) })),
+    bounded('proposal_status',
+      'My open import proposals with lifecycle states.',
+      {},
+      () => acts.proposalStatus()),
+    bounded('triage_item',
+      'Triage an intake item (dispositions: parked, duplicate, rejected — conversion stays human).',
+      { ref: z.string(), disposition: z.string().optional(), grounds: z.string().optional() },
+      (a) => acts.triageItem({ ref: s(a.ref), disposition: opt(a.disposition), grounds: opt(a.grounds) })),
+    bounded('intake_summary',
+      'The intake queue summary.',
+      {},
+      () => acts.intakeSummary()),
+    bounded('read_screen_context',
+      'What the owner is looking at (route + visible record ids the panel published).',
+      {},
+      () => acts.readScreenContext(input.context ?? { route: '', records: [] })),
+    bounded('project_overview',
+      'The project overview and governance signals.',
+      {},
+      () => acts.projectOverview()),
+    bounded('read_register',
+      'Read a register: deliverables, packages, plan, my-week, holds, approvals, decisions, risks, tracker, interfaces, log.',
+      { register: z.string() },
+      (a) => acts.readRegister({ register: s(a.register) })),
+    bounded('record_history',
+      'A record\'s history events.',
+      { recordType: z.string(), id: z.number() },
+      (a) => acts.recordHistory({ recordType: s(a.recordType), id: Number(a.id ?? 0) })),
+    bounded('explain_revision',
+      'A revision\'s readiness explanation.',
+      { id: z.number() },
+      (a) => acts.explainRevision({ id: Number(a.id ?? 0) })),
+    bounded('read_report',
+      'Report payloads: sponsor-brief, or package-pack with an id.',
+      { report: z.string(), id: z.number().optional() },
+      (a) => acts.readReport({ report: s(a.report), id: a.id != null ? Number(a.id) : undefined })),
+  ]
+}
+
 export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEnginePort> {
   let mod: unknown
+  let zmod: unknown
   try {
     mod = await import('@anthropic-ai/claude-agent-sdk' as string)
+    // zod ships as the SDK's own dependency — same availability, same seam
+    zmod = await import('zod' as string)
   } catch {
     throw new Error(SDK_ABSENT_MSG)
   }
   if (!process.env.ANTHROPIC_API_KEY) throw new Error(KEY_ABSENT_MSG)
 
   const sdk = mod as SdkModuleLike
-  if (typeof sdk.query !== 'function') {
-    throw new Error('the installed @anthropic-ai/claude-agent-sdk does not expose query(); check its version')
+  const z = (zmod as { z?: ZodLike }).z
+  if (typeof sdk.query !== 'function' || typeof sdk.tool !== 'function'
+    || typeof sdk.createSdkMcpServer !== 'function' || z == null) {
+    throw new Error('the installed @anthropic-ai/claude-agent-sdk does not expose query/tool/createSdkMcpServer; check its version')
   }
+
+  const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
 
   return {
     subject: 'sdk',
     egress: 'model-provider',
 
     async runTurn(input: AgentTurnInput, acts: BoundActs): Promise<AgentEvent[]> {
-      const prompt = JSON.stringify({
-        message: input.message,
-        context: input.context ?? null,
-        attachment: input.attachment ? { name: input.attachment.name, text: input.attachment.text } : null,
+      const sink: TurnSink = { events: [], actsUsed: 0 }
+      const server = sdk.createSdkMcpServer!({
+        name: 'pec', version: '1.0.0',
+        tools: buildPecTools(sdk.tool!, z, { input, acts, sink }),
       })
       let text = ''
       for await (const message of sdk.query!({
-        prompt, options: { systemPrompt: SYSTEM_PROMPT, maxTurns: 1, allowedTools: [] },
+        prompt: promptOf(input),
+        options: {
+          systemPrompt: SYSTEM_PROMPT,
+          maxTurns: MAX_SDK_TURNS,
+          mcpServers: { pec: server },
+          // hermetic session: no user/project settings, no built-in tools —
+          // the whitelist IS the act surface, and canUseTool re-denies the rest
+          settingSources: [],
+          allowedTools: allowed,
+          canUseTool: async (toolName: string, toolInput: unknown) =>
+            allowed.includes(toolName)
+              ? { behavior: 'allow', updatedInput: toolInput }
+              : { behavior: 'deny', message: `outside the pec act surface: ${toolName}` },
+        },
       })) {
         const t = assistantTextOf(message)
         if (t) text = t
       }
-      let directive: { reply?: string; act?: string; args?: Record<string, unknown> }
-      try {
-        directive = JSON.parse(text) as typeof directive
-      } catch {
-        return [{ type: 'agent:reply', text }]
+      if (!text) {
+        return [...sink.events, {
+          type: 'turn:error', code: 'TURN_EMPTY',
+          message: 'the model session ended without a reply — try again or narrow the question',
+        }]
       }
-      if (typeof directive.reply === 'string') return [{ type: 'agent:reply', text: directive.reply }]
-      const args = directive.args ?? {}
-      // dispatch through the SAME bounded acts surface the stub uses — every
-      // guard (denylist, disposition-payload, grounds, D-T0-20 clamp) binds
-      switch (directive.act) {
-        case 'proposeCsv':
-          return toEvents(await acts.proposeCsv({
-            csv: typeof args.csv === 'string' ? args.csv : input.attachment?.text ?? '',
-            filename: typeof args.filename === 'string' ? args.filename : input.attachment?.name,
-            contract: typeof args.contract === 'string' ? args.contract : undefined,
-          }))
-        case 'refreshProposal':
-          return toEvents(await acts.refreshProposal({ ref: String(args.ref ?? '') }))
-        case 'withdrawProposal':
-          return toEvents(await acts.withdrawProposal({ ref: String(args.ref ?? ''), reason: String(args.reason ?? '') }))
-        case 'proposalStatus':
-          return toEvents(await acts.proposalStatus())
-        case 'triageItem':
-          return toEvents(await acts.triageItem({
-            ref: String(args.ref ?? ''),
-            disposition: typeof args.disposition === 'string' ? args.disposition : undefined,
-            grounds: typeof args.grounds === 'string' ? args.grounds : undefined,
-          }))
-        case 'intakeSummary':
-          return toEvents(await acts.intakeSummary())
-        case 'projectOverview':
-          return toEvents(await acts.projectOverview())
-        case 'readRegister':
-          return toEvents(await acts.readRegister({ register: String(args.register ?? '') }))
-        case 'recordHistory':
-          return toEvents(await acts.recordHistory({
-            recordType: String(args.recordType ?? ''), id: Number(args.id ?? 0),
-          }))
-        case 'explainRevision':
-          return toEvents(await acts.explainRevision({ id: Number(args.id ?? 0) }))
-        case 'readReport':
-          return toEvents(await acts.readReport({
-            report: String(args.report ?? ''),
-            id: args.id != null ? Number(args.id) : undefined,
-          }))
-        case 'readScreenContext':
-          return toEvents(await acts.readScreenContext(
-            (input.context ?? { route: '', records: [] })))
-        default:
-          return [{
-            type: 'turn:error', code: 'UNKNOWN_ACT',
-            message: `the model named an act outside the bounded surface: ${String(directive.act)}`,
-          }]
-      }
+      return [...sink.events, { type: 'agent:reply', text }]
     },
   }
 }

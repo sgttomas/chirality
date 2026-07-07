@@ -27,6 +27,26 @@ interface Turn {
   events?: AgentEvent[]
 }
 
+/** D-PEC-21: how many prior turns ride each message (sidecar cap is 40) */
+const MAX_HISTORY_TURNS = 20
+/** keep each flattened entry inside the sidecar's 8 KiB per-entry cap */
+const MAX_HISTORY_ENTRY_CHARS = 4000
+
+/** flatten a turn to the text the model sees as conversation history */
+function flattenTurn(t: Turn): { who: 'you' | 'agent'; text: string } {
+  const text = t.who === 'you'
+    ? t.text ?? ''
+    : (t.events ?? []).map((e) => {
+        switch (e.type) {
+          case 'agent:reply': return e.text
+          case 'act:result': return `[${e.act}] ${e.summary}`
+          case 'act:refused': return `[refused ${e.act}] ${e.reason}`
+          case 'turn:error': return `[error ${e.code}] ${e.message}`
+        }
+      }).join('\n')
+  return { who: t.who, text: text.slice(0, MAX_HISTORY_ENTRY_CHARS) }
+}
+
 interface ProposalRow {
   id: number
   ref: string
@@ -112,9 +132,13 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
     setBusy(true)
     setThread((t) => [...t, { who: 'you', text: outgoing + (attachment && message.trim() ? ` — ${attachment.name}` : '') }])
     try {
+      // D-PEC-21: the visible thread rides along as conversation memory
+      // (thread state predates this send's own entries — exactly the prior turns)
+      const history = thread.slice(-MAX_HISTORY_TURNS).map(flattenTurn)
       const body = {
         message,
         context: { route: screen.route, records: screen.records },
+        ...(history.length > 0 ? { history } : {}),
         ...(attachment ? { attachment } : {}),
       }
       const r = await agentMessage(pid, body)
@@ -135,10 +159,8 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 
   const agentName = status?.agent?.name ?? 'agent'
   const agentProposals = (proposals ?? []).filter((row) => agentPersonId != null && row.createdBy === agentPersonId)
-  // D-T0-21 O-B disclosure: the sidecar health field rides the proxy verbatim;
-  // read structurally here (the shared AgentStatus type is outside this
-  // tranche's fence — keep the two in step by hand, as api.ts documents)
-  const access = (status as (AgentStatus & { access?: string }) | null)?.access ?? null
+  // D-T0-21 O-B disclosure: the sidecar health field rides the proxy verbatim
+  const access = status?.access ?? null
 
   return (
     <aside className="agent-panel" onDragOver={(e) => e.preventDefault()}

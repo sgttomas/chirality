@@ -18,6 +18,9 @@ import { bindActs } from './acts.ts'
 const MAX_BODY_BYTES = 6 * 1024 * 1024
 /** RV-14: CSV only, mirroring the server's proposal cap */
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
+/** D-PEC-21 item 2: request-borne conversation history caps */
+const MAX_HISTORY_ENTRIES = 40
+const MAX_HISTORY_ENTRY_BYTES = 8 * 1024
 
 function sendJson(res: ServerResponse, status: number, data: unknown): void {
   const body = JSON.stringify(data)
@@ -68,6 +71,22 @@ function validateTurn(body: unknown): AgentTurnInput {
         recordType: String(r.recordType ?? ''), ref: String(r.ref ?? ''), id: Number(r.id ?? 0),
       })),
     }
+  }
+  if (b.history != null) {
+    if (!Array.isArray(b.history)) bad('history must be an array of { who, text }')
+    const entries = b.history as Array<Record<string, unknown>>
+    if (entries.length > MAX_HISTORY_ENTRIES) {
+      bad(`history exceeds the ${MAX_HISTORY_ENTRIES}-entry cap (send the most recent turns only)`)
+    }
+    turn.history = entries.map((h) => {
+      if (h == null || typeof h !== 'object' || (h.who !== 'you' && h.who !== 'agent') || typeof h.text !== 'string') {
+        bad("each history entry must be { who: 'you'|'agent', text: string }")
+      }
+      if (Buffer.byteLength(h.text as string, 'utf8') > MAX_HISTORY_ENTRY_BYTES) {
+        bad(`a history entry exceeds the ${MAX_HISTORY_ENTRY_BYTES}-byte cap`)
+      }
+      return { who: h.who as 'you' | 'agent', text: h.text as string }
+    })
   }
   if (b.attachment != null) {
     const a = b.attachment as Record<string, unknown>

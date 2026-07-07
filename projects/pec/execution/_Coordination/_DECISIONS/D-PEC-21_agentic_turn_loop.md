@@ -134,3 +134,25 @@ full tranche (items 1–7: bounded directive loop, conversation memory over the
 request, env-configurable proxy timeout), implementation authorized in the
 same ruling inside the fence above, branch-first, no self-merge; the live-LLM
 evidence capture at the owner's screen closes the row's verification plan.
+
+## Owner mechanism direction (2026-07-07, in-session, mid-execution)
+
+Verbatim: "The existing agent  harness should already have what's necessary
+is that what you're doing?"
+
+Recorded interpretation + execution note: the owner is right — the installed
+`@anthropic-ai/claude-agent-sdk` (0.3.202) ships the agentic loop natively.
+Item 1's mechanism is therefore implemented SDK-native rather than
+hand-rolled: the bounded acts are exposed as in-process MCP tools
+(`createSdkMcpServer`/`tool`), each handler dispatching through the SAME
+`BoundActs` surface (every guard/clamp/refusal binds per call; the tool list
+is the boundary — no accept/apply/reject/force shape exists to expose), and
+`query()` runs the read→result→next-act loop bounded by the in-handler 8-act
+budget plus `maxTurns`. The session is hermetic: `settingSources: []`, an
+`allowedTools` whitelist of exactly the pec tools, and a `canUseTool` deny of
+everything else — no filesystem/shell/network tool reaches the model. The
+`TURN_ACT_CAP` error of the presented slate is superseded by in-handler
+budget refusals (the model is told to answer from what it has); `maxTurns`
+is the outer stop. `zod` (the SDK's own dependency) is imported dynamically
+on the same SDK-only path — no manifest change, stub path unaffected. Items
+2–7, the fence, and the boundary set are unchanged.

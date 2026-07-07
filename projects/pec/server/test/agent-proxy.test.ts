@@ -154,3 +154,17 @@ test('payloads over the 6 MiB cap are refused, never forwarded', async () => {
   assert.equal(res.body.error.code, 'PAYLOAD_TOO_LARGE')
   assert.equal(sidecarSeen.length, 0, 'nothing reached the sidecar')
 })
+
+test('message timeout (D-PEC-21): default 300 000 ms, env-overridable per request, invalid values refused', async () => {
+  const { messageTimeoutFromEnv } = await import('../src/agent-proxy.ts')
+  assert.equal(messageTimeoutFromEnv({}), 300_000)
+  assert.equal(messageTimeoutFromEnv({ PEC_AGENT_MESSAGE_TIMEOUT_MS: '120000' }), 120_000)
+  for (const bad of ['0', '-5', 'soon', '1.5']) {
+    assert.throws(
+      () => messageTimeoutFromEnv({ PEC_AGENT_MESSAGE_TIMEOUT_MS: bad }),
+      (e: unknown) => (e as { status?: number; code?: string }).status === 500
+        && (e as { code?: string }).code === 'AGENT_MISCONFIGURED',
+      `must refuse: ${bad}`,
+    )
+  }
+})

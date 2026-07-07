@@ -222,3 +222,34 @@ test('engine sdk without its prerequisites fails at startup with a documented dr
     if (savedKey !== undefined) process.env.ANTHROPIC_API_KEY = savedKey
   }
 })
+
+test('history validation (D-PEC-21): shape, entry cap, and per-entry byte cap are enforced; valid history passes', async () => {
+  const post = (body: unknown) => fetch(`http://127.0.0.1:${sidecar.port}/agent/messages`, {
+    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+  })
+  const badCases: Array<[string, unknown]> = [
+    ['non-array', { pid: env.projectId, message: 'status', history: 'earlier' }],
+    ['wrong who', { pid: env.projectId, message: 'status', history: [{ who: 'model', text: 'hi' }] }],
+    ['missing text', { pid: env.projectId, message: 'status', history: [{ who: 'you' }] }],
+    ['over the entry cap', {
+      pid: env.projectId, message: 'status',
+      history: Array.from({ length: 41 }, () => ({ who: 'you', text: 'x' })),
+    }],
+    ['oversized entry', {
+      pid: env.projectId, message: 'status',
+      history: [{ who: 'you', text: 'x'.repeat(8 * 1024 + 1) }],
+    }],
+  ]
+  for (const [label, body] of badCases) {
+    const res = await post(body)
+    assert.equal(res.status, 400, `history case must be refused: ${label}`)
+    const parsed = await res.json() as { error: { code: string } }
+    assert.equal(parsed.error.code, 'BAD_REQUEST', label)
+  }
+  // valid history passes validation end to end (the stub ignores it by design — disclosed in D-PEC-21)
+  const ok = await post({
+    pid: env.projectId, message: 'status',
+    history: [{ who: 'you', text: 'earlier question' }, { who: 'agent', text: '[read.register] earlier read' }],
+  })
+  assert.equal(ok.status, 200)
+})

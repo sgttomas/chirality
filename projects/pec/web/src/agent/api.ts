@@ -19,14 +19,24 @@ export interface AgentStatus {
   ok: boolean
   engine: string
   egress: string
+  /** D-T0-21 O-B disclosure: the launch-selected access basis (D-PEC-21 type cleanup) */
+  access?: string
   configured: boolean
   agent: { name: string; email: string } | null
+}
+
+// mirrors agent-sidecar/src/engine/port.ts HistoryEntry (D-PEC-21: the
+// transcript rides the request; the sidecar stores nothing between requests)
+export interface AgentHistoryEntry {
+  who: 'you' | 'agent'
+  text: string
 }
 
 export interface AgentMessageBody {
   message: string
   context?: { route: string; records: ScreenRecord[] }
   attachment?: { name: string; text: string }
+  history?: AgentHistoryEntry[]
 }
 
 export function agentStatus(pid: number): Promise<AgentStatus> {

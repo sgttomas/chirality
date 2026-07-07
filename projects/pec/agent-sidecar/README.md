@@ -75,3 +75,17 @@ narrowed) — unless the owner selects the `broad` access basis for the launch
 (D-T0-21 O-B), in which case reads widen to the agent person's own RBAC
 visibility and any record the model reads may reach the model provider. The
 human-only acts do not move with the switch.
+
+## Turn shape (D-PEC-21)
+
+The SDK engine runs the SDK's own agentic loop: the bounded acts are exposed
+as in-process MCP tools (nothing accept/apply-shaped exists to expose), each
+handler dispatches through the same guarded acts layer, and the model reads →
+sees results → reads again (8-act budget per turn) before answering. The
+session is hermetic (`settingSources: []`, pec-tools-only whitelist +
+`canUseTool` deny) — no filesystem, shell, or other tool reaches the model.
+Conversation memory rides the REQUEST (`history: [{who, text}]`, ≤ 40 entries
+≤ 8 KiB each, sent by the panel): the sidecar stores nothing between
+requests. The stub engine keeps its deterministic single-directive routing
+and ignores `history` by design. The server proxy's message timeout defaults
+to 300 000 ms (`PEC_AGENT_MESSAGE_TIMEOUT_MS` overrides).
