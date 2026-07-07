@@ -6,7 +6,9 @@ export default defineConfig({
   server: {
     port: 4811,
     proxy: {
-      '/api': 'http://localhost:4810',
+      // changeOrigin:false preserves the browser Host so the server's RV-21
+      // same-origin guard (Origin host === Host) passes through the dev proxy
+      '/api': { target: 'http://localhost:4810', changeOrigin: false },
     },
   },
   build: {
