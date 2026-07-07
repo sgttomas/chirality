@@ -82,8 +82,11 @@ The SDK engine runs the SDK's own agentic loop: the bounded acts are exposed
 as in-process MCP tools (nothing accept/apply-shaped exists to expose), each
 handler dispatches through the same guarded acts layer, and the model reads →
 sees results → reads again (8-act budget per turn) before answering. The
-session is hermetic (`settingSources: []`, pec-tools-only whitelist +
-`canUseTool` deny) — no filesystem, shell, or other tool reaches the model.
+session is hermetic (`tools: []` disables every built-in tool — the
+load-bearing restrictor; `settingSources: []` keeps `~/.claude`
+settings/skills/MCP servers out; pec-tools-only `allowedTools` +
+`canUseTool` deny, belt-and-braces) — no filesystem, shell, or other tool
+reaches the model.
 Conversation memory rides the REQUEST (`history: [{who, text}]`, ≤ 40 entries
 ≤ 8 KiB each, sent by the panel): the sidecar stores nothing between
 requests. The stub engine keeps its deterministic single-directive routing

@@ -29,8 +29,16 @@ interface Turn {
 
 /** D-PEC-21: how many prior turns ride each message (sidecar cap is 40) */
 const MAX_HISTORY_TURNS = 20
-/** keep each flattened entry inside the sidecar's 8 KiB per-entry cap */
-const MAX_HISTORY_ENTRY_CHARS = 4000
+/** stay under the sidecar's 8192-BYTE per-entry cap with headroom — measured
+ * in UTF-8 bytes, not chars (a char-count clip overshoots on non-ASCII text) */
+const MAX_HISTORY_ENTRY_BYTES = 7500
+
+/** clip to a UTF-8 byte budget without splitting a code point */
+function clipUtf8(text: string, maxBytes: number): string {
+  const bytes = new TextEncoder().encode(text)
+  if (bytes.length <= maxBytes) return text
+  return new TextDecoder('utf-8').decode(bytes.slice(0, maxBytes)).replace(/�+$/, '')
+}
 
 /** flatten a turn to the text the model sees as conversation history */
 function flattenTurn(t: Turn): { who: 'you' | 'agent'; text: string } {
@@ -44,7 +52,7 @@ function flattenTurn(t: Turn): { who: 'you' | 'agent'; text: string } {
           case 'turn:error': return `[error ${e.code}] ${e.message}`
         }
       }).join('\n')
-  return { who: t.who, text: text.slice(0, MAX_HISTORY_ENTRY_CHARS) }
+  return { who: t.who, text: clipUtf8(text, MAX_HISTORY_ENTRY_BYTES) }
 }
 
 interface ProposalRow {

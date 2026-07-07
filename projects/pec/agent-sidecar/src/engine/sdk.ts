@@ -14,9 +14,12 @@
  * expose. query() drives read → result → next act natively, bounded by an
  * in-handler act budget plus maxTurns; the conversation history rides the
  * request (port.ts HistoryEntry — the sidecar stores nothing between
- * requests). The session is hermetic: settingSources [], an allowedTools
- * whitelist of exactly the pec tools, and a canUseTool that denies everything
- * else — the model gets no filesystem, shell, or network tool.
+ * requests). The session is hermetic: `tools: []` disables EVERY built-in
+ * tool (in this SDK `allowedTools` only auto-approves, it does not restrict —
+ * adversarial-verification finding), settingSources [] keeps user/project
+ * settings, hooks, skills, and ~/.claude MCP servers out, and canUseTool
+ * re-denies anything outside the pec whitelist — the model gets no
+ * filesystem, shell, or network tool.
  *
  * The dynamic imports are typed over `unknown` behind narrow structural
  * interfaces, so typecheck never depends on the SDK's types. zod is imported
@@ -85,6 +88,8 @@ export interface ToolCallResult {
 export interface TurnSink {
   events: AgentEvent[]
   actsUsed: number
+  /** the panel is told ONCE when the budget starts refusing (the owner sees the whole chain) */
+  budgetNoticed?: boolean
 }
 
 function assistantTextOf(message: unknown): string {
@@ -163,15 +168,12 @@ export function buildPecTools(
   ): unknown =>
     toolFn(name, description, schema, async (args) => {
       if (sink.actsUsed >= MAX_ACTS_PER_TURN) {
-        return {
-          content: [{
-            type: 'text' as const,
-            text: JSON.stringify({
-              refused: true,
-              reason: `act budget exhausted (${MAX_ACTS_PER_TURN} acts this turn) — answer now from the results you already have`,
-            }),
-          }],
+        const reason = `act budget exhausted (${MAX_ACTS_PER_TURN} acts this turn) — answer now from the results you already have`
+        if (!sink.budgetNoticed) {
+          sink.budgetNoticed = true
+          sink.events.push({ type: 'act:refused', act: name, reason })
         }
+        return { content: [{ type: 'text' as const, text: JSON.stringify({ refused: true, reason }) }] }
       }
       sink.actsUsed += 1
       const r = await exec(args)
@@ -235,15 +237,43 @@ export function buildPecTools(
   ]
 }
 
+/**
+ * The hermetic query options (exported so tests pin the shape — adversarial
+ * finding: this object IS the session's capability boundary):
+ * `tools: []` disables every built-in tool (allowedTools alone does NOT
+ * restrict in this SDK); settingSources [] keeps the user's ~/.claude out;
+ * allowedTools auto-approves exactly the pec tools; canUseTool re-denies
+ * everything else, belt-and-braces.
+ */
+export function buildQueryOptions(server: unknown): Record<string, unknown> {
+  const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
+  return {
+    systemPrompt: SYSTEM_PROMPT,
+    maxTurns: MAX_SDK_TURNS,
+    tools: [],
+    mcpServers: { pec: server },
+    settingSources: [],
+    allowedTools: allowed,
+    canUseTool: async (toolName: string, toolInput: unknown) =>
+      allowed.includes(toolName)
+        ? { behavior: 'allow', updatedInput: toolInput }
+        : { behavior: 'deny', message: `outside the pec act surface: ${toolName}` },
+  }
+}
+
 export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEnginePort> {
   let mod: unknown
-  let zmod: unknown
   try {
     mod = await import('@anthropic-ai/claude-agent-sdk' as string)
-    // zod ships as the SDK's own dependency — same availability, same seam
-    zmod = await import('zod' as string)
   } catch {
     throw new Error(SDK_ABSENT_MSG)
+  }
+  let zmod: unknown
+  try {
+    // zod ships as the SDK's own dependency — reachable only once the SDK resolved
+    zmod = await import('zod' as string)
+  } catch {
+    throw new Error("the installed @anthropic-ai/claude-agent-sdk did not bring its own 'zod' dependency — reinstall it (npm i @anthropic-ai/claude-agent-sdk -w agent-sidecar)")
   }
   if (!process.env.ANTHROPIC_API_KEY) throw new Error(KEY_ABSENT_MSG)
 
@@ -253,8 +283,6 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
     || typeof sdk.createSdkMcpServer !== 'function' || z == null) {
     throw new Error('the installed @anthropic-ai/claude-agent-sdk does not expose query/tool/createSdkMcpServer; check its version')
   }
-
-  const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
 
   return {
     subject: 'sdk',
@@ -269,19 +297,7 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
       let text = ''
       for await (const message of sdk.query!({
         prompt: promptOf(input),
-        options: {
-          systemPrompt: SYSTEM_PROMPT,
-          maxTurns: MAX_SDK_TURNS,
-          mcpServers: { pec: server },
-          // hermetic session: no user/project settings, no built-in tools —
-          // the whitelist IS the act surface, and canUseTool re-denies the rest
-          settingSources: [],
-          allowedTools: allowed,
-          canUseTool: async (toolName: string, toolInput: unknown) =>
-            allowed.includes(toolName)
-              ? { behavior: 'allow', updatedInput: toolInput }
-              : { behavior: 'deny', message: `outside the pec act surface: ${toolName}` },
-        },
+        options: buildQueryOptions(server),
       })) {
         const t = assistantTextOf(message)
         if (t) text = t

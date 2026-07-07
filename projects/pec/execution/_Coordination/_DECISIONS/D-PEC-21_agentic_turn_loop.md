@@ -148,11 +148,37 @@ hand-rolled: the bounded acts are exposed as in-process MCP tools
 `BoundActs` surface (every guard/clamp/refusal binds per call; the tool list
 is the boundary — no accept/apply/reject/force shape exists to expose), and
 `query()` runs the read→result→next-act loop bounded by the in-handler 8-act
-budget plus `maxTurns`. The session is hermetic: `settingSources: []`, an
-`allowedTools` whitelist of exactly the pec tools, and a `canUseTool` deny of
-everything else — no filesystem/shell/network tool reaches the model. The
-`TURN_ACT_CAP` error of the presented slate is superseded by in-handler
-budget refusals (the model is told to answer from what it has); `maxTurns`
-is the outer stop. `zod` (the SDK's own dependency) is imported dynamically
-on the same SDK-only path — no manifest change, stub path unaffected. Items
-2–7, the fence, and the boundary set are unchanged.
+budget plus `maxTurns`. The session is hermetic: `tools: []` disables every
+built-in tool, `settingSources: []` keeps user/project settings out, an
+`allowedTools` whitelist of exactly the pec tools and a `canUseTool` deny of
+everything else ride belt-and-braces — no filesystem/shell/network tool
+reaches the model. The `TURN_ACT_CAP` error of the presented slate is
+superseded by in-handler budget refusals (the model is told to answer from
+what it has; the panel is told once per turn); `maxTurns` is the outer stop.
+`zod` (the SDK's own dependency) is imported dynamically on the same
+SDK-only path — no manifest change, stub path unaffected. Items 2–7, the
+fence, and the boundary set are unchanged.
+
+## Adversarial verification of record (2026-07-07, fable high effort, two lenses)
+
+Initial verdicts: FACT FAIL (1 BLOCKER, 1 MAJOR), GOVERNANCE FAIL (1 MAJOR)
+— every finding fixed in revision before any receipt records this row as
+discharged:
+
+- **BLOCKER (hermeticity, fixed):** the first cut relied on `allowedTools`
+  to restrict the tool set; in this SDK `allowedTools` only auto-approves —
+  the restrictor is `tools: []` (SDK 0.3.202 type docs). Fixed: `tools: []`
+  set; the whole options object factored to `buildQueryOptions` and its
+  shape test-pinned (tools/settingSources/allowedTools/canUseTool
+  allow-and-deny behavior).
+- **MAJOR (panel truncation, fixed):** history entries were clipped by
+  UTF-16 char count against the sidecar's UTF-8 byte cap — non-ASCII threads
+  could wedge on 400s. Fixed: byte-measured clip (`clipUtf8`, 7500-byte
+  budget under the 8192 cap, no split code points).
+- **MAJOR (governance — mechanism authority):** the SDK-native substitution
+  rests on an owner *question* interpreted as direction; explicit owner
+  confirmation is required for the record. Presented to the owner in-session;
+  outcome recorded in the loop receipt.
+- MINORs fixed: over-budget refusals now surface to the panel once per turn
+  (the owner sees the whole chain); a zod-resolution failure now reports
+  itself instead of masquerading as SDK-absent.

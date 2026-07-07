@@ -124,7 +124,12 @@ test(`act budget: call ${MAX_ACTS_PER_TURN + 1} refuses the last WITHOUT executi
   assert.equal(fed.refused, true)
   assert.match(String(fed.reason), /act budget exhausted/)
   assert.equal(executed, MAX_ACTS_PER_TURN, 'the over-budget act must never reach BoundActs')
-  assert.equal(sink.events.length, MAX_ACTS_PER_TURN, 'no event for the refused-over-budget call')
+  // the panel is told exactly once, however many times the model keeps trying
+  await overview.handler({}, {})
+  const refusals = sink.events.filter((e) => e.type === 'act:refused')
+  assert.equal(refusals.length, 1, 'one budget notice for the owner, no spam')
+  assert.match((refusals[0] as { reason: string }).reason, /act budget exhausted/)
+  assert.equal(sink.events.length, MAX_ACTS_PER_TURN + 1)
 })
 
 test('feedback payload cap: oversized payloads are truncated with a disclosure; the panel event keeps the full payload', async () => {
@@ -185,4 +190,23 @@ test('conversation memory: request-borne history rides the prompt JSON', () => {
 test('feedbackOf: refusals carry no payload; results without payload stay bare', () => {
   assert.deepEqual(feedbackOf({ kind: 'refused', act: 'a', reason: 'r' }), { act: 'a', refused: true, reason: 'r' })
   assert.deepEqual(feedbackOf({ kind: 'result', act: 'a', ok: true, summary: 's' }), { act: 'a', ok: true, summary: 's' })
+})
+
+test('hermetic session options (adversarial finding): tools [] disables built-ins; whitelist + canUseTool deny pin the rest', async () => {
+  const { buildQueryOptions } = await import('../src/engine/sdk.ts')
+  const opts = buildQueryOptions({ marker: 'server' })
+  // tools: [] is the load-bearing restrictor — allowedTools alone does NOT
+  // restrict the tool set in this SDK (it only auto-approves)
+  assert.deepEqual(opts.tools, [])
+  assert.deepEqual(opts.settingSources, [], 'no user/project settings, hooks, skills, or ~/.claude MCP servers')
+  assert.deepEqual(opts.allowedTools, PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`))
+  assert.deepEqual(opts.mcpServers, { pec: { marker: 'server' } })
+  assert.equal(opts.maxTurns, MAX_ACTS_PER_TURN + 4)
+  const canUseTool = opts.canUseTool as (name: string, input: unknown) => Promise<{ behavior: string; message?: string }>
+  assert.equal((await canUseTool('mcp__pec__read_register', { register: 'plan' })).behavior, 'allow')
+  for (const outside of ['Bash', 'Read', 'WebFetch', 'Glob', 'mcp__other__tool']) {
+    const denied = await canUseTool(outside, {})
+    assert.equal(denied.behavior, 'deny', `must deny ${outside}`)
+    assert.match(denied.message ?? '', /outside the pec act surface/)
+  }
 })
