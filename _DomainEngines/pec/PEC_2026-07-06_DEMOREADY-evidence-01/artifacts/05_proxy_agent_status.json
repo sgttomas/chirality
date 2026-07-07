@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "body": {
+    "ok": true,
+    "engine": "stub",
+    "egress": "none",
+    "configured": true,
+    "agent": {
+      "name": "PEC Bridge Agent",
+      "email": "pec-demo-agent@rehearsal.demo"
+    }
+  }
+}

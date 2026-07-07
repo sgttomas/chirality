@@ -1,0 +1,34 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "import.propose",
+        "ok": true,
+        "summary": "IPR-0002 proposed (mdl) — ready_for_review; 1 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake. Accept/apply are human acts in Admin: /p/2/admin",
+        "payload": {
+          "id": 2,
+          "ref": "IPR-0002",
+          "contract": "mdl",
+          "state": "ready_for_review",
+          "version": 2,
+          "sourceName": null,
+          "report": {
+            "contract": "mdl",
+            "accepted": 1,
+            "updated": 0,
+            "conflicts": [],
+            "rejected": [],
+            "intakeCreated": 0
+          },
+          "adminLink": "/p/2/admin"
+        }
+      },
+      {
+        "type": "agent:reply",
+        "text": "Proposal filed from your file.\nHuman accept/apply: /p/2/admin\n— PEC Bridge Agent"
+      }
+    ]
+  }
+}
