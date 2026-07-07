@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "agent:reply",
+        "text": "I can, in this project:\n- file a CSV as an import proposal (drop/paste a CSV; name the contract or let me detect it: mdl, rail, decisions, risks, schedule)\n- refresh IPR-<n> (recompute a proposal's dry-run)\n- withdraw IPR-<n> because <reason> (my own proposals only)\n- triage INTK-<n> as parked|duplicate|rejected: <grounds> (also: open triage INTK-<n>)\n- status / proposals — my open proposals with lifecycle states\n- queue / intake — the intake queue summary\n- describe what you are looking at (when the panel sends screen context)\nAccept, apply, and reject-of-others happen in Admin, by you — never by me."
+      }
+    ]
+  }
+}

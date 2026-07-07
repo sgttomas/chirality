@@ -1,0 +1,51 @@
+{
+  "status": 200,
+  "body": {
+    "events": [
+      {
+        "type": "act:result",
+        "act": "import.status",
+        "ok": true,
+        "summary": "2 agent proposal(s):\nIPR-0002 [ready_for_review] mdl — 1 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake\nIPR-0001 [ready_for_review] mdl — 2 would create, 0 would update, 0 conflicts, 0 rejected, 0 to intake\nAdmin: /p/2/admin",
+        "payload": {
+          "proposals": [
+            {
+              "id": 2,
+              "ref": "IPR-0002",
+              "contract": "mdl",
+              "state": "ready_for_review",
+              "version": 2,
+              "sourceName": null,
+              "report": {
+                "contract": "mdl",
+                "accepted": 1,
+                "updated": 0,
+                "conflicts": [],
+                "rejected": [],
+                "intakeCreated": 0
+              },
+              "adminLink": "/p/2/admin"
+            },
+            {
+              "id": 1,
+              "ref": "IPR-0001",
+              "contract": "mdl",
+              "state": "ready_for_review",
+              "version": 4,
+              "sourceName": "demoready-harness-mdl.csv",
+              "report": {
+                "contract": "mdl",
+                "accepted": 2,
+                "updated": 0,
+                "conflicts": [],
+                "rejected": [],
+                "intakeCreated": 0
+              },
+              "adminLink": "/p/2/admin"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

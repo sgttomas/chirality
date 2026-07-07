@@ -1,0 +1,69 @@
+{
+  "status": 200,
+  "body": [
+    {
+      "id": 2,
+      "projectId": 2,
+      "ref": "IPR-0002",
+      "contract": "mdl",
+      "sourceName": null,
+      "sourceSha256": "4fdcbf9ffca784338625c3633a974fb2103b22aaf7ae7d6fe5b6c2a895ba026c",
+      "sourceBytes": 313,
+      "state": "ready_for_review",
+      "basisHistoryId": 0,
+      "dryRunReport": {
+        "contract": "mdl",
+        "accepted": 1,
+        "updated": 0,
+        "conflicts": [],
+        "rejected": [],
+        "intakeCreated": 0
+      },
+      "dryRunAt": "2026-07-07T02:12:55.229Z",
+      "acceptedBy": null,
+      "acceptedAt": null,
+      "acceptedSha256": null,
+      "rejectedBy": null,
+      "rejectedAt": null,
+      "rejectReason": null,
+      "appliedBy": null,
+      "appliedAt": null,
+      "applyReport": null,
+      "createdBy": 16,
+      "createdAt": "2026-07-07T02:12:55.228Z",
+      "version": 2
+    },
+    {
+      "id": 1,
+      "projectId": 2,
+      "ref": "IPR-0001",
+      "contract": "mdl",
+      "sourceName": "demoready-harness-mdl.csv",
+      "sourceSha256": "83340b51ec0a0c401f6c9575e0e2b2c9e331a25cbda7d0cebcfb87bc079da02d",
+      "sourceBytes": 505,
+      "state": "ready_for_review",
+      "basisHistoryId": 0,
+      "dryRunReport": {
+        "contract": "mdl",
+        "accepted": 2,
+        "updated": 0,
+        "conflicts": [],
+        "rejected": [],
+        "intakeCreated": 0
+      },
+      "dryRunAt": "2026-07-07T02:12:55.162Z",
+      "acceptedBy": null,
+      "acceptedAt": null,
+      "acceptedSha256": null,
+      "rejectedBy": null,
+      "rejectedAt": null,
+      "rejectReason": null,
+      "appliedBy": null,
+      "appliedAt": null,
+      "applyReport": null,
+      "createdBy": 16,
+      "createdAt": "2026-07-07T02:12:55.060Z",
+      "version": 4
+    }
+  ]
+}
