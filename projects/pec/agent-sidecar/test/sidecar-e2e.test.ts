@@ -19,7 +19,7 @@ import { nowIso } from '../../server/src/repo.ts'
 import { startSidecar } from '../src/index.ts'
 import type { RunningSidecar } from '../src/index.ts'
 import type { AgentEvent } from '../src/engine/port.ts'
-import { SDK_ABSENT_MSG } from '../src/engine/sdk.ts'
+import { KEY_ABSENT_MSG, SDK_ABSENT_MSG } from '../src/engine/sdk.ts'
 
 const AGENT_EMAIL = 'pec-agent@rehearsal.demo'
 const AGENT_PASSWORD = 'agent-pilot'
@@ -207,9 +207,18 @@ test('unconfigured sidecar starts, reports unconfigured, and refuses messages wi
   }
 })
 
-test('engine sdk without the package fails at startup with the documented drop-in message', async () => {
-  await assert.rejects(
-    startSidecar({ engine: 'sdk', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
-    (e: unknown) => e instanceof Error && e.message === SDK_ABSENT_MSG,
-  )
+test('engine sdk without its prerequisites fails at startup with a documented drop-in message', async () => {
+  // deterministic regardless of the shell: the key is stripped for this test,
+  // so the refusal is the key-absent message once the package is installed,
+  // or the package-absent message where it is not — never a started sidecar
+  const savedKey = process.env.ANTHROPIC_API_KEY
+  delete process.env.ANTHROPIC_API_KEY
+  try {
+    await assert.rejects(
+      startSidecar({ engine: 'sdk', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
+      (e: unknown) => e instanceof Error && (e.message === SDK_ABSENT_MSG || e.message === KEY_ABSENT_MSG),
+    )
+  } finally {
+    if (savedKey !== undefined) process.env.ANTHROPIC_API_KEY = savedKey
+  }
 })
