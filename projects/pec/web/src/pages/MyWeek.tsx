@@ -117,7 +117,7 @@ export function MyWeekPage(): JSX.Element {
   // PEC-MW-003: chase-able — shows who to chase; explicitly not counted as commitments
   const waitingCols: Array<Col<any>> = [
     { key: 'kind', label: 'Kind', render: (r) => <span className={`badge ${r.kind === 'hold' ? 'hold' : 'plain'}`}>{r.kind}</span> },
-    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.kind} id={r.id} ref={r.ref} /> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.kind} id={r.id} recordRef={r.ref} /> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'owner', label: 'Owner (chase)', render: (r) => person(r.ownerId) },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
@@ -137,7 +137,7 @@ export function MyWeekPage(): JSX.Element {
         </span>
       )),
     },
-    { key: 'rec', label: 'Record', render: (r) => nb(r, <RecordRef recordType={r.recordType} id={r.recordId} ref={r.recordRef} />) },
+    { key: 'rec', label: 'Record', render: (r) => nb(r, <RecordRef recordType={r.recordType} id={r.recordId} recordRef={r.recordRef} />) },
     { key: 'why', label: 'Why', render: (r) => nb(r, <span className="small">{r.reason}</span>) },
     { key: 'next', label: 'Next action', render: (r) => nb(r, <span className="small">{r.nextAction}</span>) },
     { key: 'due', label: 'Due', render: (r) => nb(r, <span className="nowrap">{fmtDate(r.due)}</span>) },

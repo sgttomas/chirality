@@ -90,7 +90,7 @@ export function PlanPage(): JSX.Element {
       {data.horizons[h].map((it: PlanItemRow) => (
         <div key={it.id} className="cond" style={{ marginBottom: '.4rem' }}>
           <div>
-            <RecordRef recordType={it.itemType} id={it.itemId} ref={it.itemRef} /> <b>{it.title}</b>{' '}
+            <RecordRef recordType={it.itemType} id={it.itemId} recordRef={it.itemRef} /> <b>{it.title}</b>{' '}
             {!it.open && <span className="badge plain">done</span>}
           </div>
           <div className="small muted">

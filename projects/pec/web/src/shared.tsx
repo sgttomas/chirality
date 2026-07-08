@@ -60,10 +60,10 @@ export function refRoute(pid: number | string, recordType: string, id: number, r
   }
 }
 
-export function RecordRef({ recordType, id, ref: recordRef, label, onNavigate, stopPropagation = true }: {
+export function RecordRef({ recordType, id, recordRef, label, onNavigate, stopPropagation = true }: {
   recordType: string
   id: number | null | undefined
-  ref: string
+  recordRef: string
   label?: ReactNode
   onNavigate?: () => void
   stopPropagation?: boolean
@@ -160,7 +160,7 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
               {state.explain.contributing.map((c, i) => {
                 return (
                   <tr key={i}>
-                    <td className="nowrap"><RecordRef recordType={c.recordType} id={c.id} ref={c.ref} onNavigate={close} /></td>
+                    <td className="nowrap"><RecordRef recordType={c.recordType} id={c.id} recordRef={c.ref} onNavigate={close} /></td>
                     <td className="small muted">{c.recordType.replaceAll('_', ' ')}</td>
                     <td className="small">{c.why}</td>
                   </tr>

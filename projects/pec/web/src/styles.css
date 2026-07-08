@@ -102,6 +102,24 @@ h3 { font-size: .9rem; margin: .75rem 0 .35rem; }
 .main { flex: 1; overflow: auto; padding: 1.1rem 1.4rem 3rem; }
 .topbar { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
 .topbar .spacer { flex: 1; }
+.topbar .btn { white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .app { display: block; height: auto; min-height: 100%; }
+  .sidebar { width: 100%; padding: .65rem 0 .4rem; }
+  .sidebar .brand { padding-bottom: .45rem; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; gap: .2rem .35rem; padding: 0 .65rem; }
+  .nav-group { flex: 1 1 180px; }
+  .nav-group-controls { border-top: none; padding-top: 0; margin-top: 0; }
+  .nav-label { padding: .15rem 0 .1rem; }
+  .sidebar nav a { border-left: 0; border-radius: var(--radius); padding: .38rem .55rem; }
+  .sidebar nav a.active { border-left-color: transparent; }
+  .sidebar .grow { display: none; }
+  .sidebar .userbox { border-top: 1px solid var(--palette-blue-800); margin-top: .45rem; }
+  .main { padding: 1rem .9rem 2.5rem; }
+  .topbar { flex-wrap: wrap; justify-content: flex-end; }
+  .topbar .spacer { display: none; }
+}
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem 1rem; }
 .cards { display: flex; gap: .7rem; flex-wrap: wrap; }

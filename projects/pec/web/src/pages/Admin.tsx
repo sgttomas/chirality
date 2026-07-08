@@ -602,7 +602,7 @@ function ActivitySection(): JSX.Element {
               <td><span className="state">{e.source}</span></td>
               <td className="small">{person(Number(e.actorId))}</td>
               <td className="small">{e.action}</td>
-              <td><RecordRef recordType={String(e.recordType)} id={Number(e.recordId)} ref={`${e.recordType}#${e.recordId}`} /></td>
+              <td><RecordRef recordType={String(e.recordType)} id={Number(e.recordId)} recordRef={`${e.recordType}#${e.recordId}`} /></td>
             </tr>
           ))}
           {data.events.length === 0 && <tr><td colSpan={5} className="muted small">no activity yet</td></tr>}

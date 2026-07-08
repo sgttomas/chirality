@@ -91,7 +91,7 @@ function OpenItemsTab(): JSX.Element {
   const hl = useHighlightRef()
 
   const cols: Array<Col<LogRow>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} /> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} recordRef={r.ref} /> },
     { key: 'type', label: 'Type', render: (r) => <span className={`itype itype-${r.recordType.replace('_item', '').replace('work_', 'action')}`}>{r.recordType.replaceAll('_', ' ')}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'log', label: 'Log', render: (r) => <span className="small muted">{r.log}</span> },

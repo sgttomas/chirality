@@ -92,7 +92,7 @@ export function PackageDetailPage(): JSX.Element {
   // The issues cockpit (PEC-PKG-002/006/007): every open issue, urgency-first.
   const issueCols: Array<Col<any>> = [
     { key: 'type', label: 'Type', render: (r) => <span className={`itype itype-${r.type}`}>{ISSUE_LABEL[r.type] ?? r.type}</span>, csv: (r) => r.type },
-    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} />, csv: (r) => r.ref },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} recordRef={r.ref} />, csv: (r) => r.ref },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'detail', label: 'Detail', render: (r) => <span className="small muted">{r.detail}</span>, csv: (r) => r.detail },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{r.ownerId != null ? person(r.ownerId) : '—'}</span>, csv: (r) => r.ownerId != null ? person(r.ownerId) : '' },
@@ -104,7 +104,7 @@ export function PackageDetailPage(): JSX.Element {
   // "Needs the lead this week" (PEC-PKG-005)
   const needsCols: Array<Col<any>> = [
     { key: 'kind', label: 'What', render: (r) => NEED_KIND_LABEL[r.kind] ?? r.kind, csv: (r) => NEED_KIND_LABEL[r.kind] ?? r.kind },
-    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} />, csv: (r) => r.ref },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} recordRef={r.ref} />, csv: (r) => r.ref },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'due', label: 'Due', render: (r) => <span className="nowrap">{fmtDate(r.due)}</span>, csv: (r) => r.due },
   ]
