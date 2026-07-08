@@ -1,6 +1,6 @@
 # D-PEC-14 - PROPOSAL: Risk Log + Schedule proposal-path live evidence (D-PEC-10 obligations WF-3/WF-4)
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** PROPOSAL / RULED — indefinitely postponed (owner, 2026-07-07; verbatim in Human ruling).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-14
 **Prepared by:** PEC work loop agent. The ruling act is the owner's (K-AUTH-1; D-GOV-04).
@@ -279,7 +279,18 @@ own tranche row if the owner wants regression pinning.** Reasoning:
 
 ## Human ruling
 
-*(Awaiting the owner's ruling. Record it verbatim here; flip the register row;
-execute per the ruled option's mechanism above. An O-A ruling should state:
-the rider variance for this run, and synthetic-only vs the real-schedule-CSV
-opt-in.)*
+**RULED: indefinitely postponed** (owner in-session 2026-07-07, Ryan Tufts,
+verbatim — the direction addressed D-PEC-14/15/19 together, after receiving
+plain-language explanations of all three packets in the same exchange):
+
+> I don't quite understand what's being proposed by D-PEC-14 and D-PEC-15 or
+> even D-PEC-19 for that matter.  What I would say is that future refinement
+> of the interface and importing should be indefinitely postponed.  My
+> intention now is to simplify workflows and reinforce only reporting on what
+> is factual and has a clear basis.
+
+Effect on this row: none of O-A/O-B/O-C/O-D is selected; the WF-3/WF-4
+discharge question is postponed indefinitely as import refinement. The
+D-PEC-10 obligations remain undischarged and this row remains their register
+home; the slate returns only if the owner reopens it. No evidence run, no
+tranche, no successor row.

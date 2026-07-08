@@ -1,6 +1,6 @@
 # D-PEC-19 - PROPOSAL: tracker in-app edit path and import conflict guard
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** PROPOSAL / RULED — indefinitely postponed (owner, 2026-07-07; verbatim in Human ruling).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-19
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act
@@ -140,4 +140,17 @@ underlying `package_tracker` table and D-PEC-13 import contract remain intact.
 
 ## Human ruling
 
-AWAITING_RULING.
+**RULED: indefinitely postponed** (owner in-session 2026-07-07, Ryan Tufts,
+verbatim — the direction addressed D-PEC-14/15/19 together, after receiving
+plain-language explanations of all three packets in the same exchange):
+
+> I don't quite understand what's being proposed by D-PEC-14 and D-PEC-15 or
+> even D-PEC-19 for that matter.  What I would say is that future refinement
+> of the interface and importing should be indefinitely postponed.  My
+> intention now is to simplify workflows and reinforce only reporting on what
+> is factual and has a clear basis.
+
+Effect on this row: the postponement's practical shape matches O-C (defer) —
+the owner did not name an option, so nothing beyond deferral is read into it.
+The tracker remains import-owned/read-only; no edit path, no conflict guard,
+no source change. The slate returns only if the owner reopens it.
