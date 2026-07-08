@@ -27,7 +27,7 @@ export function PlanPage(): JSX.Element {
   const { pid, toast, refresh } = useApp()
   const person = usePerson()
   const { data, error } = useLoad<any>(() => api.get(p(pid, 'plan')), [pid])
-  const [drawer, setDrawer] = useState<null | { kind: 'add' } | { kind: 'shift'; item: PlanItemRow } | { kind: 'capacity' }>(null)
+  const [drawer, setDrawer] = useState<null | { kind: 'add' } | { kind: 'shift'; item: PlanItemRow } | { kind: 'capacity' } | { kind: 'capacityRisk'; cell: any }>(null)
   const [busy, setBusy] = useState(false)
   const [actionError, setActionError] = useState<PecApiError | null>(null)
 
@@ -58,14 +58,24 @@ export function PlanPage(): JSX.Element {
   const raiseCapacityRisk = async (cell: any): Promise<void> => {
     setActionError(null)
     try {
+      const title = capacityRiskTitle(cell)
+      const cause = capacityRiskCause(cell)
+      const risks = await api.get<any[]>(p(pid, 'risks'))
+      const duplicate = risks.find((r) =>
+        r.state === 'open' && r.title === title && r.cause === cause)
+      if (duplicate) {
+        toast(`${duplicate.ref} already tracks this capacity overload`)
+        return
+      }
       const r = await api.post<any>(p(pid, 'risks'), {
-        title: `Capacity overload — ${cell.discipline} ${cell.week}`,
-        cause: `committed load ${cell.loadH} h vs capacity ${cell.capacityH} h (${cell.pct}%)`,
+        title,
+        cause,
         consequence: 'committed work will not complete in the week; schedule pressure',
-        state: 'open', probability: 4, impact: 3,
+        state: 'open',
         mitigation: 'rebalance the plan or add capacity',
       })
       toast(`${r.ref} raised from the overload (PEC-PLAN-004)`)
+      setDrawer(null)
       refresh()
     } catch (e) { setActionError(e as PecApiError) }
   }
@@ -170,7 +180,7 @@ export function PlanPage(): JSX.Element {
                 <td>
                   {c.level !== 'none' && (
                     <button className="btn small secondary" title="overcapacity may create or link a Risk (PEC-PLAN-004)"
-                      onClick={() => void raiseCapacityRisk(c)}>raise risk</button>
+                      onClick={() => setDrawer({ kind: 'capacityRisk', cell: c })}>raise risk</button>
                   )}
                 </td>
               </tr>
@@ -229,7 +239,52 @@ export function PlanPage(): JSX.Element {
       {drawer?.kind === 'capacity' && (
         <CapacityDrawer currentWeek={data.currentWeek} onClose={() => setDrawer(null)} />
       )}
+      {drawer?.kind === 'capacityRisk' && (
+        <CapacityRiskDrawer
+          cell={drawer.cell}
+          onClose={() => setDrawer(null)}
+          onConfirm={() => void raiseCapacityRisk(drawer.cell)}
+        />
+      )}
     </div>
+  )
+}
+
+function capacityRiskTitle(cell: any): string {
+  return `Capacity overload - ${cell.discipline} ${cell.week}`
+}
+
+function capacityRiskCause(cell: any): string {
+  return `committed load ${cell.loadH} h vs capacity ${cell.capacityH ?? 0} h (${cell.pct ?? 'over'}%)`
+}
+
+function CapacityRiskDrawer({ cell, onClose, onConfirm }: {
+  cell: any
+  onClose(): void
+  onConfirm(): void
+}): JSX.Element {
+  return (
+    <Drawer title="Confirm capacity risk" onClose={onClose}>
+      <p className="section-note">
+        This action may create a risk from the factual capacity basis below. Probability and
+        impact are not assigned unless entered by a human in a later workflow.
+      </p>
+      <table className="reg">
+        <tbody>
+          <tr><th>Week</th><td>{cell.week}</td></tr>
+          <tr><th>Discipline</th><td>{cell.discipline}</td></tr>
+          <tr><th>Load hours</th><td>{cell.loadH}</td></tr>
+          <tr><th>Capacity hours</th><td>{cell.capacityH ?? 0}</td></tr>
+          <tr><th>Percent</th><td>{cell.pct ?? 'over zero-capacity baseline'}</td></tr>
+          <tr><th>Generated title</th><td>{capacityRiskTitle(cell)}</td></tr>
+          <tr><th>Generated cause</th><td>{capacityRiskCause(cell)}</td></tr>
+        </tbody>
+      </table>
+      <div className="row" style={{ marginTop: '.8rem' }}>
+        <button className="btn" onClick={onConfirm}>Create risk if no duplicate exists</button>
+        <button className="btn secondary" onClick={onClose}>Cancel</button>
+      </div>
+    </Drawer>
   )
 }
 
