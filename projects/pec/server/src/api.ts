@@ -138,6 +138,7 @@ export function buildRouter(db: Db): Router {
     anchored: c.query.get('anchored') != null ? c.query.get('anchored') === 'true' : undefined,
     area: c.query.get('area') ?? undefined,
   })))
+  r.get('/api/projects/:pid/log-summary', authed((c) => views.logSummaryView(c.sx)))
   r.get('/api/projects/:pid/my-week', authed((c) => views.myWeekView(c.sx)))
 
   // ---------- Plan module (P2 — PRD §12.4) ----------

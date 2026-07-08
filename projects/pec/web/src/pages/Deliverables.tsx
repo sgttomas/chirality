@@ -12,8 +12,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RecordRef, RegisterTable, StateTag, WorkflowStages,
-  fmtDate, useApp, useLoad, usePerson,
+  Breadcrumb, ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RecordRef, RegisterTable, StateTag,
+  WorkflowStages, fmtDate, useApp, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -59,7 +59,11 @@ export function DeliverablesPage(): JSX.Element {
   const cols: Array<Col<any>> = [
     { key: 'docNo', label: 'Doc no', render: (r) => <Link className="mono" to={`/p/${pid}/deliverables/${r.id}`}>{r.docNo}</Link>, csv: (r) => r.docNo },
     { key: 'title', label: 'Title', render: (r) => r.title },
-    { key: 'pkg', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span> },
+    {
+      key: 'pkg', label: 'Package', render: (r) => r.packageId
+        ? <Link className="mono" to={`/p/${pid}/packages/${r.packageId}`} onClick={(e) => e.stopPropagation()}>{pkgCode(r.packageId)}</Link>
+        : <span className="muted">—</span>,
+    },
     { key: 'area', label: 'Area', render: (r) => r.area ?? '—' },
     { key: 'disc', label: 'Discipline', render: (r) => r.discipline ?? '—' },
     { key: 'type', label: 'Type', render: (r) => r.deliverableType ?? '—' },
@@ -173,6 +177,11 @@ export function DeliverableDetailPage(): JSX.Element {
 
   return (
     <div>
+      <Breadcrumb items={[
+        { label: 'Deliverables', to: `/p/${pid}/deliverables` },
+        ...(pkg ? [{ label: pkg.code, to: `/p/${pid}/packages/${pkg.id}` }] : []),
+        { label: d.docNo },
+      ]} />
       {/* 1 — header + metadata (PEC-DEL-002) */}
       <h1>
         <span className="mono">{d.docNo}</span> — {d.title}
@@ -289,6 +298,15 @@ export function DeliverableDetailPage(): JSX.Element {
             { key: 'title', label: 'Title', render: (r: any) => r.title },
             { key: 'state', label: 'State', render: (r: any) => <StateTag s={r.state} /> },
           ]} rows={oi.decisionDependencies} />
+
+          <h2>Risks</h2>
+          <RegisterTable cols={[
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="risk" id={r.id} ref={r.ref} /> },
+            { key: 'title', label: 'Title', render: (r: any) => r.title },
+            { key: 'owner', label: 'Owner', render: (r: any) => <span className="small">{person(r.ownerId)}</span> },
+            { key: 'needBy', label: 'Need by', render: (r: any) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
+            { key: 'state', label: 'State', render: (r: any) => <StateTag s={r.state} /> },
+          ]} rows={oi.risks} />
         </>
       )}
 

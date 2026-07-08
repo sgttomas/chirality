@@ -8,11 +8,12 @@
  */
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  ErrorBox, HealthBadge, RecordRef, RegisterTable, StateTag, WorkflowStages, fmtDate, useApp,
-  useLoad, usePerson,
+  Breadcrumb, ErrorBox, HealthBadge, RecordRef, RegisterTable, StateTag, WorkflowStages, fmtDate,
+  useApp, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -37,6 +38,16 @@ export function PackagesPage(): JSX.Element {
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? <span className="muted">—</span>, csv: (r) => r.milestone },
     { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value) },
     { key: 'issues', label: 'Open issues', render: (r) => r.openIssues > 0 ? <span className="badge amber">{r.openIssues}</span> : <span className="muted">0</span>, csv: (r) => r.openIssues },
+    {
+      key: 'mix', label: 'Issue mix', render: (r) => (
+        <span className="small">
+          {Object.entries(r.issueMix?.counts ?? {}).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
+            <span key={k} className={`itype itype-${k}`} style={{ marginRight: '.2rem' }}>{k} {String(n)}</span>
+          ))}
+          {r.issueMix?.worst && <span className="muted"> worst {r.issueMix.worst.ref}</span>}
+        </span>
+      ),
+    },
     { key: 'onplan', label: 'On plan', render: (r) => <span className="mono">{r.onPlan}/{r.total}</span>, csv: (r) => `${r.onPlan}/${r.total}` },
   ]
 
@@ -67,6 +78,7 @@ export function PackageDetailPage(): JSX.Element {
   const { id } = useParams()
   const person = usePerson()
   const nav = useNavigate()
+  const [issueFilter, setIssueFilter] = useState('')
   const { data, error } = useLoad<any>(() => api.get(p(pid, 'packages/' + id)), [pid, id])
 
   if (error) return <ErrorBox error={{ message: error }} />
@@ -75,6 +87,7 @@ export function PackageDetailPage(): JSX.Element {
   const pkg = data.package
   const s = data.summary
   const holdsByCause = Object.entries(s.holdsByCause as Record<string, number>)
+  const issues = issueFilter ? data.issues.filter((r: any) => r.type === issueFilter) : data.issues
 
   // The issues cockpit (PEC-PKG-002/006/007): every open issue, urgency-first.
   const issueCols: Array<Col<any>> = [
@@ -108,6 +121,10 @@ export function PackageDetailPage(): JSX.Element {
 
   return (
     <div>
+      <Breadcrumb items={[
+        { label: 'Packages', to: `/p/${pid}/packages` },
+        { label: pkg.code },
+      ]} />
       <h1>
         <span className="mono">{pkg.code}</span> {pkg.name}{' '}
         <span className="muted small">lead {person(pkg.leadId)}</span>{' '}
@@ -125,6 +142,14 @@ export function PackageDetailPage(): JSX.Element {
           <span>open issues{s.overdueIssues > 0 && <> · <span className="badge red">{s.overdueIssues} overdue</span></>}</span>
           <div className="small muted" style={{ marginTop: '.25rem' }}>
             {s.openHolds} holds · {s.openInterfaces} interfaces · {s.openDecisions} decisions · {s.openRisks} risks · {s.openActionItems} actions
+          </div>
+          <div style={{ marginTop: '.35rem' }}>
+            {Object.entries(s.issueMix.counts).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
+              <button key={k} className={`itype itype-${k}`} style={{ marginRight: '.25rem', border: 'none', cursor: 'pointer' }}
+                onClick={() => setIssueFilter(issueFilter === k ? '' : k)}>
+                {k} {String(n)}
+              </button>
+            ))}
           </div>
         </div>
         <div className="card kpi" style={{ cursor: 'default' }}>
@@ -163,9 +188,10 @@ export function PackageDetailPage(): JSX.Element {
 
       {/* The cockpit: every open issue, urgency-first */}
       <h2>Open issues</h2>
-      {data.issues.length === 0
+      {issueFilter && <p className="section-note">Filtered to {issueFilter}. <button className="btn secondary small" onClick={() => setIssueFilter('')}>clear</button></p>}
+      {issues.length === 0
         ? <p className="muted small">No open issues in this package.</p>
-        : <RegisterTable cols={issueCols} rows={data.issues} exportName={`${pkg.code}-issues.csv`} />}
+        : <RegisterTable cols={issueCols} rows={issues} exportName={`${pkg.code}-issues.csv`} />}
 
       {/* PEC-PKG-005: the lead's personal action queue */}
       <h2>Needs the lead this week</h2>

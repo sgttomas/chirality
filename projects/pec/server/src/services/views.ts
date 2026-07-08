@@ -166,6 +166,87 @@ function isInPackage(snap: ProjectSnapshot, targetType: string, targetId: number
   }
 }
 
+type IssueKind = 'hold' | 'interface' | 'decision' | 'risk' | 'action'
+
+interface PackageIssue {
+  type: IssueKind
+  recordType: string
+  ref: string
+  id: number
+  title: string
+  ownerId: number | null
+  needBy: string | null
+  state: string
+  overdue: boolean
+  ageWd: number | null
+  overdueWd: number | null
+  detail: string
+}
+
+function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageIssue[] {
+  const cal = snap.project.calendar
+  const today = snap.today
+  const overdue = (needBy: string | null): boolean => needBy != null && daysOverdue(needBy, today) > 0
+  const overdueWd = (needBy: string | null): number | null => needBy ? workingDaysOverdue(needBy, today, cal) : null
+  const pkgDelIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
+  const pkgRevIds = new Set(snap.revisions.filter((r) => pkgDelIds.has(r.deliverableId)).map((r) => r.id))
+  const workItemInPkg = (w: WorkItem): boolean =>
+    w.packageId === pkg.id
+    || (w.anchorType === 'deliverable' && pkgDelIds.has(w.anchorId))
+    || (w.anchorType === 'revision' && pkgRevIds.has(w.anchorId))
+  const pkgHolds = snap.holds.filter((h) => h.state === 'active'
+    && snap.holdLinks.some((l) => l.holdId === h.id && isInPackage(snap, l.targetType, l.targetId, pkg.id)))
+  const visHolds = visibleByLog(sx, snap, pkgHolds)
+  const openInterfaces = visibleByLog(sx, snap, snap.interfaces.filter((i) =>
+    (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id) && (i.state === 'open' || i.state === 'agreed')))
+  const openDecisions = visibleByLog(sx, snap, snap.decisions.filter((d) =>
+    d.packageId === pkg.id && d.state !== 'decided' && d.state !== 'superseded'))
+  const pkgRisks = (snap.risks as Risk[]).filter((r) =>
+    (r.packageId === pkg.id || (r.deliverableId != null && pkgDelIds.has(r.deliverableId))) && r.state !== 'closed')
+  const actionItems = visibleByLog(sx, snap, snap.workItems.filter((w) =>
+    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && workItemInPkg(w)))
+  return [
+    ...visHolds.map((h) => ({
+      type: 'hold' as const, recordType: 'hold', ref: h.ref, id: h.id, title: h.title,
+      ownerId: h.ownerId, needBy: h.needBy, state: h.state, overdue: overdue(h.needBy),
+      ageWd: ageWorkingDays(h.raisedAt, today, cal), overdueWd: overdueWd(h.needBy),
+      detail: h.cause.replaceAll('_', ' '),
+    })),
+    ...openInterfaces.map((i) => ({
+      type: 'interface' as const, recordType: 'interface_item', ref: i.ref, id: i.id, title: i.title,
+      ownerId: null, needBy: i.needBy, state: i.state, overdue: overdue(i.needBy),
+      ageWd: null, overdueWd: overdueWd(i.needBy), detail: `${i.givingParty} -> ${i.receivingParty}`,
+    })),
+    ...openDecisions.map((d) => ({
+      type: 'decision' as const, recordType: 'decision', ref: d.ref, id: d.id, title: d.title,
+      ownerId: d.authorityId, needBy: d.needBy, state: d.state, overdue: overdue(d.needBy),
+      ageWd: ageWorkingDays(d.createdAt, today, cal), overdueWd: overdueWd(d.needBy), detail: `state ${d.state}`,
+    })),
+    ...pkgRisks.map((r) => ({
+      type: 'risk' as const, recordType: 'risk', ref: r.ref, id: r.id, title: r.title,
+      ownerId: r.ownerId, needBy: r.needBy, state: r.state, overdue: overdue(r.needBy),
+      ageWd: null, overdueWd: overdueWd(r.needBy),
+      detail: r.probability != null && r.impact != null ? `P${r.probability}xI${r.impact}` : (r.cause ?? 'score absent'),
+    })),
+    ...actionItems.map((w) => ({
+      type: 'action' as const, recordType: 'work_item', ref: w.ref, id: w.id, title: w.title,
+      ownerId: w.ownerId, needBy: w.needBy, state: w.state, overdue: overdue(w.needBy),
+      ageWd: ageWorkingDays(w.createdAt, today, cal), overdueWd: overdueWd(w.needBy),
+      detail: w.kind.replaceAll('_', ' '),
+    })),
+  ].sort((a, b) =>
+    Number(b.overdue) - Number(a.overdue)
+    || (b.overdueWd ?? -1) - (a.overdueWd ?? -1)
+    || (b.ageWd ?? -1) - (a.ageWd ?? -1)
+    || (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))
+}
+
+function issueMix(issues: PackageIssue[]): { counts: Record<IssueKind, number>; worst: PackageIssue | null } {
+  const counts: Record<IssueKind, number> = { hold: 0, interface: 0, decision: 0, risk: 0, action: 0 }
+  for (const issue of issues) counts[issue.type] += 1
+  return { counts, worst: issues[0] ?? null }
+}
+
 // ---------- Packages (PEC-PKG-*) ----------
 
 /** Count of the package's open issues (holds, interfaces, decisions, risks, action items),
@@ -195,11 +276,13 @@ export function packagesView(sx: Sx): unknown {
   const snap = snapshot(sx)
   return snap.packages.map((p) => {
     const st = packageStatus(snap, p)
+    const issues = packageIssueRows(sx, snap, p)
     return {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
       area: p.area, packageType: p.packageType,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
-      openIssues: openIssueCount(sx, snap, p),
+      openIssues: issues.length,
+      issueMix: issueMix(issues),
     }
   })
 }
@@ -216,11 +299,6 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
 
   // sphere: deliverables in this package + their revisions (for anchoring action items & risks)
   const pkgDelIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
-  const pkgRevIds = new Set(snap.revisions.filter((r) => pkgDelIds.has(r.deliverableId)).map((r) => r.id))
-  const workItemInPkg = (w: WorkItem): boolean =>
-    w.packageId === pkg.id
-    || (w.anchorType === 'deliverable' && pkgDelIds.has(w.anchorId))
-    || (w.anchorType === 'revision' && pkgRevIds.has(w.anchorId))
 
   // ---- the package's open issues (holds, interfaces, decisions, risks, action items) ----
   // Tasks live on deliverables (workflow status); ISSUES live here — the lead's cockpit.
@@ -239,45 +317,8 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
   const openDecisions = allDecisions.filter((d) => d.state !== 'decided' && d.state !== 'superseded')
   const pkgRisks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && pkgDelIds.has(r.deliverableId))) && r.state !== 'closed')
-  const actionItems = visibleByLog(sx, snap, snap.workItems.filter((w) =>
-    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && workItemInPkg(w)))
-
-  interface Issue {
-    type: 'hold' | 'interface' | 'decision' | 'risk' | 'action'
-    recordType: string; ref: string; id: number; title: string
-    ownerId: number | null; needBy: string | null; state: string
-    overdue: boolean; ageWd: number; detail: string
-  }
-  const issues: Issue[] = [
-    ...visHolds.map((h) => ({
-      type: 'hold' as const, recordType: 'hold', ref: h.ref, id: h.id, title: h.title,
-      ownerId: h.ownerId, needBy: h.needBy, state: h.state, overdue: overdue(h.needBy),
-      ageWd: ageWorkingDays(h.raisedAt, today, cal), detail: h.cause.replaceAll('_', ' '),
-    })),
-    ...openInterfaces.map((i) => ({
-      type: 'interface' as const, recordType: 'interface_item', ref: i.ref, id: i.id, title: i.title,
-      ownerId: null, needBy: i.needBy, state: i.state, overdue: overdue(i.needBy),
-      ageWd: 0, detail: `${i.givingParty} → ${i.receivingParty}`,
-    })),
-    ...openDecisions.map((d) => ({
-      type: 'decision' as const, recordType: 'decision', ref: d.ref, id: d.id, title: d.title,
-      ownerId: d.authorityId, needBy: d.needBy, state: d.state, overdue: overdue(d.needBy),
-      ageWd: ageWorkingDays(d.createdAt, today, cal), detail: `state ${d.state}`,
-    })),
-    ...pkgRisks.map((r) => ({
-      type: 'risk' as const, recordType: 'risk', ref: r.ref, id: r.id, title: r.title,
-      ownerId: r.ownerId, needBy: r.needBy, state: r.state, overdue: overdue(r.needBy),
-      ageWd: 0, detail: r.probability != null && r.impact != null ? `P${r.probability}×I${r.impact}` : (r.cause ?? '—'),
-    })),
-    ...actionItems.map((w) => ({
-      type: 'action' as const, recordType: 'work_item', ref: w.ref, id: w.id, title: w.title,
-      ownerId: w.ownerId, needBy: w.needBy, state: w.state, overdue: overdue(w.needBy),
-      ageWd: ageWorkingDays(w.createdAt, today, cal), detail: w.kind.replaceAll('_', ' '),
-    })),
-  ].sort((a, b) =>
-    Number(b.overdue) - Number(a.overdue)
-    || b.ageWd - a.ageWd
-    || (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))
+  const issues = packageIssueRows(sx, snap, pkg)
+  const mix = issueMix(issues)
 
   // "Needs the lead this week" (PEC-PKG-005) — the lead's personal action queue
   const needsLead = leadId == null ? [] : [
@@ -322,7 +363,8 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
       openInterfaces: openInterfaces.length,
       openDecisions: openDecisions.length,
       openRisks: pkgRisks.length,
-      openActionItems: actionItems.length,
+      openActionItems: mix.counts.action,
+      issueMix: mix,
     },
     capacity: { week: currentWeek, rows: pkgLoad },
     // the cockpit: every open issue, urgency-first (PEC-PKG issues orientation)
@@ -436,6 +478,7 @@ export function deliverableDetailView(sx: Sx, id: number): unknown {
       .filter((c) => c.parentType === 'revision' && c.parentId === rev.id && c.type === 'decision' && c.state === 'open')
       .map((c) => snap.decisions.find((x) => x.id === c.requiredRefId))
       .filter(Boolean),
+    risks: (snap.risks as Risk[]).filter((r) => r.deliverableId === id && r.state !== 'closed'),
   }
 
   // Distinct visible facts — never one merged flag (PEC-DEL-009, I-6)
@@ -480,7 +523,7 @@ export interface LogFilters {
   log?: Log
   packageId?: number
   ownerId?: number
-  type?: 'work_item' | 'hold' | 'interface_item' | 'intake_item'
+  type?: 'work_item' | 'hold' | 'interface_item' | 'intake_item' | 'decision' | 'risk'
   cause?: string
   overdue?: boolean
   anchored?: boolean
@@ -497,7 +540,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
   interface Row {
     recordType: string; id: number; ref: string; title: string; log: Log
     packageId: number | null; ownerId: number | null; state: string
-    ageWd: number; needBy: string | null; overdue: boolean
+    ageWd: number | null; overdueWd: number | null; needBy: string | null; overdue: boolean
     holdCause: string | null; anchorStatus: 'anchored' | 'unanchored'
     area: string | null
   }
@@ -508,7 +551,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'work_item', id: w.id, ref: w.ref, title: w.title, log: w.log,
       packageId: w.packageId, ownerId: w.ownerId, state: w.state,
-      ageWd: ageWorkingDays(w.createdAt, today, cal), needBy: w.needBy,
+      ageWd: ageWorkingDays(w.createdAt, today, cal), overdueWd: workingDaysOverdue(w.needBy, today, cal), needBy: w.needBy,
       overdue: daysOverdue(w.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
       area: w.area,
     })
@@ -518,7 +561,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'hold', id: h.id, ref: h.ref, title: h.title, log: h.log,
       packageId: null, ownerId: h.ownerId, state: h.state,
-      ageWd: ageWorkingDays(h.raisedAt, today, cal), needBy: h.needBy,
+      ageWd: ageWorkingDays(h.raisedAt, today, cal), overdueWd: workingDaysOverdue(h.needBy, today, cal), needBy: h.needBy,
       overdue: daysOverdue(h.needBy, today) > 0, holdCause: h.cause, anchorStatus: 'anchored',
       area: null,
     })
@@ -528,8 +571,28 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'interface_item', id: i.id, ref: i.ref, title: i.title, log: i.log,
       packageId: i.givingPackageId ?? i.receivingPackageId, ownerId: null, state: i.state,
-      ageWd: 0, needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0,
+      ageWd: null, overdueWd: workingDaysOverdue(i.needBy, today, cal), needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0,
       holdCause: null, anchorStatus: 'anchored', area: null,
+    })
+  }
+  for (const d of snap.decisions) {
+    if (d.state === 'decided' || d.state === 'superseded') continue
+    rows.push({
+      recordType: 'decision', id: d.id, ref: d.ref, title: d.title, log: d.log,
+      packageId: d.packageId, ownerId: d.authorityId, state: d.state,
+      ageWd: ageWorkingDays(d.createdAt, today, cal), overdueWd: workingDaysOverdue(d.needBy, today, cal), needBy: d.needBy,
+      overdue: daysOverdue(d.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
+      area: d.area,
+    })
+  }
+  for (const r of snap.risks as Risk[]) {
+    if (r.state === 'closed') continue
+    rows.push({
+      recordType: 'risk', id: r.id, ref: r.ref, title: r.title, log: 'package',
+      packageId: r.packageId, ownerId: r.ownerId, state: r.state,
+      ageWd: null, overdueWd: workingDaysOverdue(r.needBy, today, cal), needBy: r.needBy,
+      overdue: daysOverdue(r.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
+      area: null,
     })
   }
   for (const t of snap.intakeItems) {
@@ -537,7 +600,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'intake_item', id: t.id, ref: t.ref, title: t.statementVerbatim.slice(0, 120), log: t.log,
       packageId: null, ownerId: t.suggestedOwnerId, state: t.state,
-      ageWd: ageWorkingDays(t.raisedAt, today, cal), needBy: t.needBy,
+      ageWd: ageWorkingDays(t.raisedAt, today, cal), overdueWd: workingDaysOverdue(t.needBy, today, cal), needBy: t.needBy,
       overdue: daysOverdue(t.needBy, today) > 0, holdCause: null,
       anchorStatus: 'unanchored', // I-2: flagged until triaged; excluded from plans/rollups
       area: t.area,
@@ -553,7 +616,74 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
   if (f.overdue != null) out = out.filter((r) => r.overdue === f.overdue)
   if (f.anchored != null) out = out.filter((r) => (r.anchorStatus === 'anchored') === f.anchored)
   if (f.area) out = out.filter((r) => r.area === f.area)
-  return out.sort((a, b) => b.ageWd - a.ageWd)
+  return out.sort((a, b) =>
+    Number(b.overdue) - Number(a.overdue)
+    || (b.overdueWd ?? -1) - (a.overdueWd ?? -1)
+    || (b.ageWd ?? -1) - (a.ageWd ?? -1))
+}
+
+export function logSummaryView(sx: Sx): unknown {
+  const rows = logRegisterView(sx, {}) as Array<{
+    recordType: string; id: number; ref: string; title: string; state: string
+    overdue: boolean; ageWd: number | null; overdueWd: number | null; holdCause: string | null
+  }>
+  const refs = (items: typeof rows, why: (r: typeof rows[number]) => string): ContributingRef[] =>
+    items.map((r) => ({ recordType: r.recordType as ContributingRef['recordType'], id: r.id, ref: r.ref, why: why(r) }))
+  const byType = rows.reduce<Record<string, number>>((acc, r) => {
+    acc[r.recordType] = (acc[r.recordType] ?? 0) + 1
+    return acc
+  }, {})
+  const overdueRows = rows.filter((r) => r.overdue)
+  const untriaged = rows.filter((r) => r.recordType === 'intake_item')
+  const holdCause = rows.filter((r) => r.recordType === 'hold').reduce<Record<string, number>>((acc, r) => {
+    const cause = r.holdCause ?? 'other'
+    acc[cause] = (acc[cause] ?? 0) + 1
+    return acc
+  }, {})
+  const aged = rows.filter((r) => r.ageWd != null)
+  return {
+    total: {
+      value: rows.length,
+      ruleId: 'LOG-SUMMARY-TOTAL',
+      detail: 'Open log-visible issue rows: work items, holds, interfaces, decisions, risks, and intake.',
+      contributing: refs(rows, (r) => r.state),
+    },
+    byType: {
+      value: byType,
+      ruleId: 'LOG-SUMMARY-BY-TYPE',
+      detail: 'Open rows grouped by record type.',
+      contributing: refs(rows, (r) => r.recordType),
+    },
+    overdue: {
+      value: overdueRows.length,
+      ruleId: 'LOG-SUMMARY-OVERDUE',
+      detail: 'Rows whose need-by date is past. Interface and risk rows use need-by overdue basis, not fabricated age.',
+      contributing: refs(overdueRows, (r) => `${r.overdueWd ?? 0} working days overdue`),
+    },
+    agingBuckets: {
+      value: {
+        le2: aged.filter((r) => (r.ageWd ?? 0) <= 2).length,
+        d3to5: aged.filter((r) => (r.ageWd ?? 0) >= 3 && (r.ageWd ?? 0) <= 5).length,
+        gt5: aged.filter((r) => (r.ageWd ?? 0) > 5).length,
+        absent: rows.length - aged.length,
+      },
+      ruleId: 'LOG-SUMMARY-AGING',
+      detail: 'Aging buckets only for records with a real created/raised timestamp; absent is shown for interface/risk rows.',
+      contributing: refs(aged, (r) => `${r.ageWd} working days old`),
+    },
+    untriagedIntake: {
+      value: untriaged.length,
+      ruleId: 'LOG-SUMMARY-UNTRIAGED',
+      detail: 'Intake rows still awaiting disposition.',
+      contributing: refs(untriaged, (r) => r.state),
+    },
+    holdsByCause: {
+      value: holdCause,
+      ruleId: 'LOG-SUMMARY-HOLDS-BY-CAUSE',
+      detail: 'Active holds grouped by typed cause.',
+      contributing: refs(rows.filter((r) => r.recordType === 'hold'), (r) => r.holdCause ?? 'other'),
+    },
+  }
 }
 
 // ---------- My Week (PEC-MW-*) ----------

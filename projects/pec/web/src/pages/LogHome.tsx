@@ -10,7 +10,8 @@ import { useMemo, useRef, useState } from 'react'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  Drawer, ErrorBox, RecordRef, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
+  Drawer, ErrorBox, KpiCard, RecordRef, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef,
+  useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -50,7 +51,8 @@ interface LogRow {
   packageId: number | null
   ownerId: number | null
   state: string
-  ageWd: number
+  ageWd: number | null
+  overdueWd: number | null
   needBy: string | null
   overdue: boolean
   holdCause: string | null
@@ -67,6 +69,7 @@ function OpenItemsTab(): JSX.Element {
   const [cause, setCause] = useState('')
   const [overdue, setOverdue] = useState(false)
   const [anchored, setAnchored] = useState('')
+  const [groupBy, setGroupBy] = useState<'none' | 'type' | 'owner'>('none')
 
   // PEC-AHL-001: the union of open work items, active holds, open interfaces, and
   // untriaged intake items is composed server-side; filters are query params only.
@@ -82,18 +85,27 @@ function OpenItemsTab(): JSX.Element {
     return q.toString()
   }, [log, type, area, owner, cause, overdue, anchored])
   const { data, error } = useLoad<LogRow[]>(() => api.get(p(pid, qs ? `log?${qs}` : 'log')), [pid, qs])
+  const { data: summary } = useLoad<any>(() => api.get(p(pid, 'log-summary')), [pid])
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
   usePublishScreenContext((data ?? []).map((r) => ({ recordType: r.recordType, ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
 
   const cols: Array<Col<LogRow>> = [
     { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} /> },
-    { key: 'type', label: 'Type', render: (r) => <span className="small">{r.recordType.replaceAll('_', ' ')}</span> },
+    { key: 'type', label: 'Type', render: (r) => <span className={`itype itype-${r.recordType.replace('_item', '').replace('work_', 'action')}`}>{r.recordType.replaceAll('_', ' ')}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'log', label: 'Log', render: (r) => <span className="small muted">{r.log}</span> },
     { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted small">—</span>, csv: (r) => r.area ?? '' },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
-    { key: 'age', label: 'Age (wd)', render: (r) => r.ageWd },
+    {
+      key: 'age', label: 'Basis',
+      render: (r) => r.ageWd != null
+        ? <span className="mono">{r.ageWd} wd old</span>
+        : r.overdueWd != null && r.overdueWd > 0
+          ? <span className="badge amber">{r.overdueWd} wd overdue</span>
+          : <span className="muted small">age absent</span>,
+      csv: (r) => r.ageWd != null ? `${r.ageWd} wd old` : r.overdueWd != null ? `${r.overdueWd} wd overdue` : 'age absent',
+    },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
     {
       key: 'overdue', label: 'Overdue',
@@ -107,15 +119,16 @@ function OpenItemsTab(): JSX.Element {
         : <span className="muted small">—</span>,
       csv: (r) => r.holdCause ?? '',
     },
-    {
-      // I-2: unanchored items stay visible and flagged — never hidden, never in rollups
-      key: 'anchor', label: 'Anchor',
-      render: (r) => r.anchorStatus === 'unanchored'
-        ? <span className="badge amber">unanchored</span>
-        : <span className="muted small">anchored</span>,
-      csv: (r) => r.anchorStatus,
-    },
   ]
+
+  const rows = data ?? []
+  const grouped = groupBy === 'none'
+    ? [['', rows] as const]
+    : Object.entries(rows.reduce<Record<string, LogRow[]>>((acc, row) => {
+      const key = groupBy === 'type' ? row.recordType : person(row.ownerId)
+      ;(acc[key] ??= []).push(row)
+      return acc
+    }, {}))
 
   return (
     <div>
@@ -123,7 +136,24 @@ function OpenItemsTab(): JSX.Element {
         One register: open work items, active holds, open interfaces, and untriaged intake
         items — typed rows, never mixed types in one field (PEC-AHL-001).
       </p>
+      {summary && (
+        <div className="cards">
+          <KpiCard label="open issue rows" value={summary.total.value} explain={summary.total} />
+          <KpiCard label="overdue rows" value={summary.overdue.value} explain={summary.overdue} />
+          <KpiCard label="untriaged intake" value={summary.untriagedIntake.value} explain={summary.untriagedIntake} />
+          <div className="card kpi" style={{ cursor: 'default' }}>
+            <b>{summary.agingBuckets.value.gt5}</b>
+            <span>older than 5 wd</span>
+            <div className="small muted" style={{ marginTop: '.25rem' }}>
+              {summary.agingBuckets.value.le2} &lt;=2 · {summary.agingBuckets.value.d3to5} 3-5 · {summary.agingBuckets.value.absent} age absent
+            </div>
+          </div>
+        </div>
+      )}
       <div className="filters">
+        <button className="btn small secondary" onClick={() => { setOverdue(true); setAnchored('') }}>Overdue</button>
+        <button className="btn small secondary" onClick={() => { setType('intake_item'); setAnchored('false') }}>Untriaged intake</button>
+        <button className="btn small secondary" onClick={() => { setType('hold'); setCause('interface') }}>Interface holds</button>
         <select value={log} onChange={(e) => setLog(e.target.value)}>
           <option value="">all logs</option>
           {LOGS.map((l) => <option key={l} value={l}>{l}</option>)}
@@ -134,6 +164,8 @@ function OpenItemsTab(): JSX.Element {
           <option value="hold">hold</option>
           <option value="interface_item">interface item</option>
           <option value="intake_item">intake item</option>
+          <option value="decision">decision</option>
+          <option value="risk">risk</option>
         </select>
         <input placeholder="area" value={area} onChange={(e) => setArea(e.target.value)} />
         <select value={owner} onChange={(e) => setOwner(e.target.value)}>
@@ -152,11 +184,25 @@ function OpenItemsTab(): JSX.Element {
           <option value="true">anchored</option>
           <option value="false">unanchored</option>
         </select>
+        <select value={groupBy} onChange={(e) => setGroupBy(e.target.value as never)}>
+          <option value="none">no grouping</option>
+          <option value="type">group by type</option>
+          <option value="owner">group by owner</option>
+        </select>
       </div>
+      <p className="section-note">
+        Interface and risk rows use need-by overdue basis where available; no created-age value is invented.
+        Risk visibility is package-level until the fuller issue model is ruled.
+      </p>
       {error && <ErrorBox error={{ message: error }} />}
       {!data && !error && <p className="muted">loading…</p>}
-      {data && <RegisterTable cols={cols} rows={data} exportName="action-hold-log.csv"
-        highlightRef={hl} rowRef={(r) => r.ref} />}
+      {data && grouped.map(([label, group]) => (
+        <div key={label || 'all'}>
+          {label && <h3>{label} <span className="muted small">({group.length})</span></h3>}
+          <RegisterTable cols={cols} rows={group} exportName={label ? undefined : 'action-hold-log.csv'}
+            highlightRef={hl} rowRef={(r) => r.ref} />
+        </div>
+      ))}
     </div>
   )
 }
