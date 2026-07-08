@@ -39,6 +39,15 @@ proposal-shaped API — inside fences F-PEC-1..4 and the D-T0-14 residency gate
 residency, L1 evidence work over committed fixtures and scratch databases is
 already lawful; instance-content capture is not.
 
+**Addendum (2026-07-07, owner direction of record — quoted verbatim in
+`LOOP_RECEIPTS.md` Receipt 51):** *"What I would say is that future refinement
+of the interface and importing should be indefinitely postponed.  My intention
+now is to simplify workflows and reinforce only reporting on what is factual
+and has a clear basis."* — said while postponing D-PEC-14/15/19. This directs
+loop priority; it changes no ruling and no fence. Selection under step 1 now
+weighs simplification and factual/clear-basis reporting above interface or
+import refinement, which is postponed indefinitely.
+
 ## Why any staging remains (the compelling reasons)
 
 1. **Adoption, ruling, and direction are human acts** (K-AUTH-1; D-GOV-04): the

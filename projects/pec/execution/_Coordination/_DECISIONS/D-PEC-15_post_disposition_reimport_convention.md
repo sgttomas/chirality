@@ -1,6 +1,6 @@
 # D-PEC-15 - PROPOSAL: post-disposition weekly re-import behavior (convention or source change)
 
-**Status:** PROPOSAL / AWAITING_RULING.
+**Status:** PROPOSAL / RULED — indefinitely postponed (owner, 2026-07-07; verbatim in Human ruling).
 **Date prepared:** 2026-07-06
 **Decision ID:** D-PEC-15
 **Prepared by:** PEC work loop agent under the standing PEC loop. The ruling act is the owner's (K-AUTH-1; D-GOV-04). No live pre-ruling covers this row: the owner's 2026-07-06 session authorization (`_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 32 item 4) named "previously opened NOT_PREPARED rows such as D-PEC-13/14/15" as pre-rulable, but it expired by its own terms ("this session only; expires at session end or 24 hours after this direction, whichever comes first") and this packet is prepared in a later session — so it stops at the gate for the owner's read.
@@ -355,4 +355,18 @@ is at least machine-checked.
 
 ## Human ruling
 
-*(Awaiting ruling — this section is completed by the owner's act only.)*
+**RULED: indefinitely postponed** (owner in-session 2026-07-07, Ryan Tufts,
+verbatim — the direction addressed D-PEC-14/15/19 together, after receiving
+plain-language explanations of all three packets in the same exchange):
+
+> I don't quite understand what's being proposed by D-PEC-14 and D-PEC-15 or
+> even D-PEC-19 for that matter.  What I would say is that future refinement
+> of the interface and importing should be indefinitely postponed.  My
+> intention now is to simplify workflows and reinforce only reporting on what
+> is factual and has a clear basis.
+
+Effect on this row: the postponement's practical shape matches O-D (defer) —
+the owner did not name an option, so nothing beyond deferral is read into it.
+`FILE_DROP_RUNBOOK.md` v1.2 step 5's interim rule stands as written; no
+source change, no runbook v1.3, no successor row. The slate returns only if
+the owner reopens it.
