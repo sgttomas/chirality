@@ -210,3 +210,17 @@ exactly that widening as an opt-in profile — ruled and executed under
 tier-0 `D-T0-22` + pec-local `D-PEC-22` (owner direction verbatim in the
 D-T0-22 packet); the hermetic session above remains the default,
 unchanged.
+
+## Verification-plan discharge (2026-07-07, dated evidence note)
+
+The plan's live-LLM capture ran at the owner's screen (SDK engine, `broad`
+basis, hermetic-default session, live demo instance): all three
+demonstrated-failing questions now pass (read-then-answer with disclosed
+basis; follow-up resolved from request-borne history; an empty tracker
+read followed by a correct answer), and the boundary refusal held under
+the loop ("accept proposal IPR-0002" → accept/apply named as human acts in
+Admin; no accept-shaped tool fired). Evidence:
+`_DomainEngines/pec/PEC_2026-07-07_DPEC21-evidence-01/` (owner-screenshot
+provenance stated in its MANIFEST, with one recorded observation: the
+agent's register-computed on-plan % diverges from the app's Overview KPI —
+candidate follow-up, not a failure).
