@@ -28,7 +28,7 @@
 2. **Import the data.** The six files at `pilot-scratch/input/` —
    `mdl.xlsx`, `rail.xlsx`, `decisions.csv`, `risk.xlsx`, `schedule.csv`,
    `tracker.xlsx` (SHA-256 in the tranche packet) — map to the six §16
-   contracts per `IMPORT_TEMPLATES/IMPORT_MAPPING.md`, extended for the new
+   contracts per `../IMPORT_TEMPLATES/IMPORT_MAPPING.md`, extended for the new
    optional columns this tranche adds. **The steer is the drop-time
    direction, not the import approval:** FILE_DROP_RUNBOOK v1.1 (owner ruling
    RV-7) requires approval to follow the presented step-3 proposed import, so
