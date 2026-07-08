@@ -25,7 +25,7 @@ No act chips (built-in file read — not a pec act; disclosed behavior).
 
 Agent reply:
 
-> Read from `/Users/ryan/ai-env/projects/chirality/projects/pec/README.md`
+> Read from `~/ai-env/projects/chirality/projects/pec/README.md`
 > — here's the summary:
 >
 > **PEC — 9-Domains: Project Execution Control** is a web-based,
@@ -84,7 +84,7 @@ Owner ask:
 > If I wanted to update the Decisions Register and I had an Excel file
 > saved in this computer's file system, could you read that file and add
 > decisions to this register?
-> `/Users/ryan/ai-env/working/pec/26020-Decision_Log.1.xlsx`
+> `~/ai-env/working/pec/26020-Decision_Log.1.xlsx`
 
 Agent reply (no act chips — built-in read of the .xlsx):
 

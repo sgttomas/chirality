@@ -28,7 +28,7 @@ failure prevented any non-demo-basis exposure.
 
 ## Item 8 detail (the limit found)
 
-Ask: read `/Users/ryan/ai-env/working/pec/26020-Decision_Log.1.xlsx`
+Ask: read `~/ai-env/working/pec/26020-Decision_Log.1.xlsx`
 (outside the repo, non-canonical shape) and add its decisions to the
 Decisions Register. The agent: read the 62-row Excel via built-in tools,
 enumerated its columns, mapped them to the §16 `decisions` import
