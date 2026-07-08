@@ -9,8 +9,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import type { Explain } from '../api.ts'
 import {
-  ErrorBox, HealthBadge, KpiCard, RegisterTable, StateTag, fmtDate, refRoute, useApp, useExplain,
-  useLoad, usePerson,
+  ErrorBox, HealthBadge, KpiCard, RecordRef, RegisterTable, StateTag, fmtDate, refRoute, useApp,
+  useExplain, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -58,7 +58,7 @@ export function OverviewPage(): JSX.Element {
   ]
 
   const waitCols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} recordRef={r.ref} /> },
     { key: 'kind', label: 'Kind', render: (r) => r.kind },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
@@ -75,7 +75,7 @@ export function OverviewPage(): JSX.Element {
           const label = `${b.recordType.replaceAll('_', ' ')} (${b.why})`
           return (
             <span key={i}>{i > 0 && '; '}{route
-              ? <Link to={route} onClick={(e) => e.stopPropagation()}>{label}</Link>
+              ? <RecordRef recordType={b.recordType} id={b.id} recordRef={b.ref} label={label} />
               : label}</span>
           )
         })}</span>,
@@ -167,7 +167,7 @@ export function OverviewPage(): JSX.Element {
         exportName="top-blockers.csv"
         onRowClick={(r: any) => nav(refRoute(pid, 'hold', r.id, r.ref)!)}
         cols={[
-          { key: 'ref', label: 'Hold', render: (r: any) => <span className="mono">{r.ref}</span> },
+          { key: 'ref', label: 'Hold', render: (r: any) => <RecordRef recordType="hold" id={r.id} recordRef={r.ref} /> },
           { key: 'cause', label: 'Cause', render: (r: any) => <span className="badge hold">{r.cause.replaceAll('_', ' ')}</span> },
           { key: 'title', label: 'Title', render: (r: any) => r.title },
           { key: 'owner', label: 'Owner', render: (r: any) => person(r.ownerId) },

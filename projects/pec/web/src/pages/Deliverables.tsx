@@ -12,8 +12,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RegisterTable, StateTag, WorkflowStages,
-  fmtDate, useApp, useLoad, usePerson,
+  Breadcrumb, ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RecordRef, RegisterTable, StateTag,
+  WorkflowStages, fmtDate, useApp, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -59,7 +59,11 @@ export function DeliverablesPage(): JSX.Element {
   const cols: Array<Col<any>> = [
     { key: 'docNo', label: 'Doc no', render: (r) => <Link className="mono" to={`/p/${pid}/deliverables/${r.id}`}>{r.docNo}</Link>, csv: (r) => r.docNo },
     { key: 'title', label: 'Title', render: (r) => r.title },
-    { key: 'pkg', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span> },
+    {
+      key: 'pkg', label: 'Package', render: (r) => r.packageId
+        ? <Link className="mono" to={`/p/${pid}/packages/${r.packageId}`} onClick={(e) => e.stopPropagation()}>{pkgCode(r.packageId)}</Link>
+        : <span className="muted">—</span>,
+    },
     { key: 'area', label: 'Area', render: (r) => r.area ?? '—' },
     { key: 'disc', label: 'Discipline', render: (r) => r.discipline ?? '—' },
     { key: 'type', label: 'Type', render: (r) => r.deliverableType ?? '—' },
@@ -173,6 +177,11 @@ export function DeliverableDetailPage(): JSX.Element {
 
   return (
     <div>
+      <Breadcrumb items={[
+        { label: 'Deliverables', to: `/p/${pid}/deliverables` },
+        ...(pkg ? [{ label: pkg.code, to: `/p/${pid}/packages/${pkg.id}` }] : []),
+        { label: d.docNo },
+      ]} />
       {/* 1 — header + metadata (PEC-DEL-002) */}
       <h1>
         <span className="mono">{d.docNo}</span> — {d.title}
@@ -239,7 +248,7 @@ export function DeliverableDetailPage(): JSX.Element {
         <>
           <h2>Work items</h2>
           <RegisterTable cols={[
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="work_item" id={r.id} recordRef={r.ref} /> },
             { key: 'title', label: 'Title', render: (r: any) => r.title },
             { key: 'owner', label: 'Owner', render: (r: any) => <span className="small">{person(r.ownerId)}</span> },
             { key: 'needBy', label: 'Need by', render: (r: any) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
@@ -249,7 +258,7 @@ export function DeliverableDetailPage(): JSX.Element {
           {/* checks: three distinct facts per row (PEC-CHK-003) + inline check actions (PRD §12.8) */}
           <h2>Checks</h2>
           <RegisterTable cols={[
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="check" id={r.id} recordRef={r.ref} /> },
             { key: 'checker', label: 'Checker', render: (r: any) => <span className="small">{person(r.checkerId)}{r.independenceWarning && <span className="badge amber" title="checker is the deliverable owner (PEC-CHK-004)"> independence</span>}</span> },
             { key: 'state', label: 'Checker acceptance', render: (r: any) => <StateTag s={r.state} /> },
             { key: 'checklist', label: 'Checklist', render: (r: any) => <span className="mono">{r.checklistDone}/{r.checklistTotal}</span> },
@@ -259,7 +268,7 @@ export function DeliverableDetailPage(): JSX.Element {
 
           <h2>Review comments</h2>
           <RegisterTable cols={[
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="review_comment" id={r.id} recordRef={r.ref} /> },
             { key: 'text', label: 'Comment', render: (r: any) => <span className="small">{r.text}</span> },
             { key: 'responder', label: 'Responder', render: (r: any) => <span className="small">{person(r.responderId)}</span> },
             { key: 'disp', label: 'Disposition', render: (r: any) => <StateTag s={r.disposition} /> },
@@ -268,7 +277,7 @@ export function DeliverableDetailPage(): JSX.Element {
           <h2>Holds</h2>
           <RegisterTable cols={[
             { key: 'badge', label: '', render: () => <span className="badge hold">hold</span> },
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="hold" id={r.id} recordRef={r.ref} /> },
             { key: 'cause', label: 'Cause', render: (r: any) => r.cause.replaceAll('_', ' ') },
             { key: 'title', label: 'Title', render: (r: any) => r.title },
             { key: 'owner', label: 'Owner', render: (r: any) => <span className="small">{person(r.ownerId)}</span> },
@@ -277,7 +286,7 @@ export function DeliverableDetailPage(): JSX.Element {
 
           <h2>Approval records</h2>
           <RegisterTable cols={[
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="approval_record" id={r.id} recordRef={r.ref} /> },
             { key: 'title', label: 'Title', render: (r: any) => r.title },
             { key: 'state', label: 'State', render: (r: any) => <StateTag s={r.state} /> },
             { key: 'sign', label: 'Signatories', render: (r: any) => <span className="small">{r.signatoryIds.map((s: number) => person(s)).join(', ')}</span> },
@@ -285,10 +294,19 @@ export function DeliverableDetailPage(): JSX.Element {
 
           <h2>Decision dependencies</h2>
           <RegisterTable cols={[
-            { key: 'ref', label: 'Ref', render: (r: any) => <span className="mono">{r.ref}</span> },
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="decision" id={r.id} recordRef={r.ref} /> },
             { key: 'title', label: 'Title', render: (r: any) => r.title },
             { key: 'state', label: 'State', render: (r: any) => <StateTag s={r.state} /> },
           ]} rows={oi.decisionDependencies} />
+
+          <h2>Risks</h2>
+          <RegisterTable cols={[
+            { key: 'ref', label: 'Ref', render: (r: any) => <RecordRef recordType="risk" id={r.id} recordRef={r.ref} /> },
+            { key: 'title', label: 'Title', render: (r: any) => r.title },
+            { key: 'owner', label: 'Owner', render: (r: any) => <span className="small">{person(r.ownerId)}</span> },
+            { key: 'needBy', label: 'Need by', render: (r: any) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
+            { key: 'state', label: 'State', render: (r: any) => <StateTag s={r.state} /> },
+          ]} rows={oi.risks} />
         </>
       )}
 

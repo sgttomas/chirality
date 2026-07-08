@@ -11,7 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import { api, p } from '../api.ts'
 import {
-  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
+  Drawer, ErrorBox, RecordRef, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -72,7 +72,7 @@ function ApprovalsTab(): JSX.Element {
   if (!data) return <p className="muted">loading…</p>
 
   const cols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="approval_record" id={r.id} recordRef={r.ref} /> },
     {
       key: 'title', label: 'Title', render: (r) => <>
         {r.title}{r.holdPoint && <> <span className="badge red" title="hold point — work may not proceed past this approval">HP</span></>}
@@ -322,7 +322,7 @@ function DecisionsTab(): JSX.Element {
   }
 
   const cols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="decision" id={r.id} recordRef={r.ref} /> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     // kind chip: standalone / approval_outcome / waiver — one judgment record (OM-6)
     { key: 'kind', label: 'Kind', render: (r) => <span className="state">{r.kind.replaceAll('_', ' ')}</span> },
@@ -640,7 +640,7 @@ function RisksTab(): JSX.Element {
     r.residualProbability == null || r.residualImpact == null ? null : r.residualProbability * r.residualImpact
 
   const cols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="risk" id={r.id} recordRef={r.ref} /> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'category', label: 'Category', render: (r) => r.category ? <span className="small">{r.category}</span> : <span className="muted small">—</span>, csv: (r) => r.category ?? '' },
     { key: 'type', label: 'Type', render: (r) => r.riskType ? <span className="small">{r.riskType}</span> : <span className="muted small">—</span>, csv: (r) => r.riskType ?? '' },
@@ -801,7 +801,7 @@ function InterfacesTab(): JSX.Element {
   if (!data) return <p className="muted">loading…</p>
 
   const cols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="interface_item" id={r.id} recordRef={r.ref} /> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'parties', label: 'Giving → receiving', render: (r) => <span className="small">{r.givingParty}{r.givingPackageCode ? ` (${r.givingPackageCode})` : ''} → {r.receivingParty}{r.receivingPackageCode ? ` (${r.receivingPackageCode})` : ''}</span> },
     { key: 'info', label: 'Required info', render: (r) => <span className="small">{r.requiredInfo}</span> },
@@ -1073,7 +1073,7 @@ function HoldsTab(): JSX.Element {
   }
 
   const cols: Array<Col<any>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="hold" id={r.id} recordRef={r.ref} /> },
     { key: 'cause', label: 'Cause', render: (r) => <span className="badge hold">{r.cause.replaceAll('_', ' ')}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },

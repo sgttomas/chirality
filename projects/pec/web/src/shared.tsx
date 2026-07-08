@@ -6,7 +6,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { api } from './api.ts'
 import type { Explain, Health, Me, ProjectRef } from './api.ts'
 
@@ -47,6 +47,7 @@ export function usePerson(): (id: number | null | undefined) => string {
 export function refRoute(pid: number | string, recordType: string, id: number, ref: string): string | null {
   const reg = (tab: string): string => `/p/${pid}/registers/${tab}?ref=${encodeURIComponent(ref)}`
   switch (recordType) {
+    case 'package': return `/p/${pid}/packages/${id}`
     case 'deliverable': return `/p/${pid}/deliverables/${id}`
     case 'hold': return reg('holds')
     case 'decision': return reg('decisions')
@@ -57,6 +58,41 @@ export function refRoute(pid: number | string, recordType: string, id: number, r
     case 'plan_item': return `/p/${pid}/plan`
     default: return null
   }
+}
+
+export function RecordRef({ recordType, id, recordRef, label, onNavigate, stopPropagation = true }: {
+  recordType: string
+  id: number | null | undefined
+  recordRef: string
+  label?: ReactNode
+  onNavigate?: () => void
+  stopPropagation?: boolean
+}): JSX.Element {
+  const { pid } = useApp()
+  const nav = useNavigate()
+  const route = id == null ? null : refRoute(pid, recordType, id, recordRef)
+  const content = label ?? recordRef
+  if (!route) {
+    return (
+      <span className="mono muted" title={`${recordType.replaceAll('_', ' ')} has no routed source yet`}>
+        {content}
+      </span>
+    )
+  }
+  return (
+    <button
+      type="button"
+      className="reflink mono"
+      title={`Open ${recordType.replaceAll('_', ' ')} ${recordRef}`}
+      onClick={(e) => {
+        if (stopPropagation) e.stopPropagation()
+        onNavigate?.()
+        nav(route)
+      }}
+    >
+      {content}
+    </button>
+  )
 }
 
 /** The `?ref=` deep-link target from the current URL, used to flash+scroll a landed row. */
@@ -103,8 +139,6 @@ export function useExplain(): (title: string, e: Explain) => void {
 
 export function ExplainProvider({ children }: { children: ReactNode }): JSX.Element {
   const [state, setState] = useState<ExplainState | null>(null)
-  const { pid } = useApp()
-  const nav = useNavigate()
   const close = () => setState(null)
   return (
     <ExplainCtx.Provider value={{ show: (title, explain) => setState({ title, explain }) }}>
@@ -124,11 +158,9 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
           <table className="reg">
             <tbody>
               {state.explain.contributing.map((c, i) => {
-                const route = refRoute(pid, c.recordType, c.id, c.ref)
                 return (
-                  <tr key={i} className={route ? 'clickable' : undefined}
-                    onClick={route ? () => { close(); nav(route) } : undefined}>
-                    <td className="mono nowrap">{route ? <a className="reflink">{c.ref}</a> : c.ref}</td>
+                  <tr key={i}>
+                    <td className="nowrap"><RecordRef recordType={c.recordType} id={c.id} recordRef={c.ref} onNavigate={close} /></td>
                     <td className="small muted">{c.recordType.replaceAll('_', ' ')}</td>
                     <td className="small">{c.why}</td>
                   </tr>
@@ -163,29 +195,96 @@ export function HealthBadge({ explain, label }: { explain: Explain<Health> | Exp
 export function KpiCard({ label, value, explain }: { label: string; value: ReactNode; explain: Explain }): JSX.Element {
   const show = useExplain()
   return (
-    <div className="card kpi" onClick={() => show(label, explain)} title={`${explain.ruleId} — click to drill down`}>
+    <button className="card kpi" onClick={() => show(label, explain)} title={`${explain.ruleId} - drill down`}>
       <b>{value}</b>
       <span>{label}</span>
-    </div>
+    </button>
   )
 }
 
 // ---------- drawer ----------
 
 export function Drawer({ title, onClose, children }: { title: ReactNode; onClose(): void; children: ReactNode }): JSX.Element {
+  const drawerRef = useRef<HTMLElement | null>(null)
+  const previouslyFocused = useRef<HTMLElement | null>(null)
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    previouslyFocused.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',')
+    const focusFirst = () => {
+      const first = drawerRef.current?.querySelector<HTMLElement>(focusableSelector)
+      ;(first ?? drawerRef.current)?.focus()
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !drawerRef.current) return
+      const focusable = Array.from(drawerRef.current.querySelectorAll<HTMLElement>(focusableSelector))
+        .filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null)
+      if (focusable.length === 0) {
+        e.preventDefault()
+        drawerRef.current.focus()
+        return
+      }
+      const first = focusable[0]!
+      const last = focusable[focusable.length - 1]!
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.setTimeout(focusFirst, 0)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      previouslyFocused.current?.focus()
+    }
   }, [onClose])
   return (
     <>
       <div className="drawer-veil" onClick={onClose} />
-      <aside className="drawer">
+      <aside
+        ref={drawerRef}
+        className="drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawer-title"
+        tabIndex={-1}
+      >
         <h1>{title}<button className="closex" onClick={onClose} aria-label="close">✕</button></h1>
+        <span id="drawer-title" className="sr-only">{textOf(title)}</span>
         {children}
       </aside>
     </>
+  )
+}
+
+export function Breadcrumb({ items }: {
+  items: Array<{ label: ReactNode; to?: string }>
+}): JSX.Element {
+  return (
+    <nav className="breadcrumb" aria-label="breadcrumb">
+      <ol>
+        {items.map((item, i) => (
+          <li key={i} aria-current={i === items.length - 1 ? 'page' : undefined}>
+            {item.to && i !== items.length - 1 ? <Link to={item.to}>{item.label}</Link> : <span>{item.label}</span>}
+          </li>
+        ))}
+      </ol>
+    </nav>
   )
 }
 

@@ -36,6 +36,32 @@ interface AuthedCtx extends ReqCtx {
   sx: Sx
 }
 
+const PERMISSION_ACTIONS: readonly PermissionAction[] = [
+  'project.read',
+  'intake.raise', 'intake.triage',
+  'work_item.create', 'work_item.update', 'work_item.transition', 'work_item.cancel',
+  'hold.raise', 'hold.resolve',
+  'check.create', 'check.work', 'check.accept',
+  'comment.create', 'comment.respond', 'comment.accept',
+  'approval.create', 'approval.outcome', 'approval.supersede', 'approval.auto',
+  'decision.create', 'decision.progress', 'decision.outcome', 'decision.supersede',
+  'condition.create', 'condition.waive', 'condition.satisfy_manual',
+  'revision.create', 'revision.transition', 'revision.auto',
+  'issue.record',
+  'deliverable.create', 'deliverable.update',
+  'risk.create', 'risk.update',
+  'interface.create', 'interface.update',
+  'evidence.add',
+  'config.manage',
+  'import.propose', 'import.accept',
+  'agent.direct',
+  'plan.manage', 'plan.commit', 'plan.propose', 'plan.review',
+]
+
+function isPermissionAction(action: string): action is PermissionAction {
+  return (PERMISSION_ACTIONS as readonly string[]).includes(action)
+}
+
 export function buildRouter(db: Db): Router {
   const r = new Router()
   const repo = new Repo(db)
@@ -138,6 +164,7 @@ export function buildRouter(db: Db): Router {
     anchored: c.query.get('anchored') != null ? c.query.get('anchored') === 'true' : undefined,
     area: c.query.get('area') ?? undefined,
   })))
+  r.get('/api/projects/:pid/log-summary', authed((c) => views.logSummaryView(c.sx)))
   r.get('/api/projects/:pid/my-week', authed((c) => views.myWeekView(c.sx)))
 
   // ---------- Plan module (P2 — PRD §12.4) ----------
@@ -153,7 +180,8 @@ export function buildRouter(db: Db): Router {
 
   // permission probe for the UI ("can I?" — rules stay server-side)
   r.get('/api/projects/:pid/can/:action', authed((c) => {
-    const action = c.params.action as PermissionAction
+    const action = String(c.params.action ?? '')
+    if (!isPermissionAction(action)) throw badRequest(`unknown permission action: ${action}`)
     return can(action, pctx(c.sx))
   }))
 
@@ -392,15 +420,47 @@ export function buildRouter(db: Db): Router {
 
   // ---------- config ----------
   r.get('/api/projects/:pid/config', authed((c) => {
-    // thresholds are served merged with the shipped defaults so the Admin editor shows the
-    // EFFECTIVE values, not zeros, on a project that never overrode them (PEC-OV-007)
     const row = c.sx.repo.get<Record<string, unknown>>('project', null, c.sx.projectId)
-    return { ...row, thresholds: { ...DEFAULT_THRESHOLDS, ...(row.thresholds as object) } }
+    const overrides = (row.thresholds as Record<string, unknown> | null) ?? {}
+    const effective = { ...DEFAULT_THRESHOLDS, ...overrides }
+    return {
+      ...row,
+      thresholds: {
+        ...effective,
+        defaults: DEFAULT_THRESHOLDS,
+        overrides,
+        effective,
+      },
+    }
   }))
   r.put('/api/projects/:pid/config', tx((c) => {
     requireCan(c.sx, 'config.manage', {})
     const b = body(c)
     const prior = c.sx.repo.get<Record<string, unknown>>('project', null, c.sx.projectId)
+    if ('thresholds' in b) {
+      const incoming = b.thresholds as Record<string, unknown>
+      if (incoming == null || typeof incoming !== 'object' || Array.isArray(incoming)) throw badRequest('thresholds must be an object')
+      const allowed = new Set(Object.keys(DEFAULT_THRESHOLDS))
+      for (const [key, val] of Object.entries(incoming)) {
+        if (!allowed.has(key)) throw badRequest(`unknown threshold: ${key}`)
+        if (typeof val !== 'number' || !Number.isFinite(val) || val < 0) throw badRequest(`threshold ${key} must be a non-negative number`)
+      }
+      const merged = { ...DEFAULT_THRESHOLDS, ...incoming } as Record<string, number>
+      const pairs = [
+        ['holdAgeWarnWd', 'holdAgeRedWd'],
+        ['decisionOverdueWarnD', 'decisionOverdueRedD'],
+        ['approvalLatencyWarnWd', 'approvalLatencyRedWd'],
+        ['commentAgeWarnWd', 'commentAgeRedWd'],
+        ['untriagedWarnWd', 'untriagedRedWd'],
+        ['unanchoredWarnCount', 'unanchoredRedCount'],
+        ['schedulePressureWarnD', 'schedulePressureRedD'],
+        ['interfaceOverdueWarnWd', 'interfaceOverdueRedWd'],
+        ['capacityWarnPct', 'capacityRedPct'],
+      ] as const
+      for (const [warn, red] of pairs) {
+        if ((merged[warn] ?? 0) > (merged[red] ?? 0)) throw badRequest(`${warn} must be <= ${red}`)
+      }
+    }
     // project has no project_id column: direct optimistic update
     const jsonCols = new Set(['weekendDays', 'holidays', 'thresholds', 'config'])
     const sets: string[] = []
@@ -427,6 +487,9 @@ export function buildRouter(db: Db): Router {
     })
     return c.sx.repo.get('project', null, c.sx.projectId)
   }))
+
+  r.get('/api/projects/:pid/admin/people', authed((c) => views.adminPeopleView(c.sx)))
+  r.get('/api/projects/:pid/admin/activity', authed((c) => views.adminActivityView(c.sx)))
 
   return r
 }
