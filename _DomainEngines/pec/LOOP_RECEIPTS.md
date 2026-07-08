@@ -629,3 +629,4 @@
   - Gate outcome: ruling executed exactly; B-2 part 2 declined — no v1.1 removal; no pec source/test/manifest/profile change, no import-behavior change, no reserved human act, no self-merge — STOP at owner merge of PR #105.
   - Checks (at this PR's final SHA): self-check pass, no baseline shift; coord-check on the committed range (the Receipt-52 unresolved-ref REVIEWs resolve — both named files now exist); `git diff --check` pass; pec belt-and-braces not re-run (no pec source touched — docs-only precedent).
   - Parked lanes: owner merge of PR #105; P4 weekly rehearsal (owner at the screen) — carry forward.
+  - Merge direction of record (2026-07-07, in-session, Ryan Tufts, verbatim): "merge PR #105" — recorded on this branch before the merge per the Receipt-47 process correction; merge executed on this direction with CI checked pre-merge.
