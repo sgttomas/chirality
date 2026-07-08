@@ -132,13 +132,19 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # PILOT.md adds one project-surface REVIEW; old profile-path historical
     # refs in D-T0-11/D-T0-12 add three WARNs; projects/pec adds one pointer
     # NOT_APPLICABLE row.
+    # REVIEW 28->29 on 2026-07-07 (D-PEC-23): the TOU West Doe decision packet
+    # (projects/pec/execution/_Coordination/_DECISIONS/D-PEC-23_tou_west_doe_demo_project.md)
+    # quotes the owner's launcher steer verbatim, and that steer names the
+    # absolute input path .../pilot-scratch/input/ — a lawful project-surface
+    # ABS_PATH_IN_PROJECT_SURFACE REVIEW that must not be relativized (verbatim
+    # owner directions are quoted as given; the check is detect-never-rewrite).
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 15,
         "NOT_APPLICABLE": 2,
-        "REVIEW": 28,
+        "REVIEW": 29,
         "WARN": 5,
     }
 
@@ -291,16 +297,21 @@ GEN8_BASELINE_PATHS = {
     "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
     "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
     "projects/pec/docs/PILOT.md",
+    # +1 on 2026-07-07 (D-PEC-23): the TOU West Doe decision packet quotes the
+    # owner's launcher steer verbatim, and that steer names the absolute
+    # .../pilot-scratch/input/ path — a lawful project-surface hit that stays
+    # verbatim (detect-never-rewrite). Conscious pin add, same PR as the packet.
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-23_tou_west_doe_demo_project.md",
 }
 
 
 @live
-def test_live_gen8_abs_path_25_file_baseline():
+def test_live_gen8_abs_path_26_file_baseline():
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 25  # exactly one finding per FILE
+    assert len(hits) == 26  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:
