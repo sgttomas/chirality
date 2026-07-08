@@ -55,6 +55,11 @@ Source:
   no new mutation control anywhere.
 - `projects/pec/server/test/**` — new/updated tests for the optional-header
   paths, migrations, views, and round-trip exports (synthetic fixtures only).
+  *(Correction, 2026-07-07, recorded at execution: `projects/pec/core/test/
+  fixtures.ts` is also touched — the core test fixtures must satisfy the
+  extended interfaces or typecheck fails; a mechanical consequence of the
+  pinned type additions, no behavior change. Under-enumeration delta
+  recorded here and in the loop receipt.)*
 - `projects/pec/server/src/repo.ts` / `core/src/snapshot-index.ts` — ONLY if
   the type additions require serialization plumbing; no behavior change.
 

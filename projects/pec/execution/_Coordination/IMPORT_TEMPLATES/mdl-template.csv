@@ -1,2 +1,2 @@
-doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type
-26020-PKG-001-SOW,Earthworks for foundations — Scope of Work,26020-PKG-001,Civil,person@example.com,A,in_work,2026-09-30,Gate 2,IFR,EDMS-0001,CL-0001,Package: Earthworks for foundations; Area 01,Scope of Work
+doc_no,title,package,discipline,owner,current_rev,state,due_date,milestone,issue_purpose_plan,edms_ref,client_no,remarks,deliverable_type,package_name,area,package_type
+26020-PKG-001-SOW,Earthworks for foundations — Scope of Work,26020-PKG-001,Civil,person@example.com,A,in_work,2026-09-30,Gate 2,IFR,EDMS-0001,CL-0001,Package: Earthworks for foundations; Area 01,Scope of Work,Earthworks for foundations,01,Standard Package

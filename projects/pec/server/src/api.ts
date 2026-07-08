@@ -125,6 +125,7 @@ export function buildRouter(db: Db): Router {
     holdCause: c.query.get('hold_cause') ?? undefined,
     dueBefore: c.query.get('due_before') ?? undefined,
     view: (c.query.get('view') as never) ?? undefined,
+    area: c.query.get('area') ?? undefined,
   })))
   r.get('/api/projects/:pid/deliverables/:id', authed((c) => views.deliverableDetailView(c.sx, idOf(c))))
   r.get('/api/projects/:pid/log', authed((c) => views.logRegisterView(c.sx, {
@@ -135,6 +136,7 @@ export function buildRouter(db: Db): Router {
     cause: c.query.get('cause') ?? undefined,
     overdue: c.query.get('overdue') != null ? c.query.get('overdue') === 'true' : undefined,
     anchored: c.query.get('anchored') != null ? c.query.get('anchored') === 'true' : undefined,
+    area: c.query.get('area') ?? undefined,
   })))
   r.get('/api/projects/:pid/my-week', authed((c) => views.myWeekView(c.sx)))
 
@@ -271,6 +273,8 @@ export function buildRouter(db: Db): Router {
 
   // ---------- risks & interfaces ----------
   r.get('/api/projects/:pid/risks', authed((c) => views.riskRegisterView(c.sx)))
+  // D-PEC-23: read-only schedule register (import-owned rows; trackerRegisterView precedent)
+  r.get('/api/projects/:pid/schedule', authed((c) => views.scheduleRegisterView(c.sx)))
   r.post('/api/projects/:pid/risks', tx((c) => registers.createRisk(c.sx, body(c) as never)))
   r.put('/api/projects/:pid/risks/:id', tx((c) => {
     const b = body(c)

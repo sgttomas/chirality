@@ -197,6 +197,7 @@ export function packagesView(sx: Sx): unknown {
     const st = packageStatus(snap, p)
     return {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
+      area: p.area, packageType: p.packageType,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
       openIssues: openIssueCount(sx, snap, p),
     }
@@ -367,18 +368,22 @@ export interface DeliverableFilters {
   holdCause?: string
   dueBefore?: string
   view?: 'active' | 'master' | 'issued'
+  /** package-area filter (§16 mdl optional column, D-PEC-23) */
+  area?: string
 }
 
 export function deliverablesView(sx: Sx, f: DeliverableFilters): unknown {
   const snap = snapshot(sx)
   // A deliverable's summary STATUS is its workflow completeness (which gates are closed),
   // not its issue load — issues are surfaced at the package level (PEC-PKG issues cockpit).
+  const pkgById = new Map(snap.packages.map((p) => [p.id, p]))
   let rows = snap.deliverables.map((d) => {
     const rev = currentRevision(snap, d.id)
     return { d, rev, workflow: workflowCompleteness(snap, d) }
   })
   if (f.packageId) rows = rows.filter((r) => r.d.packageId === f.packageId)
   if (f.discipline) rows = rows.filter((r) => r.d.discipline === f.discipline)
+  if (f.area) rows = rows.filter((r) => pkgById.get(r.d.packageId)?.area === f.area)
   if (f.state) rows = rows.filter((r) => (r.rev?.state ?? 'no_revision') === f.state)
   if (f.dueBefore) rows = rows.filter((r) => r.d.dueDate != null && r.d.dueDate <= f.dueBefore!)
   if (f.view === 'issued') rows = rows.filter((r) => r.rev?.state === 'issued')
@@ -386,9 +391,10 @@ export function deliverablesView(sx: Sx, f: DeliverableFilters): unknown {
 
   return rows.map(({ d, rev, workflow }) => ({
     id: d.id, docNo: d.docNo, title: d.title, packageId: d.packageId,
-    discipline: d.discipline, ownerId: d.ownerId, revCode: rev?.revCode ?? null,
+    discipline: d.discipline, deliverableType: d.deliverableType, ownerId: d.ownerId,
+    revCode: rev?.revCode ?? null,
     state: rev?.state ?? 'no_revision', dueDate: d.dueDate, milestone: d.milestone,
-    dcRef: d.dcRef, workflow,
+    dcRef: d.dcRef, area: pkgById.get(d.packageId)?.area ?? null, workflow,
   }))
 }
 
@@ -478,6 +484,8 @@ export interface LogFilters {
   cause?: string
   overdue?: boolean
   anchored?: boolean
+  /** source-log area filter (§16 rail optional column, D-PEC-23) */
+  area?: string
 }
 
 export function logRegisterView(sx: Sx, f: LogFilters): unknown {
@@ -491,6 +499,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     packageId: number | null; ownerId: number | null; state: string
     ageWd: number; needBy: string | null; overdue: boolean
     holdCause: string | null; anchorStatus: 'anchored' | 'unanchored'
+    area: string | null
   }
   const rows: Row[] = []
 
@@ -501,6 +510,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
       packageId: w.packageId, ownerId: w.ownerId, state: w.state,
       ageWd: ageWorkingDays(w.createdAt, today, cal), needBy: w.needBy,
       overdue: daysOverdue(w.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
+      area: w.area,
     })
   }
   for (const h of snap.holds) {
@@ -510,6 +520,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
       packageId: null, ownerId: h.ownerId, state: h.state,
       ageWd: ageWorkingDays(h.raisedAt, today, cal), needBy: h.needBy,
       overdue: daysOverdue(h.needBy, today) > 0, holdCause: h.cause, anchorStatus: 'anchored',
+      area: null,
     })
   }
   for (const i of snap.interfaces) {
@@ -518,7 +529,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
       recordType: 'interface_item', id: i.id, ref: i.ref, title: i.title, log: i.log,
       packageId: i.givingPackageId ?? i.receivingPackageId, ownerId: null, state: i.state,
       ageWd: 0, needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0,
-      holdCause: null, anchorStatus: 'anchored',
+      holdCause: null, anchorStatus: 'anchored', area: null,
     })
   }
   for (const t of snap.intakeItems) {
@@ -529,6 +540,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
       ageWd: ageWorkingDays(t.raisedAt, today, cal), needBy: t.needBy,
       overdue: daysOverdue(t.needBy, today) > 0, holdCause: null,
       anchorStatus: 'unanchored', // I-2: flagged until triaged; excluded from plans/rollups
+      area: t.area,
     })
   }
 
@@ -540,6 +552,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
   if (f.cause) out = out.filter((r) => r.holdCause === f.cause)
   if (f.overdue != null) out = out.filter((r) => r.overdue === f.overdue)
   if (f.anchored != null) out = out.filter((r) => (r.anchorStatus === 'anchored') === f.anchored)
+  if (f.area) out = out.filter((r) => r.area === f.area)
   return out.sort((a, b) => b.ageWd - a.ageWd)
 }
 
@@ -607,6 +620,25 @@ export function riskRegisterView(sx: Sx): Risk[] {
  *  Direct table read — tracker rows stay out of the snapshot by design. */
 export function trackerRegisterView(sx: Sx): PackageTracker[] {
   return sx.repo.list<PackageTracker>('package_tracker', sx.projectId)
+}
+
+/** Schedule register (§16 schedule contract + D-PEC-23 WBS columns): import-owned rows,
+ *  read-only. Source-file order = ascending id, so the WBS hierarchy reads top-down the
+ *  way the source schedule laid it out; outlineLevel drives indentation in the UI. */
+export function scheduleRegisterView(sx: Sx): unknown {
+  const snap = snapshot(sx)
+  const pkgCode = (id: number | null): string | null =>
+    id == null ? null : snap.packages.find((p) => p.id === id)?.code ?? null
+  const docNo = (id: number | null): string | null =>
+    id == null ? null : snap.deliverables.find((d) => d.id === id)?.docNo ?? null
+  return snap.scheduleActivities
+    .slice()
+    .sort((a, b) => a.id - b.id)
+    .map((a) => ({
+      ...a,
+      package: pkgCode(a.packageId),
+      deliverableRef: docNo(a.deliverableId),
+    }))
 }
 
 /** Dedicated interface register (PEC-INT-002, P2): aging + giving/receiving filters. */

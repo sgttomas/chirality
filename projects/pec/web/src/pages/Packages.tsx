@@ -30,6 +30,8 @@ export function PackagesPage(): JSX.Element {
 
   const cols: Array<Col<any>> = [
     { key: 'code', label: 'Package', render: (r) => <><b>{r.code}</b> <span className="muted small">{r.name}</span></>, csv: (r) => `${r.code} ${r.name}` },
+    { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted">—</span>, csv: (r) => r.area },
+    { key: 'type', label: 'Type', render: (r) => r.packageType ?? <span className="muted">—</span>, csv: (r) => r.packageType },
     { key: 'lead', label: 'Lead', render: (r) => <span className="small">{person(r.leadId)}</span>, csv: (r) => person(r.leadId) },
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? <span className="muted">—</span>, csv: (r) => r.milestone },
     { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value) },
