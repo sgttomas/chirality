@@ -5,7 +5,8 @@
 > the two colocated CANDIDATE redesign proposals** in
 > `_DomainEngines/proposals/pec/` (provenance below; synthesis reasoning in
 > `LOOP_RECEIPTS.md` Receipt 57). It supersedes
-> `WORKPLAN_2026-07-04_pec_loop.md` as the loop's standing plan (LOOP_INIT §2)
+> `.archive/WORKPLAN_2026-07-04_pec_loop.md` (retired into `.archive/` at owner
+> direction 2026-07-08, Receipt 58) as the loop's standing plan (LOOP_INIT §2)
 > and carries the **loop protocol, fences F-PEC-1..4, and the owner gate
 > unchanged** from it. This plan never authorizes work: owner-adopted
 > specifications and owner rulings/directions do — every roadmap tranche below
@@ -150,6 +151,28 @@ and recorded, and each source tranche remaining future owner-ruled.
    per its local rules — pointers, verbatim owner directions, gate outcomes,
    check pass/fail. No narrative here or anywhere else. Next iteration starts
    at 0.
+
+## Session conventions — task-dependent subagent model selection
+
+The convention's durable home is `LOOP_INIT.md` §7 (owner-revised 2026-07-05;
+a per-run steer may override). This plan applies it to the redesign phase's
+work types so each iteration selects the model by task, not by habit:
+
+- **`opus`** — Step-0 discovery and register/receipt reads; codebase and
+  contemporary-pattern research; summaries; running the deterministic checks
+  (`self-check`, `coord-check`, pytest, pec belt-and-braces); breadth
+  verification sweeps; screenshot/evidence capture drives.
+- **`fable` at `high` reasoning effort** — planning work (the T0 design spec;
+  D-PEC packet drafting); adversarial verification of anything that will be
+  recorded as fact (defect claims, citations, receipt load-bearing lines,
+  Explain-shape drill verification); and execution that touches governed
+  artifacts, fences, or rulings — which includes every D-PEC-24..33 source
+  tranche.
+- **`fable` at `low` effort** — mechanical execution of fully specified
+  changes only (e.g. applying an already-verified token rename across files).
+- **Fallback:** model unavailability never blocks a tranche — complete the
+  task on `opus` and record the salvage in the receipt (Receipts 54/56
+  precedent).
 
 ## Standing constraints — fences F-PEC-1..4 (all iterations; D-T0-15 ratified)
 
@@ -341,10 +364,9 @@ than landing as a separate tranche.
 - **Partial `refRoute` coverage** — `work_item` and drawer-only records return
   `null` today; D-PEC-25 must degrade gracefully (no dead links) until
   D-PEC-33 completes them.
-- **Model-agent availability** — the session conventions (LOOP_INIT §7) prefer
-  `fable@high` for planning/adversarial verification; prior fable outages were
-  salvaged on Opus (Receipts 54/56 precedent). Tranche execution should not
-  block on fable.
+- **Model-agent availability** — select per the session-conventions section
+  above; tranche execution never blocks on fable (Opus salvage precedent,
+  Receipts 54/56).
 
 ## Where live work is re-derived (pointer index — never a status surface)
 
@@ -369,6 +391,7 @@ than landing as a separate tranche.
 - **Queued harness work:** `tools/practitioner_harness/BACKLOG.md`.
 - **Handoff context** (owner directions, gate outcomes, stale-map deltas):
   `_DomainEngines/pec/LOOP_RECEIPTS.md`.
-- **Superseded predecessor:** `WORKPLAN_2026-07-04_pec_loop.md` (registration →
-  ladder phase; kept unedited for the record apart from its dated supersession
-  pointer).
+- **Superseded predecessor:** `.archive/WORKPLAN_2026-07-04_pec_loop.md`
+  (registration → ladder phase; retired into `.archive/` at owner direction
+  2026-07-08; kept unedited for the record apart from its dated
+  supersession/retirement pointer).
