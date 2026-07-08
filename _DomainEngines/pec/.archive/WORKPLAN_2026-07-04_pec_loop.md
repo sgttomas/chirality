@@ -1,12 +1,15 @@
 # PEC Work Loop — standing plan (pec tier-0 registration → standing pec loop)
 
-> **SUPERSEDED (2026-07-08):** this file is no longer the loop's standing plan.
-> The owner-directed successor is `WORKPLAN_2026-07-08_pec_uiux_redesign.md`
-> in this directory (the newest `WORKPLAN_*.md`, which LOOP_INIT §2 reads as
-> the standing plan) — a synthesis of the two colocated redesign proposals in
-> `_DomainEngines/proposals/pec/`; see `LOOP_RECEIPTS.md` Receipt 57. The
-> owner-intent quotes, loop protocol, and fences F-PEC-1..4 are carried forward
-> into the successor; this file is retained unedited below for the record.
+> **SUPERSEDED (2026-07-08) — RETIRED into `.archive/` (2026-07-08, owner
+> direction, Receipt 58):** this file is no longer the loop's standing plan.
+> The owner-directed successor is
+> `_DomainEngines/pec/WORKPLAN_2026-07-08_pec_uiux_redesign.md` (the newest —
+> and now only — `WORKPLAN_*.md` in the loop directory, which LOOP_INIT §2
+> reads as the standing plan) — a synthesis of the two colocated redesign
+> proposals in `_DomainEngines/proposals/pec/`; see `LOOP_RECEIPTS.md`
+> Receipts 57–58. The owner-intent quotes, loop protocol, and fences
+> F-PEC-1..4 are carried forward into the successor; this file is retained
+> unedited below for the record.
 
 > **Epistemic status: agent-authored plan — not authority.** Written at owner direction
 > (Ryan Tufts, K-AUTH-1) on 2026-07-04. This plan never authorizes work: owner-adopted
