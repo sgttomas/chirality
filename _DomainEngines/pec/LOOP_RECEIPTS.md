@@ -722,3 +722,11 @@
   - Gate outcome: D-PEC-25 packet preparation only; STOP at owner rulings. No PEC source change, no D-PEC-24/D-PEC-25/D-PEC-34 implementation, no server/core/profile/DB mutation, no D-PEC-26+ packet.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=6; coord-check on `origin/main..HEAD` pass/no findings; `git diff --check` pass; no `tools/**` or PEC source change, so full harness pytest and PEC belt-and-braces not run.
   - Parked lanes: owner rulings D-PEC-24/D-PEC-25/D-PEC-34; D-PEC-25 execution sequenced after D-PEC-24; D-PEC-26/27/29/30/31 packet prep remains possible by future loop selection; slate items 1/2/3/5/6; D-PEC-23 import-approval gate; P4 weekly rehearsal; deferred D-PEC-28/28b planning phase.
+
+- **2026-07-08 — Receipt 63** (D-PEC-27 + D-PEC-29 reporting packets added to PR #115).
+  - Start: same branch `codex/pec-dpec24-dpec34-packets` stacked on Receipt 62; pre-existing dirty piping audit JSONs and `pec-demo.db*` left untouched.
+  - Live-surface selection: after D-PEC-25 packet prep, the standing plan's reporting-first sequence still left D-PEC-27 (issue dashboard) and D-PEC-29 (package/deliverable issue linkage) lawful as coordination packet prep, with execution dependencies stated in-packet.
+  - Executed pointers: `D-PEC-27_issue_dashboard.md`; `D-PEC-29_package_deliverable_issue_linkage.md`; PEC register rows D-PEC-27 and D-PEC-29 set `AWAITING_RULING`; PR #115 updated in place.
+  - Gate outcome: packet preparation only; STOP at owner rulings. No PEC source change, no D-PEC-24/25/27/29/34 implementation, no server/core/profile/DB mutation, no D-PEC-26/30/31/35/36/37 packet.
+  - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=6; coord-check on `origin/main..HEAD` pass/no findings; `git diff --check` pass; no `tools/**` or PEC source change, so full harness pytest and PEC belt-and-braces not run.
+  - Parked lanes: owner rulings D-PEC-24/25/27/29/34; D-PEC-26/30/31 and upload/reporting-lane packets remain possible future coordination prep; slate items 1/2/3/5/6; D-PEC-23 import-approval gate; P4 weekly rehearsal; deferred D-PEC-28/28b planning phase.
